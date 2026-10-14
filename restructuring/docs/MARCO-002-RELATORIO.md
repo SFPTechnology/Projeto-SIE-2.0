@@ -45,3 +45,7 @@ Permanece proibido classificar o motor como normativamente aprovado. A branch `m
 
 ## Como verificar
 No GitHub: PR #1, aba **Checks**. No Windows, siga `restructuring/README.md` e execute `python -m pytest -q` em `restructuring/apps/api`. Os testes de API/armazenamento e o comando `node --check restructuring/apps/web/app.js` estão incorporados à integração contínua.
+
+## Extensão matemática não normativa
+
+Adicionada a função `calcular_queda_tensao_trifasica_resistiva` como primitiva isolada do domínio, com hipóteses explícitas de equilíbrio de fases, `cos(phi)=1` e reatância nula. Testes cobrem valor numérico, proporcionalidade com comprimento e rejeição de parâmetros não finitos. Essa função não é exposta como aprovação nem substitui o motor de queda de tensão conforme a NBR 5410.
