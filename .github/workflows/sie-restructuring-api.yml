@@ -3,6 +3,8 @@ on:
   push:
     paths:
       - 'restructuring/**'
+      - 'docs/sie-orchestrator/ORCHESTRATOR_STATE.json'
+      - 'docs/stories/story-SIE-AUTO-011-DEPENDENCY-SCHEDULER.md'
       - '.github/workflows/sie-restructuring-api.yml'
   pull_request:
     paths:
