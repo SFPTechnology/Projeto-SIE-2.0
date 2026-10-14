@@ -64,7 +64,7 @@ class EnquadramentoEDP(BaseModel):
 
 @app.get("/api/v1/health")
 def health():
-    return {"status": "ok", "component": "api", "engineering_engine": "calculation_available_with_release_gate", "version": app.version}
+    return {"status": "ok", "component": "api", "engineering_engine": "calculation_available_normative_release_disabled", "version": app.version}
 
 
 @app.post("/api/v1/projetos/validar")
