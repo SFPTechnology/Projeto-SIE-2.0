@@ -16,3 +16,6 @@
 Nenhuma linha prova teste normativo profissional sem fonte primária, edição, referência, cenário e resultado independente. Ao concluir story, acrescentar run ID e SHA da revisão exata.
 
 | ROOT-01 | AIOX lint/typecheck/test/build | `.github/workflows/sie-orchestrator-quality.yml`, run 38572622950 todos os 4 steps success | DONE |
+
+| DAG-01 | Validar grafos, ordem, estados e proteção contra DONE prematuro | `scheduler.py`, `scheduler_cli.py`, `test_scheduler.py`, run 38574851595 | DONE — 67 Python, sem execução remota |
+| AIOX-02 | Gates AIOX após o escalonador | run 38574851619, lint/typecheck/test/build success | DONE — gate de CI |

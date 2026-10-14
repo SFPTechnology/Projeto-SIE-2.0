@@ -1,15 +1,15 @@
 # NEXT_ACTION — retomada segura
 
-**Últimas stories concluídas:** SIE-AUTO-001 (CLI projetos) e SIE-AUTO-002 (gates raiz). Evidências: runs 38572009186 e 38572622950, ambas success, conforme seus respectivos escopos.
+**Story concluída:** SIE-AUTO-011 (escalonador determinístico). Evidências: 67 pytest + JS, run 38574851595; root AIOX gates, run 38574851619.
 
-**Próxima atividade:** SIE-AUTO-011 — máquina de estados e escalonador determinístico de dependências, derivado diretamente do protocolo SIE-AUTO-ORCHESTRATOR v2.0 do usuário.
+**Próxima atividade pronta:** **SIE-AUTO-004 — reforçar contratos do núcleo de cálculo e limites de aplicação**, SEM inventar norma ou alterar dados de EDP.
 
-## Etapas para retomar
-1. Verificar o head da branch `refactor/sie-2-foundation-2026-10-14`, PR #1 e os checks da última revisão.
-2. Criar story em `docs/stories/` com ACs antes de editar código.
-3. Implementar somente motor determinístico de grafo, estados, fila e histórico; nenhuma execução remota implícita nem aprovação normativa.
-4. Executar pytest e os quatro gates AIOX; corrigir falhas reais.
-5. Registrar SHA, run IDs e status em PROJECT_STATE, VALIDATION_MATRIX, EXECUTION_HISTORY e NEXT_ACTION.
-6. Continuar com tarefa READY sem violar dependências.
+## Como retomar
+1. Verificar branch `refactor/sie-2-foundation-2026-10-14`, PR #1, novo head e checks.
+2. Abrir `docs/sie-orchestrator/ORCHESTRATOR_STATE.json`; conferir que SIE-AUTO-004 e SIE-AUTO-005 estão READY e NOR-01 permanece BLOCKED.
+3. Criar story `docs/stories/story-SIE-AUTO-004-ENGINE-CONTRACTS.md` com critérios de aceite baseados nos limites reais de `domain/engines.py` e `main.py`.
+4. Especificar testes de entradas inválidas, precisão, comprimento zero, catálogos inconsistentes, métodos e unidades, sem extrapolar equivalência com ABNT NBR 5410.
+5. Executar pytest, JavaScript check, 4 gates AIOX; documentar diferenças e SHA. Não alterar testes esperados apenas para acomodar bug.
+6. Se bloqueios normativos impedirem cálculo completo, registrar e continuar tarefa independente como SIE-AUTO-005.
 
-**Bloqueios independentes:** NOR-01/NOR-02 (fontes e validação normativa), autenticação de produção, E2E real e demais módulos de engenharia. Não mesclar `main` sem validações correspondentes.
+**Responsabilidades:** AIOX é o executor de stories; `scheduler.py` apenas planeja a fila e valida metadados. A LLM não executa fora desta sessão por mera presença de arquivos. Não fazer merge/deploy ou conceder conformidade normativa.

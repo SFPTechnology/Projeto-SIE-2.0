@@ -29,3 +29,6 @@ Automação controlada somente na branch; seguir `AGENTS.md`, `.aiox-core/consti
 
 ## Novo marco observado
 Story SIE-AUTO-001 concluída com run 38572009186 (51 testes Python, JS check). Story SIE-AUTO-002 concluída com run 38572622950 (lint, typecheck, test e build root). Módulos elétricos normativos permanecem incompletos.
+
+## Ciclo SIE-AUTO-011 validado
+O escalonador determinístico e o JSON de tarefas foram implementados. GitHub Actions run 38574851595: 67 testes passando, 1 aviso e verificação JS; run 38574851619: quatro gates AIOX passing. **Estado da story: DONE no escopo de planejamento**, não execução automática de agentes nem validação normativa. SIE-AUTO-004 e SIE-AUTO-005 tornam-se READY pelo DAG.

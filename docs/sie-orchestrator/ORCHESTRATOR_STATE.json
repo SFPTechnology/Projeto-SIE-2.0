@@ -1,8 +1,44 @@
 {
   "schema_version": 1,
-  "revision": 0,
+  "revision": 1,
   "description": "Estado declarativo da fila do SIE; CI verifica integridade, nao comprova automaticidade nem normas.",
-  "history": [],
+  "history": [
+    {
+      "activity": "SIE-AUTO-011",
+      "from": "RUNNING",
+      "to": "IMPLEMENTED",
+      "reason": "Codigo e testes do escalonador publicados",
+      "at": "2026-10-14T13:50:46.247Z"
+    },
+    {
+      "activity": "SIE-AUTO-011",
+      "from": "IMPLEMENTED",
+      "to": "VALIDATING",
+      "reason": "Validacao externa via GitHub Actions",
+      "at": "2026-10-14T13:50:46.247Z"
+    },
+    {
+      "activity": "SIE-AUTO-011",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "Criterios de aceite conferidos com logs CI e guias publicados",
+      "at": "2026-10-14T13:50:46.247Z"
+    },
+    {
+      "activity": "SIE-AUTO-004",
+      "from": "PENDING",
+      "to": "READY",
+      "reason": "Story SIE-AUTO-011 DONE, requisitos e dependencias conferidos",
+      "at": "2026-10-14T13:50:46.247Z"
+    },
+    {
+      "activity": "SIE-AUTO-005",
+      "from": "PENDING",
+      "to": "READY",
+      "reason": "Story SIE-AUTO-011 DONE, requisitos e dependencias conferidos",
+      "at": "2026-10-14T13:50:46.247Z"
+    }
+  ],
   "tasks": [
     {
       "id": "SIE-AUTO-001",
@@ -51,7 +87,7 @@
     {
       "id": "SIE-AUTO-011",
       "title": "Escalonador de atividades e estado",
-      "state": "RUNNING",
+      "state": "DONE",
       "dependencies": [
         "SIE-AUTO-001",
         "SIE-AUTO-002"
@@ -63,8 +99,11 @@
       "criteria": [
         {
           "id": "AC-BASE",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "GitHub Actions run 38574851595: 67 passed and JS check; run 38574851619: all four root AIOX gates success",
+            "docs/stories/story-SIE-AUTO-011-DEPENDENCY-SCHEDULER.md"
+          ]
         }
       ],
       "source_refs": [
@@ -74,7 +113,7 @@
     {
       "id": "SIE-AUTO-004",
       "title": "Contratos de engenharia e limites",
-      "state": "PENDING",
+      "state": "READY",
       "dependencies": [
         "SIE-AUTO-011"
       ],
@@ -96,7 +135,7 @@
     {
       "id": "SIE-AUTO-005",
       "title": "Fluxo E2E real em navegador",
-      "state": "PENDING",
+      "state": "READY",
       "dependencies": [
         "SIE-AUTO-011"
       ],

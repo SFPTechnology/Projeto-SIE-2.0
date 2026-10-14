@@ -20,3 +20,6 @@
 
 ## ADR-SIE-007 — Gates AIOX executados na CI
 **Decisão:** workflow GitHub Actions separado executa os quatro comandos exigidos na raiz, após instalar dependências da `.aiox-core` pelo lockfile. **Justificativa:** o pipeline FastAPI não comprova os gates do AIOX. **Evidência:** run 38572622950; sem `continue-on-error`.
+
+## ADR-SIE-008 — Complementar AIOX sem executor duplicado
+**Decisão:** `sie_api/scheduler.py` realiza DAG/estado/fila e `scheduler_cli.py` opera JSON local; os existentes `MasterOrchestrator`, `RecoveryHandler` e `SessionState` conservam a responsabilidade de execução e retomada dos agentes. **Risco residual:** ainda não existe bridge de execução automática entre fila e agentes. **Evidência:** run 38574851595.

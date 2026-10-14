@@ -18,3 +18,9 @@
 8. Implementados testes subprocess em `tests/test_cli.py`; run 38572009186 validou 51 testes Python e sintaxe JS (success). Story SIE-AUTO-001 atualizada para DONE.
 9. Criada story SIE-AUTO-002 para preencher gap de quatro gates AIOX; workflow `.github/workflows/sie-orchestrator-quality.yml` passou em run 38572622950 (lint, typecheck, test e build success).
 10. Nenhum merge na main ou aprovação normativa foi executado.
+
+## 2026-10-14: motor de fila e estados
+11. Inspecionados `.aiox-core/core/orchestration/master-orchestrator.js`, `recovery-handler.js` e `session-state.js`: AIOX já dispõe de execução de epics e retomada; optou-se por não duplicar executor de agentes.
+12. Criada story SIE-AUTO-011, implementados `scheduler.py` e `scheduler_cli.py` (grafo dirigido, dez estados, fila e persistência local), `test_scheduler.py`, `ORCHESTRATOR_STATE.json` e guia operacional.
+13. Runs 38574851595 e 38574851619 aprovadas: 67 testes Python, JS check, lint, typecheck, test e build AIOX. Story 011 marcada DONE apenas em seu escopo.
+14. Após validar 011, tarefas SIE-AUTO-004 e SIE-AUTO-005 promovidas de PENDING para READY no estado JSON com eventos de trilha.
