@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 1,
+  "revision": 2,
   "description": "Estado declarativo da fila do SIE; CI verifica integridade, nao comprova automaticidade nem normas.",
   "history": [
     {
@@ -37,6 +37,27 @@
       "to": "READY",
       "reason": "Story SIE-AUTO-011 DONE, requisitos e dependencias conferidos",
       "at": "2026-10-14T13:50:46.247Z"
+    },
+    {
+      "activity": "SIE-AUTO-004",
+      "from": "READY",
+      "to": "RUNNING",
+      "reason": "Story criada antes de editar motores",
+      "at": "2026-10-14T17:20:00Z"
+    },
+    {
+      "activity": "SIE-AUTO-004",
+      "from": "RUNNING",
+      "to": "IMPLEMENTED",
+      "reason": "Contratos e testes publicados em branch isolada",
+      "at": "2026-10-14T17:21:00Z"
+    },
+    {
+      "activity": "SIE-AUTO-004",
+      "from": "IMPLEMENTED",
+      "to": "VALIDATING",
+      "reason": "GitHub Actions acionado; evidências de conclusão ainda pendentes",
+      "at": "2026-10-14T17:22:00Z"
     }
   ],
   "tasks": [
@@ -113,7 +134,7 @@
     {
       "id": "SIE-AUTO-004",
       "title": "Contratos de engenharia e limites",
-      "state": "READY",
+      "state": "VALIDATING",
       "dependencies": [
         "SIE-AUTO-011"
       ],
@@ -123,7 +144,40 @@
       "requirements_verified": true,
       "criteria": [
         {
-          "id": "AC-BASE",
+          "id": "AC-01",
+          "passed": false,
+          "evidence": [
+            "Commit 9c3d4d9e0af8; testes em 14bd4d3953b2, CI pendente"
+          ]
+        },
+        {
+          "id": "AC-02",
+          "passed": false,
+          "evidence": [
+            "Validação integral do catálogo em engines.py"
+          ]
+        },
+        {
+          "id": "AC-03",
+          "passed": false,
+          "evidence": [
+            "Modelo resistivo com comprimento não negativo"
+          ]
+        },
+        {
+          "id": "AC-04",
+          "passed": false,
+          "evidence": [
+            "test_engines.py com casos de borda"
+          ]
+        },
+        {
+          "id": "AC-05",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-06",
           "passed": false,
           "evidence": []
         }
