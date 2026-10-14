@@ -109,3 +109,10 @@ def test_voltage_drop_rejects_invalid_length(invalid):
         calcular_queda_tensao_monofasica(
             Decimal("20"), Decimal(invalid), Decimal("7.41"), Decimal("220")
         )
+
+@pytest.mark.parametrize("invalid", [None, "20", 20])
+def test_non_decimal_input_fails_safely(invalid):
+    with pytest.raises(ValueError):
+        calcular_queda_tensao_monofasica(
+            invalid, Decimal("30"), Decimal("7.41"), Decimal("220")
+        )
