@@ -91,4 +91,4 @@ cd restructuring\apps\api
 python -m sie_api.scheduler_cli --help
 ```
 
-Consulte o [guia do escalonador](../../../docs/sie-orchestrator/SCHEDULER-GUIDE.md) (no repositório: `docs/sie-orchestrator/SCHEDULER-GUIDE.md`). A referência JSON canônica está em `docs/sie-orchestrator/ORCHESTRATOR_STATE.json` e deve ser reconciliada com os checks reais antes de modificar estados.
+Consulte o [guia do escalonador](../docs/sie-orchestrator/SCHEDULER-GUIDE.md) (no repositório: `docs/sie-orchestrator/SCHEDULER-GUIDE.md`). A referência JSON canônica está em `docs/sie-orchestrator/ORCHESTRATOR_STATE.json` e deve ser reconciliada com os checks reais antes de modificar estados.
