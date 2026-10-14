@@ -38,3 +38,11 @@ def test_existing_database_can_be_reopened(tmp_path):
     projeto_id = str(uuid4())
     RepositorioProjetos(path).salvar(projeto_id, "Persistente", {"v": 1}, 0)
     assert RepositorioProjetos(path).carregar(projeto_id)["dados"] == {"v": 1}
+
+
+def test_rejects_oversized_payload(tmp_path):
+    repo = RepositorioProjetos(tmp_path / "sie.sqlite3")
+    projeto_id = str(uuid4())
+    with pytest.raises(ValueError, match="1 MiB"):
+        repo.salvar(projeto_id, "Projeto grande", {"texto": "x" * 1_048_576}, 0)
+    assert repo.carregar(projeto_id) is None
