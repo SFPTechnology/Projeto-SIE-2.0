@@ -1,0 +1,41 @@
+name: SIE Orchestrator AIOX Quality Gates
+
+on:
+  push:
+    paths:
+      - 'restructuring/**'
+      - 'docs/sie-orchestrator/**'
+      - 'docs/stories/story-SIE-AUTO-*.md'
+      - '.github/workflows/sie-orchestrator-quality.yml'
+      - 'package.json'
+      - 'scripts/validate-sdc-auto-1.js'
+  pull_request:
+    paths:
+      - 'restructuring/**'
+      - 'docs/sie-orchestrator/**'
+      - 'docs/stories/story-SIE-AUTO-*.md'
+      - '.github/workflows/sie-orchestrator-quality.yml'
+      - 'package.json'
+      - 'scripts/validate-sdc-auto-1.js'
+
+jobs:
+  root-quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install AIOX runtime dependencies from lockfile
+        run: npm ci --prefix .aiox-core --ignore-scripts --no-audit --no-fund
+      - name: Lint
+        run: npm run lint
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Test
+        run: npm test
+      - name: Build
+        run: npm run build
