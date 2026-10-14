@@ -42,7 +42,7 @@ async function projectResponse(response) {
   const data = await response.json();
   if (!response.ok) {
     const detail = typeof data.detail === 'string' ? data.detail : 'Verifique credenciais, campos e configuracao local.';
-    throw new Error(detail);
+    throw new Error(response.status === 409 ? 'Conflito de revisao: ' + detail : detail);
   }
   return data;
 }
