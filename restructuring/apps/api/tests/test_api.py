@@ -83,3 +83,19 @@ def test_cors_accepts_local_ui_origin():
     })
     assert res.status_code == 200
     assert res.headers.get('access-control-allow-origin') == 'http://localhost:5173'
+
+def test_zero_length_analysis_is_accepted_but_never_normatively_released():
+    response = client.post("/api/v1/circuitos/analisar", json={
+        "corrente_a": 20,
+        "comprimento_m": 0,
+        "tensao_v": 220,
+        "resistencia_ohm_km": 7.41,
+        "fator_correcao": .8,
+        "tabela_condutores": [{"secao_mm2": 4, "capacidade_a": 32}],
+        "evidencia": {"documento": "Dados de ensaio", "edicao": "v1",
+                     "referencia": "Tabela demonstrativa"},
+    })
+    assert response.status_code == 200
+    result = response.json()
+    assert result["queda_tensao"]["queda_v"] == 0
+    assert result["liberado_para_uso_normativo"] is False
