@@ -65,3 +65,20 @@ python -m pytest -q
 ```
 
 Os testes cobrem validação de entradas, cálculos, regras de proteção e endpoint HTTP. Em caso de erro, não use os resultados até restabelecer a execução verde.
+
+## 10. Salvar e reabrir projetos locais
+
+A interface agora possui o painel **Projetos locais**. O recurso é experimental e desabilitado por padrão. Primeiro, configure a API seguindo [PERSISTENCIA-LOCAL.md](PERSISTENCIA-LOCAL.md).
+
+1. Execute uma análise do circuito.
+2. Informe um nome e o token local de acesso no painel Projetos locais.
+3. Clique em **Salvar análise**. A tela indicará o ID do projeto e a revisão.
+4. Guarde o ID em local seguro. Ele é necessário para reabrir posteriormente.
+5. Para reabrir, informe ID e token, clique em **Reabrir projeto**.
+6. Os campos serão restaurados, mas o sistema exigirá **Executar análise** novamente antes de exibir resultados.
+
+O token não é gravado no armazenamento do navegador. O banco é SQLite local; não é sincronizado com Supabase e não deve ser exposto à internet. Conflitos de revisão geram HTTP 409, evitando sobrescritas silenciosas.
+
+## 11. O que ainda não está disponível
+
+Autenticação por usuários e organizações, persistência de produção, interface de gerenciamento completo de projetos, gráficos elétricos, diagrama unifilar, planta, memoriais, quantitativos e liberação normativa validada ainda estão pendentes.
