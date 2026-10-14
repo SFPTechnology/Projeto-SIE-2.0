@@ -51,3 +51,61 @@ def test_three_phase_drop_rejects_non_finite_input():
         calcular_queda_tensao_trifasica_resistiva(
             Decimal("NaN"), Decimal("30"), Decimal("7.41"), Decimal("380")
         )
+
+
+@pytest.mark.parametrize("invalid", ["NaN", "Infinity", "-Infinity", "0", "-1"])
+def test_breaker_catalog_rejects_invalid_items(invalid):
+    with pytest.raises(ValueError):
+        selecionar_disjuntor(Decimal("10"), Decimal("25"), (Decimal("16"), Decimal(invalid)))
+
+
+def test_breaker_catalog_rejects_empty():
+    with pytest.raises(ValueError):
+        selecionar_disjuntor(Decimal("10"), Decimal("25"), ())
+
+
+@pytest.mark.parametrize("invalid", ["NaN", "Infinity", "-Infinity", "0", "-1"])
+def test_conductor_table_rejects_invalid_items_even_after_valid_candidate(invalid):
+    with pytest.raises(ValueError):
+        selecionar_condutor(
+            Decimal("10"), Decimal("0.8"),
+            ((Decimal("4"), Decimal("32")), (Decimal("6"), Decimal(invalid))),
+        )
+
+
+def test_conductor_table_rejects_duplicate_section():
+    with pytest.raises(ValueError, match="duplicada"):
+        selecionar_condutor(
+            Decimal("10"), Decimal("0.8"),
+            ((Decimal("4"), Decimal("32")), (Decimal("4"), Decimal("40"))),
+        )
+
+
+def test_conductor_table_rejects_empty():
+    with pytest.raises(ValueError):
+        selecionar_condutor(Decimal("10"), Decimal("0.8"), ())
+
+
+def test_zero_length_single_phase_has_zero_drop():
+    result = calcular_queda_tensao_monofasica(
+        Decimal("20"), Decimal("0"), Decimal("7.41"), Decimal("220")
+    )
+    assert result.queda_v == Decimal("0.00")
+    assert result.queda_percentual == Decimal("0.00")
+
+
+def test_zero_length_three_phase_has_zero_drop():
+    from sie_api.domain.engines import calcular_queda_tensao_trifasica_resistiva
+    result = calcular_queda_tensao_trifasica_resistiva(
+        Decimal("20"), Decimal("0"), Decimal("7.41"), Decimal("380")
+    )
+    assert result.queda_v == Decimal("0.00")
+    assert result.queda_percentual == Decimal("0.00")
+
+
+@pytest.mark.parametrize("invalid", ["NaN", "Infinity", "-Infinity", "-1"])
+def test_voltage_drop_rejects_invalid_length(invalid):
+    with pytest.raises(ValueError):
+        calcular_queda_tensao_monofasica(
+            Decimal("20"), Decimal(invalid), Decimal("7.41"), Decimal("220")
+        )
