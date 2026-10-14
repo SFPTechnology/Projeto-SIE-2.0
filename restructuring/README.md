@@ -58,3 +58,26 @@ Consulte [MANUAL-OPERACIONAL.md](./docs/MANUAL-OPERACIONAL.md) para o guia compl
 - [Relatório do Marco 002](docs/MARCO-002-RELATORIO.md) — código, testes, limitações e próximos gates.
 
 A infraestrutura SQLite em `apps/api/sie_api/storage.py` possui API local opcional em `/api/v1/local/projetos`, desabilitada por padrão e protegida por token. Veja [guia de persistência](docs/PERSISTENCIA-LOCAL.md). O motor trifásico resistivo em `domain/engines.py` é uma função de cálculo ilustrativa, sem integração normativa, com `cos(phi)=1` e reatância desconsiderada.
+
+## Projetos via CLI (sem navegador ou servidor)
+
+Com o Python instalado e estando em `restructuring/apps/api`, consulte os comandos:
+
+```powershell
+python -m sie_api.cli --help
+```
+
+Crie um arquivo `dados.json` contendo um objeto JSON, por exemplo: `{ "circuitos": [] }`. Depois execute:
+
+```powershell
+python -m sie_api.cli --database sie-local.sqlite3 salvar --nome "Casa de teste" --arquivo dados.json
+```
+
+O retorno traz um UUID. Substitua `UUID` abaixo por esse identificador:
+
+```powershell
+python -m sie_api.cli --database sie-local.sqlite3 carregar --id UUID
+python -m sie_api.cli --database sie-local.sqlite3 historico --id UUID
+```
+
+Para revisar o mesmo projeto, use novamente `salvar`, com `--id UUID` e `--revisao-esperada 1`. Nenhum desses comandos depende da API web nem aprova tecnicamente o projeto. Veja [tutorial CLI e API local](docs/PERSISTENCIA-LOCAL.md) e [story SIE-AUTO-001](../docs/stories/story-SIE-AUTO-001-CLI-LOCAL-PROJECTS.md).
