@@ -81,3 +81,14 @@ python -m sie_api.cli --database sie-local.sqlite3 historico --id UUID
 ```
 
 Para revisar o mesmo projeto, use novamente `salvar`, com `--id UUID` e `--revisao-esperada 1`. Nenhum desses comandos depende da API web nem aprova tecnicamente o projeto. Veja [tutorial CLI e API local](docs/PERSISTENCIA-LOCAL.md) e [story SIE-AUTO-001](../docs/stories/story-SIE-AUTO-001-CLI-LOCAL-PROJECTS.md).
+
+## Orquestração segura das próximas etapas
+
+O repositório também possui um **escalonador determinístico do SIE**, separado do executor AIOX existente. Ele valida as dez situações de uma atividade, detecta ciclos no grafo e ordena somente tarefas elegíveis. Não executa agentes nem faz deploy por conta própria.
+
+```powershell
+cd restructuring\apps\api
+python -m sie_api.scheduler_cli --help
+```
+
+Consulte o [guia do escalonador](../../../docs/sie-orchestrator/SCHEDULER-GUIDE.md) (no repositório: `docs/sie-orchestrator/SCHEDULER-GUIDE.md`). A referência JSON canônica está em `docs/sie-orchestrator/ORCHESTRATOR_STATE.json` e deve ser reconciliada com os checks reais antes de modificar estados.
