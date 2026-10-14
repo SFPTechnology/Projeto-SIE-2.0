@@ -5,14 +5,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, ConfigDict
 from .application import analisar_circuito
 from .domain.edp import enquadrar_edp
+from .storage_api import router as storage_router
 
 app = FastAPI(title="SIE 2.0 - API modular", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"],
     allow_methods=["GET", "POST"],
-    allow_headers=["Content-Type"],
+    allow_headers=["Content-Type", "Authorization"],
 )
+app.include_router(storage_router)
 
 
 class Circuito(BaseModel):
