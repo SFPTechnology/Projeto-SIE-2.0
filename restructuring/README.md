@@ -57,4 +57,4 @@ Consulte [MANUAL-OPERACIONAL.md](./docs/MANUAL-OPERACIONAL.md) para o guia compl
 - [Manual Markdown](docs/MANUAL-OPERACIONAL.md) — versão textual.
 - [Relatório do Marco 002](docs/MARCO-002-RELATORIO.md) — código, testes, limitações e próximos gates.
 
-A infraestrutura SQLite em `apps/api/sie_api/storage.py` é local e ainda não exposta na API. O motor trifásico resistivo em `domain/engines.py` é uma função de cálculo ilustrativa, sem integração normativa, com `cos(phi)=1` e reatância desconsiderada.
+A infraestrutura SQLite em `apps/api/sie_api/storage.py` possui API local opcional em `/api/v1/local/projetos`, desabilitada por padrão e protegida por token. Veja [guia de persistência](docs/PERSISTENCIA-LOCAL.md). O motor trifásico resistivo em `domain/engines.py` é uma função de cálculo ilustrativa, sem integração normativa, com `cos(phi)=1` e reatância desconsiderada.
