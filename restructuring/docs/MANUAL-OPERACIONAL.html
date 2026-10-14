@@ -29,7 +29,7 @@ footer{padding:2rem;color:var(--muted);text-align:center}
 <strong>Navegação</strong>
 <a href="#inicio">01 · Primeira execução</a><a href="#tela">02 · Elementos da tela</a>
 <a href="#campos">03 · Preenchimento</a><a href="#resultados">04 · Resultados</a>
-<a href="#edp">05 · Enquadramento EDP</a><a href="#testes">06 · Testes e erros</a><a href="#seguranca">07 · Limites técnicos</a>
+<a href="#edp">05 · Enquadramento EDP</a><a href="#testes">06 · Testes e erros</a><a href="#projetos">07 · Projetos locais</a><a href="#seguranca">08 · Limites técnicos</a>
 </nav><article>
 <section id="inicio"><h2>01 · Primeira execução</h2><p>São necessários Python 3.11 ou superior e dois terminais PowerShell, dentro da cópia local do repositório.</p>
 <h3>Terminal 1 — API</h3><pre><code>cd restructuring\apps\api
@@ -77,8 +77,12 @@ py -3.11 -m http.server 5173</code></pre>
 <tr><td>Disjuntor indisponível</td><td>Revise o catálogo e a relação Ib/Iz.</td></tr>
 <tr><td>Status PENDENTE</td><td>Comportamento esperado: auditoria normativa independente ainda não implementada.</td></tr>
 </tbody></table></section>
-<section id="seguranca"><h2>07 · Escopo, segurança e próximos módulos</h2>
-<p>Este incremento destina-se a teste local controlado. A API não possui ainda autenticação de produção, persistência exposta com controle de acesso ou aprovação normativa certificada. O SQLite local versionado é um componente de infraestrutura em teste, ainda não integrado ao fluxo da interface.</p>
+<section id="projetos"><h2>07 · Salvar e reabrir projetos</h2>
+<p>Abra o painel <strong>Projetos locais</strong> depois de realizar uma análise. Configure antes as duas variáveis de ambiente da API, conforme o guia <a href="./PERSISTENCIA-LOCAL.md">Persistência local</a>. A gravação fica bloqueada enquanto não houver token e caminho do SQLite no servidor.</p>
+<ol><li>Execute uma análise do circuito.</li><li>Informe nome e token local de acesso.</li><li>Clique em <strong>Salvar análise</strong> e anote o ID e a revisão.</li><li>Para reabrir, informe o ID e token e clique em <strong>Reabrir projeto</strong>.</li><li>Confira os parâmetros carregados e execute novamente a análise.</li></ol>
+<div class="warning">Os resultados anteriores não são considerados automaticamente revalidados. O token é de desenvolvimento e não é armazenado pelo navegador; o banco não é sincronizado com o Supabase.</div></section>
+<section id="seguranca"><h2>08 · Escopo, segurança e próximos módulos</h2>
+<p>Este incremento destina-se a teste local controlado. A API não possui autenticação de produção ou aprovação normativa certificada. A persistência SQLite está integrada ao painel local por token opt-in; não deve ser publicada na internet, nem confundida com autorização por usuário.</p>
 <p>Faltam motores normativos completos, quadros de carga, diagramas, planta, memoriais, relatórios finais e QA independente. Antes de uso profissional, exija fonte técnica primária, edição, tabelas reproduzíveis, cálculos de referência e revisão por responsável habilitado.</p></section>
 </article></div><footer>SIE 2.0 — documentação do protótipo técnico. Versão de estudo local controlado.</footer>
 </body></html>
