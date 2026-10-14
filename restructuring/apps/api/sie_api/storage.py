@@ -4,6 +4,7 @@ Nao armazena decisao de conformidade normativa.
 """
 import json
 import sqlite3
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from uuid import UUID
@@ -34,11 +35,16 @@ class RepositorioProjetos:
                 );
             """)
 
+    @contextmanager
     def _conectar(self):
         db = sqlite3.connect(self.caminho, timeout=5)
-        db.execute("PRAGMA foreign_keys = ON")
-        db.row_factory = sqlite3.Row
-        return db
+        try:
+            db.execute("PRAGMA foreign_keys = ON")
+            db.row_factory = sqlite3.Row
+            with db:
+                yield db
+        finally:
+            db.close()
 
     def salvar(self, projeto_id: str, nome: str, dados: dict, revisao_esperada: int) -> int:
         projeto_id = str(UUID(projeto_id))
@@ -50,6 +56,8 @@ class RepositorioProjetos:
         if not isinstance(revisao_esperada, int) or isinstance(revisao_esperada, bool) or revisao_esperada < 0:
             raise ValueError("Revisao esperada invalida")
         conteudo = json.dumps(dados, ensure_ascii=False, sort_keys=True, allow_nan=False)
+        if len(conteudo.encode("utf-8")) > 1_048_576:
+            raise ValueError("Projeto excede tamanho local permitido (1 MiB)")
         agora = datetime.now(timezone.utc).isoformat()
         with self._conectar() as db:
             db.execute("BEGIN IMMEDIATE")
