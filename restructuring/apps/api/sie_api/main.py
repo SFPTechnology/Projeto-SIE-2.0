@@ -1,8 +1,10 @@
 """API foundation. Engineering design decisions require validated reference data."""
+from decimal import Decimal
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, ConfigDict
 from .application import analisar_circuito
+from .domain.edp import enquadrar_edp
 
 app = FastAPI(title="SIE 2.0 - API modular", version="0.1.0")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
@@ -47,6 +49,14 @@ class AnaliseCircuito(BaseModel):
     evidencia: Evidencia
 
 
+class EnquadramentoEDP(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    modalidade: str = Field(pattern="^[UDT]$")
+    corrente_demanda_a: float = Field(gt=0)
+    carga_instalada_kw: float = Field(gt=0)
+    tem_carga_trifasica: bool = False
+
+
 @app.get("/api/v1/health")
 def health():
     return {"status": "ok", "component": "api", "engineering_engine": "calculation_available_with_release_gate", "version": app.version}
@@ -65,5 +75,18 @@ def validar_projeto(projeto: Projeto):
 def analisar(payload: AnaliseCircuito):
     try:
         return analisar_circuito(payload.model_dump())
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+@app.post("/api/v1/edp/enquadrar")
+def enquadrar_edp_endpoint(payload: EnquadramentoEDP):
+    try:
+        return enquadrar_edp(
+            payload.modalidade,
+            Decimal(str(payload.corrente_demanda_a)),
+            Decimal(str(payload.carga_instalada_kw)),
+            payload.tem_carga_trifasica,
+        )
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
