@@ -22,6 +22,7 @@ flowchart TD
 | `apps/api/main.py` | contrato HTTP e validação de entrada | implementado |
 | `domain/engines.py` | cálculo puro e testável | implementado no escopo declarado |
 | `domain/gates.py` | impede alegação normativa prematura | implementado |
+| `domain/edp.py` | catálogo EDP v09 e enquadramento controlado | implementado |
 | persistência | projetos, catálogo versionado, auditoria | próxima etapa |
 | importação/desenho | planta, cargas, unifilar e relatórios | próxima etapa |
 
