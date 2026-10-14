@@ -1,0 +1,304 @@
+{
+  "bench": {
+    "id": "2026-05-17-fazer-um-benchmark-top-10-das-melhores",
+    "type": "product",
+    "variant": "n-way",
+    "created_at": "2026-05-17",
+    "analyst": "spy/bench-analyst v3.1",
+    "title": "Top 10 ferramentas de apresentações com IA para growth e founders",
+    "short_title": "AI Presentation Tools 2026",
+    "method": "Benchmark público em modo AIOX Research BENCHMARK, com inventário por player, matriz ponderada 10 players x 9 dimensões e evidência por célula.",
+    "confidence_breakdown": "8/10 High · 2/10 Medium · 0/10 Low",
+    "status": "completed",
+    "schema_variant": "nway-ai-presentation-tools-2026-v1"
+  },
+  "context": {
+    "central_tension": "Growth e founders precisam de decks rápidos, bonitos e compartilháveis, mas a decisão real muda quando PPTX editável, colaboração, marca e risco de continuidade entram no jogo.",
+    "upstream_research": "docs/research/2026-05-17-fazer-um-benchmark-top-10-das-melhores"
+  },
+  "subjects": [
+    {
+      "key": "gamma",
+      "name": "Gamma",
+      "category": "AI-native deck/doc/site",
+      "type": "SaaS AI-native",
+      "license": "Proprietary",
+      "country_origin": "USA",
+      "anos": 6,
+      "vendor_url": "https://gamma.app",
+      "tech_score": 78.5,
+      "neutral_score": 83.2,
+      "meta": {
+        "color": "#635BFF",
+        "letter": "GA",
+        "tag": "AI-native"
+      },
+      "stats": {
+        "pricing_summary": "Free; Plus ~US$8-10/mo; Pro ~US$15-20/mo; Team/Business higher",
+        "inclusion_reason": "Categoria-definidora em geração rápida por prompt; bom para pitch, landing decks e conteúdo de growth."
+      }
+    },
+    {
+      "key": "canva",
+      "name": "Canva",
+      "category": "Design suite with AI presentations",
+      "type": "Design suite SaaS",
+      "license": "Proprietary",
+      "country_origin": "Australia",
+      "anos": 13,
+      "vendor_url": "https://www.canva.com",
+      "tech_score": 80.5,
+      "neutral_score": 86,
+      "meta": {
+        "color": "#00A878",
+        "letter": "CA",
+        "tag": "Design"
+      },
+      "stats": {
+        "pricing_summary": "Free; Pro ~US$13/mo; Teams/Business per user",
+        "inclusion_reason": "Melhor alternativa generalista quando o time já cria social, ads, brand assets e apresentações no mesmo lugar."
+      }
+    },
+    {
+      "key": "beautiful_ai",
+      "name": "Beautiful.ai",
+      "category": "Smart slide automation",
+      "type": "Presentation SaaS",
+      "license": "Proprietary",
+      "country_origin": "USA",
+      "anos": 10,
+      "vendor_url": "https://www.beautiful.ai",
+      "tech_score": 74.3,
+      "neutral_score": 77.9,
+      "meta": {
+        "color": "#2F80ED",
+        "letter": "BE",
+        "tag": "Smart"
+      },
+      "stats": {
+        "pricing_summary": "Pro US$12/mo annual ou mensal mais caro; Team US$40/user/mo annual; Enterprise custom",
+        "inclusion_reason": "Forte para times que querem slides consistentes com layouts inteligentes e menos liberdade destrutiva."
+      }
+    },
+    {
+      "key": "tome",
+      "name": "Tome",
+      "category": "AI storytelling / sales narrative",
+      "type": "SaaS pivot risk",
+      "license": "Proprietary",
+      "country_origin": "USA",
+      "anos": 6,
+      "vendor_url": "https://tome.app",
+      "tech_score": 50.3,
+      "neutral_score": 55.8,
+      "meta": {
+        "color": "#7C3AED",
+        "letter": "TO",
+        "tag": "AI"
+      },
+      "stats": {
+        "pricing_summary": "Histórico: Pro US$16/user/mo annual ou US$20 mensal; status 2026 incerto para novo uso de slides",
+        "inclusion_reason": "Incluído por solicitação; hoje é mais benchmark de risco do que recomendação prática para decks."
+      }
+    },
+    {
+      "key": "pitch",
+      "name": "Pitch",
+      "category": "Collaborative presentation workspace",
+      "type": "Team presentation SaaS",
+      "license": "Proprietary",
+      "country_origin": "Germany",
+      "anos": 8,
+      "vendor_url": "https://pitch.com",
+      "tech_score": 79.5,
+      "neutral_score": 82.6,
+      "meta": {
+        "color": "#F59E0B",
+        "letter": "PI",
+        "tag": "Collaborative"
+      },
+      "stats": {
+        "pricing_summary": "Free; Plus US$15/mo ou US$13 annual; Team US$23/seat/mo ou US$19 annual; Enterprise custom",
+        "inclusion_reason": "Melhor para times que precisam de colaboração, links, rooms, analytics e brand templates mais do que AI generativa máxima."
+      }
+    },
+    {
+      "key": "plus_ai",
+      "name": "Plus AI",
+      "category": "AI inside PowerPoint/Google Slides",
+      "type": "Native add-in",
+      "license": "Proprietary",
+      "country_origin": "USA",
+      "anos": 4,
+      "vendor_url": "https://plusai.com",
+      "tech_score": 89.5,
+      "neutral_score": 85.6,
+      "meta": {
+        "color": "#111827",
+        "letter": "PL",
+        "tag": "AI"
+      },
+      "stats": {
+        "pricing_summary": "Basic US$10/user/mo annual ou US$15 mensal; Pro US$20/user/mo annual ou US$25 mensal; Enterprise custom",
+        "inclusion_reason": "Escolha pragmática quando PPT/Google Slides nativos e editabilidade são não-negociáveis."
+      }
+    },
+    {
+      "key": "decktopus",
+      "name": "Decktopus",
+      "category": "AI presentation generator",
+      "type": "AI deck SaaS",
+      "license": "Proprietary",
+      "country_origin": "Turkey/USA",
+      "anos": 5,
+      "vendor_url": "https://www.decktopus.com",
+      "tech_score": 70.3,
+      "neutral_score": 72.6,
+      "meta": {
+        "color": "#EC4899",
+        "letter": "DE",
+        "tag": "AI"
+      },
+      "stats": {
+        "pricing_summary": "Pro US$14.99/mo annual; Business US$34.99/user/mo annual; Enterprise custom",
+        "inclusion_reason": "Alternativa boa para geração rápida com analytics/domínio/webhooks, mas perde para líderes em polish e ecossistema."
+      }
+    },
+    {
+      "key": "slidesai",
+      "name": "SlidesAI",
+      "category": "Google Slides add-on",
+      "type": "Slides add-on",
+      "license": "Proprietary",
+      "country_origin": "Unknown",
+      "anos": 4,
+      "vendor_url": "https://www.slidesai.io",
+      "tech_score": 78.8,
+      "neutral_score": 73.9,
+      "meta": {
+        "color": "#10B981",
+        "letter": "SL",
+        "tag": "Google"
+      },
+      "stats": {
+        "pricing_summary": "Free limitado; planos pagos estimados na faixa US$10-20/mo conforme fontes de pricing",
+        "inclusion_reason": "Bom para gerar slides simples dentro do Google Slides, mas limitado para decks estratégicos de alto impacto."
+      }
+    },
+    {
+      "key": "presenton",
+      "name": "Presenton",
+      "category": "Open-source AI presentation generator/API",
+      "type": "Open source + cloud/self-host",
+      "license": "Apache-2.0",
+      "country_origin": "Unknown",
+      "anos": 1,
+      "vendor_url": "https://presenton.ai",
+      "repo_url": "https://github.com/presenton/presenton",
+      "tech_score": 84.8,
+      "neutral_score": 77,
+      "meta": {
+        "color": "#EF4444",
+        "letter": "PR",
+        "tag": "Open-source"
+      },
+      "stats": {
+        "pricing_summary": "Open source/self-host; cloud/enterprise conforme necessidade; BYOK para modelos",
+        "inclusion_reason": "Melhor aposta quando API, self-hosting, privacidade e templates próprios importam mais que UI polida."
+      }
+    },
+    {
+      "key": "presentations_ai",
+      "name": "Presentations.AI",
+      "category": "AI presentation generator",
+      "type": "AI deck SaaS",
+      "license": "Proprietary",
+      "country_origin": "India",
+      "anos": 5,
+      "vendor_url": "https://www.presentations.ai",
+      "tech_score": 67.3,
+      "neutral_score": 68.3,
+      "meta": {
+        "color": "#8B5CF6",
+        "letter": "PR",
+        "tag": "AI"
+      },
+      "stats": {
+        "pricing_summary": "Starter/free; Pro relatado em ~US$198/ano; Enterprise custom",
+        "inclusion_reason": "Alternativa relevante pela promessa de geração AI-native e comparação direta com Beautiful.ai, mas com evidência pública menos robusta nesta coleta."
+      }
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "visual_quality",
+        "name": "Qualidade visual",
+        "weight_pct": 16,
+        "rationale": "Growth e founders precisam de decks que pareçam prontos para cliente/investidor sem retrabalho pesado."
+      },
+      {
+        "id": "prompt_generation",
+        "name": "Geração por prompt",
+        "weight_pct": 15,
+        "rationale": "Avalia capacidade de transformar brief, documento ou notas em estrutura narrativa e slides úteis."
+      },
+      {
+        "id": "manual_editing",
+        "name": "Edição manual",
+        "weight_pct": 12,
+        "rationale": "Decks críticos exigem ajuste fino em texto, layout, gráficos, assets e narrativa."
+      },
+      {
+        "id": "collaboration",
+        "name": "Colaboração",
+        "weight_pct": 10,
+        "rationale": "Times de growth trabalham em ciclos com comentários, versões, templates e stakeholders externos."
+      },
+      {
+        "id": "export_fidelity",
+        "name": "Exportação PPT/PDF",
+        "weight_pct": 13,
+        "rationale": "PPTX/PDF limpo é decisivo quando o deck precisa sair da ferramenta ou circular com clientes."
+      },
+      {
+        "id": "pricing_value",
+        "name": "Preço e valor",
+        "weight_pct": 11,
+        "rationale": "Considera plano gratuito, custo por assento, créditos e custo real para times pequenos."
+      },
+      {
+        "id": "maturity",
+        "name": "Maturidade",
+        "weight_pct": 10,
+        "rationale": "Peso para adoção, estabilidade, docs, roadmap e risco de pivot."
+      },
+      {
+        "id": "brand_governance",
+        "name": "Marca e governança",
+        "weight_pct": 8,
+        "rationale": "Avalia brand kits, templates, bibliotecas, permissões e controles para consistência."
+      },
+      {
+        "id": "risk_control",
+        "name": "Risco e controle",
+        "weight_pct": 5,
+        "rationale": "Privacidade, lock-in, self-hosting, segurança e previsibilidade operacional."
+      }
+    ]
+  },
+  "deliverables": [
+    "metadata.json",
+    "inventory-players.json",
+    "inventory-players.md",
+    "comparison-matrix.json",
+    "comparison-matrix.md",
+    "scorecard.json",
+    "scorecard.md",
+    "gap-analysis.json",
+    "gap-analysis.md",
+    "battle-card.md",
+    "executive-report.md",
+    "bench-output-dash.json"
+  ]
+}

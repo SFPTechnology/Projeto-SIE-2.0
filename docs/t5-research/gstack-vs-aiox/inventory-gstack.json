@@ -1,0 +1,64 @@
+{
+  "subject": "gstack",
+  "version": "0.16.2.0",
+  "scanned": "2026-04-13",
+  "source": "/Users/oalanicolas/Code/gstack",
+  "summary": {
+    "total_skills": 37,
+    "total_agents": 1,
+    "total_typescript_files_browse": 28,
+    "total_loc_browse": 13192,
+    "total_loc_skill_md": 37391,
+    "total_test_files": 82,
+    "total_bin_scripts": 30,
+    "total_scripts": 17,
+    "total_ci_workflows": 6,
+    "total_host_configs": 9,
+    "github_stars": 71516,
+    "changelog_lines": 2155,
+    "readme_lines": 405
+  },
+  "skills": [
+    "autoplan", "benchmark", "browse", "canary", "careful", "checkpoint",
+    "codex", "cso", "design-consultation", "design-html", "design-review",
+    "design-shotgun", "devex-review", "document-release", "freeze",
+    "gstack-upgrade", "guard", "health", "investigate", "land-and-deploy",
+    "learn", "office-hours", "open-gstack-browser", "pair-agent",
+    "plan-ceo-review", "plan-design-review", "plan-devex-review",
+    "plan-eng-review", "qa", "qa-only", "retro", "review",
+    "setup-browser-cookies", "setup-deploy", "ship", "unfreeze"
+  ],
+  "architecture": {
+    "topology": "flat (star)",
+    "hierarchy_depth": 1,
+    "governance": "ETHOS.md (philosophy only)",
+    "state_management": "file-based (.gstack/, JSONL)",
+    "runtime": "Bun + TypeScript",
+    "browser": "Chromium daemon (Playwright, persistent)",
+    "ci_cd": "GitHub Actions (SKILL.md freshness)",
+    "parallelism": "Conductor workspaces (10-15 sessions)"
+  },
+  "sprint_lifecycle": {
+    "phases": ["THINK", "PLAN", "BUILD", "REVIEW", "TEST", "SHIP", "REFLECT"],
+    "phase_count": 7,
+    "fully_automated_phases": 6,
+    "human_required_phases": 1
+  },
+  "testing_tiers": {
+    "tier_1_static": {"cost": "$0", "time": "<5s", "coverage": "95%"},
+    "tier_2_e2e": {"cost": "$3.85", "time": "~20min"},
+    "tier_3_llm_judge": {"cost": "$0.15", "time": "~30s"}
+  },
+  "unique_capabilities": [
+    "Persistent Chromium browser daemon (<100ms/command)",
+    "Ref system (@e1, @e2) for accessibility tree element selection",
+    "Multi-host skill generation (8 AI hosts from 1 template)",
+    "AI slop detection (10 hardcoded design anti-patterns)",
+    "Voice triggers in skill frontmatter",
+    "Conductor workspace parallelism",
+    "Preamble tier system for skill initialization cost control",
+    "Per-project JSONL operational learnings",
+    "Auto-pipeline (CEO -> Eng -> Design -> DX chained reviews)",
+    "Post-deploy canary monitoring (console errors, perf regression)"
+  ]
+}

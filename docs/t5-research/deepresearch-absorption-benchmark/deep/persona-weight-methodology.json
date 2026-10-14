@@ -1,0 +1,979 @@
+{
+  "schema": "deepresearch-persona-methodology-v1",
+  "generated_at": "2026-05-18T19:20:00-03:00",
+  "purpose": "Evitar ranking absoluto; cada persona representa um job-to-be-done de absorção SINKRA.",
+  "personas": [
+    {
+      "id": "platform_architect",
+      "label": "Arquiteto de runtime SINKRA",
+      "sub": "Decide contratos, graph, lifecycle e adapters",
+      "job": "Decide contratos, graph, lifecycle e adapters",
+      "must_have": [
+        "architecture_absorption",
+        "trace_observability",
+        "sinkra_fit"
+      ],
+      "anti_goals": [
+        "ranking único sem cenário",
+        "código copiado sem revisão",
+        "relatório sem claims/sources"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "architecture_absorption",
+          "label": "Architecture Absorption",
+          "group": "focus",
+          "weight": 20
+        },
+        {
+          "id": "trace_observability",
+          "label": "Trace Observability",
+          "group": "focus",
+          "weight": 14
+        },
+        {
+          "id": "sinkra_fit",
+          "label": "Sinkra Fit",
+          "group": "focus",
+          "weight": 4
+        }
+      ],
+      "weights": [
+        2,
+        2,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        2
+      ],
+      "ranking": [
+        {
+          "player": "deer-flow",
+          "score": 86.3,
+          "rank": 1,
+          "delta_to_leader": 0.0
+        },
+        {
+          "player": "drbench",
+          "score": 81.4,
+          "rank": 2,
+          "delta_to_leader": -4.9
+        },
+        {
+          "player": "mirothinker",
+          "score": 80.7,
+          "rank": 3,
+          "delta_to_leader": -5.6
+        },
+        {
+          "player": "autoresearchclaw",
+          "score": 80.6,
+          "rank": 4,
+          "delta_to_leader": -5.7
+        },
+        {
+          "player": "miroflow",
+          "score": 79.6,
+          "rank": 5,
+          "delta_to_leader": -6.7
+        },
+        {
+          "player": "gpt-researcher",
+          "score": 79.0,
+          "rank": 6,
+          "delta_to_leader": -7.3
+        },
+        {
+          "player": "langchain-open-deep-research",
+          "score": 78.7,
+          "rank": 7,
+          "delta_to_leader": -7.6
+        },
+        {
+          "player": "local-deep-research",
+          "score": 77.6,
+          "rank": 8,
+          "delta_to_leader": -8.7
+        },
+        {
+          "player": "node-deepresearch",
+          "score": 76.7,
+          "rank": 9,
+          "delta_to_leader": -9.6
+        },
+        {
+          "player": "storm",
+          "score": 76.0,
+          "rank": 10,
+          "delta_to_leader": -10.3
+        }
+      ],
+      "winner": "deer-flow",
+      "runner": "drbench",
+      "delta": -4.9,
+      "verdict": "Use deer-flow como referência principal para esta lente.",
+      "tiebreaker": "Se empate, prefira menor risco jurídico e maior replayability."
+    },
+    {
+      "id": "private_kb_owner",
+      "label": "Owner de dados privados",
+      "sub": "Prioriza RAG privado, isolamento e compliance",
+      "job": "Prioriza RAG privado, isolamento e compliance",
+      "must_have": [
+        "private_kb_grounding",
+        "compliance_safety",
+        "trace_observability"
+      ],
+      "anti_goals": [
+        "ranking único sem cenário",
+        "código copiado sem revisão",
+        "relatório sem claims/sources"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "private_kb_grounding",
+          "label": "Private Kb Grounding",
+          "group": "focus",
+          "weight": 12
+        },
+        {
+          "id": "compliance_safety",
+          "label": "Compliance Safety",
+          "group": "focus",
+          "weight": 8
+        },
+        {
+          "id": "trace_observability",
+          "label": "Trace Observability",
+          "group": "focus",
+          "weight": 14
+        }
+      ],
+      "weights": [
+        0.25,
+        2,
+        2,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        2,
+        0.25
+      ],
+      "ranking": [
+        {
+          "player": "drbench",
+          "score": 82.0,
+          "rank": 1,
+          "delta_to_leader": 0.0
+        },
+        {
+          "player": "local-deep-research",
+          "score": 78.5,
+          "rank": 2,
+          "delta_to_leader": -3.5
+        },
+        {
+          "player": "mirothinker",
+          "score": 78.0,
+          "rank": 3,
+          "delta_to_leader": -4.0
+        },
+        {
+          "player": "storm",
+          "score": 77.8,
+          "rank": 4,
+          "delta_to_leader": -4.2
+        },
+        {
+          "player": "deer-flow",
+          "score": 77.7,
+          "rank": 5,
+          "delta_to_leader": -4.3
+        },
+        {
+          "player": "deep-searcher",
+          "score": 76.1,
+          "rank": 6,
+          "delta_to_leader": -5.9
+        },
+        {
+          "player": "miroflow",
+          "score": 76.0,
+          "rank": 7,
+          "delta_to_leader": -6.0
+        },
+        {
+          "player": "gpt-researcher",
+          "score": 74.1,
+          "rank": 8,
+          "delta_to_leader": -7.9
+        },
+        {
+          "player": "mirorl",
+          "score": 72.8,
+          "rank": 9,
+          "delta_to_leader": -9.2
+        },
+        {
+          "player": "langchain-open-deep-research",
+          "score": 72.6,
+          "rank": 10,
+          "delta_to_leader": -9.4
+        }
+      ],
+      "winner": "drbench",
+      "runner": "local-deep-research",
+      "delta": -3.5,
+      "verdict": "DRBench é o melhor player externo nesta lente; AIOX Research permanece a referência interna de comparação.",
+      "tiebreaker": "Se empate, prefira menor risco jurídico e maior replayability."
+    },
+    {
+      "id": "evaluation_lead",
+      "label": "Líder de avaliação gold",
+      "sub": "Precisa de fixtures, oráculos e claim-level scoring",
+      "job": "Precisa de fixtures, oráculos e claim-level scoring",
+      "must_have": [
+        "evaluation_value",
+        "trace_observability",
+        "sinkra_fit"
+      ],
+      "anti_goals": [
+        "ranking único sem cenário",
+        "código copiado sem revisão",
+        "relatório sem claims/sources"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "evaluation_value",
+          "label": "Evaluation Value",
+          "group": "focus",
+          "weight": 14
+        },
+        {
+          "id": "trace_observability",
+          "label": "Trace Observability",
+          "group": "focus",
+          "weight": 14
+        },
+        {
+          "id": "sinkra_fit",
+          "label": "Sinkra Fit",
+          "group": "focus",
+          "weight": 4
+        }
+      ],
+      "weights": [
+        0.25,
+        2,
+        0.25,
+        2,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        2
+      ],
+      "ranking": [
+        {
+          "player": "drbench",
+          "score": 83.2,
+          "rank": 1,
+          "delta_to_leader": 0.0
+        },
+        {
+          "player": "autoresearchclaw",
+          "score": 79.0,
+          "rank": 2,
+          "delta_to_leader": -4.2
+        },
+        {
+          "player": "deep-research-bench",
+          "score": 75.4,
+          "rank": 3,
+          "delta_to_leader": -7.8
+        },
+        {
+          "player": "livedrbench",
+          "score": 74.3,
+          "rank": 4,
+          "delta_to_leader": -8.9
+        },
+        {
+          "player": "deer-flow",
+          "score": 74.1,
+          "rank": 5,
+          "delta_to_leader": -9.1
+        },
+        {
+          "player": "miroeval",
+          "score": 74.0,
+          "rank": 6,
+          "delta_to_leader": -9.2
+        },
+        {
+          "player": "mirothinker",
+          "score": 71.7,
+          "rank": 7,
+          "delta_to_leader": -11.5
+        },
+        {
+          "player": "miroflow",
+          "score": 69.7,
+          "rank": 8,
+          "delta_to_leader": -13.5
+        },
+        {
+          "player": "gpt-researcher",
+          "score": 68.4,
+          "rank": 9,
+          "delta_to_leader": -14.8
+        },
+        {
+          "player": "langchain-open-deep-research",
+          "score": 67.4,
+          "rank": 10,
+          "delta_to_leader": -15.8
+        }
+      ],
+      "winner": "drbench",
+      "runner": "autoresearchclaw",
+      "delta": -4.2,
+      "verdict": "DRBench é o melhor player externo nesta lente; AIOX Research permanece a referência interna de comparação.",
+      "tiebreaker": "Se empate, prefira menor risco jurídico e maior replayability."
+    },
+    {
+      "id": "scientific_researcher",
+      "label": "Pesquisador científico",
+      "sub": "Foca literatura, stage gates e prior art",
+      "job": "Foca literatura, stage gates e prior art",
+      "must_have": [
+        "scientific_pipeline",
+        "evaluation_value",
+        "trace_observability"
+      ],
+      "anti_goals": [
+        "ranking único sem cenário",
+        "código copiado sem revisão",
+        "relatório sem claims/sources"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "scientific_pipeline",
+          "label": "Scientific Pipeline",
+          "group": "focus",
+          "weight": 7
+        },
+        {
+          "id": "evaluation_value",
+          "label": "Evaluation Value",
+          "group": "focus",
+          "weight": 14
+        },
+        {
+          "id": "trace_observability",
+          "label": "Trace Observability",
+          "group": "focus",
+          "weight": 14
+        }
+      ],
+      "weights": [
+        0.25,
+        2,
+        0.25,
+        2,
+        0.25,
+        2,
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "ranking": [
+        {
+          "player": "autoresearchclaw",
+          "score": 80.6,
+          "rank": 1,
+          "delta_to_leader": 0.0
+        },
+        {
+          "player": "drbench",
+          "score": 71.9,
+          "rank": 2,
+          "delta_to_leader": -8.7
+        },
+        {
+          "player": "storm",
+          "score": 68.8,
+          "rank": 3,
+          "delta_to_leader": -11.8
+        },
+        {
+          "player": "openresearcher",
+          "score": 66.9,
+          "rank": 4,
+          "delta_to_leader": -13.7
+        },
+        {
+          "player": "deepresearcher",
+          "score": 66.4,
+          "rank": 5,
+          "delta_to_leader": -14.2
+        },
+        {
+          "player": "deep-research-bench",
+          "score": 64.6,
+          "rank": 6,
+          "delta_to_leader": -16.0
+        },
+        {
+          "player": "livedrbench",
+          "score": 63.9,
+          "rank": 7,
+          "delta_to_leader": -16.7
+        },
+        {
+          "player": "miroeval",
+          "score": 63.2,
+          "rank": 8,
+          "delta_to_leader": -17.4
+        },
+        {
+          "player": "mirothinker",
+          "score": 61.7,
+          "rank": 9,
+          "delta_to_leader": -18.9
+        },
+        {
+          "player": "deer-flow",
+          "score": 61.4,
+          "rank": 10,
+          "delta_to_leader": -19.2
+        }
+      ],
+      "winner": "autoresearchclaw",
+      "runner": "drbench",
+      "delta": -8.7,
+      "verdict": "Use autoresearchclaw como referência principal para esta lente.",
+      "tiebreaker": "Se empate, prefira menor risco jurídico e maior replayability."
+    },
+    {
+      "id": "rl_methodologist",
+      "label": "Metodologista RL/tool-use",
+      "sub": "Absorve treino, rollout e reward shaping",
+      "job": "Absorve treino, rollout e reward shaping",
+      "must_have": [
+        "training_methodology",
+        "trace_observability",
+        "architecture_absorption"
+      ],
+      "anti_goals": [
+        "ranking único sem cenário",
+        "código copiado sem revisão",
+        "relatório sem claims/sources"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "training_methodology",
+          "label": "Training Methodology",
+          "group": "focus",
+          "weight": 5
+        },
+        {
+          "id": "trace_observability",
+          "label": "Trace Observability",
+          "group": "focus",
+          "weight": 14
+        },
+        {
+          "id": "architecture_absorption",
+          "label": "Architecture Absorption",
+          "group": "focus",
+          "weight": 20
+        }
+      ],
+      "weights": [
+        2,
+        2,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        2,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "ranking": [
+        {
+          "player": "deepresearcher",
+          "score": 75.9,
+          "rank": 1,
+          "delta_to_leader": 0.0
+        },
+        {
+          "player": "mirorl",
+          "score": 75.9,
+          "rank": 2,
+          "delta_to_leader": 0.0
+        },
+        {
+          "player": "deer-flow",
+          "score": 72.7,
+          "rank": 3,
+          "delta_to_leader": -3.2
+        },
+        {
+          "player": "openresearcher",
+          "score": 72.3,
+          "rank": 4,
+          "delta_to_leader": -3.6
+        },
+        {
+          "player": "mirotrain",
+          "score": 71.7,
+          "rank": 5,
+          "delta_to_leader": -4.2
+        },
+        {
+          "player": "mirothinker",
+          "score": 69.9,
+          "rank": 6,
+          "delta_to_leader": -6.0
+        },
+        {
+          "player": "drbench",
+          "score": 69.2,
+          "rank": 7,
+          "delta_to_leader": -6.7
+        },
+        {
+          "player": "autoresearchclaw",
+          "score": 68.6,
+          "rank": 8,
+          "delta_to_leader": -7.3
+        },
+        {
+          "player": "miroflow",
+          "score": 67.9,
+          "rank": 9,
+          "delta_to_leader": -8.0
+        },
+        {
+          "player": "gpt-researcher",
+          "score": 66.6,
+          "rank": 10,
+          "delta_to_leader": -9.3
+        }
+      ],
+      "winner": "deepresearcher",
+      "runner": "mirorl",
+      "delta": 0.0,
+      "verdict": "Use deepresearcher como referência principal para esta lente.",
+      "tiebreaker": "Se empate, prefira menor risco jurídico e maior replayability."
+    },
+    {
+      "id": "product_builder",
+      "label": "Product builder",
+      "sub": "Quer UX de runs, threads, chat e relatórios",
+      "job": "Quer UX de runs, threads, chat e relatórios",
+      "must_have": [
+        "product_ux_reference",
+        "implementation_maturity",
+        "architecture_absorption"
+      ],
+      "anti_goals": [
+        "ranking único sem cenário",
+        "código copiado sem revisão",
+        "relatório sem claims/sources"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "product_ux_reference",
+          "label": "Product Ux Reference",
+          "group": "focus",
+          "weight": 6
+        },
+        {
+          "id": "implementation_maturity",
+          "label": "Implementation Maturity",
+          "group": "focus",
+          "weight": 10
+        },
+        {
+          "id": "architecture_absorption",
+          "label": "Architecture Absorption",
+          "group": "focus",
+          "weight": 20
+        }
+      ],
+      "weights": [
+        2,
+        0.25,
+        0.25,
+        0.25,
+        2,
+        0.25,
+        0.25,
+        2,
+        0.25,
+        0.25
+      ],
+      "ranking": [
+        {
+          "player": "deer-flow",
+          "score": 89.4,
+          "rank": 1,
+          "delta_to_leader": 0.0
+        },
+        {
+          "player": "gpt-researcher",
+          "score": 86.0,
+          "rank": 2,
+          "delta_to_leader": -3.4
+        },
+        {
+          "player": "node-deepresearch",
+          "score": 79.8,
+          "rank": 3,
+          "delta_to_leader": -9.6
+        },
+        {
+          "player": "autoresearchclaw",
+          "score": 74.1,
+          "rank": 4,
+          "delta_to_leader": -15.3
+        },
+        {
+          "player": "langchain-open-deep-research",
+          "score": 73.9,
+          "rank": 5,
+          "delta_to_leader": -15.5
+        },
+        {
+          "player": "storm",
+          "score": 73.3,
+          "rank": 6,
+          "delta_to_leader": -16.1
+        },
+        {
+          "player": "nickscamara-open-deep-research",
+          "score": 73.1,
+          "rank": 7,
+          "delta_to_leader": -16.3
+        },
+        {
+          "player": "local-deep-research",
+          "score": 73.0,
+          "rank": 8,
+          "delta_to_leader": -16.4
+        },
+        {
+          "player": "deep-searcher",
+          "score": 72.4,
+          "rank": 9,
+          "delta_to_leader": -17.0
+        },
+        {
+          "player": "mirothinker",
+          "score": 70.3,
+          "rank": 10,
+          "delta_to_leader": -19.1
+        }
+      ],
+      "winner": "deer-flow",
+      "runner": "gpt-researcher",
+      "delta": -3.4,
+      "verdict": "Use deer-flow como referência principal para esta lente.",
+      "tiebreaker": "Se empate, prefira menor risco jurídico e maior replayability."
+    },
+    {
+      "id": "legal_governance",
+      "label": "Governança e jurídico",
+      "sub": "Evita licença incerta, shell e vazamento",
+      "job": "Evita licença incerta, shell e vazamento",
+      "must_have": [
+        "compliance_safety",
+        "trace_observability",
+        "private_kb_grounding"
+      ],
+      "anti_goals": [
+        "ranking único sem cenário",
+        "código copiado sem revisão",
+        "relatório sem claims/sources"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "compliance_safety",
+          "label": "Compliance Safety",
+          "group": "focus",
+          "weight": 8
+        },
+        {
+          "id": "trace_observability",
+          "label": "Trace Observability",
+          "group": "focus",
+          "weight": 14
+        },
+        {
+          "id": "private_kb_grounding",
+          "label": "Private Kb Grounding",
+          "group": "focus",
+          "weight": 12
+        }
+      ],
+      "weights": [
+        0.25,
+        2,
+        2,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        2,
+        0.25
+      ],
+      "ranking": [
+        {
+          "player": "drbench",
+          "score": 82.0,
+          "rank": 1,
+          "delta_to_leader": 0.0
+        },
+        {
+          "player": "local-deep-research",
+          "score": 78.5,
+          "rank": 2,
+          "delta_to_leader": -3.5
+        },
+        {
+          "player": "mirothinker",
+          "score": 78.0,
+          "rank": 3,
+          "delta_to_leader": -4.0
+        },
+        {
+          "player": "storm",
+          "score": 77.8,
+          "rank": 4,
+          "delta_to_leader": -4.2
+        },
+        {
+          "player": "deer-flow",
+          "score": 77.7,
+          "rank": 5,
+          "delta_to_leader": -4.3
+        },
+        {
+          "player": "deep-searcher",
+          "score": 76.1,
+          "rank": 6,
+          "delta_to_leader": -5.9
+        },
+        {
+          "player": "miroflow",
+          "score": 76.0,
+          "rank": 7,
+          "delta_to_leader": -6.0
+        },
+        {
+          "player": "gpt-researcher",
+          "score": 74.1,
+          "rank": 8,
+          "delta_to_leader": -7.9
+        },
+        {
+          "player": "mirorl",
+          "score": 72.8,
+          "rank": 9,
+          "delta_to_leader": -9.2
+        },
+        {
+          "player": "langchain-open-deep-research",
+          "score": 72.6,
+          "rank": 10,
+          "delta_to_leader": -9.4
+        }
+      ],
+      "winner": "drbench",
+      "runner": "local-deep-research",
+      "delta": -3.5,
+      "verdict": "DRBench é o melhor player externo nesta lente; AIOX Research permanece a referência interna de comparação.",
+      "tiebreaker": "Se empate, prefira menor risco jurídico e maior replayability."
+    },
+    {
+      "id": "budget_baseline",
+      "label": "Baseline barato auditável",
+      "sub": "Quer simplicidade, baixo risco e contrato mínimo",
+      "job": "Quer simplicidade, baixo risco e contrato mínimo",
+      "must_have": [
+        "implementation_maturity",
+        "compliance_safety",
+        "architecture_absorption"
+      ],
+      "anti_goals": [
+        "ranking único sem cenário",
+        "código copiado sem revisão",
+        "relatório sem claims/sources"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "implementation_maturity",
+          "label": "Implementation Maturity",
+          "group": "focus",
+          "weight": 10
+        },
+        {
+          "id": "compliance_safety",
+          "label": "Compliance Safety",
+          "group": "focus",
+          "weight": 8
+        },
+        {
+          "id": "architecture_absorption",
+          "label": "Architecture Absorption",
+          "group": "focus",
+          "weight": 20
+        }
+      ],
+      "weights": [
+        2,
+        0.25,
+        0.25,
+        0.25,
+        2,
+        0.25,
+        0.25,
+        0.25,
+        2,
+        0.25
+      ],
+      "ranking": [
+        {
+          "player": "deer-flow",
+          "score": 87.2,
+          "rank": 1,
+          "delta_to_leader": 0.0
+        },
+        {
+          "player": "gpt-researcher",
+          "score": 85.6,
+          "rank": 2,
+          "delta_to_leader": -1.6
+        },
+        {
+          "player": "langchain-open-deep-research",
+          "score": 84.7,
+          "rank": 3,
+          "delta_to_leader": -2.5
+        },
+        {
+          "player": "storm",
+          "score": 84.1,
+          "rank": 4,
+          "delta_to_leader": -3.1
+        },
+        {
+          "player": "autoresearchclaw",
+          "score": 84.0,
+          "rank": 5,
+          "delta_to_leader": -3.2
+        },
+        {
+          "player": "local-deep-research",
+          "score": 83.0,
+          "rank": 6,
+          "delta_to_leader": -4.2
+        },
+        {
+          "player": "deep-searcher",
+          "score": 82.4,
+          "rank": 7,
+          "delta_to_leader": -4.8
+        },
+        {
+          "player": "node-deepresearch",
+          "score": 81.1,
+          "rank": 8,
+          "delta_to_leader": -6.1
+        },
+        {
+          "player": "miroflow",
+          "score": 80.7,
+          "rank": 9,
+          "delta_to_leader": -6.5
+        },
+        {
+          "player": "dzhng-deep-research",
+          "score": 80.5,
+          "rank": 10,
+          "delta_to_leader": -6.7
+        }
+      ],
+      "winner": "deer-flow",
+      "runner": "gpt-researcher",
+      "delta": -1.6,
+      "verdict": "Use deer-flow como referência principal para esta lente.",
+      "tiebreaker": "Se empate, prefira menor risco jurídico e maior replayability."
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "architecture_absorption",
+      "label": "Architecture Absorption",
+      "weight": 20
+    },
+    {
+      "id": "trace_observability",
+      "label": "Trace Observability",
+      "weight": 14
+    },
+    {
+      "id": "private_kb_grounding",
+      "label": "Private Kb Grounding",
+      "weight": 12
+    },
+    {
+      "id": "evaluation_value",
+      "label": "Evaluation Value",
+      "weight": 14
+    },
+    {
+      "id": "implementation_maturity",
+      "label": "Implementation Maturity",
+      "weight": 10
+    },
+    {
+      "id": "scientific_pipeline",
+      "label": "Scientific Pipeline",
+      "weight": 7
+    },
+    {
+      "id": "training_methodology",
+      "label": "Training Methodology",
+      "weight": 5
+    },
+    {
+      "id": "product_ux_reference",
+      "label": "Product Ux Reference",
+      "weight": 6
+    },
+    {
+      "id": "compliance_safety",
+      "label": "Compliance Safety",
+      "weight": 8
+    },
+    {
+      "id": "sinkra_fit",
+      "label": "Sinkra Fit",
+      "weight": 4
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+handoff:
+  from_agent: "sm"
+  to_agent: "po"
+  pipeline_id: "yolo-stories-secao-unifilar"
+  story_context:
+    story_id: "11.1 + 11.2"
+    story_path: "docs/stories/story-11.1-secao-diagrama-unifilar-completo.md; docs/stories/story-11.2-quick-wins-simbologia-iec.md"
+    story_status: "Draft"
+    current_task: "validate-next-story (Fase 3)"
+    branch: "feature/nbr5410-conformidade-closeout"
+  decisions:
+    - "Numeração 11.x (novo mini-épico; 10.x pertence ao épico de exportação)"
+    - "Fronteira: 11.1 = tela (REUSE UnifilarHero, símbolos como estão); 11.2 = simbologia (SB-01, SB-09, SB-02 N/PE) + espelho DXF"
+    - "Dependência declarada: 11.2 -> 11.1; 11.1 sem bloqueios"
+    - "Out of scope em ambas: SB-05 (seção mm²), SB-10 (DPS), acoplamento ao pipeline Python"
+  files_modified:
+    - "docs/stories/story-11.1-secao-diagrama-unifilar-completo.md"
+    - "docs/stories/story-11.2-quick-wins-simbologia-iec.md"
+  blockers: []
+  next_action: >
+    Validar as duas stories com o checklist de 10 pontos; GO (>=7) exige
+    atualização Status Draft -> Ready + Change Log (regra story-lifecycle).
+  consumed: true

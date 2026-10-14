@@ -1,0 +1,53 @@
+schema: 1
+story: 'MOD-PROT-4'
+story_title: 'Rota API e UI'
+gate: CONCERNS
+status_reason: >-
+  ACs 1-4 verificadas e atendidas. AC5 (WCAG 2.1 AA) atendida no essencial — os campos de
+  override usam Carbon TextInput com id + labelText, que gera label associado — mas a tabela
+  de resultados não declara scope nos cabeçalhos e não tem caption.
+reviewer: 'Quinn'
+updated: '2026-08-08T00:30:00Z'
+
+traceability:
+  - ac: 1
+    status: MET
+    evidence: 'src/routes/projetos.$projetoId_.dimensionamento-disjuntores.tsx + DimensionamentoDisjuntoresResumo.tsx com In/norma_dispositivo/capacidade_interrupcao e override por circuito'
+  - ac: 2
+    status: MET
+    evidence: >-
+      3 rotas API server-side: .lote.ts, .overrides.ts, .overrides.$circuitoId.ts;
+      schemas Zod em src/api/schemas/dimensionamento-disjuntores.ts
+  - ac: 3
+    status: MET
+    evidence: 'nav-model.ts:185-189 — item "Dimensionamento de disjuntores" apontando para a rota; coberto por nav-model.test.ts'
+  - ac: 4
+    status: MET
+    evidence: 'routeTree.spa.ts:15,85-88 importa e registra a rota UI; rotas de API corretamente ausentes'
+  - ac: 5
+    status: PARTIAL
+    evidence: >-
+      TextInput de In e de Justificativa têm id único por circuito + labelText (Carbon associa
+      label ao campo). HTML semântico usado (table/thead/th). Faltam scope="col" nos <th> e
+      <caption> na tabela.
+
+top_issues:
+  - id: 'DOC-002'
+    severity: low
+    finding: >-
+      Tabela de resultados (DimensionamentoDisjuntoresResumo.tsx:129-137) sem scope="col"
+      nos cabeçalhos e sem <caption>. Leitores de tela perdem a associação célula↔cabeçalho
+      em tabelas de dados.
+    suggested_action: >-
+      Adicionar scope="col" aos 6 <th> e um <caption> descritivo. Correção pontual,
+      não bloqueia release.
+  - id: 'TEST-002'
+    severity: low
+    finding: >-
+      AC5 não tem teste automatizado de a11y, embora a11y_check conste como quality gate tool
+      e as seções dimensionamento-condutores e queda-tensao já tenham testes VRT/a11y.
+    suggested_action: 'Adicionar teste de a11y à nova rota no mesmo padrão das seções irmãs.'
+
+waiver: { active: false }
+
+recommended_status: 'Aprovado com ressalvas de acessibilidade'

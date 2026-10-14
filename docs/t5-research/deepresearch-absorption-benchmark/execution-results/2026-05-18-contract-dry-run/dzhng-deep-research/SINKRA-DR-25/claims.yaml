@@ -1,0 +1,36 @@
+schema: sinkra-claims-v1
+run_id: dzhng-deep-research__SINKRA-DR-25
+task_id: SINKRA-DR-25
+system_id: dzhng-deep-research
+mode: contract_dry_run
+claims:
+- id: SINKRA-DR-25-C1
+  text: Claim gold sintético 1 para scientific_literature.
+  source_ids:
+  - SINKRA-DR-25-S1
+  support: synthetic_gold_fixture
+  required: true
+- id: SINKRA-DR-25-C2
+  text: Claim gold sintético 2 para scientific_literature.
+  source_ids:
+  - SINKRA-DR-25-S2
+  support: synthetic_gold_fixture
+  required: true
+- id: SINKRA-DR-25-C3
+  text: Claim gold sintético 3 para scientific_literature.
+  source_ids:
+  - SINKRA-DR-25-S3
+  support: synthetic_gold_fixture
+  required: true
+- id: SINKRA-DR-25-C4
+  text: Claim gold sintético 4 para scientific_literature.
+  source_ids:
+  - SINKRA-DR-25-S4
+  support: synthetic_gold_fixture
+  required: false
+- id: SINKRA-DR-25-C5
+  text: Claim gold sintético 5 para scientific_literature.
+  source_ids:
+  - SINKRA-DR-25-S5
+  support: synthetic_gold_fixture
+  required: false

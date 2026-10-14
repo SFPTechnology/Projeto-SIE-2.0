@@ -1,0 +1,444 @@
+# Cache Configuration for slides-creator v2 Visual Assets
+# SSOT for caching strategy, key computation, TTL policy, and invalidation rules.
+# Consumed by: visual-scout (cache lookup/write), qa-inspector (cache stats validation),
+#               slide-chief (cache hit reporting).
+# Created by: Story 1.6 (EPIC-SC-V2-001, Sprint 1)
+# Dependencies:
+#   - schemas/contracts/asset-cache-entry.schema.json (Story 1.5 -- entry schema)
+#   - squads/slides-creator/data/visual-engines.yaml (Story 1.1 -- engine configs)
+#   - squads/slides-creator/data/asset-resolution.yaml (Story 1.3 -- cache_key in asset_ref)
+#   - squads/slides-creator/data/cost-tracking.yaml (Story 1.4 -- cost avoidance)
+
+cache_config:
+  version: "1.0.0"
+  created_at: "2026-03-20"
+  epic: EPIC-SC-V2-001
+  story: "1.6"
+
+  # ---------------------------------------------------------------------------
+  # GLOBAL SETTINGS
+  # ---------------------------------------------------------------------------
+  global:
+    base_directory:
+      env_var: SLIDES_CACHE_DIR
+      default: "cache/slides-v2"
+      description: >
+        Root directory for all cached visual assets. Relative to project root.
+        Matches orchestration.cache_integration.cache_directory in visual-engines.yaml.
+    entry_schema: "schemas/contracts/asset-cache-entry.schema.json"
+    stats_file: "cache-stats.json"
+    stats_file_description: >
+      Hit/miss counter file. Located at ${base_directory}/cache-stats.json.
+      Updated atomically on every cache lookup (hit or miss).
+
+  # ---------------------------------------------------------------------------
+  # CACHE LEVELS
+  # ---------------------------------------------------------------------------
+  # AC: Cache L1 (diagramas) -- key = SHA-256 do codigo D2/Mermaid + theme_overrides. TTL indefinido.
+  # AC: Cache L2 (imagens AI) -- key = SHA-256 do prompt + engine + style_constraints. TTL 30 dias.
+  # ---------------------------------------------------------------------------
+  levels:
+
+    L1:
+      id: diagrams
+      description: >
+        Deterministic diagram cache. Stores SVG output from D2, Mermaid, and
+        Plotly engines. These engines are deterministic -- same input always
+        produces same output -- so TTL is indefinite (immutable cache).
+      directory: "diagrams"
+      full_path: "${base_directory}/diagrams/{cache_key}.svg"
+      ttl_hours: 0
+      ttl_description: "Indefinite. Deterministic engines produce identical output for identical input."
+      engines:
+        - d2
+        - mermaid
+        - plotly
+      output_format: svg
+      key_computation:
+        algorithm: SHA-256
+        inputs:
+          - field: engine_id
+            description: "Engine identifier (d2, mermaid, plotly)"
+          - field: diagram_code
+            description: "Source code (D2 syntax, Mermaid syntax, or Plotly JSON)"
+          - field: theme_overrides
+            description: >
+              Serialized theme/style overrides applied to the diagram.
+              For D2: CLI --theme-overrides string.
+              For Mermaid: %%{init}%% directive values.
+              For Plotly: layout.colorway + font config.
+          - field: design_tokens_hash
+            description: >
+              SHA-256 hash of the design tokens file used at generation time.
+              Ensures cache miss when brand tokens change.
+        formula: "SHA256(engine_id + '|' + diagram_code + '|' + theme_overrides + '|' + design_tokens_hash)"
+        # AC: Cache e brand-scoped -- mesmo diagrama com paleta diferente = cache miss
+        brand_scoping: >
+          theme_overrides encodes the brand palette. Different brands produce
+          different theme_overrides, resulting in different cache keys.
+          Same diagram code with different palette = cache MISS. This is by design.
+
+    L2:
+      id: images
+      description: >
+        AI-generated image cache. Stores PNG output from GPT Image, Recraft,
+        and Ideogram engines. These engines are non-deterministic but prompt +
+        engine + constraints produce visually acceptable reuse. TTL 30 days
+        to allow periodic refresh for style evolution.
+      directory: "images"
+      full_path: "${base_directory}/images/{cache_key}.png"
+      ttl_hours: 720
+      ttl_description: "30 days (720 hours). AI images may benefit from regeneration as models improve."
+      engines:
+        - gpt_image
+        - recraft
+        - ideogram
+      output_format: png
+      key_computation:
+        algorithm: SHA-256
+        inputs:
+          - field: engine_id
+            description: "Engine identifier (gpt_image, recraft, ideogram)"
+          - field: prompt
+            description: "Full prompt string including brand injection suffix"
+          - field: style_constraints
+            description: >
+              Serialized style constraints: style_preference + background +
+              aspect_ratio + forbidden_colors. Captures brand-specific visual rules.
+          - field: design_tokens_hash
+            description: >
+              SHA-256 hash of the design tokens file. Ensures cache miss when
+              brand visual identity changes.
+        formula: "SHA256(engine_id + '|' + prompt + '|' + style_constraints + '|' + design_tokens_hash)"
+        # AC: Cache e brand-scoped -- different style_constraints per brand
+        brand_scoping: >
+          style_constraints includes palette-derived values. Different brands
+          produce different style_constraints, resulting in different cache keys.
+
+  # ---------------------------------------------------------------------------
+  # CACHE LOOKUP (BEFORE API call -- cost avoidance)
+  # ---------------------------------------------------------------------------
+  # AC: Cache lookup acontece ANTES de chamar API (evita custo desnecessario)
+  # Reference: asset-resolution.yaml -> generate_operational_flow.steps[2] (cache_lookup)
+  # ---------------------------------------------------------------------------
+  lookup:
+    description: >
+      Cache lookup is step 2 in the generate_operational_flow, executed BEFORE
+      engine.render(). On cache hit, the entire render pipeline is bypassed:
+      no API call, no cost, no latency beyond filesystem read.
+    trigger: "Before every engine.render(spec) call"
+    algorithm:
+      steps:
+        - step: 1
+          name: determine_cache_level
+          description: >
+            Map engine_id to cache level. Diagram engines (d2, mermaid, plotly)
+            use L1. AI image engines (gpt_image, recraft, ideogram) use L2.
+          logic: |
+            if engine_id in ['d2', 'mermaid', 'plotly']:
+              level = L1
+            else:
+              level = L2
+
+        - step: 2
+          name: compute_cache_key
+          description: >
+            Compute SHA-256 hash using the level's key_computation formula.
+            All inputs must be normalized (trimmed, sorted for objects) before hashing.
+          logic: |
+            if level == L1:
+              raw = engine_id + '|' + diagram_code + '|' + theme_overrides + '|' + design_tokens_hash
+            else:
+              raw = engine_id + '|' + prompt + '|' + style_constraints + '|' + design_tokens_hash
+            cache_key = SHA256(raw)
+
+        - step: 3
+          name: check_filesystem
+          description: >
+            Check if file exists at level.full_path with the computed cache_key.
+            For L2: also verify TTL has not expired (created_at + ttl_hours > now).
+          logic: |
+            file_path = level.full_path.replace('{cache_key}', cache_key)
+            if file_exists(file_path):
+              if level == L1:
+                return CACHE_HIT  # L1 is immutable, no TTL check
+              else:
+                entry = read_cache_entry_metadata(cache_key)
+                if entry.created_at + entry.ttl_hours > now:
+                  return CACHE_HIT
+                else:
+                  delete_expired_entry(file_path)
+                  return CACHE_MISS  # expired
+
+        - step: 4
+          name: update_stats
+          description: >
+            Update cache-stats.json with hit or miss counter.
+            Atomic update: read -> increment -> write.
+          logic: |
+            stats = read_stats_file()
+            if result == CACHE_HIT:
+              stats.hits[level.id] += 1
+              stats.total_hits += 1
+            else:
+              stats.misses[level.id] += 1
+              stats.total_misses += 1
+            write_stats_file(stats)
+
+    on_cache_hit:
+      description: >
+        When cache hit: return cached VisualOutput with cache_hit=true and
+        generation_cost_usd=0.0000. Skip steps 3-7 of generate_operational_flow.
+      actions:
+        - "Set VisualOutput.metadata.cache_hit = true"
+        - "Set VisualOutput.metadata.cost_usd = 0.0000"
+        - "Log to cost-log.json with cache_hit=true, cost_usd=0.0000"
+        - "Skip engine.render() -- no API call"
+      reference: "asset-resolution.yaml -> generate_operational_flow.steps[2].on_cache_hit"
+
+    on_cache_miss:
+      description: >
+        When cache miss: proceed with normal render pipeline (steps 3-7).
+        After successful render, write result to cache (see cache_write section).
+      actions:
+        - "Proceed to step 3 (engine_selection)"
+        - "After successful render: write to cache"
+
+  # ---------------------------------------------------------------------------
+  # CACHE WRITE (after successful render)
+  # ---------------------------------------------------------------------------
+  write:
+    description: >
+      After a successful engine.render() call, write the output to cache.
+      Create cache entry metadata file alongside the asset file.
+    trigger: "After successful engine.render(spec) that was not a cache hit"
+    algorithm:
+      steps:
+        - step: 1
+          name: determine_paths
+          description: "Compute file path based on cache level and key."
+          logic: |
+            asset_path = level.full_path.replace('{cache_key}', cache_key)
+            metadata_path = asset_path + '.meta.json'
+
+        - step: 2
+          name: write_asset
+          description: "Write the rendered asset (SVG or PNG) to the cache directory."
+          logic: |
+            ensure_directory_exists(dirname(asset_path))
+            write_file(asset_path, output.data)
+
+        - step: 3
+          name: write_metadata
+          description: >
+            Write cache entry metadata conforming to asset-cache-entry.schema.json.
+            Includes source_hash_inputs for debugging and invalidation.
+          logic: |
+            entry = {
+              cache_key: cache_key,
+              asset_path: asset_path,
+              ttl_hours: level.ttl_hours,
+              brand_id: spec.brand_id,
+              engine: spec.engine,
+              format: level.output_format,
+              created_at: now_iso8601(),
+              cost_usd: output.metadata.cost_usd,
+              source_hash_inputs: {
+                code_or_prompt: spec.diagram_code || spec.prompt,
+                theme_overrides: spec.theme_overrides || spec.style_constraints,
+                design_tokens_hash: spec.design_tokens_hash
+              }
+            }
+            write_json(metadata_path, entry)
+
+  # ---------------------------------------------------------------------------
+  # INVALIDATION
+  # ---------------------------------------------------------------------------
+  # AC: Cache invalidado quando design tokens mudam (detectado via hash do arquivo de tokens)
+  # ---------------------------------------------------------------------------
+  invalidation:
+    description: >
+      Cache entries are invalidated when the design tokens file changes.
+      The design_tokens_hash is part of the cache key computation, so a change
+      in tokens automatically produces different cache keys (natural invalidation).
+      Additionally, explicit invalidation can purge stale entries.
+
+    design_tokens_change:
+      detection_method: hash_comparison
+      description: >
+        Before cache lookup, visual-scout computes SHA-256 of the current
+        design tokens file. This hash is used as part of the cache key.
+        When tokens change, the hash changes, producing different cache keys.
+        Old entries with the previous tokens hash become unreachable (orphaned).
+      algorithm: |
+        current_tokens_hash = SHA256(read_file(design_tokens_path))
+        # This hash is used in key_computation.inputs.design_tokens_hash
+        # Changed tokens -> changed hash -> different cache key -> cache MISS
+      orphan_cleanup:
+        description: >
+          Orphaned entries (unreachable due to changed tokens) are cleaned up
+          by the periodic cleanup job. They are identified by comparing
+          source_hash_inputs.design_tokens_hash against the current tokens hash.
+        schedule: "On pipeline startup or explicit *cache-cleanup command"
+
+    explicit_invalidation:
+      description: >
+        Manual invalidation via CLI command or API call. Purges entries
+        matching specific criteria (brand_id, engine, date range).
+      commands:
+        purge_brand: "Delete all entries where brand_id = X"
+        purge_engine: "Delete all entries where engine = X"
+        purge_expired: "Delete all L2 entries where created_at + ttl_hours < now"
+        purge_all: "Delete all cache entries (full reset)"
+
+  # ---------------------------------------------------------------------------
+  # CACHE STATISTICS (cache-stats.json)
+  # ---------------------------------------------------------------------------
+  # AC: Hit/miss counter em cache-stats.json
+  # ---------------------------------------------------------------------------
+  statistics:
+    file: "${base_directory}/cache-stats.json"
+    description: >
+      Persistent hit/miss counters for cache performance monitoring.
+      Updated atomically on every cache lookup. Read by slide-chief for
+      reporting and by qa-inspector for performance validation.
+    schema:
+      total_hits:
+        type: number
+        description: "Total cache hits across all levels."
+      total_misses:
+        type: number
+        description: "Total cache misses across all levels."
+      hits:
+        type: object
+        description: "Per-level hit counts."
+        properties:
+          diagrams:
+            type: number
+            description: "L1 diagram cache hits."
+          images:
+            type: number
+            description: "L2 AI image cache hits."
+      misses:
+        type: object
+        description: "Per-level miss counts."
+        properties:
+          diagrams:
+            type: number
+            description: "L1 diagram cache misses."
+          images:
+            type: number
+            description: "L2 AI image cache misses."
+      hit_rate_pct:
+        type: number
+        description: "Computed: (total_hits / (total_hits + total_misses)) * 100."
+      last_updated:
+        type: string
+        format: iso_8601
+        description: "Timestamp of last stats update."
+      cost_avoided_usd:
+        type: number
+        precision: 4
+        description: >
+          Estimated cost avoided via cache hits. Computed by summing
+          the estimated cost of each cache-hit engine call.
+    initial_state:
+      total_hits: 0
+      total_misses: 0
+      hits:
+        diagrams: 0
+        images: 0
+      misses:
+        diagrams: 0
+        images: 0
+      hit_rate_pct: 0
+      last_updated: null
+      cost_avoided_usd: 0.0000
+
+  # ---------------------------------------------------------------------------
+  # DIRECTORY STRUCTURE
+  # ---------------------------------------------------------------------------
+  # AC: Estrutura: cache/slides-v2/diagrams/{hash}.svg, cache/slides-v2/images/{hash}.png
+  # ---------------------------------------------------------------------------
+  directory_structure:
+    description: >
+      Filesystem layout for cached assets. Each asset is stored as a file
+      named by its SHA-256 cache key, with a companion .meta.json file
+      containing the cache entry metadata.
+    layout:
+      - path: "cache/slides-v2/"
+        description: "Cache root directory"
+        contents:
+          - path: "cache-stats.json"
+            description: "Hit/miss counters and performance metrics"
+
+          - path: "diagrams/"
+            description: "L1 cache -- deterministic diagram SVGs"
+            file_pattern: "{sha256_hash}.svg"
+            metadata_pattern: "{sha256_hash}.svg.meta.json"
+            example: "a1b2c3...ef.svg + a1b2c3...ef.svg.meta.json"
+
+          - path: "images/"
+            description: "L2 cache -- AI-generated image PNGs"
+            file_pattern: "{sha256_hash}.png"
+            metadata_pattern: "{sha256_hash}.png.meta.json"
+            example: "f9e8d7...01.png + f9e8d7...01.png.meta.json"
+
+  # ---------------------------------------------------------------------------
+  # CROSS REFERENCES
+  # ---------------------------------------------------------------------------
+  cross_references:
+    asset_cache_entry_schema:
+      file: "schemas/contracts/asset-cache-entry.schema.json"
+      relationship: "Cache metadata files conform to this schema"
+      story: "1.5"
+
+    visual_engines:
+      file: "squads/slides-creator/data/visual-engines.yaml"
+      relationship: "orchestration.cache_integration defines cache directory and levels"
+      story: "1.1"
+      sections_consumed:
+        - "orchestration.cache_integration.cache_directory"
+        - "orchestration.cache_integration.cache_levels"
+
+    asset_resolution:
+      file: "squads/slides-creator/data/asset-resolution.yaml"
+      relationship: "generate_operational_flow.steps[2] (cache_lookup) executes this config"
+      story: "1.3"
+      sections_consumed:
+        - "generate_operational_flow.steps[2] (cache_lookup)"
+        - "asset_ref_schema.asset_ref_fields.cache_key"
+
+    cost_tracking:
+      file: "squads/slides-creator/data/cost-tracking.yaml"
+      relationship: "cache_hit=true entries logged with cost_usd=0.0000"
+      story: "1.4"
+      sections_consumed:
+        - "cost_log.entry_schema.cache_hit"
+        - "aggregation.per_deck.cache_hits"
+
+  # ---------------------------------------------------------------------------
+  # INTEGRATION POINTS
+  # ---------------------------------------------------------------------------
+  integration:
+    visual_scout:
+      description: >
+        visual-scout performs cache lookup before every render() call.
+        On hit: return cached output, skip API. On miss: render, then write to cache.
+      hook: "before_render"
+      reads: [levels, lookup, statistics]
+      writes: [write, statistics]
+
+    cost_tracking:
+      description: >
+        Cache hits produce cost_log entries with cache_hit=true and cost_usd=0.0000.
+        This integrates with cost-tracking.yaml aggregation (cache_hits count per deck).
+      hook: "on_cache_hit"
+      writes_to: "cost-log.json"
+
+    qa_inspector:
+      description: >
+        qa-inspector reads cache-stats.json to validate cache performance.
+        Expected: hit_rate_pct > 0 for decks with repeated visual patterns.
+      hook: "quality_gate"
+      reads: [statistics]

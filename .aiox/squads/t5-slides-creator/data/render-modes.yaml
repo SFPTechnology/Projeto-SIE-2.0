@@ -1,0 +1,226 @@
+# Render Modes — design-renderer output configuration
+#
+# Three render modes, selected automatically from briefing.normalized.json:
+#   - tsx-ds: legacy TSX output for apps/ds runtime (historical default)
+#   - html-standalone-multi-file: independent HTML per slide + composer (default for standalone)
+#   - html-standalone-single-file: web component deck (≤10 slides, pitch decks)
+#
+# Feature flag: ENABLE_HTML_STANDALONE_RENDER in config.yaml must be true
+# for html-standalone-* modes to be available.
+
+version: "1.0.0"
+
+modes:
+
+  tsx-ds:
+    status: "legacy"
+    description: |
+      Original output mode — emite componentes TSX para o runtime apps/ds.
+      Depende de apps/ds estar presente no monorepo. Atualmente o runtime
+      está ausente; squad opera em handoff_only quando este modo é escolhido.
+    output_structure:
+      - "slides/*.tsx"
+      - "thumbnails/*.png"
+      - "render-summary.md"
+    prerequisite: "apps/ds runtime disponivel"
+    deliverable_formats:
+      - "tsx_via_ds_presenter"
+    when_to_use:
+      - "apps/ds existe e está conectado"
+      - "Deck precisa integrar em website existente baseado em ds"
+    when_not_to_use:
+      - "Client não usa apps/ds"
+      - "Delivery é standalone (PDF/PPTX/HTML zip)"
+
+  html-standalone-multi-file:
+    status: "target"
+    description: |
+      Default para rendering standalone. Cada slide é um HTML independente,
+      navegação via composer (index.html). CSS scope isolation nativa.
+    output_structure:
+      base: "outputs/slides-creator/{business}/{deck-slug}/"
+      layout:
+        - "index.html"              # composer com iframe-based nav
+        - "shared/tokens.css"       # design tokens comuns
+        - "shared/fonts.html"       # font imports incluidos per slide
+        - "slides/01-cover.html"    # cada slide é HTML completo 1920x1080
+        - "slides/02-agenda.html"
+        - "slides/NN-{slug}.html"
+        - "assets/"                 # imagens, media
+    prerequisite: "ENABLE_HTML_STANDALONE_RENDER=true"
+    deliverable_formats:
+      - "html_browser"             # abrir index.html direto no browser
+      - "pdf_vector"               # export via Playwright + pdf-lib
+      - "pptx_editable"            # se 4 constraints seguidas, via pptxgenjs
+      - "pptx_image"               # screenshot de cada slide -> PNG embedded
+      - "mp4_gif"                  # se motion engine ativo, via Playwright record
+    when_to_use:
+      - "Deck ≥ 10 paginas"
+      - "Multi-agent parallel development"
+      - "PDF export essencial"
+      - "Debug facil (abrir UM slide sem load do deck inteiro)"
+    when_not_to_use:
+      - "Deck precisa de cross-page JS state compartilhado"
+      - "Pitch deck ≤ 10 paginas com narrativa muito coesa"
+
+  html-standalone-single-file:
+    status: "target"
+    description: |
+      Single-file web component deck — todos os slides em UM HTML.
+      Cross-slide state trivial, arquivo único de distribuição.
+      Requer cuidado com Shadow DOM se delivery inclui PDF.
+    output_structure:
+      base: "outputs/slides-creator/{business}/{deck-slug}/"
+      layout:
+        - "deck.html"              # web component <deck-stage> com sections
+        - "assets/"                # imagens, media
+    prerequisite:
+      - "ENABLE_HTML_STANDALONE_RENDER=true"
+      - "deck size ≤ 10 slides"
+    deliverable_formats:
+      - "html_browser"
+      - "pdf_vector"               # requer Shadow DOM troubleshooting playbook
+      - "mp4_gif"                  # se motion engine ativo
+    caveats:
+      - "PDF export complicado — ver data/shadow-dom-pdf-troubleshooting.md"
+      - "CSS scope é global — cuidado com specificity em section styles"
+      - "PPTX editable NAO suportado bem (web component complexity)"
+    when_to_use:
+      - "Pitch deck ≤ 10 slides"
+      - "Cross-page tweaks compartilhado (color theme live switch)"
+      - "Entrega em um arquivo unico (email attachment, drive upload)"
+    when_not_to_use:
+      - "Deck > 10 slides"
+      - "Multi-agent paralelismo obrigatório"
+      - "PDF export é critical path"
+      - "PPTX editable é requisito"
+
+# ─────────────────────────────────────────────────────────────────────
+# Mode selection logic (consumed by design-renderer)
+# ─────────────────────────────────────────────────────────────────────
+
+selection_rules:
+
+  - rule_id: "SEL-001"
+    description: "apps/ds runtime present -> tsx-ds se nao override explicito"
+    condition:
+      - "fs.exists('apps/ds')"
+      - "briefing.normalized.render_mode_override is None"
+    result: "tsx-ds"
+
+  - rule_id: "SEL-002"
+    description: "Standalone render enabled + ≤10 slides + cross-page state needed"
+    condition:
+      - "ENABLE_HTML_STANDALONE_RENDER == true"
+      - "deck.slide_count <= 10"
+      - "briefing.cross_slide_state == true"
+    result: "html-standalone-single-file"
+
+  - rule_id: "SEL-003"
+    description: "Standalone render enabled + default case"
+    condition:
+      - "ENABLE_HTML_STANDALONE_RENDER == true"
+    result: "html-standalone-multi-file"
+
+  - rule_id: "SEL-004"
+    description: "Fallback: handoff_only se nada aplicável"
+    condition: "default"
+    result: "handoff_only"
+    warning: "No render mode available. Squad returns manifest only."
+
+# ─────────────────────────────────────────────────────────────────────
+# Export capability matrix
+# ─────────────────────────────────────────────────────────────────────
+
+export_capability:
+  tsx-ds:
+    html_browser: "via apps/ds presenter"
+    pdf_vector: "via apps/ds export flow"
+    pptx_editable: "not_supported"
+    pptx_image: "via apps/ds screenshot flow"
+    mp4_gif: "not_supported"
+  html-standalone-multi-file:
+    html_browser: "native (open index.html)"
+    pdf_vector: "scripts/export-deck-pdf.mjs (Playwright + pdf-lib)"
+    pptx_editable: "scripts/export-pptx-editable.mjs (requer 4 constraints)"
+    pptx_image: "scripts/export-pptx-image.mjs (screenshot + pptxgenjs)"
+    mp4_gif: "scripts/render-video.mjs (se ENABLE_MOTION_NARRATIVE=true)"
+  html-standalone-single-file:
+    html_browser: "native (open deck.html)"
+    pdf_vector: "scripts/export-deck-stage-pdf.mjs (Shadow DOM workaround)"
+    pptx_editable: "not_recommended"
+    pptx_image: "scripts/export-pptx-image.mjs"
+    mp4_gif: "scripts/render-video.mjs"
+
+# ─────────────────────────────────────────────────────────────────────
+# Output path discipline
+# ─────────────────────────────────────────────────────────────────────
+
+output_path_rules:
+  standalone_modes_base: "outputs/slides-creator/{business_slug}/{deck_slug}/"
+  rationale: |
+    Standalone HTML artifacts são outputs de squad execution,
+    não workspace canonical data.
+
+  forbidden_paths:
+    - "workspace/businesses/*/" # NUNCA — violates artifact-classification rule
+    - "apps/"                    # reserved para applications
+    - "packages/"                # reserved para shared packages
+
+  gitignore_considerations:
+    - "outputs/slides-creator/**/*.pptx"  # artifacts nao versionados
+    - "outputs/slides-creator/**/*.mp4"   # artifacts nao versionados
+    - "outputs/slides-creator/**/*.pdf"   # artifacts nao versionados
+    - "outputs/slides-creator/**/*.html"  # artifacts NAO-ignore (source-equivalent)
+
+# ─────────────────────────────────────────────────────────────────────
+# Dependencies (scripts to be created)
+# ─────────────────────────────────────────────────────────────────────
+
+required_scripts:
+  - path: "scripts/export-deck-pdf.mjs"
+    status: "not_yet_implemented"
+    depends_on: ["playwright", "pdf-lib"]
+    story: "STORY-SC-STANDALONE-PDF"
+
+  - path: "scripts/export-deck-stage-pdf.mjs"
+    status: "not_yet_implemented"
+    depends_on: ["playwright"]
+    story: "STORY-SC-STANDALONE-SINGLE-PDF"
+    reference: "data/shadow-dom-pdf-troubleshooting.md"
+
+  - path: "scripts/export-pptx-editable.mjs"
+    status: "not_yet_implemented"
+    depends_on: ["playwright", "pptxgenjs", "sharp"]
+    story: "STORY-SC-PPTX-EDITABLE"
+    reference: "tasks/export-editable-pptx.md"
+
+  - path: "scripts/export-pptx-image.mjs"
+    status: "not_yet_implemented"
+    depends_on: ["playwright", "pptxgenjs"]
+    story: "STORY-SC-PPTX-IMAGE"
+
+  - path: "scripts/render-video.mjs"
+    status: "not_yet_implemented"
+    depends_on: ["playwright", "ffmpeg"]
+    story: "STORY-SC-VIDEO-EXPORT"
+    feature_flag: "ENABLE_MOTION_NARRATIVE"
+
+  - path: "scripts/verify-slides.py"
+    status: "not_yet_implemented"
+    depends_on: ["playwright-python"]
+    story: "STORY-SC-VERIFY-SCRIPT"
+    purpose: "multi-viewport technical smoke test (complement to qa-inspector)"
+
+# ─────────────────────────────────────────────────────────────────────
+# Related
+# ─────────────────────────────────────────────────────────────────────
+
+related:
+  - "tasks/confirm-delivery-format.md"
+  - "tasks/decide-slide-architecture.md"
+  - "tasks/export-editable-pptx.md"
+  - "data/editable-vs-image-pptx-decision.md"
+  - "data/shadow-dom-pdf-troubleshooting.md"
+  - "data/narrative-pacing.md"
+  - "agents/design-renderer.md"

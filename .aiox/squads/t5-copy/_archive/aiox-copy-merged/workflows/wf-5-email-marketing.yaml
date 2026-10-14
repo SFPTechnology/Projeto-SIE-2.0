@@ -1,0 +1,634 @@
+workflow:
+  id: wf-5-email-marketing
+  name: Email Marketing System
+  type: canonical-campaign-workflow
+  status: active_canonical
+  operating_mode: setup-plus-ongoing
+  duration: "Setup: 3-5 days | Ongoing: Perpetual"
+  description: "Complete email marketing system with three style options: Ben Settle (daily broadcast), Andre Chaperon (automated sequences), or Hybrid (recommended for most businesses). Includes welcome sequences, nurture emails, cart abandonment, and broadcast templates."
+  style_options:
+    option_a:
+      name: Ben Settle Style (Daily Broadcast)
+      id: settle-style
+      description: Infotainment-based daily emails. High personality, polarizing content, consistent selling. Best for personal brands and experts who enjoy writing.
+      best_for:
+        - Personal brands
+        - Coaches/consultants who enjoy writing
+        - Businesses with strong owner personality
+        - Markets that respond to personality
+      commitment: 1 email per day, 7 days/week
+      primary_agent: ben-settle
+      key_principles:
+        - Entertain FIRST, sell second
+        - Be polarizing (repel as much as attract)
+        - Write like you talk (3X personality amplification)
+        - Always pitch (but subtly)
+        - No perfectionism - send daily
+    option_b:
+      name: Andre Chaperon Style (Automated Sequences)
+      id: chaperon-style
+      description: Story-driven automated sequences using Soap Opera methodology. Heavy upfront work, then runs on autopilot. Best for businesses wanting hands-off email systems.
+      best_for:
+        - Businesses wanting automation
+        - Teams without daily writing capacity
+        - Complex products needing education
+        - Cold traffic conversion
+      commitment: 50-100 emails upfront, then quarterly maintenance
+      primary_agent: andre-chaperon
+      key_principles:
+        - Serialized storytelling with open loops
+        - Build relationship before asking for sale
+        - Segment ruthlessly based on behavior
+        - Each email leads naturally to next
+        - Use Zeigarnik Effect for engagement
+    option_c:
+      name: Hybrid Approach (Recommended)
+      id: hybrid-style
+      description: "Best of both worlds: automated sequences for critical moments (welcome, cart abandonment, post-purchase) plus manual broadcasts for relationship building and timely content."
+      best_for:
+        - Most businesses (default recommendation)
+        - Balanced workload
+        - Maximum coverage without burnout
+      commitment: ~25 automated emails + 2-3 broadcasts/week
+      primary_agents:
+        - andre-chaperon
+        - ben-settle
+      key_principles:
+        - Automations handle must-send moments
+        - Broadcasts build ongoing relationship
+        - Neither alone is complete
+  decision_matrix:
+    questions:
+      - question: How much do you enjoy writing daily?
+        settle: Love it - can write every day
+        chaperon: Prefer batch work upfront
+        hybrid: Mixed - some days yes, some no
+      - question: How important is personality in your brand?
+        settle: Critical - I AM the brand
+        chaperon: Important but not central
+        hybrid: Balanced - brand + personality
+      - question: What's your primary traffic source?
+        settle: Warm/hot (know me already)
+        chaperon: Cold (strangers)
+        hybrid: Mixed traffic
+      - question: What's your team size?
+        settle: Solo or small (I write everything)
+        chaperon: Team can batch-create content
+        hybrid: Small team, flexible capacity
+    recommendation_logic: |
+      Score each answer (1-3 points toward each style).
+      Highest total = recommended approach.
+      If tie: default to Hybrid.
+  agent_mapping:
+    primary_agents:
+      ben-settle: Daily broadcast, infotainment, personality copy
+      andre-chaperon: Automated sequences, SOS, segmentation
+    supporting_agents:
+      joe-sugarman: Cart abandonment (psychological triggers)
+      gary-halbert: Story emails, personal letter style
+      eugene-schwartz: Awareness-based segmentation
+      dan-kennedy: Avatar definition, 3Ms framework
+    also_consider:
+      ry-schwartz: Cohort enrollment email sequences (open/close window, community positioning, launch urgency)
+      dan-koe: Content-to-email bridge (digital writing adapted for email, thought-leadership style newsletters)
+  governance:
+    operating_model: Campaign Brief -> Message Architecture -> Creative Brief -> Asset Brief -> Copy Deck -> Review Gates -> Validation Loop
+    strategic_or_final_rule: Email systems promoted to FINAL should reference persisted campaign artifacts
+    planning_root: workspace/businesses/{business}/copy/{campaign_slug}/
+    delivery_root: outputs/copy/{business}/
+    supporting_materials:
+      - swipe/email/hammer-them-examples.md
+      - swipe/tactics/break-the-glass-tactics.md
+    review_gates:
+      required:
+        - checklists/hopkins-audit-checklist.md
+        - checklists/sugarman-30-triggers.md
+        - checklists/final-copy-readiness.md
+      rule: FINAL promotion requires Hopkins specificity review, Sugarman trigger review, and final readiness approval
+  signals:
+    complete: <promise>COMPLETE</promise>
+    checkpoint: <promise>CHECKPOINT:PHASE-{phase_id}</promise>
+    blocked: <promise>BLOCKED:{reason}</promise>
+  sequence:
+    - step: phase-1
+      id: phase-1
+      phase: 1
+      phase_name: Foundation Setup
+      agent: dan-kennedy
+      action: execute_establish-email-system-foundation-regardless-of-chosen-style
+      next: phase-2a
+    - step: phase-2a
+      id: phase-2a
+      phase: 2
+      phase_name: Settle Style Setup
+      agent: ben-settle
+      action: execute_setup-for-ben-settle-daily-broadcast-approach
+      next: phase-2b
+    - step: phase-2b
+      id: phase-2b
+      phase: 3
+      phase_name: Chaperon Style Setup
+      agent: andre-chaperon
+      action: execute_setup-for-andre-chaperon-automated-sequence-approach
+      next: phase-3
+    - step: phase-3
+      id: phase-3
+      phase: 4
+      phase_name: Critical Automations
+      agent: joe-sugarman
+      action: execute_essential-automated-sequences-regardless-of-chosen-style
+      next: phase-4
+    - step: phase-4
+      id: phase-4
+      phase: 5
+      phase_name: Integration & Templates
+      agent: gary-halbert
+      action: execute_finalize-templates-and-integration-documentation
+    - workflow_end:
+        id: complete
+        action: workflow_complete
+  handoff_prompts:
+    dan-kennedy_to_ben-settle: Handoff context from dan-kennedy to ben-settle. Preserve outputs, risks, and open decisions.
+    ben-settle_to_andre-chaperon: Handoff context from ben-settle to andre-chaperon. Preserve outputs, risks, and open decisions.
+    andre-chaperon_to_joe-sugarman: Handoff context from andre-chaperon to joe-sugarman. Preserve outputs, risks, and open decisions.
+    joe-sugarman_to_gary-halbert: Handoff context from joe-sugarman to gary-halbert. Preserve outputs, risks, and open decisions.
+  canonical_artifacts:
+    planning:
+      - campaign-brief.yaml
+      - message-architecture.yaml
+      - creative-brief.yaml
+      - assets/asset-brief-email.yaml
+    delivery:
+      - outputs/copy/{business}/emails/*
+      - outputs/copy/{business}/drafts/*
+phases:
+  - id: PHASE-1
+    name: Foundation Setup
+    day: 1
+    tier: 0
+    description: Establish email system foundation regardless of chosen style
+    tasks:
+      - task_file: load-workspace-context.md
+        agent: copy-chief
+        required: true
+        output: campaign-context-brief.yaml
+        notes: Load governance, source-of-truth layers, and email campaign planning context
+      - task_file: avatar-research.md
+        agent: dan-kennedy
+        required: true
+        output: avatar-profile.md
+        notes: Define ideal subscriber using Kennedy's 3Ms (Market, Message, Media)
+      - task_file: diagnose-awareness-level.md
+        agent: eugene-schwartz
+        required: true
+        output: subscriber-awareness-map.yaml
+        notes: Map subscriber awareness levels for segmentation strategy
+      - task_file: campaign-planning-pack.md
+        agent: copy-chief
+        required: true
+        output: campaign-brief.yaml + message-architecture.yaml + creative-brief.yaml + assets/asset-brief-email.yaml
+        notes: Produce canonical campaign artifacts and the email asset brief before sequence creation
+    artifacts:
+      - avatar-profile.md
+      - subscriber-awareness-map.yaml
+    checkpoint:
+      criteria:
+        - Campaign context LOADED
+        - Avatar profile COMPLETE
+        - Awareness levels MAPPED
+        - Campaign artifacts READY
+      human_review: false
+      message: Foundation complete - ready for style-specific setup
+  - id: PHASE-2A
+    name: Settle Style Setup
+    day: 2
+    tier: 1
+    condition: style == 'settle' OR style == 'hybrid'
+    description: Setup for Ben Settle daily broadcast approach
+    tasks:
+      - task_file: create-daily-email.md
+        agent: ben-settle
+        required: true
+        output: daily-email-system.md
+        notes: |
+          Define:
+          - Amplified persona (3X personality)
+          - Topic bank (50+ themes)
+          - Voice elements (opinions, pet peeves, catchphrases)
+          - Main product to pitch
+          - Sign-off style
+      - task_file: create-newsletter.md
+        agent: ben-settle
+        required: false
+        output: broadcast-templates.md
+        notes: Create 5 broadcast email templates with Settle principles
+      - task_file: create-newsletter.md
+        agent: dan-koe
+        required: false
+        output: content-newsletter-templates.md
+        notes: |
+          Optional: Create content-to-email bridge templates using Dan Koe's digital writing:
+          - Thought-leadership style newsletters
+          - Twitter/X thread adapted to email format
+          - One big idea per email, philosophical hooks
+          - Best for knowledge worker and creator audiences
+    templates:
+      story_email:
+        name: Story Email (Settle Style)
+        structure:
+          - "Hook: Jump right into story/observation"
+          - "Opinion: Share strong take (don't hedge)"
+          - "Point: Make your point/teach something"
+          - "Pivot: Connect to product"
+          - "CTA: 3-5 lines with link"
+          - "P.S.: Additional angle or urgency"
+        subject_line_patterns:
+          - "[Curiosity hook]"
+          - "[Weird/provocative statement]"
+          - "[Question they can't ignore]"
+      infotainment_email:
+        name: Infotainment Email
+        structure:
+          - 60% Entertainment (story, humor, rant)
+          - 30% Information (one key insight)
+          - 10% Sales (natural pivot to offer)
+    artifacts:
+      - daily-email-system.md
+      - broadcast-templates.md
+    checkpoint:
+      criteria:
+        - Amplified persona DEFINED
+        - Topic bank CREATED (50+ themes)
+        - Broadcast templates READY
+      human_review: false
+  - id: PHASE-2B
+    name: Chaperon Style Setup
+    day: 2-3
+    tier: 1
+    condition: style == 'chaperon' OR style == 'hybrid'
+    description: Setup for Andre Chaperon automated sequence approach
+    tasks:
+      - task_file: create-soap-opera-sequence.md
+        agent: andre-chaperon
+        required: true
+        output: welcome-sos.md
+        notes: |
+          Create 7-email Welcome Soap Opera Sequence:
+          - Email 1: Set the Stage (introduce + hint conflict)
+          - Email 2: High Drama (intensify problem)
+          - Email 3: Epiphany (turning point)
+          - Email 4: Hidden Benefits (transformation)
+          - Email 5: Urgency (call to action)
+          - Email 6-7: Transition to regular content
+      - task_file: create-email-sequence.md
+        agent: andre-chaperon
+        required: true
+        output: topic-sequences.yaml
+        notes: Create 3-5 topic sequences (5-7 emails each) based on interest areas
+      - task_file: create-email-sequence.md
+        agent: ry-schwartz
+        required: false
+        output: cohort-enrollment-sequence.md
+        notes: |
+          Optional: Create cohort enrollment email sequence if business runs cohort-based programs:
+          - Pre-enrollment nurture (anticipation building)
+          - Enrollment window open/close emails
+          - Community positioning and social proof from past cohorts
+          - Cohort-specific urgency (limited seats, next start date)
+          Only activate when business has defined enrollment windows.
+    templates:
+      welcome_email:
+        name: Welcome Email (Chaperon Style)
+        structure:
+          - Deliver what they signed up for
+          - Brief positioning statement
+          - Story of why you do this
+          - Preview of sequence to come
+          - Open loop to Email 2
+          - P.S. with access reminder
+        subject_line_patterns:
+          - "[First name], welcome + your [lead magnet]"
+          - Here's what you asked for (plus something extra)
+      soap_opera_email:
+        name: SOS Email Structure
+        email_1:
+          purpose: Set the Stage
+          elements:
+            - Intrigue opening
+            - Introduce character
+            - Hint at conflict
+            - Open loop
+        email_2:
+          purpose: High Drama
+          elements:
+            - Pick up story
+            - Intensify conflict
+            - Show stakes
+            - Cliffhanger
+        email_3:
+          purpose: Epiphany
+          elements:
+            - Turning point
+            - Discovery/realization
+            - Connect to principle
+        email_4:
+          purpose: Hidden Benefits
+          elements:
+            - Show transformation
+            - Unexpected benefits
+            - Build credibility
+        email_5:
+          purpose: Urgency
+          elements:
+            - Recap journey
+            - Present offer
+            - Clear CTA
+            - Close all loops
+    artifacts:
+      - welcome-sos.md
+      - topic-sequences.yaml
+    checkpoint:
+      criteria:
+        - Welcome SOS COMPLETE (7 emails)
+        - Topic sequences CREATED
+        - Open loops DOCUMENTED
+      human_review: true
+      message: Review SOS structure before proceeding to cart/post-purchase
+  - id: PHASE-3
+    name: Critical Automations
+    day: 3-4
+    tier: 2
+    description: Essential automated sequences regardless of chosen style
+    tasks:
+      - task_file: create-abandoned-cart.md
+        agent: joe-sugarman
+        required: true
+        output: cart-abandonment-sequence.md
+        notes: |
+          5-email cart abandonment sequence using Sugarman triggers:
+          - Email 1 (1hr): "Did something go wrong?" (Reason Why)
+          - Email 2 (24hr): Story + social proof (Storytelling, Authority)
+          - Email 3 (48hr): FAQ/objections (Honesty, Specificity)
+          - Email 4 (72hr): Scarcity/urgency (Fear, Exclusivity)
+          - Email 5 (7d): Final chance + alternative (Hope)
+      - task_file: create-email-sequence.md
+        agent: andre-chaperon
+        required: true
+        output: post-purchase-sequence.md
+        notes: |
+          5-email post-purchase sequence:
+          - Email 1: Welcome + quick start guide
+          - Email 2: Success story (what's possible)
+          - Email 3: First milestone check-in
+          - Email 4: Request testimonial/feedback
+          - Email 5: Upsell introduction (after value delivered)
+      - task_file: create-email-sequence.md
+        agent: andre-chaperon
+        required: false
+        output: re-engagement-sequence.md
+        notes: |
+          5-email re-engagement for cold subscribers:
+          - Email 1: "Are you still interested in [topic]?"
+          - Email 2: Best content reminder
+          - Email 3: New development/update
+          - Email 4: Special offer for return
+          - Email 5: Final check + unsubscribe option
+    templates:
+      cart_abandonment_1:
+        name: Cart Abandonment Email 1
+        timing: 1 hour after abandonment
+        subject: Did something go wrong?
+        structure:
+          - Notice they started checkout
+          - Offer help if tech issue
+          - Link to resume checkout
+          - Invitation to reply with questions
+          - P.S. cart saved for [timeframe]
+      cart_abandonment_2:
+        name: Cart Abandonment Email 2
+        timing: 24 hours
+        subject: "[Customer name] did this and..."
+        structure:
+          - Brief story of customer success
+          - Connect to what they were buying
+          - Social proof element
+          - CTA to complete purchase
+    artifacts:
+      - cart-abandonment-sequence.md
+      - post-purchase-sequence.md
+      - re-engagement-sequence.md
+    checkpoint:
+      criteria:
+        - Cart abandonment 5 emails COMPLETE
+        - Post-purchase 5 emails COMPLETE
+        - Re-engagement sequence DRAFTED
+      human_review: false
+  - id: PHASE-4
+    name: Integration & Templates
+    day: 4-5
+    tier: 2
+    description: Finalize templates and integration documentation
+    tasks:
+      - task_file: create-email-sequence.md
+        agent: gary-halbert
+        required: true
+        output: story-email-templates.md
+        notes: |
+          Create 5 story email templates (Halbert personal letter style):
+          - The Origin Story
+          - The Client Success Story
+          - The Failure Lesson Story
+          - The Unexpected Discovery Story
+          - The Behind-the-Scenes Story
+    templates:
+      story_halbert:
+        name: Story Email (Halbert Style)
+        structure:
+          - "Set the scene: time, place, situation"
+          - The challenge/conflict
+          - The turning point
+          - What I learned / what this means for you
+          - Connection to product/offer
+          - Soft or hard CTA
+          - P.S. reinforcement
+    artifacts:
+      - story-email-templates.md
+      - email-system-integration-guide.md
+    checkpoint:
+      criteria:
+        - Story templates COMPLETE
+        - All sequences DOCUMENTED
+        - Integration guide READY
+        - REVIEW GATES passed (Hopkins + Sugarman + Final Readiness)
+      human_review: true
+      message: Final review against the explicit review gates before the system is considered complete
+ongoing:
+  settle_style:
+    daily:
+      - Write and send 1 infotainment email
+      - Monitor replies for content ideas
+    weekly:
+      - Review open rates and adjust voice
+      - Add 5+ topics to topic bank
+    monthly:
+      - Review unsubscribe patterns
+      - Refresh pitch angles
+  chaperon_style:
+    weekly:
+      - Review sequence performance metrics
+      - Check for broken automations
+    monthly:
+      - A/B test subject lines
+      - Update sequences with new content
+    quarterly:
+      - Create new topic sequence
+      - Refresh welcome sequence
+      - Audit segmentation rules
+  hybrid_style:
+    daily:
+      - "Optional: Send broadcast (2-3x/week minimum)"
+    weekly:
+      - Review automation performance
+      - Plan broadcast topics
+    monthly:
+      - Create 1 new automated sequence OR 4 broadcast templates
+      - Review and optimize cart abandonment
+    quarterly:
+      - Full email system audit
+      - Update welcome sequence
+email_templates:
+  welcome:
+    name: Welcome Email
+    use_in:
+      - chaperon
+      - hybrid
+    subject_examples:
+      - "[First name], welcome + your [lead magnet]"
+      - Here's what you asked for...
+      - You're in! Here's your [lead magnet]
+    structure: |
+      Hey [first name],
+
+      [Deliver what they signed up for - link/access]
+
+      Quick thing about me: [One sentence positioning]
+
+      [Brief story of why you do this - 2-3 sentences]
+
+      Over the next few days, I'm going to share [preview of sequence].
+
+      Tomorrow, I'll tell you about [open loop to Email 2]
+
+      [Signature]
+
+      P.S. - [Reminder of what they downloaded/access info]
+  infotainment:
+    name: Infotainment Email
+    use_in:
+      - settle
+      - hybrid
+    subject_examples:
+      - The $50,000 mistake
+      - Why I hate [common thing]
+      - My accountant thinks I'm crazy
+    structure: |
+      [Jump right into story/observation/rant - no preamble]
+
+      [Share opinion - don't hedge. Take a stand.]
+
+      [Make your point/teach something]
+
+      Speaking of [topic], this is exactly what [product] helps with...
+
+      [3-5 lines about product with link]
+
+      [Signature]
+
+      P.S. - [Additional angle, urgency, or callback to story]
+  cart_abandonment:
+    name: Cart Abandonment Email 1
+    use_in:
+      - all
+    subject_examples:
+      - Did something go wrong?
+      - You left something behind...
+      - Quick question about your order
+    structure: |
+      Hey [first name],
+
+      I noticed you started checking out [product] but didn't finish.
+
+      Sometimes technology glitches. If that happened, here's
+      your link to try again: [LINK]
+
+      If you had questions, just reply to this email.
+      I read every response.
+
+      [Signature]
+
+      P.S. - Your cart is saved for [timeframe]
+  soap_opera:
+    name: Soap Opera Sequence Email
+    use_in:
+      - chaperon
+      - hybrid
+    email_1_example: |
+      Subject: The day everything changed...
+
+      Three years ago, I was sitting in a coffee shop
+      with exactly $47.83 in my bank account.
+
+      My laptop was dying. My credit cards maxed out.
+      And my "business" was generating exactly nothing.
+
+      Everyone told me to quit. Get a real job.
+      Stop chasing this "internet thing."
+
+      They were probably right.
+
+      But something happened that changed everything.
+
+      Tomorrow, I'll tell you what it was—and why
+      it matters to you right now.
+
+      [Signature]
+
+      P.S. - This isn't some rags-to-riches hype story.
+      It's the truth about what actually works.
+      (And what doesn't.)
+validation:
+  yaml_valid: true
+  required_sequences:
+    - name: Welcome sequence
+      emails: 7
+      required: true
+    - name: Cart abandonment
+      emails: 5
+      required: true
+    - name: Post-purchase
+      emails: 5
+      required: true
+  templates_included:
+    - Welcome email
+    - Story email
+    - Infotainment email
+    - Cart abandonment
+  acceptance_criteria:
+    - YAML válido
+    - "Option A: Settle style (daily broadcast, infotainment, 3X persona)"
+    - "Option B: Chaperon style (automated SOS, topic sequences, behavior triggers)"
+    - "Option C: Hybrid (automated welcome/cart/post-purchase + manual broadcasts)"
+    - "Email templates: Welcome, Story, Infotainment, Cart abandonment"
+metadata:
+  version: 1.0.0
+  created: "2026-01-23"
+  author: AIOX Copy Workflows YOLO
+  story_id: US-007
+  references:
+    - squads/copy/agents/ben-settle.md
+    - squads/copy/agents/andre-chaperon.md
+    - squads/copy/tasks/create-daily-email.md
+    - squads/copy/tasks/create-soap-opera-sequence.md
+    - squads/copy/tasks/create-email-sequence.md
+    - squads/copy/tasks/create-abandoned-cart.md
+    - squads/copy/docs/frameworks/07-WORKFLOWS-ENHANCED.md

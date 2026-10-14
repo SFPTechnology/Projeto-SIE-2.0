@@ -1,0 +1,41 @@
+{
+  "schema": "servicos-ia-brasil-solo-bootstrap-2026.risk-register.v1",
+  "generated_at": "2026-05-17",
+  "risks": [
+    {
+      "id": "R01",
+      "risk": "Mentoria sem autoridade percebida não converte ticket premium.",
+      "probability": "MEDIA",
+      "impact": "ALTO",
+      "mitigation": "Mini-curso 7 dias + 3 cases verificáveis + 1 evento com prova social."
+    },
+    {
+      "id": "R02",
+      "risk": "Automação sem discovery pago vira escopo infinito.",
+      "probability": "ALTA",
+      "impact": "ALTO",
+      "mitigation": "Discovery obrigatório de R$ 5k antes de proposta fechada."
+    },
+    {
+      "id": "R03",
+      "risk": "WhatsApp vertical vira revenda commodity de BSP.",
+      "probability": "MEDIA",
+      "impact": "MEDIO",
+      "mitigation": "Vertical + CRM + playbook operacional por nicho."
+    },
+    {
+      "id": "R04",
+      "risk": "Enterprise bait: LGPD/Cyber/Preditivo parecem altos, mas drenam 180-540 dias.",
+      "probability": "ALTA",
+      "impact": "ALTO",
+      "mitigation": "Veto explícito até existir time, credencial e canal enterprise."
+    },
+    {
+      "id": "R05",
+      "risk": "GenAI conteúdo captura atenção mas não cria moat.",
+      "probability": "ALTA",
+      "impact": "MEDIO",
+      "mitigation": "Usar apenas como isca de canal para mentoria."
+    }
+  ]
+}

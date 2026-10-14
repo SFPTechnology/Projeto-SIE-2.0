@@ -1,0 +1,237 @@
+{
+  "schema": "sinkra-bench-canonical-metadata-v1",
+  "bench": {
+    "id": "deepresearch-absorption-benchmark",
+    "title": "DeepResearch Absorption Benchmark",
+    "type": "codebase/product absorption analysis",
+    "date": "2026-05-18",
+    "status": "gold_executable_planned"
+  },
+  "subjects": [
+    {
+      "id": "drbench",
+      "name": "DRBench",
+      "repo": "ServiceNow/drbench",
+      "url": "https://github.com/ServiceNow/drbench",
+      "category": "enterprise_benchmark"
+    },
+    {
+      "id": "deer-flow",
+      "name": "DeerFlow",
+      "repo": "bytedance/deer-flow",
+      "url": "https://github.com/bytedance/deer-flow",
+      "category": "agentic_platform"
+    },
+    {
+      "id": "autoresearchclaw",
+      "name": "AutoResearchClaw",
+      "repo": "aiming-lab/AutoResearchClaw",
+      "url": "https://github.com/aiming-lab/AutoResearchClaw",
+      "category": "scientific_pipeline"
+    },
+    {
+      "id": "storm",
+      "name": "STORM",
+      "repo": "stanford-oval/storm",
+      "url": "https://github.com/stanford-oval/storm",
+      "category": "article_research_pipeline"
+    },
+    {
+      "id": "gpt-researcher",
+      "name": "GPT-Researcher",
+      "repo": "assafelovic/gpt-researcher",
+      "url": "https://github.com/assafelovic/gpt-researcher",
+      "category": "research_facade"
+    },
+    {
+      "id": "local-deep-research",
+      "name": "Local Deep Research",
+      "repo": "LearningCircuit/local-deep-research",
+      "url": "https://github.com/LearningCircuit/local-deep-research",
+      "category": "local_private_runtime"
+    },
+    {
+      "id": "mirothinker",
+      "name": "MiroThinker",
+      "repo": "MiroMindAI/MiroThinker",
+      "url": "https://github.com/MiroMindAI/MiroThinker",
+      "category": "hydra_mcp_runtime"
+    },
+    {
+      "id": "deep-searcher",
+      "name": "DeepSearcher",
+      "repo": "zilliztech/deep-searcher",
+      "url": "https://github.com/zilliztech/deep-searcher",
+      "category": "private_kb_rag"
+    },
+    {
+      "id": "langchain-open-deep-research",
+      "name": "LangChain Open Deep Research",
+      "repo": "langchain-ai/open_deep_research",
+      "url": "https://github.com/langchain-ai/open_deep_research",
+      "category": "graph_runtime"
+    },
+    {
+      "id": "deep-research-bench",
+      "name": "Deep Research Bench",
+      "repo": "Ayanami0730/deep_research_bench",
+      "url": "https://github.com/Ayanami0730/deep_research_bench",
+      "category": "benchmark_evaluator"
+    },
+    {
+      "id": "node-deepresearch",
+      "name": "Jina node-DeepResearch",
+      "repo": "jina-ai/node-DeepResearch",
+      "url": "https://github.com/jina-ai/node-DeepResearch",
+      "category": "action_state_machine"
+    },
+    {
+      "id": "miroflow",
+      "name": "MiroFlow",
+      "repo": "MiroMindAI/MiroFlow",
+      "url": "https://github.com/MiroMindAI/MiroFlow",
+      "category": "agentic_benchmark_runtime"
+    },
+    {
+      "id": "miroeval",
+      "name": "MiroEval",
+      "repo": "MiroMindAI/MiroEval",
+      "url": "https://github.com/MiroMindAI/MiroEval",
+      "category": "benchmark_harness"
+    },
+    {
+      "id": "deepresearcher",
+      "name": "DeepResearcher",
+      "repo": "GAIR-NLP/DeepResearcher",
+      "url": "https://github.com/GAIR-NLP/DeepResearcher",
+      "category": "verl_rl_fork"
+    },
+    {
+      "id": "livedrbench",
+      "name": "LiveDRBench",
+      "repo": "microsoft/LiveDRBench",
+      "url": "https://github.com/microsoft/LiveDRBench",
+      "category": "claim_evaluator"
+    },
+    {
+      "id": "mirorl",
+      "name": "MiroRL",
+      "repo": "MiroMindAI/MiroRL",
+      "url": "https://github.com/MiroMindAI/MiroRL",
+      "category": "rl_training_framework"
+    },
+    {
+      "id": "mirotrain",
+      "name": "MiroTrain",
+      "repo": "MiroMindAI/MiroTrain",
+      "url": "https://github.com/MiroMindAI/MiroTrain",
+      "category": "post_training_pipeline"
+    },
+    {
+      "id": "alibaba-deepresearch",
+      "name": "Alibaba/Tongyi DeepResearch",
+      "repo": "Alibaba-NLP/DeepResearch",
+      "url": "https://github.com/Alibaba-NLP/DeepResearch",
+      "category": "research_monorepo_react"
+    },
+    {
+      "id": "agent-browser-workspace",
+      "name": "Agent Browser Workspace",
+      "repo": "k-kolomeitsev/agent-browser-workspace",
+      "url": "https://github.com/k-kolomeitsev/agent-browser-workspace",
+      "category": "browser_acquisition_toolkit"
+    },
+    {
+      "id": "dzhng-deep-research",
+      "name": "dzhng/deep-research",
+      "repo": "dzhng/deep-research",
+      "url": "https://github.com/dzhng/deep-research",
+      "category": "compact_baseline"
+    },
+    {
+      "id": "openresearcher",
+      "name": "OpenResearcher",
+      "repo": "TIGER-AI-Lab/OpenResearcher",
+      "url": "https://github.com/TIGER-AI-Lab/OpenResearcher",
+      "category": "benchmark_runner_agent_harness"
+    },
+    {
+      "id": "nickscamara-open-deep-research",
+      "name": "nickscamara/open-deep-research",
+      "repo": "nickscamara/open-deep-research",
+      "url": "https://github.com/nickscamara/open-deep-research",
+      "category": "nextjs_chatbot"
+    },
+    {
+      "id": "jigsawstack-deep-research",
+      "name": "JigsawStack Deep Research",
+      "repo": "JigsawStack/deep-research",
+      "url": "https://github.com/JigsawStack/deep-research",
+      "category": "typescript_library"
+    },
+    {
+      "id": "auto-deep-research",
+      "name": "HKUDS Auto-Deep-Research",
+      "repo": "HKUDS/Auto-Deep-Research",
+      "url": "https://github.com/HKUDS/Auto-Deep-Research",
+      "category": "autoagent_metachain_cli"
+    }
+  ],
+  "scoring": {
+    "scale": "0-100",
+    "method": "weighted_sum_microcapability",
+    "dimensions": [
+      {
+        "id": "architecture_absorption",
+        "label": "Architecture Absorption",
+        "weight": 20
+      },
+      {
+        "id": "trace_observability",
+        "label": "Trace Observability",
+        "weight": 14
+      },
+      {
+        "id": "private_kb_grounding",
+        "label": "Private Kb Grounding",
+        "weight": 12
+      },
+      {
+        "id": "evaluation_value",
+        "label": "Evaluation Value",
+        "weight": 14
+      },
+      {
+        "id": "implementation_maturity",
+        "label": "Implementation Maturity",
+        "weight": 10
+      },
+      {
+        "id": "scientific_pipeline",
+        "label": "Scientific Pipeline",
+        "weight": 7
+      },
+      {
+        "id": "training_methodology",
+        "label": "Training Methodology",
+        "weight": 5
+      },
+      {
+        "id": "product_ux_reference",
+        "label": "Product Ux Reference",
+        "weight": 6
+      },
+      {
+        "id": "compliance_safety",
+        "label": "Compliance Safety",
+        "weight": 8
+      },
+      {
+        "id": "sinkra_fit",
+        "label": "Sinkra Fit",
+        "weight": 4
+      }
+    ]
+  },
+  "implementation_boundary": "Completo para decisão/dashboard; não significa produto implementado nem execução real final dos adapters."
+}

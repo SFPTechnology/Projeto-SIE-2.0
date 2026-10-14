@@ -1,0 +1,23 @@
+{
+  "key": "slides_creator",
+  "name": "slide creator skill",
+  "type": "internal_squad",
+  "location": "squads/slides-creator",
+  "version": "9.0.0",
+  "operating_mode": "contract/handoff-based squad",
+  "strengths": [
+    "Narrativa consultiva com Pyramid, MECE, SCQA e action titles",
+    "Governança por briefing, gates e QA",
+    "Agentes especializados: slide-chief, content-architect, template-curator, design-renderer, visual-scout, qa-inspector",
+    "Workflow v2.0.0 com intake, narrativa, design, especificação, QA e release",
+    "Decisão documentada para PPTX editável vs image mode"
+  ],
+  "gaps": [
+    "Runtime/app ainda incompleto",
+    "PPTX nativo editável parcial",
+    "API/MCP não expostos como produto",
+    "Prompt-to-edit e editor visual ainda não são experiência diária",
+    "Share links, analytics e publicação não implementados"
+  ],
+  "absorption_role": "Core governado e diferencial estratégico da stack slide creator skill stack."
+}

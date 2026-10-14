@@ -1,0 +1,290 @@
+{
+  "matrix_id": "comparison-matrix",
+  "bench_id": "servicos-ia-brasil-solo-bootstrap-2026",
+  "lens": "solo_founder_first_service_brazil_2026",
+  "dimensions": [
+    {
+      "key": "ticket_entry_brl",
+      "label": "Ticket de entrada (R$)",
+      "type": "range_brl",
+      "direction": "higher_is_better_for_cash",
+      "source": "02-research-report § 3.x ticket tables"
+    },
+    {
+      "key": "recurrence_brl_per_month",
+      "label": "Recorrência mensal típica (R$)",
+      "type": "range_brl",
+      "direction": "higher_is_better",
+      "source": "02-research-report + 05-comparative-matrix"
+    },
+    {
+      "key": "ttfr_days_solo",
+      "label": "Time-to-First-Revenue (solo, dias)",
+      "type": "range_days",
+      "direction": "lower_is_better",
+      "source": "derived from 05-comparative-matrix § 1 + solo constraint"
+    },
+    {
+      "key": "sales_cycle_days",
+      "label": "Ciclo de venda típico (dias)",
+      "type": "range_days",
+      "direction": "lower_is_better",
+      "source": "04-icps-deep-dive (ICP-A/B/C/D cycles)"
+    },
+    {
+      "key": "delivery_complexity",
+      "label": "Complexidade técnica de entrega",
+      "type": "ordinal_1_5",
+      "direction": "lower_is_better_for_solo",
+      "source": "05-comparative-matrix § 1"
+    },
+    {
+      "key": "min_team_size",
+      "label": "Equipe mínima viável",
+      "type": "headcount",
+      "direction": "lower_is_better_for_solo",
+      "source": "05-comparative-matrix § 1"
+    },
+    {
+      "key": "operating_margin_pct",
+      "label": "Margem operacional (% após delivery)",
+      "type": "pct_range",
+      "direction": "higher_is_better",
+      "source": "02-research-report + 05-matrix § 2"
+    },
+    {
+      "key": "cac_brl",
+      "label": "CAC estimado para solo (R$)",
+      "type": "range_brl",
+      "direction": "lower_is_better",
+      "source": "05-comparative-matrix § 2"
+    },
+    {
+      "key": "ltv_year1_brl",
+      "label": "LTV 1° ano (R$)",
+      "type": "range_brl",
+      "direction": "higher_is_better",
+      "source": "05-comparative-matrix § 2"
+    },
+    {
+      "key": "ltv_cac_ratio",
+      "label": "LTV:CAC alvo",
+      "type": "ratio",
+      "direction": "higher_is_better",
+      "source": "05-comparative-matrix § 2"
+    },
+    {
+      "key": "defensibility_5y",
+      "label": "Defensibilidade em 5 anos (1-5)",
+      "type": "ordinal_1_5",
+      "direction": "higher_is_better",
+      "source": "05-comparative-matrix § 5 + deep/defensibility-deep.md"
+    },
+    {
+      "key": "commoditization_speed_months",
+      "label": "Meses até commoditização (estimativa)",
+      "type": "months",
+      "direction": "higher_is_better",
+      "source": "02-research-report § 5 + § 8 + analyst extrapolation"
+    },
+    {
+      "key": "regulatory_risk",
+      "label": "Risco regulatório (LGPD + Marco IA)",
+      "type": "ordinal_1_5_lower_better",
+      "direction": "lower_is_better",
+      "source": "05-comparative-matrix § 6"
+    },
+    {
+      "key": "solo_feasibility_1_5",
+      "label": "Viabilidade solo (entrega sem time)",
+      "type": "ordinal_1_5",
+      "direction": "higher_is_better",
+      "source": "Analyst derivation under solo lens"
+    },
+    {
+      "key": "decision_maker",
+      "label": "Quem decide a compra",
+      "type": "string",
+      "direction": "n/a",
+      "source": "04-icps-deep-dive"
+    },
+    {
+      "key": "discovery_required",
+      "label": "Discovery prévio obrigatório?",
+      "type": "bool",
+      "direction": "lower_is_better_for_TTFR",
+      "source": "02-research-report § 6 + § 5"
+    }
+  ],
+  "comparison": {
+    "mentoria-premium": {
+      "ticket_entry_brl": [5000, 300000],
+      "recurrence_brl_per_month": [0, 5000],
+      "ttfr_days_solo": [7, 45],
+      "sales_cycle_days": [7, 45],
+      "delivery_complexity": 2,
+      "min_team_size": 1,
+      "operating_margin_pct": [70, 90],
+      "cac_brl": [5000, 30000],
+      "ltv_year1_brl": [25000, 300000],
+      "ltv_cac_ratio": [5, 10],
+      "defensibility_5y": 5,
+      "commoditization_speed_months": 60,
+      "regulatory_risk": 1,
+      "solo_feasibility_1_5": 5,
+      "decision_maker": "Pessoa física (empresário-dono)",
+      "discovery_required": false
+    },
+    "automacao-n8n-vertical": {
+      "ticket_entry_brl": [5000, 80000],
+      "recurrence_brl_per_month": [2000, 15000],
+      "ttfr_days_solo": [14, 45],
+      "sales_cycle_days": [30, 90],
+      "delivery_complexity": 3,
+      "min_team_size": 1,
+      "operating_margin_pct": [80, 95],
+      "cac_brl": [2000, 10000],
+      "ltv_year1_brl": [30000, 150000],
+      "ltv_cac_ratio": [5, 10],
+      "defensibility_5y": 4,
+      "commoditization_speed_months": 24,
+      "regulatory_risk": 2,
+      "solo_feasibility_1_5": 4,
+      "decision_maker": "Sócio/COO + CFO em PME",
+      "discovery_required": true
+    },
+    "whatsapp-vertical": {
+      "ticket_entry_brl": [1000, 5000],
+      "recurrence_brl_per_month": [500, 5000],
+      "ttfr_days_solo": [3, 21],
+      "sales_cycle_days": [7, 30],
+      "delivery_complexity": 2,
+      "min_team_size": 1,
+      "operating_margin_pct": [60, 80],
+      "cac_brl": [500, 3000],
+      "ltv_year1_brl": [12000, 50000],
+      "ltv_cac_ratio": [4, 8],
+      "defensibility_5y": 3,
+      "commoditization_speed_months": 18,
+      "regulatory_risk": 3,
+      "solo_feasibility_1_5": 4,
+      "decision_maker": "Dono/operador local",
+      "discovery_required": false
+    },
+    "sdr-ia-voice-hitl": {
+      "ticket_entry_brl": [2000, 30000],
+      "recurrence_brl_per_month": [2000, 15000],
+      "ttfr_days_solo": [21, 90],
+      "sales_cycle_days": [30, 90],
+      "delivery_complexity": 4,
+      "min_team_size": 2,
+      "operating_margin_pct": [50, 75],
+      "cac_brl": [3000, 15000],
+      "ltv_year1_brl": [25000, 180000],
+      "ltv_cac_ratio": [4, 8],
+      "defensibility_5y": 3,
+      "commoditization_speed_months": 24,
+      "regulatory_risk": 4,
+      "solo_feasibility_1_5": 2,
+      "decision_maker": "Head de Vendas / RevOps",
+      "discovery_required": true
+    },
+    "lgpd-governanca": {
+      "ticket_entry_brl": [50000, 200000],
+      "recurrence_brl_per_month": [15000, 50000],
+      "ttfr_days_solo": [90, 270],
+      "sales_cycle_days": [180, 540],
+      "delivery_complexity": 5,
+      "min_team_size": 3,
+      "operating_margin_pct": [40, 65],
+      "cac_brl": [20000, 150000],
+      "ltv_year1_brl": [200000, 2000000],
+      "ltv_cac_ratio": [3, 6],
+      "defensibility_5y": 5,
+      "commoditization_speed_months": 48,
+      "regulatory_risk": 1,
+      "solo_feasibility_1_5": 1,
+      "decision_maker": "Comitê (DPO + CISO + Jurídico + CIO)",
+      "discovery_required": true
+    },
+    "cyber-ia": {
+      "ticket_entry_brl": [100000, 1000000],
+      "recurrence_brl_per_month": [30000, 100000],
+      "ttfr_days_solo": [120, 365],
+      "sales_cycle_days": [180, 540],
+      "delivery_complexity": 5,
+      "min_team_size": 4,
+      "operating_margin_pct": [30, 55],
+      "cac_brl": [20000, 100000],
+      "ltv_year1_brl": [300000, 2000000],
+      "ltv_cac_ratio": [4, 6],
+      "defensibility_5y": 4,
+      "commoditization_speed_months": 36,
+      "regulatory_risk": 2,
+      "solo_feasibility_1_5": 1,
+      "decision_maker": "CISO + comitê executivo",
+      "discovery_required": true
+    },
+    "preditivo-customizado": {
+      "ticket_entry_brl": [200000, 3000000],
+      "recurrence_brl_per_month": [20000, 80000],
+      "ttfr_days_solo": [120, 365],
+      "sales_cycle_days": [180, 540],
+      "delivery_complexity": 5,
+      "min_team_size": 3,
+      "operating_margin_pct": [30, 60],
+      "cac_brl": [30000, 200000],
+      "ltv_year1_brl": [500000, 3000000],
+      "ltv_cac_ratio": [3, 5],
+      "defensibility_5y": 5,
+      "commoditization_speed_months": 48,
+      "regulatory_risk": 4,
+      "solo_feasibility_1_5": 1,
+      "decision_maker": "C-Level (CDO/CIO) + comitê dados",
+      "discovery_required": true
+    },
+    "genai-conteudo": {
+      "ticket_entry_brl": [100, 3000],
+      "recurrence_brl_per_month": [100, 1500],
+      "ttfr_days_solo": [1, 14],
+      "sales_cycle_days": [0, 14],
+      "delivery_complexity": 1,
+      "min_team_size": 1,
+      "operating_margin_pct": [40, 70],
+      "cac_brl": [50, 500],
+      "ltv_year1_brl": [500, 3000],
+      "ltv_cac_ratio": [3, 5],
+      "defensibility_5y": 1,
+      "commoditization_speed_months": 6,
+      "regulatory_risk": 2,
+      "solo_feasibility_1_5": 5,
+      "decision_maker": "Self-serve (cartão de crédito)",
+      "discovery_required": false
+    },
+    "chatbot-generico": {
+      "ticket_entry_brl": [100, 500],
+      "recurrence_brl_per_month": [100, 500],
+      "ttfr_days_solo": [1, 14],
+      "sales_cycle_days": [0, 14],
+      "delivery_complexity": 1,
+      "min_team_size": 1,
+      "operating_margin_pct": [20, 50],
+      "cac_brl": [50, 500],
+      "ltv_year1_brl": [300, 2000],
+      "ltv_cac_ratio": [2, 3],
+      "defensibility_5y": 1,
+      "commoditization_speed_months": 3,
+      "regulatory_risk": 3,
+      "solo_feasibility_1_5": 5,
+      "decision_maker": "Self-serve",
+      "discovery_required": false
+    }
+  },
+  "equivalence_legend": {
+    "delivery_complexity_1": "Plug-and-play, sem código",
+    "delivery_complexity_2": "Setup + config, automação leve",
+    "delivery_complexity_3": "Integração entre 3-5 sistemas",
+    "delivery_complexity_4": "Engenharia de produção com infra",
+    "delivery_complexity_5": "Plataforma multi-time, governança, conformidade"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "sinkra-aiox-research-inventory-v2",
+  "generated_at": "2026-05-18T18:30:00-03:00",
+  "recommendation": "Criar SINKRA DeepResearchRunner próprio e absorver padrões por adapters, não vendorizar um player inteiro.",
+  "required_contract_outputs": [
+    "trace.jsonl",
+    "tool-calls.jsonl",
+    "claims.yaml",
+    "sources.yaml",
+    "report.md",
+    "rubric-results.yaml",
+    "cost-latency.yaml",
+    "failure-analysis.md",
+    "replay-manifest.yaml"
+  ],
+  "waves": [
+    {
+      "wave": 1,
+      "name": "contract_and_harness",
+      "items": [
+        "define_sinkra_deepresearchrunner",
+        "implement_trace_sources_claims_cost_contract",
+        "adapters_for_dzhng_gpt_researcher_langchain",
+        "evaluator_wrappers_for_livedrbench_drbench"
+      ]
+    },
+    {
+      "wave": 2,
+      "name": "sinkra_runtime",
+      "items": [
+        "deerflow_lifecycle",
+        "langchain_graph_pattern",
+        "jina_action_schema",
+        "gpt_researcher_source_strategy"
+      ]
+    },
+    {
+      "wave": 3,
+      "name": "private_kb",
+      "items": [
+        "deepsearcher_adapter",
+        "local_deep_research_mcp_api_adapter",
+        "drbench_like_synthetic_fixture",
+        "redaction_and_business_isolation"
+      ]
+    },
+    {
+      "wave": 4,
+      "name": "gold_evaluation",
+      "items": [
+        "drbench_report_insights",
+        "livedrbench_claim_discovery",
+        "miroeval_three_lens",
+        "deep_research_bench_race_fact",
+        "autoresearchclaw_verified_registry"
+      ]
+    }
+  ]
+}

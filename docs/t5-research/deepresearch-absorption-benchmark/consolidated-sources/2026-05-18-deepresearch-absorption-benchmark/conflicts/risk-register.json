@@ -1,0 +1,116 @@
+{
+  "schema": "deepresearch-absorption-benchmark.risk-register.v1",
+  "generated_at": "2026-05-18",
+  "risks": [
+    {
+      "id": "RISK-01",
+      "category": "Technical",
+      "title": "Docker sandbox security CVE",
+      "probability": "MEDIUM",
+      "impact": "HIGH",
+      "score": 12,
+      "mitigation": "Quarterly security audit + minimal base image + network policy + read-only FS + resource limits + auto-update CVE scanner CI",
+      "owner": "@aiox-devops + @aiox-architect"
+    },
+    {
+      "id": "RISK-02",
+      "category": "Technical",
+      "title": "MCP spec evolution breaks API",
+      "probability": "LOW",
+      "impact": "MEDIUM",
+      "score": 4,
+      "mitigation": "Pin to MCP spec v1 + auto-test against latest spec quarterly + version negotiation",
+      "owner": "@aiox-architect"
+    },
+    {
+      "id": "RISK-03",
+      "category": "License",
+      "title": "Apache-2.0 NOTICE compliance oversight",
+      "probability": "LOW",
+      "impact": "HIGH",
+      "score": 9,
+      "mitigation": "CI guard `validate:license-headers` + NOTICE.txt template + legal review pre-release",
+      "owner": "@aiox-devops + @aiox-pm"
+    },
+    {
+      "id": "RISK-04",
+      "category": "Market",
+      "title": "Competidores absorvem AIOX gaps primeiro",
+      "probability": "MEDIUM",
+      "impact": "MEDIUM",
+      "score": 9,
+      "mitigation": "Wave 1 fast (8 weeks) + governance + PT-BR vertical são moats arquiteturais difíceis de copiar",
+      "owner": "@vision-strategist + @aiox-pm"
+    },
+    {
+      "id": "RISK-05",
+      "category": "Adoption",
+      "title": "AGPLv3 community edition não atinge tração",
+      "probability": "MEDIUM",
+      "impact": "MEDIUM",
+      "score": 9,
+      "mitigation": "Marketing investment (Discord + Twitter + blog) + early advocates + feature parity demo",
+      "owner": "@aiox-pm + @vision-strategist"
+    },
+    {
+      "id": "RISK-06",
+      "category": "Technical",
+      "title": "HF model availability changes",
+      "probability": "LOW",
+      "impact": "LOW",
+      "score": 2,
+      "mitigation": "Apache-2.0 garante persistence + fallback to BYOK always functional + monitor HF status",
+      "owner": "@aiox-architect"
+    },
+    {
+      "id": "RISK-07",
+      "category": "Technical",
+      "title": "Memory schema regression breaks reads",
+      "probability": "MEDIUM",
+      "impact": "MEDIUM",
+      "score": 9,
+      "mitigation": "Versioned schema + migration scripts + tests in CI + rollback procedure documented",
+      "owner": "@aiox-dev + @aiox-qa"
+    },
+    {
+      "id": "RISK-08",
+      "category": "Quality",
+      "title": "Bench re-score below target",
+      "probability": "LOW",
+      "impact": "HIGH",
+      "score": 6,
+      "mitigation": "Bench checkpoint per-wave + redo gaps if missed + 80% confidence in target (60.25→88)",
+      "owner": "@aiox-qa + @aiox-architect"
+    },
+    {
+      "id": "RISK-09",
+      "category": "Resource",
+      "title": "Capacity (1 dev FT insuficiente)",
+      "probability": "MEDIUM",
+      "impact": "MEDIUM",
+      "score": 9,
+      "mitigation": "Allocate 2 dev FT OR extend timeline to 20 weeks OR de-scope Wave 3",
+      "owner": "@vision-strategist + @aiox-pm"
+    },
+    {
+      "id": "RISK-10",
+      "category": "Compliance",
+      "title": "Inadvertent copy of Jina proprietary code",
+      "probability": "LOW",
+      "impact": "VERY_HIGH",
+      "score": 12,
+      "mitigation": "Explicit list of NO-GO sources in deep/license-risk-assessment.md + code review focus on Jina-clean + dev training",
+      "owner": "@aiox-architect + @aiox-devops"
+    }
+  ],
+  "summary": {
+    "total_risks": 10,
+    "by_score": {
+      "high (12+)": 2,
+      "medium (6-11)": 5,
+      "low (<6)": 3
+    },
+    "top_risks": ["RISK-01 Docker sandbox CVE", "RISK-10 Jina code copy", "RISK-03 Apache NOTICE"],
+    "overall_risk_assessment": "MEDIUM. Mitigations available for all top risks. No risk has probability HIGH × impact HIGH (no critical unmitigated risk)."
+  }
+}

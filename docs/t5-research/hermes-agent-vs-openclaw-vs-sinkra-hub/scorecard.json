@@ -1,0 +1,128 @@
+{
+  "benchmark_id": "hermes-agent-vs-openclaw-vs-sinkra-hub",
+  "date": "2026-04-04",
+  "scoring_method": "Observable structural signals from local clone analysis. 12 dimensions scored 0-100. Dimensions selected to be fair across three fundamentally different project categories (AI agent, AI assistant, orchestration framework).",
+  "dimensions": [
+    {
+      "name": "Agent Architecture Depth",
+      "hermes": 70,
+      "openclaw": 55,
+      "sinkra": 95,
+      "signals_h": "Single AIAgent class with subagent delegation. Synchronous loop. Smart routing.",
+      "signals_oc": "Distributed agent logic. Plugin hooks. ~5 agent-like components.",
+      "signals_sh": "473 specialist agents, 53 squads, chief-specialist hierarchy, authority matrix, handoff protocols, swarm-execute."
+    },
+    {
+      "name": "Self-Improvement & Learning",
+      "hermes": 92,
+      "openclaw": 30,
+      "sinkra": 20,
+      "signals_h": "Self-creating skills, self-improving during use, memory nudges, Honcho user modeling, trajectory compression.",
+      "signals_oc": "Skills + memory plugins. No self-improvement loop.",
+      "signals_sh": "Declarative agents. No self-modification. Improvement via human-driven story cycles."
+    },
+    {
+      "name": "Governance & Quality Control",
+      "hermes": 25,
+      "openclaw": 55,
+      "sinkra": 98,
+      "signals_h": "No formal governance. Pytest. 400 tests.",
+      "signals_oc": "AGENTS.md boundaries, plugin contracts, 70% coverage, drift detection, CODEOWNERS.",
+      "signals_sh": "Constitution (322 lines), CODEOWNERS, 5 rules, 10 hooks, 621 templates, 483 checklists, 1834 tasks, 185 stories, artifact classification, Local-CI parity policy."
+    },
+    {
+      "name": "Knowledge Management",
+      "hermes": 72,
+      "openclaw": 45,
+      "sinkra": 95,
+      "signals_h": "Skills as procedural memory. FTS5 session search. Honcho user profiles. 116 skills.",
+      "signals_oc": "53 skills. ClawHub. Memory plugins. Plugin docs.",
+      "signals_sh": "8-layer framework. 5-layer workspace per business. Document Registry with lifecycle. 1809 data files. Token registry. Composition rules. SYNAPSE context engine."
+    },
+    {
+      "name": "Multi-Platform & Channels",
+      "hermes": 75,
+      "openclaw": 95,
+      "sinkra": 10,
+      "signals_h": "17 messaging platforms. 6 terminal backends. No native apps.",
+      "signals_oc": "23+ channels. Native apps (macOS/iOS/Android). Canvas. Voice. WebChat.",
+      "signals_sh": "CLI-first (constitutional). No messaging. No native apps. Claude Code integration only."
+    },
+    {
+      "name": "Extensibility & Plugin Model",
+      "hermes": 55,
+      "openclaw": 90,
+      "sinkra": 80,
+      "signals_h": "registry.register() pattern. 49 tools. Toolsets for composition. No formal SDK.",
+      "signals_oc": "Plugin SDK with 50+ subpath exports. Manifest lifecycle. npm distribution. 93 extensions. Import boundaries.",
+      "signals_sh": "Squad-based extensibility. New squads via squad-creator. Agent definitions in Markdown YAML. 53 squads. Templates + checklists + tasks as extension mechanism."
+    },
+    {
+      "name": "Business & Multi-Tenant Architecture",
+      "hermes": 5,
+      "openclaw": 10,
+      "sinkra": 98,
+      "signals_h": "Single-user agent. No business concept.",
+      "signals_oc": "Single-user assistant. No multi-tenant.",
+      "signals_sh": "4 businesses (AllFluence, AIOX, Academia Lendaria, Billion). Hub-and-Spoke. Data isolation. Per-business workspace L0-L4. CODEOWNERS per business. Shared products with 33/33/33 split."
+    },
+    {
+      "name": "Research & Training Infrastructure",
+      "hermes": 95,
+      "openclaw": 5,
+      "sinkra": 35,
+      "signals_h": "Batch runner, Atropos RL, trajectory compression, SWE-bench, 11 model parsers, datagen configs.",
+      "signals_oc": "None.",
+      "signals_sh": "Runner-lib with multi-model benchmarks. Score trends. Run history. But no RL/trajectory infrastructure."
+    },
+    {
+      "name": "Developer Experience",
+      "hermes": 70,
+      "openclaw": 85,
+      "sinkra": 65,
+      "signals_h": "curl installer, setup wizard, doctor, skin engine, migration tool, ACP.",
+      "signals_oc": "npm install, onboard wizard, doctor, dev channels, Oxlint/Oxfmt, pre-commit, boundary AGENTS.md.",
+      "signals_sh": "CLAUDE.md comprehensive, reference rules on-demand, validate scripts, pre-push hooks, gotchas documented. But steep learning curve (8 layers, 53 squads)."
+    },
+    {
+      "name": "Testing & CI",
+      "hermes": 55,
+      "openclaw": 90,
+      "sinkra": 50,
+      "signals_h": "400 tests, pytest, parallel. No coverage threshold. 6 CI workflows.",
+      "signals_oc": "3534 tests, Vitest, 70% coverage, E2E, drift detection, 13 CI workflows.",
+      "signals_sh": "204 tests (shell), YAML validation, squad structure validation, 5 CI workflows. Local-CI parity policy formal but limited test coverage."
+    },
+    {
+      "name": "Content & Documentation Scale",
+      "hermes": 45,
+      "openclaw": 70,
+      "sinkra": 98,
+      "signals_h": "Docusaurus site, 438 md files, release notes. AGENTS.md as dev guide.",
+      "signals_oc": "Mintlify docs (877 md), CHANGELOG (965K bytes), zh-CN + ja-JP i18n, VISION.md.",
+      "signals_sh": "16,703 md files, 5.97M md LOC, 7,597 yaml files, 2.65M yaml LOC. 185 stories. 621 templates. Framework-as-documentation."
+    },
+    {
+      "name": "Community & Ecosystem",
+      "hermes": 60,
+      "openclaw": 95,
+      "sinkra": 20,
+      "signals_h": "202 contributors, agentskills.io, Nous Research, MIT, Discord.",
+      "signals_oc": "1584 contributors, OpenAI/GitHub/NVIDIA/Vercel sponsors, ClawHub, MIT, 3 dev channels.",
+      "signals_sh": "4 contributors (founders), private repo, internal ecosystem. Squads as community substitute."
+    }
+  ],
+  "totals": {
+    "hermes": 719,
+    "openclaw": 725,
+    "sinkra": 764,
+    "hermes_avg": 59.9,
+    "openclaw_avg": 60.4,
+    "sinkra_avg": 63.7
+  },
+  "wins": {
+    "hermes_wins": ["Self-Improvement & Learning (92)", "Research & Training Infrastructure (95)"],
+    "openclaw_wins": ["Multi-Platform & Channels (95)", "Community & Ecosystem (95)", "Testing & CI (90)", "Extensibility & Plugin Model (90)", "Developer Experience (85)"],
+    "sinkra_wins": ["Governance & Quality Control (98)", "Business & Multi-Tenant (98)", "Content & Documentation (98)", "Agent Architecture Depth (95)", "Knowledge Management (95)"]
+  }
+}

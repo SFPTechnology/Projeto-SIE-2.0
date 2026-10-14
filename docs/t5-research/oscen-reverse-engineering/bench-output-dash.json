@@ -1,0 +1,1111 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-16T14:15:06.530Z",
+  "source_files": [
+    "oscen-ai-reverse-engineering-2026-04-01.md",
+    "oscen-neural-patterns-deep-research-FINAL.md",
+    "oscen-neural-patterns-deep-research-prompt.md",
+    "oscen-neural-patterns-roundtable-brief.md"
+  ],
+  "benchmark": {
+    "slug": "oscen-reverse-engineering",
+    "title": "Oscen Reverse Engineering",
+    "date": "undated",
+    "type": "product",
+    "variant": "5-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "ami_jepa_lecun",
+      "name": "Ami Jepa Lecun",
+      "category": "unknown"
+    },
+    {
+      "key": "figure_ai",
+      "name": "Figure Ai",
+      "category": "unknown"
+    },
+    {
+      "key": "google_gemini_vla",
+      "name": "Google Gemini Vla",
+      "category": "unknown"
+    },
+    {
+      "key": "physical_intelligence",
+      "name": "Physical Intelligence",
+      "category": "unknown"
+    },
+    {
+      "key": "oscen",
+      "name": "Oscen",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "oscen",
+    "coverage": "structured",
+    "sources": 24,
+    "waves": 0,
+    "dimensions": 6
+  },
+  "matrix": {
+    "players": [
+      "ami_jepa_lecun",
+      "figure_ai",
+      "google_gemini_vla",
+      "physical_intelligence",
+      "oscen"
+    ],
+    "dimensions": [
+      {
+        "id": "D1",
+        "label": "Approach",
+        "weight": 0
+      },
+      {
+        "id": "D2",
+        "label": "Learning",
+        "weight": 0
+      },
+      {
+        "id": "D3",
+        "label": "Edge Deploy",
+        "weight": 0
+      },
+      {
+        "id": "D4",
+        "label": "Power",
+        "weight": 0
+      },
+      {
+        "id": "D5",
+        "label": "Real-time Learn",
+        "weight": 0
+      },
+      {
+        "id": "D6",
+        "label": "Anti-Forgetting",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "D1",
+        "label": "Approach",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "ami_jepa_lecun",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "figure_ai",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "google_gemini_vla",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "physical_intelligence",
+            "score": 3,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "oscen",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "label": "Learning",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "ami_jepa_lecun",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "figure_ai",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "google_gemini_vla",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "physical_intelligence",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "oscen",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          }
+        ]
+      },
+      {
+        "id": "D3",
+        "label": "Edge Deploy",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "ami_jepa_lecun",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "figure_ai",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "google_gemini_vla",
+            "score": 50,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "physical_intelligence",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "oscen",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          }
+        ]
+      },
+      {
+        "id": "D4",
+        "label": "Power",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "ami_jepa_lecun",
+            "score": 50,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "figure_ai",
+            "score": 50,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "google_gemini_vla",
+            "score": 50,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "physical_intelligence",
+            "score": 50,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "oscen",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          }
+        ]
+      },
+      {
+        "id": "D5",
+        "label": "Real-time Learn",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "ami_jepa_lecun",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "figure_ai",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "google_gemini_vla",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "physical_intelligence",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "oscen",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          }
+        ]
+      },
+      {
+        "id": "D6",
+        "label": "Anti-Forgetting",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "ami_jepa_lecun",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "figure_ai",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "google_gemini_vla",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "physical_intelligence",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          },
+          {
+            "player": "oscen",
+            "score": 6,
+            "confidence": "",
+            "notes": "",
+            "source": "oscen-ai-reverse-engineering-2026-04-01.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "ami_jepa_lecun",
+        "score": 8.33
+      },
+      {
+        "player": "figure_ai",
+        "score": 8.33
+      },
+      {
+        "player": "google_gemini_vla",
+        "score": 16.67
+      },
+      {
+        "player": "physical_intelligence",
+        "score": 8.83
+      },
+      {
+        "player": "oscen",
+        "score": 35.17
+      }
+    ],
+    "method": "Derived from markdown table in oscen-ai-reverse-engineering-2026-04-01.md"
+  },
+  "duels": [
+    {
+      "left": "ami_jepa_lecun",
+      "right": "figure_ai",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 6,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Approach",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "Learning",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Edge Deploy",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "Power",
+          "left_score": 50,
+          "right_score": 50,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Real-time Learn",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Anti-Forgetting",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "ami_jepa_lecun",
+      "right": "google_gemini_vla",
+      "winner": "google_gemini_vla",
+      "left_wins": 0,
+      "right_wins": 1,
+      "ties": 5,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Approach",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "Learning",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Edge Deploy",
+          "left_score": 0,
+          "right_score": 50,
+          "winner": "google_gemini_vla"
+        },
+        {
+          "dimension": "D4",
+          "label": "Power",
+          "left_score": 50,
+          "right_score": 50,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Real-time Learn",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Anti-Forgetting",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "ami_jepa_lecun",
+      "right": "physical_intelligence",
+      "winner": "physical_intelligence",
+      "left_wins": 0,
+      "right_wins": 1,
+      "ties": 5,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Approach",
+          "left_score": 0,
+          "right_score": 3,
+          "winner": "physical_intelligence"
+        },
+        {
+          "dimension": "D2",
+          "label": "Learning",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Edge Deploy",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "Power",
+          "left_score": 50,
+          "right_score": 50,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Real-time Learn",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Anti-Forgetting",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "ami_jepa_lecun",
+      "right": "oscen",
+      "winner": "oscen",
+      "left_wins": 1,
+      "right_wins": 3,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Approach",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "Learning",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Edge Deploy",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "oscen"
+        },
+        {
+          "dimension": "D4",
+          "label": "Power",
+          "left_score": 50,
+          "right_score": 5,
+          "winner": "ami_jepa_lecun"
+        },
+        {
+          "dimension": "D5",
+          "label": "Real-time Learn",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "oscen"
+        },
+        {
+          "dimension": "D6",
+          "label": "Anti-Forgetting",
+          "left_score": 0,
+          "right_score": 6,
+          "winner": "oscen"
+        }
+      ]
+    },
+    {
+      "left": "figure_ai",
+      "right": "google_gemini_vla",
+      "winner": "google_gemini_vla",
+      "left_wins": 0,
+      "right_wins": 1,
+      "ties": 5,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Approach",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "Learning",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Edge Deploy",
+          "left_score": 0,
+          "right_score": 50,
+          "winner": "google_gemini_vla"
+        },
+        {
+          "dimension": "D4",
+          "label": "Power",
+          "left_score": 50,
+          "right_score": 50,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Real-time Learn",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Anti-Forgetting",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "figure_ai",
+      "right": "physical_intelligence",
+      "winner": "physical_intelligence",
+      "left_wins": 0,
+      "right_wins": 1,
+      "ties": 5,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Approach",
+          "left_score": 0,
+          "right_score": 3,
+          "winner": "physical_intelligence"
+        },
+        {
+          "dimension": "D2",
+          "label": "Learning",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Edge Deploy",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "Power",
+          "left_score": 50,
+          "right_score": 50,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Real-time Learn",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Anti-Forgetting",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "figure_ai",
+      "right": "oscen",
+      "winner": "oscen",
+      "left_wins": 1,
+      "right_wins": 3,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Approach",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "Learning",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Edge Deploy",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "oscen"
+        },
+        {
+          "dimension": "D4",
+          "label": "Power",
+          "left_score": 50,
+          "right_score": 5,
+          "winner": "figure_ai"
+        },
+        {
+          "dimension": "D5",
+          "label": "Real-time Learn",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "oscen"
+        },
+        {
+          "dimension": "D6",
+          "label": "Anti-Forgetting",
+          "left_score": 0,
+          "right_score": 6,
+          "winner": "oscen"
+        }
+      ]
+    },
+    {
+      "left": "google_gemini_vla",
+      "right": "physical_intelligence",
+      "winner": "tie",
+      "left_wins": 1,
+      "right_wins": 1,
+      "ties": 4,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Approach",
+          "left_score": 0,
+          "right_score": 3,
+          "winner": "physical_intelligence"
+        },
+        {
+          "dimension": "D2",
+          "label": "Learning",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Edge Deploy",
+          "left_score": 50,
+          "right_score": 0,
+          "winner": "google_gemini_vla"
+        },
+        {
+          "dimension": "D4",
+          "label": "Power",
+          "left_score": 50,
+          "right_score": 50,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Real-time Learn",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Anti-Forgetting",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "google_gemini_vla",
+      "right": "oscen",
+      "winner": "oscen",
+      "left_wins": 1,
+      "right_wins": 3,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Approach",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "Learning",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Edge Deploy",
+          "left_score": 50,
+          "right_score": 100,
+          "winner": "oscen"
+        },
+        {
+          "dimension": "D4",
+          "label": "Power",
+          "left_score": 50,
+          "right_score": 5,
+          "winner": "google_gemini_vla"
+        },
+        {
+          "dimension": "D5",
+          "label": "Real-time Learn",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "oscen"
+        },
+        {
+          "dimension": "D6",
+          "label": "Anti-Forgetting",
+          "left_score": 0,
+          "right_score": 6,
+          "winner": "oscen"
+        }
+      ]
+    },
+    {
+      "left": "physical_intelligence",
+      "right": "oscen",
+      "winner": "oscen",
+      "left_wins": 2,
+      "right_wins": 3,
+      "ties": 1,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Approach",
+          "left_score": 3,
+          "right_score": 0,
+          "winner": "physical_intelligence"
+        },
+        {
+          "dimension": "D2",
+          "label": "Learning",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Edge Deploy",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "oscen"
+        },
+        {
+          "dimension": "D4",
+          "label": "Power",
+          "left_score": 50,
+          "right_score": 5,
+          "winner": "physical_intelligence"
+        },
+        {
+          "dimension": "D5",
+          "label": "Real-time Learn",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "oscen"
+        },
+        {
+          "dimension": "D6",
+          "label": "Anti-Forgetting",
+          "left_score": 0,
+          "right_score": 6,
+          "winner": "oscen"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "oscen",
+          "score": 35.17,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "google_gemini_vla",
+          "score": 16.67,
+          "delta": ""
+        },
+        {
+          "rank": 3,
+          "player": "physical_intelligence",
+          "score": 8.83,
+          "delta": ""
+        },
+        {
+          "rank": 4,
+          "player": "ami_jepa_lecun",
+          "score": 8.33,
+          "delta": ""
+        },
+        {
+          "rank": 5,
+          "player": "figure_ai",
+          "score": 8.33,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "ami_jepa_lecun",
+          "score": 8.33
+        },
+        {
+          "player": "figure_ai",
+          "score": 8.33
+        },
+        {
+          "player": "google_gemini_vla",
+          "score": 16.67
+        },
+        {
+          "player": "physical_intelligence",
+          "score": 8.83
+        },
+        {
+          "player": "oscen",
+          "score": 35.17
+        }
+      ],
+      "verdict": "Oscen vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [],
+  "sources": [
+    {
+      "url": "https://oscen.ai",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://oscen.ai/",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://oscen.ai/architecture/",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://oscen.ai/research/",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://oscen.ai/invest/",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/jayb967",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.linkedin.com/in/rio-bold",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S2666389925002624",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/BindsNET/bindsnet",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://open-neuromorphic.org/",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.nature.com/articles/s41467-025-56739-4",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11506793/",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://open-neuromorphic.org/neuromorphic-computing/software/snn-frameworks/",
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://docs.crewai.com/en/concepts/collaboration",
+      "file": "oscen-neural-patterns-deep-research-FINAL.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.microsoft.com/en-us/research/project/autogen/",
+      "file": "oscen-neural-patterns-deep-research-FINAL.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://latenode.com/blog/ai-frameworks-technical-infrastructure/langgraph-multi-agent-orchestration/",
+      "file": "oscen-neural-patterns-deep-research-FINAL.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://openai.github.io/openai-agents-python/",
+      "file": "oscen-neural-patterns-deep-research-FINAL.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "file": "oscen-neural-patterns-deep-research-FINAL.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://google.github.io/adk-docs/agents/multi-agents/",
+      "file": "oscen-neural-patterns-deep-research-FINAL.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agent-collaboration.html",
+      "file": "oscen-neural-patterns-deep-research-FINAL.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.cell.com/patterns/fulltext/S2666-3899(23",
+      "file": "oscen-neural-patterns-deep-research-FINAL.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://arxiv.org/html/2506.04133v2",
+      "file": "oscen-neural-patterns-deep-research-FINAL.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.isaca.org/resources/isaca-journal/issues/2025/volume-3/cmmi-in-the-ai-age",
+      "file": "oscen-neural-patterns-deep-research-FINAL.md",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "oscen-ai-reverse-engineering-2026-04-01.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "oscen-neural-patterns-deep-research-FINAL.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "oscen-neural-patterns-deep-research-prompt.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "oscen-neural-patterns-roundtable-brief.md",
+      "role": "other",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "missing",
+    "sources": "derived"
+  },
+  "inferred": {
+    "date": true,
+    "players": true,
+    "metadata": true
+  }
+}

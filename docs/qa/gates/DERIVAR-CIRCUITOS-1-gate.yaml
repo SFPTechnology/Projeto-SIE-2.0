@@ -1,0 +1,319 @@
+schema: 1
+story: "DERIVAR-CIRCUITOS-1"
+story_title: "Regularizar derivação de circuitos para dependência sem resultado"
+story_path: "docs/stories/story-DERIVAR-CIRCUITOS-1-dependencia-sem-resultado.md"
+gate: CONCERNS
+status_reason: >-
+  Os 4 ACs estão cobertos por testes nomeados passando (14/14 no arquivo), a guarda de escopo
+  da Task 6 foi respeitada (src/domain/calculo/derivar-circuitos.ts permanece com o diff
+  pré-existente de 3+/3-, byte-a-byte), typecheck e build passam. Ressalva única: `npx vitest run`
+  ainda não fecha em 0 arquivos falhando — 1 arquivo do domínio queda-tensao falha por TIMEOUT
+  intermitente, NÃO atribuível a esta story e comprovadamente verde quando executado isolado.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-29T01:40:00-03:00"
+expires: "2026-08-12T01:40:00-03:00"
+quality_score: 92
+mode: "yolo (autônomo, sem intervenção humana)"
+blocker_ref: "BLK-DERIVAR-CIRCUITOS-01 (.aiox/workflow-state/BLOCKER-DERIVAR-CIRCUITOS-REGRESSAO.yaml)"
+handoff_entrada: ".aiox/handoffs/DERIVAR-CIRCUITOS-1-dev-to-qa.yaml"
+submodule: "sistema-de-instala-es-el-tricas-sie-main"
+
+# ---------------------------------------------------------------------------
+# Rastreabilidade AC → teste (verificada contra o ARQUIVO, não contra a descrição)
+# ---------------------------------------------------------------------------
+trace_ac:
+  - ac: AC1
+    descricao: "Dependência sem resultado e com cargas adicionais válidas emite somente circuitos ADD-*"
+    resultado: PASS
+    teste: 'tests/domain/calculo/derivar-circuitos.test.ts:88 — it("dependência sem resultado emite apenas circuitos de carga adicional (AC1)")'
+    evidencia_lida_no_arquivo: >-
+      Linhas 89-106: chama derivarCircuitos([{ entrada: entradaSala }], padraoBi);
+      expect(ids).toEqual(["ADD-Sala-Chuveiro","ADD-Sala-Lampada"]);
+      not.toContain("ILUM-Sala"); not.toContain("TUG-Sala");
+      chuveiro: tipo "tue", 5600 VA, 220 V, tensao_resolucao.origem "declarada", cargas[0].trifasica false;
+      lâmpada: tipo "iluminacao", 200 VA, 127 V.
+      Todos os valores conferem com o Gherkin do AC1 e com evidencia.teste_falhando.observado
+      (versão corrigida pelo @po: 2 circuitos, não 1).
+    cobertura: COMPLETA
+
+  - ac: AC2
+    descricao: "Dependência sem resultado e sem cargas adicionais retorna lista vazia"
+    resultado: PASS
+    teste: 'tests/domain/calculo/derivar-circuitos.test.ts:109 — it("dependência sem resultado e sem cargas adicionais retorna lista vazia (AC2)")'
+    evidencia_lida_no_arquivo: >-
+      Linhas 110-115: DUAS variantes assertadas — cargasAdicionais: [] e cargasAdicionais
+      ausente (rest destructuring que omite a chave). Ambas toEqual([]).
+      O AC pedia "[] (ou ausente)"; o teste cobre literalmente as duas alternativas do "ou",
+      o que é o mínimo do AC e não excesso — cobertura fiel.
+    cobertura: COMPLETA
+
+  - ac: AC3
+    descricao: "Dependência com resultado mantém comportamento inalterado (não regressão)"
+    resultado: PASS
+    metodo: "Verificação por DIFF, não por confiança na descrição do @dev."
+    evidencia_lida_no_arquivo: >-
+      `git diff HEAD -- tests/domain/calculo/derivar-circuitos.test.ts` = 50 inserções /
+      2 deleções. As 2 deleções são EXATAMENTE as duas linhas do `it("dependência sem resultado
+      é ignorada")` antigo. Nenhuma linha de qualquer outro `it` aparece no diff — os 11 testes
+      pré-existentes estão intocados, incluindo asserções e fixtures (padraoBi, entradaSala,
+      resultadoSala, ref()). Execução: 14 passed = 11 originais + 3 novos.
+    cobertura: COMPLETA
+
+  - ac: AC4
+    descricao: "vIlumTug ausente continua sendo skip total, independente de resultado ou cargas"
+    resultado: PASS
+    teste: 'tests/domain/calculo/derivar-circuitos.test.ts:118 — it("vIlumTug ausente pula a dependência mesmo com resultado e cargas adicionais (AC4)")'
+    evidencia_lida_no_arquivo: >-
+      Linhas 120-133: fixture padraoTriSemFaseNeutro (sistema "tri", tensoes_ofertadas [220,380],
+      tensao_fase_fase 380, SEM tensao_fase_neutro) combinado com resultado: resultadoSala e as
+      cargas adicionais de entradaSala → toEqual([]).
+      Confirma que o guard `if (!vIlumTug) continue;` (linha 99 do módulo) permanece absoluto,
+      que é precisamente a metade do guard original que a mudança não commitada PRESERVOU.
+      Este é o teste de maior valor da story: protege o único invariante que sobrou.
+    cobertura: COMPLETA
+
+  ac_gaps: []
+
+# ---------------------------------------------------------------------------
+# Task 6 — guarda de escopo (verificação independente pelo @qa)
+# ---------------------------------------------------------------------------
+guarda_de_escopo:
+  resultado: PASS
+  comando: "git diff --stat HEAD -- src/domain/calculo/derivar-circuitos.ts"
+  observado: "1 file changed, 3 insertions(+), 3 deletions(-)"
+  conferencia_byte_a_byte: >-
+    `git diff HEAD` do arquivo de produção exibe EXATAMENTE as 3 hunks pré-existentes já
+    catalogadas no blocker: linha 99 (!r || !vIlumTug → !vIlumTug), linha 108
+    (r.iluminacao... → r?.iluminacao... ?? 0), linha 119 (r.tomadas... → r?.tomadas... ?? 0).
+    NENHUMA linha nova. O @dev não tocou o src/ — confirmado, não presumido.
+  conclusao: "Task 6 cumprida. A story alterou apenas o arquivo de teste."
+
+# ---------------------------------------------------------------------------
+# Gates técnicos — TODOS re-executados de forma independente pelo @qa
+# ---------------------------------------------------------------------------
+gates_tecnicos_observados:
+  executados_em: "sistema-de-instala-es-el-tricas-sie-main/"
+  executados_por: "@qa (Quinn) — re-execução independente, 2026-07-29"
+
+  typecheck:
+    resultado: PASS
+    comando: "npx tsc --noEmit"
+    exit_code: 0
+    saida: "vazia"
+
+  teste_escopado:
+    resultado: PASS
+    comando: "npx vitest run tests/domain/calculo/derivar-circuitos.test.ts"
+    numeros_reais: "Test Files 1 passed (1) | Tests 14 passed (14) — 2.46s"
+    baseline_do_blocker: "Test Files 1 failed (1) | Tests 1 failed | 11 passed (12)"
+    delta: "+3 testes, 0 falhas. O teste vermelho do BLK-DERIVAR-CIRCUITOS-01 está RESOLVIDO."
+
+  dominio_calculo:
+    resultado: PASS
+    comando: "npx vitest run tests/domain/calculo"
+    numeros_reais: "Test Files 15 passed (15) | Tests 116 passed (116) — 10.03s"
+
+  build:
+    resultado: PASS
+    comando: "npm run build"
+    exit_code: 0
+    saida: "✓ built in 8.74s"
+
+  suite_completa:
+    resultado: FAIL_NAO_ATRIBUIVEL
+    comando: "npx vitest run"
+    numeros_reais:
+      test_files: "1 failed | 128 passed (129)"
+      tests: "1 failed | 892 passed (893)"
+      duracao: "263.13s"
+    teste_que_falha: "tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts > AC3 (parecer §3.1) > todos os campos exigidos estão presentes e preenchidos em cada um dos 1.563 registros"
+    natureza_da_falha: >-
+      TIMEOUT, não asserção. "Error: Test timed out in 5000ms." O teste itera 1.563 registros x
+      N campos obrigatórios dentro do testTimeout padrão do Vitest, sob contenção de 129 arquivos
+      em paralelo. NÃO é falha lógica.
+    prova_de_nao_atribuicao:
+      - "Re-execução isolada do MESMO arquivo: `npx vitest run tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts` → Test Files 1 passed (1) | Tests 28 passed (28), 7.22s (tests 4.48s). É flakiness de timeout sob carga, não defeito."
+      - "Domínio queda-tensao/MOD-QT-2 — nenhum caminho de código passa por derivarCircuitos."
+      - "tests/domain/calculo inteiro verde: 15 arquivos / 116 testes."
+      - "O único arquivo alterado por esta story saiu do vermelho (12→14 testes, 1 falha→0)."
+    divergencia_com_o_relato_do_dev:
+      relato_do_dev: "6 failed | 120 passed (126) — Tests 41 failed | 786 passed (827)"
+      observado_pelo_qa: "1 failed | 128 passed (129) — Tests 1 failed | 892 passed (893)"
+      analise: >-
+        O relato do @dev NÃO era falso — era um retrato honesto do momento, quando o ciclo
+        paralelo MOD-QT-2-03 estava em voo com `familia_id ausente no contexto`. Aquele trabalho
+        fechou depois. Registrado aqui apenas para que o número que vale no gate seja o
+        re-executado, não o herdado.
+
+  lint:
+    resultado: PARCIAL
+    escopo_da_story:
+      resultado: PASS_COM_RESSALVA_AMBIENTAL
+      comando: "npx eslint tests/domain/calculo/derivar-circuitos.test.ts -f json"
+      numeros_reais: "329 errors, 0 warnings"
+      agregacao_por_regra: '{"prettier/prettier": 329}'
+      mensagens_distintas: '["Delete `␍`"] — UMA única mensagem distinta em 329 erros'
+      prova_de_causa_ambiental: >-
+        Verificação de controle executada pelo @qa em arquivo VIZINHO NÃO TOCADO por esta story
+        (tests/domain/calculo/corrente-circuitos.test.ts): 261 errors, {"prettier/prettier": 261}.
+        Mesmo perfil, mesma regra única. Somado a `git config core.autocrlf` = true e
+        `git ls-files --eol` = `i/lf w/crlf` para o arquivo de teste, a conclusão é determinística:
+        ruído de fim de linha do ambiente Windows, NÃO introduzido por esta story.
+      achados_substantivos: "ZERO. Nenhuma regra além de prettier/prettier disparou."
+    projeto_inteiro:
+      resultado: NAO_VERIFICADO
+      comando: "npx eslint ."
+      motivo: "Trava conhecida de 25+ min neste repositório (mesma constatação do gate MOD-QT-2-02). NÃO assumido como PASS — fail-closed."
+
+# ---------------------------------------------------------------------------
+# Artigo IV — qualidade do registro de motivação (Task 5)
+# ---------------------------------------------------------------------------
+artigo_iv_avaliacao:
+  resultado: PASS
+  pergunta: "O registro 'ausência de origem documental' é honesto e suficiente?"
+  verificacao_independente_do_qa:
+    - "Re-executado `git log --oneline -- src/domain/calculo/derivar-circuitos.ts`: 7 commits (cb782d6, e7431ca, 5374f45, 574ef8d, 3d59bfb, 4c186a3, 80727db) — exatamente os 7 que o @dev listou. Nenhum inventado, nenhum omitido."
+    - "Busca no corpo E assunto de todas as mensagens desses commits por 'resultado|guard|!r|rascunho': nenhuma ocorrência. A afirmação do @dev é verificável e correta."
+    - "O diff do src/ segue não commitado (confirmado nesta sessão), logo não existe mensagem de commit, PR ou revisão que possa carregar a motivação. A ausência é estrutural, não fruto de busca preguiçosa."
+  honestidade: >-
+    O @dev registrou a ausência em vez de fabricar uma justificativa plausível — que teria sido
+    fácil, dado que a coerência arquitetural (cargas-adicionais.ts nunca dependeu de `resultado`)
+    ofereceria uma narrativa convincente. Ele explicitamente NÃO fez isso, e ainda distinguiu
+    corroboração de autorização. É exatamente o comportamento que o Artigo IV exige.
+  suficiencia: >-
+    SUFICIENTE. A conformidade da story não repousa sobre o Dev Agent Record: repousa sobre PP-1,
+    declarado pelo @po com fonte primária datada (decisão do usuário) e limite anti-invenção
+    explícito. A Task 5 é registro complementar, como o próprio @po rebaixou. O @dev cumpriu a
+    forma prescrita ("comportamento preservado por decisão do usuário; nenhuma AC/epic de origem
+    localizada além desta story") literalmente.
+  ressalva_do_qa: >-
+    PP-1 é um requisito PROSPECTIVO sobre um comportamento observado. Isso é legítimo e está
+    corretamente rotulado como tal na story. Vale registrar que a story documenta com precisão o
+    que NÃO sabe (a motivação histórica do autor da mudança permanece desconhecida) — essa
+    honestidade é o que torna a regularização defensável sob o Artigo III.
+
+# ---------------------------------------------------------------------------
+# 7 verificações de qualidade (story-lifecycle.md Fase 4)
+# ---------------------------------------------------------------------------
+sete_verificacoes:
+  - check: "Code review — padrões, legibilidade, manutenibilidade"
+    resultado: PASS
+    nota: >-
+      Nenhum código de produção alterado. No teste: fixtures reusadas (REUSE) em vez de
+      duplicadas; a única fixture nova (padraoTriSemFaseNeutro) é local ao `it`, decisão correta
+      para não ampliar superfície do módulo de teste. Nomes de `it` descrevem o comportamento
+      real e carregam o ID do AC — rastreabilidade legível de dentro do arquivo.
+  - check: "Testes unitários — cobertura adequada, todos passando"
+    resultado: PASS
+    nota: "14/14 no arquivo; 116/116 no domínio calculo. 3 testes novos para 3 ACs comportamentais."
+  - check: "Critérios de aceite — todos atendidos"
+    resultado: PASS
+    nota: "4/4, verificados contra o arquivo de teste (ver trace_ac)."
+  - check: "Sem regressões"
+    resultado: PASS
+    nota: "AC3 verificado por diff: 2 deleções, ambas do `it` obsoleto. Zero asserção pré-existente tocada."
+  - check: "Performance"
+    resultado: PASS
+    nota: "Arquivo de teste em 2,46s; build em 8,74s. Nenhum impacto — story sem código de produção."
+  - check: "Segurança (OWASP básico)"
+    resultado: NAO_APLICAVEL
+    nota: >-
+      Nenhuma superfície de ataque tocada: a story altera exclusivamente um arquivo de teste
+      unitário de domínio puro, sem I/O, rede, banco, entrada de usuário ou renderização.
+  - check: "Documentação atualizada"
+    resultado: PASS
+    nota: >-
+      Story com Dev Agent Record, File List e Change Log completos e fiéis ao diff real
+      (conferidos). Adicionalmente, o comentário de bloco PP-1 acima do teste do AC1 é uma
+      mitigação de risco de processo bem posta: ancora o "porquê" no ponto exato onde um agente
+      futuro encontraria o teste e ficaria tentado a "consertar" o src/ pelo caminho errado.
+
+# ---------------------------------------------------------------------------
+top_issues:
+  - id: DC1-001
+    severity: medium
+    category: tests
+    finding: >-
+      `npx vitest run` não fecha em 0 arquivos falhando: 1 failed | 128 passed (129).
+      A falha é TIMEOUT (5000ms) em tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts,
+      não asserção. O mesmo arquivo passa 28/28 em 7,22s quando executado isolado.
+    atribuivel_a_esta_story: false
+    dominio: "queda-tensao / MOD-QT-2"
+    bloqueia_story: false
+    bloqueia_commit_push: true
+    suggested_owner: "@dev do ciclo MOD-QT-2 / @po"
+    suggested_action: >-
+      Elevar o testTimeout desse `it` (ou movê-lo para fora do laço de 1.563 registros x N campos)
+      para que ele deixe de ser flaky sob carga paralela. Enquanto for flaky, ele torna o gate
+      "suíte limpa" do @devops não determinístico — que é o custo real, mais alto que a falha em si.
+  - id: DC1-002
+    severity: low
+    category: tests
+    finding: >-
+      Débito conhecido, explicitamente fora de escopo por decisão do @po: não há cobertura de
+      integração para o cenário de dependência em RASCUNHO nas telas de Correntes e Divisor de
+      Circuitos. PP-1 hoje está protegido apenas na camada unitária de `derivarCircuitos`.
+    atribuivel_a_esta_story: false
+    bloqueia_story: false
+    suggested_owner: "@po (priorização)"
+    suggested_action: >-
+      Backlog: teste de integração cobrindo servico-corrente / servico-divisao-circuitos com
+      uma dependência sem `resultado`, fechando a ponta que liga PP-1 ao comportamento de tela.
+  - id: DC1-003
+    severity: low
+    category: code
+    finding: >-
+      `npx eslint .` (projeto inteiro) permanece NÃO VERIFICADO por trava de 25+ min, e o lint
+      escopado é 100% ruído de CRLF (core.autocrlf=true). O lint do projeto é, na prática,
+      inoperante como gate de qualidade neste ambiente.
+    atribuivel_a_esta_story: false
+    bloqueia_story: false
+    suggested_owner: "@devops"
+    suggested_action: >-
+      Adicionar `.gitattributes` com `* text=auto eol=lf` (ou endOfLine: "auto" no Prettier) para
+      eliminar o ruído, e investigar a lentidão do eslint no projeto inteiro. Reincidente: a mesma
+      constatação já consta do gate MOD-QT-2-02.
+
+waiver: { active: false }
+
+# ---------------------------------------------------------------------------
+evidence:
+  tests_reviewed: 14
+  tests_novos_da_story: 3
+  tests_pre_existentes_intocados: 11
+  arquivos_de_producao_alterados: 0
+  trace:
+    ac_covered: [1, 2, 3, 4]
+    ac_gaps: []
+
+# ---------------------------------------------------------------------------
+# Efeito sobre o blocker de origem
+# ---------------------------------------------------------------------------
+impacto_no_blocker:
+  blocker: "BLK-DERIVAR-CIRCUITOS-01"
+  item_do_blocker: "tests/domain/calculo/derivar-circuitos.test.ts:85 vermelho + violação do Artigo III"
+  situacao: RESOLVIDO
+  fundamento:
+    - "Teste vermelho: eliminado. 14/14 verde, verificado por re-execução independente."
+    - "Artigo III: sanado. O comportamento agora tem story, 4 ACs, PP-1 como requisito rastreável e cobertura de regressão."
+    - "Risco de reversão silenciosa: mitigado pelo comentário PP-1 in-loco + AC4 protegendo o guard remanescente."
+  gates_anteriores_desbloqueados: >-
+    QT201-001 e QT202-001 (severity high nos gates MOD-QT-2-01 e MOD-QT-2-02) apontavam
+    EXATAMENTE este teste como a causa do `npm test` exit 1. Essa causa está encerrada.
+  ressalva: >-
+    O gate @devops NÃO fica automaticamente liberado: DC1-001 (flaky de timeout em queda-tensao)
+    ainda impede que a suíte feche em 0 de forma determinística. É outro item, de outro dono.
+
+recommendations:
+  immediate:
+    - action: "Estabilizar o timeout de catalogo-impedancia-completude.test.ts antes do push (DC1-001)"
+      refs: ["tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts:156"]
+      owner: "@dev do ciclo MOD-QT-2"
+  future:
+    - action: "Cobertura de integração do cenário RASCUNHO nas telas de Correntes/Divisor (DC1-002)"
+      owner: "@po / @dev"
+    - action: "Normalizar EOL via .gitattributes e destravar o eslint de projeto inteiro (DC1-003)"
+      owner: "@devops"
+
+recommended_status: "Done (com as ressalvas DC1-001, DC1-002 e DC1-003 registradas — nenhuma atribuível a esta story)"
+handoff: ".aiox/handoffs/DERIVAR-CIRCUITOS-1-qa-to-devops.yaml"

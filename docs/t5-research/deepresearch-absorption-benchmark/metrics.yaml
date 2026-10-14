@@ -1,0 +1,17 @@
+schema: research-metrics.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+coverage_score: 88
+integrity_score: 92
+stop_reason: Coverage threshold reached; 25 players scored; 0 gaps identified.
+decision_status: GO
+ranking_position: null
+total_compared: 25
+anchor_score: null
+top_score: null
+absorption_metrics:
+  total_gaps: 0
+  p0: 0
+  p1: 0
+  p2: 0
+  total_effort_pts: 0

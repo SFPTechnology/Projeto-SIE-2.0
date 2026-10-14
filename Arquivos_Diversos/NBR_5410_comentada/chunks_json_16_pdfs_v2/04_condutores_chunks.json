@@ -1,0 +1,462 @@
+[
+  {
+    "chunk_id": 0,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Cores de fios e cabos de BT"
+    ],
+    "content": "# Linhas elétricas – Condutores\n\n<!-- pagina-origem: 1 -->\n\n### L I N H A S E L É T R I C A S – C O N D U T O R E S\n\nCores de fios e cabos de BT....................................................................104\n\nCaracterísticas essenciais da isolação dos condutores...........................105\n\nO roteiro das linhas elétricas..................................................................111\n\nDimensionamento de eletrodutos..........................................................123\n\nDimensionamento de bandejas, eletrocalhas e leitos............................124\n\nCondutores em paralelo..........................................................................127\n\nLinhas elétricas em shaft........................................................................129\n\nLinhas elétricas enterradas.....................................................................133\n\nLinhas elétricas em locais de afluência de público.................................135\n\n<!-- pagina-origem: 2 -->\n\n## Cores de fios e cabos de BT\n\nA identificação por cores dos condutores, em uma instalação elétrica, tem como finalidade facilitar a execução de conexões, emendas e as intervenções em geral para manutenção. Além disso, a correta identificação dos condutores aumenta a segurança de quem executa esses trabalhos. A NBR 5410 faz recomendações claras sobre como identificar corretamente os componentes em geral e, em particular, os condutores. Antes de apresentar as prescrições da norma sobre o assunto, é conveniente recordar três definições: condutor isolado, cabo unipolar e cabo multipolar (figura 1). O condutor isolado é aquele que possui condutor e isolação. Mesmo óbvia, essa definição é necessária para diferenciar o condutor isolado dos cabos nus e dos cobertos ou protegidos, em que a camada de revestimento não tem função isolante elétrica, mas apenas de proteção mecânica e/ou química. O cabo unipolar possui um único condutor, isolação e uma segunda camada de revestimento, chamada cobertura, para proteção mecânica. O cabo multipolar possui, sob a mesma cobertura, dois ou mais condutores isolados, denominados veias. Como geralmente os condutores isolados são disponíveis comercialmente na classe de tensão 750 V, e os cabos uni ou multipolares na classe 0,6/1 kV, muitas vezes associam-se, equivocadamente, as definições às classes de tensão — identificando-se os condutores isolados como cabos 750 V e os uni e multipolares como cabos 1 kV. Isso não é absolutamente correto, uma vez que, por exemplo, existem cabos multipolares na classe 750 V, como os comumente conhecidos como PP e PB. Voltando ao tema da identificação, a NBR 5410, como mencionado, traz diversas recomendações, apresentadas a seguir.",
+    "paginas_origem": [
+      1,
+      2
+    ],
+    "tokens_estimados": 680,
+    "contem_tabela": false,
+    "sobrepoe_anterior": false
+  },
+  {
+    "chunk_id": 1,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Cores de fios e cabos de BT",
+      "Condutor neutro"
+    ],
+    "content": "### Condutor neutro\n\nO item 6.1.5.3.1 da norma prevê que “qualquer condutor isolado, cabo unipolar, ou veia de cabo multipolar utilizado como condutor neutro deve ser identificado conforme essa função. Em caso de identificação por cor, deve\n\n![Figura vetorial da página 2](figura-vetorial-p2-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Condutor isolado (acima) e cabos uni e multipola\n\nFig. 2 – Cabos identificados por anilhas ser adotada a cor azul-clara na isolação do condutor isolado ou da veia do cabo multipolar, ou na cobertura do cabo unipolar”. Na nota deste item, temos que “a veia com isolação azul-clara de um cabo multipolar pode ser usada para outras funções, que não a de condutor neutro, se o circuito não possuir condutor neutro ou se o cabo apresentar um condutor periférico utilizado como neutro”. A norma não obriga ao uso de cores para identificar um condutor. Diz apenas, como vimos, que, “em caso de identificação por cor”, o condutor neutro deve ser azul-claro. Como alternativa às cores, podem ser utilizadas gravações aplicadas na isolação do cabo ou também empregados sistemas externos de identificação, como anilhas, adesivos, marcadores, etc. (figura 2). A nota destaca outro ponto importante, permitindo o uso da cor azul-clara para outra função apenas no caso de veia de um cabo multipolar. Ou seja, só podem ser usados condutores isolados ou cabos unipolares de cor azul-clara, numa instalação, se destinados à função de neutro.",
+    "paginas_origem": [],
+    "tokens_estimados": 386,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 2,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Cores de fios e cabos de BT",
+      "Condutor PEN"
+    ],
+    "content": "### Condutor de proteção\n\nSegundo o item 6.1.5.3.2 da NBR 5410, “qualquer con-\n\n<!-- pagina-origem: 3 -->\n\n![Figura vetorial da página 3](figura-vetorial-p3-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 3 – Identificação por meio de cores dos condutores de um cabo multipolar dutor isolado, cabo unipolar, ou veia de cabo multipolar utilizado como condutor de proteção (PE) deve ser identificado de acordo com essa função. Em caso de identificação por cor, deve ser utilizada a dupla coloração verdeamarela (cores exclusivas da função de proteção), na isolação do condutor isolado ou da veia do cabo multipolar, ou na cobertura do cabo unipolar”. E acrescenta, através de nota: “na falta da dupla coloração verde-amarela, admitese, provisoriamente, o uso da cor verde”. Portanto, não se admite utilizar as cores verde-amarela e verde para outra função que não a de proteção. Quanto ao caráter “provisório” com que se admite o uso da cor verde, na realidade não há qualquer data limite estabelecida para o fim desse reconhecimento. Aliás, é mais comum encontrar no mercado o cabo totalmente verde que o verde-amarelo.\n\n### Condutor PEN\n\nTrata-se do condutor com dupla função: proteção (PE) e neutro (N). Vale lembrar que seu uso ocorre nos esquemas de aterramento tipo TN-C e que há limitações quanto à seção nominal mínima desses condutores (ver 6.4.6.2 da NBR 5410). Sobre a identificação do PEN, em 6.1.5.3.3 temos que “qualquer condutor isolado, cabo unipolar, ou veia de cabo multipolar utilizado como condutor PEN deve ser identificado de acordo com essa função. Em caso de identificação por cor, deve ser adotada a cor azul-clara, com anilhas verde-amarelas nos pontos visíveis ou acessíveis, na isolação do condutor isolado ou da veia do cabo multipolar, ou na cobertura do cabo unipolar”. Os “pontos visíveis ou acessíveis” mencionados ocorrem, por exemplo, no interior de quadros, caixas de passagem e de ligações.",
+    "paginas_origem": [
+      3
+    ],
+    "tokens_estimados": 501,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 3,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Cores de fios e cabos de BT",
+      "Coberturas dos cabos de BT uni ou multipolares"
+    ],
+    "content": "### Condutor de fase\n\nO item 6.1.5.3.4 da NBR 5410 estabelece que “qualquer condutor isolado, cabo unipolar, ou veia de cabo multipolar utilizado como condutor de fase deve ser identificado de acordo com essa função. Em caso de identificação por cor, poderá ser usada qualquer tonalidade, observadas as restrições estabelecidas em 6.1.5.3.1, 6.1.5.3.2 e 6.1.5.3.3”. A nota do item 6.1.5.3.4 indica que, por razões de segurança, a cor da isolação não deve ser exclusivamente amarela “onde houver risco de confusão com a dupla coloração verde-amarela, cores exclusivas do condutor de proteção”. Resumidamente, os condutores de fase podem ser de qualquer cor, exceto azul-clara, verde ou verde-amarela. O “risco de confusão” ao qual o texto se refere acontece com freqüência no interior de quadros.\n\n### Coberturas dos cabos de BT uni ou multipolares\n\nA análise feita permite concluir que, no caso de identificação por cores, a cobertura dos cabos unipolares deve ser azul-clara para os condutores neutro e PEN; verde ou verde-amarela para o PE; e de qualquer outra cor que não as anteriores para os condutores de fase — comercialmente, as coberturas mais comuns são as pretas e cinzas. Já para os cabos multipolares, em princípio a cobertura pode ser de qualquer cor, uma vez que as prescrições referem-se apenas às veias no interior do cabo (figura 3). No entanto, é recomendável não utilizar em cabos multipolares coberturas nas cores azul-clara, verde ou verdeamarela, para que não haja confusão com as funções de neutro e proteção. De qualquer forma, as coberturas de cabos multipolares são, normalmente, disponíveis nas cores preta e cinza.",
+    "paginas_origem": [],
+    "tokens_estimados": 411,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 4,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Características essenciais da isolação dos condutores"
+    ],
+    "content": "## Características essenciais da isolação dos condutores\n\nNo Brasil, os compostos isolantes mais utilizados na fabricação de condutores elétricos são o PVC e o EPR. O cloreto de polivinila (PVC) é, na realidade, uma mistura de cloreto de polivinila puro (resina sinté-\n\n<!-- pagina-origem: 4 -->\n\n![Figura vetorial da página 4](figura-vetorial-p4-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 –Temperatura nos condutores em função da sobrecarga\n\ntica) com plastificante, cargas e estabilizantes. Sua rigidez dielétrica é relativamente elevada, porém apresenta perdas dielétricas também elevadas, principalmente em tensões superiores a 10 kV. Com isso, o emprego de cabos isolados com PVC fica limitado, no máximo, à tensão de 6 kV. A resistência do PVC a agentes químicos e à água é relativamente alta. Além disso, possui boa característica de não-propagação de chama — gerando, no entanto, uma considerável quantidade de fumaça e de gases tóxicos e corrosivos quando submetido ao fogo. Já a borracha etileno-propileno (EPR), por se tratar de uma mistura reticulada quimicamente, possui excelente resistência ao envelhecimento térmico. Apresenta também ótima flexibilidade, mesmo em baixas temperaturas, e rigidez dielétrica elevada, com baixas perdas dielétricas, o que possibilita seu emprego em alta tensão, usualmente até 138 kV. Quando formulada adequadamente, a borracha EPR possui boa resistência à água e aos agentes químicos em geral. Seu bom desempenho em relação ao envelhecimento térmico permite a aplicação de altas densidades de corrente.",
+    "paginas_origem": [
+      4
+    ],
+    "tokens_estimados": 408,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 5,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Características essenciais da isolação dos condutores",
+      "O dimensionamento dos cabos em função da isolação"
+    ],
+    "content": "### O dimensionamento dos cabos em função da isolação\n\nAs duas principais solicitações a que a camada de isolação está sujeita são o campo elétrico (tensão) e a temperatura (corrente).\n\nTensão elétrica Como mencionado, o PVC está limitado a 6 kV, o que Fig. 2 – Características de curto-circuito de cabos de PVC\n\no torna recomendado para emprego em cabos de baixa tensão, sejam de potência, de controle, de sinal ou para ligação de equipamentos. Por sua vez, o EPR pode ser utilizado em cabos de baixa, média ou alta tensão. A principal característica construtiva dos cabos associada com a tensão elétrica é a espessura da isolação. Ela varia de acordo com a classe de tensão do cabo e a qualidade do material utilizado, sendo fixada pelas respectivas normas técnicas. Em geral, quanto maior a tensão elétrica de operação do cabo, maior a espessura da isolação.\n\n![Figura vetorial da página 4](figura-vetorial-p4-3)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 3 – Características de curto-circuito de cabos de EPR\n\n<!-- pagina-origem: 5 -->\n\nQuando é mais interessante utilizar cabos isolados com EPR ou XLPE, de classe térmica superior, em vez de cabos unipolares ou multipolares de PVC? Como regra, nos casos em que a corrente máxima admissível dos condutores é o principal critério de dimensionamento dos circuitos é sempre oportuno realizar um estudo comparativo das alternativas, PVC vs EPR/XLPE. Lembremos, inicialmente, que o dimensionamento correto e completo de um circuito depende da aplicação de seis critérios técnicos: – seção mínima; – capacidade de condução de corrente; – queda de tensão; – sobrecarga; – curto-circuito; e – proteção contra contatos indiretos (seccionamento automático). Nas instalações em que o critério de dimensionamento por queda de tensão não é o mais crítico, dentre os seis mencionados, a classe térmica adquire maior relevância na seleção do condutor. A classe térmica está relacionada com as máximas temperaturas suportadas pelo material isolante de um cabo nas condições de funcionamento normal (em regime), em sobrecarga e em curto-circuito (ver tabela I do artigo). A classe térmica superior dos cabos de EPR/XLPE se traduz, como visto, em maiores correntes admissíveis, em relação aos cabos de PVC — para uma mesma seção nominal. Ou, inversamente, em menores seções, para uma mesma corrente. E isso é que pode tornar a opção dos cabos de EPR/XLPE mais atraente que a dos cabos unipolares ou multipolares de PVC. Seja, por exemplo, uma bandeja perfurada na qual devem ser instalados três circuitos trifásicos compostos por cabos unipolares",
+    "paginas_origem": [
+      5
+    ],
+    "tokens_estimados": 666,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 6,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Características essenciais da isolação dos condutores",
+      "PVC OU EPR/XLPE?"
+    ],
+    "content": "Corrente elétrica Uma noção básica de física é que todo condutor elétrico percorrido por uma corrente se aquece. E também que todo material suporta temperaturas até um determinado valor, acima do qual começa a perder suas propriedades físicas, químicas, mecânicas, elétricas, etc. Desse modo, a cada tipo de material de isolação correspondem três temperaturas características, que são: temperatura em regime permanente: maior temperatura que a isolação pode atingir continuamente em serviço normal. É a principal característica para a determinação\n\n### PVC OU EPR/XLPE?\n\ncontíguos (justapostos),cujas características estão indicadas na tabela B1.A queda de tensão máxima admitida para os circuitos é de 4%, o fator de potência de cada um é 0,8 e a temperatura ambiente considerada é de 30°C. Em todos os circuitos prevaleceu, como critério de dimensionamento, o da capacidade de condução de corrente. A partir desses dados e utilizando as tabelas de capacidade de corrente admissível dos condutores da NBR 5410 e de queda de\n\nTab B1 – Características dos circuitos do exemplo\n\ntensão disponíveis nos catálogos de fabricantes, encontramos os resultados expostos na tabela B2. A alternativa dos cabos de EPR/XLPE representa, como se vê, uma seção nominal menor que a dos cabos de PVC. Em termos de instalação, a opção pelos cabos isolados com EPR/XLPE resulta em menos espaço ocupado e, portanto, numa bandeja de menores dimensões. Ou, se a linha elétrica fosse constituída por eletroduto, num eletroduto de menor diâmetro. Essas reduções nas dimensões dos condutos significam menor custo de material e maior facilidade de manuseio.\n\nTab B2 – Dimensionamento dos circuitos do exemplo\n\nda capacidade de condução de corrente de um cabo; temperatura em regime de sobrecarga: temperatura máxima que a isolação pode atingir em regime de sobrecarga. Segundo as normas de fabricação, a duração desse regime não deve ser superior a 100 horas durante doze meses consecutivos, nem superar 500 horas durante a vida do cabo. temperatura em regime de curto-circuito: temperatura máxima que a isolação pode atingir em regime de curtocircuito. Segundo as normas de fabricação, a duração desse regime não deve superar cinco segundos durante a vida do cabo.\n\n<!-- pagina-origem: 6 -->",
+    "paginas_origem": [
+      6
+    ],
+    "tokens_estimados": 567,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 7,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "O roteiro das linhas elétricas"
+    ],
+    "content": "A tabela I indica as temperaturas características das isolações de PVC e EPR. Verifica-se que o EPR suporta temperaturas mais elevadas que o PVC. Isto significa que, para a mesma seção de cobre, um cabo isolado com EPR pode ser percorrido por uma corrente elétrica maior do que um cabo isolado com PVC. Dessa forma, na prática, há duas tabelas de capacidade de condução de corrente nos catálogos de fios e cabos: uma relativa aos cabos isolados com PVC e outra para os cabos isolados com EPR, sendo a capacidade de condução de corrente dos cabos de EPR, naturalmente, sempre maior que a dos cabos (de mesma seção) de PVC, para uma mesma maneira de instalar. No que diz respeito aos regimes de sobrecarga e curto-circuito, os cabos de EPR também suportam, para a mesma seção de condutor, solicitações maiores, conforme mostram as figuras 1, 2 e 3. Podemos observar na figura 1 que, para a mesma relação de sobrecarga, os cabos de EPR suportam solicitações térmicas superiores às dos de PVC. Já nas figuras 2 e 3 verifica-se que, para a mesma corrente de curto-circuito e a mesma seção de cabo, a isolação de EPR suporta um tempo maior de solicitação.\n\n## O roteiro das linhas elétricas",
+    "paginas_origem": [],
+    "tokens_estimados": 296,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 8,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "O roteiro das linhas elétricas"
+    ],
+    "content": "Refletindo diretamente seu peso na composição de custos de uma instalação, as “linhas elétricas” — como a norma designa o conjunto formado pelos condutores e todos os demais componentes associados — são o assunto dominante em qualquer seminário ou curso que se promova sobre instalações elétricas ou sobre a norma NBR 5410. Coincidência ou não, as “linhas elétricas” são também o tópico que, isoladamente, mais espaço ocupa na própria norma. Das 128 páginas da edição de 1997, por exemplo, cerca de 30 são ocupadas por um capítulo totalmente relacionado com o tema: o 6.2, “Seleção e instalação das linhas elétricas”. O que corresponde a 23,4%. Se excluirmos do total de páginas da edição as nove ocupadas pelo índice, o percentual sobe então para 25,2%. Como registrado neste Guia EM da NBR 5410, no capítulo que trata de definições, linha elétrica é o conjunto de um ou mais condutores com seus elementos de fixação e suporte e, se for o caso, de proteção mecânica, destinado a transportar energia ou transmitir sinais elétricos. O termo corresponde ao inglês wiring system e ao francês canalization. As linhas podem ser constituídas: – apenas por condutores e elementos de fixação, como é o caso dos condutores diretamente fixados em paredes ou em tetos, e dos condutores fixados sobre isoladores em paredes, tetos ou postes; – por condutores em condutos (conduto é o elemento de linha que contém os condutos elétricos); – por condutores sobre suportes; ou ainda, – do tipo pré-fabricada, como os “barramentos blindados”. Genericamente, portanto, uma linha elétrica, ou um tipo de linha elétrica pode ser caracterizado, sob a ótica que interessa à norma e ao profissional de instalações, por três parâmetros principais: – o tipo de conduto utilizado; – o tipo de condutor utilizado; e – a montagem adotada, que implicitamente define o espaço ocupado ou percorrido pela linha. O tipo de conduto utilizado pode ser nenhum, pode ser um conduto propriamente dito ou então algum componente que cumpra papel similar, como o isolador ou suporte mencionado. Portanto, apesar das definições iniciais, conduto passa a ter aqui esse sentido abrangente. E inclui, quando existentes, todos os acessórios indispensáveis à sua função de elemento de sustentação, de acomodação, de fixação e/ou de proteção mecânica do condutor. O tipo de condutor pode ser, por exemplo: – fio ou cabo nu; – cabo com cobertura (ou apenas com cobertura); – fio ou cabo com isolação (ou apenas com isolação. É o que a norma chama de “condutor isolado”); cabo com isolação e cobertura (nas versões “cabo unipolar” e “cabo multipolar”, para usar a terminologia consagrada pela norma) – barramento nu; e – barramento revestido. Finalmente, o tipo de montagem revela — convém repetir — como a linha se encontra integrada à edificação ou, num sentido mais geral, ao ambiente que percorre. Desse ponto de vista, e para começo de conversa, uma linha poderia ser, por exemplo, externa ou interna (à edificação). Prosseguindo com o jogo classificatório, as linhas externas poderiam ser aéreas, subterrâneas (ou enterradas) e sub-\n\n<!-- pagina-origem: 7 -->",
+    "paginas_origem": [
+      7
+    ],
+    "tokens_estimados": 779,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 9,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "O roteiro das linhas elétricas"
+    ],
+    "content": "mersas. Se internas, mas sem com isso descartar as possibilidades identificadas no cenário externo, elas poderiam ser aparentes, embutidas, contidas (por exemplo, em espaços de construção)... As aparentes, por sua vez, poderiam ser sobrepostas, suspensas, etc., etc. Todos esses parâmetros importam na caracterização do tipo de linha porque, afinal, influem no resultado técnico e econômico de uma opção. Não se pode utilizar condutor nu, vivo, numa residência, evidentemente. Se o percurso da linha será essencialmente vertical, um tipo de conduto será mais apropriado e outros serão descartados. O tipo de montagem, como o próprio conduto utilizado, pode favorecer ou prejudicar a dissipação de calor e, portanto, pesa na capacidade de condução de corrente que se poderá efetivamente extrair de um condutor.\n\nA tabela 28 da NBR 5410 é o “mostruário“ das linhas elétricas. Cada linha–tipo é aí identificada por um número, descrita com o apoio de um esquema ilustrativo e associada a um arranjo de referência (ou “método de referência“, como registra a norma). É essa referência que o projetista usa para encontrar, nas tabelas de capacidade de condução de corrente (tabelas 31 a 34), a seção de condutor que atende às necessidades do seu circuito. É assim, portanto, com esses três parâmetros em mente (tipo de condutor, tipo de conduto, tipo de montagem), que se deve encarar a tabela 28 da NBR 5410, que relaciona diversos tipos de linhas elétricas. A listagem fornecida pela norma não se deve, evidentemente, a uma preocupação burocrática, de ditar que tipos de linhas seriam por ela “reconhecidos e aprovados”. Nem meramente investigante, de identificar arranjos praticados e, talvez, avançar outros tantos que a imaginação sugira. Os tipos de linhas elétricas apresentados lá estão porque deles a norma pode oferecer um dado que, em última análise, é o “segredo cobiçado”: a capacidade de condução de corrente que se pode confiavelmente esperar de um condutor, num arranjo determinado (o tipo de linha) e em circunstâncias previsíveis (a temperatura ambiente, o efeito de outros condutores carregados com os quais ele compartilha a linha, etc.).\n\nAqui, no Guia EM da NBR 5410, a tabela 28 da norma foi traduzida numa versão prática e compacta (mas completa): a tabela I que acompanha o artigo. Ela constitui um mapeamento de todos os tipos de linhas elétricas previstos na NBR 5410, mediante combinação de tipo de conduto, tipo de condutor e tipo de montagem, fornecendo também, diretamente, o arranjo de referência em que cada linha se enquadra.\n\n<!-- pagina-origem: 8 -->",
+    "paginas_origem": [
+      8
+    ],
+    "tokens_estimados": 645,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 10,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "O roteiro das linhas elétricas",
+      "A tabela com os tipos de linhas (tabela 28)"
+    ],
+    "content": "Enfim, oferecendo a citada tabela 28 como porta de entrada, a norma provê um conjunto de informações, com grande grau de inter-relacionamento, que são fundamentais para o projeto de uma instalação elétrica. Essas informações são, essencialmente: o menu de tipos de linhas (a tabela 28), que o profissional consulta para saber em qual linha-tipo se enquadra a que ele está projetando; as tabelas que fornecem a capacidade de condução de corrente dos condutores (tabelas 31 a 34); e as tabelas que indicam os fatores de correção (tabelas - 35 a 42) a serem aplicados à situação real que o projetista tem pela frente. Isso de modo a tornar coerente a utilização dos valores de capacidade de condução de corrente fornecidos, que são calcados em condições ditas de referência. Vamos examinar em detalhes, a seguir, o conteúdo desses três blocos de informações e como manuseá-las corretamente.\n\n### A tabela com os tipos de linhas (tabela 28)",
+    "paginas_origem": [],
+    "tokens_estimados": 234,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 11,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "O roteiro das linhas elétricas",
+      "A tabela com os tipos de linhas (tabela 28)"
+    ],
+    "content": "A norma relaciona, na tabela 28, uma grande variedade de tipos de linhas (a quantidade pode ir de 40 a bem mais, se consideradas variantes assemelháveis aos tipos listados). Cada linha-tipo tem um número de identificação. Mas muitas das linhas-tipo listadas se equivalem do ponto de vista do comportamento térmico. E, portanto, são equivalentes do ponto de vista da capacidade de condução de corrente que o condutor pode oferecer, nas circunstâncias. Comparando-se assim os quarenta e tantos tipos de linhas, procurando identificar quem é parecido com quem, termicamente falando, chega-se a nove situações ou arranjos de referência, em torno dos quais poderiam ser agrupados todos os tipos listados. Para uma melhor compreensão, imagine que um grupo de especialistas se reunisse e – elaborasse uma lista quase exaustiva das possibilidades construtivas em matéria de linhas elétricas (as possíveis combinações práticas dos três parâmetros já mencionados: tipo de condutor, tipo de conduto e tipo de montagem), – agrupasse os arranjos possíveis segundo o comportamento térmico presumido, –- identificasse, em cada grupo, o arranjo que seria talvez o mais representativo (ou, como manda a segurança, o mais crítico, termicamente falando, dentro do grupo) – e fizesse do arranjo escolhido o banco de ensaios e/ou o objeto de investigações mais detalhadas no campo da simulação e modelamento computacionais. Foi mais ou menos isso o que aconteceu, na vida real. Assim, as mais de 40 linhas-tipo da tabela 28 da NBR 5410 podem ser enquadradas em nove arranjos de referência, que receberam uma codificação especial: A1: condutores isolados em eletroduto embutido em parede termicamente isolante; A2: cabo multipolar em eletroduto embutido em parede termicamente isolante; B1: condutores isolados em eletroduto sobre parede; B2: cabo multipolar em eletroduto sobre parede; C: cabos unipolares ou cabo multipolar sobre parede; D: cabo multipolar em eletroduto enterrado; E: cabo multipolar ao ar livre; F: cabos unipolares justapostos (na horizontal, na vertical ou em trifólio) ao ar livre; G: cabos unipolares espaçados (no mínimo de um diâmetro) ao ar livre. A tabela I aqui publicada é uma versão prática e didática da tabela 28 da NBR 5410. É prática porque adota como ponto de partida a situação real vivida pelo projetista, traduzível na seguinte pergunta: como ou com o que você pretende instalar seus condutores? Assim, a tabela, de consulta direta, mostra as combinações (conduto + condutor + montagem) admitidas pela norma. A tabela relaciona:\n\n- o tipo de conduto (ou equivalente) que se pretende utilizar, que pode eventualmente ser acompanhado de um segundo conduto, envolvendo ou abrigando o primeiro. Vale lembrar que “conduto” está sendo aqui usado com a abrangência já enfatizada, em que pese o cuidado de reforçar essa abrangência com a expressão “conduto ou equivalente”;\n\n- as formas de montagem ou instalação possíveis; e",
+    "paginas_origem": [],
+    "tokens_estimados": 734,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 12,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "O roteiro das linhas elétricas",
+      "A tabela com os tipos de linhas (tabela 28)"
+    ],
+    "content": "- os tipos de condutores. Estes são relacionados, de forma abreviada, pelas letras: N = condutor nu; C = condutor coberto; I = condutor isolado; U = cabo unipolar; e M = cabo multipolar. A tabela é prática, também, porque não só aponta as combinações possíveis, no cruzamento de linhas e colunas, como incorpora a essa informação o arranjo de referência em que a combinação se enquadra (os arranjos de A1 a G apresentados acima). E, explorando o uso de cores, a tabela permite identificar facilmente quem-é-quem nesse particular. Além disso, acrescenta, à margem, uma informação que se revela muito útil no mapeamento visual dos tipos de linhas aí propostos: a seqüência ordenada dos arranjos de referência, do mais restritivo ao mais favorável do ponto de vista da capacidade de condução de corrente. Com efeito, a ordem alfanumérica natural da codificação dos arranjos de referência — como foram, aliás, apresenta-\n\n<!-- pagina-origem: 9 -->\n\ndos acima — não corresponde exatamente à ordem crescente da capacidade de condução de corrente a eles “associada”. Sob esse critério, a ordem seria, como mostra a tabela(1),\n\nA2 →A1 →B2 →B1 →D →C →E →F →G",
+    "paginas_origem": [
+      9
+    ],
+    "tokens_estimados": 288,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 13,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "O roteiro das linhas elétricas",
+      "A tabela com os tipos de linhas (tabela 28)"
+    ],
+    "content": "A análise (“visual”) dos tipos de linhas proposta pela tabela I fica ainda mais facilitada se o leitor tiver em mente que, resumidamente, 1) os arranjos de referência A2, A1, B2 e B1 são representativos de linhas fechadas, ou de linhas que devem ser assim consideradas. 2) D é sinônimo de linha enterrada; e 3) C, E, F e G são linhas “abertas”(2). Os condutos ou equivalentes não envolvem (ou não envolvem inteiramente) os condutores. A identificação direta da linha que o projetista tem em mente pelo arranjo de referência em que se enquadra é um recurso muito conveniente porque, afinal, é essa informação (o código A2 a G) que ele leva para as tabelas de capacidade de condução de corrente, explicadas mais adiante. Por sinal, e embora à custa de redundância, a tabela procura facilitar ao máximo a consulta do projetista ao relacionar as opções de condutos por todos os nomes possíveis e imagináveis. Portanto, algumas opções listadas são, sim, meras repetições — a mesma coisa apresentada com outro nome. Tudo isso porque, no campo das “linhas elétricas”, o mercado não tem uma terminologia uniforme para designar os produtos e, via de regra, nem segue a que a norma propõe. Para a norma, por exemplo, eletrocalha é, por definição, fechada; uma “eletrocalha aberta”, para a norma, seria uma bandeja. Ela não reconhece o uso do termo “duto”: um “duto” destinado a conter condutores elétricos é, por definição, um eletroduto. Assim, por exemplo, o “duto de piso” tão conhecido no mercado, seria classificável, no vocabulário da norma (o “duto de piso” fechado, tipicamente metálico, de seção retangular!), como um eletroduto de seção não-circular — embora o “duto de piso” em questão realmente não lembre um eletroduto tradicional em vários aspectos, como o da produção efetivamente em massa, a oferta em varas de comprimentos padronizados, etc. Do lado do mercado, a confusão não é pouca. Um mesmo produto pode ser chamado de canaleta ou perfilado, dependendo do fabricante. A (eletro)calha “aramada”, para alguns, é leito aramado (ou mesmo leito sanitário, na versão do produto oferecida para a indústria alimentícia ou outras que promovem lavagens e desinfecções constantes em suas instalações). Há canaletas e canaletas — a versão mais associada ao nome sendo aquela também conhecida como rodapé. Que, por seu turno, às vezes leva sobrenome: rodapé falso, rodapé técnico. É sintomático, a propósito, o esforço de alguns fabricantes, similar ao de nossa tabela I, de designar o produto por mais de um nome, de acordo com o gosto do freguês (Não vai ser por ruído de comunicação que se vai deixar de vender, ora bolas!). De um modo geral, porém, há alguns termos mais consensuais, no sentido de que o nome dificilmente não seria associado ao produto a que se quer efetivamente referir. São eles: leito, perfilado e eletrocalha (mas aqui sem o preciosismo da norma, que vincula eletrocalha à condição de conduto necessariamente fechado).",
+    "paginas_origem": [],
+    "tokens_estimados": 736,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 14,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "O roteiro das linhas elétricas",
+      "As tabelas de capacidade de condução de corrente"
+    ],
+    "content": "E o mais importante: os desencontros terminológicos, felizmente, parecem não constituir uma séria ameaça à aplicação correta das regras da norma, uma vez que para efeito dessas regras (as pertinentes às linhas elétricas), o enquadramento de um conduto conhecido aqui como “X”, ali como “Y”, em geral resulta o mesmo. De todo modo, a tabela I também faz o gosto do freguês. Na verdade, ela partiu daí. Foram levantados praticamente todos os nomes com que são conhecidos e vendidos os condutos mais usados em instalações elétricas no Brasil. Eles foram examinados à luz da tabela 28 da NBR 5410 e são agora devolvidos na tabela I, como prato feito, para o mercado. Note-se que, explorando ainda mais o recurso das cores, quase todos os condutos listados na tabela I aparecem vinculados a uma delas. Através da cor ficam assim associados, de forma biunívoca, conduto e arranjo de referência. Só não levou cor o conduto (ou equivalente!) que pode ser utilizado em tipos de linhas distintos sob o ponto de vista do arranjo de referência.\n\n### As tabelas de capacidade de condução de corrente\n\nA NBR 5410 apresenta quatro tabelas de capacidade de condução de corrente (31, 32, 33 e 34). Essencialmente, essas tabelas informam, para cada seção de condutor (mm2), a capacidade de condução de corrente que a seção proporciona, em cada um dos arranjos de referência. Isso para condutores de cobre e de alumínio. Façamos uma leitura atenta do escopo de cada tabela. No que se refere aos cabos cuja capacidade de condução de corrente é informada,\n\n- as tabelas 31 e 33 referem-se a condutores com isolação\n\nde PVC;\n\n- as tabelas 32 e 34 referem-se a condutores com isolação\n\nde EPR/XLPE. No tocante aos arranjos de referência,\n\n- as tabelas 31 e 32 cobrem os arranjos de referência A2,\n\nA1, B2, B1, D e C; e\n\n- as tabelas 33 e 34 cobrem os arranjos de referência E,\n\nF e G.\n\n<!-- pagina-origem: 10 -->\n\n<!-- pagina-origem: 11 -->",
+    "paginas_origem": [
+      10,
+      11
+    ],
+    "tokens_estimados": 480,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 15,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "O roteiro das linhas elétricas",
+      "As tabelas de capacidade de condução de corrente"
+    ],
+    "content": "Nesse ponto, interrompamos temporariamente nossa leitura das tabelas para refletir um pouco a respeito de como elas seriam usadas pelo projetista. Vamos supor que o projetista fez a previsão de carga do circuito que está dimensionando e, portanto, tem a corrente de projeto IB do seu circuito. Ele também já definiu o tipo de linha que irá utilizar e, portanto, já sabe, via tabela I, o arranjo de referência em que a linha se enquadra. E, dependendo do caso, já fez igualmente sua opção entre o PVC e o EPR/XLPE (se ele pretende usar condutores isolados, e o tipo de linha admite, nem há mesmo “opções”, já que o mundo dos condutores isolados é domínio virtualmente exclusivo do PVC). Assim, de posse da sua IB e das outras definições mencionadas ele consultaria a tabela de capacidade de corrente pertinente e obteria a seção de condutor que atende às suas necessidades, isto é, a seção que proporciona uma capacidade de corrente no mínimo igual à IB de seu circuito. Só isso? Evidentemente, não. As condições em que irá operar o seu circuito — que envolvem a temperatura ambiente, a resistividade e a temperatura do solo quando se tratar de linha subterrânea, a existência de outros circuitos compartilhando a mesma linha elétrica, o que se traduz por penalizações no comportamento térmico de todos os condutores, devido ao calor mutuamente gerado — são exatamente aquelas dos ensaios ou as mesmas consideradas nos cálculos que forneceram os valores de capacidade de corrente tabelados? Eis aí, então, dados que devem ser conhecidos para uma utilização correta das tabelas de capacidade de corrente dadas pela norma. Portanto, o projetista precisa avaliar a que temperatura ambiente média seu circuito estará sujeito; identificar a quantidade e características dos demais condutores contidos na mesma linha; e, se o circuito for subterrâneo, conhecer os valores da resistividade e da temperatura do solo.\n\n<!-- pagina-origem: 12 -->\n\nSe esses dados forem diferentes daqueles que constituem as condições de referência das tabelas da norma, não é possível entrar diretamente com IB na tabela de capacidade de corrente. Antes é preciso aplicar à IB calculada os fatores de correção pertinentes. Enfim, a corrente levada à tabela é IB’ (corrente fictícia do projeto), dada por: ’ B\n\nonde f é fator de correção total, resultante da multiplicação de todos os fatores de correção aplicáveis ao caso (temperatura ambiente, agrupamento de circuitos, temperatura do solo, resistividade do solo...), isto é,\n\nA norma também fornece fatores de correção. Mas antes de entrar nesse que seria o terceiro bloco de informações a que nos referimos anteriormente, vamos retomar a leitura das tabelas de capacidade de corrente para informar, afinal, os parâmetros assumidos ou adotados na determinação dos valores de capacidade tabelados.\n\nTemperatura ambiente Em todas as tabelas (31 a 34), a temperatura ambiente de referência é 30°C.",
+    "paginas_origem": [
+      12
+    ],
+    "tokens_estimados": 730,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 16,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "O roteiro das linhas elétricas",
+      "As tabelas de capacidade de condução de corrente"
+    ],
+    "content": "Agrupamento de circuitos 1) Nas tabelas 31 e 32 (arranjos A1,A2, B1, B2, C e D), as capacidades referem-se a um único circuito, sendo fornecidos valores para dois casos distintos: – dois condutores carregados (dois condutores isolados, dois cabos unipolares ou um cabo bipolar); e – três condutores carregados (três condutores isolados, três condutores unipolares ou um cabo tripolar). 2) Nas tabelas 33 e 34 (arranjos E, F e G), e valendo-se da numeração que a norma atribui a cada coluna das tabelas, as capacidades indicadas referem-se a: – coluna 2: um cabo bipolar, arranjo E; – coluna 3: um cabo tripolar, arranjo E; – coluna 4: dois cabos unipolares justapostos, horizontal ou verticalmente, arranjo F; – coluna 5: três cabos unipolares em trifólio, arranjo F [Note-se, en passant, que há um equívoco na ilustração da norma referente à coluna em questão. Ao invés de cabos unipolares, o desenho indica cabos bipolares]; – coluna 6: três cabos unipolares justapostos, horizontal ou verticalmente, arranjo F; – coluna 7: três cabos unipolares dispostos horizontalmente e afastados, um do outro, no mínimo o equivalente a 1 x De (diâmetro externo do cabo), arranjo G; – coluna 8: três cabos unipolares dispostos verticalmente e afastados, um do outro, no mínimo o equivalente a 1 x De (diâmetro externo do cabo), arranjo G.\n\nTemperatura do solo As capacidades indicadas para o arranjo D, tabelas 31 e 32, referem-se a uma temperatura do solo de 20°C.\n\nResistividade do solo As capacidades indicadas para o arranjo D, tabelas 31 e 32, referem-se a uma resistividade do solo de 2,5 K.m/W.",
+    "paginas_origem": [],
+    "tokens_estimados": 398,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 17,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "O roteiro das linhas elétricas",
+      "Tabelas de fatores de correção"
+    ],
+    "content": "### Tabelas de fatores de correção\n\nPara cada um dos parâmetros analisados (temperatura ambiente, agrupamento, temperatura do solo, resistividade do solo), com destaque para o agrupamento, que é o mais trabalhoso, a norma fornece então fatores de correção. Parâmetro por parâmetro, são relacionadas a seguir as tabelas da NBR 5410 que trazem os fatores de correção respectivos, com a indicação dos tipos de linhas, ou arranjos de referência, a que os fatores se aplicam.\n\n- Temperatura ambiente (todos os arranjos de referência,\n\nexceto o D): tabela 35.\n\n- Temperatura do solo (linhas enterradas, arranjo de referência D): tabela 35.\n\n- Resistividade térmica do solo (linhas enterradas, arranjo de referência D): tabela 36.\n\n- Agrupamento, linhas enterradas (arranjo de referência\n\nD): tabela 38 para cabos diretamente enterrados e tabela 39 para cabos em eletrodutos enterrados.\n\n- Agrupamento, linhas fechadas em geral (arranjos de\n\nreferência A2, A1, B2, B1): tabela 37, linha 1\n\n- Agrupamento, linhas abertas enquadráveis no arranjo\n\nde referência C: tabela 37, linhas 2 e 3, para uma única camada de condutores; tabela 42 para várias camadas.\n\n- Agrupamento, linhas abertas enquadráveis nos arranjos de referência E e F: tabela 37, linhas 4 e 5, para uma única camada de condutores; tabela 42 para várias camadas. A tabela II, que é uma versão ligeiramente adaptada da tabela I, indica onde se localizam, na NBR 5410, os fatores de correção por agrupamento aplicáveis a cada tipo de linha.",
+    "paginas_origem": [],
+    "tokens_estimados": 374,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 18,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Dimensionamento de eletrodutos"
+    ],
+    "content": "### Notas\n\n(1) No geral, as capacidades de condução de corrente indicadas pela NBR 5410, para todas as seções de condutores, seguem a ordem crescente apresentada. A convergência não chega a ser absoluta porque numa pequena faixa de seções, menores, o arranjo de referência D chegar a ser um pouco mais favorável que o C. É o único caso de “cruzamento” de valores de capacidade de corrente entre arranjos. (2) Neste grupo, há um único tipo de linha que não poderia ser considerado como \"linha aberta\": aquele constituído por cabos unipolares ou cabo multipolar embutido(s) diretamente em alvenaria. Todavia, tanto a NBR 5410 como a IEC 60364 o enquadram no arranjo de referência C, assimilando-o, portanto, às linhas abertas que caracterizam este arranjo.\n\n<!-- pagina-origem: 13 -->\n\n## Dimensionamento de eletrodutos\n\nPara a determinação do tamanho mínimo de um eletroduto, necessário para acomodar um dado número de condutores, sejam eles de mesma seção ou não, a NBR 5410 fixa algumas regras básicas. A norma limita, além da ocupação, o comprimento e o número de curvas por trecho, tendo em vista a necessidade de instalar e retirar com facilidade os condutores, sem afetar sua integridade. Em resumo: 1) Não são permitidos trechos de tubulação contínuos, retilíneos, sem interposição de caixas, com mais de 15 m; nos trechos com curvas, essas devem ser limitadas a três de 90°, ou o equivalente a 270°, não sendo permitidas curvas com deflexão superior a 90°, devendo o comprimento máximo ser de 15 m menos 3 m por curva de 90° (item 6.2.11.1.2 da norma). Assim, por exemplo, um trecho com três curvas de 90° deve ter um comprimento máximo de\n\n15 −(3 × 3) = 6 m.\n\n2) Quando a tubulação passar por uma área inacessível, onde não possam ser instaladas caixas, a distância máxima entre duas caixas pode ser aumentada, desde que se aumente a seção do eletroduto (ver nota de 6.2.11.1.2). 3) A máxima porcentagem de área útil do eletroduto ocupada pelos condutores é de 53% no caso de um condutor, de 31% no caso de dois condutores e de 40% para três ou mais condutores. Pelo que vimos em 3), a ocupação máxima de um eletroduto pode ser calculada conhecendo-se a área útil do eletroduto AE e a área ocupada por cada condutor Acj. No caso (mais freqüente) de eletroduto circular, AE é dada por:\n\nAE = π (de - 2e)2/4 (1)\n\nonde de é o diâmetro externo do eletroduto e “e” a espessura. A área de cada condutor, Acj, é dada por:\n\nAcj = π dj2/4 (2)\n\nonde dj é o diâmetro externo do condutor genérico. Deveremos ter:\n\n(3) Σ Acj ≤k AE\n\nonde k é um fator que, conforme visto em 2), vale 0,53 para um condutor, 0,31 para dois e 0,40 para três ou mais. Vamos calcular o tamanho mínimo do eletroduto isolante médio capaz de conter três circuitos de uma mesma instalação, todos com condutores isolados Cu/PVC, sendo: um circuito com dois condutores de 2,5 mm2; um circuito com dois condutores de 4 mm2; um circuito com dois condutores de 6 mm2; e um condutor de proteção de 6 mm2. A partir de dados de fabricante e da expressão (2), calculamos a área de cada condutor: 10,8 mm2para o condutor de 2,5 mm2; 13,9 mm2para o condutor de 4 mm2; e 18,1 mm2para o de 6 mm2. A área total ocupada pelos condutores será:",
+    "paginas_origem": [
+      13
+    ],
+    "tokens_estimados": 799,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 19,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Dimensionamento de bandejas, eletrocalhas e leitos"
+    ],
+    "content": "Σ Acj = (2 × 10,8) + (2 × 13,9) + (3 × 18,1) = 103,7 mm2.\n\nNo caso dos eletrodutos isolantes (tabela I), sendo dados os diâmetros internos (mínimos) di, podemos escrever:\n\nAE = π di2/4 (4)\n\nDe (3) virá:\n\nΣ Acj ≤k π di2/4 (5)\n\ne o diâmetro interno será:\n\n(6)\n\nAssim, teremos, com k = 0,4:\n\n<!-- pagina-origem: 14 -->\n\ndi ≥18,1 mm\n\no que, pela tabela I, nos remete a um eletroduto (isolante, médio) de tamanho nominal 25.\n\n## Dimensionamento de bandejas, eletrocalhas e leitos\n\nNa seção em que apresenta as prescrições para instalação das linhas elétricas e, em particular, no artigo que trata das chamadas linhas “ao ar livre”, que incluem as linhas em bandejas (eletrocalhas sem tampa) e leitos (6.2.11.3), a NBR 5410 não fixa limites de ocupação, como faz para a instalação em eletrodutos. De fato, a norma não entra, aí, em detalhes acerca da quantidade de cabos que podem ser instalados nesses condutos, limitando-se a recomendar que os cabos seja dispostos em uma única camada e que não seja excedido determinado volume de material combustível por metro linear de linha elétrica (6.2.11.3.5) [Ver boxe “Cuidados para evitar a propagação de fogo”]. Verifica-se, portanto, que a NBR 5410 oferece bastante liberdade ao projetista na definição das linhas em questão. E presume-se, conseqüentemente, que ele deveria buscar a melhor solução de compromisso, do ponto de vista econômico — uma solução que não onere o dimensionamento dos cabos, tendo em vista os fatores de correção por agrupamento previstos na norma, e nem incorra em despesas, com os condutos e/ou elementos de suporte, que anulem a economia obtida com os cabos. De qualquer forma, há alguns critérios que o projetista pode adotar — no mínimo como ponto de partida — para dimensionar a bandeja ou leito destinado a acomodar um certo número de cabos, de tais e tais seções. Ou, inversamente, calcular a quantidade de cabos, de seções especificadas, que poderá ser disposta numa determinada bandeja ou leito. O método de dimensionamento de bandejas ou leitos descrito a seguir é de aplicação simples e baseia-se em quatro pontos: 1) não são estabelecidas premissas quanto ao espaçamento entre os cabos — enfim, quanto a disposição que poderiam proporcionar um dimensionamento elétrico otimizado dos condutores. Portanto, os cabos podem ser admitidos contíguos e, se for o caso, em várias camadas; 2) a seção total de um cabo (S) é considerada igual ao quadrado de seu diâmetro externo (D). Isto é, despreza-se o fator π/4, para levar em conta os vazios entre os cabos. Assim,\n\nS = D2\n\n3) é considerado um “coeficiente de enchimento” (k), igual a 1,4 para cabos de potência e a 1,2 para cabos de controle; e 4) é também considerado um “fator de reserva” (a), dado em porcentagem (quando não for prevista reserva, a = 0). A seção mínima necessária (Sc) para a bandeja ou leito é dada por:\n\nSeja, por exemplo, dimensionar uma bandeja para conter 20 cabos unipolares de cobre, com isolação e cobertura de PVC, 120 mm2, admitindo-se, na bandeja, uma reserva de 20%. Do catálogo de fabricante obtemos, para o cabo, D = 19 mm. Teremos:\n\nS = 192= 361 mm2",
+    "paginas_origem": [
+      14
+    ],
+    "tokens_estimados": 777,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 20,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Dimensionamento de bandejas, eletrocalhas e leitos",
+      "CUIDADOS PARA EVITAR A PROPAGAÇÃO DE FOGO"
+    ],
+    "content": "o que pode conduzir à escolha de uma bandeja com, por exemplo, 215 mm de largura e 60 mm de altura (12 900 mm2). Equacionado o aspecto “geométrico”, deve-se conferir o aspecto “mecânico”, isto é, avaliar se o peso dos cabos (por metro linear) é perfeitamente suportável pela bandeja ou se haveria necessidade, por exemplo, de reduzir o espaçamento entre os elementos de sustentação. Quanto ao fator de agrupamento, as tabelas da NBR 5410 aplicáveis são a 37, para cabos em uma só camada, e a 42, para várias camadas.\n\n<!-- pagina-origem: 15 -->\n\n### CUIDADOS PARA EVITAR A PROPAGAÇÃO DE FOGO",
+    "paginas_origem": [
+      15
+    ],
+    "tokens_estimados": 148,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 21,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Dimensionamento de bandejas, eletrocalhas e leitos",
+      "CUIDADOS PARA EVITAR A PROPAGAÇÃO DE FOGO"
+    ],
+    "content": "Em 6.2.11.3.5, a NBR 5410 recomenda que o volume de material combustível dos cabos — isolação, cobertura, capa interna, enchimento, enfim, tudo que for material combustível empregado na fabricação dos cabos — não exceda, por metro linear de linha elétrica em bandeja e leito, 3,5 dm3para cabos da categoria BF da NBR 6812 ou 7,0 dm3para cabos da categoria AF ou AF/R da NBR 6812. A norma NBR 6812 é a que descreve o chamado ensaio de queima vertical (fogueira). Esse ensaio destina-se a verificar as características do cabo quanto à nãopropagação e auto-extinção do fogo. No ensaio, realizado numa câmara especial, um feixe de cabos de mesma seção e cerca de 3 m de comprimento é alojado em um leito vertical e submetido à chama de um queimador, devendo então a amostra apresentar determinados resultados, especificados na norma, para que seja considerada aprovada. As categorias AF e BF de que fala a NBR 6812 não se referem a tipos de cabos, mas sim ao volume de material não metálico envolvido no ensaio — em última análise, ao número de cabos que comporão a amostra (feixe). E é aí que entram os dois valores citados na NBR 5410, e extraídos da NBR 6812. Com efeito, num ensaio de queima vertical da categoria BF a quantidade de cabos (ou de segmentos de cabos) ensaiada, qualquer que seja sua seção, não deve ser inferior ao equivalente a 3,5 dm3de material combustível por metro linear. Na categoria AF, o parâmetro é 7 dm3. Ao reproduzir esses valores na NBR 5410, os redatores da norma de instalações quiseram lembrar que as características de não-propagação e de auto-extinção (de fogo) dos cabos são garantidas, em princípio, para até aqueles valores, convindo não excedê-los — ainda que se possa contar com a segurança adicional representada pelo fato de que nas instalações as bandejas e leitos são normalmente dispostos na horizontal (quer dizer, a extensão das linhas na horizontal é bem superior à dos trechos verticais), quando o ensaio é feito na vertical, uma condição mais crítica. As tabelas I e II indicam a quantidade de cabos que resultaria da aplicação da recomendação contida na NBR 5410, isto é: a partir de dados constantes de catálogos de fabricantes foi calculado o volume de material combustível por metro linear de cabo (v), para as diferentes seções e, a partir daí, deduzido o número de cabos que resultaria num volume total de material combustível de no máximo 3,5 dm3 por metro linear de linha elétrica (n = 3,5/v). E foi utilizado o valor de 3,5 dm3porque os cabos de potência BT nacionais são submetidos, em sua grande maioria, ao ensaio de queima vertical categoria BF. Observa-se, nas tabelas, que a recomendação da NBR 5410 é restritiva, principalmente para cabos multipolares. Nessas condições, quando for necessário utilizar uma quantidade de cabos superior à indicada nas tabelas, devem ser tomadas precauções para evitar uma eventual propagação de fogo, utilizando-se, por exemplo, barreiras corta-fogo convenientemente dispostas ao longo da linha em bandeja, leito ou prateleira.",
+    "paginas_origem": [],
+    "tokens_estimados": 756,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 22,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Condutores em paralelo"
+    ],
+    "content": "Assim, a recomendação da norma deve ser entendida como um parâmetro a balizar a atenção do projetista para a necessidade ou não de cuidados extras com a propagação de fogo.Até porque não se pode garantir, categoricamente, que o próprio ensaio de queima vertical, na forma atual, seja um método perfeito, definitivo, para avaliação do problema.Verificou-se, aliás, que a aeração do feixe de cabos pode ser um fator tão ou mais crítico, na propagação do fogo, que o volume de material combustível envolvido, e que se torna mais acentuado dependendo das seções dos cabos.\n\n<!-- pagina-origem: 16 -->\n\n## Condutores em paralelo\n\nO uso de dois ou mais condutores em paralelo por fase — e, eventualmente, também no neutro —, ao invés de um único condutor, representa uma solução prática e econômica, quando se trata de transportar correntes elevadas, geralmente em circuitos de distribuição e em entradas de energia. Com efeito, quanto menor a seção do cabo, mais fácil seu manuseio e sua instalação e maior a corrente que pode ser conduzida por unidade de área. Via de regra, costuma-se limitar a seção dos condutores, na grande maioria das aplicações, a 240 ou 300 mm2. Assim, para correntes que exijam seções nominais maiores, recorre-se a dois ou mais condutores por fase, eletricamente ligados em ambas as extremidades, formando um único condutor — solução que pode ser estendida ao neutro ou ao condutor de proteção, quando for o caso. Por outro lado, não parece existir nenhuma razão de ordem prática para colocar em paralelo condutores de seção nominal inferior a 50 mm2(pelo menos nas aplicações correntes). A NBR 5410 prescreve, em 6.2.5.7, que sejam tomadas medidas para garantir a igual divisão de corrente entre os condutores ligados em paralelo na mesma fase (ou polaridade, no caso de CC). Para garantir o mais possível uma igual divisão de corrente entre os condutores ligados numa mesma fase (ou no neutro, se for o caso), é necessário inicialmente que esses condutores:\n\n- tenham o mesmo comprimento;\n\n- sejam de mesmo material condutor (cobre ou alumínio);\n\n- tenham a mesma seção nominal;\n\n- tenham o mesmo tipo de isolação;\n\n- tenham terminações iguais.\n\nAdmitamos um circuito constituído por cabos unipolares contíguos numa bandeja, leito ou prateleira, com n cabos por fase, sendo os cabos de cada fase agrupados lado a lado, isto é\n\nRR.....RTT.....TSS.....S\n\nVerifica-se que a distribuição de correntes será muito irregular entre os cabos de uma mesma fase e que haverá de-\n\n![Figura vetorial da página 16](figura-vetorial-p16-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Disposição com os cabos de cada grupo RST posicionados lado a lado\n\nFig. 2 – Disposição com os cabos de cada grupo RST posicionados em trifólio sequilíbrio também na estrela de tensões na barra da carga. A razão desses desequilíbrios é a diferença entre as indutâncias mútuas dos cabos. Se os cabos unipolares contíguos forem dispostos com as três fases agrupadas, isto é\n\nRSTTSRRSTTSR.....",
+    "paginas_origem": [
+      16
+    ],
+    "tokens_estimados": 766,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 23,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Condutores em paralelo"
+    ],
+    "content": "as correntes, embora diferentes nas três fases, serão iguais nos condutores de cada fase. Se tivermos cabos unipolares, ou condutores isolados, contidos em condutos fechados, cada conduto deverá conter as três fases e os diversos condutos deverão ter as mesmas características físicas e, principalmente no caso de condutos magnéticos fechados, é desejável, caso exista neutro no circuito, que cada conduto contenha seu condutor neutro. Para igualdade das correntes, não só entre os condutores de cada fase, como entre as três fases, e para o equilíbrio das tensões na carga, as soluções mais satisfatórias consistem em utilizar cabos unipolares em trifólios ou cabos multipolares de idênticas características físicas. Para cabos unipolares em bandejas, leitos para cabos ou prateleiras, tipos comuns de linhas, em instalações industriais e em grandes instalações comerciais, são as seguintes as disposições mais recomendadas: 1) num mesmo plano, pode-se ter\n\nRST TSR RST TSR.....\n\nmantendo-se entre dois grupos consecutivos uma distância equivalente a um diâmetro externo de cabo, assumindo-se que os cabos de um mesmo grupo sejam dispostos de forma contígua (figura 1); 2) ainda num mesmo plano (e apenas no mesmo plano), uma disposição dos grupos em trifólios separados entre si de uma distância da ordem do dobro do diâmetro externo do cabo, como indicado na figura 2;\n\n<!-- pagina-origem: 17 -->\n\n![Figura vetorial da página 17](figura-vetorial-p17-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 3 – Disposição dos cabos em diferentes planos\n\n3) em diferentes planos, os cabos devem ser dispostos como indicado a seguir\n\nRST TSR RST TSR RST TSR...",
+    "paginas_origem": [
+      17
+    ],
+    "tokens_estimados": 432,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 24,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Condutores em paralelo"
+    ],
+    "content": "devendo ser de 300 mm, no mínimo, a distância vertical entre os níveis, obedecendo-se em cada nível as recomendações de 1) (figura 3). Vejamos um exemplo de dimensionamento, em que se evidencia também o uso dos fatores de agrupamento. Seja alimentar um quadro de distribuição, com três fases e PEN e uma corrente de 720 A, utilizando condutores de cobre com isolação de PVC e admitindo um local a 30°C, com solo a 20°C. Uma rápida olhada nas tabelas de capacidade de condução de corrente da NBR 5410 mostra que a seção necessária será superior a 300 mm2, qualquer que seja o tipo de linha previsto. Logo, é conveniente utilizar condutores em paralelo. Vamos optar por três condutores por fase e dimensionar para duas possibilidades, a) três cabos tetrapolares contidos em eletrodutos enterrados, espaçados de 0,5 m, lado a lado, e b) três cabos tetrapolares contíguos em bandeja perfurada, considerando apenas o critério da capacidade de condução de corrente, desprezando a presença de outros circuitos. Teremos então três circuitos, cada um correspondendo a um cabo tetrapolar (3 fases + PEN), com corrente de projeto IB = 720/3 = 240 A. No caso a) o fator de agrupamento será 0,90 (tabela 39 da NBR 5410) e a corrente fictícia de projeto IB' = 240/0,9 = 267 A, levando assim a uma seção nominal de 240 mm2(vide tabela 31 da norma, linha tipo D). No caso b), o fator será 0,82 (tabela 37 da norma) e IB' = 240/0,82 = 293 A, levando a uma seção nominal de 150 mm2(tabela 33, coluna 3).",
+    "paginas_origem": [],
+    "tokens_estimados": 372,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 25,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Linhas elétricas em shafts",
+      "Proteção contra incêndio"
+    ],
+    "content": "## Linhas elétricas em shafts\n\nUma das formas de instalação mais comuns em edifícios é aquela alojada em poços verticais, chamados de shafts. Trata-se de aberturas nos pisos dos andares, todas alinhadas, formando uma “chaminé” por onde passam os condutores que alimentam as cargas ao longo do prédio. Esses shafts costumeiramente se transformam em objeto de grande disputa entre os responsáveis pelas instalações elétricas, hidráulicas, de segurança contra incêndio, de ar condicionado e outras utilidades, uma vez que o espaço disponibilizado pelos arquitetos é pouco para tantas tubulações. Para bem lutar por seu espaço nos shafts, é fundamental que o profissional de instalação elétrica esteja familiarizado com o que a NBR 5410 prescreve para tais locais. Primeiramente, vejamos a terminologia relativa aos shafts. A NBR IEC 50 (826) - Vocabulário eletrotécnico internacional - Instalações elétricas em edificações define poço como “espaço de construção vertical, estendendo-se, geralmente, por todos os pavimentos da edificação”. E espaço de construção, por sua vez — ainda conforme a mesma norma —, “é aquele existente na estrutura ou nos componentes de uma edificação, acessível apenas em determinados pontos”.\n\n### Proteção contra incêndio\n\nEm 6.2.9.6.3, referindo-se a linhas elétricas em shafts, a NBR 5410 prescreve que toda travessia de piso deve ser obturada de modo a impedir a propagação de incêndio. Esse bloqueio deve ser garantido por materiais capazes de suportar a ação de chama direta por um determinado tempo. Na norma de instalações, não há referência explícita quanto ao tipo de material e seus requisitos técnicos. Na falta de uma orientação mais precisa, é razoável exigir do material que irá obturar a passagem as mesmas propriedades impostas, por exemplo, aos cabos conforme a IEC 60331: Tests for electric cables under fire conditions - Circuit integrity, isto é, resistência à chama direta de 750°C por três horas consecutivas. Tem-se observado, em alguns casos, a utilização de concreto magro ou de gesso como elemento de obturação, além de certas “espumas” que impedem a propagação das\n\n<!-- pagina-origem: 18 -->\n\n![Figura vetorial da página 18](figura-vetorial-p18-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Obturação de poços\n\nchamas. Não se pode improvisar ou deixar dúvidas nessa questão. O material empregado deve ter resistência ao fogo comprovada, definida (temperatura e tempo) e informada pelo fabricante/fornecedor do material. Só são dispensadas de bloqueio contra propagação de incêndio, nos shafts, as linhas elétricas dotadas de condutores e/ou condutos resistentes ao fogo, livres de halogênio e com baixa emissão de fumaça e gases tóxicos. Assim, distinguem-se aqui três possibilidades:\n\n- se a linha se resumir ao cabo (preso diretamente à parede do poço por abraçadeiras ou outros fixadores), este deverá, obviamente, atender à condição indicada;\n\n- a situação se repete se o cabo for acomodado em um",
+    "paginas_origem": [
+      18
+    ],
+    "tokens_estimados": 760,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 26,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Linhas elétricas em shafts",
+      "Proteção contra incêndio"
+    ],
+    "content": "conduto aberto. Adicionalmente, o conduto, sobretudo se for contínuo (e não apenas suportes de pequenas dimensões, espaçados), deverá também atender à condição indicada;\n\n- todavia, o cabo poderá ser “apenas” antichama se estiver contido em conduto fechado e esse conduto for, ele próprio, resistente ao fogo, livre de halogênio e com baixa emissão de fumaça e gases tóxicos. É o caso dos eletrodutos metálicos, de seção circular ou não. Linhas que não se enquadrem nessas três possibilidades, como as prumadas aparentes compostas de eletrodutos de PVC, por exemplo — não importando o tipo de condutor neles contido —, devem ser obturadas em todas as travessias de pisos. É o caso, também, de linhas “abertas” — como mencionado, cabos alojados em condutos abertos, fixados a suportes ou, ainda, diretamente à parede do shaft — quando o cabo não for do tipo resistente à chama, livre de halogênio e com baixa emissão de fumaça e gases tóxicos (figura 1). Ainda assim, com obturação e tudo, linhas como as desses dois últimos exemplos só são admitidas, em certos locais, se o shaft — visto como um componente da instalação — possuir grau de proteção IP5X, no mínimo, e for acessível somente com a utilização de chave ou ferramenta (tampa de acesso com fechadura ou aparafusada). Que locais? Aqueles objeto de uma seção específica da norma, a 5.8.2, que fixa cuidados especiais, visando a segurança contra incêndios, em locais – BD2, BD3 e BD4; – BE2; – CA2; e – CB2. A classificação BD refere-se às condições de fuga das pessoas em emergências [o artigo “Linhas elétricas em locais de afluência de público” cobre o assunto em detalhes]. Já os locais BE2 são aqueles que apresentam riscos de incêndio, como os que processam ou armazenam papel a granel, farinha, aparas de madeira e matérias plásticas, entre outros materiais. Locais CA2 são aqueles construídos principalmente com materiais combustíveis, como madeira e lonas plásticas. E CB2, por fim, aqueles com estruturas que podem propagar incêndios em função de suas formas e dimensões, como edificações de grande altura (prédios residenciais com mais de 15 pavimentos e não-residenciais com mais de 6 pavimentos), ou ainda edificações com sistemas de ventilação forçada. Com os requisitos relativos ao grau de proteção (provido, naturalmente, por uma compartimentação incombustível) e à acessibilidade, a norma na verdade abre caminho para que as linhas elétricas no interior do shaft possam ser consideradas “embutidas” e, assim, fora das exigências que ela própria estabelece para as linhas aparentes, naqueles locais (BD2, BD3, etc.). Exigências que, por sinal, são aquelas mesmas, já descritas, impostas às linhas em shafts quando não forem usados bloqueios cortafogo nas travessias dos pisos. Não fosse então essa “abertura”, estaria morta, em última análise, a possibilidade de adotar nos shafts dos locais em questão soluções de linhas elétricas que não o uso de cabos e/ou condutos resistentes ao fogo, livres de halogênio e com baixa emissão de fumaça e gases tóxicos; e dispensada, conseqüentemente, qualquer discussão sobre o uso de bloqueios corta-fogo.",
+    "paginas_origem": [],
+    "tokens_estimados": 780,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 27,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Linhas elétricas em shafts",
+      "Tipos de condutores em shafts"
+    ],
+    "content": "IP5X significa: protegido contra poeira [ver artigo “Influências externas e graus de proteção”]. Não uma vedação total; mas a poeira não deve penetrar em grande quantidade. Isso seria conseguido, na prática, com a utilização de tampas sem aberturas e com alguma vedação (guarnição) nos acessos ao shaft nos andares.\n\n### Vizinhança com outras linhas elétricas\n\nAs linhas elétricas de baixa tensão e as de tensão superior a 1000 V não devem ser colocadas no mesmo poço, a\n\n<!-- pagina-origem: 19 -->\n\nmenos que sejam tomadas precauções para evitar que os circuitos de baixa tensão sejam submetidos a sobretensões, em caso de falta na rede de MT. Tais precauções podem incluir, no caso mais simples, a colocação de uma barreira física entre as linhas. No entanto, o mais prudente é não colocar, no mesmo shaft, linhas de baixa e de média tensão.\n\n### Dutos de ar condicionado, ventilação e exaustão\n\nEmbora os dutos mencionados nem sempre sejam shafts, é conveniente lembrar que a NBR 5410 proíbe, em 6.2.9.4.3, que linhas elétricas sejam instaladas no interior de dutos de exaustão de fumaça ou de ventilação. Portanto, cuidado com forros e pisos elevados utilizados para retorno de sistemas de ar condicionado, ventilação ou exaustão!\n\n### Tipos de condutores em shafts\n\nO parágrafo 6.2.11.5.1 da NBR 5410 estabelece que podem ser utilizados nos shafts condutores isolados e cabos uni ou multipolares, sob qualquer forma normalizada de instalação, desde que os condutores ou cabos possam ser instalados ou retirados sem intervenção nos elementos de construção do prédio. Tem havido uma certa confusão sobre o significado de “forma normalizada de instalação”. A intenção da norma é apenas lembrar um dos critérios gerais com que disciplina a composição das linhas elétricas: o de que, em princípio, condutores dotados apenas de isolação têm de ser instalados dentro de condutos fechados e condutores com isolação e cobertura podem ser instalados em qualquer tipo de linha. Assim, por exemplo, em um shaft pode ser utilizado condutor apenas isolado, desde que no interior de eletrodutos ou eletrocalhas fechadas, fixados à parede do poço.",
+    "paginas_origem": [
+      19
+    ],
+    "tokens_estimados": 534,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 28,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Linhas elétricas enterradas",
+      "Condutores admitidos"
+    ],
+    "content": "### Dimensionamento de circuitos contidos em shafts\n\nOs shafts estão genericamente relacionados, na tabela 28 da NBR 5410 (a que apresenta os tipos de linhas elétricas), como “espaços de construção”. São os métodos de instalação identificados pelos números 21 a 25, naquela tabela. Para se determinar a capacidade de corrente de um condutor dentro do shaft, o método de referência, como indica a tabela I do artigo “O roteiro das linhas elétricas”, é o B1 ou B2, dependendo do caso. As tabelas de capacidade de condução de corrente que abrangem esses dois métodos são as tabelas 31 e 32 da norma. Conseqüentemente, no dimensionamento de um circuito em shaft deve ser utilizada a coluna B1 ou B2 da tabela 31 (PVC) ou 32 (EPR/XLPE) da norma, afetado ou não pelos fatores de correção por agrupamento da tabela 37.\n\n## Linhas elétricas enterradas\n\nA s linhas elétricas enterradas, constituídas por cabos diretamente enterrados no solo ou contidos em eletrodutos enterrados no solo (linhas-tipo 61, 62 e 63, tabela 28 da NBR 5410), são uma maneira de instalar que exige certas precauções, tendo em vista as solicitações de diversas naturezas a que os cabos podem ser expostos — movimentação de terra, contato com corpos duros, choque (mecânico) de ferramentas, umidade e ações químicas causadas por elementos do solo.\n\n### Condutores admitidos\n\nConforme 6.2.11.6.1 da norma, os cabos diretamente enterrados ou contidos em eletrodutos enterrados devem\n\n![Figura vetorial da página 19](figura-vetorial-p19-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – As linhas subterrâneas devem ser adequadamente protegidas contra solicitações mecânicas, umidade e agentes químicos. Especialmente no caso de linhas constituídas de cabos diretamente enterrados, a resistência aos agentes químicos e à ação da água pode ser garantida com uma judiciosa seleção do cabo — vale dizer, dos materiais de isolação e de cobertura do cabo. Quanto à proteção mecânica, ela pode ser provida pelo próprio cabo (1), se for do tipo armado. Se o cabo não for armado, e levando em conta o risco mais comum de dano mecânico, que é aquele decorrente de escavações, ele deve contar com uma proteção mecânica complementar — por exemplo, placas de concreto (2), eletrodutos (3) ou canaletas de concreto (4). Além disso, acima da linha elétrica (10 cm, no mínimo) deve ser disposto, de forma contínua, um elemento de advertência, não sujeito a corrosão.\n\n<!-- pagina-origem: 20 -->\n\nser unipolares ou multipolares. Quando diretamente enterrados, eles devem ser do tipo armado (isto é, construtivamente dotados de armação metálica) ou então providos, na instalação, de proteção mecânica adicional (figura 1). No entanto, a norma admite que sejam utilizados condutores isolados dentro de eletrodutos enterrados se não houver qualquer caixa de passagem em toda a extensão da linha e se for garantida a estanqueidade do eletroduto.",
+    "paginas_origem": [
+      20
+    ],
+    "tokens_estimados": 742,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 29,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Linhas elétricas enterradas",
+      "Prescrições para instalação"
+    ],
+    "content": "### Prescrições para instalação\n\nEm 6.2.11.6.3 são impostas, para as linhas enterradas de qualquer tipo, as profundidades de (ver figura 2):\n\n- 0,70 m em terreno normal; e de\n\n- 1 m na travessia de vias acessíveis a veículos e numa zona de 0,50 m de largura, de um e de outro lado dessas vias. Essas profundidades podem ser reduzidas em terreno rochoso ou quando os cabos estiverem protegidos, por exemplo, por eletrodutos que suportem sem danos as influências externas a que possam ser submetidos. Sobre a sinalização de linhas enterradas, a NBR 5410 exige sinalização contínua por elemento de advertência não sujeito a corrosão (fita colorida, por exemplo) e disposto a, no mínimo, 10 cm acima da linha (6.2.11.6.6).\n\n![Figura vetorial da página 20](figura-vetorial-p20-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 2 – Em terreno normal, a profundidade mínima dos cabos diretamente enterrados deve ser de 0,70 m em relação à superfície do solo; esse valor deve ser aumentado para 1,00 m na travessia de vias acessíveis a veículos, incluindo uma faixa contígua de 0,50 m em ambos os lados da via.\n\nCaso a linha elétrica enterrada venha a cruzar com outra linha, também elétrica, deve ser observado um afastamento mínimo de 0,20 m entre elas. Em relação a condutos de outras linhas que não elétricas, o afastamento mínimo também é de 0,20 m, qualquer que seja a situação relativa das duas linhas, de cruzamento ou de simples aproximação. A distância, portanto, é a mínima admissível entre dois pontos quaisquer das duas linhas. Mas a norma permite uma redução desse afastamento quando as linhas elétricas e os condutos de outras instalações forem separados por meios que garantam uma segurança equivalente.",
+    "paginas_origem": [],
+    "tokens_estimados": 447,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 30,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Linhas elétricas em locais de afluência de público"
+    ],
+    "content": "## Linhas elétricas em locais de afluência de público\n\nA NBR 5410 estabelece que devem ser tomadas medidas especiais para a prevenção de incêndios em locais de afluência de público. Essas medidas são reiteradas e reforçadas na NBR 13570 - “Instalações elétricas em locais de afluência de público - Procedimento”. Os locais de afluência de público são designados na NBR 5410, em sua tabela 15, pela classificação BD3 e BD4. O código BD refere-se às condições de fuga das pessoas em emergências, a saber: – BD3 é uma situação de fuga “incômoda”, típica de locais de alta densidade de ocupação e condições de fuga fáceis. São os casos de teatros, cinemas e áreas de circulação de shopping centers, onde há (ou deveria haver) grandes e muitas saídas de emergência disponíveis; – BD4 é uma situação de fuga “longa e incômoda”, característica de locais de alta densidade de ocupação e condições de fuga difíceis. Exemplos destes locais são hotéis e hospitais. Mas a NBR 5410 fala apenas em “alta densidade de ocupação”, sem especificar exatamente de quantas pessoas se está tratando em cada caso. A NBR 13570 esclarece melhor o assunto: em sua tabela A.1, ela estabelece a quantidade de pessoas a partir da qual um dado local passa a ser considerado como de afluência de público. A seguir, na tabela A.2, a norma aponta a classificação BD para cada tipo de local. Como exemplo de aplicação destas tabelas, vamos tomar os cinemas. Conforme o item 02 da tabela A.1 (transcrita parcialmente na tabela I aqui publicada), qualquer cinema com capacidade a partir de 50 pessoas já é considerado um local de afluência de público. E, pelo item 01 da tabela A.2 (também transcrita em parte aqui, na tabela II), um cinema deve ser classificado como BD3 ou BD4 — o que, neste caso, não é relevante, pois as prescrições são as mesmas para as duas classificações. É importante destacar, como faz o item 1.4 da NBR 13570, que a norma não se aplica aos ambientes não acessíveis ao público, tais como salas administrativas, técnicas ou operacionais. Assim, em nosso exemplo anterior, a sala da ge-\n\n<!-- pagina-origem: 21 -->\n\nrência do cinema ou a sala de projeção dos filmes, onde não há acesso de grande quantidade de pessoas, não são locais BD3 ou BD4 (seriam tipicamente locais BD1) e, dessa forma, a instalação elétrica no interior de tais salas segue as prescrições gerais da NBR 5410. Em seu item 4.2 Seleção e instalação das linhas elétricas, a NBR 13570 aponta uma série de medidas específicas aplicáveis a locais de afluência de público. Antes de mais nada, em locais BD3 ou BD4 somente podem ser utilizados condutores de cobre (4.2.1). Isto evita os riscos potenciais de elevações de temperaturas indesejadas em ligações com cabos de alumínio. Além disso, todos os cabos utilizados têm de ser do tipo antichama (4.2.2) — melhor dizendo, no mínimo antichama. Pois, dependendo do tipo de\n\n![Figura vetorial da página 21](figura-vetorial-p21-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Instalação em linha aparente com conduto aberto em locais BD3 e BD4\n\n![Figura vetorial da página 21](figura-vetorial-p21-3)",
+    "paginas_origem": [
+      21
+    ],
+    "tokens_estimados": 795,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 31,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Linhas elétricas em locais de afluência de público",
+      "Linhas “abertas”"
+    ],
+    "content": "> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 2 – Instalação em linha aparente com cabo diretamente fixado, em locais BD3 e BD4\n\nlinha, cabos e condutos devem atender a exigências adicionais, como veremos.\n\n### Linhas “abertas”\n\nAs linhas elétricas aparentes constituídas por condutos abertos devem utilizar cabos e condutos livres de halogênios e com baixa emissão de fumaça e gases tóxicos (4.2.4.a, 4.2.4.b). Isso quer dizer que nos locais indicados, quando as linhas não forem embutidas e utilizarem eletrocalhas sem tampa, leitos, suportes, prateleiras, etc., ou seja, um conduto no qual o cabo pode ser diretamente atingido pelo fogo, é obrigatório o uso de cabos que atendam à norma NBR 13248 – “Cabos de potência e controle com isolação sólida extrudada e com baixa emissão de fumaça, para tensões de isolamento até 1 kV – Especificação”. Tais cabos, quando queimam, praticamente não emitem fumaça nem gases prejudiciais à saúde (tóxicos) e à integridade do patrimônio (corrosivos). Além disso, como mencionado, os próprios condutos têm de ser isentos de fumaça, o que leva, na prática, a condutos metálicos (figura 1).\n\nFig. 3 – Instalação em linha aparente com conduto fechado em locais BD3 e BD4\n\n<!-- pagina-origem: 22 -->\n\n![Figura vetorial da página 22](figura-vetorial-p22-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 4 – Instalação em linha embutida em locais BD3 e BD4 Naturalmente, a obrigatoriedade de cabos antichama e isentos de fumaça também se aplica a linhas aparentes em que o cabo é diretamente fixado em parede ou teto. E neste caso a linha (ou seja, o cabo) deve estar, no mínimo, 2,5 m acima do piso acabado (4.2.4.a) (figura 2). A exigência de cabos e condutos que não emitam fumaça é mais do que justificável. Levantamentos realizados após grandes incêndios com vítimas (edifícios Andraus, Joelma, Grande Avenida, Andorinhas, etc.) revelaram que a maioria das mortes ocorreu por asfixia, devido à grande quantidade de fumaça no local. É claro que os cabos e os condutos não são os únicos responsáveis pela geração da fumaça durante um incêndio, mas eles contribuem com uma parcela importante, tanto em quantidade quanto em toxicidade.",
+    "paginas_origem": [
+      22
+    ],
+    "tokens_estimados": 580,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 32,
+    "heading_path": [
+      "Linhas elétricas – Condutores",
+      "Linhas elétricas em locais de afluência de público",
+      "Linhas embutidas"
+    ],
+    "content": "### Condutos fechados\n\nQuando os condutos forem fechados (eletrodutos, eletrocalhas com tampas), eles é que devem ser antichama e não emitir fumaça, enquanto os cabos em seu interior podem ser “apenas” antichama (4.2.4.c). Até o momento, os únicos condutos fechados que atendem às exigências mencionadas são aqueles fabricados com materiais metálicos (eletrodutos metálicos, eletrocalhas metálicas, etc.) (figura 3).\n\n### Linhas embutidas\n\nAs linhas embutidas devem estar envolvidas por material incombustível (4.2.3). Isto é obtido naturalmente em instalações de eletrodutos em alvenaria, por exemplo (figura 4). Observe-se que nestes casos os cabos podem ser “apenas” antichama e os condutos podem ser metálicos ou isolantes. Em nenhuma hipótese é permitida, nos locais analisados, a instalação de cabos diretamente embutidos em alvenaria (4.2.5).",
+    "paginas_origem": [],
+    "tokens_estimados": 213,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  }
+]

@@ -1,0 +1,61 @@
+schema: 1
+story: "SIE-DS-05"
+story_title: "Parameters + Results (ParametersResultsTemplate)"
+story_path: "docs/stories/story-SIE-DS-05-parameters-results.md"
+gate: CONCERNS
+status_reason: >-
+  AC1-AC7 PASS: ParameterPanel (<details> nativo) e ResultSummary (5 severidades do
+  catálogo, motivo+próxima ação exigidos exatamente para warning/danger/neutral por
+  regra de composição 6) implementados e testados. Regressão completa 1041/1041, build
+  SPA verde, AC6 confirmado. CONCERNS mantido só pela indisponibilidade do CodeRabbit —
+  6ª story consecutiva, recomendação de pausa até resolução.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-31T00:00:00-03:00"
+expires: "2026-08-14T00:00:00-03:00"
+quality_score: 90
+mode: "yolo (agente-a-agente: @sm → @po → @architect → @dev → @qa, sem fase @devops)"
+
+smoke_test:
+  url: "http://127.0.0.1:5173/sie-command-center-preview"
+  status_code: 200
+  content_checks:
+    - "Parâmetros — Queda de tensão"
+    - "Resultados — Queda de tensão"
+    - "Próxima ação:"
+    - "Pendente"
+  note: "Zero style= em toda a página, não só nos componentes desta story."
+  legacy_regression_check:
+    url: "http://127.0.0.1:5173/"
+    status_code: 200
+    content_check: "Projetos"
+
+trace_ac:
+  - { ac: AC1, descricao: "ParameterPanel", resultado: PASS }
+  - { ac: AC2, descricao: "ResultSummary (5 severidades, regra composição 6)", resultado: PASS }
+  - { ac: AC3, descricao: "Integração na rota", resultado: PASS }
+  - { ac: AC4, descricao: "Zero cálculo real", resultado: PASS }
+  - { ac: AC5, descricao: "Acessibilidade", resultado: PASS }
+  - { ac: AC6, descricao: "Zero impacto no legado", resultado: PASS }
+  - { ac: AC7, descricao: "Testado localmente", resultado: PASS }
+
+top_issues:
+  - id: "TEST-001"
+    severity: medium
+    finding: "CodeRabbit CLI (WSL) indisponível pela 6ª story consecutiva (SIGILL/exit 132)."
+    suggested_action: "@devops — recomenda-se pausar novas stories de escopo até resolução."
+    suggested_owner: devops
+  - id: "DOC-001"
+    severity: low
+    finding: "Checkboxes de Acceptance Criteria permanecem [ ] apesar de todos PASS — padrão recorrente."
+    suggested_action: "@po marca [x] durante *close-story."
+    suggested_owner: po
+
+waiver: { active: false }
+
+recommendations:
+  immediate:
+    - action: "Reparar binário CodeRabbit no WSL — 6ª ocorrência, recomenda-se pausa de novo escopo até resolução"
+      refs: ["~/.local/bin/coderabbit"]
+  future:
+    - action: "DecisionTemplate (adiado de SIE-DS-05) — story própria futura"
+      refs: ["docs/component-catalog.md"]

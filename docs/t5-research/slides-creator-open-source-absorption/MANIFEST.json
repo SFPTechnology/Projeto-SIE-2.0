@@ -1,0 +1,518 @@
+{
+  "schema": "bench-manifest.v2",
+  "generated_at": "2026-05-18",
+  "slug": "slides-creator-open-source-absorption",
+  "file_count": 102,
+  "files": [
+    {
+      "file": "absorption-roadmap.md",
+      "role": "planning",
+      "format": "md"
+    },
+    {
+      "file": "ADR-001-absorption-strategy.md",
+      "role": "risk",
+      "format": "md"
+    },
+    {
+      "file": "architecture-blueprint.md",
+      "role": "architecture",
+      "format": "md"
+    },
+    {
+      "file": "architecture-blueprint.mmd",
+      "role": "architecture",
+      "format": "mmd"
+    },
+    {
+      "file": "battle-card.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "bench-completeness-rubric.json",
+      "role": "quality-gate",
+      "format": "json"
+    },
+    {
+      "file": "bench-completeness-rubric.md",
+      "role": "quality-gate",
+      "format": "md"
+    },
+    {
+      "file": "bench-contract.json",
+      "role": "contract",
+      "format": "json"
+    },
+    {
+      "file": "bench-output-dash.json",
+      "role": "dashboard",
+      "format": "json"
+    },
+    {
+      "file": "capability-matrix.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.json",
+      "role": "matrix",
+      "format": "json"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "contracts/api-contract.md",
+      "role": "contract",
+      "format": "md"
+    },
+    {
+      "file": "contracts/mcp-contract.md",
+      "role": "contract",
+      "format": "md"
+    },
+    {
+      "file": "contracts/native-ir-contract.md",
+      "role": "contract",
+      "format": "md"
+    },
+    {
+      "file": "contracts/qa-rubric.json",
+      "role": "contract",
+      "format": "json"
+    },
+    {
+      "file": "contracts/qa-rubric.md",
+      "role": "contract",
+      "format": "md"
+    },
+    {
+      "file": "dashboard-intelligence.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/absorption-decision-table.json",
+      "role": "analysis",
+      "format": "json"
+    },
+    {
+      "file": "deep/absorption-decision-table.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/acceptance-test-plan.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/agentic-planning-reflection.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/api-mcp-runtime.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/consolidated-research-archive.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/coverage-map.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/design-100-gap-plan.json",
+      "role": "planning",
+      "format": "json"
+    },
+    {
+      "file": "deep/design-100-gap-plan.md",
+      "role": "planning",
+      "format": "md"
+    },
+    {
+      "file": "deep/editor-ux-prompt-to-edit.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/evidence-by-dimension.md",
+      "role": "evidence",
+      "format": "md"
+    },
+    {
+      "file": "deep/evidence-strength-map.json",
+      "role": "evidence",
+      "format": "json"
+    },
+    {
+      "file": "deep/evidence-strength-map.md",
+      "role": "evidence",
+      "format": "md"
+    },
+    {
+      "file": "deep/implementation-playbook.md",
+      "role": "planning",
+      "format": "md"
+    },
+    {
+      "file": "deep/intelligence-graph.json",
+      "role": "analysis",
+      "format": "json"
+    },
+    {
+      "file": "deep/intelligence-graph.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/license-risk-assessment.md",
+      "role": "risk",
+      "format": "md"
+    },
+    {
+      "file": "deep/macro-comparison-matrix.json",
+      "role": "matrix",
+      "format": "json"
+    },
+    {
+      "file": "deep/macro-comparison-matrix.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/matrix-methodology.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/micro-capability-matrix.json",
+      "role": "matrix",
+      "format": "json"
+    },
+    {
+      "file": "deep/micro-capability-matrix.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/micro-leaderboard-by-group.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/open-source-to-sinkra-map.md",
+      "role": "evidence",
+      "format": "md"
+    },
+    {
+      "file": "deep/persona-weight-methodology.json",
+      "role": "matrix",
+      "format": "json"
+    },
+    {
+      "file": "deep/persona-weight-methodology.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/remaining-capability-plan.json",
+      "role": "planning",
+      "format": "json"
+    },
+    {
+      "file": "deep/remaining-capability-plan.md",
+      "role": "planning",
+      "format": "md"
+    },
+    {
+      "file": "deep/renderer-native-pptx.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/repo-notes.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/reproducible-local-runs.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/scoring-transparency.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/segment-deep-analysis.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/segmented-methodology.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/slides-creator-micro-gap-map.json",
+      "role": "planning",
+      "format": "json"
+    },
+    {
+      "file": "deep/slides-creator-micro-gap-map.md",
+      "role": "planning",
+      "format": "md"
+    },
+    {
+      "file": "deep/template-volume-benchmark.json",
+      "role": "analysis",
+      "format": "json"
+    },
+    {
+      "file": "deep/template-volume-benchmark.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "dependency-graph.md",
+      "role": "architecture",
+      "format": "md"
+    },
+    {
+      "file": "evidence-ledger.json",
+      "role": "evidence",
+      "format": "json"
+    },
+    {
+      "file": "evidence-ledger.md",
+      "role": "evidence",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "external-inventory.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "full-comparison.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.json",
+      "role": "planning",
+      "format": "json"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "planning",
+      "format": "md"
+    },
+    {
+      "file": "implementation-readiness-gate.json",
+      "role": "planning",
+      "format": "json"
+    },
+    {
+      "file": "implementation-readiness-gate.md",
+      "role": "planning",
+      "format": "md"
+    },
+    {
+      "file": "INDEX.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "internal-squad-audit.md",
+      "role": "quality-gate",
+      "format": "md"
+    },
+    {
+      "file": "inventories/banana-slides.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventories/powerpoint-skill.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventories/ppt-master.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventories/pptagent.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventories/presentagent-2.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventories/presentation-ai.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventories/presenton.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventories/slide-deck-ai.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventory-open-source-stack.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "inventory-slides-creator.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "MANIFEST.json",
+      "role": "manifest",
+      "format": "json"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "analysis",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "analysis",
+      "format": "json"
+    },
+    {
+      "file": "next-wave-absorption-plan.json",
+      "role": "planning",
+      "format": "json"
+    },
+    {
+      "file": "next-wave-absorption-plan.md",
+      "role": "planning",
+      "format": "md"
+    },
+    {
+      "file": "presentation-brief.json",
+      "role": "analysis",
+      "format": "json"
+    },
+    {
+      "file": "presentation-brief.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "quality-audit.md",
+      "role": "quality-gate",
+      "format": "md"
+    },
+    {
+      "file": "README.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "repo-metrics.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "repo-metrics.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "risk-register.json",
+      "role": "risk",
+      "format": "json"
+    },
+    {
+      "file": "risk-register.md",
+      "role": "risk",
+      "format": "md"
+    },
+    {
+      "file": "scenario-scorecards.json",
+      "role": "matrix",
+      "format": "json"
+    },
+    {
+      "file": "scenario-scorecards.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "matrix",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "segmented-comparisons.json",
+      "role": "analysis",
+      "format": "json"
+    },
+    {
+      "file": "segmented-comparisons.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "slide-creator-skill-blueprint.json",
+      "role": "architecture",
+      "format": "json"
+    },
+    {
+      "file": "slide-creator-skill-blueprint.md",
+      "role": "architecture",
+      "format": "md"
+    },
+    {
+      "file": "story-ready-backlog.md",
+      "role": "planning",
+      "format": "md"
+    },
+    {
+      "file": "TODO-coverage.json",
+      "role": "planning",
+      "format": "json"
+    },
+    {
+      "file": "TODO-coverage.md",
+      "role": "planning",
+      "format": "md"
+    }
+  ]
+}

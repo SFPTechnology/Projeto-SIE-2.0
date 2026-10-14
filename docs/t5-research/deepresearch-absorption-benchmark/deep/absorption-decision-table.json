@@ -1,0 +1,72 @@
+{
+  "schema": "deepresearch-absorption-decision-table-v1",
+  "generated_at": "2026-05-18T19:20:00-03:00",
+  "rows": [
+    {
+      "id": "DEC-01",
+      "finding": "Nenhum player cobre runtime, private-KB e avaliação gold sozinho",
+      "decision": "GO pattern absorption, NO-GO wholesale adoption",
+      "absorption": "Compor stack SINKRA por adapters",
+      "next_step": "Abrir Wave 1 contract_and_harness",
+      "evidence": [
+        "scorecard.json",
+        "evidence-ledger.json"
+      ]
+    },
+    {
+      "id": "DEC-02",
+      "finding": "DeerFlow lidera lifecycle, mas traz risco de sandbox/estado",
+      "decision": "Absorver lifecycle sem copiar superfície inteira",
+      "absorption": "Run lifecycle, journal, stream bridge",
+      "next_step": "Modelar DeepResearchRunner",
+      "evidence": [
+        "scorecard.json",
+        "evidence-ledger.json"
+      ]
+    },
+    {
+      "id": "DEC-03",
+      "finding": "DRBench lidera avaliação/private-KB enterprise",
+      "decision": "Usar como oracle/fixture, não runtime final",
+      "absorption": "task/eval/env/report_insights",
+      "next_step": "Criar fixtures sintéticas",
+      "evidence": [
+        "scorecard.json",
+        "evidence-ledger.json"
+      ]
+    },
+    {
+      "id": "DEC-04",
+      "finding": "Local Deep Research + DeepSearcher vencem private-KB",
+      "decision": "Adapter privado precisa precedência e isolamento SINKRA",
+      "absorption": "MCP/API local, ChainOfRAG",
+      "next_step": "Implementar fixture private_kb",
+      "evidence": [
+        "scorecard.json",
+        "evidence-ledger.json"
+      ]
+    },
+    {
+      "id": "DEC-05",
+      "finding": "LiveDRBench/MiroEval/DRB resolvem métricas parciais",
+      "decision": "Combinar métricas, não escolher uma só",
+      "absorption": "claim F1, three-lens eval, RACE/FACT",
+      "next_step": "Criar evaluator wrapper",
+      "evidence": [
+        "scorecard.json",
+        "evidence-ledger.json"
+      ]
+    },
+    {
+      "id": "DEC-06",
+      "finding": "Licenças ausentes/divergentes aparecem em players úteis",
+      "decision": "Clean-room obrigatório",
+      "absorption": "Padrões, não código",
+      "next_step": "Gate jurídico antes de vendorizar",
+      "evidence": [
+        "scorecard.json",
+        "evidence-ledger.json"
+      ]
+    }
+  ]
+}

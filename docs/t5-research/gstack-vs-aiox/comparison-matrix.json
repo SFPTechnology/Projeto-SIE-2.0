@@ -1,0 +1,348 @@
+{
+  "benchmark_id": "bench-gstack-vs-aiox-2026-04-13",
+  "type": "codebase",
+  "matrix": [
+    {
+      "category": "Architecture",
+      "features": [
+        {
+          "feature": "Agent/Skill System",
+          "gstack": "37 flat SKILL.md files, no hierarchy",
+          "aiox": "461 agents across 54 squads, 107 skills, chief/worker hierarchy",
+          "gstack_score": 3,
+          "aiox_score": 5,
+          "equivalence": "parcial",
+          "evidence": {
+            "gstack": "37 SKILL.md files in top-level dirs, each ~1K lines",
+            "aiox": "squads/*/agents/*.md (461 files), .claude/skills/ (107 dirs)"
+          }
+        },
+        {
+          "feature": "Governance Framework",
+          "gstack": "ETHOS.md (7KB philosophy doc, no enforcement)",
+          "aiox": "Constitution + 16 rules + CODEOWNERS + 14 hooks (enforcement)",
+          "gstack_score": 2,
+          "aiox_score": 5,
+          "equivalence": "fraco",
+          "evidence": {
+            "gstack": "ETHOS.md: 'Boil the Lake', 'Search Before Building', 'User Sovereignty'",
+            "aiox": ".claude/rules/ (16 files), .claude/hooks/ (14 files), constitution.md"
+          }
+        },
+        {
+          "feature": "Process Methodology",
+          "gstack": "Sprint lifecycle (THINK->PLAN->BUILD->REVIEW->TEST->SHIP->REFLECT)",
+          "aiox": "SINKRA 7-phase pipeline + SDC 6-phase + Wave execution",
+          "gstack_score": 3,
+          "aiox_score": 5,
+          "equivalence": "parcial",
+          "evidence": {
+            "gstack": "Implicit in skill ordering, no formal pipeline state machine",
+            "aiox": "squads/sinkra-squad/ with formal state machines, checkpoints, gates"
+          }
+        },
+        {
+          "feature": "Multi-Business Isolation",
+          "gstack": "Single-project focus, no multi-tenant",
+          "aiox": "Hub-and-Spoke, 4 businesses, workspace L0-L4, CODEOWNERS",
+          "gstack_score": 1,
+          "aiox_score": 5,
+          "equivalence": "sem_equivalente",
+          "evidence": {
+            "gstack": "Per-project config in ~/.gstack/projects/{slug}/",
+            "aiox": "workspace/businesses/{slug}/L0-L4/ with business isolation rules"
+          }
+        },
+        {
+          "feature": "Browser Integration",
+          "gstack": "Persistent Chromium daemon, ref system (@e1), <100ms, 28 TS files",
+          "aiox": "Per-invocation Playwright in 2 skills (project-playwright, clickup-playwright)",
+          "gstack_score": 5,
+          "aiox_score": 2,
+          "equivalence": "fraco",
+          "evidence": {
+            "gstack": "browse/src/ (13,192 LOC), server.ts (2,407 LOC), snapshot.ts (503 LOC)",
+            "aiox": ".claude/skills/project-playwright/, .claude/skills/clickup-playwright/"
+          }
+        },
+        {
+          "feature": "State Management",
+          "gstack": "File-based (.gstack/, JSONL), runtime-mutable config",
+          "aiox": "YAML-based (workspace L0-L4, .aiox/), schema-governed",
+          "gstack_score": 3,
+          "aiox_score": 4,
+          "equivalence": "parcial_alta",
+          "evidence": {
+            "gstack": "~/.gstack/config.yaml, learnings.jsonl, browse.json",
+            "aiox": "workspace/_system/config.yaml, .aiox/active-operator.yaml, .aiox/learning/"
+          }
+        },
+        {
+          "feature": "Multi-Host Support",
+          "gstack": "8 AI hosts (Claude, Codex, Gemini, Factory, Kiro, OpenCode, Slate, Cursor)",
+          "aiox": "Claude Code only",
+          "gstack_score": 5,
+          "aiox_score": 1,
+          "equivalence": "sem_equivalente",
+          "evidence": {
+            "gstack": "hosts/ directory with 9 config files, gen-skill-docs.ts multi-host gen",
+            "aiox": "No equivalent — all skills reference Claude Code APIs exclusively"
+          }
+        },
+        {
+          "feature": "Parallelism Model",
+          "gstack": "Conductor workspaces (basic workspace cloning, 10-15 sessions)",
+          "aiox": "Swarm OS + DAG-based wave-execute + circuit breakers + effort routing",
+          "gstack_score": 2,
+          "aiox_score": 5,
+          "equivalence": "fraco",
+          "evidence": {
+            "gstack": "conductor.json: { setup: 'bin/dev-setup', archive: 'bin/dev-teardown' }",
+            "aiox": ".claude/skills/swarm-execute/, .claude/skills/wave-execute/ (v3.2.0)"
+          }
+        }
+      ]
+    },
+    {
+      "category": "Testing & QA",
+      "features": [
+        {
+          "feature": "Test Suite",
+          "gstack": "82 test files, 3-tier system (static/E2E/LLM-judge)",
+          "aiox": "3,566 test files, CodeRabbit integration, QG loop",
+          "gstack_score": 4,
+          "aiox_score": 5,
+          "equivalence": "parcial_alta",
+          "evidence": {
+            "gstack": "test/ (82 files), bun test runner, claude -p subprocess E2E",
+            "aiox": "3,566 test files, scripts/validate-*.js, CodeRabbit self-healing"
+          }
+        },
+        {
+          "feature": "Quality Gates",
+          "gstack": "CI SKILL.md freshness check, slop-scan",
+          "aiox": "14 hooks, pre-push validation, doctor.js, registry governance",
+          "gstack_score": 3,
+          "aiox_score": 5,
+          "equivalence": "parcial",
+          "evidence": {
+            "gstack": ".github/ (6 workflows), slop-scan.config.json",
+            "aiox": ".claude/hooks/ (14 files), scripts/doctor.js, registry-governance-check.js"
+          }
+        },
+        {
+          "feature": "Code Review Automation",
+          "gstack": "/review (single-pass, auto-fix), /codex (cross-model)",
+          "aiox": "CodeRabbit self-healing (3 iterations), review-story with risk escalation",
+          "gstack_score": 4,
+          "aiox_score": 5,
+          "equivalence": "parcial_alta",
+          "evidence": {
+            "gstack": "review/SKILL.md, codex/SKILL.md (cross-model triangulation)",
+            "aiox": ".claude/skills/review-story/ (v2.0.0), .claude/skills/coderabbit-review/"
+          }
+        },
+        {
+          "feature": "Post-Deploy Verification",
+          "gstack": "/canary (continuous monitoring) + /benchmark (vitals)",
+          "aiox": "verify-deploy (one-time E2E check matrix)",
+          "gstack_score": 5,
+          "aiox_score": 3,
+          "equivalence": "parcial",
+          "evidence": {
+            "gstack": "canary/SKILL.md, benchmark/SKILL.md (browser-based)",
+            "aiox": ".claude/skills/verify-deploy/ (Supabase/Railway/Hetzner/Vercel checks)"
+          }
+        },
+        {
+          "feature": "Security Audit",
+          "gstack": "/cso (OWASP Top 10 + STRIDE, 17 false-positive exclusions)",
+          "aiox": "cybersecurity squad (red/blue team), CSO governance, NFR validation",
+          "gstack_score": 4,
+          "aiox_score": 4,
+          "equivalence": "forte",
+          "evidence": {
+            "gstack": "cso/SKILL.md (OWASP + STRIDE with curated exclusions)",
+            "aiox": "squads/cybersecurity/ (v3.0.0), squads/c-level/agents/cso.md"
+          }
+        }
+      ]
+    },
+    {
+      "category": "Documentation",
+      "features": [
+        {
+          "feature": "Self-Documentation",
+          "gstack": "README (405 lines), ARCHITECTURE (21KB), ETHOS (7KB), DESIGN (4KB)",
+          "aiox": "CLAUDE.md (288 lines) + 16 rules + 353 stories + 46 epics",
+          "gstack_score": 4,
+          "aiox_score": 5,
+          "equivalence": "parcial_alta",
+          "evidence": {
+            "gstack": "5 top-level .md files totaling ~90KB",
+            "aiox": "CLAUDE.md + .claude/rules/ (16 files) + docs/stories/ (399 files)"
+          }
+        },
+        {
+          "feature": "Skill Documentation",
+          "gstack": "37,391 lines across 37 SKILL.md (avg 1,010 lines/skill)",
+          "aiox": "107 skills with SKILL.md + config.yaml + templates + checklists",
+          "gstack_score": 4,
+          "aiox_score": 5,
+          "equivalence": "parcial_alta",
+          "evidence": {
+            "gstack": "Average SKILL.md is 1,010 lines, generated from .tmpl templates",
+            "aiox": "107 skill dirs with SKILL.md + 593 templates + 446 checklists"
+          }
+        },
+        {
+          "feature": "Story/Epic Tracking",
+          "gstack": "TODOS.md (44KB) with P0-P4 priorities",
+          "aiox": "353 stories + 46 epics in docs/stories/ with full lifecycle",
+          "gstack_score": 2,
+          "aiox_score": 5,
+          "equivalence": "fraco",
+          "evidence": {
+            "gstack": "TODOS.md: flat priority list, no story lifecycle",
+            "aiox": "docs/stories/epic-*/STORY-*.md with Draft->Ready->InProgress->Done"
+          }
+        }
+      ]
+    },
+    {
+      "category": "Automation",
+      "features": [
+        {
+          "feature": "CI/CD Pipeline",
+          "gstack": "6 GitHub Actions workflows, SKILL.md freshness check",
+          "aiox": "ci-gate.yml + pre-push hooks + 10+ validators + doctor.js",
+          "gstack_score": 3,
+          "aiox_score": 5,
+          "equivalence": "parcial",
+          "evidence": {
+            "gstack": ".github/ (6 .yml files)",
+            "aiox": "infrastructure/ + .claude/hooks/pre-push-validation.sh + scripts/doctor.js"
+          }
+        },
+        {
+          "feature": "Skill/Agent Generation",
+          "gstack": "gen-skill-docs.ts (658 LOC, template->SKILL.md, 9 resolvers)",
+          "aiox": "ide-sync-hook.js (stub generation), skill-creator skill",
+          "gstack_score": 5,
+          "aiox_score": 3,
+          "equivalence": "parcial",
+          "evidence": {
+            "gstack": "scripts/gen-skill-docs.ts with {{PLACEHOLDER}} resolvers",
+            "aiox": ".aiox-core/infrastructure/scripts/ide-sync/, .claude/skills/skill-creator/"
+          }
+        },
+        {
+          "feature": "Deploy Pipeline",
+          "gstack": "/ship + /land-and-deploy (sync, test, push, PR, merge, deploy, verify)",
+          "aiox": "deploy-story + verify-deploy + push-story (multi-target: Supabase/Railway/Hetzner/Vercel)",
+          "gstack_score": 4,
+          "aiox_score": 5,
+          "equivalence": "parcial_alta",
+          "evidence": {
+            "gstack": "ship/SKILL.md, land-and-deploy/SKILL.md",
+            "aiox": ".claude/skills/deploy-story/, .claude/skills/verify-deploy/, .claude/skills/push-story/"
+          }
+        },
+        {
+          "feature": "Registry Governance",
+          "gstack": "None",
+          "aiox": "9 file-entity mappings, pre-push check, advisory/blocking modes",
+          "gstack_score": 1,
+          "aiox_score": 5,
+          "equivalence": "sem_equivalente",
+          "evidence": {
+            "gstack": "No registry system",
+            "aiox": "scripts/registry-governance-check.js, ecosystem-registry.yaml, service-catalog.yaml"
+          }
+        }
+      ]
+    },
+    {
+      "category": "Extensibility",
+      "features": [
+        {
+          "feature": "Plugin/Extension Model",
+          "gstack": "SKILL.md files + Chrome extension + OpenClaw integration",
+          "aiox": "Squad creation + skill-creator + workflow-to-skill + squad-creator",
+          "gstack_score": 4,
+          "aiox_score": 5,
+          "equivalence": "parcial_alta",
+          "evidence": {
+            "gstack": "Drop SKILL.md in dir, auto-discovered. Extension in extension/",
+            "aiox": ".claude/skills/squad-chief/, .claude/skills/skill-creator/, .claude/skills/workflow-to-skill/"
+          }
+        },
+        {
+          "feature": "Learning/Evolution System",
+          "gstack": "JSONL per-project learnings, top-3 injection at session start",
+          "aiox": "3-tier learning (logs->entries->decision-cards->heuristics), promotion pipeline",
+          "gstack_score": 3,
+          "aiox_score": 5,
+          "equivalence": "parcial",
+          "evidence": {
+            "gstack": "learn/SKILL.md, ~/.gstack/projects/{slug}/learnings.jsonl",
+            "aiox": ".aiox/learning/ with schemas, entries, logs; scripts/learning-digester.js"
+          }
+        },
+        {
+          "feature": "Configuration Surface",
+          "gstack": "gstack-config (6 runtime-mutable settings)",
+          "aiox": "core-config.yaml + active-operator.yaml + workspace/_system/config.yaml",
+          "gstack_score": 3,
+          "aiox_score": 4,
+          "equivalence": "parcial_alta",
+          "evidence": {
+            "gstack": "bin/gstack-config: proactive, skill_prefix, telemetry, auto_upgrade, etc.",
+            "aiox": ".aiox-core/core-config.yaml, .aiox/active-operator.yaml"
+          }
+        }
+      ]
+    },
+    {
+      "category": "Code Quality",
+      "features": [
+        {
+          "feature": "Type Safety",
+          "gstack": "TypeScript strict (Bun), all browse/ is typed",
+          "aiox": "TypeScript strict (Node.js), YAML schema validation",
+          "gstack_score": 4,
+          "aiox_score": 4,
+          "equivalence": "forte",
+          "evidence": {
+            "gstack": "browse/src/ (13,192 LOC TypeScript), tsconfig.json strict",
+            "aiox": "packages/*/tsconfig.json strict, YAML schemas in squads/"
+          }
+        },
+        {
+          "feature": "Naming Conventions",
+          "gstack": "kebab-case dirs, PascalCase components, Conventional Commits",
+          "aiox": "kebab-case files, PascalCase components, Conventional Commits + story refs",
+          "gstack_score": 4,
+          "aiox_score": 5,
+          "equivalence": "forte",
+          "evidence": {
+            "gstack": "CONTRIBUTING.md naming rules",
+            "aiox": "CLAUDE.md Code Conventions section + commit hooks"
+          }
+        },
+        {
+          "feature": "Error Handling",
+          "gstack": "Agent-oriented errors (actionable guidance, no stack traces)",
+          "aiox": "Standard error handling + constitution rules",
+          "gstack_score": 5,
+          "aiox_score": 3,
+          "equivalence": "parcial",
+          "evidence": {
+            "gstack": "ARCHITECTURE.md Error Philosophy: wrapError() strips stacks, adds guidance",
+            "aiox": "Standard try/catch patterns, no equivalent wrapError()"
+          }
+        }
+      ]
+    }
+  ]
+}

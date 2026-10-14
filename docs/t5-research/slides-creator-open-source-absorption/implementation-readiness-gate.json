@@ -1,0 +1,163 @@
+{
+  "schema": "slides-creator-implementation-readiness-gate.v1",
+  "generated_at": "2026-05-17",
+  "status": "planned_not_implemented",
+  "gate": "implementation_readiness",
+  "current_interpretation": "Bench 100/100; produto ainda depende da execução dos P0/P1.",
+  "blockers_to_product_100": [
+    {
+      "order": 1,
+      "priority": "P0",
+      "title": "Criar native-slide-ir.schema.json",
+      "coverage_gap": "native_editable_pptx",
+      "source": "ppt-master + slides-creator"
+    },
+    {
+      "order": 2,
+      "priority": "P0",
+      "title": "Criar renderer PPTX nativo básico",
+      "coverage_gap": "native_editable_pptx",
+      "source": "ppt-master"
+    },
+    {
+      "order": 3,
+      "priority": "P0",
+      "title": "Criar editability-report.json",
+      "coverage_gap": "native_editable_pptx",
+      "source": "ppt-master"
+    },
+    {
+      "order": 4,
+      "priority": "P0",
+      "title": "Criar CLI slides:generate",
+      "coverage_gap": "api_mcp_self_hosted",
+      "source": "Presenton + slide-deck-ai"
+    },
+    {
+      "order": 5,
+      "priority": "P0",
+      "title": "Criar API POST /slides/generate",
+      "coverage_gap": "api_mcp_self_hosted",
+      "source": "Presenton"
+    },
+    {
+      "order": 6,
+      "priority": "P0",
+      "title": "Criar MCP slides.generate/review/export",
+      "coverage_gap": "api_mcp_self_hosted",
+      "source": "Presenton + PPTAgent"
+    },
+    {
+      "order": 7,
+      "priority": "P0",
+      "title": "Persistir planning-reflection.jsonl",
+      "coverage_gap": "agentic_planning_reflection",
+      "source": "PPTAgent"
+    },
+    {
+      "order": 8,
+      "priority": "P0",
+      "title": "Adaptar rubricas PPTEval",
+      "coverage_gap": "agentic_planning_reflection",
+      "source": "PPTAgent"
+    },
+    {
+      "order": 9,
+      "priority": "P0",
+      "title": "Implementar provider registry",
+      "coverage_gap": "privacy_local_byok",
+      "source": "Presenton + slide-deck-ai"
+    },
+    {
+      "order": 10,
+      "priority": "P0",
+      "title": "Criar workspace por deck",
+      "coverage_gap": "api_mcp_self_hosted",
+      "source": "Presenton"
+    },
+    {
+      "order": 11,
+      "priority": "P1",
+      "title": "Outline editor mínimo",
+      "coverage_gap": "web_editor_theme_runtime",
+      "source": "presentation-ai"
+    },
+    {
+      "order": 12,
+      "priority": "P1",
+      "title": "Prompt-to-edit com diff",
+      "coverage_gap": "prompt_to_edit_ux",
+      "source": "banana-slides + ppt-master"
+    },
+    {
+      "order": 13,
+      "priority": "P1",
+      "title": "Theme picker e import de PPTX",
+      "coverage_gap": "web_editor_theme_runtime",
+      "source": "Presenton + presentation-ai + ppt-master"
+    },
+    {
+      "order": 14,
+      "priority": "P1",
+      "title": "OMML/math support",
+      "coverage_gap": "math_diagrams_academic",
+      "source": "powerpoint-skill"
+    },
+    {
+      "order": 15,
+      "priority": "P1",
+      "title": "Diagram engines",
+      "coverage_gap": "math_diagrams_academic",
+      "source": "powerpoint-skill"
+    },
+    {
+      "order": 16,
+      "priority": "P1",
+      "title": "Visual QA screenshots",
+      "coverage_gap": "narrative_governance_qa",
+      "source": "PPTAgent + powerpoint-skill"
+    },
+    {
+      "order": 17,
+      "priority": "P2",
+      "title": "Share links",
+      "coverage_gap": "share_publish_analytics",
+      "source": "Gamma + presentation-ai"
+    },
+    {
+      "order": 18,
+      "priority": "P2",
+      "title": "Analytics",
+      "coverage_gap": "share_publish_analytics",
+      "source": "Gamma benchmark"
+    },
+    {
+      "order": 19,
+      "priority": "P2",
+      "title": "Narração/TTS",
+      "coverage_gap": "multimodal_video_narration",
+      "source": "ppt-master"
+    },
+    {
+      "order": 20,
+      "priority": "P2",
+      "title": "Export MP4",
+      "coverage_gap": "multimodal_video_narration",
+      "source": "ppt-master + banana-slides"
+    },
+    {
+      "order": 21,
+      "priority": "P2",
+      "title": "Query→research→deck",
+      "coverage_gap": "source_document_parsing",
+      "source": "PresentAgent-2"
+    },
+    {
+      "order": 22,
+      "priority": "P2",
+      "title": "Q&A sobre apresentação",
+      "coverage_gap": "multimodal_video_narration",
+      "source": "PresentAgent-2"
+    }
+  ]
+}

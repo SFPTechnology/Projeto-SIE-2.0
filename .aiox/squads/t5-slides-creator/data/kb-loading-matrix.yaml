@@ -1,0 +1,116 @@
+# Target: squads/slides-creator/data/kb-loading-matrix.yaml
+# Purpose: Deterministic mapping (slide_type × industry × firm_style) → [KB_ids]
+# Consumer: Worker `load-kb-bundle` (task). Emits KBBundle for the active session.
+# Source seed: McKinsey PPT Architect (enterprise_slides/output/KB_01..KB_15)
+
+schema_version: "1.0"
+name: kb-loading-matrix
+version: "1.0.0"
+owner_squad: slides-creator
+
+# Catalog of all KBs available to the pipeline.
+# Each KB is a markdown file with a stable id. Paths point to the squad's KB library.
+kb_catalog:
+  - id: KB_01
+    name: "Storytelling Frameworks (Pyramid, SCQA, MECE)"
+    path: "squads/slides-creator/data/kbs/KB_01_storytelling_frameworks.md"
+    always_loaded: true
+  - id: KB_02
+    name: "McKinsey Frameworks"
+    path: "squads/slides-creator/data/kbs/KB_02_frameworks_mckinsey.md"
+  - id: KB_03
+    name: "BCG Frameworks"
+    path: "squads/slides-creator/data/kbs/KB_03_frameworks_bcg.md"
+  - id: KB_04
+    name: "Bain Frameworks"
+    path: "squads/slides-creator/data/kbs/KB_04_frameworks_bain.md"
+  - id: KB_05
+    name: "Tier-2 Boutiques"
+    path: "squads/slides-creator/data/kbs/KB_05_frameworks_tier2.md"
+  - id: KB_06
+    name: "Data Visualization (chart selection)"
+    path: "squads/slides-creator/data/kbs/KB_06_data_visualization.md"
+    always_loaded: true
+  - id: KB_07
+    name: "Design Fundamentals"
+    path: "squads/slides-creator/data/kbs/KB_07_design_fundamentals.md"
+    always_loaded: true
+  - id: KB_08
+    name: "AI Image Generation (10-component prompts)"
+    path: "squads/slides-creator/data/kbs/KB_08_ai_generation.md"
+    conditional_on: "slide has image_request"
+  - id: KB_09
+    name: "Financial Services"
+    path: "squads/slides-creator/data/kbs/KB_09_financial_services.md"
+  - id: KB_10
+    name: "Technology / SaaS"
+    path: "squads/slides-creator/data/kbs/KB_10_technology_saas.md"
+  - id: KB_11
+    name: "Healthcare / Pharma"
+    path: "squads/slides-creator/data/kbs/KB_11_healthcare_pharma.md"
+  - id: KB_12
+    name: "Retail / Consumer"
+    path: "squads/slides-creator/data/kbs/KB_12_retail_consumer.md"
+  - id: KB_13
+    name: "Manufacturing / Industrial"
+    path: "squads/slides-creator/data/kbs/KB_13_manufacturing_industrial.md"
+  - id: KB_14
+    name: "Energy / Utilities"
+    path: "squads/slides-creator/data/kbs/KB_14_energy_utilities.md"
+  - id: KB_15
+    name: "Professional Services"
+    path: "squads/slides-creator/data/kbs/KB_15_professional_services.md"
+
+# =============================================================================
+# Loading rules by session (determines which KBs are concatenated into context)
+# =============================================================================
+session_bundles:
+  SESSION-NARR:
+    always: [KB_01, KB_02]   # storytelling + McKinsey as baseline
+    plus_by_firm_style:
+      mckinsey: [KB_02]
+      bcg:      [KB_03]
+      bain:     [KB_04]
+      tier2:    [KB_05]
+    plus_by_industry:
+      financial_services:     [KB_09]
+      technology_saas:        [KB_10]
+      healthcare_pharma:      [KB_11]
+      retail_consumer:        [KB_12]
+      manufacturing:          [KB_13]
+      energy_utilities:       [KB_14]
+      professional_services:  [KB_15]
+
+  SESSION-SPEC:
+    always: [KB_06, KB_07]
+    plus_by_firm_style:
+      mckinsey: []
+      bcg:      []
+      bain:     []
+      tier2:    []
+    plus_by_content_type:
+      has_image_request: [KB_08]
+
+  SESSION-QA:
+    always: [KB_01, KB_06, KB_07]  # narrative + data viz + design as QA reference
+
+# =============================================================================
+# Lookup interface (consumed by `load-kb-bundle` Worker task)
+# =============================================================================
+lookup:
+  input_schema:
+    session_id: "SESSION-NARR | SESSION-SPEC | SESSION-QA"
+    firm_style: "mckinsey | bcg | bain | tier2"
+    industry:   "financial_services | technology_saas | healthcare_pharma | retail_consumer | manufacturing | energy_utilities | professional_services | other"
+    has_image_request: "boolean"
+  output_schema:
+    kb_ids: "array<KB_id>"
+    concatenated_text: "string — ordered merge of kb_catalog[].path contents"
+
+# =============================================================================
+# Fail-fast rules
+# =============================================================================
+fail_fast:
+  - "KB path does not exist on disk → fail with explicit error (no silent skip)"
+  - "session_id not in session_bundles → fail"
+  - "industry == other AND no industry KB explicitly requested → warn (continue with baseline only)"

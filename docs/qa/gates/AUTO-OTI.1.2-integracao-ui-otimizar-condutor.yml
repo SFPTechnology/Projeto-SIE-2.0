@@ -1,0 +1,108 @@
+storyId: AUTO-OTI-1.2
+title: Integrar UI para Auto-Otimização (Formulário + Modal)
+gateDate: "2026-07-15"
+reviewer: Quinn (@qa)
+verdict: CONCERNS
+summary: >
+  Implementação sólida e aterrada nos padrões reais do projeto (Carbon,
+  api-client direto ao domínio, renderToStaticMarkup). 7 checks executados:
+  6 PASS, 1 PASS-com-observações. Aprovada para Done com 3 observações
+  não-bloqueantes documentadas (2 tech-debt de UX/persistência + 1 blocker
+  ambiental pré-existente fora do escopo).
+
+checks:
+  - id: 1
+    name: Code review
+    verdict: PASS
+    evidence: >
+      Modal presentational puro (props-driven, testável); orquestração no
+      componente de tabela com estado local; erro limpo ao reabrir modal;
+      loading state; delegação total ao domínio (zero lógica NBR na UI —
+      Constituição Art. IV). Padrões Carbon idênticos aos modais existentes
+      (NovaDependenciaModal, UnifilarExportConfigModal).
+  - id: 2
+    name: Unit tests
+    verdict: PASS
+    evidence: >
+      OtimizarCondutorModal.test.tsx 8/8 PASS (estado inicial, loading, erro,
+      aprovado, rastreamento, IMPOSSIVEL_ATENDER, pendências, estado vazio).
+      Cobertura v8 sobre o modal: 87.5% linhas / 95.65% branches / 80% funcs
+      (meta AC8 ≥ 80% linhas atingida).
+  - id: 3
+    name: Acceptance criteria
+    verdict: PASS
+    evidence: >
+      AC1–AC8 verificados na story com Nota de aterramento explicitando as
+      5 AUTO-DECISIONs de correção de premissa (paths reais, Carbon, chamada
+      direta ao domínio, sem testing-library, botão por circuito na tabela).
+      Interpretação de AC6 (confirmação vira Tag verde na tabela pai) é
+      coerente com o desenho real da tela — não há campo de seção editável
+      por circuito no formulário de parâmetros.
+  - id: 4
+    name: No regressions
+    verdict: PASS
+    evidence: >
+      Regressão introduzida na sessão (useMutation sem QueryClientProvider
+      quebrando dimensionamento-condutores.vrt.test.tsx) foi detectada pela
+      suíte e corrigida (useState + async direto). Re-execução: 9/9 no módulo.
+      Suíte completa 661/662 — única falha é status-badge.test.tsx, causada
+      por blocker ambiental pré-existente (ver observações), não por esta story.
+  - id: 5
+    name: Performance
+    verdict: PASS
+    evidence: >
+      Chamada única e pura ao domínio (otimizarSecao, sub-ms — medido na
+      story 1.1); sem I/O de rede no SPA; sem re-render excessivo (estado
+      local por circuito).
+  - id: 6
+    name: Security
+    verdict: PASS
+    evidence: >
+      Sem entrada de texto livre do usuário; dados renderizados via React
+      (escape automático); sem secrets; sem novas dependências; sem chamadas
+      externas.
+  - id: 7
+    name: Documentation
+    verdict: PASS
+    evidence: >
+      Story com File List final, 5 AUTO-DECISIONs, Blockers ambientais e
+      Change Log v1.2.0. JSDoc no modal e no método api.otimizarCondutor
+      explicando as decisões de arquitetura.
+
+issues:
+  - severity: medium
+    category: code
+    description: >
+      Resultado de otimização fica cacheado por circuito no estado local;
+      se o usuário alterar os parâmetros normativos e reabrir o modal, vê o
+      resultado antigo (dos parâmetros anteriores) com botão "Confirmar".
+    recommendation: >
+      Invalidar resultadosOtimizacao/secoesConfirmadas quando `parametros`
+      mudar (useEffect ou key derivada). Registrar como tech-debt AUTO-OTI.
+  - severity: low
+    category: requirements
+    description: >
+      Seção confirmada (AC6) é display-only — não persiste no agregado nem
+      alimenta o dimensionamento subsequente. Persistência estava fora do
+      escopo declarado (OUT: migração/histórico), mas o elo com o domínio
+      é o próximo incremento natural do epic.
+    recommendation: >
+      Criar story AUTO-OTI-1.3 (persistir seção confirmada / override manual
+      auditável) se o epic continuar.
+  - severity: low
+    category: environment
+    description: >
+      Blocker ambiental pré-existente: TutorialModal.tsx importa
+      docs/TUTORIAL-NBR5410-Quantidade-TUG-Iluminacao.html?raw, arquivo
+      untracked ausente do working tree. Derruba `vite build` e
+      status-badge.test.tsx. Não relacionado a esta story (arquivo nunca
+      esteve no git; TutorialModal inalterado desde HEAD).
+    recommendation: >
+      Restaurar o HTML ou converter o import para asset opcional/público.
+      Encaminhar a @po/@devops antes do push (o build precisa passar no
+      pre-push gate).
+
+notes:
+  - CodeRabbit (AC de processo) deferido ao gate pre-push do @devops (WSL,
+    7–30 min), mesmo tratamento DOC-001 da story AUTO-OTI-1.1.
+statusTransition: InReview -> Done (CONCERNS aprova com observações)

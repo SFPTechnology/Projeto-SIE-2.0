@@ -1,0 +1,36 @@
+schema: sinkra-claims-v1
+run_id: local-deep-research__SINKRA-DR-24
+task_id: SINKRA-DR-24
+system_id: local-deep-research
+mode: contract_dry_run
+claims:
+- id: SINKRA-DR-24-C1
+  text: Claim gold sintético 1 para synthetic_private_kb.
+  source_ids:
+  - SINKRA-DR-24-S1
+  support: synthetic_gold_fixture
+  required: true
+- id: SINKRA-DR-24-C2
+  text: Claim gold sintético 2 para synthetic_private_kb.
+  source_ids:
+  - SINKRA-DR-24-S2
+  support: synthetic_gold_fixture
+  required: true
+- id: SINKRA-DR-24-C3
+  text: Claim gold sintético 3 para synthetic_private_kb.
+  source_ids:
+  - SINKRA-DR-24-S3
+  support: synthetic_gold_fixture
+  required: true
+- id: SINKRA-DR-24-C4
+  text: Claim gold sintético 4 para synthetic_private_kb.
+  source_ids:
+  - SINKRA-DR-24-S4
+  support: synthetic_gold_fixture
+  required: false
+- id: SINKRA-DR-24-C5
+  text: Claim gold sintético 5 para synthetic_private_kb.
+  source_ids:
+  - SINKRA-DR-24-S5
+  support: synthetic_gold_fixture
+  required: false

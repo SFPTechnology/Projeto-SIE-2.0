@@ -1,0 +1,581 @@
+{
+  "schema": "2026-05-16-deep-research-absorption-benchmark.scenario-scorecards.v1",
+  "generated_at": "2026-05-18",
+  "scenarios": [
+    {
+      "id": "sinkra_mcp_now",
+      "name": "Integração imediata no Sinkra Hub",
+      "weights": {
+        "research_quality": 0.16,
+        "automation_depth": 0.14,
+        "evidence_strength": 0.12,
+        "local_privacy": 0.08,
+        "integration_fit": 0.25,
+        "cost_efficiency": 0.15,
+        "maturity_community": 0.06,
+        "license_adoption_risk": 0.04
+      },
+      "narrative": "prioriza MCP, baixo custo e encaixe operacional",
+      "ranking": [
+        {
+          "player": "gpt_researcher",
+          "name": "GPT-Researcher",
+          "score": 85.9,
+          "verdict": "Melhor custo-benefício e melhor encaixe MCP imediato para o Sinkra Hub.",
+          "rank": 1
+        },
+        {
+          "player": "deerflow",
+          "name": "DeerFlow",
+          "score": 82.6,
+          "verdict": "Melhor general-purpose quando popularidade, sandbox e memória importam.",
+          "rank": 2
+        },
+        {
+          "player": "local_deep_research",
+          "name": "Local Deep Research",
+          "score": 82.1,
+          "verdict": "Melhor opção privacy-first/air-gapped.",
+          "rank": 3
+        },
+        {
+          "player": "hermes_agent",
+          "name": "Hermes Agent",
+          "score": 80.8,
+          "verdict": "Melhor referência de agente 24/7 com self-learning, mas não é especializado em deep research.",
+          "rank": 4
+        },
+        {
+          "player": "langchain_open_dr",
+          "name": "LangChain Open Deep Research",
+          "score": 78.2,
+          "verdict": "Melhor quick start benchmarkado; ótimo baseline, menos poderoso que RL-trained.",
+          "rank": 5
+        },
+        {
+          "player": "deepresearcher",
+          "name": "DeepResearcher",
+          "score": 77.9,
+          "verdict": "Melhor aposta local de modelo pequeno treinado para research.",
+          "rank": 6
+        },
+        {
+          "player": "storm",
+          "name": "STORM",
+          "score": 76.3,
+          "verdict": "Referência acadêmica para síntese multi-perspectiva em formato artigo.",
+          "rank": 7
+        },
+        {
+          "player": "openresearcher",
+          "name": "OpenResearcher",
+          "score": 75.4,
+          "verdict": "Melhor accuracy em benchmark, mas com custo de hardware e corpus offline.",
+          "rank": 8
+        },
+        {
+          "player": "deepsearcher",
+          "name": "DeepSearcher",
+          "score": 72.4,
+          "verdict": "Melhor para knowledge base privada, não para web deep research geral.",
+          "rank": 9
+        },
+        {
+          "player": "jina_node_deepresearch",
+          "name": "Jina node-DeepResearch",
+          "score": 71.8,
+          "verdict": "Melhor protótipo rápido em TypeScript.",
+          "rank": 10
+        },
+        {
+          "player": "autorresearchclaw",
+          "name": "AutoResearchClaw",
+          "score": 69.7,
+          "verdict": "Melhor para ideia -> paper acadêmico, não para research generalista barato.",
+          "rank": 11
+        },
+        {
+          "player": "auto_deep_research",
+          "name": "Auto-Deep-Research",
+          "score": 67.4,
+          "verdict": "Emergente; observar antes de adotar como core.",
+          "rank": 12
+        },
+        {
+          "player": "firecrawl_open_dr",
+          "name": "Firecrawl Open Deep Research",
+          "score": 61.2,
+          "verdict": "Útil se Firecrawl já for o motor de extração; nicho no restante.",
+          "rank": 13
+        },
+        {
+          "player": "kimi_researcher",
+          "name": "Kimi-Researcher",
+          "score": 55,
+          "verdict": "Forte como referência técnica, fraco como opção open-source absorvível.",
+          "rank": 14
+        }
+      ]
+    },
+    {
+      "id": "best_accuracy",
+      "name": "Máxima acurácia em benchmark",
+      "weights": {
+        "research_quality": 0.22,
+        "automation_depth": 0.14,
+        "evidence_strength": 0.28,
+        "local_privacy": 0.06,
+        "integration_fit": 0.08,
+        "cost_efficiency": 0.04,
+        "maturity_community": 0.1,
+        "license_adoption_risk": 0.08
+      },
+      "narrative": "prioriza resultado mensurável e evidência externa",
+      "ranking": [
+        {
+          "player": "openresearcher",
+          "name": "OpenResearcher",
+          "score": 85.6,
+          "verdict": "Melhor accuracy em benchmark, mas com custo de hardware e corpus offline.",
+          "rank": 1
+        },
+        {
+          "player": "deepresearcher",
+          "name": "DeepResearcher",
+          "score": 84.8,
+          "verdict": "Melhor aposta local de modelo pequeno treinado para research.",
+          "rank": 2
+        },
+        {
+          "player": "gpt_researcher",
+          "name": "GPT-Researcher",
+          "score": 84.1,
+          "verdict": "Melhor custo-benefício e melhor encaixe MCP imediato para o Sinkra Hub.",
+          "rank": 3
+        },
+        {
+          "player": "deerflow",
+          "name": "DeerFlow",
+          "score": 82.6,
+          "verdict": "Melhor general-purpose quando popularidade, sandbox e memória importam.",
+          "rank": 4
+        },
+        {
+          "player": "local_deep_research",
+          "name": "Local Deep Research",
+          "score": 82,
+          "verdict": "Melhor opção privacy-first/air-gapped.",
+          "rank": 5
+        },
+        {
+          "player": "storm",
+          "name": "STORM",
+          "score": 80,
+          "verdict": "Referência acadêmica para síntese multi-perspectiva em formato artigo.",
+          "rank": 6
+        },
+        {
+          "player": "langchain_open_dr",
+          "name": "LangChain Open Deep Research",
+          "score": 78,
+          "verdict": "Melhor quick start benchmarkado; ótimo baseline, menos poderoso que RL-trained.",
+          "rank": 7
+        },
+        {
+          "player": "autorresearchclaw",
+          "name": "AutoResearchClaw",
+          "score": 77,
+          "verdict": "Melhor para ideia -> paper acadêmico, não para research generalista barato.",
+          "rank": 8
+        },
+        {
+          "player": "hermes_agent",
+          "name": "Hermes Agent",
+          "score": 76.2,
+          "verdict": "Melhor referência de agente 24/7 com self-learning, mas não é especializado em deep research.",
+          "rank": 9
+        },
+        {
+          "player": "jina_node_deepresearch",
+          "name": "Jina node-DeepResearch",
+          "score": 70,
+          "verdict": "Melhor protótipo rápido em TypeScript.",
+          "rank": 10
+        },
+        {
+          "player": "deepsearcher",
+          "name": "DeepSearcher",
+          "score": 68.8,
+          "verdict": "Melhor para knowledge base privada, não para web deep research geral.",
+          "rank": 11
+        },
+        {
+          "player": "auto_deep_research",
+          "name": "Auto-Deep-Research",
+          "score": 66.4,
+          "verdict": "Emergente; observar antes de adotar como core.",
+          "rank": 12
+        },
+        {
+          "player": "kimi_researcher",
+          "name": "Kimi-Researcher",
+          "score": 64.4,
+          "verdict": "Forte como referência técnica, fraco como opção open-source absorvível.",
+          "rank": 13
+        },
+        {
+          "player": "firecrawl_open_dr",
+          "name": "Firecrawl Open Deep Research",
+          "score": 58.6,
+          "verdict": "Útil se Firecrawl já for o motor de extração; nicho no restante.",
+          "rank": 14
+        }
+      ]
+    },
+    {
+      "id": "privacy_first",
+      "name": "Pesquisa sensível/local-first",
+      "weights": {
+        "research_quality": 0.13,
+        "automation_depth": 0.1,
+        "evidence_strength": 0.1,
+        "local_privacy": 0.3,
+        "integration_fit": 0.12,
+        "cost_efficiency": 0.12,
+        "maturity_community": 0.06,
+        "license_adoption_risk": 0.07
+      },
+      "narrative": "prioriza soberania de dados e execução local",
+      "ranking": [
+        {
+          "player": "local_deep_research",
+          "name": "Local Deep Research",
+          "score": 86.8,
+          "verdict": "Melhor opção privacy-first/air-gapped.",
+          "rank": 1
+        },
+        {
+          "player": "deepresearcher",
+          "name": "DeepResearcher",
+          "score": 82.3,
+          "verdict": "Melhor aposta local de modelo pequeno treinado para research.",
+          "rank": 2
+        },
+        {
+          "player": "openresearcher",
+          "name": "OpenResearcher",
+          "score": 78.6,
+          "verdict": "Melhor accuracy em benchmark, mas com custo de hardware e corpus offline.",
+          "rank": 3
+        },
+        {
+          "player": "hermes_agent",
+          "name": "Hermes Agent",
+          "score": 78.1,
+          "verdict": "Melhor referência de agente 24/7 com self-learning, mas não é especializado em deep research.",
+          "rank": 4
+        },
+        {
+          "player": "deerflow",
+          "name": "DeerFlow",
+          "score": 77.9,
+          "verdict": "Melhor general-purpose quando popularidade, sandbox e memória importam.",
+          "rank": 5
+        },
+        {
+          "player": "gpt_researcher",
+          "name": "GPT-Researcher",
+          "score": 76.8,
+          "verdict": "Melhor custo-benefício e melhor encaixe MCP imediato para o Sinkra Hub.",
+          "rank": 6
+        },
+        {
+          "player": "deepsearcher",
+          "name": "DeepSearcher",
+          "score": 76.3,
+          "verdict": "Melhor para knowledge base privada, não para web deep research geral.",
+          "rank": 7
+        },
+        {
+          "player": "jina_node_deepresearch",
+          "name": "Jina node-DeepResearch",
+          "score": 68.6,
+          "verdict": "Melhor protótipo rápido em TypeScript.",
+          "rank": 8
+        },
+        {
+          "player": "storm",
+          "name": "STORM",
+          "score": 68.5,
+          "verdict": "Referência acadêmica para síntese multi-perspectiva em formato artigo.",
+          "rank": 9
+        },
+        {
+          "player": "langchain_open_dr",
+          "name": "LangChain Open Deep Research",
+          "score": 68.1,
+          "verdict": "Melhor quick start benchmarkado; ótimo baseline, menos poderoso que RL-trained.",
+          "rank": 10
+        },
+        {
+          "player": "auto_deep_research",
+          "name": "Auto-Deep-Research",
+          "score": 65,
+          "verdict": "Emergente; observar antes de adotar como core.",
+          "rank": 11
+        },
+        {
+          "player": "autorresearchclaw",
+          "name": "AutoResearchClaw",
+          "score": 63.5,
+          "verdict": "Melhor para ideia -> paper acadêmico, não para research generalista barato.",
+          "rank": 12
+        },
+        {
+          "player": "firecrawl_open_dr",
+          "name": "Firecrawl Open Deep Research",
+          "score": 54.2,
+          "verdict": "Útil se Firecrawl já for o motor de extração; nicho no restante.",
+          "rank": 13
+        },
+        {
+          "player": "kimi_researcher",
+          "name": "Kimi-Researcher",
+          "score": 47,
+          "verdict": "Forte como referência técnica, fraco como opção open-source absorvível.",
+          "rank": 14
+        }
+      ]
+    },
+    {
+      "id": "academic_paper",
+      "name": "Pesquisa científica até paper",
+      "weights": {
+        "research_quality": 0.2,
+        "automation_depth": 0.26,
+        "evidence_strength": 0.18,
+        "local_privacy": 0.04,
+        "integration_fit": 0.08,
+        "cost_efficiency": 0.06,
+        "maturity_community": 0.1,
+        "license_adoption_risk": 0.08
+      },
+      "narrative": "prioriza pipeline científico e auditoria de qualidade",
+      "ranking": [
+        {
+          "player": "gpt_researcher",
+          "name": "GPT-Researcher",
+          "score": 85.6,
+          "verdict": "Melhor custo-benefício e melhor encaixe MCP imediato para o Sinkra Hub.",
+          "rank": 1
+        },
+        {
+          "player": "deerflow",
+          "name": "DeerFlow",
+          "score": 84.8,
+          "verdict": "Melhor general-purpose quando popularidade, sandbox e memória importam.",
+          "rank": 2
+        },
+        {
+          "player": "openresearcher",
+          "name": "OpenResearcher",
+          "score": 83.4,
+          "verdict": "Melhor accuracy em benchmark, mas com custo de hardware e corpus offline.",
+          "rank": 3
+        },
+        {
+          "player": "deepresearcher",
+          "name": "DeepResearcher",
+          "score": 83.1,
+          "verdict": "Melhor aposta local de modelo pequeno treinado para research.",
+          "rank": 4
+        },
+        {
+          "player": "local_deep_research",
+          "name": "Local Deep Research",
+          "score": 81,
+          "verdict": "Melhor opção privacy-first/air-gapped.",
+          "rank": 5
+        },
+        {
+          "player": "storm",
+          "name": "STORM",
+          "score": 79.4,
+          "verdict": "Referência acadêmica para síntese multi-perspectiva em formato artigo.",
+          "rank": 6
+        },
+        {
+          "player": "hermes_agent",
+          "name": "Hermes Agent",
+          "score": 79.4,
+          "verdict": "Melhor referência de agente 24/7 com self-learning, mas não é especializado em deep research.",
+          "rank": 7
+        },
+        {
+          "player": "autorresearchclaw",
+          "name": "AutoResearchClaw",
+          "score": 78.8,
+          "verdict": "Melhor para ideia -> paper acadêmico, não para research generalista barato.",
+          "rank": 8
+        },
+        {
+          "player": "langchain_open_dr",
+          "name": "LangChain Open Deep Research",
+          "score": 77,
+          "verdict": "Melhor quick start benchmarkado; ótimo baseline, menos poderoso que RL-trained.",
+          "rank": 9
+        },
+        {
+          "player": "jina_node_deepresearch",
+          "name": "Jina node-DeepResearch",
+          "score": 70,
+          "verdict": "Melhor protótipo rápido em TypeScript.",
+          "rank": 10
+        },
+        {
+          "player": "auto_deep_research",
+          "name": "Auto-Deep-Research",
+          "score": 69.1,
+          "verdict": "Emergente; observar antes de adotar como core.",
+          "rank": 11
+        },
+        {
+          "player": "deepsearcher",
+          "name": "DeepSearcher",
+          "score": 67.9,
+          "verdict": "Melhor para knowledge base privada, não para web deep research geral.",
+          "rank": 12
+        },
+        {
+          "player": "kimi_researcher",
+          "name": "Kimi-Researcher",
+          "score": 66.4,
+          "verdict": "Forte como referência técnica, fraco como opção open-source absorvível.",
+          "rank": 13
+        },
+        {
+          "player": "firecrawl_open_dr",
+          "name": "Firecrawl Open Deep Research",
+          "score": 59.6,
+          "verdict": "Útil se Firecrawl já for o motor de extração; nicho no restante.",
+          "rank": 14
+        }
+      ]
+    },
+    {
+      "id": "cheap_quickstart",
+      "name": "Quick start barato",
+      "weights": {
+        "research_quality": 0.13,
+        "automation_depth": 0.08,
+        "evidence_strength": 0.08,
+        "local_privacy": 0.05,
+        "integration_fit": 0.18,
+        "cost_efficiency": 0.28,
+        "maturity_community": 0.12,
+        "license_adoption_risk": 0.08
+      },
+      "narrative": "prioriza rodar rápido com baixo custo",
+      "ranking": [
+        {
+          "player": "gpt_researcher",
+          "name": "GPT-Researcher",
+          "score": 87.4,
+          "verdict": "Melhor custo-benefício e melhor encaixe MCP imediato para o Sinkra Hub.",
+          "rank": 1
+        },
+        {
+          "player": "local_deep_research",
+          "name": "Local Deep Research",
+          "score": 82.7,
+          "verdict": "Melhor opção privacy-first/air-gapped.",
+          "rank": 2
+        },
+        {
+          "player": "deerflow",
+          "name": "DeerFlow",
+          "score": 82.3,
+          "verdict": "Melhor general-purpose quando popularidade, sandbox e memória importam.",
+          "rank": 3
+        },
+        {
+          "player": "hermes_agent",
+          "name": "Hermes Agent",
+          "score": 81,
+          "verdict": "Melhor referência de agente 24/7 com self-learning, mas não é especializado em deep research.",
+          "rank": 4
+        },
+        {
+          "player": "langchain_open_dr",
+          "name": "LangChain Open Deep Research",
+          "score": 79.3,
+          "verdict": "Melhor quick start benchmarkado; ótimo baseline, menos poderoso que RL-trained.",
+          "rank": 5
+        },
+        {
+          "player": "storm",
+          "name": "STORM",
+          "score": 78.4,
+          "verdict": "Referência acadêmica para síntese multi-perspectiva em formato artigo.",
+          "rank": 6
+        },
+        {
+          "player": "deepresearcher",
+          "name": "DeepResearcher",
+          "score": 77.3,
+          "verdict": "Melhor aposta local de modelo pequeno treinado para research.",
+          "rank": 7
+        },
+        {
+          "player": "jina_node_deepresearch",
+          "name": "Jina node-DeepResearch",
+          "score": 75.5,
+          "verdict": "Melhor protótipo rápido em TypeScript.",
+          "rank": 8
+        },
+        {
+          "player": "deepsearcher",
+          "name": "DeepSearcher",
+          "score": 72.8,
+          "verdict": "Melhor para knowledge base privada, não para web deep research geral.",
+          "rank": 9
+        },
+        {
+          "player": "openresearcher",
+          "name": "OpenResearcher",
+          "score": 69.6,
+          "verdict": "Melhor accuracy em benchmark, mas com custo de hardware e corpus offline.",
+          "rank": 10
+        },
+        {
+          "player": "auto_deep_research",
+          "name": "Auto-Deep-Research",
+          "score": 66.2,
+          "verdict": "Emergente; observar antes de adotar como core.",
+          "rank": 11
+        },
+        {
+          "player": "autorresearchclaw",
+          "name": "AutoResearchClaw",
+          "score": 64.7,
+          "verdict": "Melhor para ideia -> paper acadêmico, não para research generalista barato.",
+          "rank": 12
+        },
+        {
+          "player": "firecrawl_open_dr",
+          "name": "Firecrawl Open Deep Research",
+          "score": 62.1,
+          "verdict": "Útil se Firecrawl já for o motor de extração; nicho no restante.",
+          "rank": 13
+        },
+        {
+          "player": "kimi_researcher",
+          "name": "Kimi-Researcher",
+          "score": 49.2,
+          "verdict": "Forte como referência técnica, fraco como opção open-source absorvível.",
+          "rank": 14
+        }
+      ]
+    }
+  ]
+}

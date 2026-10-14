@@ -1,0 +1,418 @@
+{
+  "schema": "bench-comparison-matrix-v1",
+  "generated_at": "2026-05-18",
+  "players": [
+    "gpt_researcher",
+    "local_deep_research",
+    "deerflow",
+    "deepresearcher",
+    "openresearcher",
+    "hermes_agent",
+    "storm",
+    "langchain_open_dr",
+    "autorresearchclaw",
+    "deepsearcher",
+    "jina_node_deepresearch",
+    "auto_deep_research",
+    "firecrawl_open_dr",
+    "kimi_researcher"
+  ],
+  "dimensions": [
+    {
+      "id": "research_quality",
+      "label": "Qualidade de pesquisa",
+      "weight": 0.18
+    },
+    {
+      "id": "automation_depth",
+      "label": "Profundidade de automação",
+      "weight": 0.16
+    },
+    {
+      "id": "evidence_strength",
+      "label": "Evidência e benchmark",
+      "weight": 0.15
+    },
+    {
+      "id": "local_privacy",
+      "label": "Local-first e privacidade",
+      "weight": 0.12
+    },
+    {
+      "id": "integration_fit",
+      "label": "Integração e ecossistema",
+      "weight": 0.12
+    },
+    {
+      "id": "cost_efficiency",
+      "label": "Custo e eficiência",
+      "weight": 0.1
+    },
+    {
+      "id": "maturity_community",
+      "label": "Maturidade e comunidade",
+      "weight": 0.1
+    },
+    {
+      "id": "license_adoption_risk",
+      "label": "Licença e risco de adoção",
+      "weight": 0.07
+    }
+  ],
+  "rows": [
+    {
+      "player": "gpt_researcher",
+      "name": "GPT-Researcher",
+      "rank": 1,
+      "total_score": 83.2,
+      "category": "framework multi-agente",
+      "type": "framework",
+      "license": "MIT",
+      "language": "Python",
+      "url": "https://github.com/assafelovic/gpt-researcher",
+      "verdict": "Melhor custo-benefício e melhor encaixe MCP imediato para o Sinkra Hub.",
+      "scores": {
+        "research_quality": 86,
+        "automation_depth": 88,
+        "evidence_strength": 82,
+        "local_privacy": 50,
+        "integration_fit": 94,
+        "cost_efficiency": 92,
+        "maturity_community": 88,
+        "license_adoption_risk": 86
+      },
+      "source_ids": [
+        "src-002"
+      ]
+    },
+    {
+      "player": "local_deep_research",
+      "name": "Local Deep Research",
+      "rank": 2,
+      "total_score": 83,
+      "category": "local-first",
+      "type": "agent",
+      "license": "open-source",
+      "language": "Python",
+      "url": "https://github.com/LearningCircuit/local-deep-research",
+      "verdict": "Melhor opção privacy-first/air-gapped.",
+      "scores": {
+        "research_quality": 82,
+        "automation_depth": 76,
+        "evidence_strength": 82,
+        "local_privacy": 100,
+        "integration_fit": 78,
+        "cost_efficiency": 86,
+        "maturity_community": 78,
+        "license_adoption_risk": 86
+      },
+      "source_ids": [
+        "src-007"
+      ]
+    },
+    {
+      "player": "deerflow",
+      "name": "DeerFlow",
+      "rank": 3,
+      "total_score": 82.3,
+      "category": "framework multi-agente",
+      "type": "framework",
+      "license": "MIT",
+      "language": "Python",
+      "url": "https://github.com/bytedance/deer-flow",
+      "verdict": "Melhor general-purpose quando popularidade, sandbox e memória importam.",
+      "scores": {
+        "research_quality": 84,
+        "automation_depth": 94,
+        "evidence_strength": 76,
+        "local_privacy": 64,
+        "integration_fit": 86,
+        "cost_efficiency": 76,
+        "maturity_community": 95,
+        "license_adoption_risk": 80
+      },
+      "source_ids": [
+        "src-001"
+      ]
+    },
+    {
+      "player": "deepresearcher",
+      "name": "DeepResearcher",
+      "rank": 4,
+      "total_score": 81.8,
+      "category": "modelo RL-trained",
+      "type": "model",
+      "license": "Apache-2.0",
+      "language": "Python",
+      "url": "https://github.com/GAIR-NLP/DeepResearcher",
+      "verdict": "Melhor aposta local de modelo pequeno treinado para research.",
+      "scores": {
+        "research_quality": 90,
+        "automation_depth": 82,
+        "evidence_strength": 95,
+        "local_privacy": 88,
+        "integration_fit": 58,
+        "cost_efficiency": 76,
+        "maturity_community": 68,
+        "license_adoption_risk": 90
+      },
+      "source_ids": [
+        "src-005",
+        "src-006"
+      ]
+    },
+    {
+      "player": "openresearcher",
+      "name": "OpenResearcher",
+      "rank": 5,
+      "total_score": 80.1,
+      "category": "modelo RL-trained",
+      "type": "model+pipeline",
+      "license": "open",
+      "language": "Python",
+      "url": "https://github.com/TIGER-AI-Lab/OpenResearcher",
+      "verdict": "Melhor accuracy em benchmark, mas com custo de hardware e corpus offline.",
+      "scores": {
+        "research_quality": 96,
+        "automation_depth": 86,
+        "evidence_strength": 98,
+        "local_privacy": 84,
+        "integration_fit": 62,
+        "cost_efficiency": 45,
+        "maturity_community": 66,
+        "license_adoption_risk": 82
+      },
+      "source_ids": [
+        "src-003",
+        "src-004"
+      ]
+    },
+    {
+      "player": "hermes_agent",
+      "name": "Hermes Agent",
+      "rank": 6,
+      "total_score": 79.1,
+      "category": "agente autônomo generalista",
+      "type": "general-agent",
+      "license": "MIT",
+      "language": "Python",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "verdict": "Melhor referência de agente 24/7 com self-learning, mas não é especializado em deep research.",
+      "scores": {
+        "research_quality": 74,
+        "automation_depth": 90,
+        "evidence_strength": 62,
+        "local_privacy": 74,
+        "integration_fit": 90,
+        "cost_efficiency": 80,
+        "maturity_community": 92,
+        "license_adoption_risk": 74
+      },
+      "source_ids": [
+        "src-010",
+        "src-014"
+      ]
+    },
+    {
+      "player": "storm",
+      "name": "STORM",
+      "rank": 7,
+      "total_score": 76.1,
+      "category": "artigo científico",
+      "type": "pipeline",
+      "license": "open-source",
+      "language": "Python",
+      "url": "https://github.com/stanford-oval/storm",
+      "verdict": "Referência acadêmica para síntese multi-perspectiva em formato artigo.",
+      "scores": {
+        "research_quality": 84,
+        "automation_depth": 76,
+        "evidence_strength": 88,
+        "local_privacy": 40,
+        "integration_fit": 72,
+        "cost_efficiency": 82,
+        "maturity_community": 82,
+        "license_adoption_risk": 82
+      },
+      "source_ids": [
+        "src-009"
+      ]
+    },
+    {
+      "player": "langchain_open_dr",
+      "name": "LangChain Open Deep Research",
+      "rank": 8,
+      "total_score": 75.1,
+      "category": "single-loop",
+      "type": "agent",
+      "license": "MIT",
+      "language": "Python",
+      "url": "https://github.com/langchain-ai/open_deep_research",
+      "verdict": "Melhor quick start benchmarkado; ótimo baseline, menos poderoso que RL-trained.",
+      "scores": {
+        "research_quality": 78,
+        "automation_depth": 68,
+        "evidence_strength": 84,
+        "local_privacy": 38,
+        "integration_fit": 92,
+        "cost_efficiency": 78,
+        "maturity_community": 82,
+        "license_adoption_risk": 86
+      },
+      "source_ids": [
+        "src-011",
+        "src-012"
+      ]
+    },
+    {
+      "player": "autorresearchclaw",
+      "name": "AutoResearchClaw",
+      "rank": 9,
+      "total_score": 71.9,
+      "category": "paper científico",
+      "type": "pipeline",
+      "license": "open-source",
+      "language": "Python",
+      "url": "https://github.com/aiming-lab/AutoResearchClaw",
+      "verdict": "Melhor para ideia -> paper acadêmico, não para research generalista barato.",
+      "scores": {
+        "research_quality": 88,
+        "automation_depth": 96,
+        "evidence_strength": 80,
+        "local_privacy": 42,
+        "integration_fit": 64,
+        "cost_efficiency": 42,
+        "maturity_community": 66,
+        "license_adoption_risk": 74
+      },
+      "source_ids": [
+        "src-008"
+      ]
+    },
+    {
+      "player": "deepsearcher",
+      "name": "DeepSearcher",
+      "rank": 10,
+      "total_score": 71.4,
+      "category": "dados privados/RAG",
+      "type": "rag-system",
+      "license": "open-source",
+      "language": "Python",
+      "url": "https://github.com/zilliztech/deep-searcher",
+      "verdict": "Melhor para knowledge base privada, não para web deep research geral.",
+      "scores": {
+        "research_quality": 68,
+        "automation_depth": 58,
+        "evidence_strength": 62,
+        "local_privacy": 90,
+        "integration_fit": 82,
+        "cost_efficiency": 72,
+        "maturity_community": 70,
+        "license_adoption_risk": 82
+      },
+      "source_ids": [
+        "src-015"
+      ]
+    },
+    {
+      "player": "jina_node_deepresearch",
+      "name": "Jina node-DeepResearch",
+      "rank": 11,
+      "total_score": 70.3,
+      "category": "single-loop TypeScript",
+      "type": "agent",
+      "license": "Apache-2.0",
+      "language": "TypeScript",
+      "url": "https://github.com/jina-ai/node-DeepResearch",
+      "verdict": "Melhor protótipo rápido em TypeScript.",
+      "scores": {
+        "research_quality": 72,
+        "automation_depth": 62,
+        "evidence_strength": 66,
+        "local_privacy": 56,
+        "integration_fit": 74,
+        "cost_efficiency": 86,
+        "maturity_community": 72,
+        "license_adoption_risk": 88
+      },
+      "source_ids": [
+        "src-013"
+      ]
+    },
+    {
+      "player": "auto_deep_research",
+      "name": "Auto-Deep-Research",
+      "rank": 12,
+      "total_score": 66.9,
+      "category": "framework multi-stage",
+      "type": "framework",
+      "license": "open-source",
+      "language": "Python",
+      "url": "https://github.com/HKUDS/Auto-Deep-Research",
+      "verdict": "Emergente; observar antes de adotar como core.",
+      "scores": {
+        "research_quality": 74,
+        "automation_depth": 82,
+        "evidence_strength": 58,
+        "local_privacy": 58,
+        "integration_fit": 66,
+        "cost_efficiency": 66,
+        "maturity_community": 54,
+        "license_adoption_risk": 70
+      },
+      "source_ids": [
+        "src-015"
+      ]
+    },
+    {
+      "player": "firecrawl_open_dr",
+      "name": "Firecrawl Open Deep Research",
+      "rank": 13,
+      "total_score": 58.4,
+      "category": "single-loop com extração web",
+      "type": "agent",
+      "license": "open-source",
+      "language": "Python",
+      "url": "https://github.com/nickscamara/open-deep-research",
+      "verdict": "Útil se Firecrawl já for o motor de extração; nicho no restante.",
+      "scores": {
+        "research_quality": 68,
+        "automation_depth": 58,
+        "evidence_strength": 52,
+        "local_privacy": 34,
+        "integration_fit": 70,
+        "cost_efficiency": 66,
+        "maturity_community": 52,
+        "license_adoption_risk": 68
+      },
+      "source_ids": [
+        "src-015"
+      ]
+    },
+    {
+      "player": "kimi_researcher",
+      "name": "Kimi-Researcher",
+      "rank": 14,
+      "total_score": 58,
+      "category": "modelo RL-trained parcial",
+      "type": "model",
+      "license": "parcial",
+      "language": "unknown",
+      "url": "https://moonshotai.github.io/Kimi-Researcher/",
+      "verdict": "Forte como referência técnica, fraco como opção open-source absorvível.",
+      "scores": {
+        "research_quality": 88,
+        "automation_depth": 88,
+        "evidence_strength": 70,
+        "local_privacy": 22,
+        "integration_fit": 38,
+        "cost_efficiency": 30,
+        "maturity_community": 60,
+        "license_adoption_risk": 20
+      },
+      "source_ids": [
+        "src-015"
+      ]
+    }
+  ]
+}

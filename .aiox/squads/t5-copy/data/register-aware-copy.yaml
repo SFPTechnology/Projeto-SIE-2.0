@@ -1,0 +1,235 @@
+title: "Register-Aware Copy — Brand vs Product Voice Policy"
+purpose: "Cross-skill mirror of design register (brand vs product). Copy outputs adapt tone, vocabulary, density, and rhythm based on the deck/asset register."
+version: "1.0.0"
+authority: ".claude/rules/design-absolute-bans.md §4"
+cross_skill_pair: "squads/design-ops/data/register-inference.yaml"
+absorbed_from:
+  - "impeccable.style v3.0 — register-aware vocabulary (brand.md vs product.md)"
+created: "2026-05-19"
+source_bench: "docs/bench/2026-05-18-impeccable-vs-sinkra-design-stack/"
+
+# ── the_two_registers ────────────────────────────────────────────────────────
+
+registers:
+
+  brand:
+    definition: "Copy IS the product. Marketing, landing, campaign, pitch, manifesto, brand storytelling, sales letters, VSLs."
+    typical_assets:
+      - sales_letter
+      - vsl_script
+      - landing_page_copy
+      - launch_email_sequence
+      - manifesto
+      - investor_pitch_narrative
+      - brand_story
+      - campaign_tagline
+    voice_attributes:
+      tone: "Bold, opinionated, emotional, memorable"
+      density: "Lower — every word fights to belong"
+      rhythm: "Varied sentence length, dramatic pauses, punchy"
+      vocabulary: "Concrete, sensory, story-led"
+      rhetorical_devices: [rhyme, alliteration, asymmetric_lists, contrast, metaphor]
+      person: "Direct address (you/voce); occasional we (us-the-team)"
+    expert_clones_preferred:
+      # RT-FIX-6 2026-05-19 (@copy-chief): removido Schwartz daqui — ele é
+      # diagnosis Tier 0 (awareness/sophistication), não executor de register.
+      # Kennedy mantido em brand porque faz brand DR (não só product).
+      - alex-hormozi   # offer-driven, transformation-led
+      - ben-settle     # daily email, infotainment
+      - gary-halbert   # direct response, emotional
+      - clayton-makepeace  # visceral, deep emotional
+      - frank-kern     # mass control, soft sell
+      - dan-kennedy    # brand DR híbrido (também product capable)
+    anti_patterns_for_brand:
+      - "Bullet-point dumps without narrative"
+      - "Feature list disguised as benefit list"
+      - "Three-act structure too obvious"
+      - "Hedging language ('might', 'could', 'potentially')"
+      - "Acronym salad"
+      - "Stack-rank lists with 5+ items at uniform weight"
+    proof_handling:
+      preferred: "Story-led case (one customer, one transformation, with sensory detail)"
+      acceptable: "Specific numbers from real source"
+      banned: "Abstract aggregate ('thousands of customers', '99% satisfaction')"
+
+  product:
+    definition: "Copy SERVES the product. App UI, admin, dashboard, internal tools, productivity software, technical docs, release notes, runbooks."
+    typical_assets:
+      - app_ui_copy
+      - admin_dashboard_labels
+      - product_release_note
+      - changelog_entry
+      - error_message
+      - empty_state_copy
+      - onboarding_tooltip
+      - cta_button_label
+      - api_doc_summary
+    voice_attributes:
+      tone: "Neutral, instructional, helpful"
+      density: "Higher — pack information per line, but stay scannable"
+      rhythm: "Consistent, predictable; favor clarity over surprise"
+      vocabulary: "Operational verbs, concrete nouns, technical when domain-appropriate"
+      rhetorical_devices: [parallel_structure, lists, numbered_steps]
+      person: "Imperative + system voice"
+    expert_clones_preferred:
+      - claude-hopkins   # reason-why, scientific
+      - joe-sugarman     # slippery slide, clear
+      - john-carlton     # simple, direct
+      - david-deutsch    # multi-control, methodical
+      # Kennedy in brand list (hybrid brand DR)
+      # Schwartz handled separately in diagnosis_layer
+    anti_patterns_for_product:
+      - "Marketing language ('elevate', 'unlock', 'empower') in UI strings"
+      - "Storytelling in error messages"
+      - "Brand voice in onboarding tooltips"
+      - "Hyperbole in product copy"
+      - "Acronyms without first-use definition"
+      - "Em-dashes in operational copy"
+    proof_handling:
+      preferred: "Inline metric badges, version numbers, exact field names"
+      acceptable: "Quick context tooltips"
+      banned: "Testimonials inside dashboard chrome"
+
+diagnosis_layer:
+  # RT-FIX-6 2026-05-19 (@copy-chief): Schwartz lives OUTSIDE register pairs.
+  # Ele diagnostica AMBOS (brand awareness/sophistication tier) e o output dele
+  # informa qual register adotar. Não é executor de copy — é selector de register.
+  description: "Tier 0 diagnosis clones — they READ the audience and DECIDE the register, they don't author copy in either"
+  clones:
+    - eugene-schwartz   # awareness levels (1-5), sophistication stages (1-5) — diagnoses both registers
+    - claude-hopkins    # scientific advertising audit — diagnostic before tier 1 execution (also in product as executor — dual role)
+    - robert-collier    # enter-the-conversation diagnosis
+  invocation: "Tier 0 runs BEFORE register-aware vocabulary selection. Output: register inferred + awareness level + sophistication stage. Hands off to brand or product executor."
+
+# ── detection_signals_when_copy_brief_is_ambiguous ───────────────────────────
+
+detection_signals:
+  brand_signals:
+    - "Brief mentions 'lançamento', 'campanha', 'pitch', 'manifesto', 'sales letter', 'VSL'"
+    - "Audience is external (investors, press, prospects, leads)"
+    - "Goal is belief shift / emotional resonance / conversion to purchase"
+    - "Asset will live on landing page, ads, email sequence"
+    - "Designer is involved (design IS the message)"
+    - "Persona is sales/marketing/founder"
+
+  product_signals:
+    - "Brief mentions 'app', 'dashboard', 'admin', 'release note', 'changelog', 'doc', 'help center'"
+    - "Audience is internal (team, operators) OR existing users"
+    - "Goal is task completion / clarity / reduce support tickets"
+    - "Asset lives inside the product (UI, error, tooltip, empty state)"
+    - "Engineer or PM is the primary stakeholder"
+    - "Persona is product manager or technical operator"
+
+  inference_algorithm: |
+    Score brand vs product based on signal count.
+    If both > 0, pick higher.
+    If tied, default to product (safer — less hyperbole risk).
+    If neither, ASK the briefer.
+
+# ── per_register_vocabulary ──────────────────────────────────────────────────
+
+per_register_vocabulary:
+
+  brand_friendly_verbs:
+    - aceleram
+    - transformam
+    - destravam
+    - escalam
+    - dominam
+    - vencem
+    - rompem
+    - quebram
+    - libertam
+    - multiplicam
+    - alavancam   # ok aqui pq é metáfora viva no contexto brand
+
+  product_friendly_verbs:
+    - configura
+    - cria
+    - edita
+    - atualiza
+    - publica
+    - arquiva
+    - filtra
+    - exporta
+    - importa
+    - sincroniza
+    - valida
+    - aprova
+    - rejeita
+
+  cross_register_neutral_verbs:
+    - "use / usa"
+    - "ship / envia"
+    - "test / testa"
+    - "ver / view"
+    - "iniciar / start"
+
+# ── tone_calibration_per_register ────────────────────────────────────────────
+
+tone_calibration:
+  brand:
+    headline_length: "5-15 words ideal"
+    sentence_length_avg: "8-15 words"
+    paragraph_length: "2-4 sentences max"
+    rhetorical_questions: "OK, sparingly (1-2 per asset)"
+    emotional_intensity: "high"
+    proof_density: "1 concrete number per 200 words minimum"
+    cta_style: "Imperative + emotional anchor ('Comece a vender hoje')"
+
+  product:
+    label_length: "1-4 words ideal"
+    sentence_length_avg: "6-12 words"
+    paragraph_length: "1-2 sentences max"
+    rhetorical_questions: "Avoid (use direct statement)"
+    emotional_intensity: "low to neutral"
+    proof_density: "n/a — clarity > proof"
+    cta_style: "Concrete action ('Salvar alterações', 'Aprovar pedido')"
+
+# ── enforcement ──────────────────────────────────────────────────────────────
+
+enforcement:
+  copy_chief:
+    rule: "Read brief, infer register, declare in briefing-normalized.yaml#register before drafting"
+    blocking: false  # advisory — operator can override
+    output_required:
+      register:
+        inferred: brand | product
+        confidence: 0.0-1.0
+        rationale: "1-2 sentences"
+
+  copy_ops_worker:
+    rule: "Load per_register_vocabulary + anti_patterns matching the register. Refuse cross-register words during draft."
+
+  copy_quality_checklist:
+    rule: "Final scan: copy uses register-appropriate vocabulary, no cross-contamination"
+
+# ── examples ─────────────────────────────────────────────────────────────────
+
+examples:
+
+  brand_correct: |
+    "Você sabe que vende um bom produto. Mas vende como todo mundo — eu cobro a mais, espera 12 dias, talvez fecho. Em 90 dias, você não cobra a mais. Você cobra antes."
+    (Hormozi-style — emotional, contrast, transformation promise)
+
+  brand_wrong_too_product: |
+    "Sistema de cobrança automatizado com integração nativa para 12 gateways. Permite configurar templates de fatura e exportar relatórios em CSV."
+    (Product voice in a brand context — kills emotional resonance)
+
+  product_correct: |
+    "Fatura criada. Pagamento será processado em até 2 dias úteis. Você pode acompanhar o status em Faturas → Recebíveis."
+    (Clear, operational, helpful)
+
+  product_wrong_too_brand: |
+    "🚀 Sua fatura foi unleashed! Acompanhe sua jornada de cobrança e transforme seu cash flow!"
+    (Brand voice in product context — feels unprofessional, ignores user task)
+
+# ── cross_skill_handshake ────────────────────────────────────────────────────
+
+cross_skill_handshake:
+  with_design_md:
+    rule: "If /design-md emits DESIGN.md with register: declared, copy outputs MUST match that register"
+    file: "DESIGN.md#frontmatter.register"
+  with_slide_creator:
+    rule: "If briefing-normalized.yaml#register exists in deck context, copy assets for that deck inherit register"
+    file: ".claude/skills/slide-creator/templates/qa/briefing-normalized#register"

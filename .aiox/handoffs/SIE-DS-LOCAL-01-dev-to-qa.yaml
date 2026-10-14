@@ -1,0 +1,31 @@
+handoff:
+  from_agent: "@dev"
+  to_agent: "@qa"
+  story_context:
+    story_id: "SIE-DS-LOCAL-01"
+    story_path: "docs/stories/story-SIE-DS-LOCAL-01-fundacao-preview-local.md"
+    story_status: "InReview"
+    current_task: "*develop-yolo concluído; aguardando *review / *gate"
+    branch: "master"
+  decisions:
+    - "AC1-AC6 implementados: tokens --sie-cc-* (src/components/command-center/tokens/), EngineeringShell.tsx, feature-flag.ts (função pura extraída para testabilidade, não estava no plano original), rota isolada src/routes/sie-command-center-preview.tsx gated por VITE_FEATURE_SIE_COMMAND_CENTER."
+    - "2 bugs reais encontrados e corrigidos durante o próprio desenvolvimento: (1) import `.css?raw` retornava vazio (plugin @tailwindcss/vite intercepta), trocado por fs.readFileSync; (2) teste de rota dependia de estado ambiente de .env.local que a própria story define, trocado por vi.stubEnv cobrindo os 3 cenários (ausente/off/on)."
+    - "Validações locais reais executadas (não apenas CodeRabbit, que segue quebrado no ambiente — mesma causa raiz de SIE-DS-00): lint limpo, typecheck limpo, suíte COMPLETA 140 arquivos/983 testes passando (zero regressão), build client+SSR verde."
+    - "AC4 verificado via git diff/status: AppShell.tsx com diff vazio. 4 rotas existentes + package.json aparecem M no git status, mas são estado pré-existente de outros épicos (MOD-QT/MOD-CC) — confirmado que nenhuma ferramenta de escrita desta sessão tocou esses arquivos."
+  files_modified:
+    - "src/components/command-center/tokens/sie-cc-tokens.css (novo)"
+    - "src/components/command-center/tokens/sie-cc-tokens.test.ts (novo)"
+    - "src/components/command-center/feature-flag.ts (novo)"
+    - "src/components/command-center/feature-flag.test.ts (novo)"
+    - "src/components/command-center/EngineeringShell.tsx (novo)"
+    - "src/components/command-center/EngineeringShell.test.tsx (novo)"
+    - "src/routes/sie-command-center-preview.tsx (novo)"
+    - "src/routes/-sie-command-center-preview.test.tsx (novo)"
+    - ".env.local (local, não versionado — VITE_FEATURE_SIE_COMMAND_CENTER=true)"
+  blockers: []
+  next_action: >
+    @qa executa *review SIE-DS-LOCAL-01 e *gate SIE-DS-LOCAL-01. Sugestão de foco: acessibilidade
+    básica do EngineeringShell (semântica nav/header/main, sem teclado interativo real ainda —
+    nav é placeholder estático), confirmação independente do AC4 via git diff próprio, e decisão
+    sobre CodeRabbit indisponível (mesmo precedente CONCERNS de SIE-DS-00, mas desta vez HÁ código
+    real — avaliar se merece severidade maior que em SIE-DS-00).

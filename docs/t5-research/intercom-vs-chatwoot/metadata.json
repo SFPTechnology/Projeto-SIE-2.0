@@ -1,0 +1,68 @@
+{
+  "benchmark_id": "intercom-vs-chatwoot",
+  "comparison_type": "product",
+  "subject_a": {
+    "name": "Intercom",
+    "category": "SaaS — AI-first customer messaging & support",
+    "url": "https://www.intercom.com",
+    "company": "Intercom Inc.",
+    "country": "USA",
+    "founded": 2011,
+    "license": "Proprietary"
+  },
+  "subject_b": {
+    "name": "Chatwoot",
+    "category": "OSS + Cloud — Omnichannel customer engagement",
+    "url": "https://www.chatwoot.com",
+    "company": "Chatwoot Inc.",
+    "country": "India",
+    "founded": 2017,
+    "license": "MIT"
+  },
+  "generated_at": "2026-05-06T00:00:00Z",
+  "generated_by": "spy/bench-analyst",
+  "pipeline_pair": "2 of 3 (Chatwoot vs Zendesk + Octadesk vs Zendesk paralelos; consolidacao 3-way pendente)",
+  "upstream_research": "docs/research/2026-05-06-omnichannel-helpdesk-landscape/",
+  "depth_level": "Full",
+  "artifact_count_target": 11,
+  "scoring_dimensions": [
+    {"id": "C1", "name": "AI deflection performance", "weight": 25, "rationale": "coracao da tensao Fin AI vs Captain AI"},
+    {"id": "C2", "name": "AI pricing model honesty", "weight": 15, "rationale": "per-resolution vs credits vs flat"},
+    {"id": "C3", "name": "Canais nativos diversidade", "weight": 15, "rationale": "WhatsApp/Insta/Telegram/SMS coverage"},
+    {"id": "C4", "name": "In-app messaging strength", "weight": 10, "rationale": "Intercom designed for SaaS in-app"},
+    {"id": "C5", "name": "Pricing total TCO 3 cenarios", "weight": 15, "rationale": "SMB/mid/scale TCO modelado"},
+    {"id": "C6", "name": "Comunidade / Marketplace", "weight": 5, "rationale": "ecossistema apps + community"},
+    {"id": "C7", "name": "Self-hosted / sovereignty", "weight": 10, "rationale": "Chatwoot exclusivo aqui"},
+    {"id": "C8", "name": "Time-to-value / setup complexity", "weight": 5, "rationale": "managed cloud vs Docker/DevOps"}
+  ],
+  "central_tension": "AI-first SaaS (Intercom Fin AI, 51% deflection medio publicado, $0.99/resolucao) vs OSS lider com AI nativa emergente (Chatwoot Captain AI, deflection nao publicado, modelo de credits). Quando per-resolution vira proibitivo? Self-hosted + Captain pode substituir Intercom para 5/20/50 agents?",
+  "data_sources": {
+    "tier_1_high_confidence": [
+      "https://www.intercom.com/pricing",
+      "https://www.chatwoot.com/pricing",
+      "https://fin.ai/",
+      "https://www.chatwoot.com/captain/",
+      "https://github.com/chatwoot/chatwoot"
+    ],
+    "tier_2_medium_confidence": [
+      "https://www.g2.com/compare/chatwoot-vs-fin-by-intercom",
+      "https://www.g2.com/products/chatwoot/reviews",
+      "https://useconverge.app/compare/chatwoot-vs-intercom",
+      "https://blog.elest.io/how-chatwoot-can-replace-intercom-for-your-support-team/",
+      "https://achiya-automation.com/en/blog/chatwoot-vs-intercom/",
+      "https://www.atomixweb.com/articles/best-open-source-intercom-alternative-2026"
+    ],
+    "upstream_aiox": [
+      "docs/research/2026-05-06-omnichannel-helpdesk-landscape/02-research-report.md",
+      "docs/research/2026-05-06-omnichannel-helpdesk-landscape/03-recommendations.md",
+      "docs/research/2026-05-06-omnichannel-helpdesk-landscape/comparison-table.md"
+    ]
+  },
+  "confidence_overall": "Medium-High",
+  "limitations": [
+    "Captain AI deflection rate nao publicado oficialmente — claims vendor-side apenas",
+    "Fin AI Apex 1.0 modelo arquitetural detalhado nao public (proprietary fabric)",
+    "Pricing Chatwoot self-hosted infra cost depende do provedor (estimado VPS $20-50/mo)",
+    "TCO calculado em USD; Brasil tem volatilidade FX nao modelada"
+  ]
+}

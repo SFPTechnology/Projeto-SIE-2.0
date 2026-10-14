@@ -1,0 +1,108 @@
+{
+  "schema": "deepresearch-absorption-benchmark.scenario-scorecards.v1",
+  "generated_at": "2026-05-18",
+  "scenarios": [
+    {
+      "id": "S1-academic-paper",
+      "label": "Pesquisa Acadêmica → Paper Conference-Ready",
+      "description": "User wants to research a topic and produce a conference-ready paper with figures, baselines, citations.",
+      "weights_override": {"Citacoes": 25, "Saida": 15, "Sandbox": 12, "Planejamento": 12},
+      "ranking": [
+        {"player": "autoresearchclaw", "score": 89.5, "winner": true, "rationale": "23 stages + CodeAgent/BenchmarkAgent/FigureAgent + Docker hardened"},
+        {"player": "deerflow", "score": 71.0},
+        {"player": "gpt_researcher", "score": 70.5},
+        {"player": "aiox_research", "score": 65.0, "rationale": "Vence em Planejamento/Citações mas perde em FigureAgent + Sandbox"},
+        {"player": "local_dr", "score": 64.0}
+      ]
+    },
+    {
+      "id": "S2-product-discovery",
+      "label": "Product Discovery (JTBD + Villain + WTP)",
+      "description": "User wants to validate a product idea with market research, competitive analysis, JTBD framing.",
+      "weights_override": {"Planejamento": 20, "Citacoes": 18, "Saida": 15, "Governance": 12},
+      "ranking": [
+        {"player": "aiox_research", "score": 85.5, "winner": true, "rationale": "Único com product-discovery framework + JTBD + Mom Test + Villain + WTP signals built-in"},
+        {"player": "gpt_researcher", "score": 70.0},
+        {"player": "deerflow", "score": 67.5},
+        {"player": "autoresearchclaw", "score": 67.0}
+      ]
+    },
+    {
+      "id": "S3-privacy-airgapped",
+      "label": "Privacy / Air-Gapped Research",
+      "description": "Enterprise/government scenario: 100% local, no API calls externos, encrypted at rest.",
+      "weights_override": {"Modelo": 18, "Memoria": 15, "Sandbox": 12, "Licenca": 10},
+      "ranking": [
+        {"player": "local_dr", "score": 86.0, "winner": true, "rationale": "SQLCipher encryption + 10+ search engines locais + Ollama support + Docker GPU"},
+        {"player": "openresearcher", "score": 65.0, "rationale": "30B model self-contained mas sem encryption nativa"},
+        {"player": "deepresearcher", "score": 63.5},
+        {"player": "aiox_research", "score": 50.0, "rationale": "App local-first mas requer LLMs externos (BYOK Ollama é parcial)"}
+      ]
+    },
+    {
+      "id": "S4-competitive-intelligence",
+      "label": "Competitive Intelligence (B2B)",
+      "description": "Marketing/PM/founder fazendo análise de concorrente, battle cards, market positioning.",
+      "weights_override": {"Citacoes": 18, "Saida": 18, "Multi-Agente": 12, "Governance": 10},
+      "ranking": [
+        {"player": "aiox_research", "score": 78.0, "winner": true, "rationale": "Squad research (renomeado de spy) tem 14 specialist personas + dedicated bench-comparison workflow"},
+        {"player": "gpt_researcher", "score": 75.5, "rationale": "Output PDF/DOCX/HTML perfeito para battle cards"},
+        {"player": "deerflow", "score": 73.0},
+        {"player": "autoresearchclaw", "score": 70.0}
+      ]
+    },
+    {
+      "id": "S5-quick-qa",
+      "label": "Quick Q&A (não-long-form)",
+      "description": "User só quer resposta rápida e factual, não relatório longo.",
+      "weights_override": {"Entrada": 15, "Execucao": 18, "Saida": 8, "Distribuicao": 15},
+      "ranking": [
+        {"player": "jina_ndr", "score": 78.0, "winner": true, "rationale": "Single-loop search/visit/reflect/answer + budget monitoring + stable API jina.ai/deepsearch"},
+        {"player": "gpt_researcher", "score": 75.0},
+        {"player": "langchain_odr", "score": 67.0},
+        {"player": "aiox_research", "score": 45.0, "rationale": "Pipeline 7-molecule é overkill para quick Q&A. Considerar /quick-answer skill irmã."}
+      ]
+    },
+    {
+      "id": "S6-benchmark-driven",
+      "label": "Benchmark-Driven (precisa pontuar em DeepResearchBench/BrowseComp/SimpleQA)",
+      "description": "User precisa de research agent com score público verificável.",
+      "weights_override": {"Modelo": 25, "Observabilidade": 18, "Execucao": 15},
+      "ranking": [
+        {"player": "openresearcher", "score": 88.5, "winner": true, "rationale": "54.8% BrowseComp-Plus + NVIDIA Nemotron adoption + public eval logs"},
+        {"player": "local_dr", "score": 82.0, "rationale": "~95% SimpleQA + public benchmark results dir"},
+        {"player": "langchain_odr", "score": 75.0, "rationale": "#6 Deep Research Bench"},
+        {"player": "deepresearcher", "score": 74.0, "rationale": "+28.9pts emergent behaviors paper"},
+        {"player": "aiox_research", "score": 38.0, "rationale": "Sem score público. P0: rodar Deep Research Bench."}
+      ]
+    },
+    {
+      "id": "S7-pt-br-vertical",
+      "label": "PT-BR/LatAm Vertical (operador/founder/agência)",
+      "description": "User PT-BR fazendo research para lançamento, ICP, oferta, validação de mercado.",
+      "weights_override": {"Planejamento": 22, "Saida": 18, "Citacoes": 12, "Governance": 10},
+      "ranking": [
+        {"player": "aiox_research", "score": 92.0, "winner": true, "rationale": "Único com PT-BR/LatAm-first positioning + workflow verticals (PRD/BMC/battle-card grade) + product-discovery framework + 4 negócios dogfood"},
+        {"player": "gpt_researcher", "score": 68.0, "rationale": "Funciona em PT-BR mas EN-first design"},
+        {"player": "deerflow", "score": 65.0}
+      ]
+    },
+    {
+      "id": "S8-claude-code-skill",
+      "label": "Skill Embarcada no Claude Code Ecosystem",
+      "description": "Skill instalável diretamente no Claude Code via marketplace.",
+      "weights_override": {"Entrada": 22, "Distribuicao": 25, "Multi-Agente": 12},
+      "ranking": [
+        {"player": "gpt_researcher", "score": 86.0, "winner": true, "rationale": "Publicada em skills.sh + MCP Server nativo + Apache-2.0"},
+        {"player": "langchain_odr", "score": 73.0, "rationale": "CLAUDE.md nativo + MCP + uv"},
+        {"player": "aiox_research", "score": 65.0, "rationale": "Skill local mas não publicada em marketplace público"}
+      ]
+    }
+  ],
+  "summary_by_scenario": {
+    "scenarios_aiox_wins": ["S2-product-discovery", "S4-competitive-intelligence", "S7-pt-br-vertical"],
+    "scenarios_aiox_loses_badly": ["S5-quick-qa", "S6-benchmark-driven", "S8-claude-code-skill", "S3-privacy-airgapped"],
+    "scenarios_aiox_mid": ["S1-academic-paper"],
+    "strategic_implication": "AIOX domina onde Planejamento + Governance + PT-BR vertical importam (3 scenarios). Perde onde Distribuição + Modelo + Benchmark público importam (4 scenarios). Empata em academic paper."
+  }
+}

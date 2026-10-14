@@ -1,0 +1,627 @@
+{
+  "schema": "bench-inventory-v1",
+  "generated_at": "2026-05-18T00:17:45.178Z",
+  "comparison_type": "product",
+  "players": [
+    {
+      "key": "gamma",
+      "name": "Gamma",
+      "category": "AI-native deck/doc/site",
+      "type": "SaaS AI-native",
+      "origin": "USA",
+      "license": "Proprietary",
+      "anos": 6,
+      "vendor_url": "https://gamma.app",
+      "price": "Free; Plus ~US$8-10/mo; Pro ~US$15-20/mo; Team/Business higher",
+      "rationale": "Categoria-definidora em geração rápida por prompt; bom para pitch, landing decks e conteúdo de growth.",
+      "sources": [
+        "S01",
+        "S02",
+        "S18"
+      ],
+      "neutral_score": 83.2,
+      "tech_score": 78.5,
+      "meta": {
+        "color": "#635BFF",
+        "letter": "GA",
+        "tag": "AI-native"
+      },
+      "score_signals": {
+        "visual_quality": 91,
+        "prompt_generation": 94,
+        "manual_editing": 79,
+        "collaboration": 78,
+        "export_fidelity": 72,
+        "pricing_value": 87,
+        "maturity": 88,
+        "brand_governance": 76,
+        "risk_control": 69
+      },
+      "evidence_notes": {
+        "visual_quality": "Saída moderna e forte para web/decks rápidos; tende a parecer polida com pouca intervenção.",
+        "prompt_generation": "Gera apresentações, documentos e sites a partir de prompt, com plano free e limites por créditos.",
+        "manual_editing": "Edição boa no ambiente Gamma, mas menos precisa que PowerPoint/Slides nativos para layouts complexos.",
+        "collaboration": "Funciona bem para compartilhar, comentar e publicar, mas governança corporativa depende de planos superiores.",
+        "export_fidelity": "Exporta PDF, PNG e PPTX; risco prático é perda de editabilidade/ajustes em PowerPoint para decks complexos.",
+        "pricing_value": "Ótimo valor para indivíduos e founders; crédito/imagem premium pode exigir upgrades.",
+        "maturity": "Alta adoção e categoria madura, com documentação e ecossistema ativo.",
+        "brand_governance": "Suporta branding e fontes em planos pagos, mas não é tão orientado a brand ops quanto Pitch/Canva/Beautiful.ai.",
+        "risk_control": "SaaS proprietário com lock-in de canvas; bom para velocidade, menos para requisitos rígidos de dados."
+      }
+    },
+    {
+      "key": "canva",
+      "name": "Canva",
+      "category": "Design suite with AI presentations",
+      "type": "Design suite SaaS",
+      "origin": "Australia",
+      "license": "Proprietary",
+      "anos": 13,
+      "vendor_url": "https://www.canva.com",
+      "price": "Free; Pro ~US$13/mo; Teams/Business per user",
+      "rationale": "Melhor alternativa generalista quando o time já cria social, ads, brand assets e apresentações no mesmo lugar.",
+      "sources": [
+        "S03",
+        "S04"
+      ],
+      "neutral_score": 86,
+      "tech_score": 80.5,
+      "meta": {
+        "color": "#00A878",
+        "letter": "CA",
+        "tag": "Design"
+      },
+      "score_signals": {
+        "visual_quality": 88,
+        "prompt_generation": 78,
+        "manual_editing": 90,
+        "collaboration": 88,
+        "export_fidelity": 80,
+        "pricing_value": 89,
+        "maturity": 95,
+        "brand_governance": 90,
+        "risk_control": 74
+      },
+      "evidence_notes": {
+        "visual_quality": "Template library e assets visuais são muito fortes, embora a geração por prompt não seja tão narrativa quanto Gamma.",
+        "prompt_generation": "Magic Design gera rascunhos de apresentações a partir de ideia/prompt e complementa com Magic Media.",
+        "manual_editing": "Editor drag-and-drop maduro; excelente para ajustar assets, imagens, brand kit e versões.",
+        "collaboration": "Colaboração e pastas de equipe são maduras para marketing/growth.",
+        "export_fidelity": "API e UI suportam PDF e PPTX para apresentações; ainda há risco de fonte/animação/layout em PowerPoint.",
+        "pricing_value": "Valor alto porque inclui todo o pacote de design, não só slides.",
+        "maturity": "Plataforma massiva e muito madura.",
+        "brand_governance": "Brand Kit, templates e controles de equipe dão vantagem forte em consistência visual.",
+        "risk_control": "SaaS proprietário; bom controle administrativo, mas sem self-host."
+      }
+    },
+    {
+      "key": "beautiful_ai",
+      "name": "Beautiful.ai",
+      "category": "Smart slide automation",
+      "type": "Presentation SaaS",
+      "origin": "USA",
+      "license": "Proprietary",
+      "anos": 10,
+      "vendor_url": "https://www.beautiful.ai",
+      "price": "Pro US$12/mo annual ou mensal mais caro; Team US$40/user/mo annual; Enterprise custom",
+      "rationale": "Forte para times que querem slides consistentes com layouts inteligentes e menos liberdade destrutiva.",
+      "sources": [
+        "S05",
+        "S06",
+        "S19"
+      ],
+      "neutral_score": 77.9,
+      "tech_score": 74.3,
+      "meta": {
+        "color": "#2F80ED",
+        "letter": "BE",
+        "tag": "Smart"
+      },
+      "score_signals": {
+        "visual_quality": 89,
+        "prompt_generation": 76,
+        "manual_editing": 73,
+        "collaboration": 79,
+        "export_fidelity": 76,
+        "pricing_value": 64,
+        "maturity": 82,
+        "brand_governance": 86,
+        "risk_control": 72
+      },
+      "evidence_notes": {
+        "visual_quality": "Smart Slides mantêm consistência e evitam layouts quebrados.",
+        "prompt_generation": "Create with AI ajuda no primeiro draft, mas a força principal é automação de layout.",
+        "manual_editing": "Controle manual é deliberadamente limitado pelos Smart Slides; bom para consistência, ruim para designers avançados.",
+        "collaboration": "Team adiciona bibliotecas, colaboração e governança.",
+        "export_fidelity": "Exporta PPT editável, PPT como imagem, Google Slides e PDF; animações/transições podem se perder.",
+        "pricing_value": "Sem free permanente e Team caro para pequenos times.",
+        "maturity": "Produto maduro, especializado em apresentações.",
+        "brand_governance": "Muito forte para brand controls, shared libraries e templates.",
+        "risk_control": "SaaS proprietário; baixo risco técnico, custo/lock-in moderado."
+      }
+    },
+    {
+      "key": "tome",
+      "name": "Tome",
+      "category": "AI storytelling / sales narrative",
+      "type": "SaaS pivot risk",
+      "origin": "USA",
+      "license": "Proprietary",
+      "anos": 6,
+      "vendor_url": "https://tome.app",
+      "price": "Histórico: Pro US$16/user/mo annual ou US$20 mensal; status 2026 incerto para novo uso de slides",
+      "rationale": "Incluído por solicitação; hoje é mais benchmark de risco do que recomendação prática para decks.",
+      "sources": [
+        "S07",
+        "S08"
+      ],
+      "neutral_score": 55.8,
+      "tech_score": 50.3,
+      "meta": {
+        "color": "#7C3AED",
+        "letter": "TO",
+        "tag": "AI"
+      },
+      "score_signals": {
+        "visual_quality": 78,
+        "prompt_generation": 72,
+        "manual_editing": 58,
+        "collaboration": 58,
+        "export_fidelity": 35,
+        "pricing_value": 45,
+        "maturity": 45,
+        "brand_governance": 50,
+        "risk_control": 36
+      },
+      "evidence_notes": {
+        "visual_quality": "Narrativa visual era boa, especialmente em formato tile/web.",
+        "prompt_generation": "Histórico forte em prompt-to-story, mas disponibilidade/escopo atual para apresentações é problemático.",
+        "manual_editing": "Edição interna possível, com menos compatibilidade com padrões PPT.",
+        "collaboration": "Teammates precisam conta Tome para editar; não é o foco atual para times de growth.",
+        "export_fidelity": "Help oficial indicava PDF no Pro e sem suporte a PPT; esse é o maior bloqueio.",
+        "pricing_value": "Valor baixo para novo uso de apresentações por risco de produto/pivot.",
+        "maturity": "Marca conhecida, mas o produto de apresentações foi pivotado/sunsetting segundo fontes recentes.",
+        "brand_governance": "Custom logo no Pro, mas sem suíte de governança comparável aos líderes.",
+        "risk_control": "Risco alto de continuidade e lock-in."
+      }
+    },
+    {
+      "key": "pitch",
+      "name": "Pitch",
+      "category": "Collaborative presentation workspace",
+      "type": "Team presentation SaaS",
+      "origin": "Germany",
+      "license": "Proprietary",
+      "anos": 8,
+      "vendor_url": "https://pitch.com",
+      "price": "Free; Plus US$15/mo ou US$13 annual; Team US$23/seat/mo ou US$19 annual; Enterprise custom",
+      "rationale": "Melhor para times que precisam de colaboração, links, rooms, analytics e brand templates mais do que AI generativa máxima.",
+      "sources": [
+        "S09"
+      ],
+      "neutral_score": 82.6,
+      "tech_score": 79.5,
+      "meta": {
+        "color": "#F59E0B",
+        "letter": "PI",
+        "tag": "Collaborative"
+      },
+      "score_signals": {
+        "visual_quality": 83,
+        "prompt_generation": 68,
+        "manual_editing": 86,
+        "collaboration": 94,
+        "export_fidelity": 86,
+        "pricing_value": 81,
+        "maturity": 84,
+        "brand_governance": 88,
+        "risk_control": 78
+      },
+      "evidence_notes": {
+        "visual_quality": "Templates modernos e muito bons para SaaS/growth.",
+        "prompt_generation": "AI acelera criação e personalização, mas não é tão central quanto Gamma/Plus.",
+        "manual_editing": "Editor robusto para slides profissionais e assets de equipe.",
+        "collaboration": "Ponto mais forte: convidados, rooms, comentários, version history e co-presenting.",
+        "export_fidelity": "PDF no free com branding; PPTX sem branding nos planos pagos.",
+        "pricing_value": "Free útil e Team justo para colaboração real.",
+        "maturity": "Produto maduro de apresentações colaborativas.",
+        "brand_governance": "Custom templates, fonts, roles e conteúdo reutilizável.",
+        "risk_control": "SaaS proprietário, mas com workflows de time e exportação melhores que AI-native puro."
+      }
+    },
+    {
+      "key": "plus_ai",
+      "name": "Plus AI",
+      "category": "AI inside PowerPoint/Google Slides",
+      "type": "Native add-in",
+      "origin": "USA",
+      "license": "Proprietary",
+      "anos": 4,
+      "vendor_url": "https://plusai.com",
+      "price": "Basic US$10/user/mo annual ou US$15 mensal; Pro US$20/user/mo annual ou US$25 mensal; Enterprise custom",
+      "rationale": "Escolha pragmática quando PPT/Google Slides nativos e editabilidade são não-negociáveis.",
+      "sources": [
+        "S10",
+        "S11",
+        "S18"
+      ],
+      "neutral_score": 85.6,
+      "tech_score": 89.5,
+      "meta": {
+        "color": "#111827",
+        "letter": "PL",
+        "tag": "AI"
+      },
+      "score_signals": {
+        "visual_quality": 78,
+        "prompt_generation": 86,
+        "manual_editing": 94,
+        "collaboration": 86,
+        "export_fidelity": 96,
+        "pricing_value": 84,
+        "maturity": 79,
+        "brand_governance": 83,
+        "risk_control": 82
+      },
+      "evidence_notes": {
+        "visual_quality": "Visual corporativo sólido; menos wow que Gamma/Canva, mas mais utilizável em templates reais.",
+        "prompt_generation": "Gera apresentações e slides únicos a partir de texto/arquivos diretamente nos editores nativos.",
+        "manual_editing": "Vantagem categórica: tudo permanece em PowerPoint ou Google Slides.",
+        "collaboration": "Herda colaboração dos editores nativos e adiciona shared presets/templates.",
+        "export_fidelity": "Melhor score por evitar conversão: cria em PowerPoint/Slides desde o começo.",
+        "pricing_value": "Boa relação valor/risco para times profissionais.",
+        "maturity": "Menor que Canva/Gamma, mas focado e com docs sólidas.",
+        "brand_governance": "Custom branding/templates e biblioteca compartilhada em planos de time/enterprise.",
+        "risk_control": "Menos lock-in operacional; SOC2 mencionado na página oficial."
+      }
+    },
+    {
+      "key": "decktopus",
+      "name": "Decktopus",
+      "category": "AI presentation generator",
+      "type": "AI deck SaaS",
+      "origin": "Turkey/USA",
+      "license": "Proprietary",
+      "anos": 5,
+      "vendor_url": "https://www.decktopus.com",
+      "price": "Pro US$14.99/mo annual; Business US$34.99/user/mo annual; Enterprise custom",
+      "rationale": "Alternativa boa para geração rápida com analytics/domínio/webhooks, mas perde para líderes em polish e ecossistema.",
+      "sources": [
+        "S12"
+      ],
+      "neutral_score": 72.6,
+      "tech_score": 70.3,
+      "meta": {
+        "color": "#EC4899",
+        "letter": "DE",
+        "tag": "AI"
+      },
+      "score_signals": {
+        "visual_quality": 75,
+        "prompt_generation": 80,
+        "manual_editing": 68,
+        "collaboration": 72,
+        "export_fidelity": 68,
+        "pricing_value": 70,
+        "maturity": 74,
+        "brand_governance": 75,
+        "risk_control": 65
+      },
+      "evidence_notes": {
+        "visual_quality": "Visual bom para uso geral, menos sofisticado que Gamma/Canva/Beautiful.ai.",
+        "prompt_generation": "Geração com IA e assistência são núcleo do produto.",
+        "manual_editing": "Edição suficiente, mas menos avançada que editores nativos.",
+        "collaboration": "Business inclui Team & Organization.",
+        "export_fidelity": "Pricing explicita PDF export; PPTX não aparece como força central na página de preço.",
+        "pricing_value": "Preço moderado, com créditos anuais e cap por plano.",
+        "maturity": "Base grande declarada e produto conhecido.",
+        "brand_governance": "Enterprise promete slides corporativos, templates e layouts customizados.",
+        "risk_control": "SaaS proprietário com limites por créditos e menos transparência sobre export PPTX."
+      }
+    },
+    {
+      "key": "slidesai",
+      "name": "SlidesAI",
+      "category": "Google Slides add-on",
+      "type": "Slides add-on",
+      "origin": "Unknown",
+      "license": "Proprietary",
+      "anos": 4,
+      "vendor_url": "https://www.slidesai.io",
+      "price": "Free limitado; planos pagos estimados na faixa US$10-20/mo conforme fontes de pricing",
+      "rationale": "Bom para gerar slides simples dentro do Google Slides, mas limitado para decks estratégicos de alto impacto.",
+      "sources": [
+        "S13",
+        "S14"
+      ],
+      "neutral_score": 73.9,
+      "tech_score": 78.8,
+      "meta": {
+        "color": "#10B981",
+        "letter": "SL",
+        "tag": "Google"
+      },
+      "score_signals": {
+        "visual_quality": 62,
+        "prompt_generation": 75,
+        "manual_editing": 86,
+        "collaboration": 82,
+        "export_fidelity": 84,
+        "pricing_value": 79,
+        "maturity": 67,
+        "brand_governance": 55,
+        "risk_control": 70
+      },
+      "evidence_notes": {
+        "visual_quality": "Saída funcional, mas menos refinada para fundraising/sales high-stakes.",
+        "prompt_generation": "Transforma texto em apresentação dentro do Google Slides.",
+        "manual_editing": "Por viver em Google Slides, edição manual é familiar.",
+        "collaboration": "Herda colaboração do Google Slides.",
+        "export_fidelity": "Boa porque o destino principal já é Google Slides; PPTX depende do export do Google.",
+        "pricing_value": "Plano free limitado e pagos baratos tornam bom para baixo orçamento.",
+        "maturity": "Conhecido como add-on, mas menor que líderes.",
+        "brand_governance": "Governança/brand kits mais fracos que Canva/Pitch/Plus.",
+        "risk_control": "Menor lock-in por usar Google Slides, mas dependência de add-on."
+      }
+    },
+    {
+      "key": "presenton",
+      "name": "Presenton",
+      "category": "Open-source AI presentation generator/API",
+      "type": "Open source + cloud/self-host",
+      "origin": "Unknown",
+      "license": "Apache-2.0",
+      "anos": 1,
+      "vendor_url": "https://presenton.ai",
+      "repo_url": "https://github.com/presenton/presenton",
+      "price": "Open source/self-host; cloud/enterprise conforme necessidade; BYOK para modelos",
+      "rationale": "Melhor aposta quando API, self-hosting, privacidade e templates próprios importam mais que UI polida.",
+      "sources": [
+        "S15",
+        "S16",
+        "S17"
+      ],
+      "neutral_score": 77,
+      "tech_score": 84.8,
+      "meta": {
+        "color": "#EF4444",
+        "letter": "PR",
+        "tag": "Open-source"
+      },
+      "score_signals": {
+        "visual_quality": 73,
+        "prompt_generation": 82,
+        "manual_editing": 70,
+        "collaboration": 58,
+        "export_fidelity": 91,
+        "pricing_value": 86,
+        "maturity": 62,
+        "brand_governance": 82,
+        "risk_control": 96
+      },
+      "evidence_notes": {
+        "visual_quality": "Promessa forte de decks design-true com templates PPTX, mas maturidade visual depende do template e setup.",
+        "prompt_generation": "Geração completa com modelos próprios/BYOK e suporte a API.",
+        "manual_editing": "Permite edição e variantes, mas não tem a sofisticação de editores de design maduros.",
+        "collaboration": "Cloud tem UI colaborativa; self-host exige operação e processo.",
+        "export_fidelity": "Exporta PPTX/PDF/PNG via API e promete preservar design/template.",
+        "pricing_value": "Self-host/BYOK pode ser excelente, com custo operacional interno.",
+        "maturity": "Mais novo; 4.9k stars e roadmap ativo, mas menor battle-tested que SaaS líderes.",
+        "brand_governance": "Muito forte para templates próprios, API e white-label.",
+        "risk_control": "Vencedor categórico em controle, privacidade e ausência de lock-in."
+      }
+    },
+    {
+      "key": "presentations_ai",
+      "name": "Presentations.AI",
+      "category": "AI presentation generator",
+      "type": "AI deck SaaS",
+      "origin": "India",
+      "license": "Proprietary",
+      "anos": 5,
+      "vendor_url": "https://www.presentations.ai",
+      "price": "Starter/free; Pro relatado em ~US$198/ano; Enterprise custom",
+      "rationale": "Alternativa relevante pela promessa de geração AI-native e comparação direta com Beautiful.ai, mas com evidência pública menos robusta nesta coleta.",
+      "sources": [
+        "S19"
+      ],
+      "neutral_score": 68.3,
+      "tech_score": 67.3,
+      "meta": {
+        "color": "#8B5CF6",
+        "letter": "PR",
+        "tag": "AI"
+      },
+      "score_signals": {
+        "visual_quality": 72,
+        "prompt_generation": 80,
+        "manual_editing": 66,
+        "collaboration": 64,
+        "export_fidelity": 65,
+        "pricing_value": 67,
+        "maturity": 61,
+        "brand_governance": 70,
+        "risk_control": 58
+      },
+      "evidence_notes": {
+        "visual_quality": "Saída boa em demos, mas menos comprovada por fontes oficiais abertas nesta rodada.",
+        "prompt_generation": "Posicionamento AI-native forte.",
+        "manual_editing": "Edição e customização parecem inferiores a Canva/Pitch/Plus para fluxos críticos.",
+        "collaboration": "Enterprise/custom cobre equipes, mas documentação pública é limitada.",
+        "export_fidelity": "Menos evidência oficial nesta coleta sobre fidelidade PPTX/PDF.",
+        "pricing_value": "Starter/free ajuda; Pro anual compete com Beautiful.ai anual.",
+        "maturity": "Player relevante, mas menor que líderes de adoção.",
+        "brand_governance": "Promete brand consistency, mas menos evidência operacional.",
+        "risk_control": "SaaS proprietário com transparência pública limitada."
+      }
+    }
+  ],
+  "alternatives_considered": [
+    {
+      "name": "Microsoft PowerPoint + Copilot",
+      "reason": "Melhor compatibilidade PPTX e governança Microsoft; AI ainda menos 'one prompt to beautiful deck' que Gamma."
+    },
+    {
+      "name": "Google Slides + Gemini",
+      "reason": "Colaboração excelente e custo marginal baixo para Workspace; geração de decks completos ainda menos madura."
+    },
+    {
+      "name": "Prezi AI",
+      "reason": "Boa alternativa para storytelling não-linear e apresentações visuais; menos padrão para decks de growth/investor."
+    },
+    {
+      "name": "MagicSlides",
+      "reason": "Alternativa de baixo custo para Google Slides, próxima a SlidesAI."
+    },
+    {
+      "name": "Napkin AI",
+      "reason": "Excelente para diagramas/visuais, não substitui ferramenta completa de deck."
+    },
+    {
+      "name": "Figma Slides/Slidesgo/Adobe Express",
+      "reason": "Úteis para design e templates, mas não foram priorizados por menor fit AI-deck completo no briefing."
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans",
+      "title": "Gamma Help Center: upgrading subscription",
+      "credibility": "H",
+      "subject": "gamma"
+    },
+    {
+      "id": "S02",
+      "url": "https://help.gamma.app/fr/articles/8022861",
+      "title": "Gamma Help Center: export PDF, PNG, PPTX",
+      "credibility": "H",
+      "subject": "gamma"
+    },
+    {
+      "id": "S03",
+      "url": "https://www.canva.com/create/ai-presentations/",
+      "title": "Canva AI presentation maker",
+      "credibility": "H",
+      "subject": "canva"
+    },
+    {
+      "id": "S04",
+      "url": "https://www.canva.dev/docs/connect/api-reference/exports/",
+      "title": "Canva Connect API: export formats",
+      "credibility": "H",
+      "subject": "canva"
+    },
+    {
+      "id": "S05",
+      "url": "https://www.beautiful.ai/pricing?force_isolation=true",
+      "title": "Beautiful.ai pricing",
+      "credibility": "H",
+      "subject": "beautiful_ai"
+    },
+    {
+      "id": "S06",
+      "url": "https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations",
+      "title": "Beautiful.ai export help",
+      "credibility": "H",
+      "subject": "beautiful_ai"
+    },
+    {
+      "id": "S07",
+      "url": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide",
+      "title": "Tome Help Center: AI, pricing, PDF export, no PPT",
+      "credibility": "H",
+      "subject": "tome"
+    },
+    {
+      "id": "S08",
+      "url": "https://aiwiki.ai/wiki/tome_ai",
+      "title": "Tome AI Wiki: pivot and presentation sunset timeline",
+      "credibility": "M",
+      "subject": "tome"
+    },
+    {
+      "id": "S09",
+      "url": "https://pitch.com/pricing/us",
+      "title": "Pitch pricing and AI/collaboration/export features",
+      "credibility": "H",
+      "subject": "pitch"
+    },
+    {
+      "id": "S10",
+      "url": "https://plusai.com/pricing",
+      "title": "Plus AI pricing, PowerPoint and Google Slides integration",
+      "credibility": "H",
+      "subject": "plus_ai"
+    },
+    {
+      "id": "S11",
+      "url": "https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation",
+      "title": "Plus AI guide: generate from text/file in Slides/PowerPoint",
+      "credibility": "H",
+      "subject": "plus_ai"
+    },
+    {
+      "id": "S12",
+      "url": "https://www.decktopus.com/pricing",
+      "title": "Decktopus pricing and AI credit limits",
+      "credibility": "H",
+      "subject": "decktopus"
+    },
+    {
+      "id": "S13",
+      "url": "https://www.slidesai.io/?via=uniteai",
+      "title": "SlidesAI product page",
+      "credibility": "H",
+      "subject": "slidesai"
+    },
+    {
+      "id": "S14",
+      "url": "https://costbench.com/software/ai-presentations/slidesai/",
+      "title": "SlidesAI pricing 2026 analysis",
+      "credibility": "M",
+      "subject": "slidesai"
+    },
+    {
+      "id": "S15",
+      "url": "https://presenton.ai/",
+      "title": "Presenton product page: open-source AI presentation generator",
+      "credibility": "H",
+      "subject": "presenton"
+    },
+    {
+      "id": "S16",
+      "url": "https://github.com/presenton/presenton",
+      "title": "Presenton GitHub repository",
+      "credibility": "H",
+      "subject": "presenton"
+    },
+    {
+      "id": "S17",
+      "url": "https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+      "title": "Presenton API export PPTX/PDF/PNG",
+      "credibility": "H",
+      "subject": "presenton"
+    },
+    {
+      "id": "S18",
+      "url": "https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+      "title": "Practitioner thread: PPT export reliability",
+      "credibility": "L",
+      "subject": "both"
+    },
+    {
+      "id": "S19",
+      "url": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+      "title": "Presentations.ai blog: Beautiful.ai pricing comparison",
+      "credibility": "M",
+      "subject": "presentations_ai"
+    },
+    {
+      "id": "S20",
+      "url": "https://www.reddit.com/r/bestai2026/comments/1t27l69/the_best_ai_presentation_tools_in_2026_i_tested/",
+      "title": "Practitioner benchmark thread: AI presentation tools 2026",
+      "credibility": "L",
+      "subject": "both"
+    }
+  ]
+}

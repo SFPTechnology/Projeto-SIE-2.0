@@ -1,0 +1,9 @@
+{
+  "schema": "sinkra-dr-contract-dry-run-summary-v1",
+  "status": "PASS",
+  "runs": 240,
+  "pass": 240,
+  "fail": 0,
+  "outputs": 2160,
+  "boundary": "contract-only; no real third-party repository execution"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Presenton",
+  "company": "Presenton open-source project",
+  "category": "AI presentation generator and API",
+  "deployment": ["self-hosted Docker", "desktop app", "hosted cloud option"],
+  "license": "Apache-2.0",
+  "target_audience": ["privacy-conscious teams", "developers", "automation teams", "local-first users"],
+  "core_features": [
+    "prompt-to-presentation",
+    "document-to-presentation",
+    "PPTX export",
+    "PDF export",
+    "custom HTML/Tailwind templates",
+    "AI template generation from PowerPoint",
+    "API generation endpoint",
+    "MCP server",
+    "BYOK providers",
+    "Ollama/local model support"
+  ],
+  "integrations": {
+    "llm_providers": ["OpenAI", "Gemini", "Vertex AI", "Azure OpenAI", "Anthropic", "Ollama", "OpenAI-compatible providers"],
+    "image_providers": ["DALL-E 3", "Gemini Flash", "Pexels", "Pixabay"],
+    "api": true,
+    "mcp": true
+  },
+  "pricing_model": "open-source/self-hosted; model/API costs paid by user; hosted cloud may have separate terms",
+  "strengths": [
+    "data control",
+    "self-hosting",
+    "no SaaS lock-in",
+    "automation/API",
+    "custom templates",
+    "local models"
+  ],
+  "weaknesses": [
+    "less proven consumer UX than Gamma",
+    "quality depends on setup and templates",
+    "requires technical ownership for self-hosting"
+  ],
+  "sources": [
+    "https://github.com/presenton/presenton",
+    "https://docs.presenton.ai/index"
+  ]
+}

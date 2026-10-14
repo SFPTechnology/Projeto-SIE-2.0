@@ -1,0 +1,79 @@
+graph TB
+    subgraph "AIOX Research Hybrid v6.0.0"
+        direction TB
+
+        subgraph "Layer 1: Cognitive Brain (Squad)"
+            RC[research-chief]
+            S1[14 specialist agents<br/>Booth/Creswell/Sackett/Klein/<br/>Gilad/Forsgren + FigureAgent NEW]
+        end
+
+        subgraph "Layer 2: Execution Pipeline (Skill)"
+            SK[/tech-research v3.0.0]
+            P1[Phase 0-5 existing]
+            P2[Phase 3-sandbox NEW]
+            P3[Phase 4.5-visualize NEW]
+            CG[COVERAGE_GATE]
+            CTG[CITATION_GATE]
+        end
+
+        subgraph "Layer 3: Observability + Exec (App)"
+            APR[apps/research-pro<br/>Elastic v2]
+            APC[apps/research-community<br/>AGPLv3 NEW]
+            API[REST + SSE APIs]
+            SBX[Sandbox endpoint NEW]
+        end
+
+        subgraph "Layer 4: NEW Packages"
+            CLI["@sinkra/research-cli<br/>PyPI + Docker"]
+            MCP["@sinkra/research-mcp<br/>MCP Server"]
+            MEM["@sinkra/research-memory<br/>Cross-session"]
+            ADP["@sinkra/research-adapters<br/>arXiv/PubMed/SS/Web"]
+        end
+
+        subgraph "Layer 5: Model Backends (External)"
+            BYOK[BYOK: Claude/GPT/Gemini/Ollama]
+            HF1[OpenResearcher-30B HF]
+            HF2[DeepResearcher-7B HF]
+            HF3[Tongyi-30B HF]
+        end
+
+        RC --> S1
+        S1 --> SK
+        SK --> P1
+        SK --> P2
+        SK --> P3
+        SK --> CG
+        SK --> CTG
+        SK --> MEM
+        SK --> ADP
+        SK --> BYOK
+        SK -.optional.-> HF1
+        SK -.optional.-> HF2
+        SK -.optional.-> HF3
+
+        APR --> API
+        APC --> API
+        API --> SBX
+        API --> SK
+        CLI --> SK
+        MCP --> SK
+    end
+
+    USER[User] --> CLI
+    USER --> APR
+    USER --> APC
+    USER --> MCP
+    CCD[Claude Desktop/Cursor/Cline] --> MCP
+
+    style RC fill:#9EAD4D
+    style S1 fill:#9EAD4D
+    style SK fill:#6E99D4
+    style APR fill:#C98455
+    style APC fill:#5AC18E
+    style CLI fill:#9277C9
+    style MCP fill:#9277C9
+    style MEM fill:#9277C9
+    style ADP fill:#9277C9
+    style HF1 fill:#598BFF
+    style HF2 fill:#598BFF
+    style HF3 fill:#598BFF

@@ -1,0 +1,136 @@
+{
+  "benchmark_id": "ai-presentation-tools-top10-2026",
+  "comparison_type": "product",
+  "generated_at": "2026-05-17T00:00:00Z",
+  "method": "web-research",
+  "confidence": "medium-high",
+  "dimensions": [
+    {
+      "id": "features",
+      "name": "Core Features",
+      "weight": 0.25,
+      "scores": {
+        "gamma": { "score": 92, "confidence": "high", "justification": "AI mais rápido (~95s/deck), Gamma Agent para edição em linguagem natural, 20+ modelos AI, multi-formato (decks, docs, sites), créditos generosos. 70M usuários validam." },
+        "canva": { "score": 78, "confidence": "high", "justification": "Magic Studio (Magic Write, Magic Design, image gen), enorme biblioteca de templates (1.6M+), mas texto AI genérico. Forte em design, fraco em profundidade narrativa." },
+        "beautiful-ai": { "score": 82, "confidence": "high", "justification": "Smart Slides patenteado (auto-layout), DesignerBot, AI ilimitado em todos planos pagos, context-aware workflow 2026. Melhor auto-formatação do mercado." },
+        "pitch": { "score": 75, "confidence": "medium", "justification": "AI slide drafts, Smart Templates, Sales Rooms, analytics integrado. AI menos profundo que Gamma/Beautiful.ai mas bom para equipes." },
+        "plus-ai": { "score": 73, "confidence": "high", "justification": "Add-on nativo Google Slides/PPT, gera charts nativos editáveis, Live Snapshots, API + MCP server. Limitado em templates visuais proprietários." },
+        "decktopus": { "score": 68, "confidence": "medium", "justification": "DecktoGPT, 100+ templates, PDF-to-presentation, Q&A interativo. Menos sofisticado em AI que líderes. 4M usuários." },
+        "slidesai": { "score": 65, "confidence": "medium", "justification": "Text/Topic to Presentation, doc-to-slides, 100+ idiomas, 1.5M stock images. Limitação de caracteres (2.5K-12K) é gargalo significativo." },
+        "presenton": { "score": 62, "confidence": "low", "justification": "Open-source, data viz automático, self-host, API. Menos maduro em AI generation. Forte para dados/pesquisa." },
+        "presentations-ai": { "score": 70, "confidence": "medium", "justification": "Clip-E conversacional full-lifecycle, anti-fragile templates, Brand Sync automático, export PPTX limpo. Competitivo mas menos provado em escala." },
+        "slidebean": { "score": 64, "confidence": "medium", "justification": "AI design via algoritmo genético, 120+ templates de pitch deck, investor analytics. Foco estreito (pitch decks only)." }
+      }
+    },
+    {
+      "id": "ux",
+      "name": "User Experience",
+      "weight": 0.20,
+      "scores": {
+        "gamma": { "score": 90, "confidence": "high", "justification": "Interface intuitiva card-based, onboarding excelente, formato web fluido (Liquid Canvas). Sem curva de aprendizado. Mobile responsive." },
+        "canva": { "score": 88, "confidence": "high", "justification": "UX referência de mercado, drag-and-drop polido, mobile app forte, editor visual excepcional. Onboarding exemplar." },
+        "beautiful-ai": { "score": 83, "confidence": "high", "justification": "Smart Slides eliminam formatação manual. UI limpa e moderna. Sem free plan reduz acessibilidade inicial. 14-day trial com cartão." },
+        "pitch": { "score": 80, "confidence": "medium", "justification": "UI moderna e limpa, desktop app com offline. Curva baixa para quem vem de PowerPoint. Video recording integrado." },
+        "plus-ai": { "score": 76, "confidence": "high", "justification": "Integra-se no Google Slides/PPT existente — zero curva se já usa essas ferramentas. Menos controle visual próprio." },
+        "decktopus": { "score": 72, "confidence": "medium", "justification": "Interface simples, drag-and-drop. Funcional mas menos polida que líderes. Bom para uso rápido." },
+        "slidesai": { "score": 70, "confidence": "medium", "justification": "Add-on Google Slides — familiar para usuários GSuite. Interface do add-on limitada vs apps standalone." },
+        "presenton": { "score": 60, "confidence": "low", "justification": "Open-source, UX menos polida. Exige mais setup. Ideal para técnicos, não para leigos." },
+        "presentations-ai": { "score": 74, "confidence": "medium", "justification": "Chat-first com Clip-E é intuitivo. Anti-fragile templates funcionam bem. Menos testado em escala." },
+        "slidebean": { "score": 71, "confidence": "medium", "justification": "Clean UI focada em pitch decks. AI auto-formata. Customização limitada frustra designers." }
+      }
+    },
+    {
+      "id": "pricing",
+      "name": "Pricing & Value",
+      "weight": 0.15,
+      "scores": {
+        "gamma": { "score": 88, "confidence": "high", "justification": "Free (400 credits), Plus $8/mo, Pro $15/mo. Melhor relação custo-benefício do mercado. Ultra $100/mo para power users." },
+        "canva": { "score": 90, "confidence": "high", "justification": "Free robusto (1.6M templates), Pro ~$10/mo anual, Teams ~$10/user/mo. Ecossistema completo além de apresentações." },
+        "beautiful-ai": { "score": 62, "confidence": "high", "justification": "Sem free plan. Pro $12/mo mas jump para Team $40/user/mo é enorme. Single presentation $45 é caro." },
+        "pitch": { "score": 82, "confidence": "medium", "justification": "Free generoso para individuais. Pro $8-10/user/mo. Business $22/user/mo. Competitivo para equipes." },
+        "plus-ai": { "score": 70, "confidence": "high", "justification": "Trial 7 dias (requer cartão), Pro $10/mo. Sem free plan permanente. Bom preço mas sem tier gratuito." },
+        "decktopus": { "score": 72, "confidence": "medium", "justification": "Free limitado, Pro ~$8-15/mo. Sistema de créditos. Preço variável por reseller confunde." },
+        "slidesai": { "score": 85, "confidence": "medium", "justification": "Free (12 decks/ano), Pro $8.33/mo anual — mais barato do mercado pago. Premium $16.67/mo. Excelente para orçamento apertado." },
+        "presenton": { "score": 92, "confidence": "low", "justification": "Open-source, free forever, self-host. Planos pagos a partir de $1. Imbatível em preço." },
+        "presentations-ai": { "score": 68, "confidence": "medium", "justification": "Free (200 credits sem refresh), Pro $198/ano ($16.50/mo) annual-only. Sem flexibilidade mensal." },
+        "slidebean": { "score": 65, "confidence": "medium", "justification": "Starter $8/mo, Premium $19/mo. Accelerate $42/mo. Caro para foco estreito em pitch decks." }
+      }
+    },
+    {
+      "id": "integrations",
+      "name": "Integrations & Export",
+      "weight": 0.15,
+      "scores": {
+        "gamma": { "score": 80, "confidence": "high", "justification": "Export PPT/PDF/PNG/Google Slides. Zapier/Make (8000+ apps). Generate API (GA). Embeds (Figma, Miro, etc). Export PPT quebra layout frequentemente." },
+        "canva": { "score": 82, "confidence": "high", "justification": "Export PPT/PDF/PNG/MP4. Integra com 100+ apps. Content Planner. Ecossistema amplo. Export PPT razoável." },
+        "beautiful-ai": { "score": 72, "confidence": "high", "justification": "PPT export em todos planos pagos mas com problemas de formatação reportados. Salesforce integration. Slack." },
+        "pitch": { "score": 78, "confidence": "medium", "justification": "PPT export em planos pagos. Embeds (Figma, Airtable, Notion, Slack, HubSpot). Custom domains. Bom ecossistema." },
+        "plus-ai": { "score": 85, "confidence": "high", "justification": "Nativo em Google Slides e PPT — melhor integração do mercado. API, Zapier, MCP server. Live Snapshots. SOC2." },
+        "decktopus": { "score": 58, "confidence": "medium", "justification": "Zapier integration. Export limitado. Menos integrações que concorrentes maiores." },
+        "slidesai": { "score": 68, "confidence": "medium", "justification": "Nativo Google Slides. PPT add-in limitado. Sem API pública robusta. ChatGPT plugin." },
+        "presenton": { "score": 70, "confidence": "low", "justification": "Export PPTX/PDF. API open-source. Custom templates via PPTX upload. Self-host. Menos integrações prontas." },
+        "presentations-ai": { "score": 75, "confidence": "medium", "justification": "Export PPTX limpo (destaque vs concorrentes). PDF. Multilingual. Sem Zapier/API pública mencionada." },
+        "slidebean": { "score": 55, "confidence": "medium", "justification": "Export PDF/HTML apenas. Sem PPT export. Investor analytics único. Sem integrações robustas." }
+      }
+    },
+    {
+      "id": "support",
+      "name": "Support & Community",
+      "weight": 0.10,
+      "scores": {
+        "gamma": { "score": 82, "confidence": "high", "justification": "70M usuários, comunidade ativa. Help center. Multilingual (9+ idiomas). $100M ARR indica suporte sólido." },
+        "canva": { "score": 90, "confidence": "high", "justification": "Maior comunidade (200M+ usuários). Docs excelentes. Design School. Suporte 24/7 em Enterprise. G2 4.7/5." },
+        "beautiful-ai": { "score": 72, "confidence": "medium", "justification": "Docs bons. Suporte prioritário em Enterprise. Comunidade menor. G2 ~4.5/5. Blog ativo." },
+        "pitch": { "score": 73, "confidence": "medium", "justification": "Help center. Community. Desktop app support. G2 ~4.4/5. Time europeu (Berlim)." },
+        "plus-ai": { "score": 70, "confidence": "medium", "justification": "1M+ instalações Google Workspace. 4.6 estrelas no Marketplace. Docs razoáveis. Suporte por email." },
+        "decktopus": { "score": 65, "confidence": "medium", "justification": "4M usuários. G2 ~4.5/5. Suporte funcional. Docs básicos." },
+        "slidesai": { "score": 68, "confidence": "medium", "justification": "15M+ downloads. G2 4.3/5. Comunidade grande via Google Workspace. Docs adequados." },
+        "presenton": { "score": 50, "confidence": "low", "justification": "Open-source community (GitHub). Documentação em desenvolvimento. Suporte comunitário." },
+        "presentations-ai": { "score": 60, "confidence": "low", "justification": "Blog ativo. Suporte por email. Comunidade nascente. Reviews limitados em G2." },
+        "slidebean": { "score": 62, "confidence": "medium", "justification": "Canal YouTube forte (1M+ subscribers educacionais). Suporte lento reportado. G2 4.3/5." }
+      }
+    },
+    {
+      "id": "scalability",
+      "name": "Scalability & Enterprise",
+      "weight": 0.15,
+      "scores": {
+        "gamma": { "score": 82, "confidence": "high", "justification": "Team ($20/seat), Business ($40/seat, min 10). Custom branding, shared folders, admin controls. API GA. 10-100 custom domains." },
+        "canva": { "score": 88, "confidence": "high", "justification": "Enterprise com SSO, 100-seat min. Brand Kit (até 1000). 1TB storage. Audit logs. IP indemnity. SOC2. Líder enterprise." },
+        "beautiful-ai": { "score": 80, "confidence": "high", "justification": "Enterprise com SSO/SAML, user provisioning, priority support. Team $40/user. Shared libraries. Analytics por slide." },
+        "pitch": { "score": 78, "confidence": "medium", "justification": "Enterprise com SAML SSO. Workspace roles. Custom domains. Library collections. Até 200 membros no Business." },
+        "plus-ai": { "score": 72, "confidence": "medium", "justification": "Enterprise com custom templates. SOC2 Type II. API. Mas sem planos Team intermediários públicos claros." },
+        "decktopus": { "score": 55, "confidence": "medium", "justification": "Business plan com custom branding e analytics. Enterprise disponível. Menos recursos enterprise que líderes." },
+        "slidesai": { "score": 48, "confidence": "medium", "justification": "Sem plano Team/Enterprise visível. Focado em indivíduos. Limitação de caracteres escala mal." },
+        "presenton": { "score": 58, "confidence": "low", "justification": "Self-host = controle total. API. Mas sem SSO/SAML pronto. Requer infra própria." },
+        "presentations-ai": { "score": 65, "confidence": "medium", "justification": "Enterprise com unlimited credits, admin controls. Brand Sync. Menos maduro que Canva/Beautiful.ai enterprise." },
+        "slidebean": { "score": 50, "confidence": "medium", "justification": "Foco em startups individuais. Colaboração básica. Sem SSO/enterprise robusto." }
+      }
+    }
+  ],
+  "weighted_totals": {
+    "gamma": 86.7,
+    "canva": 85.1,
+    "beautiful-ai": 76.4,
+    "pitch": 77.8,
+    "plus-ai": 74.5,
+    "decktopus": 65.6,
+    "slidesai": 67.2,
+    "presenton": 65.5,
+    "presentations-ai": 69.5,
+    "slidebean": 61.9
+  },
+  "ranking": [
+    { "rank": 1, "name": "Gamma", "score": 86.7 },
+    { "rank": 2, "name": "Canva", "score": 85.1 },
+    { "rank": 3, "name": "Pitch", "score": 77.8 },
+    { "rank": 4, "name": "Beautiful.ai", "score": 76.4 },
+    { "rank": 5, "name": "Plus AI", "score": 74.5 },
+    { "rank": 6, "name": "Presentations.AI", "score": 69.5 },
+    { "rank": 7, "name": "SlidesAI", "score": 67.2 },
+    { "rank": 8, "name": "Decktopus", "score": 65.6 },
+    { "rank": 9, "name": "Presenton", "score": 65.5 },
+    { "rank": 10, "name": "Slidebean", "score": 61.9 }
+  ],
+  "scoring_method": "Cada dimensão scored 0-100 com base em sinais observáveis (features confirmadas, pricing verificado, reviews G2/Capterra, data do site oficial). Scores ponderados pela weight de cada dimensão. Confidence per dimension (high/medium/low) baseado na qualidade da fonte."
+}

@@ -1,0 +1,123 @@
+{
+  "bench": {
+    "id": "hermes-agent-vs-openclaw-vs-sinkra-hub",
+    "type": "codebase",
+    "variant": "3-way",
+    "created_at": "2026-04-04",
+    "analyst": "spy/bench-analyst (backfilled)"
+  },
+  "subjects": [
+    {
+      "key": "hermes",
+      "name": "Hermes",
+      "category": "unknown"
+    },
+    {
+      "key": "openclaw",
+      "name": "Openclaw",
+      "category": "unknown"
+    },
+    {
+      "key": "sinkra",
+      "name": "Sinkra",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "1",
+        "name": "Agent Architecture Depth",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "2",
+        "name": "Self-Improvement & Learning",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "3",
+        "name": "Governance & Quality Control",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "4",
+        "name": "Knowledge Management",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "5",
+        "name": "Multi-Platform & Channels",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "6",
+        "name": "Extensibility & Plugin Model",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "7",
+        "name": "Business & Multi-Tenant",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "8",
+        "name": "Research & Training Infra",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "9",
+        "name": "Developer Experience",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "10",
+        "name": "Testing & CI",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "11",
+        "name": "Content & Documentation",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "12",
+        "name": "Community & Ecosystem",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D13",
+        "name": "AVERAGE",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:10:52.376Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Legacy metadata.json preserved alongside; canonical version at metadata.canonical.json.",
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

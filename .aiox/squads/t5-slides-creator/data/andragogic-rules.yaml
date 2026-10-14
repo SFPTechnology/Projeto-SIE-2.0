@@ -1,0 +1,646 @@
+# ============================================================
+# Andragogic Rules — slides-creator Squad
+# Defines always-on and education-mode-only pedagogical rules
+# for automated slide generation quality gates.
+#
+# Story 0.2: Rules defined (scope, categories, pseudocode)
+# Story 3.1: Validation Engine operationalized (deterministic,
+#            execution flow, scoring, severity actions)
+# ============================================================
+
+andragogic_rules:
+  # --- Metadata -----------------------------------------------------------
+  id: slides-creator-andragogic-rules
+  version: 2.0.0
+  created: 2026-03-19
+  updated: 2026-03-20
+  description: >-
+    Regras andragogicas para validacao de slides. Divididas em always_on
+    (aplicadas a TODO deck, incluindo corporativo) e education_mode_only
+    (aplicadas SOMENTE quando briefing.education_mode == true).
+    Baseadas em Mayer CTML, Kolb, DPC, Dreyfus e Scaffolding (Vygotsky/ZPD).
+    Inclui validation_engine deterministico (sem LLM) — YAML in, boolean checks out.
+  activation_contract:
+    always_on: "Aplicado incondicionalmente a todo deck gerado."
+    education_mode_only: "Aplicado SOMENTE quando briefing.education_mode == true."
+  references:
+    - docs/research/2026-03-19-slide-creator-v2-upgrade/03-andragogic-slide-design-system.md
+    - outputs/enhance/slides-creator-v2-upgrade/03-roundtable.md
+
+  # --- Word Limit Exceptions ----------------------------------------------
+  word_limit_exceptions:
+    description: >-
+      Limites de palavras por slide_type que sobrescrevem o limite-base de 40
+      palavras. Aplicaveis tanto em always_on quanto em education_mode_only.
+    base_limit: 40
+    exceptions:
+      - slide_type: data_table
+        limit: 80
+        rationale: "Tabelas de dados requerem legendas, headers e notas de rodape que excedem 40 palavras sem violar carga cognitiva (informacao estruturada, nao prosa)."
+      - slide_type: comparison_matrix
+        limit: 60
+        rationale: "Matrizes comparativas precisam de labels descritivos em ambos os eixos."
+      - slide_type: quote
+        limit: 60
+        rationale: "Citacoes diretas nao podem ser truncadas sem perder fidelidade ao autor original."
+      - slide_type: executive_summary
+        limit: 80
+        rationale: "Slides de resumo executivo corporativo consolidam multiplos pontos-chave. Risco K9 mitigado pelo tipo."
+
+  # --- Always-On Rules (3) ------------------------------------------------
+  # Subset conservador de Mayer aplicado a TODOS os decks.
+  # Regras: MAYER-01, MAYER-06, K9 (alias LOAD-01)
+  always_on_rules:
+    description: >-
+      3 regras aplicadas a TODOS os decks, independente de education_mode.
+      Subset conservador de Mayer que melhora qualquer apresentacao sem
+      restringir decks corporativos.
+    count: 3
+    rules:
+    - id: MAYER-01
+      principle: "Mayer — Principio Multimidia"
+      scope: always_on
+      rule: >-
+        Todo slide DEVE conter pelo menos um elemento visual (diagrama, icone,
+        ilustracao, grafico, foto ou imagem). Slides text-only sao proibidos
+        exceto para content_variant=quote com max 15 palavras ou slide_type
+        STATEMENT.
+      severity: HIGH
+      check: |
+        IF slide.visual_elements_count == 0
+           AND slide.content_variant != "quote"
+           AND slide.slide_type != "STATEMENT"
+        THEN FAIL("MAYER-01: slide sem elemento visual")
+
+    - id: MAYER-06
+      principle: "Mayer — Principio da Segmentacao (Cognitive Load)"
+      scope: always_on
+      rule: >-
+        Cada slide DEVE respeitar o limite de palavras para seu tipo.
+        Limite-base: 40 palavras. Excecoes por slide_type conforme
+        word_limit_exceptions. Slides que excedem o limite do tipo DEVEM
+        ser divididos.
+      severity: HIGH
+      word_limit_base: 40
+      word_limit_override_source: word_limit_exceptions
+      check: |
+        SET limit = word_limit_exceptions[slide.slide_type] OR 40
+        IF slide.word_count > limit
+        THEN FAIL("MAYER-06: slide com {slide.word_count} palavras, limite para {slide.slide_type} e {limit}")
+
+    - id: K9
+      alias: LOAD-01
+      principle: "Killer Item — Sobrecarga Textual Absoluta"
+      scope: always_on
+      rule: >-
+        Nenhum slide pode ter mais de 60 palavras para tipos sem excecao.
+        Tipos listados em word_limit_exceptions usam o limite do tipo
+        quando este e maior que 60. K9 e a barreira final absoluta:
+        bloqueia a 60 para slides normais, a 80 para data_table e
+        executive_summary, a 60 para comparison_matrix e quote.
+      severity: CRITICAL
+      killer: true
+      base_absolute_max: 60
+      override_source: word_limit_exceptions
+      check: |
+        SET type_limit = word_limit_exceptions[slide.slide_type] OR 60
+        SET k9_limit = MAX(type_limit, 60)
+        IF slide.word_count > k9_limit
+        THEN BLOCK("K9: slide com {slide.word_count} palavras excede limite absoluto de {k9_limit} para {slide.slide_type}")
+      notes: >-
+        K9 e BLOQUEANTE (severity CRITICAL). Diferente de MAYER-06 (severity HIGH)
+        que usa limites por tipo com base 40. K9 e a barreira final que usa
+        word_limit_exceptions como fonte unica de verdade para limites por tipo,
+        com fallback de 60 palavras para tipos sem excecao definida.
+
+  # --- Education Mode Only Rules (6) --------------------------------------
+  # Regras: KOLB-01, DPC-01, PRETRAIN-01 (K8), SCAFFOLD-01, INTERACT-01, MAYER-05
+  education_mode_only_rules:
+    description: >-
+      6 regras aplicadas SOMENTE quando briefing.education_mode == true.
+      Baseadas em Kolb, DPC, Dreyfus, Scaffolding e Mayer (contiguidade).
+      Projetadas para decks educacionais/treinamento. NAO aplicar a decks
+      corporativos, comerciais ou institucionais.
+    activation_check: "briefing.education_mode == true"
+    count: 6
+    rules:
+    - id: KOLB-01
+      principle: "Kolb — Completude do Ciclo Experiencial"
+      scope: education_mode_only
+      rule: >-
+        Cada modulo do deck DEVE conter as 4 fases do ciclo Kolb:
+        EC (Experiencia Concreta), OR (Observacao Reflexiva),
+        CA (Conceitualizacao Abstrata), EA (Experimentacao Ativa).
+        Proporcao recomendada: EC 15-20%, OR 15-20%, CA 30-40%, EA 20-30%.
+        NUNCA comecar por CA (teoria). SEMPRE comecar por EC (problema/cenario).
+        SEMPRE terminar por EA (aplicacao).
+      severity: HIGH
+      check: |
+        SET phases = COLLECT(slide.kolb_phase FOR slide IN module.slides)
+        IF "EC" NOT IN phases THEN FAIL("KOLB-01: fase EC ausente no modulo")
+        IF "OR" NOT IN phases THEN FAIL("KOLB-01: fase OR ausente no modulo")
+        IF "CA" NOT IN phases THEN FAIL("KOLB-01: fase CA ausente no modulo")
+        IF "EA" NOT IN phases THEN FAIL("KOLB-01: fase EA ausente no modulo")
+        IF module.slides[0].kolb_phase == "CA"
+        THEN FAIL("KOLB-01: modulo comeca com teoria (CA) em vez de experiencia (EC)")
+
+    - id: DPC-01
+      principle: "DPC — Ordenamento Declarativo-Procedural-Condicional"
+      scope: education_mode_only
+      rule: >-
+        Dentro de cada conceito ensinado, a sequencia DEVE seguir:
+        D (Declarativo — "o que e") antes de P (Procedural — "como fazer")
+        antes de C (Condicional — "quando/por que usar").
+        Primeira ocorrencia de D deve preceder primeira de P, que deve
+        preceder primeira de C.
+      severity: HIGH
+      check: |
+        SET d_first = FIRST_INDEX(slide.dpc_type == "D" FOR slide IN concept.slides)
+        SET p_first = FIRST_INDEX(slide.dpc_type == "P" FOR slide IN concept.slides)
+        SET c_first = FIRST_INDEX(slide.dpc_type == "C" FOR slide IN concept.slides)
+        IF d_first > p_first THEN FAIL("DPC-01: Procedural aparece antes de Declarativo")
+        IF p_first > c_first THEN FAIL("DPC-01: Condicional aparece antes de Procedural")
+
+    - id: K8
+      alias: PRETRAIN-01
+      principle: "Killer Item — Jargao sem Pre-treino"
+      scope: education_mode_only
+      rule: >-
+        Nenhum slide pode usar termo tecnico ou jargao que nao tenha sido
+        definido em um slide anterior do mesmo deck. Viola o Principio do
+        Pre-treino de Mayer e cria barreira cognitiva artificial.
+        Aplicavel SOMENTE em education_mode porque decks corporativos
+        assumem audiencia com dominio do vocabulario do setor.
+      severity: CRITICAL
+      killer: true
+      check: |
+        SET defined_terms = COLLECT(slide.introduces_terms FOR slide IN deck.slides WHERE slide.position < current.position)
+        FOR term IN current.technical_terms:
+          IF term NOT IN defined_terms
+          THEN BLOCK("K8: termo '{term}' usado no slide {current.position} sem definicao previa")
+
+    - id: SCAFFOLD-01
+      principle: "Scaffolding — Fade de Suporte Progressivo"
+      scope: education_mode_only
+      rule: >-
+        O nivel de suporte ao aprendiz DEVE diminuir progressivamente ao
+        longo do modulo, seguindo o padrao:
+        full (exemplo completo + explicacao detalhada) ->
+        partial (exemplo completo + explicacao resumida) ->
+        hints (exemplo parcial + dicas) ->
+        minimal (prompt de problema + suporte minimo).
+        O suporte NUNCA deve aumentar dentro do mesmo modulo (exceto em
+        retomadas explicitas de conceito).
+      severity: LOW
+      support_levels_ordered:
+        - full
+        - partial
+        - hints
+        - minimal
+      check: |
+        FOR i IN 1..LENGTH(module.slides)-1:
+          SET prev = module.slides[i-1].support_level
+          SET curr = module.slides[i].support_level
+          IF INDEX(curr) < INDEX(prev)
+             AND module.slides[i].is_concept_retake != true
+          THEN WARN("SCAFFOLD-01: suporte aumentou de {prev} para {curr} no slide {i}")
+
+    - id: INTERACT-01
+      principle: "Interacao — Frequencia Minima de Engajamento"
+      scope: education_mode_only
+      rule: >-
+        Maximo de 5 slides consecutivos sem interacao (slide de tipo OR
+        ou EA no ciclo Kolb, ou slide com interaction_type definido).
+        Adultos sao auto-dirigidos; passividade prolongada causa
+        desengajamento.
+      severity: MEDIUM
+      max_consecutive_passive: 5
+      check: |
+        SET counter = 0
+        FOR slide IN module.slides:
+          IF slide.kolb_phase IN ["OR", "EA"]
+             OR slide.interaction_type IS NOT NULL
+          THEN SET counter = 0
+          ELSE SET counter = counter + 1
+          IF counter > 5
+          THEN FAIL("INTERACT-01: {counter} slides consecutivos sem interacao")
+
+    - id: MAYER-05
+      principle: "Mayer — Principio da Contiguidade Espacial"
+      scope: education_mode_only
+      rule: >-
+        Texto explicativo e o elemento visual que ele descreve DEVEM estar
+        adjacentes no mesmo slide. Labels devem estar proximos ao elemento
+        visual (nao em legenda separada). Nunca colocar grafico em um slide
+        e sua explicacao no slide seguinte.
+      severity: MEDIUM
+      check: |
+        IF slide.has_visual == true
+           AND slide.has_text == true
+           AND slide.text_visual_proximity != "adjacent"
+        THEN FAIL("MAYER-05: texto e visual nao estao adjacentes")
+
+  # --- Validation Engine --------------------------------------------------
+  # Story 3.1: Motor de validacao DETERMINISTICO.
+  # YAML in, boolean checks out. Zero LLM involvement.
+  validation_engine:
+    description: >-
+      Motor de validacao deterministico para regras andragogicas.
+      Recebe deck-manifest.json como input, executa checks por slide,
+      agrega score e retorna resultado estruturado. Sem LLM — apenas
+      logica condicional sobre campos do manifest.
+    version: 1.0.0
+    deterministic: true
+    llm_required: false
+
+    # --- Input Contract ---------------------------------------------------
+    input:
+      type: "deck-manifest.json"
+      required_fields:
+        - "slides[].word_count"
+        - "slides[].slide_type"
+        - "slides[].visual_elements_count"
+      optional_fields:
+        - "briefing.education_mode"
+        - "briefing.audience_profile.dreyfus_level"
+        - "slides[].content_variant"
+        - "slides[].kolb_phase"
+        - "slides[].dpc_type"
+        - "slides[].support_level"
+        - "slides[].interaction_type"
+        - "slides[].has_visual"
+        - "slides[].has_text"
+        - "slides[].text_visual_proximity"
+        - "slides[].variables_count"
+        - "slides[].uses_undefined_term"
+        - "slides[].introduces_terms"
+        - "slides[].technical_terms"
+        - "slides[].is_concept_retake"
+        - "modules[].slides"
+
+    # --- Output Contract --------------------------------------------------
+    output:
+      type: "andragogic-validation-result"
+      schema:
+        passed: "boolean — true se zero BLOCK e zero FAIL com severity CRITICAL"
+        score: "float 0.0-1.0 — percentual de checks que passaram"
+        total_checks: "int — quantidade total de checks executados"
+        passed_checks: "int — quantidade de checks que passaram"
+        failed_checks: "int — quantidade de checks que falharam"
+        blocked: "boolean — true se qualquer killer item (K8/K9) disparou BLOCK"
+        mode: "string — 'standard' ou 'education'"
+        rules_applied: "string[] — lista de rule IDs aplicados nesta execucao"
+        violations:
+          type: "array"
+          item_schema:
+            rule_id: "string — ID da regra violada (e.g., MAYER-01, K9)"
+            severity: "CRITICAL|HIGH|MEDIUM|LOW"
+            action: "BLOCK|FAIL|WARN"
+            message: "string — mensagem descritiva da violacao"
+            slide_index: "int — indice do slide que violou (0-based)"
+            slide_type: "string — tipo do slide"
+            details: "object — dados adicionais especificos da regra"
+        summary:
+          critical_count: "int"
+          high_count: "int"
+          medium_count: "int"
+          low_count: "int"
+          killer_items_triggered: "string[] — IDs dos killer items que dispararam"
+
+    # --- Execution Flow ---------------------------------------------------
+    execution_flow:
+      description: >-
+        Fluxo sequencial e deterministico. Cada etapa depende da anterior.
+        Nenhuma etapa envolve chamada a LLM.
+      steps:
+        - step: 1
+          name: "load_rules"
+          description: >-
+            Carregar andragogic-rules.yaml e parsear todas as regras
+            (always_on_rules + education_mode_only_rules) e word_limit_exceptions.
+          input: "andragogic-rules.yaml"
+          output: "parsed_rules{always_on[], education_mode_only[], word_limit_exceptions{}}"
+          pseudocode: |
+            rules = YAML.parse("andragogic-rules.yaml")
+            always_on = rules.always_on_rules
+            education_only = rules.education_mode_only_rules
+            exceptions = rules.word_limit_exceptions
+            RETURN { always_on, education_only, exceptions }
+
+        - step: 2
+          name: "detect_mode"
+          description: >-
+            Determinar o modo de validacao com base no briefing.
+            Se briefing.education_mode == true, ativar regras education_mode_only
+            ALEM das always_on. Caso contrario, apenas always_on.
+          input: "deck-manifest.json → briefing.education_mode"
+          output: "mode: 'standard' | 'education'"
+          pseudocode: |
+            IF manifest.briefing.education_mode == true
+            THEN mode = "education"
+            ELSE mode = "standard"
+            RETURN mode
+
+        - step: 3
+          name: "filter_rules"
+          description: >-
+            Montar a lista de regras aplicaveis com base no modo detectado.
+            Standard: apenas always_on (3 regras).
+            Education: always_on + education_mode_only (9 regras).
+          input: "parsed_rules, mode"
+          output: "active_rules[]"
+          pseudocode: |
+            active_rules = always_on_rules
+            IF mode == "education"
+            THEN active_rules = active_rules + education_mode_only_rules
+            RETURN active_rules
+
+        - step: 4
+          name: "build_exception_map"
+          description: >-
+            Construir lookup map de word_limit_exceptions indexado por slide_type
+            para consulta O(1) durante validacao.
+          input: "word_limit_exceptions"
+          output: "exception_map{slide_type -> limit}"
+          pseudocode: |
+            exception_map = {}
+            FOR exc IN word_limit_exceptions.exceptions:
+              exception_map[exc.slide_type] = exc.limit
+            RETURN exception_map
+
+        - step: 5
+          name: "validate_per_slide"
+          description: >-
+            Iterar por cada slide do manifest e executar todas as regras
+            ativas que operam no nivel de slide (MAYER-01, MAYER-06, K9,
+            MAYER-05, K8, DREYFUS-01). Coletar violacoes.
+          input: "manifest.slides[], active_rules[], exception_map"
+          output: "slide_violations[]"
+          pseudocode: |
+            violations = []
+            defined_terms = []
+
+            FOR i, slide IN ENUMERATE(manifest.slides):
+              # --- Always-on per-slide rules ---
+              # MAYER-01: Multimedia check
+              IF "MAYER-01" IN active_rules:
+                IF slide.visual_elements_count == 0
+                   AND slide.content_variant != "quote"
+                   AND slide.slide_type != "STATEMENT"
+                THEN violations.APPEND({
+                  rule_id: "MAYER-01", severity: "HIGH", action: "FAIL",
+                  message: "slide sem elemento visual",
+                  slide_index: i, slide_type: slide.slide_type
+                })
+
+              # MAYER-06: Segmentation check
+              IF "MAYER-06" IN active_rules:
+                SET limit = exception_map[slide.slide_type] OR 40
+                IF slide.word_count > limit
+                THEN violations.APPEND({
+                  rule_id: "MAYER-06", severity: "HIGH", action: "FAIL",
+                  message: "slide com {slide.word_count} palavras, limite {limit}",
+                  slide_index: i, slide_type: slide.slide_type,
+                  details: { word_count: slide.word_count, limit: limit }
+                })
+
+              # K9 (LOAD-01): Hard word limit check
+              IF "K9" IN active_rules:
+                SET type_limit = exception_map[slide.slide_type] OR 60
+                SET k9_limit = MAX(type_limit, 60)
+                IF slide.word_count > k9_limit
+                THEN violations.APPEND({
+                  rule_id: "K9", severity: "CRITICAL", action: "BLOCK",
+                  message: "slide com {slide.word_count} palavras excede limite absoluto {k9_limit}",
+                  slide_index: i, slide_type: slide.slide_type,
+                  details: { word_count: slide.word_count, k9_limit: k9_limit }
+                })
+
+              # --- Education-mode per-slide rules ---
+              # MAYER-05: Spatial contiguity check
+              IF "MAYER-05" IN active_rules:
+                IF slide.has_visual == true
+                   AND slide.has_text == true
+                   AND slide.text_visual_proximity != "adjacent"
+                THEN violations.APPEND({
+                  rule_id: "MAYER-05", severity: "MEDIUM", action: "FAIL",
+                  message: "texto e visual nao estao adjacentes",
+                  slide_index: i, slide_type: slide.slide_type
+                })
+
+              # K8 (PRETRAIN-01): Jargon without pre-training
+              IF "K8" IN active_rules:
+                FOR term IN slide.technical_terms:
+                  IF term NOT IN defined_terms
+                  THEN violations.APPEND({
+                    rule_id: "K8", severity: "CRITICAL", action: "BLOCK",
+                    message: "termo '{term}' usado sem definicao previa",
+                    slide_index: i, slide_type: slide.slide_type,
+                    details: { undefined_term: term, defined_terms: defined_terms }
+                  })
+                # Track terms introduced by this slide
+                defined_terms = defined_terms + (slide.introduces_terms OR [])
+
+              # DREYFUS-01: Learner level calibration
+              IF "DREYFUS-01" IN active_rules:
+                SET level = manifest.briefing.audience_profile.dreyfus_level
+                SET params = dreyfus_parameters[level]
+                IF params IS NOT NULL:
+                  IF slide.variables_count > params.max_variables_per_slide
+                     AND params.max_variables_per_slide != "unlimited"
+                  THEN violations.APPEND({
+                    rule_id: "DREYFUS-01", severity: "MEDIUM", action: "FAIL",
+                    message: "slide com {slide.variables_count} variaveis excede {params.max_variables_per_slide} para nivel {level}",
+                    slide_index: i, slide_type: slide.slide_type,
+                    details: { variables: slide.variables_count, max: params.max_variables_per_slide, level: level }
+                  })
+                  IF params.vocabulary_pretraining == "mandatory"
+                     AND slide.uses_undefined_term == true
+                  THEN violations.APPEND({
+                    rule_id: "DREYFUS-01", severity: "MEDIUM", action: "FAIL",
+                    message: "termo tecnico sem pre-treino (obrigatorio para {level})",
+                    slide_index: i, slide_type: slide.slide_type,
+                    details: { level: level, pretraining_required: true }
+                  })
+
+            RETURN violations
+
+        - step: 6
+          name: "validate_per_module"
+          description: >-
+            Iterar por cada modulo do manifest e executar regras que operam
+            no nivel de modulo (KOLB-01, DPC-01, SCAFFOLD-01, INTERACT-01).
+            Somente executado em education mode.
+          input: "manifest.modules[], active_rules[]"
+          output: "module_violations[]"
+          condition: "mode == 'education'"
+          pseudocode: |
+            violations = []
+            IF mode != "education" THEN RETURN violations
+
+            FOR m, module IN ENUMERATE(manifest.modules):
+              # KOLB-01: Experiential cycle completeness
+              IF "KOLB-01" IN active_rules:
+                SET phases = COLLECT(slide.kolb_phase FOR slide IN module.slides)
+                FOR required_phase IN ["EC", "OR", "CA", "EA"]:
+                  IF required_phase NOT IN phases
+                  THEN violations.APPEND({
+                    rule_id: "KOLB-01", severity: "HIGH", action: "FAIL",
+                    message: "fase {required_phase} ausente no modulo {m}",
+                    slide_index: module.slides[0].position,
+                    details: { module_index: m, missing_phase: required_phase, phases_found: phases }
+                  })
+                IF LENGTH(module.slides) > 0 AND module.slides[0].kolb_phase == "CA"
+                THEN violations.APPEND({
+                  rule_id: "KOLB-01", severity: "HIGH", action: "FAIL",
+                  message: "modulo {m} comeca com teoria (CA) em vez de experiencia (EC)",
+                  slide_index: module.slides[0].position,
+                  details: { module_index: m, first_phase: "CA" }
+                })
+
+              # DPC-01: Declarative-Procedural-Conditional ordering
+              IF "DPC-01" IN active_rules:
+                FOR concept IN module.concepts:
+                  SET d_first = FIRST_INDEX(s.dpc_type == "D" FOR s IN concept.slides)
+                  SET p_first = FIRST_INDEX(s.dpc_type == "P" FOR s IN concept.slides)
+                  SET c_first = FIRST_INDEX(s.dpc_type == "C" FOR s IN concept.slides)
+                  IF d_first IS NOT NULL AND p_first IS NOT NULL AND d_first > p_first
+                  THEN violations.APPEND({
+                    rule_id: "DPC-01", severity: "HIGH", action: "FAIL",
+                    message: "Procedural antes de Declarativo no modulo {m}",
+                    slide_index: concept.slides[p_first].position,
+                    details: { module_index: m, d_index: d_first, p_index: p_first }
+                  })
+                  IF p_first IS NOT NULL AND c_first IS NOT NULL AND p_first > c_first
+                  THEN violations.APPEND({
+                    rule_id: "DPC-01", severity: "HIGH", action: "FAIL",
+                    message: "Condicional antes de Procedural no modulo {m}",
+                    slide_index: concept.slides[c_first].position,
+                    details: { module_index: m, p_index: p_first, c_index: c_first }
+                  })
+
+              # SCAFFOLD-01: Support fade
+              IF "SCAFFOLD-01" IN active_rules:
+                SET levels_order = ["full", "partial", "hints", "minimal"]
+                FOR i IN 1..LENGTH(module.slides)-1:
+                  SET prev_level = module.slides[i-1].support_level
+                  SET curr_level = module.slides[i].support_level
+                  IF prev_level IS NOT NULL AND curr_level IS NOT NULL:
+                    SET prev_idx = INDEX_OF(prev_level IN levels_order)
+                    SET curr_idx = INDEX_OF(curr_level IN levels_order)
+                    IF curr_idx < prev_idx
+                       AND module.slides[i].is_concept_retake != true
+                    THEN violations.APPEND({
+                      rule_id: "SCAFFOLD-01", severity: "LOW", action: "WARN",
+                      message: "suporte aumentou de {prev_level} para {curr_level}",
+                      slide_index: module.slides[i].position,
+                      details: { module_index: m, from: prev_level, to: curr_level }
+                    })
+
+              # INTERACT-01: Engagement frequency
+              IF "INTERACT-01" IN active_rules:
+                SET counter = 0
+                FOR slide IN module.slides:
+                  IF slide.kolb_phase IN ["OR", "EA"]
+                     OR slide.interaction_type IS NOT NULL
+                  THEN SET counter = 0
+                  ELSE SET counter = counter + 1
+                  IF counter > 5
+                  THEN violations.APPEND({
+                    rule_id: "INTERACT-01", severity: "MEDIUM", action: "FAIL",
+                    message: "{counter} slides consecutivos sem interacao no modulo {m}",
+                    slide_index: slide.position,
+                    details: { module_index: m, consecutive_passive: counter }
+                  })
+
+            RETURN violations
+
+        - step: 7
+          name: "aggregate_results"
+          description: >-
+            Combinar violacoes de slide-level e module-level.
+            Calcular score, contar por severity, determinar se deck
+            passou ou foi bloqueado.
+          input: "slide_violations[], module_violations[], active_rules[]"
+          output: "andragogic-validation-result"
+          pseudocode: |
+            all_violations = slide_violations + module_violations
+
+            # Count by severity
+            critical = COUNT(v FOR v IN all_violations WHERE v.severity == "CRITICAL")
+            high = COUNT(v FOR v IN all_violations WHERE v.severity == "HIGH")
+            medium = COUNT(v FOR v IN all_violations WHERE v.severity == "MEDIUM")
+            low = COUNT(v FOR v IN all_violations WHERE v.severity == "LOW")
+
+            # Identify killer items
+            killers = UNIQUE(v.rule_id FOR v IN all_violations WHERE v.action == "BLOCK")
+
+            # Calculate score
+            # Total possible checks = (slides * per_slide_rules) + (modules * per_module_rules)
+            total_checks = COUNT(all checks executed)
+            passed_checks = total_checks - LENGTH(all_violations)
+            score = passed_checks / total_checks IF total_checks > 0 ELSE 1.0
+
+            # Determine pass/fail
+            blocked = LENGTH(killers) > 0
+            passed = critical == 0 AND NOT blocked
+
+            RETURN {
+              passed: passed,
+              score: ROUND(score, 3),
+              total_checks: total_checks,
+              passed_checks: passed_checks,
+              failed_checks: LENGTH(all_violations),
+              blocked: blocked,
+              mode: mode,
+              rules_applied: [r.id FOR r IN active_rules],
+              violations: all_violations,
+              summary: {
+                critical_count: critical,
+                high_count: high,
+                medium_count: medium,
+                low_count: low,
+                killer_items_triggered: killers
+              }
+            }
+
+    # --- Severity Actions -------------------------------------------------
+    severity_actions:
+      description: >-
+        Mapeamento de severity para acao do engine. Define o que acontece
+        quando cada nivel de severidade e violado.
+      mapping:
+        CRITICAL:
+          action: BLOCK
+          description: "Deck NAO pode ser emitido. Violacao deve ser corrigida."
+          blocks_output: true
+          routing: "content-architect para reescrita"
+        HIGH:
+          action: FAIL
+          description: "Deck emitido com WARNING prominente. Score penalizado fortemente."
+          blocks_output: false
+          routing: "content-architect (sequencia) ou design-renderer (layout)"
+        MEDIUM:
+          action: FAIL
+          description: "Deck emitido com nota no QA report. Score penalizado moderadamente."
+          blocks_output: false
+          routing: "agente apropriado conforme tipo de violacao"
+        LOW:
+          action: WARN
+          description: "Apenas registrado no QA report. Score penalizado minimamente."
+          blocks_output: false
+          routing: "nenhum — informativo apenas"
+
+    # --- Integration Points -----------------------------------------------
+    integration:
+      qa_inspector:
+        dimension: "andragogy"
+        weight_education_mode: 0.15
+        weight_standard_mode: 0.0
+        score_field: "andragogic_validation.score"
+      refinement_routing:
+        sequence_violations: ["KOLB-01", "DPC-01", "SCAFFOLD-01"]
+        content_violations: ["K8", "K9", "MAYER-06", "INTERACT-01"]
+        layout_violations: ["MAYER-01", "MAYER-05"]
+        calibration_violations: ["DREYFUS-01"]
+      feature_flag: "ENABLE_ANDRAGOGIC_VALIDATION"

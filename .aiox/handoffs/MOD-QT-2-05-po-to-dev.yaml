@@ -1,0 +1,50 @@
+handoff:
+  from_agent: "po"
+  to_agent: "dev"
+  pipeline_id: "MOD-QT-2-05-NAV-LINK"
+  timestamp: "2026-07-29"
+  story_context:
+    story_id: "MOD-QT-2-05"
+    story_path: "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md"
+    story_status: "Ready"
+    current_task: "validate-story-draft complete (GO) — awaiting *dev-develop-story"
+    branch: "master"
+    submodule: "sistema-de-instala-es-el-tricas-sie-main/"
+  validation:
+    verdict: "GO"
+    score_pre_fix: "7/10"
+    score_post_fix: "10/10"
+    checklist: "10-point (.claude/rules/story-lifecycle.md)"
+    failed_pre_fix:
+      - "Ponto 3 (ACs testáveis) — método de verificação prescrito não existe no repositório"
+      - "Ponto 8 (Riscos) — seção ausente"
+      - "Ponto 10 (Alinhamento com épico) — parcial, só citava stories irmãs"
+  decisions:
+    - "BLOQUEANTE CORRIGIDO: story prescrevia Testing Library como 'padrão do projeto'. FALSO — nao ha @testing-library/*, jsdom nem happy-dom no package.json, e nao ha vitest.config.* com environment. Substituido por asseracao de fonte (readFileSync) + tsc --noEmit como prova de tipo para AC2."
+    - "Posicao do link CONFIRMADA (apos 'Dimensionamento de condutores'): commit 1e18cc9 comprova que o criterio C5 do MOD-DC e resolvido pelo retorno do MOD-QT e pode exigir secao maior — acoplamento direto justifica adjacencia."
+    - "Padrao <Link> CONFIRMADO: git log -S mostra os 3 <a href> introduzidos no MESMO commit (1e18cc9), com as rotas de destino JA registradas na route tree — hipotese de restricao tecnica descartada. E drift de estilo."
+    - "AC4 (VRT) N/A CONFIRMADA: 5 snapshots em tests/ui/__snapshots__/, nenhum do hub; nenhum teste referencia deps-hero-link nem renderiza ProjetoPage."
+    - "Escopo XS mantido: 1 elemento JSX em 1 arquivo + 1 teste de asserçao de fonte."
+  verified_against_code:
+    - "src/routes/projetos.$projetoId.tsx linhas 81-105: bloco deps-hero-links com 5 links (2 <Link>, 3 <a href>) — bate exatamente com a story"
+    - "src/routes/projetos.$projetoId_.queda-tensao.tsx existe"
+    - "Rota registrada em src/routeTree.gen.ts E src/routeTree.spa.ts como path '/projetos/$projetoId/queda-tensao'"
+    - "package.json: sem @testing-library, sem jsdom, sem happy-dom"
+  files_modified:
+    - "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md"
+  files_created:
+    - ".aiox/handoffs/MOD-QT-2-05-po-to-dev.yaml"
+  blockers: []
+  hard_constraints_for_dev:
+    - "PROIBIDO instalar qualquer dependencia nova (jsdom, happy-dom, @testing-library/*) — FAIL automatico no QA gate"
+    - "PROIBIDO criar ou alterar vitest.config.*"
+    - "PROIBIDO exportar ProjetoPage ou extrair o bloco de links para componente novo"
+    - "PROIBIDO migrar os 3 <a href> vizinhos para <Link> (divida pre-existente, fora de escopo)"
+    - "PROIBIDO tocar src/domain/queda-tensao/, a rota de destino, routeTree.gen.ts ou routeTree.spa.ts"
+    - "Se a asserçao de fonte parecer insuficiente: PARAR e escalar ao @po, nao expandir escopo"
+  gates:
+    - "npx tsc --noEmit — exit 0 (tambem e a prova de tipo da AC2)"
+    - "npx vitest run — 947/947 ou mais, nunca menos"
+    - "npx vite build — sem erro"
+    - "npx eslint escopado aos arquivos tocados (eslint . completo trava neste ambiente)"
+  next_action: "@dev executa *dev-develop-story sobre docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md; transicionar Ready -> InProgress -> InReview com registro no Change Log"

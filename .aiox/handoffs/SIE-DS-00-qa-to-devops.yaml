@@ -1,0 +1,26 @@
+handoff:
+  from_agent: "@qa"
+  to_agent: "@devops"
+  story_context:
+    story_id: "SIE-DS-00"
+    story_path: "docs/stories/story-SIE-DS-00-readiness-namespace-canonico.md"
+    story_status: "Done"
+    current_task: "*review + *gate concluídos (CONCERNS); aguardando *pre-push / *push"
+    branch: "master"
+  decisions:
+    - "Gate: CONCERNS (não PASS puro, não FAIL). AC1-AC5 PASS, verificados independentemente via git status. Único motivo de não ser PASS: CodeRabbit self-healing (Step 0) não executou por falha de ambiente (SIGILL/exit 132 no binário WSL), não por defeito do artefato."
+    - "Quality score: 90/100."
+    - "Nenhuma ação de correção é exigida do @dev — issues são Should-Fix não bloqueantes."
+  files_modified:
+    - "docs/stories/story-SIE-DS-00-readiness-namespace-canonico.md (seção QA Results, Status, Change Log)"
+    - "docs/qa/gates/SIE-DS-00-readiness-namespace-canonico.yml (novo)"
+  blockers:
+    - "TEST-001 (medium, owner @devops): binário ~/.local/bin/coderabbit no WSL crasha com SIGILL/exit 132 até em --version. Recomendo reinstalar/reautenticar antes do *pre-push desta story e, com mais urgência, antes de SIE-DS-01 (que produzirá código real e depende do scanner para o self-healing check/report-only de @devops)."
+  next_action: >
+    @devops executa *pre-push (verificar: story Done ✓, QA CONCERNS ✓ aceito, arquitetura PASS ✓,
+    gates técnicos do root/frontend — N/A para esta story pois não há código, branch/remote
+    conforme manifesto). Story SIE-DS-00 NÃO requer os gates de lint/typecheck/test/build do
+    frontend (nenhum arquivo em sistema-de-instala-es-el-tricas-sie-main/src/ foi tocado).
+    Nenhuma operação remota (push/PR/merge/release/deploy) está autorizada por nenhum manifesto
+    até que um manifesto live seja criado (ver .aiox/sdc-headless/sie-command-center-precondition-check-2026-07-31T05-50-15.883Z.yaml)
+    — @devops deve confirmar com o usuário antes de qualquer push real.

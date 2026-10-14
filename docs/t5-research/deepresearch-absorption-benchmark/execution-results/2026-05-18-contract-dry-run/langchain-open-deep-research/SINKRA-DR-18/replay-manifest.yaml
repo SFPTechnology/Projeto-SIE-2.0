@@ -1,0 +1,22 @@
+schema: sinkra-replay-manifest-v1
+run_id: langchain-open-deep-research__SINKRA-DR-18
+task_file: tasks/SINKRA-DR-18.yaml
+adapter:
+  id: langchain-open-deep-research
+  role: graph_runtime
+  mode: contract_stub
+  capabilities:
+  - supervisor_graph
+  - parallel_research
+  - compression
+outputs:
+- trace.jsonl
+- tool-calls.jsonl
+- claims.yaml
+- sources.yaml
+- report.md
+- rubric-results.yaml
+- cost-latency.yaml
+- failure-analysis.md
+- replay-manifest.yaml
+mode: contract_dry_run

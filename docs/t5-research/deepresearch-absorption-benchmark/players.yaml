@@ -1,0 +1,369 @@
+schema: research-players.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+description: Players evaluated in this bench. Tier 1 = adoption reference; Tier 2 = adapt; Tier 3 = monitor.
+tier_meaning:
+  1: Adotar como padrão principal ou referência direta para absorção.
+  2: Adaptar parcialmente; útil em dimensão específica mas não resolve sozinho.
+  3: Monitorar ou usar apenas como inspiração lateral.
+players:
+- id: drbench
+  name: DRBench
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: ServiceNow/drbench
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 44054
+    anatomy_files: 4
+- id: deer-flow
+  name: DeerFlow
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: bytedance/deer-flow
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 41027
+    anatomy_files: 4
+- id: autoresearchclaw
+  name: AutoResearchClaw
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: aiming-lab/AutoResearchClaw
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 33892
+    anatomy_files: 4
+- id: storm
+  name: STORM
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: stanford-oval/storm
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 41106
+    anatomy_files: 4
+- id: gpt-researcher
+  name: GPT-Researcher
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: assafelovic/gpt-researcher
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 30062
+    anatomy_files: 4
+- id: local-deep-research
+  name: Local Deep Research
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: LearningCircuit/local-deep-research
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 38277
+    anatomy_files: 4
+- id: mirothinker
+  name: MiroThinker
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: MiroMindAI/MiroThinker
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 38360
+    anatomy_files: 4
+- id: deep-searcher
+  name: DeepSearcher
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: zilliztech/deep-searcher
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 41858
+    anatomy_files: 4
+- id: langchain-open-deep-research
+  name: LangChain Open Deep Research
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: langchain-ai/open_deep_research
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 33501
+    anatomy_files: 4
+- id: deep-research-bench
+  name: Deep Research Bench
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: Ayanami0730/deep_research_bench
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 34496
+    anatomy_files: 4
+- id: node-deepresearch
+  name: Jina node-DeepResearch
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: jina-ai/node-DeepResearch
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 37146
+    anatomy_files: 4
+- id: miroflow
+  name: MiroFlow
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: MiroMindAI/MiroFlow
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 46520
+    anatomy_files: 4
+- id: miroeval
+  name: MiroEval
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: MiroMindAI/MiroEval
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 35159
+    anatomy_files: 4
+- id: deepresearcher
+  name: DeepResearcher
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: GAIR-NLP/DeepResearcher
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 41419
+    anatomy_files: 4
+- id: livedrbench
+  name: LiveDRBench
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: microsoft/LiveDRBench
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 31720
+    anatomy_files: 4
+- id: mirorl
+  name: MiroRL
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: MiroMindAI/MiroRL
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 36924
+    anatomy_files: 4
+- id: mirotrain
+  name: MiroTrain
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: MiroMindAI/MiroTrain
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 33624
+    anatomy_files: 4
+- id: alibaba-deepresearch
+  name: Alibaba/Tongyi DeepResearch
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: Alibaba-NLP/DeepResearch
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 37237
+    anatomy_files: 4
+- id: agent-browser-workspace
+  name: Agent Browser Workspace
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: k-kolomeitsev/agent-browser-workspace
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 40476
+    anatomy_files: 4
+- id: dzhng-deep-research
+  name: dzhng/deep-research
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: dzhng/deep-research
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 31814
+    anatomy_files: 4
+- id: openresearcher
+  name: OpenResearcher
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: TIGER-AI-Lab/OpenResearcher
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 36936
+    anatomy_files: 4
+- id: nickscamara-open-deep-research
+  name: nickscamara/open-deep-research
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: nickscamara/open-deep-research
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 39475
+    anatomy_files: 4
+- id: jigsawstack-deep-research
+  name: JigsawStack Deep Research
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: JigsawStack/deep-research
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 35000
+    anatomy_files: 4
+- id: auto-deep-research
+  name: HKUDS Auto-Deep-Research
+  category: framework
+  type: opensource
+  tier: 3
+  role: ''
+  license: Unknown
+  repo: HKUDS/Auto-Deep-Research
+  fit: ''
+  action: Evaluate per gap-analysis
+  score: null
+  rank: null
+  metrics:
+    deep_bytes: 39452
+    anatomy_files: 4

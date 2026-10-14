@@ -1,0 +1,59 @@
+schema: 1
+story: 'DC-4'
+story_title: 'Motores C2 e C6 + Seleção Final'
+gate: PASS
+status_reason: 'Todos os AC da story (DC-01/06/12/18) implementados e cobertos por testes rastreáveis; C2/C6/seleção final reusados sem alteração de produção; 11/11 focados, 42/42 domínio, tsc limpo, sem regressões.'
+reviewer: 'Quinn'
+updated: '2026-07-12T23:56:00Z'
+
+verification:
+  scope_note: 'Gate verifica os AC do arquivo da story (fonte de verdade — Constitution Art. III/IV). AC do prompt de spawn divergiam e foram corretamente desconsiderados pelo @dev.'
+  acceptance_criteria:
+    - id: AC-DC-01
+      finding: 'ILU Cu PVC B1 30 °C, IB=2,36 A → seção fase 1,5 mm² (C6 impõe piso). Verificado: secao_c6_minima=1,5; secao_fase=1,5; TUE leve prova C6 vinculante (2,5 > C1 1,5).'
+      verdict: PASS
+    - id: AC-DC-06
+      finding: 'Seção final ∈ série IEC 60228. Teste itera ILU e chuveiro; ambos aterrissam na série normalizada.'
+      verdict: PASS
+    - id: AC-DC-12
+      finding: 'In(40) > Iz(39,9) da seção 10 → sobe p/ 16 mm², critério decisivo C2. IB(34,65) > In(20) → criterios.C2 = REPROVADO. Ambos ramos cobertos.'
+      verdict: PASS
+    - id: AC-DC-18
+      finding: 'I2 ausente → PENDENTE-I2 (limite não avaliado); I2=58 ≤ 1,45·Iz → aprovado; regime_sobrecarga_severo transforma limite p/ 1,0·Iz e reprova I2=50 > 45.'
+      verdict: PASS
+  seven_point_checklist:
+    - check: 'Acceptance Criteria (story-file AC)'
+      verdict: PASS
+    - check: 'Type Safety & Lint (tsc --noEmit exit 0)'
+      verdict: PASS
+    - check: 'Integration (consome C1 Iz_corrigida; isolado em motores/; sem contaminação)'
+      verdict: PASS
+    - check: 'Regression (focados 11/11; domínio 42/42; sem regressões)'
+      verdict: PASS
+    - check: 'Documentation (decision-log-DC-4.md; AUTO-DECISIONs; worked examples)'
+      verdict: PASS
+    - check: 'File Inventory (REUSE verificado — 3 prod files sem alteração; 1 test CREATE)'
+      verdict: PASS
+    - check: 'Done Criteria (AC implementados+testados; File List+Change Log completos; DC-5 desbloqueada)'
+      verdict: PASS
+
+evidence:
+  tests_run_by_qa: true
+  focused: '11/11 PASS (npx vitest run motor-c2-c6.test.ts)'
+  domain_suite: '42/42 PASS (npx vitest run tests/domain/dimensionamento-condutores)'
+  typecheck: 'exit 0 (npx tsc --noEmit)'
+  reuse_confirmed: 'git status confirma motor-sobrecarga.ts, motor-secao-minima.ts e servico-dimensionamento-condutores.ts SEM modificação; motor-c2-c6.test.ts como untracked (CREATE).'
+
+top_issues: []
+
+design_notes:
+  - id: DOC-001
+    severity: low
+    finding: 'criterio_decisivo nunca reporta "C6" por design (secaoC2Ajustada absorve o piso C6; empate resolve para C1/C2). Não é defeito — o efeito material (piso respeitado) é testado. Documentado em decision-log.'
+    suggested_action: 'Se um AC futuro exigir o rótulo literal "C6", revisar a regra de rótulo do seletor. Sem ação para DC-4.'
+  - id: DOC-002
+    severity: low
+    finding: 'In>Iz auto-remedia (sobe seção via proximaSecao) em vez de rotular REPROVADO; REPROVADO reservado a IB>In / I2>limite. Comportamento coerente com a intenção do AC-DC-12.'
+    suggested_action: 'Nenhuma — comportamento correto e documentado.'
+
+waiver: { active: false }

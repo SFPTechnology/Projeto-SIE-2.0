@@ -1,0 +1,57 @@
+{
+  "name": "Gamma",
+  "company": "Gamma",
+  "category": "AI presentation, document, website and social content platform",
+  "deployment": ["cloud SaaS"],
+  "license": "proprietary",
+  "target_audience": ["knowledge workers", "consultants", "sales", "marketing", "educators", "operators", "teams"],
+  "core_features": [
+    "prompt-to-presentation",
+    "document/import-to-presentation",
+    "presentation mode",
+    "spotlight presenting",
+    "PDF export",
+    "PPTX export",
+    "PNG export",
+    "Google Slides export path",
+    "shareable web links",
+    "themes",
+    "custom branding on higher plans",
+    "analytics on Pro",
+    "API on Pro/Ultra/Teams/Business",
+    "MCP/connectors",
+    "Zapier/Make/n8n integrations"
+  ],
+  "integrations": {
+    "api": true,
+    "mcp": true,
+    "automation": ["Zapier", "Make", "n8n"],
+    "assistants": ["Claude", "ChatGPT"],
+    "enterprise_connectors": ["Atlassian Rovo", "Glean", "Superhuman Go", "Profound"]
+  },
+  "pricing_model": "SaaS tiers: Free, Plus, Pro, Ultra, Teams, Business; API key access starts at Pro/Ultra/Teams/Business per official developer docs",
+  "strengths": [
+    "polished UX",
+    "multi-format output",
+    "sharing and presentation workflow",
+    "large usage footprint",
+    "integrations and API",
+    "team/workspace capabilities"
+  ],
+  "weaknesses": [
+    "SaaS lock-in",
+    "no self-hosting",
+    "data leaves user infrastructure",
+    "credit-based usage",
+    "PPTX fidelity needs hands-on validation for serious client deliverables"
+  ],
+  "sources": [
+    "https://gamma.app/products/presentations",
+    "https://gamma.app/es/pricing",
+    "https://developers.gamma.app/",
+    "https://developers.gamma.app/get-started/access-and-pricing",
+    "https://gamma.app/integrations",
+    "https://help.gamma.app/fr/articles/8022861",
+    "https://help.gamma.app/en/articles/11047840-how-can-i-import-slides-or-documents-into-gamma"
+  ]
+}

@@ -1,0 +1,2244 @@
+{
+  "schema": "sinkra-dr-contract-dry-run-manifest-v1",
+  "generated_at": "2026-05-18T16:30:49+00:00",
+  "mode": "contract_dry_run",
+  "adapters": [
+    {
+      "id": "dzhng-deep-research",
+      "role": "minimal_baseline",
+      "mode": "contract_stub",
+      "capabilities": [
+        "breadth_depth",
+        "structured_outputs",
+        "progress"
+      ]
+    },
+    {
+      "id": "gpt-researcher",
+      "role": "research_facade",
+      "mode": "contract_stub",
+      "capabilities": [
+        "source_strategy",
+        "mcp_retriever",
+        "report_facade"
+      ]
+    },
+    {
+      "id": "langchain-open-deep-research",
+      "role": "graph_runtime",
+      "mode": "contract_stub",
+      "capabilities": [
+        "supervisor_graph",
+        "parallel_research",
+        "compression"
+      ]
+    },
+    {
+      "id": "local-deep-research",
+      "role": "local_private_runtime",
+      "mode": "contract_stub",
+      "capabilities": [
+        "local_first",
+        "mcp_api",
+        "private_kb"
+      ]
+    },
+    {
+      "id": "deep-searcher",
+      "role": "private_kb_rag",
+      "mode": "contract_stub",
+      "capabilities": [
+        "provider_registry",
+        "collection_routing",
+        "chain_of_rag"
+      ]
+    },
+    {
+      "id": "drbench",
+      "role": "enterprise_oracle",
+      "mode": "contract_stub",
+      "capabilities": [
+        "task_eval_env",
+        "report_insights",
+        "sandbox_fixture"
+      ]
+    }
+  ],
+  "tasks": 40,
+  "runs": 240,
+  "pass": 240,
+  "fail": 0,
+  "required_outputs": [
+    "trace.jsonl",
+    "tool-calls.jsonl",
+    "claims.yaml",
+    "sources.yaml",
+    "report.md",
+    "rubric-results.yaml",
+    "cost-latency.yaml",
+    "failure-analysis.md",
+    "replay-manifest.yaml"
+  ],
+  "records": [
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-01",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-01",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-01",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-02",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-02",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-02",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-03",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-03",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-03",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-04",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-04",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-04",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-05",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-05",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-05",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-06",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-06",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-06",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-07",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-07",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-07",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-08",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-08",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-08",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-09",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-09",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-09",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-10",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-10",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-10",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-11",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-11",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-11",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-12",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-12",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-12",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-13",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-13",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-13",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-14",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-14",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-14",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-15",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-15",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-15",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-16",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-16",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-16",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-17",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-17",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-17",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-18",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-18",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-18",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-19",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-19",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-19",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-20",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-20",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-20",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-21",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-21",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-21",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-22",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-22",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-22",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-23",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-23",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-23",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-24",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-24",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-24",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-25",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-25",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-25",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-26",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-26",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-26",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-27",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-27",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-27",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-28",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-28",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-28",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-29",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-29",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-29",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-30",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-30",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-30",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-31",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-31",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-31",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-32",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-32",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-32",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-33",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-33",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-33",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-34",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-34",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-34",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-35",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-35",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-35",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-36",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-36",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-36",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-37",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-37",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-37",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-38",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-38",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-38",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-39",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-39",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-39",
+      "claims": 5
+    },
+    {
+      "run_id": "dzhng-deep-research__SINKRA-DR-40",
+      "adapter": "dzhng-deep-research",
+      "task_id": "SINKRA-DR-40",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/dzhng-deep-research/SINKRA-DR-40",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-01",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-01",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-01",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-02",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-02",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-02",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-03",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-03",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-03",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-04",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-04",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-04",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-05",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-05",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-05",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-06",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-06",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-06",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-07",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-07",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-07",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-08",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-08",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-08",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-09",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-09",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-09",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-10",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-10",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-10",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-11",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-11",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-11",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-12",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-12",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-12",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-13",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-13",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-13",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-14",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-14",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-14",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-15",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-15",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-15",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-16",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-16",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-16",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-17",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-17",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-17",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-18",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-18",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-18",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-19",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-19",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-19",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-20",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-20",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-20",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-21",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-21",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-21",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-22",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-22",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-22",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-23",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-23",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-23",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-24",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-24",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-24",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-25",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-25",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-25",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-26",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-26",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-26",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-27",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-27",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-27",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-28",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-28",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-28",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-29",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-29",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-29",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-30",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-30",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-30",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-31",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-31",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-31",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-32",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-32",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-32",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-33",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-33",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-33",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-34",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-34",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-34",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-35",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-35",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-35",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-36",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-36",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-36",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-37",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-37",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-37",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-38",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-38",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-38",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-39",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-39",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-39",
+      "claims": 5
+    },
+    {
+      "run_id": "gpt-researcher__SINKRA-DR-40",
+      "adapter": "gpt-researcher",
+      "task_id": "SINKRA-DR-40",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/gpt-researcher/SINKRA-DR-40",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-01",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-01",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-01",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-02",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-02",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-02",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-03",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-03",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-03",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-04",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-04",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-04",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-05",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-05",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-05",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-06",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-06",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-06",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-07",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-07",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-07",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-08",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-08",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-08",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-09",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-09",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-09",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-10",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-10",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-10",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-11",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-11",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-11",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-12",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-12",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-12",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-13",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-13",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-13",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-14",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-14",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-14",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-15",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-15",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-15",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-16",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-16",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-16",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-17",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-17",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-17",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-18",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-18",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-18",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-19",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-19",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-19",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-20",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-20",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-20",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-21",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-21",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-21",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-22",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-22",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-22",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-23",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-23",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-23",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-24",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-24",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-24",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-25",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-25",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-25",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-26",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-26",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-26",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-27",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-27",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-27",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-28",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-28",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-28",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-29",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-29",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-29",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-30",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-30",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-30",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-31",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-31",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-31",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-32",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-32",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-32",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-33",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-33",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-33",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-34",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-34",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-34",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-35",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-35",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-35",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-36",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-36",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-36",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-37",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-37",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-37",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-38",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-38",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-38",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-39",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-39",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-39",
+      "claims": 5
+    },
+    {
+      "run_id": "langchain-open-deep-research__SINKRA-DR-40",
+      "adapter": "langchain-open-deep-research",
+      "task_id": "SINKRA-DR-40",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/langchain-open-deep-research/SINKRA-DR-40",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-01",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-01",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-01",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-02",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-02",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-02",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-03",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-03",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-03",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-04",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-04",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-04",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-05",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-05",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-05",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-06",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-06",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-06",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-07",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-07",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-07",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-08",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-08",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-08",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-09",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-09",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-09",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-10",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-10",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-10",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-11",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-11",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-11",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-12",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-12",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-12",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-13",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-13",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-13",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-14",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-14",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-14",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-15",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-15",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-15",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-16",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-16",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-16",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-17",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-17",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-17",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-18",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-18",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-18",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-19",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-19",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-19",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-20",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-20",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-20",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-21",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-21",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-21",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-22",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-22",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-22",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-23",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-23",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-23",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-24",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-24",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-24",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-25",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-25",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-25",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-26",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-26",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-26",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-27",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-27",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-27",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-28",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-28",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-28",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-29",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-29",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-29",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-30",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-30",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-30",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-31",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-31",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-31",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-32",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-32",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-32",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-33",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-33",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-33",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-34",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-34",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-34",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-35",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-35",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-35",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-36",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-36",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-36",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-37",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-37",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-37",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-38",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-38",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-38",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-39",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-39",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-39",
+      "claims": 5
+    },
+    {
+      "run_id": "local-deep-research__SINKRA-DR-40",
+      "adapter": "local-deep-research",
+      "task_id": "SINKRA-DR-40",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/local-deep-research/SINKRA-DR-40",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-01",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-01",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-01",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-02",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-02",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-02",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-03",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-03",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-03",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-04",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-04",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-04",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-05",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-05",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-05",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-06",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-06",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-06",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-07",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-07",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-07",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-08",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-08",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-08",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-09",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-09",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-09",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-10",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-10",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-10",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-11",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-11",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-11",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-12",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-12",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-12",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-13",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-13",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-13",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-14",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-14",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-14",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-15",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-15",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-15",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-16",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-16",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-16",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-17",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-17",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-17",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-18",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-18",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-18",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-19",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-19",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-19",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-20",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-20",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-20",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-21",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-21",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-21",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-22",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-22",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-22",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-23",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-23",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-23",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-24",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-24",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-24",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-25",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-25",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-25",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-26",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-26",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-26",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-27",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-27",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-27",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-28",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-28",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-28",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-29",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-29",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-29",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-30",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-30",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-30",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-31",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-31",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-31",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-32",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-32",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-32",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-33",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-33",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-33",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-34",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-34",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-34",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-35",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-35",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-35",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-36",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-36",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-36",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-37",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-37",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-37",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-38",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-38",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-38",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-39",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-39",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-39",
+      "claims": 5
+    },
+    {
+      "run_id": "deep-searcher__SINKRA-DR-40",
+      "adapter": "deep-searcher",
+      "task_id": "SINKRA-DR-40",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/deep-searcher/SINKRA-DR-40",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-01",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-01",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-01",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-02",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-02",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-02",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-03",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-03",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-03",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-04",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-04",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-04",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-05",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-05",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-05",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-06",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-06",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-06",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-07",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-07",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-07",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-08",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-08",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-08",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-09",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-09",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-09",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-10",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-10",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-10",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-11",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-11",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-11",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-12",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-12",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-12",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-13",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-13",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-13",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-14",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-14",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-14",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-15",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-15",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-15",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-16",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-16",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-16",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-17",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-17",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-17",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-18",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-18",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-18",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-19",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-19",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-19",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-20",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-20",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-20",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-21",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-21",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-21",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-22",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-22",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-22",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-23",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-23",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-23",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-24",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-24",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-24",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-25",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-25",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-25",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-26",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-26",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-26",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-27",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-27",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-27",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-28",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-28",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-28",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-29",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-29",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-29",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-30",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-30",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-30",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-31",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-31",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-31",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-32",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-32",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-32",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-33",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-33",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-33",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-34",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-34",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-34",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-35",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-35",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-35",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-36",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-36",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-36",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-37",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-37",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-37",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-38",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-38",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-38",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-39",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-39",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-39",
+      "claims": 5
+    },
+    {
+      "run_id": "drbench__SINKRA-DR-40",
+      "adapter": "drbench",
+      "task_id": "SINKRA-DR-40",
+      "status": "PASS",
+      "missing_outputs": [],
+      "output_dir": "execution-results/2026-05-18-contract-dry-run/drbench/SINKRA-DR-40",
+      "claims": 5
+    }
+  ]
+}

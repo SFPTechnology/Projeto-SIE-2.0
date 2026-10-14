@@ -1,0 +1,195 @@
+version: "1.0.0"
+owner: "@content-squad-lead"
+status: active
+purpose: "Define canonical layer boundaries, source-of-truth rules, and deprecations for copy artifacts"
+
+layers:
+  brand:
+    owner: brand
+    question: "Who are we, how are we positioned, and what language frames the business?"
+    canonical_paths:
+      - "workspace/businesses/{business}/brand/"
+      - "workspace/businesses/{business}/company/"
+    canonical_artifacts:
+      - "brand/strategic-positioning.yaml"
+      - "brand/brandbook.yaml"
+      - "brand/messaging-framework.yaml"
+      - "company/brand.yaml"
+      - "company/icp.yaml"
+      - "company/credentials.yaml"
+
+  product:
+    owner: product
+    question: "What are we selling, how does it work, what proof exists, and what is structurally true about the offer?"
+    canonical_paths:
+      - "workspace/businesses/{business}/products/{product}/"
+      - "workspace/businesses/{business}/products/{product}/narrative/"
+    canonical_artifacts:
+      - "products/{product}/offerbook.yaml"
+      - "products/{product}/proof.yaml"
+      - "products/{product}/testimonials.yaml"
+      - "products/{product}/curriculum.yaml"
+      - "products/{product}/narrative/product-story.yaml"
+      - "products/{product}/narrative/pitch-narrative.yaml"
+      - "products/{product}/narrative/brandscript.yaml"
+      - "products/{product}/narrative/objection-destroyers.yaml"
+
+  campaign:
+    owner:
+      - copy
+      - traffic
+    question: "What is this campaign trying to achieve, what message strategy will it use, and what assets are required?"
+    canonical_paths:
+      - "workspace/businesses/{business}/copy/{campaign_slug}/"
+    canonical_artifacts:
+      - "campaign-brief.yaml"
+      - "message-architecture.yaml"
+      - "creative-brief.yaml"
+      - "assets/asset-brief-*.yaml"
+
+  delivery:
+    owner:
+      - copy
+      - design
+      - builder
+      - media
+    question: "What exact copy, handoff notes, and review state are ready for execution or publication?"
+    canonical_paths:
+      - "outputs/copy/{business}/"
+    canonical_artifacts:
+      - "pages/*"
+      - "drafts/*"
+      - "emails/*"
+      - "ads/*"
+
+source_of_truth:
+  business_category_and_onlyness:
+    path: "brand/strategic-positioning.yaml"
+    layer: brand
+  brand_voice_and_forbidden_language:
+    paths:
+      - "company/brand.yaml"
+      - "brand/brandbook.yaml"
+    layer: brand
+  product_structure_and_value_stack:
+    path: "products/{product}/offerbook.yaml"
+    layer: product
+  proof_and_testimonials:
+    paths:
+      - "products/{product}/proof.yaml"
+      - "products/{product}/testimonials.yaml"
+    layer: product
+  reusable_product_story_assets:
+    path: "products/{product}/narrative/*"
+    layer: product
+  campaign_objective_and_scope:
+    path: "copy/{campaign_slug}/campaign-brief.yaml"
+    layer: campaign
+  campaign_message_strategy:
+    path: "copy/{campaign_slug}/message-architecture.yaml"
+    layer: campaign
+  execution_angle_and_tone:
+    path: "copy/{campaign_slug}/creative-brief.yaml"
+    layer: campaign
+  per_asset_requirements:
+    path: "copy/{campaign_slug}/assets/asset-brief-*.yaml"
+    layer: campaign
+  actual_written_copy:
+    path: "outputs/copy/{business}/..."
+    layer: delivery
+
+stage_source_of_truth:
+  stage_1_intake:
+    primary_artifact: "campaign-brief.yaml"
+    owner: copy
+    canonical_path: "workspace/businesses/{business}/copy/{campaign_slug}/campaign-brief.yaml"
+    truth_statement: "Campaign scope, objective, audience, channels, constraints, and success criteria"
+    fallback_policy: "Implicit runtime brief allowed only for small or exploratory DRAFT work"
+  stage_2_message_strategy:
+    primary_artifact: "message-architecture.yaml"
+    owner:
+      - copy
+      - traffic
+    canonical_path: "workspace/businesses/{business}/copy/{campaign_slug}/message-architecture.yaml"
+    truth_statement: "Campaign-specific message logic, proof hierarchy, claims boundaries, and channel adaptations"
+    fallback_policy: "May be compressed for light campaigns, but should exist for strategic, high-ticket, or FINAL work"
+  stage_3_creative_direction:
+    primary_artifact: "creative-brief.yaml"
+    owner: copy
+    canonical_path: "workspace/businesses/{business}/copy/{campaign_slug}/creative-brief.yaml"
+    truth_statement: "Execution angle, emotional posture, proof emphasis, and CTA direction"
+    fallback_policy: "Can be merged into asset planning for simple work"
+  stage_4_asset_planning:
+    primary_artifact: "assets/asset-brief-*.yaml"
+    owner: copy
+    canonical_path: "workspace/businesses/{business}/copy/{campaign_slug}/assets/asset-brief-*.yaml"
+    truth_statement: "Deliverable-level requirements, constraints, dependencies, and approval criteria"
+    fallback_policy: "Can be implicit for a single simple asset"
+  stage_5_delivery:
+    primary_artifact: "copy deck / final output"
+    owner: copy
+    canonical_path: "outputs/copy/{business}/..."
+    truth_statement: "The actual written copy and handoff-ready deliverable"
+    fallback_policy: "No fallback"
+  stage_6_review:
+    primary_artifact: "approval state"
+    owner:
+      - copy
+      - reviewers
+    canonical_path: "squads/copy/checklists/ + upstream proof/brand/product files"
+    truth_statement: "Promotion to FINAL depends on checklist gates and upstream factual validation"
+    fallback_policy: "No fallback"
+  stage_7_validation:
+    primary_artifact: "test notes and iteration state"
+    owner:
+      - copy
+      - traffic
+      - media
+    canonical_path: "channel-specific runtime evidence"
+    truth_statement: "Performance feedback, test results, and next-version decisions"
+    fallback_policy: "Channel dependent"
+
+reconciliation_rules:
+  copy_brief_protocol:
+    status: active
+    role: loader_and_validator
+    rules:
+      - "It is not the canonical planning artifact by itself"
+      - "It loads brand and product truth"
+      - "If campaign-brief.yaml exists, the protocol must load and validate it"
+      - "If campaign-brief.yaml does not exist, the protocol may assemble an implicit runtime brief for small or exploratory work only"
+      - "Strategic, multi-asset, high-ticket, or FINAL work should use a persisted Campaign Brief"
+
+  message_hierarchy_yaml:
+    status: legacy_supported_not_primary
+    rules:
+      - "Existing company/franchise message-hierarchy.yaml files may remain as legacy narrative assets"
+      - "Do not create new generic message-hierarchy.yaml instances for campaign planning"
+      - "For durable business positioning, use brand artifacts as the primary source of truth"
+      - "For reusable product narrative, keep it in products/{product}/narrative/"
+      - "For campaign message strategy, use message-architecture.yaml"
+
+  product_offerbook_ad_briefs:
+    status: reference_level_product_templates
+    rules:
+      - "ad-brief.yaml and ad-creative-brief.yaml may exist as product or offer support files"
+      - "They are not the top-level canonical campaign briefing system"
+      - "New campaign work should still use Campaign Brief, Creative Brief, and Asset Brief"
+
+deprecations:
+  primary_names:
+    - PRD
+    - Epic
+    - Story
+  generic_new_instances:
+    - "message-hierarchy.yaml without layer context"
+
+runtime_rules:
+  copy_chief:
+    - "Load brand and product truth first"
+    - "Resolve business, product, and campaign_slug before trying to load campaign artifacts"
+    - "If workspace/businesses/{business}/copy/{campaign_slug}/campaign-brief.yaml exists, treat it as the canonical campaign entry artifact"
+    - "If campaign_slug is missing, only exploratory or DRAFT work may proceed"
+    - "For large work, require explicit campaign artifacts before promoting to FINAL"
+    - "Save planning artifacts in workspace/businesses/{business}/copy/{campaign_slug}/"
+    - "Save delivery-ready copy in outputs/copy/{business}/"

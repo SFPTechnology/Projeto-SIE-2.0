@@ -1,0 +1,240 @@
+{
+  "bench_id": "chatwoot-vs-zendesk",
+  "generated": "2026-05-06",
+  "equivalence_levels": {
+    "5_forte": "Funcionalidade equivalente, mesma profundidade e cobertura",
+    "4_parcial_alta": "Equivalente forte com pequenas diferencas de escopo",
+    "3_parcial": "Equivalente parcial, diferencas significativas",
+    "2_fraco": "Equivalente fraco, gap substancial",
+    "1_sem_equivalente": "Sem correspondencia direta"
+  },
+  "dimensions": [
+    {
+      "id": "C1",
+      "name": "Canais nativos",
+      "weight_pct": 15,
+      "chatwoot": {
+        "value": "10 nativos: chat, email, WhatsApp (3 BSP), FB, Insta, Telegram, Line, SMS, TikTok, API custom; Voice add-on Enterprise",
+        "twitter_x": "Removido",
+        "voice_first_class": false,
+        "tiktok_native": true,
+        "telegram_native": true,
+        "apple_bc": false
+      },
+      "zendesk": {
+        "value": "10 nativos: chat, email, WhatsApp, FB, Insta, X/Twitter, Apple BC, Line, SMS, Voice/Talk; Telegram/TikTok via marketplace",
+        "twitter_x": "Native",
+        "voice_first_class": true,
+        "tiktok_native": false,
+        "telegram_native": false,
+        "apple_bc": true
+      },
+      "equivalence": "4_parcial_alta",
+      "delta_chatwoot_advantages": ["Telegram nativo", "TikTok nativo", "WhatsApp 3 BSP options BYOC"],
+      "delta_zendesk_advantages": ["Voice/Talk first-class (Chatwoot e add-on)", "Apple Business Chat nativo", "Twitter/X ainda nativo"]
+    },
+    {
+      "id": "C2",
+      "name": "AI capability",
+      "weight_pct": 20,
+      "chatwoot": {
+        "product": "Captain AI",
+        "features": ["Auto-resolve", "Co-Pilot", "Smart FAQs", "Memories (summarization)", "Multilingual"],
+        "pricing": "Credits per tier (300/500/800) + $20/1.000 overage",
+        "deflection_published": null,
+        "transparency": "Credit consumption rules NOT public",
+        "maturity": "Released 2025-2026, active build-out"
+      },
+      "zendesk": {
+        "products": ["AI Agents (post-Ultimate.ai)", "Copilot", "QA AI", "WFM"],
+        "features": ["Autonomous agentic AI cross-channel", "Agent assistance with action execution", "Auto-QA scoring"],
+        "pricing": "Hybrid: Copilot $50/seat + per-resolution AI Agents (not public)",
+        "deflection_published_customer_outcomes": ["66% Freedom Furniture", "92% email reduction Next", "39% UrbanStems", "60% Lush"],
+        "productivity_gain": "~20% via Copilot",
+        "transparency": "Per-seat add-ons transparent; per-resolution AI Agents opaque",
+        "maturity": "Post-acquisition Ultimate.ai (2024); acquisitions stack still integrating"
+      },
+      "equivalence": "3_parcial",
+      "delta_chatwoot_advantages": ["Built-in (nao add-on a la carte)", "Mais simples conceptualmente"],
+      "delta_zendesk_advantages": ["Customer outcomes published quantitativos", "Maturidade enterprise", "QA AI dedicated", "WFM dedicated"]
+    },
+    {
+      "id": "C3",
+      "name": "Pricing transparency e TCO real",
+      "weight_pct": 15,
+      "chatwoot": {
+        "tiers_public": ["$0 Hacker", "$19 Startups", "$39 Business", "$99 Enterprise"],
+        "self_hosted_zero": true,
+        "hidden_fees": "Captain credits overage $20/1.000 — opaco em consumo",
+        "sticker_to_real_ratio": "1.0-1.2x (overage credits + Meta msg fees passthrough)",
+        "byoc_savings": "Cliente escolhe BSP — pode reduzir Meta markup",
+        "tco_5_agents_no_ai": "$95/mo (Startups) ou $0 self-host + ops",
+        "tco_5_agents_with_ai": "$95-195/mo (depending Captain usage)"
+      },
+      "zendesk": {
+        "tiers_public": ["$19 Support Team", "$55 Suite Team", "$89 Growth", "$115 Pro", "$169 Enterprise"],
+        "addons": ["Copilot $50", "QA $35", "WFM $25", "ADPP $50", "Contact Center $50"],
+        "real_world_multiplier": "2-3x base after necessary extensions",
+        "vendr_median_deal": "$47.772/year per customer",
+        "sticker_to_real_ratio": "2.0-3.0x",
+        "tco_5_agents_no_ai": "$275-825/mo (Suite Team to Enterprise)",
+        "tco_5_agents_with_copilot": "$525-1.045/mo"
+      },
+      "equivalence": "2_fraco",
+      "delta_chatwoot_advantages": ["Pricing publico simples", "Self-host = $0 license", "Sticker-to-real ratio 1.0-1.2x", "BYOC Meta fees passthrough"],
+      "delta_zendesk_advantages": ["Pricing BRL publicado", "Volume discount Vendr documentado", "Predictable per-seat (sem credit ambiguity)"]
+    },
+    {
+      "id": "C4",
+      "name": "Governance / Compliance",
+      "weight_pct": 10,
+      "chatwoot": {
+        "soc2": "Cloud implicit, nao explicit publica",
+        "iso_27001": false,
+        "iso_27018": false,
+        "iso_27701": false,
+        "fedramp": false,
+        "gdpr_dpa": true,
+        "gdpr_bcr": false,
+        "hipaa_baa": false,
+        "data_residency_eu_cloud": "Nao user-selectable em standard tiers",
+        "audit_logs": "Enterprise tier only ($99/mo)",
+        "sso_saml": "Enterprise tier only ($99/mo)",
+        "self_host_escape_valve": "SIM — cliente roda em sua regiao"
+      },
+      "zendesk": {
+        "soc2_type_ii": true,
+        "iso_27001": true,
+        "iso_27018": true,
+        "iso_27701": true,
+        "fedramp": true,
+        "gdpr_dpa": true,
+        "gdpr_bcr": "Yes (segunda empresa aprovada Irish DPC, 2017)",
+        "hipaa_baa": true,
+        "data_residency_eu_dublin": true,
+        "audit_logs": "Enterprise tier",
+        "sso_saml": "Suite tiers",
+        "data_center_location_caveat": "Pro/Enterprise included BUT requires manual activation"
+      },
+      "equivalence": "2_fraco",
+      "delta_chatwoot_advantages": ["Self-host = full data control sem dependency"],
+      "delta_zendesk_advantages": ["SOC2/ISO/FedRAMP all certified", "HIPAA BAA available", "Multi-region residency", "GDPR BCR approved", "Mature enterprise compliance"]
+    },
+    {
+      "id": "C5",
+      "name": "Ecosystem / Marketplace / integrations",
+      "weight_pct": 10,
+      "chatwoot": {
+        "marketplace_apps": "Tens (Slack, Shopify, Dialogflow, MS Teams, WordPress, migration tools, custom)",
+        "api_openness": "REST + webhooks open + DB direct via self-host",
+        "vendor_count": "Community-driven (smaller)",
+        "ai_powered_apps": "via custom integration (no curated AI marketplace)"
+      },
+      "zendesk": {
+        "marketplace_apps": 1977,
+        "vendors": 1136,
+        "free_apps": 1176,
+        "ai_powered_apps_pct": 21.54,
+        "customer_install_rate": "58%",
+        "marketplace_arr_impact": "75%",
+        "categories": ["productivity", "analytics", "marketing", "CRMs", "IT", "AI"],
+        "api_openness": "REST + webhooks + sandbox Enterprise"
+      },
+      "equivalence": "2_fraco",
+      "delta_chatwoot_advantages": ["Self-hosted = arbitrary DB integration", "API openness igual"],
+      "delta_zendesk_advantages": ["1.977 apps vs ~tens", "1.136 vendors", "75% ARR marketplace-driven (signal of network effects)", "AI marketplace 425+ apps", "Sandbox enterprise"]
+    },
+    {
+      "id": "C6",
+      "name": "Comunidade / Suporte / Maturidade",
+      "weight_pct": 10,
+      "chatwoot": {
+        "github_stars": 29100,
+        "github_forks": 7200,
+        "g2_rating": 4.4,
+        "g2_reviews_count": "Estimated 200-400 (not public exact)",
+        "maturity_years": 9,
+        "release_cadence": "Monthly minor releases",
+        "open_prs": 266,
+        "support_tiers": "Community + Cloud paid SLA Business+"
+      },
+      "zendesk": {
+        "g2_rating": 4.3,
+        "g2_reviews_count": "6.000+",
+        "maturity_years": 19,
+        "market_share_cx_category": "14.80%",
+        "competitors_in_category": 252,
+        "estimated_payback_months": 17,
+        "ease_of_use_pct": 88,
+        "support_tiers": "All emails; Pro+ priority; Enterprise 24/7 + CSM"
+      },
+      "equivalence": "3_parcial",
+      "delta_chatwoot_advantages": ["GitHub community 29.1k stars (transparente)", "Active dev cadence visible", "Community ethos"],
+      "delta_zendesk_advantages": ["6.000+ G2 reviews (15-30x mais)", "Market leader 14.8%", "19 anos vs 9", "Enterprise support proven at scale", "BR sales/support team"]
+    },
+    {
+      "id": "C7",
+      "name": "Flexibilidade",
+      "weight_pct": 10,
+      "chatwoot": {
+        "self_hosted": "MIT — full source available, no feature gating",
+        "deployment_options": ["Docker Compose", "Kubernetes", "Heroku", "Cloud SaaS"],
+        "byoc_whatsapp": "3 BSP options (Meta, Twilio, 360Dialog)",
+        "api_openness": "REST + webhooks + DB access self-host",
+        "customization_ceiling": "Forks legitimos (MIT) + plugins/dashboard apps",
+        "vendor_lock_in": "Minimal — pode migrar para self-host a qualquer momento"
+      },
+      "zendesk": {
+        "self_hosted": "Impossible",
+        "deployment_options": ["Cloud SaaS only"],
+        "byoc_whatsapp": "Meta Cloud API direct (single path)",
+        "api_openness": "REST + webhooks + sandbox Enterprise",
+        "customization_ceiling": "Apps via marketplace + custom apps via Zendesk Apps Framework",
+        "vendor_lock_in": "Maximum — proprietary platform"
+      },
+      "equivalence": "1_sem_equivalente",
+      "delta_chatwoot_advantages": ["Self-hosted MIT", "Zero vendor lock-in", "BYOC BSP", "Source code modifiable", "Migration always possible"],
+      "delta_zendesk_advantages": ["Sandbox environment Enterprise (vs nada equivalent Chatwoot)"]
+    },
+    {
+      "id": "C8",
+      "name": "Brasil-fit",
+      "weight_pct": 10,
+      "chatwoot": {
+        "whatsapp_bsp_br": "Cliente escolhe (Meta direct, Twilio, 360Dialog, ou wrap BR BSP)",
+        "pt_br_ui": true,
+        "pricing_brl_published": false,
+        "vtex_native": false,
+        "shopify_native": true,
+        "rd_station_native": false,
+        "pix_native": false,
+        "local_support_team": false,
+        "br_sales_team": false,
+        "byoc_local_bsp": "Possivel — wrap Take Blip/Zenvia via Cloud API"
+      },
+      "zendesk": {
+        "whatsapp_via": "Meta Cloud API direct (no Zendesk markup)",
+        "pt_br_ui": true,
+        "pricing_brl_published": "Yes (R$135/R$359/R$755/R$1.105)",
+        "vtex_native": false,
+        "shopify_native": "Yes via marketplace",
+        "rd_station_native": "Yes via marketplace community-built",
+        "pix_native": false,
+        "local_support_team": true,
+        "br_sales_team": true
+      },
+      "equivalence": "3_parcial",
+      "delta_chatwoot_advantages": ["BYOC BR BSP wrap possivel", "Sem floor BRL — self-host = $0"],
+      "delta_zendesk_advantages": ["BRL pricing publicado", "Suporte PT-BR oficial", "Sales BR oficial", "Marketplace BR community-built apps (RD Station)"]
+    }
+  ],
+  "summary": {
+    "total_dimensions": 8,
+    "total_weight_pct": 100,
+    "average_equivalence": 2.625,
+    "interpretation": "No-clear-winner overall — players cobrem mesma categoria mas com filosofias opostas (OSS-first flexibility vs Enterprise-first compliance/ecosystem)",
+    "chatwoot_dominant_in": ["C7 Flexibilidade", "C3 Pricing transparency"],
+    "zendesk_dominant_in": ["C4 Governance/Compliance", "C5 Ecosystem", "C6 Maturidade enterprise"],
+    "balanced_in": ["C1 Canais", "C2 AI", "C8 Brasil"]
+  }
+}

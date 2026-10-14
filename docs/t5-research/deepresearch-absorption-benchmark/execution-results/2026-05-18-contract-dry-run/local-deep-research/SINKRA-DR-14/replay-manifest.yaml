@@ -1,0 +1,22 @@
+schema: sinkra-replay-manifest-v1
+run_id: local-deep-research__SINKRA-DR-14
+task_file: tasks/SINKRA-DR-14.yaml
+adapter:
+  id: local-deep-research
+  role: local_private_runtime
+  mode: contract_stub
+  capabilities:
+  - local_first
+  - mcp_api
+  - private_kb
+outputs:
+- trace.jsonl
+- tool-calls.jsonl
+- claims.yaml
+- sources.yaml
+- report.md
+- rubric-results.yaml
+- cost-latency.yaml
+- failure-analysis.md
+- replay-manifest.yaml
+mode: contract_dry_run

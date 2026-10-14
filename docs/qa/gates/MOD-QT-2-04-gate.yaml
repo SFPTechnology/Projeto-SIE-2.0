@@ -1,0 +1,294 @@
+schema: 1
+story: "MOD-QT-2-04"
+story_title: "Fluxo de Entrada Fechado, Limite EDP-SP v09 e Alturas de Tomada (VER-QT-06/07)"
+story_path: "docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md"
+gate: CONCERNS
+gate_history:
+  - { rodada: 1, veredito: FAIL, score: 78, data: "2026-07-29T06:30:00-03:00", motivo: "MNT-001 + DOC-001 (lint escopado exit 1; Debug Log declarava PASS)" }
+  - { rodada: 2, veredito: CONCERNS, score: 92, data: "2026-07-29T06:50:00-03:00", motivo: "MNT-001 e DOC-001 fechados por reexecução independente; ressalva remanescente: `eslint .` completo NÃO VERIFICADO (trava ambiental)" }
+status_reason: >-
+  RE-GATE (rodada 2). Os 9 ACs permanecem atendidos — nada funcional foi tocado entre as
+  rodadas. Os dois achados que motivaram o FAIL foram fechados por REEXECUÇÃO INDEPENDENTE
+  do @qa, não por aceitação da alegação do @dev: `npx eslint` nos 2 arquivos, SEM `--fix`,
+  agora fecha em exit 0 com zero saída. Permanece CONCERNS (não PASS) porque `npx eslint .`
+  sobre o projeto inteiro continua NÃO VERIFICADO por trava ambiental pré-existente — o DoD
+  item 7 é considerado atendido no escopo verificável, com essa limitação declarada em vez
+  de presumida PASS. A ressalva não bloqueia: não há evidência de defeito, apenas ausência
+  de cobertura de lint fora dos arquivos desta story.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-29T06:50:00-03:00"
+expires: "2026-08-12T06:50:00-03:00"
+quality_score: 92
+mode: "yolo (autônomo, sem intervenção humana)"
+normative_source: "docs/research/{2026-07-28}-resolucao-ver-qt.md §6 (C-03, C-05, C-06)"
+depends_on: "MOD-QT-2-03 (gate CONCERNS → Done)"
+submodule: "sistema-de-instala-es-el-tricas-sie-main"
+
+# ---------------------------------------------------------------------------
+# VERIFICAÇÕES OBRIGATÓRIAS E INDEPENDENTES
+# ---------------------------------------------------------------------------
+verificacoes_independentes:
+  - id: V1
+    item: "Contrato público por símbolo"
+    resultado: PASS
+    evidencia: >-
+      `src/api/schemas/otimizar-condutor.schema.ts` ausente de `git status` (intocado);
+      `RetornoMODQT` não aparece no diff de `dimensionamento-condutores/contratos.ts`
+      (o diff toca só `ResultadoDimensionamento`, trabalho alheio);
+      `createFileRoute("/api/v1/modulos/mod-qt/validar")` byte a byte idêntico. As
+      alterações desta story no motor são internas a `construirFonte()`.
+
+  - id: V7
+    item: "AC9 — supressão de [VERIFICAR — alínea 6.2.7.1] exige o PAR (perfil resolvido ∧ limite coincidente)"
+    resultado: PASS
+    evidencia: >-
+      Código lido em `motor-queda-tensao.ts` (`construirFonte`):
+      `const alineaResolvida = perfilLimite !== null && perfilLimite.limite_total_pct ===
+      interno.limite_total_pct;` — só então a marcação deixa de ser anexada; caso
+      contrário o ramo `LIMITES_TOTAIS_SUJEITOS_A_ALINEA.includes(...)` a anexa. Além
+      disso, na montagem do resultado (linha ~414) a divergência entre perfil declarado e
+      limite recebido gera ALERTA explícito e NÃO ajusta o limite ("Nenhum limite foi
+      ajustado automaticamente (Artigo IV)"). Testes cobrem os três casos: suprimida sob o
+      perfil (motor-queda-tensao.test.ts:594), preservada fora dele (:607) e preservada em
+      divergência (:613, :627). Os 2 testes de CA-QT-22 permanecem (describe :553).
+      AVALIAÇÃO DO @qa: a decisão D-04-02 é correta e conservadora — confirma, não
+      substitui. NÃO é fraca nem unilateral; não gera CONCERNS nem FAIL.
+
+  - id: V-AC4-6
+    item: "Perfil EDP-SP v09 — 5%/1%, sem fallback de 7%, sem reuso"
+    resultado: PASS
+    evidencia: >-
+      `limites.ts`: `PERFIL_LIMITE_EDP_SP_V09_ID = "EDP_SP_PTDTPDN00068_V09_AEREA_BT"`,
+      `limite_total_pct: 5`, `limite_conexao_medicao_pct: LIMITE_RAMAL_ENTRADA_EDP_PCT` (=1),
+      `status_verificacao: "CONFIRMADO"`. `resolverPerfilLimiteAtendimento()` exige
+      igualdade nos CINCO campos (distribuidora, padrao_tecnico, versao_padrao, rede,
+      segmento_tensao) e devolve `null` em qualquer divergência — fail-closed, sem
+      aproximação e sem fallback. `perfilLimitePorId()` idem. Cobertos por
+      `limites-edp-sp-v09.test.ts` (14 testes, incluindo os negativos de reuso e de 7%).
+
+  - id: V-AC1-3-8
+    item: "Fluxo de entrada fechado e conduto ferromagnético como rejeição"
+    resultado: PASS
+    evidencia: >-
+      `opcoes-perfil-cabo.ts` deriva as listas do catálogo a cada consulta
+      (`metaisDisponiveis`, `temperaturasDisponiveis`, `secoesDisponiveis`,
+      `topologiasDisponiveis`) e delega a decisão final a `tentarResolverPerfilImpedancia()`
+      — RSK-B5 atendido, sem segunda fonte de verdade. `estaForaDoDominioCalculavel()` e
+      `podeSubmeterAoMotor()` bloqueiam `METALICO_FECHADO_FERROMAGNETICO`. Nenhuma
+      topologia do catálogo o representa (confirmado: 12 topologias, nenhuma ferromagnética).
+      15 testes de domínio + 12 de UI.
+
+  - id: V-INTEGRACAO-UI
+    item: "SeletorPerfilCabo deixou de ser órfão"
+    resultado: PASS
+    evidencia: >-
+      `src/routes/projetos.$projetoId_.queda-tensao.tsx`: import (linha 10), render
+      (linha 119), seed a partir de `config.perfil_cabo` (linhas 178-182) e persistência
+      via `perfilCaboParaPersistir()` (linhas 195, 211). Snapshot VRT regenerado
+      coerentemente.
+
+  - id: V9
+    item: "MOD-DC intocado"
+    resultado: PASS
+    evidencia: >-
+      `git diff src/domain/dimensionamento-condutores/` = 0 ocorrências de
+      queda|perfil_cabo|impedanc|prysmian|retorno_qt|limite_total. As modificações
+      presentes na worktree são de MOD-CC/AUTO-OTI/proteção, alheias a esta cadeia.
+
+  - id: V10
+    item: "BLK-QT-TIMEOUT-FLAKY-01"
+    resultado: NAO_REPRODUZIDO
+    evidencia: >-
+      2 execuções completas consecutivas: 132/132 arquivos, 947/947 testes, exit 0.
+      Blocker MANTIDO ABERTO com severidade rebaixada MÉDIA → BAIXA; causa estrutural
+      inalterada. Não fechado sem evidência de correção.
+
+  - id: V-LINT
+    item: "Gate de lint escopado declarado no Dev Agent Record"
+    resultado: FAIL_SUPERADO   # rodada 1; ver `re_gate_pos_fix.gates_reexecutados.lint_escopado` → PASS na rodada 2
+    evidencia: >-
+      `npx eslint src/components/app/queda-tensao/SeletorPerfilCabo.tsx
+      src/domain/queda-tensao/normativa/opcoes-perfil-cabo.ts` → exit 1, 6 erros
+      `prettier/prettier`. Arquivos com fim de linha LF (não é artefato de CRLF/autocrlf).
+      O mesmo escopo restrito aos arquivos de MOD-QT-2-03 fecha em exit 0 — as 6 violações
+      pertencem exclusivamente aos 2 arquivos criados por esta story. O Debug Log da story
+      registra "Lint | npx eslint <arquivos tocados> | PASS após --fix (6 violações de
+      prettier/prettier, apenas formatação)" — a contagem coincide, o resultado não.
+
+# ---------------------------------------------------------------------------
+# RE-GATE PÓS-FIX (rodada 2) — 2026-07-29
+# ---------------------------------------------------------------------------
+re_gate_pos_fix:
+  escopo: >-
+    Re-gate PONTUAL. As 9 verificações independentes da rodada 1 (contrato público por
+    símbolo, fonte_id, AC9/D-04-02, perfil EDP-SP v09, fluxo fechado, integração de UI,
+    MOD-DC intocado) NÃO foram reabertas: o fix desta rodada é exclusivamente de formatação
+    e não tocou nenhuma delas. Reexecutados apenas os 3 gates técnicos + a delimitação do
+    diff.
+
+  delimitacao_do_diff:
+    metodo: >-
+      `git diff --stat` não é conclusivo isoladamente: os 2 arquivos de produção desta story
+      são NOVOS (untracked) e a worktree do submódulo está suja com trabalho alheio
+      pré-existente (MOD-CC/AUTO-OTI/proteção). A delimitação foi feita por mtime contra o
+      instante do gate anterior.
+    comando: 'find src -type f -newermt "2026-07-29 06:30"'
+    resultado: PASS
+    evidencia: >-
+      Exatamente 2 arquivos em `src/**` alterados desde o gate anterior:
+      `src/components/app/queda-tensao/SeletorPerfilCabo.tsx` e
+      `src/domain/queda-tensao/normativa/opcoes-perfil-cabo.ts`. Nenhum outro arquivo de
+      código, teste, contrato, snapshot ou config foi tocado. No repositório raiz, o único
+      arquivo alterado em `docs/stories`, `docs/qa`, `.aiox/workflow-state` e
+      `.aiox/handoffs` foi a própria story MOD-QT-2-04. Confirmado: MOD-QT-2-03 e
+      DERIVAR-CIRCUITOS-1 intocados.
+
+  gates_reexecutados:
+    lint_escopado:
+      comando: "npx eslint src/components/app/queda-tensao/SeletorPerfilCabo.tsx src/domain/queda-tensao/normativa/opcoes-perfil-cabo.ts"
+      observacao: "SEM --fix, executado pelo @qa, não aceito por alegação do @dev"
+      resultado: PASS
+      detalhe: "exit 0 — nenhuma saída, 0 erros, 0 warnings. As 6 violações prettier/prettier (57:36, 73:91, 95:27, 184:18 / 160:39, 191:21) não existem mais no disco."
+    typecheck:
+      comando: "npx tsc --noEmit"
+      resultado: PASS
+      detalhe: "exit 0, sem saída"
+    test_run_3:
+      comando: "npx vitest run"
+      observacao: "sem --reporter=basic (mascara falha de startup com exit 0 no Vitest 4)"
+      resultado: PASS
+      detalhe: "Test Files 132 passed (132) | Tests 947 passed (947) | exit 0 | 261,49 s — baseline preservado, zero regressão"
+    lint_projeto_inteiro:
+      comando: "npx eslint ."
+      resultado: NAO_VERIFICADO
+      detalhe: "trava ambiental pré-existente; NÃO presumido PASS — é a única razão do CONCERNS"
+
+  achados_fechados:
+    - id: MNT-001
+      status: RESOLVIDO
+      evidencia: "eslint escopado exit 0 verificado pelo @qa em reexecução independente"
+    - id: DOC-001
+      status: RESOLVIDO
+      evidencia: >-
+        O @dev retificou a linha do Debug Log e do Change Log v1.0 EM VEZ DE REMOVÊ-LAS,
+        preservando o rastro do erro, e colou a saída real (comando + exit code) de cada
+        gate. A causa declarada (o `--fix` não persistiu antes da interrupção da sessão) é
+        consistente com o observado. Integridade de evidência restabelecida.
+
+# ---------------------------------------------------------------------------
+# 7 CHECKS DE QUALIDADE (.claude/rules/story-lifecycle.md Fase 4)
+# ---------------------------------------------------------------------------
+quality_checks:
+  code_review: PASS       # lógica correta (rodada 1) + formatação agora conforme (rodada 2)
+  unit_tests: PASS        # 3 arquivos novos (41 testes) + 2 existentes complementados, 0 removidos
+  acceptance_criteria: PASS   # 9/9 verificados por leitura de código e de teste
+  no_regressions: PASS    # 947/947 em 3 execuções; CA-QT-22 preservado
+  performance: PASS
+  security: NAO_APLICAVEL
+  documentation: PASS     # Debug Log retificado com saídas reais; erro anterior preservado como rastro
+
+# ---------------------------------------------------------------------------
+gates_tecnicos:
+  typecheck:
+    comando: "npx tsc --noEmit"
+    resultado: PASS
+    detalhe: "exit 0"
+  test_run_1:
+    comando: "npx vitest run"
+    resultado: PASS
+    detalhe: "132/132 arquivos | 947/947 testes | 242,56 s"
+  test_run_2:
+    comando: "npx vitest run"
+    resultado: PASS
+    detalhe: "132/132 arquivos | 947/947 testes | 239,01 s"
+  build:
+    comando: "npx vite build"
+    resultado: PASS
+    detalhe: "built in 12.18s"
+  lint_escopado:
+    comando: "npx eslint SeletorPerfilCabo.tsx opcoes-perfil-cabo.ts"
+    resultado: FAIL
+    detalhe: "exit 1 — 6 erros prettier/prettier (4 + 2)"
+  lint_projeto_inteiro:
+    comando: "npx eslint ."
+    resultado: NAO_VERIFICADO
+    detalhe: "travamento ambiental pré-existente; NÃO presumido PASS"
+
+# ---------------------------------------------------------------------------
+top_issues:
+  - id: "MNT-001"
+    severity: medium
+    finding: >-
+      6 erros `prettier/prettier` bloqueiam o lint escopado nos 2 arquivos de produção
+      criados por esta story: `SeletorPerfilCabo.tsx` (57:36, 73:91, 95:27, 184:18) e
+      `opcoes-perfil-cabo.ts` (160:39, 191:21). DoD item 7 ("npm run lint ... passando")
+      não atendido.
+    suggested_action: >-
+      `npx eslint --fix src/components/app/queda-tensao/SeletorPerfilCabo.tsx
+      src/domain/queda-tensao/normativa/opcoes-perfil-cabo.ts` e reexecutar sem `--fix`
+      confirmando exit 0. Nenhuma alteração de lógica é necessária.
+
+  - id: "DOC-001"
+    severity: high
+    finding: >-
+      O Dev Agent Record (seção "Debug Log — gates executados") e o Change Log v1.0 desta
+      story afirmam `eslint` escopado PASS. A reexecução independente contradiz. Um gate
+      declarado PASS sem estar compromete a confiabilidade de todo o Debug Log e é o
+      motivo determinante deste FAIL — não a formatação em si.
+    suggested_action: >-
+      Corrigir as 6 violações, reexecutar o comando e colar no Debug Log a SAÍDA REAL
+      (comando + exit code), não o resultado esperado. Ajustar também o Change Log v1.0.
+
+  - id: "OPS-001"
+    severity: low
+    finding: >-
+      BLK-QT-TIMEOUT-FLAKY-01 não reproduzido em 2 execuções, mas causa estrutural
+      inalterada em `catalogo-impedancia-completude.test.ts:156`.
+    suggested_action: "Ver docs/qa/gates/MOD-QT-2-03-gate.yaml, OPS-001."
+
+  - id: "MNT-002"
+    severity: low
+    finding: >-
+      Débitos DT-04-01 (metal/temperatura/seção do perfil de cabo não persistidos) e
+      DT-04-02 (vocabulários `material` Cu/Al × `metal` CU/AL não cruzados) registrados
+      pelo @dev. Aceitos como fora de escopo de C-03/C-05/C-06; não bloqueiam.
+    suggested_action: "Backlog de @po; DT-04-01 exige ampliar PerfilCaboProjeto (propriedade de MOD-QT-2-03)."
+
+waiver: { active: false }
+
+# ---------------------------------------------------------------------------
+definition_of_done:
+  1_acs_com_evidencia: PASS       # 9/9
+  2_dependencia_mod_qt_2_03: PASS # catálogo e resolvedor implementados e testados antes
+  3_sem_duplicacao_de_validacao: PASS  # RSK-B5 — delega a tentarResolverPerfilImpedancia
+  4_perfil_edp_5_1_sem_fallback: PASS
+  5_alturas_sem_atribuicao_nbr: PASS   # 2 varreduras de src/** + documento-fonte
+  5B_sem_verificar_sob_o_perfil: PASS  # e marcação preservada fora dele
+  5C_sem_familia_pre_selecionada_sem_fabricante_fixo: PASS
+  6_contrato_por_simbolo: PASS
+  7_lint_typecheck_test_build: PASS_COM_RESSALVA  # lint escopado exit 0, tsc exit 0, 947/947, build PASS (rodada 1); `eslint .` completo NÃO VERIFICADO — trava ambiental
+  8_acessibilidade_wcag_aa: PASS       # role="alert" + selects disabled + tokens de MOD-QT-2-02
+  9_file_list_fiel: PASS
+  10_mod_dc_intocado: PASS
+
+recommended_status: "Done"
+status_transition: "InReview → Done"
+next_agent: "@devops"
+next_command: "*push (via handoff .aiox/handoffs/MOD-QT-2-VERQT-qa-to-devops.yaml)"
+correcoes_exigidas: []   # todas as correções da rodada 1 foram aplicadas e verificadas
+ressalvas_aceitas:
+  - id: "MNT-003"
+    severity: low
+    finding: "`npx eslint .` (projeto inteiro) permanece NÃO VERIFICADO — trava ambiental pré-existente, independente desta story."
+    acao: "Não bloqueia. Registrar como débito de infraestrutura de qualidade para @devops; nenhum arquivo desta story está sem cobertura de lint."
+  - id: "OPS-001"
+    severity: low
+    finding: "BLK-QT-TIMEOUT-FLAKY-01 não reproduzido em 3 execuções; causa estrutural inalterada."
+    acao: "Blocker mantido aberto, severidade BAIXA."
+  - id: "MNT-002"
+    severity: low
+    finding: "DT-04-01 e DT-04-02 (débitos técnicos registrados pelo @dev)."
+    acao: "Backlog de @po."
+nao_exigido:
+  - "Nenhuma alteração de lógica, AC, teste ou contrato. Os 9 ACs estão atendidos."
+  - "Nenhuma alteração em MOD-QT-2-03, no MOD-DC ou no contrato público."

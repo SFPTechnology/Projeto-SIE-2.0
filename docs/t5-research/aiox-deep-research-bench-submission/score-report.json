@@ -1,0 +1,44 @@
+{
+  "_schema": "aiox-deep-research-bench-submission.v1",
+  "_status": "full",
+  "submission": {
+    "submitter": "AIOX Research (oalanicolas)",
+    "date": "2026-05-18",
+    "bench_repo_sha": "TO_FILL",
+    "aiox_sinkra_hub_sha": "TO_FILL",
+    "model": "claude-sonnet-4-6",
+    "provider": "anthropic-api-direct"
+  },
+  "scores": {
+    "overall_score": 0.0,
+    "race_score": 0.0,
+    "fact_score": 0.0,
+    "rank": null,
+    "comparison": {
+      "langchain_odr": {
+        "overall_score": 0.4344,
+        "rank": 6
+      }
+    }
+  },
+  "stats": {
+    "tasks_total": 0,
+    "tasks_executed": 0,
+    "tasks_skipped": 0,
+    "skip_reasons": []
+  },
+  "costs": {
+    "total_usd": 0.0,
+    "avg_per_task_usd": 0.0,
+    "tokens_total": 0,
+    "wall_time_minutes": 0
+  },
+  "gates": {
+    "coverage_gate_threshold": "50/70",
+    "citation_gate_threshold": 0.85,
+    "multi_llm": false,
+    "private_kb": false
+  },
+  "per_task_breakdown": [],
+  "_generated_at": "2026-05-18T18:39:26Z"
+}

@@ -1,0 +1,500 @@
+name: generate-presentation
+version: 3.0.0
+schema: sinkra-workflow-v1
+orchestrator: slide-chief
+type: pipeline
+
+metadata:
+  owner_squad: slides-creator
+  adr_ref: "docs/adrs/ADR-021-absorb-narrative-discipline-into-slides-creator.md"
+  epic_ref: "docs/stories/epic-sc-narr/EPIC-SC-NARR.md"
+  source_mapping: "outputs/sinkra-squad/criacao-slides-ia/"
+  mission_ref: "MSN-2026-SLIDES-NARRATIVE-DESIGN"
+  case_study_ref: "outputs/sinkra-squad/MSN-2026-SLIDES-NARRATIVE-DESIGN/case-study-primeiro-servico-ia.md"
+  qa_rubric_ref: "data/qa-rubric.yaml v3.0.0"
+  qa_routing_table_ref: "data/qa-routing-table.yaml"
+  superseded:
+    - { version: 1.5.0, reason: "pre-absorption, no narrative layer" }
+    - { version: 2.0.0, reason: "pre-MSN-2026-SLIDES-NARRATIVE-DESIGN. Added P02.5 (compression), P04.5 (critique loop), 10 new validators, qa-rubric v3, qa-routing-table." }
+
+# =============================================================================
+# GLOBAL — session isolation + checkpoints + feature flags
+# =============================================================================
+global:
+  checkpoint_policy: always_active
+  fail_fast: true
+  max_refinement_loops: 2
+
+  isolation:
+    enforced: true
+    rule: "No LLM context shared between sessions. Cross-session validation avoids self-validation blindspot."
+    sessions:
+      - id: SESSION-NARR
+        agents: [content-architect]
+        phases: [P01, P02_titles]
+        kb_bundle_ref: "SESSION-NARR"  # determined by kb-loading-matrix.yaml
+      - id: SESSION-SPEC
+        agents: [template-curator, design-renderer, visual-scout]
+        phases: [P03, P04]
+        kb_bundle_ref: "SESSION-SPEC"
+      - id: SESSION-QA
+        agents: [qa-inspector]
+        phases: [P02_vertical, P05]
+        kb_bundle_ref: "SESSION-QA"
+
+  feature_flags:
+    skip_narrative: false                   # true → bypass P01/P02/P03 (legacy v1.5 behavior)
+    enable_p1_sampling: false               # true → 10% sample re-verification in P05
+    enable_visual_generation: true
+    enable_youtube_entrypoint: true
+    enable_html_standalone_render: false    # Wave C — unlock standalone HTML/PDF/PPTX/MP4 output
+    enable_motion_narrative: false          # Wave C — Slow-Fast-Boom-Stop pacing
+    enable_design_direction_advisor: false  # Wave C — 20-philosophy fallback for vague briefs
+
+  gate_mode: hard  # hard | advisory (advisory requires deviations.yaml entry)
+
+# =============================================================================
+# PHASES
+# =============================================================================
+phases:
+
+  - id: P00
+    name: "Intake"
+    weight_pct: 1
+    session: null
+    bounded_context: []
+    agents: [slide-chief]
+    tasks:
+      - confirm-delivery-format      # Wave C — Phase 0 checkpoint (MUST run first; prevents 2-3h rework)
+      - normalize-briefing           # existing
+      - youtube-to-briefing          # existing, conditional on flag + input type
+      - load-kb-bundle               # deterministic KB selection
+      - decide-slide-architecture    # Wave C — conditional on ENABLE_HTML_STANDALONE_RENDER
+    outputs:
+      - briefing.normalized.json     # includes delivery_format + slide_architecture fields
+      - kb-bundle-{phase}.yaml
+    conditional_tasks:
+      - task: decide-slide-architecture
+        requires_flag: enable_html_standalone_render
+      - task: youtube-to-briefing
+        requires_flag: enable_youtube_entrypoint
+        requires_input: briefing.source_type == "youtube"
+    hard_checkpoint:
+      at: after_confirm-delivery-format
+      rule: "Cannot proceed to normalize-briefing without briefing.normalized.json.delivery_format set"
+      fail_action: return_to_user_with_prompt
+
+  - id: P01
+    name: "Narrative Analysis"
+    weight_pct: 20
+    session: SESSION-NARR
+    bounded_context: [BC-01, BC-04]
+    agents: [content-architect]
+    tasks:
+      - catalog-sources-apa          # NEW — P6 enforcement
+      - distill-governing-thought    # NEW — single sentence
+      - build-pyramid                # NEW — Minto 3 levels, MECE
+      - apply-scqa                   # NEW — % allocation
+    outputs:
+      - sources-apa.yaml
+      - governing-thought.yaml
+      - pyramid-tree.yaml
+      - scqa-map.yaml
+    gate: D01
+    on_gate_fail: return_to_P01_with_feedback
+
+  - id: P02
+    name: "Narrative Structure"
+    weight_pct: 12
+    session: [SESSION-NARR, SESSION-QA]
+    bounded_context: [BC-01]
+    agents: [content-architect, qa-inspector]
+    tasks:
+      - write-action-titles
+      - run-vertical-test
+    outputs:
+      - deck-manifest.json
+      - vertical-test-result.yaml
+    gate: D02
+    gate_preconditions:
+      - vertical-test-result.verdict == PASS
+    on_gate_fail: return_to_P01_or_P02
+
+  - id: P02_5
+    name: "Narrative Compression (Story Arc + Slide Function Map)"
+    weight_pct: 8
+    session: SESSION-NARR
+    bounded_context: [BC-01]
+    agents: [content-architect]
+    tasks:
+      - compress-outline-to-slide-functions   # T-015A — emits story-arc.yaml + slide-function-map.yaml
+    outputs:
+      - story-arc.yaml
+      - slide-function-map.yaml
+    gate: null
+    inline_validation:
+      - validate-story-arc
+      - validate-slide-function-map
+    killer_items_enforced: [KI-08, KI-09]
+    on_inline_validation_fail: return_to_P02_5
+    rationale: |
+      Etapa anti-outline-literal. Lição empírica do webinar Primeiro Serviço de IA:
+      27 tópicos viraram 27 slides ruins. Esta phase força compressão editorial e
+      declaração de função narrativa por slide ANTES de qualquer decisão de design.
+      Sem este gate, KI-08 (slide sem função) e KI-09 (compression ratio violated) podem
+      passar até P05 — caro demais.
+
+  - id: P03_DIRECTION
+    name: "Design Direction (pre-design)"
+    weight_pct: 5
+    session: SESSION-SPEC
+    bounded_context: [BC-02, BC-05]
+    agents: [design-renderer]
+    tasks:
+      - define-design-direction               # T-015B — emits design-direction.yaml
+    outputs:
+      - design-direction.yaml
+    killer_items_enforced: [KI-10]
+    gate: null
+    rationale: |
+      Sub-phase obrigatória antes de P03 (compose-grid-layout). Lição empírica:
+      identidade aplicada como skin (sem visual_reference real, sem dominant_motif)
+      produz wireframe bonito-mas-vazio. KI-10 enforce.
+
+  - id: P03
+    name: "Design"
+    weight_pct: 30
+    session: SESSION-SPEC
+    bounded_context: [BC-02, BC-05]
+    agents: [template-curator, design-renderer, slide-chief]
+    tasks:
+      - classify-slide-type          # NEW — template-curator
+      - select-chart-type            # NEW — Worker (lookup in chart-selection-matrix)
+      - compose-grid-layout          # NEW — design-renderer
+      - detect-brand-override        # NEW — Worker (filesystem probe)
+      - register-palette-override    # NEW — Human (slide-chief dispatches, STK-10-equivalent approves)
+      - resolve-active-palette       # NEW — Worker (palette-registry lookup + WCAG)
+    outputs:
+      - design-overview.md
+      - grid-layouts.yaml
+      - active-palette.yaml
+    gate: D03
+    on_gate_fail: return_to_P03
+
+  - id: P04
+    name: "Detailed Specification"
+    weight_pct: 22
+    session: SESSION-SPEC
+    bounded_context: [BC-03]
+    agents: [content-architect, design-renderer, visual-scout]
+    tasks:
+      - create-presentation
+      - emit-deck-spec
+    outputs:
+      - deck-manifest.json
+      - deck-spec.yaml
+    gate: null
+
+  - id: P04_5
+    name: "Design Critique Loop"
+    weight_pct: 12
+    session: SESSION-DESIGN-CRITIQUE
+    bounded_context: [BC-06]
+    agents: [design-planner, design-renderer]
+    tasks:
+      - run-design-critique          # T-016 — invokes 10 validators + emits critique-report.yaml
+      - apply-design-revision        # T-017 — applies routed revisions (conditional on verdict=REVISE)
+    outputs:
+      - critique-reports/iteration-{N}.yaml
+      - revision-{N}.yaml
+      - planning-reflection.jsonl (append)
+      - deck-spec.yaml (overwritten if REVISE)
+    gate: D04
+    gate_preconditions:
+      - "critique_report.verdict in [PASS, ESCALATE]"
+    iteration_cap: 2
+    on_iteration_cap_reached: escalate_to_human
+    killer_items_enforced: [KI-08, KI-09, KI-10]
+    rationale: |
+      Phase central da MSN-2026-SLIDES-NARRATIVE-DESIGN. Bridge entre draft DeckSpec
+      e QA macro. design-planner orquestra critique + revise iterativamente, com cap
+      em 2 iterações. PASS → P05. ESCALATE → Human. Killer items checked first.
+
+  - id: P05
+    name: "Quality Assurance"
+    weight_pct: 4
+    session: SESSION-QA
+    bounded_context: [BC-06]
+    agents: [qa-inspector]           # fresh instance, not reused from P02
+    tasks:
+      - validate-pyramid             # P3
+      - validate-vertical-flow       # P3/P4
+      - validate-enumeration-universal  # P5
+      - validate-fontes-apa          # P6
+      - validate-action-title        # P4 (legacy regex check)
+      - p1-fidelity-sampling         # P1 (flag-gated)
+      - review-presentation          # PPTEval macro + killer items legacy
+      # New Mission validators (MSN-2026-SLIDES-NARRATIVE-DESIGN)
+      - validate-density             # T-005
+      - validate-hierarchy           # T-006
+      - validate-contrast            # T-007
+      - validate-readability         # T-008
+      - validate-visual-coherence    # T-009
+      - validate-governing-thought-strength  # T-011
+      - validate-action-title-rhetoric       # T-012
+      - validate-scqa-depth          # T-013
+      - validate-story-arc           # T-013A
+      - validate-slide-function-map  # T-013B
+    outputs:
+      - qa-report.json               # v2, +narrative_dim + validator-reports/*
+    gate: qa_verdict
+    gate_preconditions:
+      - qa-report.verdict == PASS
+    on_gate_fail:
+      dimension_router:
+        narrative_fail: return_to_P01_or_P02
+        design_fail: return_to_P03
+        spec_fail: return_to_P04
+
+  - id: P06
+    name: "Release"
+    weight_pct: 1
+    session: null
+    bounded_context: [BC-07, BC-08]
+    agents: [slide-chief, design-renderer]
+    tasks:
+      - emit-deck-spec               # NEW (repeat for final state)
+      - create-presentation          # existing — packaging steps
+      - handoff-render-request       # NEW — BC-08 seam
+      - prepare-ds-presenter         # existing — wired to P06 (resolves registry-orphan)
+    outputs:
+      - deliverables/Slide_Specifications.md
+      - deliverables/Design_System.md
+      - deliverables/References_Bibliography.md
+      - deliverables/AI_Image_Prompts.md
+      - deliverables/Version_History.md
+      - deck-spec.yaml
+      - render-request.yaml
+    render_state:
+      materialized: "apps/ds runtime available"
+      handoff_only: "apps/ds runtime blocked — render-request.yaml emitted, not consumed"
+
+# =============================================================================
+# HARD GATES (D01/D02/D03 + QA)
+# =============================================================================
+gates:
+  D01:
+    name: "Cliente aprova análise?"
+    type: approval_artifact
+    artifact: "{output_dir}/checkpoints/D01.yaml"
+    schema_ref: "squads/slides-creator/data/checkpoint-schema.yaml"
+    required_fields: [status, approver, timestamp]
+    pass_criteria: "status == approved"
+    block_on: [missing, pending, rejected]
+    sla_ladder:
+      - { at: 24h, action: nudge_sr_consultant }
+      - { at: 72h, action: escalate_C_level }
+      - { at: 168h, action: auto_pause }
+
+  D02:
+    name: "Teste vertical passa E cliente aprova estrutura"
+    type: approval_artifact_plus_precondition
+    artifact: "{output_dir}/checkpoints/D02.yaml"
+    preconditions:
+      - vertical-test-result.verdict == PASS
+    pass_criteria: "status == approved AND precondition satisfied"
+    block_on: [missing, pending, rejected, precondition_fail]
+
+  D03:
+    name: "Cliente aprova Design Overview"
+    type: approval_artifact
+    artifact: "{output_dir}/checkpoints/D03.yaml"
+    pass_criteria: "status == approved"
+    block_on: [missing, pending, rejected]
+
+  qa_verdict:
+    name: "P05 QA verdict"
+    type: computed_from_report
+    source: "{output_dir}/qa-report.json"
+    pass_criteria: "verdict == PASS AND narrative_dim >= 7 AND ppteval_composite >= 7"
+    fail_router: dimension_router
+
+# =============================================================================
+# 7 PRINCÍPIOS INVIOLÁVEIS — enforcement wiring
+# =============================================================================
+invariants:
+  P1:
+    name: "Fidelidade aos dados"
+    enforcement: [schema, semantic]
+    enforced_by_tasks: [catalog-sources-apa, create-presentation, p1-fidelity-sampling]
+    validator: validate-fontes-apa + validate-pyramid (data_points_traced)
+    failure: "QA FAIL — data point without source_ref"
+
+  P2:
+    name: "Especificação obsessiva"
+    enforcement: schema
+    enforced_by_tasks: [create-presentation, emit-deck-spec]
+    validator: deck-spec.schema.json (hex/grid_coord/pt_size required)
+    failure: "schema validation FAIL"
+
+  P3:
+    name: "Pyramid Principle + MECE"
+    enforcement: validator
+    enforced_by_tasks: [build-pyramid, apply-scqa]
+    validator: validate-pyramid + validate-vertical-flow
+    failure: "QA FAIL — pyramid tree invalid OR MECE violated"
+
+  P4:
+    name: "Action titles"
+    enforcement: validator
+    enforced_by_tasks: [write-action-titles]
+    validator: validate-action-title (regex + components)
+    failure: "QA FAIL — title descriptive instead of action"
+
+  P5:
+    name: "Enumeração universal"
+    enforcement: validator
+    enforced_by_tasks: [create-presentation]
+    validator: validate-enumeration-universal
+    failure: "QA FAIL — visual without ID (Gráfico N, Tabela N.M)"
+
+  P6:
+    name: "Citação completa APA"
+    enforcement: [schema, semantic]
+    enforced_by_tasks: [catalog-sources-apa]
+    validator: validate-fontes-apa
+    failure: "schema FAIL — missing {org, title, date, url, access_date}"
+
+  P7:
+    name: "Prompts de IA (10 componentes)"
+    enforcement: schema
+    enforced_by_tasks: [create-presentation (image-spec substep)]
+    validator: validate-action-title (P7 sub-check) + deck-spec.schema
+    failure: "schema FAIL — image_prompt with <10 components"
+
+# =============================================================================
+# TASK REGISTRY (23 new + existing referenced)
+# =============================================================================
+tasks:
+  # --- NEW (narrative)
+  - { id: catalog-sources-apa,       responsavel_type: Agent,  session: SESSION-NARR, phase: P01 }
+  - { id: distill-governing-thought, responsavel_type: Agent,  session: SESSION-NARR, phase: P01 }
+  - { id: build-pyramid,             responsavel_type: Agent,  session: SESSION-NARR, phase: P01 }
+  - { id: apply-scqa,                responsavel_type: Agent,  session: SESSION-NARR, phase: P01 }
+  - { id: write-action-titles,       responsavel_type: Agent,  session: SESSION-NARR, phase: P02 }
+  - { id: run-vertical-test,         responsavel_type: Agent,  session: SESSION-QA,   phase: P02 }
+  # --- NEW (design + brand)
+  - { id: classify-slide-type,       responsavel_type: Agent,  session: SESSION-SPEC, phase: P03 }
+  - { id: select-chart-type,         responsavel_type: Worker, session: SESSION-SPEC, phase: P03 }
+  - { id: compose-grid-layout,       responsavel_type: Agent,  session: SESSION-SPEC, phase: P03 }
+  - { id: detect-brand-override,     responsavel_type: Worker, session: SESSION-SPEC, phase: P03 }
+  - { id: register-palette-override, responsavel_type: Human,  session: null,          phase: P03 }
+  - { id: resolve-active-palette,    responsavel_type: Worker, session: SESSION-SPEC, phase: P03 }
+  # --- NEW (QA validators)
+  - { id: validate-pyramid,               responsavel_type: Worker, session: SESSION-QA, phase: P05 }
+  - { id: validate-vertical-flow,         responsavel_type: Agent,  session: SESSION-QA, phase: P05 }
+  - { id: validate-enumeration-universal, responsavel_type: Worker, session: SESSION-QA, phase: P05 }
+  - { id: validate-fontes-apa,            responsavel_type: Worker, session: SESSION-QA, phase: P05 }
+  - { id: validate-action-title,          responsavel_type: Worker, session: SESSION-QA, phase: P05 }
+  - { id: p1-fidelity-sampling,           responsavel_type: Human,  session: null,       phase: P05 }
+  # --- NEW (KB + packaging + handoff)
+  - { id: load-kb-bundle,         responsavel_type: Worker, session: null,          phase: [P00, P01, P02, P03, P04] }
+  - { id: emit-deck-spec,         responsavel_type: Worker, session: SESSION-SPEC, phase: [P04, P06] }
+  - { id: handoff-render-request, responsavel_type: Worker, session: null,          phase: P06 }
+  # --- EXISTING (referenced, not redefined)
+  - { id: normalize-briefing,     responsavel_type: Agent,  phase: P00, existing: true }
+  - { id: youtube-to-briefing,    responsavel_type: Agent,  phase: P00, existing: true, conditional: "input_type == youtube" }
+  - { id: create-presentation,    responsavel_type: Agent,  phase: [P04, P06], existing: true }
+  - { id: prepare-ds-presenter,   responsavel_type: Worker, phase: P06, existing: true }
+  - { id: review-presentation,    responsavel_type: Agent,  phase: P05, existing: true }
+
+# =============================================================================
+# TRANSITIONS (condition-based edges)
+# =============================================================================
+transitions:
+  - from: P00
+    to: P01
+    condition: "briefing.normalized.json exists AND kb-bundle-P01.yaml exists"
+    on_fail: halt_and_surface
+
+  - from: P01
+    to: P02
+    condition: "D01.status == approved"
+    on_fail: halt_and_wait_for_approval
+
+  - from: P02
+    to: P03
+    condition: "D02.status == approved AND vertical-test-result.verdict == PASS"
+    on_fail: halt_and_wait
+
+  - from: P03
+    to: P04
+    condition: "D03.status == approved AND active-palette.yaml exists"
+    on_fail: halt_and_wait
+
+  - from: P04
+    to: P05
+    condition: "deck-spec.yaml exists AND deck-manifest.json v2 valid"
+
+  - from: P05
+    to: P06
+    condition: "qa-report.verdict == PASS"
+    on_fail: dimension_router
+
+  - from: P06
+    to: complete
+    condition: "deliverables emitted"
+
+# =============================================================================
+# DIMENSION ROUTER (QA FAIL fan-out)
+# =============================================================================
+dimension_router:
+  narrative_fail:
+    trigger: "validate-pyramid FAIL OR validate-vertical-flow FAIL OR validate-action-title FAIL"
+    route_to: P01  # may re-run P02 if only action titles fail
+  design_fail:
+    trigger: "ppteval.design < 7 OR validate-enumeration-universal FAIL"
+    route_to: P03
+  spec_fail:
+    trigger: "schema FAIL on deck-spec.yaml OR validate-fontes-apa FAIL"
+    route_to: P04
+  data_fidelity_fail:
+    trigger: "p1-fidelity-sampling FAIL (10% spot-check)"
+    route_to: P01  # re-extract with stricter prompt
+
+# =============================================================================
+# HANDOFF CONTRACTS (outbound)
+# =============================================================================
+handoffs:
+  - to: downstream_renderer
+    contract: render-request.yaml
+    phase: P06
+    bounded_context: BC-08
+    consumer: slides-creator design-renderer (apps/ds runtime) OR slides-creator LLM-direct fallback
+    fallback: handoff_only (render-request emitted, not consumed)
+
+  - to: client
+    contract: deliverables/
+    phase: P06
+    consumer: STK-01/STK-02/STK-03 audience + STK-07 client strategy team
+
+# =============================================================================
+# RELEASE CRITERIA
+# =============================================================================
+release:
+  ready_when:
+    - "All 6 phases completed"
+    - "qa_verdict gate PASS"
+    - "deliverables/ populated with 5 markdown files + deck-spec.yaml + render-request.yaml"
+    - "Post-execution learning log written"
+
+# =============================================================================
+# BACK-COMPAT
+# =============================================================================
+back_compat:
+  skip_narrative_mode:
+    trigger: "flag --skip-narrative OR workflow.global.feature_flags.skip_narrative == true"
+    bypass_phases: [P01, P02, P03_narrative_subset]
+    reuses: "original v1.5 sequence (briefing → content → visual strategy → template → assets → render → qa → release)"
+    version_marker: "workflow v1.5-compat"
+    deprecation: "planned removal at v2.2 — 1 release after ADR-021 lands"

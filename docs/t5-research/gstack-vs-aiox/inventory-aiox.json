@@ -1,0 +1,73 @@
+{
+  "subject": "aiox-core (Sinkra Hub)",
+  "version": "SINKRA v3.2",
+  "scanned": "2026-04-13",
+  "source": "/Users/oalanicolas/Code/sinkra-hub",
+  "summary": {
+    "total_squads": 54,
+    "total_agents": 461,
+    "total_skills": 107,
+    "total_tasks": 1629,
+    "total_workflows": 276,
+    "total_templates": 593,
+    "total_checklists": 446,
+    "total_config_lines": 46180,
+    "total_hooks": 14,
+    "total_rules": 16,
+    "total_scripts": 51,
+    "total_test_files": 3566,
+    "total_stories": 353,
+    "total_epics": 46,
+    "total_packages": 6,
+    "total_services": 11,
+    "total_apps": 9,
+    "claude_md_lines": 288
+  },
+  "architecture": {
+    "topology": "hub-and-spoke (deep hierarchy)",
+    "hierarchy_depth": 4,
+    "layers": ["L1 Business", "L2 Execution", "L3 Product", "L4 Services", "L5 Infrastructure", "L6 Framework", "L7 Governance", "L8 Evolution"],
+    "governance": "Constitution + 16 rules + CODEOWNERS + 14 hooks",
+    "state_management": "YAML-based (workspace L0-L4, .aiox/)",
+    "runtime": "Node.js 18+ + Python",
+    "browser": "Playwright (per-invocation, project-playwright + clickup-playwright)",
+    "ci_cd": "GitHub Actions + pre-push hooks + doctor.js",
+    "parallelism": "Swarm OS + DAG-based wave-execute + circuit breakers"
+  },
+  "sdc_lifecycle": {
+    "phases": ["Validate", "Develop", "Review (QG loop)", "Deploy", "Verify", "Close"],
+    "phase_count": 6,
+    "fully_automated_phases": 5,
+    "human_required_phases": 1,
+    "qg_loop_max_iterations": 3
+  },
+  "workspace_layers": {
+    "L0_identity": {"ttl": "365d", "content": "company-dna, founder-dna, legal"},
+    "L1_strategy": {"ttl": "90d", "content": "ICP, BMC, lean-canvas, pricing, offerbook"},
+    "L2_tactical": {"ttl": "60d", "content": "brand, design, legal, acceleration"},
+    "L3_product": {"ttl": "30d", "content": "product specs, roadmaps"},
+    "L4_operational": {"ttl": "7d", "content": "campaigns, content, pitch decks"}
+  },
+  "learning_system": {
+    "tiers": ["L1: execution-logs", "L2: decision-cards", "L3: heuristics"],
+    "promotion": "draft -> promoted -> decision-card -> heuristic",
+    "per_business_isolation": true,
+    "schemas": ["learning-entry-schema.yaml", "observation-schema.yaml", "execution-log-schema.yaml"]
+  },
+  "unique_capabilities": [
+    "SINKRA 7-phase process mapping (Process + Mission modes)",
+    "Hub-and-Spoke multi-business isolation (4 businesses)",
+    "Workspace L0-L4 lifecycle governance (TTL per layer)",
+    "3-tier learning graduation (logs -> entries -> cards -> heuristics)",
+    "Full SDC pipeline (validate -> develop -> review -> deploy -> close)",
+    "Swarm OS with DAG-based wave execution and circuit breakers",
+    "Constitutional governance (non-negotiable principles + enforcement hooks)",
+    "Agent authority matrix (exclusive rights per agent type)",
+    "CodeRabbit self-healing QG loop (3 iterations)",
+    "Registry governance (9 file-entity mappings, pre-push check)",
+    "SINKRA composition tokens and process-registry",
+    "Artifact classification decision tree (workspace vs outputs vs framework)",
+    "Multi-business product architecture (shared products + upsell opt-in)",
+    "56 specialized squads with domain expertise"
+  ]
+}

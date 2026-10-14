@@ -1,0 +1,39 @@
+%%{ init: { 'theme': 'dark' } }%%
+
+graph LR
+    subgraph DISTRIBUTE["🔵 L1: DISTRIBUTION (OpenClaw)"]
+        A["23+ Channels\ndeliver to users"]
+    end
+
+    subgraph THINK["🟢 L2: INTELLIGENCE (Hermes)"]
+        B["Hermes AIAgent\nprocesses with\nself-improving brain"]
+        C["Skills auto-created\nfrom experience"]
+        D["Trajectories\nexported for\nRL training"]
+    end
+
+    subgraph GOVERN["🟣 L3: GOVERNANCE (Sinkra)"]
+        E["Quality Gates\nvalidate training\ndata"]
+        F["Task Anatomy\nstructures all\noperations"]
+    end
+
+    subgraph TRAIN["🔴 FLYWHEEL ENGINE"]
+        G["RL Training\n(Atropos +\nBatch Runner)"]
+        H["Better models\ndeployed back"]
+    end
+
+    A -->|"Conversations\n(23 channels × 4 businesses)"| B
+    B --> C
+    B --> D
+    C -->|"New skills\npublished to\nClawHub"| A
+    D -->|"JSONL\ntrajectories"| E
+    E -->|"Validated\ndata only"| G
+    F -.->|"Structures"| B
+    F -.->|"Structures"| E
+    G --> H
+    H -->|"Improved\nintelligence"| B
+    H -->|"Better responses\nto all channels"| A
+
+    style DISTRIBUTE fill:#1e3a5f,stroke:#3B82F6,color:#e2e8f0
+    style THINK fill:#1a3a2a,stroke:#10B981,color:#e2e8f0
+    style GOVERN fill:#2d1b4e,stroke:#8B5CF6,color:#e2e8f0
+    style TRAIN fill:#3b1a1a,stroke:#EF4444,color:#e2e8f0

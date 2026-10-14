@@ -1,0 +1,264 @@
+{
+  "gap_analysis": {
+    "generated": "2026-04-04",
+    "direction": "bidirectional",
+    "gaps_hermes_has_cc_missing": {
+      "count": 14,
+      "coverage_with_sinkra": {
+        "full": 4,
+        "partial": 4,
+        "none": 6
+      },
+      "items": [
+        {
+          "id": "G1",
+          "name": "Mixture of Agents (MoA)",
+          "tier": 1,
+          "hermes_file": "tools/mixture_of_agents_tool.py",
+          "description": "4 frontier models in parallel + aggregator synthesis",
+          "sinkra_coverage": "PARTIAL",
+          "sinkra_evidence": ["ai-provider-factory.js (routing)", "/roundtable skill (multi-agent)", "sinkra-map benchmark (multi-model)"],
+          "cc_native": "Agent Teams (same model family)",
+          "remaining_gap": "No multi-model consensus. Agent Teams = same model parallelism",
+          "absorption_priority": "P1",
+          "absorption_effort": "3-4 stories",
+          "absorption_plan": "Extend /roundtable to accept model override per agent via ai-provider-factory"
+        },
+        {
+          "id": "G2",
+          "name": "Self-Learning Skill Creation",
+          "tier": 1,
+          "hermes_file": "tools/skill_manager_tool.py",
+          "description": "Agent autonomously creates SKILL.md from experience",
+          "sinkra_coverage": "NONE",
+          "sinkra_evidence": ["skill-creator-ops/ (manual creation only)"],
+          "cc_native": "Manual skills + auto-memory (declarative)",
+          "remaining_gap": "Zero auto-generation. Skills are 100% human-authored",
+          "absorption_priority": "P0",
+          "absorption_effort": "1 Epic (~8 stories)",
+          "absorption_plan": "Hook SessionEnd → detect resolved task → generate SKILL.md draft → skill-validator → persist in squads/*/skills/"
+        },
+        {
+          "id": "G3",
+          "name": "Session Search (FTS5)",
+          "tier": 1,
+          "hermes_file": "tools/session_search_tool.py",
+          "description": "Full-text search across all past sessions + LLM summarization",
+          "sinkra_coverage": "PARTIAL",
+          "sinkra_evidence": ["journey-log.ts (Supabase, queryable)", "/resume (session list)"],
+          "cc_native": "/resume lists sessions. No FTS",
+          "remaining_gap": "Journey-log covers squad events, NOT Claude Code conversations",
+          "absorption_priority": "P1",
+          "absorption_effort": "1 Epic (~5 stories)",
+          "absorption_plan": "Hook SessionEnd → persist transcript to Supabase → FTS index → MCP query tool"
+        },
+        {
+          "id": "G4",
+          "name": "Multi-Platform Gateway",
+          "tier": 1,
+          "hermes_file": "gateway/platforms/ (15 adapters)",
+          "description": "Telegram, Discord, Slack, WhatsApp, Signal, Email, SMS, Matrix, etc.",
+          "sinkra_coverage": "NONE",
+          "sinkra_evidence": ["webhook-handler (inbound only)"],
+          "cc_native": "CLI + IDE + Web + Desktop",
+          "remaining_gap": "Zero messaging platform adapters. No outbound routing",
+          "absorption_priority": "P2",
+          "absorption_effort": "HIGH — full gateway infrastructure",
+          "absorption_plan": "Option A: Use Hermes as gateway front-end + CC as backend. Option B: MCP bridge per platform"
+        },
+        {
+          "id": "G5",
+          "name": "Remote Execution Environments",
+          "tier": 1,
+          "hermes_file": "tools/environments/ (7 types)",
+          "description": "Local, Docker, SSH, Modal, Managed Modal, Daytona, Singularity",
+          "sinkra_coverage": "PARTIAL",
+          "sinkra_evidence": ["Dockerfile (webhook-handler)", "docker-compose.yml (squad-engine)"],
+          "cc_native": "Local + Anthropic Cloud (scheduled tasks)",
+          "remaining_gap": "Runners are local-only. No SSH/Modal executor",
+          "absorption_priority": "P2",
+          "absorption_effort": "MEDIUM",
+          "absorption_plan": "MCP server for Docker exec + SSH tunnel. Modal via API"
+        },
+        {
+          "id": "G6",
+          "name": "Voice Mode (Bidirectional)",
+          "tier": 2,
+          "hermes_file": "tools/voice_mode.py + tools/tts_tool.py",
+          "description": "5 TTS providers + STT + push-to-talk",
+          "sinkra_coverage": "FULL",
+          "sinkra_evidence": ["services/symphony/t2s.js (TTS)", "services/etl/collectors/transcribe-collector.js (Whisper STT)", "/transcribe skill"],
+          "cc_native": "Voice dictation (input only)",
+          "remaining_gap": "NONE — sinkra-hub has both TTS and STT",
+          "absorption_priority": "DONE",
+          "absorption_effort": "0"
+        },
+        {
+          "id": "G7",
+          "name": "Image Generation",
+          "tier": 2,
+          "hermes_file": "tools/image_generation_tool.py",
+          "description": "FLUX 2 Pro + auto 2x upscaling via FAL.ai",
+          "sinkra_coverage": "FULL",
+          "sinkra_evidence": ["nano-banana-generator agent (Gemini + OpenRouter)"],
+          "cc_native": "None native",
+          "remaining_gap": "NONE — nano-banana covers image gen",
+          "absorption_priority": "DONE",
+          "absorption_effort": "0"
+        },
+        {
+          "id": "G8",
+          "name": "Checkpoint Manager",
+          "tier": 2,
+          "hermes_file": "tools/checkpoint_manager.py",
+          "description": "Shadow git auto-snapshots before file mutations",
+          "sinkra_coverage": "FULL",
+          "sinkra_evidence": ["Claude Code native checkpointing (filesystem-level)", "rollback-manager.js"],
+          "cc_native": "Checkpointing with rewind menu",
+          "remaining_gap": "NONE — CC checkpointing + rollback-manager",
+          "absorption_priority": "DONE",
+          "absorption_effort": "0"
+        },
+        {
+          "id": "G9",
+          "name": "Cron/Scheduling",
+          "tier": 2,
+          "hermes_file": "tools/cronjob_tools.py",
+          "description": "Cron scheduling with threat scanning + platform delivery",
+          "sinkra_coverage": "PARTIAL",
+          "sinkra_evidence": ["/loop (session)", "/schedule (durable)", "CronCreate tool"],
+          "cc_native": "/loop + /schedule + CronCreate",
+          "remaining_gap": "CC scheduling lacks threat scanning and platform-specific delivery",
+          "absorption_priority": "P3",
+          "absorption_effort": "LOW"
+        },
+        {
+          "id": "G10",
+          "name": "Home Automation",
+          "tier": 2,
+          "hermes_file": "tools/homeassistant_tool.py",
+          "description": "Home Assistant REST API integration",
+          "sinkra_coverage": "NONE",
+          "sinkra_evidence": [],
+          "cc_native": "None",
+          "remaining_gap": "Zero IoT integration",
+          "absorption_priority": "P3",
+          "absorption_effort": "LOW — MCP server for HA"
+        },
+        {
+          "id": "G11",
+          "name": "Anti-Detection Browser",
+          "tier": 3,
+          "hermes_file": "tools/browser_camofox.py",
+          "description": "Camoufox with fingerprint spoofing",
+          "sinkra_coverage": "FULL",
+          "sinkra_evidence": ["playwright-ops agent", "Chrome extension (CC native)"],
+          "cc_native": "Chrome extension + Playwright MCP",
+          "remaining_gap": "No anti-detection specifically, but browser automation covered",
+          "absorption_priority": "DONE",
+          "absorption_effort": "0"
+        },
+        {
+          "id": "G12",
+          "name": "Skills Marketplace",
+          "tier": 3,
+          "hermes_file": "tools/skills_hub.py + tools/skills_sync.py",
+          "description": "Hub with trust policies (builtin/trusted/community)",
+          "sinkra_coverage": "PARTIAL",
+          "sinkra_evidence": ["skill-creator-ops (*import-hub)", "codex-skills-sync/"],
+          "cc_native": "Local skills only",
+          "remaining_gap": "No trust tiers, no public discoverability",
+          "absorption_priority": "P3",
+          "absorption_effort": "LOW"
+        },
+        {
+          "id": "G13",
+          "name": "Cross-Platform Message Sending",
+          "tier": 3,
+          "hermes_file": "tools/send_message_tool.py",
+          "description": "Agent sends messages to Telegram/Discord/Slack as action",
+          "sinkra_coverage": "NONE",
+          "sinkra_evidence": [],
+          "cc_native": "None",
+          "remaining_gap": "Zero outbound messaging",
+          "absorption_priority": "P2",
+          "absorption_effort": "MEDIUM — tied to G4"
+        },
+        {
+          "id": "G14",
+          "name": "Model Agnostic",
+          "tier": 3,
+          "hermes_file": "hermes_cli/models.py",
+          "description": "200+ models via OpenRouter/Nous/custom endpoints",
+          "sinkra_coverage": "PARTIAL",
+          "sinkra_evidence": ["ai-provider-factory.js (Claude + Gemini)"],
+          "cc_native": "Claude models only",
+          "remaining_gap": "CC locked by design. Factory supports 2 models only",
+          "absorption_priority": "P3",
+          "absorption_effort": "LOW — extend factory for OpenRouter"
+        }
+      ]
+    },
+    "gaps_cc_has_hermes_missing": {
+      "count": 8,
+      "items": [
+        {
+          "id": "CG1",
+          "name": "SWE-bench Grade Coding",
+          "cc_score": 95,
+          "hermes_score": 55,
+          "description": "80.8% SWE-bench. Specialized code tools (Read/Edit/Grep/Glob). Extended thinking for complex reasoning"
+        },
+        {
+          "id": "CG2",
+          "name": "IDE Integration",
+          "cc_score": 92,
+          "hermes_score": 10,
+          "description": "VS Code extension, JetBrains plugins, remote development, inline code actions"
+        },
+        {
+          "id": "CG3",
+          "name": "Native Git/GitHub",
+          "cc_score": 95,
+          "hermes_score": 35,
+          "description": "gh CLI, PR creation/review, GitHub Actions, auto-fix PRs, conventional commits"
+        },
+        {
+          "id": "CG4",
+          "name": "Extended Thinking",
+          "cc_score": 90,
+          "hermes_score": 30,
+          "description": "Budget-controlled chain-of-thought before tool calls. No equivalent in Hermes"
+        },
+        {
+          "id": "CG5",
+          "name": "Permission Sandboxing",
+          "cc_score": 88,
+          "hermes_score": 65,
+          "description": "5 permission modes, fine-grained tool+argument rules, filesystem/network sandbox"
+        },
+        {
+          "id": "CG6",
+          "name": "Hooks System",
+          "cc_score": 85,
+          "hermes_score": 50,
+          "description": "15+ event types (PreToolUse, PostToolUse, SessionStart, etc.) with shell/agent/HTTP matchers"
+        },
+        {
+          "id": "CG7",
+          "name": "Agent Teams",
+          "cc_score": 75,
+          "hermes_score": 60,
+          "description": "Independent teammates with task list + direct messaging (experimental)"
+        },
+        {
+          "id": "CG8",
+          "name": "200K Context Window",
+          "cc_score": 95,
+          "hermes_score": 40,
+          "description": "Opus native 200K context. Hermes depends on model choice (varies)"
+        }
+      ]
+    }
+  }
+}

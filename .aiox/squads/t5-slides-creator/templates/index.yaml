@@ -1,0 +1,128 @@
+# Templates Index — Slides Creator Squad
+# Mission: MSN-2026-SLIDES-NARRATIVE-DESIGN (DEV-2026-003 pilot)
+# Created: 2026-05-17
+# Version: 1.0.0
+#
+# Navigable catalog of all templates. Inspired by:
+#   - ppt-master/templates/layouts/layouts_index.json (21 templates indexed)
+#   - ppt-master/templates/charts/charts_index.json (71 charts contrastive summaries)
+#   - Presenton presentation-templates/{family}/settings.json
+#
+# Pilot scope: 2 decks + 3 slide functions + 1 theme. Full catalog em
+# MSN-2026-SLIDES-TEMPLATES-ARCHITECTURE (Mission separada, backlog).
+
+meta:
+  schema_version: "1.0.0"
+  total_decks: 2
+  total_slide_functions: 3
+  total_themes: 1
+  total_visuals: 0  # pending Mission separada
+  status: pilot
+  pilot_mission: "MSN-2026-SLIDES-NARRATIVE-DESIGN"
+  next_iteration_mission: "MSN-2026-SLIDES-TEMPLATES-ARCHITECTURE (proposta, nao iniciada)"
+
+schemas:
+  - id: deck-template
+    path: templates/schemas/deck-template.schema.yaml
+    purpose: "Contract for deck-level templates (roteiros)"
+  - id: slide-template
+    path: templates/schemas/slide-template.schema.yaml
+    purpose: "Contract for slide-function templates"
+  - id: visual-template
+    path: templates/schemas/visual-template.schema.yaml
+    purpose: "Contract for charts/diagrams/infographics (visual taxonomy)"
+
+deck_templates:
+  - id: webinar-sales-perfect-webinar
+    path: templates/deck/webinar-sales-perfect-webinar.yaml
+    family: webinar
+    pick_for: "Webinar de vendas 60-90min, cold lead, oferta R$ 500-5000"
+    skip_if: "Tempo <45min OR audiencia quente OR ticket >R$ 5000"
+    slide_count_target: 16
+    default_theme: editorial-pentagram
+
+  - id: executive-pitch
+    path: templates/deck/executive-pitch.yaml
+    family: pitch
+    pick_for: "Pitch executivo 15-30min, C-level/board, decisao especifica"
+    skip_if: "Audiencia frio OR tempo >45min OR decisao binaria simples"
+    slide_count_target: 10
+    default_theme: editorial-pentagram
+
+slide_function_templates:
+  - id: hook-opening
+    path: templates/slide/hook-opening.yaml
+    function: cover
+    alternative_functions: [reframe, tension_amplify]
+    pick_for: "Slide de abertura ou charneira que ancora UMA promessa"
+    skip_if: "Slide intermediario"
+    density_target: minimal
+
+  - id: proof-stack
+    path: templates/slide/proof-stack.yaml
+    function: proof
+    alternative_functions: [mechanism_step, contrast, synthesis]
+    pick_for: "2-4 evidencias quantitativas sustentando mesma tese"
+    skip_if: "Evidencia qualitativa (quote) OR 5+ evidencias (split)"
+    density_target: medium
+
+  - id: cta-concrete
+    path: templates/slide/cta-concrete.yaml
+    function: cta_concrete
+    alternative_functions: [close, artifact_reveal, synthesis]
+    pick_for: "Fechamento com UMA decisao binaria + 3 razoes para agir agora"
+    skip_if: "Deck informativo OR multi-opcao OR CTA assincrono"
+    density_target: minimal
+
+themes:
+  - id: editorial-pentagram
+    path: templates/theme/editorial-pentagram.yaml
+    motif: "Bloco de cor solido cobrindo 30-50% do canvas"
+    mode: light
+    primary: "#3DC02E"
+    compatible_with_deck_templates: [webinar-sales-perfect-webinar, executive-pitch, tactical-masterclass, educational-workshop, board-update]
+
+visual_templates: []  # populated em Mission separada
+
+# ─────────────────────────────────────────────────────
+# SELECTION GUIDANCE (for select-deck-template / select-slide-template tasks)
+# ─────────────────────────────────────────────────────
+selection_guidance:
+  deck_template_selection:
+    instruction: |
+      Para escolher deck_template:
+      1. Resolva briefing.audience.primary + delivery_mode + attention_budget
+      2. Filtre deck_templates compativeis em audience_fit
+      3. Aplique pick_for / skip_if contra contexto especifico
+      4. Se 2+ candidatos, prefira o que tem qa_emphasis alinhado com narrative goal
+      5. Emit selected_template_reason: {function_match, fit_rationale, alternative_considered}
+
+  slide_template_selection:
+    instruction: |
+      Para cada entry em slide-function-map.yaml:
+      1. Filtre slide_function_templates onde function == entry.function OR function in alternative_functions
+      2. Cruze density_target: prefer template cujo density_target == entry.density_target
+      3. Cruze deck_template.qa_emphasis para escolher template com qa_gates_emphasis alinhado
+      4. Verifique compatible_with.deck_templates inclui o deck atual
+      5. Emit selected_template_reason
+
+  fallback:
+    instruction: |
+      Se nenhum slide_function_template encontrar match exato:
+      1. Use slide_function_template generico (cria 'default-content.yaml' em Mission futura)
+      2. Por enquanto: emitir warning e usar slot-based composition sem template binding
+      3. Log em planning-reflection.jsonl como entry_type='evidence_gap', dimension='slide_function_map'
+
+# ─────────────────────────────────────────────────────
+# PROVENANCE
+# ─────────────────────────────────────────────────────
+provenance:
+  inspired_by_benches:
+    - "/Users/alan/Code/bench/ppt-master/ (template-as-contract pattern + charts_index.json)"
+    - "/Users/alan/Code/bench/presenton/ (Zod schema per layout + family settings)"
+    - "/Users/alan/Code/bench/PPTAgent/ (layout_selector with reasoning JSON)"
+    - "/Users/alan/Code/bench/presentation-ai/ (ThemeProperties separation visual/structure)"
+    - "/Users/alan/Code/bench/slide-deck-ai/ (minimal structural markers)"
+  analysis_doc: "docs/bench/slides-creator-templates-architecture/00-cross-bench-synthesis.md"
+  mission: "MSN-2026-SLIDES-NARRATIVE-DESIGN"
+  deviation: "DEV-2026-003 (scope expansion approved by Mission Lead via 'ok')"

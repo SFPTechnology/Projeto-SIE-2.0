@@ -1,0 +1,148 @@
+{
+  "bench": {
+    "id": "astro-vs-payload",
+    "type": "technology",
+    "variant": "2-way",
+    "created_at": "2026-05-05",
+    "analyst": "bench-analyst"
+  },
+  "subjects": [
+    {
+      "key": "astro",
+      "name": "Astro",
+      "category": "unknown"
+    },
+    {
+      "key": "payload",
+      "name": "Payload",
+      "category": "Headless CMS + Next.js-native Admin"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "1",
+        "name": "React fundamentality",
+        "weight_pct": 7,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "2",
+        "name": "Vite paridade",
+        "weight_pct": 5,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "3",
+        "name": "Auto-hospedagem",
+        "weight_pct": 7,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "4",
+        "name": "TypeScript+Zod schemas",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "5",
+        "name": "Multi-tenant Hub-and-Spoke",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "6",
+        "name": "Editor WYSIWYG não-dev",
+        "weight_pct": 7,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "7",
+        "name": "Live preview",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "8",
+        "name": "SEO institucional",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "9",
+        "name": "Performance runtime",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "10",
+        "name": "Build performance",
+        "weight_pct": 4,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "11",
+        "name": "DX dev",
+        "weight_pct": 5,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "12",
+        "name": "Validação enterprise",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "13",
+        "name": "Maturidade ecossistema",
+        "weight_pct": 5,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "14",
+        "name": "Roadmap & risco",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "15",
+        "name": "License & custo",
+        "weight_pct": 5,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "16",
+        "name": "Curva de aprendizado",
+        "weight_pct": 4,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "17",
+        "name": "Integração Vercel",
+        "weight_pct": 4,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "18",
+        "name": "Multi-language i18n",
+        "weight_pct": 5,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:10:51.988Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Legacy metadata.json preserved alongside; canonical version at metadata.canonical.json.",
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

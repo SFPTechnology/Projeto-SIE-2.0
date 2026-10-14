@@ -1,0 +1,808 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:10:52.065Z",
+  "source_files": [
+    "battle-card.md",
+    "comparison-matrix.json",
+    "comparison-matrix.md",
+    "deep/feature-comparison.md",
+    "deep/pricing-analysis.md",
+    "deep/risk-analysis.md",
+    "executive-report.md",
+    "gap-analysis.json",
+    "gap-analysis.md",
+    "inventory-chatwoot.json",
+    "inventory-chatwoot.md",
+    "inventory-zendesk.json",
+    "inventory-zendesk.md",
+    "metadata.canonical.json",
+    "metadata.json",
+    "scorecard.json",
+    "scorecard.md"
+  ],
+  "benchmark": {
+    "slug": "chatwoot-vs-zendesk",
+    "title": "Executive Report — Chatwoot vs Zendesk",
+    "date": "2026-05-06",
+    "type": "product",
+    "variant": "2-way",
+    "analyst": "spy/bench-analyst v3.0"
+  },
+  "players": [
+    {
+      "key": "chatwoot",
+      "name": "Chatwoot",
+      "category": "unknown"
+    },
+    {
+      "key": "zendesk",
+      "name": "Zendesk",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "mixed",
+    "coverage": "structured",
+    "sources": 12,
+    "waves": 0,
+    "dimensions": 8
+  },
+  "matrix": {
+    "players": [
+      "chatwoot",
+      "zendesk"
+    ],
+    "dimensions": [
+      {
+        "id": "C1",
+        "label": "Canais nativos",
+        "weight": 0.15
+      },
+      {
+        "id": "C2",
+        "label": "AI capability",
+        "weight": 0.2
+      },
+      {
+        "id": "C3",
+        "label": "Pricing transparency e TCO real",
+        "weight": 0.15
+      },
+      {
+        "id": "C4",
+        "label": "Governance/Compliance",
+        "weight": 0.1
+      },
+      {
+        "id": "C5",
+        "label": "Ecosystem/Marketplace/integrations",
+        "weight": 0.1
+      },
+      {
+        "id": "C6",
+        "label": "Comunidade/Suporte/Maturidade",
+        "weight": 0.1
+      },
+      {
+        "id": "C7",
+        "label": "Flexibilidade",
+        "weight": 0.1
+      },
+      {
+        "id": "C8",
+        "label": "Brasil-fit",
+        "weight": 0.1
+      }
+    ],
+    "rows": [
+      {
+        "id": "C1",
+        "label": "Canais nativos",
+        "weight": 0.15,
+        "cells": [
+          {
+            "player": "chatwoot",
+            "score": 92,
+            "confidence": "H",
+            "notes": "10 canais nativos incluindo Telegram + TikTok + 3 BSP options WhatsApp; voice e add-on Enterprise; X removido. WhatsApp BYOC (Meta/Twilio/360Dialog) e diferencial real para BR.",
+            "source": "chatwoot.com/pricing · deepwiki Whatsapp channel doc"
+          },
+          {
+            "player": "zendesk",
+            "score": 95,
+            "confidence": "H",
+            "notes": "10 canais nativos incluindo Apple Business Chat (raro) + voice Talk first-class; Telegram/TikTok via marketplace. Voice integrado (vs Chatwoot add-on) e o principal advantage.",
+            "source": "zendesk.com.br/pricing · tech-research 02-research-report.md"
+          }
+        ]
+      },
+      {
+        "id": "C2",
+        "label": "AI capability",
+        "weight": 0.2,
+        "cells": [
+          {
+            "player": "chatwoot",
+            "score": 75,
+            "confidence": "M",
+            "notes": "Captain AI nativo (auto-resolve, copilot, smart FAQs, memories, multilingual). Built-in (nao add-on). Trade-off: deflection rate nao publicada, credit consumption rules opacas, maturidade <2 anos vs ecosystem peers.",
+            "source": "chatwoot.com/captain · chatwoot.com/pricing"
+          },
+          {
+            "player": "zendesk",
+            "score": 88,
+            "confidence": "H (outcomes published) / M (per-resolution price opaque)",
+            "notes": "AI Agents (post-Ultimate.ai) + Copilot + QA AI + WFM. Customer outcomes publicados (Freedom 66%, Next 92%, UrbanStems 39% + $100K, Lush 60% + $434K). Productivity 20% via Copilot. Trade-off: AI Agents per-resolution pricing nao publico; fragmentation pos-aquisicao.",
+            "source": "zendesk.com.br/service/ai/ · zendesk customer case studies"
+          }
+        ]
+      },
+      {
+        "id": "C3",
+        "label": "Pricing transparency e TCO real",
+        "weight": 0.15,
+        "cells": [
+          {
+            "player": "chatwoot",
+            "score": 95,
+            "confidence": "H",
+            "notes": "Tiers publicos $0/$19/$39/$99 sem add-ons necessarios. Self-host = $0 license. Sticker-to-real ratio ~1.0-1.2x (Captain credits overage minor). BYOC reduz Meta markup. Predictable.",
+            "source": "chatwoot.com/pricing · tech-research 02-research-report.md"
+          },
+          {
+            "player": "zendesk",
+            "score": 50,
+            "confidence": "H",
+            "notes": "Pricing $19-$169/agent base + add-ons necessarios (Copilot $50, QA $35, WFM $25, ADPP $50). Real-world multiplier 2-3x. Vendr median deal $47.772/year. Per-tier jumps Team→Growth +62%. AI Agents per-resolution nao publico = forecasting impossible. Pricing BRL publicado e advantage parcial.",
+            "source": "costbench.com/software/help-desk/zendesk/ · eesel.ai pricing 2026 · Vendr marketplace data"
+          }
+        ]
+      },
+      {
+        "id": "C4",
+        "label": "Governance/Compliance",
+        "weight": 0.1,
+        "cells": [
+          {
+            "player": "chatwoot",
+            "score": 55,
+            "confidence": "M (absence of public certs is signal but cloud edition may have unpublished posture)",
+            "notes": "GDPR DPA. SOC2 Cloud implicit nao explicit publica. ISO 27001/27018/27701 NAO listados. FedRAMP NAO. HIPAA BAA NAO oferecido. EU residency Cloud nao user-selectable. Audit logs e SSO so Enterprise tier. Self-host e o escape valve real para regulated industries.",
+            "source": "chatwoot.com/pricing · Public website inspection"
+          },
+          {
+            "player": "zendesk",
+            "score": 95,
+            "confidence": "H",
+            "notes": "SOC 2 Type II + ISO 27001 + ISO 27018 + ISO 27701 + FedRAMP + GDPR Binding Corporate Rules (segunda empresa Irish DPC, 2017) + HIPAA BAA disponivel + Multi-region (US/EU/AU/JP). Caveat: Data Center Location addon Pro/Enterprise REQUER ativacao manual via support (default = data movel sem aviso).",
+            "source": "zendesk.com/trust-center/ · eesel.ai/blog/zendesk-data-residency · eesel.ai/blog/zendesk-security-and-compliance"
+          }
+        ]
+      },
+      {
+        "id": "C5",
+        "label": "Ecosystem/Marketplace/integrations",
+        "weight": 0.1,
+        "cells": [
+          {
+            "player": "chatwoot",
+            "score": 60,
+            "confidence": "H",
+            "notes": "Tens of named integrations (Slack, Shopify, Dialogflow, MS Teams, WordPress, migration tools, custom). API REST + webhooks aberto. Self-hosted = arbitrary DB integration. Sem marketplace curado pra non-technical buyers. Compensa em flexibilidade tecnica.",
+            "source": "github.com/chatwoot README · chatwoot.com/integrations docs"
+          },
+          {
+            "player": "zendesk",
+            "score": 95,
+            "confidence": "H",
+            "notes": "1.977 apps de 1.136 vendors. 75% ARR impacted by marketplace. 58% customers tem 1+ app. AI 21.54% (~425 apps). Categories productivity/analytics/marketing/CRMs/IT/AI. Sandbox environment Enterprise. Maior ecosystem do segmento.",
+            "source": "zendesk.com/blog marketplace · sqmagazine.co.uk/zendesk-statistics/ · eesel.ai 2026"
+          }
+        ]
+      },
+      {
+        "id": "C6",
+        "label": "Comunidade/Suporte/Maturidade",
+        "weight": 0.1,
+        "cells": [
+          {
+            "player": "chatwoot",
+            "score": 78,
+            "confidence": "H (GitHub) / M (G2 count)",
+            "notes": "GitHub 29.1k stars + 7.2k forks (transparente). G2 rating 4.4/5 (review count modesto ~200-400). 9 anos. Monthly minor releases. Community ethos. Trade-off: review universe menor para validation enterprise.",
+            "source": "github.com/chatwoot/chatwoot · G2 review snapshots"
+          },
+          {
+            "player": "zendesk",
+            "score": 92,
+            "confidence": "H",
+            "notes": "G2 4.3/5 com 6.000+ reviews. Market share 14.80% categoria customer experience (lider). 19 anos. 88% reviewers cite ease of use. 76% adoption long-term. 17 meses estimated payback. BR sales/support team. Enterprise scale proven.",
+            "source": "learn.g2.com/zendesk-review (6k+) · 6sense market share data · G2 statistics 2026"
+          }
+        ]
+      },
+      {
+        "id": "C7",
+        "label": "Flexibilidade",
+        "weight": 0.1,
+        "cells": [
+          {
+            "player": "chatwoot",
+            "score": 100,
+            "confidence": "H",
+            "notes": "MIT self-hosted full source no feature gating. Deploy options: Docker Compose, K8s, Heroku, Cloud SaaS. WhatsApp BYOC 3 BSP options. API REST + webhooks + DB access self-host. Forks legitimos (MIT). Vendor lock-in MINIMAL — pode migrar self-host a qualquer momento. Zero equivalente no Zendesk.",
+            "source": "github.com/chatwoot/chatwoot LICENSE · deepwiki Whatsapp providers"
+          },
+          {
+            "player": "zendesk",
+            "score": 35,
+            "confidence": "H",
+            "notes": "SaaS proprietary cloud-only. Self-host IMPOSSIBLE. Sandbox environment Enterprise tier (positivo). Apps via Zendesk Apps Framework custom. Vendor lock-in MAXIMUM. Customization ceiling alto via apps mas sempre dentro do guardrails Zendesk.",
+            "source": "zendesk.com/pricing/ — no self-host SKU"
+          }
+        ]
+      },
+      {
+        "id": "C8",
+        "label": "Brasil-fit",
+        "weight": 0.1,
+        "cells": [
+          {
+            "player": "chatwoot",
+            "score": 65,
+            "confidence": "H",
+            "notes": "BYOC permite wrap BR BSP (Take Blip, Zenvia) via Cloud API. PT-BR UI mature. Shopify nativa. Sem BRL pricing publicado. Sem VTEX nativa. Sem RD Station nativa. Sem Pix. Sem local support BR team. Sem BR sales team. Self-host BR = $0 e advantage real para PMEs.",
+            "source": "tech-research 02-research-report.md section 2.4 · deepwiki Whatsapp providers"
+          },
+          {
+            "player": "zendesk",
+            "score": 80,
+            "confidence": "H",
+            "notes": "Pricing BRL publicado (R$135/R$359/R$755/R$1.105). Suporte PT-BR oficial. Sales BR oficial. Marketplace BR community-built apps (RD Station integration). Caveats: pricing BRL absoluto e proibitivo para PME (R$359 = 5x Octadesk R$79). Sem VTEX nativa, sem Pix nativa.",
+            "source": "zendesk.com.br/pricing/ · marketplace BR community apps"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "chatwoot",
+        "score": 78.85
+      },
+      {
+        "player": "zendesk",
+        "score": 79.05
+      }
+    ],
+    "method": "Each dimension scored 0-100. Weighted sum = total. Confidence levels disclosed per dimension."
+  },
+  "duels": [
+    {
+      "left": "chatwoot",
+      "right": "zendesk",
+      "winner": "zendesk",
+      "left_wins": 2,
+      "right_wins": 6,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "C1",
+          "label": "Canais nativos",
+          "left_score": 92,
+          "right_score": 95,
+          "winner": "zendesk"
+        },
+        {
+          "dimension": "C2",
+          "label": "AI capability",
+          "left_score": 75,
+          "right_score": 88,
+          "winner": "zendesk"
+        },
+        {
+          "dimension": "C3",
+          "label": "Pricing transparency e TCO real",
+          "left_score": 95,
+          "right_score": 50,
+          "winner": "chatwoot"
+        },
+        {
+          "dimension": "C4",
+          "label": "Governance/Compliance",
+          "left_score": 55,
+          "right_score": 95,
+          "winner": "zendesk"
+        },
+        {
+          "dimension": "C5",
+          "label": "Ecosystem/Marketplace/integrations",
+          "left_score": 60,
+          "right_score": 95,
+          "winner": "zendesk"
+        },
+        {
+          "dimension": "C6",
+          "label": "Comunidade/Suporte/Maturidade",
+          "left_score": 78,
+          "right_score": 92,
+          "winner": "zendesk"
+        },
+        {
+          "dimension": "C7",
+          "label": "Flexibilidade",
+          "left_score": 100,
+          "right_score": 35,
+          "winner": "chatwoot"
+        },
+        {
+          "dimension": "C8",
+          "label": "Brasil-fit",
+          "left_score": 65,
+          "right_score": 80,
+          "winner": "zendesk"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "scenario_smb_5_agents_no_compliance_burden",
+      "label": "Smb 5 Agents No Compliance Burden",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "chatwoot",
+          "score": 89,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "zendesk",
+          "score": 65,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "chatwoot",
+          "score": 89
+        },
+        {
+          "player": "zendesk",
+          "score": 65
+        }
+      ],
+      "verdict": "Chatwoot (TCO + flexibility dominam para PME)",
+      "tiebreaker": ""
+    },
+    {
+      "id": "scenario_mid_market_20_agents_with_some_compliance",
+      "label": "Mid Market 20 Agents With Some Compliance",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "zendesk",
+          "score": 82,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "chatwoot",
+          "score": 80,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "zendesk",
+          "score": 82
+        },
+        {
+          "player": "chatwoot",
+          "score": 80
+        }
+      ],
+      "verdict": "Empate (depends on internal DevOps capacity vs procurement preference SaaS)",
+      "tiebreaker": ""
+    },
+    {
+      "id": "scenario_enterprise_50_agents_regulated_industry",
+      "label": "Enterprise 50 Agents Regulated Industry",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "zendesk",
+          "score": 92,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "chatwoot",
+          "score": 65,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "zendesk",
+          "score": 92
+        },
+        {
+          "player": "chatwoot",
+          "score": 65
+        }
+      ],
+      "verdict": "Zendesk (compliance + ecosystem + scale)",
+      "tiebreaker": "EXCETO se cliente self-host Chatwoot Enterprise edition com paid support; ai equipara em flexibilidade"
+    },
+    {
+      "id": "scenario_br_pme_e_commerce",
+      "label": "Br Pme E Commerce",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "chatwoot",
+          "score": 75,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "zendesk",
+          "score": 60,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "chatwoot",
+          "score": 75
+        },
+        {
+          "player": "zendesk",
+          "score": 60
+        }
+      ],
+      "verdict": "Chatwoot (Octadesk/Take Blip/Zenvia podem ser superiores ainda — ver pares 2/3)",
+      "tiebreaker": ""
+    },
+    {
+      "id": "scenario_global_saas_with_eu_gdpr_strict",
+      "label": "Global Saas With Eu Gdpr Strict",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "zendesk_with_data_center_location_addon",
+          "score": 95,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "chatwoot_self_hosted_eu",
+          "score": 88,
+          "delta": ""
+        },
+        {
+          "rank": 3,
+          "player": "chatwoot_cloud",
+          "score": 60,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "zendesk_with_data_center_location_addon",
+          "score": 95
+        },
+        {
+          "player": "chatwoot_self_hosted_eu",
+          "score": 88
+        },
+        {
+          "player": "chatwoot_cloud",
+          "score": 60
+        }
+      ],
+      "verdict": "Zendesk (cloud) ou Chatwoot self-host EU",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "GAP-CW-01",
+      "title": "Gap",
+      "priority": "P0 for regulated industries (banking, health, gov)",
+      "complexity": "HIGH",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-CW-02",
+      "title": "Gap",
+      "priority": "P0 para US federal government accounts",
+      "complexity": "VERY_HIGH",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-CW-03",
+      "title": "Gap",
+      "priority": "P0 para healthcare",
+      "complexity": "MEDIUM",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-CW-04",
+      "title": "Gap",
+      "priority": "P1 para non-technical buyers",
+      "complexity": "HIGH",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-CW-05",
+      "title": "Gap",
+      "priority": "P1 para call-center hybrid teams",
+      "complexity": "MEDIUM",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-CW-06",
+      "title": "Gap",
+      "priority": "P2 (canal de nicho)",
+      "complexity": "MEDIUM",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-CW-07",
+      "title": "Gap",
+      "priority": "P1 para procurement validation enterprise",
+      "complexity": "LOW",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-CW-08",
+      "title": "Gap",
+      "priority": "P2 para BR procurement",
+      "complexity": "LOW",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-CW-09",
+      "title": "Gap",
+      "priority": "P1 para sales validation",
+      "complexity": "LOW",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-CW-10",
+      "title": "Gap",
+      "priority": "P2 para teams com complex routing/automation",
+      "complexity": "MEDIUM",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-ZD-01",
+      "title": "Gap",
+      "priority": "P0 for compliance-driven, cost-driven, or sovereignty-driven buyers",
+      "complexity": "VERY_HIGH",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-ZD-02",
+      "title": "Gap",
+      "priority": "P0 for OSS-mandated procurement (universities, gov, OSS-first companies)",
+      "complexity": "VERY_HIGH",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-ZD-03",
+      "title": "Gap",
+      "priority": "P0 para PME / cost-sensitive buyers",
+      "complexity": "MEDIUM",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-ZD-04",
+      "title": "Gap",
+      "priority": "P1 for BR or high-volume WhatsApp teams",
+      "complexity": "MEDIUM",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-ZD-05",
+      "title": "Gap",
+      "priority": "P2 for emerging channel needs",
+      "complexity": "LOW",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-ZD-06",
+      "title": "Gap",
+      "priority": "P1 para teams with unique workflow requirements",
+      "complexity": "VERY_HIGH",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-ZD-07",
+      "title": "Gap",
+      "priority": "P1 for cost forecasting clarity",
+      "complexity": "MEDIUM",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-ZD-08",
+      "title": "Gap",
+      "priority": "P2 for OSS-mindset technical teams",
+      "complexity": "VERY_HIGH",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-ZD-09",
+      "title": "Gap",
+      "priority": "P1 for solo founders / 2-person startups",
+      "complexity": "LOW",
+      "rationale": ""
+    },
+    {
+      "id": "GAP-ZD-10",
+      "title": "Gap",
+      "priority": "P0 for risk-averse buyers",
+      "complexity": "HIGH",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.chatwoot.com/pricing",
+      "file": "battle-card.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/chatwoot/chatwoot",
+      "file": "battle-card.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com/pricing/",
+      "file": "battle-card.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com/trust-center/",
+      "file": "battle-card.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.chatwoot.com/captain",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com.br/pricing/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com.br/service/ai/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://deepwiki.com/chatwoot/chatwoot/7.4-whatsapp-channel",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.chatwoot.com/docs/product/channels/whatsapp/360dialog",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com/service/ai/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.chatwoot.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.json",
+      "role": "comparison-matrix",
+      "format": "json"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/feature-comparison.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/pricing-analysis.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/risk-analysis.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.json",
+      "role": "gap-analysis",
+      "format": "json"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventory-chatwoot.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "inventory-chatwoot.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventory-zendesk.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "inventory-zendesk.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "complete",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {}
+}

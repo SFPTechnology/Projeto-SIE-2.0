@@ -1,0 +1,327 @@
+{
+  "schema": "sinkra-evidence-ledger-v2",
+  "generated_at": "2026-05-18T18:30:00-03:00",
+  "source_artifacts": [
+    "docs/research/2026-05-16-quais-os-melhores-projetos-de-deepresearch-opensource-atuais/06-gold-data-pack-2026-05-18.md",
+    "docs/research/2026-05-16-quais-os-melhores-projetos-de-deepresearch-opensource-atuais/06-gold-player-registry.yaml",
+    "docs/research/2026-05-16-quais-os-melhores-projetos-de-deepresearch-opensource-atuais/06-gold-evaluation-rubric.yaml",
+    "docs/research/2026-05-16-quais-os-melhores-projetos-de-deepresearch-opensource-atuais/06-gold-experiment-protocol.yaml",
+    "outputs/decoded/deepresearch-batch-code-anatomist/comparative-report-2026-05-18.md",
+    "outputs/decoded/deepresearch-batch-code-anatomist/comparative-matrix-2026-05-18.yaml",
+    "outputs/decoded/deepresearch-batch-code-anatomist/quality-review-2026-05-18.yaml"
+  ],
+  "player_artifacts": [
+    {
+      "slug": "drbench",
+      "name": "DRBench",
+      "repo": "ServiceNow/drbench",
+      "url": "https://github.com/ServiceNow/drbench",
+      "anatomy_dir": "outputs/decoded/drbench",
+      "files": [
+        "outputs/decoded/drbench/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/drbench/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/drbench/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/drbench/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "deer-flow",
+      "name": "DeerFlow",
+      "repo": "bytedance/deer-flow",
+      "url": "https://github.com/bytedance/deer-flow",
+      "anatomy_dir": "outputs/decoded/deer-flow",
+      "files": [
+        "outputs/decoded/deer-flow/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/deer-flow/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/deer-flow/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/deer-flow/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "autoresearchclaw",
+      "name": "AutoResearchClaw",
+      "repo": "aiming-lab/AutoResearchClaw",
+      "url": "https://github.com/aiming-lab/AutoResearchClaw",
+      "anatomy_dir": "outputs/decoded/autoresearchclaw",
+      "files": [
+        "outputs/decoded/autoresearchclaw/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/autoresearchclaw/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/autoresearchclaw/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/autoresearchclaw/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "storm",
+      "name": "STORM",
+      "repo": "stanford-oval/storm",
+      "url": "https://github.com/stanford-oval/storm",
+      "anatomy_dir": "outputs/decoded/storm",
+      "files": [
+        "outputs/decoded/storm/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/storm/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/storm/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/storm/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "gpt-researcher",
+      "name": "GPT-Researcher",
+      "repo": "assafelovic/gpt-researcher",
+      "url": "https://github.com/assafelovic/gpt-researcher",
+      "anatomy_dir": "outputs/decoded/gpt-researcher",
+      "files": [
+        "outputs/decoded/gpt-researcher/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/gpt-researcher/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/gpt-researcher/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/gpt-researcher/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "local-deep-research",
+      "name": "Local Deep Research",
+      "repo": "LearningCircuit/local-deep-research",
+      "url": "https://github.com/LearningCircuit/local-deep-research",
+      "anatomy_dir": "outputs/decoded/local-deep-research",
+      "files": [
+        "outputs/decoded/local-deep-research/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/local-deep-research/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/local-deep-research/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/local-deep-research/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "mirothinker",
+      "name": "MiroThinker",
+      "repo": "MiroMindAI/MiroThinker",
+      "url": "https://github.com/MiroMindAI/MiroThinker",
+      "anatomy_dir": "outputs/decoded/mirothinker",
+      "files": [
+        "outputs/decoded/mirothinker/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/mirothinker/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/mirothinker/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/mirothinker/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "deep-searcher",
+      "name": "DeepSearcher",
+      "repo": "zilliztech/deep-searcher",
+      "url": "https://github.com/zilliztech/deep-searcher",
+      "anatomy_dir": "outputs/decoded/deep-searcher",
+      "files": [
+        "outputs/decoded/deep-searcher/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/deep-searcher/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/deep-searcher/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/deep-searcher/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "langchain-open-deep-research",
+      "name": "LangChain Open Deep Research",
+      "repo": "langchain-ai/open_deep_research",
+      "url": "https://github.com/langchain-ai/open_deep_research",
+      "anatomy_dir": "outputs/decoded/langchain-open-deep-research",
+      "files": [
+        "outputs/decoded/langchain-open-deep-research/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/langchain-open-deep-research/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/langchain-open-deep-research/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/langchain-open-deep-research/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "deep-research-bench",
+      "name": "Deep Research Bench",
+      "repo": "Ayanami0730/deep_research_bench",
+      "url": "https://github.com/Ayanami0730/deep_research_bench",
+      "anatomy_dir": "outputs/decoded/deep-research-bench",
+      "files": [
+        "outputs/decoded/deep-research-bench/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/deep-research-bench/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/deep-research-bench/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/deep-research-bench/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "node-deepresearch",
+      "name": "Jina node-DeepResearch",
+      "repo": "jina-ai/node-DeepResearch",
+      "url": "https://github.com/jina-ai/node-DeepResearch",
+      "anatomy_dir": "outputs/decoded/node-deepresearch",
+      "files": [
+        "outputs/decoded/node-deepresearch/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/node-deepresearch/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/node-deepresearch/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/node-deepresearch/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "miroflow",
+      "name": "MiroFlow",
+      "repo": "MiroMindAI/MiroFlow",
+      "url": "https://github.com/MiroMindAI/MiroFlow",
+      "anatomy_dir": "outputs/decoded/miroflow",
+      "files": [
+        "outputs/decoded/miroflow/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/miroflow/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/miroflow/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/miroflow/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "miroeval",
+      "name": "MiroEval",
+      "repo": "MiroMindAI/MiroEval",
+      "url": "https://github.com/MiroMindAI/MiroEval",
+      "anatomy_dir": "outputs/decoded/miroeval",
+      "files": [
+        "outputs/decoded/miroeval/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/miroeval/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/miroeval/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/miroeval/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "deepresearcher",
+      "name": "DeepResearcher",
+      "repo": "GAIR-NLP/DeepResearcher",
+      "url": "https://github.com/GAIR-NLP/DeepResearcher",
+      "anatomy_dir": "outputs/decoded/deepresearcher",
+      "files": [
+        "outputs/decoded/deepresearcher/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/deepresearcher/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/deepresearcher/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/deepresearcher/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "livedrbench",
+      "name": "LiveDRBench",
+      "repo": "microsoft/LiveDRBench",
+      "url": "https://github.com/microsoft/LiveDRBench",
+      "anatomy_dir": "outputs/decoded/livedrbench",
+      "files": [
+        "outputs/decoded/livedrbench/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/livedrbench/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/livedrbench/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/livedrbench/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "mirorl",
+      "name": "MiroRL",
+      "repo": "MiroMindAI/MiroRL",
+      "url": "https://github.com/MiroMindAI/MiroRL",
+      "anatomy_dir": "outputs/decoded/mirorl",
+      "files": [
+        "outputs/decoded/mirorl/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/mirorl/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/mirorl/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/mirorl/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "mirotrain",
+      "name": "MiroTrain",
+      "repo": "MiroMindAI/MiroTrain",
+      "url": "https://github.com/MiroMindAI/MiroTrain",
+      "anatomy_dir": "outputs/decoded/mirotrain",
+      "files": [
+        "outputs/decoded/mirotrain/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/mirotrain/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/mirotrain/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/mirotrain/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "alibaba-deepresearch",
+      "name": "Alibaba/Tongyi DeepResearch",
+      "repo": "Alibaba-NLP/DeepResearch",
+      "url": "https://github.com/Alibaba-NLP/DeepResearch",
+      "anatomy_dir": "outputs/decoded/alibaba-deepresearch",
+      "files": [
+        "outputs/decoded/alibaba-deepresearch/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/alibaba-deepresearch/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/alibaba-deepresearch/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/alibaba-deepresearch/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "agent-browser-workspace",
+      "name": "Agent Browser Workspace",
+      "repo": "k-kolomeitsev/agent-browser-workspace",
+      "url": "https://github.com/k-kolomeitsev/agent-browser-workspace",
+      "anatomy_dir": "outputs/decoded/agent-browser-workspace",
+      "files": [
+        "outputs/decoded/agent-browser-workspace/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/agent-browser-workspace/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/agent-browser-workspace/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/agent-browser-workspace/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "dzhng-deep-research",
+      "name": "dzhng/deep-research",
+      "repo": "dzhng/deep-research",
+      "url": "https://github.com/dzhng/deep-research",
+      "anatomy_dir": "outputs/decoded/dzhng-deep-research",
+      "files": [
+        "outputs/decoded/dzhng-deep-research/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/dzhng-deep-research/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/dzhng-deep-research/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/dzhng-deep-research/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "openresearcher",
+      "name": "OpenResearcher",
+      "repo": "TIGER-AI-Lab/OpenResearcher",
+      "url": "https://github.com/TIGER-AI-Lab/OpenResearcher",
+      "anatomy_dir": "outputs/decoded/openresearcher",
+      "files": [
+        "outputs/decoded/openresearcher/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/openresearcher/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/openresearcher/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/openresearcher/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "nickscamara-open-deep-research",
+      "name": "nickscamara/open-deep-research",
+      "repo": "nickscamara/open-deep-research",
+      "url": "https://github.com/nickscamara/open-deep-research",
+      "anatomy_dir": "outputs/decoded/nickscamara-open-deep-research",
+      "files": [
+        "outputs/decoded/nickscamara-open-deep-research/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/nickscamara-open-deep-research/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/nickscamara-open-deep-research/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/nickscamara-open-deep-research/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "jigsawstack-deep-research",
+      "name": "JigsawStack Deep Research",
+      "repo": "JigsawStack/deep-research",
+      "url": "https://github.com/JigsawStack/deep-research",
+      "anatomy_dir": "outputs/decoded/jigsawstack-deep-research",
+      "files": [
+        "outputs/decoded/jigsawstack-deep-research/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/jigsawstack-deep-research/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/jigsawstack-deep-research/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/jigsawstack-deep-research/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    },
+    {
+      "slug": "auto-deep-research",
+      "name": "HKUDS Auto-Deep-Research",
+      "repo": "HKUDS/Auto-Deep-Research",
+      "url": "https://github.com/HKUDS/Auto-Deep-Research",
+      "anatomy_dir": "outputs/decoded/auto-deep-research",
+      "files": [
+        "outputs/decoded/auto-deep-research/phase-2-extraction/deep-static-findings.yaml",
+        "outputs/decoded/auto-deep-research/phase-3-fusion/deep-component-map.md",
+        "outputs/decoded/auto-deep-research/phase-6-synthesis/absorption-patterns.md",
+        "outputs/decoded/auto-deep-research/phase-8-documentation/deep-anatomist-notes.md"
+      ]
+    }
+  ]
+}

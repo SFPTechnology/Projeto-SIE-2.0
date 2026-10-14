@@ -1,0 +1,152 @@
+{
+  "schema": "slides-creator-presentation-brief.v2",
+  "generated_at": "2026-05-18",
+  "audience": "founders, product, engineering, design",
+  "objective": "Apresentar por que construir slide creator skill stack por absorção modular e como o benchmark prova essa decisão.",
+  "thesis": "slide creator skill stack deve ser uma composição, não um fork: narrativa governada do squad, renderer ppt-master, runtime Presenton, QA PPTAgent/powerpoint-skill e UX aprendida de presentation-ai/banana-slides.",
+  "slides": [
+    {
+      "kicker": "01 · tese",
+      "title": "Não vamos vencer copiando um Gamma open-source",
+      "body": "O benchmark mostra que nenhum projeto isolado cobre app, skill, renderer, compliance, prompt-to-edit e multimodal com profundidade suficiente. A estratégia vencedora é slide creator skill stack por composição modular.",
+      "accent": "COMPOSTO",
+      "accent_label": "decisão",
+      "tone": "lime",
+      "metrics": [
+        [
+          "score",
+          100
+        ],
+        [
+          "players",
+          9
+        ],
+        [
+          "dimensões",
+          108
+        ],
+        [
+          "personas",
+          12
+        ]
+      ],
+      "bullets": [
+        "SINKRA mantém narrativa e governança",
+        "ppt-master cobre PPTX nativo",
+        "Presenton cobre runtime/API/MCP",
+        "PPTAgent e powerpoint-skill fecham QA e técnica"
+      ]
+    },
+    {
+      "kicker": "02 · mapa",
+      "title": "A comparação justa tem três arenas",
+      "body": "Apps, skills/agentes e engines têm naturezas diferentes. O dashboard precisa mostrar rankings segmentados antes de forçar um vencedor único.",
+      "accent": "3",
+      "accent_label": "arenas",
+      "tone": "lime",
+      "bullets": [
+        "Apps: Presenton, presentation-ai, banana-slides",
+        "Skills/agentes: SINKRA, PPTAgent, PresentAgent-2, powerpoint-skill",
+        "Engines/runtime: ppt-master, Presenton, slide-deck-ai"
+      ]
+    },
+    {
+      "kicker": "03 · personas",
+      "title": "O vencedor muda quando o trabalho muda",
+      "body": "Personas v4 amarram job-to-be-done, must-haves e anti-goals a pesos explícitos sobre a matriz de 108 microdimensões. Isso evita que o bench vire opinião disfarçada de ranking.",
+      "accent": "12",
+      "accent_label": "cenários",
+      "tone": "warning",
+      "bullets": [
+        "Presenton: vence 4 persona(s)",
+        "presentation-ai: vence 3 persona(s)",
+        "ppt-master: vence 2 persona(s)",
+        "powerpoint-skill: vence 1 persona(s)",
+        "banana-slides: vence 1 persona(s)",
+        "PresentAgent-2: vence 1 persona(s)"
+      ]
+    },
+    {
+      "kicker": "04 · stack",
+      "title": "A stack alvo é uma cadeia de absorção",
+      "body": "A inteligência entre arquivos aponta uma arquitetura concreta: Brief → Research → Plan → DeckSpec → Native IR → PPTX/PDF/QA → Share/Analytics.",
+      "accent": "108D",
+      "accent_label": "972 células",
+      "tone": "lime",
+      "bullets": [
+        "DeckSpec governa conteúdo",
+        "Native IR governa editabilidade",
+        "QA governa confiança",
+        "API/MCP governa automação"
+      ]
+    },
+    {
+      "kicker": "05 · gaps",
+      "title": "O bench agora entrega a skill blueprint, não só ranking",
+      "body": "slide-creator-skill-blueprint.md transforma cada vencedor parcial em regra de uso: quando absorver Presenton, ppt-master, PPTAgent, presentation-ai, banana-slides, powerpoint-skill, slide-deck-ai, PresentAgent-2 e Gamma.",
+      "accent": "SKILL",
+      "accent_label": "blueprint",
+      "tone": "lime",
+      "bullets": [
+        "Cada capability tem fonte benchmark",
+        "Cada capability vira artifact",
+        "Cada risco/licença tem regra de não-cópia",
+        "Cada slide precisa roteiro + estrutura + função"
+      ]
+    },
+    {
+      "kicker": "06 · microgaps",
+      "title": "Os gaps agora são microações, não recomendações genéricas",
+      "body": "deep/slides-creator-micro-gap-map.md mostra onde a slide creator skill perde em cada microcapacidade: DrawingML, roundtrip PowerPoint, canvas web, undo/redo, state management, vídeo, analytics e colaboração.",
+      "accent": "86",
+      "accent_label": "gaps micro",
+      "tone": "warning",
+      "bullets": [
+        "Cada gap aponta líder externo",
+        "Cada gap tem peso e impacto",
+        "Cada gap tem modo de absorção",
+        "Cada vantagem vira regressão positiva da skill"
+      ]
+    },
+    {
+      "kicker": "07 · gaps",
+      "title": "Bench 100; produto chega a 100 executando P0/P1",
+      "body": "A inteligência comparativa está completa. O próximo salto não é mais pesquisa: é implementação de renderer nativo, CLI/API/MCP, reflection log, PPTEval e fixtures reais.",
+      "accent": "100",
+      "accent_label": "bench",
+      "tone": "warning",
+      "bullets": [
+        "P0: Criar native-slide-ir.schema.json",
+        "P0: Criar renderer PPTX nativo básico",
+        "P0: Criar editability-report.json",
+        "P0: Criar CLI slides:generate",
+        "P0: Criar API POST /slides/generate",
+        "P0: Criar MCP slides.generate/review/export"
+      ]
+    },
+    {
+      "kicker": "08 · decisão",
+      "title": "Próximo movimento: transformar bench em epic",
+      "body": "A apresentação deve fechar com uma decisão clara: construir slide creator skill stack, usando este bench como matriz de absorção e contrato de aceite.",
+      "accent": "EPIC",
+      "accent_label": "handoff",
+      "tone": "lime",
+      "bullets": [
+        "Materializar stories do backlog",
+        "Implementar contratos Native IR/API/MCP/QA",
+        "Rodar fixtures reais de deck",
+        "Manter bench 100 e medir produto 100 pelo gate P0/P1/P2"
+      ]
+    }
+  ],
+  "appendix": [
+    "comparison-matrix.md",
+    "segmented-comparisons.md",
+    "scenario-scorecards.md",
+    "slide-creator-skill-blueprint.md",
+    "deep/intelligence-graph.md",
+    "TODO-coverage.md",
+    "deep/slides-creator-micro-gap-map.md",
+    "deep/micro-capability-matrix.md"
+  ]
+}

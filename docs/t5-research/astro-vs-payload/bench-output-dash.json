@@ -1,0 +1,1002 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:10:51.988Z",
+  "source_files": [
+    "battle-card.md",
+    "comparison-matrix.md",
+    "deep/cost-of-switching.md",
+    "deep/decision-tree.md",
+    "deep/hybrid-strategy.md",
+    "deep/risk-assessment.md",
+    "executive-report.md",
+    "gap-analysis.md",
+    "inventory-astro.md",
+    "inventory-payload.md",
+    "metadata.canonical.json",
+    "metadata.json",
+    "scorecard.json",
+    "scorecard.md"
+  ],
+  "benchmark": {
+    "slug": "astro-vs-payload",
+    "title": "Executive Report — Astro 6.2 vs Payload CMS 3.x",
+    "date": "2026-05-04",
+    "type": "technology",
+    "variant": "2-way",
+    "analyst": "bench-analyst"
+  },
+  "players": [
+    {
+      "key": "astro",
+      "name": "Astro",
+      "category": "unknown"
+    },
+    {
+      "key": "payload",
+      "name": "Payload",
+      "category": "Headless CMS + Next.js-native Admin"
+    }
+  ],
+  "summary": {
+    "winner": "payload",
+    "coverage": "structured",
+    "sources": 27,
+    "waves": 0,
+    "dimensions": 18
+  },
+  "matrix": {
+    "players": [
+      "astro",
+      "payload"
+    ],
+    "dimensions": [
+      {
+        "id": "1",
+        "label": "React fundamentality",
+        "weight": 10
+      },
+      {
+        "id": "2",
+        "label": "Vite paridade",
+        "weight": 7
+      },
+      {
+        "id": "3",
+        "label": "Auto-hospedagem",
+        "weight": 10
+      },
+      {
+        "id": "4",
+        "label": "TypeScript+Zod schemas",
+        "weight": 9
+      },
+      {
+        "id": "5",
+        "label": "Multi-tenant Hub-and-Spoke",
+        "weight": 9
+      },
+      {
+        "id": "6",
+        "label": "Editor WYSIWYG não-dev",
+        "weight": 10
+      },
+      {
+        "id": "7",
+        "label": "Live preview",
+        "weight": 8
+      },
+      {
+        "id": "8",
+        "label": "SEO institucional",
+        "weight": 9
+      },
+      {
+        "id": "9",
+        "label": "Performance runtime",
+        "weight": 8
+      },
+      {
+        "id": "10",
+        "label": "Build performance",
+        "weight": 6
+      },
+      {
+        "id": "11",
+        "label": "DX dev",
+        "weight": 7
+      },
+      {
+        "id": "12",
+        "label": "Validação enterprise",
+        "weight": 9
+      },
+      {
+        "id": "13",
+        "label": "Maturidade ecossistema",
+        "weight": 7
+      },
+      {
+        "id": "14",
+        "label": "Roadmap & risco",
+        "weight": 8
+      },
+      {
+        "id": "15",
+        "label": "License & custo",
+        "weight": 7
+      },
+      {
+        "id": "16",
+        "label": "Curva de aprendizado",
+        "weight": 6
+      },
+      {
+        "id": "17",
+        "label": "Integração Vercel",
+        "weight": 6
+      },
+      {
+        "id": "18",
+        "label": "Multi-language i18n",
+        "weight": 7
+      }
+    ],
+    "rows": [
+      {
+        "id": "1",
+        "label": "React fundamentality",
+        "weight": 10,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 60,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "label": "Vite paridade",
+        "weight": 7,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 30,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "label": "Auto-hospedagem",
+        "weight": 10,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "label": "TypeScript+Zod schemas",
+        "weight": 9,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 60,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "label": "Multi-tenant Hub-and-Spoke",
+        "weight": 9,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 40,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "label": "Editor WYSIWYG não-dev",
+        "weight": 10,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 20,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "label": "Live preview",
+        "weight": 8,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 30,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "label": "SEO institucional",
+        "weight": 9,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "label": "Performance runtime",
+        "weight": 8,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 60,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "10",
+        "label": "Build performance",
+        "weight": 6,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "11",
+        "label": "DX dev",
+        "weight": 7,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "12",
+        "label": "Validação enterprise",
+        "weight": 9,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "13",
+        "label": "Maturidade ecossistema",
+        "weight": 7,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "14",
+        "label": "Roadmap & risco",
+        "weight": 8,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 60,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "15",
+        "label": "License & custo",
+        "weight": 7,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "16",
+        "label": "Curva de aprendizado",
+        "weight": 6,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 60,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "17",
+        "label": "Integração Vercel",
+        "weight": 6,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "18",
+        "label": "Multi-language i18n",
+        "weight": 7,
+        "cells": [
+          {
+            "player": "astro",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "payload",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "astro",
+        "score": 73.01
+      },
+      {
+        "player": "payload",
+        "score": 75.87
+      }
+    ],
+    "method": "Derived from markdown table in scorecard.md"
+  },
+  "duels": [
+    {
+      "left": "astro",
+      "right": "payload",
+      "winner": "astro",
+      "left_wins": 10,
+      "right_wins": 6,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "1",
+          "label": "React fundamentality",
+          "left_score": 60,
+          "right_score": 90,
+          "winner": "payload"
+        },
+        {
+          "dimension": "2",
+          "label": "Vite paridade",
+          "left_score": 90,
+          "right_score": 30,
+          "winner": "astro"
+        },
+        {
+          "dimension": "3",
+          "label": "Auto-hospedagem",
+          "left_score": 90,
+          "right_score": 90,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "TypeScript+Zod schemas",
+          "left_score": 90,
+          "right_score": 60,
+          "winner": "astro"
+        },
+        {
+          "dimension": "5",
+          "label": "Multi-tenant Hub-and-Spoke",
+          "left_score": 40,
+          "right_score": 90,
+          "winner": "payload"
+        },
+        {
+          "dimension": "6",
+          "label": "Editor WYSIWYG não-dev",
+          "left_score": 20,
+          "right_score": 80,
+          "winner": "payload"
+        },
+        {
+          "dimension": "7",
+          "label": "Live preview",
+          "left_score": 30,
+          "right_score": 90,
+          "winner": "payload"
+        },
+        {
+          "dimension": "8",
+          "label": "SEO institucional",
+          "left_score": 90,
+          "right_score": 70,
+          "winner": "astro"
+        },
+        {
+          "dimension": "9",
+          "label": "Performance runtime",
+          "left_score": 90,
+          "right_score": 60,
+          "winner": "astro"
+        },
+        {
+          "dimension": "10",
+          "label": "Build performance",
+          "left_score": 80,
+          "right_score": 70,
+          "winner": "astro"
+        },
+        {
+          "dimension": "11",
+          "label": "DX dev",
+          "left_score": 80,
+          "right_score": 80,
+          "winner": "tie"
+        },
+        {
+          "dimension": "12",
+          "label": "Validação enterprise",
+          "left_score": 80,
+          "right_score": 90,
+          "winner": "payload"
+        },
+        {
+          "dimension": "13",
+          "label": "Maturidade ecossistema",
+          "left_score": 90,
+          "right_score": 70,
+          "winner": "astro"
+        },
+        {
+          "dimension": "14",
+          "label": "Roadmap & risco",
+          "left_score": 70,
+          "right_score": 60,
+          "winner": "astro"
+        },
+        {
+          "dimension": "15",
+          "label": "License & custo",
+          "left_score": 100,
+          "right_score": 90,
+          "winner": "astro"
+        },
+        {
+          "dimension": "16",
+          "label": "Curva de aprendizado",
+          "left_score": 70,
+          "right_score": 60,
+          "winner": "astro"
+        },
+        {
+          "dimension": "17",
+          "label": "Integração Vercel",
+          "left_score": 90,
+          "right_score": 80,
+          "winner": "astro"
+        },
+        {
+          "dimension": "18",
+          "label": "Multi-language i18n",
+          "left_score": 80,
+          "right_score": 90,
+          "winner": "payload"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "payload",
+          "score": 75.87,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "astro",
+          "score": 73.01,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "astro",
+          "score": 73.01
+        },
+        {
+          "player": "payload",
+          "score": 75.87
+        }
+      ],
+      "verdict": "Payload vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-analysis-1",
+      "title": "Astro Gaps (o que Payload tem e Astro não)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-2",
+      "title": "Payload Gaps (o que Astro tem e Payload não)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-3",
+      "title": "Gap Severity Legend",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-4",
+      "title": "Critical-path Analysis",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-5",
+      "title": "Para Astro adoção single-stack (sem CMS):",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-6",
+      "title": "Para Payload adoção single-stack (com Next.js):",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-7",
+      "title": "Para Hybrid Strategy (Payload backend + Astro renderer):",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-8",
+      "title": "Bidirectional Severity Matrix",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-9",
+      "title": "Recommended Closure Roadmap",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-10",
+      "title": "Se single-stack Payload:",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-11",
+      "title": "Se Hybrid (Payload + Astro):",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://astro.build/blog/astro-620/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://astro.build/blog/astro-6/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://docs.astro.build/en/guides/upgrade-to/v6/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://docs.astro.build/en/guides/server-islands/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://blog.cloudflare.com/astro-joins-cloudflare/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://astro.build/blog/goodbye-astro-studio/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://astro.build/blog/year-in-review-2025/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://npmtrends.com/astro",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://astro.build/showcase/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/payloadcms/payload/releases",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://payloadcms.com/posts/blog/payload-30-the-first-cms-that-installs-directly-into-any-nextjs-app",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.figma.com/blog/payload-joins-figma/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://payloadcms.com/docs/plugins/multi-tenant",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://payloadcms.com/docs/local-api/outside-nextjs",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://payloadcms.com/docs/database/overview",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://payloadcms.com/docs/rich-text/overview",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://payloadcms.com/docs/live-preview/overview",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://payloadcms.com/case-studies",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://payloadcms.com/docs/plugins/seo",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://payloadcms.com/docs/access-control/overview",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://advisories.gitlab.com/pkg/npm/@payloadcms/drizzle/CVE-2026-25544/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://payloadcms.com/posts/guides/setting-up-payload-with-supabase-for-your-nextjs-app-a-step-by-step-guide",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://blog.cloudflare.com/payload-cms-workers/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/withastro/astro",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://docs.astro.build/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/payloadcms/payload",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://payloadcms.com/docs",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/cost-of-switching.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/decision-tree.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/hybrid-strategy.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/risk-assessment.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventory-astro.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventory-payload.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {}
+}

@@ -1,0 +1,22 @@
+schema: bench-scope-contract.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+boundaries:
+  scope_statement: Compare anchor vs N players
+  in_scope:
+    subjects:
+    - anchor
+    - 0 comparison players
+    activities:
+    - Static repo analysis
+    - Architectural comparison
+    - Weighted multi-dim scoring
+    - Bidirectional gap analysis
+    - Absorption playbook
+  out_of_scope:
+  - Runtime performance benchmarks (out of effort budget)
+  - Customer interviews
+  - Deep security pen-test
+constraints:
+  time_budget: ~3-5 hours bench execution
+  player_count_max: 10

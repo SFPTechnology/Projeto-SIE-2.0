@@ -1,0 +1,41 @@
+{
+  "schema": "2026-05-16-deep-research-absorption-benchmark.risk-register.v1",
+  "generated_at": "2026-05-18",
+  "risks": [
+    {
+      "id": "R01",
+      "risk": "Adotar hype por stars sem benchmark próprio.",
+      "probability": "ALTA",
+      "impact": "ALTO",
+      "mitigation": "Rodar 5 queries do Deep Research Bench e 5 queries reais do Hub antes de adoção."
+    },
+    {
+      "id": "R02",
+      "risk": "Modelo RL-trained vencer benchmark mas não servir para pesquisa atualizada em web real-time.",
+      "probability": "MEDIA",
+      "impact": "ALTO",
+      "mitigation": "Separar uso de OpenResearcher/DeepResearcher para accuracy offline de uso operacional real-time."
+    },
+    {
+      "id": "R03",
+      "risk": "Vazamento de dados sensíveis ao usar frameworks cloud/search externos.",
+      "probability": "MEDIA",
+      "impact": "ALTO",
+      "mitigation": "Usar Local Deep Research ou stack local para workspace L0/L1; proibir queries sensíveis em providers externos."
+    },
+    {
+      "id": "R04",
+      "risk": "Complexidade de setup matar adoção interna.",
+      "probability": "MEDIA",
+      "impact": "MÉDIO",
+      "mitigation": "Começar por GPT-Researcher MCP e LangChain Open DR como baseline antes de DeerFlow/AutoResearchClaw."
+    },
+    {
+      "id": "R05",
+      "risk": "Benchmarks anglófonos não refletirem qualidade em PT-BR.",
+      "probability": "ALTA",
+      "impact": "MÉDIO",
+      "mitigation": "Criar fixture PT-BR com perguntas reais e avaliação por citações, nuance e utilidade executiva."
+    }
+  ]
+}

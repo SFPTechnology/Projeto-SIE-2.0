@@ -1,0 +1,35 @@
+{
+  "schema": "2026-05-16-deep-research-absorption-benchmark.implementation-readiness.v1",
+  "generated_at": "2026-05-18",
+  "decision": "GO para bench interno; NÃO adotar core sem spike comparativo.",
+  "gates": [
+    {
+      "id": "GATE-1",
+      "name": "Integração MCP rápida",
+      "status": "ready",
+      "owner": "AIOX dev",
+      "next_action": "Testar GPT-Researcher MCP com 3 queries públicas."
+    },
+    {
+      "id": "GATE-2",
+      "name": "Privacidade",
+      "status": "conditional",
+      "owner": "AIOX devops",
+      "next_action": "Subir Local Deep Research com Ollama/SearXNG local antes de usar dados sensíveis."
+    },
+    {
+      "id": "GATE-3",
+      "name": "Accuracy benchmark",
+      "status": "needs-test",
+      "owner": "research squad",
+      "next_action": "Rodar Deep Research Bench subset e fixture PT-BR."
+    },
+    {
+      "id": "GATE-4",
+      "name": "Adoção production",
+      "status": "blocked",
+      "owner": "@devops",
+      "next_action": "Aguardar resultados do spike; só @devops pode push/PR/release."
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "projeto-sie-quality-gates",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Root quality gate boundary for Projeto SIE AIOX workflow artifacts.",
+  "scripts": {
+    "lint": "node scripts/validate-sdc-auto-1.js lint",
+    "typecheck": "node scripts/validate-sdc-auto-1.js typecheck",
+    "test": "node scripts/validate-sdc-auto-1.js test",
+    "build": "node scripts/validate-sdc-auto-1.js build"
+  }
+}

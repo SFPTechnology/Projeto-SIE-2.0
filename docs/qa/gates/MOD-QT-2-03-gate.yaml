@@ -1,0 +1,240 @@
+schema: 1
+story: "MOD-QT-2-03"
+story_title: "Catálogo Fechado de Impedância e Resolvedor de Perfil (VER-QT-02/03/04)"
+story_path: "docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md"
+gate: CONCERNS
+status_reason: >-
+  Os 16 ACs estão cobertos por teste automatizado e a integridade do catálogo foi
+  reconferida de forma independente pelo @qa contra o artefato de extração (1.563/1.563
+  registros, ZERO valores de Rca/XL divergentes, 24 nulos preservados, nenhum zero,
+  perfil_id unívoco 1.563/1.563). Contrato público intacto por símbolo. Ressalvas de
+  baixa severidade em dois guardas de teste do gate C-07 (checagem de `[VERIFICAR]` por
+  substring literal e assert sobre a razão motor/mock), que não afetam código de produção.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-29T06:30:00-03:00"
+expires: "2026-08-12T06:30:00-03:00"
+quality_score: 92
+mode: "yolo (autônomo, sem intervenção humana)"
+normative_source: "docs/research/{2026-07-28}-resolucao-ver-qt.md §6 (C-01, C-02, C-04, C-07, C-08)"
+data_source: "docs/research/2026-07-28-resolucao-ver-qt/impedancia-prysmian.json"
+submodule: "sistema-de-instala-es-el-tricas-sie-main"
+
+# ---------------------------------------------------------------------------
+# VERIFICAÇÕES OBRIGATÓRIAS E INDEPENDENTES (@qa executou, não aceitou relato)
+# ---------------------------------------------------------------------------
+verificacoes_independentes:
+  - id: V1
+    item: "Contrato público byte-a-byte, por símbolo (CA-QT-18 equivalente)"
+    resultado: PASS
+    evidencia: >-
+      `src/api/schemas/otimizar-condutor.schema.ts` AUSENTE de `git status --porcelain`
+      (arquivo intocado) — `ValidarMODQTSchema` e `RetornoMODQTSchema` idênticos ao HEAD.
+      `git diff -U0 src/domain/dimensionamento-condutores/contratos.ts` toca APENAS
+      `ResultadoDimensionamento` (linhas 175/178: `ib_a`, `i2_a`, `fonte_i2` — trabalho
+      alheio de MOD-CC/AUTO-OTI); `RetornoMODQT` não aparece no diff. Em
+      `modulos.mod-qt.validar.ts` o diff preserva byte a byte
+      `createFileRoute("/api/v1/modulos/mod-qt/validar")` e o import dos dois schemas;
+      as alterações são exclusivamente no CORPO do handler (mock → motor real + ramo 422).
+
+  - id: V2
+    item: "Decisão PO-01 — fonte_id, sha256, url e versao_fonte qualificada"
+    resultado: PASS
+    evidencia: >-
+      `fonte_id` distinto no catálogo = ['PRYSMIAN_BT_REV10'] (0 ocorrências de
+      `PRYSMIAN_BT_GUIA`). `fonte_sha256` e `fonte_url` presentes e obrigatórios no tipo
+      `RegistroImpedanciaCatalogo` (hidratados via `fonte_id`). `versao_fonte` grava a
+      redação qualificada exigida ("REV10 — rótulo declarado no nome do arquivo da URL
+      oficial; não repetido na capa nem nos metadados internos do PDF (criação
+      2020-09-22). Identidade verificável: SHA-256 82131cb4..."). O literal "Rev. 10" foi
+      isolado em `rotulo_revisao`, usado só na citação formatada — NÃO é afirmado como
+      revisão confirmada em nenhum ponto. Teste de SHA-256 obrigatório existe
+      (`catalogo-impedancia-completude.test.ts`, describe AC3).
+
+  - id: V3
+    item: "Decisão PO-03 — fonte_id é coluna discriminadora, não constante embutida"
+    resultado: PASS
+    evidencia: >-
+      `grep -rn 'PRYSMIAN|Prysmian' src/` fora do catálogo retorna apenas 3 linhas, todas
+      em COMENTÁRIO de arquivos provisórios legados (`resistividade.ts`,
+      `tabela-impedancia.ts`). `resolver-perfil-impedancia.ts` não menciona fabricante e
+      não filtra por `fonte_id`; `RegistroImpedanciaCatalogo.fonte_id` é `string` (não
+      union literal); o bloco `fontes` do JSON é LISTA. Um segundo fabricante entra sem
+      tocar schema, resolvedor ou motor.
+
+  - id: V4
+    item: "Nenhum [VERIFICAR] promovido a CONFIRMADO sem fonte; nenhum XL = 0; nenhuma célula não publicada virou 0"
+    resultado: PASS
+    evidencia: >-
+      Conferência direta do JSON pelo @qa: registros com `r_ca_ohm_km === 0` = 0;
+      `x_l_ohm_km === 0` = 0; nulos = 24 na fonte e 24 no catálogo. Comparação chave a
+      chave (tabela|família|seção|topologia) contra `impedancia-prysmian.json`:
+      0 registros sem par e 0 valores de Rca/XL divergentes — a renomeação de campo NÃO
+      transformou valor. `tabela-impedancia.ts` e `resistividade.ts` permanecem com
+      `status_verificacao = "[VERIFICAR]"` e foram APOSENTADOS do caminho de produção
+      (motor importa apenas `resolver-perfil-impedancia`); seguem expostos só pelo
+      endpoint de auditoria `tabelas.impedancia.ts`, com a marcação intacta.
+
+  - id: V5
+    item: "Chave sem perfil publicado rejeita ANTES de montar RetornoMODQT (teste negativo real, lido)"
+    resultado: PASS
+    evidencia: >-
+      `resolver-perfil-impedancia.test.ts` describe "AC6 / AC7 — a rejeição ocorre ANTES
+      de montar RetornoMODQT" (it lido, linha 200) + describe "AC6 / AC14" com 6 casos
+      negativos (família livre, seção ausente, topologia ausente, célula não publicada,
+      tabela inexistente, conduto ferromagnético). Código conferido: os 6 ramos de
+      `resolverPerfilImpedancia()` lançam `ErroQuedaTensao` antes de qualquer cálculo;
+      `calcularQuedaTensao` chama o resolvedor (linha 333) antes de compor o resultado.
+      `tentarResolverPerfilImpedancia()` devolve `null` só em varreduras — não é fallback,
+      não produz valor.
+
+  - id: V6
+    item: "CA-QT-19 — oracle independente, razão motor/mock só como diagnóstico"
+    resultado: CONCERNS
+    evidencia: >-
+      CONFIRMADO que o oracle lê o JSON BRUTO por `readFileSync` do próprio catálogo
+      (linhas 45-52) e aplica a fórmula do parecer §3.3 (fator 2 mono/bifásico, √3
+      trifásico, Rca·cosφ + XL·senφ), sem importar `motor-queda-tensao.ts`. Grade 8×9×7 =
+      504 conferida em runtime. RESSALVA: o teste de diagnóstico ainda contém um
+      `expect(Math.min(...razoes)).toBeGreaterThan(1)` — a razão motor/mock, embora não
+      seja o critério de correção (que é o oracle), continua podendo reprovar a suíte.
+      Ver TEST-002.
+
+  - id: V8
+    item: "Efeito colateral §8 — 422/PENDENTE sem perfil, coberto por teste (não acidental)"
+    resultado: PASS
+    evidencia: >-
+      `tests/api/modulos-mod-qt-motor-real.test.ts:70` ("sem os cinco campos controlados o
+      endpoint REJEITA com 422 e status PENDENTE, sem resultado técnico") e
+      `tests/api/modulos-mod-qt.test.ts:221` ("MOD-QT-2-03 AC16: sem perfil de impedância o
+      endpoint rejeita com 422/PENDENTE e não persiste retorno") + :233 (C5 permanece
+      PENDENTE/AGUARDANDO-QT). O ramo 422 está explícito no handler
+      (`mod_qt_perfil_impedancia_nao_resolvido`). Comportamento deliberado, testado.
+
+  - id: V9
+    item: "MOD-DC intocado por esta story"
+    resultado: PASS
+    evidencia: >-
+      `src/domain/dimensionamento-condutores/` tem 9 arquivos modificados na worktree, mas
+      `git diff` desse diretório NÃO contém nenhuma ocorrência de
+      queda|perfil_cabo|impedanc|prysmian|retorno_qt|limite_total (grep = 0 linhas). As
+      alterações são de MOD-CC/AUTO-OTI/proteção (`ib_a`, `i2_a`, `motor-protecao.ts`,
+      `temperaturas-disponiveis.ts`), pré-existentes e alheias a esta cadeia. Nenhuma
+      alteração atribuível a MOD-QT-2-03.
+
+  - id: V10
+    item: "BLK-QT-TIMEOUT-FLAKY-01 — reexecução própria"
+    resultado: NAO_REPRODUZIDO
+    evidencia: >-
+      Duas execuções completas consecutivas de `npx vitest run` pelo @qa: 132/132 arquivos
+      e 947/947 testes, exit 0, em 242,6 s e 239,0 s. O timeout intermitente de
+      `catalogo-impedancia-completude.test.ts` NÃO se reproduziu. PORÉM a causa estrutural
+      permanece: o `it` das linhas 156-172 continua iterando 1.563 registros × 13 campos
+      com callback de mensagem por assert, sem `testTimeout` próprio e sem override no
+      config. Blocker MANTIDO ABERTO, severidade rebaixada MÉDIA → BAIXA. Não fechado:
+      não há evidência de correção, apenas de não reprodução nesta rodada.
+
+# ---------------------------------------------------------------------------
+# 7 CHECKS DE QUALIDADE (.claude/rules/story-lifecycle.md Fase 4)
+# ---------------------------------------------------------------------------
+quality_checks:
+  code_review: PASS       # resolvedor fail-closed, catálogo gerado por script versionado, comentários rastreiam §N
+  unit_tests: PASS        # 8 arquivos novos/atualizados; 24+12+4 testes dedicados; 0 skips introduzidos
+  acceptance_criteria: PASS   # 16/16 com evidência automatizada verificada por amostragem
+  no_regressions: PASS    # 947/947 em 2 execuções; nenhum skip, nenhuma suíte deletada
+  performance: PASS       # índice Map O(1) no resolvedor; JSON 0,81 MB, 1 registro/linha
+  security: NAO_APLICAVEL # dados estáticos normativos; sem superfície de auth/entrada não validada nova
+  documentation: PASS     # Dev Agent Record documenta PO-01/02/03, 14 decisões e o efeito §8
+
+# ---------------------------------------------------------------------------
+gates_tecnicos:
+  typecheck:
+    comando: "npx tsc --noEmit"
+    resultado: PASS
+    detalhe: "exit 0, sem saída"
+  test_run_1:
+    comando: "npx vitest run"
+    resultado: PASS
+    detalhe: "Test Files 132 passed (132) | Tests 947 passed (947) | 242,56 s"
+  test_run_2:
+    comando: "npx vitest run"
+    resultado: PASS
+    detalhe: "Test Files 132 passed (132) | Tests 947 passed (947) | 239,01 s"
+  build:
+    comando: "npx vite build"
+    resultado: PASS
+    detalhe: "built in 12.18s"
+  lint_escopado:
+    comando: "npx eslint <22 arquivos de MOD-QT-2-03>"
+    resultado: PASS
+    detalhe: "exit 0, zero violações"
+  lint_projeto_inteiro:
+    comando: "npx eslint ."
+    resultado: NAO_VERIFICADO
+    detalhe: >-
+      Não executado: travamento ambiental pré-existente confirmado por múltiplos agentes.
+      NÃO presumido PASS (fail-closed).
+
+# ---------------------------------------------------------------------------
+top_issues:
+  - id: "TEST-001"
+    severity: low
+    finding: >-
+      O gate AC10 do CA-QT-19 verifica ausência de marcação com
+      `publico.fonte.includes("[VERIFICAR]")`. Essa substring NÃO casa com
+      `MARCACAO_VERIFICAR_ALINEA = "[VERIFICAR — alínea 6.2.7.1]"`. O guarda do parecer
+      §6 C-07 ("não existir [VERIFICAR] em saída aprovada") é, portanto, mais estreito do
+      que o texto do teste declara. Sem defeito hoje (a grade usa limite 4%, fora de
+      LIMITES_TOTAIS_SUJEITOS_A_ALINEA = [5,7]), mas o guarda não detectaria a regressão
+      que ele existe para impedir.
+    suggested_action: >-
+      Trocar por `expect(publico.fonte).not.toMatch(/\[VERIFICAR/)` ou verificar
+      explicitamente `MARCACAO_VERIFICAR_ALINEA` além de "[VERIFICAR]".
+    file: "tests/domain/queda-tensao/ca-qt-19-nao-regressao.test.ts:174"
+
+  - id: "TEST-002"
+    severity: low
+    finding: >-
+      O bloco declarado "DIAGNÓSTICO LEGADO (não é critério)" contém
+      `expect(Math.min(...razoes)).toBeGreaterThan(1)`. A razão motor/mock segue capaz de
+      reprovar a suíte, o que contraria a formulação do AC9 ("emitida apenas como
+      diagnóstico"). O critério de CORREÇÃO permanece corretamente o oracle independente —
+      por isso severidade baixa, não bloqueante.
+    suggested_action: >-
+      Converter o assert em registro (console/anexo de diagnóstico) ou renomear o teste
+      para declarar que a DIREÇÃO da diferença de fonte (Rca a T de operação > ρ a 20 °C)
+      é intencionalmente assertiva.
+    file: "tests/domain/queda-tensao/ca-qt-19-nao-regressao.test.ts:240"
+
+  - id: "OPS-001"
+    severity: low
+    finding: >-
+      BLK-QT-TIMEOUT-FLAKY-01 não se reproduziu em 2 execuções completas consecutivas,
+      mas a causa estrutural (1.563 × 13 asserts com callback de mensagem dentro do
+      testTimeout padrão de 5 s) não foi alterada. O risco de suíte não determinística
+      sob carga permanece latente.
+    suggested_action: >-
+      Adicionar `testTimeout` próprio ao `it` das linhas 156-172 ou reduzir o custo do
+      laço (acumular divergências e assertar uma vez ao final).
+    file: "tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts:156"
+
+waiver: { active: false }
+
+# ---------------------------------------------------------------------------
+definition_of_done:
+  1_acs_com_teste: PASS         # 16/16
+  2_ca_qt_19_regenerado: PASS   # oracle independente confirmado por leitura
+  3_contrato_por_simbolo: PASS  # V1
+  4_sem_valor_generico: PASS    # V4 — 0 divergências vs. artefato
+  5_po_01_02_03_documentadas: PASS
+  6_gates_tecnicos: PASS_COM_RESSALVA  # lint de projeto inteiro NAO_VERIFICADO (ambiental)
+  7_file_list_fiel: PASS        # inclui a 5ª suíte descoberta (tests/api/modulos-mod-qt.test.ts)
+  8_nao_tocar_intacto: PASS
+
+recommended_status: "Done"
+status_transition: "InReview → Done"
+next_agent: "@devops"
+next_command: "*push"
+next_condition: >-
+  BLOQUEADO nesta rodada: a cadeia MOD-QT-2-VERQT só libera handoff a @devops quando as
+  DUAS stories fecharem em PASS/CONCERNS. MOD-QT-2-04 fechou FAIL — ver
+  docs/qa/gates/MOD-QT-2-04-gate.yaml. Nenhum handoff qa-to-devops foi emitido.

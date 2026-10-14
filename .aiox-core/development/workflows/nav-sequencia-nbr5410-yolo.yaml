@@ -1,0 +1,419 @@
+workflow:
+  id: nav-sequencia-nbr5410-yolo
+  name: "Navegação SIE - Conformidade de sequência NBR 5410 (YOLO)"
+  version: "1.0.0"
+  type: brownfield
+  scope: frontend
+  orchestrator: aiox-master
+  description: >-
+    Implementa os Achados 1 e 2 da auditoria de navegação do SIE: corrige a
+    inversão entre "Queda de tensão" e "Dimensionamento de condutores" no grupo
+    de cálculo, e extrai "Padrão de entrada" do rótulo "Cálculo NBR 5410" para
+    um grupo próprio de entrada de serviço (norma da distribuidora EDP-SP).
+    Ciclo SDC completo em modo autônomo, encerrando no veredito formal do QA.
+
+  execution:
+    mode: yolo
+    interaction_policy: never_prompt
+    continuation_policy: automatic_on_success
+    on_missing_input: block_and_log
+    on_ambiguous_scope: block_and_log
+    max_dev_iterations: 3
+    max_coderabbit_critical_fix_iterations: 2
+    max_qa_iterations: 3
+    state_persistence: true
+    audit_logging: true
+    local_only: true
+
+  target:
+    story_id: NAV-NBR-1
+    story_file: docs/stories/story-NAV-NBR-1-sequencia-navegacao-nbr5410.md
+    source_analysis: >-
+      Auditoria @analyst (Atlas) 2026-08-07 — sequência das seções do menu
+      lateral vs. NBR 5410. Achados 1 (inversão QT/condutores) e 2 (agrupamento
+      indevido de Padrão de entrada sob "Cálculo NBR 5410").
+    subapp: sistema-de-instala-es-el-tricas-sie-main
+    primary_file: src/components/app/sie-shell/nav-model.ts
+    corroborating_reference: src/components/command-center/module-navigation-data.ts
+    initial_status: Draft
+    final_status: Done
+
+  authority:
+    orchestration: aiox-master
+    story_creation: sm
+    story_validation_and_scope: po
+    code_and_tests: dev
+    local_toolchain_operations: devops
+    story_status_and_dev_record: dev
+    qa_results_and_gate_verdict: qa
+    remote_operations: forbidden
+
+  normative_basis:
+    achado_1:
+      claim: >-
+        Queda de tensão é critério de 6.2.6 e exige uma seção já candidata; não
+        pode preceder o dimensionamento de condutores na navegação.
+      evidence:
+        - "src/domain/queda-tensao/contratos.ts — RequisicaoQuedaTensao recebe secao_mm2 como entrada obrigatória."
+        - "src/domain/queda-tensao/contratos.ts — cabeçalho declara que o contrato público do MOD-QT vive em @/domain/dimensionamento-condutores/contratos."
+        - "src/components/command-center/module-navigation-data.ts — o Command Center já ordena condutores antes de queda."
+      nbr_refs: ["6.2.5", "6.2.6", "6.2.7"]
+    achado_2:
+      claim: >-
+        Padrão de entrada é governado pela norma técnica da concessionária
+        (EDP-SP), não pela NBR 5410; permanecer sob o rótulo "Cálculo NBR 5410"
+        é impreciso perante ART/CREA.
+      evidence:
+        - "src/components/app/sie-shell/nav-model.ts — hint do item é 'Padrão de entrada EDP-SP'."
+        - "src/domain/distribuidora/edp-sp/ — domínio vive fora de src/domain/nbr/."
+        - "src/components/command-center/module-navigation-data.ts — Command Center já trata 'entrada' como grupo separado."
+
+  work_scope:
+    in:
+      - "Reordenar os itens do grupo 'calculo' em NAV_GROUPS para: correntes, dimensionamento (condutores), queda-tensao, dimensionamento-disjuntores."
+      - "Criar grupo novo para o item padrao-entrada, com rótulo que não o atribua à NBR 5410, posicionado após o grupo de cálculo e antes de 'documentacao'."
+      - "Atualizar comentários de código de nav-model.ts para registrar a razão normativa da ordem."
+      - "Estender src/components/app/sie-shell/nav-model.test.ts com asserções de ordem e de agrupamento que travem a regressão."
+      - "Verificar e, se necessário, alinhar a ordem em module-navigation-data.ts para eliminar a divergência entre as duas superfícies de navegação."
+    out:
+      - "Achado 3 (lacunas: proteção contra choques/DR/aterramento, balanceamento de fases, quadro de cargas/memorial) — exige stories próprias com módulos de domínio."
+      - "Achado 4 (reposicionar Command Center) — decisão de produto pendente de @po, fora deste escopo."
+      - "Qualquer alteração em rotas, arquivos de src/routes/, src/routeTree.spa.ts ou lógica de domínio."
+      - "Renomear paths de rota, ids de item ou tipos RotaProjeto/RotaGlobal."
+      - "Alterações visuais em SieSidebar.tsx além do que a mudança do modelo exigir."
+      - "Commit, push, PR, merge, release, deploy ou migration."
+
+  guardrails:
+    - "Não inventar requisitos fora dos Achados 1 e 2 da auditoria de origem."
+    - "Preservar mudanças preexistentes e não relacionadas no worktree — o repositório tem trabalho untracked de outros épicos."
+    - "Não alterar os valores de `to` dos itens de navegação: URLs são contrato com usuários e com routeTree.spa.ts."
+    - "Não alterar os `id` dos itens: findActiveItemId e testes dependem deles."
+    - "Manter NAV_GROUPS como única fonte de verdade — não duplicar a ordem em SieSidebar.tsx."
+    - "Não relaxar regras de lint nem excluir arquivos para fazer um gate passar."
+    - "Não executar commit, push, PR, merge, release, deploy ou migration."
+    - "Não mover a story para InReview antes de todos os gates obrigatórios passarem."
+    - "Somente o QA pode alterar QA Results e emitir o veredito do gate."
+
+  required_outcomes:
+    - id: ordem_calculo_corrigida
+      description: >-
+        No grupo 'calculo', o item de dimensionamento de condutores precede o de
+        queda de tensão, e o de disjuntores permanece após ambos.
+    - id: padrao_entrada_desagrupado
+      description: >-
+        O item padrao-entrada não pertence mais ao grupo rotulado "Cálculo NBR 5410";
+        vive em grupo próprio posicionado entre cálculo e documentação.
+    - id: regressao_travada_por_teste
+      description: >-
+        nav-model.test.ts falha se a ordem do grupo de cálculo for invertida ou se
+        padrao-entrada voltar para o grupo de cálculo.
+    - id: superficies_de_navegacao_coerentes
+      description: >-
+        A ordem em nav-model.ts e em module-navigation-data.ts não se contradizem;
+        divergência residual, se houver, está justificada por escrito.
+    - id: all_quality_gates_green
+      description: >-
+        lint, typecheck, test, build, build:spa e docs:tutorial:check terminam com
+        código 0 na mesma revisão.
+    - id: qa_gate_emitido
+      description: >-
+        O QA emite veredito formal com arquivo de gate e a story alcança o status
+        correspondente ao veredito.
+
+  quality_gates:
+    working_directory: sistema-de-instala-es-el-tricas-sie-main
+    policy: all_must_pass_in_same_revision
+    commands:
+      - id: lint
+        command: npm run lint
+        expected_exit_code: 0
+      - id: typecheck
+        command: npm run typecheck
+        expected_exit_code: 0
+      - id: test
+        command: npm test
+        expected_exit_code: 0
+      - id: build
+        command: npm run build
+        expected_exit_code: 0
+      - id: build_spa
+        command: npm run build:spa
+        expected_exit_code: 0
+      - id: docs_tutorial_check
+        command: npm run docs:tutorial:check
+        expected_exit_code: 0
+        notes: >-
+          nav-model.ts não está registrado em UNIDADES hoje, mas o hook pre-commit
+          roda esta checagem; um drift preexistente bloquearia a story mais adiante.
+          Se falhar por arquivo não relacionado, registrar como preexistente e não
+          reassinar manifesto de terceiros.
+
+  sequence:
+    - step: preflight_and_scope_lock
+      id: preflight_and_scope_lock
+      agent: aiox-master
+      action: >-
+        Validar as premissas da auditoria contra o código atual, registrar o
+        baseline do worktree e fixar o escopo antes de qualquer mutação.
+      creates: scope_lock_report
+      outputs:
+        - baseline_status
+        - authorized_paths
+        - premise_verification
+        - execution_audit_id
+      notes: |
+        Releia nav-model.ts, nav-model.test.ts, SieSidebar.tsx,
+        module-navigation-data.ts e queda-tensao/contratos.ts.
+
+        Confirme as três premissas antes de prosseguir:
+          1. NAV_GROUPS é a única fonte de ordem consumida por SieSidebar.tsx.
+          2. RequisicaoQuedaTensao continua exigindo secao_mm2 como entrada.
+          3. Nenhum teste ou snapshot existente trava a ordem atual do menu.
+        Se qualquer premissa estiver falsa, encerre com status failed e log objetivo —
+        a auditoria precisa ser revisitada antes da implementação.
+
+        Registre arquivos modificados e untracked antes da execução e trate-os como
+        mudanças do usuário; não reverta nem sobrescreva nada alheio ao escopo.
+        Nunca pergunte em modo YOLO.
+
+    - step: draft_story
+      id: draft_story
+      agent: sm
+      requires: scope_lock_report
+      action: >-
+        Criar a story NAV-NBR-1 com critérios de aceite testáveis derivados dos
+        Achados 1 e 2 e da base normativa declarada no workflow.
+      creates: story_draft
+      outputs:
+        - story_path
+        - acceptance_criteria
+        - scope_in_out
+        - risks
+      notes: |
+        Os critérios de aceite devem ser verificáveis por teste automatizado sobre
+        NAV_GROUPS, não por inspeção visual. Cada AC referencia o achado de origem e,
+        quando aplicável, o item da NBR 5410. Copie o escopo IN/OUT deste workflow
+        literalmente para a story — a exclusão dos Achados 3 e 4 é parte do contrato.
+        Registre o risco de divergência residual entre as duas superfícies de navegação.
+
+    - step: validate_story
+      id: validate_story
+      agent: po
+      requires: story_draft
+      action: >-
+        Validar a story pelo checklist de 10 pontos e decidir GO/NO-GO.
+      creates: story_validation
+      outputs:
+        - verdict
+        - score
+        - required_fixes
+        - story_status
+      notes: |
+        Verifique especialmente que os critérios de aceite são testáveis e que o
+        escopo OUT preserva os Achados 3 e 4 fora desta story. Em GO, atualize o
+        Status da story de Draft para Ready e registre a transição no Change Log.
+        Em NO-GO, devolva ao sm com correções objetivas; no máximo duas rodadas,
+        depois encerre com status failed.
+
+    - step: implement_navigation_changes
+      id: implement_navigation_changes
+      agent: dev
+      requires: story_validation
+      action: >-
+        Aplicar a reordenação do grupo de cálculo e a extração de Padrão de entrada
+        para grupo próprio, com testes que travem a regressão.
+      creates: implementation_report
+      outputs:
+        - changed_files
+        - nav_groups_final_shape
+        - new_tests
+        - command_center_alignment_decision
+        - focused_test_evidence
+      notes: |
+        Achado 1 — em NAV_GROUPS, grupo `calculo`, a ordem final dos itens é:
+        correntes, dimensionamento (condutores), queda-tensao, dimensionamento-disjuntores.
+        Preserve id, label, hint, icon, to e requiresProjeto de cada item; apenas a
+        posição no array muda. Adicione comentário de código explicando que queda de
+        tensão é critério de 6.2.6 verificado sobre uma seção já candidata, com o
+        ponteiro para secao_mm2 em queda-tensao/contratos.ts.
+
+        Achado 2 — remova padrao-entrada do grupo `calculo` e crie um grupo novo
+        contendo apenas esse item, posicionado entre `calculo` e `documentacao`.
+        O rótulo do grupo não pode atribuir o item à NBR 5410 e deve identificar a
+        origem normativa como a distribuidora. Mantenha `collapsible: true`, coerente
+        com os demais grupos de projeto. Adicione comentário registrando que o domínio
+        vive em src/domain/distribuidora/edp-sp/, fora de src/domain/nbr/.
+
+        Testes — estenda src/components/app/sie-shell/nav-model.test.ts com asserções
+        que falhem se: a ordem condutores→queda for invertida; padrao-entrada voltar
+        ao grupo de cálculo; ou o grupo de entrada sair de sua posição relativa.
+        Asserte sobre ids e sobre a posição relativa dos grupos, não sobre strings de
+        label — o rótulo pode evoluir sem quebrar a regra normativa.
+
+        Coerência — compare a ordem resultante com gruposNavegacao em
+        module-navigation-data.ts. Se houver divergência remanescente, alinhe-a quando
+        a mudança for de ordenação pura; se exigir alterar rótulos, escopo ou itens
+        daquela superfície, não altere e registre a divergência como carry-forward
+        justificado no relatório. Não amplie o escopo unilateralmente.
+
+        Não toque em src/routes/, src/routeTree.spa.ts nem em lógica de domínio.
+        Execute testes focados após cada correção.
+
+    - step: coderabbit_review
+      id: coderabbit_review
+      agent: devops
+      requires: implementation_report
+      action: >-
+        Executar a revisão CodeRabbit no WSL sobre o diff local atribuível à story.
+      creates: coderabbit_report
+      outputs:
+        - review_exit_code
+        - critical_findings
+        - high_findings
+        - report_path
+      notes: |
+        Autorização limitada ao ambiente local/WSL e à execução read-only da revisão.
+        Verifique versão e autenticação antes de revisar. Preserve credenciais e nunca
+        exiba tokens. Se o CodeRabbit estiver indisponível no ambiente, registre a
+        indisponibilidade como evidência explícita e prossiga com status degraded —
+        não declare revisão limpa sem execução. Nenhuma operação remota.
+
+    - step: resolve_coderabbit_blockers
+      id: resolve_coderabbit_blockers
+      agent: dev
+      requires: coderabbit_report
+      action: >-
+        Resolver findings CRITICAL dentro do escopo e documentar os HIGH.
+      creates: coderabbit_resolution
+      outputs:
+        - critical_findings_resolved
+        - high_findings_documented
+        - changed_files
+      notes: |
+        Auto-fix de CRITICAL por no máximo duas iterações. HIGH é document_only, salvo
+        quando também quebra um gate obrigatório. Não altere requisitos nem amplie o
+        escopo. Se um CRITICAL persistir após duas iterações, retorne status failed com
+        o bloqueio registrado. Sem findings, produza o relatório sem mudar código.
+
+    - step: run_mandatory_quality_gates
+      id: run_mandatory_quality_gates
+      agent: dev
+      requires: coderabbit_resolution
+      action: >-
+        Executar os seis gates obrigatórios e corrigir regressões até todos
+        terminarem com código 0 na mesma revisão.
+      creates: quality_gate_report
+      outputs:
+        - lint_result
+        - typecheck_result
+        - test_result
+        - build_result
+        - build_spa_result
+        - docs_tutorial_check_result
+        - preexisting_failures
+        - gate_revision_fingerprint
+      notes: |
+        Execute exatamente os comandos declarados em quality_gates, a partir do
+        diretório do subapp, na ordem indicada. Registre comando, código de saída,
+        duração e resumo.
+
+        Distinga falha causada por esta story de falha preexistente no worktree.
+        Falha preexistente e não atribuível é registrada com evidência (reprodução no
+        baseline) e não é corrigida aqui — mas também não é silenciada: entra no
+        relatório e no gate do QA. Falha atribuível é corrigida dentro do escopo,
+        reiniciando a sequência completa. No máximo três ciclos de remediação.
+
+        Retorne completed apenas quando todos os gates atribuíveis passarem na mesma
+        revisão; caso contrário, retorne failed.
+
+    - step: complete_and_handoff
+      id: complete_and_handoff
+      agent: dev
+      requires: quality_gate_report
+      action: >-
+        Atualizar o registro da implementação e mover a story para InReview.
+      creates: inreview_handoff
+      outputs:
+        - story_status
+        - updated_story_sections
+        - final_file_list
+        - qa_review_request
+      notes: |
+        Antes de editar a story, confirme que os gates atribuíveis são código 0 e que
+        não há CRITICAL aberto no CodeRabbit. Marque apenas checkboxes comprovados.
+        Atualize Dev Agent Record, Completion Notes, Change Log e File List; preserve
+        integralmente QA Results. Registre a transição de status no Change Log. A
+        passagem ao próximo passo constitui a solicitação automática de revisão QA.
+
+    - step: qa_gate
+      id: qa_gate
+      agent: qa
+      requires: inreview_handoff
+      action: >-
+        Revisar a story, verificar os gates e emitir veredito formal de qualidade.
+      creates: qa_gate_result
+      outputs:
+        - gate_verdict
+        - quality_score
+        - gate_file
+        - residual_findings
+        - final_story_status
+      notes: |
+        Verifique: a ordem final de NAV_GROUPS contra a base normativa declarada em
+        normative_basis; que os novos testes realmente falham quando a ordem é
+        invertida (execute a inversão em memória ou por mutação temporária, e reverta);
+        que nenhum `to` ou `id` de item mudou; que src/routes/ e o domínio não foram
+        tocados; e que os Achados 3 e 4 permaneceram fora do diff.
+
+        Confirme os seis quality gates e avalie as falhas preexistentes reportadas —
+        elas não devem contaminar o veredito desta story, mas devem constar como
+        observação. Emita PASS, CONCERNS ou FAIL com evidências, atualize QA Results e
+        o arquivo de gate, e ajuste o status da story conforme o veredito. Não altere
+        código.
+
+  handoff_prompts:
+    master_to_sm: >-
+      Premissas verificadas e baseline registrado. Redija NAV-NBR-1 com critérios
+      testáveis sobre NAV_GROUPS e mantenha os Achados 3 e 4 fora do escopo.
+    sm_to_po: >-
+      Story redigida. Valide a testabilidade dos critérios e a integridade do escopo
+      OUT antes do GO.
+    po_to_dev: >-
+      Story Ready. Altere apenas a ordem e o agrupamento em nav-model.ts, preservando
+      ids e paths, e trave a regra com teste.
+    dev_to_devops: >-
+      Navegação reordenada e testes adicionados. Revise apenas o diff local desta
+      story, sem operações remotas.
+    devops_to_dev: >-
+      Revisão concluída. Resolva apenas findings bloqueantes e rode os seis gates.
+    dev_to_qa: >-
+      Story em InReview com gates atribuíveis verdes. Valide contra a base normativa
+      e atualize exclusivamente os artefatos QA.
+
+  completion_criteria:
+    - "No grupo de cálculo, condutores precede queda de tensão, e disjuntores vem depois de ambos."
+    - "padrao-entrada está em grupo próprio, fora do rótulo 'Cálculo NBR 5410', entre cálculo e documentação."
+    - "nav-model.test.ts contém asserções de ordem e agrupamento que falham sob regressão."
+    - "Nenhum id, path `to`, rota ou arquivo de domínio foi alterado."
+    - "A divergência com module-navigation-data.ts foi eliminada ou justificada por escrito."
+    - "lint, typecheck, test, build, build:spa e docs:tutorial:check passam na mesma revisão."
+    - "O QA emitiu veredito com arquivo de gate e a story reflete o status correspondente."
+
+  failure_policy:
+    behavior: block_and_log
+    never_claim_success_on_partial_evidence: true
+    keep_story_inprogress_until_all_pre_handoff_gates_pass: true
+    preserve_execution_state_for_resume: true
+    escalate_on_false_premise: true
+
+  audit:
+    created_at: "2026-08-07T00:00:00-03:00"
+    created_by: "analyst (Atlas)"
+    requested_by: "User"
+    source_decision: "ADAPT"
+    adapted_from: story-development-cycle-t2-sem-motor-qa-remediation-yolo
+    rationale: >-
+      Reaproveita a estrutura YOLO local-only já validada no projeto, mas parte de
+      Draft (story inexistente) em vez de retomar um gate FAIL, e inclui um passo de
+      verificação de premissas porque a origem é uma auditoria analítica, não um gate
+      de QA com evidência já produzida.

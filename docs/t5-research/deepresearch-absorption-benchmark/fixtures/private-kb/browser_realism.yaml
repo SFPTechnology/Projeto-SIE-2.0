@@ -1,0 +1,10 @@
+schema: synthetic-private-kb-fixture-v1
+group: browser_realism
+documents:
+- id: browser_realism-policy
+  title: Política sintética
+  classification: synthetic_private
+  claims:
+  - Preferência por self-hosting
+  - Dados privados não podem sair do tenant
+  - Fonte privada prevalece sobre marketing público quando houver conflito

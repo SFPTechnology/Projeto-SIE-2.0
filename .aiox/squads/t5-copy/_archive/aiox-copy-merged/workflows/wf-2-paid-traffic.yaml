@@ -1,0 +1,354 @@
+workflow:
+  id: wf-2-paid-traffic
+  name: Quick Traffic - Paid Traffic Pipeline
+  duration: 3 days
+  description: |
+    Fast-execution workflow for paid traffic campaigns.
+    Designed for rapid ad creation, landing page development, and conversion optimization.
+    Uses Eugene Schwartz's awareness levels, John Carlton's direct response ads,
+    Dan Kennedy's urgency frameworks, and Gary Halbert's visceral copy.
+  target_output:
+    - Ad copy (Meta, Google, YouTube, TikTok, LinkedIn)
+    - Landing pages (squeeze, sales, webinar registration)
+    - Thank you pages with upsells
+    - Retargeting sequences
+  key_agents:
+    primary:
+      - eugene-schwartz
+      - john-carlton
+      - dan-kennedy
+      - gary-halbert
+    secondary:
+      - todd-brown
+      - joe-sugarman
+    also_consider:
+      - frank-kern
+      - dan-koe
+  governance:
+    operating_model: Campaign Brief -> Message Architecture -> Asset Brief -> Copy Deck -> Review Gates -> Validation Loop
+    strategic_or_final_rule: Paid traffic campaigns promoted to FINAL should use persisted campaign artifacts
+    planning_root: workspace/businesses/{business}/copy/{campaign_slug}/
+    delivery_root: outputs/copy/{business}/
+    review_gates:
+      required:
+        - checklists/hopkins-audit-checklist.md
+        - checklists/sugarman-30-triggers.md
+        - checklists/final-copy-readiness.md
+      rule: FINAL promotion requires Hopkins specificity review, Sugarman trigger review, and final readiness approval
+  type: canonical-campaign-workflow
+  status: active_canonical
+  sequence:
+    - step: phase-1
+      id: phase-1
+      phase: 1
+      phase_name: Awareness & Market Diagnosis
+      agent: eugene-schwartz
+      action: execute_mandatory-first-step-before-any-copy-creation
+      next: phase-2
+    - step: phase-2
+      id: phase-2
+      phase: 2
+      phase_name: Ad Copy Creation
+      agent: john-carlton
+      action: execute_create-high-converting-ad-copy-for-multiple-platforms
+      next: phase-3
+    - step: phase-3
+      id: phase-3
+      phase: 3
+      phase_name: Landing Page & Conversion
+      agent: gary-halbert
+      action: execute_create-landing-pages-with-conversion-optimization
+    - workflow_end:
+        id: complete
+        action: workflow_complete
+  handoff_prompts:
+    eugene-schwartz_to_john-carlton: Handoff context from eugene-schwartz to john-carlton. Preserve outputs, risks, and open decisions.
+    john-carlton_to_gary-halbert: Handoff context from john-carlton to gary-halbert. Preserve outputs, risks, and open decisions.
+phases:
+  - id: PHASE-1
+    name: Awareness & Market Diagnosis
+    day: 1
+    tier: 0
+    description: |
+      MANDATORY FIRST STEP before any copy creation.
+      Diagnose prospect awareness level (Schwartz's 5 Levels) and
+      market sophistication to determine copy strategy.
+    tasks:
+      - task_file: load-workspace-context.md
+        agent: copy-chief
+        required: true
+        focus: Load governance, source-of-truth layers, and campaign planning context
+        output: Campaign context brief
+      - task_file: diagnose-awareness-level.md
+        agent: eugene-schwartz
+        required: true
+        focus: Determine prospect awareness level (1-5)
+        output: Awareness diagnosis with copy implications
+      - task_file: diagnose-market-sophistication.md
+        agent: eugene-schwartz
+        required: true
+        focus: Determine market sophistication stage (1-5)
+        output: Market sophistication analysis
+      - task_file: avatar-research.md
+        agent: dan-kennedy
+        required: true
+        focus: Define ideal customer avatar for paid traffic
+        output: Buyer avatar document
+      - task_file: campaign-planning-pack.md
+        agent: copy-chief
+        required: true
+        focus: Produce canonical campaign artifacts for ads and landing-page execution
+        output: Campaign planning pack with ad and landing-page asset briefs
+    checkpoint:
+      criteria:
+        - CAMPAIGN CONTEXT loaded
+        - AWARENESS LEVEL diagnosed (1-5)
+        - MARKET SOPHISTICATION determined
+        - BUYER AVATAR defined
+        - CAMPAIGN ARTIFACTS prepared
+      human_review: false
+      message: Diagnosis complete. Awareness level and market sophistication determined.
+  - id: PHASE-2
+    name: Ad Copy Creation
+    day: 2
+    tier: 1
+    description: |
+      Create high-converting ad copy for multiple platforms.
+      Apply John Carlton's SWS Method, Dan Kennedy's urgency,
+      and awareness-level-appropriate messaging.
+    tasks:
+      - task_file: create-headlines.md
+        agent: john-carlton
+        required: true
+        focus: Create 20+ headlines matched to awareness level
+        output: Headline swipe file
+      - task_file: create-ad-copy.md
+        agent: john-carlton
+        required: true
+        focus: Multi-platform ad variations (Meta, Google, YouTube)
+        output: Ad copy suite
+      - task_file: create-video-hook.md
+        agent: gary-halbert
+        required: false
+        focus: Video ad hooks for YouTube/TikTok/Reels
+        output: 5 video hooks with scripts
+      - task_file: create-native-ads.md
+        agent: dan-kennedy
+        required: false
+        focus: Native ad content for Taboola/Outbrain
+        output: Native ad variations
+      - task_file: create-ad-copy.md
+        agent: frank-kern
+        required: false
+        focus: Intent-Based Branding (IBB) ad variations - authentic, casual tone that builds brand while driving clicks
+        output: IBB ad variations
+        notes: |
+          Frank Kern's Intent-Based Branding approach for ads:
+          - Lead with value/content, not hard sell
+          - Authentic, casual tone (anti-corporate)
+          - Build brand recognition alongside conversion
+          - Best for warm audiences and retargeting
+      - task_file: create-ad-copy.md
+        agent: dan-koe
+        required: false
+        focus: Content-first ad angles for Twitter/X, LinkedIn, and organic-style paid posts
+        output: Content-style ad variations
+        notes: |
+          Dan Koe's digital writing approach adapted for ads:
+          - One-person business positioning
+          - Content that feels organic, not ad-like
+          - Philosophical/big-picture hooks
+          - Best for knowledge workers and creator audiences
+    checkpoint:
+      criteria:
+        - HEADLINES created (20+)
+        - AD COPY for 3+ platforms
+        - COPY matches awareness level
+      human_review: true
+      message: Review ad copy before landing page creation.
+  - id: PHASE-3
+    name: Landing Page & Conversion
+    day: 3
+    tier: 2
+    description: |
+      Create landing pages with conversion optimization.
+      Apply MECLABS Conversion Heuristic, Unbounce 7 Principles,
+      and message-match with ads.
+    tasks:
+      - task_file: create-landing-page.md
+        agent: gary-halbert
+        required: true
+        focus: Primary landing page matched to ad copy
+        output: Landing page copy document
+      - task_file: create-thank-you-page.md
+        agent: dan-kennedy
+        required: true
+        focus: Thank you page with immediate next step
+        output: Thank you page with upsell hook
+      - task_file: create-upsell-page.md
+        agent: todd-brown
+        required: false
+        focus: One-click upsell with big idea mechanism
+        output: Upsell page copy
+      - task_file: create-email-sequence.md
+        agent: dan-kennedy
+        required: true
+        focus: 5-email follow-up sequence for leads
+        output: Lead nurture sequence
+    checkpoint:
+      criteria:
+        - LANDING PAGE complete
+        - THANK YOU PAGE complete
+        - MESSAGE MATCH verified (ad → landing page)
+        - EMAIL SEQUENCE drafted
+        - REVIEW GATES passed (Hopkins + Sugarman + Final Readiness)
+      human_review: true
+      message: Review landing page and conversion flow against the final review gates before launch.
+outputs:
+  canonical_artifacts:
+    planning:
+      - campaign-brief.yaml
+      - message-architecture.yaml
+      - creative-brief.yaml
+      - assets/asset-brief-ads.yaml
+      - assets/asset-brief-landing-page.yaml
+    delivery:
+      - outputs/copy/{business}/ads/*
+      - outputs/copy/{business}/pages/*
+  ad_copy:
+    - 20+ headlines
+    - Meta ad copy (3-5 variations)
+    - Google ad copy (3-5 variations)
+    - YouTube/TikTok video hooks (5)
+    - Native ad variations (optional)
+  landing_pages:
+    - Primary landing page
+    - Thank you page with upsell hook
+    - Upsell page (optional)
+  email_sequences:
+    - 5-email lead nurture sequence
+  documentation:
+    - Awareness level diagnosis
+    - Market sophistication analysis
+    - Buyer avatar document
+completion_signal: <promise>COMPLETE</promise>
+checkpoint_signal: <promise>CHECKPOINT:PHASE-X</promise>
+blocked_signal: <promise>BLOCKED:T-X.Y</promise>
+automation:
+  state_file: copy-state.json
+  progress_file: progress.txt
+  handoff_file: handoff.md
+agent_roles:
+  eugene-schwartz:
+    specialty: Awareness levels and market sophistication diagnosis
+    applies_to:
+      - Awareness diagnosis (Tier 0)
+      - Market sophistication analysis
+      - Copy strategy foundation
+    key_framework: 5 Levels of Awareness + 5 Stages of Market Sophistication
+  john-carlton:
+    specialty: Direct response ads that demand attention
+    applies_to:
+      - Ad headlines
+      - Ad copy (all platforms)
+      - Direct response frameworks
+    key_framework: SWS Method (Simple Writing System)
+  dan-kennedy:
+    specialty: Urgency, deadlines, and direct response marketing
+    applies_to:
+      - Avatar research
+      - Thank you pages
+      - Email sequences
+      - Native ads
+    key_framework: No B.S. Direct Marketing + Urgency Stack
+  gary-halbert:
+    specialty: Visceral, emotional copy that creates connection
+    applies_to:
+      - Landing pages
+      - Video hooks
+      - Story-driven copy
+    key_framework: A-Pile Letter Method + Visceral Copy
+  todd-brown:
+    specialty: Big ideas and unique mechanisms
+    applies_to:
+      - Upsell pages
+      - Unique mechanism development
+    key_framework: E5 Method + Big Idea Framework
+  joe-sugarman:
+    specialty: Slippery slide engagement
+    applies_to:
+      - First lines
+      - Scroll optimization
+    key_framework: Slippery Slide + Psychological Triggers
+  frank-kern:
+    specialty: Intent-Based Branding ads - authentic, casual, brand-building
+    applies_to:
+      - IBB ad variations (Phase 2, optional)
+      - Warm audience and retargeting ads
+    key_framework: Intent-Based Branding + Mass Control
+  dan-koe:
+    specialty: Digital writing, content-first ads, one-person business positioning
+    applies_to:
+      - Content-style ad variations (Phase 2, optional)
+      - Twitter/X and LinkedIn organic-style paid posts
+    key_framework: Digital Writing + One-Person Business Content Strategy
+awareness_strategies:
+  level_1_unaware:
+    headline_approach: Story/Curiosity - Pattern interrupt
+    copy_length: Very Long (5000+ words)
+    proof_focus: Education first, establish problem existence
+    example: A strange thing happened when...
+  level_2_problem_aware:
+    headline_approach: Problem agitation
+    copy_length: Long (2000-5000 words)
+    proof_focus: Solution is possible, others succeeded
+    example: If you suffer from...
+  level_3_solution_aware:
+    headline_approach: Mechanism/Big Idea differentiation
+    copy_length: Medium-Long (1500-3000 words)
+    proof_focus: Why THIS solution, unique mechanism
+    example: The new way to [achieve X]...
+  level_4_product_aware:
+    headline_approach: Offer/Proof heavy
+    copy_length: Medium (1000-2000 words)
+    proof_focus: Why buy NOW, risk reversal, testimonials
+    example: Get [product] with [bonus]...
+  level_5_most_aware:
+    headline_approach: Deal/Direct offer
+    copy_length: Short (500-1000 words)
+    proof_focus: Just the offer, price, deal, CTA
+    example: "[Product] now 50% off..."
+quality_gates:
+  awareness_match:
+    - Copy matches diagnosed awareness level
+    - Headline approach aligns with level
+    - Copy length appropriate for level
+  ad_standards:
+    - Headlines under platform character limits
+    - Primary text optimized for each platform
+    - CTAs clear and compelling
+    - Hooks grab attention in 3 seconds
+  landing_page_standards:
+    - Message match with ads verified
+    - Single clear CTA
+    - Above-fold captures attention
+    - Proof elements present
+    - Mobile-optimized
+  conversion_flow:
+    - Ad → Landing Page message match
+    - Landing Page → Thank You continuity
+    - Upsell relevance verified
+    - Email sequence aligned with offer
+metadata:
+  version: "1.0"
+  framework: copy-framework-v2
+  created: "2026-01-23"
+  story_id: US-004
+  primary_use_case: Paid traffic campaigns and performance marketing
+  secondary_use_cases:
+    - Meta/Facebook ads
+    - Google Ads
+    - YouTube ads
+    - TikTok ads
+    - LinkedIn ads
+    - Native advertising

@@ -1,0 +1,99 @@
+{
+  "schema": "sinkra.bench-local-contract.v1",
+  "generated_at": "2026-05-18",
+  "benchmark_kind": "open_source_absorption_landscape",
+  "objective": "Comparar stack interna e projetos open-source para decidir o que absorver, em que ordem, com quais riscos e contratos de implementação.",
+  "request_fit": {
+    "decision_type": "build_vs_absorb",
+    "primary_question": "Como construir slide creator skill stack usando absorção modular em vez de escolher um fork único?",
+    "not_a_generic_ranking": true
+  },
+  "thresholds": {
+    "players": { "minimum": 6, "preferred": 8 },
+    "macro_rows": { "minimum": 24, "preferred": 36 },
+    "micro_rows": { "minimum": 72, "preferred": 108 },
+    "personas": { "minimum": 6, "preferred": 10 },
+    "graph_nodes": { "minimum": 40, "preferred": 60 },
+    "graph_edges": { "minimum": 80, "preferred": 120 },
+    "artifacts": { "minimum": 45, "preferred": 90 }
+  },
+  "required_files": {
+    "deep": [
+      "deep/micro-capability-matrix.json",
+      "deep/micro-capability-matrix.md",
+      "deep/macro-comparison-matrix.json",
+      "deep/macro-comparison-matrix.md",
+      "deep/persona-weight-methodology.json",
+      "deep/persona-weight-methodology.md",
+      "deep/micro-leaderboard-by-group.md",
+      "deep/segmented-methodology.md",
+      "deep/segment-deep-analysis.md"
+    ],
+    "domain_specific": [
+      "slide-creator-skill-blueprint.json",
+      "slide-creator-skill-blueprint.md",
+      "contracts/api-contract.md",
+      "contracts/mcp-contract.md",
+      "contracts/native-ir-contract.md",
+      "contracts/qa-rubric.json",
+      "contracts/qa-rubric.md"
+    ]
+  },
+  "taxonomy": {
+    "categories": [
+      "Apps",
+      "Skills/Agentes",
+      "Engines/Runtime",
+      "Internal Governance"
+    ],
+    "row_unit": "microcapability",
+    "player_model": "mixed stack players: internal skill, OSS apps, OSS engines, agentic frameworks and closed benchmark reference",
+    "dimension_source": "36 macro dimensions decomposed into 108 operational microchecks",
+    "segmentation_required": true
+  },
+  "matrix_model": {
+    "primary_matrix": "deep/micro-capability-matrix.json",
+    "baseline_matrix": "deep/macro-comparison-matrix.json",
+    "row_unit": "macro_dimension -> 3 micro_checks",
+    "cell_model": "one cell per player per microcapability"
+  },
+  "scoring_model": {
+    "method_family": "weighted_sum",
+    "formula": "score_total_player = soma(score_da_celula * peso_da_microdimensao) / soma(pesos)",
+    "cell_formula": "score_da_celula = cobertura + profundidade + fidelidade + evidencia + absorvibilidade",
+    "scale": "0-100",
+    "weight_policy": "36 macro weights are split across 108 microdimensions; final weight sum remains 100",
+    "normalization": "weighted scores remain on 0-100 scale",
+    "tie_break_policy": "Use context, source strength, segment and persona before declaring a winner",
+    "score_lenses": [
+      "coverage",
+      "depth",
+      "fidelity",
+      "evidence",
+      "absorption"
+    ]
+  },
+  "evidence_model": {
+    "confidence_levels": ["high", "medium", "low"],
+    "cell_evidence_required": true,
+    "source_priority": [
+      "local code/docs/scripts/tests",
+      "README and partial local flow",
+      "inference or indirect signal"
+    ]
+  },
+  "dashboard_value_model": {
+    "primary_value": "show thesis, proof, context and execution sequence",
+    "recommended_navigation": [
+      "Tese",
+      "Slides",
+      "Execução",
+      "Personas",
+      "Micro Gaps",
+      "Evidências",
+      "Matriz",
+      "Comparativo",
+      "Docs"
+    ]
+  }
+}

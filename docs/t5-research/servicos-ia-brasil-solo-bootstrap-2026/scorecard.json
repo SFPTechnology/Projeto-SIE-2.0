@@ -1,0 +1,881 @@
+{
+  "schema": "servicos-ia-brasil-solo-bootstrap-2026.scorecard.v2",
+  "generated_at": "2026-05-17",
+  "score_scale": "0-100 weighted solo-bootstrap score",
+  "scorecard_id": "scorecard",
+  "bench_id": "servicos-ia-brasil-solo-bootstrap-2026",
+  "scoring_method": "weighted_sum_normalized_0_100",
+  "dimension_definitions": [
+    {
+      "id": "0",
+      "weight": 0.25,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "1",
+      "weight": 0.2,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "2",
+      "weight": 0.2,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "3",
+      "weight": 0.15,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "4",
+      "weight": 0.1,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "5",
+      "weight": 0.05,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "6",
+      "weight": 0.05,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "0",
+      "weight": 0.25,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "1",
+      "weight": 0.2,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "2",
+      "weight": 0.2,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "3",
+      "weight": 0.15,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "4",
+      "weight": 0.1,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "5",
+      "weight": 0.05,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    },
+    {
+      "id": "6",
+      "weight": 0.05,
+      "winner": "mentoria-premium",
+      "delta": 0,
+      "evidence": "Mentoria/Formação Premium IA lidera undefined por 0 pts sob a lente solo-bootstrap.",
+      "mentoria_premium": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "automacao_n8n_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "whatsapp_vertical": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "genai_conteudo": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "sdr_ia_voice_hitl": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "preditivo_customizado": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "lgpd_governanca": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "cyber_ia": {
+        "score": 0,
+        "note": "VETO"
+      },
+      "chatbot_generico": {
+        "score": 0,
+        "note": "VETO"
+      }
+    }
+  ],
+  "ranking": [
+    {
+      "rank": 1,
+      "id": "mentoria-premium",
+      "score": 87.8,
+      "verdict": "PRIMARY_BET"
+    },
+    {
+      "rank": 2,
+      "id": "automacao-n8n-vertical",
+      "score": 76.7,
+      "verdict": "SECONDARY_BET_OR_PAIRED"
+    },
+    {
+      "rank": 3,
+      "id": "whatsapp-vertical",
+      "score": 69.6,
+      "verdict": "FAST_CASH_ENTRY_OR_ANCHOR"
+    },
+    {
+      "rank": 4,
+      "id": "genai-conteudo",
+      "score": 56.5,
+      "verdict": "CHANNEL_PRIMER_NOT_BUSINESS"
+    },
+    {
+      "rank": 5,
+      "id": "sdr-ia-voice-hitl",
+      "score": 54.3,
+      "verdict": "DEFER_TO_YEAR_2"
+    },
+    {
+      "rank": 6,
+      "id": "preditivo-customizado",
+      "score": 50.4,
+      "verdict": "VETO_FOR_SOLO"
+    },
+    {
+      "rank": 7,
+      "id": "lgpd-governanca",
+      "score": 49,
+      "verdict": "VETO_FOR_SOLO"
+    },
+    {
+      "rank": 8,
+      "id": "cyber-ia",
+      "score": 47.6,
+      "verdict": "VETO_FOR_SOLO"
+    },
+    {
+      "rank": 9,
+      "id": "chatbot-generico",
+      "score": 47.5,
+      "verdict": "DO_NOT_ENTER"
+    }
+  ],
+  "scores": {
+    "mentoria-premium": {
+      "ttfr": 88,
+      "operating_margin": 80,
+      "defensibility": 100,
+      "solo_feasibility": 100,
+      "recurrence_quality": 55,
+      "anti_commoditization": 100,
+      "low_reg_risk": 100,
+      "weighted_total": 87.8,
+      "veto_flag": false,
+      "rank": 1,
+      "rationale": "Lidera 4 das 7 dimensões; defensibilidade + solo + reg-risk são notas máximas; recorrência baixa compensada por ticket alto."
+    },
+    "automacao-n8n-vertical": {
+      "ttfr": 80,
+      "operating_margin": 88,
+      "defensibility": 72,
+      "solo_feasibility": 80,
+      "recurrence_quality": 80,
+      "anti_commoditization": 40,
+      "low_reg_risk": 80,
+      "weighted_total": 76.7,
+      "veto_flag": false,
+      "rank": 2,
+      "rationale": "Maior margem do bench (88) + solo-feasibility forte; defensibilidade limitada pela janela de commoditização de 24 meses."
+    },
+    "whatsapp-vertical": {
+      "ttfr": 92,
+      "operating_margin": 70,
+      "defensibility": 51,
+      "solo_feasibility": 80,
+      "recurrence_quality": 65,
+      "anti_commoditization": 30,
+      "low_reg_risk": 60,
+      "weighted_total": 69.6,
+      "veto_flag": false,
+      "rank": 3,
+      "rationale": "TTFR mais rápido do bench (92), mas defensibilidade fraca e commoditização em 18 meses limitam upside."
+    },
+    "sdr-ia-voice-hitl": {
+      "ttfr": 55,
+      "operating_margin": 62,
+      "defensibility": 48,
+      "solo_feasibility": 40,
+      "recurrence_quality": 80,
+      "anti_commoditization": 40,
+      "low_reg_risk": 40,
+      "weighted_total": 54.3,
+      "veto_flag": false,
+      "rank": 4,
+      "rationale": "Ticket recorrente bom, mas exige 2+ pessoas mínimo e risco regulatório alto (Marco IA 2025); 40% projetos cancelados (Gartner)."
+    },
+    "lgpd-governanca": {
+      "ttfr": 18,
+      "operating_margin": 52,
+      "defensibility": 90,
+      "solo_feasibility": 20,
+      "recurrence_quality": 95,
+      "anti_commoditization": 80,
+      "low_reg_risk": 100,
+      "weighted_total": 49,
+      "veto_flag": true,
+      "veto_reason": "solo_feasibility=1 (comitê 4-5 decisores; exige advogado+DPO+arquiteto)",
+      "rank": 7,
+      "rationale": "Defensibilidade altíssima e regulação favorável, mas ciclo de 180-540 dias e equipe mínima 3 vetam para solo no MVP."
+    },
+    "cyber-ia": {
+      "ttfr": 12,
+      "operating_margin": 42,
+      "defensibility": 78,
+      "solo_feasibility": 20,
+      "recurrence_quality": 100,
+      "anti_commoditization": 60,
+      "low_reg_risk": 80,
+      "weighted_total": 47.6,
+      "veto_flag": true,
+      "veto_reason": "solo_feasibility=1 (compete com IBM/MS/Big-4; SOC 24/7 + seguro cyber)",
+      "rank": 8,
+      "rationale": "MRR potencial topo do bench, mas barreiras de entrada (SOC, certificações, seguro) e CAC enterprise são proibitivos para solo."
+    },
+    "preditivo-customizado": {
+      "ttfr": 12,
+      "operating_margin": 45,
+      "defensibility": 100,
+      "solo_feasibility": 20,
+      "recurrence_quality": 92,
+      "anti_commoditization": 80,
+      "low_reg_risk": 40,
+      "weighted_total": 50.4,
+      "veto_flag": true,
+      "veto_reason": "solo_feasibility=1 (PoC 3-36 meses; cientista dados+eng dados+BI mínimo)",
+      "rank": 6,
+      "rationale": "Defensibilidade máxima e ticket gigante, mas 40% projetos cancelados (Gartner) e PoC-zumbi é norma; risco regulatório alto (PL 2338 high-risk)."
+    },
+    "genai-conteudo": {
+      "ttfr": 96,
+      "operating_margin": 55,
+      "defensibility": 14,
+      "solo_feasibility": 100,
+      "recurrence_quality": 30,
+      "anti_commoditization": 10,
+      "low_reg_risk": 80,
+      "weighted_total": 56.5,
+      "veto_flag": false,
+      "rank": 5,
+      "rationale": "TTFR e solo-fit excelentes, mas defensibilidade 1/5 e commoditização em 6 meses tornam negócio não-empilhável; serve como aquecimento de canal, não negócio principal."
+    },
+    "chatbot-generico": {
+      "ttfr": 96,
+      "operating_margin": 35,
+      "defensibility": 8,
+      "solo_feasibility": 100,
+      "recurrence_quality": 18,
+      "anti_commoditization": 0,
+      "low_reg_risk": 60,
+      "weighted_total": 47.5,
+      "veto_flag": true,
+      "veto_reason": "anti_commoditization=0 + defensibility=1 (commodity em 3 meses)",
+      "rank": 9,
+      "rationale": "Não construir negócio sobre commodity em queda; ticket baixíssimo, sem moat. Veto por anti-commoditization."
+    }
+  },
+  "final_ranking": [
+    {
+      "rank": 1,
+      "id": "mentoria-premium",
+      "score": 87.8,
+      "verdict": "PRIMARY_BET"
+    },
+    {
+      "rank": 2,
+      "id": "automacao-n8n-vertical",
+      "score": 76.7,
+      "verdict": "SECONDARY_BET_OR_PAIRED"
+    },
+    {
+      "rank": 3,
+      "id": "whatsapp-vertical",
+      "score": 69.6,
+      "verdict": "FAST_CASH_ENTRY_OR_ANCHOR"
+    },
+    {
+      "rank": 4,
+      "id": "genai-conteudo",
+      "score": 56.5,
+      "verdict": "CHANNEL_PRIMER_NOT_BUSINESS"
+    },
+    {
+      "rank": 5,
+      "id": "sdr-ia-voice-hitl",
+      "score": 54.3,
+      "verdict": "DEFER_TO_YEAR_2"
+    },
+    {
+      "rank": 6,
+      "id": "preditivo-customizado",
+      "score": 50.4,
+      "verdict": "VETO_FOR_SOLO"
+    },
+    {
+      "rank": 7,
+      "id": "lgpd-governanca",
+      "score": 49,
+      "verdict": "VETO_FOR_SOLO"
+    },
+    {
+      "rank": 8,
+      "id": "cyber-ia",
+      "score": 47.6,
+      "verdict": "VETO_FOR_SOLO"
+    },
+    {
+      "rank": 9,
+      "id": "chatbot-generico",
+      "score": 47.5,
+      "verdict": "DO_NOT_ENTER"
+    }
+  ],
+  "sensitivity_analysis": {
+    "if_weight_TTFR_doubles_to_50pct": {
+      "new_top_3": [
+        "mentoria-premium (84.4)",
+        "whatsapp-vertical (79.6)",
+        "automacao-n8n-vertical (75.0)"
+      ],
+      "shifts": "WhatsApp ultrapassa Automação n8n por TTFR superior"
+    },
+    "if_weight_defensibility_doubles_to_40pct": {
+      "new_top_3": [
+        "mentoria-premium (91.1)",
+        "automacao-n8n-vertical (75.4)",
+        "preditivo-customizado (still_vetoed)"
+      ],
+      "shifts": "Mentoria amplia liderança; WhatsApp cai abaixo de SDR IA"
+    },
+    "if_horizon_extends_to_24_months": {
+      "new_top_3": [
+        "mentoria-premium",
+        "automacao-n8n-vertical",
+        "lgpd-governanca (veto lifts if team grows)"
+      ],
+      "shifts": "LGPD e Cyber se tornam viáveis se solo founder construir time intermediário"
+    }
+  },
+  "confidence_levels": {
+    "ranking_top_3": "ALTA",
+    "ranking_4_to_9": "MEDIA",
+    "sensitivity_analysis": "MEDIA",
+    "absolute_scores": "MEDIA — pesos são opinião calibrada do operador; ordem ordinal robusta a mudanças de ±10% em pesos"
+  }
+}

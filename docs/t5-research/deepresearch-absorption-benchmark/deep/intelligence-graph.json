@@ -1,0 +1,2056 @@
+{
+  "schema": "deepresearch-intelligence-graph-v1",
+  "generated_at": "2026-05-18T19:20:00-03:00",
+  "thesis": "SINKRA Deep Research deve ser composição de padrões, com trace e claims antes do relatório.",
+  "nodes": [
+    {
+      "id": "player:drbench",
+      "type": "player",
+      "label": "DRBench",
+      "source": "ServiceNow/drbench"
+    },
+    {
+      "id": "player:deer-flow",
+      "type": "player",
+      "label": "DeerFlow",
+      "source": "bytedance/deer-flow"
+    },
+    {
+      "id": "player:autoresearchclaw",
+      "type": "player",
+      "label": "AutoResearchClaw",
+      "source": "aiming-lab/AutoResearchClaw"
+    },
+    {
+      "id": "player:storm",
+      "type": "player",
+      "label": "STORM",
+      "source": "stanford-oval/storm"
+    },
+    {
+      "id": "player:gpt-researcher",
+      "type": "player",
+      "label": "GPT-Researcher",
+      "source": "assafelovic/gpt-researcher"
+    },
+    {
+      "id": "player:local-deep-research",
+      "type": "player",
+      "label": "Local Deep Research",
+      "source": "LearningCircuit/local-deep-research"
+    },
+    {
+      "id": "player:mirothinker",
+      "type": "player",
+      "label": "MiroThinker",
+      "source": "MiroMindAI/MiroThinker"
+    },
+    {
+      "id": "player:deep-searcher",
+      "type": "player",
+      "label": "DeepSearcher",
+      "source": "zilliztech/deep-searcher"
+    },
+    {
+      "id": "player:langchain-open-deep-research",
+      "type": "player",
+      "label": "LangChain Open Deep Research",
+      "source": "langchain-ai/open_deep_research"
+    },
+    {
+      "id": "player:deep-research-bench",
+      "type": "player",
+      "label": "Deep Research Bench",
+      "source": "Ayanami0730/deep_research_bench"
+    },
+    {
+      "id": "player:node-deepresearch",
+      "type": "player",
+      "label": "Jina node-DeepResearch",
+      "source": "jina-ai/node-DeepResearch"
+    },
+    {
+      "id": "player:miroflow",
+      "type": "player",
+      "label": "MiroFlow",
+      "source": "MiroMindAI/MiroFlow"
+    },
+    {
+      "id": "player:miroeval",
+      "type": "player",
+      "label": "MiroEval",
+      "source": "MiroMindAI/MiroEval"
+    },
+    {
+      "id": "player:deepresearcher",
+      "type": "player",
+      "label": "DeepResearcher",
+      "source": "GAIR-NLP/DeepResearcher"
+    },
+    {
+      "id": "player:livedrbench",
+      "type": "player",
+      "label": "LiveDRBench",
+      "source": "microsoft/LiveDRBench"
+    },
+    {
+      "id": "player:mirorl",
+      "type": "player",
+      "label": "MiroRL",
+      "source": "MiroMindAI/MiroRL"
+    },
+    {
+      "id": "player:mirotrain",
+      "type": "player",
+      "label": "MiroTrain",
+      "source": "MiroMindAI/MiroTrain"
+    },
+    {
+      "id": "player:alibaba-deepresearch",
+      "type": "player",
+      "label": "Alibaba/Tongyi DeepResearch",
+      "source": "Alibaba-NLP/DeepResearch"
+    },
+    {
+      "id": "player:agent-browser-workspace",
+      "type": "player",
+      "label": "Agent Browser Workspace",
+      "source": "k-kolomeitsev/agent-browser-workspace"
+    },
+    {
+      "id": "player:dzhng-deep-research",
+      "type": "player",
+      "label": "dzhng/deep-research",
+      "source": "dzhng/deep-research"
+    },
+    {
+      "id": "player:openresearcher",
+      "type": "player",
+      "label": "OpenResearcher",
+      "source": "TIGER-AI-Lab/OpenResearcher"
+    },
+    {
+      "id": "player:nickscamara-open-deep-research",
+      "type": "player",
+      "label": "nickscamara/open-deep-research",
+      "source": "nickscamara/open-deep-research"
+    },
+    {
+      "id": "player:jigsawstack-deep-research",
+      "type": "player",
+      "label": "JigsawStack Deep Research",
+      "source": "JigsawStack/deep-research"
+    },
+    {
+      "id": "player:auto-deep-research",
+      "type": "player",
+      "label": "HKUDS Auto-Deep-Research",
+      "source": "HKUDS/Auto-Deep-Research"
+    },
+    {
+      "id": "dimension:architecture_absorption",
+      "type": "dimension",
+      "label": "Architecture Absorption",
+      "weight": 20
+    },
+    {
+      "id": "dimension:trace_observability",
+      "type": "dimension",
+      "label": "Trace Observability",
+      "weight": 14
+    },
+    {
+      "id": "dimension:private_kb_grounding",
+      "type": "dimension",
+      "label": "Private Kb Grounding",
+      "weight": 12
+    },
+    {
+      "id": "dimension:evaluation_value",
+      "type": "dimension",
+      "label": "Evaluation Value",
+      "weight": 14
+    },
+    {
+      "id": "dimension:implementation_maturity",
+      "type": "dimension",
+      "label": "Implementation Maturity",
+      "weight": 10
+    },
+    {
+      "id": "dimension:scientific_pipeline",
+      "type": "dimension",
+      "label": "Scientific Pipeline",
+      "weight": 7
+    },
+    {
+      "id": "dimension:training_methodology",
+      "type": "dimension",
+      "label": "Training Methodology",
+      "weight": 5
+    },
+    {
+      "id": "dimension:product_ux_reference",
+      "type": "dimension",
+      "label": "Product Ux Reference",
+      "weight": 6
+    },
+    {
+      "id": "dimension:compliance_safety",
+      "type": "dimension",
+      "label": "Compliance Safety",
+      "weight": 8
+    },
+    {
+      "id": "dimension:sinkra_fit",
+      "type": "dimension",
+      "label": "Sinkra Fit",
+      "weight": 4
+    },
+    {
+      "id": "micro:architecture_absorption__coverage",
+      "type": "microcapability",
+      "label": "Architecture Absorption: cobertura",
+      "group": "Architecture Absorption",
+      "weight": 6.6667
+    },
+    {
+      "id": "micro:architecture_absorption__depth",
+      "type": "microcapability",
+      "label": "Architecture Absorption: profundidade",
+      "group": "Architecture Absorption",
+      "weight": 6.6667
+    },
+    {
+      "id": "micro:architecture_absorption__evidence",
+      "type": "microcapability",
+      "label": "Architecture Absorption: evidência/replay",
+      "group": "Architecture Absorption",
+      "weight": 6.6667
+    },
+    {
+      "id": "micro:trace_observability__coverage",
+      "type": "microcapability",
+      "label": "Trace Observability: cobertura",
+      "group": "Trace Observability",
+      "weight": 4.6667
+    },
+    {
+      "id": "micro:trace_observability__depth",
+      "type": "microcapability",
+      "label": "Trace Observability: profundidade",
+      "group": "Trace Observability",
+      "weight": 4.6667
+    },
+    {
+      "id": "micro:trace_observability__evidence",
+      "type": "microcapability",
+      "label": "Trace Observability: evidência/replay",
+      "group": "Trace Observability",
+      "weight": 4.6667
+    },
+    {
+      "id": "micro:private_kb_grounding__coverage",
+      "type": "microcapability",
+      "label": "Private Kb Grounding: cobertura",
+      "group": "Private Kb Grounding",
+      "weight": 4.0
+    },
+    {
+      "id": "micro:private_kb_grounding__depth",
+      "type": "microcapability",
+      "label": "Private Kb Grounding: profundidade",
+      "group": "Private Kb Grounding",
+      "weight": 4.0
+    },
+    {
+      "id": "micro:private_kb_grounding__evidence",
+      "type": "microcapability",
+      "label": "Private Kb Grounding: evidência/replay",
+      "group": "Private Kb Grounding",
+      "weight": 4.0
+    },
+    {
+      "id": "micro:evaluation_value__coverage",
+      "type": "microcapability",
+      "label": "Evaluation Value: cobertura",
+      "group": "Evaluation Value",
+      "weight": 4.6667
+    },
+    {
+      "id": "micro:evaluation_value__depth",
+      "type": "microcapability",
+      "label": "Evaluation Value: profundidade",
+      "group": "Evaluation Value",
+      "weight": 4.6667
+    },
+    {
+      "id": "micro:evaluation_value__evidence",
+      "type": "microcapability",
+      "label": "Evaluation Value: evidência/replay",
+      "group": "Evaluation Value",
+      "weight": 4.6667
+    },
+    {
+      "id": "micro:implementation_maturity__coverage",
+      "type": "microcapability",
+      "label": "Implementation Maturity: cobertura",
+      "group": "Implementation Maturity",
+      "weight": 3.3333
+    },
+    {
+      "id": "micro:implementation_maturity__depth",
+      "type": "microcapability",
+      "label": "Implementation Maturity: profundidade",
+      "group": "Implementation Maturity",
+      "weight": 3.3333
+    },
+    {
+      "id": "micro:implementation_maturity__evidence",
+      "type": "microcapability",
+      "label": "Implementation Maturity: evidência/replay",
+      "group": "Implementation Maturity",
+      "weight": 3.3333
+    },
+    {
+      "id": "micro:scientific_pipeline__coverage",
+      "type": "microcapability",
+      "label": "Scientific Pipeline: cobertura",
+      "group": "Scientific Pipeline",
+      "weight": 2.3333
+    },
+    {
+      "id": "micro:scientific_pipeline__depth",
+      "type": "microcapability",
+      "label": "Scientific Pipeline: profundidade",
+      "group": "Scientific Pipeline",
+      "weight": 2.3333
+    },
+    {
+      "id": "micro:scientific_pipeline__evidence",
+      "type": "microcapability",
+      "label": "Scientific Pipeline: evidência/replay",
+      "group": "Scientific Pipeline",
+      "weight": 2.3333
+    },
+    {
+      "id": "micro:training_methodology__coverage",
+      "type": "microcapability",
+      "label": "Training Methodology: cobertura",
+      "group": "Training Methodology",
+      "weight": 1.6667
+    },
+    {
+      "id": "micro:training_methodology__depth",
+      "type": "microcapability",
+      "label": "Training Methodology: profundidade",
+      "group": "Training Methodology",
+      "weight": 1.6667
+    },
+    {
+      "id": "micro:training_methodology__evidence",
+      "type": "microcapability",
+      "label": "Training Methodology: evidência/replay",
+      "group": "Training Methodology",
+      "weight": 1.6667
+    },
+    {
+      "id": "micro:product_ux_reference__coverage",
+      "type": "microcapability",
+      "label": "Product Ux Reference: cobertura",
+      "group": "Product Ux Reference",
+      "weight": 2.0
+    },
+    {
+      "id": "micro:product_ux_reference__depth",
+      "type": "microcapability",
+      "label": "Product Ux Reference: profundidade",
+      "group": "Product Ux Reference",
+      "weight": 2.0
+    },
+    {
+      "id": "micro:product_ux_reference__evidence",
+      "type": "microcapability",
+      "label": "Product Ux Reference: evidência/replay",
+      "group": "Product Ux Reference",
+      "weight": 2.0
+    },
+    {
+      "id": "micro:compliance_safety__coverage",
+      "type": "microcapability",
+      "label": "Compliance Safety: cobertura",
+      "group": "Compliance Safety",
+      "weight": 2.6667
+    },
+    {
+      "id": "micro:compliance_safety__depth",
+      "type": "microcapability",
+      "label": "Compliance Safety: profundidade",
+      "group": "Compliance Safety",
+      "weight": 2.6667
+    },
+    {
+      "id": "micro:compliance_safety__evidence",
+      "type": "microcapability",
+      "label": "Compliance Safety: evidência/replay",
+      "group": "Compliance Safety",
+      "weight": 2.6667
+    },
+    {
+      "id": "micro:sinkra_fit__coverage",
+      "type": "microcapability",
+      "label": "Sinkra Fit: cobertura",
+      "group": "Sinkra Fit",
+      "weight": 1.3333
+    },
+    {
+      "id": "micro:sinkra_fit__depth",
+      "type": "microcapability",
+      "label": "Sinkra Fit: profundidade",
+      "group": "Sinkra Fit",
+      "weight": 1.3333
+    },
+    {
+      "id": "micro:sinkra_fit__evidence",
+      "type": "microcapability",
+      "label": "Sinkra Fit: evidência/replay",
+      "group": "Sinkra Fit",
+      "weight": 1.3333
+    },
+    {
+      "id": "pattern:canonical_trace_before_report",
+      "type": "pattern",
+      "label": "canonical trace before report"
+    },
+    {
+      "id": "pattern:evidence_acquisition_separate_from_reasoning",
+      "type": "pattern",
+      "label": "evidence acquisition separate from reasoning"
+    },
+    {
+      "id": "pattern:stage_contracts_and_gates",
+      "type": "pattern",
+      "label": "stage contracts and gates"
+    },
+    {
+      "id": "pattern:graph_supervisor_researcher_parallelism",
+      "type": "pattern",
+      "label": "graph supervisor researcher parallelism"
+    },
+    {
+      "id": "pattern:private_kb_grounding",
+      "type": "pattern",
+      "label": "private kb grounding"
+    },
+    {
+      "id": "pattern:claim_level_scoring",
+      "type": "pattern",
+      "label": "claim level scoring"
+    }
+  ],
+  "edges": [
+    {
+      "source": "dimension:architecture_absorption",
+      "target": "micro:architecture_absorption__coverage",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:architecture_absorption",
+      "target": "micro:architecture_absorption__depth",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:architecture_absorption",
+      "target": "micro:architecture_absorption__evidence",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:trace_observability",
+      "target": "micro:trace_observability__coverage",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:trace_observability",
+      "target": "micro:trace_observability__depth",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:trace_observability",
+      "target": "micro:trace_observability__evidence",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:private_kb_grounding",
+      "target": "micro:private_kb_grounding__coverage",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:private_kb_grounding",
+      "target": "micro:private_kb_grounding__depth",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:private_kb_grounding",
+      "target": "micro:private_kb_grounding__evidence",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:evaluation_value",
+      "target": "micro:evaluation_value__coverage",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:evaluation_value",
+      "target": "micro:evaluation_value__depth",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:evaluation_value",
+      "target": "micro:evaluation_value__evidence",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:implementation_maturity",
+      "target": "micro:implementation_maturity__coverage",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:implementation_maturity",
+      "target": "micro:implementation_maturity__depth",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:implementation_maturity",
+      "target": "micro:implementation_maturity__evidence",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:scientific_pipeline",
+      "target": "micro:scientific_pipeline__coverage",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:scientific_pipeline",
+      "target": "micro:scientific_pipeline__depth",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:scientific_pipeline",
+      "target": "micro:scientific_pipeline__evidence",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:training_methodology",
+      "target": "micro:training_methodology__coverage",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:training_methodology",
+      "target": "micro:training_methodology__depth",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:training_methodology",
+      "target": "micro:training_methodology__evidence",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:product_ux_reference",
+      "target": "micro:product_ux_reference__coverage",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:product_ux_reference",
+      "target": "micro:product_ux_reference__depth",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:product_ux_reference",
+      "target": "micro:product_ux_reference__evidence",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:compliance_safety",
+      "target": "micro:compliance_safety__coverage",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:compliance_safety",
+      "target": "micro:compliance_safety__depth",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:compliance_safety",
+      "target": "micro:compliance_safety__evidence",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:sinkra_fit",
+      "target": "micro:sinkra_fit__coverage",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:sinkra_fit",
+      "target": "micro:sinkra_fit__depth",
+      "type": "decomposes"
+    },
+    {
+      "source": "dimension:sinkra_fit",
+      "target": "micro:sinkra_fit__evidence",
+      "type": "decomposes"
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "pattern:canonical_trace_before_report",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:miroflow",
+      "target": "pattern:canonical_trace_before_report",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "pattern:canonical_trace_before_report",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:drbench",
+      "target": "pattern:canonical_trace_before_report",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:openresearcher",
+      "target": "pattern:canonical_trace_before_report",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:agent-browser-workspace",
+      "target": "pattern:evidence_acquisition_separate_from_reasoning",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "pattern:evidence_acquisition_separate_from_reasoning",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:drbench",
+      "target": "pattern:evidence_acquisition_separate_from_reasoning",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:storm",
+      "target": "pattern:evidence_acquisition_separate_from_reasoning",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "pattern:stage_contracts_and_gates",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:drbench",
+      "target": "pattern:stage_contracts_and_gates",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:miroeval",
+      "target": "pattern:stage_contracts_and_gates",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:langchain-open-deep-research",
+      "target": "pattern:graph_supervisor_researcher_parallelism",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:alibaba-deepresearch",
+      "target": "pattern:graph_supervisor_researcher_parallelism",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:miroflow",
+      "target": "pattern:graph_supervisor_researcher_parallelism",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "pattern:private_kb_grounding",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "pattern:private_kb_grounding",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:drbench",
+      "target": "pattern:private_kb_grounding",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:storm",
+      "target": "pattern:private_kb_grounding",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:livedrbench",
+      "target": "pattern:claim_level_scoring",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:deep-research-bench",
+      "target": "pattern:claim_level_scoring",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:miroeval",
+      "target": "pattern:claim_level_scoring",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:drbench",
+      "target": "pattern:claim_level_scoring",
+      "type": "exhibits"
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 88
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:trace_observability",
+      "type": "strong_in",
+      "score": 80
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:private_kb_grounding",
+      "type": "strong_in",
+      "score": 95
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:evaluation_value",
+      "type": "strong_in",
+      "score": 96
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 96
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:trace_observability",
+      "type": "strong_in",
+      "score": 84
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 98
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:product_ux_reference",
+      "type": "strong_in",
+      "score": 96
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 96
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 87
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:evaluation_value",
+      "type": "strong_in",
+      "score": 80
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 94.1
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:scientific_pipeline",
+      "type": "strong_in",
+      "score": 96
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 89
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 82
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:private_kb_grounding",
+      "type": "strong_in",
+      "score": 84
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 98
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:scientific_pipeline",
+      "type": "strong_in",
+      "score": 92
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 84
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 89
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 98
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:product_ux_reference",
+      "type": "strong_in",
+      "score": 92
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 91
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 88
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "dimension:private_kb_grounding",
+      "type": "strong_in",
+      "score": 96
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 95.7
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 82
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "dimension:trace_observability",
+      "type": "strong_in",
+      "score": 96
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 91.9
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 84
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 87
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "dimension:private_kb_grounding",
+      "type": "strong_in",
+      "score": 95
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 95.7
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 89
+    },
+    {
+      "source": "player:langchain-open-deep-research",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 92
+    },
+    {
+      "source": "player:langchain-open-deep-research",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 97.7
+    },
+    {
+      "source": "player:langchain-open-deep-research",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:langchain-open-deep-research",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 93
+    },
+    {
+      "source": "player:deep-research-bench",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:deep-research-bench",
+      "target": "dimension:evaluation_value",
+      "type": "strong_in",
+      "score": 84
+    },
+    {
+      "source": "player:deep-research-bench",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:deep-research-bench",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 88
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 89.6
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:product_ux_reference",
+      "type": "strong_in",
+      "score": 80
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 88
+    },
+    {
+      "source": "player:miroflow",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:miroflow",
+      "target": "dimension:trace_observability",
+      "type": "strong_in",
+      "score": 84
+    },
+    {
+      "source": "player:miroflow",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 86.7
+    },
+    {
+      "source": "player:miroflow",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:miroflow",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 88
+    },
+    {
+      "source": "player:miroeval",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:miroeval",
+      "target": "dimension:evaluation_value",
+      "type": "strong_in",
+      "score": 88
+    },
+    {
+      "source": "player:miroeval",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:miroeval",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 88
+    },
+    {
+      "source": "player:deepresearcher",
+      "target": "dimension:scientific_pipeline",
+      "type": "strong_in",
+      "score": 84
+    },
+    {
+      "source": "player:deepresearcher",
+      "target": "dimension:training_methodology",
+      "type": "strong_in",
+      "score": 92
+    },
+    {
+      "source": "player:deepresearcher",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:livedrbench",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 84
+    },
+    {
+      "source": "player:livedrbench",
+      "target": "dimension:evaluation_value",
+      "type": "strong_in",
+      "score": 92
+    },
+    {
+      "source": "player:livedrbench",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:livedrbench",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:mirorl",
+      "target": "dimension:training_methodology",
+      "type": "strong_in",
+      "score": 96
+    },
+    {
+      "source": "player:mirorl",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:mirotrain",
+      "target": "dimension:training_methodology",
+      "type": "strong_in",
+      "score": 88
+    },
+    {
+      "source": "player:mirotrain",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:alibaba-deepresearch",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 98
+    },
+    {
+      "source": "player:alibaba-deepresearch",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:agent-browser-workspace",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 80
+    },
+    {
+      "source": "player:agent-browser-workspace",
+      "target": "dimension:private_kb_grounding",
+      "type": "strong_in",
+      "score": 80
+    },
+    {
+      "source": "player:agent-browser-workspace",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 86
+    },
+    {
+      "source": "player:agent-browser-workspace",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 82
+    },
+    {
+      "source": "player:dzhng-deep-research",
+      "target": "dimension:architecture_absorption",
+      "type": "strong_in",
+      "score": 80
+    },
+    {
+      "source": "player:dzhng-deep-research",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 98
+    },
+    {
+      "source": "player:dzhng-deep-research",
+      "target": "dimension:compliance_safety",
+      "type": "strong_in",
+      "score": 90
+    },
+    {
+      "source": "player:dzhng-deep-research",
+      "target": "dimension:sinkra_fit",
+      "type": "strong_in",
+      "score": 82
+    },
+    {
+      "source": "player:openresearcher",
+      "target": "dimension:scientific_pipeline",
+      "type": "strong_in",
+      "score": 88
+    },
+    {
+      "source": "player:openresearcher",
+      "target": "dimension:training_methodology",
+      "type": "strong_in",
+      "score": 84
+    },
+    {
+      "source": "player:nickscamara-open-deep-research",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 90.5
+    },
+    {
+      "source": "player:nickscamara-open-deep-research",
+      "target": "dimension:product_ux_reference",
+      "type": "strong_in",
+      "score": 88
+    },
+    {
+      "source": "player:jigsawstack-deep-research",
+      "target": "dimension:product_ux_reference",
+      "type": "strong_in",
+      "score": 84
+    },
+    {
+      "source": "player:auto-deep-research",
+      "target": "dimension:implementation_maturity",
+      "type": "strong_in",
+      "score": 83.2
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 88
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 80
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 95
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:evaluation_value",
+      "type": "candidate_for",
+      "score": 96
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:drbench",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 96
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 84
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 98
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:product_ux_reference",
+      "type": "candidate_for",
+      "score": 96
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:deer-flow",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 96
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 87
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 76
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:evaluation_value",
+      "type": "candidate_for",
+      "score": 80
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 94.1
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:scientific_pipeline",
+      "type": "candidate_for",
+      "score": 96
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:autoresearchclaw",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 89
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 82
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 84
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 98
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:scientific_pipeline",
+      "type": "candidate_for",
+      "score": 92
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:storm",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 84
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 89
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 98
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:product_ux_reference",
+      "type": "candidate_for",
+      "score": 92
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:gpt-researcher",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 91
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 88
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 96
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 95.7
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:local-deep-research",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 82
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 96
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 91.9
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:mirothinker",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 84
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 87
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 95
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 95.7
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:deep-searcher",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 89
+    },
+    {
+      "source": "player:langchain-open-deep-research",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 92
+    },
+    {
+      "source": "player:langchain-open-deep-research",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:langchain-open-deep-research",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:langchain-open-deep-research",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 97.7
+    },
+    {
+      "source": "player:langchain-open-deep-research",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:langchain-open-deep-research",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 93
+    },
+    {
+      "source": "player:deep-research-bench",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:deep-research-bench",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:deep-research-bench",
+      "target": "dimension:evaluation_value",
+      "type": "candidate_for",
+      "score": 84
+    },
+    {
+      "source": "player:deep-research-bench",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 79.3
+    },
+    {
+      "source": "player:deep-research-bench",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:deep-research-bench",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 88
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 89.6
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:product_ux_reference",
+      "type": "candidate_for",
+      "score": 80
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:node-deepresearch",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 88
+    },
+    {
+      "source": "player:miroflow",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:miroflow",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 84
+    },
+    {
+      "source": "player:miroflow",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:miroflow",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 86.7
+    },
+    {
+      "source": "player:miroflow",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:miroflow",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 88
+    },
+    {
+      "source": "player:miroeval",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:miroeval",
+      "target": "dimension:evaluation_value",
+      "type": "candidate_for",
+      "score": 88
+    },
+    {
+      "source": "player:miroeval",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:miroeval",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 88
+    },
+    {
+      "source": "player:deepresearcher",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 76
+    },
+    {
+      "source": "player:deepresearcher",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:deepresearcher",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 79.5
+    },
+    {
+      "source": "player:deepresearcher",
+      "target": "dimension:scientific_pipeline",
+      "type": "candidate_for",
+      "score": 84
+    },
+    {
+      "source": "player:deepresearcher",
+      "target": "dimension:training_methodology",
+      "type": "candidate_for",
+      "score": 92
+    },
+    {
+      "source": "player:deepresearcher",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:deepresearcher",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 78
+    },
+    {
+      "source": "player:livedrbench",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 84
+    },
+    {
+      "source": "player:livedrbench",
+      "target": "dimension:evaluation_value",
+      "type": "candidate_for",
+      "score": 92
+    },
+    {
+      "source": "player:livedrbench",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:livedrbench",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:mirorl",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 76
+    },
+    {
+      "source": "player:mirorl",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:mirorl",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:mirorl",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 73.7
+    },
+    {
+      "source": "player:mirorl",
+      "target": "dimension:training_methodology",
+      "type": "candidate_for",
+      "score": 96
+    },
+    {
+      "source": "player:mirorl",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:mirorl",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 78
+    },
+    {
+      "source": "player:mirotrain",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 76
+    },
+    {
+      "source": "player:mirotrain",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:mirotrain",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 70.8
+    },
+    {
+      "source": "player:mirotrain",
+      "target": "dimension:training_methodology",
+      "type": "candidate_for",
+      "score": 88
+    },
+    {
+      "source": "player:mirotrain",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:mirotrain",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 78
+    },
+    {
+      "source": "player:alibaba-deepresearch",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 74
+    },
+    {
+      "source": "player:alibaba-deepresearch",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 68
+    },
+    {
+      "source": "player:alibaba-deepresearch",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 98
+    },
+    {
+      "source": "player:alibaba-deepresearch",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:alibaba-deepresearch",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 76
+    },
+    {
+      "source": "player:agent-browser-workspace",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 80
+    },
+    {
+      "source": "player:agent-browser-workspace",
+      "target": "dimension:private_kb_grounding",
+      "type": "candidate_for",
+      "score": 80
+    },
+    {
+      "source": "player:agent-browser-workspace",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 86
+    },
+    {
+      "source": "player:agent-browser-workspace",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 82
+    },
+    {
+      "source": "player:dzhng-deep-research",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 80
+    },
+    {
+      "source": "player:dzhng-deep-research",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 98
+    },
+    {
+      "source": "player:dzhng-deep-research",
+      "target": "dimension:compliance_safety",
+      "type": "candidate_for",
+      "score": 90
+    },
+    {
+      "source": "player:dzhng-deep-research",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 82
+    },
+    {
+      "source": "player:openresearcher",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 70
+    },
+    {
+      "source": "player:openresearcher",
+      "target": "dimension:trace_observability",
+      "type": "candidate_for",
+      "score": 76
+    },
+    {
+      "source": "player:openresearcher",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 79.5
+    },
+    {
+      "source": "player:openresearcher",
+      "target": "dimension:scientific_pipeline",
+      "type": "candidate_for",
+      "score": 88
+    },
+    {
+      "source": "player:openresearcher",
+      "target": "dimension:training_methodology",
+      "type": "candidate_for",
+      "score": 84
+    },
+    {
+      "source": "player:openresearcher",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 72
+    },
+    {
+      "source": "player:nickscamara-open-deep-research",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 90.5
+    },
+    {
+      "source": "player:nickscamara-open-deep-research",
+      "target": "dimension:product_ux_reference",
+      "type": "candidate_for",
+      "score": 88
+    },
+    {
+      "source": "player:jigsawstack-deep-research",
+      "target": "dimension:architecture_absorption",
+      "type": "candidate_for",
+      "score": 70
+    },
+    {
+      "source": "player:jigsawstack-deep-research",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 71.9
+    },
+    {
+      "source": "player:jigsawstack-deep-research",
+      "target": "dimension:product_ux_reference",
+      "type": "candidate_for",
+      "score": 84
+    },
+    {
+      "source": "player:jigsawstack-deep-research",
+      "target": "dimension:sinkra_fit",
+      "type": "candidate_for",
+      "score": 72
+    },
+    {
+      "source": "player:auto-deep-research",
+      "target": "dimension:implementation_maturity",
+      "type": "candidate_for",
+      "score": 83.2
+    }
+  ]
+}

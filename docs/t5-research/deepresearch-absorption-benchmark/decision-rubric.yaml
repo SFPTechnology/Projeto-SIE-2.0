@@ -1,0 +1,83 @@
+schema: decision-rubric.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+profile:
+  type: bench
+  domain: research-systems
+  decision: Choose absorption targets
+model:
+  type: weighted-multi-dim-aggregation
+  dimension_pack: default
+  score_range: 0-100
+  formula: Sum(group_score × group_weight) / Sum(group_weights = 100)
+dimensions:
+- id: agentic-planning-control
+  name: Agentic Planning Control
+  weight: 15
+  rationale: Como o agent decompõe, planeja, replan e recupera. Core do deep research.
+- id: multi-agent-orchestration
+  name: Multi-Agent Orchestration
+  weight: 10
+  rationale: Como sub-agents são criados, coordenados, fundidos.
+- id: tool-runtime-integration
+  name: Tool Runtime Integration
+  weight: 13
+  rationale: Providers, APIs, tools — discovery breadth.
+- id: research-depth-synthesis
+  name: Research Depth Synthesis
+  weight: 13
+  rationale: Quantidade, diversidade, qualidade das fontes + síntese.
+- id: evidence-fidelity-evaluation
+  name: Evidence Fidelity Evaluation
+  weight: 10
+  rationale: Verifica e mantém integridade de citações. Anti-hallucination.
+- id: ux-operator-control
+  name: UX Operator Control
+  weight: 9
+  rationale: User controla, dirige, audita o agent.
+- id: private-kb-grounding
+  name: Private Kb Grounding
+  weight: 6
+  rationale: RAG depth — vector DB + private data + retrieval quality.
+- id: architecture-absorption
+  name: Architecture Absorption
+  weight: 5
+  rationale: Absorbability — clean-room, REUSE-readiness.
+- id: implementation-maturity
+  name: Implementation Maturity
+  weight: 5
+  rationale: Prod readiness — test, CI, error handling.
+- id: trace-observability
+  name: Trace Observability
+  weight: 4
+  rationale: Audit trail + replay capability.
+- id: evaluation-value
+  name: Evaluation Value
+  weight: 4
+  rationale: Bench-driven quality — score + harness.
+- id: scientific-pipeline
+  name: Scientific Pipeline
+  weight: 3
+  rationale: Academic rigor — hypothesis → experiment → paper.
+- id: training-methodology
+  name: Training Methodology
+  weight: 1
+  rationale: 'Modelo treinado: RL/SFT/recipes. Reference only.'
+- id: product-ux-reference
+  name: Product Ux Reference
+  weight: 1
+  rationale: Polish visual — main UI + a11y. Lateral reference.
+- id: compliance-safety
+  name: Compliance Safety
+  weight: 1
+  rationale: Enterprise gates — SOC2/GDPR/PII.
+- id: sinkra-fit
+  name: Sinkra Fit
+  weight: 0
+  rationale: ANCHOR SELF-REFERENCE — weight 0 (transparency disclosure).
+presets:
+- id: baseline
+  label: Baseline (industry-balanced)
+  description: Default weights
+rankings:
+  baseline: []

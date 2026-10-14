@@ -1,0 +1,580 @@
+# Performance Benchmarks for slides-creator v2
+# SSOT for performance targets, measurement methodology, and pass/fail criteria.
+# Created by: Story 5.4 (EPIC-SC-V2-001, Sprint 5)
+# Dependencies:
+#   - squads/slides-creator/data/cache-config.yaml (Story 1.6 -- cache levels, key computation, stats)
+#   - squads/slides-creator/data/visual-engines.yaml (Story 1.1/2.2 -- concurrency, timeouts, routing)
+# Consumed by: qa-inspector (performance gate), devops (performance_review)
+
+performance_benchmarks:
+  version: "1.0.0"
+  created_at: "2026-03-20"
+  epic: EPIC-SC-V2-001
+  story: "5.4"
+
+  # ---------------------------------------------------------------------------
+  # GLOBAL TEST CONDITIONS
+  # ---------------------------------------------------------------------------
+  global:
+    test_environment:
+      platform: "Apple Silicon (M-series)"
+      min_ram_gb: 16
+      services_required:
+        - "Kroki (D2 + Mermaid sidecar) on port 8000"
+        - "Python 3.11+ with plotly + kaleido"
+      feature_flags:
+        ENABLE_VISUAL_GENERATION: true
+        ENABLE_ANDRAGOGIC: true
+        ENABLE_YOUTUBE_ENTRYPOINT: false  # not required for perf benchmarks
+    baseline:
+      pipeline_v1_total_seconds: 100
+      max_acceptable_delta_pct: 120  # pipeline v2 may be at most +120% of v1
+      max_pipeline_v2_total_seconds: 220  # 100 * (1 + 1.20) = 220
+    repetitions: 3  # run each benchmark N times, report median
+    warm_up_runs: 1  # discard first run (cold JIT, DNS, container startup)
+
+  # ---------------------------------------------------------------------------
+  # BENCHMARK 1: BM-CACHE-HIT
+  # Cache hit rate over 10 decks
+  # AC: meta >= 10% primeiro uso, >= 30% mesmo tema
+  # ---------------------------------------------------------------------------
+  benchmarks:
+
+    - id: BM-CACHE-HIT
+      name: "Cache Hit Rate"
+      description: >
+        Measures cache effectiveness across two scenarios: (a) 10 unique-topic
+        decks where minimal cache reuse is expected, and (b) 10 decks on the
+        same topic where diagram/image reuse should be significant.
+      acceptance_criteria:
+        - "Cache hit rate >= 10% for first-use (unique topic) decks"
+        - "Cache hit rate >= 30% for same-topic decks"
+      dependencies:
+        - file: "squads/slides-creator/data/cache-config.yaml"
+          sections: ["levels", "lookup", "statistics"]
+
+      scenarios:
+
+        - id: CACHE-UNIQUE
+          name: "First Use -- Unique Topics"
+          description: >
+            Generate 10 decks with distinct topics (e.g., "Machine Learning",
+            "Roman History", "Nutrition", ...). Each topic is unique so L2 (AI
+            image) cache hits are unlikely. However, L1 (diagram) cache hits
+            are possible if diagram types repeat (e.g., two flowcharts with
+            identical Mermaid syntax for common patterns).
+          setup:
+            - "Clear cache directory: rm -rf ${SLIDES_CACHE_DIR:-cache/slides-v2}/*"
+            - "Reset cache-stats.json to initial_state (all zeros)"
+            - "Prepare 10 briefings with distinct topics, 15-20 slides each"
+          execution:
+            - "Run pipeline for each briefing sequentially"
+            - "After each deck: read cache-stats.json, record hits/misses"
+            - "After all 10: compute aggregate hit_rate_pct"
+          measurement:
+            metric: hit_rate_pct
+            source: "cache-stats.json -> hit_rate_pct"
+            formula: "(total_hits / (total_hits + total_misses)) * 100"
+            unit: "%"
+          target:
+            operator: ">="
+            value: 10
+            rationale: >
+              Even across unique topics, common diagram patterns (generic
+              flowcharts, org charts) and reused Plotly chart types produce
+              L1 cache hits. 10% is the conservative floor.
+          pass_condition: "hit_rate_pct >= 10"
+          fail_action: >
+            Investigate cache key computation. Common cause: design_tokens_hash
+            changing between runs (ensure consistent tokens across test decks).
+
+        - id: CACHE-SAME-TOPIC
+          name: "Same Topic Reuse"
+          description: >
+            Generate 10 decks on the SAME topic (e.g., "Introduction to Python")
+            with slight variations (different audience levels, different slide
+            counts). Cache L1 hits expected for identical diagram code. Cache L2
+            hits expected when prompt + engine + style_constraints match exactly.
+          setup:
+            - "Clear cache directory: rm -rf ${SLIDES_CACHE_DIR:-cache/slides-v2}/*"
+            - "Reset cache-stats.json to initial_state"
+            - "Prepare 10 briefings: same topic, vary audience_level and slide_count"
+          execution:
+            - "Run pipeline for each briefing sequentially"
+            - "After each deck: record cumulative hit_rate_pct"
+            - "Track per-level hits: L1 (diagrams) vs L2 (images)"
+          measurement:
+            metric: hit_rate_pct
+            source: "cache-stats.json -> hit_rate_pct"
+            formula: "(total_hits / (total_hits + total_misses)) * 100"
+            unit: "%"
+            supplementary:
+              - "L1 hit rate: hits.diagrams / (hits.diagrams + misses.diagrams)"
+              - "L2 hit rate: hits.images / (hits.images + misses.images)"
+              - "cost_avoided_usd from cache-stats.json"
+          target:
+            operator: ">="
+            value: 30
+            rationale: >
+              Same topic produces identical diagram code for structural concepts
+              (L1 = ~80% hit rate) and similar prompts for conceptual illustrations
+              (L2 = ~20% hit rate). Blended target: >= 30%.
+          pass_condition: "hit_rate_pct >= 30"
+          fail_action: >
+            Check if prompt variation between audience levels produces different
+            cache keys. If L1 hits are low, verify diagram_code normalization.
+            If L2 hits are low, verify prompt + style_constraints stability.
+
+    # ---------------------------------------------------------------------------
+    # BENCHMARK 2: BM-BATCH-PARALLEL
+    # Batch processing 12 visuals parallel with concurrency=3
+    # AC: 12 visuais em paralelo com concurrency limit = 3
+    # ---------------------------------------------------------------------------
+    - id: BM-BATCH-PARALLEL
+      name: "Batch Processing -- Parallel Execution"
+      description: >
+        Validates that the visual generation orchestrator correctly processes
+        12 visual specs concurrently with a concurrency limit of 3, meaning
+        at most 3 engine.render() calls are in-flight simultaneously.
+      acceptance_criteria:
+        - "12 visuals processed in parallel batches"
+        - "Max 3 concurrent render() calls at any point"
+        - "All 12 visuals successfully generated"
+        - "Recraft engine limited to 2 concurrent (override)"
+      dependencies:
+        - file: "squads/slides-creator/data/visual-engines.yaml"
+          sections: ["orchestration.concurrency_limit", "orchestration.concurrency_overrides"]
+
+      scenarios:
+
+        - id: BATCH-12-CONC-3
+          name: "12 Visuals, Concurrency 3"
+          description: >
+            Create a deck with 12 slides requiring visual generation. Mix of
+            engine types: 4 D2 diagrams, 3 Mermaid diagrams, 2 Plotly charts,
+            2 GPT Image illustrations, 1 Recraft icon.
+          setup:
+            - "Prepare deck-manifest with 12 slides, each with visual_strategy"
+            - "Engine distribution: 4x d2, 3x mermaid, 2x plotly, 2x gpt_image, 1x recraft"
+            - "Ensure all API keys configured (OPENAI_API_KEY, RECRAFT_API_KEY)"
+            - "Enable concurrency logging in visual-scout"
+          execution:
+            - "Invoke visual-scout.generateAll(manifest.slides) with concurrency=3"
+            - "Log timestamps: [start, end] for each render() call"
+            - "Log concurrent count at each start/end event"
+          measurement:
+            metrics:
+              - name: max_concurrent
+                description: "Maximum number of simultaneous render() calls observed"
+                source: "Concurrency log: max(concurrent_count at any timestamp)"
+                unit: "count"
+              - name: total_generated
+                description: "Number of visuals successfully generated"
+                source: "Count of VisualOutput results (non-error)"
+                unit: "count"
+              - name: total_wall_time_ms
+                description: "Wall-clock time from first render start to last render end"
+                source: "max(end_timestamps) - min(start_timestamps)"
+                unit: "ms"
+              - name: recraft_max_concurrent
+                description: "Maximum concurrent Recraft calls observed"
+                source: "Concurrency log filtered by engine_id=recraft"
+                unit: "count"
+          targets:
+            max_concurrent:
+              operator: "<="
+              value: 3
+              rationale: "orchestration.concurrency_limit = 3"
+            total_generated:
+              operator: "=="
+              value: 12
+              rationale: "All 12 visuals must complete (success or fallback)"
+            recraft_max_concurrent:
+              operator: "<="
+              value: 2
+              rationale: "orchestration.concurrency_overrides.recraft = 2"
+            total_wall_time_ms:
+              operator: "<"
+              value: 150000  # 150s -- 4 batches of 3, worst case 30s each + overhead
+              rationale: >
+                With concurrency=3, 12 visuals execute in ceil(12/3) = 4 batches.
+                Worst-case engine timeout is 30s (GPT Image). 4 * 30s = 120s + 30s overhead.
+          pass_condition: "max_concurrent <= 3 AND total_generated == 12 AND recraft_max_concurrent <= 2"
+          fail_action: >
+            If max_concurrent > 3: concurrency semaphore is leaking. Check
+            Promise.allSettled pool implementation. If total_generated < 12:
+            check fallback chain exhaustion. If recraft_max_concurrent > 2:
+            check concurrency_overrides enforcement.
+
+    # ---------------------------------------------------------------------------
+    # BENCHMARK 3: BM-PHASE4-LATENCY
+    # Phase 4 latency with parallelization < 50s for 20-slide deck
+    # AC: Phase 4 (Asset Resolution) latencia com paralelizacao < 50s
+    # ---------------------------------------------------------------------------
+    - id: BM-PHASE4-LATENCY
+      name: "Phase 4 (Asset Resolution) Latency"
+      description: >
+        Measures wall-clock time for Phase 4 (Asset Resolution) when processing
+        a 20-slide deck with visual generation enabled. Phase 4 includes:
+        cache lookup, engine selection, render (parallel), cache write, and
+        asset embedding. Parallelization must keep total under 50 seconds.
+      acceptance_criteria:
+        - "Phase 4 total latency < 50 seconds for 20-slide deck"
+      dependencies:
+        - file: "squads/slides-creator/data/cache-config.yaml"
+          sections: ["lookup"]
+        - file: "squads/slides-creator/data/visual-engines.yaml"
+          sections: ["orchestration", "engines_registry"]
+
+      scenarios:
+
+        - id: PHASE4-20-SLIDES-COLD
+          name: "20 Slides, Cold Cache"
+          description: >
+            Process a 20-slide deck with empty cache (worst case). All visuals
+            must be generated from scratch. Parallelization (concurrency=3) is
+            the primary mitigation for latency.
+          setup:
+            - "Clear cache directory completely"
+            - "Prepare 20-slide deck-manifest with visual_strategy per slide"
+            - "Engine distribution: 8x d2, 5x mermaid, 3x plotly, 3x gpt_image, 1x ideogram"
+            - "OSS-heavy distribution to minimize paid API latency"
+          execution:
+            - "Record Phase 4 start timestamp"
+            - "Execute visual-scout.generateAll(manifest.slides)"
+            - "Record Phase 4 end timestamp"
+            - "Calculate wall-clock delta"
+          measurement:
+            metric: phase4_wall_time_seconds
+            source: "phase4_end - phase4_start"
+            formula: "(end_timestamp - start_timestamp) / 1000"
+            unit: "seconds"
+            supplementary:
+              - "Per-engine breakdown: avg, p50, p95, max latency"
+              - "Cache miss rate (expected: 100% on cold cache)"
+              - "Effective parallelism: total_engine_time / wall_time"
+          target:
+            operator: "<"
+            value: 50
+            rationale: >
+              With concurrency=3 and 20 visuals: ceil(20/3) = 7 batches.
+              OSS engines (d2, mermaid, plotly): ~1-5s each.
+              AI engines (gpt_image, ideogram): ~10-25s each.
+              Expected: batches 1-5 (OSS-heavy) ~5s each = 25s.
+              Batches 6-7 (AI-heavy) ~25s each = 25s (overlap with OSS).
+              But OSS engines are prioritized first (BM-OSS-PRIORITY),
+              so AI engines run in later batches. Total ~40-48s.
+          pass_condition: "phase4_wall_time_seconds < 50"
+          fail_action: >
+            Profile per-engine latency. If OSS engines > 5s: check Kroki
+            container health. If AI engines > 30s: verify timeout_ms config.
+            If effective_parallelism < 2.0: concurrency pool is underutilized.
+
+        - id: PHASE4-20-SLIDES-WARM
+          name: "20 Slides, Warm Cache (Same Topic Re-run)"
+          description: >
+            Re-run the same 20-slide deck after PHASE4-20-SLIDES-COLD.
+            L1 cache hits expected for all diagram engines. Some L2 hits
+            expected for AI image engines. Phase 4 should be significantly
+            faster due to cache hits.
+          setup:
+            - "Do NOT clear cache (use state from COLD run)"
+            - "Use identical deck-manifest from COLD scenario"
+          execution:
+            - "Record Phase 4 start/end timestamps"
+            - "Record cache hit/miss counts"
+          measurement:
+            metric: phase4_wall_time_seconds
+            source: "phase4_end - phase4_start"
+            unit: "seconds"
+            supplementary:
+              - "Cache hit rate (expected: >= 70% for identical re-run)"
+              - "Cost avoided vs cold run"
+          target:
+            operator: "<"
+            value: 15  # cache hits should make this very fast
+            rationale: >
+              With >= 70% cache hits, only 6 visuals need actual rendering.
+              ceil(6/3) = 2 batches. OSS engine hits return < 10ms (filesystem).
+              Remaining renders: ~15s. Total: ~10-15s.
+          pass_condition: "phase4_wall_time_seconds < 15"
+          fail_action: >
+            If cache hits < 50%: verify cache key stability. design_tokens_hash
+            must be identical between runs (same tokens file).
+
+    # ---------------------------------------------------------------------------
+    # BENCHMARK 4: BM-PIPELINE-TOTAL
+    # Pipeline total < 220s (vs 100s baseline v1, delta < +120%)
+    # AC: Pipeline total < 220s
+    # ---------------------------------------------------------------------------
+    - id: BM-PIPELINE-TOTAL
+      name: "Pipeline Total Latency"
+      description: >
+        End-to-end pipeline latency for a complete v2 deck generation, compared
+        against the v1 baseline of 100 seconds. The delta must not exceed +120%,
+        meaning total time must be under 220 seconds.
+      acceptance_criteria:
+        - "Pipeline total < 220 seconds for standard 20-slide deck"
+        - "Delta vs v1 baseline (100s) < +120%"
+      dependencies:
+        - file: "squads/slides-creator/data/visual-engines.yaml"
+          sections: ["orchestration"]
+        - file: "squads/slides-creator/data/cache-config.yaml"
+          sections: ["lookup", "statistics"]
+
+      scenarios:
+
+        - id: PIPELINE-V2-STANDARD
+          name: "Standard 20-Slide Deck, All Features"
+          description: >
+            Generate a 20-slide educational deck with all v2 features enabled:
+            visual generation, andragogic validation, brand compliance.
+            Measures total wall-clock time from briefing input to PPTX output.
+          setup:
+            - "Clear cache for clean measurement"
+            - "Enable all feature flags: ENABLE_VISUAL_GENERATION, ENABLE_ANDRAGOGIC"
+            - "Prepare standard briefing: 20 slides, educational topic, brand tokens"
+          execution:
+            - "Record pipeline start (briefing received)"
+            - "Execute all 7 phases: normalize -> outline -> content -> asset_resolution -> design_render -> qa_inspect -> export"
+            - "Record pipeline end (PPTX written)"
+            - "Log per-phase timing breakdown"
+          measurement:
+            metric: pipeline_total_seconds
+            source: "pipeline_end - pipeline_start"
+            formula: "(end_timestamp - start_timestamp) / 1000"
+            unit: "seconds"
+            supplementary:
+              - name: per_phase_breakdown
+                description: "Timing for each of the 7 pipeline phases"
+                phases:
+                  - "Phase 1 (Normalize): expected ~2-5s"
+                  - "Phase 2 (Outline): expected ~5-15s (LLM call)"
+                  - "Phase 3 (Content): expected ~15-30s (LLM calls per slide)"
+                  - "Phase 4 (Asset Resolution): expected ~30-50s (visual gen, parallelized)"
+                  - "Phase 5 (Design Render): expected ~10-20s (PPTX composition)"
+                  - "Phase 6 (QA Inspect): expected ~5-10s (validation passes)"
+                  - "Phase 7 (Export): expected ~2-5s (file write)"
+              - name: delta_vs_v1
+                description: "((pipeline_v2 - 100) / 100) * 100"
+                unit: "%"
+              - name: cost_total_usd
+                description: "Total cost of visual generation for the deck"
+                unit: "USD"
+          targets:
+            pipeline_total_seconds:
+              operator: "<"
+              value: 220
+              rationale: "100s baseline * (1 + 1.20) = 220s max"
+            delta_vs_v1_pct:
+              operator: "<"
+              value: 120
+              rationale: "Epic constraint: delta < +120%"
+            cost_total_usd:
+              operator: "<="
+              value: 2.00
+              rationale: "Budget cap: $2.00/deck (architectural decision #10)"
+          pass_condition: "pipeline_total_seconds < 220 AND delta_vs_v1_pct < 120 AND cost_total_usd <= 2.00"
+          fail_action: >
+            Identify slowest phase via per_phase_breakdown. If Phase 4 > 50s:
+            see BM-PHASE4-LATENCY. If Phase 3 > 40s: optimize LLM batching
+            for content generation. If Phase 5 > 25s: profile PPTX library
+            performance (python-pptx or pptxgenjs).
+
+        - id: PIPELINE-V1-REGRESSION
+          name: "V1 Baseline Regression (Flags Off)"
+          description: >
+            Run the pipeline with ALL v2 feature flags disabled. Must complete
+            in approximately the v1 baseline time (100s +/- 15%), proving that
+            v2 code paths do not degrade v1 performance.
+          setup:
+            - "Disable all feature flags: ENABLE_VISUAL_GENERATION=false, ENABLE_ANDRAGOGIC=false"
+            - "Use v1-compatible briefing (no visual_strategy, no education_mode)"
+          execution:
+            - "Run full pipeline with standard v1 briefing"
+            - "Record total time"
+          measurement:
+            metric: pipeline_total_seconds
+            source: "pipeline_end - pipeline_start"
+            unit: "seconds"
+          target:
+            operator: "<="
+            value: 115  # v1 baseline 100s + 15% tolerance
+            rationale: >
+              V2 code with flags off should have negligible overhead.
+              15% tolerance accounts for flag-checking conditionals and
+              minor code path differences.
+          pass_condition: "pipeline_total_seconds <= 115"
+          fail_action: >
+            V2 code is adding overhead even with flags off. Profile to find
+            which v2 module is executing when it should be skipped. Check
+            feature flag gate placement -- it should be at phase entry, not
+            inside hot loops.
+
+    # ---------------------------------------------------------------------------
+    # BENCHMARK 5: BM-OSS-PRIORITY
+    # OSS diagrams (D2/Mermaid) generated before AI images
+    # AC: Diagramas OSS gerados antes de imagens AI
+    # ---------------------------------------------------------------------------
+    - id: BM-OSS-PRIORITY
+      name: "OSS Engine Priority Ordering"
+      description: >
+        Validates that the visual generation orchestrator schedules OSS
+        engines (D2, Mermaid, Plotly -- free, fast, deterministic) before
+        AI image engines (GPT Image, Recraft, Ideogram -- paid, slow,
+        non-deterministic). This enables partial render: slides with
+        completed OSS visuals can begin PPTX composition while AI images
+        are still generating.
+      acceptance_criteria:
+        - "All OSS engine renders start before any AI engine render"
+        - "OSS visuals available for partial render before AI visuals complete"
+      dependencies:
+        - file: "squads/slides-creator/data/visual-engines.yaml"
+          sections: ["routing_table", "orchestration.engine_selection_algorithm"]
+
+      scenarios:
+
+        - id: OSS-BEFORE-AI
+          name: "OSS Engines Scheduled First"
+          description: >
+            Given a mixed deck with both OSS and AI visual specs, verify
+            that all OSS specs are enqueued in the concurrency pool before
+            any AI specs. This is a scheduling order test, not a timing test.
+          setup:
+            - "Prepare 12-slide deck: 6x OSS (3 d2, 2 mermaid, 1 plotly) + 6x AI (3 gpt_image, 2 ideogram, 1 recraft)"
+            - "Enable scheduling order logging in visual-scout"
+          execution:
+            - "Invoke visual-scout.generateAll(manifest.slides)"
+            - "Capture scheduling log: ordered list of [engine_id, enqueue_timestamp]"
+            - "Verify all OSS engine entries appear before all AI engine entries"
+          measurement:
+            metrics:
+              - name: scheduling_order_correct
+                description: "Boolean: all OSS specs enqueued before all AI specs"
+                source: "scheduling log analysis"
+                unit: "boolean"
+              - name: last_oss_enqueue_ts
+                description: "Timestamp of last OSS spec enqueued"
+                source: "max(enqueue_timestamp) where engine_id in [d2, mermaid, plotly]"
+                unit: "ms"
+              - name: first_ai_enqueue_ts
+                description: "Timestamp of first AI spec enqueued"
+                source: "min(enqueue_timestamp) where engine_id in [gpt_image, recraft, ideogram]"
+                unit: "ms"
+              - name: oss_completion_before_ai
+                description: "Boolean: all OSS renders complete before all AI renders complete"
+                source: "max(oss_end_timestamps) < max(ai_end_timestamps)"
+                unit: "boolean"
+          targets:
+            scheduling_order_correct:
+              operator: "=="
+              value: true
+              rationale: >
+                OSS-first scheduling enables partial render and reduces
+                perceived latency. Deterministic engines finish fast (~1-5s),
+                so PPTX composition can start while AI engines are still
+                processing (~10-30s).
+            oss_completion_before_ai:
+              operator: "=="
+              value: true
+              rationale: >
+                OSS engines are ~5-10x faster than AI engines. With OSS
+                scheduled first, they should complete well before AI engines.
+          pass_condition: "scheduling_order_correct == true"
+          fail_action: >
+            Check visual-scout's spec sorting logic. Specs should be sorted
+            by engine category (diagram > data_viz > ai_vector > ai_image)
+            before being fed to the concurrency pool. If sorting is correct
+            but scheduling is wrong, check if the pool implementation
+            preserves insertion order.
+
+        - id: OSS-PARTIAL-RENDER
+          name: "Partial Render Unblocking"
+          description: >
+            Verify that slides with completed OSS visuals can be passed to
+            Phase 5 (Design Render) while AI visuals are still generating.
+            This is the "partial render" optimization that reduces
+            end-to-end latency.
+          setup:
+            - "Prepare 12-slide deck with mixed OSS/AI visuals"
+            - "Enable phase overlap logging"
+          execution:
+            - "Start Phase 4 (Asset Resolution)"
+            - "When first batch of OSS visuals complete: check if Phase 5 can begin for those slides"
+            - "Record: phase5_first_slide_start vs phase4_last_ai_complete"
+          measurement:
+            metrics:
+              - name: partial_render_enabled
+                description: "Boolean: Phase 5 starts for OSS slides before Phase 4 completes for AI slides"
+                source: "phase5_first_slide_start < phase4_last_ai_complete"
+                unit: "boolean"
+              - name: overlap_time_seconds
+                description: "Time saved by overlapping Phase 4 (AI) with Phase 5 (OSS slides)"
+                source: "phase4_last_ai_complete - phase5_first_slide_start"
+                unit: "seconds"
+          targets:
+            partial_render_enabled:
+              operator: "=="
+              value: true
+              rationale: >
+                Partial render is the key latency optimization. Without it,
+                Phase 5 waits for ALL visuals (including slow AI engines).
+                With it, OSS-only slides can be composed immediately.
+            overlap_time_seconds:
+              operator: ">="
+              value: 5  # at least 5 seconds of overlap savings
+              rationale: >
+                AI engines take 10-30s. OSS engines take 1-5s. The overlap
+                window should be at least 5-25 seconds.
+          pass_condition: "partial_render_enabled == true AND overlap_time_seconds >= 5"
+          fail_action: >
+            If partial_render_enabled == false: Phase 5 is waiting for all
+            Phase 4 results (batch mode, not streaming). Refactor to use
+            event-driven or streaming architecture: visual-scout emits
+            completed visuals as they finish, design-renderer consumes them.
+
+  # ---------------------------------------------------------------------------
+  # SUMMARY: PASS/FAIL MATRIX
+  # ---------------------------------------------------------------------------
+  summary:
+    description: >
+      All 5 benchmarks must PASS for Story 5.4 to be considered complete.
+      Any FAIL requires investigation and remediation before QA gate.
+    pass_criteria:
+      - benchmark: BM-CACHE-HIT
+        condition: "CACHE-UNIQUE >= 10% AND CACHE-SAME-TOPIC >= 30%"
+        priority: HIGH
+      - benchmark: BM-BATCH-PARALLEL
+        condition: "max_concurrent <= 3 AND total_generated == 12 AND recraft_concurrent <= 2"
+        priority: HIGH
+      - benchmark: BM-PHASE4-LATENCY
+        condition: "cold < 50s AND warm < 15s"
+        priority: CRITICAL
+      - benchmark: BM-PIPELINE-TOTAL
+        condition: "v2_total < 220s AND v1_regression <= 115s AND cost <= $2.00"
+        priority: CRITICAL
+      - benchmark: BM-OSS-PRIORITY
+        condition: "scheduling_order_correct == true AND partial_render_enabled == true"
+        priority: HIGH
+    overall_pass: "ALL 5 benchmarks PASS"
+    overall_fail: "ANY benchmark FAIL -> investigate, fix, re-run"
+
+  # ---------------------------------------------------------------------------
+  # EXECUTION INSTRUCTIONS
+  # ---------------------------------------------------------------------------
+  execution:
+    runner: "Manual or automated via test harness"
+    recommended_order:
+      - BM-OSS-PRIORITY    # scheduling validation (no perf dependency)
+      - BM-BATCH-PARALLEL   # concurrency validation
+      - BM-CACHE-HIT        # cache effectiveness
+      - BM-PHASE4-LATENCY   # phase-level timing
+      - BM-PIPELINE-TOTAL   # end-to-end (depends on all above)
+    output_format: "JSON report with per-benchmark results, saved to outputs/qa/performance-report.json"
+    report_sections:
+      - "Benchmark ID + Name"
+      - "Pass/Fail verdict"
+      - "Measured values vs targets"
+      - "Per-scenario details"
+      - "Failure analysis (if any)"
+      - "Environment metadata (platform, RAM, services, feature flags)"

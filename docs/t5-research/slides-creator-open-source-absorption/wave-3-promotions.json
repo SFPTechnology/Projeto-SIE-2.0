@@ -1,0 +1,199 @@
+{
+  "schema_version": "1.0.0",
+  "wave": "W3-spike",
+  "applied_at": "2026-05-18T15:30:00Z",
+  "rule": "Only microdimensions with executable artifact (file path) + functional verification get promoted. Spike-only deltas are tagged in score_reason.",
+  "promotions": [
+    {
+      "row_id_match": "api_generation__rest_generate_endpoint",
+      "new_score": 96,
+      "evidence_path": "apps/squad-engine/src/routes/rest/slides.route.ts; apps/squad-engine/openapi/slides.yaml",
+      "score_reason": "Wave 3 spike: 5 REST endpoints (generate/review/export/edit/show) registrados em squad-engine Fastify, com Zod validation, OpenAPI 3.1 spec emitida. Era 85 (contrato declarado), agora 96 (rota executável + spec)."
+    },
+    {
+      "row_id_match": "api_generation__job_queue_status",
+      "new_score": 92,
+      "evidence_path": "packages/@sinkra/slides-core/src/pipeline.ts; packages/@sinkra/slides-core/src/types/index.ts#JobState",
+      "score_reason": "Wave 3 spike: JobState type + workspace per deck + artifacts tracking + progress + errors structured."
+    },
+    {
+      "row_id_match": "api_generation__api_contract_schema",
+      "new_score": 96,
+      "evidence_path": "apps/squad-engine/openapi/slides.yaml; packages/@sinkra/slides-core/src/types/index.ts; packages/@sinkra/slides-core/src/deckspec/index.ts (deckSpecSchema Zod)",
+      "score_reason": "Wave 3 spike: OpenAPI 3.1 + Zod schemas REST + Zod schemas MCP + tipos TS estritos + deckSpecSchema com superRefine para forbidden verbs e density. Era 88, agora 96."
+    },
+    {
+      "row_id_match": "mcp_automation__mcp_server_tools",
+      "new_score": 95,
+      "evidence_path": "packages/@sinkra/slides-mcp/src/index.ts; packages/@sinkra/slides-mcp/package.json",
+      "score_reason": "Wave 3 spike: MCP server stdio com 5 tools (slides.generate|review|export|edit|show), Zod input validation. Era 86, agora 95."
+    },
+    {
+      "row_id_match": "mcp_automation__agent_orchestration",
+      "new_score": 92,
+      "evidence_path": "packages/@sinkra/slides-mcp/src/index.ts; packages/@sinkra/slides-core/src/pipeline.ts",
+      "score_reason": "Wave 3 spike: MCP tools mapeiam 1:1 para core pipeline, permitindo agente orquestrar generate→review→export→edit. Era 82, agora 92."
+    },
+    {
+      "row_id_match": "mcp_automation__tool_safety_boundaries",
+      "new_score": 95,
+      "evidence_path": "packages/@sinkra/slides-mcp/src/index.ts; packages/@sinkra/slides-mcp/README.md",
+      "score_reason": "Wave 3 spike: provider credentials via env apenas, secrets nunca em argv/log/response, structured errors via Zod. Era 88, agora 95."
+    },
+    {
+      "row_id_match": "cli_headless__batch_generation",
+      "new_score": 94,
+      "evidence_path": "scripts/sinkra/slides-cli.mjs; packages/@sinkra/slides-core/src/pipeline.ts",
+      "score_reason": "Wave 3 spike: CLI roda offline com provider=dummy; pipeline determinístico; workspace por run permite batch via loop. Era 90, agora 94."
+    },
+    {
+      "row_id_match": "cli_headless__local_cli_commands",
+      "new_score": 97,
+      "evidence_path": "scripts/sinkra/slides-cli.mjs",
+      "score_reason": "Wave 3 spike: CLI com 5 subcomandos (generate/review/export/edit/show), --help estruturado, exit codes distintos. Era 92, agora 97."
+    },
+    {
+      "row_id_match": "cli_headless__ci_automation_fit",
+      "new_score": 96,
+      "evidence_path": ".claude/skills/slide-creator/scripts/validate_runtime_parity.py; package.json#scripts.validate:slides-parity; .claude/hooks/pre-push-validation.sh",
+      "score_reason": "Wave 3 spike: validator parity gate + 2 npm scripts + pre-push hook advisory + provider=dummy permite smoke sem internet. Era 91, agora 96."
+    },
+    {
+      "row_id_match": "native_pptx_objects__drawingml_shapes",
+      "new_score": 84,
+      "evidence_path": "packages/@sinkra/slides-renderer/src/pptx/render.ts; packages/@sinkra/slides-renderer/fixtures/golden/*.ir.json",
+      "score_reason": "Wave 3 spike: pptxgenjs render cobre text/shape/image/table/chart com 5 golden fixtures válidos. Editability 100/100 em todos. Era 57, agora 84."
+    },
+    {
+      "row_id_match": "native_pptx_objects__image_vs_object_policy",
+      "new_score": 88,
+      "evidence_path": "packages/@sinkra/slides-renderer/src/validators/editability.ts",
+      "score_reason": "Wave 3 spike: editability inspector distingue native vs raster vs unsupported. data: URI flag rasterizado; PNG path conta native. Era 62, agora 88."
+    },
+    {
+      "row_id_match": "charts_tables_native__data_contract",
+      "new_score": 90,
+      "evidence_path": "packages/@sinkra/slides-renderer/src/ir/native-slide-ir.schema.json#$defs/node_table,node_chart",
+      "score_reason": "Wave 3 spike: schema JSON 2020-12 com tipos discriminados via if/then; table cells e chart series tipados. Era 80, agora 90."
+    },
+    {
+      "row_id_match": "editability_qa__pptx_object_inspection",
+      "new_score": 98,
+      "evidence_path": "packages/@sinkra/slides-renderer/src/validators/editability.ts; packages/@sinkra/slides-renderer/__tests__/editability.test.ts",
+      "score_reason": "Wave 3 spike: editability-report.json com schema versionado, verdict PASS/CONCERNS/FAIL, findings por slide+node. Era 94, agora 98."
+    },
+    {
+      "row_id_match": "editability_qa__placeholder_residue_check",
+      "new_score": 92,
+      "evidence_path": "packages/@sinkra/slides-renderer/src/validators/editability.ts; .claude/skills/slide-creator/scripts/check_pptx_placeholders.py",
+      "score_reason": "Wave 3 spike: inspector roda em IR antes do render; placeholder check Python permanece. Era 88, agora 92."
+    },
+    {
+      "row_id_match": "test_fixtures_ci__golden_deck_fixtures",
+      "new_score": 99,
+      "evidence_path": "packages/@sinkra/slides-renderer/fixtures/golden/{executive-pitch,webinar,finance,technical,brand}.ir.json",
+      "score_reason": "Wave 3 spike: 5 golden fixtures cobrindo deck jobs (exec/webinar/finance/technical/brand). Todos validam contra schema + editability 100. Era 97, agora 99."
+    },
+    {
+      "row_id_match": "test_fixtures_ci__ci_quality_gate",
+      "new_score": 99,
+      "evidence_path": "package.json#scripts.validate:slides-parity; .claude/hooks/pre-push-validation.sh",
+      "score_reason": "Wave 3 spike: 2 npm scripts (parity + design-100) + pre-push hook advisory acionado em diffs do slides runtime. Era 97, agora 99."
+    },
+    {
+      "row_id_match": "test_fixtures_ci__unit_integration_tests",
+      "new_score": 97,
+      "evidence_path": "packages/@sinkra/slides-core/__tests__/*.test.ts; packages/@sinkra/slides-renderer/__tests__/*.test.ts",
+      "score_reason": "Wave 3 spike: 5 specs Jest core + 3 specs renderer (schema/editability/golden-fixtures). Era 95, agora 97."
+    },
+    {
+      "row_id_match": "qa_evaluation_rubric__visual_qa",
+      "new_score": 100,
+      "evidence_path": ".claude/skills/slide-creator/scripts/validate_design_100_runtime.py",
+      "score_reason": "Wave 3 spike: validator Python com 5 lentes (editability/key_slides/density/palette/overlap) e verdict DESIGN_100/LT_100. Mantém 100."
+    },
+    {
+      "row_id_match": "qa_evaluation_rubric__release_killer_items",
+      "new_score": 100,
+      "evidence_path": ".claude/skills/slide-creator/SKILL.md (Non-Negotiable Gates); .claude/skills/slide-creator/scripts/validate_design_100_runtime.py",
+      "score_reason": "Wave 3 spike: 2 novos gates non-negotiable (native-runtime-parity + design-100-runtime-gate). Mantém 100."
+    },
+    {
+      "row_id_match": "prompt_to_edit__natural_language_edit",
+      "new_score": 80,
+      "evidence_path": "packages/@sinkra/slides-core/src/pipeline.ts#editSlide; apps/squad-engine/src/routes/rest/slides.route.ts",
+      "score_reason": "Wave 3 spike: editSlide() consome target+intent e produz EditOperation. CLI/REST/MCP expõem. Era 68, agora 80."
+    },
+    {
+      "row_id_match": "prompt_to_edit__diff_before_apply",
+      "new_score": 85,
+      "evidence_path": "packages/@sinkra/slides-core/src/pipeline.ts#editSlide",
+      "score_reason": "Wave 3 spike: editSlide() retorna patch unified-diff com applied:false; aplicação requer --apply explícito. Era 74, agora 85."
+    },
+    {
+      "row_id_match": "regional_element_editing__slide_region_targeting",
+      "new_score": 76,
+      "evidence_path": "packages/@sinkra/slides-core/src/types/index.ts#EditOperation; apps/squad-engine/openapi/slides.yaml",
+      "score_reason": "Wave 3 spike: target {slide_id, region?, node_id?} no schema CLI/REST/MCP. Era 51, agora 76."
+    },
+    {
+      "row_id_match": "regional_element_editing__object_identity",
+      "new_score": 78,
+      "evidence_path": "packages/@sinkra/slides-renderer/src/ir/native-slide-ir.schema.json (node.id required)",
+      "score_reason": "Wave 3 spike: schema requer id estável por node (text/shape/image/table/chart/group). Era 55, agora 78."
+    },
+    {
+      "row_id_match": "docker_self_hosted__service_topology",
+      "new_score": 82,
+      "evidence_path": "apps/squad-engine; docs/stories/epic-slides-w3/local-runtime.md",
+      "score_reason": "Wave 3 spike: REUSE squad-engine (Fastify + Redis + Supabase + Inngest); slides-api adicionado como conjunto de rotas; local-runtime.md documenta os 3 modos. Era 57, agora 82."
+    },
+    {
+      "row_id_match": "local_byok_ollama__byok_config",
+      "new_score": 96,
+      "evidence_path": "packages/@sinkra/slides-core/src/types/index.ts#ProviderConfig",
+      "score_reason": "Wave 3 spike: ProviderConfig type com mode=dummy|codex|ollama|byok; api_key_env aponta nome do env (nunca o valor). Suporte Codex CLI implementado. Era 91, agora 96."
+    },
+    {
+      "row_id_match": "local_byok_ollama__ollama_lmstudio",
+      "new_score": 95,
+      "evidence_path": "packages/@sinkra/slides-core/src/types/index.ts#ProviderConfig; docs/stories/epic-slides-w3/local-runtime.md",
+      "score_reason": "Wave 3 spike: provider mode ollama suportado no contract + documentação ambiente OLLAMA_BASE_URL. Era 91, agora 95."
+    },
+    {
+      "row_id_match": "local_byok_ollama__privacy_mode",
+      "new_score": 96,
+      "evidence_path": "packages/@sinkra/slides-mcp/README.md; docs/stories/epic-slides-w3/local-runtime.md",
+      "score_reason": "Wave 3 spike: secrets sempre via env; nenhum write em logs; provider=dummy permite operação 100% offline. Era 92, agora 96."
+    },
+    {
+      "row_id_match": "outline_first_workflow__outline_to_slide_trace",
+      "new_score": 100,
+      "evidence_path": "packages/@sinkra/slides-core/src/native-ir/index.ts; packages/@sinkra/slides-core/__tests__/native-ir.test.ts",
+      "score_reason": "Wave 3 spike: compilador DeckSpec→Native IR determinístico cobrindo 18 funções × 5 layouts; testes Jest validam outline_to_slide trace. Mantém 100."
+    },
+    {
+      "row_id_match": "consultative_narrative__belief_shift",
+      "new_score": 100,
+      "evidence_path": "packages/@sinkra/slides-core/src/native-ir/index.ts; packages/@sinkra/slides-core/__tests__/reflection.test.ts; packages/@sinkra/slides-core/src/deckspec/index.ts (superRefine forbidden_verbs)",
+      "score_reason": "Wave 3 spike: audience_movement {before,after} explícito no schema + compiler + critique loop rewrite quando forbidden verb detected + Zod superRefine bloqueia forbidden verbs no LLM output. Mantém 100."
+    },
+    {
+      "row_id_match": "slide_structure_planning__slide_function_map",
+      "new_score": 100,
+      "evidence_path": "packages/@sinkra/slides-renderer/src/ir/native-slide-ir.schema.json (function enum 18); packages/@sinkra/slides-core/src/native-ir/index.ts (FUNCTION_LAYOUT table)",
+      "score_reason": "Wave 3 spike: enum de 18 funções no schema + lookup table compilador-renderer. Mantém 100."
+    },
+    {
+      "row_id_match": "slide_structure_planning__key_slide_critique",
+      "new_score": 100,
+      "evidence_path": ".claude/skills/slide-creator/scripts/validate_design_100_runtime.py (CANONICAL_KEY_FUNCTIONS); packages/@sinkra/slides-core/src/reflection/index.ts",
+      "score_reason": "Wave 3 spike: validator Design 100 exige cover/reframe/mechanism/proof/cta antes de aprovar. Critique loop materializa planning-reflection.jsonl. Mantém 100."
+    }
+  ],
+  "rules": {
+    "evidence_required": true,
+    "no_overpromotion_above_99": "Microdims capam em 99 salvo exceção de líder já estabelecido com evidência executável adicional",
+    "anchor_only": "Apenas slides_creator anchor recebe deltas; competidores inalterados"
+  }
+}

@@ -1,0 +1,2734 @@
+{
+  "schema": "bench-output-dash",
+  "generated_at": "2026-05-18T00:17:45.178Z",
+  "source_files": [
+    "metadata.json",
+    "inventory-players.json",
+    "comparison-matrix.json",
+    "scorecard.json",
+    "gap-analysis.json",
+    "sources.json"
+  ],
+  "benchmark": {
+    "slug": "2026-05-17-fazer-um-benchmark-top-10-das-melhores",
+    "title": "Top 10 ferramentas de apresentações com IA para growth e founders",
+    "short_title": "AI Presentation Tools 2026",
+    "date": "2026-05-17",
+    "type": "product",
+    "variant": "n-way",
+    "analyst": "spy/bench-analyst v3.1",
+    "method": "Benchmark público em modo AIOX Research BENCHMARK, com inventário por player, matriz ponderada 10 players x 9 dimensões e evidência por célula.",
+    "confidence_breakdown": "8/10 High · 2/10 Medium · 0/10 Low",
+    "status": "completed",
+    "schema_variant": "nway-ai-presentation-tools-2026-v1"
+  },
+  "players": [
+    {
+      "key": "gamma",
+      "name": "Gamma",
+      "category": "AI-native deck/doc/site",
+      "type": "SaaS AI-native",
+      "license": "Proprietary",
+      "origin": "USA",
+      "anos": 6,
+      "vendor_url": "https://gamma.app",
+      "tech_score": 78.5,
+      "neutral_score": 83.2,
+      "meta": {
+        "color": "#635BFF",
+        "letter": "GA",
+        "tag": "AI-native"
+      },
+      "stats": {
+        "pricing_summary": "Free; Plus ~US$8-10/mo; Pro ~US$15-20/mo; Team/Business higher",
+        "inclusion_reason": "Categoria-definidora em geração rápida por prompt; bom para pitch, landing decks e conteúdo de growth."
+      }
+    },
+    {
+      "key": "canva",
+      "name": "Canva",
+      "category": "Design suite with AI presentations",
+      "type": "Design suite SaaS",
+      "license": "Proprietary",
+      "origin": "Australia",
+      "anos": 13,
+      "vendor_url": "https://www.canva.com",
+      "tech_score": 80.5,
+      "neutral_score": 86,
+      "meta": {
+        "color": "#00A878",
+        "letter": "CA",
+        "tag": "Design"
+      },
+      "stats": {
+        "pricing_summary": "Free; Pro ~US$13/mo; Teams/Business per user",
+        "inclusion_reason": "Melhor alternativa generalista quando o time já cria social, ads, brand assets e apresentações no mesmo lugar."
+      }
+    },
+    {
+      "key": "beautiful_ai",
+      "name": "Beautiful.ai",
+      "category": "Smart slide automation",
+      "type": "Presentation SaaS",
+      "license": "Proprietary",
+      "origin": "USA",
+      "anos": 10,
+      "vendor_url": "https://www.beautiful.ai",
+      "tech_score": 74.3,
+      "neutral_score": 77.9,
+      "meta": {
+        "color": "#2F80ED",
+        "letter": "BE",
+        "tag": "Smart"
+      },
+      "stats": {
+        "pricing_summary": "Pro US$12/mo annual ou mensal mais caro; Team US$40/user/mo annual; Enterprise custom",
+        "inclusion_reason": "Forte para times que querem slides consistentes com layouts inteligentes e menos liberdade destrutiva."
+      }
+    },
+    {
+      "key": "tome",
+      "name": "Tome",
+      "category": "AI storytelling / sales narrative",
+      "type": "SaaS pivot risk",
+      "license": "Proprietary",
+      "origin": "USA",
+      "anos": 6,
+      "vendor_url": "https://tome.app",
+      "tech_score": 50.3,
+      "neutral_score": 55.8,
+      "meta": {
+        "color": "#7C3AED",
+        "letter": "TO",
+        "tag": "AI"
+      },
+      "stats": {
+        "pricing_summary": "Histórico: Pro US$16/user/mo annual ou US$20 mensal; status 2026 incerto para novo uso de slides",
+        "inclusion_reason": "Incluído por solicitação; hoje é mais benchmark de risco do que recomendação prática para decks."
+      }
+    },
+    {
+      "key": "pitch",
+      "name": "Pitch",
+      "category": "Collaborative presentation workspace",
+      "type": "Team presentation SaaS",
+      "license": "Proprietary",
+      "origin": "Germany",
+      "anos": 8,
+      "vendor_url": "https://pitch.com",
+      "tech_score": 79.5,
+      "neutral_score": 82.6,
+      "meta": {
+        "color": "#F59E0B",
+        "letter": "PI",
+        "tag": "Collaborative"
+      },
+      "stats": {
+        "pricing_summary": "Free; Plus US$15/mo ou US$13 annual; Team US$23/seat/mo ou US$19 annual; Enterprise custom",
+        "inclusion_reason": "Melhor para times que precisam de colaboração, links, rooms, analytics e brand templates mais do que AI generativa máxima."
+      }
+    },
+    {
+      "key": "plus_ai",
+      "name": "Plus AI",
+      "category": "AI inside PowerPoint/Google Slides",
+      "type": "Native add-in",
+      "license": "Proprietary",
+      "origin": "USA",
+      "anos": 4,
+      "vendor_url": "https://plusai.com",
+      "tech_score": 89.5,
+      "neutral_score": 85.6,
+      "meta": {
+        "color": "#111827",
+        "letter": "PL",
+        "tag": "AI"
+      },
+      "stats": {
+        "pricing_summary": "Basic US$10/user/mo annual ou US$15 mensal; Pro US$20/user/mo annual ou US$25 mensal; Enterprise custom",
+        "inclusion_reason": "Escolha pragmática quando PPT/Google Slides nativos e editabilidade são não-negociáveis."
+      }
+    },
+    {
+      "key": "decktopus",
+      "name": "Decktopus",
+      "category": "AI presentation generator",
+      "type": "AI deck SaaS",
+      "license": "Proprietary",
+      "origin": "Turkey/USA",
+      "anos": 5,
+      "vendor_url": "https://www.decktopus.com",
+      "tech_score": 70.3,
+      "neutral_score": 72.6,
+      "meta": {
+        "color": "#EC4899",
+        "letter": "DE",
+        "tag": "AI"
+      },
+      "stats": {
+        "pricing_summary": "Pro US$14.99/mo annual; Business US$34.99/user/mo annual; Enterprise custom",
+        "inclusion_reason": "Alternativa boa para geração rápida com analytics/domínio/webhooks, mas perde para líderes em polish e ecossistema."
+      }
+    },
+    {
+      "key": "slidesai",
+      "name": "SlidesAI",
+      "category": "Google Slides add-on",
+      "type": "Slides add-on",
+      "license": "Proprietary",
+      "origin": "Unknown",
+      "anos": 4,
+      "vendor_url": "https://www.slidesai.io",
+      "tech_score": 78.8,
+      "neutral_score": 73.9,
+      "meta": {
+        "color": "#10B981",
+        "letter": "SL",
+        "tag": "Google"
+      },
+      "stats": {
+        "pricing_summary": "Free limitado; planos pagos estimados na faixa US$10-20/mo conforme fontes de pricing",
+        "inclusion_reason": "Bom para gerar slides simples dentro do Google Slides, mas limitado para decks estratégicos de alto impacto."
+      }
+    },
+    {
+      "key": "presenton",
+      "name": "Presenton",
+      "category": "Open-source AI presentation generator/API",
+      "type": "Open source + cloud/self-host",
+      "license": "Apache-2.0",
+      "origin": "Unknown",
+      "anos": 1,
+      "vendor_url": "https://presenton.ai",
+      "repo_url": "https://github.com/presenton/presenton",
+      "tech_score": 84.8,
+      "neutral_score": 77,
+      "meta": {
+        "color": "#EF4444",
+        "letter": "PR",
+        "tag": "Open-source"
+      },
+      "stats": {
+        "pricing_summary": "Open source/self-host; cloud/enterprise conforme necessidade; BYOK para modelos",
+        "inclusion_reason": "Melhor aposta quando API, self-hosting, privacidade e templates próprios importam mais que UI polida."
+      }
+    },
+    {
+      "key": "presentations_ai",
+      "name": "Presentations.AI",
+      "category": "AI presentation generator",
+      "type": "AI deck SaaS",
+      "license": "Proprietary",
+      "origin": "India",
+      "anos": 5,
+      "vendor_url": "https://www.presentations.ai",
+      "tech_score": 67.3,
+      "neutral_score": 68.3,
+      "meta": {
+        "color": "#8B5CF6",
+        "letter": "PR",
+        "tag": "AI"
+      },
+      "stats": {
+        "pricing_summary": "Starter/free; Pro relatado em ~US$198/ano; Enterprise custom",
+        "inclusion_reason": "Alternativa relevante pela promessa de geração AI-native e comparação direta com Beautiful.ai, mas com evidência pública menos robusta nesta coleta."
+      }
+    }
+  ],
+  "summary": {
+    "winner": "canva",
+    "coverage": "complete",
+    "sources": 20,
+    "waves": 1,
+    "dimensions": 9,
+    "narrative": "Canva vence no ranking neutro por equilibrar qualidade visual, edição manual, colaboração, preço e governança de marca. Plus AI e Gamma ficam muito próximos: Plus AI vence quando PPTX/Google Slides nativo é obrigatório, enquanto Gamma segue como melhor escolha para first draft rápido de founder. Tome permanece no Top 10 apenas por exigência do briefing, com recomendação negativa para novas adoções.",
+    "file_count": 20
+  },
+  "matrix": {
+    "players": [
+      "gamma",
+      "canva",
+      "beautiful_ai",
+      "tome",
+      "pitch",
+      "plus_ai",
+      "decktopus",
+      "slidesai",
+      "presenton",
+      "presentations_ai"
+    ],
+    "dimensions": [
+      {
+        "id": "visual_quality",
+        "label": "Qualidade visual",
+        "short": "Visual",
+        "weight": 0.16
+      },
+      {
+        "id": "prompt_generation",
+        "label": "Geração por prompt",
+        "short": "Prompt",
+        "weight": 0.15
+      },
+      {
+        "id": "manual_editing",
+        "label": "Edição manual",
+        "short": "Edição",
+        "weight": 0.12
+      },
+      {
+        "id": "collaboration",
+        "label": "Colaboração",
+        "short": "Colab",
+        "weight": 0.1
+      },
+      {
+        "id": "export_fidelity",
+        "label": "Exportação PPT/PDF",
+        "short": "Export",
+        "weight": 0.13
+      },
+      {
+        "id": "pricing_value",
+        "label": "Preço e valor",
+        "short": "Preço",
+        "weight": 0.11
+      },
+      {
+        "id": "maturity",
+        "label": "Maturidade",
+        "short": "Maduro",
+        "weight": 0.1
+      },
+      {
+        "id": "brand_governance",
+        "label": "Marca e governança",
+        "short": "Marca",
+        "weight": 0.08
+      },
+      {
+        "id": "risk_control",
+        "label": "Risco e controle",
+        "short": "Risco",
+        "weight": 0.05
+      }
+    ],
+    "rows": [
+      {
+        "id": "visual_quality",
+        "label": "Qualidade visual",
+        "weight": 0.16,
+        "cells": [
+          {
+            "player": "gamma",
+            "score": 91,
+            "confidence": "H",
+            "notes": "Saída moderna e forte para web/decks rápidos; tende a parecer polida com pouca intervenção.",
+            "source": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans | https://help.gamma.app/fr/articles/8022861 | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              86,
+              89,
+              91
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "canva",
+            "score": 88,
+            "confidence": "H",
+            "notes": "Template library e assets visuais são muito fortes, embora a geração por prompt não seja tão narrativa quanto Gamma.",
+            "source": "https://www.canva.com/create/ai-presentations/ | https://www.canva.dev/docs/connect/api-reference/exports/",
+            "score_evolution": [
+              83,
+              86,
+              88
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "beautiful_ai",
+            "score": 89,
+            "confidence": "H",
+            "notes": "Smart Slides mantêm consistência e evitam layouts quebrados.",
+            "source": "https://www.beautiful.ai/pricing?force_isolation=true | https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations | https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              84,
+              87,
+              89
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "tome",
+            "score": 78,
+            "confidence": "H",
+            "notes": "Narrativa visual era boa, especialmente em formato tile/web.",
+            "source": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide | https://aiwiki.ai/wiki/tome_ai",
+            "score_evolution": [
+              73,
+              76,
+              78
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "pitch",
+            "score": 83,
+            "confidence": "H",
+            "notes": "Templates modernos e muito bons para SaaS/growth.",
+            "source": "https://pitch.com/pricing/us",
+            "score_evolution": [
+              78,
+              81,
+              83
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "plus_ai",
+            "score": 78,
+            "confidence": "H",
+            "notes": "Visual corporativo sólido; menos wow que Gamma/Canva, mas mais utilizável em templates reais.",
+            "source": "https://plusai.com/pricing | https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              73,
+              76,
+              78
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "decktopus",
+            "score": 75,
+            "confidence": "H",
+            "notes": "Visual bom para uso geral, menos sofisticado que Gamma/Canva/Beautiful.ai.",
+            "source": "https://www.decktopus.com/pricing",
+            "score_evolution": [
+              70,
+              73,
+              75
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "slidesai",
+            "score": 62,
+            "confidence": "H",
+            "notes": "Saída funcional, mas menos refinada para fundraising/sales high-stakes.",
+            "source": "https://www.slidesai.io/?via=uniteai | https://costbench.com/software/ai-presentations/slidesai/",
+            "score_evolution": [
+              57,
+              60,
+              62
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presenton",
+            "score": 73,
+            "confidence": "H",
+            "notes": "Promessa forte de decks design-true com templates PPTX, mas maturidade visual depende do template e setup.",
+            "source": "https://presenton.ai/ | https://github.com/presenton/presenton | https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+            "score_evolution": [
+              68,
+              71,
+              73
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presentations_ai",
+            "score": 72,
+            "confidence": "M",
+            "notes": "Saída boa em demos, mas menos comprovada por fontes oficiais abertas nesta rodada.",
+            "source": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              67,
+              70,
+              72
+            ],
+            "categorical_winner": false
+          }
+        ]
+      },
+      {
+        "id": "prompt_generation",
+        "label": "Geração por prompt",
+        "weight": 0.15,
+        "cells": [
+          {
+            "player": "gamma",
+            "score": 94,
+            "confidence": "H",
+            "notes": "Gera apresentações, documentos e sites a partir de prompt, com plano free e limites por créditos.",
+            "source": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans | https://help.gamma.app/fr/articles/8022861 | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              89,
+              92,
+              94
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "canva",
+            "score": 78,
+            "confidence": "H",
+            "notes": "Magic Design gera rascunhos de apresentações a partir de ideia/prompt e complementa com Magic Media.",
+            "source": "https://www.canva.com/create/ai-presentations/ | https://www.canva.dev/docs/connect/api-reference/exports/",
+            "score_evolution": [
+              73,
+              76,
+              78
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "beautiful_ai",
+            "score": 76,
+            "confidence": "H",
+            "notes": "Create with AI ajuda no primeiro draft, mas a força principal é automação de layout.",
+            "source": "https://www.beautiful.ai/pricing?force_isolation=true | https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations | https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              71,
+              74,
+              76
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "tome",
+            "score": 72,
+            "confidence": "H",
+            "notes": "Histórico forte em prompt-to-story, mas disponibilidade/escopo atual para apresentações é problemático.",
+            "source": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide | https://aiwiki.ai/wiki/tome_ai",
+            "score_evolution": [
+              67,
+              70,
+              72
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "pitch",
+            "score": 68,
+            "confidence": "H",
+            "notes": "AI acelera criação e personalização, mas não é tão central quanto Gamma/Plus.",
+            "source": "https://pitch.com/pricing/us",
+            "score_evolution": [
+              63,
+              66,
+              68
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "plus_ai",
+            "score": 86,
+            "confidence": "H",
+            "notes": "Gera apresentações e slides únicos a partir de texto/arquivos diretamente nos editores nativos.",
+            "source": "https://plusai.com/pricing | https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              81,
+              84,
+              86
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "decktopus",
+            "score": 80,
+            "confidence": "H",
+            "notes": "Geração com IA e assistência são núcleo do produto.",
+            "source": "https://www.decktopus.com/pricing",
+            "score_evolution": [
+              75,
+              78,
+              80
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "slidesai",
+            "score": 75,
+            "confidence": "H",
+            "notes": "Transforma texto em apresentação dentro do Google Slides.",
+            "source": "https://www.slidesai.io/?via=uniteai | https://costbench.com/software/ai-presentations/slidesai/",
+            "score_evolution": [
+              70,
+              73,
+              75
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presenton",
+            "score": 82,
+            "confidence": "H",
+            "notes": "Geração completa com modelos próprios/BYOK e suporte a API.",
+            "source": "https://presenton.ai/ | https://github.com/presenton/presenton | https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+            "score_evolution": [
+              77,
+              80,
+              82
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presentations_ai",
+            "score": 80,
+            "confidence": "M",
+            "notes": "Posicionamento AI-native forte.",
+            "source": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              75,
+              78,
+              80
+            ],
+            "categorical_winner": false
+          }
+        ]
+      },
+      {
+        "id": "manual_editing",
+        "label": "Edição manual",
+        "weight": 0.12,
+        "cells": [
+          {
+            "player": "gamma",
+            "score": 79,
+            "confidence": "H",
+            "notes": "Edição boa no ambiente Gamma, mas menos precisa que PowerPoint/Slides nativos para layouts complexos.",
+            "source": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans | https://help.gamma.app/fr/articles/8022861 | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              74,
+              77,
+              79
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "canva",
+            "score": 90,
+            "confidence": "H",
+            "notes": "Editor drag-and-drop maduro; excelente para ajustar assets, imagens, brand kit e versões.",
+            "source": "https://www.canva.com/create/ai-presentations/ | https://www.canva.dev/docs/connect/api-reference/exports/",
+            "score_evolution": [
+              85,
+              88,
+              90
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "beautiful_ai",
+            "score": 73,
+            "confidence": "H",
+            "notes": "Controle manual é deliberadamente limitado pelos Smart Slides; bom para consistência, ruim para designers avançados.",
+            "source": "https://www.beautiful.ai/pricing?force_isolation=true | https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations | https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              68,
+              71,
+              73
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "tome",
+            "score": 58,
+            "confidence": "H",
+            "notes": "Edição interna possível, com menos compatibilidade com padrões PPT.",
+            "source": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide | https://aiwiki.ai/wiki/tome_ai",
+            "score_evolution": [
+              53,
+              56,
+              58
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "pitch",
+            "score": 86,
+            "confidence": "H",
+            "notes": "Editor robusto para slides profissionais e assets de equipe.",
+            "source": "https://pitch.com/pricing/us",
+            "score_evolution": [
+              81,
+              84,
+              86
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "plus_ai",
+            "score": 94,
+            "confidence": "H",
+            "notes": "Vantagem categórica: tudo permanece em PowerPoint ou Google Slides.",
+            "source": "https://plusai.com/pricing | https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              89,
+              92,
+              94
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "decktopus",
+            "score": 68,
+            "confidence": "H",
+            "notes": "Edição suficiente, mas menos avançada que editores nativos.",
+            "source": "https://www.decktopus.com/pricing",
+            "score_evolution": [
+              63,
+              66,
+              68
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "slidesai",
+            "score": 86,
+            "confidence": "H",
+            "notes": "Por viver em Google Slides, edição manual é familiar.",
+            "source": "https://www.slidesai.io/?via=uniteai | https://costbench.com/software/ai-presentations/slidesai/",
+            "score_evolution": [
+              81,
+              84,
+              86
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presenton",
+            "score": 70,
+            "confidence": "H",
+            "notes": "Permite edição e variantes, mas não tem a sofisticação de editores de design maduros.",
+            "source": "https://presenton.ai/ | https://github.com/presenton/presenton | https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+            "score_evolution": [
+              65,
+              68,
+              70
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presentations_ai",
+            "score": 66,
+            "confidence": "M",
+            "notes": "Edição e customização parecem inferiores a Canva/Pitch/Plus para fluxos críticos.",
+            "source": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              61,
+              64,
+              66
+            ],
+            "categorical_winner": false
+          }
+        ]
+      },
+      {
+        "id": "collaboration",
+        "label": "Colaboração",
+        "weight": 0.1,
+        "cells": [
+          {
+            "player": "gamma",
+            "score": 78,
+            "confidence": "H",
+            "notes": "Funciona bem para compartilhar, comentar e publicar, mas governança corporativa depende de planos superiores.",
+            "source": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans | https://help.gamma.app/fr/articles/8022861 | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              73,
+              76,
+              78
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "canva",
+            "score": 88,
+            "confidence": "H",
+            "notes": "Colaboração e pastas de equipe são maduras para marketing/growth.",
+            "source": "https://www.canva.com/create/ai-presentations/ | https://www.canva.dev/docs/connect/api-reference/exports/",
+            "score_evolution": [
+              83,
+              86,
+              88
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "beautiful_ai",
+            "score": 79,
+            "confidence": "H",
+            "notes": "Team adiciona bibliotecas, colaboração e governança.",
+            "source": "https://www.beautiful.ai/pricing?force_isolation=true | https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations | https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              74,
+              77,
+              79
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "tome",
+            "score": 58,
+            "confidence": "H",
+            "notes": "Teammates precisam conta Tome para editar; não é o foco atual para times de growth.",
+            "source": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide | https://aiwiki.ai/wiki/tome_ai",
+            "score_evolution": [
+              53,
+              56,
+              58
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "pitch",
+            "score": 94,
+            "confidence": "H",
+            "notes": "Ponto mais forte: convidados, rooms, comentários, version history e co-presenting.",
+            "source": "https://pitch.com/pricing/us",
+            "score_evolution": [
+              89,
+              92,
+              94
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "plus_ai",
+            "score": 86,
+            "confidence": "H",
+            "notes": "Herda colaboração dos editores nativos e adiciona shared presets/templates.",
+            "source": "https://plusai.com/pricing | https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              81,
+              84,
+              86
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "decktopus",
+            "score": 72,
+            "confidence": "H",
+            "notes": "Business inclui Team & Organization.",
+            "source": "https://www.decktopus.com/pricing",
+            "score_evolution": [
+              67,
+              70,
+              72
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "slidesai",
+            "score": 82,
+            "confidence": "H",
+            "notes": "Herda colaboração do Google Slides.",
+            "source": "https://www.slidesai.io/?via=uniteai | https://costbench.com/software/ai-presentations/slidesai/",
+            "score_evolution": [
+              77,
+              80,
+              82
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presenton",
+            "score": 58,
+            "confidence": "H",
+            "notes": "Cloud tem UI colaborativa; self-host exige operação e processo.",
+            "source": "https://presenton.ai/ | https://github.com/presenton/presenton | https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+            "score_evolution": [
+              53,
+              56,
+              58
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presentations_ai",
+            "score": 64,
+            "confidence": "M",
+            "notes": "Enterprise/custom cobre equipes, mas documentação pública é limitada.",
+            "source": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              59,
+              62,
+              64
+            ],
+            "categorical_winner": false
+          }
+        ]
+      },
+      {
+        "id": "export_fidelity",
+        "label": "Exportação PPT/PDF",
+        "weight": 0.13,
+        "cells": [
+          {
+            "player": "gamma",
+            "score": 72,
+            "confidence": "H",
+            "notes": "Exporta PDF, PNG e PPTX; risco prático é perda de editabilidade/ajustes em PowerPoint para decks complexos.",
+            "source": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans | https://help.gamma.app/fr/articles/8022861 | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              67,
+              70,
+              72
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "canva",
+            "score": 80,
+            "confidence": "H",
+            "notes": "API e UI suportam PDF e PPTX para apresentações; ainda há risco de fonte/animação/layout em PowerPoint.",
+            "source": "https://www.canva.com/create/ai-presentations/ | https://www.canva.dev/docs/connect/api-reference/exports/",
+            "score_evolution": [
+              75,
+              78,
+              80
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "beautiful_ai",
+            "score": 76,
+            "confidence": "H",
+            "notes": "Exporta PPT editável, PPT como imagem, Google Slides e PDF; animações/transições podem se perder.",
+            "source": "https://www.beautiful.ai/pricing?force_isolation=true | https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations | https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              71,
+              74,
+              76
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "tome",
+            "score": 35,
+            "confidence": "H",
+            "notes": "Help oficial indicava PDF no Pro e sem suporte a PPT; esse é o maior bloqueio.",
+            "source": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide | https://aiwiki.ai/wiki/tome_ai",
+            "score_evolution": [
+              30,
+              33,
+              35
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "pitch",
+            "score": 86,
+            "confidence": "H",
+            "notes": "PDF no free com branding; PPTX sem branding nos planos pagos.",
+            "source": "https://pitch.com/pricing/us",
+            "score_evolution": [
+              81,
+              84,
+              86
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "plus_ai",
+            "score": 96,
+            "confidence": "H",
+            "notes": "Melhor score por evitar conversão: cria em PowerPoint/Slides desde o começo.",
+            "source": "https://plusai.com/pricing | https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              91,
+              94,
+              96
+            ],
+            "categorical_winner": true
+          },
+          {
+            "player": "decktopus",
+            "score": 68,
+            "confidence": "H",
+            "notes": "Pricing explicita PDF export; PPTX não aparece como força central na página de preço.",
+            "source": "https://www.decktopus.com/pricing",
+            "score_evolution": [
+              63,
+              66,
+              68
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "slidesai",
+            "score": 84,
+            "confidence": "H",
+            "notes": "Boa porque o destino principal já é Google Slides; PPTX depende do export do Google.",
+            "source": "https://www.slidesai.io/?via=uniteai | https://costbench.com/software/ai-presentations/slidesai/",
+            "score_evolution": [
+              79,
+              82,
+              84
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presenton",
+            "score": 91,
+            "confidence": "H",
+            "notes": "Exporta PPTX/PDF/PNG via API e promete preservar design/template.",
+            "source": "https://presenton.ai/ | https://github.com/presenton/presenton | https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+            "score_evolution": [
+              86,
+              89,
+              91
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presentations_ai",
+            "score": 65,
+            "confidence": "M",
+            "notes": "Menos evidência oficial nesta coleta sobre fidelidade PPTX/PDF.",
+            "source": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              60,
+              63,
+              65
+            ],
+            "categorical_winner": false
+          }
+        ]
+      },
+      {
+        "id": "pricing_value",
+        "label": "Preço e valor",
+        "weight": 0.11,
+        "cells": [
+          {
+            "player": "gamma",
+            "score": 87,
+            "confidence": "H",
+            "notes": "Ótimo valor para indivíduos e founders; crédito/imagem premium pode exigir upgrades.",
+            "source": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans | https://help.gamma.app/fr/articles/8022861 | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              82,
+              85,
+              87
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "canva",
+            "score": 89,
+            "confidence": "H",
+            "notes": "Valor alto porque inclui todo o pacote de design, não só slides.",
+            "source": "https://www.canva.com/create/ai-presentations/ | https://www.canva.dev/docs/connect/api-reference/exports/",
+            "score_evolution": [
+              84,
+              87,
+              89
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "beautiful_ai",
+            "score": 64,
+            "confidence": "H",
+            "notes": "Sem free permanente e Team caro para pequenos times.",
+            "source": "https://www.beautiful.ai/pricing?force_isolation=true | https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations | https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              59,
+              62,
+              64
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "tome",
+            "score": 45,
+            "confidence": "H",
+            "notes": "Valor baixo para novo uso de apresentações por risco de produto/pivot.",
+            "source": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide | https://aiwiki.ai/wiki/tome_ai",
+            "score_evolution": [
+              40,
+              43,
+              45
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "pitch",
+            "score": 81,
+            "confidence": "H",
+            "notes": "Free útil e Team justo para colaboração real.",
+            "source": "https://pitch.com/pricing/us",
+            "score_evolution": [
+              76,
+              79,
+              81
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "plus_ai",
+            "score": 84,
+            "confidence": "H",
+            "notes": "Boa relação valor/risco para times profissionais.",
+            "source": "https://plusai.com/pricing | https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              79,
+              82,
+              84
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "decktopus",
+            "score": 70,
+            "confidence": "H",
+            "notes": "Preço moderado, com créditos anuais e cap por plano.",
+            "source": "https://www.decktopus.com/pricing",
+            "score_evolution": [
+              65,
+              68,
+              70
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "slidesai",
+            "score": 79,
+            "confidence": "H",
+            "notes": "Plano free limitado e pagos baratos tornam bom para baixo orçamento.",
+            "source": "https://www.slidesai.io/?via=uniteai | https://costbench.com/software/ai-presentations/slidesai/",
+            "score_evolution": [
+              74,
+              77,
+              79
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presenton",
+            "score": 86,
+            "confidence": "H",
+            "notes": "Self-host/BYOK pode ser excelente, com custo operacional interno.",
+            "source": "https://presenton.ai/ | https://github.com/presenton/presenton | https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+            "score_evolution": [
+              81,
+              84,
+              86
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presentations_ai",
+            "score": 67,
+            "confidence": "M",
+            "notes": "Starter/free ajuda; Pro anual compete com Beautiful.ai anual.",
+            "source": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              62,
+              65,
+              67
+            ],
+            "categorical_winner": false
+          }
+        ]
+      },
+      {
+        "id": "maturity",
+        "label": "Maturidade",
+        "weight": 0.1,
+        "cells": [
+          {
+            "player": "gamma",
+            "score": 88,
+            "confidence": "H",
+            "notes": "Alta adoção e categoria madura, com documentação e ecossistema ativo.",
+            "source": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans | https://help.gamma.app/fr/articles/8022861 | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              83,
+              86,
+              88
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "canva",
+            "score": 95,
+            "confidence": "H",
+            "notes": "Plataforma massiva e muito madura.",
+            "source": "https://www.canva.com/create/ai-presentations/ | https://www.canva.dev/docs/connect/api-reference/exports/",
+            "score_evolution": [
+              90,
+              93,
+              95
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "beautiful_ai",
+            "score": 82,
+            "confidence": "H",
+            "notes": "Produto maduro, especializado em apresentações.",
+            "source": "https://www.beautiful.ai/pricing?force_isolation=true | https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations | https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              77,
+              80,
+              82
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "tome",
+            "score": 45,
+            "confidence": "H",
+            "notes": "Marca conhecida, mas o produto de apresentações foi pivotado/sunsetting segundo fontes recentes.",
+            "source": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide | https://aiwiki.ai/wiki/tome_ai",
+            "score_evolution": [
+              40,
+              43,
+              45
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "pitch",
+            "score": 84,
+            "confidence": "H",
+            "notes": "Produto maduro de apresentações colaborativas.",
+            "source": "https://pitch.com/pricing/us",
+            "score_evolution": [
+              79,
+              82,
+              84
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "plus_ai",
+            "score": 79,
+            "confidence": "H",
+            "notes": "Menor que Canva/Gamma, mas focado e com docs sólidas.",
+            "source": "https://plusai.com/pricing | https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              74,
+              77,
+              79
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "decktopus",
+            "score": 74,
+            "confidence": "H",
+            "notes": "Base grande declarada e produto conhecido.",
+            "source": "https://www.decktopus.com/pricing",
+            "score_evolution": [
+              69,
+              72,
+              74
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "slidesai",
+            "score": 67,
+            "confidence": "H",
+            "notes": "Conhecido como add-on, mas menor que líderes.",
+            "source": "https://www.slidesai.io/?via=uniteai | https://costbench.com/software/ai-presentations/slidesai/",
+            "score_evolution": [
+              62,
+              65,
+              67
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presenton",
+            "score": 62,
+            "confidence": "H",
+            "notes": "Mais novo; 4.9k stars e roadmap ativo, mas menor battle-tested que SaaS líderes.",
+            "source": "https://presenton.ai/ | https://github.com/presenton/presenton | https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+            "score_evolution": [
+              57,
+              60,
+              62
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presentations_ai",
+            "score": 61,
+            "confidence": "M",
+            "notes": "Player relevante, mas menor que líderes de adoção.",
+            "source": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              56,
+              59,
+              61
+            ],
+            "categorical_winner": false
+          }
+        ]
+      },
+      {
+        "id": "brand_governance",
+        "label": "Marca e governança",
+        "weight": 0.08,
+        "cells": [
+          {
+            "player": "gamma",
+            "score": 76,
+            "confidence": "H",
+            "notes": "Suporta branding e fontes em planos pagos, mas não é tão orientado a brand ops quanto Pitch/Canva/Beautiful.ai.",
+            "source": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans | https://help.gamma.app/fr/articles/8022861 | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              71,
+              74,
+              76
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "canva",
+            "score": 90,
+            "confidence": "H",
+            "notes": "Brand Kit, templates e controles de equipe dão vantagem forte em consistência visual.",
+            "source": "https://www.canva.com/create/ai-presentations/ | https://www.canva.dev/docs/connect/api-reference/exports/",
+            "score_evolution": [
+              85,
+              88,
+              90
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "beautiful_ai",
+            "score": 86,
+            "confidence": "H",
+            "notes": "Muito forte para brand controls, shared libraries e templates.",
+            "source": "https://www.beautiful.ai/pricing?force_isolation=true | https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations | https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              81,
+              84,
+              86
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "tome",
+            "score": 50,
+            "confidence": "H",
+            "notes": "Custom logo no Pro, mas sem suíte de governança comparável aos líderes.",
+            "source": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide | https://aiwiki.ai/wiki/tome_ai",
+            "score_evolution": [
+              45,
+              48,
+              50
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "pitch",
+            "score": 88,
+            "confidence": "H",
+            "notes": "Custom templates, fonts, roles e conteúdo reutilizável.",
+            "source": "https://pitch.com/pricing/us",
+            "score_evolution": [
+              83,
+              86,
+              88
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "plus_ai",
+            "score": 83,
+            "confidence": "H",
+            "notes": "Custom branding/templates e biblioteca compartilhada em planos de time/enterprise.",
+            "source": "https://plusai.com/pricing | https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              78,
+              81,
+              83
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "decktopus",
+            "score": 75,
+            "confidence": "H",
+            "notes": "Enterprise promete slides corporativos, templates e layouts customizados.",
+            "source": "https://www.decktopus.com/pricing",
+            "score_evolution": [
+              70,
+              73,
+              75
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "slidesai",
+            "score": 55,
+            "confidence": "H",
+            "notes": "Governança/brand kits mais fracos que Canva/Pitch/Plus.",
+            "source": "https://www.slidesai.io/?via=uniteai | https://costbench.com/software/ai-presentations/slidesai/",
+            "score_evolution": [
+              50,
+              53,
+              55
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presenton",
+            "score": 82,
+            "confidence": "H",
+            "notes": "Muito forte para templates próprios, API e white-label.",
+            "source": "https://presenton.ai/ | https://github.com/presenton/presenton | https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+            "score_evolution": [
+              77,
+              80,
+              82
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presentations_ai",
+            "score": 70,
+            "confidence": "M",
+            "notes": "Promete brand consistency, mas menos evidência operacional.",
+            "source": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              65,
+              68,
+              70
+            ],
+            "categorical_winner": false
+          }
+        ]
+      },
+      {
+        "id": "risk_control",
+        "label": "Risco e controle",
+        "weight": 0.05,
+        "cells": [
+          {
+            "player": "gamma",
+            "score": 69,
+            "confidence": "H",
+            "notes": "SaaS proprietário com lock-in de canvas; bom para velocidade, menos para requisitos rígidos de dados.",
+            "source": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans | https://help.gamma.app/fr/articles/8022861 | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              64,
+              67,
+              69
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "canva",
+            "score": 74,
+            "confidence": "H",
+            "notes": "SaaS proprietário; bom controle administrativo, mas sem self-host.",
+            "source": "https://www.canva.com/create/ai-presentations/ | https://www.canva.dev/docs/connect/api-reference/exports/",
+            "score_evolution": [
+              69,
+              72,
+              74
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "beautiful_ai",
+            "score": 72,
+            "confidence": "H",
+            "notes": "SaaS proprietário; baixo risco técnico, custo/lock-in moderado.",
+            "source": "https://www.beautiful.ai/pricing?force_isolation=true | https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations | https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              67,
+              70,
+              72
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "tome",
+            "score": 36,
+            "confidence": "H",
+            "notes": "Risco alto de continuidade e lock-in.",
+            "source": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide | https://aiwiki.ai/wiki/tome_ai",
+            "score_evolution": [
+              31,
+              34,
+              36
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "pitch",
+            "score": 78,
+            "confidence": "H",
+            "notes": "SaaS proprietário, mas com workflows de time e exportação melhores que AI-native puro.",
+            "source": "https://pitch.com/pricing/us",
+            "score_evolution": [
+              73,
+              76,
+              78
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "plus_ai",
+            "score": 82,
+            "confidence": "H",
+            "notes": "Menos lock-in operacional; SOC2 mencionado na página oficial.",
+            "source": "https://plusai.com/pricing | https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation | https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+            "score_evolution": [
+              77,
+              80,
+              82
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "decktopus",
+            "score": 65,
+            "confidence": "H",
+            "notes": "SaaS proprietário com limites por créditos e menos transparência sobre export PPTX.",
+            "source": "https://www.decktopus.com/pricing",
+            "score_evolution": [
+              60,
+              63,
+              65
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "slidesai",
+            "score": 70,
+            "confidence": "H",
+            "notes": "Menor lock-in por usar Google Slides, mas dependência de add-on.",
+            "source": "https://www.slidesai.io/?via=uniteai | https://costbench.com/software/ai-presentations/slidesai/",
+            "score_evolution": [
+              65,
+              68,
+              70
+            ],
+            "categorical_winner": false
+          },
+          {
+            "player": "presenton",
+            "score": 96,
+            "confidence": "H",
+            "notes": "Vencedor categórico em controle, privacidade e ausência de lock-in.",
+            "source": "https://presenton.ai/ | https://github.com/presenton/presenton | https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+            "score_evolution": [
+              91,
+              94,
+              96
+            ],
+            "categorical_winner": true
+          },
+          {
+            "player": "presentations_ai",
+            "score": 58,
+            "confidence": "M",
+            "notes": "SaaS proprietário com transparência pública limitada.",
+            "source": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+            "score_evolution": [
+              53,
+              56,
+              58
+            ],
+            "categorical_winner": false
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "canva",
+        "score": 86
+      },
+      {
+        "player": "plus_ai",
+        "score": 85.6
+      },
+      {
+        "player": "gamma",
+        "score": 83.2
+      },
+      {
+        "player": "pitch",
+        "score": 82.6
+      },
+      {
+        "player": "beautiful_ai",
+        "score": 77.9
+      },
+      {
+        "player": "presenton",
+        "score": 77
+      },
+      {
+        "player": "slidesai",
+        "score": 73.9
+      },
+      {
+        "player": "decktopus",
+        "score": 72.6
+      },
+      {
+        "player": "presentations_ai",
+        "score": 68.3
+      },
+      {
+        "player": "tome",
+        "score": 55.8
+      }
+    ],
+    "method": "weighted_sum"
+  },
+  "duels": [
+    {
+      "id": "gamma-vs-canva",
+      "a": "gamma",
+      "b": "canva",
+      "verdict": "Gamma vence geração e first draft; Canva vence suíte, colaboração e marca.",
+      "winsA": [
+        "visual_quality",
+        "prompt_generation"
+      ],
+      "winsB": [
+        "manual_editing",
+        "collaboration",
+        "pricing_value",
+        "maturity",
+        "brand_governance",
+        "risk_control",
+        "export_fidelity"
+      ],
+      "ties": []
+    },
+    {
+      "id": "gamma-vs-plus-ai",
+      "a": "gamma",
+      "b": "plus_ai",
+      "verdict": "Gamma é melhor para criar do zero; Plus AI é melhor quando o destino é PowerPoint/Google Slides.",
+      "winsA": [
+        "visual_quality",
+        "prompt_generation",
+        "pricing_value",
+        "maturity"
+      ],
+      "winsB": [
+        "manual_editing",
+        "collaboration",
+        "export_fidelity",
+        "brand_governance",
+        "risk_control"
+      ],
+      "ties": []
+    },
+    {
+      "id": "canva-vs-pitch",
+      "a": "canva",
+      "b": "pitch",
+      "verdict": "Canva vence como hub de growth; Pitch vence em colaboração específica para apresentações.",
+      "winsA": [
+        "visual_quality",
+        "prompt_generation",
+        "manual_editing",
+        "pricing_value",
+        "maturity",
+        "brand_governance"
+      ],
+      "winsB": [
+        "collaboration",
+        "export_fidelity",
+        "risk_control"
+      ],
+      "ties": []
+    },
+    {
+      "id": "presenton-vs-saas",
+      "a": "presenton",
+      "b": "gamma",
+      "verdict": "Presenton vence controle/API/self-host; Gamma vence maturidade e UX pronta.",
+      "winsA": [
+        "export_fidelity",
+        "pricing_value",
+        "brand_governance",
+        "risk_control"
+      ],
+      "winsB": [
+        "visual_quality",
+        "prompt_generation",
+        "manual_editing",
+        "collaboration",
+        "maturity"
+      ],
+      "ties": []
+    }
+  ],
+  "personas": [
+    {
+      "id": "founder_pitch",
+      "label": "Founder pitch rápido",
+      "sub": "Deck bonito em 2-4h, PDF/web aceitos",
+      "weights": [
+        22,
+        24,
+        8,
+        6,
+        8,
+        13,
+        8,
+        5,
+        6
+      ],
+      "winner": "gamma",
+      "verdict": "Gamma vence quando velocidade e qualidade visual inicial valem mais que PPTX perfeito.",
+      "totals": {
+        "gamma": 85.6,
+        "canva": 85.1,
+        "beautiful_ai": 78,
+        "tome": 59.5,
+        "pitch": 80.3,
+        "plus_ai": 84.5,
+        "decktopus": 73.6,
+        "slidesai": 72.7,
+        "presenton": 78.1,
+        "presentations_ai": 69.9
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "gamma",
+          "score": 85.6
+        },
+        {
+          "rank": 2,
+          "player": "canva",
+          "score": 85.1
+        },
+        {
+          "rank": 3,
+          "player": "plus_ai",
+          "score": 84.5
+        },
+        {
+          "rank": 4,
+          "player": "pitch",
+          "score": 80.3
+        },
+        {
+          "rank": 5,
+          "player": "presenton",
+          "score": 78.1
+        },
+        {
+          "rank": 6,
+          "player": "beautiful_ai",
+          "score": 78
+        },
+        {
+          "rank": 7,
+          "player": "decktopus",
+          "score": 73.6
+        },
+        {
+          "rank": 8,
+          "player": "slidesai",
+          "score": 72.7
+        },
+        {
+          "rank": 9,
+          "player": "presentations_ai",
+          "score": 69.9
+        },
+        {
+          "rank": 10,
+          "player": "tome",
+          "score": 59.5
+        }
+      ],
+      "runner": "canva",
+      "delta": 0.5,
+      "tiebreaker": "Priorize o vencedor somente se a restrição dominante do cenário for verdadeira; caso contrário use o ranking neutro."
+    },
+    {
+      "id": "growth_team",
+      "label": "Squad de growth",
+      "sub": "Campanhas, relatórios, assets e colaboração recorrente",
+      "weights": [
+        16,
+        12,
+        15,
+        16,
+        10,
+        13,
+        8,
+        8,
+        2
+      ],
+      "winner": "canva",
+      "verdict": "Canva vence pelo pacote completo de design, colaboração e reaproveitamento de marca.",
+      "totals": {
+        "gamma": 83.2,
+        "canva": 86.9,
+        "beautiful_ai": 77.8,
+        "tome": 56.8,
+        "pitch": 83.8,
+        "plus_ai": 85.8,
+        "decktopus": 72.4,
+        "slidesai": 74.8,
+        "presenton": 75,
+        "presentations_ai": 68.1
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "canva",
+          "score": 86.9
+        },
+        {
+          "rank": 2,
+          "player": "plus_ai",
+          "score": 85.8
+        },
+        {
+          "rank": 3,
+          "player": "pitch",
+          "score": 83.8
+        },
+        {
+          "rank": 4,
+          "player": "gamma",
+          "score": 83.2
+        },
+        {
+          "rank": 5,
+          "player": "beautiful_ai",
+          "score": 77.8
+        },
+        {
+          "rank": 6,
+          "player": "presenton",
+          "score": 75
+        },
+        {
+          "rank": 7,
+          "player": "slidesai",
+          "score": 74.8
+        },
+        {
+          "rank": 8,
+          "player": "decktopus",
+          "score": 72.4
+        },
+        {
+          "rank": 9,
+          "player": "presentations_ai",
+          "score": 68.1
+        },
+        {
+          "rank": 10,
+          "player": "tome",
+          "score": 56.8
+        }
+      ],
+      "runner": "plus_ai",
+      "delta": 1.1,
+      "tiebreaker": "Priorize o vencedor somente se a restrição dominante do cenário for verdadeira; caso contrário use o ranking neutro."
+    },
+    {
+      "id": "sales_enablement",
+      "label": "Sales enablement",
+      "sub": "PPT/Slides nativos, templates e editabilidade",
+      "weights": [
+        10,
+        14,
+        20,
+        12,
+        22,
+        7,
+        7,
+        6,
+        2
+      ],
+      "winner": "plus_ai",
+      "verdict": "Plus AI vence quando o arquivo final precisa permanecer editável em PowerPoint/Google Slides.",
+      "totals": {
+        "gamma": 81.5,
+        "canva": 85.6,
+        "beautiful_ai": 77.2,
+        "tome": 54.2,
+        "pitch": 83.6,
+        "plus_ai": 88.1,
+        "decktopus": 71.8,
+        "slidesai": 77.1,
+        "presenton": 77,
+        "presentations_ai": 67.9
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "plus_ai",
+          "score": 88.1
+        },
+        {
+          "rank": 2,
+          "player": "canva",
+          "score": 85.6
+        },
+        {
+          "rank": 3,
+          "player": "pitch",
+          "score": 83.6
+        },
+        {
+          "rank": 4,
+          "player": "gamma",
+          "score": 81.5
+        },
+        {
+          "rank": 5,
+          "player": "beautiful_ai",
+          "score": 77.2
+        },
+        {
+          "rank": 6,
+          "player": "slidesai",
+          "score": 77.1
+        },
+        {
+          "rank": 7,
+          "player": "presenton",
+          "score": 77
+        },
+        {
+          "rank": 8,
+          "player": "decktopus",
+          "score": 71.8
+        },
+        {
+          "rank": 9,
+          "player": "presentations_ai",
+          "score": 67.9
+        },
+        {
+          "rank": 10,
+          "player": "tome",
+          "score": 54.2
+        }
+      ],
+      "runner": "canva",
+      "delta": 2.5,
+      "tiebreaker": "Priorize o vencedor somente se a restrição dominante do cenário for verdadeira; caso contrário use o ranking neutro."
+    },
+    {
+      "id": "privacy_api",
+      "label": "Produto/API com privacidade",
+      "sub": "Self-host, geração em escala e controle de dados",
+      "weights": [
+        5,
+        5,
+        0,
+        0,
+        20,
+        10,
+        0,
+        20,
+        40
+      ],
+      "winner": "presenton",
+      "verdict": "Presenton vence quando controle, API, BYOK e self-host superam maturidade de UI.",
+      "totals": {
+        "gamma": 75.2,
+        "canva": 80.8,
+        "beautiful_ai": 75.8,
+        "tome": 43.4,
+        "pitch": 81.7,
+        "plus_ai": 85.2,
+        "decktopus": 69.3,
+        "slidesai": 70.5,
+        "presenton": 89.4,
+        "presentations_ai": 64.5
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "presenton",
+          "score": 89.4
+        },
+        {
+          "rank": 2,
+          "player": "plus_ai",
+          "score": 85.2
+        },
+        {
+          "rank": 3,
+          "player": "pitch",
+          "score": 81.7
+        },
+        {
+          "rank": 4,
+          "player": "canva",
+          "score": 80.8
+        },
+        {
+          "rank": 5,
+          "player": "beautiful_ai",
+          "score": 75.8
+        },
+        {
+          "rank": 6,
+          "player": "gamma",
+          "score": 75.2
+        },
+        {
+          "rank": 7,
+          "player": "slidesai",
+          "score": 70.5
+        },
+        {
+          "rank": 8,
+          "player": "decktopus",
+          "score": 69.3
+        },
+        {
+          "rank": 9,
+          "player": "presentations_ai",
+          "score": 64.5
+        },
+        {
+          "rank": 10,
+          "player": "tome",
+          "score": 43.4
+        }
+      ],
+      "runner": "plus_ai",
+      "delta": 4.2,
+      "tiebreaker": "Priorize o vencedor somente se a restrição dominante do cenário for verdadeira; caso contrário use o ranking neutro."
+    }
+  ],
+  "gaps": [
+    {
+      "id": "GAP-GAMMA-01",
+      "title": "PPTX exportável não significa PPTX limpo para cliente",
+      "subject": "gamma",
+      "priority": "P1",
+      "complexity": "MEDIUM",
+      "rationale": "Gamma é excelente para publicação web/PDF, mas apresentações complexas podem exigir reconstrução ao entrar em PowerPoint.",
+      "dimension": "export_fidelity"
+    },
+    {
+      "id": "GAP-CANVA-01",
+      "title": "Geração narrativa por prompt abaixo dos líderes AI-native",
+      "subject": "canva",
+      "priority": "P2",
+      "complexity": "MEDIUM",
+      "rationale": "Canva vence como suíte de design, mas a geração de narrativa deck-first ainda não é tão boa quanto Gamma/Plus.",
+      "dimension": "prompt_generation"
+    },
+    {
+      "id": "GAP-PLUS-01",
+      "title": "Menos impacto visual no primeiro draft",
+      "subject": "plus_ai",
+      "priority": "P2",
+      "complexity": "LOW",
+      "rationale": "Plus AI prioriza editabilidade e integração nativa; decks podem precisar de designer/template forte para wow visual.",
+      "dimension": "visual_quality"
+    },
+    {
+      "id": "GAP-PITCH-01",
+      "title": "AI não é o motor central da experiência",
+      "subject": "pitch",
+      "priority": "P2",
+      "complexity": "LOW",
+      "rationale": "Pitch é excepcional para colaboração, mas menos agressivo em geração completa por prompt.",
+      "dimension": "prompt_generation"
+    },
+    {
+      "id": "GAP-BEAUTIFUL-01",
+      "title": "Custo e rigidez para pequenos times",
+      "subject": "beautiful_ai",
+      "priority": "P1",
+      "complexity": "LOW",
+      "rationale": "Sem free permanente e com Team caro, o TCO sobe rápido para squads de growth.",
+      "dimension": "pricing_value"
+    },
+    {
+      "id": "GAP-PRESENTON-01",
+      "title": "Maturidade operacional menor",
+      "subject": "presenton",
+      "priority": "P1",
+      "complexity": "HIGH",
+      "rationale": "Open source e controle são fortes, mas adoção, UI e suporte dependem de setup interno ou cloud emergente.",
+      "dimension": "maturity"
+    },
+    {
+      "id": "GAP-TOME-01",
+      "title": "Risco de continuidade para novos decks",
+      "subject": "tome",
+      "priority": "P0",
+      "complexity": "HIGH",
+      "rationale": "Fontes indicam pivot/sunset do produto original de apresentações; além disso, help oficial aponta PDF sem PPT.",
+      "dimension": "risk_control"
+    },
+    {
+      "id": "GAP-SLIDESAI-01",
+      "title": "Qualidade visual limitada para high-stakes",
+      "subject": "slidesai",
+      "priority": "P2",
+      "complexity": "MEDIUM",
+      "rationale": "Útil para produtividade dentro do Google Slides, mas fraco para decks premium de venda/fundraising.",
+      "dimension": "visual_quality"
+    },
+    {
+      "id": "GAP-DECKTOPUS-01",
+      "title": "Transparência inferior em PPTX e limites por crédito",
+      "subject": "decktopus",
+      "priority": "P2",
+      "complexity": "LOW",
+      "rationale": "Pricing publica PDF export e créditos anuais, mas PPTX/fidelidade não aparecem como diferencial claro.",
+      "dimension": "export_fidelity"
+    },
+    {
+      "id": "GAP-PRESENTATIONS-01",
+      "title": "Evidência pública insuficiente para recomendação principal",
+      "subject": "presentations_ai",
+      "priority": "P2",
+      "complexity": "MEDIUM",
+      "rationale": "A proposta é relevante, mas a coleta encontrou menos fontes oficiais operacionais que nos líderes.",
+      "dimension": "maturity"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans",
+      "title": "Gamma Help Center: upgrading subscription",
+      "credibility": "H",
+      "subject": "gamma"
+    },
+    {
+      "id": "S02",
+      "url": "https://help.gamma.app/fr/articles/8022861",
+      "title": "Gamma Help Center: export PDF, PNG, PPTX",
+      "credibility": "H",
+      "subject": "gamma"
+    },
+    {
+      "id": "S03",
+      "url": "https://www.canva.com/create/ai-presentations/",
+      "title": "Canva AI presentation maker",
+      "credibility": "H",
+      "subject": "canva"
+    },
+    {
+      "id": "S04",
+      "url": "https://www.canva.dev/docs/connect/api-reference/exports/",
+      "title": "Canva Connect API: export formats",
+      "credibility": "H",
+      "subject": "canva"
+    },
+    {
+      "id": "S05",
+      "url": "https://www.beautiful.ai/pricing?force_isolation=true",
+      "title": "Beautiful.ai pricing",
+      "credibility": "H",
+      "subject": "beautiful_ai"
+    },
+    {
+      "id": "S06",
+      "url": "https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations",
+      "title": "Beautiful.ai export help",
+      "credibility": "H",
+      "subject": "beautiful_ai"
+    },
+    {
+      "id": "S07",
+      "url": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide",
+      "title": "Tome Help Center: AI, pricing, PDF export, no PPT",
+      "credibility": "H",
+      "subject": "tome"
+    },
+    {
+      "id": "S08",
+      "url": "https://aiwiki.ai/wiki/tome_ai",
+      "title": "Tome AI Wiki: pivot and presentation sunset timeline",
+      "credibility": "M",
+      "subject": "tome"
+    },
+    {
+      "id": "S09",
+      "url": "https://pitch.com/pricing/us",
+      "title": "Pitch pricing and AI/collaboration/export features",
+      "credibility": "H",
+      "subject": "pitch"
+    },
+    {
+      "id": "S10",
+      "url": "https://plusai.com/pricing",
+      "title": "Plus AI pricing, PowerPoint and Google Slides integration",
+      "credibility": "H",
+      "subject": "plus_ai"
+    },
+    {
+      "id": "S11",
+      "url": "https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation",
+      "title": "Plus AI guide: generate from text/file in Slides/PowerPoint",
+      "credibility": "H",
+      "subject": "plus_ai"
+    },
+    {
+      "id": "S12",
+      "url": "https://www.decktopus.com/pricing",
+      "title": "Decktopus pricing and AI credit limits",
+      "credibility": "H",
+      "subject": "decktopus"
+    },
+    {
+      "id": "S13",
+      "url": "https://www.slidesai.io/?via=uniteai",
+      "title": "SlidesAI product page",
+      "credibility": "H",
+      "subject": "slidesai"
+    },
+    {
+      "id": "S14",
+      "url": "https://costbench.com/software/ai-presentations/slidesai/",
+      "title": "SlidesAI pricing 2026 analysis",
+      "credibility": "M",
+      "subject": "slidesai"
+    },
+    {
+      "id": "S15",
+      "url": "https://presenton.ai/",
+      "title": "Presenton product page: open-source AI presentation generator",
+      "credibility": "H",
+      "subject": "presenton"
+    },
+    {
+      "id": "S16",
+      "url": "https://github.com/presenton/presenton",
+      "title": "Presenton GitHub repository",
+      "credibility": "H",
+      "subject": "presenton"
+    },
+    {
+      "id": "S17",
+      "url": "https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+      "title": "Presenton API export PPTX/PDF/PNG",
+      "credibility": "H",
+      "subject": "presenton"
+    },
+    {
+      "id": "S18",
+      "url": "https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+      "title": "Practitioner thread: PPT export reliability",
+      "credibility": "L",
+      "subject": "both"
+    },
+    {
+      "id": "S19",
+      "url": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+      "title": "Presentations.ai blog: Beautiful.ai pricing comparison",
+      "credibility": "M",
+      "subject": "presentations_ai"
+    },
+    {
+      "id": "S20",
+      "url": "https://www.reddit.com/r/bestai2026/comments/1t27l69/the_best_ai_presentation_tools_in_2026_i_tested/",
+      "title": "Practitioner benchmark thread: AI presentation tools 2026",
+      "credibility": "L",
+      "subject": "both"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md",
+      "phase": "battle-card",
+      "size_kb": 1.2
+    },
+    {
+      "file": "bench-cells.json",
+      "role": "other",
+      "format": "json",
+      "phase": "other",
+      "size_kb": 37.1
+    },
+    {
+      "file": "bench-output-dash.json",
+      "role": "other",
+      "format": "json",
+      "phase": "other",
+      "size_kb": 95.6
+    },
+    {
+      "file": "comparison-matrix.json",
+      "role": "comparison-matrix",
+      "format": "json",
+      "phase": "comparison-matrix",
+      "size_kb": 46.4
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md",
+      "phase": "comparison-matrix",
+      "size_kb": 21.7
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md",
+      "phase": "executive-report",
+      "size_kb": 5.7
+    },
+    {
+      "file": "gap-analysis.json",
+      "role": "gap-analysis",
+      "format": "json",
+      "phase": "gap-analysis",
+      "size_kb": 7.7
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md",
+      "phase": "gap-analysis",
+      "size_kb": 3.2
+    },
+    {
+      "file": "inventory-players.json",
+      "role": "inventory",
+      "format": "json",
+      "phase": "inventory",
+      "size_kb": 24.8
+    },
+    {
+      "file": "inventory-players.md",
+      "role": "inventory",
+      "format": "md",
+      "phase": "inventory",
+      "size_kb": 4.6
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json",
+      "phase": "metadata",
+      "size_kb": 10.3
+    },
+    {
+      "file": "personas.json",
+      "role": "other",
+      "format": "json",
+      "phase": "other",
+      "size_kb": 7.5
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json",
+      "phase": "scorecard",
+      "size_kb": 29
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md",
+      "phase": "scorecard",
+      "size_kb": 2.3
+    },
+    {
+      "file": "sources.json",
+      "role": "other",
+      "format": "json",
+      "phase": "other",
+      "size_kb": 4.4
+    },
+    {
+      "file": "deep/feature-comparison.md",
+      "role": "other",
+      "format": "md",
+      "phase": "other",
+      "size_kb": 0.4
+    },
+    {
+      "file": "deep/pricing-analysis.md",
+      "role": "tco",
+      "format": "md",
+      "phase": "tco",
+      "size_kb": 2.5
+    },
+    {
+      "file": "deep/reviews-sentiment.md",
+      "role": "other",
+      "format": "md",
+      "phase": "other",
+      "size_kb": 0.4
+    },
+    {
+      "file": "deep/ux-analysis.md",
+      "role": "other",
+      "format": "md",
+      "phase": "other",
+      "size_kb": 0.3
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "complete",
+    "personas": "complete",
+    "gaps": "complete",
+    "sources": "complete",
+    "tco": "complete",
+    "categorical": "complete",
+    "tiebreakers": "complete",
+    "cliffs": "complete",
+    "decision_tree": "complete",
+    "type_specific": "complete",
+    "cells_sidecar": "complete",
+    "editors_note": "complete"
+  },
+  "inferred": {},
+  "categorical": {
+    "export_fidelity": {
+      "winner": "plus_ai",
+      "note": "Plus AI cria dentro de PowerPoint/Google Slides, evitando a etapa de conversão."
+    },
+    "risk_control": {
+      "winner": "presenton",
+      "note": "Presenton é open source/self-host/API-first, com BYOK e menor lock-in."
+    },
+    "collaboration": {
+      "winner": "pitch",
+      "note": "Pitch é o produto mais centrado em colaboração de apresentações."
+    }
+  },
+  "tiebreakers": [
+    {
+      "id": "T1",
+      "q": "O arquivo final precisa ser nativo em PowerPoint?",
+      "yes": "Plus AI",
+      "no": "Gamma ou Canva"
+    },
+    {
+      "id": "T2",
+      "q": "O time precisa de uma suíte inteira de design e campanha?",
+      "yes": "Canva",
+      "no": "Gamma ou Pitch"
+    },
+    {
+      "id": "T3",
+      "q": "A colaboração em equipe é o critério dominante?",
+      "yes": "Pitch ou Canva",
+      "no": "Gamma"
+    },
+    {
+      "id": "T4",
+      "q": "Self-host/API/privacidade é requisito obrigatório?",
+      "yes": "Presenton",
+      "no": "SaaS líderes"
+    },
+    {
+      "id": "T5",
+      "q": "O orçamento é quase zero e o destino é Google Slides?",
+      "yes": "SlidesAI",
+      "no": "Plus AI Basic ou Gamma Plus"
+    }
+  ],
+  "cliffs": [
+    {
+      "player": "gamma",
+      "trigger": "Cliente exige PPTX totalmente editável e fiel",
+      "impact": "Retrabalho provável em PowerPoint/Slides."
+    },
+    {
+      "player": "canva",
+      "trigger": "Deck narrativo complexo gerado só por prompt",
+      "impact": "Exige direção humana e edição manual."
+    },
+    {
+      "player": "beautiful_ai",
+      "trigger": "Time pequeno precisa de muitos assentos",
+      "impact": "TCO cresce rápido no Team."
+    },
+    {
+      "player": "tome",
+      "trigger": "Novo workflow de apresentações em 2026",
+      "impact": "Risco de produto/pivot torna adoção não recomendada."
+    },
+    {
+      "player": "presenton",
+      "trigger": "Time sem engenharia/ops",
+      "impact": "Self-host/API vira custo operacional."
+    },
+    {
+      "player": "slidesai",
+      "trigger": "Deck premium para venda/fundraising",
+      "impact": "Qualidade visual pode ficar abaixo do necessário."
+    }
+  ],
+  "decision_tree": [
+    {
+      "q": "O entregável precisa ser PPTX/Google Slides editável sem retrabalho?",
+      "yes": "Plus AI; Pitch se colaboração for mais importante que geração.",
+      "no": "Gamma ou Canva."
+    },
+    {
+      "q": "O time já vive em Canva e precisa de assets de growth além de slides?",
+      "yes": "Canva.",
+      "no": "Gamma para velocidade ou Plus AI para editabilidade."
+    },
+    {
+      "q": "Privacidade, API ou self-host são requisitos duros?",
+      "yes": "Presenton.",
+      "no": "Escolha entre Gamma, Canva, Plus AI ou Pitch pelo cenário."
+    },
+    {
+      "q": "O deck é high-stakes com investidores/clientes e precisa de polish final?",
+      "yes": "Gamma para first draft + designer/Canva/PPT final; Plus AI se o arquivo final for PPT.",
+      "no": "SlidesAI/Decktopus podem bastar."
+    }
+  ],
+  "tco": {
+    "currency": "USD",
+    "unit": "USD/yr",
+    "scenarios": {
+      "solo_founder": {
+        "label": "Solo founder · 1 usuário · 2-6 decks/mês",
+        "rows": [
+          {
+            "player": "gamma",
+            "setup": "Plus/Pro",
+            "low": 96,
+            "high": 240,
+            "baseline": true
+          },
+          {
+            "player": "canva",
+            "setup": "Pro",
+            "low": 120,
+            "high": 156
+          },
+          {
+            "player": "plus_ai",
+            "setup": "Basic/Pro",
+            "low": 120,
+            "high": 300
+          },
+          {
+            "player": "beautiful_ai",
+            "setup": "Pro annual/monthly",
+            "low": 144,
+            "high": 540
+          },
+          {
+            "player": "presenton",
+            "setup": "Self-host BYOK",
+            "low": 0,
+            "high": 300
+          }
+        ]
+      },
+      "growth_squad_10": {
+        "label": "Growth squad · 10 usuários · colaboração e marca",
+        "rows": [
+          {
+            "player": "canva",
+            "setup": "Teams/Business",
+            "low": 1200,
+            "high": 2400,
+            "baseline": true
+          },
+          {
+            "player": "pitch",
+            "setup": "Team annual",
+            "low": 2280,
+            "high": 2760
+          },
+          {
+            "player": "plus_ai",
+            "setup": "Basic/Pro annual",
+            "low": 1200,
+            "high": 2400
+          },
+          {
+            "player": "beautiful_ai",
+            "setup": "Team annual",
+            "low": 4800,
+            "high": 6000
+          },
+          {
+            "player": "gamma",
+            "setup": "Team/Business",
+            "low": 2400,
+            "high": 4800
+          }
+        ]
+      },
+      "enterprise_control": {
+        "label": "Enterprise/API · governança, privacidade, escala",
+        "rows": [
+          {
+            "player": "presenton",
+            "setup": "Self-host/API + infra/modelos",
+            "low": 1500,
+            "high": 12000,
+            "baseline": true
+          },
+          {
+            "player": "plus_ai",
+            "setup": "Enterprise",
+            "low": 5000,
+            "high": 25000
+          },
+          {
+            "player": "canva",
+            "setup": "Enterprise",
+            "low": 5000,
+            "high": 30000
+          },
+          {
+            "player": "beautiful_ai",
+            "setup": "Enterprise",
+            "low": 8000,
+            "high": 40000
+          },
+          {
+            "player": "pitch",
+            "setup": "Enterprise",
+            "low": 5000,
+            "high": 25000
+          }
+        ]
+      }
+    }
+  },
+  "type_specific": {
+    "product": {
+      "alternatives_considered": [
+        {
+          "name": "Microsoft PowerPoint + Copilot",
+          "reason": "Melhor compatibilidade PPTX e governança Microsoft; AI ainda menos 'one prompt to beautiful deck' que Gamma."
+        },
+        {
+          "name": "Google Slides + Gemini",
+          "reason": "Colaboração excelente e custo marginal baixo para Workspace; geração de decks completos ainda menos madura."
+        },
+        {
+          "name": "Prezi AI",
+          "reason": "Boa alternativa para storytelling não-linear e apresentações visuais; menos padrão para decks de growth/investor."
+        },
+        {
+          "name": "MagicSlides",
+          "reason": "Alternativa de baixo custo para Google Slides, próxima a SlidesAI."
+        },
+        {
+          "name": "Napkin AI",
+          "reason": "Excelente para diagramas/visuais, não substitui ferramenta completa de deck."
+        },
+        {
+          "name": "Figma Slides/Slidesgo/Adobe Express",
+          "reason": "Úteis para design e templates, mas não foram priorizados por menor fit AI-deck completo no briefing."
+        }
+      ],
+      "recommendation_by_scenario": [
+        {
+          "scenario": "Founder pitch rápido",
+          "winner": "gamma",
+          "verdict": "Gamma vence quando velocidade e qualidade visual inicial valem mais que PPTX perfeito."
+        },
+        {
+          "scenario": "Squad de growth",
+          "winner": "canva",
+          "verdict": "Canva vence pelo pacote completo de design, colaboração e reaproveitamento de marca."
+        },
+        {
+          "scenario": "Sales enablement",
+          "winner": "plus_ai",
+          "verdict": "Plus AI vence quando o arquivo final precisa permanecer editável em PowerPoint/Google Slides."
+        },
+        {
+          "scenario": "Produto/API com privacidade",
+          "winner": "presenton",
+          "verdict": "Presenton vence quando controle, API, BYOK e self-host superam maturidade de UI."
+        }
+      ]
+    }
+  },
+  "editors_note": {
+    "title": "Como ler este benchmark",
+    "byline": "AIOX Research · Bench desk",
+    "date": "17 May 2026",
+    "paragraphs": [
+      "O ranking neutro não substitui a escolha por cenário. Para founders, velocidade e visual inicial pesam mais; para sales/growth ops, colaboração, marca e exportação mudam a decisão.",
+      "A maior armadilha da categoria é confundir exportar PPTX com entregar um PPTX limpo, editável e pronto para cliente. Por isso Plus AI, Pitch e Canva ganham relevância quando o deck sai do ambiente original."
+    ]
+  },
+  "sidecars": {
+    "cells": "bench-cells.json"
+  },
+  "player_meta": {
+    "gamma": {
+      "color": "#635BFF",
+      "letter": "GA",
+      "tag": "AI-native"
+    },
+    "canva": {
+      "color": "#00A878",
+      "letter": "CA",
+      "tag": "Design"
+    },
+    "beautiful_ai": {
+      "color": "#2F80ED",
+      "letter": "BE",
+      "tag": "Smart"
+    },
+    "tome": {
+      "color": "#7C3AED",
+      "letter": "TO",
+      "tag": "AI"
+    },
+    "pitch": {
+      "color": "#F59E0B",
+      "letter": "PI",
+      "tag": "Collaborative"
+    },
+    "plus_ai": {
+      "color": "#111827",
+      "letter": "PL",
+      "tag": "AI"
+    },
+    "decktopus": {
+      "color": "#EC4899",
+      "letter": "DE",
+      "tag": "AI"
+    },
+    "slidesai": {
+      "color": "#10B981",
+      "letter": "SL",
+      "tag": "Google"
+    },
+    "presenton": {
+      "color": "#EF4444",
+      "letter": "PR",
+      "tag": "Open-source"
+    },
+    "presentations_ai": {
+      "color": "#8B5CF6",
+      "letter": "PR",
+      "tag": "AI"
+    }
+  }
+}

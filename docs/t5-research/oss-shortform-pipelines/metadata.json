@@ -1,0 +1,74 @@
+{
+  "bench_id": "oss-shortform-pipelines",
+  "bench_date": "2026-05-06",
+  "analyst": "universal-bench-analyst",
+  "requester": "alan-nicolas",
+  "context": "Sinkra Hub — pós-bench Submagic vs Eddie AI; agora drill-down em pipelines OSS para substituir Submagic ou usar como starting fork",
+  "lens": "Qual OSS chega mais perto de Submagic-style (auto B-roll + captions animadas + render MP4) com menor setup e maior atividade",
+  "subjects": [
+    {
+      "id": "A",
+      "name": "OpenShorts",
+      "repo": "https://github.com/mutonby/openshorts",
+      "stars": 1819,
+      "forks": 488,
+      "language": "JavaScript",
+      "license": "MIT",
+      "last_commit": "2026-05-06T12:57:24Z",
+      "created": "2025-12-19T12:45:10Z",
+      "commits_last_90d": 39
+    },
+    {
+      "id": "B",
+      "name": "MoneyPrinterTurbo",
+      "repo": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "stars": 56832,
+      "forks": 8179,
+      "language": "Python",
+      "license": "MIT",
+      "last_commit": "2026-04-22T01:17:29Z",
+      "created": "2024-03-11T02:57:34Z",
+      "commits_last_90d": 48
+    },
+    {
+      "id": "C",
+      "name": "Captacity",
+      "repo": "https://github.com/unconv/captacity",
+      "stars": 135,
+      "forks": 40,
+      "language": "Python",
+      "license": "MIT",
+      "last_commit": "2024-06-07T04:29:25Z",
+      "created": "2024-03-04T12:18:56Z",
+      "commits_last_365d": 0
+    }
+  ],
+  "artifacts": [
+    "metadata.json",
+    "inventory-openshorts.md",
+    "inventory-moneyprinterturbo.md",
+    "inventory-captacity.md",
+    "comparison-matrix.md",
+    "scorecard.md",
+    "gap-analysis.md",
+    "battle-card.md",
+    "executive-report.md",
+    "README.md"
+  ],
+  "evidence_sources": [
+    "https://api.github.com/repos/mutonby/openshorts",
+    "https://api.github.com/repos/harry0703/MoneyPrinterTurbo",
+    "https://api.github.com/repos/unconv/captacity",
+    "https://github.com/mutonby/openshorts/blob/main/README.md",
+    "https://github.com/harry0703/MoneyPrinterTurbo/blob/main/README.md",
+    "https://github.com/unconv/captacity/blob/master/README.md",
+    "https://github.com/mutonby/openshorts/blob/main/requirements.txt",
+    "https://github.com/harry0703/MoneyPrinterTurbo/blob/main/requirements.txt",
+    "https://github.com/unconv/captacity/blob/master/requirements.txt"
+  ],
+  "tool_budget_used": {
+    "gh_api_calls": 14,
+    "websearch_calls": 0,
+    "webfetch_calls": 0
+  }
+}

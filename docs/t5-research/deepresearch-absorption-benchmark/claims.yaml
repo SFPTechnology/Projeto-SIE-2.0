@@ -1,0 +1,160 @@
+schema: bench-claims.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+claims:
+- id: CL-001
+  statement: aiox_research was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/aiox_research/
+- id: CL-002
+  statement: drbench was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/drbench/
+- id: CL-003
+  statement: deer-flow was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/deer-flow/
+- id: CL-004
+  statement: autoresearchclaw was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/autoresearchclaw/
+- id: CL-005
+  statement: storm was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/storm/
+- id: CL-006
+  statement: gpt-researcher was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/gpt-researcher/
+- id: CL-007
+  statement: local-deep-research was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/local-deep-research/
+- id: CL-008
+  statement: mirothinker was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/mirothinker/
+- id: CL-009
+  statement: deep-searcher was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/deep-searcher/
+- id: CL-010
+  statement: langchain-open-deep-research was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/langchain-open-deep-research/
+- id: CL-011
+  statement: deep-research-bench was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/deep-research-bench/
+- id: CL-012
+  statement: node-deepresearch was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/node-deepresearch/
+- id: CL-013
+  statement: miroflow was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/miroflow/
+- id: CL-014
+  statement: miroeval was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/miroeval/
+- id: CL-015
+  statement: deepresearcher was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/deepresearcher/
+- id: CL-016
+  statement: livedrbench was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/livedrbench/
+- id: CL-017
+  statement: mirorl was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/mirorl/
+- id: CL-018
+  statement: mirotrain was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/mirotrain/
+- id: CL-019
+  statement: alibaba-deepresearch was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/alibaba-deepresearch/
+- id: CL-020
+  statement: agent-browser-workspace was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/agent-browser-workspace/
+- id: CL-021
+  statement: dzhng-deep-research was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/dzhng-deep-research/
+- id: CL-022
+  statement: openresearcher was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/openresearcher/
+- id: CL-023
+  statement: nickscamara-open-deep-research was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/nickscamara-open-deep-research/
+- id: CL-024
+  statement: jigsawstack-deep-research was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/jigsawstack-deep-research/
+- id: CL-025
+  statement: auto-deep-research was scored via direct clone inspection
+  confidence: ALTA
+  evidence:
+  - type: clone_scan
+    source: ../bench/auto-deep-research/
+statistics:
+  total_claims: 25
+  by_confidence:
+    ALTA: 25
+    MEDIA: 0
+    BAIXA: 0

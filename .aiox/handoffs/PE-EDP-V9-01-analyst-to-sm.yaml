@@ -1,0 +1,43 @@
+handoff_id: PE-EDP-V9-01-analyst-to-sm
+consumed: false
+created_at: "2026-07-27"
+from_agent: "@analyst"
+to_agent: "@sm"
+last_command: "docs/PLANO-YOLO-IMPLEMENTACAO-CORRECAO-PADRAO-COMPATIVEL-EDP-V9"
+next_command: "*draft PE-EDP-V9-01 --mode yolo --source docs/EXECUCAO-CORRECAO-PADRAO-COMPATIVEL-EDP-V9.md"
+workflow: "PE-EDP-V9-CORRECAO-PADRAO-COMPATIVEL"
+mode: "yolo"
+human_intervention: false
+source_plan: "docs/PLANO-YOLO-IMPLEMENTACAO-CORRECAO-PADRAO-COMPATIVEL-EDP-V9.md"
+execution_guide: "docs/EXECUCAO-CORRECAO-PADRAO-COMPATIVEL-EDP-V9.md"
+prd: "docs/prd/PRD-PADRAO-COMPATIVEL-EDP-V9.md"
+qa_preflight: "docs/qa/QA-PREFLIGHT-SDC-EDP-V9.md"
+normative_source: "Arquivos_Diversos/Norma_EDP/PT.DT.PDN.00068_V9_chunks.json"
+preflight:
+  package_1: "PASS"
+  packages_2_3: "HOLD_SEQUENTIAL_NOT_IN_CURRENT_HANDOFF"
+  packages_4_8: "BLOCKED_BY_PACKAGE_GATES_OR_DEPENDENCIES"
+  rv_01: "APPROVED"
+  dp_01: "APPROVED_DOES_NOT_BLOCK_STORIES"
+  dp_05: "APPROVED_DOES_NOT_BLOCK_STORIES"
+scope_for_sm:
+  create_story: "docs/stories/story-PE-EDP-V9-01-modelo-catalogo-estrutural.md"
+  package: "1 - Modelo normativo e catalogo estrutural"
+  allowed:
+    - "Derivar story somente do pacote 1."
+    - "Rastrear FR, NFR, CR, AC, RV-01, DP-01, DP-05 e DP-10 quando aplicavel."
+    - "Declarar fora de escopo os pacotes 2 a 8."
+    - "Preparar tarefas implementaveis por @dev apos validacao @po."
+  blocked:
+    - "Implementar UI final do campo Padrao compativel."
+    - "Implementar pacotes 2 a 8 sem novo gate."
+    - "Ativar Release 1."
+    - "Remover catalogo generico ou legado EDP."
+    - "Simular aprovacao de DP-04, DP-07, DP-09, GP-01, GO-01A ou GO-01B."
+acceptance_minimum_for_story:
+  - "Modelo EDP V9 separado do catalogo generico."
+  - "Representacao de estrela e delta no dominio."
+  - "Metadados normativos obrigatorios."
+  - "Estados fail-closed para pendencia de topologia e confirmacao tecnica."
+  - "Nenhuma alternativa EDP V9 com 380 V."
+  - "Nenhuma inferencia de topologia por municipio."

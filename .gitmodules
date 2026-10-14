@@ -1,0 +1,4 @@
+[submodule "sistema-de-instala-es-el-tricas-sie-main"]
+	path = sistema-de-instala-es-el-tricas-sie-main
+	url = https://github.com/SFPTechnology/sistema-de-instala-es-el-tricas-sie.git
+	branch = feature/nbr5410-conformidade-closeout

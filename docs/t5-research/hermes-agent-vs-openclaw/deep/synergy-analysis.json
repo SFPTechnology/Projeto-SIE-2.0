@@ -1,0 +1,84 @@
+{
+  "benchmark_id": "hermes-agent-vs-openclaw-synergy",
+  "type": "synergy",
+  "date": "2026-04-04",
+  "frameworks": ["Gartner MQ", "Forrester Wave", "BrightWolves 9-3-1", "Stratechi Synergy"],
+
+  "verdict": {
+    "class": "Complementary",
+    "score": 78,
+    "integration_complexity": "HIGH",
+    "recommendation": "SELECTIVE INTEGRATION",
+    "combined_coverage_pct": 93,
+    "coverage_a_pct": 62,
+    "coverage_b_pct": 72,
+    "overlap_pct": 41,
+    "net_new_pct": 21
+  },
+
+  "quadrant": {
+    "x_axis": "Distribution Reach",
+    "y_axis": "Self-Improvement",
+    "hermes_position": "Q2 (high self-improvement, low distribution)",
+    "openclaw_position": "Q4 (low self-improvement, high distribution)",
+    "hybrid_position": "Q1 (high both — unoccupied)"
+  },
+
+  "complementarity_index": {
+    "complementary_dimensions": 8,
+    "total_dimensions": 10,
+    "complementarity_rate": 0.80,
+    "overlap_dimensions": 2,
+    "overlap_rate": 0.20
+  },
+
+  "nine_synergies": [
+    {"rank": 1, "category": "Data", "type": "Capability", "potential": "HIGH", "description": "23 OC channels → Hermes RL training → better models → better channels (flywheel)"},
+    {"rank": 2, "category": "Capability", "type": "Capability", "potential": "HIGH", "description": "Hermes self-improving brain + OpenClaw 93-extension body"},
+    {"rank": 3, "category": "Workflow", "type": "Workflow", "potential": "HIGH", "description": "Hermes skill loop → ClawHub publish. RL trajectories from OC channels"},
+    {"rank": 4, "category": "Ecosystem", "type": "Ecosystem", "potential": "HIGH", "description": "202 + 1584 contributors. agentskills.io + ClawHub unified"},
+    {"rank": 5, "category": "Knowledge", "type": "Knowledge", "potential": "HIGH", "description": "Honcho + LanceDB combined. Cross-channel user modeling"},
+    {"rank": 6, "category": "Platform", "type": "Platform", "potential": "MED", "description": "OC Plugin SDK hosts Hermes as provider plugin"},
+    {"rank": 7, "category": "Cost", "type": "Cost", "potential": "MED", "description": "Credential pool rotation. Shared VPS infra"},
+    {"rank": 8, "category": "Security", "type": "Security", "potential": "MED", "description": "Hermes runtime scanning + OC governance = defense-in-depth"},
+    {"rank": 9, "category": "Brand", "type": "Brand", "potential": "MED", "description": "Research credibility (Nous) + community trust (OC)"}
+  ],
+
+  "integration_patterns": [
+    {"name": "Provider Plugin", "type": "ORCHESTRATION", "recommended": true, "complexity": "MED", "description": "Hermes AIAgent as OpenClaw provider plugin"},
+    {"name": "Trajectory Pipeline", "type": "PIPELINE", "recommended": true, "complexity": "MED", "description": "OC conversations → Hermes RL training"},
+    {"name": "Skill Federation", "type": "FEDERATION", "recommended": true, "complexity": "LOW", "description": "Skill auto-sync agentskills.io ↔ ClawHub"},
+    {"name": "MCP Bridge", "type": "SIDECAR", "recommended": false, "complexity": "LOW", "description": "Hermes MCP server consumed by OC mcporter"}
+  ],
+
+  "friction": {
+    "score": 51,
+    "max": 100,
+    "critical_points": [
+      {"point": "Python ↔ TypeScript runtime", "severity": 5, "type": "Technical"},
+      {"point": "Sync vs Async agent loops", "severity": 3, "type": "Technical"},
+      {"point": "God class AIAgent (8948 LOC)", "severity": 3, "type": "Architectural"},
+      {"point": "Memory model divergence", "severity": 3, "type": "Technical"},
+      {"point": "Dual dependency trees", "severity": 3, "type": "Operational"}
+    ],
+    "key_mitigation": "OpenAI-compatible message format on BOTH sides is the critical compatibility bridge"
+  },
+
+  "value_equation": {
+    "value_a": 67.4,
+    "value_b": 83.7,
+    "synergy_value": 28.0,
+    "integration_cost": -12.0,
+    "friction_cost": -5.1,
+    "combined_value": 162.0,
+    "net_synergy": 10.9,
+    "net_synergy_pct": 7.2
+  },
+
+  "roadmap": {
+    "phase_0": {"name": "PoC", "duration": "2 weeks", "focus": "Skill format converter"},
+    "phase_1": {"name": "Core Integration", "duration": "4-6 weeks", "focus": "Hermes as OC provider plugin"},
+    "phase_2": {"name": "Intelligence Sharing", "duration": "6-8 weeks", "focus": "Honcho memory + trajectory export"},
+    "phase_3": {"name": "Full Hybrid", "duration": "8-12 weeks", "focus": "Unified gateway + self-improvement for OC"}
+  }
+}

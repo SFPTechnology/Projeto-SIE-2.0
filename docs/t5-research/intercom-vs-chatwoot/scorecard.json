@@ -1,0 +1,212 @@
+{
+  "benchmark_id": "intercom-vs-chatwoot",
+  "generated_at": "2026-05-06T00:00:00Z",
+  "scoring_method": "Weighted multi-dimension 0-100 per axis. Weights as defined in mission contract.",
+  "subjects": {
+    "a": "intercom",
+    "b": "chatwoot"
+  },
+  "dimensions": [
+    {
+      "id": "C1",
+      "name": "AI deflection performance",
+      "weight_pct": 25,
+      "intercom": {
+        "score": 85,
+        "rationale": "Fin Apex 1.0 modelo proprietary publicado; deflection 51% medio (research aggregators) + ate 67% maduro; testimonial Lightspeed 65%; RAG patentes; custom actions; pre-deployment simulation; +1%/mo improvement claim; standalone disponivel em Zendesk/Salesforce/HubSpot. Penaliza por deflection nao validado por terceiros independentes recentes (claims vendor-side)."
+      },
+      "chatwoot": {
+        "score": 50,
+        "rationale": "Captain AI funcional (auto-resposta, copilot, smart FAQs, memories, query) mas modelo nao disclosed, deflection NAO publicado, sem custom actions, sem simulation mode pre-deploy, sem autonomous workflows segundo third-parties. Em Cloud only (sem Captain self-hosted). Score 50 reflete capacidades core presentes mas gap substancial vs Fin em sofisticacao."
+      },
+      "delta": 35,
+      "evidence": [
+        "https://fin.ai/ — Fin Apex 1.0, RAG patentes, 65% testimonial Lightspeed",
+        "https://www.chatwoot.com/captain/ — modelo nao disclosed",
+        "https://www.eesel.ai/blog/chatwoot-captain — third-party citing Captain limitations"
+      ]
+    },
+    {
+      "id": "C2",
+      "name": "AI pricing model honesty",
+      "weight_pct": 15,
+      "intercom": {
+        "score": 75,
+        "rationale": "Per-resolution $0.99 e modelo HONESTO em principio (paga valor entregue). Definicao clara — charged on customer confirmation OR no further help in 24h OR Fin completes workflow. Mas: G2 reviewers reportam 60-80% acima do sticker em conta real; volume alto pode dobrar bill mes-a-mes; previsibilidade ruim; Copilot $29/agent + Pro Analytics $99 + Proactive Support $99 add-ons multiplicam custo. Honesto na metrica, opaco na bottom line."
+      },
+      "chatwoot": {
+        "score": 80,
+        "rationale": "Credits flat por tier (300/500/800) + extras predictable $20/1.000 credits. Mais previsivel que per-resolution para teams conservadores. Mas: 1 credit ~ 1 AI action — definicao vaga (action = resposta? suggestion? summary?). Documentacao oficial nao detalha. Ainda assim, billing mais estavel mes-a-mes que Intercom."
+      },
+      "delta": -5,
+      "evidence": [
+        "https://www.intercom.com/pricing — $0.99/res definicao",
+        "https://www.chatwoot.com/pricing — credits + $20/1k",
+        "G2 reviewers Intercom: pricing surprises top complaint"
+      ]
+    },
+    {
+      "id": "C3",
+      "name": "Canais nativos diversidade",
+      "weight_pct": 15,
+      "intercom": {
+        "score": 60,
+        "rationale": "Canais nativos: in-app Messenger (BEST), email, web chat, WhatsApp Cloud API oficial, Insta DM, Facebook Messenger, SMS. **NAO suporta Telegram, TikTok, Line nativamente** — gap claro vs Chatwoot. Diferencial em qualidade in-app, nao em diversidade."
+      },
+      "chatwoot": {
+        "score": 95,
+        "rationale": "Canais nativos: chat widget, email, WhatsApp Cloud API (BYOC), Facebook, Insta, **Telegram, Line, TikTok**, SMS via Twilio, **API Channels custom**. Diversidade absoluta — todos os canais relevantes do mercado 2026 sao nativos via core OSS. Penaliza levemente por widget chat menos polido que Intercom Messenger."
+      },
+      "delta": -35,
+      "evidence": [
+        "https://www.intercom.com/integrations",
+        "https://github.com/chatwoot/chatwoot",
+        "docs/research/2026-05-06-omnichannel-helpdesk-landscape/02-research-report.md"
+      ]
+    },
+    {
+      "id": "C4",
+      "name": "In-app messaging strength",
+      "weight_pct": 10,
+      "intercom": {
+        "score": 95,
+        "rationale": "Categoria de design da Intercom desde 2011. Messenger SDK polido em iOS/Android/Web/RN/Flutter; Product Tours; banners/tooltips/in-app messages; surveys in-app; checklists. Best-in-class consensual em G2 reviews. Foi construida para SaaS B2B com usuarios logados — esse e o use case canonico."
+      },
+      "chatwoot": {
+        "score": 50,
+        "rationale": "Widget chat funcional + customizavel (cores, posicao, idioma). Sem Product Tours nativos, sem checklists, sem surveys in-app polished. SDK JavaScript core; SDKs mobile community-driven (sem oficial polished). Para B2C/e-commerce o widget basta; para B2B SaaS in-app messaging-heavy, gap claro."
+      },
+      "delta": 45,
+      "evidence": [
+        "Intercom genesis story: in-app messaging desde 2011 founders (Ciaran/Eoghan/Des/David)",
+        "G2 reviews Intercom top praise: in-app + Messenger SDK",
+        "Chatwoot widget docs"
+      ]
+    },
+    {
+      "id": "C5",
+      "name": "Pricing total TCO 3 cenarios",
+      "weight_pct": 15,
+      "intercom": {
+        "score": 50,
+        "rationale": "Pricing real elevado em todos 3 cenarios (ver deep/pricing-tco.md): SMB 5 agents = ~$590/mo Advanced+Fin@30%; Mid 20 agents = ~$2.840/mo; Scale 50 agents = ~$10.435/mo. Per-resolution $0.99 vira proibitivo em alto volume. Sem free tier permanente. Add-ons multiplicam custo. Honesto e completo, mas caro."
+      },
+      "chatwoot": {
+        "score": 90,
+        "rationale": "Pricing 50-65% mais barato em todos 3 cenarios: SMB Cloud Business 5 agents = $195/mo + credits; Mid 20 agents = $780/mo; Scale 50 agents = $4.950 Enterprise. Self-hosted reduz a $50-100/mo base + Captain Cloud-only complement. Free tier permanente Hacker. Predictable. **5x menos custoso para SMB; 3x para mid-market; 2.1x para scale.**"
+      },
+      "delta": -40,
+      "evidence": [
+        "deep/pricing-tco.md (calculo detalhado)",
+        "https://www.intercom.com/pricing",
+        "https://www.chatwoot.com/pricing"
+      ]
+    },
+    {
+      "id": "C6",
+      "name": "Comunidade / Marketplace",
+      "weight_pct": 5,
+      "intercom": {
+        "score": 85,
+        "rationale": "Marketplace formal App Store com 300+ apps; community.intercom.com forum 50k+ members; G2 5.000+ reviews; market share 12.77%; case studies enterprise abundantes; SDKs documentadas em multiplas linguagens; certs ISO/SOC2."
+      },
+      "chatwoot": {
+        "score": 75,
+        "rationale": "29.100 GitHub stars, 7.200 forks, 6.119 commits, releases mensais ativas; Discord community 10k+ membros; sem marketplace formal de apps; G2 200+ reviews; SDKs core JS + community Ruby/Python/PHP; releases publicas trackable. Comunidade forte OSS-style mas marketplace inferior."
+      },
+      "delta": 10,
+      "evidence": [
+        "https://github.com/chatwoot/chatwoot",
+        "https://community.intercom.com",
+        "https://www.intercom.com/app-store"
+      ]
+    },
+    {
+      "id": "C7",
+      "name": "Self-hosted / sovereignty option",
+      "weight_pct": 10,
+      "intercom": {
+        "score": 0,
+        "rationale": "**SEM self-hosted nem on-premise.** Total vendor lock-in cloud. Data residency disponivel apenas em Expert (EU+US). Para empresa que exige soberania completa de dados (governo BR, defesa, banca regulada), Intercom esta out-of-the-box."
+      },
+      "chatwoot": {
+        "score": 100,
+        "rationale": "**Self-hosted MIT** ilimitado — fonte aberta, modificavel, ranable em qualquer infra (Docker, Kubernetes, Heroku, VPS $20-50/mo). Data sovereignty absoluta. Permite atender LGPD/HIPAA/PCI dependendo da infra cliente. Diferencial filosofico-tecnico que Intercom nunca podera matchar."
+      },
+      "delta": -100,
+      "evidence": [
+        "https://github.com/chatwoot/chatwoot — MIT license + Dockerfile + docs self-host",
+        "https://www.intercom.com/security — sem mencao self-hosted"
+      ]
+    },
+    {
+      "id": "C8",
+      "name": "Time-to-value / setup complexity",
+      "weight_pct": 5,
+      "intercom": {
+        "score": 90,
+        "rationale": "Cloud SaaS — sign-up + 14-day trial + Fin setup under 1 hour (claim oficial). Onboarding guiado, UI polished, docs abundantes. Para teams nao-tecnicos, time-to-value baixo."
+      },
+      "chatwoot": {
+        "score": 75,
+        "rationale": "Cloud Hacker — sign-up rapido. Self-hosted exige Docker/Kubernetes/Heroku + infra setup (1-3 dias para team familiar com DevOps). WhatsApp BYOC exige cliente conectar BSP por conta propria. Documentacao boa mas exige nivel tecnico medio. Para SMB sem dev, friction maior; para teams tech, ate vantagem (controle)."
+      },
+      "delta": 15,
+      "evidence": [
+        "https://www.intercom.com — onboarding wizard",
+        "https://www.chatwoot.com/help-center/cloud/getting-started — onboarding cloud",
+        "https://www.chatwoot.com/help-center/self-hosted — Docker setup"
+      ]
+    }
+  ],
+  "weighted_totals": {
+    "intercom": {
+      "calculation": "(85*25 + 75*15 + 60*15 + 95*10 + 50*15 + 85*5 + 0*10 + 90*5) / 100",
+      "total_score": 67.50,
+      "breakdown": {
+        "C1_ai_deflection": 21.25,
+        "C2_ai_pricing_honesty": 11.25,
+        "C3_channels_diversity": 9.00,
+        "C4_inapp_messaging": 9.50,
+        "C5_pricing_tco": 7.50,
+        "C6_community_marketplace": 4.25,
+        "C7_self_hosted": 0.00,
+        "C8_time_to_value": 4.50
+      }
+    },
+    "chatwoot": {
+      "calculation": "(50*25 + 80*15 + 95*15 + 50*10 + 90*15 + 75*5 + 100*10 + 75*5) / 100",
+      "total_score": 75.00,
+      "breakdown": {
+        "C1_ai_deflection": 12.50,
+        "C2_ai_pricing_honesty": 12.00,
+        "C3_channels_diversity": 14.25,
+        "C4_inapp_messaging": 5.00,
+        "C5_pricing_tco": 13.50,
+        "C6_community_marketplace": 3.75,
+        "C7_self_hosted": 10.00,
+        "C8_time_to_value": 3.75
+      }
+    }
+  },
+  "verdict": {
+    "winner": "Chatwoot",
+    "score_delta": 7.50,
+    "magnitude": "moderado",
+    "rationale_short": "Chatwoot vence (75.0 vs 67.5) por dominio em pricing, canais, sovereignty e cost predictability. Intercom mantem vantagem em AI sofisticacao, in-app messaging e enterprise polish. Trade-off real: cliente precisa decidir se Fin AI premium vale 2-5x do TCO.",
+    "scenario_verdicts": {
+      "smb_5_agents_low_volume": {
+        "winner": "Chatwoot",
+        "rationale": "TCO 5-7x menor; free tier; canais nativos cobrem WhatsApp/Insta/Telegram; Captain credits 300 incluido bastam para volume baixo; sem necessidade de in-app messaging best-in-class"
+      },
+      "midmarket_20_agents_5k_conv": {
+        "winner": "Chatwoot (mas Intercom competitivo se SaaS B2B in-app heavy)",
+        "rationale": "Chatwoot Business $39 + credits ~$300/mo Captain extras = $1.080/mo total vs Intercom Advanced $1.700 + Fin $1.485 (50% deflection x 5k x $0.99) = $3.185/mo. Chatwoot 3x mais barato. Mas se ops in-app SaaS B2B (logged-in users, product tours), Intercom Messenger vale o premium"
+      },
+      "scale_50_agents_20k_conv": {
+        "winner": "Chatwoot self-hosted OR Cloud Enterprise (TCO 2x menor)",
+        "rationale": "Em scale, Intercom Fin per-resolution $0.99 x 12.000 (60% deflection x 20k) = $11.880/mo SO PARA AI; total ~$18.500/mo. Chatwoot Enterprise $4.950 + credits extra ~$1.000-2.000 = ~$6.500/mo. Self-hosted reduz a ~$2.000/mo (infra + Captain Cloud para AI)"
+      }
+    }
+  }
+}

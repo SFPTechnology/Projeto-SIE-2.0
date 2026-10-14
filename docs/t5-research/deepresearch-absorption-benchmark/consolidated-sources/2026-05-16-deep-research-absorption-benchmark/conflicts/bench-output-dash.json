@@ -1,0 +1,529 @@
+{
+  "schema": "bench-output-dash",
+  "generated_at": "2026-05-18T12:00:00.000Z",
+  "source_files": [
+    "metadata.json",
+    "comparison-matrix.json",
+    "scorecard.json",
+    "scenario-scorecards.json",
+    "evidence-ledger.json",
+    "risk-register.json",
+    "implementation-readiness-gate.json"
+  ],
+  "benchmark": {
+    "slug": "2026-05-16-deep-research-absorption-benchmark",
+    "title": "Deep Research Absorption Benchmark",
+    "short_title": "Deep Research Absorption Benchmark",
+    "date": "2026-05-16",
+    "type": "technology",
+    "variant": "n-way",
+    "analyst": "tech-research -> bench transform",
+    "method": "Conversão da pesquisa tech-research em bench ponderado com 14 players, 8 dimensões, cenários de decisão e ledger de evidências. As notas são derivadas das fontes e do relatório em runtimes/claude.",
+    "confidence_breakdown": "8 fontes ALTA · 5 MEDIA · 2 BAIXA; ranking operacional com caveat para métricas voláteis de stars.",
+    "status": "completed",
+    "schema_variant": "oss-deep-research-2026-v1"
+  },
+  "players": [
+    {
+      "key": "gpt_researcher",
+      "name": "GPT-Researcher",
+      "category": "framework multi-agente",
+      "type": "framework",
+      "license": "MIT",
+      "origin": "Assaf Elovic",
+      "vendor_url": "https://github.com/assafelovic/gpt-researcher",
+      "tech_score": 83.2,
+      "neutral_score": 83.2,
+      "stats": {
+        "verdict": "Melhor custo-benefício e melhor encaixe MCP imediato para o Sinkra Hub.",
+        "source_ids": [
+          "src-002"
+        ],
+        "confidence": "ALTA"
+      }
+    },
+    {
+      "key": "local_deep_research",
+      "name": "Local Deep Research",
+      "category": "local-first",
+      "type": "agent",
+      "license": "open-source",
+      "origin": "LearningCircuit",
+      "vendor_url": "https://github.com/LearningCircuit/local-deep-research",
+      "tech_score": 83,
+      "neutral_score": 83,
+      "stats": {
+        "verdict": "Melhor opção privacy-first/air-gapped.",
+        "source_ids": [
+          "src-007"
+        ],
+        "confidence": "ALTA"
+      }
+    },
+    {
+      "key": "deerflow",
+      "name": "DeerFlow",
+      "category": "framework multi-agente",
+      "type": "framework",
+      "license": "MIT",
+      "origin": "ByteDance",
+      "vendor_url": "https://github.com/bytedance/deer-flow",
+      "tech_score": 82.3,
+      "neutral_score": 82.3,
+      "stats": {
+        "verdict": "Melhor general-purpose quando popularidade, sandbox e memória importam.",
+        "source_ids": [
+          "src-001"
+        ],
+        "confidence": "ALTA"
+      }
+    },
+    {
+      "key": "deepresearcher",
+      "name": "DeepResearcher",
+      "category": "modelo RL-trained",
+      "type": "model",
+      "license": "Apache-2.0",
+      "origin": "GAIR-NLP",
+      "vendor_url": "https://github.com/GAIR-NLP/DeepResearcher",
+      "tech_score": 81.8,
+      "neutral_score": 81.8,
+      "stats": {
+        "verdict": "Melhor aposta local de modelo pequeno treinado para research.",
+        "source_ids": [
+          "src-005",
+          "src-006"
+        ],
+        "confidence": "ALTA"
+      }
+    },
+    {
+      "key": "openresearcher",
+      "name": "OpenResearcher",
+      "category": "modelo RL-trained",
+      "type": "model+pipeline",
+      "license": "open",
+      "origin": "TIGER-AI-Lab",
+      "vendor_url": "https://github.com/TIGER-AI-Lab/OpenResearcher",
+      "tech_score": 80.1,
+      "neutral_score": 80.1,
+      "stats": {
+        "verdict": "Melhor accuracy em benchmark, mas com custo de hardware e corpus offline.",
+        "source_ids": [
+          "src-003",
+          "src-004"
+        ],
+        "confidence": "ALTA"
+      }
+    },
+    {
+      "key": "hermes_agent",
+      "name": "Hermes Agent",
+      "category": "agente autônomo generalista",
+      "type": "general-agent",
+      "license": "MIT",
+      "origin": "Nous Research",
+      "vendor_url": "https://github.com/NousResearch/hermes-agent",
+      "tech_score": 79.1,
+      "neutral_score": 79.1,
+      "stats": {
+        "verdict": "Melhor referência de agente 24/7 com self-learning, mas não é especializado em deep research.",
+        "source_ids": [
+          "src-010",
+          "src-014"
+        ],
+        "confidence": "MEDIA"
+      }
+    },
+    {
+      "key": "storm",
+      "name": "STORM",
+      "category": "artigo científico",
+      "type": "pipeline",
+      "license": "open-source",
+      "origin": "Stanford OVAL",
+      "vendor_url": "https://github.com/stanford-oval/storm",
+      "tech_score": 76.1,
+      "neutral_score": 76.1,
+      "stats": {
+        "verdict": "Referência acadêmica para síntese multi-perspectiva em formato artigo.",
+        "source_ids": [
+          "src-009"
+        ],
+        "confidence": "ALTA"
+      }
+    },
+    {
+      "key": "langchain_open_dr",
+      "name": "LangChain Open Deep Research",
+      "category": "single-loop",
+      "type": "agent",
+      "license": "MIT",
+      "origin": "LangChain",
+      "vendor_url": "https://github.com/langchain-ai/open_deep_research",
+      "tech_score": 75.1,
+      "neutral_score": 75.1,
+      "stats": {
+        "verdict": "Melhor quick start benchmarkado; ótimo baseline, menos poderoso que RL-trained.",
+        "source_ids": [
+          "src-011",
+          "src-012"
+        ],
+        "confidence": "MEDIA"
+      }
+    },
+    {
+      "key": "autorresearchclaw",
+      "name": "AutoResearchClaw",
+      "category": "paper científico",
+      "type": "pipeline",
+      "license": "open-source",
+      "origin": "AIMING Lab",
+      "vendor_url": "https://github.com/aiming-lab/AutoResearchClaw",
+      "tech_score": 71.9,
+      "neutral_score": 71.9,
+      "stats": {
+        "verdict": "Melhor para ideia -> paper acadêmico, não para research generalista barato.",
+        "source_ids": [
+          "src-008"
+        ],
+        "confidence": "ALTA"
+      }
+    },
+    {
+      "key": "deepsearcher",
+      "name": "DeepSearcher",
+      "category": "dados privados/RAG",
+      "type": "rag-system",
+      "license": "open-source",
+      "origin": "Zilliz",
+      "vendor_url": "https://github.com/zilliztech/deep-searcher",
+      "tech_score": 71.4,
+      "neutral_score": 71.4,
+      "stats": {
+        "verdict": "Melhor para knowledge base privada, não para web deep research geral.",
+        "source_ids": [
+          "src-015"
+        ],
+        "confidence": "MEDIA"
+      }
+    },
+    {
+      "key": "jina_node_deepresearch",
+      "name": "Jina node-DeepResearch",
+      "category": "single-loop TypeScript",
+      "type": "agent",
+      "license": "Apache-2.0",
+      "origin": "Jina AI",
+      "vendor_url": "https://github.com/jina-ai/node-DeepResearch",
+      "tech_score": 70.3,
+      "neutral_score": 70.3,
+      "stats": {
+        "verdict": "Melhor protótipo rápido em TypeScript.",
+        "source_ids": [
+          "src-013"
+        ],
+        "confidence": "MEDIA"
+      }
+    },
+    {
+      "key": "auto_deep_research",
+      "name": "Auto-Deep-Research",
+      "category": "framework multi-stage",
+      "type": "framework",
+      "license": "open-source",
+      "origin": "HKUDS",
+      "vendor_url": "https://github.com/HKUDS/Auto-Deep-Research",
+      "tech_score": 66.9,
+      "neutral_score": 66.9,
+      "stats": {
+        "verdict": "Emergente; observar antes de adotar como core.",
+        "source_ids": [
+          "src-015"
+        ],
+        "confidence": "MEDIA"
+      }
+    },
+    {
+      "key": "firecrawl_open_dr",
+      "name": "Firecrawl Open Deep Research",
+      "category": "single-loop com extração web",
+      "type": "agent",
+      "license": "open-source",
+      "origin": "nickscamara",
+      "vendor_url": "https://github.com/nickscamara/open-deep-research",
+      "tech_score": 58.4,
+      "neutral_score": 58.4,
+      "stats": {
+        "verdict": "Útil se Firecrawl já for o motor de extração; nicho no restante.",
+        "source_ids": [
+          "src-015"
+        ],
+        "confidence": "BAIXA"
+      }
+    },
+    {
+      "key": "kimi_researcher",
+      "name": "Kimi-Researcher",
+      "category": "modelo RL-trained parcial",
+      "type": "model",
+      "license": "parcial",
+      "origin": "Moonshot AI",
+      "vendor_url": "https://moonshotai.github.io/Kimi-Researcher/",
+      "tech_score": 58,
+      "neutral_score": 58,
+      "stats": {
+        "verdict": "Forte como referência técnica, fraco como opção open-source absorvível.",
+        "source_ids": [
+          "src-015"
+        ],
+        "confidence": "MEDIA"
+      }
+    }
+  ],
+  "summary": {
+    "winner": "gpt_researcher",
+    "coverage": "complete-from-claude-runtime",
+    "sources": 15,
+    "waves": 2,
+    "dimensions": 8,
+    "narrative": "GPT-Researcher vence o ranking operacional por combinar qualidade, MCP, custo e maturidade. OpenResearcher vence o eixo de accuracy; DeerFlow vence popularidade/features; Local Deep Research vence privacidade.",
+    "file_count": 25
+  },
+  "matrix": {
+    "players": [
+      "gpt_researcher",
+      "local_deep_research",
+      "deerflow",
+      "deepresearcher",
+      "openresearcher",
+      "hermes_agent",
+      "storm",
+      "langchain_open_dr",
+      "autorresearchclaw",
+      "deepsearcher",
+      "jina_node_deepresearch",
+      "auto_deep_research",
+      "firecrawl_open_dr",
+      "kimi_researcher"
+    ],
+    "dimensions": [
+      "research_quality",
+      "automation_depth",
+      "evidence_strength",
+      "local_privacy",
+      "integration_fit",
+      "cost_efficiency",
+      "maturity_community",
+      "license_adoption_risk"
+    ],
+    "ranking": [
+      {
+        "rank": 1,
+        "player": "gpt_researcher",
+        "name": "GPT-Researcher",
+        "score": 83.2
+      },
+      {
+        "rank": 2,
+        "player": "local_deep_research",
+        "name": "Local Deep Research",
+        "score": 83
+      },
+      {
+        "rank": 3,
+        "player": "deerflow",
+        "name": "DeerFlow",
+        "score": 82.3
+      },
+      {
+        "rank": 4,
+        "player": "deepresearcher",
+        "name": "DeepResearcher",
+        "score": 81.8
+      },
+      {
+        "rank": 5,
+        "player": "openresearcher",
+        "name": "OpenResearcher",
+        "score": 80.1
+      },
+      {
+        "rank": 6,
+        "player": "hermes_agent",
+        "name": "Hermes Agent",
+        "score": 79.1
+      },
+      {
+        "rank": 7,
+        "player": "storm",
+        "name": "STORM",
+        "score": 76.1
+      },
+      {
+        "rank": 8,
+        "player": "langchain_open_dr",
+        "name": "LangChain Open Deep Research",
+        "score": 75.1
+      },
+      {
+        "rank": 9,
+        "player": "autorresearchclaw",
+        "name": "AutoResearchClaw",
+        "score": 71.9
+      },
+      {
+        "rank": 10,
+        "player": "deepsearcher",
+        "name": "DeepSearcher",
+        "score": 71.4
+      },
+      {
+        "rank": 11,
+        "player": "jina_node_deepresearch",
+        "name": "Jina node-DeepResearch",
+        "score": 70.3
+      },
+      {
+        "rank": 12,
+        "player": "auto_deep_research",
+        "name": "Auto-Deep-Research",
+        "score": 66.9
+      },
+      {
+        "rank": 13,
+        "player": "firecrawl_open_dr",
+        "name": "Firecrawl Open Deep Research",
+        "score": 58.4
+      },
+      {
+        "rank": 14,
+        "player": "kimi_researcher",
+        "name": "Kimi-Researcher",
+        "score": 58
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "file": "INDEX.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "MANIFEST.json",
+      "role": "other",
+      "format": "json"
+    },
+    {
+      "file": "README.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.json",
+      "role": "comparison-matrix",
+      "format": "json"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "dashboard-intelligence.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "deep/methodology.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/sinkra-adoption-map.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "evidence-ledger.json",
+      "role": "other",
+      "format": "json"
+    },
+    {
+      "file": "evidence-ledger.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.json",
+      "role": "gap-analysis",
+      "format": "json"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "implementation-readiness-gate.json",
+      "role": "other",
+      "format": "json"
+    },
+    {
+      "file": "implementation-readiness-gate.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "risk-register.json",
+      "role": "other",
+      "format": "json"
+    },
+    {
+      "file": "risk-register.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "scenario-scorecards.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scenario-scorecards.md",
+      "role": "scorecard",
+      "format": "md"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    },
+    {
+      "file": "sources.json",
+      "role": "other",
+      "format": "json"
+    }
+  ]
+}

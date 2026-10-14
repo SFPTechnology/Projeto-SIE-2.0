@@ -1,0 +1,27 @@
+schema: sinkra-deepresearch-task-v1
+id: SINKRA-DR-27
+group: scientific_literature
+language: en
+kind: papers
+prompt: 'SINKRA-DR-27: executar pesquisa scientific_literature com claims verificáveis,
+  fontes e relatório comparativo para decisão SINKRA.'
+source_mix:
+  public_web: medium
+  private_kb: none
+  papers: high
+required_outputs:
+- trace.jsonl
+- tool-calls.jsonl
+- claims.yaml
+- sources.yaml
+- report.md
+- rubric-results.yaml
+- cost-latency.yaml
+- failure-analysis.md
+- replay-manifest.yaml
+gold_claims_file: fixtures/gold-claims/SINKRA-DR-27.yaml
+private_kb_fixture: null
+acceptance:
+  minimum_supported_claims: 5
+  forbid_private_leak: true
+  require_cost_latency: true

@@ -1,0 +1,1116 @@
+{
+  "schema": "bench-scorecard-v1",
+  "generated_at": "2026-05-18T00:17:45.178Z",
+  "method": "weighted_sum_public_evidence",
+  "dimensions": [
+    {
+      "id": "visual_quality",
+      "label": "Qualidade visual",
+      "short": "Visual",
+      "weight": 0.16,
+      "rationale": "Growth e founders precisam de decks que pareçam prontos para cliente/investidor sem retrabalho pesado."
+    },
+    {
+      "id": "prompt_generation",
+      "label": "Geração por prompt",
+      "short": "Prompt",
+      "weight": 0.15,
+      "rationale": "Avalia capacidade de transformar brief, documento ou notas em estrutura narrativa e slides úteis."
+    },
+    {
+      "id": "manual_editing",
+      "label": "Edição manual",
+      "short": "Edição",
+      "weight": 0.12,
+      "rationale": "Decks críticos exigem ajuste fino em texto, layout, gráficos, assets e narrativa."
+    },
+    {
+      "id": "collaboration",
+      "label": "Colaboração",
+      "short": "Colab",
+      "weight": 0.1,
+      "rationale": "Times de growth trabalham em ciclos com comentários, versões, templates e stakeholders externos."
+    },
+    {
+      "id": "export_fidelity",
+      "label": "Exportação PPT/PDF",
+      "short": "Export",
+      "weight": 0.13,
+      "rationale": "PPTX/PDF limpo é decisivo quando o deck precisa sair da ferramenta ou circular com clientes."
+    },
+    {
+      "id": "pricing_value",
+      "label": "Preço e valor",
+      "short": "Preço",
+      "weight": 0.11,
+      "rationale": "Considera plano gratuito, custo por assento, créditos e custo real para times pequenos."
+    },
+    {
+      "id": "maturity",
+      "label": "Maturidade",
+      "short": "Maduro",
+      "weight": 0.1,
+      "rationale": "Peso para adoção, estabilidade, docs, roadmap e risco de pivot."
+    },
+    {
+      "id": "brand_governance",
+      "label": "Marca e governança",
+      "short": "Marca",
+      "weight": 0.08,
+      "rationale": "Avalia brand kits, templates, bibliotecas, permissões e controles para consistência."
+    },
+    {
+      "id": "risk_control",
+      "label": "Risco e controle",
+      "short": "Risco",
+      "weight": 0.05,
+      "rationale": "Privacidade, lock-in, self-hosting, segurança e previsibilidade operacional."
+    }
+  ],
+  "totals": [
+    {
+      "rank": 1,
+      "player": "canva",
+      "name": "Canva",
+      "score": 86,
+      "confidence": "H"
+    },
+    {
+      "rank": 2,
+      "player": "plus_ai",
+      "name": "Plus AI",
+      "score": 85.6,
+      "confidence": "H"
+    },
+    {
+      "rank": 3,
+      "player": "gamma",
+      "name": "Gamma",
+      "score": 83.2,
+      "confidence": "H"
+    },
+    {
+      "rank": 4,
+      "player": "pitch",
+      "name": "Pitch",
+      "score": 82.6,
+      "confidence": "H"
+    },
+    {
+      "rank": 5,
+      "player": "beautiful_ai",
+      "name": "Beautiful.ai",
+      "score": 77.9,
+      "confidence": "H"
+    },
+    {
+      "rank": 6,
+      "player": "presenton",
+      "name": "Presenton",
+      "score": 77,
+      "confidence": "H"
+    },
+    {
+      "rank": 7,
+      "player": "slidesai",
+      "name": "SlidesAI",
+      "score": 73.9,
+      "confidence": "H"
+    },
+    {
+      "rank": 8,
+      "player": "decktopus",
+      "name": "Decktopus",
+      "score": 72.6,
+      "confidence": "H"
+    },
+    {
+      "rank": 9,
+      "player": "presentations_ai",
+      "name": "Presentations.AI",
+      "score": 68.3,
+      "confidence": "M"
+    },
+    {
+      "rank": 10,
+      "player": "tome",
+      "name": "Tome",
+      "score": 55.8,
+      "confidence": "M"
+    }
+  ],
+  "dimension_scores": [
+    {
+      "id": "visual_quality",
+      "label": "Qualidade visual",
+      "weight": 0.16,
+      "cells": [
+        {
+          "player": "gamma",
+          "score": 91,
+          "confidence": "H",
+          "evidence": "Saída moderna e forte para web/decks rápidos; tende a parecer polida com pouca intervenção.",
+          "sources": [
+            "S01",
+            "S02",
+            "S18"
+          ]
+        },
+        {
+          "player": "canva",
+          "score": 88,
+          "confidence": "H",
+          "evidence": "Template library e assets visuais são muito fortes, embora a geração por prompt não seja tão narrativa quanto Gamma.",
+          "sources": [
+            "S03",
+            "S04"
+          ]
+        },
+        {
+          "player": "beautiful_ai",
+          "score": 89,
+          "confidence": "H",
+          "evidence": "Smart Slides mantêm consistência e evitam layouts quebrados.",
+          "sources": [
+            "S05",
+            "S06",
+            "S19"
+          ]
+        },
+        {
+          "player": "tome",
+          "score": 78,
+          "confidence": "H",
+          "evidence": "Narrativa visual era boa, especialmente em formato tile/web.",
+          "sources": [
+            "S07",
+            "S08"
+          ]
+        },
+        {
+          "player": "pitch",
+          "score": 83,
+          "confidence": "H",
+          "evidence": "Templates modernos e muito bons para SaaS/growth.",
+          "sources": [
+            "S09"
+          ]
+        },
+        {
+          "player": "plus_ai",
+          "score": 78,
+          "confidence": "H",
+          "evidence": "Visual corporativo sólido; menos wow que Gamma/Canva, mas mais utilizável em templates reais.",
+          "sources": [
+            "S10",
+            "S11",
+            "S18"
+          ]
+        },
+        {
+          "player": "decktopus",
+          "score": 75,
+          "confidence": "H",
+          "evidence": "Visual bom para uso geral, menos sofisticado que Gamma/Canva/Beautiful.ai.",
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "player": "slidesai",
+          "score": 62,
+          "confidence": "H",
+          "evidence": "Saída funcional, mas menos refinada para fundraising/sales high-stakes.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "player": "presenton",
+          "score": 73,
+          "confidence": "H",
+          "evidence": "Promessa forte de decks design-true com templates PPTX, mas maturidade visual depende do template e setup.",
+          "sources": [
+            "S15",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "player": "presentations_ai",
+          "score": 72,
+          "confidence": "M",
+          "evidence": "Saída boa em demos, mas menos comprovada por fontes oficiais abertas nesta rodada.",
+          "sources": [
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prompt_generation",
+      "label": "Geração por prompt",
+      "weight": 0.15,
+      "cells": [
+        {
+          "player": "gamma",
+          "score": 94,
+          "confidence": "H",
+          "evidence": "Gera apresentações, documentos e sites a partir de prompt, com plano free e limites por créditos.",
+          "sources": [
+            "S01",
+            "S02",
+            "S18"
+          ]
+        },
+        {
+          "player": "canva",
+          "score": 78,
+          "confidence": "H",
+          "evidence": "Magic Design gera rascunhos de apresentações a partir de ideia/prompt e complementa com Magic Media.",
+          "sources": [
+            "S03",
+            "S04"
+          ]
+        },
+        {
+          "player": "beautiful_ai",
+          "score": 76,
+          "confidence": "H",
+          "evidence": "Create with AI ajuda no primeiro draft, mas a força principal é automação de layout.",
+          "sources": [
+            "S05",
+            "S06",
+            "S19"
+          ]
+        },
+        {
+          "player": "tome",
+          "score": 72,
+          "confidence": "H",
+          "evidence": "Histórico forte em prompt-to-story, mas disponibilidade/escopo atual para apresentações é problemático.",
+          "sources": [
+            "S07",
+            "S08"
+          ]
+        },
+        {
+          "player": "pitch",
+          "score": 68,
+          "confidence": "H",
+          "evidence": "AI acelera criação e personalização, mas não é tão central quanto Gamma/Plus.",
+          "sources": [
+            "S09"
+          ]
+        },
+        {
+          "player": "plus_ai",
+          "score": 86,
+          "confidence": "H",
+          "evidence": "Gera apresentações e slides únicos a partir de texto/arquivos diretamente nos editores nativos.",
+          "sources": [
+            "S10",
+            "S11",
+            "S18"
+          ]
+        },
+        {
+          "player": "decktopus",
+          "score": 80,
+          "confidence": "H",
+          "evidence": "Geração com IA e assistência são núcleo do produto.",
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "player": "slidesai",
+          "score": 75,
+          "confidence": "H",
+          "evidence": "Transforma texto em apresentação dentro do Google Slides.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "player": "presenton",
+          "score": 82,
+          "confidence": "H",
+          "evidence": "Geração completa com modelos próprios/BYOK e suporte a API.",
+          "sources": [
+            "S15",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "player": "presentations_ai",
+          "score": 80,
+          "confidence": "M",
+          "evidence": "Posicionamento AI-native forte.",
+          "sources": [
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "manual_editing",
+      "label": "Edição manual",
+      "weight": 0.12,
+      "cells": [
+        {
+          "player": "gamma",
+          "score": 79,
+          "confidence": "H",
+          "evidence": "Edição boa no ambiente Gamma, mas menos precisa que PowerPoint/Slides nativos para layouts complexos.",
+          "sources": [
+            "S01",
+            "S02",
+            "S18"
+          ]
+        },
+        {
+          "player": "canva",
+          "score": 90,
+          "confidence": "H",
+          "evidence": "Editor drag-and-drop maduro; excelente para ajustar assets, imagens, brand kit e versões.",
+          "sources": [
+            "S03",
+            "S04"
+          ]
+        },
+        {
+          "player": "beautiful_ai",
+          "score": 73,
+          "confidence": "H",
+          "evidence": "Controle manual é deliberadamente limitado pelos Smart Slides; bom para consistência, ruim para designers avançados.",
+          "sources": [
+            "S05",
+            "S06",
+            "S19"
+          ]
+        },
+        {
+          "player": "tome",
+          "score": 58,
+          "confidence": "H",
+          "evidence": "Edição interna possível, com menos compatibilidade com padrões PPT.",
+          "sources": [
+            "S07",
+            "S08"
+          ]
+        },
+        {
+          "player": "pitch",
+          "score": 86,
+          "confidence": "H",
+          "evidence": "Editor robusto para slides profissionais e assets de equipe.",
+          "sources": [
+            "S09"
+          ]
+        },
+        {
+          "player": "plus_ai",
+          "score": 94,
+          "confidence": "H",
+          "evidence": "Vantagem categórica: tudo permanece em PowerPoint ou Google Slides.",
+          "sources": [
+            "S10",
+            "S11",
+            "S18"
+          ]
+        },
+        {
+          "player": "decktopus",
+          "score": 68,
+          "confidence": "H",
+          "evidence": "Edição suficiente, mas menos avançada que editores nativos.",
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "player": "slidesai",
+          "score": 86,
+          "confidence": "H",
+          "evidence": "Por viver em Google Slides, edição manual é familiar.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "player": "presenton",
+          "score": 70,
+          "confidence": "H",
+          "evidence": "Permite edição e variantes, mas não tem a sofisticação de editores de design maduros.",
+          "sources": [
+            "S15",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "player": "presentations_ai",
+          "score": 66,
+          "confidence": "M",
+          "evidence": "Edição e customização parecem inferiores a Canva/Pitch/Plus para fluxos críticos.",
+          "sources": [
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "collaboration",
+      "label": "Colaboração",
+      "weight": 0.1,
+      "cells": [
+        {
+          "player": "gamma",
+          "score": 78,
+          "confidence": "H",
+          "evidence": "Funciona bem para compartilhar, comentar e publicar, mas governança corporativa depende de planos superiores.",
+          "sources": [
+            "S01",
+            "S02",
+            "S18"
+          ]
+        },
+        {
+          "player": "canva",
+          "score": 88,
+          "confidence": "H",
+          "evidence": "Colaboração e pastas de equipe são maduras para marketing/growth.",
+          "sources": [
+            "S03",
+            "S04"
+          ]
+        },
+        {
+          "player": "beautiful_ai",
+          "score": 79,
+          "confidence": "H",
+          "evidence": "Team adiciona bibliotecas, colaboração e governança.",
+          "sources": [
+            "S05",
+            "S06",
+            "S19"
+          ]
+        },
+        {
+          "player": "tome",
+          "score": 58,
+          "confidence": "H",
+          "evidence": "Teammates precisam conta Tome para editar; não é o foco atual para times de growth.",
+          "sources": [
+            "S07",
+            "S08"
+          ]
+        },
+        {
+          "player": "pitch",
+          "score": 94,
+          "confidence": "H",
+          "evidence": "Ponto mais forte: convidados, rooms, comentários, version history e co-presenting.",
+          "sources": [
+            "S09"
+          ]
+        },
+        {
+          "player": "plus_ai",
+          "score": 86,
+          "confidence": "H",
+          "evidence": "Herda colaboração dos editores nativos e adiciona shared presets/templates.",
+          "sources": [
+            "S10",
+            "S11",
+            "S18"
+          ]
+        },
+        {
+          "player": "decktopus",
+          "score": 72,
+          "confidence": "H",
+          "evidence": "Business inclui Team & Organization.",
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "player": "slidesai",
+          "score": 82,
+          "confidence": "H",
+          "evidence": "Herda colaboração do Google Slides.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "player": "presenton",
+          "score": 58,
+          "confidence": "H",
+          "evidence": "Cloud tem UI colaborativa; self-host exige operação e processo.",
+          "sources": [
+            "S15",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "player": "presentations_ai",
+          "score": 64,
+          "confidence": "M",
+          "evidence": "Enterprise/custom cobre equipes, mas documentação pública é limitada.",
+          "sources": [
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "export_fidelity",
+      "label": "Exportação PPT/PDF",
+      "weight": 0.13,
+      "cells": [
+        {
+          "player": "gamma",
+          "score": 72,
+          "confidence": "H",
+          "evidence": "Exporta PDF, PNG e PPTX; risco prático é perda de editabilidade/ajustes em PowerPoint para decks complexos.",
+          "sources": [
+            "S01",
+            "S02",
+            "S18"
+          ]
+        },
+        {
+          "player": "canva",
+          "score": 80,
+          "confidence": "H",
+          "evidence": "API e UI suportam PDF e PPTX para apresentações; ainda há risco de fonte/animação/layout em PowerPoint.",
+          "sources": [
+            "S03",
+            "S04"
+          ]
+        },
+        {
+          "player": "beautiful_ai",
+          "score": 76,
+          "confidence": "H",
+          "evidence": "Exporta PPT editável, PPT como imagem, Google Slides e PDF; animações/transições podem se perder.",
+          "sources": [
+            "S05",
+            "S06",
+            "S19"
+          ]
+        },
+        {
+          "player": "tome",
+          "score": 35,
+          "confidence": "H",
+          "evidence": "Help oficial indicava PDF no Pro e sem suporte a PPT; esse é o maior bloqueio.",
+          "sources": [
+            "S07",
+            "S08"
+          ]
+        },
+        {
+          "player": "pitch",
+          "score": 86,
+          "confidence": "H",
+          "evidence": "PDF no free com branding; PPTX sem branding nos planos pagos.",
+          "sources": [
+            "S09"
+          ]
+        },
+        {
+          "player": "plus_ai",
+          "score": 96,
+          "confidence": "H",
+          "evidence": "Melhor score por evitar conversão: cria em PowerPoint/Slides desde o começo.",
+          "sources": [
+            "S10",
+            "S11",
+            "S18"
+          ]
+        },
+        {
+          "player": "decktopus",
+          "score": 68,
+          "confidence": "H",
+          "evidence": "Pricing explicita PDF export; PPTX não aparece como força central na página de preço.",
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "player": "slidesai",
+          "score": 84,
+          "confidence": "H",
+          "evidence": "Boa porque o destino principal já é Google Slides; PPTX depende do export do Google.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "player": "presenton",
+          "score": 91,
+          "confidence": "H",
+          "evidence": "Exporta PPTX/PDF/PNG via API e promete preservar design/template.",
+          "sources": [
+            "S15",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "player": "presentations_ai",
+          "score": 65,
+          "confidence": "M",
+          "evidence": "Menos evidência oficial nesta coleta sobre fidelidade PPTX/PDF.",
+          "sources": [
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pricing_value",
+      "label": "Preço e valor",
+      "weight": 0.11,
+      "cells": [
+        {
+          "player": "gamma",
+          "score": 87,
+          "confidence": "H",
+          "evidence": "Ótimo valor para indivíduos e founders; crédito/imagem premium pode exigir upgrades.",
+          "sources": [
+            "S01",
+            "S02",
+            "S18"
+          ]
+        },
+        {
+          "player": "canva",
+          "score": 89,
+          "confidence": "H",
+          "evidence": "Valor alto porque inclui todo o pacote de design, não só slides.",
+          "sources": [
+            "S03",
+            "S04"
+          ]
+        },
+        {
+          "player": "beautiful_ai",
+          "score": 64,
+          "confidence": "H",
+          "evidence": "Sem free permanente e Team caro para pequenos times.",
+          "sources": [
+            "S05",
+            "S06",
+            "S19"
+          ]
+        },
+        {
+          "player": "tome",
+          "score": 45,
+          "confidence": "H",
+          "evidence": "Valor baixo para novo uso de apresentações por risco de produto/pivot.",
+          "sources": [
+            "S07",
+            "S08"
+          ]
+        },
+        {
+          "player": "pitch",
+          "score": 81,
+          "confidence": "H",
+          "evidence": "Free útil e Team justo para colaboração real.",
+          "sources": [
+            "S09"
+          ]
+        },
+        {
+          "player": "plus_ai",
+          "score": 84,
+          "confidence": "H",
+          "evidence": "Boa relação valor/risco para times profissionais.",
+          "sources": [
+            "S10",
+            "S11",
+            "S18"
+          ]
+        },
+        {
+          "player": "decktopus",
+          "score": 70,
+          "confidence": "H",
+          "evidence": "Preço moderado, com créditos anuais e cap por plano.",
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "player": "slidesai",
+          "score": 79,
+          "confidence": "H",
+          "evidence": "Plano free limitado e pagos baratos tornam bom para baixo orçamento.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "player": "presenton",
+          "score": 86,
+          "confidence": "H",
+          "evidence": "Self-host/BYOK pode ser excelente, com custo operacional interno.",
+          "sources": [
+            "S15",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "player": "presentations_ai",
+          "score": 67,
+          "confidence": "M",
+          "evidence": "Starter/free ajuda; Pro anual compete com Beautiful.ai anual.",
+          "sources": [
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "maturity",
+      "label": "Maturidade",
+      "weight": 0.1,
+      "cells": [
+        {
+          "player": "gamma",
+          "score": 88,
+          "confidence": "H",
+          "evidence": "Alta adoção e categoria madura, com documentação e ecossistema ativo.",
+          "sources": [
+            "S01",
+            "S02",
+            "S18"
+          ]
+        },
+        {
+          "player": "canva",
+          "score": 95,
+          "confidence": "H",
+          "evidence": "Plataforma massiva e muito madura.",
+          "sources": [
+            "S03",
+            "S04"
+          ]
+        },
+        {
+          "player": "beautiful_ai",
+          "score": 82,
+          "confidence": "H",
+          "evidence": "Produto maduro, especializado em apresentações.",
+          "sources": [
+            "S05",
+            "S06",
+            "S19"
+          ]
+        },
+        {
+          "player": "tome",
+          "score": 45,
+          "confidence": "H",
+          "evidence": "Marca conhecida, mas o produto de apresentações foi pivotado/sunsetting segundo fontes recentes.",
+          "sources": [
+            "S07",
+            "S08"
+          ]
+        },
+        {
+          "player": "pitch",
+          "score": 84,
+          "confidence": "H",
+          "evidence": "Produto maduro de apresentações colaborativas.",
+          "sources": [
+            "S09"
+          ]
+        },
+        {
+          "player": "plus_ai",
+          "score": 79,
+          "confidence": "H",
+          "evidence": "Menor que Canva/Gamma, mas focado e com docs sólidas.",
+          "sources": [
+            "S10",
+            "S11",
+            "S18"
+          ]
+        },
+        {
+          "player": "decktopus",
+          "score": 74,
+          "confidence": "H",
+          "evidence": "Base grande declarada e produto conhecido.",
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "player": "slidesai",
+          "score": 67,
+          "confidence": "H",
+          "evidence": "Conhecido como add-on, mas menor que líderes.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "player": "presenton",
+          "score": 62,
+          "confidence": "H",
+          "evidence": "Mais novo; 4.9k stars e roadmap ativo, mas menor battle-tested que SaaS líderes.",
+          "sources": [
+            "S15",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "player": "presentations_ai",
+          "score": 61,
+          "confidence": "M",
+          "evidence": "Player relevante, mas menor que líderes de adoção.",
+          "sources": [
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brand_governance",
+      "label": "Marca e governança",
+      "weight": 0.08,
+      "cells": [
+        {
+          "player": "gamma",
+          "score": 76,
+          "confidence": "H",
+          "evidence": "Suporta branding e fontes em planos pagos, mas não é tão orientado a brand ops quanto Pitch/Canva/Beautiful.ai.",
+          "sources": [
+            "S01",
+            "S02",
+            "S18"
+          ]
+        },
+        {
+          "player": "canva",
+          "score": 90,
+          "confidence": "H",
+          "evidence": "Brand Kit, templates e controles de equipe dão vantagem forte em consistência visual.",
+          "sources": [
+            "S03",
+            "S04"
+          ]
+        },
+        {
+          "player": "beautiful_ai",
+          "score": 86,
+          "confidence": "H",
+          "evidence": "Muito forte para brand controls, shared libraries e templates.",
+          "sources": [
+            "S05",
+            "S06",
+            "S19"
+          ]
+        },
+        {
+          "player": "tome",
+          "score": 50,
+          "confidence": "H",
+          "evidence": "Custom logo no Pro, mas sem suíte de governança comparável aos líderes.",
+          "sources": [
+            "S07",
+            "S08"
+          ]
+        },
+        {
+          "player": "pitch",
+          "score": 88,
+          "confidence": "H",
+          "evidence": "Custom templates, fonts, roles e conteúdo reutilizável.",
+          "sources": [
+            "S09"
+          ]
+        },
+        {
+          "player": "plus_ai",
+          "score": 83,
+          "confidence": "H",
+          "evidence": "Custom branding/templates e biblioteca compartilhada em planos de time/enterprise.",
+          "sources": [
+            "S10",
+            "S11",
+            "S18"
+          ]
+        },
+        {
+          "player": "decktopus",
+          "score": 75,
+          "confidence": "H",
+          "evidence": "Enterprise promete slides corporativos, templates e layouts customizados.",
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "player": "slidesai",
+          "score": 55,
+          "confidence": "H",
+          "evidence": "Governança/brand kits mais fracos que Canva/Pitch/Plus.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "player": "presenton",
+          "score": 82,
+          "confidence": "H",
+          "evidence": "Muito forte para templates próprios, API e white-label.",
+          "sources": [
+            "S15",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "player": "presentations_ai",
+          "score": 70,
+          "confidence": "M",
+          "evidence": "Promete brand consistency, mas menos evidência operacional.",
+          "sources": [
+            "S19"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "risk_control",
+      "label": "Risco e controle",
+      "weight": 0.05,
+      "cells": [
+        {
+          "player": "gamma",
+          "score": 69,
+          "confidence": "H",
+          "evidence": "SaaS proprietário com lock-in de canvas; bom para velocidade, menos para requisitos rígidos de dados.",
+          "sources": [
+            "S01",
+            "S02",
+            "S18"
+          ]
+        },
+        {
+          "player": "canva",
+          "score": 74,
+          "confidence": "H",
+          "evidence": "SaaS proprietário; bom controle administrativo, mas sem self-host.",
+          "sources": [
+            "S03",
+            "S04"
+          ]
+        },
+        {
+          "player": "beautiful_ai",
+          "score": 72,
+          "confidence": "H",
+          "evidence": "SaaS proprietário; baixo risco técnico, custo/lock-in moderado.",
+          "sources": [
+            "S05",
+            "S06",
+            "S19"
+          ]
+        },
+        {
+          "player": "tome",
+          "score": 36,
+          "confidence": "H",
+          "evidence": "Risco alto de continuidade e lock-in.",
+          "sources": [
+            "S07",
+            "S08"
+          ]
+        },
+        {
+          "player": "pitch",
+          "score": 78,
+          "confidence": "H",
+          "evidence": "SaaS proprietário, mas com workflows de time e exportação melhores que AI-native puro.",
+          "sources": [
+            "S09"
+          ]
+        },
+        {
+          "player": "plus_ai",
+          "score": 82,
+          "confidence": "H",
+          "evidence": "Menos lock-in operacional; SOC2 mencionado na página oficial.",
+          "sources": [
+            "S10",
+            "S11",
+            "S18"
+          ]
+        },
+        {
+          "player": "decktopus",
+          "score": 65,
+          "confidence": "H",
+          "evidence": "SaaS proprietário com limites por créditos e menos transparência sobre export PPTX.",
+          "sources": [
+            "S12"
+          ]
+        },
+        {
+          "player": "slidesai",
+          "score": 70,
+          "confidence": "H",
+          "evidence": "Menor lock-in por usar Google Slides, mas dependência de add-on.",
+          "sources": [
+            "S13",
+            "S14"
+          ]
+        },
+        {
+          "player": "presenton",
+          "score": 96,
+          "confidence": "H",
+          "evidence": "Vencedor categórico em controle, privacidade e ausência de lock-in.",
+          "sources": [
+            "S15",
+            "S16",
+            "S17"
+          ]
+        },
+        {
+          "player": "presentations_ai",
+          "score": 58,
+          "confidence": "M",
+          "evidence": "SaaS proprietário com transparência pública limitada.",
+          "sources": [
+            "S19"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "benchmark_id": "bench-gstack-vs-aiox-2026-04-13",
+  "analysis_type": "bidirectional",
+  "gaps": {
+    "aiox_gaps": [
+      {
+        "id": "GAP-A01",
+        "feature": "Persistent Browser Daemon",
+        "severity": "HIGH",
+        "priority": "P0",
+        "description": "gstack has a persistent Chromium daemon (server.ts, 2,407 LOC) with ref system (@e1, @e2) enabling <100ms browser commands. AIOX uses per-invocation Playwright which is 10-50x slower for multi-command sessions.",
+        "gstack_source": "browse/src/server.ts, browse/src/snapshot.ts",
+        "aiox_current": ".claude/skills/project-playwright/, .claude/skills/clickup-playwright/",
+        "absorption_decision": "ADAPT",
+        "absorption_effort": "L (8+5 story points)",
+        "absorption_target": "infra-ops squad"
+      },
+      {
+        "id": "GAP-A02",
+        "feature": "Post-Deploy Canary Monitoring",
+        "severity": "HIGH",
+        "priority": "P0",
+        "description": "gstack /canary provides continuous post-deploy monitoring (console errors, perf regression, page failures). AIOX verify-deploy is one-time only — no continuous watch.",
+        "gstack_source": "canary/SKILL.md",
+        "aiox_current": ".claude/skills/verify-deploy/",
+        "absorption_decision": "ADAPT",
+        "absorption_effort": "M (5 story points)",
+        "absorption_target": "infra-ops squad"
+      },
+      {
+        "id": "GAP-A03",
+        "feature": "Performance Benchmarking with Baselines",
+        "severity": "MEDIUM",
+        "priority": "P1",
+        "description": "gstack /benchmark collects Core Web Vitals with before/after baselines. AIOX has performance scripts (.aiox-core/infrastructure/) but they're not wired into the story review flow.",
+        "gstack_source": "benchmark/SKILL.md",
+        "aiox_current": ".aiox-core/infrastructure/scripts/performance-*.js",
+        "absorption_decision": "ADAPT",
+        "absorption_effort": "M (5 story points)",
+        "absorption_target": "infra-ops squad"
+      },
+      {
+        "id": "GAP-A04",
+        "feature": "AI Slop Detection (Codified Design Taste)",
+        "severity": "MEDIUM",
+        "priority": "P1",
+        "description": "gstack has 10 hardcoded AI-generated design anti-patterns + 7 litmus checks. AIOX relies on subjective agent judgment for design quality.",
+        "gstack_source": "slop-scan.config.json, scripts/gen-skill-docs.ts lines 50-84",
+        "aiox_current": "None",
+        "absorption_decision": "CREATE",
+        "absorption_effort": "S (2 story points)",
+        "absorption_target": "design-system squad"
+      },
+      {
+        "id": "GAP-A05",
+        "feature": "Multi-Host Skill Parity",
+        "severity": "MEDIUM",
+        "priority": "P2 (strategic)",
+        "description": "gstack generates skills for 8 AI hosts from 1 template. AIOX is locked to Claude Code. If market shifts to multi-model, AIOX has no adaptation path.",
+        "gstack_source": "hosts/ (9 configs), scripts/gen-skill-docs.ts",
+        "aiox_current": "None",
+        "absorption_decision": "REJECTED (strategic evaluation needed)",
+        "absorption_effort": "XL",
+        "absorption_target": "N/A"
+      },
+      {
+        "id": "GAP-A06",
+        "feature": "Skill Template Generation Pipeline",
+        "severity": "MEDIUM",
+        "priority": "P2",
+        "description": "gstack gen-skill-docs.ts (658 LOC) with 9 resolvers, CI freshness check, token budget tracking. AIOX ide-sync generates stubs only.",
+        "gstack_source": "scripts/gen-skill-docs.ts, SKILL.md.tmpl",
+        "aiox_current": ".aiox-core/infrastructure/scripts/ide-sync/",
+        "absorption_decision": "ADAPT",
+        "absorption_effort": "M (8 story points)",
+        "absorption_target": "sinkra-squad"
+      },
+      {
+        "id": "GAP-A07",
+        "feature": "Auto-Review Pipeline (Chained Multi-Agent)",
+        "severity": "MEDIUM",
+        "priority": "P2",
+        "description": "gstack /autoplan chains CEO -> Eng -> Design -> DX reviews automatically. AIOX c-level agents must be invoked manually one-by-one.",
+        "gstack_source": "autoplan/SKILL.md",
+        "aiox_current": "squads/c-level/agents/ (manual invocation)",
+        "absorption_decision": "ADAPT",
+        "absorption_effort": "M (5 story points)",
+        "absorption_target": "c-level squad"
+      },
+      {
+        "id": "GAP-A08",
+        "feature": "Agent-Oriented Error Messages",
+        "severity": "LOW",
+        "priority": "P3",
+        "description": "gstack wrapError() rewrites Playwright errors into actionable agent guidance (strip stacks, add context). AIOX uses standard error patterns.",
+        "gstack_source": "ARCHITECTURE.md Error Philosophy section",
+        "aiox_current": "Standard try/catch",
+        "absorption_decision": "REUSE (pattern adoption)",
+        "absorption_effort": "S (1 story point)",
+        "absorption_target": "infra-ops squad"
+      }
+    ],
+    "gstack_gaps": [
+      {
+        "id": "GAP-G01",
+        "feature": "Constitutional Governance",
+        "severity": "CRITICAL",
+        "description": "gstack has ETHOS.md (philosophy, no enforcement). No hooks, no CODEOWNERS, no mandatory gates. Any agent can push, modify, or delete anything.",
+        "aiox_source": ".claude/rules/ (16 files), .claude/hooks/ (14 files), CODEOWNERS"
+      },
+      {
+        "id": "GAP-G02",
+        "feature": "SINKRA Process Methodology",
+        "severity": "CRITICAL",
+        "description": "gstack has no process mapping methodology. Skills are atomic and unrelated. No formal state machine, no checkpoints, no quality gates between phases.",
+        "aiox_source": "squads/sinkra-squad/ (7-phase pipeline, 3 checkpoints, META_AXIOMAS)"
+      },
+      {
+        "id": "GAP-G03",
+        "feature": "Multi-Business Isolation",
+        "severity": "HIGH",
+        "description": "gstack is single-project. No concept of business isolation, workspace layers, or cross-business governance. Cannot serve multi-tenant organizations.",
+        "aiox_source": "workspace/businesses/ (4 businesses, L0-L4 per business)"
+      },
+      {
+        "id": "GAP-G04",
+        "feature": "Story-Driven Development Lifecycle",
+        "severity": "HIGH",
+        "description": "gstack has TODOS.md (flat priority list). No stories, no epics, no lifecycle states, no acceptance criteria, no traceability to commits.",
+        "aiox_source": "docs/stories/ (353 stories, 46 epics, full SDC lifecycle)"
+      },
+      {
+        "id": "GAP-G05",
+        "feature": "Learning Graduation System",
+        "severity": "HIGH",
+        "description": "gstack appends to JSONL (L1 only). No promotion to decision-cards (L2) or heuristics (L3). No schema governance on learnings.",
+        "aiox_source": ".aiox/learning/ (3-tier with promotion pipeline, schemas)"
+      },
+      {
+        "id": "GAP-G06",
+        "feature": "DAG-Based Parallel Orchestration",
+        "severity": "MEDIUM",
+        "description": "gstack Conductor is basic workspace cloning. No dependency graph, no effort routing, no circuit breakers, no batch execution.",
+        "aiox_source": ".claude/skills/swarm-execute/, .claude/skills/wave-execute/ (Swarm OS)"
+      },
+      {
+        "id": "GAP-G07",
+        "feature": "Registry Governance",
+        "severity": "MEDIUM",
+        "description": "gstack has no service catalog, no ecosystem registry, no pre-push registry check. New services/skills can be added without any registration.",
+        "aiox_source": "service-catalog.yaml, ecosystem-registry.yaml, registry-governance-check.js"
+      },
+      {
+        "id": "GAP-G08",
+        "feature": "Agent Authority Matrix",
+        "severity": "MEDIUM",
+        "description": "gstack has no concept of agent exclusive rights. All skills can perform all operations. No delegation protocol.",
+        "aiox_source": ".claude/rules/agent-authority.md (exclusive rights per agent type)"
+      },
+      {
+        "id": "GAP-G09",
+        "feature": "Artifact Classification",
+        "severity": "MEDIUM",
+        "description": "gstack has no decision tree for artifact placement. Files go wherever the skill puts them. No workspace vs outputs vs framework distinction.",
+        "aiox_source": ".claude/rules/artifact-classification.md (decision tree)"
+      },
+      {
+        "id": "GAP-G10",
+        "feature": "Handoff Protocol",
+        "severity": "MEDIUM",
+        "description": "gstack /checkpoint captures basic state. No inter-BU handoff, no lifecycle states, no signoff protocol, no artifact validation.",
+        "aiox_source": ".claude/rules/agent-handoff.md (3 scopes, lifecycle states)"
+      }
+    ]
+  },
+  "summary": {
+    "aiox_gaps_count": 8,
+    "aiox_gaps_critical": 0,
+    "aiox_gaps_high": 2,
+    "aiox_gaps_medium": 5,
+    "aiox_gaps_low": 1,
+    "gstack_gaps_count": 10,
+    "gstack_gaps_critical": 2,
+    "gstack_gaps_high": 3,
+    "gstack_gaps_medium": 5,
+    "gstack_gaps_low": 0,
+    "net_assessment": "AIOX has 8 gaps (0 critical), gstack has 10 gaps (2 critical). AIOX's gaps are tactical (features). gstack's gaps are structural (governance, methodology). AIOX's foundation is stronger."
+  }
+}

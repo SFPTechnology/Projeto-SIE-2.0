@@ -1,0 +1,53 @@
+handoff_id: DERIVAR-CIRCUITOS-1-sm-to-po
+story_id: DERIVAR-CIRCUITOS-1
+consumed: true
+consumed_at: "2026-07-28"
+consumed_by: "@po (Pax) — *validate-story-draft"
+renomeado_de: >-
+  MOD-CC-DERIVAR-CIRCUITOS-sm-to-po.yaml. O prefixo MOD-CC era factualmente incorreto:
+  a propria investigacao deste handoff concluiu que a mudanca NAO pertence ao epico
+  MOD-CC (curto-circuito C3) nem ao AUTO-OTI. Padronizado por @po para a convencao
+  {story-id}-{from}-to-{to}.yaml usada em .aiox/handoffs/ (ex.: MOD-QT-2-01-sm-to-po.yaml).
+created_at: "2026-07-28"
+from_agent: "@sm"
+to_agent: "@po"
+last_command: "*draft (regularização de blocker) --mode yolo"
+next_command: "*validate-story-draft docs/stories/story-DERIVAR-CIRCUITOS-1-dependencia-sem-resultado.md --mode yolo"
+workflow: "BLK-DERIVAR-CIRCUITOS-01-REGULARIZACAO"
+mode: "yolo"
+human_intervention: false
+blocker_ref: "BLK-DERIVAR-CIRCUITOS-01 (.aiox/workflow-state/BLOCKER-DERIVAR-CIRCUITOS-REGRESSAO.yaml)"
+po_diversao_ref: "PO-DIV-02 (.aiox/handoffs/MOD-QT-2-01-po-addendum-to-qa.yaml)"
+
+story_created:
+  path: "docs/stories/story-DERIVAR-CIRCUITOS-1-dependencia-sem-resultado.md"
+  status: "Draft"
+  origem: "Regularização de mudança de comportamento não commitada em src/domain/calculo/derivar-circuitos.ts (guard `!r` removido), detectada pelo @aiox-master no preflight de MOD-QT-2-RESOLUCAO-VERQT."
+
+decisao_do_usuario:
+  - "Comportamento novo (dependência sem `resultado` ainda emite circuitos ADD-* de carga adicional) é INTENCIONAL e deve ser PRESERVADO."
+  - "Story não reverte src/domain/calculo/derivar-circuitos.ts; formaliza o comportamento com AC e corrige o teste desatualizado."
+
+investigacao_resumo:
+  - "Único chamador de derivarCircuitos: resolverDivisaoCircuitos (src/domain/calculo/divisao-circuitos.ts:386), usado por servico-corrente.ts e servico-divisao-circuitos.ts. Ambos enviam TODAS as dependências do projeto, incluindo as em RASCUNHO (resultado ausente) — fluxo real de produção, não cenário artificial."
+  - "cargasAdicionais() (src/domain/calculo/cargas-adicionais.ts) sempre calculou VA a partir de entrada, nunca de resultado — ADD-* nunca dependeu arquiteturalmente do motor NBR."
+  - "docs/analysis/ANALISE-PLANEJADOR-DE-CIRCUITOS.md (2026-07-10, submódulo, seção 4.3) descreve 'cada carga adicional válida pode gerar um circuito ADD-*' sem condicionar a resultado — consistente, mas não é AC formal."
+  - "docs/stories/HANDOFF-CORRECAO-CIRCUITOS-TENSAO-INCOMPATIVEL-to-DEV.md (2026-07-21, repo raiz, Done) estabelece princípio de produto 'nenhuma carga adicional cadastrada é perdida' (AC8) — mesma filosofia, mas não cobre o guard !r nem inclui derivar-circuitos.ts no File List."
+  - "Nenhuma story/epic/PRD (busca em docs/stories, docs/prd, docs/analysis, repo raiz e submódulo) contém AC explícita autorizando a remoção do guard !r. MOD-CC é sobre curto-circuito (C3), não relacionado. AUTO-OTI é sobre otimização de dimensionamento de condutores, não localizado como origem."
+  - "CONCLUSÃO: motivação arquitetural plausível existe, mas NÃO há confirmação documental formal. Story exige que @dev registre a motivação real (ou a ausência dela) no Dev Agent Record — Artigo IV (No Invention) respeitado."
+  - "CORREÇÃO FACTUAL: o campo evidencia.teste_falhando.observado do blocker YAML diz '1 circuito ADD-Sala-Lampada'. Execução real (npx vitest run) mostra 2 circuitos: ADD-Sala-Chuveiro (tue, 220V) e ADD-Sala-Lampada (iluminacao, 127V, 200VA). Story usa o valor verificado. Campo de evidência do blocker NÃO foi alterado (fora do escopo desta tarefa). [RESOLVIDO por @po em 2026-07-28: divergência reconfirmada por reexecução do teste; campo do blocker corrigido para 2 circuitos, com o valor anterior preservado em observado_valor_anterior.]"
+  - "RAIO DE IMPACTO de reversão: nenhum outro teste em tests/ depende do comportamento novo (grep por fonte sem resultado só encontra o teste que já falha). Reverter só afetaria esse teste. Em produção, dependências RASCUNHO deixariam de mostrar ADD-* em Correntes/Divisor de Circuitos — sem cobertura de integração hoje em nenhuma direção."
+
+acceptance_criteria_count: 4
+
+po_validation_focus:
+  - "Confirmar que a story NÃO autoriza alteração de src/domain/calculo/derivar-circuitos.ts (Task 6 é guarda de escopo explícita)."
+  - "Confirmar que os 4 ACs cobrem exatamente os 4 cenários exigidos: sem resultado + com cargas, sem resultado + sem cargas, com resultado inalterado, vIlumTug ausente."
+  - "Confirmar que a Task 5 (registro de motivação no Dev Agent Record) não foi esquecida — é o mecanismo de conformidade com Artigo IV já que a investigação do @sm não encontrou justificativa formal fechada."
+  - "Aplicar checklist de 10 pontos de .claude/rules/story-lifecycle.md Fase 2."
+  - "Se GO (>=7/10): atualizar Status Draft -> Ready e criar handoff para @dev."
+
+blocked:
+  - "Aprovar reversão de derivar-circuitos.ts nesta story."
+  - "Aprovar qualquer escopo de queda-tensão/MOD-QT-2-01 a 04 dentro desta story."
+  - "Marcar a motivação do comportamento como 'confirmada' sem fonte documental nova (Artigo IV)."

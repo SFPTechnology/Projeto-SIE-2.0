@@ -1,0 +1,170 @@
+version: 1.0.0
+run_id: sdc-headless-2026-07-30T02-32-45-499Z
+status: completed
+terminal_status: deployed
+current_phase: post_deploy_smoke
+manifest_snapshot:
+  source_artifact: docs/workflows/WORKFLOW-MOD-QT-INTEGRAL-PERMANENTE-DEV.md
+  story_scope: single_story
+  execution_mode: yolo
+  permissions_mode: auto
+  interaction_policy: never_prompt
+  on_missing_input: block_and_log
+  target_branch: feature/mod-qt-integral-permanente
+  base_branch: master
+  deploy_environment: local-dry-run
+  deploy_runbook: docs/workflows/PLANO-DEPLOY-COMPLETO-2026-07-18.md
+  remote_repository: https://github.com/SFPTechnology/Projeto-SIE.git
+  remote_operations_authorized: true
+  pull_request_authorized: true
+  merge_authorized: true
+  release_authorized: true
+  deploy_authorized: true
+  rollback_authorized: true
+  migrations_authorized: false
+  destructive_migrations_authorized: false
+  max_qa_iterations: 5
+  max_po_iterations: 3
+  safety_profile: dry_run_only
+  story_id: MOD-QT-3-01
+  story_file: docs/stories/story-MOD-QT-3-01-modulo-integral-permanente.md
+  orchestration_workflow: docs/workflows/WORKFLOW-SDC-MOD-QT-INTEGRAL-PERMANENTE-YOLO.md
+  required_handoffs:
+    - .aiox/handoffs/MOD-QT-3-01-sm-to-po.yaml
+    - .aiox/handoffs/MOD-QT-3-01-po-to-dev.yaml
+    - .aiox/handoffs/MOD-QT-3-01-dev-to-qa.yaml
+    - .aiox/handoffs/MOD-QT-3-01-qa-to-devops.yaml
+  required_quality_gates:
+    - npm run lint
+    - npm run typecheck
+    - npm test
+    - npm run build
+    - npm run build:spa
+    - rg "queda-tensao" dist
+    - rg "Queda de tens" dist
+  module_acceptance:
+    route_ui: /projetos/$projetoId/queda-tensao
+    route_deep_link_example: /projetos/demo/queda-tensao
+    source_route_file: sistema-de-instala-es-el-tricas-sie-main/src/routes/projetos.$projetoId_.queda-tensao.tsx
+    project_hub_file: sistema-de-instala-es-el-tricas-sie-main/src/routes/projetos.$projetoId.tsx
+    ssr_route_tree: sistema-de-instala-es-el-tricas-sie-main/src/routeTree.gen.ts
+    spa_route_tree: sistema-de-instala-es-el-tricas-sie-main/src/routeTree.spa.ts
+manifest_fingerprint: cf5bbc9f94f6ace62910d6144683cb9692f1f7244deed3c0f36e6ef63226d08c
+counters:
+  po_iterations: 1
+  qa_iterations: 1
+gates:
+  manifest:
+    valid: true
+    errors: []
+  technical:
+    lint: PASS
+    typecheck: PASS
+    tests: PASS
+    build: PASS
+    coderabbit: PASS
+    security: PASS
+effects:
+  migrations:
+    status: skipped
+    at: '2026-07-30T02:32:45.697Z'
+    reason: migrations_authorized is false
+  push:
+    status: completed
+    at: '2026-07-30T02:32:45.702Z'
+    authority: '@devops'
+    idempotency_key: sdc-headless-2026-07-30T02-32-45-499Z:push
+    simulated: true
+  pull_request:
+    status: completed
+    at: '2026-07-30T02:32:45.715Z'
+    authority: '@devops'
+    idempotency_key: sdc-headless-2026-07-30T02-32-45-499Z:pull_request
+    simulated: true
+  merge:
+    status: completed
+    at: '2026-07-30T02:32:45.724Z'
+    authority: '@devops'
+    idempotency_key: sdc-headless-2026-07-30T02-32-45-499Z:merge
+    simulated: true
+  release:
+    status: completed
+    at: '2026-07-30T02:32:45.731Z'
+    authority: '@devops'
+    idempotency_key: sdc-headless-2026-07-30T02-32-45-499Z:release
+    simulated: true
+  deploy:
+    status: completed
+    at: '2026-07-30T02:32:45.741Z'
+    authority: '@devops'
+    idempotency_key: sdc-headless-2026-07-30T02-32-45-499Z:deploy
+    simulated: true
+transitions:
+  - at: '2026-07-30T02:32:45.550Z'
+    from: manifest_validation
+    to: sm_story_creation
+    status: manifest_validated
+  - at: '2026-07-30T02:32:45.579Z'
+    from: sm_story_creation
+    to: po_story_validation
+    status: story_drafted
+  - at: '2026-07-30T02:32:45.594Z'
+    from: po_story_validation
+    to: dev_implementation
+    status: po_go
+  - at: '2026-07-30T02:32:45.613Z'
+    from: dev_implementation
+    to: qa_review
+    status: dev_complete
+  - at: '2026-07-30T02:32:45.635Z'
+    from: qa_review
+    to: quality_gates
+    status: qa_pass
+  - at: '2026-07-30T02:32:45.681Z'
+    from: quality_gates
+    to: migration_validation
+    status: quality_gates_passed
+  - at: '2026-07-30T02:32:45.697Z'
+    from: migration_validation
+    to: devops_push
+    status: migrations_skipped
+  - at: '2026-07-30T02:32:45.702Z'
+    from: devops_push
+    to: devops_pr
+    status: push_completed
+  - at: '2026-07-30T02:32:45.715Z'
+    from: devops_pr
+    to: devops_merge
+    status: pull_request_completed
+  - at: '2026-07-30T02:32:45.725Z'
+    from: devops_merge
+    to: devops_release
+    status: merge_completed
+  - at: '2026-07-30T02:32:45.731Z'
+    from: devops_release
+    to: devops_deploy
+    status: release_completed
+  - at: '2026-07-30T02:32:45.741Z'
+    from: devops_deploy
+    to: post_deploy_smoke
+    status: deploy_completed
+  - at: '2026-07-30T02:32:45.749Z'
+    from: post_deploy_smoke
+    to: deployed
+    status: deployed
+blocks: []
+started_at: '2026-07-30T02:32:45.499Z'
+updated_at: '2026-07-30T02:32:45.851Z'
+sm_result:
+  status: completed
+  story_status: Draft
+po_result:
+  status: GO
+  story_status: Approved
+dev_result:
+  status: completed
+qa_result:
+  verdict: PASS
+smoke_result:
+  status: PASS
+execution_log: docs/workflows/logs/SDC-WORKFLOW-MOD-QT-INTEGRAL-PERMANENTE-DEV.md-2026-07-30T02-32-45-499Z.md

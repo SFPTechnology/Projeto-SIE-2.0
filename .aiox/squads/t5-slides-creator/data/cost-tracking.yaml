@@ -1,0 +1,280 @@
+# Cost Tracking & Budget Guardrails Configuration
+# SSOT for cost monitoring, budget enforcement, and circuit breaker logic.
+# Consumed by: visual-scout (pre-call check), slide-chief (budget reporting),
+#               qa-inspector (cost validation per deck).
+# Created by: Story 1.4 (EPIC-SC-V2-001, Sprint 1)
+# Dependency: visual-engines.yaml (estimateCost per engine, orchestration.budget_cap_*)
+
+cost_tracking:
+  version: "1.0.0"
+  created_at: "2026-03-20"
+  epic: EPIC-SC-V2-001
+  story: "1.4"
+
+  # ---------------------------------------------------------------------------
+  # BUDGET CAPS (hard limits -- pipeline halts when reached)
+  # ---------------------------------------------------------------------------
+  budget_caps:
+    per_deck:
+      env_var: SLIDES_COST_CAP
+      default_usd: 2.00
+      description: >
+        Maximum total cost for visual generation in a single deck.
+        When reached, only free engines (d2, mermaid, plotly) are allowed.
+        Paid engines (gpt_image, recraft, ideogram) are skipped with
+        VisualError(type=engine_failure, message="deck budget exceeded").
+      enforcement: hard
+      action_on_breach: block_paid_engines
+
+    per_video:
+      env_var: SLIDES_VIDEO_COST_CAP
+      default_usd: 5.00
+      description: >
+        Maximum total cost for video-related processing per video input.
+        Applies to YouTube-to-Presentation pipeline (Story 4.x).
+        When reached, pipeline continues with already-processed frames.
+      enforcement: hard
+      action_on_breach: block_paid_engines
+
+    monthly:
+      env_var: SLIDES_MONTHLY_BUDGET
+      default_usd: 100.00
+      description: >
+        Monthly budget ceiling. Not a hard block -- triggers warning at
+        threshold and logs to console. Operator can override via env var.
+      enforcement: soft
+      action_on_breach: warn_and_log
+
+  # ---------------------------------------------------------------------------
+  # WARNING THRESHOLDS
+  # ---------------------------------------------------------------------------
+  warning_thresholds:
+    monthly_budget_warning_pct: 80
+    description: >
+      When monthly accumulated cost exceeds this percentage of
+      SLIDES_MONTHLY_BUDGET, emit a console warning with current spend
+      and remaining budget. Warning repeats every 10% increment after.
+    warning_format: >
+      [SLIDES-COST-WARNING] Monthly spend: ${current_usd} / ${budget_usd}
+      (${pct}%). Remaining: ${remaining_usd}. Consider reviewing engine usage.
+
+  # ---------------------------------------------------------------------------
+  # PRE-CALL COST CHECK (estimateCost guard)
+  # ---------------------------------------------------------------------------
+  pre_call_check:
+    description: >
+      Before every paid API call, visual-scout MUST:
+      1. Call estimateCost(spec) on the target engine
+      2. Compare estimated cost against remaining deck budget
+      3. If estimate > remaining: skip engine, try next in fallback chain
+      4. If all paid engines exceed budget: use free engines only
+    algorithm:
+      steps:
+        - "1. remaining = budget_cap_per_deck - deck_accumulated_cost"
+        - "2. estimate = engine.estimateCost(spec).amount_usd"
+        - "3. IF estimate > remaining THEN skip engine, log reason"
+        - "4. IF estimate <= remaining THEN proceed with render()"
+        - "5. After render: actual_cost = output.metadata.cost_usd"
+        - "6. deck_accumulated_cost += actual_cost"
+        - "7. monthly_accumulated_cost += actual_cost"
+        - "8. Log entry to cost-log.json"
+    free_engines:
+      - d2
+      - mermaid
+      - plotly
+    paid_engines:
+      - gpt_image
+      - recraft
+      - ideogram
+
+  # ---------------------------------------------------------------------------
+  # CIRCUIT BREAKER (per API call retry logic)
+  # ---------------------------------------------------------------------------
+  circuit_breaker:
+    max_retries_per_call: 3
+    description: >
+      Maximum number of retry attempts for a single API call before aborting.
+      After max_retries, the engine emits VisualError and visual-scout
+      moves to the next engine in the fallback chain.
+    behavior:
+      on_retry: >
+        Log retry attempt with: engine_id, attempt_number, error_type,
+        timestamp. Respect engine-specific retry_delay_ms from visual-engines.yaml.
+      on_max_reached: >
+        Emit VisualError(type=engine_failure, message="circuit breaker tripped
+        after ${max_retries} attempts"). Move to fallback_suggestion engine.
+        Log circuit breaker event.
+    retry_delay_strategy: use_engine_config
+    notes: >
+      Circuit breaker is per-call, not per-engine. Each new spec starts
+      with a fresh retry counter. Engine-level retry_count from
+      visual-engines.yaml takes precedence when it is lower than
+      max_retries_per_call (e.g., gpt_image has retry_count=0, meaning
+      no retries at all -- circuit breaker respects this).
+
+  # ---------------------------------------------------------------------------
+  # COST LOG SCHEMA (cost-log.json)
+  # ---------------------------------------------------------------------------
+  cost_log:
+    file_path: "${SLIDES_DATA_DIR:-data}/cost-log.json"
+    description: >
+      Append-only log of every API call cost. Used for aggregation,
+      reporting, and budget enforcement. Each entry is one render() call.
+    entry_schema:
+      id:
+        type: string
+        format: uuid_v4
+        description: "Unique identifier for this log entry."
+      timestamp:
+        type: string
+        format: iso_8601
+        description: "When the API call was made."
+      engine_id:
+        type: string
+        enum: [d2, mermaid, gpt_image, recraft, plotly, ideogram]
+        description: "Which engine was called."
+      cost_usd:
+        type: number
+        precision: 4
+        description: "Actual cost incurred (0.0000 for free engines)."
+      estimated_cost_usd:
+        type: number
+        precision: 4
+        description: "Pre-call estimate from estimateCost()."
+      deck_id:
+        type: string
+        description: "Deck identifier for per-deck aggregation."
+      slide_index:
+        type: number
+        description: "Which slide in the deck triggered this call."
+      content_type:
+        type: string
+        description: "Content type from VisualSpec (process, concept, etc.)."
+      visual_type:
+        type: string
+        description: "Visual type from VisualSpec (flowchart, illustration, etc.)."
+      cache_hit:
+        type: boolean
+        description: "True if result was served from cache (cost = 0)."
+      success:
+        type: boolean
+        description: "True if render() succeeded, false if VisualError."
+      error_type:
+        type: string
+        required: false
+        description: "If success=false: engine_failure | brand_violation | timeout | budget_exceeded."
+      retry_count:
+        type: number
+        description: "Number of retries before success or failure."
+      generation_time_ms:
+        type: number
+        description: "Wall-clock time for this call in milliseconds."
+
+  # ---------------------------------------------------------------------------
+  # AGGREGATION RULES
+  # ---------------------------------------------------------------------------
+  aggregation:
+    description: >
+      Cost log entries are aggregated at three granularities for reporting
+      and budget enforcement. Aggregation is computed on-demand from
+      cost-log.json, not stored separately.
+
+    per_deck:
+      group_by: deck_id
+      metrics:
+        - total_cost_usd: "SUM(cost_usd) WHERE deck_id = X"
+        - total_calls: "COUNT(*) WHERE deck_id = X"
+        - paid_calls: "COUNT(*) WHERE deck_id = X AND cost_usd > 0"
+        - free_calls: "COUNT(*) WHERE deck_id = X AND cost_usd = 0"
+        - cache_hits: "COUNT(*) WHERE deck_id = X AND cache_hit = true"
+        - avg_cost_per_call: "AVG(cost_usd) WHERE deck_id = X AND cost_usd > 0"
+      used_for: "Budget cap enforcement (SLIDES_COST_CAP)"
+
+    per_day:
+      group_by: "DATE(timestamp)"
+      metrics:
+        - total_cost_usd: "SUM(cost_usd) WHERE DATE(timestamp) = D"
+        - total_calls: "COUNT(*) WHERE DATE(timestamp) = D"
+        - unique_decks: "COUNT(DISTINCT deck_id) WHERE DATE(timestamp) = D"
+      used_for: "Daily spend monitoring"
+
+    per_month:
+      group_by: "MONTH(timestamp)"
+      metrics:
+        - total_cost_usd: "SUM(cost_usd) WHERE MONTH(timestamp) = M"
+        - total_calls: "COUNT(*) WHERE MONTH(timestamp) = M"
+        - unique_decks: "COUNT(DISTINCT deck_id) WHERE MONTH(timestamp) = M"
+        - budget_remaining_usd: "SLIDES_MONTHLY_BUDGET - SUM(cost_usd)"
+        - budget_pct_used: "(SUM(cost_usd) / SLIDES_MONTHLY_BUDGET) * 100"
+      used_for: "Monthly budget warning threshold (80%)"
+
+  # ---------------------------------------------------------------------------
+  # COST REFERENCE TABLE (from visual-engines.yaml)
+  # ---------------------------------------------------------------------------
+  engine_costs:
+    description: >
+      Reference copy of per-call costs from visual-engines.yaml.
+      Source of truth is visual-engines.yaml -- this section exists for
+      quick lookup during cost tracking operations.
+    engines:
+      - id: d2
+        cost_usd: 0.0000
+        model: free_oss
+      - id: mermaid
+        cost_usd: 0.0000
+        model: free_oss
+      - id: gpt_image
+        cost_usd: 0.0400
+        model: gpt-image-1.5
+      - id: recraft
+        cost_usd: 0.0800
+        model: recraft-v4
+      - id: plotly
+        cost_usd: 0.0000
+        model: free_oss
+      - id: ideogram
+        cost_usd: 0.0400
+        model: ideogram-v3
+
+  # ---------------------------------------------------------------------------
+  # BUDGET SCENARIOS (for planning reference)
+  # ---------------------------------------------------------------------------
+  budget_scenarios:
+    description: >
+      Pre-calculated scenarios showing how many images fit within budget caps.
+      Used by slide-chief for planning and by visual-scout for engine selection.
+    per_deck_2usd:
+      gpt_image_only: "50 images ($0.04 each)"
+      recraft_only: "25 images ($0.08 each)"
+      ideogram_only: "50 images ($0.04 each)"
+      mixed_typical: "20 GPT + 5 Recraft + unlimited diagrams = ~$1.20"
+    per_month_100usd:
+      decks_at_avg_1_20: "~83 decks/month"
+      decks_at_max_2_00: "50 decks/month"
+
+  # ---------------------------------------------------------------------------
+  # INTEGRATION POINTS
+  # ---------------------------------------------------------------------------
+  integration:
+    visual_scout:
+      description: >
+        visual-scout calls pre_call_check before every engine.render().
+        On budget exceeded: skip paid engine, try free fallback.
+      hook: "before_render"
+      reads: [budget_caps, pre_call_check, cost_log]
+      writes: [cost_log]
+
+    slide_chief:
+      description: >
+        slide-chief reads cost aggregation after deck completion for
+        reporting. Includes cost summary in deck delivery metadata.
+      hook: "after_deck_complete"
+      reads: [aggregation.per_deck, budget_scenarios]
+
+    qa_inspector:
+      description: >
+        qa-inspector validates that deck cost is within budget cap
+        as part of quality gate. Flags over-budget as a warning
+        (not a killer item -- budget is enforced at generation time).
+      hook: "quality_gate"
+      reads: [aggregation.per_deck, budget_caps.per_deck]

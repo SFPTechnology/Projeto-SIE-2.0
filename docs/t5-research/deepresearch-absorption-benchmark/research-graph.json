@@ -1,0 +1,640 @@
+{
+  "schema_version": "research-graph.v2",
+  "slug": "2026-05-18-deepresearch-absorption-benchmark",
+  "generated_at": "2026-05-18",
+  "nodes": [
+    {
+      "id": "query:root",
+      "type": "query",
+      "label": "Should AIOX absorb features from open-source deep-research?"
+    },
+    {
+      "id": "profile:absorption-benchmark",
+      "type": "profile",
+      "label": "Absorption Benchmark Profile"
+    },
+    {
+      "id": "player:aiox_research",
+      "type": "player",
+      "label": "AIOX Research (anchor)",
+      "tier": 1,
+      "score": 60.25
+    },
+    {
+      "id": "player:deerflow",
+      "type": "player",
+      "label": "DeerFlow (ByteDance)",
+      "tier": 1,
+      "score": 72.05
+    },
+    {
+      "id": "player:gpt_researcher",
+      "type": "player",
+      "label": "GPT-Researcher",
+      "tier": 1,
+      "score": 69.65
+    },
+    {
+      "id": "player:langchain_odr",
+      "type": "player",
+      "label": "LangChain Open Deep Research",
+      "tier": 2,
+      "score": 51.7
+    },
+    {
+      "id": "player:local_dr",
+      "type": "player",
+      "label": "Local Deep Research",
+      "tier": 1,
+      "score": 63.9
+    },
+    {
+      "id": "player:openresearcher",
+      "type": "player",
+      "label": "OpenResearcher 30B",
+      "tier": 2,
+      "score": 48.2
+    },
+    {
+      "id": "player:deepresearcher",
+      "type": "player",
+      "label": "DeepResearcher 7B",
+      "tier": 2,
+      "score": 50.95
+    },
+    {
+      "id": "player:jina_ndr",
+      "type": "player",
+      "label": "Jina node-DR",
+      "tier": 3,
+      "score": 44.5
+    },
+    {
+      "id": "player:autoresearchclaw",
+      "type": "player",
+      "label": "AutoResearchClaw",
+      "tier": 1,
+      "score": 69.65
+    },
+    {
+      "id": "player:tongyi_dr",
+      "type": "player",
+      "label": "Tongyi DeepResearch",
+      "tier": 2,
+      "score": 52.1
+    },
+    {
+      "id": "source:research-primary",
+      "type": "source",
+      "label": "Primary research dossier (302 lines)",
+      "credibility": 95
+    },
+    {
+      "id": "source:deerflow-repo",
+      "type": "source",
+      "label": "DeerFlow repo",
+      "credibility": 95
+    },
+    {
+      "id": "source:openresearcher-paper",
+      "type": "source",
+      "label": "OpenResearcher arXiv:2603.20278",
+      "credibility": 90
+    },
+    {
+      "id": "claim:aiox-governance-unique",
+      "type": "claim",
+      "label": "AIOX único com COVERAGE+CITATION gates",
+      "confidence": "ALTA"
+    },
+    {
+      "id": "claim:deerflow-top-stars",
+      "type": "claim",
+      "label": "DeerFlow #1 trending fev/2026 (66k+ stars)",
+      "confidence": "MEDIA"
+    },
+    {
+      "id": "claim:jina-proprietary",
+      "type": "claim",
+      "label": "Jina node-DR is proprietary (NOT OSI)",
+      "confidence": "ALTA"
+    },
+    {
+      "id": "decision:absorption-seletiva",
+      "type": "decision",
+      "label": "GO Absorption Seletiva via REUSE>ADAPT>CREATE"
+    },
+    {
+      "id": "decision:wave-1-p0",
+      "type": "decision",
+      "label": "Wave 1 P0: Sandbox + Distribution + MCP"
+    },
+    {
+      "id": "decision:no-train-own-model",
+      "type": "decision",
+      "label": "NO-GO train own 30B model"
+    },
+    {
+      "id": "gap:GAP-01",
+      "type": "gap",
+      "label": "GAP-01 Docker Sandbox (13pts P0)"
+    },
+    {
+      "id": "gap:GAP-02",
+      "type": "gap",
+      "label": "GAP-02 PyPI+Docker Hub Distribution (8pts P0)"
+    },
+    {
+      "id": "gap:GAP-03",
+      "type": "gap",
+      "label": "GAP-03 MCP Server (5pts P0)"
+    },
+    {
+      "id": "action:ACTION-W1-S1",
+      "type": "action",
+      "label": "Build MCP Server (Sprint 1)"
+    },
+    {
+      "id": "action:ACTION-W1-S3",
+      "type": "action",
+      "label": "Build Docker Sandbox (Sprint 3-4)"
+    },
+    {
+      "id": "risk:RISK-01",
+      "type": "risk",
+      "label": "Docker sandbox CVE (MEDIUM/HIGH)"
+    },
+    {
+      "id": "risk:RISK-10",
+      "type": "risk",
+      "label": "Jina code copy (LOW/VERY_HIGH)"
+    },
+    {
+      "id": "artifact:scorecard",
+      "type": "artifact",
+      "label": "scorecard.json/md (final ranking)"
+    },
+    {
+      "id": "artifact:gap-analysis",
+      "type": "artifact",
+      "label": "gap-analysis.json/md (10 gaps)"
+    },
+    {
+      "id": "artifact:adr-001",
+      "type": "artifact",
+      "label": "ADR-001 absorption strategy"
+    }
+  ],
+  "edges": [
+    {
+      "from": "query:root",
+      "to": "profile:absorption-benchmark",
+      "relation": "classified_as",
+      "source": "query:root",
+      "target": "profile:absorption-benchmark",
+      "type": "classified_as",
+      "weight": 1.0
+    },
+    {
+      "from": "profile:absorption-benchmark",
+      "to": "player:aiox_research",
+      "relation": "analyzes",
+      "source": "profile:absorption-benchmark",
+      "target": "player:aiox_research",
+      "type": "analyzes",
+      "weight": 1.0
+    },
+    {
+      "from": "source:research-primary",
+      "to": "player:deerflow",
+      "relation": "evidence_of",
+      "source": "source:research-primary",
+      "target": "player:deerflow",
+      "type": "evidence_of",
+      "weight": 0.9
+    },
+    {
+      "from": "source:research-primary",
+      "to": "player:gpt_researcher",
+      "relation": "evidence_of",
+      "source": "source:research-primary",
+      "target": "player:gpt_researcher",
+      "type": "evidence_of",
+      "weight": 0.9
+    },
+    {
+      "from": "source:deerflow-repo",
+      "to": "player:deerflow",
+      "relation": "evidence_of",
+      "source": "source:deerflow-repo",
+      "target": "player:deerflow",
+      "type": "evidence_of",
+      "weight": 1.0
+    },
+    {
+      "from": "source:openresearcher-paper",
+      "to": "player:openresearcher",
+      "relation": "evidence_of",
+      "source": "source:openresearcher-paper",
+      "target": "player:openresearcher",
+      "type": "evidence_of",
+      "weight": 1.0
+    },
+    {
+      "from": "source:deerflow-repo",
+      "to": "claim:deerflow-top-stars",
+      "relation": "supports",
+      "source": "source:deerflow-repo",
+      "target": "claim:deerflow-top-stars",
+      "type": "supports",
+      "weight": 0.7
+    },
+    {
+      "from": "source:research-primary",
+      "to": "claim:aiox-governance-unique",
+      "relation": "supports",
+      "source": "source:research-primary",
+      "target": "claim:aiox-governance-unique",
+      "type": "supports",
+      "weight": 0.95
+    },
+    {
+      "from": "player:autoresearchclaw",
+      "to": "gap:GAP-01",
+      "relation": "reveals",
+      "source": "player:autoresearchclaw",
+      "target": "gap:GAP-01",
+      "type": "reveals",
+      "weight": 1.0
+    },
+    {
+      "from": "player:gpt_researcher",
+      "to": "gap:GAP-02",
+      "relation": "reveals",
+      "source": "player:gpt_researcher",
+      "target": "gap:GAP-02",
+      "type": "reveals",
+      "weight": 1.0
+    },
+    {
+      "from": "player:langchain_odr",
+      "to": "gap:GAP-03",
+      "relation": "reveals",
+      "source": "player:langchain_odr",
+      "target": "gap:GAP-03",
+      "type": "reveals",
+      "weight": 0.9
+    },
+    {
+      "from": "player:gpt_researcher",
+      "to": "gap:GAP-03",
+      "relation": "reveals",
+      "source": "player:gpt_researcher",
+      "target": "gap:GAP-03",
+      "type": "reveals",
+      "weight": 0.9
+    },
+    {
+      "from": "gap:GAP-01",
+      "to": "action:ACTION-W1-S3",
+      "relation": "addressed_by",
+      "source": "gap:GAP-01",
+      "target": "action:ACTION-W1-S3",
+      "type": "addressed_by",
+      "weight": 1.0
+    },
+    {
+      "from": "gap:GAP-03",
+      "to": "action:ACTION-W1-S1",
+      "relation": "addressed_by",
+      "source": "gap:GAP-03",
+      "target": "action:ACTION-W1-S1",
+      "type": "addressed_by",
+      "weight": 1.0
+    },
+    {
+      "from": "decision:wave-1-p0",
+      "to": "action:ACTION-W1-S1",
+      "relation": "plans",
+      "source": "decision:wave-1-p0",
+      "target": "action:ACTION-W1-S1",
+      "type": "plans",
+      "weight": 1.0
+    },
+    {
+      "from": "decision:wave-1-p0",
+      "to": "action:ACTION-W1-S3",
+      "relation": "plans",
+      "source": "decision:wave-1-p0",
+      "target": "action:ACTION-W1-S3",
+      "type": "plans",
+      "weight": 1.0
+    },
+    {
+      "from": "decision:absorption-seletiva",
+      "to": "decision:wave-1-p0",
+      "relation": "derives",
+      "source": "decision:absorption-seletiva",
+      "target": "decision:wave-1-p0",
+      "type": "derives",
+      "weight": 1.0
+    },
+    {
+      "from": "decision:absorption-seletiva",
+      "to": "artifact:adr-001",
+      "relation": "documented_in",
+      "source": "decision:absorption-seletiva",
+      "target": "artifact:adr-001",
+      "type": "documented_in",
+      "weight": 1.0
+    },
+    {
+      "from": "claim:aiox-governance-unique",
+      "to": "decision:absorption-seletiva",
+      "relation": "justifies",
+      "source": "claim:aiox-governance-unique",
+      "target": "decision:absorption-seletiva",
+      "type": "justifies",
+      "weight": 0.95
+    },
+    {
+      "from": "claim:jina-proprietary",
+      "to": "decision:no-train-own-model",
+      "relation": "related_to",
+      "source": "claim:jina-proprietary",
+      "target": "decision:no-train-own-model",
+      "type": "related_to",
+      "weight": 0.5
+    },
+    {
+      "from": "risk:RISK-01",
+      "to": "action:ACTION-W1-S3",
+      "relation": "threatens",
+      "source": "risk:RISK-01",
+      "target": "action:ACTION-W1-S3",
+      "type": "threatens",
+      "weight": 0.8
+    },
+    {
+      "from": "risk:RISK-10",
+      "to": "player:jina_ndr",
+      "relation": "related_to",
+      "source": "risk:RISK-10",
+      "target": "player:jina_ndr",
+      "type": "related_to",
+      "weight": 0.9
+    },
+    {
+      "from": "artifact:scorecard",
+      "to": "decision:absorption-seletiva",
+      "relation": "evidence_of",
+      "source": "artifact:scorecard",
+      "target": "decision:absorption-seletiva",
+      "type": "evidence_of",
+      "weight": 0.9
+    },
+    {
+      "from": "artifact:gap-analysis",
+      "to": "decision:wave-1-p0",
+      "relation": "evidence_of",
+      "source": "artifact:gap-analysis",
+      "target": "decision:wave-1-p0",
+      "type": "evidence_of",
+      "weight": 1.0
+    }
+  ],
+  "links": [
+    {
+      "from": "query:root",
+      "to": "profile:absorption-benchmark",
+      "relation": "classified_as",
+      "source": "query:root",
+      "target": "profile:absorption-benchmark",
+      "type": "classified_as",
+      "weight": 1.0
+    },
+    {
+      "from": "profile:absorption-benchmark",
+      "to": "player:aiox_research",
+      "relation": "analyzes",
+      "source": "profile:absorption-benchmark",
+      "target": "player:aiox_research",
+      "type": "analyzes",
+      "weight": 1.0
+    },
+    {
+      "from": "source:research-primary",
+      "to": "player:deerflow",
+      "relation": "evidence_of",
+      "source": "source:research-primary",
+      "target": "player:deerflow",
+      "type": "evidence_of",
+      "weight": 0.9
+    },
+    {
+      "from": "source:research-primary",
+      "to": "player:gpt_researcher",
+      "relation": "evidence_of",
+      "source": "source:research-primary",
+      "target": "player:gpt_researcher",
+      "type": "evidence_of",
+      "weight": 0.9
+    },
+    {
+      "from": "source:deerflow-repo",
+      "to": "player:deerflow",
+      "relation": "evidence_of",
+      "source": "source:deerflow-repo",
+      "target": "player:deerflow",
+      "type": "evidence_of",
+      "weight": 1.0
+    },
+    {
+      "from": "source:openresearcher-paper",
+      "to": "player:openresearcher",
+      "relation": "evidence_of",
+      "source": "source:openresearcher-paper",
+      "target": "player:openresearcher",
+      "type": "evidence_of",
+      "weight": 1.0
+    },
+    {
+      "from": "source:deerflow-repo",
+      "to": "claim:deerflow-top-stars",
+      "relation": "supports",
+      "source": "source:deerflow-repo",
+      "target": "claim:deerflow-top-stars",
+      "type": "supports",
+      "weight": 0.7
+    },
+    {
+      "from": "source:research-primary",
+      "to": "claim:aiox-governance-unique",
+      "relation": "supports",
+      "source": "source:research-primary",
+      "target": "claim:aiox-governance-unique",
+      "type": "supports",
+      "weight": 0.95
+    },
+    {
+      "from": "player:autoresearchclaw",
+      "to": "gap:GAP-01",
+      "relation": "reveals",
+      "source": "player:autoresearchclaw",
+      "target": "gap:GAP-01",
+      "type": "reveals",
+      "weight": 1.0
+    },
+    {
+      "from": "player:gpt_researcher",
+      "to": "gap:GAP-02",
+      "relation": "reveals",
+      "source": "player:gpt_researcher",
+      "target": "gap:GAP-02",
+      "type": "reveals",
+      "weight": 1.0
+    },
+    {
+      "from": "player:langchain_odr",
+      "to": "gap:GAP-03",
+      "relation": "reveals",
+      "source": "player:langchain_odr",
+      "target": "gap:GAP-03",
+      "type": "reveals",
+      "weight": 0.9
+    },
+    {
+      "from": "player:gpt_researcher",
+      "to": "gap:GAP-03",
+      "relation": "reveals",
+      "source": "player:gpt_researcher",
+      "target": "gap:GAP-03",
+      "type": "reveals",
+      "weight": 0.9
+    },
+    {
+      "from": "gap:GAP-01",
+      "to": "action:ACTION-W1-S3",
+      "relation": "addressed_by",
+      "source": "gap:GAP-01",
+      "target": "action:ACTION-W1-S3",
+      "type": "addressed_by",
+      "weight": 1.0
+    },
+    {
+      "from": "gap:GAP-03",
+      "to": "action:ACTION-W1-S1",
+      "relation": "addressed_by",
+      "source": "gap:GAP-03",
+      "target": "action:ACTION-W1-S1",
+      "type": "addressed_by",
+      "weight": 1.0
+    },
+    {
+      "from": "decision:wave-1-p0",
+      "to": "action:ACTION-W1-S1",
+      "relation": "plans",
+      "source": "decision:wave-1-p0",
+      "target": "action:ACTION-W1-S1",
+      "type": "plans",
+      "weight": 1.0
+    },
+    {
+      "from": "decision:wave-1-p0",
+      "to": "action:ACTION-W1-S3",
+      "relation": "plans",
+      "source": "decision:wave-1-p0",
+      "target": "action:ACTION-W1-S3",
+      "type": "plans",
+      "weight": 1.0
+    },
+    {
+      "from": "decision:absorption-seletiva",
+      "to": "decision:wave-1-p0",
+      "relation": "derives",
+      "source": "decision:absorption-seletiva",
+      "target": "decision:wave-1-p0",
+      "type": "derives",
+      "weight": 1.0
+    },
+    {
+      "from": "decision:absorption-seletiva",
+      "to": "artifact:adr-001",
+      "relation": "documented_in",
+      "source": "decision:absorption-seletiva",
+      "target": "artifact:adr-001",
+      "type": "documented_in",
+      "weight": 1.0
+    },
+    {
+      "from": "claim:aiox-governance-unique",
+      "to": "decision:absorption-seletiva",
+      "relation": "justifies",
+      "source": "claim:aiox-governance-unique",
+      "target": "decision:absorption-seletiva",
+      "type": "justifies",
+      "weight": 0.95
+    },
+    {
+      "from": "claim:jina-proprietary",
+      "to": "decision:no-train-own-model",
+      "relation": "related_to",
+      "source": "claim:jina-proprietary",
+      "target": "decision:no-train-own-model",
+      "type": "related_to",
+      "weight": 0.5
+    },
+    {
+      "from": "risk:RISK-01",
+      "to": "action:ACTION-W1-S3",
+      "relation": "threatens",
+      "source": "risk:RISK-01",
+      "target": "action:ACTION-W1-S3",
+      "type": "threatens",
+      "weight": 0.8
+    },
+    {
+      "from": "risk:RISK-10",
+      "to": "player:jina_ndr",
+      "relation": "related_to",
+      "source": "risk:RISK-10",
+      "target": "player:jina_ndr",
+      "type": "related_to",
+      "weight": 0.9
+    },
+    {
+      "from": "artifact:scorecard",
+      "to": "decision:absorption-seletiva",
+      "relation": "evidence_of",
+      "source": "artifact:scorecard",
+      "target": "decision:absorption-seletiva",
+      "type": "evidence_of",
+      "weight": 0.9
+    },
+    {
+      "from": "artifact:gap-analysis",
+      "to": "decision:wave-1-p0",
+      "relation": "evidence_of",
+      "source": "artifact:gap-analysis",
+      "target": "decision:wave-1-p0",
+      "type": "evidence_of",
+      "weight": 1.0
+    }
+  ],
+  "stats": {
+    "total_nodes": 31,
+    "total_edges": 24,
+    "by_type": {
+      "query": 1,
+      "profile": 1,
+      "player": 10,
+      "source": 3,
+      "claim": 3,
+      "decision": 3,
+      "gap": 3,
+      "action": 2,
+      "risk": 2,
+      "artifact": 3
+    }
+  }
+}

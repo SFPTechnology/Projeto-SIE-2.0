@@ -1,0 +1,26 @@
+{
+  "method": "product dimension pack weighted scoring",
+  "scores": {
+    "presenton": {
+      "core_features": 82,
+      "ux": 72,
+      "pricing": 94,
+      "integrations": 88,
+      "support": 72,
+      "scalability": 84,
+      "weighted_total": 82.0
+    },
+    "gamma": {
+      "core_features": 92,
+      "ux": 95,
+      "pricing": 70,
+      "integrations": 90,
+      "support": 85,
+      "scalability": 90,
+      "weighted_total": 88.3
+    }
+  },
+  "winner_by_weighted_total": "Gamma",
+  "winner_by_privacy_control": "Presenton",
+  "confidence": "medium-high"
+}

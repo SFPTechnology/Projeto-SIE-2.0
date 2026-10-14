@@ -1,0 +1,159 @@
+# Target: squads/slides-creator/data/chart-selection-matrix.yaml
+# Purpose: Machine-readable extraction of KB_06 decision tree.
+#          Input (intent, n_series, n_points) → Output chart_type.
+# Consumer: Worker `select-chart-type` (task).
+# Rationale_ref points back to KB_06 prose for human-readable justification.
+
+schema_version: "1.0"
+name: chart-selection-matrix
+version: "1.0.0"
+owner_squad: slides-creator
+source_kb: KB_06
+source_ref: "squads/slides-creator/data/kbs/KB_06_data_visualization.md"
+
+# =============================================================================
+# DECISION MATRIX
+# Each row: (intent, n_series_range, n_points_range, chart_type, rationale_ref)
+# =============================================================================
+matrix:
+
+  # ---- COMPARISON ----
+  - intent: comparison
+    n_series_range: [1, 1]
+    n_points_range: [2, 8]
+    chart_type: bar_horizontal
+    rationale_ref: "KB_06#comparison-few-categories"
+    notes: "Horizontal bar for <=8 categories; label readability preserved"
+
+  - intent: comparison
+    n_series_range: [1, 1]
+    n_points_range: [9, 20]
+    chart_type: bar_vertical
+    rationale_ref: "KB_06#comparison-many-categories"
+
+  - intent: comparison
+    n_series_range: [2, 4]
+    n_points_range: [2, 8]
+    chart_type: bar_grouped
+    rationale_ref: "KB_06#comparison-multiple-series"
+
+  - intent: comparison
+    n_series_range: [2, 6]
+    n_points_range: [2, 20]
+    chart_type: bar_stacked
+    rationale_ref: "KB_06#comparison-composition"
+    notes: "When parts sum to a meaningful total"
+
+  # ---- TREND ----
+  - intent: trend
+    n_series_range: [1, 1]
+    n_points_range: [3, 50]
+    chart_type: line
+    rationale_ref: "KB_06#trend-single-metric"
+
+  - intent: trend
+    n_series_range: [2, 5]
+    n_points_range: [3, 50]
+    chart_type: line_multiple
+    rationale_ref: "KB_06#trend-multi-series"
+    notes: "Max 5 lines; beyond that use small multiples"
+
+  - intent: trend
+    n_series_range: [6, 999]
+    n_points_range: [3, 50]
+    chart_type: small_multiples
+    rationale_ref: "KB_06#trend-small-multiples"
+
+  - intent: trend
+    n_series_range: [1, 3]
+    n_points_range: [12, 999]
+    chart_type: area
+    rationale_ref: "KB_06#trend-volume-emphasis"
+    notes: "When volume/magnitude is the point (vs direction)"
+
+  # ---- DECOMPOSITION ----
+  - intent: decomposition
+    n_series_range: [1, 1]
+    n_points_range: [2, 7]
+    chart_type: waterfall
+    rationale_ref: "KB_06#decomposition-sequential"
+    notes: "Classic P&L / EBITDA bridge"
+
+  - intent: decomposition
+    n_series_range: [1, 1]
+    n_points_range: [2, 6]
+    chart_type: donut
+    rationale_ref: "KB_06#decomposition-share"
+    notes: "Max 6 slices; prefer bar_stacked if >6"
+
+  - intent: decomposition
+    n_series_range: [1, 1]
+    n_points_range: [7, 999]
+    chart_type: tree_map
+    rationale_ref: "KB_06#decomposition-hierarchy"
+
+  # ---- DISTRIBUTION ----
+  - intent: distribution
+    n_series_range: [1, 1]
+    n_points_range: [30, 9999]
+    chart_type: histogram
+    rationale_ref: "KB_06#distribution-density"
+
+  - intent: distribution
+    n_series_range: [1, 3]
+    n_points_range: [10, 9999]
+    chart_type: box_plot
+    rationale_ref: "KB_06#distribution-spread"
+
+  - intent: distribution
+    n_series_range: [1, 1]
+    n_points_range: [3, 30]
+    chart_type: dot_plot
+    rationale_ref: "KB_06#distribution-ranked"
+
+  # ---- CORRELATION ----
+  - intent: correlation
+    n_series_range: [1, 1]
+    n_points_range: [10, 9999]
+    chart_type: scatter
+    rationale_ref: "KB_06#correlation-two-vars"
+
+  - intent: correlation
+    n_series_range: [2, 4]
+    n_points_range: [10, 999]
+    chart_type: bubble
+    rationale_ref: "KB_06#correlation-three-vars"
+    notes: "Bubble size = third variable; max 4 dimensions"
+
+  - intent: correlation
+    n_series_range: [1, 1]
+    n_points_range: [2, 20]
+    chart_type: heatmap
+    rationale_ref: "KB_06#correlation-matrix"
+
+# =============================================================================
+# FALLBACK BEHAVIOR
+# =============================================================================
+fallback:
+  no_match_found:
+    chart_type: bar_vertical
+    reason: "Safe default — works for comparison + trend on small n; always readable"
+    flag_to_qa: true   # qa-inspector reviews fallback cases
+
+  n_points_exceeds_chart_limit:
+    strategy: "small_multiples + aggregation"
+    max_panels: 12
+
+# =============================================================================
+# INTERFACE
+# =============================================================================
+lookup:
+  input_schema:
+    intent: "comparison | trend | decomposition | distribution | correlation"
+    n_series: "integer"
+    n_points: "integer"
+  output_schema:
+    chart_type: "string"
+    rationale_ref: "KB_06 anchor"
+    confidence: "high | medium | low"
+    fallback_used: "boolean"

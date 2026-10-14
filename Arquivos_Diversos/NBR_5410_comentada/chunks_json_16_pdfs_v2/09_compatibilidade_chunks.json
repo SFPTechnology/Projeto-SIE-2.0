@@ -1,0 +1,139 @@
+[
+  {
+    "chunk_id": 0,
+    "heading_path": [
+      "Eqüipotencialização e compatibilidade eletromagnética"
+    ],
+    "content": "# Eqüipotencialização e compatibilidade eletromagnética\n\n<!-- pagina-origem: 1 -->\n\n### EQÜIPOTENCIALIZAÇÃO E COMPATIBILIDADE ELETROMAGNÉTICA\n\nEqüipotencialização e compatibilidade eletromagnética......................231\n\n<!-- pagina-origem: 2 -->\n\n## Eqüipotencialização e compatibilidade eletromagnética",
+    "paginas_origem": [
+      1,
+      2
+    ],
+    "tokens_estimados": 77,
+    "contem_tabela": false,
+    "sobrepoe_anterior": false
+  },
+  {
+    "chunk_id": 1,
+    "heading_path": [
+      "Eqüipotencialização e compatibilidade eletromagnética"
+    ],
+    "content": "A difusão maciça da tecnologia da informação, em todas as suas formas, coloca hoje o profissional de instalações diante de novos problemas, de uma nova realidade. O bom funcionamento dos equipamentos e sistemas de informação, que assumiu um aspecto crucial na vida das empresas, exige conhecimento e cuidados extras. O profissional de instalações elétricas, habituado a enfrentar velhos e razoavelmente conhecidos problemas do domínio da freqüência industrial, agora se vê na obrigação de oferecer soluções que exigem boa compreensão dos fenômenos da alta freqüência. E mais: ele deve encontrar fórmulas que resultem na convivência harmoniosa das várias instalações que a edificação abriga — a instalação de potência, os circuitos de sinal, o sistema de proteção contra descargas atmosféricas. Uma não deve interferir no bom funcionamento e nem comprometer a segurança da outra. A equação não é simples. Tanto que gerou uma nova e ampla área de conhecimento, chamada “compatibilidade eletromagnética” (CEM). Com intrincados encargos, que vão do estudo das perturbações eletromagnéticas geradas por eventuais explosões nucleares (e foi no setor de defesa, com efeito, que a nova disciplina nasceu), até a preparação de normas fixando os níveis de interferência e de imunidade aceitáveis de bens de consumo eletroeletrônicos. A CEM representa, por assim dizer, um resgate da universalidade da teoria de Maxwell, a nos lembrar que ninguém é uma ilha no mundo eletromagnético. Dentro dessa visão, aspectos como proteção contra raios, aterramento, blindagens, etc., etc., passam a constituir subdomínios da CEM. No mundo menos etéreo do dia-a-dia dos profissionais de instalações, o que eles desejam é que os investigadores traduzam seus estudos em orientação concreta aplicável a problemas concretos com os quais se defrontam. Eles esperam que normas como a NBR 5410 tragam pelo menos referências orientativas que lhes permitam executar seu trabalho sem ferir conceitos básicos de compatibilidade entre as diferentes instalações. E a norma tem cumprido seu papel. Um bom exemplo disso é seção 6.4.8, “Aterramento e eqüipotencialização de equipamentos de tecnologia da informação”, que foi introduzida na edição de 1997. Essencialmente, a proposta aí contida é que seja realizada uma eqüipotencialização capaz de garantir compatibilidade eletromagnética — enfim, capaz de proporcionar à instalação de tecnologia da informação um funcionamento livre de perturbações. Em resumo, a seção: 1) conceitua e especifica o chamado barramento de eqüipotencialização, fixando regras para o seu dimensionamento e indicando o que pode ou deveria ser a ele ligado; 2) sugere formas de se realizar a eqüipotencialização (ainda que de forma vaga), acrescentando algumas recomendações práticas e estabelecendo requisitos precisos para os condutores de eqüipotencialização; e 3) apresenta regras para os condutores de aterramento funcional, incluindo tipos admitidos, dimensionamento e detalhes de instalação. Antes de examinarmos cada um desses pontos, vejamos alguns aspectos conceituais.",
+    "paginas_origem": [],
+    "tokens_estimados": 767,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 2,
+    "heading_path": [
+      "Eqüipotencialização e compatibilidade eletromagnética",
+      "Definições",
+      "Barramento de eqüipotencialização"
+    ],
+    "content": "### Definições\n\nPara melhor compreensão das prescrições da seção 6.4.8 da NBR 5410 e de seus objetivos, é importante lembrar algumas definições. Equipamento de tecnologia da informação — Denominação aplicada a um amplo universo de equipamentos e instalações, podendo ser citados, como exemplos: computadores; equipamentos de telecomunicações; centrais PABX e instalações associadas; redes locais (LANs); sistemas de alarme de incêndio e de intrusão; instalações de supervisão e automação predial; sistemas CAM e outros serviços auxiliados por computador. Aterramento funcional — Aterramento de um ponto (do sistema, da instalação ou de um equipamento) destinado a outros fins que não a proteção contra choques elétricos. Em particular, no contexto da seção, o termo “funcional” está associado ao uso do aterramento e da eqüipotencialização para fins de transmissão de sinais e de compatibilidade eletromagnética. Conseqüentemente, como há distinção entre “aterramento de proteção” e “aterramento funcional”, podemos ter: Condutor de aterramento funcional — Condutor de aterramento utilizado para a realização de um aterramento funcional. Abreviadamente, condutor FE(1)(de “functional earthing”). Condutor de proteção e de aterramento funcional — - Condutor que combina ambas as funções, a de aterramento de proteção e a de aterramento funcional. Abreviadamente, condutor PFE(1)(de “protective and functional earthing”).\n\n### Barramento de eqüipotencialização\n\nCom a seção 6.4.8 foi introduzido um termo e, com ele, um novo ingrediente na estrutura das instalações elétricas:\n\n<!-- pagina-origem: 3 -->",
+    "paginas_origem": [
+      3
+    ],
+    "tokens_estimados": 401,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 3,
+    "heading_path": [
+      "Eqüipotencialização e compatibilidade eletromagnética",
+      "Definições",
+      "O TN-C e a (in)compatibilidade"
+    ],
+    "content": "### O TN-C e a (in)compatibilidade\n\nO uso de condutor PEN, vale dizer, do esquema TN-C, é ou corre grande risco de ser incompatível com a compatibilidade eletromagnética — a arte de garantir (ou tentar, pelo menos) um funcionamento harmonioso para os sistemas e instalações eletroeletrônicas. De forma polida, o artigo 6.4.8.3 da NBR 5410 adverte que em edificações que abriguem ou possam vir a abrigar instalações de tecnologia da informação de porte significativo, “deve-se considerar o uso de condutor de proteção (PE) e condutor neutro (N) separados, desde o ponto de entrada da alimentação”. Isso com vista a minimizar a eventualidade de problemas de CEM (e, em casos extremos, de sobrecorrentes) devidos à passagem de correntes de neutro nos cabos de transmissão de sinais (ver figura). E acrescenta: “se a instalação elétrica da edificação possuir um transformador, grupo gerador, UPS ou fonte análoga responsável pela alimentação dos\n\n- Barramento de eqüipotencialização — Condutor, mas\n\nnão só na forma de barra, ligado ao terminal de aterramento principal(2). Na verdade, o barramento de eqüipotencialização pode ser encarado, física e conceitualmente, como um “mero” prolongamento do terminal de aterramento principal. Como é dito em 6.4.8.5, o “terminal de aterramento principal da instalação pode ser prolongado, emendando-se-lhe um barramento de eqüipotencialização, de forma que os equipamentos de tecnologia da informacão possam ser ligados e/ou aterrados pelo caminho mais curto possível, de qualquer ponto da edificação”. Isso significa, por outro lado, que qualquer das ligações ao terminal de aterramento principal exigidas pela norma (itens 5.1.3.1.2-a e 6.4.2.4 da NBR 5410) não precisaria necessariamente sê-la no terminal de aterramento principal, propriamente dito, podendo a conexão ser feita em qualquer ponto do barramento de eqüipotencialização. O barramento de eqüipotencialização, de preferência em cobre, pode ser nu ou isolado e deve ser acessível em toda sua extensão, para facilitar as conexões de eqüipotencialização — por exemplo, instalado sobre a superfície das paredes, diretamente ou em canaletas. Mas se o barramento for em condutor nu, ele deve ser guarnecido com isolação nos pontos de fixação e nas travessias de paredes, para evitar corrosão (6.4.8.5.3). O arranjo físico recomendado para o barramento de eqüipotencialização é o de um anel em toda a periferia inequipamentos de tecnologia da informação e se essa fonte for, ela própria, alimentada em esquema TN-C, deve-se adotar o esquema TN-S em sua saída.”\n\nNo esquema TN-C (a) a corrente de neutro (devida aos desequilíbrios de carga num sistema trifásico) se divide entre o condutor PEN, as blindagens e/ou os condutores de referência (dos cabos de transmissão de sinais) e os elementos condutores. No esquema TN-S (b) a corrente de neutro circula apenas pelo condutor neutro",
+    "paginas_origem": [],
+    "tokens_estimados": 719,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 4,
+    "heading_path": [
+      "Eqüipotencialização e compatibilidade eletromagnética",
+      "Definições",
+      "O TN-C e a (in)compatibilidade"
+    ],
+    "content": "terna da edificação — impondo-se mesmo a forma de anel fechado no caso de edificações com presença extensiva de equipamentos de tecnologia da informação (6.4.8.5.4). No dimensionamento do barramento de eqüipotencialização deve ser observada, em termos de seção mínima, a mesma regra que a NBR 5410 estabelece para os condutores da ligação eqüipotencial principal [ver boxe “Condutores de eqüipotencialização”]. Convém notar que funções próprias dos equipamentos de tecnologia da informação podem conduzir a seções maiores que aquelas ditadas pelo aterramento de proteção. A propósito, a nota de 6.4.8.5.5 lembra que a efetiva eqüipotencialidade entre dois pontos do barramento de eqüipotencialização depende da impedância do condutor utilizado — por sua vez, função de seu dimensionamento e percurso; e sugere que se a freqüência for de 50 ou 60 Hz, como é freqüentemente o caso, um condutor de cobre com seção de 50 mm2“constitui um bom compromisso entre custo e impedância”. Como mencionado, podem ser conectados ao barramento de eqüipotencialização quaisquer dos elementos que normalmente integram a ligação eqüipotencial principal (ver 5.1.3.1.2-a) e 6.4.2.4 da NBR 5410) e, além disso, quaisquer ligações de aterramento e/ou eqüipotencialização necessárias a um funcionamento correto e livre de perturbações dos equipamentos de tecnologia da informação. Incluem-se neste caso (6.4.8.5.2): – as blindagens, armações e coberturas metálicas dos cabos e equipamentos de telecomunicação, em to-\n\n<!-- pagina-origem: 4 -->\n\n![Figura vetorial da página 4](figura-vetorial-p4-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Visão geral da eqüipotencialização e aterramento propostos pela seção 6.4.8 da NBR 5410 das as suas formas; – os condutores de eqüipotencialização dos sistemas de trilho; – os condutores de aterramento dos dispositivos de proteção contra sobretensões; – os condutores de aterramento das antenas de radiocomunicação; – o condutor de aterramento do pólo “terra” de alimentações CC para equipamentos de tecnologia da informação;",
+    "paginas_origem": [
+      4
+    ],
+    "tokens_estimados": 532,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 5,
+    "heading_path": [
+      "Eqüipotencialização e compatibilidade eletromagnética",
+      "Definições",
+      "Eqüipotencialização funcional"
+    ],
+    "content": "A NBR 5410 trata, em 6.4.7.1, das seções mínimas para os condutores das ligações eqüipotenciais principal e suplementar. A norma diz, em 6.4.7.1.1, que os condutores de eqüipotencialização da ligação eqüipotencial principal “devem possuir seções que não sejam inferiores à metade da seção do condutor de proteção de maior seção da instalação, com um mínimo de 6 mm2.” No que concerne aos condutores de eqüipotencialização da ligação eqüipotencial suplementar, como consta de 6.4.7.1.2, o documento distingue dois casos: se usado para ligar duas massas, o condutor de eqüipotencialização deve possuir uma seção equivalente igual ou – os condutores de aterramento funcional; – os condutores de ligações eqüipotenciais suplementares. Recorde-se que a norma relaciona, entre os elementos integrantes da ligação eqüipotencial principal: os condutores de proteção, em particular o(s) condutor(es) de proteção principal(ais); as tubulações metálicas de água, gás e outras utilidades; as colunas ascendentes de sistemas de ar condicionado (e/ou calefação) centrais; os elementos metálicos da construção e outras estruturas metálicas; e as interligações com o(s) eletrodo(s) de aterramento do sistema de proteção contra descargas atmosféricas (SPDA), quando eventualmente o SPDA tiver eletrodo(s) de aterramento próprio(s).\n\n### Eqüipotencialização funcional\n\nNo artigo 6.4.8.6, a NBR 5410 sugere, vagamente, formas de realizar a eqüipotencialização (por razões funcionais), dizendo que ela pode compreender condutores, capas metálicas de cabos e elementos metálicos da edificação, como tubulações de água e dutos de cabos; ou uma malha instalada em cada piso da edificação, seja ocupando toda a área do piso ou parte dela (quando o piso possui grande área, por exemplo). Acrescenta, ainda, que a eqüipotencialização pode incluir também (aliás, é recomendado) a ferragem estrutural da edificação. Neste caso, é aconselhável que as ferragens sejam todas soldadas e conectadas ao barramento de eqüipotencialização. Se a soldagem não for possível ou não for permitida, por razões estruturais, sobram duas opções: uso de fixações, ao invés de solda; ou o emprego de ferragens adicionais, que seriam então soldadas entre si e amarradas à ferragem estrutural com arame de aço torcido. A figura 1 fornece uma visão geral da eqüipotencialização proposta pela seção 6.4.8 da norma; e o boxe “Métodos de eqüipotencialização para ETIs” ilustra três métodos de\n\nsuperior à seção do condutor de proteção de menor seção ligado a essas massas; se usado para ligar uma massa a um elemento condutivo estranho à instalação, o condutor de eqüipotencialização deve possuir uma seção equivalente igual ou superior à metade da seção do condutor de proteção ligado a essa nassa e deve satisfazer a 6.4.3.1.3. Ainda sobre a ligação eqüipotencial suplementar, a norma esclarece que ela “pode ser assegurada por elementos condutivos estranhos à instalação nãodesmontáveis, tais como estruturas metálicas, ou por condutores suplementares ou por uma combinação dos dois tipos.”",
+    "paginas_origem": [],
+    "tokens_estimados": 760,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 6,
+    "heading_path": [
+      "Eqüipotencialização e compatibilidade eletromagnética",
+      "Definições",
+      "Métodos de eqüipotencialização para ETIs"
+    ],
+    "content": "### Condutores de eqüipotencialização\n\n<!-- pagina-origem: 5 -->\n\n### Métodos de eqüipotencialização para ETIs\n\nExistem vários métodos de aterramento e eqüipotencialização que podem proporcionar um funcionamento mais livre de perturbações aos equipamentos de tecnologia da informação (ETIs). Os principais ou mais conhecidos são os três descritos a seguir:\n\n1) O primeiro método, indicado na figura 1, consiste na utilização dos condutores de proteção dos próprios circuitos terminais que alimentam os ETIs — e que funcionam, portanto, como condutores de proteção e aterramento funcional (PFE). O condutor PFE de cada equipamento oferece um percurso de impedância relativamente alta para as perturbações eletromagnéticas que não os transitórios via rede, de modo que os cabos de sinal que interligam os equipamentos ficam sujeitos a uma proporção elevada de ruídos incidentes. Nessas condições, os ETIs deverão possuir um alto nível de imunidade para funcionar de modo satisfatório. As perturbações incidentes poderão ser bastante reduzidas se a alimentação e o terra dos ETIs, no quadro de distribuição, forem exclusivos, e também separados (caso\n\n![Figura vetorial da página 5](figura-vetorial-p5-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Condutores de proteção e aterramento funcionais (PFEs) ligados radialmente\n\neqüipotencialização passíveis de utilização. Como comentado, a norma se exime de fixar especificações detalhadas para a eqüipotencialização funcional, mesmo porque, conforme destaca, características como, por exemplo, seção, forma e posição, dependem da faixa de freqüências dos equipamentos sensíveis, do ambiente eletromagnético reinante e das características de imunidade/freqüência dos equipamentos (nota 2 de 6.4.8.6). Mas, pelo menos para os condutores de eqüipotencialização, são estabelecidas regras claras, que devem ser observadas em qualquer caso: do terra) de elementos condutivos da edificação. A barra PE do quadro funciona como o centro-estrela de onde partem os PFEs.Agumas vezes esse centro-estrela é ligado, ao terminal de aterramento principal ou ao barramento de eqüipotencialização da instalação, por um condutor isolado, dedicado e separado.\n\n2) No segundo método, mostrado na figura 2, o aterramento funcional dos equipamentos de tecnologia da informação é realizado por condutores de aterramento funcional, FEs, mediante conexão a uma malha de eqüipotencialização local. Dependendo da freqüência e do espaçamento dos condutores, essa solução pode proporcionar um plano de referência de baixa impedância para equipamentos interligados por cabos de sinal nas proximidades imediatas da malha. Como no método anterior, uma imunidade adicional pode ser conseguida com alimentação e aterramento separados. No caso, a própria malha de eqüipotencialização deve ser aterrada na barra de terra do quadro, separada de outros elementos condutivos estranhos e da armadura do concreto.\n\nFig. 2 – Eqüipotencialização com malha local",
+    "paginas_origem": [
+      5
+    ],
+    "tokens_estimados": 761,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 7,
+    "heading_path": [
+      "Eqüipotencialização e compatibilidade eletromagnética",
+      "Definições",
+      "Métodos de eqüipotencialização para ETIs"
+    ],
+    "content": "a seção de qualquer condutor de eqüipotencialização entre partes, unidades ou equipamentos deve respeitar o que diz o item 6.4.7.1.2 da NBR 5410 [ver boxe “Condutores de eqüipotencialização”]; da mesma forma, qualquer malha de eqüipotencialização funcional que se queira realizar também deve atender o disposto em 6.4.7.1.2 da NBR 5410 [ver boxe “Condutores de eqüipotencialização”]; e os condutores de eqüipotencialização que preencham os requisitos aplicáveis a condutores de proteção devem ser identificados como condutores de proteção, valendo, por-\n\n<!-- pagina-origem: 6 -->\n\n3) No terceiro método, representado esquematicamente na figura 3, a eqüipotencialização proporcionada por uma malha é complementada por ligações às armaduras do concreto e a outros elementos condutivos da edificação, podendo também ser realizada uma ligação eqüipotencial entre os diversos pavimentos da edificação. Dependendo do espectro de freqüências e do espaçamento da malha,esse método pode proporcionar uma impedância suficientemente baixa para fazer frente à maior parte dos problemas de ruído em equipamentos de imunidade moderada.\n\nO primeiro dos três métodos descritos tem sido o mais utilizado, principalmente em edifícios existentes. Os outros dois métodos são de implementação mais difícil e custosa, embora sejam os mais favoráveis sob o ponto de vista da compatibilidade eletromagnética dos equipamentos e instalações de tecnologia da informação.\n\n![Figura vetorial da página 6](figura-vetorial-p6-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 3 – Eqüipotencialização com malha, interligada a elementos condutivos da edificação e a malhas de outros pisos\n\ntanto, o disposto em 6.1.5.3.2 da NBR 5410 (item que consagra a dupla coloração verde-amarelo ou a cor verde para identificação do condutor de proteção).",
+    "paginas_origem": [
+      6
+    ],
+    "tokens_estimados": 472,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 8,
+    "heading_path": [
+      "Eqüipotencialização e compatibilidade eletromagnética",
+      "Definições",
+      "Condutores de aterramento"
+    ],
+    "content": "### Condutores de aterramento\n\nOs condutores de aterramento são tratados de acordo com a função por eles preenchida — já que, como mencionado anteriormente, distinguem-se dois condutores de aterramento, o condutor FE e o condutor PFE (além do nosso conhecido PE, condutor de proteção). Assim, o condutor PFE deve satisfazer, em toda sua extensão, os requisitos aplicáveis aos condutores de proteção (seção 6.4.3 da NBR 5410). Aliás, pode ser utilizado como condutor PFE qualquer dos tipos de condutor de proteção admitidos pela norma (na mesma seção 6.4.3). Já as exigências aplicáveis ao condutor FE, de aterramento funcional (e a serem cumpridas, cumulativamente, pelos condutores PFE, claro), são: a seção dos condutores FE deve ser determinada levando-se em conta as possíveis correntes de falta que por ele possam circular e, quando o condutor FE for utilizado também como condutor de retorno, a corrente de funcionamento normal e a queda de tensão. Quando os dados pertinentes não forem disponíveis, deve-se obter orientação sobre os valores junto ao fabricante do equipamento (6.4.8.7.1); os condutores de aterramento destinados a ligar os dispositivos de proteção contra sobretensões ao barramento de eqüipotencialização devem seguir o caminho mais reto e curto possível, a fim de minimizar sua impedância (6.4.8.7.2). Em 6.4.8.8.2 a norma admite ainda o uso do condutor de retorno de uma alimentação CC (para os equipamentos de tecnologia da informação) como condutor PFE, desde que, na eventualidade da abertura de um circuito, a tensão entre massas simultaneamente acessíveis não exceda a tensão de contato limite. Visando reduzir ou minimizar os problemas de corrosão, o item 6.4.8.8.3 determina que caso correntes CC de alimentação e de sinal produzam, num condutor PFE, queda de tensão que resulte em diferença de potencial permanente no edifício, a seção do condutor deve ser de maneira a limitar essa queda de tensão a um máximo de 1V. Deve-se ignorar, no cálculo da queda de tensão, o efeito de caminhos paralelos.\n\nNotas",
+    "paginas_origem": [],
+    "tokens_estimados": 510,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 9,
+    "heading_path": [
+      "Eqüipotencialização e compatibilidade eletromagnética",
+      "Definições",
+      "Condutores de aterramento"
+    ],
+    "content": "(1) Esta abreviação não é normalizada. A única abreviação do gênero oficialmente consagrada pela norma de instalações é a referente ao condutor de proteção, que se abrevia PE (protective earth). (2) A denominação completa adotada pela NBR 5410 é “barramento de eqüipotencialidade funcional”. A preferência, aqui, por eqüipotencialização é que, na lingua portuguesa, esta terminação está tradicionalmente associada à idéia de ação, de providência. Portanto, eqüipotencialização é a medida. Eqüipotencialidade é o resultado, que pode ser ou não efetivamente obtido. Quanto à dispensa do “funcional”, é só para efeito do artigo, já que o contexto é, todo ele, de aterramento e eqüipotencialização por razões funcionais. No vocabulário IEC, os termos equivalentes são ceinturage d’équipotentialité, em francês, e earthing bus conductor, em inglês. Como se vê, trata-se de um “bus”, termo tradicionalmente traduzido por “barramento” (no sentido de meio de condução ou elemento de ligação coletivo), mas sem que isso implique necessariamente uma forma física determinada. Portanto, o barramento de eqüipotencialização pode ser um condutor de seção retangular ou circular, sólido ou encordoado, flexível ou rígido, etc.",
+    "paginas_origem": [],
+    "tokens_estimados": 303,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  }
+]

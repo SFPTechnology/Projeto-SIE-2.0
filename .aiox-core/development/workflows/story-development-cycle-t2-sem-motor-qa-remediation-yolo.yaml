@@ -1,0 +1,299 @@
+workflow:
+  id: story-development-cycle-t2-sem-motor-qa-remediation-yolo
+  name: "SDC T2 SEM-MOTOR - Remediação QA automática (YOLO)"
+  version: "1.0.0"
+  type: brownfield
+  scope: fullstack
+  orchestrator: aiox-master
+  description: >-
+    Retoma a story T2-SEM-MOTOR-1 a partir do gate QA FAIL, corrige os bloqueios
+    conhecidos, executa todos os quality gates, conclui a Task 6, move a story
+    para InReview e solicita uma nova validação formal do QA.
+
+  execution:
+    mode: yolo
+    interaction_policy: never_prompt
+    continuation_policy: automatic_on_success
+    on_missing_input: block_and_log
+    on_ambiguous_scope: block_and_log
+    max_dev_iterations: 3
+    max_coderabbit_critical_fix_iterations: 2
+    max_qa_iterations: 3
+    state_persistence: true
+    audit_logging: true
+    local_only: true
+
+  target:
+    story_id: T2-SEM-MOTOR-1
+    story_file: docs/stories/story-T2-SEM-MOTOR-1-ausencia-motor-tipado.md
+    source_plan: Arquivos_Diversos/Correção_2/plano-T2-sem-motor.md
+    source_gate: docs/qa/gates/T2-SEM-MOTOR-1-ausencia-motor-tipado.yml
+    subapp: sistema-de-instala-es-el-tricas-sie-main
+    initial_status: InProgress
+    handoff_status: InReview
+
+  authority:
+    orchestration: aiox-master
+    code_and_tests: dev
+    local_toolchain_and_repository_operations: devops
+    story_status_and_dev_record: dev
+    qa_results_and_gate_verdict: qa
+    remote_operations: forbidden
+
+  guardrails:
+    - "Não inventar requisitos fora da story, do plano T2 e do gate QA vigente."
+    - "Preservar mudanças preexistentes e não relacionadas no worktree."
+    - "Não usar atualização cega de snapshots; confirmar o contrato aceito antes de alterar expectativas."
+    - "Não mascarar o timeout do catálogo apenas aumentando o limite sem diagnóstico e justificativa."
+    - "Não imprimir, persistir ou alterar segredos durante a recuperação do CodeRabbit."
+    - "Não executar commit, push, PR, merge, release, deploy ou migration."
+    - "Não marcar Task 6 nem mover a story para InReview antes de todos os gates obrigatórios passarem."
+    - "Somente o QA pode alterar QA Results e emitir o veredito do gate."
+
+  required_outcomes:
+    - id: injected_rejected_verdicts
+      description: >-
+        Testes de cliente injetado com aprovado:false existem para MOD-CC e
+        MOD-SEC e comprovam validação, persistência e processamento do veredito real.
+    - id: global_test_suite_green
+      description: >-
+        As 11 falhas registradas no gate são resolvidas, incluindo a expectativa
+        SUGESTAO para MOD-PROT e o timeout do catálogo, e npm test termina com código 0.
+    - id: lint_green
+      description: "npm run lint integral termina com código 0."
+    - id: coderabbit_wsl_green
+      description: >-
+        O CodeRabbit executa no WSL sem Illegal instruction, conclui a revisão
+        pre-commit e não deixa issue CRITICAL aberta.
+    - id: all_quality_gates_green
+      description: >-
+        lint, typecheck, test, build e build:spa terminam com código 0 na mesma revisão.
+    - id: qa_handoff_complete
+      description: >-
+        Task 6, Dev Agent Record, Completion Notes, Change Log e File List são
+        atualizados; a story fica InReview e recebe nova validação do QA.
+
+  quality_gates:
+    working_directory: sistema-de-instala-es-el-tricas-sie-main
+    policy: all_must_pass_in_same_revision
+    commands:
+      - id: lint
+        command: npm run lint
+        expected_exit_code: 0
+      - id: typecheck
+        command: npm run typecheck
+        expected_exit_code: 0
+      - id: test
+        command: npm test
+        expected_exit_code: 0
+      - id: build
+        command: npm run build
+        expected_exit_code: 0
+      - id: build_spa
+        command: npm run build:spa
+        expected_exit_code: 0
+
+  sequence:
+    - step: preflight_and_scope_lock
+      id: preflight_and_scope_lock
+      agent: aiox-master
+      action: >-
+        Validar os artefatos de entrada, registrar o baseline do worktree e fixar
+        o escopo de remediação antes de qualquer mutação.
+      creates: remediation_scope_report
+      outputs:
+        - baseline_status
+        - authorized_paths
+        - known_qa_blockers
+        - execution_audit_id
+      notes: |
+        Leia integralmente a story, o plano fonte e o gate QA indicado em target.
+        Registre arquivos modificados/untracked antes da execução e trate-os como
+        mudanças do usuário. Não reverta nem sobrescreva mudanças alheias. Confirme
+        que a story permanece InProgress e que o gate vigente é FAIL. Se qualquer
+        artefato obrigatório estiver ausente ou o escopo não puder ser atribuído,
+        encerre com status failed e um log objetivo; nunca pergunte em modo YOLO.
+
+    - step: remediate_tests_and_lint
+      id: remediate_tests_and_lint
+      agent: dev
+      requires: remediation_scope_report
+      action: >-
+        Implementar os dois testes de veredito reprovado injetado e corrigir as
+        falhas globais de teste e lint descritas pelo gate QA.
+      creates: implementation_remediation_report
+      outputs:
+        - changed_files
+        - injected_verdict_test_evidence
+        - global_test_failure_resolution
+        - catalog_timeout_root_cause
+        - lint_root_cause
+      notes: |
+        Trabalhe somente no subapp e nas seções da story permitidas ao dev.
+        Adicione casos com cliente injetado que retorne veredito real aprovado:false
+        em tests/api/modulos-mod-cc.test.ts e tests/api/modulos-mod-sec.test.ts.
+        Os testes devem provar validação, persistência e consumo do veredito, além
+        de restaurar os clientes ao final.
+
+        Corrija todas as 11 falhas do npm test registradas no gate. Para a VRT,
+        confirme nos artefatos aceitos que o resultado atual é MOD-PROT antes de
+        substituir a expectativa obsoleta SUGESTAO. Atualize snapshots somente
+        quando a saída estiver respaldada por contrato e registre a justificativa.
+        Para o catálogo, identifique e corrija a causa do timeout; aumentar o timeout
+        só é permitido com evidência reproduzível e justificativa registrada.
+
+        Faça npm run lint concluir com código 0. Corrija a causa de configuração,
+        escopo ou formatação sem excluir arquivos do usuário nem relaxar regras de
+        qualidade para esconder erros. Execute testes focados após cada correção.
+
+    - step: repair_and_run_coderabbit_wsl
+      id: repair_and_run_coderabbit_wsl
+      agent: devops
+      requires: implementation_remediation_report
+      action: >-
+        Diagnosticar e reparar a instalação local do CodeRabbit no WSL e executar
+        a revisão pre-commit sobre o diff atribuível à story.
+      creates: coderabbit_toolchain_report
+      outputs:
+        - wsl_diagnostic
+        - coderabbit_version
+        - authentication_status
+        - review_exit_code
+        - critical_findings
+        - high_findings
+        - report_path
+      notes: |
+        A autorização limita-se ao ambiente local/WSL e à execução read-only da
+        revisão. Resolva o Illegal instruction verificando arquitetura, runtime e
+        compatibilidade do binário; use somente mecanismo de instalação suportado
+        pelo projeto/fornecedor. Preserve credenciais existentes e nunca exiba
+        tokens. Verifique versão e autenticação antes da revisão. Se autenticação
+        nova ou qualquer segredo forem indispensáveis, encerre com status failed e
+        block_and_log. Não faça commit, push ou qualquer operação remota.
+
+    - step: resolve_coderabbit_blockers
+      id: resolve_coderabbit_blockers
+      agent: dev
+      requires: coderabbit_toolchain_report
+      action: >-
+        Resolver findings CRITICAL do CodeRabbit dentro do escopo e documentar os
+        HIGH conforme a política da story.
+      creates: coderabbit_resolution_report
+      outputs:
+        - critical_findings_resolved
+        - high_findings_documented
+        - changed_files
+        - focused_test_evidence
+      notes: |
+        Aplique auto-fix de CRITICAL por no máximo duas iterações. Findings HIGH são
+        document_only conforme a story, salvo quando também quebram um gate
+        obrigatório. Não altere requisitos nem amplie o escopo. Se um CRITICAL
+        continuar aberto após duas iterações, retorne status failed e registre o
+        bloqueio. Quando não houver findings, produza o relatório sem mudar código.
+
+    - step: run_mandatory_quality_gates
+      id: run_mandatory_quality_gates
+      agent: dev
+      requires: coderabbit_resolution_report
+      action: >-
+        Executar novamente lint, typecheck, test, build e build:spa e corrigir
+        regressões até todos terminarem com código 0 na mesma revisão.
+      creates: quality_gate_report
+      outputs:
+        - lint_result
+        - typecheck_result
+        - test_result
+        - build_result
+        - build_spa_result
+        - gate_revision_fingerprint
+        - duration_summary
+      notes: |
+        Execute exatamente os comandos declarados em quality_gates, a partir do
+        diretório do subapp, na ordem indicada. Registre comando, código de saída,
+        duração e resumo. Se um gate falhar, diagnostique, corrija dentro do escopo
+        e reinicie a sequência completa. Faça no máximo três ciclos de remediação.
+        Retorne status completed somente quando os cinco comandos terminarem com
+        código 0 na mesma revisão; caso contrário, retorne status failed.
+
+    - step: complete_task_6_and_handoff
+      id: complete_task_6_and_handoff
+      agent: dev
+      requires: quality_gate_report
+      action: >-
+        Concluir a Task 6, atualizar o registro da implementação e mover a story de
+        InProgress para InReview.
+      creates: inreview_handoff
+      outputs:
+        - story_status
+        - task_6_status
+        - updated_story_sections
+        - final_file_list
+        - qa_review_request
+      notes: |
+        Antes de editar a story, confirme que todos os resultados do relatório de
+        gates são PASS/código 0 e que o CodeRabbit não possui CRITICAL aberto.
+        Marque apenas checkboxes realmente comprovados. Atualize Dev Agent Record,
+        Completion Notes, Change Log e File List, preserve integralmente QA Results
+        e altere os dois indicadores de status para InReview. A própria passagem ao
+        próximo passo constitui a solicitação automática de nova revisão QA.
+
+    - step: qa_revalidation
+      id: qa_revalidation
+      agent: qa
+      requires: inreview_handoff
+      action: >-
+        Fazer nova revisão completa da story, verificar os gates e emitir um novo
+        veredito formal de qualidade.
+      creates: qa_revalidation_result
+      outputs:
+        - resultado_validado
+        - gate_verdict
+        - quality_score
+        - gate_file
+        - residual_findings
+        - recommended_status
+      notes: |
+        Verifique a story InReview, o diff atribuível, os testes de veredito
+        reprovado, a resolução das 11 falhas, o CodeRabbit WSL e os cinco quality
+        gates. Reexecute verificações proporcionais ao risco. O QA pode alterar
+        somente QA Results e o arquivo de gate. Emita PASS, CONCERNS ou FAIL com
+        evidências; não altere código nem mova a story para Done.
+
+  handoff_prompts:
+    master_to_dev: >-
+      Escopo e baseline fixados. Corrija apenas os bloqueios documentados e preserve
+      todo conteúdo não atribuível à story.
+    dev_to_devops: >-
+      Código e testes remediados. Recupere o CodeRabbit no WSL e revise somente o
+      diff local desta story, sem operações remotas.
+    devops_to_dev: >-
+      Toolchain verificado. Resolva apenas findings bloqueantes conforme a política
+      da story e produza evidência de testes focados.
+    dev_to_qa: >-
+      Task 6 concluída e story em InReview com todos os gates verdes. Faça a nova
+      validação independente e atualize exclusivamente os artefatos QA.
+
+  completion_criteria:
+    - "Os dois testes de veredito reprovado injetado passam."
+    - "As 11 falhas globais deixam de existir e npm test retorna 0."
+    - "npm run lint retorna 0 sem relaxamento indevido das regras."
+    - "CodeRabbit funciona no WSL e não reporta CRITICAL aberto."
+    - "lint, typecheck, test, build e build:spa passam na mesma revisão."
+    - "Task 6 está concluída e a story está InReview."
+    - "QA Results e o gate foram atualizados por qa em uma nova revisão."
+
+  failure_policy:
+    behavior: block_and_log
+    never_claim_success_on_partial_evidence: true
+    keep_story_inprogress_until_all_pre_handoff_gates_pass: true
+    preserve_execution_state_for_resume: true
+
+  audit:
+    created_at: "2026-08-06T00:00:00-03:00"
+    created_by: "aiox-master (Orion)"
+    requested_by: "User"
+    source_decision: "ADAPT"
+    adapted_from: story-development-cycle-headless-yolo
+    rationale: >-
+      O fluxo genérico inclui criação de story e operações remotas; esta variante
+      retoma uma story existente no gate QA FAIL e termina após a nova validação QA.

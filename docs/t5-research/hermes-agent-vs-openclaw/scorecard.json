@@ -1,0 +1,107 @@
+{
+  "benchmark_id": "hermes-agent-vs-openclaw",
+  "date": "2026-04-04",
+  "scoring_method": "Observable structural signals from local clone analysis. Each dimension 0-100 based on file counts, feature presence, architecture patterns, and documented capabilities.",
+  "dimensions": [
+    {
+      "name": "Architecture & Extensibility",
+      "hermes": 62,
+      "openclaw": 88,
+      "delta": -26,
+      "hermes_signals": "Monolith with module separation. Toolsets composable but no formal SDK boundary. registry.register() pattern. No import guards.",
+      "openclaw_signals": "Full plugin SDK with manifest, lifecycle, typed contracts. Strict import boundaries. AGENTS.md per boundary. Architecture doc coverage. 93 extensions prove extensibility."
+    },
+    {
+      "name": "Agent Loop & Intelligence",
+      "hermes": 85,
+      "openclaw": 72,
+      "delta": 13,
+      "hermes_signals": "Self-improving skill creation loop. 116 built-in skills (73 core + 43 optional). Memory nudges. Honcho user modeling. Batch runner + RL training + 11 model parsers. Smart model routing. Mixture of Agents tool. Trajectory compression. 90-iteration budget.",
+      "openclaw_signals": "Solid agent loop with thinking support. Model failover. 53 bundled skills. ClawHub marketplace. No self-improvement loop. No research infrastructure. No batch processing."
+    },
+    {
+      "name": "Messaging & Channels",
+      "hermes": 72,
+      "openclaw": 90,
+      "delta": -18,
+      "hermes_signals": "16 platforms built-in. Gateway hardening (v0.7.0). Unique: Email, SMS, DingTalk, Home Assistant, WeCom. API Server for Open WebUI.",
+      "openclaw_signals": "23+ channel plugins. Unique: iMessage, LINE, Twitch, Nostr, Google Chat, MS Teams, Nextcloud, QQ, Voice Call, Zalo. Plugin model enables community channels."
+    },
+    {
+      "name": "Tools & Capabilities",
+      "hermes": 82,
+      "openclaw": 78,
+      "delta": 4,
+      "hermes_signals": "49 tool files. Anti-detection browser (Camofox). 6 terminal backends (SSH, Modal, Daytona, Singularity). Home automation. RL training tool. Image gen + TTS/STT built-in.",
+      "openclaw_signals": "24 tool plugins + core tools. Video generation. Phone control. LanceDB vector memory. OpenCode integration. Broader media pipeline (fal, deepgram, elevenlabs)."
+    },
+    {
+      "name": "Memory & Learning",
+      "hermes": 88,
+      "openclaw": 70,
+      "delta": 18,
+      "hermes_signals": "Pluggable provider ABC. Self-nudging memory. Honcho dialectic user modeling. FTS5 cross-session search. Skills as procedural memory. Memory flush state persistence.",
+      "openclaw_signals": "Memory plugin slot. memory-core + LanceDB. No self-nudging. No dialectic user modeling. Standard memory persistence."
+    },
+    {
+      "name": "Security & Safety",
+      "hermes": 80,
+      "openclaw": 82,
+      "delta": -2,
+      "hermes_signals": "Secret exfiltration blocking (URL+base64+prompt injection). Credential directory protection. Command approval with sudo callbacks. Website policy. Tirith security.",
+      "openclaw_signals": "Command gating + allowlists. CODEOWNERS security rules. GHSA advisory workflow. Device pairing. Sandbox Dockerfiles. Prompt cache stability = security consideration. Formal security governance."
+    },
+    {
+      "name": "Developer Experience",
+      "hermes": 70,
+      "openclaw": 85,
+      "delta": -15,
+      "hermes_signals": "curl installer. Setup wizard. Doctor command. Skin/theme engine. Migration from OpenClaw. ACP adapter. No documented linting. No dev channels.",
+      "openclaw_signals": "npm install. Onboard wizard. Doctor. Dev channels (stable/beta/dev). Strict linting (Oxlint+Oxfmt). pnpm+Bun. Pre-commit hooks. Boundary AGENTS.md. Config drift detection."
+    },
+    {
+      "name": "Testing & Quality",
+      "hermes": 55,
+      "openclaw": 90,
+      "delta": -35,
+      "hermes_signals": "400 test files. pytest. ~3000 tests claimed. No documented coverage threshold. No E2E test infrastructure. No drift detection.",
+      "openclaw_signals": "3,534 test files. Vitest. 70% coverage threshold. E2E tests. SHA-256 drift detection. Performance guardrails. Documented test isolation. Multiple CI workflows."
+    },
+    {
+      "name": "Native & Multi-Platform",
+      "hermes": 25,
+      "openclaw": 90,
+      "delta": -65,
+      "hermes_signals": "CLI + gateway only. No native apps. Voice via TTS/STT tools. Nix flake. 6 terminal backends give some platform diversity.",
+      "openclaw_signals": "macOS app (583 Swift). iOS app. Android app (134 Kotlin). Swabble Swift lib. Live Canvas. Voice call plugin. Web chat. Broad native coverage."
+    },
+    {
+      "name": "Community & Ecosystem",
+      "hermes": 55,
+      "openclaw": 92,
+      "delta": -37,
+      "hermes_signals": "202 contributors. agentskills.io open standard. Nous Research backing. MIT license. Discord community. 3,207 commits.",
+      "openclaw_signals": "1,584 contributors. Corporate sponsors (OpenAI, GitHub, NVIDIA, Vercel). ClawHub marketplace. 26,602 commits. Calendar versioning. Extensive docs. Community plugins."
+    }
+  ],
+  "totals": {
+    "hermes": 674,
+    "openclaw": 837,
+    "hermes_avg": 67.4,
+    "openclaw_avg": 83.7,
+    "delta_avg": -16.3
+  },
+  "hermes_advantages": [
+    "Agent Loop & Intelligence (+13): Self-improving skill creation, memory nudges, RL training",
+    "Memory & Learning (+18): Honcho dialectic modeling, self-nudging, pluggable ABC",
+    "Tools & Capabilities (+4): More built-in tools, anti-detection browser, 6 terminal backends"
+  ],
+  "openclaw_advantages": [
+    "Native & Multi-Platform (+65): macOS/iOS/Android apps, Canvas, Swabble",
+    "Community & Ecosystem (+37): 7.8x contributors, corporate sponsors, ClawHub",
+    "Testing & Quality (+35): 8.8x test files, coverage thresholds, drift detection",
+    "Architecture & Extensibility (+26): Plugin SDK, import boundaries, 93 extensions",
+    "Messaging & Channels (+18): 23+ plugins vs 16 built-in",
+    "Developer Experience (+15): Dev channels, strict tooling, boundary docs"
+  ]
+}

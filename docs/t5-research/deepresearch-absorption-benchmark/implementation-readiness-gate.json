@@ -1,0 +1,47 @@
+{
+  "schema": "sinkra-implementation-readiness-gate-v2",
+  "generated_at": "2026-05-18T18:30:00-03:00",
+  "decision": "GO_FOR_REAL_ADAPTER_PILOT_AFTER_CONTRACT_DRY_RUN",
+  "gates": [
+    {
+      "id": "local_anatomies",
+      "status": "PASS",
+      "evidence": "24/24 players com 4 artefatos profundos; 96/96 artefatos presentes."
+    },
+    {
+      "id": "gold_registry",
+      "status": "PASS",
+      "evidence": "Registry gold cobre 24 players com metadata GitHub, licença e riscos."
+    },
+    {
+      "id": "rubric",
+      "status": "PASS",
+      "evidence": "Rubrica gold de 100 pontos e presets por cenário disponíveis."
+    },
+    {
+      "id": "contract_dry_run",
+      "status": "PASS",
+      "evidence": "240/240 contract dry-runs emitiram os 9 outputs obrigatórios; sem execução real de adapters."
+    },
+    {
+      "id": "runtime_execution",
+      "status": "PARTIAL",
+      "evidence": "Bench de execução SINKRA-DR-40 está especificado, mas ainda não rodado nos 40 tasks."
+    },
+    {
+      "id": "legal_review",
+      "status": "REQUIRED",
+      "evidence": "Players com licença ausente/divergente exigem clean-room e revisão antes de copiar código."
+    }
+  ],
+  "recommended_first_wave": {
+    "wave": 1,
+    "name": "contract_and_harness",
+    "items": [
+      "define_sinkra_deepresearchrunner",
+      "implement_trace_sources_claims_cost_contract",
+      "adapters_for_dzhng_gpt_researcher_langchain",
+      "evaluator_wrappers_for_livedrbench_drbench"
+    ]
+  }
+}

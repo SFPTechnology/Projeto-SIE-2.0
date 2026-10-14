@@ -1,0 +1,74 @@
+{
+  "schema": "deepresearch-absorption-benchmark.segmented-comparisons.v1",
+  "generated_at": "2026-05-18",
+  "segments": {
+    "framework_multiagent": {
+      "label": "Frameworks Multi-Agente",
+      "members": ["aiox_research", "deerflow", "gpt_researcher", "autoresearchclaw"],
+      "ranking_within_segment": [
+        {"player": "deerflow", "score": 72.05},
+        {"player": "gpt_researcher", "score": 69.65},
+        {"player": "autoresearchclaw", "score": 69.65},
+        {"player": "aiox_research", "score": 60.25}
+      ],
+      "winner_axis": {
+        "Memoria": "deerflow",
+        "Distribuicao": "gpt_researcher",
+        "Sandbox": "autoresearchclaw",
+        "Governance": "aiox_research",
+        "Planejamento": "aiox_research"
+      },
+      "aiox_position": "4th of 4 — last in segment. Must absorb Sandbox (from AutoResearchClaw) + Multi-Agent parallelism (from DeerFlow) + Distribution (from GPT-Researcher)"
+    },
+    "single_agent_loop": {
+      "label": "Single-Agent Loop (Search-Read-Reason)",
+      "members": ["langchain_odr", "jina_ndr", "local_dr"],
+      "ranking_within_segment": [
+        {"player": "local_dr", "score": 63.9, "note": "Categorizado como local-first mas tem single-loop architecture"},
+        {"player": "langchain_odr", "score": 51.7},
+        {"player": "jina_ndr", "score": 44.5}
+      ],
+      "aiox_lesson": "LangChain ODR roda com 22 .py files e tem score público 0.4344 #6 no leaderboard. Simplicidade não compromete qualidade. AIOX deve auditar onde sua complexidade não compra ganho real."
+    },
+    "purpose_trained_model": {
+      "label": "Purpose-Trained Models",
+      "members": ["openresearcher", "deepresearcher", "tongyi_dr"],
+      "ranking_within_segment": [
+        {"player": "tongyi_dr", "score": 52.1, "note": "Modelo 30B + multi conference papers + WebAgent specialization"},
+        {"player": "deepresearcher", "score": 50.95, "note": "Modelo 7B treinado RL + emergent behaviors"},
+        {"player": "openresearcher", "score": 48.2, "note": "Modelo 30B + NVIDIA Nemotron adoption + BrowseComp-Plus 54.8%"}
+      ],
+      "aiox_lesson": "Os 3 ganham 75-78.75 em Modelo (vs AIOX 38.75) mas perdem em Multi-Agente (22-60), Entrada (22-26), Distribuição (28-37). AIOX pode ABSORVER como backend opcional sem reescrever sua arquitetura."
+    },
+    "by_license": {
+      "MIT": ["deerflow", "langchain_odr", "local_dr", "autoresearchclaw"],
+      "Apache-2.0": ["gpt_researcher", "openresearcher", "deepresearcher", "tongyi_dr"],
+      "Proprietary_Jina": ["jina_ndr"],
+      "Elastic_License_v2": ["aiox_research"],
+      "aiox_position": "Único Elastic License v2 — Restrição de SaaS competitor, mas atrito com community open-source"
+    },
+    "by_purpose_trained_model": {
+      "yes": ["openresearcher", "deepresearcher", "tongyi_dr"],
+      "no": ["aiox_research", "deerflow", "gpt_researcher", "langchain_odr", "local_dr", "jina_ndr", "autoresearchclaw"]
+    },
+    "by_sandbox": {
+      "full_hardened": ["autoresearchclaw"],
+      "available": ["deerflow", "local_dr"],
+      "partial": ["gpt_researcher", "jina_ndr", "deepresearcher"],
+      "none": ["aiox_research", "langchain_odr", "openresearcher", "tongyi_dr"]
+    },
+    "by_mcp_native": {
+      "yes": ["gpt_researcher", "langchain_odr"],
+      "no": ["aiox_research", "deerflow", "local_dr", "openresearcher", "deepresearcher", "jina_ndr", "autoresearchclaw", "tongyi_dr"]
+    },
+    "by_public_benchmark_score": {
+      "yes_with_score": [
+        {"player": "openresearcher", "bench": "BrowseComp-Plus", "score": "54.8%"},
+        {"player": "langchain_odr", "bench": "Deep Research Bench", "score": "0.4344 (#6)"},
+        {"player": "local_dr", "bench": "SimpleQA", "score": "~95%"},
+        {"player": "deepresearcher", "bench": "Custom RL eval", "score": "+28.9pts over baseline"}
+      ],
+      "no_public_score": ["aiox_research", "deerflow", "gpt_researcher", "jina_ndr", "autoresearchclaw", "tongyi_dr"]
+    }
+  }
+}

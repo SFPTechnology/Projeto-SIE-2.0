@@ -1,0 +1,326 @@
+{
+  "subject": "octadesk",
+  "type": "product",
+  "generatedAt": "2026-05-06T00:00:00Z",
+  "method": "web-research-docs-and-reviews",
+  "identity": {
+    "name": "Octadesk",
+    "company": "LWSA (Locaweb group)",
+    "category": "Customer service / helpdesk SaaS para PME e e-commerce BR",
+    "launch_date": "~2014 (~12 anos)",
+    "target_audience": "PMEs brasileiras, e-commerces, equipes de marketing+sales+aftersales",
+    "tagline": "Resolva 8 a cada 10 atendimentos automaticamente, 24h por dia",
+    "url": "https://www.octadesk.com",
+    "country_origin": "Brasil",
+    "parent_group": "LWSA (Locaweb, Bling, Tray, Vindi, Melhor Envio, Etus, Yapay, Octadesk)",
+    "customer_base_claim": "+2.500 empresas (logos Locaweb, Pfizer, QuintoAndar)"
+  },
+  "features": {
+    "categories": [
+      {
+        "name": "Conversas omnichannel",
+        "features": [
+          "WhatsApp Business API oficial Meta",
+          "Instagram Direct",
+          "Facebook Messenger",
+          "Email",
+          "Webchat (site)"
+        ],
+        "depth": "deep"
+      },
+      {
+        "name": "Helpdesk ticketing",
+        "features": [
+          "SLA configuravel por grupo e tipo de demanda",
+          "Help center / base de conhecimento",
+          "Tickets unificados de email + chat + WhatsApp"
+        ],
+        "depth": "moderate"
+      },
+      {
+        "name": "Automacao",
+        "features": [
+          "Chatbots configuraveis",
+          "Integracoes via tarefas automatizadas",
+          "Bot creation declarado intuitivo (Capterra)"
+        ],
+        "depth": "moderate"
+      },
+      {
+        "name": "AI nativa (WOZ Agent)",
+        "features": [
+          "Atendimento autonomo IA generativa 24/7",
+          "Sugestao de respostas em tempo real (copilot)",
+          "Transcricao automatica de audios em texto",
+          "Baseado em ChatGPT (G2)",
+          "Identifica lacunas e melhora respostas continuamente",
+          "Isolamento de dados entre clientes (declarado)"
+        ],
+        "depth": "moderate"
+      },
+      {
+        "name": "Octa Suite",
+        "features": [
+          "Operacoes multi-time/multi-departamento",
+          "Automacao avancada",
+          "Branch management (filiais)",
+          "ERP e CRM integracoes",
+          "CSM dedicado"
+        ],
+        "depth": "deep (gated em contato comercial)"
+      }
+    ],
+    "unique_capabilities": [
+      "WhatsApp Business API oficial Meta declarado no site (sem intermediario BSP cinza)",
+      "Tracao com e-commerce BR (logos Pfizer, Locaweb, QuintoAndar)",
+      "Pacote LWSA group: ecossistema BR de e-commerce (Bling ERP, Tray e-com, Vindi assinatura, Melhor Envio logistica, Yapay pagamentos)",
+      "WOZ AI generativa nativa em PT-BR",
+      "UX em portugues nativo end-to-end (sem traducao de SaaS gringo)"
+    ],
+    "total_feature_count_estimate": 35,
+    "source": "https://www.octadesk.com (homepage), https://www.octadesk.com/integracoes, https://www.octadesk.com/precos (site oficial 2026-05-06)",
+    "confidence": "H em features publicas; M em Suite gated"
+  },
+  "pricing": {
+    "model": "per-plan-with-agent-and-conversation-caps",
+    "currency": "BRL",
+    "tiers_public_site": [
+      {
+        "name": "Octa Conversas",
+        "price_monthly_brl_from": 1542,
+        "scope": "Centraliza WhatsApp + Instagram + Facebook + chat de site",
+        "agent_limit": "nao detalhado em /precos",
+        "source": "https://www.octadesk.com/precos"
+      },
+      {
+        "name": "Octadesk (Helpdesk)",
+        "price_monthly_brl_from": 2205,
+        "scope": "Email + chat + help center + WhatsApp",
+        "agent_limit": "nao detalhado em /precos",
+        "source": "https://www.octadesk.com/precos"
+      },
+      {
+        "name": "Octa Suite",
+        "price_monthly_brl_from": "contato comercial",
+        "scope": "Multi-time, multi-departamento, automacao avancada, branch management, ERP/CRM, CSM dedicado",
+        "agent_limit": "nao publico",
+        "source": "https://www.octadesk.com/precos"
+      }
+    ],
+    "tiers_g2_reported": [
+      {
+        "name": "Sea + AI Plan",
+        "price_monthly_brl_from": 2972,
+        "users_max": 30,
+        "whatsapp_oficial_conversations_month": 2000,
+        "whatsapp_numbers": 1,
+        "support": "extended",
+        "features": "all features included",
+        "source": "https://www.g2.com/products/octadesk/pricing (last updated 2025-10-28)"
+      },
+      {
+        "name": "Higher Tier (G2)",
+        "price_monthly_brl_from": "nao publico exato",
+        "users_max": 50,
+        "whatsapp_oficial_conversations_month": 5000,
+        "whatsapp_numbers": 1,
+        "support": "extended",
+        "features": "all features included",
+        "source": "https://www.g2.com/products/octadesk/pricing"
+      }
+    ],
+    "addon_woz": {
+      "name": "WOZ Agent",
+      "price": "nao publico (contato comercial)",
+      "model": "AI agent autonomo + copilot, separado do plano base",
+      "source": "https://www.g2.com/products/octadesk/pricing"
+    },
+    "free_tier": {
+      "available": false,
+      "trial": "nao publico explicito (provavel demo)"
+    },
+    "enterprise": "Octa Suite contato comercial",
+    "source_main": "https://www.octadesk.com/precos + https://www.g2.com/products/octadesk/pricing",
+    "as_of_date": "2026-05-06",
+    "data_quality": "H para tier publico site (Conversas R$1.542 / Helpdesk R$2.205); M para Sea+AI R$2.972 (via G2 last update 2025-10-28); L para Octa Suite (gated)",
+    "discrepancia_critica_versus_tech_research": "Tech-research listou 'a partir de R$79/mes' (provavel pricing antigo ou tier descontinuado). Site oficial em 2026-05-06 mostra entry R$1.542/mes (Conversas). Desvio ~20x. Atualizar tech-research."
+  },
+  "integrations": {
+    "api": {
+      "available": true,
+      "type": "REST",
+      "documentation": "developers.octadesk.com (provavel; nao verificado fonte primaria)"
+    },
+    "webhooks": true,
+    "marketplace": {
+      "available": true,
+      "format": "pagina /integracoes",
+      "app_count_estimate": "20-30 integracoes catalogadas",
+      "source": "https://www.octadesk.com/integracoes"
+    },
+    "key_integrations_native": {
+      "ecommerce_br": ["VTEX", "Tray", "NuvemShop", "Shopify", "Magento"],
+      "crm": ["Salesforce", "HubSpot", "Pipedrive", "RD Station"],
+      "marketing": ["ActiveCampaign", "RD Station"],
+      "ecossistema_lwsa": ["Bling (ERP, mesmo grupo)", "Vindi (assinaturas)", "Melhor Envio (logistica)", "Tray (e-com)"]
+    },
+    "key_integrations_gaps": {
+      "vtex_native_oficial_octadesk": "nao confirmado em fonte primaria; mencionado em pagina /integracoes mas detalhe de profundidade nao auditado",
+      "conta_azul_native": "nao confirmado em fonte primaria",
+      "bling_native_oficial": "esperado por ser mesmo grupo LWSA mas nao auditado em pagina dedicada"
+    },
+    "sdk_languages": "nao publico (provavel REST direto)",
+    "plugin_system": false,
+    "source": "https://www.octadesk.com/integracoes + WebSearch confirmacao",
+    "confidence": "H para lista nominal; M para profundidade de integracao por conector"
+  },
+  "user_experience": {
+    "onboarding": "good (Capterra: 'super facil de utilizar', implementacao rapida)",
+    "ui_quality": "modern (interface assemelha-se a WhatsApp; PT-BR nativa)",
+    "learning_curve": "low-moderate",
+    "mobile_app": true,
+    "offline_support": "nao publico",
+    "accessibility": "nao publico",
+    "language_native_ptbr": true,
+    "source": "Capterra Brazil reviews + G2",
+    "confidence": "M (sample size pequeno: 6 reviews Capterra BR)"
+  },
+  "reviews": {
+    "g2": {
+      "rating": "nao publico exato no scrap (G2 bloqueado 403)",
+      "review_count": 55,
+      "top_praise": [
+        "Ease of Use",
+        "Features",
+        "Easy Integrations",
+        "Easy Implementation"
+      ],
+      "top_complaints": [
+        "Limited Features",
+        "Feature Issues",
+        "Limited Customization",
+        "Chatbot Issues",
+        "Instabilidades / outages reportados"
+      ],
+      "source": "G2 product page (search-only access)"
+    },
+    "capterra_brasil": {
+      "rating": 4.0,
+      "review_count": 6,
+      "value_score": 4.3,
+      "support_score": 3.7,
+      "recommendation_rate": 0.80,
+      "top_praise": [
+        "Multi-channel unification",
+        "Ease of use",
+        "Pricing better than Freshdesk/Zendesk (visao operador BR)",
+        "Bot creation intuitive"
+      ],
+      "top_complaints": [
+        "Stability issues / disconnections / slowdowns reportados (long-term user)",
+        "Limited native integrations (some require API config)",
+        "Weak audio alerts for notifications",
+        "Outages frequencia aumentada no ultimo ano"
+      ],
+      "source": "https://www.capterra.com.br/software/192993/octadesk"
+    },
+    "producthunt": {
+      "upvotes": "N/A",
+      "launch_date": "N/A"
+    },
+    "confidence": "M (review count pequeno comparado a Zendesk; sample BR ainda menor)"
+  },
+  "scalability": {
+    "limits_public": {
+      "Sea+AI": "30 users / 2000 WA conversations/mo / 1 numero",
+      "Higher_tier": "50 users / 5000 WA conversations/mo / 1 numero",
+      "Suite": "nao publico (contato comercial)"
+    },
+    "enterprise_features": [
+      "Branch management (filiais) - Octa Suite",
+      "ERP/CRM integracoes profundas - Octa Suite",
+      "CSM dedicado - Octa Suite"
+    ],
+    "enterprise_features_GAPS_versus_zendesk": [
+      "SSO/SAML/OIDC: nao publico (gap critico)",
+      "SCIM provisioning: nao publico",
+      "Custom agent roles: nao publico",
+      "Audit logs detalhados: nao publico",
+      "Sandbox environment: nao publico",
+      "Multi-help-center (300+): nao aplicavel",
+      "BYOK encryption: nao publico",
+      "HIPAA BAA: nao publico (esperado nao oferecer)",
+      "PCI-DSS: nao publico",
+      "SOC 2 Type II report: nao publico",
+      "ISO 27001: nao publico (LGPD declarada via LWSA group)"
+    ],
+    "multi_tenant": "implicito (SaaS)",
+    "data_residency": "presumivel BR via parent LWSA (nao auditado fonte primaria)",
+    "sla": "nao publico em pricing page",
+    "compliance_publica": ["LGPD (declarada via LWSA group + WOZ)", "GDPR (declarada para WOZ)"],
+    "source": "https://pt.octadesk.com/lgpd + WebSearch + G2 pricing",
+    "confidence": "L para enterprise features (gaps prevalecentes); H para LGPD declaration"
+  },
+  "support": {
+    "docs_quality": "good (loop.octadesk.com base de conhecimento ativa)",
+    "channels": ["chat", "email", "central de ajuda", "WhatsApp suporte (provavel)"],
+    "language": "PT-BR nativo (vantagem clara vs incumbents)",
+    "community": {
+      "type": "forum/help center",
+      "size": "nao publico"
+    },
+    "knowledge_base": true,
+    "status_page": "nao confirmado",
+    "csm_dedicado": "Octa Suite tier",
+    "source": "https://loop.octadesk.com",
+    "confidence": "M"
+  },
+  "ai_native": {
+    "name": "WOZ Agent",
+    "engine_declarado": "ChatGPT-based (G2 product description)",
+    "modes": ["Autonomous answer", "Copilot suggest", "Audio transcription", "Continuous learning"],
+    "language": "PT-BR nativo",
+    "deflection_rate_publicado": "nao publico (claim 80% no marketing geral, nao validado em benchmark independente)",
+    "pricing_model": "add-on separado, contato comercial",
+    "data_isolation_declarada": true,
+    "source": "https://www.octadesk.com (homepage) + G2 product description",
+    "confidence": "H para existencia do produto; M para performance/pricing real"
+  },
+  "whatsapp_integration": {
+    "claim_oficial_meta": true,
+    "claim_text": "WhatsApp Business API oficial Meta (declarado no site)",
+    "bsp_role": "Octadesk atua como BSP (Business Solution Provider) integrado a Cloud API Meta",
+    "cloud_api_only": true,
+    "cloud_api_post_oct_2025_compliance": "compativel (Meta deprecou on-premise em 2025-10-23)",
+    "message_pricing_passthrough": true,
+    "free_window_24h": "padrao Meta service window",
+    "templates_approval_flow": "padrao Meta",
+    "multi_agent_same_number": "implicito por design",
+    "tier_lock_em_planos_pricing_g2": "Sea+AI 2000 conv/mes; Higher 5000 conv/mes (overage charge)",
+    "source": "https://www.octadesk.com (homepage) + G2 + WebSearch",
+    "confidence": "H para oficialidade Cloud API; M para detalhes BSP fee structure"
+  },
+  "sources_consulted": [
+    "https://www.octadesk.com",
+    "https://www.octadesk.com/precos",
+    "https://www.octadesk.com/integracoes",
+    "https://pt.octadesk.com/lgpd",
+    "https://www.octadesk.com/politicas",
+    "https://blog.octadesk.com",
+    "https://www.octadesk.com/blog/site-seguro-aumenta-vendas-online",
+    "https://www.octadesk.com/termos-uso",
+    "https://loop.octadesk.com",
+    "https://www.g2.com/products/octadesk/reviews",
+    "https://www.g2.com/products/octadesk/pricing",
+    "https://www.capterra.com.br/software/192993/octadesk",
+    "https://www.zohoflow.com/apps/octadesk/integrations/shopify",
+    "docs/research/2026-05-06-omnichannel-helpdesk-landscape/02-research-report.md (sec 2.3)"
+  ],
+  "data_quality": {
+    "features": "verified",
+    "pricing": "current_partial (tier publico H, Suite L)",
+    "reviews": "recent_partial (G2 55 reviews; Capterra BR 6 reviews - sample limitado)",
+    "compliance": "declarative (LGPD declarada; SOC2/ISO27001 nao confirmado)",
+    "confidence": "medium-high para nucleo BR (WhatsApp + integracoes + pricing site); medium-low para enterprise gaps (gated)"
+  }
+}

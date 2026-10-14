@@ -1,0 +1,253 @@
+[
+  {
+    "chunk_id": 0,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Os seis critérios de dimensionamento de circuitos de BT"
+    ],
+    "content": "# Dimensionamento de circuitos\n\n<!-- pagina-origem: 1 -->\n\n### D I M E N S I O N A M E N T O D E C I R C U I T O S\n\nOs seis critérios de dimensionamento de circuitos de BT.......................188\n\nCapacidade de condução: o que diz a norma..........................................189\n\nCálculos de queda de tensão (I)..............................................................195\n\nCálculos de queda de tensão (II).............................................................199\n\nDimensionamento econômico de condutores.........................................205\n\n<!-- pagina-origem: 2 -->\n\n## Os seis critérios de dimensionamento de circuitos de BT\n\nChamamos de dimensionamento técnico de um circuito a aplicação das diversas prescrições da NBR 5410 relativas à escolha da seção de um condutor e do seu respectivo dispositivo de proteção. Para que se considere um circuito completa e corretamente dimensionado, são necessários seis cálculos. Em princípio, cada um deles pode resultar numa seção diferente. E a seção a ser finalmente adotada é a maior dentre todas as seções obtidas. Os seis critérios técnicos de dimensionamento são: seção mínima; – capacidade de condução de corrente; – queda de tensão; – proteção contra sobrecargas; – proteção contra curtos-circuitos; – proteção contra contatos indiretos (aplicável apenas – quando se usam dispositivos a sobrecorrente na função de seccionamento automático). Vejamos a seguir onde encontrar, na NBR 5410, os itens relacionados a cada um dos critérios mencionados.",
+    "paginas_origem": [
+      1,
+      2
+    ],
+    "tokens_estimados": 381,
+    "contem_tabela": false,
+    "sobrepoe_anterior": false
+  },
+  {
+    "chunk_id": 1,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Os seis critérios de dimensionamento de circuitos de BT",
+      "Capacidade de condução de corrente"
+    ],
+    "content": "### Seção mínima\n\nAs seções mínimas admitidas em qualquer instalação de baixa tensão estão definidas na tabela 43, item 6.2.6 da norma. Dentre os valores ali indicados, destacamos dois: a seção mínima de um condutor de cobre para circuitos – de iluminação é de 1,5 mm2; e a seção mínima de um condutor de cobre para circuitos – de força, que incluem tomadas de uso geral, é 2,5 mm2.\n\n### Capacidade de condução de corrente\n\nA capacidade de condução de corrente é um critério importantíssimo, pois leva em consideração os efeitos térmicos provocados nos componentes do circuito pela passagem da corrente elétrica em condições normais (corrente de projeto). Este critério de dimensionamento é tratado na seção 6.2.5 da NBR 5410, que apresenta então tabelas para determinação das seções dos condutores pela capacidade de corrente. Mas não é só. O uso correto dessas tabelas requer que seus dados sejam devidamente traduzidos para a situação concreta, real, que o projetista tem pela frente. Ou, o que dá no mesmo, que o projetista converta os dados reais do circuito que está dimensionando em equivalências harmonizadas com as condições nas quais foram baseados os números fornecidos pela norma. Na prática, aliás, é este o processo que efetivamente ocorre. Por isso, para possibilitar esse casamento entre as situações reais dos projetos e as situações assumidas na obtenção dos valores de capacidade de condução de corrente por ela fornecidos, a norma inclui, na mesma seção 6.2.5, uma série de fatores de correção. O artigo “Capacidade de condução: o que diz a norma” promove uma visita circunstanciada à seção 6.2.5 da NBR 5410 e, assim, uma análise objetiva de como é realizado o dimensionamento de um circuito pelo critério da capacidade de condução de corrente.",
+    "paginas_origem": [],
+    "tokens_estimados": 442,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 2,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Os seis critérios de dimensionamento de circuitos de BT",
+      "Queda de tensão"
+    ],
+    "content": "### Queda de tensão\n\nEste critério é tratado em 6.2.7 da NBR 5410. Nessa seção, mais precisamente na tabela 46, a norma fixa os limites máximos admissíveis de queda de tensão nas instalações alimentadas por ramal de baixa tensão (4%) e por transformador/gerador próprio (7%) (figura 1). Em outro ponto, 6.5.3.4.4, é abordada a queda de tensão máxima permitida durante a partida de motores. Ela é fixada em, no máximo, 10% nos terminais do motor, desde\n\n![Figura vetorial da página 2](figura-vetorial-p2-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Limites de queda de tensão fixados pela NBR 5410: 4% para as instalações alimentadas diretamente pela rede de distribuição pública de baixa tensão; e 7% para as instalações que contam com subestação própria ou com geração própria. Além disso, a queda de tensão máxima admissível nos circuitos terminais é de 4%.\n\n<!-- pagina-origem: 3 -->\n\nque não ultrapasse os valores da tabela 46 para as demais cargas no momento da partida. Isto, na prática, é uma situação muito difícil de ser calculada, a menos que se possua um bom diagrama de impedâncias da instalação e se realize um estudo de fluxo de potência. Os artigos “Cálculos de queda de tensão”, apresentados mais adiante, trazem métodos e exemplos práticos de muita utilidade na verificação do critério da queda de tensão, quando do dimensionamento de circuitos.",
+    "paginas_origem": [
+      3
+    ],
+    "tokens_estimados": 362,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 3,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Os seis critérios de dimensionamento de circuitos de BT",
+      "Sobrecarga e curto-circuito"
+    ],
+    "content": "### Sobrecarga e curto-circuito\n\nNa NBR 5410, a proteção contra sobrecorrentes é objeto do capítulo 5.3 e das seções 5.7.4, 6.3.4 e 6.3.7. Ela enfoca o assunto estabelecendo prescrições para a proteção contra correntes de sobrecarga, de um lado, e para a proteção contra correntes de curto-circuito, de outro. Neste Guia EM da NBR 5410, o tema é exaustivamente examinado no capítulo pertinente (“Proteção contra sobrecorrentes”). Aí o projetista encontra orientação prática sobre a aplicação do critério da proteção contra sobrecorrentes no dimensionamento dos circuitos. De qualquer forma, que tal dar uma olhada, aqui, no que diz a nota 3 de 5.3.1? É uma mensagem que costuma passar despercebida, mas indispensável para compreender o que é exatamente a proteção contra sobrecorrentes de que tratam as normas de instalações elétricas em geral (do Brasil e de outros países). Diz a nota: “A proteção dos condutores realizada de acordo com esta seção não garante necessariamente a proteção dos equipamentos ligados a esses condutores”. Ou seja, as regras estabelecidas em 5.3.3 (Proteção contra correntes de sobrecargas) e 5.3.4 (Proteção contra correntes de curto-circuito) têm em mente exclusivamente a proteção dos condutores de um circuito. Por exemplo, não se pode esperar que um disjuntor de 20 A, situado no quadro de distribuição de uma residência, e ao qual esteja ligado um condutor de 2,5 mm2, consiga proteger adequadamente contra sobrecorrentes um aparelho de videocassete de 300 VA – 127 V (menos de 3 A). Dependendo do caso, pode até ser que o disjuntor atue devido a algum problema ocorrido no aparelho, mas, de modo geral, presume-se que o aparelho tenha sua própria proteção, incorporada.",
+    "paginas_origem": [],
+    "tokens_estimados": 427,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 4,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Capacidade de condução: o que diz a norma"
+    ],
+    "content": "### Proteção contra contatos indiretos\n\nVia de regra, a verificação da proteção contra contatos indiretos, como etapa do dimensionamento de um circuito, só se aplica aos casos em que isso (proteção contra contatos indiretos por seccionamento automático da alimentação) é atribuído a dispositivos a sobrecorrente. O objetivo da medida de proteção, enunciada no artigo 5.1.3.1 da NBR 5410, é assegurar que o circuito seja automaticamente desligado caso algum dos equipamentos por ele alimentados venha a sofrer uma falta à terra ou à massa capaz de originar uma tensão de contato perigosa. Como mencionado, há casos em que esse seccionamento automático visando a proteção contra choques pode (e deve, no caso do TN-C) ser implementado com o uso de dispositivo a sobrecorrente. A regra pertinente, explicada em detalhes no artigo “Seccionamento automático (III): uso de dispositivo a sobrecorrente” [ver capítulo sobre proteção contra choques], envolve aspectos conceitualmente equivalentes aos de queda de tensão. Portanto, é um critério que pode pesar seja na seção do condutor, seja no comprimento do circuito, seja, enfim, em ambos. De qualquer forma, é uma verificação obrigatória (caso de seccionamento automático com dispositivo a sobrecorrente, bem entendido), ainda que outros critérios de dimensionamento, como o da própria queda de tensão, venham a prevalecer.\n\n## Capacidade de condução: o que diz a norma\n\nNo dimensionamento de um circuito elétrico, todos os seis critérios técnicos apontados no artigo anterior têm a sua importância. Nenhum deles pode ser deixado de lado. Mas é compreensível que o critério da capacidade de condução de corrente projete, como ocorre na prática, uma importância que parece superior à dos demais. Pois ele constitui o ponto de partida natural do processo de dimensionamento, além de funcionar, em certa medida, como o pivô do jogo. De fato, após o estudo prévio da carga a ser alimentada por um circuito, com o conseqüente cálculo da corrente de projeto (IB), o passo seguinte — e efetivamente o primeiro no que se refere ao dimensionamento dos componentes do circuito — é determinar a capacidade de condução de corrente, vale dizer, determinar a seção de condutor que, nas condições reais do circuito, oferece capacidade de condução de corrente suficiente para a circulação de IB, sem riscos. Para tanto, o projetista recorre a tabelas que figuram na seção 6.2.5 da NBR 5410. Nessas tabelas, ele apura então a seção de condutor que atende às necessidades do seu circuito.\n\n<!-- pagina-origem: 4 -->",
+    "paginas_origem": [
+      4
+    ],
+    "tokens_estimados": 636,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 5,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Capacidade de condução: o que diz a norma"
+    ],
+    "content": "São quatro as tabelas diretamente encarregadas de informar a capacidade de condução de corrente dos condutores: as de número 31 a 34. Duas delas se aplicam a condutores com isolação termoplástica (31 e 33) e as outras duas a condutores com isolação termofixa (32 e 34). Convém lembrar, inicialmente, que os valores fornecidos pelas tabelas 31 a 34 são para uma temperatura no condutor igual à máxima admissível pelo material da isolação, aplicada permanentemente. Esta situação pode não corresponder a de vários casos reais, em que a carga tem um regime de operação intermitente ou temporário. Nestas circunstâncias, há métodos de cálculos específicos para se obter a seção do condutor, que resulta sempre menor que a das tabelas mencionadas. Outro detalhe das tabelas, como lembra a nota de 6.2.5.1, é que elas não levam em conta os cabos providos de armação metálica. Embora não sejam muito comuns, estes tipos de cabos, dotados de proteção mecânica, têm lá suas aplicações. Existe um tipo de cabo armado, com fita metálica, cuja capacidade de condução de corrente pode ser considerada praticamente a mesma de um cabo não-armado, uma vez que a fita metálica atua como uma espécie de trocador de calor com o meio ambiente. E quanto à influência da temperatura ambiente? As próprias tabelas de capacidade de condução de corrente ressaltam que a temperatura ambiente considerada é de 30°C (ou, no caso de linhas subterrâneas, temperatura no solo de 20°C). Portanto, para aplicação correta dos valores de capacidade tabelados, o projetista deve estimar a temperatura do local onde o cabo estará instalado. Qual? A rigor, a temperatura anual máxima registrada no local, em séries históricas. Quanto mais precisa for essa estimativa, melhor. Pois, como se deduz da tabela 34, que indica os fatores de correção por temperatura, diferenças de 5°C podem resultar em diferenças de 10% ou mais no fator de correção, o que pode significar uma troca de seção de cabo. Por fim, mas não por último — ao contrário, a questão que agora se analisa é de longe a mais rumorosa —, a aplicação correta da tabela de capacidade de corrente exige que os valores fornecidos sejam interpretados como representativos de uma linha elétrica constituída de um único circuito. Enfim, é como se a linha da tabela fosse mãe de filho único. Só que, na vida real, a grande maioria das mães tem mais de um filho. Portanto, se o circuito que estamos dimensionando não for o único a desfrutar da linha elétrica — ou o único filho da mãe —, é necessário aplicar à corrente de projeto IB do nosso circuito, antes de com ela ingressar na tabela de capacidade de corrente, o chamado fator de correção para agrupamento. Este fator, indicado nas tabelas 37 a 42 da NBR 5410, considera os efeitos térmicos mútuos entre os condutores contidos no mesmo conduto. Tem o sentido de uma penalidade, evidentemente. Mas, como na analogia, filhos a mais são bocas a mais para alimentar. Fazendo um passeio pelas tabelas que tratam dos fatores de correção por/para agrupamento, vamos nos deter um pouco na tabela 37. Ela fornece, como mencionado no capítulo sobre linhas elétricas [Ver, em particular, a tabela II do\n\n<!-- pagina-origem: 5 -->",
+    "paginas_origem": [
+      5
+    ],
+    "tokens_estimados": 798,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 6,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Capacidade de condução: o que diz a norma"
+    ],
+    "content": "artigo “Roteiro das linhas elétricas”], fatores de correção (por agrupamento) para uma grande variedade de tipos de linhas. Na verdade, ela só não se presta às linhas enterradas. No mais, a tabela 37 é pau para toda a obra: linhas fechadas de todos os tipos e também todo gênero de linha aberta. As linhas elétricas fechadas são atendidas pelos valores dados na linha 1 da tabela; e as linhas elétricas abertas pelos valo-\n\n1 Seja a instalação mostrada na figura 1, composta de 10 circuitos, cujas correntes de projeto estão indicadas na tabela B1. Pelos valores das correntes de projeto indicadas, percebemos que os circuitos são semelhantes, uma vez que as seções resultantes para os cabos provavelmente estarão contidas em um intervalo de três valores sucessivos normalizados. Pela figura, vemos que os cabos multipolares estão em camada única e, portanto, estamos tratando de um caso típico de aplicação da tabela I (tabela 37 da NBR 5410). Entrando com 10 circuitos na tabela, encontramos o fator de correção por agrupamento de 0,72.\n\n![Figura vetorial da página 5](figura-vetorial-p5-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Cabos multipolares em camada única\n\n2 Seja a instalação mostrada na figura 2, composta de 30 circuitos, cujas correntes de projeto resultariam em cabos semelhantes, ou seja, contidos em um intervalo de três seções nominais consecutivas. Pela figura, vemos que os cabos multipolares estão em várias camadas e, portanto, estamos tratando de um caso típico de aplicação da tabela II (tabela 42 da NBR 5410). Entrando na tabela com 10 cabos multipolares num plano horizontal, encontramos o multiplicador 0,70. Para três cabos num plano vertical, temos o multiplicador 0,73. Portanto, o fator de correção por agrupamento neste exemplo é de 0,70 x 0,73 = 0,51.\n\n![Figura vetorial da página 5](figura-vetorial-p5-2)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 2 – Cabos multipolares em três camadas res indicados nas linhas 2 a 5 da tabela (a tabela I aqui publicada reproduz esta parte — linhas 2 a 5 — da tabela 37). Só que tem um detalhe. E que envolve, em particular, as linhas abertas. Os fatores de correção da tabela 37, como ela própria adverte, são válidos para cabos dispostos em uma única camada. O que fazer, se a linha elétrica contiver mais de uma camada de cabos?",
+    "paginas_origem": [],
+    "tokens_estimados": 617,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 7,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Capacidade de condução: o que diz a norma",
+      "Exemplos de aplicação"
+    ],
+    "content": "### Exemplos de aplicação\n\n3 Considerem-se os dois exemplos anteriores, mas suponhamos, agora, que as correntes de projeto são diferentes a ponto de resultar em cabos não semelhantes, ou seja, com seções não contidas num intervalo de três valores normalizados sucessivos. No primeiro exemplo (figura 1), não podemos mais, na nova situação, utilizar a tabela I e devemos então calcular o fator de correção pela fórmula F = 1/√n. Como n = 10 (cabos multipolares), temos:\n\nF = 1/√10 = 0,32\n\nAnalogamente, no segundo exemplo (figura 2), para n = 30, temos:\n\nF = 1/√30 = 0,18\n\nComo se pode verificar, a aplicação da fórmula para cálculo do fator de correção pode levar a resultados muito severos. Isso indica que, para certas situações, deve-se rever a maneira de instalar e a disposição dos cabos escolhida, de forma a se obter fatores de correção menos penalizantes.\n\n<!-- tabela-p5-1 -->\n| Tab. B1 – Circuitos do exemplo e\ncorrentes de projeto respectivas |  |\n| --- | --- |\n| Circuito | Corrente de projeto |\n| 1 | 121 |\n| 2 | 98 |\n| 3 | 156 |\n| 4 | 102 |\n| 5 | 145 |\n| 6 | 132 |\n| 7 | 141 |\n| 8 | 92 |\n| 9 | 115 |\n| 10 | 127 |\n\n<!-- pagina-origem: 6 -->",
+    "paginas_origem": [
+      6
+    ],
+    "tokens_estimados": 289,
+    "contem_tabela": true,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 8,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Capacidade de condução: o que diz a norma",
+      "Exemplos de aplicação"
+    ],
+    "content": "Aí entra a tabela 42 da norma, aqui reproduzida como tabela II. Como se vê, a tabela fornece um par de valores, que devem ser multiplicados para a obtenção do fator de correção pertinente: o projetista identifica, de um lado, o valor correspondente ao número de circuitos trifásicos ou de cabos multipolares por camada; e, de outro, o valor correspondente ao número de camadas; e multiplica ambos, obtendo então o fator de correção para o agrupamento considerado. Ressalte-se, como reza a nota 2 da tabela original (tabela 42 da norma), que os valores individuais dos planos horizontal e vertical não podem ser utilizados isoladamente, isto é, não podem ser aplicados a cabos instalados em camada única — retomando-se, neste caso, a orientação da tabela 37 (aqui, tabela I). Recapitulando: se a tabela 37, que oferece fatores de correção para um número ilimitado de cabos ou circuitos dispostos em camada única, não é o bastante para o projetista, que ele se sirva então da tabela 42, que provê fatores de correção para qualquer combinação de número de circuitos/cabos e número de camadas. Seria o fim da história não fosse, agora, um segundo detalhe. Em todas as tabelas de fatores de correção dadas pela norma os condutores são assumidos semelhantes. Em outras palavras, assume-se que eles possuem a mesma temperatura máxima para serviço contínuo e que estão uniformemente carregados — vale dizer, associados a correntes de projeto tais que suas seções nominais estarão necessariamente contidas num intervalo de três seções normalizadas sucessivas (por exemplo, 70, 95 e 120 mm2). Novamente, uma situação que pode não corresponder àquelas encontradas na prática. Note-se, de qualquer forma, que seria mesmo virtualmente impossível compor tabelas com fatores de correção válidos para qualquer combinação imaginável de condutores, tantas seriam as possibilidades. Uma saída seria então, como avisa a própria norma, calculá-los caso a caso — utilizando, por exemplo, a NBR 11301. Mas a norma não se limita a ressalvar os fatores de correção tabelados e a sugerir o uso da NBR 11301. Ele acrescenta que, não sendo viável um cálculo mais específico, o fator de correção por agrupamento (F), no caso de condutores de dimensões diferentes, deve ser calculado pela seguinte expressão:\n\nF = 1/√n\n\nonde n = número de circuitos ou de cabos multipolares instalados no conduto, seja ele aberto ou fechado. É importante mencionar que o fator de correção F calculado desse modo substitui completamente qualquer outro fator obtido nas tabelas. Como indicado na nota de 6.2.5.5.5, “a expressão está a favor da segurança e reduz os perigos de sobrecarga sobre os cabos de menor seção nominal; pode, no entanto, resultar no superdimensionamento dos cabos de seções mais elevadas”. O boxe “Exemplos de aplicação” ilustra os pontos aqui abordados, sobre os fatores de correção por agrupamento.",
+    "paginas_origem": [],
+    "tokens_estimados": 719,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 9,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Cálculos de queda de tensão (I)"
+    ],
+    "content": "## Cálculos de queda de tensão (I)\n\nNuma instalação elétrica, a tensão aplicada aos terminais das cargas, isto é, dos equipamentos de utilização, deve manter-se dentro de determinados limites. Cada equipamento, como sabemos, possui uma tensão nominal (Un), sendo sempre fixada, seja pela norma respectiva, seja pelo fabricante, uma pequena variação admitida (∆Un). Tensões abaixo do limite, ou seja, inferiores a Un – ∆Un, prejudicam o desempenho do equipamento de utilização, podendo reduzir sua vida útil ou mesmo impedir seu funcionamento. A queda de tensão deve ser calculada durante o projeto, sendo o dimensionamento dos circuitos feito de modo a mantê-la dentro dos valores máximos fixados pela NBR 5410. Esses limites máximos, entre a origem da instalação e qualquer ponto destinado à ligação de equipamento de utilização, são de 4% para instalações alimentadas por rede pública de baixa tensão e de 7% para as alimentadas a partir de transformadores próprios. A figura 1 ilustra o problema das quedas de tensão numa instalação de baixa tensão — no caso, uma instalação alimentada por transformador próprio. As expressões exatas da queda de tensão em circuitos monofásicos e trifásico equilibrado, com carga concentrada\n\n√\n\n<!-- pagina-origem: 7 -->\n\n![Figura vetorial da página 7](figura-vetorial-p7-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Queda de tensão em uma instalação alimentada por transformador próprio\n\n![Figura vetorial da página 7](figura-vetorial-p7-2)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 2 – Expressões da queda de tensão em circuitos monofásico e trifásico equilibrado, com carga concentrada na extremidade\n\nFig. 3 – Queda de tensão com cargas distribuídas\n\nna extremidade, são indicadas na figura 2. Nos circuitos usuais de instalações de baixa tensão, o ângulo α, mostrado nos diagramas fasoriais da figura, é muito pequeno e podemos admitir ∆U = ∆U'. Nessas condições, podemos escrever: circuitos monofásicos: -\n\nl circuitos trifásicos equilibrados: -\n\nl\n\nqueda de tensão de fase (fase–neutro). Lembrando que a tensão de linha é √3 vez a de fase, a queda de tensão de linha (entre fases) será dada por\n\nl\n\nPodemos escrever uma expressão única para a queda de tensão num circuito com carga concentrada na extremidade, ou seja,\n\nl",
+    "paginas_origem": [
+      7
+    ],
+    "tokens_estimados": 607,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 10,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Cálculos de queda de tensão (I)"
+    ],
+    "content": "onde ∆U = queda de tensão, em V; l = comprimento do circuito, em km; I = corrente do circuito (corrente de projeto), em A; r = resistência de um condutor do circuito numa dada temperatura, geralmente 70°C, em Ω/km; x = reatância indutiva de um condutor do circuito, em Ω/km; cosφ e senφ = fator de potência (indutivo) e o fator reativo, respectivamente, da carga. t = coeficiente que depende do tipo de circuito e do tipo de tensão, de fase (entre fase e neutro) ou de linha (entre fases) (tabela I). Como indica a expressão geral, a queda de tensão depende do tipo de circuito (t), do comprimento do circuito (l), da corrente (I), da seção dos condutores (r, x), do tipo de linha (x) e do fator de potência da carga (cosφ). Existem tabelas em catálogos de fabricantes e em publicações técnicas que fornecem a queda de tensão unitária,\n\nem V/A.km, para os tipos mais comuns de linha e para os fatores de potência 0,8 e 0,95 (indutivos). Nesse caso, teremos\n\n(2) l\n\nPara um circuito com cargas distribuídas, admitidas de mesmo fator de potência, com condutores de mesma seção (figura 3), que constitui o caso mais freqüente, as quedas de tensão serão calculadas por trecho de circuito, sendo a queda total obtida da soma das quedas dos trechos, isto é:\n\n<!-- pagina-origem: 8 -->\n\nl1 l2\n\nln\n\nli\n\nsendo\n\nEm função da queda de tensão unitária, teremos:\n\nli Nos projetos, no caso de circuitos monofásicos ou trifásicos — admitindo-se, para os circuitos monofásicos a 3 condutores e os circuitos trifásicos, as cargas razoavelmente equilibradas entre as fases —, podem ser utilizadas as expressões (1), carga concentrada, ou (3), carga distribuída; ou, a partir da queda de tensão unitária tabelada, a expressão (2) ou (4).",
+    "paginas_origem": [
+      8
+    ],
+    "tokens_estimados": 430,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 11,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Cálculos de queda de tensão (II)"
+    ],
+    "content": "## Cálculos de queda de tensão (II)\n\nA partir de um mesmo exemplo, simples, ilustrado na figura 1, são apresentados a seguir dois métodos práticos para o cálculo da queda de tensão. Em ambos é utilizada a expressão\n\n(1) ∆U = t I l (rcosφ + xsenφ)\n\ndescrita no artigo “Cálculos de queda de tensão (I)”. No primeiro método, as correntes das cargas e respectivos fatores de potência são considerados constantes; é o método mais freqüentemente usado. No segundo, as potências e os fatores de potência das cargas são supostos constantes, havendo, conseqüentemente, variação das correntes; é um método mais preciso. Por fim, aproveitando ainda o mesmo exemplo da figura 1, é apresentado um terceiro cálculo, de queda de tensão durante a partida de motor. Neste caso, seguiu-se, para efeito de simplificação, o primeiro método. Na instalação-exemplo da figura 1, todos os circuitos são, por hipótese, trifásicos, constituídos por condutores isolados, sem cobertura, Cu/PVC, instalados em eletrodutos isolantes individuais. A temperatura ambiente é de 30°C.\n\nDeterminação da seção dos condutores a) Potências e correntes de projeto No quadro de distribuição QD2, teremos: -\n\ncosφ2 = 0,88→tgφ2 = 0,54;\n\nsenφ2 = 0,475\n\nQ2 = 48,4 × 0,54 = 26,1 kvar;\n\nNo quadro de distribuição QD4: -\n\nP4 = 32 kW cosφ4 = 0,9→tgφ4 = 0,48;\n\n![Figura vetorial da página 8](figura-vetorial-p8-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Instalação-exemplo\n\n<!-- pagina-origem: 9 -->\n\nsenφ4 = 0,436\n\nQ4 = 32 × 0,48 = 15,4 kvar\n\nNo quadro de distribuição QD1: -\n\nP1 = P2 + P4 = 80,4 kW\n\nQ1 = Q2 + Q4 = 41,5 kvar\n\ncosφ1 = 0,89; senφ1 = 0,456\n\nb) Seções dos condutores Os cálculos anteriores, das correntes de projeto IB2, IB3, IB4 e IB1, conduzem, consultada a NBR 5410, às seções de condutores indicadas na tabela I. Isso, bem entendido, exclusivamente pelo critério da capacidade de condução de corrente. A tabela traz ainda, fruto de consulta a catálogo de fabricante, a resistência (a 70°C) e reatância dos condutores em questão.\n\n1º Método – Quedas de tensão com correntes e f.p. constantes Admitindo-se constantes as correntes e também a tensão de 220 V no secundário do transformador, e lembrando que o coeficiente t da expressão (1), como indica o artigo já mencionado, vale √3 para o cálculo da queda de tensão de linha em circuito trifásico equilibrado, esse cálculo (primeiro método) seria então como segue:\n\nCD1: - ∆U1 = √3 × 237 × 0,02 × (0,184 × 0,89 + 0,0933 × 0,456) = 1,69 V\n\nCD2: - ∆U2 = √3 × 144 × 0,05 × (0,322 × 0,88 + 0,0963 × 0,475) = 4,10 V\n\nCD4: - ∆U4 = √3 × 93,3 × 0,07 × (0,629 × 0,9 + 0,0980 × 0,436) = 6,89 V\n\nMotor: - ∆U3 = √3 × 14,4 × 0,025 × 8,89 × 0,88 = 4,88 V Como resultado, as tensões ficam: - U1 = 220 −1,69 = 218,3 V U2 = 218,3 −4,10 = 214,2 V U3 = 214,2 −4,88 = 209,3 V U4 = 218,3 −6,89 = 211,4 V\n\nA queda de tensão total nos trechos 1−2−3 será: -\n\n∆U = 220 −209,3 = 10,7 V,\n\ncorrespondendo a 4,87% (e, portanto, menor que os 7% máximos fixados pela NBR 5410, para instalações com subestação própria).\n\n2º Método – Quedas de tensão com potências e f.p. constantes",
+    "paginas_origem": [
+      9
+    ],
+    "tokens_estimados": 788,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 12,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Cálculos de queda de tensão (II)"
+    ],
+    "content": "O método estipula a correção da corrente de projeto, uma vez que não teremos tensão nominal nas barras, mas um valor menor, devido à própria queda de tensão nos circuitos. Um novo valor de corrente, por sua vez, implica calcular a nova queda de tensão e, conseqüentemente, a nova tensão que teremos nos diferentes pontos da instalação. Assim, no circuito CD1, considerando os valores apurados anteriormente,\n\n∆U1 = 1,69 V e U1 = 218,3 V,\n\na correção da corrente fica\n\nRecalculando a queda:\n\n∆U'1 = √3 × 239 × 0,02 × (0,184 × 0,89 + 0,0933 × 0,456) = 1,71 V\n\nTensão no QD1:\n\nU'1 = 220 −1,71 = 218,3 V.\n\nPortanto, não houve alteração.\n\nno circuito CD2, considerando os valores apurados anteriormente,\n\n∆U2 = 4,10 V e U2 = 214,2 V,\n\na correção da corrente fica\n\n<!-- pagina-origem: 10 -->\n\nRecalculando a queda:\n\n∆U'2 = √3 × 148 × 0,05 × (0,322 × 0,88 + 0,0963 × 0,475) = 4,22 V\n\nTensão no QD2:\n\nU'2 = 218,3 −4,22 = 214,1 V.\n\nno motor, considerando os valores apurados anteriormente,\n\n∆U3 = 4,88 V e U3 = 209,3 V,\n\na correção da corrente fica\n\nRecalculando a queda:\n\n∆U'3 = √3 × 15,1 × 0,025 × 8,89 × 0,88 = 5,12 V\n\nno circuito CD4, considerando os valores apurados anteriormente,\n\n∆U4 = 6,89 V e U4 = 211,4 V,\n\na correção da corrente fica\n\nRecalculando a queda:\n\n∆U'4 = √3 × 97,1 × 0,07 × (0,629 × 0,9 + 0,0980 × 0,436) = 7,17 V\n\nA queda de tensão total nos trechos 1–2–3 será: -\n\n∆U' = 1,71 + 4,22 + 5,12 = 11,05 V,\n\ncorrespondendo a 5,02% (e, portanto, menor que os 7% máximos fixados pela NBR 5410).",
+    "paginas_origem": [
+      10
+    ],
+    "tokens_estimados": 375,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 13,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Dimensionamento econômico de condutores"
+    ],
+    "content": "### Quedas de tensão durante a partida de motor\n\nAdmitindo, como mencionado inicialmente, as correntes constantes e assim também a tensão de 220 V no secundário do transformador, calculemos agora as quedas de tensão com partida direta de um dos motores. Motor sob partida: -\n\nIp3 = 6 × 14,4 = 86,4, com\n\ncosφ3 = 0,3 e senφ3 = 0,95. P3 = √3 × 86,4 × 220 × 0,3 × 10-3= 9,88 kW Q3 = √3 × 86,4 × 220 × 0,95 × 10-3= 31,3 kvar\n\nQuadro QD2: -\n\ntgφ2 = 54,8 ÷ 53,4 = 1,03\n\ncosφ2 = 0,70; senφ2 = 0,71\n\nQuadro QD1: -\n\nP1 = P2 + P4 = 85,4 kW\n\nQ1 = Q2 + Q4 = 70,2 kvar\n\ntgφ1 = 70,2 ÷ 85,4 = 0,82\n\ncosφ1 = 0,77; senφ1 = 0,64\n\nQuedas de tensão -\n\nEm CD1: ∆U1 = √3 × 291 × 0,02 × (0,184 × 0,77 + 0,0933 × 0,64) = 1,78 V\n\nEm CD2: ∆U2 = √3 × 200 × 0,05 × (0,322 × 0,70 + 0,0963 × 0,71) = 5,08 V\n\nEm CD4: ∆U4 = 6,89 V (sem alteração)\n\nMotor: ∆U3 = √3 × 86,4 × 0,025 × 8,89 × 0,3 = 9,98 V\n\n<!-- pagina-origem: 11 -->\n\nA queda de tensão nos trechos 1–2–3 será:\n\n∆U = 1,78 + 5,08 + 9,98 = 16,84 V = 7,65% (< 10%)\n\nPortanto, uma queda inferior ao limite máximo que a NBR 5410 estabelece para o caso. De fato, em 6.5.3.4.4 a norma diz que “o dimensionamento dos condutores que alimentam motores deve ser tal que, durante a partida do motor, a queda de tensão nos terminais do dispositivo de partida não ultrapasse 10% da tensão nominal do mesmo”.\n\n## Dimensionamento econômico de condutores\n\nPor menor que seja sua resistência elétrica, os cabos de potência dissipam, na forma de calor, uma parte da energia que transportam da fonte à carga. Essa dissipação de energia ocorre ao longo de toda a vida do cabo, representando um ônus financeiro apreciável, dependendo das características da instalação. É possível reduzir a perda de energia aumentando-se a seção do condutor. Mas como um cabo de maior seção tem, naturalmente, um custo maior de aquisição, esse custo não pode ser alto o suficiente para anular a economia conseguida com a redução de perdas, ao longo do tempo. Assim, é necessário encontrar uma solução de compromisso entre custo inicial e custo de perdas no tempo. Para determinar a seção de um condutor, o procedimento usual é recorrer aos seis critérios técnicos de dimensionamento previstos na NBR 5410 [ver artigo “Os seis critérios de dimensionamento de circuitos de BT”]. São eles, resumidamente: seção mínima, capacidade de condução de corrente, queda de tensão, sobrecarga, curto-circuito e contatos indiretos. Nesse jogo, o do dimensionamento técnico, o objetivo é encontrar a menor seção possível de condutor que satisfaça os seis critérios — vale dizer, sem risco para a segurança, a qualidade e a durabilidade da instalação elétrica. No entanto, quanto menor a seção do condutor, maior a sua resistência elétrica e, conseqüentemente, maior a perda de energia ao longo do circuito. É nesse contexto que surge o critério de dimensionamento econômico, que examinaremos a seguir.",
+    "paginas_origem": [
+      11
+    ],
+    "tokens_estimados": 719,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 14,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Dimensionamento econômico de condutores",
+      "Seção econômica"
+    ],
+    "content": "### Seção econômica\n\nOs métodos de referência para se determinar a seção econômica de um condutor, para um dado circuito, seja ele de baixa ou de média tensão, constam da publicação IEC 60287-3-2 – Electric cables – Calculation of the current rating - Part 3: Sections on operating conditions – Section 2: Economic optimization of power cable size. A IEC 60287-3-2 apresenta duas alternativas de dimensionamento econômico: o método completo e o método simplificado. Trataremos apenas do método simplificado, por entendermos que ele se aplica, com aproximação suficiente, na maioria dos casos, com a vantagem de requerer uma menor quantidade de cálculos. As fórmulas envolvidas no método simplificado são as seguintes:\n\n(1)\n\nonde\n\n(2)4)\n\nsendo: SE = seção econômica, em mm2; IB = corrente de projeto do circuito, em ampères; e = custo da energia elétrica (ativa), em R$/kWh; G' = custo do cabo, em R$/mm2.km; H = número de horas/ano de funcionamento do circuito; N = número de anos considerado no cálculo; P1, P2 = preços dos cabos; S1, S2 = seções dos cabos. Naturalmente, para calcular G' é preciso consultar um fornecedor de cabos e obter seus preços. A tabela I traz, co-\n\n<!-- pagina-origem: 12 -->\n\nmo exemplo, preços de cabos unipolares, classe de tensão 0,6/1 kV, com isolação termofixa e cobertura de PVC. [Nota - Os preços não são atuais. Mas o importante não são os valores, em si, e sim o método]. A tabela I também indica os valores de G', calculados usando-se fórmula (4). A IEC 60287-3-2 recomenda que seja tirada a média dos valores de G' calculados para todas as combinações de seções. No exemplo da tabela I, o valor médio de G' é igual a R$ 117/mm2.km.",
+    "paginas_origem": [
+      12
+    ],
+    "tokens_estimados": 418,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 15,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Dimensionamento econômico de condutores",
+      "Exemplo de aplicação da fórmula para dimensionamento econômico"
+    ],
+    "content": "### Exemplo de aplicação da fórmula para dimensionamento econômico\n\nSuponhamos um circuito, alimentando um quadro de distribuição, constituído por três cabos unipolares com condutor de cobre, isolação termofixa e cobertura de PVC, dispostos em trifólio, em um leito para cabos. O circuito tem 100 m de comprimento, a temperatura ambiente é de 30°C e a corrente de projeto é de 320 A. Estima-se que esse circuito deverá operar 4000 horas por ano. Decidiu-se que a análise seria feita para um período de 10 anos. O valor da tarifa de energia elétrica considerado é de R$ 0,036/kWh. Qual seria, então, a seção econômica de cabo para esse circuito? As características do cabo (cobre, unipolar, isolação termofixa, cobertura de PVC) correspondem exatamente àquelas do exemplo dado na tabela I. Por isso, o valor médio de G' é o mesmo já citado, isto é, G'= R$ 117/mm2.km. Assim, temos:\n\nde (2):\n\nde (3):\n\ne, finalmente, de (1):\n\nNeste caso, adota-se a seção padronizada mais próxima — 150 mm2, como mostra a tabela I. E qual seria a seção de cabo, para o circuito-exemplo, seguindo-se apenas os critérios técnicos, de acordo com a NBR 5410? Vamos considerar aqui, por razões práticas, apenas o critério da capacidade de condução de corrente, supondo os demais automaticamente atendidos (algo perfeitamente plausível, dado o próprio exemplo). Ora, para se determinar a seção de um cabo pelo critério da capacidade de condução de corrente (Iz), a NBR 5410 oferece quatro tabelas (31 a 34). O exemplo dado — três cabos unipolares com isolação termofixa, disposição em trifólio, instalados em leito, temperatura ambiente de 30°C — nos conduz diretamente à coluna 5 da tabela 34. Como a corrente de projeto IB do nosso exemplo é dada e igual a 320 A, a menor seção de condutor que, no endereço indicado (tabela 34, coluna 5), proporciona uma Iz igual ou superior a IB é a de 95 mm2. O valor de Iz aí indicado é, exatamente, de 328 A. Portanto, e recapitulando, o dimensionamento técnico resulta em uma seção de 95 mm2, com uma Iz de 328 A. Temos, agora, as duas seções: a o dimensionamento “apenas” técnico (95 mm2) e a do dimensionamento econômico, que nos apontou uma seção de 150 mm2. Uma análise econômica que revele qual delas representa realmente o melhor investimento (e não apenas o menor custo inicial, de aquisição, que seria obviamente favorável ao cabo de 95 mm2) deve levar em conta o custo total dessas opções, ao longo da vida do cabo. Isso significa lembrar, mais uma vez, que além do custo inicial, de compra e de instalação, um cabo acarreta custos “operacionais” inevitáveis, que são as perdas de energia inerentes às suas características e à sua missão. Afinal, todo cabo dissipa energia, por efeito Joule. E alguém paga essa energia. Portanto, estamos falando de\n\nCe = I2. R. n. H. e (5)",
+    "paginas_origem": [],
+    "tokens_estimados": 700,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 16,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Dimensionamento econômico de condutores",
+      "Exemplo de aplicação da fórmula para dimensionamento econômico"
+    ],
+    "content": "onde: Ce = custo da energia perdida (dissipada) no cabo, em R$/ano; I = corrente que percorre o condutor, em ampères; R = resistência elétrica do condutor, em ohms; n = número de condutores do circuito; H = número de horas de funcionamento do circuito por ano; e = o mesmo e já visto anteriormente, isto é, tarifa de energia elétrica ativa (R$/kWh). O nosso exemplo já inclui todos os ingredientes da expressão, com uma única exceção: a resistência elétrica do condutor. Vamos a ela, pois.\n\n<!-- pagina-origem: 13 -->\n\nA resistência elétrica oferecida por um material condutor à passagem da corrente elétrica varia com a temperatura, como se sabe. Assim, em que temperatura irão operar os dois cabos? O gráfico da figura 1 nos dá essa informação. O gráfico indica a temperatura de trabalho do condutor em função da corrente a ele aplicada. A corrente, no caso, é na verdade a relação: n = IB/Iz\n\nTemos IB. Temos a Iz do cabo de 95 mm2. Falta a Iz do cabo de 150 mm2. A mesma coluna 5 da tabela 34 da NBR 5410 nos dá, para a seção de 150 mm2, Iz = 444 A. [En passant, note-se que há um equívoco na ilustração da norma referente à coluna em questão. Ao invés de cabos unipolares, o desenho indica cabos bipolares. O mesmo acontece na tabela 33]. Esses valores de Iz resultam, conseqüentemente, em n = 320/328 = 0,98 para o cabo de 95 mm2; e n = 320/444 = 0,72 para o cabo de 150 mm2. Voltando à figura 1, agora com n às mãos, verifica-se que o condutor de 95 mm2irá operar a uma temperatura de aproximadamente 90°C. Enquanto a temperatura do condutor de 150 mm2será de 70°C. Nessa altura, é hora de introduzirmos as tabelas II e III, que permitem determinar a resistência dos condutores sabendo-se a temperatura em que irão trabalhar. Uma é indissociável da outra. A primeira (tabela II) fornece os valores de resistência para diferentes seções de condutores, mas todos referidos a 20°C. Cabe então à tabela III completar a tarefa, informando os fatores de correção que devem ser aplicados aos valores de resistência fornecidos pela tabela II, em função da temperatura real de funcionamento do condutor. Assim, temos: cabo de 95 mm2: - – resistência elétrica a 20°C (tabela II): 0,193 Ω/km; – fator de correção (tabela III) para 90°C: 1,275 Lembrando que o comprimento do circuito é de 0,1 km, vem R95 = 0,193 × 1,275 × 0,1 = 0,0246 Ω; cabo de 150 mm2: - – resistência elétrica a 20°C (tabela II): 0,124 Ω/km; – fator de correção (tabela III) para 70°C: 1,197 Logo, R150 = 0,124 × 1,197 × 0,1 = 0,0148 Ω. Agora, completados os ingredientes da expressão (5), podemos determinar o custo da energia perdida anualmente em cada cabo:\n\n![Figura vetorial da página 13](figura-vetorial-p13-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Temperatura de trabalho em função da corrente aplicada a um condutor\n\n<!-- pagina-origem: 14 -->\n\nCe = I2. R. n. H. e\n\nCe95 = 3202× 0,0246 × 3 × 4000 × 0,036 × 10-3= R$ 1088,00\n\nCe150 = 3202× 0,0148 × 3 × 4000 × 0,036 × 10-3= R$ 655,00",
+    "paginas_origem": [
+      13,
+      14
+    ],
+    "tokens_estimados": 761,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 17,
+    "heading_path": [
+      "Dimensionamento de circuitos",
+      "Dimensionamento econômico de condutores",
+      "Exemplo de aplicação da fórmula para dimensionamento econômico"
+    ],
+    "content": "Calculado o montante gasto com as perdas anuais de energia, qual o passo seguinte? Evidentemente, não podemos confrontar de forma direta esse custo, que distribui-se ao longo da vida da instalação, com o custo de aquisição e instalação, que acontece no início da obra Para um confronto correto, é necessário incluir nessa operação o custo do dinheiro. Para tanto, devemos recorrer ao conceito de valor presente (VP), que mostra como os pagamentos futuros da energia, efetuados durante a vida da instalação, podem ser expressos em valores equivalentes no início do projeto. Convertendo os valores futuros em valores presentes, é possível então somá-los aos custos iniciais de aquisição e instalação, isto é, fazer\n\nCt = Cci + VP\n\nonde Ct representa os custos totais e Cci os custos iniciais de aquisição e instalação do cabo. O valor presente (VP) é dado por:\n\n(6), VP = Ce × Q\n\ncom\n\ne sendo r, por sua vez,\n\ne onde Ce é o mesmo já apresentado, ou seja, o desembolso anual devido às perdas de energia (R$); N é o número de anos de funcionamento do circuito (período de análise considerado); e i é a taxa de juros ao ano (%).\n\nPortanto, vejamos a que custos totais conduz cada uma das opções do nosso exemplo:\n\n1) Cabo dimensionado pelo critério técnico (95 mm2): custo inicial de aquisição e instalação: - Cci = 3 × 100 m × R$ 11,21/m (conforme tabela IV) Cci = R$ 3363,00; custo anual de perda de energia: Ce = R$ 1088,00, período de análise considerado: - N = 10 anos, taxa de juros ao ano: i = 6%; cálculo do valor presente do custo da perda de energia: -\n\nVP = 1088,00 × 7,36 = R$ 8008,00.\n\ncusto total da opção 95 mm2: - Ct = R$ 3363,00 + R$ 8008,00 Ct = R$ 11.371,00.\n\n2) Cabo dimensionado pelo critério econômico (150 mm2): custo inicial de aquisição e instalação: - Cci = 3 × 100 m × R$ 17,47/m (tabela IV) Cci = R$ 5241,00, custo anual de perda de energia: Ce = R$ 655,00, com o mesmo período de análise e mesma taxa de juros, o valor presente do custo da perda de energia será: VP = 655,00 × 7,36 = R$ 4821,00 custo total da opção 150 mm2: - Ct = R$ 5241,00 + R$ 4821,00 Ct = R$ 10.062,00.\n\nPortanto, verifica-se que a seção do cabo determinada pelo critério econômico traz maiores benefícios — se a análise considerar, como demonstrado, não apenas os custos iniciais, imediatos, mas os custos totais incorridos, num prazo mais compatível com a vida útil da instalação. E a vida útil estimada de uma instalação elétrica “normal” é da ordem de 25 a 30 anos. O período de retorno do investimento, no caso do exemplo, pode ser determinado como segue: diferença entre os custos iniciais pelos critérios técnico e econômico: R$ 5241 – R$ 3363 = R$ 1878; diferença entre os custos de perda de energia dos dois critérios (valor presente): R$ 8008 – R$ 4821 = R$ 3187 em 10 anos, ou seja, R$ 318,7 por ano. período de retorno do investimento: - R$ 1878/R$ 318,7 = 5,9 anos.",
+    "paginas_origem": [],
+    "tokens_estimados": 719,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  }
+]

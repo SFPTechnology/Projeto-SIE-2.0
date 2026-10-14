@@ -1,0 +1,31 @@
+schema_version: "1.0"
+date: "2026-06-21"
+query: "Análise do Prompt_Verificacao_Incongruencias_NBR5410_EDP_v2_complementado.md"
+slug: "auditoria-prompt-nbr5410-edp-sp"
+
+coverage_gate:
+  score: 78
+  verdict: APPROVE
+  waves_executed: 3
+
+citation_gate:
+  verified_ratio: 0.93
+  unsupported_count: 0
+  verdict: APPROVE
+
+findings:
+  inconsistencias_internas: 10
+  lacunas_normativas: 4
+  casos_de_teste_verificados: 5
+  casos_corretos: 5
+
+severity_breakdown:
+  critica: 0
+  alta: 2   # I-02 (queda bifásica), I-07 (condutor PE)
+  media: 5  # I-01, I-03, I-04, I-06, I-08, I-09
+  baixa: 3  # I-05, I-10, L-03, L-04
+
+quick_wins_count: 4
+
+veredicto: "apto para uso como framework de auditoria, com ressalvas documentadas"
+confiabilidade_aparente: "alta"

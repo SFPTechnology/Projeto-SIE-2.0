@@ -1,0 +1,38 @@
+schema: pipeline-state.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+final_state: completed
+phases:
+- id: P00-foundation
+  name: Foundation — read sources + inventory
+  status: completed
+- id: P01-clone-players
+  name: Clone players to ../bench/
+  status: completed
+- id: P02-inventories
+  name: Build inventories
+  status: completed
+- id: P03-matrix-scoring
+  name: Build matrix + scoring
+  status: completed
+- id: P04-scenario
+  name: Scenario scorecards + segmented
+  status: completed
+- id: P05-gap-analysis
+  name: Bidirectional gap analysis
+  status: completed
+- id: P06-deep-dives
+  name: Deep dives + license risk
+  status: completed
+- id: P07-contracts
+  name: Contracts + architecture
+  status: completed
+- id: P08-reports
+  name: Reports + ADR + roadmap + risk
+  status: completed
+- id: P09-gold-yamls
+  name: Gold Contract YAMLs (16)
+  status: completed
+- id: P10-observatory
+  name: Observatory dash + manifest + finalization
+  status: completed

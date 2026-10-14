@@ -1,0 +1,46 @@
+sdc_execution:
+  source_artifact: docs/PLANO-REESTRUTURACAO-AUTO-OTIMIZACAO-S-QUEDA-TENSAO.md
+  orchestration_workflow: docs/workflows/WORKFLOW-SDC-AUTO-OTIMIZACAO-S-QUEDA-TENSAO-YOLO.md
+  story_scope: single_successor_story
+  provisional_story_id: AUTO-OTI-1.3
+  story_id: AUTO-OTI-1.3
+  story_file: docs/stories/story-AUTO-OTI-1.3-aplicar-secao-auto-otimizada-no-mod-qt.md
+  execution_mode: yolo
+  permissions_mode: auto
+  interaction_policy: never_prompt
+  on_missing_input: block_and_log
+  max_po_iterations: 3
+  max_qa_iterations: 5
+
+  base_branch: master
+  target_branch: master
+  remote_repository: https://github.com/SFPTechnology/Projeto-SIE.git
+  deploy_environment: local-dry-run
+  deploy_runbook: docs/workflows/PLANO-DEPLOY-COMPLETO-2026-07-18.md
+
+  remote_operations_authorized: false
+  pull_request_authorized: false
+  merge_authorized: false
+  release_authorized: false
+  deploy_authorized: false
+  rollback_authorized: true
+  migrations_authorized: false
+  destructive_migrations_authorized: false
+
+  required_decisions:
+    persistence_and_concurrency: approved
+    batch_confirmation_semantics: approved
+    cli_api_entrypoint_and_schemas: approved
+
+  protected_contracts:
+    - RetornoMODQT
+    - ValidarMODQTSchema
+    - RetornoMODQTSchema
+    - POST /api/v1/modulos/mod-qt/validar
+
+  safety_profile: local_only_until_devops_authorization
+  required_quality_gates:
+    - npm run lint
+    - npm run typecheck
+    - npm test
+    - npm run build

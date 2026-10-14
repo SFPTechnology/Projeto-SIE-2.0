@@ -1,0 +1,187 @@
+# Visual Template Schema — Slides Creator Squad
+# Mission: MSN-2026-SLIDES-NARRATIVE-DESIGN (DEV-2026-003)
+# Created: 2026-05-17
+# Version: 1.0.0
+#
+# Contract for visual templates (charts, diagrams, infographics). Inspired
+# directly by ppt-master charts_index.json which catalogs 71 chart types
+# with contrastive "Pick for / Skip if" summaries.
+#
+# A visual template is selected by select-chart-type or similar at runtime
+# based on data shape + narrative intent.
+
+meta:
+  schema_version: "1.0.0"
+  schema_kind: "visual-template"
+  consumer_tasks:
+    - "tasks/select-chart-type.md (selects best chart per data shape)"
+    - "tasks/compose-grid-layout.md (places visual within grid)"
+  inspired_by_bench: "/Users/alan/Code/bench/ppt-master/skills/ppt-master/templates/charts/charts_index.json"
+
+# ─────────────────────────────────────────────────────
+# VISUAL TEMPLATE SCHEMA
+# ─────────────────────────────────────────────────────
+visual_template:
+  required: [id, name, kind, summary, data_shape_required, slots, render_modes]
+  fields:
+
+    id:
+      type: string
+      pattern: "^[a-z][a-z0-9-]+[a-z0-9]$"
+      example: "bar-chart"
+
+    name:
+      type: string
+      max_length: 60
+      example: "Bar Chart (single-series, vertical)"
+
+    version:
+      type: string
+      default: "1.0.0"
+
+    kind:
+      type: enum
+      values:
+        - chart          # quantitative comparison
+        - diagram        # structural/conceptual (flow, hierarchy, relationship)
+        - infographic    # mixed visual+text storytelling unit
+        - timeline       # temporal
+        - matrix         # 2-axis classification
+        - icon_array     # quantity via icons
+        - quote_card     # rhetorical
+        - kpi_block      # single big number + context
+
+    summary:
+      type: object
+      required: true
+      fields:
+        pick_for:
+          type: string
+          max_length: 240
+          description: "Concrete data shape + scale + narrative intent"
+          example: "Single-series category value comparison, 3-8 categories. Audience needs to compare absolute values quickly."
+        skip_if:
+          type: string
+          max_length: 240
+          description: "When to use alternative visual_template"
+          example: ">12 long-label items (use horizontal-bar-chart). Multi-series (use grouped-bar-chart). Time series (use line-chart). Composition (use stacked-bar OR pie)."
+      pattern_inspired_by: "ppt-master charts_index.json"
+
+    data_shape_required:
+      type: object
+      required: true
+      description: "Shape of data this visual needs"
+      fields:
+        dimensions:
+          type: list
+          description: "Required data dimensions"
+          item_schema:
+            name: string
+            type: "enum (categorical, ordinal, numerical, temporal, geographical)"
+            cardinality_range: "object {min, max} OR null"
+        series_count:
+          type: object
+          fields:
+            min: integer
+            max: integer
+        examples_of_fit:
+          type: list
+          item_type: string
+          example: ["Receita por trimestre", "Vendas por regiao", "NPS por segmento"]
+
+    narrative_use:
+      type: list
+      description: "Narrative functions this visual commonly supports"
+      item_enum_ref: "data/slide-function-map.schema.yaml#entries[].function"
+      example: [proof, contrast, mechanism_step]
+
+    slots:
+      type: list
+      required: true
+      description: "Slots specific to this visual"
+      item_schema:
+        name: string
+        type: enum  # data | label | annotation | source | legend | axis
+        required: boolean
+        max_items: "integer OR null"
+
+    render_modes:
+      type: list
+      required: true
+      min_items: 1
+      description: "Which output renderers can produce this visual"
+      item_schema:
+        renderer:
+          enum: [tsx_consumer_app, html_standalone, pptx_native, svg, png_static]
+        notes: string
+        complexity:
+          enum: [simple, moderate, complex]
+
+    constraints:
+      type: object
+      required: true
+      fields:
+        max_data_points:
+          type: integer
+          description: "Above this, visual breaks readability"
+        max_chars_per_label:
+          type: integer
+          default: 24
+        contrast_requirement:
+          type: enum
+          values: [WCAG_AA, WCAG_AAA]
+        color_palette_requirement:
+          type: enum
+          values: [single_hue, dual_hue, sequential, diverging, categorical_distinct]
+
+    failure_modes:
+      type: list
+      item_schema:
+        mode: string
+        symptom: string
+        prevention: string
+      example:
+        - mode: "Too many categories"
+          symptom: "Bars become unreadable strips"
+          prevention: "Cap at 8 categories. Above, use horizontal-bar OR aggregate small categories into 'Outros'."
+
+    sample_data:
+      type: object
+      required: true
+      description: "Inline sample data filling slots"
+
+    accessibility:
+      type: object
+      required: true
+      fields:
+        screen_reader_label_required: boolean
+        color_alone_not_sufficient: boolean
+        provides_data_table_alternative: boolean
+
+    source_provenance:
+      type: object
+      required: true
+      fields:
+        inspired_by:
+          type: list
+          item_type: string
+        bench_ref:
+          type: list
+          item_type: string
+        author: string
+        date_created: "YYYY-MM-DD"
+
+# ─────────────────────────────────────────────────────
+# VALIDATION RULES
+# ─────────────────────────────────────────────────────
+validation_rules:
+  - rule: "id matches filename"
+    severity: blocking
+  - rule: "summary.pick_for AND summary.skip_if both non-empty"
+    severity: blocking
+  - rule: "data_shape_required.dimensions non-empty"
+    severity: blocking
+  - rule: "render_modes >= 1"
+    severity: blocking
+  - rule: "constraints.max_data_points respects readability heuristic per kind"
+    severity: high

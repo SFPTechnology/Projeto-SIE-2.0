@@ -1,0 +1,344 @@
+# Semantic Classification Rules for Content-Architect
+# SSOT for slide content classification -> visual_type -> engine routing.
+# Consumed by: content-architect (classification), visual-scout (engine routing).
+# Created by: Story 2.1 (EPIC-SC-V2-001, Sprint 2)
+# Dependencies: visual-engines.yaml (Story 1.1), deck-manifest.json v1.1.0 (Story 1.5)
+
+semantic_classification:
+  version: "1.0.0"
+  created_at: "2026-03-20"
+  epic: EPIC-SC-V2-001
+  story: "2.1"
+
+  # ---------------------------------------------------------------------------
+  # CONTENT TYPES (12)
+  # Semantic categories for slide content. Determined by LLM during
+  # batch classification. Each type has signal keywords that help the LLM
+  # identify the correct classification.
+  # ---------------------------------------------------------------------------
+  content_types:
+    - id: process
+      label: "Process / Workflow"
+      description: "Sequential steps, workflows, pipelines, procedures, how-to flows."
+      signal_keywords: ["step", "flow", "pipeline", "procedure", "sequence", "workflow", "phase", "stage", "input", "output"]
+      default_visual_type: flowchart
+      default_engine: d2
+
+    - id: hierarchy
+      label: "Hierarchy / Structure"
+      description: "Organizational charts, taxonomies, nested structures, parent-child relationships."
+      signal_keywords: ["org chart", "structure", "levels", "parent", "child", "tree", "taxonomy", "department", "report to", "nested"]
+      default_visual_type: tree
+      default_engine: d2
+
+    - id: comparison
+      label: "Comparison / Versus"
+      description: "Side-by-side comparisons, pros/cons, feature matrices, before/after."
+      signal_keywords: ["vs", "versus", "compare", "difference", "pros", "cons", "before", "after", "advantage", "disadvantage", "alternative"]
+      default_visual_type: table
+      default_engine: mermaid
+
+    - id: cycle
+      label: "Cycle / Loop"
+      description: "Recurring processes, feedback loops, iterative cycles, circular flows."
+      signal_keywords: ["cycle", "loop", "iterate", "repeat", "continuous", "feedback", "circular", "recurring", "sprint", "rotation"]
+      default_visual_type: cycle_chart
+      default_engine: d2
+
+    - id: data
+      label: "Data / Metrics"
+      description: "Quantitative data, statistics, charts, KPIs, percentages, measurements."
+      signal_keywords: ["data", "metric", "percentage", "growth", "revenue", "chart", "graph", "KPI", "statistic", "number", "trend", "increase", "decrease"]
+      default_visual_type: bar_chart
+      default_engine: plotly
+
+    - id: concept
+      label: "Concept / Abstract Idea"
+      description: "Abstract concepts, mental models, metaphors, big ideas that benefit from illustration."
+      signal_keywords: ["concept", "idea", "model", "framework", "paradigm", "principle", "theory", "approach", "strategy", "vision", "imagine"]
+      default_visual_type: metaphor
+      default_engine: gpt_image
+
+    - id: cause_effect
+      label: "Cause & Effect"
+      description: "Causal relationships, impact chains, root cause analysis, consequence maps."
+      signal_keywords: ["cause", "effect", "impact", "result", "consequence", "because", "leads to", "root cause", "trigger", "outcome"]
+      default_visual_type: flowchart
+      default_engine: d2
+
+    - id: timeline
+      label: "Timeline / Chronology"
+      description: "Historical sequences, roadmaps, milestones, project timelines, evolution."
+      signal_keywords: ["timeline", "milestone", "roadmap", "date", "year", "quarter", "history", "evolution", "schedule", "deadline", "phase"]
+      default_visual_type: timeline
+      default_engine: mermaid
+
+    - id: system
+      label: "System / Architecture"
+      description: "System architectures, component diagrams, infrastructure, integrations, tech stacks."
+      signal_keywords: ["system", "architecture", "component", "integration", "API", "service", "infrastructure", "stack", "module", "layer", "database"]
+      default_visual_type: architecture
+      default_engine: d2
+
+    - id: definition
+      label: "Definition / Explanation"
+      description: "Definitions, glossary terms, explanatory text. Usually text-only, no visual needed."
+      signal_keywords: ["definition", "means", "refers to", "is defined as", "glossary", "term", "explain", "clarify", "what is"]
+      default_visual_type: icon_card
+      default_engine: none
+
+    - id: quote
+      label: "Quote / Testimonial"
+      description: "Quotes, testimonials, citations, attributions. Visual is optional."
+      signal_keywords: ["quote", "said", "according to", "testimonial", "feedback", "review", "endorsement", "citation"]
+      default_visual_type: none
+      default_engine: none
+
+    - id: demo
+      label: "Demo / Screenshot"
+      description: "Product demos, screenshots, UI walkthroughs, live examples. Visual comes from product, not generated."
+      signal_keywords: ["demo", "screenshot", "walkthrough", "example", "preview", "prototype", "mockup", "interface", "UI", "screen"]
+      default_visual_type: none
+      default_engine: none
+
+  # ---------------------------------------------------------------------------
+  # VISUAL TYPES (12)
+  # Concrete visual output types mapped from content_type.
+  # Each visual_type describes WHAT to render; the engine describes HOW.
+  # ---------------------------------------------------------------------------
+  visual_types:
+    - id: flowchart
+      label: "Flowchart"
+      description: "Directed graph showing sequential or branching steps."
+      supported_engines: [d2, mermaid]
+      output_format: svg
+
+    - id: tree
+      label: "Tree Diagram"
+      description: "Hierarchical tree with parent-child nodes."
+      supported_engines: [d2, mermaid]
+      output_format: svg
+
+    - id: table
+      label: "Comparison Table"
+      description: "Structured table or matrix for side-by-side comparison."
+      supported_engines: [mermaid, d2]
+      output_format: svg
+
+    - id: venn
+      label: "Venn Diagram"
+      description: "Overlapping circles showing set relationships."
+      supported_engines: [gpt_image, ideogram]
+      output_format: png
+
+    - id: cycle_chart
+      label: "Cycle Chart"
+      description: "Circular diagram showing iterative or recurring process."
+      supported_engines: [d2, mermaid]
+      output_format: svg
+
+    - id: bar_chart
+      label: "Bar / Line / Pie Chart"
+      description: "Data visualization chart using Plotly."
+      supported_engines: [plotly]
+      output_format: svg
+
+    - id: metaphor
+      label: "Metaphor Illustration"
+      description: "AI-generated illustration representing an abstract concept visually."
+      supported_engines: [gpt_image, ideogram, recraft]
+      output_format: png
+
+    - id: timeline
+      label: "Timeline"
+      description: "Horizontal or vertical timeline with milestones."
+      supported_engines: [mermaid, d2]
+      output_format: svg
+
+    - id: architecture
+      label: "Architecture Diagram"
+      description: "System architecture with components, connections, and layers."
+      supported_engines: [d2, mermaid]
+      output_format: svg
+
+    - id: icon_card
+      label: "Icon Card"
+      description: "Simple icon with label. Minimal visual for definitions."
+      supported_engines: [recraft]
+      output_format: svg
+
+    - id: infographic
+      label: "Infographic"
+      description: "Rich visual combining icons, text, and data in a single composition."
+      supported_engines: [gpt_image, ideogram, recraft]
+      output_format: png
+
+    - id: none
+      label: "No Visual"
+      description: "No visual generation needed. Slide is text-only or uses existing assets."
+      supported_engines: []
+      output_format: null
+
+  # ---------------------------------------------------------------------------
+  # ENGINE AUTO-SELECTION RULES
+  # Maps content_type -> visual_type -> engine.
+  # Used by content-architect during classification to populate visual_strategy.
+  # Aligns with routing_table in visual-engines.yaml.
+  # ---------------------------------------------------------------------------
+  engine_rules:
+    # Diagram engines (free, deterministic)
+    - content_types: [process, hierarchy, cycle, cause_effect, system]
+      engine: d2
+      rationale: "D2 excels at structured diagrams with deterministic layout. Free via Kroki."
+
+    - content_types: [comparison, timeline]
+      engine: mermaid
+      rationale: "Mermaid has native support for Gantt/timeline and simpler syntax for comparisons."
+
+    # AI image engines (paid, non-deterministic)
+    - content_types: [concept]
+      engine: gpt_image
+      rationale: "GPT Image has best instruction-following for abstract concept illustrations."
+
+    # Data visualization (free, deterministic)
+    - content_types: [data]
+      engine: plotly
+      rationale: "Plotly gives data-accurate, deterministic charts. Free local library."
+
+    # No visual (text-only slides)
+    - content_types: [definition, quote, demo]
+      engine: none
+      rationale: "These content types are text-heavy or use existing assets. Don't force visual generation."
+
+  # ---------------------------------------------------------------------------
+  # VISUAL TYPE SELECTION RULES
+  # Maps content_type -> visual_type for the visual_strategy field.
+  # ---------------------------------------------------------------------------
+  visual_type_rules:
+    process: flowchart
+    hierarchy: tree
+    comparison: table
+    cycle: cycle_chart
+    data: bar_chart
+    concept: metaphor
+    cause_effect: flowchart
+    timeline: timeline
+    system: architecture
+    definition: icon_card
+    quote: none
+    demo: none
+
+  # ---------------------------------------------------------------------------
+  # COMPLEXITY ESTIMATION
+  # Heuristics for estimating visual complexity per slide.
+  # Used to populate visual_strategy.complexity and visual_strategy.estimated_elements.
+  # ---------------------------------------------------------------------------
+  complexity_heuristics:
+    low:
+      max_bullets: 3
+      max_data_points: 4
+      max_build_steps: 3
+      description: "Simple visual with few elements. Quick to render."
+    medium:
+      max_bullets: 6
+      max_data_points: 8
+      max_build_steps: 6
+      description: "Moderate visual with several elements. Standard render time."
+    high:
+      max_bullets: 999
+      max_data_points: 999
+      max_build_steps: 999
+      description: "Complex visual with many elements. May need simplification."
+
+  # ---------------------------------------------------------------------------
+  # BATCH CLASSIFICATION PROMPT TEMPLATE
+  # Single LLM call classifies ALL slides in a deck.
+  # Input: array of slide summaries. Output: JSON array of classifications.
+  # ---------------------------------------------------------------------------
+  batch_classification_prompt:
+    system_message: |
+      You are a visual classification expert for presentation slides.
+      Your job is to analyze slide content and determine:
+      1. The semantic content_type (what kind of information is being presented)
+      2. The visual_type (what kind of visual would best represent it)
+      3. The rendering engine (which tool should generate the visual)
+      4. The complexity (how complex the visual will be)
+      5. The estimated number of visual elements
+
+      RULES:
+      - Do NOT force visuals on every slide. Some slides are better as text-only.
+      - Quotes, definitions, and demos should typically get engine: "none".
+      - TITLE and CLOSING slides should get engine: "none" unless they have specific visual content.
+      - Prefer free engines (d2, mermaid, plotly) over paid engines (gpt_image, ideogram, recraft) when both are viable.
+      - If a slide has data_points or metrics, prefer "data" content_type with plotly engine.
+      - If a slide describes a process with steps, prefer "process" content_type with d2 engine.
+
+    user_message_template: |
+      Classify each slide below. Return a JSON array with one object per slide.
+
+      VALID content_types: process, hierarchy, comparison, cycle, data, concept, cause_effect, timeline, system, definition, quote, demo
+      VALID visual_types: flowchart, tree, table, venn, cycle_chart, bar_chart, metaphor, timeline, architecture, icon_card, infographic, none
+      VALID engines: d2, mermaid, gpt_image, recraft, plotly, ideogram, none
+      VALID complexity: low, medium, high
+
+      ENGINE SELECTION RULES:
+      - process/hierarchy/cycle/cause_effect/system -> d2
+      - comparison/timeline -> mermaid
+      - concept -> gpt_image
+      - data -> plotly
+      - definition/quote/demo -> none
+
+      SLIDES:
+      {{slides_json}}
+
+      Return ONLY a JSON array. Each element:
+      {
+        "slide_id": "slide-XX",
+        "content_type": "...",
+        "visual_type": "...",
+        "engine": "...",
+        "complexity": "low|medium|high",
+        "estimated_elements": <number>,
+        "rationale": "One sentence explaining why this classification"
+      }
+
+    input_format: |
+      Each slide in {{slides_json}} is provided as:
+      {
+        "slide_id": "slide-XX",
+        "slide_type": "CONTENT",
+        "intent": "Brief description of the slide purpose",
+        "payload_summary": "Key content: headline, bullets count, metrics count, data_points count"
+      }
+
+    output_validation:
+      - "Response must be valid JSON array"
+      - "Each element must have all 6 fields"
+      - "content_type must be one of the 12 valid types"
+      - "visual_type must be one of the 12 valid types"
+      - "engine must be one of the 7 valid values (6 engines + none)"
+      - "complexity must be low, medium, or high"
+      - "estimated_elements must be a positive integer or 0"
+
+  # ---------------------------------------------------------------------------
+  # NONE-ENGINE RULES
+  # When and why engine = "none" is appropriate.
+  # ---------------------------------------------------------------------------
+  none_engine_rules:
+    always_none:
+      - "Slides with content_type: definition (text-only by nature)"
+      - "Slides with content_type: quote (text-only by nature)"
+      - "Slides with content_type: demo (uses existing screenshots/assets)"
+      - "TITLE slides (unless they have specific illustrative content)"
+      - "CLOSING slides (call-to-action, no diagram needed)"
+
+    consider_none:
+      - "Slides with fewer than 2 bullets and no metrics/data_points"
+      - "Slides that are content_variant=quote"
+      - "Slides where the intent is purely textual (greeting, transition, thank you)"
+
+    never_none:
+      - "Slides with 3+ build_steps (process or cycle)"
+      - "Slides with data_points array (data visualization)"
+      - "Slides with comparison payload (comparison table)"
+      - "Slides with explicit image_requests (already requesting visual)"

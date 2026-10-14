@@ -1,0 +1,116 @@
+# Slide Template — Hook Opening
+# Schema ref: templates/schemas/slide-template.schema.yaml
+# Pilot status: MSN-2026-SLIDES-NARRATIVE-DESIGN DEV-2026-003 (1 de 3 pilots)
+
+id: "hook-opening"
+name: "Hook Opening (capa de impacto)"
+version: "1.0.0"
+
+function: cover
+alternative_functions: [reframe, tension_amplify]
+
+summary:
+  pick_for: >-
+    Slide de abertura (s01) OU slide-charneira que precisa ANCORAR atencao em UMA promessa.
+    Funciona quando ha 1 governing thought forte que define o restante do deck.
+  skip_if: >-
+    Slide intermediario (use proof-stack ou mechanism-step). Quando nao ha governing thought claro
+    (volte para tasks/distill-governing-thought). Quando audiencia precisa de contexto antes da promessa
+    (use tension-amplify slide template).
+
+slots:
+  - name: action_title
+    type: text
+    role: primary
+    required: true
+    max_chars: 90
+    token_ref: "--slide-title-xl"
+    position_hint: center-left
+  - name: subtitle
+    type: text
+    role: supporting
+    required: false
+    max_chars: 120
+    token_ref: "--slide-title-md"
+    position_hint: center-left
+  - name: speaker_block
+    type: group
+    role: metadata
+    required: false
+    max_items: 3
+    position_hint: bottom-left
+  - name: visual_anchor
+    type: image
+    role: supporting
+    required: false
+    position_hint: right-half
+  - name: motif_block
+    type: decoration
+    role: decoration
+    required: false
+    position_hint: top-or-side
+
+constraints:
+  density_target: minimal
+  max_visual_elements: 3
+  max_text_chars_total: 220
+  grid_columns_required: 12
+  viewing_distance_min: medium
+  accessibility_min: WCAG_AAA  # cover slide eh memoria — contraste alto
+
+visual_pattern:
+  layout_family: hero
+  motif_hints:
+    - "Bloco de cor solido cobrindo 30-50% do canvas (motif Primeiro Servico v3)"
+    - "Tipografia black/extrabold protagonista"
+    - "Visual anchor opcional do lado oposto ao titulo"
+    - "Espaco branco respiratorio no restante"
+
+qa_gates_emphasis:
+  - {dimension: governing_thought_strength, emphasis: critical}
+  - {dimension: action_title_rhetoric, emphasis: critical}
+  - {dimension: contrast, emphasis: critical}
+  - {dimension: hierarchy, emphasis: critical}
+  - {dimension: density, emphasis: high}
+
+failure_modes:
+  - mode: "Title que descreve em vez de prometer"
+    symptom: "Action title eh nominal ('Apresentacao sobre X')"
+    prevention: "Title DEVE ser executive_strong: claim + magnitude + implicacao"
+  - mode: "Cover poluido"
+    symptom: ">3 elementos visuais OR texto secundario competindo com title"
+    prevention: "max 3 visual elements + 1 title + 1 subtitle"
+  - mode: "Motif ausente"
+    symptom: "Cover sem bloco de cor / decoracao ancoradora — vira slide vazio"
+    prevention: "motif_block presente OR visual_anchor presente OR ambos. Minimum 1."
+
+selected_template_reason_schema:
+  function_match: "cover OR reframe OR tension_amplify (specify which)"
+  density_fit: "minimal density justifica este template OR escolheu outro"
+  alternative_considered: "ex: hero-quote vs hero-data — escolhi hook-opening porque governing thought eh declarativo, nao quote"
+
+sample_content:
+  slots_filled:
+    action_title: "78% dos microempreendedores nunca tentaram IA — abrindo oportunidade de R$ 200M ate 2026"
+    subtitle: "Como construir seu primeiro servico de IA em 14 dias"
+    speaker_block:
+      - "Alan Nicolas"
+      - "Knowledge Architect"
+      - "@oalanicolas"
+    motif_block: "Bloco lime 35% canvas, cantos quadrados, alinhado a esquerda"
+  notes: "Exemplo derivado do case-study Primeiro Servico de IA v3. Title carrega claim+magnitude+implicacao."
+
+compatible_with:
+  deck_templates: [webinar-sales-perfect-webinar, executive-pitch, tactical-masterclass, board-update]
+  themes: [editorial-pentagram, demo-day-yc, consulting-mckinsey, workshop-friendly]
+
+source_provenance:
+  inspired_by:
+    - "Russell Brunson — The Big Domino (1 governing promise opens everything)"
+    - "Y Combinator demo day cover slides"
+    - "Pentagram editorial covers"
+  bench_ref:
+    - "/Users/alan/Code/bench/ppt-master/skills/ppt-master/templates/layouts/google_style/01_cover.svg"
+    - "/Users/alan/Code/bench/presenton/servers/nextjs/app/presentation-templates/neo-modern/ (hero patterns)"
+  author: "slides-creator squad — MSN-2026-SLIDES-NARRATIVE-DESIGN"
+  date_created: "2026-05-17"

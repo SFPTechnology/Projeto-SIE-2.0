@@ -1,0 +1,314 @@
+asset_resolution:
+  id: slides-creator-asset-resolution
+  version: 1.3.0
+  updated_at: 2026-03-20
+  updated_by: "Story 1.3 (EPIC-SC-V2-001)"
+  source_of_truth:
+    canonical_sources:
+      - path: docs/projects/slides-creator-prd.md
+        status: implemented
+      - path: docs/projects/slides-creator-prd.md
+        status: partial
+      - path: squads/slides-creator/data/SOP-SLIDES-001.md
+        status: implemented
+      - path: squads/slides-creator/data/SOP-SLIDES-003.md
+        status: implemented
+      - path: squads/slides-creator/data/visual-engines.yaml
+        status: implemented
+        added_by: "Story 1.1"
+
+  # ---------------------------------------------------------------------------
+  # FALLBACK CHAIN (v2 — with "generate" branch)
+  # ---------------------------------------------------------------------------
+  # Story 1.1 adds the ai_generation step with full routing to VisualEngine
+  # strategy pattern. When visual_strategy.engine != "none", the flow can
+  # skip steps 1-3 and go directly to ai_generation.
+  # ---------------------------------------------------------------------------
+  fallback_chain:
+    - id: briefing_assets
+      order: 1
+      description: Assets explicit in the briefing, brand package, or source bundle
+      success_status: resolved
+
+    - id: reference_extraction
+      order: 2
+      description: Assets extracted from PPTX, screenshots, or reference decks
+      success_status: resolved
+
+    - id: contextual_search
+      order: 3
+      description: Web/provider search using narrative keywords plus brand context
+      success_status: resolved
+      failure_status: blocked
+
+    - id: ai_generation
+      order: 4
+      description: >
+        AI-generated visual via VisualEngine strategy pattern. Routes to the
+        appropriate engine (D2, Mermaid, GPT Image, Recraft, Plotly, Ideogram)
+        based on visual_strategy.engine from deck-manifest. Falls through the
+        engine's fallback_chain on failure before reaching degraded_placeholder.
+      success_status: generated
+      failure_status: blocked
+      feature_flag: ENABLE_VISUAL_GENERATION
+      # --- Story 1.1: Generate branch operational config ---
+      generate_config:
+        routing_source: "visual-engines.yaml -> routing_table"
+        engine_selection: "routing_table[visual_strategy.content_type].primary_engine"
+        skip_search_when: "visual_strategy.engine != 'none'"
+        skip_search_description: >
+          When the content-architect has assigned a visual_strategy with a
+          specific engine, skip briefing_assets, reference_extraction, and
+          contextual_search -- go directly to ai_generation. This avoids
+          wasting time searching for images when we know we want a diagram.
+        budget_check: "estimateCost(spec) <= remaining_deck_budget"
+        fallback_within_generate:
+          description: >
+            Within ai_generation, each engine has its own fallback_engines list.
+            visual-scout tries the primary engine, then iterates fallback_engines.
+            Only after ALL engine fallbacks are exhausted does the chain fall
+            through to degraded_placeholder.
+          max_engine_attempts: 3
+          example: "d2 fails -> mermaid fallback -> if mermaid fails -> contextual_search -> degraded_placeholder"
+
+    - id: degraded_placeholder
+      order: 5
+      description: Explicit placeholder when no valid candidate survives the gate
+      success_status: degraded
+
+  # ---------------------------------------------------------------------------
+  # STATUS MODEL (v2 — adds "generated")
+  # ---------------------------------------------------------------------------
+  status_model:
+    resolved:
+      meaning: Final candidate from search or briefing approved for render
+    generated:
+      meaning: Visual created by VisualEngine via ai_generation step
+      added_by: "Story 1.1"
+      provenance_detail_values:
+        - d2_kroki
+        - d2_cli
+        - mermaid_kroki
+        - gpt_image_1_5
+        - recraft_v4
+        - plotly_local
+        - ideogram_v3
+    degraded:
+      meaning: Placeholder or lower-tier fallback accepted temporarily with explicit visibility
+    blocked:
+      meaning: Candidate rejected and not eligible for final asset_ref output
+
+  final_output_policy:
+    allowed_final_statuses:
+      - resolved
+      - generated
+      - degraded
+    blocked_candidates_must_stay_in: rejected_candidates
+    blocked_final_asset_ref_forbidden: true
+
+  validation_rules:
+    min_width_px: 1920
+    preferred_format: webp
+    max_file_size_kb: 500
+    screenshot_requires_frame: true
+    light_background_requires_border: true
+    dark_background_can_full_bleed: true
+    # --- Story 1.1: additional validation for generated assets ---
+    generated_asset_rules:
+      svg_must_be_valid: true
+      png_min_dpi: 300
+      brand_compliance_required: true
+      max_generation_time_ms: 30000
+
+  blocked_patterns:
+    - generic_stock_photo
+    - visible_watermark
+    - pixelated_or_stretched
+    - screenshot_without_context
+    - argument_mismatch
+
+  decision_table:
+    - when: explicit briefing asset exists and passes validation
+      then: use briefing_assets
+    - when: reference deck contains a reusable screenshot or visual
+      then: use reference_extraction
+    - when: visual_strategy.engine != "none" and ENABLE_VISUAL_GENERATION is true
+      then: skip to ai_generation (bypass contextual_search)
+      added_by: "Story 1.1"
+    - when: no local/reference asset fits but contextual search returns a valid candidate
+      then: use contextual_search
+    - when: search returns only invalid or irrelevant candidates and generation is allowed
+      then: try ai_generation
+    - when: no candidate survives validation
+      then: emit degraded_placeholder and require checkpoint for hero/opening/closing visuals
+
+  degraded_policy:
+    explicit_required: true
+    human_checkpoint_required_for:
+      - hero_image
+      - opening_slide_visual
+      - closing_slide_visual
+
+  asset_ref_schema:
+    required_fields:
+      - slide_id
+      - requested_role
+      - keywords
+      - selected_source
+      - asset_ref
+      - rejected_candidates
+    asset_ref_fields:
+      - uri
+      - provenance
+      - provenance_detail    # Story 1.1: "d2_kroki", "mermaid_kroki", "gpt_image_1_5", etc.
+      - fallback_status
+      - generation_cost_usd  # Story 1.1: cost tracking per asset
+      - cache_key            # Story 1.1: SHA-256 reference to cache entry
+      - notes
+      - human_checkpoint_required
+      - human_checkpoint_recorded
+      - human_checkpoint_note
+    contract_rules:
+      - "asset_ref.fallback_status must be resolved, generated, or degraded in final output"
+      - "Blocked candidates stay only in rejected_candidates with an explicit reason"
+      - "Degraded hero/opening/closing visuals require human_checkpoint_required=true"
+      - "Degraded hero/opening/closing visuals require human_checkpoint_recorded=true before render"
+      - "Generated assets MUST have provenance_detail set to engine identifier"
+      - "Generated assets MUST have generation_cost_usd populated (0.0000 for free engines)"
+      - "Generated assets MUST have cache_key populated (SHA-256 of engine_id + content + tokens_hash)"
+
+  # ---------------------------------------------------------------------------
+  # CONCURRENCY CONFIG (Story 1.3 — operational limits for generate branch)
+  # ---------------------------------------------------------------------------
+  concurrency_config:
+    source: "visual-engines.yaml -> orchestration"
+    global_limit: 3
+    description: >
+      Maximum number of simultaneous API calls during asset resolution.
+      visual-scout uses Promise.allSettled to batch up to 3 concurrent
+      render() calls. Recraft is further limited to 2 concurrent.
+    engine_overrides:
+      recraft: 2
+    implementation_notes: >
+      When resolving assets for a deck with N slides, visual-scout groups
+      slides into batches of concurrency_limit size. Each batch resolves
+      in parallel (Promise.allSettled). Recraft calls within a batch are
+      further throttled to concurrency_overrides.recraft.
+
+  # ---------------------------------------------------------------------------
+  # GENERATE OPERATIONAL FLOW (Story 1.3 — step-by-step generate branch)
+  # ---------------------------------------------------------------------------
+  generate_operational_flow:
+    description: >
+      Detailed operational flow for the ai_generation step in the fallback
+      chain. This is the step-by-step procedure visual-scout follows when
+      executing the generate branch.
+    trigger: "visual_strategy.engine != 'none' AND ENABLE_VISUAL_GENERATION == true"
+    steps:
+      - step: 1
+        name: budget_pre_check
+        description: >
+          Call estimateCost(spec) on the target engine. Compare against
+          remaining deck budget (from cost-tracking.yaml pre_call_check).
+          If estimate > remaining: skip paid engine, try free fallback.
+        reference: "cost-tracking.yaml -> pre_call_check.algorithm"
+        on_budget_exceeded: "skip to next engine in fallback chain (free engines only)"
+
+      - step: 2
+        name: cache_lookup
+        description: >
+          Compute cache_key = SHA256(engine_id + diagram_code|prompt + design_tokens_hash).
+          Check cache directory for existing entry. If hit: return cached
+          VisualOutput with cache_hit=true, cost_usd=0, skip steps 3-7.
+        reference: "visual-engines.yaml -> orchestration.cache_integration"
+        on_cache_hit: "return cached output, set generation_cost_usd=0.0000"
+
+      - step: 3
+        name: engine_selection
+        description: >
+          Lookup routing_table by spec.content_type. Get primary_engine.
+          Verify: supports() returns true, API key present in env.
+          If primary fails pre-checks: iterate fallback_chain.
+        reference: "visual-engines.yaml -> routing_table + engine_selection_algorithm"
+
+      - step: 4
+        name: token_transform
+        description: >
+          Load design tokens for the brand via Token Transformer.
+          Convert to engine-specific format (CLI flag, init directive, prompt suffix).
+          Inject into VisualSpec before render().
+        reference: "token-transformer.yaml -> transform_pipeline"
+
+      - step: 5
+        name: render
+        description: >
+          Call engine.render(spec). Await response within engine timeout.
+          On success: receive VisualOutput with metadata.
+          On failure: receive VisualError with fallback_suggestion.
+        timeout: "engine-specific (5s-30s, see visual-engines.yaml)"
+        on_success: "proceed to step 6"
+        on_failure: "try fallback_suggestion engine (max 2 fallbacks)"
+
+      - step: 6
+        name: brand_validation
+        description: >
+          Call engine.validateBrandCompliance(output, tokens).
+          For diagram engines: apply color substitution if needed.
+          For AI image engines: log violation, suggest re-generation.
+        reference: "token-transformer.yaml -> brand_validator"
+        on_violation_diagram: "substitute colors, re-render"
+        on_violation_ai: "log warning, accept if delta-E < 10"
+
+      - step: 7
+        name: cost_logging
+        description: >
+          Record actual cost in cost-log.json. Update deck accumulated cost.
+          Update monthly accumulated cost. Set generation_cost_usd in asset_ref.
+        reference: "cost-tracking.yaml -> cost_log"
+
+      - step: 8
+        name: emit_asset_ref
+        description: >
+          Compose final asset_ref with all required fields:
+          uri, provenance, provenance_detail (engine identifier),
+          fallback_status=generated, generation_cost_usd, cache_key, notes.
+        output_status: "generated"
+
+    fallback_exhaustion:
+      description: >
+        When all engine fallbacks within ai_generation are exhausted
+        (primary + max 2 fallbacks), the flow falls through to the next
+        step in the asset-resolution fallback chain:
+        1. If contextual_search has not been tried: try contextual_search
+        2. If contextual_search also fails: emit degraded_placeholder
+      max_engine_attempts: 3
+      after_exhaustion: "fall_through_to_next_chain_step"
+
+  # ---------------------------------------------------------------------------
+  # CROSS REFERENCES (Story 1.3 — how Stories 1.1-1.4 connect)
+  # ---------------------------------------------------------------------------
+  cross_references:
+    visual_engines:
+      file: "squads/slides-creator/data/visual-engines.yaml"
+      provides:
+        - "engines_registry (6 engines with render_config)"
+        - "routing_table (content_type -> engine mapping)"
+        - "orchestration (concurrency, budget caps, cache, fallback strategy)"
+      consumed_by: "generate_operational_flow steps 1-5"
+
+    token_transformer:
+      file: "squads/slides-creator/data/token-transformer.yaml"
+      provides:
+        - "converters (D2, Mermaid, AI Image, Plotly)"
+        - "brand_validator (SVG hex, PNG delta-E, WCAG contrast)"
+        - "transform_pipeline (load -> normalize -> convert -> inject -> validate)"
+      consumed_by: "generate_operational_flow steps 4, 6"
+
+    cost_tracking:
+      file: "squads/slides-creator/data/cost-tracking.yaml"
+      provides:
+        - "budget_caps (per_deck, per_video, monthly)"
+        - "pre_call_check (estimateCost guard)"
+        - "cost_log schema (append-only JSON log)"
+        - "circuit_breaker (max 3 retries per call)"
+      consumed_by: "generate_operational_flow steps 1, 7"

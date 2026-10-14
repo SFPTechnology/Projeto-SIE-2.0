@@ -1,0 +1,30 @@
+handoff_id: MOD-QT-3-01-sm-to-po
+from_agent: "@sm"
+to_agent: "@po"
+story_id: "MOD-QT-3-01"
+story_file: "docs/stories/story-MOD-QT-3-01-modulo-integral-permanente.md"
+source_manifest: "docs/workflows/MANIFEST-SDC-MOD-QT-INTEGRAL-PERMANENTE-YOLO.yaml"
+source_workflow: "docs/workflows/WORKFLOW-MOD-QT-INTEGRAL-PERMANENTE-DEV.md"
+status: "Draft"
+next_command: "*validate-story-draft docs/stories/story-MOD-QT-3-01-modulo-integral-permanente.md"
+created_at: "2026-07-30T00:00:00-03:00"
+consumed: true
+consumed_by: "@po"
+consumed_at: "2026-07-30T00:00:00-03:00"
+summary:
+  objective: "Validar story de hardening operacional para tornar MOD-QT visivel, navegavel, testavel e publicavel de forma permanente."
+  scope:
+    - "Exposicao do modulo no fluxo de projeto"
+    - "Deep link SPA sem 404"
+    - "Build/deploy canonico contendo MOD-QT"
+    - "Testes de regressao e gates tecnicos"
+  out_of_scope:
+    - "Alterar formulas ou contratos publicos de MOD-QT"
+    - "Executar push, PR, merge, release ou deploy por @dev"
+validation_summary:
+  sm_checklist_result: "READY_FOR_PO_VALIDATION"
+  known_gap: "Arquivos de arquitetura/framework configurados em core-config.yaml nao existem nos paths esperados; story usa artefatos reais disponiveis como fonte operacional."
+required_next_handoffs:
+  - ".aiox/handoffs/MOD-QT-3-01-po-to-dev.yaml"
+  - ".aiox/handoffs/MOD-QT-3-01-dev-to-qa.yaml"
+  - ".aiox/handoffs/MOD-QT-3-01-qa-to-devops.yaml"

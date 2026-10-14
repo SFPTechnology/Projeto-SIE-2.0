@@ -1,0 +1,130 @@
+# Slide Template — CTA Concrete
+# Schema ref: templates/schemas/slide-template.schema.yaml
+# Pilot status: MSN-2026-SLIDES-NARRATIVE-DESIGN DEV-2026-003 (3 de 3 pilots)
+
+id: "cta-concrete"
+name: "CTA Concrete (decisao binaria com 3 razoes para agir agora)"
+version: "1.0.0"
+
+function: cta_concrete
+alternative_functions: [close, artifact_reveal, synthesis]
+
+summary:
+  pick_for: >-
+    Slide de fechamento que pede UMA decisao binaria (SIM/NAO sobre acao especifica). Funciona
+    quando audiencia ja recebeu valor e precisa de proximo passo claro. Inclui scarcity OR bonus
+    OR 3 razoes para agir agora.
+  skip_if: >-
+    Quando deck eh apenas informativo (use synthesis ou quiet-pause). Quando decisao eh
+    multi-opcao (use decision-matrix em Mission futura). Quando CTA eh assincrono via email
+    (use email-cta template em Mission futura). Quando deck eh educacional puro (terminar com
+    synthesis, nao CTA).
+
+slots:
+  - name: action_title
+    type: text
+    role: primary
+    required: true
+    max_chars: 60
+    token_ref: "--slide-title-xl"
+    position_hint: top-center-or-left
+  - name: cta_concrete_action
+    type: text
+    role: primary
+    required: true
+    max_chars: 50
+    token_ref: "--slide-title-md"
+    position_hint: center-prominent
+  - name: cta_link_or_qr
+    type: group
+    role: primary
+    required: true
+    max_items: 2
+    position_hint: center-secondary
+  - name: reasons_to_act_now
+    type: list
+    role: supporting
+    required: false
+    max_items: 3
+    position_hint: bottom-stacked
+  - name: scarcity_or_bonus
+    type: text
+    role: supporting
+    required: false
+    max_chars: 80
+    position_hint: badge-corner
+
+constraints:
+  density_target: minimal
+  max_visual_elements: 3
+  max_text_chars_total: 240
+  grid_columns_required: 12
+  viewing_distance_min: medium
+  accessibility_min: WCAG_AAA  # CTA precisa ser ultra-legivel
+
+visual_pattern:
+  layout_family: hero
+  motif_hints:
+    - "CTA action em destaque visual maximo (cor de marca ou inverso)"
+    - "QR code OU link grande visivel a 5m de distancia"
+    - "Reasons to act em badges/chips menores no rodape"
+    - "Scarcity/bonus opcional em badge corner com cor de alerta"
+
+qa_gates_emphasis:
+  - {dimension: contrast, emphasis: critical}              # CTA ilegivel = vendas perdidas
+  - {dimension: hierarchy, emphasis: critical}              # action > razoes > scarcity
+  - {dimension: action_title_rhetoric, emphasis: critical}  # title nao pode ser passivo
+  - {dimension: density, emphasis: high}                    # minimal density: CTA respira
+  - {dimension: readability, emphasis: critical}            # text legivel a distance
+
+failure_modes:
+  - mode: "CTA generico"
+    symptom: "cta_concrete_action = 'comece agora' OR 'saiba mais'"
+    prevention: "Acao deve ser concreta: 'Reserve sua vaga em 24h via link X' OR 'Aprove proposta ate sexta'"
+  - mode: "QR/link ausente OR escondido"
+    symptom: "Slide tem texto pedindo acao mas nao tem onde clicar/escanear"
+    prevention: "cta_link_or_qr obrigatorio. Deve ocupar area minima de 200x200px (mobile-readable)"
+  - mode: "Densidade alta"
+    symptom: ">3 elementos competindo com CTA"
+    prevention: "max_visual_elements: 3. CTA respira ou perde forca."
+  - mode: "Sem urgencia"
+    symptom: "CTA sem scarcity/deadline/bonus"
+    prevention: "scarcity_or_bonus recomendado para CTA frio. Para CTA quente, reasons_to_act_now (3 razoes)"
+  - mode: "Multi-CTA"
+    symptom: "2+ CTAs competindo"
+    prevention: "UM CTA por slide. Multi-CTA dilui conversao. Se necessario, use synthesis antes."
+
+selected_template_reason_schema:
+  function_match: "cta_concrete (canonical) OR close/artifact_reveal/synthesis"
+  density_fit: "minimal — CTA precisa respirar"
+  alternative_considered: "ex: synthesis-recap rejected porque deck precisa de acao, nao recap"
+
+sample_content:
+  slots_filled:
+    action_title: "Sua primeira IA em 14 dias"
+    cta_concrete_action: "Reserve sua vaga: aiox.dev/primeiro-servico"
+    cta_link_or_qr:
+      - type: "QR Code"
+        target: "https://aiox.dev/primeiro-servico"
+      - type: "Short URL"
+        target: "aiox.dev/primeiro"
+    reasons_to_act_now:
+      - "20 vagas restantes (turma fecha sexta)"
+      - "Bonus: prompt-mestre validado (R$ 297) para quem entrar em 48h"
+      - "Garantia: 14 dias para entregar primeiro servico ou reembolso integral"
+    scarcity_or_bonus: "20 vagas | encerra sexta 23h59"
+  notes: "Exemplo derivado de webinar de venda. CTA binario (entrar OU nao entrar). 3 razoes incluem scarcity, bonus e garantia."
+
+compatible_with:
+  deck_templates: [webinar-sales-perfect-webinar, executive-pitch, sales-call-live-close, proposal-sow]
+  themes: [editorial-pentagram, demo-day-yc, aiox-house]
+
+source_provenance:
+  inspired_by:
+    - "Russell Brunson — Stack and Close (Perfect Webinar)"
+    - "Dan Kennedy — Magnetic Marketing direct response CTAs"
+    - "Y Combinator demo day closing slides"
+  bench_ref:
+    - "/Users/alan/Code/bench/ppt-master/skills/ppt-master/templates/layouts/pitch-deck/ (closing slide patterns)"
+  author: "slides-creator squad — MSN-2026-SLIDES-NARRATIVE-DESIGN"
+  date_created: "2026-05-17"

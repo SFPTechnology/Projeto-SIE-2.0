@@ -1,0 +1,254 @@
+workflow:
+  id: story-development-cycle-t2-sem-motor-qa-remediation-yolo-resume
+  name: "SDC T2 SEM-MOTOR - Retomada final após bloqueio CodeRabbit (YOLO)"
+  version: "1.0.0"
+  type: brownfield
+  scope: fullstack
+  orchestrator: aiox-master
+  description: >-
+    Retoma a execução bloqueada de T2-SEM-MOTOR-1 depois de testes, lint e
+    typecheck verdes. Resolve somente o bloqueio de CodeRabbit em runner
+    compatível, executa os cinco gates finais na mesma revisão, conclui Task 6,
+    move a story para InReview e solicita a revalidação do QA.
+
+  execution:
+    mode: yolo
+    interaction_policy: never_prompt
+    continuation_policy: automatic_on_success
+    on_missing_input: block_and_log
+    on_ambiguous_scope: block_and_log
+    max_coderabbit_fix_iterations: 2
+    max_gate_iterations: 2
+    local_only: true
+    remote_operations: forbidden
+    state_persistence: true
+    audit_logging: true
+
+  resume:
+    source_workflow: story-development-cycle-t2-sem-motor-qa-remediation-yolo
+    source_state: .aiox/story-development-cycle-t2-sem-motor-qa-remediation-yolo-2026-08-06-state.yaml
+    required_source_status: blocked
+    required_blocker: CODERABBIT-WSL-AVX2
+    skip_completed_steps:
+      - preflight_and_scope_lock
+      - remediate_tests_and_lint
+    preserve_source_evidence: true
+
+  target:
+    story_id: T2-SEM-MOTOR-1
+    story_file: docs/stories/story-T2-SEM-MOTOR-1-ausencia-motor-tipado.md
+    source_gate: docs/qa/gates/T2-SEM-MOTOR-1-ausencia-motor-tipado.yml
+    coderabbit_report: docs/qa/coderabbit-reports/T2-SEM-MOTOR-1-coderabbit-wsl-2026-08-06.md
+    subapp: sistema-de-instala-es-el-tricas-sie-main
+    required_final_status: InReview
+
+  authority:
+    orchestration: aiox-master
+    local_runner_and_code_review: devops
+    code_and_gate_remediation: dev
+    story_status_and_dev_record: dev
+    qa_results_and_gate_verdict: qa
+    remote_operations: forbidden
+
+  prerequisites:
+    - id: compatible_coderabbit_runner
+      requirement: >-
+        Runner Linux/WSL com CPU compatível com o binário oficial CodeRabbit,
+        autenticação já disponível e capacidade de revisar o diff isolado.
+      validation: "coderabbit --version && coderabbit auth status"
+      failure: block_and_log
+    - id: isolated_t2_diff
+      requirement: >-
+        Diff T2 identificável por commit/worktree autorizado ou mecanismo oficial
+        equivalente; não revisar o worktree misto inteiro.
+      validation: "devops must record isolation method and file manifest"
+      failure: block_and_log
+
+  guardrails:
+    - "Não repetir testes, snapshots ou formatação já comprovados pelo estado fonte, salvo regressão detectada."
+    - "Não marcar CodeRabbit PASS sem execução real e contagem de severidades."
+    - "Não expor tokens, alterar autenticação ou usar binário não oficial/emulação."
+    - "Não executar commit, push, PR, merge, release, deploy ou migration."
+    - "Não alterar QA Results; somente qa pode escrever o veredito."
+    - "Não mover a story para InReview enquanto qualquer gate final estiver vermelho."
+    - "Preservar todo conteúdo preexistente fora do diff T2 autorizado."
+
+  quality_gates:
+    working_directory: sistema-de-instala-es-el-tricas-sie-main
+    policy: all_must_pass_in_same_revision
+    commands:
+      - id: lint
+        command: npm run lint
+        expected_exit_code: 0
+      - id: typecheck
+        command: npm run typecheck
+        expected_exit_code: 0
+      - id: test
+        command: npm test
+        expected_exit_code: 0
+      - id: build
+        command: npm run build
+        expected_exit_code: 0
+      - id: build_spa
+        command: npm run build:spa
+        expected_exit_code: 0
+
+  sequence:
+    - step: validate_resume_state
+      id: validate_resume_state
+      agent: aiox-master
+      action: >-
+        Validar o estado bloqueado anterior, os artefatos verdes e a disponibilidade
+        do runner compatível sem modificar story, código ou QA Results.
+      creates: resume_scope_report
+      outputs:
+        - source_state_verified
+        - inherited_green_evidence
+        - remaining_blockers
+        - resume_audit_id
+      notes: |
+        Confirme que o estado fonte está blocked exclusivamente por
+        CODERABBIT-WSL-AVX2, que a story ainda está InProgress e que a evidência
+        herdada registra npm test 1175/1175, typecheck PASS e lint PASS. Verifique
+        os pré-requisitos de runner e isolamento. Se qualquer pré-condição falhar,
+        retorne failed com block_and_log; não pergunte nem altere artefatos.
+
+    - step: verify_and_run_coderabbit
+      id: verify_and_run_coderabbit
+      agent: devops
+      requires: resume_scope_report
+      action: >-
+        Executar CodeRabbit real no runner compatível, sobre o diff T2 isolado,
+        e produzir relatório sanitizado de versão, autenticação e severidades.
+      creates: coderabbit_final_report
+      outputs:
+        - runner_fingerprint
+        - coderabbit_version
+        - authentication_status
+        - isolation_manifest
+        - review_exit_code
+        - critical_findings
+        - high_findings
+        - report_path
+      notes: |
+        Use somente o binário oficial e autenticação preexistente. Registre CPU/ISA,
+        versão, comando sanitizado, método de isolamento e exit code. Não revele
+        credenciais. O passo só retorna completed com exit code válido, relatório
+        gravado e zero CRITICAL aberto; ausência de runner compatível, auth ou
+        isolamento retorna failed/block_and_log.
+
+    - step: resolve_coderabbit_findings
+      id: resolve_coderabbit_findings
+      agent: dev
+      requires: coderabbit_final_report
+      action: >-
+        Corrigir findings CRITICAL do CodeRabbit dentro do diff T2 e revalidar os
+        testes afetados.
+      creates: coderabbit_resolution
+      outputs:
+        - critical_findings_resolved
+        - high_findings_documented
+        - changed_files
+        - focused_test_evidence
+      notes: |
+        Se não houver CRITICAL, produza no-op documentado. Se houver, faça no máximo
+        duas iterações de correção. HIGH segue document_only conforme a story, salvo
+        se quebrar gate obrigatório. Não modifique QA Results, não amplie escopo e
+        retorne failed se algum CRITICAL permanecer aberto.
+
+    - step: run_final_quality_gates
+      id: run_final_quality_gates
+      agent: dev
+      requires: coderabbit_resolution
+      action: >-
+        Executar lint, typecheck, test, build e build:spa na ordem declarada e
+        registrar evidência da mesma revisão.
+      creates: final_quality_gate_report
+      outputs:
+        - lint_result
+        - typecheck_result
+        - test_result
+        - build_result
+        - build_spa_result
+        - revision_fingerprint
+        - command_exit_codes
+        - duration_summary
+      notes: |
+        Execute os cinco comandos no subapp. Todos precisam terminar com exit code 0
+        na mesma revisão. Registre duração, saída resumida e fingerprint. Em caso de
+        falha, corrija somente a causa atribuível ao diff T2 e repita no máximo duas
+        vezes. Não declare completed com resultado parcial.
+
+    - step: complete_task_6_and_set_inreview
+      id: complete_task_6_and_set_inreview
+      agent: dev
+      requires: final_quality_gate_report
+      action: >-
+        Atualizar Task 6, Dev Agent Record, Completion Notes, Change Log e File List,
+        e mover a story para InReview.
+      creates: inreview_handoff
+      outputs:
+        - task_6_status
+        - story_status
+        - updated_sections
+        - final_file_list
+        - qa_request
+      notes: |
+        Só execute com CodeRabbit PASS e os cinco gates PASS/código 0. Marque apenas
+        itens comprovados, preserve QA Results e registre também a limitação do
+        catálogo (não reproduzido; nenhum timeout aumentado). Atualize o status YAML
+        e a seção Status da story para InReview. Não mova para Done.
+
+    - step: qa_revalidate_t2
+      id: qa_revalidate_t2
+      agent: qa
+      requires: inreview_handoff
+      action: >-
+        Revisar novamente a story InReview, confirmar a evidência final e emitir o
+        novo veredito QA no gate formal.
+      creates: qa_final_gate
+      outputs:
+        - gate_verdict
+        - quality_score
+        - residual_findings
+        - gate_file
+        - recommended_status
+      notes: |
+        Verifique diff isolado, testes injetados reprovados, CodeRabbit, cinco gates,
+        Task 6 e File List. Atualize exclusivamente QA Results e o arquivo de gate.
+        Emita PASS, CONCERNS ou FAIL com evidências. Nunca altere código nem mova a
+        story para Done.
+
+  handoff_prompts:
+    master_to_devops: >-
+      O estado fonte já tem testes/lint/typecheck verdes. Resolva somente runner,
+      autenticação existente e revisão CodeRabbit no diff T2 isolado.
+    devops_to_dev: >-
+      CodeRabbit executado com relatório sanitizado. Resolva apenas CRITICAL aberto
+      e preserve o isolamento da entrega.
+    dev_to_qa: >-
+      Os cinco gates finais passam e a story está InReview. Faça nova validação
+      independente e atualize somente os artefatos QA.
+
+  completion_criteria:
+    - "CodeRabbit executado em runner compatível, com zero CRITICAL e relatório sanitizado."
+    - "lint, typecheck, test, build e build:spa passam na mesma revisão."
+    - "Task 6 e registros da story estão completos."
+    - "Story está InReview, não Done."
+    - "QA Results e o gate foram atualizados por qa."
+
+  failure_policy:
+    behavior: block_and_log
+    never_claim_success_on_partial_evidence: true
+    preserve_source_state: true
+
+  audit:
+    created_at: "2026-08-06T02:40:00-03:00"
+    created_by: "aiox-master (Orion)"
+    requested_by: "User"
+    source_decision: ADAPT
+    adapted_from: story-development-cycle-t2-sem-motor-qa-remediation-yolo
+    ids_status: unavailable_bin_aiox_ids_js
+    rationale: >-
+      Workflow de retomada criado porque a execução original concluiu código,
+      testes e lint, mas foi bloqueada por incompatibilidade de ISA do CodeRabbit.

@@ -1,0 +1,81 @@
+{
+  "bench": {
+    "id": "submagic-vs-eddie-ai",
+    "type": "product",
+    "variant": "3-way",
+    "created_at": "2026-05-06",
+    "analyst": "spy/bench-analyst (backfilled)"
+  },
+  "subjects": [
+    {
+      "key": "submagic",
+      "name": "Submagic",
+      "category": "unknown"
+    },
+    {
+      "key": "eddie_ai",
+      "name": "Eddie Ai",
+      "category": "unknown"
+    },
+    {
+      "key": "signals",
+      "name": "Signals",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "D1",
+        "name": "Features (depth + breadth)",
+        "weight_pct": 17,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D2",
+        "name": "UX/Design",
+        "weight_pct": 17,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D3",
+        "name": "Pricing (value/cost)",
+        "weight_pct": 17,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D4",
+        "name": "Integration",
+        "weight_pct": 17,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D5",
+        "name": "Support",
+        "weight_pct": 17,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D6",
+        "name": "Market Fit",
+        "weight_pct": 17,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:10:52.691Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Legacy metadata.json preserved alongside; canonical version at metadata.canonical.json.",
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "benchmark": "astro-vs-payload",
+  "version": "1.0.0",
+  "comparison_type": "technology",
+  "subject_a": {
+    "name": "Astro",
+    "version": "6.2.2",
+    "release_date": "2026-05-04",
+    "category": "Static Site Generator + Server Islands + Content Collections",
+    "license": "MIT",
+    "github": "https://github.com/withastro/astro",
+    "docs": "https://docs.astro.build/",
+    "owner": "Cloudflare (acquired 2026-01-16)",
+    "stars": 58000,
+    "downloads_per_week": 1250000
+  },
+  "subject_b": {
+    "name": "Payload CMS",
+    "version": "3.84.1",
+    "release_date": "2026-04-23",
+    "category": "Headless CMS + Next.js-native Admin",
+    "license": "MIT",
+    "github": "https://github.com/payloadcms/payload",
+    "docs": "https://payloadcms.com/docs",
+    "owner": "Figma (acquired 2025-06)",
+    "stars": 40800,
+    "downloads_per_week": 150000
+  },
+  "context": {
+    "project": "Sinkra Hub (AIOX)",
+    "stack": "React 19 + Vite + TypeScript + Supabase Postgres + Vercel",
+    "businesses": 4,
+    "topology": "Hub-and-Spoke",
+    "team_profile": "mixed (dev + non-dev marketing across 4 businesses)",
+    "non_negotiables": [
+      "React fundamental",
+      "Self-hosting only (no SaaS-only CMS)",
+      "Zod schemas as contract",
+      "Multi-tenant 4 businesses",
+      "Real WYSIWYG for non-dev marketing",
+      "Institutional SEO"
+    ]
+  },
+  "methodology": {
+    "framework": "spy-bench-analyst v3.0",
+    "depth": "full",
+    "dimensions": 18,
+    "max_weight": 10,
+    "total_weight": 143,
+    "scoring_scale": "0-10 per dimension"
+  },
+  "date": "2026-05-04",
+  "analyst": "bench-analyst",
+  "artifacts": [
+    "metadata.json",
+    "inventory-astro.md",
+    "inventory-payload.md",
+    "comparison-matrix.md",
+    "scorecard.json",
+    "scorecard.md",
+    "gap-analysis.md",
+    "battle-card.md",
+    "deep/hybrid-strategy.md",
+    "deep/decision-tree.md",
+    "deep/risk-assessment.md",
+    "deep/cost-of-switching.md",
+    "executive-report.md"
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "slides-creator/qa-report",
+  "title": "QA Report Contract",
+  "description": "QA evaluation output produced by qa-inspector. Contains PPTEval-aligned dimension scores, killer items, presenter parity checks, and refinement routing.",
+  "version": "1.1.0",
+  "type": "object",
+  "required": [
+    "deck_id",
+    "evaluated_at",
+    "inputs",
+    "dimensions",
+    "composite_score",
+    "thresholds",
+    "verdict",
+    "next_target",
+    "killer_items"
+  ],
+  "properties": {
+    "deck_id": { "type": "string" },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "manifest": { "type": "string", "description": "Path to deck-manifest.json" },
+        "render_output": { "type": "string", "description": "Path pattern for slides/*.tsx" },
+        "thumbnails": { "type": "string", "description": "Path pattern for thumbnails/*.png" }
+      }
+    },
+    "dimensions": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "object",
+          "properties": {
+            "score": { "type": "number" },
+            "weight": { "type": "number", "description": "0.30 when education_mode=false (v1 default), 0.25 when education_mode=true." },
+            "criteria": {
+              "type": "object",
+              "properties": {
+                "factual_accuracy": { "type": "number" },
+                "topic_relevance": { "type": "number" },
+                "completeness": { "type": "number" },
+                "word_economy": { "type": "number" }
+              }
+            },
+            "findings": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "design": {
+          "type": "object",
+          "properties": {
+            "score": { "type": "number" },
+            "weight": { "type": "number", "description": "0.30 when education_mode=false (v1 default), 0.25 when education_mode=true." },
+            "criteria": {
+              "type": "object",
+              "properties": {
+                "visual_consistency": { "type": "number" },
+                "whitespace": { "type": "number" },
+                "typography_hierarchy": { "type": "number" },
+                "legibility": { "type": "number" },
+                "decoration_restraint": { "type": "number" }
+              }
+            },
+            "findings": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "coherence": {
+          "type": "object",
+          "properties": {
+            "score": { "type": "number" },
+            "weight": { "type": "number", "description": "0.20 in both modes (unchanged)." },
+            "criteria": {
+              "type": "object",
+              "properties": {
+                "narrative_flow": { "type": "number" },
+                "sequence_compliance": { "type": "number" },
+                "rhythm_variety": { "type": "number" },
+                "duration_balance": { "type": "number" }
+              }
+            },
+            "findings": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "gad": {
+          "type": "object",
+          "properties": {
+            "score": { "type": "number" },
+            "weight": { "type": "number" },
+            "criteria": {
+              "type": "object",
+              "properties": {
+                "element_distribution": { "type": "number" },
+                "alignment_consistency": { "type": "number" },
+                "density_balance": { "type": "number" },
+                "margin_compliance": { "type": "number" }
+              }
+            },
+            "findings": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "andragogy": {
+          "type": "object",
+          "description": "Andragogic validation dimension. Active only when briefing.education_mode=true. When inactive, omit or set active=false. Weight redistribution: content 0.25, design 0.25, coherence 0.20, gad 0.15, andragogy 0.15.",
+          "properties": {
+            "active": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether this dimension is active. true when briefing.education_mode=true."
+            },
+            "score": { "type": "number", "description": "Composite score for the andragogy dimension (0-10)." },
+            "weight": { "type": "number", "description": "0.15 when active (education_mode=true). 0 when inactive." },
+            "criteria": {
+              "type": "object",
+              "description": "10 sub-checks derived from andragogic-rules.yaml. Always-on checks (4) run regardless of education_mode. Education-only checks (6) run only when education_mode=true.",
+              "properties": {
+                "mayer_multimedia": { "type": "number", "description": "MAYER-01: Every slide has at least one visual element (always-on)." },
+                "mayer_segmentation": { "type": "number", "description": "MAYER-06: Word count within type-specific limits (always-on)." },
+                "mayer_contiguity": { "type": "number", "description": "MAYER-05: Text and visual elements are spatially adjacent (always-on)." },
+                "killer_k9": { "type": "number", "description": "K9: No slide exceeds absolute word limit (always-on, CRITICAL)." },
+                "kolb_completeness": { "type": "number", "description": "KOLB-01: All 4 Kolb phases present per module (education-only)." },
+                "dpc_ordering": { "type": "number", "description": "DPC-01: Declarative before Procedural before Conditional (education-only)." },
+                "dreyfus_calibration": { "type": "number", "description": "DREYFUS-01: Content calibrated to audience dreyfus_level (education-only)." },
+                "scaffolding_fade": { "type": "number", "description": "SCAFFOLD-01: Support level decreases progressively (education-only)." },
+                "interaction_frequency": { "type": "number", "description": "INTERACT-01: Max 5 consecutive passive slides (education-only)." },
+                "killer_k8": { "type": "number", "description": "K8: No jargon used without prior definition (education-only, CRITICAL)." }
+              }
+            },
+            "mayer_detail": {
+              "type": "object",
+              "description": "Detailed Mayer CTML compliance. Float 0-1 representing percentage of the 12 Mayer principles satisfied.",
+              "properties": {
+                "compliance_score": { "type": "number", "description": "Float 0-1: proportion of 12 Mayer principles met." },
+                "principles_met": { "type": "integer", "description": "Count of Mayer principles met (0-12)." },
+                "principles_total": { "type": "integer", "const": 12, "description": "Total Mayer principles (always 12)." },
+                "details": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "principle": { "type": "string", "description": "Mayer principle name." },
+                      "met": { "type": "boolean" },
+                      "notes": { "type": "string" }
+                    }
+                  },
+                  "description": "Per-principle breakdown of Mayer compliance."
+                }
+              }
+            },
+            "findings": { "type": "array", "items": { "type": "string" }, "description": "Andragogic evaluation findings and violations." }
+          }
+        }
+      }
+    },
+    "composite_score": {
+      "type": "number",
+      "description": "Weighted composite. v1 (education_mode=false): content*0.30 + design*0.30 + coherence*0.20 + gad*0.20. v1.1.0 (education_mode=true): content*0.25 + design*0.25 + coherence*0.20 + gad*0.15 + andragogy*0.15."
+    },
+    "thresholds": {
+      "type": "object",
+      "properties": {
+        "dimension_min": { "type": "number", "const": 7.0 },
+        "composite_min": { "type": "number", "const": 7.5 }
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["pass", "revise", "fail"],
+      "description": "pass: all clear. revise: score below threshold but fixable. fail: killer items or unfixable."
+    },
+    "next_target": {
+      "type": "string",
+      "enum": ["slide-chief", "content-architect", "design-renderer", "human_escalation"],
+      "description": "Where to route after this verdict."
+    },
+    "killer_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "description": "K1-K7 identifier" },
+          "rule": { "type": "string" },
+          "slide_id": { "type": "string" },
+          "owner": { "type": "string" },
+          "status": { "type": "string", "enum": ["pass", "fail"] }
+        }
+      },
+      "description": "Any fail here blocks release regardless of scores."
+    },
+    "slide_targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "slide_id": { "type": "string" },
+          "owner": { "type": "string", "enum": ["content-architect", "design-renderer"] },
+          "reasons": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "presenter_parity": {
+      "type": "object",
+      "properties": {
+        "preview_cards": { "type": "boolean" },
+        "fullscreen": { "type": "boolean" },
+        "keyboard_controls": { "type": "boolean" },
+        "slide_counter": { "type": "boolean" },
+        "progress_bar": { "type": "boolean" },
+        "body_scroll_lock": { "type": "boolean" }
+      }
+    },
+    "checklist_summary": {
+      "type": "object",
+      "properties": {
+        "contract_passed": { "type": "boolean" },
+        "accessibility_passed": { "type": "boolean" },
+        "sequence_passed": { "type": "boolean" },
+        "thumbnail_coverage_percent": { "type": "number" }
+      }
+    },
+    "refinement": {
+      "type": "object",
+      "properties": {
+        "iteration_count": { "type": "number" },
+        "route_target": { "type": "string" },
+        "rationale": { "type": "array", "items": { "type": "string" } },
+        "owner_groups": {
+          "type": "object",
+          "properties": {
+            "content_issues": { "type": "array", "items": { "type": "string" } },
+            "design_issues": { "type": "array", "items": { "type": "string" } },
+            "blockers": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "unresolved_risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "_example": {
+    "deck_id": "deck-aiox-pitch-001",
+    "evaluated_at": "2026-03-19T14:30:00Z",
+    "inputs": {
+      "manifest": "deck-manifest.json",
+      "render_output": "slides/*.tsx",
+      "thumbnails": "thumbnails/*.png"
+    },
+    "dimensions": {
+      "content": { "score": 8.2, "weight": 0.30, "criteria": { "factual_accuracy": 8.5, "topic_relevance": 9.0, "completeness": 7.5, "word_economy": 7.8 }, "findings": [] },
+      "design": { "score": 7.8, "weight": 0.30, "criteria": { "visual_consistency": 8.0, "whitespace": 7.5, "typography_hierarchy": 8.0, "legibility": 7.5, "decoration_restraint": 8.0 }, "findings": [] },
+      "coherence": { "score": 8.0, "weight": 0.20, "criteria": { "narrative_flow": 8.5, "sequence_compliance": 8.0, "rhythm_variety": 7.5, "duration_balance": 8.0 }, "findings": [] },
+      "gad": { "score": 7.5, "weight": 0.20, "criteria": { "element_distribution": 7.5, "alignment_consistency": 8.0, "density_balance": 7.0, "margin_compliance": 7.5 }, "findings": [] }
+    },
+    "composite_score": 7.93,
+    "thresholds": { "dimension_min": 7.0, "composite_min": 7.5 },
+    "verdict": "pass",
+    "next_target": "slide-chief",
+    "killer_items": [],
+    "slide_targets": [],
+    "presenter_parity": { "preview_cards": true, "fullscreen": true, "keyboard_controls": true, "slide_counter": true, "progress_bar": true, "body_scroll_lock": true },
+    "checklist_summary": { "contract_passed": true, "accessibility_passed": true, "sequence_passed": true, "thumbnail_coverage_percent": 100 },
+    "refinement": { "iteration_count": 0, "route_target": "slide-chief", "rationale": ["All dimensions clear. Zero killer items."], "owner_groups": { "content_issues": [], "design_issues": [], "blockers": [] } },
+    "unresolved_risks": []
+  }
+}

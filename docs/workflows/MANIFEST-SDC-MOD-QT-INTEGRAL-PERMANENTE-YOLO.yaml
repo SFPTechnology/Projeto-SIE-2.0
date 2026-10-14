@@ -1,0 +1,49 @@
+sdc_execution:
+  source_artifact: docs/workflows/WORKFLOW-MOD-QT-INTEGRAL-PERMANENTE-DEV.md
+  story_scope: single_story
+  execution_mode: yolo
+  permissions_mode: auto
+  interaction_policy: never_prompt
+  on_missing_input: block_and_log
+  target_branch: feature/mod-qt-integral-permanente
+  base_branch: master
+  deploy_environment: local-dry-run
+  deploy_runbook: docs/workflows/PLANO-DEPLOY-COMPLETO-2026-07-18.md
+  remote_repository: https://github.com/SFPTechnology/Projeto-SIE.git
+  remote_operations_authorized: true
+  pull_request_authorized: true
+  merge_authorized: true
+  release_authorized: true
+  deploy_authorized: true
+  rollback_authorized: true
+  migrations_authorized: false
+  destructive_migrations_authorized: false
+  max_qa_iterations: 5
+  max_po_iterations: 3
+
+  # Extra metadata consumed by humans/adapters. The current SDC runner ignores
+  # unknown fields, but they are kept here to make the workflow deterministic.
+  safety_profile: dry_run_only
+  story_id: MOD-QT-3-01
+  story_file: docs/stories/story-MOD-QT-3-01-modulo-integral-permanente.md
+  orchestration_workflow: docs/workflows/WORKFLOW-SDC-MOD-QT-INTEGRAL-PERMANENTE-YOLO.md
+  required_handoffs:
+    - .aiox/handoffs/MOD-QT-3-01-sm-to-po.yaml
+    - .aiox/handoffs/MOD-QT-3-01-po-to-dev.yaml
+    - .aiox/handoffs/MOD-QT-3-01-dev-to-qa.yaml
+    - .aiox/handoffs/MOD-QT-3-01-qa-to-devops.yaml
+  required_quality_gates:
+    - npm run lint
+    - npm run typecheck
+    - npm test
+    - npm run build
+    - npm run build:spa
+    - rg "queda-tensao" dist
+    - rg "Queda de tens" dist
+  module_acceptance:
+    route_ui: /projetos/$projetoId/queda-tensao
+    route_deep_link_example: /projetos/demo/queda-tensao
+    source_route_file: sistema-de-instala-es-el-tricas-sie-main/src/routes/projetos.$projetoId_.queda-tensao.tsx
+    project_hub_file: sistema-de-instala-es-el-tricas-sie-main/src/routes/projetos.$projetoId.tsx
+    ssr_route_tree: sistema-de-instala-es-el-tricas-sie-main/src/routeTree.gen.ts
+    spa_route_tree: sistema-de-instala-es-el-tricas-sie-main/src/routeTree.spa.ts

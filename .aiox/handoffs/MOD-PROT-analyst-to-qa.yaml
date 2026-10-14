@@ -1,0 +1,124 @@
+# Handoff — @analyst (Atlas) → @qa (Quinn)
+# Acionamento de QA gate inédito para o épico MOD-PROT.
+# Criado: 2026-08-08
+
+handoff:
+  from_agent: analyst
+  to_agent: qa
+  last_command: analise-consolidada-pendencias
+  status: READY
+  consumed: false
+
+next_action: >-
+  Executar QA gate das 5 stories MOD-PROT (Ready for Review). Gate inédito —
+  não existe gate anterior em docs/qa/gates/ para este épico.
+
+story_context:
+  epic: MOD-PROT — Dimensionamento de Disjuntores
+  prd: docs/prd/PRD-MOD-PROT-dimensionamento-disjuntores.md
+  adr: sistema-de-instala-es-el-tricas-sie-main/docs/architecture/mod-prot-contrato-integracao.md
+  branch_pai: master
+  branch_submodulo: feature/nbr5410-conformidade-closeout
+  stories:
+    - id: MOD-PROT-1
+      path: docs/stories/story-MOD-PROT-1-motor-normativo.md
+      titulo: Motor Normativo de Seleção de Disjuntor
+      status: Ready for Review
+      acs: 6
+    - id: MOD-PROT-2
+      path: docs/stories/story-MOD-PROT-2-overrides-persistencia.md
+      titulo: Overrides e Persistência
+      status: Ready for Review
+      acs: 6
+    - id: MOD-PROT-3
+      path: docs/stories/story-MOD-PROT-3-integracao-mod-dc-mod-sec.md
+      titulo: Integração MOD-DC / MOD-SEC
+      status: Ready for Review
+      acs: 5
+    - id: MOD-PROT-4
+      path: docs/stories/story-MOD-PROT-4-rota-api-ui.md
+      titulo: Rota API e UI
+      status: Ready for Review
+      acs: 5
+    - id: MOD-PROT-5
+      path: docs/stories/story-MOD-PROT-5-tutorial-rastreabilidade.md
+      titulo: Tutorial e Rastreabilidade
+      status: Ready for Review
+      acs: 5
+  total_acs: 27
+
+implementacao:
+  commits_locais_nao_publicados:
+    - sha: 9f1b9e8
+      msg: 'feat(mod-prot): implementa modulo de dimensionamento de disjuntores'
+      arquivos: 39
+      testes_incluidos: 8
+    - sha: f3f05a1
+      msg: 'docs(mod-prot): adiciona ADR de contrato de integracao do MOD-PROT'
+      arquivos: 1
+  modulo_novo: src/domain/dimensionamento-disjuntores/
+  migration: docs/supabase/0014_dimensionamento_disjuntores_overrides.sql
+  tutorial: docs/TUTORIAL-DIMENSIONAMENTO-DISJUNTORES.{md,html}
+
+autoridade_do_gate:
+  observacao: >-
+    O frontmatter das 5 stories declara quality_gate "@architect" com
+    quality_gate_tools [unit_test, contract_validation, api_review] — não "@qa".
+    CONFIRMAR antes de emitir veredito se o gate é do @qa ou se há delegação
+    ao @architect (AC6 da MOD-PROT-1 é contrato de não-regressão de assinatura
+    pública, tipicamente domínio do @architect).
+
+como_rodar:
+  cwd: sistema-de-instala-es-el-tricas-sie-main/
+  testes: npx vitest run
+  testes_modulo: npx vitest run src/domain/dimensionamento-disjuntores/
+  lint: npx eslint .
+  tipagem: npx tsc --noEmit
+  nota_bun: bun NÃO está no PATH da Bash tool — usar npx
+
+armadilhas:
+  - id: worktree_sujo
+    fato: >-
+      Submódulo com 221 entradas sujas, das quais 144 arquivos têm mudança REAL
+      de conteúdo (5276 insertions), de OUTRAS frentes.
+    acao: >-
+      NÃO interpretar como escopo MOD-PROT. NÃO limpar, NÃO commitar, NÃO stashar.
+      Avaliar apenas os arquivos listados em 9f1b9e8 e f3f05a1.
+  - id: autocrlf
+    fato: core.autocrlf=true gera ruído de EOL adicional além das mudanças reais.
+    acao: 'Verificar conteúdo com: git -c core.autocrlf=false diff --ignore-all-space -- <file>'
+  - id: pre_commit_tutorial
+    fato: >-
+      Hook .githooks/pre-commit roda docs:tutorial:check e bloqueia commit em
+      caso de drift de tutorial. O commit e08214a precedente usou --no-verify
+      por drift de OUTRAS sessões.
+    acao: 'Se for necessário commitar, esperar falha do hook por causa alheia ao MOD-PROT.'
+  - id: infra_untracked
+    fato: >-
+      .githooks/ e .github/ estão UNTRACKED no submódulo — o CI
+      docs-tutorial-check.yml nunca rodou e não existe para quem clonar.
+    acao: 'Registrar como achado de qualidade; correção é item separado (@devops).'
+  - id: migration_nao_aplicada
+    fato: 0014_dimensionamento_disjuntores_overrides.sql provavelmente não aplicada ao banco.
+    acao: Confirmar antes de aprovar ACs de persistência (MOD-PROT-2).
+
+bloqueios_ativos_no_projeto:
+  - id: github_auth_401
+    fato: >-
+      Token gh inválido (HTTP 401) desde 2026-08-05. git fetch e push falham nos
+      DOIS repos. Ver .aiox/handoffs/TECHDEBT-ND01-devops-push-BLOCKED-auth.yaml
+    impacto_no_gate: >-
+      NENHUM — o gate roda local. Mas o push dos commits MOD-PROT depende disso,
+      então o veredito do gate é pré-requisito e não pós-requisito do push.
+  - id: rls_aberto_producao
+    fato: >-
+      ND-01 — RLS aberto em produção; SQL de correção (0015) escrito e NÃO aplicado.
+    impacto_no_gate: >-
+      Relevante para security check do gate se MOD-PROT-2 criar tabela nova
+      (parametros/overrides) sem política RLS.
+
+criterio_de_saida:
+  - Veredito por story: PASS | CONCERNS | FAIL | WAIVED
+  - Gate files em docs/qa/gates/MOD-PROT-{1..5}-*.yml
+  - Se PASS → handoff qa-to-devops (push fica represado até auth voltar)
+  - Se FAIL → handoff qa-to-dev com feedback por AC

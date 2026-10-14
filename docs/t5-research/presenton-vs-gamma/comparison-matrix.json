@@ -1,0 +1,15 @@
+{
+  "equivalence": {
+    "score": 3,
+    "label": "parcial",
+    "summary": "Same core job, different operating model: open-source/self-hosted control vs polished SaaS workflow."
+  },
+  "rows": [
+    {"dimension": "AI creation", "presenton": "prompt/document generation", "gamma": "prompt/outline/import generation", "parity": 4},
+    {"dimension": "Ready visual quality", "presenton": "template-dependent", "gamma": "strong polished defaults", "parity": 3},
+    {"dimension": "Export", "presenton": "PPTX/PDF", "gamma": "PDF/PNG/PPTX/Google Slides path", "parity": 4},
+    {"dimension": "Privacy", "presenton": "self-hosted/local/Ollama", "gamma": "cloud SaaS", "parity": 1},
+    {"dimension": "Automation", "presenton": "API/MCP self-hosted", "gamma": "API/MCP/Zapier/Make/n8n", "parity": 4},
+    {"dimension": "Lock-in", "presenton": "low", "gamma": "medium-high", "parity": 2}
+  ]
+}

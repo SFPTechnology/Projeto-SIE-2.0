@@ -1,0 +1,53 @@
+{
+  "benchmark": {
+    "id": "hermes-agent-vs-claude-code",
+    "type": "codebase+product",
+    "date": "2026-04-04",
+    "analyst": "bench-analyst v3.0",
+    "depth": "full"
+  },
+  "subject_a": {
+    "name": "Hermes Agent",
+    "id": "hermes-agent",
+    "version": "0.7.0",
+    "repo": "https://github.com/NousResearch/hermes-agent",
+    "org": "Nous Research",
+    "license": "MIT",
+    "language": "Python 3.11+",
+    "loc": 169185,
+    "tools_count": 49,
+    "skills_count": 73,
+    "skill_categories": 26,
+    "optional_skill_packs": 14,
+    "platform_adapters": 15,
+    "execution_environments": 7,
+    "test_files": 400,
+    "stars": "22000+",
+    "dependencies_core": 14,
+    "tts_providers": 5,
+    "model_support": "200+ via OpenRouter"
+  },
+  "subject_b": {
+    "name": "Claude Code",
+    "id": "claude-code",
+    "version": "latest (2026-04)",
+    "repo": "https://github.com/anthropics/claude-code",
+    "org": "Anthropic",
+    "license": "Proprietary",
+    "language": "TypeScript",
+    "core_tools": 15,
+    "hook_event_types": 15,
+    "ide_integrations": 2,
+    "permission_modes": 5,
+    "platforms": 3,
+    "model_support": "Claude family only (Opus, Sonnet, Haiku)",
+    "context_window": "200K",
+    "swe_bench": "80.8%"
+  },
+  "sinkra_hub_coverage": {
+    "gaps_full": 4,
+    "gaps_partial": 4,
+    "gaps_none": 6,
+    "coverage_pct": 57
+  }
+}

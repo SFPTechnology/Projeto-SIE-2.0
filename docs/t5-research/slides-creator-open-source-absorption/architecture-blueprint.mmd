@@ -1,0 +1,16 @@
+flowchart TD
+  A[Inputs: prompt, docs, URL, YouTube] --> B[Intake Layer]
+  B --> C[Narrative Core]
+  C --> D[Planning Reflection]
+  D --> E[DeckSpec Layer]
+  E --> F[Native Slide IR]
+  F --> G[PPTX Renderer]
+  F --> H[PDF/Web Fallback]
+  G --> I[Editability QA]
+  H --> J[Visual QA]
+  I --> K[Release Gate]
+  J --> K
+  K --> L[PPTX/PDF/Web Delivery]
+  C --> M[Sources Ledger]
+  M --> I
+  M --> J

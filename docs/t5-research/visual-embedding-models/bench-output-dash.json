@@ -1,0 +1,847 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:10:52.768Z",
+  "source_files": [
+    "README.md",
+    "battle-card.md",
+    "comparison-matrix.md",
+    "executive-report.md",
+    "gap-analysis.md",
+    "inventory-clip.md",
+    "inventory-openclip.md",
+    "inventory-siglip.md",
+    "metadata.canonical.json",
+    "metadata.json",
+    "scorecard.md"
+  ],
+  "benchmark": {
+    "slug": "visual-embedding-models",
+    "title": "Visual Embedding Models — Bench Index",
+    "date": "2026-05-06",
+    "type": "universal-bench",
+    "variant": "4-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "siglip_siglip_2",
+      "name": "Siglip Siglip 2",
+      "category": "unknown"
+    },
+    {
+      "key": "openclip",
+      "name": "Openclip",
+      "category": "unknown"
+    },
+    {
+      "key": "clip_openai",
+      "name": "Clip Openai",
+      "category": "unknown"
+    },
+    {
+      "key": "siglip",
+      "name": "siglip",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "openclip",
+    "coverage": "structured",
+    "sources": 38,
+    "waves": 0,
+    "dimensions": 7
+  },
+  "matrix": {
+    "players": [
+      "siglip_siglip_2",
+      "openclip",
+      "clip_openai"
+    ],
+    "dimensions": [
+      {
+        "id": "D1",
+        "label": "Maturity",
+        "weight": 0
+      },
+      {
+        "id": "D2",
+        "label": "Ecosystem",
+        "weight": 0
+      },
+      {
+        "id": "D3",
+        "label": "DX (developer experience)",
+        "weight": 0
+      },
+      {
+        "id": "D4",
+        "label": "Performance (acurácia × latência)",
+        "weight": 0
+      },
+      {
+        "id": "D5",
+        "label": "Scalability (escolha de tamanhos)",
+        "weight": 0
+      },
+      {
+        "id": "D6",
+        "label": "Community (atualizações, tutoriais, issues)",
+        "weight": 0
+      },
+      {
+        "id": "D7",
+        "label": "Persona-weighted (B-roll OSS)",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "D1",
+        "label": "Maturity",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "siglip_siglip_2",
+            "score": 78,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclip",
+            "score": 92,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "clip_openai",
+            "score": 85,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "label": "Ecosystem",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "siglip_siglip_2",
+            "score": 72,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclip",
+            "score": 95,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "clip_openai",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D3",
+        "label": "DX (developer experience)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "siglip_siglip_2",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclip",
+            "score": 88,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "clip_openai",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D4",
+        "label": "Performance (acurácia × latência)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "siglip_siglip_2",
+            "score": 92,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclip",
+            "score": 85,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "clip_openai",
+            "score": 65,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D5",
+        "label": "Scalability (escolha de tamanhos)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "siglip_siglip_2",
+            "score": 85,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclip",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "clip_openai",
+            "score": 60,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D6",
+        "label": "Community (atualizações, tutoriais, issues)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "siglip_siglip_2",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclip",
+            "score": 92,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "clip_openai",
+            "score": 55,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D7",
+        "label": "Persona-weighted (B-roll OSS)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "siglip_siglip_2",
+            "score": 83,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclip",
+            "score": 88.4,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "clip_openai",
+            "score": 67,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "siglip_siglip_2",
+        "score": 81.43
+      },
+      {
+        "player": "openclip",
+        "score": 90.06
+      },
+      {
+        "player": "clip_openai",
+        "score": 67.43
+      }
+    ],
+    "method": "Derived from markdown table in scorecard.md"
+  },
+  "duels": [
+    {
+      "left": "siglip_siglip_2",
+      "right": "openclip",
+      "winner": "openclip",
+      "left_wins": 1,
+      "right_wins": 6,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Maturity",
+          "left_score": 78,
+          "right_score": 92,
+          "winner": "openclip"
+        },
+        {
+          "dimension": "D2",
+          "label": "Ecosystem",
+          "left_score": 72,
+          "right_score": 95,
+          "winner": "openclip"
+        },
+        {
+          "dimension": "D3",
+          "label": "DX (developer experience)",
+          "left_score": 80,
+          "right_score": 88,
+          "winner": "openclip"
+        },
+        {
+          "dimension": "D4",
+          "label": "Performance (acurácia × latência)",
+          "left_score": 92,
+          "right_score": 85,
+          "winner": "siglip_siglip_2"
+        },
+        {
+          "dimension": "D5",
+          "label": "Scalability (escolha de tamanhos)",
+          "left_score": 85,
+          "right_score": 90,
+          "winner": "openclip"
+        },
+        {
+          "dimension": "D6",
+          "label": "Community (atualizações, tutoriais, issues)",
+          "left_score": 80,
+          "right_score": 92,
+          "winner": "openclip"
+        },
+        {
+          "dimension": "D7",
+          "label": "Persona-weighted (B-roll OSS)",
+          "left_score": 83,
+          "right_score": 88.4,
+          "winner": "openclip"
+        }
+      ]
+    },
+    {
+      "left": "siglip_siglip_2",
+      "right": "clip_openai",
+      "winner": "siglip_siglip_2",
+      "left_wins": 6,
+      "right_wins": 1,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Maturity",
+          "left_score": 78,
+          "right_score": 85,
+          "winner": "clip_openai"
+        },
+        {
+          "dimension": "D2",
+          "label": "Ecosystem",
+          "left_score": 72,
+          "right_score": 70,
+          "winner": "siglip_siglip_2"
+        },
+        {
+          "dimension": "D3",
+          "label": "DX (developer experience)",
+          "left_score": 80,
+          "right_score": 70,
+          "winner": "siglip_siglip_2"
+        },
+        {
+          "dimension": "D4",
+          "label": "Performance (acurácia × latência)",
+          "left_score": 92,
+          "right_score": 65,
+          "winner": "siglip_siglip_2"
+        },
+        {
+          "dimension": "D5",
+          "label": "Scalability (escolha de tamanhos)",
+          "left_score": 85,
+          "right_score": 60,
+          "winner": "siglip_siglip_2"
+        },
+        {
+          "dimension": "D6",
+          "label": "Community (atualizações, tutoriais, issues)",
+          "left_score": 80,
+          "right_score": 55,
+          "winner": "siglip_siglip_2"
+        },
+        {
+          "dimension": "D7",
+          "label": "Persona-weighted (B-roll OSS)",
+          "left_score": 83,
+          "right_score": 67,
+          "winner": "siglip_siglip_2"
+        }
+      ]
+    },
+    {
+      "left": "openclip",
+      "right": "clip_openai",
+      "winner": "openclip",
+      "left_wins": 7,
+      "right_wins": 0,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Maturity",
+          "left_score": 92,
+          "right_score": 85,
+          "winner": "openclip"
+        },
+        {
+          "dimension": "D2",
+          "label": "Ecosystem",
+          "left_score": 95,
+          "right_score": 70,
+          "winner": "openclip"
+        },
+        {
+          "dimension": "D3",
+          "label": "DX (developer experience)",
+          "left_score": 88,
+          "right_score": 70,
+          "winner": "openclip"
+        },
+        {
+          "dimension": "D4",
+          "label": "Performance (acurácia × latência)",
+          "left_score": 85,
+          "right_score": 65,
+          "winner": "openclip"
+        },
+        {
+          "dimension": "D5",
+          "label": "Scalability (escolha de tamanhos)",
+          "left_score": 90,
+          "right_score": 60,
+          "winner": "openclip"
+        },
+        {
+          "dimension": "D6",
+          "label": "Community (atualizações, tutoriais, issues)",
+          "left_score": 92,
+          "right_score": 55,
+          "winner": "openclip"
+        },
+        {
+          "dimension": "D7",
+          "label": "Persona-weighted (B-roll OSS)",
+          "left_score": 88.4,
+          "right_score": 67,
+          "winner": "openclip"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "openclip",
+          "score": 90.06,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "siglip_siglip_2",
+          "score": 81.43,
+          "delta": ""
+        },
+        {
+          "rank": 3,
+          "player": "clip_openai",
+          "score": 67.43,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "siglip_siglip_2",
+          "score": 81.43
+        },
+        {
+          "player": "openclip",
+          "score": 90.06
+        },
+        {
+          "player": "clip_openai",
+          "score": 67.43
+        }
+      ],
+      "verdict": "Openclip vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-analysis-1",
+      "title": "Lacunas em cada subject",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-2",
+      "title": "SigLIP / SigLIP 2",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-3",
+      "title": "OpenCLIP",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-4",
+      "title": "CLIP OpenAI",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-5",
+      "title": "Lacunas estruturais do problema \"B-Roll Finder OSS\" que NENHUM dos 3 resolve sozinho",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-6",
+      "title": "Recomendação combinatória",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-7",
+      "title": "Decisão final por gap",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-8",
+      "title": "Fontes",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/2502.14786",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2212.07143",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/blog/siglip2",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/mlfoundations/open_clip",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/openai/CLIP",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://laion.ai/blog/giant-openclip/",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://docs.trychroma.com/docs/embeddings/embedding-functions",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://lancedb.com/docs/integrations/embedding/openclip/",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/laion/CLIP-ViT-L-14-DataComp.XL-s13B-b90K",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/google/siglip2-so400m-patch14-384",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://laion.ai/blog/large-openclip/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/openai/clip-vit-large-patch14",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/visheratin/mexma-siglip2/discussions/2",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2503.05186",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://arxiv.org/pdf/2303.15343",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/google/siglip2-base-patch16-224",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://openai.com/index/clip/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/openai/clip-vit-base-patch32",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.analyticsvidhya.com/blog/2024/09/clip-vit-l14/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/openai/CLIP/blob/main/LICENSE",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/openai/clip-vit-large-patch14/discussions/21",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/openai/CLIP/issues/203",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://arxiv.org/html/2403.11497v1",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/mlfoundations/open_clip/blob/main/docs/PRETRAINED.md",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/laion/CLIP-ViT-L-14-laion2B-s32B-b82K",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/laion/CLIP-ViT-g-14-laion2B-s12B-b42K",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/LAION-AI/CLIP_benchmark",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://harper.blog/2024/04/12/i-accidentally-built-a-meme-search-engine/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://gist.github.com/TACIXAT/ecd4f636bf6af28cb69d641e29d7b362",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/google/siglip-base-patch16-256",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/google/siglip-base-patch16-256-multilingual",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/timm/vit_so400m_patch14_siglip_224.v2_webli",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/docs/transformers/main/model_doc/siglip2",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/merveenoyan/siglip",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/docs/transformers/en/model_doc/siglip",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/apple/ml-mobileclip",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "README.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventory-clip.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventory-openclip.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventory-siglip.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {}
+}

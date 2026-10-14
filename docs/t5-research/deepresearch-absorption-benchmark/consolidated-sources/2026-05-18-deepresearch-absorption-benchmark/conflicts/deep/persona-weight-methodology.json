@@ -1,0 +1,28 @@
+{
+  "schema": "deepresearch-absorption-benchmark.persona-weights.v1",
+  "personas": {
+    "academic_researcher": {
+      "label": "Academic Researcher (Sackett/Creswell lineage)",
+      "weights": {"Citacoes": 30, "Sandbox": 15, "Saida": 15, "Modelo": 12, "Multi-Agente": 10, "Planejamento": 8, "Memoria": 4, "Observabilidade": 3, "Distribuicao": 1, "Licenca": 1, "Governance": 1},
+      "winner": "AutoResearchClaw (89.5 in S1)"
+    },
+    "founder_pm": {
+      "label": "Founder/PM (Cagan/Perri)",
+      "weights": {"Planejamento": 25, "Saida": 18, "Governance": 12, "Citacoes": 12, "Multi-Agente": 10, "Execucao": 10, "Observabilidade": 5, "Modelo": 4, "Distribuicao": 2, "Memoria": 1, "Sandbox": 1},
+      "winner": "AIOX Research (85.5 in S2)"
+    },
+    "agency_operator_ptbr": {
+      "label": "Agency Operator PT-BR (Academia Lendária ICP)",
+      "weights": {"Saida": 22, "Distribuicao": 18, "Multi-Agente": 12, "Planejamento": 12, "Execucao": 12, "Citacoes": 8, "Governance": 6, "Observabilidade": 5, "Memoria": 2, "Licenca": 2, "Modelo": 1},
+      "winner": "AIOX Research (92 in S7)"
+    },
+    "enterprise_ci_analyst": {
+      "label": "Enterprise CI Analyst (Gilad lineage)",
+      "weights": {"Citacoes": 22, "Memoria": 18, "Sandbox": 12, "Multi-Agente": 12, "Saida": 10, "Governance": 8, "Planejamento": 6, "Modelo": 5, "Execucao": 4, "Observabilidade": 2, "Distribuicao": 1},
+      "winner": "AIOX Research (78 in S4)"
+    }
+  },
+  "aiox_wins_count": 3,
+  "aiox_loses_count": 1,
+  "rationale": "AIOX domina onde Planejamento+Saída+Governance+PT-BR pesam. Perde onde Modelo+Distribuição+Memória pesam."
+}

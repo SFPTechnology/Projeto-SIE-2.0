@@ -1,0 +1,129 @@
+# Scale Standards — Typography & Hit Targets per Output Type
+#
+# Canonical reference for font sizes, hit targets, contrast ratios.
+# Enforced by qa-inspector as killer items when body font < minimum threshold.
+
+version: "1.0.0"
+last_updated: "2026-04-21"
+enforcement_level: "killer_item"  # qa-inspector blocks release if body text < min
+
+output_types:
+
+  slide_1920x1080:
+    canvas: { width: 1920, height: 1080, unit: "px" }
+    body:
+      min_px: 24
+      ideal_px: [28, 36]
+      note: "Slides são lidos a 10m de distância (projetor). Abaixo de 24px = ilegível."
+    title:
+      range_px: [60, 120]
+      note: "Usar alta da range para section dividers; baixa para page titles"
+    hero:
+      range_px: [180, 240]
+      note: "Reservar para title slides ou quote slides de alto impacto"
+    line_height_ratio: [1.3, 1.5]
+    killer_item: "body < 24px em slide 1920×1080 = RELEASE BLOCKED"
+
+  slide_1080x1920:  # vertical / mobile story format
+    canvas: { width: 1080, height: 1920, unit: "px" }
+    body:
+      min_px: 28
+      ideal_px: [32, 40]
+      note: "Vertical é visualizado mais próximo (celular), mas tela menor compensa"
+    title: { range_px: [80, 140] }
+    hero: { range_px: [200, 260] }
+    line_height_ratio: [1.35, 1.55]
+
+  print_pdf:
+    unit: "pt"
+    body:
+      min_pt: 10
+      ideal_pt: [11, 12]
+      px_equiv_at_72dpi: 13.3
+    title: { range_pt: [18, 36] }
+    caption: { range_pt: [8, 9] }
+    line_height_ratio: [1.4, 1.6]
+    note: "Print é lido a 30cm. Minimos vêm de legibility research, não de design preference."
+
+  web_desktop:
+    unit: "px"
+    body:
+      min_px: 14
+      ideal_px: 16
+      aging_friendly_px: 18
+    cta_button:
+      height_px: 44  # min hit target
+    line_height_ratio: [1.5, 1.7]
+
+  web_mobile:
+    unit: "px"
+    body:
+      min_px: 16  # prevents iOS auto-zoom on input focus
+      note: "iOS Safari auto-zooms em input com font-size < 16px. Accessibility break."
+    cta_button:
+      size_px: 44  # Apple HIG + Material spec
+    line_height_ratio: [1.5, 1.7]
+    tap_target_spacing_min_px: 8
+
+  chinese_japanese_korean:  # CJK languages
+    line_height_ratio: [1.7, 1.8]
+    note: "CJK glyphs são mais densos verticalmente — precisam mais espaço entre linhas"
+    additional_css:
+      - "text-spacing-trim: space-all"  # Chrome 116+ — trim wide Asian punctuation
+      - "hanging-punctuation: first"    # hang leading punctuation outside text column
+
+contrast:
+  body_to_background:
+    wcag_aa_min_ratio: 4.5
+    wcag_aaa_min_ratio: 7.0
+    tool_verify: "Chrome DevTools → Accessibility → Contrast"
+  large_text_to_background:
+    wcag_aa_min_ratio: 3.0
+    large_text_definition: "≥18pt regular OR ≥14pt bold"
+  ui_components_to_background:
+    wcag_aa_min_ratio: 3.0
+    applies_to: ["buttons", "borders", "form inputs", "focus indicators"]
+
+hit_targets:
+  minimum_size_px: 44  # universal mobile + desktop accessibility
+  spacing_between_targets_min_px: 8
+  exceptions:
+    - pattern: "inline text link"
+      relaxation: "can be smaller if surrounded by whitespace ≥ 8px"
+    - pattern: "keyboard-primary interface"
+      relaxation: "smaller OK if keyboard nav is the expected interaction mode"
+
+# ───────────────────────────────────────────────────────────────────────
+# qa-inspector integration
+# ───────────────────────────────────────────────────────────────────────
+
+qa_checks:
+  - id: "SCALE-001"
+    description: "Body font size meets minimum for output type"
+    enforcement: "killer_item"
+    validator: "computed_style on p, li, span + compare with output_type min"
+
+  - id: "SCALE-002"
+    description: "Title/body size ratio >= 2.5x for visual hierarchy"
+    enforcement: "warning"
+    rationale: "Sub-2.5x ratio = weak hierarchy, user cannot quickly identify key info"
+
+  - id: "SCALE-003"
+    description: "Contrast ratio body:bg meets WCAG AA"
+    enforcement: "killer_item"
+    validator: "axe-core + pa11y"
+
+  - id: "SCALE-004"
+    description: "Hit targets >= 44×44px em interactive elements"
+    enforcement: "killer_item"
+    applies_only_if: "output_type in [web_desktop, web_mobile, interactive_prototype]"
+
+# ───────────────────────────────────────────────────────────────────────
+# References
+# ───────────────────────────────────────────────────────────────────────
+
+references:
+  - "WCAG 2.1 AA Success Criteria 1.4.3 (Contrast)"
+  - "Apple HIG — Human Interface Guidelines (44pt minimum tap target)"
+  - "Material Design 3 — Touch target spec"
+  - "squads/slides-creator/agents/qa-inspector.md (killer_item enforcement)"

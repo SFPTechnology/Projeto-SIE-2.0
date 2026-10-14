@@ -1,0 +1,168 @@
+# Handoff — @analyst (Atlas) → @dev (Dex)
+# Botão "Detalhes": expor valores originais vs customizados no MOD-PROT.
+# Criado: 2026-08-08
+
+handoff:
+  from_agent: analyst
+  to_agent: dev
+  last_command: analise-lacuna-rastreabilidade-override
+  status: READY
+  consumed: false
+  backlog_id: MOD-PROT-BL-01
+
+next_action: >-
+  Implementar botão "Detalhes" por circuito customizado, abrindo painel comparativo
+  original vs customizado, com justificativa e autoria. Sem story formal — o dono
+  optou por ir direto ao dev com o escopo já mapeado.
+
+problema_relatado_pelo_dono: >-
+  "Após customizado o sistema não apresenta o registro de quais eram os valores
+  originais e o que foi customizado."
+
+causa_raiz:
+  arquivo: src/domain/dimensionamento-disjuntores/overrides.ts
+  funcao: resolverParametrosProtecaoCircuito
+  linha_aprox: 85
+  fato: >-
+    O resultado global (base) é calculado por selecionarProtecaoCircuito e depois
+    DESCARTADO no spread `resultado: { ...base, ...override.customParams }`.
+    Após o merge, é impossível distinguir qual campo veio do motor e qual veio do
+    override. Nada é perdido no banco — é perda de informação em memória.
+
+disponibilidade_dos_dados:
+  - dado: justificativa
+    onde: 'Já retornada como justificativaOverride no wrapper do serviço'
+    chega_na_ui: true
+    obs: >-
+      A UI recebe e NÃO renderiza. É o caso mais grave: o campo é obrigatório na
+      hora de salvar e depois nunca é exibido, o que anula o propósito da obrigatoriedade.
+  - dado: customParams (quais campos foram alterados)
+    onde: 'Persistido no jsonb dimensionamento_disjuntores_overrides.overrides'
+    chega_na_ui: false
+  - dado: modificadoPor / modificadoEm / criadoEm
+    onde: 'Persistido no DisjuntorOverride'
+    chega_na_ui: false
+  - dado: valores originais (base)
+    onde: 'Calculado em resolverParametrosProtecaoCircuito e descartado'
+    chega_na_ui: false
+    obs: >-
+      Função pura determinística de (ib_a, tipo_instalacao, tipo_carga, retorno_cc).
+      Recuperar = parar de descartar. Zero I/O extra, zero migration, zero coluna nova.
+
+# ============================================================================
+# LEIA ANTES DE ABRIR QUALQUER ARQUIVO
+# ============================================================================
+armadilha_critica:
+  id: NAO_TOCAR_NO_CONTRATO_CONGELADO
+  regra: >-
+    NÃO adicionar campos a ResultadoProtecaoCircuito
+    (src/domain/dimensionamento-disjuntores/contratos.ts).
+  motivo: >-
+    Esse contrato está congelado pela Decisão D3 do ADR
+    docs/architecture/mod-prot-contrato-integracao.md, sob Constitution Artigo IV
+    (No Invention). O próprio arquivo traz o comentário
+    "Nenhum campo alem destes - nao inventar contrato paralelo".
+    Até tempo_atuacao_s precisou de justificativa formal no ADR para entrar.
+  onde_adicionar: >-
+    ResultadoProtecaoCircuitoComParametros, em
+    src/domain/servicos/servico-dimensionamento-disjuntores.ts:16.
+    É wrapper da camada de serviço, NÃO é o contrato congelado — já carrega
+    baseadoEm e justificativaOverride. Ali a adição é livre.
+  historico: >-
+    Essa distinção derrubou o REQ-002 no gate de QA de 2026-08-08 (falso negativo).
+    Ver Decisão D7 do mesmo ADR.
+
+escopo_por_camada:
+  - camada: dominio
+    arquivo: src/domain/dimensionamento-disjuntores/overrides.ts
+    mudanca: >-
+      resolverParametrosProtecaoCircuito passa a devolver também `resultadoGlobal`
+      (o base intacto, antes do merge) e `customParams` (o que foi sobrescrito).
+      O retorno para baseadoEm "GLOBAL" pode omitir ambos ou repetir base.
+  - camada: servico
+    arquivo: src/domain/servicos/servico-dimensionamento-disjuntores.ts
+    mudanca: >-
+      Estender ResultadoProtecaoCircuitoComParametros com resultadoGlobal,
+      customParams, modificadoPor e modificadoEm. Propagar no map de resultados
+      (linha ~137) e ler os campos de autoria do override efetivo.
+  - camada: api
+    arquivo: src/api/schemas/dimensionamento-disjuntores.ts
+    mudanca: 'Estender o schema Zod de resposta com os campos novos (todos opcionais).'
+  - camada: ui
+    arquivo: src/components/app/dimensionamento-disjuntores/DimensionamentoDisjuntoresResumo.tsx
+    mudanca: >-
+      Botão "Detalhes" na coluna Acoes, visível quando baseadoEm === "CUSTOMIZADO".
+      Abre painel/modal comparativo. Usar componente Carbon já em uso no projeto.
+
+esboco_do_painel: |
+  Detalhes — ADD-Banheiro-1-Chuveiro
+
+  Campo                  Original (MOD-PROT)    Customizado
+  ─────────────────────────────────────────────────────────
+  In (A)                 40                     32          ← alterado
+  Dispositivo            curva C                curva C
+  Icu (kA)               —                      —
+
+  Justificativa
+  "Disjuntor 32 A já instalado no quadro; troca fora do escopo da reforma."
+
+  Alterado por ui-dimensionamento-disjuntores em 08/08/2026 14:32
+
+  Marcar apenas as linhas efetivamente alteradas — é o que responde
+  "o que era" e "o que mudou" na mesma tela.
+
+criterios_de_aceite_sugeridos:
+  - 'Circuito com baseadoEm "GLOBAL" NÃO mostra o botão Detalhes.'
+  - 'Circuito CUSTOMIZADO mostra Detalhes; o painel lista original vs customizado por campo.'
+  - 'Apenas os campos efetivamente alterados aparecem marcados como alterados.'
+  - 'A justificativa é exibida integralmente (hoje é obrigatória e nunca mostrada).'
+  - 'Autoria e data de modificação são exibidas quando presentes.'
+  - 'ResultadoProtecaoCircuito permanece com exatamente os mesmos 7 campos (ADR D3).'
+  - 'Acessibilidade no padrão da seção: o painel é alcançável e fechável por teclado.'
+
+testes_esperados:
+  - 'overrides.test.ts: resolverParametrosProtecaoCircuito devolve resultadoGlobal intacto e customParams quando CUSTOMIZADO.'
+  - 'overrides.test.ts: resultadoGlobal e resultado são equivalentes quando baseadoEm é GLOBAL.'
+  - 'servico-dimensionamento-disjuntores.test.ts: os campos novos chegam ao wrapper.'
+  - 'Teste de UI: botão ausente em GLOBAL, presente em CUSTOMIZADO.'
+
+ambiente_e_convencoes:
+  worktree: >-
+    O worktree do submódulo tem ~220 entradas sujas de OUTRAS frentes. NUNCA
+    git add -A. Commitar sempre com pathspec explícito.
+  commit: 'Prefixar com AIOX_ACTIVE_AGENT=dev (hook enforce-git-push-authority.cjs).'
+  pre_commit_hook: >-
+    docs:tutorial:check falha por drift preexistente em 4 unidades de outras
+    frentes. Se bloquear, --no-verify com justificativa registrada. MAS: se esta
+    mudança alterar comportamento documentado no tutorial de disjuntores,
+    a unidade dimensionamento-disjuntores precisa ser revisada e reassinada
+    legitimamente (ver adiante).
+  tutorial: >-
+    ATENÇÃO — o componente e o domínio do MOD-PROT estão registrados no manifesto
+    da unidade dimensionamento-disjuntores. Alterar overrides.ts, o serviço ou o
+    componente DISPARA drift. Revisar docs/TUTORIAL-DIMENSIONAMENTO-DISJUNTORES.md
+    (a seção 4 fala de customização) e o .html, e só então rodar
+    docs:tutorial:update. CUIDADO: --update reassina TODAS as unidades — depois
+    reverter com git checkout -- os manifestos alheios, mantendo só o seu.
+  comandos:
+    testes: 'npx vitest run src/domain/dimensionamento-disjuntores/'
+    lint: 'npm run lint'
+    typecheck: 'npm run typecheck'
+    build_spa: 'npm run build:spa'
+    nota: 'bun NÃO está no PATH da Bash tool — usar npx/npm.'
+
+contexto_adicional:
+  banco: >-
+    A tabela dimensionamento_disjuntores_overrides foi criada no Supabase hoje
+    (2026-08-08). O fluxo de salvar override funciona; antes disso falhava com
+    "Could not find the table in the schema cache".
+  push: >-
+    6 commits locais represados no submódulo por bloqueio de auth GitHub (401).
+    Não tentar push. Ver .aiox/handoffs/MOD-PROT-qa-to-devops-RELEASE-BLOCKED-auth.yaml
+
+questao_aberta_para_o_dono:
+  - >-
+    O painel deve alimentar também o LAUDO TÉCNICO? Justificativa de override é
+    exatamente o que um laudo de engenharia precisa registrar, e hoje ela só
+    existe em eventos_auditoria, que nenhuma tela lê. NÃO implementar sem decisão
+    explícita — está fora do escopo deste handoff.

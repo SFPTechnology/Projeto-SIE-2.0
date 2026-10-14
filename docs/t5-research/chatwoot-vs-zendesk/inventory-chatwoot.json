@@ -1,0 +1,149 @@
+{
+  "subject": "Chatwoot",
+  "snapshot_date": "2026-05-06",
+  "version_evaluated": "v4.13.0 (released 2026-04-17)",
+  "category": "Open-Source omnichannel customer support + Cloud managed",
+  "vendor": {
+    "name": "Chatwoot Inc.",
+    "country": "India (HQ Bangalore)",
+    "founded": 2017,
+    "maturity_years": 9,
+    "license_core": "MIT",
+    "business_model": "OSS core (MIT) + Cloud SaaS gerenciado + Enterprise self-hosted (paid support)"
+  },
+  "channels_native": {
+    "live_chat_web": {"supported": true, "tier": "Hacker+", "confidence": "H"},
+    "email": {"supported": true, "tier": "Startups+", "confidence": "H"},
+    "whatsapp": {
+      "supported": true,
+      "tier": "Startups+",
+      "providers": ["WhatsApp Cloud API (Meta direct)", "Twilio", "360Dialog"],
+      "embedded_signup": true,
+      "templates_supported": ["Cloud API: yes (sync_templates)", "360Dialog: yes", "Twilio: NO (limitation documented)"],
+      "confidence": "H",
+      "source": "deepwiki.com/chatwoot/chatwoot/7.4-whatsapp-channel"
+    },
+    "facebook_messenger": {"supported": true, "tier": "Startups+", "confidence": "H"},
+    "instagram_dm": {"supported": true, "tier": "Startups+", "confidence": "H"},
+    "telegram": {"supported": true, "tier": "Startups+", "confidence": "H"},
+    "line": {"supported": true, "tier": "Startups+", "confidence": "H"},
+    "sms": {"supported": true, "tier": "Startups+", "confidence": "H"},
+    "tiktok": {"supported": true, "tier": "Startups+", "confidence": "H"},
+    "api_channel_custom": {"supported": true, "tier": "Startups+", "confidence": "H"},
+    "voice_phone": {"supported": "optional add-on (20+ agents Enterprise)", "confidence": "M"},
+    "apple_business_chat": {"supported": false, "confidence": "H"},
+    "twitter_x": {"supported": false, "note": "Removed when Twitter API priced changed", "confidence": "M"}
+  },
+  "ai_capabilities": {
+    "product_name": "Captain AI",
+    "released": "2025-2026 (active build-out in v4.x)",
+    "features": [
+      "Auto-resolve (handles initial questions before agent handoff)",
+      "Co-Pilot (draft, improve, translate responses)",
+      "Smart FAQs (content gap analysis)",
+      "Memories (auto-summarization of conversations)",
+      "Multilingual translation"
+    ],
+    "pricing_model": "Credits per tier (300/500/800) + $20 per 1,000 extra credits",
+    "credit_consumption_disclosed": false,
+    "deflection_rate_published": null,
+    "transparency": "Credit consumption rules NOT publicly disclosed (concern flagged)",
+    "source": "https://www.chatwoot.com/captain (fetched 2026-05-06)"
+  },
+  "pricing_cloud": {
+    "currency": "USD",
+    "billing": "annual (monthly available with markup)",
+    "tiers": [
+      {"name": "Hacker", "price_per_agent_month": 0, "agents_max": 2, "conversations_max_month": 500, "channels": ["live chat only"], "captain_credits": 0, "retention_days": 30, "sso_saml": false, "audit_logs": false},
+      {"name": "Startups", "price_per_agent_month": 19, "agents_max": "unlimited", "conversations_max_month": "unlimited", "channels": ["all"], "captain_credits": 300, "retention_years": 1, "sso_saml": false, "audit_logs": false, "teams": false, "automation": false, "help_center": true},
+      {"name": "Business", "price_per_agent_month": 39, "marker": "Most Popular", "agents_max": "unlimited", "channels": ["all"], "captain_credits": 500, "retention_years": 2, "sso_saml": false, "audit_logs": false, "teams": true, "automation": true, "sla": true},
+      {"name": "Enterprise", "price_per_agent_month": 99, "agents_max": "unlimited", "channels": ["all"], "captain_credits": 800, "retention_years": 3, "sso_saml": true, "audit_logs": true, "agent_capacity_management": true, "voice_video": "optional 20+ agents"}
+    ],
+    "extras": {
+      "captain_credits_overage": "$20 per 1,000 credits"
+    },
+    "source": "https://www.chatwoot.com/pricing (fetched 2026-05-06)"
+  },
+  "pricing_self_hosted": {
+    "core_license": "MIT — free forever",
+    "operational_cost": "Infra (VPS/AWS/GCP) + DevOps time",
+    "minimum_viable_setup": "Docker Compose, ~$20-50/mo VPS for small team",
+    "production_grade_setup": "PostgreSQL managed + Redis + S3-compatible object store + LB",
+    "paid_support": "Enterprise self-hosted edition disponivel via contato direto (preco nao publicado)",
+    "confidence": "M (self-hosted-pricing 404 on the URL pattern; structure inferred from docs)"
+  },
+  "stack": {
+    "primary_languages": {"Ruby": 46.1, "Vue": 28.1, "JavaScript": 22.8, "HTML": 1.7, "SCSS": 0.5, "Shell": 0.4},
+    "framework": "Ruby on Rails (backend) + Vue.js (frontend)",
+    "database": "PostgreSQL",
+    "cache_queue": "Redis + Sidekiq",
+    "deployment": "Docker / Heroku / Kubernetes",
+    "telemetry": "Built-in app metrics, optional Sentry",
+    "source": "https://github.com/chatwoot/chatwoot (fetched 2026-05-06)"
+  },
+  "community": {
+    "github_stars": 29100,
+    "github_forks": 7200,
+    "github_commits_total_develop": 6119,
+    "github_open_prs": 266,
+    "latest_release": "v4.13.0 (April 17, 2026)",
+    "release_cadence": "Active monthly minor releases",
+    "contributors_releases_documented": "140+",
+    "g2_rating": 4.4,
+    "g2_reviews_count": "Not explicitly disclosed in search snapshots; estimated ~200-400 (community open-source skews lower than enterprise SaaS)",
+    "g2_top_pros": ["Cost-effectiveness", "Self-host privacy", "Customization flexibility", "Easy integrations (Slack, email)", "Transparent pricing"],
+    "g2_top_cons": ["UI could improve", "Reporting less customizable", "AI automation less advanced (pre-Captain era reviews)", "Some technical/connectivity issues self-host"],
+    "confidence": "H (GitHub) / M (G2)"
+  },
+  "governance_compliance": {
+    "soc2_certified": "Cloud edition: yes (typical for SaaS at this maturity); not explicit in search",
+    "iso_27001": "Not publicly listed",
+    "gdpr_compliance": "Yes (DPA, EU data residency optional via self-hosted in EU region)",
+    "hipaa_baa": "Not publicly listed (no BAA marketed for Chatwoot Cloud)",
+    "data_residency_eu": "Self-hosted: customer-controlled. Cloud: hosting region not user-selectable in standard tiers (concern for regulated industries)",
+    "audit_logs": "Enterprise tier only ($99/agent/mo) on Cloud; self-hosted Enterprise edition",
+    "sso_saml": "Enterprise tier only on Cloud",
+    "confidence": "M (compliance posture lighter than Zendesk; self-hosted is escape valve for regulated)"
+  },
+  "marketplace_integrations": {
+    "official_apps_count_published": "Not a curated marketplace like Zendesk; integrations distributed across docs + community",
+    "named_integrations": ["Slack", "Shopify", "Dialogflow", "Microsoft Teams", "Helpscout migration tool", "WordPress", "Webhooks (universal)", "API channel (custom)"],
+    "api_openness": "Open REST + GraphQL-like + webhooks; full self-host = arbitrary DB access",
+    "third_party_ecosystem": "Smaller than incumbents; community-driven plugins via apps/dashboard apps",
+    "confidence": "H (integrations confirmed)"
+  },
+  "support_sla": {
+    "community": "GitHub Discussions, Discord, community forum",
+    "cloud_support": "Email/chat per tier; SLA published only Business+ ($39/agent/mo)",
+    "enterprise_support": "Dedicated CSM at $99/agent/mo or self-hosted Enterprise paid contract",
+    "confidence": "H"
+  },
+  "brasil_fit": {
+    "whatsapp_bsp_options": ["Meta Cloud API (BR available)", "Twilio (BR via local)", "360Dialog (Germany; BR conexão remota)"],
+    "pt_br_ui": "Yes (community translation, mature)",
+    "vtex_native": false,
+    "shopify_native": true,
+    "rd_station_native": false,
+    "pix_native": false,
+    "local_support_pt_br": "Community-driven (no dedicated BR cloud team)",
+    "byoc_local_bsp": "Yes — cliente conecta seu BSP brasileiro (Take Blip, Zenvia) via Cloud API ou wraps custom",
+    "confidence": "H (BSP architecture) / M (BR-team presence)"
+  },
+  "differentiators_unique": [
+    "Unica licenca MIT entre todos os players omnichannel maduros",
+    "Self-hosted de verdade (sem feature gating: codigo MIT open)",
+    "Cloud + Self-hosted dual deployment",
+    "BYOC (Bring Your Own Cloud BSP) WhatsApp - cliente escolhe Meta/Twilio/360Dialog",
+    "Captain AI nativo built-in (nao add-on a la carte)",
+    "Pricing transparente: $0 / $19 / $39 / $99 sem hidden fees na Cloud"
+  ],
+  "weaknesses_known": [
+    "Captain AI credit consumption rules nao publicas (tracking opaco)",
+    "Marketplace de apps muito menor que Zendesk (~tens vs 1.977)",
+    "G2 review count menor (visibility para buyers enterprise)",
+    "Voice/Talk e add-on, nao first-class",
+    "Compliance certifications publicas (ISO 27001, FedRAMP) ausentes",
+    "Self-hosted exige Docker/DevOps competence",
+    "Twitter/X channel removido"
+  ]
+}

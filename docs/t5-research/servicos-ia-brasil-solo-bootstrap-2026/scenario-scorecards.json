@@ -1,0 +1,108 @@
+{
+  "schema": "servicos-ia-brasil-solo-bootstrap-2026.scenario-scorecards.v1",
+  "generated_at": "2026-05-17",
+  "scenarios": [
+    {
+      "id": "cash_30_days",
+      "label": "Caixa em 30 dias",
+      "weights": {
+        "ttfr": 45,
+        "solo_feasibility": 20,
+        "operating_margin": 15,
+        "recurrence_quality": 10,
+        "defensibility": 5,
+        "anti_commoditization": 3,
+        "low_reg_risk": 2
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "whatsapp-vertical",
+          "score": 84,
+          "why": "Menor TTFR e menor fricção comercial."
+        },
+        {
+          "rank": 2,
+          "player": "mentoria-premium",
+          "score": 82,
+          "why": "Venda rápida se já existe autoridade mínima."
+        },
+        {
+          "rank": 3,
+          "player": "genai-conteudo",
+          "score": 69,
+          "why": "Vende rápido, mas não compõe moat."
+        }
+      ],
+      "verdict": "Use WhatsApp vertical como caixa tático se a autoridade de mentoria ainda não estiver pronta."
+    },
+    {
+      "id": "premium_business",
+      "label": "Negócio premium em 90 dias",
+      "weights": {
+        "defensibility": 30,
+        "operating_margin": 25,
+        "ttfr": 20,
+        "solo_feasibility": 15,
+        "recurrence_quality": 5,
+        "anti_commoditization": 3,
+        "low_reg_risk": 2
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "mentoria-premium",
+          "score": 91,
+          "why": "Compra identidade, rede e transformação; maior margem e moat pessoal."
+        },
+        {
+          "rank": 2,
+          "player": "automacao-n8n-vertical",
+          "score": 79,
+          "why": "Cross-sell operacional com margem alta."
+        },
+        {
+          "rank": 3,
+          "player": "whatsapp-vertical",
+          "score": 63,
+          "why": "Bom anchor, mas menor ticket e menor moat."
+        }
+      ],
+      "verdict": "Mentoria é o eixo principal; automação vira prova e monetização lateral."
+    },
+    {
+      "id": "year_two_moat",
+      "label": "Moat com time no ano 2",
+      "weights": {
+        "defensibility": 35,
+        "recurrence_quality": 25,
+        "operating_margin": 15,
+        "low_reg_risk": 10,
+        "anti_commoditization": 10,
+        "ttfr": 3,
+        "solo_feasibility": 2
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "lgpd-governanca",
+          "score": 82,
+          "why": "Regulação cria demanda defensiva e contratos longos quando existe time."
+        },
+        {
+          "rank": 2,
+          "player": "preditivo-customizado",
+          "score": 79,
+          "why": "Alto LTV se houver dados, engenharia e cliente enterprise."
+        },
+        {
+          "rank": 3,
+          "player": "cyber-ia",
+          "score": 77,
+          "why": "MRR alto, mas exige certificação e operação 24/7."
+        }
+      ],
+      "verdict": "Os vetados viram opções depois de equipe, credencial e canal enterprise."
+    }
+  ]
+}

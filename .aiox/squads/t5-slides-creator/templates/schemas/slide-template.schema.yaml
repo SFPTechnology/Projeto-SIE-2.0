@@ -1,0 +1,225 @@
+# Slide Template Schema — Slides Creator Squad
+# Mission: MSN-2026-SLIDES-NARRATIVE-DESIGN (DEV-2026-003)
+# Created: 2026-05-17
+# Version: 1.0.0
+#
+# Contract for slide-function templates. A slide template defines the
+# CANONICAL STRUCTURE for ONE narrative function (hook, proof, demo_payoff, etc.).
+# It is FUNCTION-FIRST, not LAYOUT-FIRST — same function can have multiple layouts.
+#
+# Inspired by:
+#   - Presenton servers/nextjs/app/presentation-templates/{family}/*.tsx (Zod schema per layout)
+#   - slide-deck-ai pptx_helper.py routing handlers (per slide type)
+#   - PPTAgent roles/layout_selector.yaml ({reasoning, layout} output)
+#   - ppt-master design_spec.md per-layout sections
+
+meta:
+  schema_version: "1.0.0"
+  schema_kind: "slide-template"
+  consumer_tasks:
+    - "tasks/compose-grid-layout.md (consumes slot definitions)"
+    - "tasks/select-slide-template.md (NEW — selects best template per function)"
+    - "tasks/emit-deck-spec.md (uses template constraints to render slide spec)"
+
+# ─────────────────────────────────────────────────────
+# SLIDE TEMPLATE SCHEMA
+# ─────────────────────────────────────────────────────
+slide_template:
+  required: [id, name, function, summary, slots, constraints, sample_content]
+  fields:
+
+    id:
+      type: string
+      pattern: "^[a-z][a-z0-9-]+[a-z0-9]$"
+      example: "proof-stack"
+
+    name:
+      type: string
+      max_length: 60
+      example: "Proof Stack (3 evidências verticais com source)"
+
+    version:
+      type: string
+      default: "1.0.0"
+
+    function:
+      type: string
+      description: "Primary narrative function this slide template serves"
+      enum_ref: "data/slide-function-map.schema.yaml#slide_function_map.entries[].function"
+      example: "proof"
+
+    alternative_functions:
+      type: list
+      description: "Other functions this template can serve (secondary)"
+      item_type: string
+      example: ["mechanism_step", "synthesis"]
+
+    summary:
+      type: object
+      required: true
+      fields:
+        pick_for:
+          type: string
+          max_length: 240
+          example: "Quando ha 2-4 evidencias quantitativas que sustentam mesma tese. Pesquisas, estatisticas, estudos de caso."
+        skip_if:
+          type: string
+          max_length: 240
+          example: "Quando evidencia eh qualitativa (use quote). Quando ha 5+ evidencias (split em 2 slides OR use matrix-framework). Quando evidencia eh visual unica (use chart)."
+
+    slots:
+      type: list
+      required: true
+      min_items: 1
+      max_items: 12
+      description: "Structured slots that hold content. Each slot is named, typed, and constrained."
+      item_schema:
+        required: [name, type, role]
+        fields:
+          name:
+            type: string
+            example: "action_title"
+          type:
+            type: enum
+            values: [text, number, currency, percentage, date, image, icon, chart, table, citation, list, group]
+          role:
+            type: enum
+            values: [primary, supporting, decoration, metadata, footer]
+            description: "Visual hierarchy role"
+          required:
+            type: boolean
+            default: false
+          max_chars:
+            type: ["integer", "null"]
+            description: "Hard cap for text slots"
+          max_items:
+            type: ["integer", "null"]
+            description: "Hard cap for list/group slots"
+          allowed_values:
+            type: ["list", "null"]
+            description: "Enum if applicable"
+          token_ref:
+            type: ["string", "null"]
+            description: "Typography token reference (e.g., --slide-title-xl)"
+          position_hint:
+            type: ["string", "null"]
+            description: "Grid position hint (e.g., 'top-left', 'center-full', 'bottom-right')"
+
+    constraints:
+      type: object
+      required: true
+      fields:
+        density_target:
+          type: enum
+          values: [minimal, low, medium, high]
+          description: "Maps to design-direction.density_limits"
+        max_visual_elements:
+          type: integer
+          default: 4
+        max_text_chars_total:
+          type: integer
+          default: 280
+        grid_columns_required:
+          type: ["integer", "null"]
+          description: "If template needs specific grid (e.g., 3-col for proof-stack)"
+        viewing_distance_min:
+          type: enum
+          values: [near, medium, far]
+          default: medium
+        accessibility_min:
+          type: enum
+          values: [WCAG_AA, WCAG_AAA]
+          default: WCAG_AA
+
+    visual_pattern:
+      type: object
+      required: false
+      description: "Optional reference visual pattern (without prescribing exact theme)"
+      fields:
+        layout_family:
+          type: enum
+          values: [stacked, columns, grid, hero, split, full_bleed, card_array, matrix, timeline_horizontal, timeline_vertical, big_number, quote_card, callout_with_image]
+        motif_hints:
+          type: list
+          item_type: string
+          example: ["leading number per evidence", "icon per stack item", "horizontal divider between blocks"]
+
+    qa_gates_emphasis:
+      type: list
+      description: "Which qa-rubric.yaml sub-dimensions matter MOST for this template"
+      item_schema:
+        dimension: string
+        emphasis: enum  # values: critical, high, medium, low
+      example:
+        - {dimension: contrast, emphasis: critical}     # proof needs to be legible
+        - {dimension: enumeration_universal, emphasis: critical}  # each evidence numbered
+        - {dimension: fontes_apa, emphasis: critical}   # each proof has source
+
+    failure_modes:
+      type: list
+      description: "Anti-patterns specific to this slide template"
+      item_schema:
+        mode: string
+        symptom: string
+        prevention: string
+
+    selected_template_reason_schema:
+      type: object
+      description: "When selector picks this template, must emit reason in this schema (PPTAgent pattern)"
+      fields:
+        function_match: "string — which function this satisfies"
+        density_fit: "string — why density_target fits content volume"
+        alternative_considered: "string — which other templates were considered + why rejected"
+
+    sample_content:
+      type: object
+      required: true
+      description: "Sample data that fills slots. Used for preview AND calibration."
+      fields:
+        slots_filled:
+          type: object
+          description: "Map slot.name → sample value (respecting type + constraints)"
+        notes:
+          type: string
+
+    compatible_with:
+      type: object
+      required: false
+      fields:
+        deck_templates:
+          type: list
+          description: "Deck templates that frequently use this slide template"
+        themes:
+          type: list
+          description: "Themes this template renders well in"
+
+    source_provenance:
+      type: object
+      required: true
+      fields:
+        inspired_by:
+          type: list
+          item_type: string
+        bench_ref:
+          type: list
+          item_type: string
+        author:
+          type: string
+        date_created: "YYYY-MM-DD"
+
+# ─────────────────────────────────────────────────────
+# VALIDATION RULES
+# ─────────────────────────────────────────────────────
+validation_rules:
+  - rule: "id matches filename"
+    severity: blocking
+  - rule: "function present in data/slide-function-map.schema.yaml enum"
+    severity: blocking
+  - rule: "summary.pick_for AND summary.skip_if both non-empty"
+    severity: blocking
+  - rule: "At least 1 slot with role=primary"
+    severity: blocking
+  - rule: "sample_content.slots_filled covers all required slots"
+    severity: blocking
+  - rule: "constraints.max_text_chars_total respects density_target hierarchy (minimal<=120, low<=180, medium<=280, high<=400)"
+    severity: high

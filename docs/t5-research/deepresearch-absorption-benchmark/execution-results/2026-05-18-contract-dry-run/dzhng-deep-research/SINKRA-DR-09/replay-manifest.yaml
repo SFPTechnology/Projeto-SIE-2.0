@@ -1,0 +1,22 @@
+schema: sinkra-replay-manifest-v1
+run_id: dzhng-deep-research__SINKRA-DR-09
+task_file: tasks/SINKRA-DR-09.yaml
+adapter:
+  id: dzhng-deep-research
+  role: minimal_baseline
+  mode: contract_stub
+  capabilities:
+  - breadth_depth
+  - structured_outputs
+  - progress
+outputs:
+- trace.jsonl
+- tool-calls.jsonl
+- claims.yaml
+- sources.yaml
+- report.md
+- rubric-results.yaml
+- cost-latency.yaml
+- failure-analysis.md
+- replay-manifest.yaml
+mode: contract_dry_run

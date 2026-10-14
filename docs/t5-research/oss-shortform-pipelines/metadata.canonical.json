@@ -1,0 +1,102 @@
+{
+  "bench": {
+    "id": "oss-shortform-pipelines",
+    "type": "technology",
+    "variant": "n-way",
+    "created_at": "2026-05-06",
+    "analyst": "universal-bench-analyst"
+  },
+  "subjects": [
+    {
+      "key": "openshorts",
+      "name": "Openshorts",
+      "category": "unknown"
+    },
+    {
+      "key": "moneyprinterturbo",
+      "name": "Moneyprinterturbo",
+      "category": "unknown"
+    },
+    {
+      "key": "captacity",
+      "name": "Captacity",
+      "category": "unknown"
+    },
+    {
+      "key": "a",
+      "name": "OpenShorts",
+      "category": "unknown"
+    },
+    {
+      "key": "b",
+      "name": "MoneyPrinterTurbo",
+      "category": "unknown"
+    },
+    {
+      "key": "c",
+      "name": "Captacity",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "D1",
+        "name": "Features (proximidade Submagic)",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D2",
+        "name": "Maintenance & Activity (90d)",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D3",
+        "name": "DX & Setup Effort",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D4",
+        "name": "Output Quality (Submagic-like)",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D5",
+        "name": "Customization (extensibilidade do código)",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D6",
+        "name": "Documentation",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D7",
+        "name": "License Permissiveness",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:10:52.613Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Legacy metadata.json preserved alongside; canonical version at metadata.canonical.json.",
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

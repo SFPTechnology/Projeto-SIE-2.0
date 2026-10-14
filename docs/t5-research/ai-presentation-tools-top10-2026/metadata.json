@@ -1,0 +1,52 @@
+{
+  "benchmark_id": "ai-presentation-tools-top10-2026",
+  "title": "Top 10 AI Presentation Tools for Growth Teams & Founders — 2026",
+  "comparison_type": "product",
+  "profile": "standard",
+  "generated_at": "2026-05-17T00:00:00Z",
+  "pipeline": "bench-comparison-pipeline v3.0.0",
+  "agent": "bench-analyst",
+  "subjects": [
+    { "name": "Gamma", "slug": "gamma", "url": "https://gamma.app" },
+    { "name": "Canva", "slug": "canva", "url": "https://canva.com" },
+    { "name": "Beautiful.ai", "slug": "beautiful-ai", "url": "https://beautiful.ai" },
+    { "name": "Pitch", "slug": "pitch", "url": "https://pitch.com" },
+    { "name": "Plus AI", "slug": "plus-ai", "url": "https://plusai.com" },
+    { "name": "Decktopus", "slug": "decktopus", "url": "https://decktopus.com" },
+    { "name": "SlidesAI", "slug": "slidesai", "url": "https://slidesai.io" },
+    { "name": "Presenton", "slug": "presenton", "url": "https://presenton.ai" },
+    { "name": "Presentations.AI", "slug": "presentations-ai", "url": "https://presentations.ai" },
+    { "name": "Slidebean", "slug": "slidebean", "url": "https://slidebean.com" }
+  ],
+  "discontinued": [
+    { "name": "Tome", "reason": "Pivotou para CRM (Lightfield) em abril 2025. Deixou de oferecer criação de apresentações.", "url": "https://tome.app" }
+  ],
+  "scoring_dimensions": [
+    { "id": "features", "name": "Core Features", "weight": 0.25, "signals": ["AI generation quality", "prompt-to-deck speed", "templates", "image generation", "charts/data viz", "speaker notes"] },
+    { "id": "ux", "name": "User Experience", "weight": 0.20, "signals": ["onboarding", "UI quality", "learning curve", "mobile support", "offline support"] },
+    { "id": "pricing", "name": "Pricing & Value", "weight": 0.15, "signals": ["free tier generosity", "paid plan cost", "credit limits", "value-for-money"] },
+    { "id": "integrations", "name": "Integrations & Export", "weight": 0.15, "signals": ["PPT export quality", "PDF export", "Google Slides", "API", "Zapier/webhooks", "embeds"] },
+    { "id": "support", "name": "Support & Community", "weight": 0.10, "signals": ["documentation", "community size", "support channels", "G2/Capterra ratings"] },
+    { "id": "scalability", "name": "Scalability & Enterprise", "weight": 0.15, "signals": ["team collaboration", "brand kit", "SSO/SAML", "analytics", "custom domains", "SOC2"] }
+  ],
+  "data_source_strategy": "web-research + docs",
+  "confidence": "medium-high",
+  "methodology": "Dados coletados via web search em maio 2026. Preços e features verificados contra sites oficiais e reviews G2/Capterra/ProductHunt. Scores derivados de sinais observáveis. Confiança média-alta — preços podem variar por região.",
+  "sources_consulted": [
+    "gamma.app/pricing",
+    "beautiful.ai/pricing",
+    "pitch.com",
+    "plusai.com/pricing",
+    "decktopus.com/pricing",
+    "slidesai.io/pricing",
+    "presenton.ai/pricing",
+    "presentations.ai/pricing",
+    "slidebean.com/pricing",
+    "canva.com",
+    "g2.com",
+    "capterra.com",
+    "producthunt.com",
+    "24slides.com/presentbetter/best-ai-presentation-tools",
+    "2slides.com/blog/ai-presentation-maker-pricing-comparison-2026"
+  ]
+}

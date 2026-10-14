@@ -1,0 +1,39 @@
+{
+  "schema": "bench-completeness-rubric-v1",
+  "score": 100,
+  "score_semantics": {
+    "rule": "Score 100 significa benchmark completo para decisão e dashboard, não produto ou implementação final entregue."
+  },
+  "implementation_readiness": {
+    "status": "contract_validated_real_adapters_pending",
+    "reason": "Contrato validado por dry-run; próxima etapa é substituir stubs por adapters reais."
+  },
+  "checks": [
+    {
+      "id": "players",
+      "status": "PASS",
+      "score": 100
+    },
+    {
+      "id": "dash",
+      "status": "PASS",
+      "score": 100
+    },
+    {
+      "id": "tasks",
+      "status": "PASS",
+      "score": 100
+    },
+    {
+      "id": "visual",
+      "status": "PENDING_VERIFICATION",
+      "score": 80
+    },
+    {
+      "id": "contract_dry_run",
+      "status": "PASS",
+      "score": 100,
+      "evidence": "240 dry-runs com 2160 outputs normalizados."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+engine_state:
+  workflow_id: brownfield-discovery
+  workflow_name: "Brownfield Discovery - Complete Technical Debt Assessment"
+  instance_id: "brownfield-discovery-engine-2026-08-05T03-57-50Z"
+  target_context: core
+  squad_name: null
+  mode: engine
+  started_at: "2026-08-05T03:57:50Z"
+  updated_at: "2026-08-05T03:57:50Z"
+  status: aborted
+  abort_reason: |
+    Pré-check contra IDS (REUSE > ADAPT > CREATE) encontrou um Brownfield Discovery
+    completo já executado em 2026-06/07 (docs/prd/technical-debt-assessment.md,
+    docs/reports/TECHNICAL-DEBT-REPORT.md, docs/stories/epic-technical-debt.md,
+    story-0..5), nunca atacado no backlog. Usuário optou por "Refresh incremental
+    do assessment" em vez de re-executar as 10 fases do zero. Ver
+    refresh-technical-debt-2026-08-05-*.yaml para o fluxo de continuação.
+  current_step_index: 0
+  current_phase: null
+  last_completed_step: null
+  action_steps_completed: 0
+  action_steps_total: 12
+  scope:
+    target: "sistema-de-instala-es-el-tricas-sie-main (submódulo SIE completo)"
+    branch: "feature/nbr5410-conformidade-closeout"
+  step_outputs: {}
+  step_results: {}
+  decisions: []
+  retries: {}
+  elicitation_responses: {}

@@ -1,0 +1,59 @@
+schema: 1
+story: 'MOD-PROT-1'
+story_title: 'Motor Normativo de Seleção de Disjuntor'
+gate: PASS
+status_reason: >-
+  Re-gate após remediação. As 6 ACs atendidas e MNT-001 fechado: a adaptação ao
+  VeredictoMODCC foi commitada em 2ecd1ca, o worktree do módulo está limpo e o estado
+  commitado compila (tsc exit 0).
+reviewer: 'Quinn'
+updated: '2026-08-08T04:20:00Z'
+supersedes:
+  gate: CONCERNS
+  dated: '2026-08-08T00:30:00Z'
+
+evidence:
+  typecheck: 'npx tsc --noEmit → exit 0'
+  tests_modulo: '17/17 passando (src/domain/dimensionamento-disjuntores/ + servico)'
+  tests_suite: '1186/1187 (única falha é timeout de 5s em teste MOD-QT não relacionado)'
+  lint: 'npx eslint sobre arquivos MOD-PROT → exit 0, zero findings'
+
+traceability:
+  - ac: 1
+    status: MET
+    evidence: 'motor-selecao-protecao.ts retorna in_a com origem_in "MOD-PROT" e norma_dispositivo; coberto por teste'
+  - ac: 2
+    status: MET
+    evidence: 'curva de disparo B/C/D com fallback declarado em norma_dispositivo'
+  - ac: 3
+    status: MET
+    evidence: 'capacidade_interrupcao verificada contra retorno_cc.icc_presumida_a; teste "retornoCcAltoIcc" cobre reprovação'
+  - ac: 4
+    status: MET
+    evidence: 'retorno_cc nulo → pendencias ["PENDENTE-ICC"] sem bloquear in_a/i2_a; teste dedicado'
+  - ac: 5
+    status: MET
+    evidence: 'IB acima da série → in_a null + PROTECAO-SUGESTAO-INDISPONIVEL; teste dedicado'
+  - ac: 6
+    status: MET
+    evidence: 'git diff cf8490d..HEAD -- motores/motor-protecao.ts → vazio. Módulo novo isolado em src/domain/dimensionamento-disjuntores/'
+
+resolved_issues:
+  - id: 'MNT-001'
+    severity: medium
+    status: RESOLVED
+    finding: >-
+      motor-selecao-protecao.ts tinha alteração NÃO COMMITADA vinda da frente T2-SEM-MOTOR
+      (RetornoMODCC → VeredictoMODCC, tratamento de tipo "SEM-MOTOR"). O commit 9f1b9e8
+      referenciava um tipo que não existia mais no worktree.
+    resolution: >-
+      Commit 2ecd1ca com pathspec explícito (6 arquivos), sem varrer o índice das outras
+      frentes. Verificado: git status limpo em src/domain/dimensionamento-disjuntores/,
+      tsc --noEmit exit 0, 17/17 testes do módulo. Baseline do worktree comparado antes/depois:
+      apenas os 3 arquivos MOD-PROT saíram, nenhuma mudança colateral.
+
+top_issues: []
+
+waiver: { active: false }
+
+recommended_status: 'Aprovado — apto a Done'

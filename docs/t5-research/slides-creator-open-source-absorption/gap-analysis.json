@@ -1,0 +1,85 @@
+{
+  "schema": "bench-gap-analysis.v1",
+  "generated_at": "2026-05-17",
+  "gaps": [
+    {
+      "id": "gap-native-editable-pptx",
+      "priority": "P0",
+      "title": "PPTX nativo editável",
+      "current_state": "Parcial; decisão e task existem, mas runtime maduro não",
+      "external_reference": "ppt-master",
+      "absorption": "SVG/IR visual para DrawingML, template replication, validação de objetos editáveis",
+      "acceptance": "PPTX exportado abre com texto, shapes, imagens e gráficos editáveis."
+    },
+    {
+      "id": "gap-api-mcp-self-hosted",
+      "priority": "P0",
+      "title": "API/MCP self-hosted",
+      "current_state": "Parcial/ausente como produto",
+      "external_reference": "Presenton",
+      "absorption": "Serviço slides-api, endpoint generate/review/export e MCP",
+      "acceptance": "CLI e MCP geram deck pelo mesmo contrato."
+    },
+    {
+      "id": "gap-agentic-reflection",
+      "priority": "P0",
+      "title": "Agentic planning/reflection",
+      "current_state": "Forte em governança, parcial em loop visual/reflexivo",
+      "external_reference": "PPTAgent",
+      "absorption": "Planner, research/design reflection e PPTEval complementar",
+      "acceptance": "Cada deck possui reflection_history e QA antes/depois."
+    },
+    {
+      "id": "gap-prompt-to-edit",
+      "priority": "P1",
+      "title": "Prompt-to-edit por slide/região",
+      "current_state": "Ausente",
+      "external_reference": "banana-slides",
+      "absorption": "Comandos naturais com diff e aplicação controlada",
+      "acceptance": "Usuário edita slide específico por prompt, revisa diff e aplica."
+    },
+    {
+      "id": "gap-web-editor-themes",
+      "priority": "P1",
+      "title": "Editor web e temas",
+      "current_state": "Parcial fora do squad",
+      "external_reference": "presentation-ai + Presenton",
+      "absorption": "Outline editor, temas, template picker e preview",
+      "acceptance": "DeckSpec renderiza no editor e exporta sem quebra."
+    },
+    {
+      "id": "gap-math-diagrams",
+      "priority": "P1",
+      "title": "Math/diagramas técnicos",
+      "current_state": "Parcial",
+      "external_reference": "powerpoint-skill",
+      "absorption": "OMML, Mermaid, Graphviz, TikZ e regras de fallback",
+      "acceptance": "Deck técnico com fórmulas e diagramas passa render QA."
+    },
+    {
+      "id": "gap-share-analytics",
+      "priority": "P2",
+      "title": "Share links e analytics",
+      "current_state": "Ausente",
+      "external_reference": "Gamma + presentation-ai",
+      "absorption": "Presentation runtime e analytics",
+      "acceptance": "Link público com views por deck/slide."
+    },
+    {
+      "id": "gap-video-narration",
+      "priority": "P2",
+      "title": "Vídeo/narração",
+      "current_state": "Parcial conceitual",
+      "external_reference": "ppt-master + banana-slides + PresentAgent-2",
+      "absorption": "TTS, presenter mode e MP4 opcional",
+      "acceptance": "Deck exporta vídeo com narração controlada."
+    }
+  ],
+  "closure_order": [
+    "Renderer/editabilidade",
+    "API/MCP",
+    "Planning/reflection",
+    "Prompt-to-edit",
+    "Share/analytics/video"
+  ]
+}

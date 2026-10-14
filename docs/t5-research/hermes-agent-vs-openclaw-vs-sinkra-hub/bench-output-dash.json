@@ -1,0 +1,944 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:10:52.377Z",
+  "source_files": [
+    "INDEX.md",
+    "architecture-vision.md",
+    "architecture-vision.mmd",
+    "battle-card.md",
+    "comparison-matrix.md",
+    "coverage-comparison.mmd",
+    "executive-report.md",
+    "executor-taxonomy.mmd",
+    "flywheel.mmd",
+    "metadata.canonical.json",
+    "metadata.json",
+    "scorecard.json",
+    "scorecard.md",
+    "synergy-positioning.md",
+    "three-axis-positioning.mmd"
+  ],
+  "benchmark": {
+    "slug": "hermes-agent-vs-openclaw-vs-sinkra-hub",
+    "title": "Three-Way Benchmark & Architecture Vision — Index",
+    "date": "undated",
+    "type": "codebase",
+    "variant": "3-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "hermes",
+      "name": "Hermes",
+      "category": "unknown"
+    },
+    {
+      "key": "openclaw",
+      "name": "Openclaw",
+      "category": "unknown"
+    },
+    {
+      "key": "sinkra",
+      "name": "Sinkra",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "sinkra",
+    "coverage": "structured",
+    "sources": 0,
+    "waves": 0,
+    "dimensions": 13
+  },
+  "matrix": {
+    "players": [
+      "hermes",
+      "openclaw",
+      "sinkra"
+    ],
+    "dimensions": [
+      {
+        "id": "1",
+        "label": "Agent Architecture Depth",
+        "weight": 0
+      },
+      {
+        "id": "2",
+        "label": "Self-Improvement & Learning",
+        "weight": 0
+      },
+      {
+        "id": "3",
+        "label": "Governance & Quality Control",
+        "weight": 0
+      },
+      {
+        "id": "4",
+        "label": "Knowledge Management",
+        "weight": 0
+      },
+      {
+        "id": "5",
+        "label": "Multi-Platform & Channels",
+        "weight": 0
+      },
+      {
+        "id": "6",
+        "label": "Extensibility & Plugin Model",
+        "weight": 0
+      },
+      {
+        "id": "7",
+        "label": "Business & Multi-Tenant",
+        "weight": 0
+      },
+      {
+        "id": "8",
+        "label": "Research & Training Infra",
+        "weight": 0
+      },
+      {
+        "id": "9",
+        "label": "Developer Experience",
+        "weight": 0
+      },
+      {
+        "id": "10",
+        "label": "Testing & CI",
+        "weight": 0
+      },
+      {
+        "id": "11",
+        "label": "Content & Documentation",
+        "weight": 0
+      },
+      {
+        "id": "12",
+        "label": "Community & Ecosystem",
+        "weight": 0
+      },
+      {
+        "id": "D13",
+        "label": "AVERAGE",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "1",
+        "label": "Agent Architecture Depth",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 55,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 95,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "label": "Self-Improvement & Learning",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 92,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 30,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 20,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "label": "Governance & Quality Control",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 25,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 55,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 98,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "label": "Knowledge Management",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 72,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 45,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 95,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "label": "Multi-Platform & Channels",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 75,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 95,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 10,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "label": "Extensibility & Plugin Model",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 55,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "label": "Business & Multi-Tenant",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 10,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 98,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "label": "Research & Training Infra",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 95,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 35,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "label": "Developer Experience",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 85,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 65,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "10",
+        "label": "Testing & CI",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 55,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 50,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "11",
+        "label": "Content & Documentation",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 45,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 98,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "12",
+        "label": "Community & Ecosystem",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 60,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 95,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 20,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D13",
+        "label": "AVERAGE",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 59.9,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 60.4,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "sinkra",
+            "score": 63.7,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "hermes",
+        "score": 59.92
+      },
+      {
+        "player": "openclaw",
+        "score": 60.42
+      },
+      {
+        "player": "sinkra",
+        "score": 63.67
+      }
+    ],
+    "method": "Derived from markdown table in scorecard.md"
+  },
+  "duels": [
+    {
+      "left": "hermes",
+      "right": "openclaw",
+      "winner": "openclaw",
+      "left_wins": 4,
+      "right_wins": 9,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "1",
+          "label": "Agent Architecture Depth",
+          "left_score": 70,
+          "right_score": 55,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "2",
+          "label": "Self-Improvement & Learning",
+          "left_score": 92,
+          "right_score": 30,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "3",
+          "label": "Governance & Quality Control",
+          "left_score": 25,
+          "right_score": 55,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "4",
+          "label": "Knowledge Management",
+          "left_score": 72,
+          "right_score": 45,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "5",
+          "label": "Multi-Platform & Channels",
+          "left_score": 75,
+          "right_score": 95,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "6",
+          "label": "Extensibility & Plugin Model",
+          "left_score": 55,
+          "right_score": 90,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "7",
+          "label": "Business & Multi-Tenant",
+          "left_score": 5,
+          "right_score": 10,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "8",
+          "label": "Research & Training Infra",
+          "left_score": 95,
+          "right_score": 5,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "9",
+          "label": "Developer Experience",
+          "left_score": 70,
+          "right_score": 85,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "10",
+          "label": "Testing & CI",
+          "left_score": 55,
+          "right_score": 90,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "11",
+          "label": "Content & Documentation",
+          "left_score": 45,
+          "right_score": 70,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "12",
+          "label": "Community & Ecosystem",
+          "left_score": 60,
+          "right_score": 95,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D13",
+          "label": "AVERAGE",
+          "left_score": 59.9,
+          "right_score": 60.4,
+          "winner": "openclaw"
+        }
+      ]
+    },
+    {
+      "left": "hermes",
+      "right": "sinkra",
+      "winner": "sinkra",
+      "left_wins": 6,
+      "right_wins": 7,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "1",
+          "label": "Agent Architecture Depth",
+          "left_score": 70,
+          "right_score": 95,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "2",
+          "label": "Self-Improvement & Learning",
+          "left_score": 92,
+          "right_score": 20,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "3",
+          "label": "Governance & Quality Control",
+          "left_score": 25,
+          "right_score": 98,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "4",
+          "label": "Knowledge Management",
+          "left_score": 72,
+          "right_score": 95,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "5",
+          "label": "Multi-Platform & Channels",
+          "left_score": 75,
+          "right_score": 10,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "6",
+          "label": "Extensibility & Plugin Model",
+          "left_score": 55,
+          "right_score": 80,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "7",
+          "label": "Business & Multi-Tenant",
+          "left_score": 5,
+          "right_score": 98,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "8",
+          "label": "Research & Training Infra",
+          "left_score": 95,
+          "right_score": 35,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "9",
+          "label": "Developer Experience",
+          "left_score": 70,
+          "right_score": 65,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "10",
+          "label": "Testing & CI",
+          "left_score": 55,
+          "right_score": 50,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "11",
+          "label": "Content & Documentation",
+          "left_score": 45,
+          "right_score": 98,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "12",
+          "label": "Community & Ecosystem",
+          "left_score": 60,
+          "right_score": 20,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D13",
+          "label": "AVERAGE",
+          "left_score": 59.9,
+          "right_score": 63.7,
+          "winner": "sinkra"
+        }
+      ]
+    },
+    {
+      "left": "openclaw",
+      "right": "sinkra",
+      "winner": "sinkra",
+      "left_wins": 6,
+      "right_wins": 7,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "1",
+          "label": "Agent Architecture Depth",
+          "left_score": 55,
+          "right_score": 95,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "2",
+          "label": "Self-Improvement & Learning",
+          "left_score": 30,
+          "right_score": 20,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "3",
+          "label": "Governance & Quality Control",
+          "left_score": 55,
+          "right_score": 98,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "4",
+          "label": "Knowledge Management",
+          "left_score": 45,
+          "right_score": 95,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "5",
+          "label": "Multi-Platform & Channels",
+          "left_score": 95,
+          "right_score": 10,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "6",
+          "label": "Extensibility & Plugin Model",
+          "left_score": 90,
+          "right_score": 80,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "7",
+          "label": "Business & Multi-Tenant",
+          "left_score": 10,
+          "right_score": 98,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "8",
+          "label": "Research & Training Infra",
+          "left_score": 5,
+          "right_score": 35,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "9",
+          "label": "Developer Experience",
+          "left_score": 85,
+          "right_score": 65,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "10",
+          "label": "Testing & CI",
+          "left_score": 90,
+          "right_score": 50,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "11",
+          "label": "Content & Documentation",
+          "left_score": 70,
+          "right_score": 98,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "12",
+          "label": "Community & Ecosystem",
+          "left_score": 95,
+          "right_score": 20,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D13",
+          "label": "AVERAGE",
+          "left_score": 60.4,
+          "right_score": 63.7,
+          "winner": "sinkra"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "sinkra",
+          "score": 63.67,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "openclaw",
+          "score": 60.42,
+          "delta": ""
+        },
+        {
+          "rank": 3,
+          "player": "hermes",
+          "score": 59.92,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "hermes",
+          "score": 59.92
+        },
+        {
+          "player": "openclaw",
+          "score": 60.42
+        },
+        {
+          "player": "sinkra",
+          "score": 63.67
+        }
+      ],
+      "verdict": "Sinkra vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [],
+  "sources": [],
+  "artifacts": [
+    {
+      "file": "INDEX.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "architecture-vision.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "architecture-vision.mmd",
+      "role": "diagram",
+      "format": "mmd"
+    },
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "coverage-comparison.mmd",
+      "role": "comparison-matrix",
+      "format": "mmd"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "executor-taxonomy.mmd",
+      "role": "diagram",
+      "format": "mmd"
+    },
+    {
+      "file": "flywheel.mmd",
+      "role": "diagram",
+      "format": "mmd"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    },
+    {
+      "file": "synergy-positioning.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "three-axis-positioning.mmd",
+      "role": "diagram",
+      "format": "mmd"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "missing",
+    "sources": "missing"
+  },
+  "inferred": {
+    "date": true
+  }
+}

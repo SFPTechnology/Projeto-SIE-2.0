@@ -1,0 +1,113 @@
+{
+  "schema": "deepresearch-absorption-benchmark.scorecard.v4",
+  "generated_at": "2026-05-18",
+  "score_scale": "0-100 weighted micro-capability absorption coverage",
+  "computation": "Sum(group_score × group_weight) / total_weight, where group_score = Sum(dim_score × dim_weight) / Sum(dim_weights)",
+  "ranking": [
+    {
+      "player": "deerflow",
+      "label": "DeerFlow (ByteDance)",
+      "score": 72.05,
+      "rank": 1,
+      "by_group": {"Entrada": 52.0, "Planejamento": 80.5, "Execucao": 83.33, "Multi-Agente": 90.0, "Modelo": 45.0, "Memoria": 92.5, "Sandbox": 84.29, "Citacoes": 55.0, "Saida": 72.14, "Observabilidade": 65.0, "Distribuicao": 62.0, "Licenca": 100.0, "Governance": 59.0}
+    },
+    {
+      "player": "gpt_researcher",
+      "label": "GPT-Researcher",
+      "score": 69.65,
+      "rank": 2,
+      "by_group": {"Entrada": 95.0, "Planejamento": 74.0, "Execucao": 77.33, "Multi-Agente": 77.5, "Modelo": 47.5, "Memoria": 45.0, "Sandbox": 31.43, "Citacoes": 66.5, "Saida": 88.57, "Observabilidade": 70.0, "Distribuicao": 97.0, "Licenca": 100.0, "Governance": 58.0}
+    },
+    {
+      "player": "autoresearchclaw",
+      "label": "AutoResearchClaw",
+      "score": 69.65,
+      "rank": 2,
+      "by_group": {"Entrada": 34.0, "Planejamento": 85.0, "Execucao": 72.33, "Multi-Agente": 82.5, "Modelo": 42.5, "Memoria": 47.5, "Sandbox": 100.0, "Citacoes": 71.5, "Saida": 90.0, "Observabilidade": 58.0, "Distribuicao": 32.0, "Licenca": 100.0, "Governance": 82.0}
+    },
+    {
+      "player": "local_dr",
+      "label": "Local Deep Research",
+      "score": 63.9,
+      "rank": 4,
+      "by_group": {"Entrada": 40.0, "Planejamento": 57.0, "Execucao": 67.33, "Multi-Agente": 37.5, "Modelo": 50.0, "Memoria": 70.0, "Sandbox": 65.71, "Citacoes": 81.0, "Saida": 62.14, "Observabilidade": 70.0, "Distribuicao": 83.0, "Licenca": 100.0, "Governance": 64.0}
+    },
+    {
+      "player": "aiox_research",
+      "label": "AIOX Research Ecosystem",
+      "score": 60.25,
+      "rank": 5,
+      "by_group": {"Entrada": 37.0, "Planejamento": 96.5, "Execucao": 82.67, "Multi-Agente": 57.5, "Modelo": 38.75, "Memoria": 52.5, "Sandbox": 0.0, "Citacoes": 76.0, "Saida": 69.29, "Observabilidade": 66.0, "Distribuicao": 10.0, "Licenca": 54.0, "Governance": 100.0}
+    },
+    {
+      "player": "tongyi_dr",
+      "label": "Tongyi DeepResearch (Alibaba)",
+      "score": 52.1,
+      "rank": 6,
+      "by_group": {"Entrada": 26.0, "Planejamento": 45.5, "Execucao": 55.0, "Multi-Agente": 60.0, "Modelo": 78.75, "Memoria": 40.0, "Sandbox": 0.0, "Citacoes": 55.0, "Saida": 47.14, "Observabilidade": 64.0, "Distribuicao": 37.0, "Licenca": 100.0, "Governance": 50.0}
+    },
+    {
+      "player": "langchain_odr",
+      "label": "LangChain Open DR",
+      "score": 51.7,
+      "rank": 7,
+      "by_group": {"Entrada": 82.0, "Planejamento": 62.0, "Execucao": 63.0, "Multi-Agente": 27.5, "Modelo": 43.75, "Memoria": 35.0, "Sandbox": 0.0, "Citacoes": 51.5, "Saida": 57.14, "Observabilidade": 71.0, "Distribuicao": 41.0, "Licenca": 100.0, "Governance": 53.0}
+    },
+    {
+      "player": "deepresearcher",
+      "label": "DeepResearcher 7B RL (GAIR-NLP)",
+      "score": 50.95,
+      "rank": 8,
+      "by_group": {"Entrada": 22.0, "Planejamento": 45.5, "Execucao": 56.67, "Multi-Agente": 22.5, "Modelo": 75.0, "Memoria": 42.5, "Sandbox": 25.71, "Citacoes": 61.5, "Saida": 42.14, "Observabilidade": 68.0, "Distribuicao": 28.0, "Licenca": 100.0, "Governance": 55.0}
+    },
+    {
+      "player": "openresearcher",
+      "label": "OpenResearcher 30B (TIGER-AI-Lab)",
+      "score": 48.2,
+      "rank": 9,
+      "by_group": {"Entrada": 26.0, "Planejamento": 37.0, "Execucao": 47.33, "Multi-Agente": 22.5, "Modelo": 75.0, "Memoria": 40.0, "Sandbox": 0.0, "Citacoes": 62.5, "Saida": 42.14, "Observabilidade": 90.0, "Distribuicao": 30.0, "Licenca": 100.0, "Governance": 54.0}
+    },
+    {
+      "player": "jina_ndr",
+      "label": "Jina node-DR",
+      "score": 44.5,
+      "rank": 10,
+      "by_group": {"Entrada": 53.0, "Planejamento": 34.5, "Execucao": 57.33, "Multi-Agente": 17.5, "Modelo": 37.5, "Memoria": 25.0, "Sandbox": 39.29, "Citacoes": 44.5, "Saida": 67.14, "Observabilidade": 51.0, "Distribuicao": 67.0, "Licenca": 38.0, "Governance": 54.0}
+    }
+  ],
+  "aiox_advantages": [
+    {"group": "Governance", "score": 100.0, "rationale": "Únicos com COVERAGE_GATE + CITATION_GATE reais + Incremental Learning Log per-phase"},
+    {"group": "Planejamento", "score": 96.5, "rationale": "7 phases dedicadas (clarify, decompose, prompt-gen) + product-discovery framework"},
+    {"group": "Execucao", "score": 82.67, "rationale": "Multi-wave bounded (max 3) + wave-compression + deep-read protocol"},
+    {"group": "Citacoes", "score": 76.0, "rationale": "CITATION_GATE com verified_ratio threshold + 2 fix attempts bounded"}
+  ],
+  "aiox_critical_gaps": [
+    {"group": "Sandbox", "score": 0.0, "rationale": "Zero Docker code-execution isolation. AutoResearchClaw=100, DeerFlow=84, LDR=66"},
+    {"group": "Distribuicao", "score": 10.0, "rationale": "Sem PyPI, sem Docker Hub. GPT-Researcher=97, LDR=83, DeerFlow=62"},
+    {"group": "Modelo", "score": 38.75, "rationale": "Sem purpose-trained model. OpenResearcher/DeepResearcher/Tongyi=75-79"},
+    {"group": "Licenca", "score": 54.0, "rationale": "Elastic License v2 no app (não OSI). Todos competidores MIT/Apache exceto Jina"},
+    {"group": "Multi-Agente", "score": 57.5, "rationale": "Inline persona-fidelity, no true parallel spawn. DeerFlow=90, AutoResearchClaw=82.5"},
+    {"group": "Memoria", "score": 52.5, "rationale": "Sem cross-session persistence. DeerFlow TIAMAT=92.5, LDR SQLCipher=70"},
+    {"group": "Entrada", "score": 37.0, "rationale": "Sem MCP server, sem headless API standalone. GPT-Researcher=95, LangChain ODR=82"}
+  ],
+  "recommended_composition": {
+    "name": "AIOX Research Hybrid (post-absorption)",
+    "thesis": "Combinar AIOX Governance/Planejamento/PT-BR vertical + DeerFlow multi-agent sandbox + GPT-Researcher MCP/distribution + OpenResearcher/DeepResearcher model backend opcional + LDR scholarly DB integration",
+    "expected_score_if_absorbed": 88,
+    "absorption_rule": "Absorver padrões e contratos via REUSE > ADAPT > CREATE; respeitar licenças MIT/Apache; sempre PoC antes de production absorption"
+  },
+  "mvp_cut_for_aiox_v6": [
+    "Docker sandbox para code-execution durante research (via apps/research /api/research/runs/[runId])",
+    "MCP server nativo expondo /tech-research como tool consumível por outros Claude Code sessions",
+    "PyPI package @sinkra/research-cli — standalone CLI sem hub clone",
+    "Docker Hub image sinkra/research:latest",
+    "Backend opcional: BYOK + OpenResearcher-30B-A3B + DeepResearcher-7B (HF) com auto-detect GPU",
+    "Scholarly DB integration: arXiv + Semantic Scholar + PubMed (absorvido do LDR)",
+    "Memory persistente cross-session com confidence scores (TIAMAT-like, absorvido do DeerFlow)",
+    "Public eval logs em docs/research/_eval-logs/ com badge DeepResearchBench score",
+    "App License re-evaluation: dual-license (Elastic v2 + AGPLv3 community edition)"
+  ],
+  "dimensions_used": 24,
+  "groups_used": 13,
+  "players_scored": 10
+}

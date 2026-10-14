@@ -1,0 +1,350 @@
+title: "Copy Anti-Slop Bans — Cross-Skill Reference"
+purpose: "Canonical list of banned content patterns for copy outputs (filler words, generic names, fake numbers, startup-slop names, em-dashes, lorem ipsum). Cross-skill mirror of design-absolute-bans §5 Jane Doe Effect, adapted for copy."
+version: "1.0.0"
+authority: ".claude/rules/design-absolute-bans.md §5"
+absorbed_from:
+  - "tasteskill.dev v2 — Jane Doe Effect (Section 7)"
+  - "impeccable.style v3.1.1 — em-dash ban (absolute ban #7)"
+created: "2026-05-19"
+source_bench: "docs/bench/2026-05-18-impeccable-vs-sinkra-design-stack/"
+consumed_by:
+  - "squads/copy/checklists/copy-quality-checklist.md"
+  - "squads/copy/checklists/headline-quality-checklist.md"
+  - "squads/copy/checklists/copy-anti-slop-checklist.md"
+  - "squads/copy/agents/copy-ops-worker.md"
+  - "squads/copy/agents/copy-chief.md"
+
+# ── filler_words_ban ──────────────────────────────────────────────────────────
+# Filler words = abstract verbs with no concrete payoff. AI defaults to these.
+# Refuse + suggest concrete replacement.
+
+filler_words_ban:
+  severity: P1
+  # RT-FIX-6 2026-05-19 (@copy-chief): dedupe game-changer + add 12 missing 2026 AI tells
+  banned:
+    - elevate
+    - unlock
+    - unleash
+    - empower
+    - streamline
+    - transform   # when used as filler, not as concrete transformation verb
+    - seamless
+    - "next-gen"
+    - "next generation"
+    - "best-in-class"
+    - "world-class"
+    - "industry-leading"
+    - revolutionary
+    - disruptive
+    - "cutting-edge"
+    - "state-of-the-art"
+    - "game-changing"
+    - "game-changer"
+    - innovative           # almost always filler
+    # Added RT-FIX-6 2026-05-19 — top 2026 AI tells observed in production
+    - powerful             # #1 AI tell em SaaS copy
+    - effortless           # #2 AI tell em SaaS copy
+    - smart                # #3 AI tell em product copy
+    - robust
+    - scalable
+    - optimize
+    - maximize
+    - enhance
+    - boost
+    - "drive results"
+    - "solutions"          # substantivo vazio quando isolado
+    - strategic            # filler quando isolado
+    - holistic
+    - bandwidth            # buzzword
+    - pivot                # buzzword
+    - "deep dive"
+    - curated
+    - "hand-crafted"
+    - bespoke
+    - tailored             # filler default
+  replacement_strategy:
+    rule: "Substituir por verbo concreto + número OR consequência observável"
+    examples:
+      - banned: "Unleash your team's potential"
+        replacement: "Reduza handoffs em 40% no primeiro sprint"
+      - banned: "Seamless integration"
+        replacement: "Integração em 12 minutos, sem API key"
+      - banned: "Next-gen workflow"
+        replacement: "Aprovação em 1 clique (3 etapas a menos)"
+      - banned: "Empower your sales team"
+        replacement: "Diga ao seu time o preço sem abrir o CRM"
+      - banned: "Revolutionary AI platform"
+        replacement: "Resposta em <8s com 92% de precisão"
+  detection_regex: '\b(elevate|unlock|unleash|empower|streamline|seamless|next[\s-]gen|best[\s-]in[\s-]class|world[\s-]class|industry[\s-]leading|revolutionary|disruptive|cutting[\s-]edge|state[\s-]of[\s-]the[\s-]art|game[\s-]chang(er|ing)|innovative|powerful|effortless|smart|robust|scalable|optimize|maximize|enhance|boost|drive\s+results|solutions|strategic|holistic|bandwidth|pivot|deep\s+dive|curated|hand[\s-]crafted|bespoke|tailored)\b'
+  exception_pattern: |
+    Esses termos são aceitáveis quando:
+    - O contexto adiciona substância imediata depois (ex: "Streamline 3 manual approvals into 1 click")
+    - Aparecem dentro de quote de cliente/testemunho real
+    - São o nome literal de um produto/feature
+
+# ── generic_names_ban ─────────────────────────────────────────────────────────
+# Generic names = placeholders that AI defaults to. Banned in any deliverable.
+
+generic_names_ban:
+  severity: P0
+  banned:
+    - "John Doe"
+    - "Jane Doe"
+    - "Sarah Chen"
+    - "Sarah Chan"
+    - "Jack Su"
+    - "Test User"
+    - "Lorem User"
+    - "Demo User"
+    - "Example Person"
+  replacement_strategy:
+    rule: "Usar nomes reais (com permissão) OU contextualmente realistas (nacionalidade/idade/role da audiência)"
+    examples:
+      - banned: "Sarah Chen, VP of Marketing"
+        replacement_pt_br: "Camila Ferreira, Head de Growth na Magalu"
+        replacement_us: "Priya Iyer, VP Marketing at HubSpot"
+      - banned: "John Doe testou o produto"
+        replacement: "Use placeholder explícito: [TESTIMONIAL_PENDING — collect from {source}]"
+  detection_regex: '\b(John|Jane)\s+Doe\b|\bSarah\s+(Chen|Chan)\b|\bJack\s+Su\b|\b(Test|Demo|Example|Lorem)\s+(User|Person)\b'
+
+# ── startup_slop_names_ban ────────────────────────────────────────────────────
+# Generic startup names. Banned in case studies, mock testimonials, marketing copy.
+
+startup_slop_names_ban:
+  severity: P0
+  banned:
+    - Acme
+    - "Acme Corp"
+    - "Acme Inc"
+    - Nexus
+    - SmartFlow
+    - FlowSync
+    - DataSync
+    - ExampleCo
+    - TestCo
+    - StartupCo
+    - TechFlow
+    - CloudSync
+    - AISync
+    - TechCorp
+    - GenericCo
+  replacement_strategy:
+    rule: "Usar empresas reais (com permissão) OU placeholder explícito sinalizando pendência"
+    examples:
+      - banned: "Empresas como Acme e Nexus já usam"
+        replacement: "Magazine Luiza, Stone e iFood já usam"
+      - banned: "Case study: Acme Corp dobrou conversão"
+        replacement: "[CASE_STUDY_PENDING — collect from {customer} or use real brand with permission]"
+  detection_regex: '\b(Acme(\s+(Corp|Inc))?|Nexus|SmartFlow|FlowSync|DataSync|ExampleCo|TestCo|StartupCo|TechFlow|CloudSync|AISync|TechCorp|GenericCo)\b'
+  notes:
+    - "'Acme' como brand real existe (Acme Industries, etc) — se for empresa cliente verificada, anotar com comment '# verified real customer'"
+
+# ── fake_numbers_ban ──────────────────────────────────────────────────────────
+# Round/clean numbers that signal AI-generation. Demand organic specificity.
+
+fake_numbers_ban:
+  severity: P0
+  banned_patterns:
+    round_percentages:
+      - "99.99%"
+      - "100%"        # when used as conversion rate, customer satisfaction, etc — sus
+      - "50%"         # generic
+      - "10x"         # generic boost
+      - "100x"        # generic boost
+    sequential_or_lazy:
+      - "1234567"
+      - "555-1234"
+      - "555-555-5555"
+      - "(555) 555-5555"
+    round_money:
+      - "$1,000,000"
+      - "$99.99"
+      - "$9.99"
+      - "$100"        # when used as price/MRR/revenue
+  replacement_strategy:
+    rule: "Sempre números orgânicos com 2-3 dígitos não-round. Phone numbers reais ou placeholder explícito."
+    examples:
+      - banned: "Aumento de 50% nas vendas"
+        replacement: "Aumento de 47.2% nas vendas (jan-mar 2026)"
+      - banned: "Customer call: 555-1234"
+        replacement: "[PHONE_PENDING — collect real]"
+      - banned: "$1,000,000 MRR"
+        replacement: "$1.247M MRR em mar/2026"
+      - banned: "10x faster"
+        replacement: "7.3x mais rápido (vs baseline anterior em testes 2026Q1)"
+  detection_regex_percentages: '\b(99\.99|99,99|50|100)\s*%'
+  detection_regex_phone: '\b555[-.\s]?(1234|555|0000|123-4567)\b|\b1234567\b'
+  detection_regex_money: '\$1[,.]000[,.]000\b|\$99\.99\b|\$9\.99\b'
+  detection_regex_multipliers: '\b(10x|100x|1000x)\b(?!\s+(slower|smaller))'
+
+# ── filler_phrases_ban ────────────────────────────────────────────────────────
+# Entire copy structures AI keeps emitting.
+
+filler_phrases_ban:
+  severity: P1
+  banned:
+    - "In today's fast-paced world"
+    - "In today's digital age"
+    - "In the modern era"
+    - "Are you tired of"
+    - "Look no further"
+    - "Take it to the next level"
+    - "Push the envelope"
+    - "Think outside the box"
+    - "At the end of the day"
+    - "Move the needle"
+    - "Synergy"
+    - "Leverage" # banned as verb (use "usar")
+    - "Holistic"
+  replacement_strategy:
+    rule: "Cortar. Começar com o ponto. Sem warm-up."
+    examples:
+      - banned: "In today's fast-paced world, productivity is key..."
+        replacement: "Você gasta 3h/dia em status meetings."
+      - banned: "Are you tired of slow workflows? Look no further!"
+        replacement: "Aprovações de orçamento que demoram 9 dias agora levam 2 horas."
+
+# ── em_dash_ban ───────────────────────────────────────────────────────────────
+# Em-dashes (—) and double-hyphens (--) signal AI writing.
+# Reflexa ban_07 do design-absolute-bans.
+
+em_dash_ban:
+  # RT-FIX-6 2026-05-19 (@copy-chief + operator): em PT-BR formal o travessão (—)
+  # é marcador GRAMATICAL de discurso direto e aposto explicativo, não AI tell.
+  # Severity rebaixada para P2 em PT-BR (advisory) e expandido exception_pattern.
+  # Em EN mantém P1 (bloqueante) porque AI uses it as cliché.
+  severity_by_language:
+    "en": P1   # mantém bloqueante — AI tell forte em inglês
+    "pt-BR": P2   # advisory — gramática portuguesa usa travessão legitimamente
+    "pt-br": P2
+    default: P1   # fallback se idioma não detectado
+  authority: ".claude/rules/design-absolute-bans.md §2 ban_07"
+  banned_chars:
+    - "—"      # em-dash U+2014
+    - "–"      # en-dash U+2013 (when used as em-dash)
+    - "--"     # double-hyphen typed by AI
+  replacement_strategy:
+    rule_en: "In English copy, use commas, colons, semicolons, periods, or parentheses (em-dash is AI tell in EN)."
+    rule_pt_br: "Em PT-BR, travessão é gramática. Permitido em discurso direto + aposto explicativo. Banido APENAS quando substituível por vírgula sem perda."
+    examples_en:
+      - banned: "The product ships fast — no friction, no onboarding"
+        replacement: "The product ships fast. No friction. No onboarding."
+    examples_pt_br_legit:
+      - allowed: "— Quero comprar — disse o cliente."   # discurso direto OK
+        rationale: "Travessão de fala é gramática"
+      - allowed: "O produto — desenvolvido em 12 meses — já vendeu 4.7M unidades."   # aposto OK
+        rationale: "Aposto explicativo entre travessões é norma culta PT-BR"
+      - banned_pt_br: "O produto é incrível — você vai amar"
+        replacement: "O produto é incrível. Você vai amar."
+        rationale: "Travessão como conjunção adversativa frouxa é AI tell mesmo em PT-BR"
+  detection_regex: '—|–|--'
+  exception_pattern: |
+    Permitido SEMPRE:
+    - Aparecer dentro de quote direta de fonte externa (preservar fonte)
+    - Estiver em código Markdown ou frontmatter (---)
+    - Está em URL ou string técnica
+
+    Permitido APENAS em PT-BR:
+    - Discurso direto: "— Quero X — disse Y."
+    - Aposto explicativo: "X — Y — Z." onde Y é definição/clarificação de X
+    - Travessão sozinho como pausa dramática enfática (Halbert PT-BR style)
+
+    Em EN, exceções são RARAS (default = banir).
+
+# ── lorem_ipsum_ban ───────────────────────────────────────────────────────────
+# Lorem ipsum is unacceptable in any deliverable.
+
+lorem_ipsum_ban:
+  severity: P0
+  banned_patterns:
+    - "Lorem ipsum"
+    - "dolor sit amet"
+    - "consectetur adipiscing"
+  replacement_strategy:
+    rule: "Sempre usar copy real do brief OU placeholder explícito tipo [TODO: copy from {source}]."
+    examples:
+      - banned: "Lorem ipsum dolor sit amet..."
+        replacement: "[TODO: real headline from brief Section 3]"
+  detection_regex: '\bLorem\s+ipsum\b|\bdolor\s+sit\s+amet\b'
+
+# ── placeholder_handling_policy ───────────────────────────────────────────────
+# Quando placeholder é OK e como marcar.
+
+placeholder_handling_policy:
+  rule: "Placeholders são OK quando são EXPLÍCITOS e SINALIZAM PENDÊNCIA"
+  acceptable_placeholder_formats:
+    - "[TODO: real {field} from {source}]"
+    - "[PENDING: collect from {customer/source}]"
+    - "[VERIFY: confirm with {team/person}]"
+    - "<%= field %> (template engine syntax — OK)"
+    - "{{variable}} (template engine syntax — OK)"
+  forbidden_placeholders:
+    - "\"Lorem ipsum\" (replaceable only with explicit [TODO] marker)"
+    - "\"Your headline here\" (too generic)"
+    - "\"Insert text\" (lazy)"
+
+# ── enforcement ───────────────────────────────────────────────────────────────
+
+enforcement:
+  copy_chief:
+    rule: "Antes de aprovar entrega, scan completo contra todos os bans"
+    blocking_severities: [P0]
+    warning_severities: [P1]
+  copy_ops_worker:
+    rule: "Durante geração, refuse e reescrever quando detector hit"
+    auto_replace: false   # operator confirma a substituição
+  copy_quality_checklist:
+    rule: "Checklist final inclui 6 categorias de ban (one for each ban above)"
+  ci_integration:
+    suggested: "scripts/validate-copy-anti-slop.cjs scan output/copy/**"
+    status: not_implemented_yet
+
+# ── allowlist_mechanism ──────────────────────────────────────────────────────
+# RT-FIX-6 2026-05-19 (@copy-chief): false-positive mitigation.
+# Real entities (people, companies) named "John Doe" or "Acme" exist.
+# When a real entity is verified, add to allowlist to bypass detector for that asset.
+
+allowlist_mechanism:
+  authority: "@copy-chief approves entries"
+  allowlist_path: "outputs/copy/{business}/real-entities-allowlist.yaml"
+
+  schema:
+    real_people:
+      - name: "John Doe"   # actual real client
+        verified_at: "2026-05-19"
+        verified_by: "@copy-chief"
+        evidence: "Email thread 2026-05-15 + LinkedIn URL"
+        applies_to_assets: ["sales-page-acme-2026.md"]   # OR ["all"] for global
+    real_companies:
+      - name: "Acme Brick Co"  # company existing since 1891
+        verified_at: "2026-05-19"
+        verified_by: "@copy-chief"
+        evidence: "https://acmebrick.com — fundada 1891, cliente real"
+        applies_to_assets: ["all"]
+        notes: "Acme Brick Co != Acme Corp generic. Sempre incluir 'Brick' no asset."
+
+  detection_override:
+    rule: |
+      Quando scanner detecta nome em generic_names_ban ou startup_slop_names_ban,
+      ANTES de flag, consultar allowlist do business + asset_id.
+      Se match → SKIP detector hit (mas log em audit trail).
+      Se NO match → standard P0 hit.
+    audit_log: "outputs/copy/{business}/audit/anti-slop-overrides.jsonl"
+
+  anti_patterns:
+    - "Adicionar entry sem evidence verificável — vira loophole sistêmico"
+    - "applies_to_assets: [all] sem rationale forte — preferir per-asset"
+    - "Entradas sem verified_by — quebra accountability"
+    - "Entries permanentes — todas devem ter expires date (default 12 meses)"
+
+# ── ai_slop_score ─────────────────────────────────────────────────────────────
+# Aggregate score across all bans.
+
+ai_slop_score:
+  formula: "weighted_sum(P0_hits * 15 + P1_hits * 8 + P2_hits * 3) capped at 100"
+  thresholds:
+    "0-20": "pass"
+    "21-40": "warn"
+    "41-60": "review (manual gate)"
+    "61-80": "block (rebrief required)"
+    "81-100": "hard-block (full rebrief)"

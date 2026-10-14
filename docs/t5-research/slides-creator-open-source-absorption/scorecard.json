@@ -1,0 +1,329 @@
+{
+  "schema": "slides-creator-open-source-absorption.scorecard.v5",
+  "generated_at": "2026-05-18T16:05:00-03:00",
+  "score_scale": "0-100 weighted micro-capability absorption coverage",
+  "provenance": [
+    {
+      "wave": "W3-spike",
+      "applied_at": "2026-05-18T15:30:00Z",
+      "anchor_delta": "+3.14 (77.93 → 81.07)",
+      "promotions_count": 31,
+      "promotions_file": "wave-3-promotions.json",
+      "evidence_summary": "5 golden fixtures válidos; 3 packages @sinkra/slides-*; 5 REST + 5 MCP + 5 CLI subcomandos; 2 validators Python; OpenAPI 3.1; 8 specs Jest (5 core + 3 renderer); 19 microdims promovidas com evidência executável.",
+      "rule": "Apenas anchor (slides_creator) recebe deltas. Competidores inalterados."
+    }
+  ],
+  "ranking": [
+    {
+      "player": "slides_creator",
+      "label": "slide creator skill",
+      "score": 81.07
+    },
+    {
+      "player": "ppt_master",
+      "label": "ppt-master",
+      "score": 74.79
+    },
+    {
+      "player": "presenton",
+      "label": "Presenton",
+      "score": 74.09
+    },
+    {
+      "player": "presentation_ai",
+      "label": "presentation-ai",
+      "score": 67.52
+    },
+    {
+      "player": "pptagent",
+      "label": "PPTAgent",
+      "score": 63.52
+    },
+    {
+      "player": "presentagent_2",
+      "label": "PresentAgent-2",
+      "score": 62.68
+    },
+    {
+      "player": "banana_slides",
+      "label": "banana-slides",
+      "score": 60.16
+    },
+    {
+      "player": "powerpoint_skill",
+      "label": "powerpoint-skill",
+      "score": 55.07
+    },
+    {
+      "player": "slide_deck_ai",
+      "label": "slide-deck-ai",
+      "score": 53.28
+    }
+  ],
+  "recommended_composition": {
+    "name": "slide creator skill stack",
+    "thesis": "Combinar governança narrativa SINKRA + renderer ppt-master/powerpoint-skill + API/MCP Presenton + planejamento PPTAgent/PresentAgent-2 + UX banana-slides/presentation-ai.",
+    "expected_score_if_absorbed": 95,
+    "absorption_rule": "absorver padrões e contratos; evitar cópia de código AGPL ou sem licença compatível.",
+    "wave_3_progress": {
+      "current_score": 81.07,
+      "next_wave_target": 85,
+      "remaining_gaps_to_95": [
+        "Renderização avançada (animations, ppt reopen manual review, native chart waterfall)",
+        "Multimídia (TTS, MP4, Q&A — Wave 4)",
+        "Editor visual web (canvas, blocks, undo UI — Wave 4)",
+        "Distribuição (share, analytics, permissions — Wave 4)"
+      ]
+    }
+  },
+  "mvp_cut": [
+    "DeckSpec/NativeIR com PPTX editável real",
+    "API/MCP self-hosted com fila e storage",
+    "Editor web outline-first + prompt-to-edit",
+    "Rubrica QA com validação de narrativa, fontes, layout e editabilidade",
+    "Registry multi-provider com Ollama/BYOK"
+  ],
+  "dimensions": {
+    "players": 9,
+    "macro_dimensions": 36,
+    "micro_dimensions": 108,
+    "cells": 972,
+    "weights_sum": 100,
+    "leader": "slide creator skill",
+    "gap_to_second": 6.28,
+    "slides_creator_score_after_absorption": 81.07,
+    "previous_macro_score": 70.6,
+    "matrix_depth_upgrade": "36 macro dimensions expanded to 108 microdimensions"
+  },
+  "totals": {
+    "players": 9,
+    "macro_dimensions": 36,
+    "dimensions": 108,
+    "cells": 972,
+    "weights_sum": 100,
+    "leader": "slide creator skill",
+    "gap_to_second": 6.28,
+    "slides_creator_score_after_absorption": 81.07,
+    "slides_creator_previous_score": 77.93,
+    "wave_3_delta": 3.14,
+    "segmented_comparisons": 3,
+    "segmented_dimensions": 72,
+    "segmented_cells": 264
+  },
+  "scoring_method": {
+    "scale": "0-100 por microdimensão.",
+    "bands": [
+      {
+        "range": "0-20",
+        "meaning": "ausente, intenção ou sinal não operacional"
+      },
+      {
+        "range": "21-49",
+        "meaning": "fraco, protótipo, capacidade lateral ou sem profundidade suficiente"
+      },
+      {
+        "range": "50-69",
+        "meaning": "cobertura parcial útil, mas com gaps relevantes"
+      },
+      {
+        "range": "70-84",
+        "meaning": "cobertura forte com gaps conhecidos"
+      },
+      {
+        "range": "85-100",
+        "meaning": "referência de absorção para aquela microcapacidade"
+      }
+    ],
+    "formula": "score_total_player = soma(score_da_célula * peso_da_microdimensão) / soma(pesos).",
+    "weight_policy": "As 36 dimensões macro originais foram decompostas em 108 microdimensões. Cada peso macro foi dividido entre três checks filhos. A soma final dos pesos continua 100.",
+    "evidence_policy": "High = código, docs, scripts ou testes lidos no clone/local skill; medium = README ou fluxo parcialmente verificado; low = inferência, claim indireto ou sinal incompleto.",
+    "row_winner": "O vencedor da linha é o player com maior score naquela microdimensão. Empates técnicos devem ser lidos pelo contexto e fonte, não só pelo número.",
+    "confidence_use": "Confiança não altera automaticamente o score; ela informa risco de leitura. Scores com confiança baixa devem virar item de revalidação antes de decisão de implementação.",
+    "interpretation": "O ranking consolidado é mapa de absorção para a slide creator skill. Não é ranking absoluto justo entre apps, skills, engines e agentes. Use comparativos segmentados e personas para decisões por classe/persona.",
+    "audit_files": [
+      "deep/matrix-methodology.md",
+      "deep/evidence-by-dimension.md",
+      "deep/slides-creator-micro-gap-map.md",
+      "deep/macro-comparison-matrix.md"
+    ],
+    "score_lenses": [
+      {
+        "id": "coverage",
+        "label": "Cobertura funcional",
+        "points": "0-20",
+        "question": "A capacidade existe e cobre o caso de uso da microdimensão?"
+      },
+      {
+        "id": "depth",
+        "label": "Profundidade operacional",
+        "points": "0-20",
+        "question": "É fluxo real, integrado e repetível, ou só demo/protótipo?"
+      },
+      {
+        "id": "fidelity",
+        "label": "Fidelidade do output/UX",
+        "points": "0-20",
+        "question": "O resultado final atende o padrão esperado: PPTX editável, UX boa, QA, fonte ou runtime conforme a dimensão?"
+      },
+      {
+        "id": "evidence",
+        "label": "Força da evidência",
+        "points": "0-20",
+        "question": "A nota vem de código/docs/testes locais ou de inferência fraca?"
+      },
+      {
+        "id": "absorption",
+        "label": "Absorvibilidade SINKRA",
+        "points": "0-20",
+        "question": "Conseguimos absorver como código, contrato, fixture, padrão ou só inspiração com risco?"
+      }
+    ],
+    "cell_formula": "score_da_célula = cobertura + profundidade + fidelidade + evidência + absorvibilidade; cada lente vale 0-20.",
+    "reference_band_detail": [
+      {
+        "range": "85-89",
+        "meaning": "Referência útil, mas ainda com uma ressalva relevante: integração parcial, evidência incompleta, risco de absorção ou gap de acabamento."
+      },
+      {
+        "range": "90-94",
+        "meaning": "Referência forte e operacional: fluxo claro, evidência local suficiente e poucos gaps conhecidos."
+      },
+      {
+        "range": "95-98",
+        "meaning": "Best-in-class para aquela microcapacidade: implementação profunda, repetível, bem documentada e diretamente aproveitável como padrão/contrato."
+      },
+      {
+        "range": "99",
+        "meaning": "Praticamente ideal no contexto do bench: cobre a microcapacidade com profundidade, evidência alta, integração clara e sem gap relevante conhecido."
+      },
+      {
+        "range": "100",
+        "meaning": "Reservado para requisito exatamente atendido no nosso alvo ou capacidade sem gap/material risk no contexto avaliado; não significa perfeição universal."
+      }
+    ],
+    "adjustments": [
+      {
+        "delta": "+1 a +4",
+        "reason": "Sinal acima do macro: a microcapacidade é mais forte que a dimensão-mãe."
+      },
+      {
+        "delta": "-1 a -6",
+        "reason": "Sinal abaixo do macro: a microcapacidade específica é menos comprovada que a dimensão-mãe."
+      },
+      {
+        "delta": "-10 ou mais",
+        "reason": "Ausência de runtime, licença incerta, SaaS-only, saída rasterizada ou evidência fraca para aquele uso."
+      }
+    ],
+    "design_score_detail": {
+      "85-89": "capacidade forte, mas ainda com prova parcial de render, importação ou runtime",
+      "90-94": "capacidade operacional forte, com contratos/fixtures/gates e lacuna residual explícita",
+      "95-97": "referência dominante para a microcapacidade; exige artefatos autocontidos e QA repetível",
+      "98-100": "reservado para prova executável ampla, corpus renderizado, parser/regressão ou ausência de gap material"
+    }
+  },
+  "ranking_type": "consolidated_absorption_map_updated_after_narrative_design_editor_absorption",
+  "absolute_ranking_warning": "Ranking consolidado é mapa de absorção entre classes diferentes. A slide creator skill agora lidera por contratos autocontidos de narrativa, design, delivery, CLI/API/MCP e QA; runtime PPTX/editor/infra ainda é gap de implementação.",
+  "segmented_comparisons": [
+    {
+      "id": "apps",
+      "label": "Apps e produto final",
+      "purpose": "Compara produtos com UI/app, tema, sharing, edição visual e operação self-hosted.",
+      "winner": {
+        "player": "presenton",
+        "label": "Presenton",
+        "score": 80.77
+      },
+      "gap_to_second": 3.86,
+      "ranking": [
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 80.77
+        },
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 76.91
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 69.91
+        }
+      ],
+      "dimensions": 24,
+      "cells": 72
+    },
+    {
+      "id": "skills_agentic",
+      "label": "Skills, agentes e workflows",
+      "purpose": "Compara capacidades de raciocínio, orquestração, QA, skill-runtime e geração governada.",
+      "winner": {
+        "player": "slides_creator",
+        "label": "slide creator skill",
+        "score": 84.2
+      },
+      "gap_to_second": 7.19,
+      "ranking": [
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 84.2
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 77.01
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 73.84
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 68.46
+        }
+      ],
+      "dimensions": 24,
+      "cells": 96
+    },
+    {
+      "id": "engines_runtime",
+      "label": "Engines, renderer e runtime",
+      "purpose": "Compara bibliotecas/runtimes para gerar, exportar, rodar localmente e integrar por API/CLI.",
+      "winner": {
+        "player": "ppt_master",
+        "label": "ppt-master",
+        "score": 82.13
+      },
+      "gap_to_second": 8.02,
+      "ranking": [
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 82.13
+        },
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 74.11
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 64.4
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 59.97
+        }
+      ],
+      "dimensions": 24,
+      "cells": 96
+    }
+  ]
+}

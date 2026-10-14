@@ -1,0 +1,59 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-18T00:04:24.835Z",
+  "source_files": [
+    "00-cross-bench-synthesis.md",
+    "01-wave-2-absorption-plan.md"
+  ],
+  "benchmark": {
+    "slug": "slides-creator-templates-architecture",
+    "title": "Slides Creator Templates Architecture",
+    "date": "undated",
+    "type": "other",
+    "variant": "1-way",
+    "analyst": "unknown"
+  },
+  "players": [],
+  "summary": {
+    "winner": "mixed",
+    "coverage": "partial",
+    "sources": 0,
+    "waves": 0,
+    "dimensions": 0
+  },
+  "matrix": {
+    "players": [],
+    "dimensions": [],
+    "rows": [],
+    "totals": [],
+    "method": ""
+  },
+  "duels": [],
+  "personas": [],
+  "gaps": [],
+  "sources": [],
+  "artifacts": [
+    {
+      "file": "00-cross-bench-synthesis.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "01-wave-2-absorption-plan.md",
+      "role": "other",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "missing",
+    "duels": "missing",
+    "personas": "missing",
+    "gaps": "missing",
+    "sources": "missing"
+  },
+  "inferred": {
+    "date": true,
+    "players": true,
+    "metadata": true
+  }
+}

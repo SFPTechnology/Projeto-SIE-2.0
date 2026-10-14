@@ -1,0 +1,47 @@
+# Pipeline Execution Log — Copy Squad
+# Records execution history for observability (Mandamento 10)
+
+meta:
+  squad: copy
+  version: "1.0.0"
+  created_date: "2026-04-12"
+  created_by: "/sinkra-upgrade-squad"
+  schema: "pipeline-execution-log-v1"
+
+schema:
+  fields:
+    - execution_id: "EXE-CP-NNN"
+    - workflow_ref: "workflow ID"
+    - business_slug: "target business"
+    - started_at: "ISO-8601"
+    - completed_at: "ISO-8601"
+    - duration_seconds: "integer"
+    - status: "completed | failed | aborted"
+    - phases_executed: "list of phase IDs"
+    - agents_activated: "list of agent IDs"
+    - tokens_produced: "list of token IDs"
+    - quality_gate_results: "map of gate_id → verdict"
+    - meta_axiomas_overall: "float 0-10"
+    - deviations: "list of deviation IDs from deviation-register"
+    - output_artifacts: "list of output file paths"
+
+executions:
+  - execution_id: EXE-CP-001
+    workflow_ref: wf-1-full-launch
+    business_slug: academia-lendaria
+    started_at: "2026-04-12T14:00:00Z"
+    completed_at: "2026-04-12T18:30:00Z"
+    duration_seconds: 16200
+    status: completed
+    phases_executed: [intake, tier0-diagnosis, strategy, core-copy, email-system, quality-review, delivery]
+    agents_activated: [copy-chief, claude-hopkins, eugene-schwartz, todd-brown, gary-halbert, andre-chaperon, joe-sugarman, copy-ops-worker, launch-owner]
+    tokens_produced: [TKC-001, TKC-002, TKC-003, TKC-004, TKC-005, TKC-006]
+    quality_gate_results:
+      QG-CP-1.1: PASS
+      QG-CP-2.1: PASS
+      QG-CP-3.1: REVIEW
+      QG-CP-4.1: PASS
+      QG-CP-5.1: PASS
+    meta_axiomas_overall: 8.5
+    deviations: []
+    output_artifacts: ["outputs/copy/academia-lendaria/launches/launch-001/"]

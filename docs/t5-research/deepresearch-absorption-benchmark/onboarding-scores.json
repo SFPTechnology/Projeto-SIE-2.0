@@ -1,0 +1,140 @@
+{
+  "_meta": {
+    "generated_at": "2026-05-18",
+    "generator": "subagent general-purpose w/ READMEs + repos inspection",
+    "confidence_overall": "HIGH (25/25 players with direct evidence)",
+    "scoring_formula": {
+      "setup_friction": "100 - (10 × num_commands) - (15 if api_key_required) + (20 if docker) + (30 if one_line_install). Clamp 0-100.",
+      "time_to_first_run": "100 if one_line + docker. 80 docker only. 60 if quickstart claro mas precisa configurar. 40 if pip/npm + N steps. 20 if precisa build do source.",
+      "docs_onboarding_quality": "50 base + 15 if separate docs site + 10 if examples folder + 10 if video + 15 if API ref docs."
+    },
+    "key_reconciliation_notes": "User-list keys mapped to dash canonical: deepsearcher→deep-searcher, jina-node-dr→node-deepresearch, dr_bench→deep-research-bench, tongyi-deepresearch→alibaba-deepresearch, nick-open-deep-research→nickscamara-open-deep-research, jigsawstack→jigsawstack-deep-research, hkuds-auto-deep-research→auto-deep-research. kimi-researcher not in dash; mirotrain substituted to keep N=25."
+  },
+  "scores": {
+    "aiox_research": {
+      "setup_friction": {"score": 60, "confidence": "high", "notes": "local stack apps/research + squads/research; precisa env do monorepo (npm install + .env com OPENAI_API_KEY/TAVILY_KEY) e nao tem one-line installer", "source": "apps/research + squads/research"},
+      "time_to_first_run": {"score": 55, "confidence": "high", "notes": "boot exige Node 18+, npm install no monorepo Sinkra Hub e configuracao de .env; nao ha docker dedicado nem CLI standalone", "source": "apps/research/package.json"},
+      "docs_onboarding_quality": {"score": 85, "confidence": "high", "notes": "rules consolidadas + skill SKILL.md + tasks documentadas em squads/research/tasks; sem docs-site externo mas docs internos densos", "source": ".claude/skills/research-bench/SKILL.md"}
+    },
+    "drbench": {
+      "setup_friction": {"score": 95, "confidence": "high", "notes": "3 cmds (uv pip install -e . + .env + python minimal.py) com docker opcional", "source": "https://github.com/ServiceNow/drbench"},
+      "time_to_first_run": {"score": 80, "confidence": "high", "notes": "uv pip + docker pre-built image; minimal.py roda em poucos minutos", "source": "https://github.com/ServiceNow/drbench"},
+      "docs_onboarding_quality": {"score": 70, "confidence": "high", "notes": "docs/ folder + minimal.py examples; sem site separado nem video", "source": "https://github.com/ServiceNow/drbench"}
+    },
+    "deer-flow": {
+      "setup_friction": {"score": 65, "confidence": "high", "notes": "4-5 cmds via Makefile (make setup/install/dev) + docker recomendado; multiplas keys (LLM + TAVILY)", "source": "https://github.com/bytedance/deer-flow"},
+      "time_to_first_run": {"score": 80, "confidence": "high", "notes": "docker-compose 'make up' deploya producao completa em minutos", "source": "https://github.com/bytedance/deer-flow"},
+      "docs_onboarding_quality": {"score": 95, "confidence": "high", "notes": "site oficial deerflow.tech + video walkthrough no README + multiplos guides", "source": "https://deerflow.tech"}
+    },
+    "autoresearchclaw": {
+      "setup_friction": {"score": 70, "confidence": "high", "notes": "3 cmds (pip install -e . + researchclaw setup + init) + docker; requer OPENAI_API_KEY", "source": "https://github.com/aiming-lab/AutoResearchClaw"},
+      "time_to_first_run": {"score": 60, "confidence": "high", "notes": "CLI researchclaw assume Docker/LaTeX instalados; init guiado mas multi-etapa", "source": "https://github.com/aiming-lab/AutoResearchClaw"},
+      "docs_onboarding_quality": {"score": 75, "confidence": "high", "notes": "Co-Pilot Guide + Integration Guide + Discord + 9 idiomas; sem video", "source": "https://github.com/aiming-lab/AutoResearchClaw"}
+    },
+    "storm": {
+      "setup_friction": {"score": 70, "confidence": "high", "notes": "pip install knowledge-storm one-liner + conda env opcional; precisa OPENAI_KEY + Bing/You search key", "source": "https://github.com/stanford-oval/storm"},
+      "time_to_first_run": {"score": 60, "confidence": "high", "notes": "pip install funciona standalone mas conda + 4 cmds para source; sem docker", "source": "https://github.com/stanford-oval/storm"},
+      "docs_onboarding_quality": {"score": 85, "confidence": "high", "notes": "storm-project.stanford.edu + live demo + examples/ folder; sem video", "source": "https://storm-project.stanford.edu/"}
+    },
+    "gpt-researcher": {
+      "setup_friction": {"score": 85, "confidence": "high", "notes": "pip install gpt-researcher one-liner + Dockerfile/compose; exige OPENAI + TAVILY keys", "source": "https://github.com/assafelovic/gpt-researcher"},
+      "time_to_first_run": {"score": 95, "confidence": "high", "notes": "pip install + docker-compose pronto; uvicorn server em ~2min", "source": "https://github.com/assafelovic/gpt-researcher"},
+      "docs_onboarding_quality": {"score": 100, "confidence": "high", "notes": "docs.gptr.dev + Loom tutorials + demo embedado; padrao-ouro", "source": "https://docs.gptr.dev"}
+    },
+    "local-deep-research": {
+      "setup_friction": {"score": 95, "confidence": "high", "notes": "pip install local-deep-research one-liner + docker image pronta; keys opcionais (Ollama local)", "source": "https://github.com/LearningCircuit/local-deep-research"},
+      "time_to_first_run": {"score": 100, "confidence": "high", "notes": "docker run + pip install; UI web sobe sem precisar API key se usar Ollama", "source": "https://github.com/LearningCircuit/local-deep-research"},
+      "docs_onboarding_quality": {"score": 95, "confidence": "high", "notes": "docs completos (instal/config/api/security/bench) + multiplos videos YouTube", "source": "https://github.com/LearningCircuit/local-deep-research"}
+    },
+    "mirothinker": {
+      "setup_friction": {"score": 35, "confidence": "high", "notes": "8-10 cmds (uv sync + .env + SGLang/vLLM server separado) + 5 API keys (Serper/Jina/E2B/Summary/OpenAI)", "source": "https://github.com/MiroMindAI/MiroThinker"},
+      "time_to_first_run": {"score": 30, "confidence": "high", "notes": "precisa subir model server (SGLang/vLLM) antes do agent; sem docker", "source": "https://github.com/MiroMindAI/MiroThinker"},
+      "docs_onboarding_quality": {"score": 60, "confidence": "high", "notes": "README extenso + sub-READMEs por tool; sem site separado nem video", "source": "https://github.com/MiroMindAI/MiroThinker"}
+    },
+    "deep-searcher": {
+      "setup_friction": {"score": 90, "confidence": "high", "notes": "pip install deepsearcher one-liner + Dockerfile; multiplas keys opcionais (OpenAI/DeepSeek/Firecrawl)", "source": "https://github.com/zilliztech/deep-searcher"},
+      "time_to_first_run": {"score": 90, "confidence": "high", "notes": "pip install + docker; examples/ folder com scripts prontos", "source": "https://github.com/zilliztech/deep-searcher"},
+      "docs_onboarding_quality": {"score": 90, "confidence": "high", "notes": "zilliztech.github.io/deep-searcher + DeepWiki + examples + GIF demo", "source": "https://zilliztech.github.io/deep-searcher/"}
+    },
+    "langchain-open-deep-research": {
+      "setup_friction": {"score": 70, "confidence": "high", "notes": "4 cmds (clone + venv + uv sync + langgraph dev); .env com OPENAI/Anthropic keys", "source": "https://github.com/langchain-ai/open_deep_research"},
+      "time_to_first_run": {"score": 60, "confidence": "high", "notes": "langgraph dev local; sem docker mas uv sync rapido (~3min)", "source": "https://github.com/langchain-ai/open_deep_research"},
+      "docs_onboarding_quality": {"score": 95, "confidence": "high", "notes": "LangChain docs + YouTube video walkthrough + curso gratuito + examples/", "source": "https://github.com/langchain-ai/open_deep_research"}
+    },
+    "deep-research-bench": {
+      "setup_friction": {"score": 75, "confidence": "high", "notes": "3 cmds (clone + cd + pip install -r); requer OpenRouter/OpenAI + Jina keys", "source": "https://github.com/Ayanami0730/deep_research_bench"},
+      "time_to_first_run": {"score": 50, "confidence": "high", "notes": "pip + config manual; sem docker e foco em evaluation pipeline", "source": "https://github.com/Ayanami0730/deep_research_bench"},
+      "docs_onboarding_quality": {"score": 65, "confidence": "high", "notes": "leaderboard site + example data path; sem video", "source": "https://github.com/Ayanami0730/deep_research_bench"}
+    },
+    "node-deepresearch": {
+      "setup_friction": {"score": 90, "confidence": "high", "notes": "2 cmds (npm install + npm start) + Dockerfile/compose; precisa Gemini/Jina/OpenAI keys", "source": "https://github.com/jina-ai/node-DeepResearch"},
+      "time_to_first_run": {"score": 90, "confidence": "high", "notes": "docker build + npm install rapido; UI live em search.jina.ai como referencia", "source": "https://search.jina.ai"},
+      "docs_onboarding_quality": {"score": 95, "confidence": "high", "notes": "jina.ai/deepsearch + blog EN/CN/JP + YouTube tutorial de install", "source": "https://jina.ai/deepsearch"}
+    },
+    "miroflow": {
+      "setup_friction": {"score": 70, "confidence": "high", "notes": "3 cmds (clone + uv sync + uv run main.py); precisa OPENROUTER_API_KEY", "source": "https://github.com/MiroMindAI/MiroFlow"},
+      "time_to_first_run": {"score": 60, "confidence": "high", "notes": "uv sync + .env.template; sem docker mas quickstart claro", "source": "https://github.com/MiroMindAI/MiroFlow"},
+      "docs_onboarding_quality": {"score": 85, "confidence": "high", "notes": "miromindai.github.io/MiroFlow docs site + video demo embedado", "source": "https://miromindai.github.io/MiroFlow/"}
+    },
+    "miroeval": {
+      "setup_friction": {"score": 65, "confidence": "high", "notes": "2 cmds (uv sync + bash run_eval.sh) mas 3 API keys obrigatorias (OPENAI/SERPER/JINA)", "source": "https://github.com/MiroMindAI/MiroEval"},
+      "time_to_first_run": {"score": 55, "confidence": "high", "notes": "uv sync rapido mas precisa input data + .env preenchido", "source": "https://github.com/MiroMindAI/MiroEval"},
+      "docs_onboarding_quality": {"score": 75, "confidence": "high", "notes": "miroeval-ai.github.io + paper arXiv + READMEs por modulo; sem video", "source": "https://miroeval-ai.github.io"}
+    },
+    "deepresearcher": {
+      "setup_friction": {"score": 40, "confidence": "high", "notes": "6 cmds + edits manuais (serper_api_key + azure_bing + qwen-plus key inline em arquivo)", "source": "https://github.com/GAIR-NLP/DeepResearcher"},
+      "time_to_first_run": {"score": 45, "confidence": "high", "notes": "docker folder existe mas setup multi-step; precisa editar server handler", "source": "https://github.com/GAIR-NLP/DeepResearcher"},
+      "docs_onboarding_quality": {"score": 65, "confidence": "high", "notes": "docs/ folder local + examples/; sem site externo nem video", "source": "https://github.com/GAIR-NLP/DeepResearcher"}
+    },
+    "livedrbench": {
+      "setup_friction": {"score": 90, "confidence": "high", "notes": "1 cmd pip install datasets openai tqdm; minimal dependencies", "source": "https://github.com/microsoft/LiveDRBench"},
+      "time_to_first_run": {"score": 60, "confidence": "high", "notes": "pip install rapido mas precisa OPENAI key + script evaluate.py; sem docker", "source": "https://github.com/microsoft/LiveDRBench"},
+      "docs_onboarding_quality": {"score": 60, "confidence": "high", "notes": "README + arXiv + HuggingFace dataset; sem examples ricos nem video", "source": "https://github.com/microsoft/LiveDRBench"}
+    },
+    "mirorl": {
+      "setup_friction": {"score": 60, "confidence": "high", "notes": "4 cmds (docker pull + run + hf-cli x2); docker recomendado mas 5 API keys (Serper/Jina/OpenAI/W&B)", "source": "https://github.com/MiroMindAI/MiroRL"},
+      "time_to_first_run": {"score": 80, "confidence": "high", "notes": "Docker pre-built image disponivel; HF download dataset/model em paralelo", "source": "https://github.com/MiroMindAI/MiroRL"},
+      "docs_onboarding_quality": {"score": 70, "confidence": "high", "notes": "install.md + custom_mcp_tool.md + config examples; sem site nem video", "source": "https://github.com/MiroMindAI/MiroRL"}
+    },
+    "mirotrain": {
+      "setup_friction": {"score": 45, "confidence": "high", "notes": "5 cmds (conda create + install pytorch + clone + pip install torchtune + pip install .) + HF token", "source": "https://github.com/MiroMindAI/MiroTrain"},
+      "time_to_first_run": {"score": 70, "confidence": "high", "notes": "Docker pre-built image miromind/mirotrain:0.1.0-cuda12.6 disponivel", "source": "https://github.com/MiroMindAI/MiroTrain"},
+      "docs_onboarding_quality": {"score": 75, "confidence": "high", "notes": "docs/usage.md + recipes/configs + SFT/DPO examples para Qwen3-32B", "source": "https://github.com/MiroMindAI/MiroTrain"}
+    },
+    "alibaba-deepresearch": {
+      "setup_friction": {"score": 55, "confidence": "high", "notes": "2 cmds (conda create + pip install -r) mas 5 keys (SERPER/JINA/OpenAI/DASHSCOPE/Sandbox)", "source": "https://github.com/Alibaba-NLP/DeepResearch"},
+      "time_to_first_run": {"score": 40, "confidence": "high", "notes": "sem docker; conda env + multiplos sandbox endpoints exigem config", "source": "https://github.com/Alibaba-NLP/DeepResearch"},
+      "docs_onboarding_quality": {"score": 75, "confidence": "high", "notes": "tongyi-agent.github.io tech blog + paper arXiv 2510.24701; sem video", "source": "https://tongyi-agent.github.io"}
+    },
+    "agent-browser-workspace": {
+      "setup_friction": {"score": 80, "confidence": "high", "notes": "2 cmds (npm install + npx playwright install chrome); sem API keys (local-first)", "source": "https://github.com/k-kolomeitsev/agent-browser-workspace"},
+      "time_to_first_run": {"score": 70, "confidence": "high", "notes": "sem docker (proposital) mas Chrome CDP rapido; precisa Node 18+ + Chrome desktop", "source": "https://github.com/k-kolomeitsev/agent-browser-workspace"},
+      "docs_onboarding_quality": {"score": 70, "confidence": "high", "notes": "AGENT_BROWSER.md + INSTALLATION.md + RESEARCH.md + CLI examples; sem site externo nem video", "source": "https://github.com/k-kolomeitsev/agent-browser-workspace"}
+    },
+    "dzhng-deep-research": {
+      "setup_friction": {"score": 80, "confidence": "high", "notes": "2 cmds (npm install + npm start) + Dockerfile/compose disponivel; precisa Firecrawl + OpenAI keys", "source": "https://github.com/dzhng/deep-research"},
+      "time_to_first_run": {"score": 90, "confidence": "high", "notes": "docker compose up -d pronto + npm start; setup em ~3min", "source": "https://github.com/dzhng/deep-research"},
+      "docs_onboarding_quality": {"score": 55, "confidence": "high", "notes": "README only + parametros documentados; sem examples folder, sem video, sem docs-site", "source": "https://github.com/dzhng/deep-research"}
+    },
+    "openresearcher": {
+      "setup_friction": {"score": 30, "confidence": "high", "notes": "7 cmds (apt update + apt install + curl + uv venv + clone + uv pip + setup.sh); Serper + OpenAI keys", "source": "https://github.com/TIGER-AI-Lab/OpenResearcher"},
+      "time_to_first_run": {"score": 35, "confidence": "high", "notes": "sem docker; setup.sh multi-stage com system deps via apt", "source": "https://github.com/TIGER-AI-Lab/OpenResearcher"},
+      "docs_onboarding_quality": {"score": 80, "confidence": "high", "notes": "benchmarks.md + parameter.md + demo video em X/Twitter + quick-start Python", "source": "https://github.com/TIGER-AI-Lab/OpenResearcher"}
+    },
+    "nickscamara-open-deep-research": {
+      "setup_friction": {"score": 65, "confidence": "high", "notes": "3 cmds (pnpm install + db:migrate + dev) + Dockerfile; muitas keys (OpenAI + Firecrawl + Auth + Postgres + Blob + Redis)", "source": "https://github.com/nickscamara/open-deep-research"},
+      "time_to_first_run": {"score": 70, "confidence": "high", "notes": "docker-compose disponivel mas requer Postgres + Redis + Blob; pnpm dev rapido apos infra", "source": "https://github.com/nickscamara/open-deep-research"},
+      "docs_onboarding_quality": {"score": 60, "confidence": "high", "notes": "demo via X/Twitter + README; sem docs-site dedicado nem video tutorial", "source": "https://github.com/nickscamara/open-deep-research"}
+    },
+    "jigsawstack-deep-research": {
+      "setup_friction": {"score": 100, "confidence": "high", "notes": "one-liner npm i deep-research / yarn add / bun i; apenas JIGSAW_API_KEY obrigatoria", "source": "https://github.com/JigsawStack/deep-research"},
+      "time_to_first_run": {"score": 95, "confidence": "high", "notes": "npm/yarn/bun one-line install; usa API JigsawStack remota, sem build", "source": "https://github.com/JigsawStack/deep-research"},
+      "docs_onboarding_quality": {"score": 75, "confidence": "high", "notes": "examples/ folder + tabela de config + multi-provider; sem docs-site externo nem video", "source": "https://github.com/JigsawStack/deep-research"}
+    },
+    "auto-deep-research": {
+      "setup_friction": {"score": 60, "confidence": "high", "notes": "4 cmds (conda create/activate + clone + pip install) + Docker pull automatico + multiplas API keys", "source": "https://github.com/HKUDS/Auto-Deep-Research"},
+      "time_to_first_run": {"score": 75, "confidence": "high", "notes": "Docker containeriza agent-env automaticamente por arquitetura; conda env adicional", "source": "https://github.com/HKUDS/Auto-Deep-Research"},
+      "docs_onboarding_quality": {"score": 80, "confidence": "high", "notes": "metachain-ai.github.io/docs (coming soon) + 2 videos demo Apr/2025", "source": "https://github.com/HKUDS/Auto-Deep-Research"}
+    }
+  }
+}

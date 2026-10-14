@@ -1,0 +1,189 @@
+{
+  "bench_id": "whisper-engines-2026-05-06",
+  "title": "ASR Whisper Engines — WhisperX vs faster-whisper vs whisper.cpp",
+  "version": "1.0.0",
+  "date": "2026-05-06",
+  "analyst": "Universal Bench Analyst (spy-bench-analyst lens)",
+  "requester": "Alan Nicolas (Sinkra Hub)",
+  "lens": "OSS substitute for Submagic / Eddie AI — speech-to-text layer for transcript-driven video editing pipeline",
+  "subjects": [
+    {
+      "id": "whisperx",
+      "name": "WhisperX",
+      "repo": "https://github.com/m-bain/whisperX",
+      "license": "BSD-2-Clause",
+      "language": "Python",
+      "version_evaluated": "3.x (2025/2026 line)"
+    },
+    {
+      "id": "faster-whisper",
+      "name": "faster-whisper",
+      "repo": "https://github.com/SYSTRAN/faster-whisper",
+      "license": "MIT",
+      "language": "Python (CTranslate2 C++ backend)",
+      "version_evaluated": "1.x (2025/2026 line)"
+    },
+    {
+      "id": "whisper-cpp",
+      "name": "whisper.cpp",
+      "repo": "https://github.com/ggml-org/whisper.cpp",
+      "license": "MIT",
+      "language": "C/C++ (ggml)",
+      "version_evaluated": "1.7.x (2025/2026 line)"
+    }
+  ],
+  "evaluation_axes": {
+    "use_case_requirements": [
+      "word-level timestamps (for B-roll match)",
+      "multi-language including Portuguese (pt-BR / pt-PT)",
+      "speed on Mac M-series + Linux GPU",
+      "Python pipeline DX",
+      "speaker diarization integration"
+    ],
+    "scorecard_dimensions": [
+      "Maturity (0-100)",
+      "Ecosystem (0-100)",
+      "DX (0-100)",
+      "Performance (0-100)",
+      "Scalability (0-100)",
+      "Community (0-100)"
+    ],
+    "matrix_levels": {
+      "5_5": "Forte",
+      "4_5": "Parcial alta",
+      "3_5": "Parcial",
+      "2_5": "Fraco",
+      "1_5": "Sem equivalente"
+    }
+  },
+  "persona_weights": {
+    "name": "OSS video editing pipeline (Submagic/Eddie AI substitute)",
+    "weights": {
+      "Performance": 0.20,
+      "DX": 0.20,
+      "Ecosystem": 0.20,
+      "Maturity": 0.15,
+      "Scalability": 0.15,
+      "Community": 0.10
+    }
+  },
+  "sources": [
+    {
+      "id": "modal-blog",
+      "title": "Choosing between Whisper variants: faster-whisper, insanely-fast-whisper, WhisperX",
+      "url": "https://modal.com/blog/choosing-whisper-variants",
+      "confidence": "high",
+      "type": "vendor blog (Modal)"
+    },
+    {
+      "id": "whisperx-repo",
+      "title": "m-bain/whisperX (README)",
+      "url": "https://github.com/m-bain/whisperX",
+      "confidence": "high",
+      "type": "primary source"
+    },
+    {
+      "id": "whisperx-paper",
+      "title": "WhisperX: Time-Accurate Speech Transcription of Long-Form Audio (Interspeech 2023)",
+      "url": "https://www.isca-archive.org/interspeech_2023/bain23_interspeech.pdf",
+      "confidence": "high",
+      "type": "peer-reviewed paper"
+    },
+    {
+      "id": "faster-whisper-repo",
+      "title": "SYSTRAN/faster-whisper (README)",
+      "url": "https://github.com/SYSTRAN/faster-whisper",
+      "confidence": "high",
+      "type": "primary source"
+    },
+    {
+      "id": "whisper-cpp-repo",
+      "title": "ggml-org/whisper.cpp (README)",
+      "url": "https://github.com/ggml-org/whisper.cpp",
+      "confidence": "high",
+      "type": "primary source"
+    },
+    {
+      "id": "whisper-large-v3-card",
+      "title": "openai/whisper-large-v3 (model card)",
+      "url": "https://huggingface.co/openai/whisper-large-v3",
+      "confidence": "high",
+      "type": "model card"
+    },
+    {
+      "id": "openai-whisper-paper",
+      "title": "Robust Speech Recognition via Large-Scale Weak Supervision (Whisper paper)",
+      "url": "https://cdn.openai.com/papers/whisper.pdf",
+      "confidence": "high",
+      "type": "primary research"
+    },
+    {
+      "id": "voicci-apple-silicon",
+      "title": "Whisper Performance on Apple Silicon: M1, M2, M3, M4 Benchmarks",
+      "url": "https://www.voicci.com/blog/apple-silicon-whisper-performance.html",
+      "confidence": "medium",
+      "type": "third-party benchmark blog"
+    },
+    {
+      "id": "mac-whisper-speedtest",
+      "title": "anvanvan/mac-whisper-speedtest",
+      "url": "https://github.com/anvanvan/mac-whisper-speedtest",
+      "confidence": "high",
+      "type": "open benchmark harness"
+    },
+    {
+      "id": "whisperx-issue-817",
+      "title": "Benchmarks for whisperx, faster-whisper, and whispers2t — issue #817",
+      "url": "https://github.com/m-bain/whisperX/issues/817",
+      "confidence": "medium",
+      "type": "community benchmark"
+    },
+    {
+      "id": "alibaba-cppvsfaster",
+      "title": "How To Choose Between Whisper.cpp And Faster-whisper For Offline Transcription On M2 Mac",
+      "url": "https://www.alibaba.com/product-insights/how-to-choose-between-whisper-cpp-and-faster-whisper-for-offline-transcription-on-m2-mac.html",
+      "confidence": "medium",
+      "type": "third-party comparison"
+    },
+    {
+      "id": "pyannote-3-1",
+      "title": "pyannote/speaker-diarization-3.1 model card",
+      "url": "https://huggingface.co/pyannote/speaker-diarization-3.1",
+      "confidence": "high",
+      "type": "model card"
+    },
+    {
+      "id": "whisperx-large-v3-discussion",
+      "title": "openai/whisper Discussion #1762 — large-v3 release & per-language WER",
+      "url": "https://github.com/openai/whisper/discussions/1762",
+      "confidence": "high",
+      "type": "primary release notes"
+    },
+    {
+      "id": "hotovo-pyannote",
+      "title": "Whisper: From transcription to speaker diarization (Hotovo)",
+      "url": "https://www.hotovo.com/blog/whisper-from-transcription-to-speaker-diarization-part-2",
+      "confidence": "medium",
+      "type": "implementation blog"
+    },
+    {
+      "id": "whisper-cpp-bench-89",
+      "title": "whisper.cpp Benchmark results — Issue #89",
+      "url": "https://github.com/ggml-org/whisper.cpp/issues/89",
+      "confidence": "high",
+      "type": "community benchmark thread"
+    }
+  ],
+  "confidence_tags": {
+    "WER_aggregate_pt": "medium — derived from OpenAI per-language plot, no head-to-head pt-BR public bench",
+    "RTF_apple_silicon": "medium-high — Voicci/mac-whisper-speedtest data, varies by chip variant",
+    "RTF_linux_gpu": "medium — community benchmarks, no canonical 2026 head-to-head",
+    "DX_python": "high — primary repos + blog evidence",
+    "diarization_quality": "high — WhisperX paper + pyannote 3.1 model card"
+  },
+  "out_of_scope": [
+    "fine-tuning regimes",
+    "streaming low-latency (<200ms) — pipeline is batch",
+    "non-Whisper ASR (Canary, Parakeet, Sortformer)"
+  ]
+}

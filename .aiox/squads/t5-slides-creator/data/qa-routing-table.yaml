@@ -1,0 +1,228 @@
+# QA Routing Table — Slides Creator Squad
+# Mission: MSN-2026-SLIDES-NARRATIVE-DESIGN (T-002)
+# Created: 2026-05-17
+# Version: 1.0.0
+#
+# Maps qa-rubric.yaml dimension failures -> agent + task for automatic re-dispatch.
+# Consumed by @qa-inspector after qa-report.json verdict in P05 (Quality Assurance).
+# When a sub-dimension fails, qa-inspector consults this table to decide route.
+
+meta:
+  version: "1.0.0"
+  status: active
+  source: "MSN-2026-SLIDES-NARRATIVE-DESIGN GAP-007 closure"
+  consumer: "@qa-inspector (P05 QA phase + Critique Loop in P04.5)"
+  rubric_ref: "data/qa-rubric.yaml v3.0.0"
+
+# ─────────────────────────────────────────────────────
+# ROUTING ENTRIES (15 total)
+# 7 narrativa + 5 design + 3 acuracia/brand/tecnica
+# ─────────────────────────────────────────────────────
+routes:
+
+  # ─── Narrativa dimension fails (7) ───
+  - dimension_failed: pyramid_mece
+    route_to:
+      agent: "@content-architect"
+      task: tasks/build-pyramid.md
+      session: SESSION-NARR
+    feedback_hint: "Pyramid violates MECE OR is non-3-level. Rebuild pyramid_tree from governing_thought."
+    severity_when_failed: high
+
+  - dimension_failed: vertical_flow
+    route_to:
+      agent: "@content-architect"
+      task: tasks/run-vertical-test.md
+      session: SESSION-NARR
+    feedback_hint: "Action titles alone do not convey full narrative in 2min read. Rewrite titles AND/OR reorder slides."
+    severity_when_failed: high
+
+  - dimension_failed: action_title_rhetoric
+    route_to:
+      agent: "@content-architect"
+      task: tasks/write-action-titles.md
+      session: SESSION-NARR
+    feedback_hint: "Action titles classified as descriptive_violation OR >20% executive_weak. Apply P4+ rhetorical strengthening (claim+magnitude+implication)."
+    severity_when_failed: high
+    invariant_enforced: P4
+
+  - dimension_failed: governing_thought_strength
+    route_to:
+      agent: "@content-architect"
+      task: tasks/distill-governing-thought.md
+      session: SESSION-NARR
+    feedback_hint: "Governing thought misses claim OR magnitude OR implication. Rewrite as ONE executive sentence."
+    severity_when_failed: high
+
+  - dimension_failed: scqa_depth
+    route_to:
+      agent: "@content-architect"
+      task: tasks/apply-scqa.md
+      session: SESSION-NARR
+    feedback_hint: "SCQA blocks weak narratively. Strengthen tension (C), sharpen scope (Q), or deepen answer (A)."
+    severity_when_failed: medium
+
+  - dimension_failed: story_arc
+    route_to:
+      agent: "@content-architect"
+      task: tasks/validate-story-arc.md
+      session: SESSION-NARR
+    feedback_hint: "Story arc missing tension/proof/mechanism/demo/CTA. Map slide-by-slide to arc beats."
+    severity_when_failed: high
+    case_study_ref: "outputs/webinars/primeiro-servico-ia/"
+
+  - dimension_failed: slide_function_map
+    route_to:
+      agent: "@content-architect"
+      task: tasks/compress-outline-to-slide-functions.md
+      session: SESSION-NARR
+    feedback_hint: "Slides without declared function OR functions='explicar topico'. Re-compress outline to audience moments with explicit function per slide."
+    severity_when_failed: critical
+    case_study_ref: "outputs/webinars/primeiro-servico-ia/ draft v1"
+
+  # ─── Design dimension fails (5) ───
+  - dimension_failed: density
+    route_to:
+      agent: "@design-renderer"
+      task: tasks/compose-grid-layout.md
+      session: SESSION-SPEC
+      followup: tasks/apply-design-revision.md
+    feedback_hint: "Slide excede max 1 governing + 3 supporting claims. Split slide OR remove supporting claims."
+    severity_when_failed: high
+
+  - dimension_failed: hierarchy
+    route_to:
+      agent: "@design-renderer"
+      task: tasks/compose-grid-layout.md
+      session: SESSION-SPEC
+      followup: tasks/apply-design-revision.md
+    feedback_hint: "Typography scale or visual weight ordering violates hierarchy. Re-compose grid with explicit weight."
+    severity_when_failed: high
+
+  - dimension_failed: contrast
+    route_to:
+      agent: "@visual-scout"
+      task: tasks/resolve-active-palette.md
+      session: SESSION-SPEC
+      followup: tasks/register-palette-override.md
+    feedback_hint: "Text/bg pair below WCAG AA. Adjust palette OR substitute foreground/background for affected slide."
+    severity_when_failed: critical
+    invariant_enforced: "WCAG AA"
+
+  - dimension_failed: readability
+    route_to:
+      agent: "@design-renderer"
+      task: tasks/compose-grid-layout.md
+      session: SESSION-SPEC
+      followup: tasks/apply-design-revision.md
+    feedback_hint: "Line length too long, font size too small, or viewing distance assumption violated. Reflow text and/or upscale typography."
+    severity_when_failed: high
+
+  - dimension_failed: visual_coherence
+    route_to:
+      agent: "@design-renderer"
+      task: tasks/define-design-direction.md
+      session: SESSION-SPEC
+      followup: tasks/apply-design-revision.md
+    feedback_hint: "Cross-slide inconsistency in paddings/alignment/motif. Reaffirm design_direction.yaml and apply across deck."
+    severity_when_failed: medium
+
+  # ─── Acuracia dimension fails (1 collapsed) ───
+  - dimension_failed: fontes_apa
+    route_to:
+      agent: "@content-architect"
+      task: tasks/catalog-sources-apa.md
+      session: SESSION-NARR
+    feedback_hint: "Claims missing APA-complete source. Add {org, title, date, url, access_date} or mark [VALIDAR COM CLIENTE]."
+    severity_when_failed: critical
+    invariant_enforced: P6
+
+  - dimension_failed: p1_fidelity
+    route_to:
+      agent: "@content-architect"
+      task: tasks/p1-fidelity-sampling.md
+      session: SESSION-NARR
+    feedback_hint: "Sampled claim has no traceable source OR data invented. Replace with sourced version OR mark gap."
+    severity_when_failed: critical
+    invariant_enforced: P1
+
+  - dimension_failed: enumeration_universal
+    route_to:
+      agent: "@design-renderer"
+      task: tasks/validate-enumeration-universal.md
+      session: SESSION-SPEC
+    feedback_hint: "Visual without ID (Grafico N, Tabela N.M). Add enumeration to all visuals."
+    severity_when_failed: high
+    invariant_enforced: P5
+
+  # ─── Brand / Tecnica fails (3) ───
+  - dimension_failed: brand_token_compliance
+    route_to:
+      agent: "@visual-scout"
+      task: tasks/resolve-active-palette.md
+      session: SESSION-SPEC
+    feedback_hint: "Token usage below 95% OR custom violations present. Re-resolve palette and apply tokens."
+    severity_when_failed: medium
+
+  - dimension_failed: palette_adherence
+    route_to:
+      agent: "@visual-scout"
+      task: tasks/register-palette-override.md
+      session: SESSION-SPEC
+    feedback_hint: "Active palette override not registered. Either register override OR revert to canonical palette."
+    severity_when_failed: medium
+
+  - dimension_failed: ppteval_composite
+    route_to:
+      agent: "@qa-inspector"
+      task: tasks/review-presentation.md
+      session: SESSION-QA
+    feedback_hint: "Legacy PPTEval composite below 7 in Design/Content/Coherence/GAD. Investigate specific PPTEval dimension and re-route to corresponding new validator."
+    severity_when_failed: medium
+
+# ─────────────────────────────────────────────────────
+# ESCALATION RULES
+# ─────────────────────────────────────────────────────
+escalation:
+  - condition: "Same dimension fails 2 consecutive critique iterations"
+    action: "Escalate to Human (Mission Lead). Stop critique loop. Surface qa-report.json + critique-report.yaml."
+
+  - condition: "Multiple critical failures in same deck (>=3)"
+    action: "HALT. Return to upstream phase. Likely briefing issue or scope drift."
+
+  - condition: "Killer item KI-01..KI-10 detected"
+    action: "BLOCK release. Auto-route per dimension_failed mapping above."
+
+# ─────────────────────────────────────────────────────
+# VALIDATION
+# ─────────────────────────────────────────────────────
+validation:
+  total_routes: 18
+  dimensions_covered:
+    narrativa: 7
+    design: 5
+    acuracia: 3
+    brand_tecnica: 3
+  agents_referenced:
+    - "@content-architect"
+    - "@design-renderer"
+    - "@visual-scout"
+    - "@qa-inspector"
+  tasks_referenced_existing:
+    - tasks/build-pyramid.md
+    - tasks/run-vertical-test.md
+    - tasks/write-action-titles.md
+    - tasks/distill-governing-thought.md
+    - tasks/apply-scqa.md
+    - tasks/compose-grid-layout.md
+    - tasks/resolve-active-palette.md
+    - tasks/register-palette-override.md
+    - tasks/catalog-sources-apa.md
+    - tasks/p1-fidelity-sampling.md
+    - tasks/validate-enumeration-universal.md
+    - tasks/review-presentation.md
+  tasks_referenced_pending_creation:
+    - tasks/validate-story-arc.md  # T-013A
+    - tasks/compress-outline-to-slide-functions.md  # T-015A
+    - tasks/define-design-direction.md  # T-015B
+    - tasks/apply-design-revision.md  # T-017

@@ -1,0 +1,170 @@
+# =============================================================================
+# COPY GOVERNANCE POLICY
+# =============================================================================
+# Focus: reduce cognitive load without flattening expert content.
+# Model: contextual clarity by surface (S1/S2/S3).
+# =============================================================================
+
+version: "1.0.0"
+owner: "@content-squad-lead"
+status: active
+updated_at: "2026-03-09"
+source_of_truth: "squads/aiox-copy/data/copy-governance.yaml"
+information_architecture: "squads/aiox-copy/data/copy-information-architecture.yaml"
+system_mirror: "workspace/design/copy-governance.yaml"
+
+campaign_taxonomy:
+  canonical_terms:
+    - Campaign Brief
+    - Message Architecture
+    - Creative Brief
+    - Asset Brief
+    - Copy Deck
+    - Review Gates
+    - Validation Loop
+  naming_rules:
+    use_as_primary_labels:
+      - "Campaign Brief for initiative-level framing"
+      - "Message Architecture for message strategy and hierarchy"
+      - "Creative Brief for execution direction"
+      - "Asset Brief for one deliverable"
+      - "Copy Deck for the actual copy artifact"
+    avoid_as_primary_labels:
+      - PRD
+      - Epic
+      - Story
+  storage:
+    planning_root: "workspace/businesses/{business}/copy/{campaign_slug}/"
+    delivery_root: "outputs/copy/{business}/"
+    rule: "Planning artifacts live in workspace; delivery-ready copy lives in outputs/copy"
+  source_of_truth_rules:
+    - "Brand truth comes from company/ and brand/ artifacts"
+    - "Product truth comes from products/{product}/ and narrative/ artifacts"
+    - "Campaign planning truth comes from workspace/businesses/{business}/copy/{campaign_slug}/"
+    - "Delivery-ready copy truth lives in outputs/copy/{business}/"
+  stage_rules:
+    - "Campaign Brief is the source of truth for campaign scope and objective"
+    - "Message Architecture is the source of truth for campaign message logic"
+    - "Creative Brief is the source of truth for execution direction"
+    - "Asset Brief is the source of truth for one deliverable spec"
+    - "Copy Deck or final output is the source of truth for executable copy"
+  deprecations:
+    - "Do not use PRD, Epic, or Story as the primary names for copy artifacts"
+    - "Do not create new generic message-hierarchy.yaml files without layer qualification"
+
+principles:
+  - "Clarity over cleverness"
+  - "One sentence, one idea"
+  - "Actionable language"
+  - "Reduce cognitive load, preserve precision"
+  - "Use domain terms only when necessary"
+  - "Use professional copywriting artifact names instead of product-development labels"
+
+surfaces:
+  S1:
+    name: transacional
+    contexts:
+      - onboarding
+      - cta_labels
+      - form_hints
+      - validation_messages
+      - error_messages
+      - empty_states
+    language_profile:
+      target: "very_simple"
+      sentence_max_words: 20
+      preferred_sentence_range: "8-14"
+      jargon_policy: "forbidden_unless_explained"
+      passive_voice: "avoid"
+      cta_policy: "explicit_action"
+    required_rules:
+      - "Primary action understandable in < 5 seconds"
+      - "No abstract CTA (e.g. 'Continuar', 'Prosseguir')"
+      - "Errors must include cause + next step"
+
+  S2:
+    name: operacional
+    contexts:
+      - settings
+      - recurring_flows
+      - dashboards
+      - operational_notifications
+    language_profile:
+      target: "simple_with_domain_terms"
+      sentence_max_words: 24
+      preferred_sentence_range: "10-18"
+      jargon_policy: "allowed_if_core_term"
+      passive_voice: "discouraged"
+      cta_policy: "specific_and_contextual"
+    required_rules:
+      - "Domain terms must be consistent"
+      - "Instructions must be directly executable"
+      - "Avoid multi-idea paragraphs"
+
+  S3:
+    name: especialista
+    contexts:
+      - advanced_docs
+      - technical_guides
+      - setup_runbooks
+      - architecture_notes
+    language_profile:
+      target: "deep_but_scannable"
+      sentence_max_words: 32
+      preferred_sentence_range: "12-24"
+      jargon_policy: "allowed_with_definition"
+      passive_voice: "allowed_if_clear"
+      cta_policy: "task-oriented"
+    required_rules:
+      - "TLDR section required"
+      - "Complexity progression: basic -> intermediate -> advanced"
+      - "Examples required for non-trivial instructions"
+
+enforcement:
+  automation:
+    tool: "squads/aiox-copy/scripts/copy-linter.js"
+    run_in_ci: true
+    ci_scope:
+      - "squads/aiox-copy/data/copy-governance.yaml"
+    fail_conditions:
+      - "Any error-level finding"
+    advisory_conditions:
+      - "Warn-level findings >= 5"
+
+  human_review:
+    required_for:
+      - "Positioning-sensitive copy"
+      - "Brand voice final pass"
+      - "Legal and compliance copy"
+
+quality_gates:
+  S1:
+    max_errors: 0
+    max_warns: 3
+  S2:
+    max_errors: 0
+    max_warns: 5
+  S3:
+    max_errors: 0
+    max_warns: 8
+
+metrics:
+  S1:
+    - name: "time_to_first_action"
+      target: "decrease"
+    - name: "form_error_recovery_rate"
+      target: "increase"
+  S2:
+    - name: "task_completion_rate"
+      target: "increase"
+    - name: "support_questions_per_flow"
+      target: "decrease"
+  S3:
+    - name: "doc_time_to_success"
+      target: "decrease"
+    - name: "advanced_feature_adoption"
+      target: "increase"
+
+notes:
+  - "6th-grade heuristic is mandatory for S1, optional for S2, not mandatory for S3"
+  - "Do not oversimplify specialist content; make it scannable"

@@ -1,0 +1,735 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:10:52.457Z",
+  "source_files": [
+    "battle-card.md",
+    "comparison-matrix.json",
+    "comparison-matrix.md",
+    "deep/ai-capability.md",
+    "deep/inapp-vs-omnichannel.md",
+    "deep/pricing-tco.md",
+    "executive-report.md",
+    "gap-analysis.json",
+    "gap-analysis.md",
+    "inventory-chatwoot.json",
+    "inventory-chatwoot.md",
+    "inventory-intercom.json",
+    "inventory-intercom.md",
+    "metadata.canonical.json",
+    "metadata.json",
+    "scorecard.json",
+    "scorecard.md"
+  ],
+  "benchmark": {
+    "slug": "intercom-vs-chatwoot",
+    "title": "Executive Report — Intercom vs Chatwoot",
+    "date": "2026-05-06",
+    "type": "product",
+    "variant": "2-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "intercom",
+      "name": "Intercom",
+      "category": "unknown"
+    },
+    {
+      "key": "chatwoot",
+      "name": "Chatwoot",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "chatwoot",
+    "coverage": "structured",
+    "sources": 29,
+    "waves": 0,
+    "dimensions": 8
+  },
+  "matrix": {
+    "players": [
+      "intercom",
+      "chatwoot"
+    ],
+    "dimensions": [
+      {
+        "id": "C1",
+        "label": "AI deflection performance",
+        "weight": 0
+      },
+      {
+        "id": "C2",
+        "label": "AI pricing model honesty",
+        "weight": 0
+      },
+      {
+        "id": "C3",
+        "label": "Canais nativos diversidade",
+        "weight": 0
+      },
+      {
+        "id": "C4",
+        "label": "In-app messaging strength",
+        "weight": 0
+      },
+      {
+        "id": "C5",
+        "label": "Pricing total TCO 3 cenarios",
+        "weight": 0
+      },
+      {
+        "id": "C6",
+        "label": "Comunidade / Marketplace",
+        "weight": 0
+      },
+      {
+        "id": "C7",
+        "label": "Self-hosted / sovereignty option",
+        "weight": 0
+      },
+      {
+        "id": "C8",
+        "label": "Time-to-value / setup complexity",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "C1",
+        "label": "AI deflection performance",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "intercom",
+            "score": 85,
+            "confidence": "",
+            "notes": "Fin Apex 1.0 modelo proprietary publicado; deflection 51% medio (research aggregators) + ate 67% maduro; testimonial Lightspeed 65%; RAG patentes; custom actions; pre-deployment simulation; +1%/mo improvement claim; standalone disponivel em Zendesk/Salesforce/HubSpot. Penaliza por deflection nao validado por terceiros independentes recentes (claims vendor-side).",
+            "source": ""
+          },
+          {
+            "player": "chatwoot",
+            "score": 50,
+            "confidence": "",
+            "notes": "Captain AI funcional (auto-resposta, copilot, smart FAQs, memories, query) mas modelo nao disclosed, deflection NAO publicado, sem custom actions, sem simulation mode pre-deploy, sem autonomous workflows segundo third-parties. Em Cloud only (sem Captain self-hosted). Score 50 reflete capacidades core presentes mas gap substancial vs Fin em sofisticacao.",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "C2",
+        "label": "AI pricing model honesty",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "intercom",
+            "score": 75,
+            "confidence": "",
+            "notes": "Per-resolution $0.99 e modelo HONESTO em principio (paga valor entregue). Definicao clara — charged on customer confirmation OR no further help in 24h OR Fin completes workflow. Mas: G2 reviewers reportam 60-80% acima do sticker em conta real; volume alto pode dobrar bill mes-a-mes; previsibilidade ruim; Copilot $29/agent + Pro Analytics $99 + Proactive Support $99 add-ons multiplicam custo. Honesto na metrica, opaco na bottom line.",
+            "source": ""
+          },
+          {
+            "player": "chatwoot",
+            "score": 80,
+            "confidence": "",
+            "notes": "Credits flat por tier (300/500/800) + extras predictable $20/1.000 credits. Mais previsivel que per-resolution para teams conservadores. Mas: 1 credit ~ 1 AI action — definicao vaga (action = resposta? suggestion? summary?). Documentacao oficial nao detalha. Ainda assim, billing mais estavel mes-a-mes que Intercom.",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "C3",
+        "label": "Canais nativos diversidade",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "intercom",
+            "score": 60,
+            "confidence": "",
+            "notes": "Canais nativos: in-app Messenger (BEST), email, web chat, WhatsApp Cloud API oficial, Insta DM, Facebook Messenger, SMS. **NAO suporta Telegram, TikTok, Line nativamente** — gap claro vs Chatwoot. Diferencial em qualidade in-app, nao em diversidade.",
+            "source": ""
+          },
+          {
+            "player": "chatwoot",
+            "score": 95,
+            "confidence": "",
+            "notes": "Canais nativos: chat widget, email, WhatsApp Cloud API (BYOC), Facebook, Insta, **Telegram, Line, TikTok**, SMS via Twilio, **API Channels custom**. Diversidade absoluta — todos os canais relevantes do mercado 2026 sao nativos via core OSS. Penaliza levemente por widget chat menos polido que Intercom Messenger.",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "C4",
+        "label": "In-app messaging strength",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "intercom",
+            "score": 95,
+            "confidence": "",
+            "notes": "Categoria de design da Intercom desde 2011. Messenger SDK polido em iOS/Android/Web/RN/Flutter; Product Tours; banners/tooltips/in-app messages; surveys in-app; checklists. Best-in-class consensual em G2 reviews. Foi construida para SaaS B2B com usuarios logados — esse e o use case canonico.",
+            "source": ""
+          },
+          {
+            "player": "chatwoot",
+            "score": 50,
+            "confidence": "",
+            "notes": "Widget chat funcional + customizavel (cores, posicao, idioma). Sem Product Tours nativos, sem checklists, sem surveys in-app polished. SDK JavaScript core; SDKs mobile community-driven (sem oficial polished). Para B2C/e-commerce o widget basta; para B2B SaaS in-app messaging-heavy, gap claro.",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "C5",
+        "label": "Pricing total TCO 3 cenarios",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "intercom",
+            "score": 50,
+            "confidence": "",
+            "notes": "Pricing real elevado em todos 3 cenarios (ver deep/pricing-tco.md): SMB 5 agents = ~$590/mo Advanced+Fin@30%; Mid 20 agents = ~$2.840/mo; Scale 50 agents = ~$10.435/mo. Per-resolution $0.99 vira proibitivo em alto volume. Sem free tier permanente. Add-ons multiplicam custo. Honesto e completo, mas caro.",
+            "source": ""
+          },
+          {
+            "player": "chatwoot",
+            "score": 90,
+            "confidence": "",
+            "notes": "Pricing 50-65% mais barato em todos 3 cenarios: SMB Cloud Business 5 agents = $195/mo + credits; Mid 20 agents = $780/mo; Scale 50 agents = $4.950 Enterprise. Self-hosted reduz a $50-100/mo base + Captain Cloud-only complement. Free tier permanente Hacker. Predictable. **5x menos custoso para SMB; 3x para mid-market; 2.1x para scale.**",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "C6",
+        "label": "Comunidade / Marketplace",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "intercom",
+            "score": 85,
+            "confidence": "",
+            "notes": "Marketplace formal App Store com 300+ apps; community.intercom.com forum 50k+ members; G2 5.000+ reviews; market share 12.77%; case studies enterprise abundantes; SDKs documentadas em multiplas linguagens; certs ISO/SOC2.",
+            "source": ""
+          },
+          {
+            "player": "chatwoot",
+            "score": 75,
+            "confidence": "",
+            "notes": "29.100 GitHub stars, 7.200 forks, 6.119 commits, releases mensais ativas; Discord community 10k+ membros; sem marketplace formal de apps; G2 200+ reviews; SDKs core JS + community Ruby/Python/PHP; releases publicas trackable. Comunidade forte OSS-style mas marketplace inferior.",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "C7",
+        "label": "Self-hosted / sovereignty option",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "intercom",
+            "score": 0,
+            "confidence": "",
+            "notes": "**SEM self-hosted nem on-premise.** Total vendor lock-in cloud. Data residency disponivel apenas em Expert (EU+US). Para empresa que exige soberania completa de dados (governo BR, defesa, banca regulada), Intercom esta out-of-the-box.",
+            "source": ""
+          },
+          {
+            "player": "chatwoot",
+            "score": 100,
+            "confidence": "",
+            "notes": "**Self-hosted MIT** ilimitado — fonte aberta, modificavel, ranable em qualquer infra (Docker, Kubernetes, Heroku, VPS $20-50/mo). Data sovereignty absoluta. Permite atender LGPD/HIPAA/PCI dependendo da infra cliente. Diferencial filosofico-tecnico que Intercom nunca podera matchar.",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "C8",
+        "label": "Time-to-value / setup complexity",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "intercom",
+            "score": 90,
+            "confidence": "",
+            "notes": "Cloud SaaS — sign-up + 14-day trial + Fin setup under 1 hour (claim oficial). Onboarding guiado, UI polished, docs abundantes. Para teams nao-tecnicos, time-to-value baixo.",
+            "source": ""
+          },
+          {
+            "player": "chatwoot",
+            "score": 75,
+            "confidence": "",
+            "notes": "Cloud Hacker — sign-up rapido. Self-hosted exige Docker/Kubernetes/Heroku + infra setup (1-3 dias para team familiar com DevOps). WhatsApp BYOC exige cliente conectar BSP por conta propria. Documentacao boa mas exige nivel tecnico medio. Para SMB sem dev, friction maior; para teams tech, ate vantagem (controle).",
+            "source": ""
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "intercom",
+        "score": 67.5
+      },
+      {
+        "player": "chatwoot",
+        "score": 76.88
+      }
+    ],
+    "method": "Weighted multi-dimension 0-100 per axis. Weights as defined in mission contract."
+  },
+  "duels": [
+    {
+      "left": "intercom",
+      "right": "chatwoot",
+      "winner": "tie",
+      "left_wins": 4,
+      "right_wins": 4,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "C1",
+          "label": "AI deflection performance",
+          "left_score": 85,
+          "right_score": 50,
+          "winner": "intercom"
+        },
+        {
+          "dimension": "C2",
+          "label": "AI pricing model honesty",
+          "left_score": 75,
+          "right_score": 80,
+          "winner": "chatwoot"
+        },
+        {
+          "dimension": "C3",
+          "label": "Canais nativos diversidade",
+          "left_score": 60,
+          "right_score": 95,
+          "winner": "chatwoot"
+        },
+        {
+          "dimension": "C4",
+          "label": "In-app messaging strength",
+          "left_score": 95,
+          "right_score": 50,
+          "winner": "intercom"
+        },
+        {
+          "dimension": "C5",
+          "label": "Pricing total TCO 3 cenarios",
+          "left_score": 50,
+          "right_score": 90,
+          "winner": "chatwoot"
+        },
+        {
+          "dimension": "C6",
+          "label": "Comunidade / Marketplace",
+          "left_score": 85,
+          "right_score": 75,
+          "winner": "intercom"
+        },
+        {
+          "dimension": "C7",
+          "label": "Self-hosted / sovereignty option",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "chatwoot"
+        },
+        {
+          "dimension": "C8",
+          "label": "Time-to-value / setup complexity",
+          "left_score": 90,
+          "right_score": 75,
+          "winner": "intercom"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "chatwoot",
+          "score": 76.88,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "intercom",
+          "score": 67.5,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "intercom",
+          "score": 67.5
+        },
+        {
+          "player": "chatwoot",
+          "score": 76.88
+        }
+      ],
+      "verdict": "Chatwoot vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "GAP-INT-01",
+      "title": "Sem self-hosted / on-premise option",
+      "priority": "P3 — filosofico, nao absorvivel",
+      "complexity": "VERY HIGH",
+      "rationale": "Chatwoot ganhou esse moat. Intercom nunca vai oferecer self-hosted sem destruir SaaS revenue model."
+    },
+    {
+      "id": "GAP-INT-02",
+      "title": "Sem free tier permanente",
+      "priority": "P2 — competitivo SMB",
+      "complexity": "MEDIUM",
+      "rationale": "HubSpot/Tidio mostraram que free tier permanente captura SMB e converte. Intercom poderia oferecer Essential Free com 1 agent + 100 conv/mo."
+    },
+    {
+      "id": "GAP-INT-03",
+      "title": "Sem Telegram, TikTok, Line nativos",
+      "priority": "P1 — gap de mercado real (LATAM, Asia)",
+      "complexity": "LOW",
+      "rationale": "Mercados Asia + LATAM dependem de Telegram/Line. Sem isso, Intercom esta out em verticais B2C globais."
+    },
+    {
+      "id": "GAP-INT-04",
+      "title": "API Channels para custom canais",
+      "priority": "P2 — desenvolvedores power users",
+      "complexity": "MEDIUM",
+      "rationale": "Intercom tem App Store mas nao API channels primitivos. Customers ficam dependentes do que Intercom apps oferecem."
+    },
+    {
+      "id": "GAP-INT-05",
+      "title": "Source code modificavel (open source)",
+      "priority": "P3 — filosofico, nao absorvivel",
+      "complexity": "VERY HIGH",
+      "rationale": "Intercom proprietary by design. Sem chance de virar open source."
+    },
+    {
+      "id": "GAP-INT-06",
+      "title": "AI cost predictability (credits flat vs per-resolution)",
+      "priority": "P2 — competitivo",
+      "complexity": "LOW",
+      "rationale": "Intercom poderia oferecer plano flat AI (ex: $200/mo unlimited Fin para Pro tier) como opcao para teams que querem previsibilidade. Diferencia competitivo."
+    },
+    {
+      "id": "GAP-CW-01",
+      "title": "Captain AI sem modelo publicado nem deflection rate validado",
+      "priority": "P0 — gap maior do match-up",
+      "complexity": "HIGH",
+      "rationale": "Sem deflection rate publicado e benchmarked, Captain perde batalhas pre-sale para Fin. Chatwoot precisa: (1) publicar modelo subjacente, (2) publicar deflection rate validado por terceiros, (3) adicionar autonomous workflows + custom actions + simulation mode."
+    },
+    {
+      "id": "GAP-CW-02",
+      "title": "Captain sem custom AI actions (refunds, trial extensions, calls to systems)",
+      "priority": "P1 — competitivo direto",
+      "complexity": "MEDIUM",
+      "rationale": "Sem custom actions, Captain e fancy FAQ bot. Fin entrega resolucao real. Gap absorvivel via webhooks + tool calls + LLM agentic patterns."
+    },
+    {
+      "id": "GAP-CW-03",
+      "title": "Captain sem pre-deployment simulation mode",
+      "priority": "P1 — competitivo",
+      "complexity": "MEDIUM",
+      "rationale": "Customers querem forecast deflection antes de pagar credits. Sem simulation, vao live as cegas. Absorvivel via batch replay engine."
+    },
+    {
+      "id": "GAP-CW-04",
+      "title": "Captain NAO disponivel em self-hosted",
+      "priority": "P0 — quebra promessa OSS pura",
+      "complexity": "MEDIUM",
+      "rationale": "Self-hosted users sentem traidos — entram pela MIT licenca mas Captain (a feature mais demandada) e Cloud-only. Solucao: BYOLM (bring your own LLM API key — OpenAI/Anthropic/local Ollama) com Captain logic em self-hosted."
+    },
+    {
+      "id": "GAP-CW-05",
+      "title": "Reporting & Analytics fraco (G2 reviewers concordam)",
+      "priority": "P1 — drag em deals enterprise",
+      "complexity": "MEDIUM",
+      "rationale": "Reporting e o ponto fraco mais citado em G2 reviews Chatwoot. Investir em dashboards prebuit + custom reports + agent performance analytics + SLA tracking visual."
+    },
+    {
+      "id": "GAP-CW-06",
+      "title": "Sem marketplace formal de apps",
+      "priority": "P2 — ecossistema partner-driven",
+      "complexity": "MEDIUM-HIGH",
+      "rationale": "Marketplace formal acelera adocao + monetiza ecossistema. Chatwoot tem API + webhooks mas falta vitrine. Absorvivel mas exige investimento sustentado."
+    },
+    {
+      "id": "GAP-CW-07",
+      "title": "Multibrand support",
+      "priority": "P2 — competitivo enterprise",
+      "complexity": "MEDIUM",
+      "rationale": "Cliente enterprise multi-brand (holding com 3-5 brands) precisa multibrand. Chatwoot Cloud nao oferece; self-hosted resolve via deploys multiples mas com overhead."
+    },
+    {
+      "id": "GAP-CW-08",
+      "title": "In-app Messenger SDK polido para SaaS B2B",
+      "priority": "P2 — vertical SaaS B2B",
+      "complexity": "HIGH",
+      "rationale": "Chatwoot widget e funcional mas nao no nivel Intercom. Para capturar SaaS B2B in-app heavy, gap precisa fechar. Mas: market core de Chatwoot e B2C/e-commerce/WhatsApp-first onde gap e menos relevante."
+    },
+    {
+      "id": "PHIL-01",
+      "title": "Modelo de negocio: SaaS proprietary vs OSS + Cloud",
+      "priority": "philosophy_gaps_unbridgeable",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "PHIL-02",
+      "title": "Foco vertical: SaaS B2B in-app vs B2C/e-commerce omnichannel",
+      "priority": "philosophy_gaps_unbridgeable",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://fin.ai/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.chatwoot.com/captain/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.eesel.ai/blog/chatwoot-captain",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.intercom.com/pricing",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.chatwoot.com/pricing",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/chatwoot/chatwoot",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.intercom.com/security",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.g2.com/compare/chatwoot-vs-fin-by-intercom",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.g2.com/products/chatwoot/reviews",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://useconverge.app/compare/chatwoot-vs-intercom",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://blog.elest.io/how-chatwoot-can-replace-intercom-for-your-support-team/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://achiya-automation.com/en/blog/chatwoot-vs-intercom/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.atomixweb.com/articles/best-open-source-intercom-alternative-2026",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://myaskai.com/blog/intercom-fin-ai-agent-complete-guide-2026",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://reply.io/blog/intercom-ai-review/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.chatwoot.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.chatwoot.com/developers/api",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.chatwoot.com/security",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.chatwoot.com/help-center",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.intercom.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://developers.intercom.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.intercom.com/integrations",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.g2.com/products/intercom/reviews",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.capterra.com/p/127044/Intercom/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.intercom.com/help",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://community.intercom.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.intercom.com/app-store",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.chatwoot.com/help-center/cloud/getting-started",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.chatwoot.com/help-center/self-hosted",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.json",
+      "role": "comparison-matrix",
+      "format": "json"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/ai-capability.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/inapp-vs-omnichannel.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/pricing-tco.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.json",
+      "role": "gap-analysis",
+      "format": "json"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventory-chatwoot.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "inventory-chatwoot.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventory-intercom.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "inventory-intercom.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {}
+}

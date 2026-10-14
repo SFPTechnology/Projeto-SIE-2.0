@@ -1,0 +1,27 @@
+schema: risk-register.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+risks:
+- id: RISK-01
+  title: Competitors absorb anchor gaps first
+  category: market
+  severity: MEDIUM
+  probability: MEDIUM
+  score: 9
+  owner: '@vision-strategist + @aiox-pm'
+  mitigation:
+  - Accelerate Wave 1 absorption
+  - Defend governance + vertical moats arquiteturalmente
+- id: RISK-02
+  title: License compliance oversight on absorbed code
+  category: license
+  severity: HIGH
+  probability: LOW
+  score: 9
+  owner: '@aiox-devops + @aiox-pm'
+  mitigation:
+  - NOTICE.txt for Apache-2.0 absorptions
+  - CI guard validate:license-headers
+summary:
+  total_risks: 2
+  review_cadence: per_sprint

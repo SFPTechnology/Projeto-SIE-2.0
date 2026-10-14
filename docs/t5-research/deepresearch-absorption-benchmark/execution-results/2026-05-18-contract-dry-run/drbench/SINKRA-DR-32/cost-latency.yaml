@@ -1,0 +1,7 @@
+schema: sinkra-cost-latency-v1
+run_id: drbench__SINKRA-DR-32
+mode: contract_dry_run
+wall_clock_seconds: 0
+llm_tokens: 0
+search_api_cost_usd: 0
+notes: Dry-run sem execução de modelo ou ferramenta externa.

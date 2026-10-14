@@ -1,0 +1,92 @@
+# Comparison Matrix: gstack vs AIOX
+
+**Benchmark:** bench-gstack-vs-aiox-2026-04-13 | **Type:** Codebase | **Confidence:** HIGH
+
+---
+
+## Architecture
+
+| Feature | gstack | AIOX | gstack | AIOX | Equivalence |
+|---------|--------|------|:------:|:----:|:-----------:|
+| Agent/Skill System | 37 flat SKILL.md files, no hierarchy | 461 agents in 54 squads, 107 skills, chief/worker | 3 | **5** | Parcial |
+| Governance | ETHOS.md (philosophy, no enforcement) | Constitution + 16 rules + CODEOWNERS + 14 hooks | 2 | **5** | Fraco |
+| Process Methodology | Implicit sprint lifecycle (7 phases) | SINKRA 7-phase + SDC 6-phase + wave execution | 3 | **5** | Parcial |
+| Multi-Business | Single-project focus | Hub-and-Spoke, 4 businesses, L0-L4 workspace | 1 | **5** | Sem equivalente |
+| Browser Integration | Persistent daemon, ref system, <100ms | Per-invocation Playwright | **5** | 2 | Fraco |
+| State Management | File-based (.gstack/, JSONL) | YAML-based (workspace L0-L4, .aiox/) | 3 | **4** | Parcial alta |
+| Multi-Host Support | 8 AI hosts from 1 template | Claude Code only | **5** | 1 | Sem equivalente |
+| Parallelism Model | Conductor (basic workspace cloning) | Swarm OS + DAG waves + circuit breakers | 2 | **5** | Fraco |
+
+---
+
+## Testing & QA
+
+| Feature | gstack | AIOX | gstack | AIOX | Equivalence |
+|---------|--------|------|:------:|:----:|:-----------:|
+| Test Suite | 82 files, 3-tier (static/E2E/LLM-judge) | 3,566 files, CodeRabbit + QG loop | 4 | **5** | Parcial alta |
+| Quality Gates | CI freshness, slop-scan | 14 hooks, doctor.js, 10+ validators | 3 | **5** | Parcial |
+| Code Review | /review + /codex (cross-model) | CodeRabbit self-healing (3 iterations) | 4 | **5** | Parcial alta |
+| Post-Deploy | /canary + /benchmark (continuous) | verify-deploy (one-time) | **5** | 3 | Parcial |
+| Security Audit | /cso (OWASP + STRIDE) | cybersecurity squad + CSO governance | 4 | 4 | Forte |
+
+---
+
+## Documentation
+
+| Feature | gstack | AIOX | gstack | AIOX | Equivalence |
+|---------|--------|------|:------:|:----:|:-----------:|
+| Self-Documentation | README + ARCHITECTURE + ETHOS + DESIGN (~90KB) | CLAUDE.md + 16 rules + 353 stories + 46 epics | 4 | **5** | Parcial alta |
+| Skill Documentation | 37,391 lines across 37 SKILL.md (~1K/skill) | 107 skills + 593 templates + 446 checklists | 4 | **5** | Parcial alta |
+| Story/Epic Tracking | TODOS.md (44KB, flat priority list) | 353 stories, 46 epics, full lifecycle states | 2 | **5** | Fraco |
+
+---
+
+## Automation
+
+| Feature | gstack | AIOX | gstack | AIOX | Equivalence |
+|---------|--------|------|:------:|:----:|:-----------:|
+| CI/CD Pipeline | 6 GitHub Actions, SKILL.md freshness | ci-gate + pre-push hooks + 10+ validators + doctor | 3 | **5** | Parcial |
+| Skill Generation | gen-skill-docs.ts (658 LOC, 9 resolvers) | ide-sync stubs, skill-creator skill | **5** | 3 | Parcial |
+| Deploy Pipeline | /ship + /land-and-deploy | deploy-story + verify-deploy + push-story (multi-target) | 4 | **5** | Parcial alta |
+| Registry Governance | None | 9 file-entity maps, pre-push check | 1 | **5** | Sem equivalente |
+
+---
+
+## Extensibility
+
+| Feature | gstack | AIOX | gstack | AIOX | Equivalence |
+|---------|--------|------|:------:|:----:|:-----------:|
+| Plugin/Extension Model | SKILL.md drop-in + Chrome ext + OpenClaw | Squad creation + skill-creator + workflow-to-skill | 4 | **5** | Parcial alta |
+| Learning System | JSONL per-project, top-3 injection | 3-tier graduation (logs -> entries -> cards -> heuristics) | 3 | **5** | Parcial |
+| Configuration | gstack-config (6 mutable settings) | core-config.yaml + active-operator.yaml + workspace config | 3 | **4** | Parcial alta |
+
+---
+
+## Code Quality
+
+| Feature | gstack | AIOX | gstack | AIOX | Equivalence |
+|---------|--------|------|:------:|:----:|:-----------:|
+| Type Safety | TypeScript strict (Bun) | TypeScript strict (Node.js) + YAML schemas | 4 | 4 | Forte |
+| Naming Conventions | kebab-case, PascalCase, Conventional Commits | kebab-case, PascalCase, Conventional Commits + story refs | 4 | **5** | Forte |
+| Error Handling | Agent-oriented wrapError (actionable guidance) | Standard try/catch patterns | **5** | 3 | Parcial |
+
+---
+
+## Equivalence Summary
+
+| Level | Count | Features |
+|-------|------:|----------|
+| **Forte** (5/5) | 3 | Security Audit, Type Safety, Naming Conventions |
+| **Parcial Alta** (4/5) | 8 | State, Tests, Review, Self-Docs, Skill Docs, Deploy, Plugin, Config |
+| **Parcial** (3/5) | 8 | Agent System, Process, Quality Gates, CI/CD, Story Track, Learning, Error, Post-Deploy |
+| **Fraco** (2/5) | 4 | Governance, Browser, Parallelism, Story Tracking |
+| **Sem Equivalente** (1/5) | 3 | Multi-Business, Multi-Host, Registry Governance |
+
+**Total features compared:** 26
+**gstack wins:** 5 features (Browser, Multi-Host, Post-Deploy, Skill Gen, Error Handling)
+**AIOX wins:** 18 features
+**Parity:** 3 features
+
+---
+
+*Generated by bench-analyst | 2026-04-13 | 26 features across 6 dimensions*

@@ -1,0 +1,16 @@
+{
+  "schema": "slides-creator-risk-register.v1",
+  "generated_at": "2026-05-17",
+  "risks": [
+    {"id": "R-001", "title": "Renderer gera PPTX que abre, mas não é editável", "probability": "high", "impact": "critical", "severity": 10, "mitigation": "editability-report.json obrigatório e fixture PowerPoint"},
+    {"id": "R-002", "title": "UI/editor começa antes do core", "probability": "medium", "impact": "high", "severity": 8, "mitigation": "Gate: editor só depois de CLI/API/render"},
+    {"id": "R-003", "title": "Código AGPL de banana-slides contamina produto", "probability": "medium", "impact": "critical", "severity": 9, "mitigation": "Usar como benchmark de UX; ADR antes de reuso"},
+    {"id": "R-004", "title": "API duplica lógica da CLI", "probability": "medium", "impact": "high", "severity": 8, "mitigation": "Core único chamado por CLI/API/MCP"},
+    {"id": "R-005", "title": "QA vira checklist sem evidência", "probability": "medium", "impact": "high", "severity": 7, "mitigation": "Evidence ledger e reports obrigatórios"},
+    {"id": "R-006", "title": "Template import subestima PPTX corporativo", "probability": "high", "impact": "medium", "severity": 7, "mitigation": "Subset inicial e unsupported-features report"},
+    {"id": "R-007", "title": "Ollama/local gera baixa qualidade", "probability": "high", "impact": "medium", "severity": 6, "mitigation": "Separar smoke local de provider recomendado"},
+    {"id": "R-008", "title": "PresentAgent-2 puxa escopo multimodal cedo demais", "probability": "medium", "impact": "medium", "severity": 6, "mitigation": "P2 explícito, fora do MVP"},
+    {"id": "R-009", "title": "Fontes quebram render em outra máquina", "probability": "medium", "impact": "high", "severity": 8, "mitigation": "Font registry, fallback e embed/subset policy"},
+    {"id": "R-010", "title": "Claims sem fonte passam para deck executivo", "probability": "medium", "impact": "critical", "severity": 9, "mitigation": "Gate de fonte para claims críticos"}
+  ]
+}

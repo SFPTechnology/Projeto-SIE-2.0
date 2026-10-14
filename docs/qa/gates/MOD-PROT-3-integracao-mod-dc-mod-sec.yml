@@ -1,0 +1,43 @@
+schema: 1
+story: 'MOD-PROT-3'
+story_title: 'Integração MOD-DC / MOD-SEC'
+gate: PASS
+status_reason: >-
+  As 5 ACs verificadas e atendidas. A integração preserva a assinatura consumida pelo MOD-DC
+  e mantém a heurística anterior como fallback explícito, com a cadeia de precedência
+  documentada no próprio código e rastreada ao ADR.
+reviewer: 'Quinn'
+updated: '2026-08-08T00:30:00Z'
+
+traceability:
+  - ac: 1
+    status: MET
+    evidence: >-
+      dimensionamento-condutores/overrides.ts:112 chama selecionarProtecaoCircuito;
+      :132 mantém sugerirProtecaoCircuito como fallback interno quando in_a é null
+  - ac: 2
+    status: MET
+    evidence: 'ParametrosDimensionamento inalterado (in_a, origem_in, i2_a, fonte_i2); tsc --noEmit exit 0 em todo o projeto'
+  - ac: 3
+    status: MET
+    evidence: 'overrides.ts:102 grava origem_in "MOD-PROT" quando o motor resolve; motor-sobrecarga (C2) consome o mesmo campo'
+  - ac: 4
+    status: MET
+    evidence: 'tempo_atuacao_s exposto em ResultadoProtecaoCircuito (contratos.ts), sem injeção automática em chamada HTTP'
+  - ac: 5
+    status: MET
+    evidence: >-
+      Cadeia de precedência documentada em overrides.ts:81-88 — fallback devolve
+      origem_in "SUGESTAO" com comportamento idêntico ao anterior; rastreado ao
+      ADR mod-prot-contrato-integracao.md Decisão D5
+
+evidence:
+  typecheck: 'npx tsc --noEmit → exit 0 (garante AC2 em todos os consumidores)'
+  tests: '1186/1187 na suíte completa; nenhuma regressão em MOD-DC ou MOD-SEC'
+  lint: 'exit 0'
+
+top_issues: []
+
+waiver: { active: false }
+
+recommended_status: 'Aprovado'

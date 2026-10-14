@@ -1,0 +1,169 @@
+# Pipeline Execution Log Schema — slides-creator
+# GAP-002 closure — per-run observability for SINKRA-native telemetry
+# Version: 1.0.0
+# Generated: 2026-04-20 | Upgrade Phase 4-7 Wave 1
+
+schema_version: "1.0"
+name: slides-creator-pipeline-execution-log
+owner_squad: slides-creator
+sinkra_framework: v3.2
+storage_pattern: "append-only; one file per run in outputs/slides-creator/{run_id}/"
+
+record_schema:
+  required_fields:
+    - correlation_id
+    - run_id
+    - started_at
+    - completed_at
+    - status
+    - input
+    - orchestrator
+    - organism
+    - phases
+    - gates
+    - dimension_router
+    - final_outputs
+    - cost_ledger
+    - compliance
+    - sinkra_framework_version
+    - squad_version
+  field_types:
+    correlation_id: "uuid v4"
+    run_id: "{timestamp}-{input_hash}"
+    started_at: "ISO-8601"
+    completed_at: "ISO-8601 or null"
+    status: "enum: pending|in_progress|completed|halted|failed"
+    input:
+      type: "enum: briefing|youtube"
+      hash: "sha256"
+      source_path: "optional string"
+    orchestrator: "slide-chief"
+    organism: "ORG-GENERATE-PRESENTATION"
+    phases: "array of {id, started_at, completed_at, session, atoms_executed, artifacts_emitted, errors}"
+    gates: "array of {id, verdict, approver, timestamp, sla_ladder_breached}"
+    dimension_router:
+      triggered: "boolean"
+      failure_dim: "enum: narrative|spec|vertical|null"
+      return_phase: "enum: P01|P02|P03|null"
+      retry_count: "integer 0..2"
+    final_outputs: "object {deck_manifest, deck_spec, qa_report, render_request, deliverables}"
+    cost_ledger: "object {model_calls, total_cost_usd, total_duration_ms}"
+    compliance: "object {invariants_enforced, quality_gates_passed, ppteval_composite}"
+
+example_record:
+  correlation_id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  run_id: "20260420-085500-hash8f3a"
+  started_at: "2026-04-20T08:55:00Z"
+  completed_at: "2026-04-20T09:42:17Z"
+  status: completed
+  input:
+    type: briefing
+    hash: "sha256:abc123"
+    source_path: "workspace/businesses/aiox/L4-operational/briefings/sample.md"
+  orchestrator: slide-chief
+  organism: ORG-GENERATE-PRESENTATION
+  phases:
+    - id: P00
+      started_at: "2026-04-20T08:55:00Z"
+      completed_at: "2026-04-20T08:55:42Z"
+      session: null
+      atoms_executed:
+        - [normalize-briefing, 32000, 0.08]
+        - [load-kb-bundle, 8500, 0.00]
+      artifacts_emitted:
+        - "outputs/slides-creator/run-20260420/briefing.normalized.json"
+    - id: P01
+      started_at: "2026-04-20T08:55:42Z"
+      completed_at: "2026-04-20T09:08:19Z"
+      session: SESSION-NARR
+      atoms_executed:
+        - [catalog-sources-apa, 120000, 0.42]
+        - [distill-governing-thought, 45000, 0.15]
+        - [build-pyramid, 180000, 0.68]
+        - [apply-scqa, 75000, 0.22]
+      artifacts_emitted:
+        - "outputs/slides-creator/run-20260420/sources-apa.yaml"
+        - "outputs/slides-creator/run-20260420/governing-thought.yaml"
+        - "outputs/slides-creator/run-20260420/pyramid-tree.yaml"
+        - "outputs/slides-creator/run-20260420/scqa-map.yaml"
+  gates:
+    - id: D01
+      verdict: APPROVED
+      approver: "human.operator@aiox"
+      timestamp: "2026-04-20T09:12:00Z"
+    - id: D02
+      verdict: APPROVED
+      approver: "human.operator@aiox"
+      timestamp: "2026-04-20T09:22:00Z"
+    - id: D03
+      verdict: APPROVED
+      approver: "human.operator@aiox + stk10.brand@aiox"
+      timestamp: "2026-04-20T09:32:00Z"
+    - id: qa_verdict
+      verdict: PASS
+      approver: "computed"
+      timestamp: "2026-04-20T09:41:55Z"
+  dimension_router:
+    triggered: false
+    retry_count: 0
+  final_outputs:
+    deck_manifest: "outputs/slides-creator/run-20260420/deck-manifest.json"
+    deck_spec: "outputs/slides-creator/run-20260420/deck-spec.yaml"
+    qa_report: "outputs/slides-creator/run-20260420/qa-report.json"
+    render_request: "outputs/slides-creator/run-20260420/render-request.yaml"
+    deliverables:
+      - "outputs/slides-creator/run-20260420/deliverables/Slide_Specifications.md"
+      - "outputs/slides-creator/run-20260420/deliverables/Design_System.md"
+      - "outputs/slides-creator/run-20260420/deliverables/References_Bibliography.md"
+      - "outputs/slides-creator/run-20260420/deliverables/AI_Image_Prompts.md"
+      - "outputs/slides-creator/run-20260420/deliverables/Version_History.md"
+  cost_ledger:
+    model_calls:
+      - [claude-sonnet-4-5, 450000, 85000, 6.75]
+      - [claude-opus-4-6, 80000, 25000, 2.40]
+    total_cost_usd: 9.15
+    total_duration_ms: 2837000
+  compliance:
+    invariants_enforced:
+      P1_fidelidade: PASS
+      P2_especificacao: PASS
+      P3_pyramid_mece: PASS
+      P4_action_titles: PASS
+      P5_enumeracao: PASS
+      P6_citacao_apa: PASS
+      P7_prompts_completos: PASS
+    quality_gates_passed:
+      brand-token-compliance: PASS
+      visual-regression: PASS
+      accessibility: PASS
+      ppteval-composite: PASS
+      human-visual-approval: PASS
+    ppteval_composite:
+      Design: 8.2
+      Content: 8.5
+      Coherence: 8.0
+      GAD: 7.8
+  sinkra_framework_version: "v3.2"
+  squad_version: "9.0.0"
+
+emission_protocol:
+  emit_task: "emit-execution-log (TO-BE created in Wave 2)"
+  emit_frequency: "on phase transition + on gate verdict + on completion"
+  storage_location: "outputs/slides-creator/{run_id}/pipeline-execution-log.yaml"
+  retention_days: 30
+
+consumers:
+  - name: finops-chief
+    purpose: "Cost aggregation per run, per business, per model"
+    query_pattern: "cost_ledger.total_cost_usd GROUP BY squad, date"
+  - name: kaizen-chief
+    purpose: "Quality trend analysis, invariant-failure patterns"
+    query_pattern: "compliance.invariants_enforced OVER time"
+  - name: replay-tooling
+    purpose: "Deterministic replay for debugging"
+    query_pattern: "input.hash + correlation_id reconstructs phase sequence"
+
+meta:
+  gap_closed: GAP-002
+  compatible_with: sinkra-v3.2
+  observability_ready: true

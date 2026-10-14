@@ -1,0 +1,152 @@
+workflow:
+  id: story-development-cycle-headless-yolo
+  name: Story Development Cycle Headless YOLO
+  version: "1.0"
+  description: >
+    Deterministic SDC execution contract for SM -> PO -> Dev -> QA -> DevOps
+    with immutable manifest, no prompts, persisted checkpoints, authorization
+    checks, dry-runable remote effects, deploy runbook, and rollback routing.
+  type: story-development
+
+  metadata:
+    elicit: false
+    confirmation_required: false
+    source_contract: docs/workflows/WORKFLOW-SDC-AUTOMATICO-YOLO-DEPLOY.md
+
+  execution_modes:
+    - mode: yolo
+      description: Headless autonomous execution after manifest validation
+      prompts: 0
+      default: true
+
+  phases:
+    - phase_1: Manifest Validation
+    - phase_2: Story Creation
+    - phase_3: Story Validation
+    - phase_4: Implementation
+    - phase_5: QA Review
+    - phase_6: DevOps Publication
+    - phase_7: Deploy and Rollback
+
+  sequence:
+    - id: validate_manifest
+      phase: 1
+      agent: aiox-master
+      action: Validate immutable sdc_execution manifest
+      creates: manifest_snapshot
+      outputs:
+        - manifest_fingerprint
+      on_failure: halt_manifest_invalid
+
+    - id: create_story
+      phase: 2
+      agent: sm
+      action: Create or refine story draft
+      requires: manifest_snapshot
+      creates: story_file
+      next: validate_story
+
+    - id: validate_story
+      phase: 3
+      agent: po
+      action: Validate story draft and emit GO or NO-GO
+      requires: story_file
+      creates: story_validation
+      next: implement_story
+      on_failure: create_story
+
+    - id: implement_story
+      phase: 4
+      agent: dev
+      action: Implement approved story and produce local evidence
+      requires: story_validation
+      creates: implementation_evidence
+      next: qa_review
+
+    - id: qa_review
+      phase: 5
+      agent: qa
+      action: Review implementation and emit PASS, FAIL, CONCERNS, or WAIVED
+      requires: implementation_evidence
+      creates: qa_verdict
+      next: quality_gates
+      on_failure: implement_story
+
+    - id: quality_gates
+      phase: 5
+      agent: qa
+      action: Verify lint, typecheck, tests, build, CodeRabbit, and security gates
+      requires: qa_verdict
+      creates: quality_gate_evidence
+      next: migration_validation
+      on_failure: halt_pre_sdc_gate_blocked
+
+    - id: migration_validation
+      phase: 6
+      agent: dev
+      action: Validate migrations with apply, rollback, and reapply evidence when authorized
+      requires: quality_gate_evidence
+      creates: migration_evidence
+      next: devops_push
+      on_failure: halt_migration_validation_failed
+
+    - id: devops_push
+      phase: 6
+      agent: devops
+      action: Push only when remote_operations_authorized is true
+      requires: migration_evidence
+      creates: push_result
+      next: devops_pr
+
+    - id: devops_pr
+      phase: 6
+      agent: devops
+      action: Create PR only when pull_request_authorized is true
+      requires: push_result
+      creates: pr_result
+      next: devops_merge
+
+    - id: devops_merge
+      phase: 6
+      agent: devops
+      action: Merge only when merge_authorized is true
+      requires: pr_result
+      creates: merge_result
+      next: devops_release
+
+    - id: devops_release
+      phase: 6
+      agent: devops
+      action: Release only when release_authorized is true
+      requires: merge_result
+      creates: release_result
+      next: devops_deploy
+
+    - id: devops_deploy
+      phase: 7
+      agent: devops
+      action: Execute approved deploy_runbook only when deploy and rollback are authorized
+      requires: release_result
+      creates: deploy_result
+      next: post_deploy_smoke
+      on_failure: rollback_or_halt
+
+    - id: post_deploy_smoke
+      phase: 7
+      agent: devops
+      action: Verify deployment health and rollback automatically on failure when authorized
+      requires: deploy_result
+      creates: smoke_result
+      next: complete
+      on_failure: rollback_or_halt
+
+    - workflow_end: true
+      id: complete
+      action: deployed
+
+  handoff_prompts:
+    manifest_validated: "Manifest validated and frozen. Continue to @sm."
+    story_validated: "Story GO. Continue to @dev."
+    implementation_done: "Implementation evidence ready. Continue to @qa."
+    qa_passed: "QA PASS. Continue to @devops."
+    deployed: "Run completed with terminal status deployed."

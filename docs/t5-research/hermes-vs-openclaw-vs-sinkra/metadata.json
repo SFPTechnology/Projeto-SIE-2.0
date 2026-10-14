@@ -1,0 +1,140 @@
+{
+  "bench": {
+    "id": "hermes-vs-openclaw-vs-sinkra",
+    "type": "product",
+    "variant": "3-way",
+    "created_at": "2026-04-04",
+    "analyst": "spy/bench-analyst (backfilled)"
+  },
+  "subjects": [
+    {
+      "key": "hermes",
+      "name": "Hermes",
+      "category": "unknown"
+    },
+    {
+      "key": "openclaw",
+      "name": "Openclaw",
+      "category": "unknown"
+    },
+    {
+      "key": "sinkra",
+      "name": "Sinkra",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "1",
+        "name": "Coding Depth",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "2",
+        "name": "Codebase Reasoning",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "3",
+        "name": "IDE Integration",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "4",
+        "name": "Git/GitHub Workflow",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "5",
+        "name": "Self-Learning",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "6",
+        "name": "Memory & Recall",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "7",
+        "name": "Multi-Model Reasoning",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "8",
+        "name": "Multi-Platform Access",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "9",
+        "name": "Native Apps",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "10",
+        "name": "Plugin/Extension Ecosystem",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "11",
+        "name": "Testing & QA",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "12",
+        "name": "Architecture & Extensibility",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "13",
+        "name": "Security & Permissions",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "14",
+        "name": "Process Governance",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "15",
+        "name": "Cost Efficiency",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D16",
+        "name": "MEDIA",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:09:33.778Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

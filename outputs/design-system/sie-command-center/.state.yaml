@@ -1,0 +1,29 @@
+project: "Projeto SIE"
+variant: "sie-command-center"
+workflow_type: "brownfield-concept"
+status: "ready_for_review"
+created_at: "2026-07-31"
+source_code_modified: false
+current_phase: "quality"
+artifacts:
+  audit_complete: true
+  research_complete: true
+  experience_architecture_complete: true
+  component_catalog_complete: true
+  tokens_complete: true
+  prototype_complete: true
+  adoption_plan_complete: true
+gates:
+  persona_validation: pending
+  architect_ratification: pending
+  implementation_story: pending
+  production_implementation: not_started
+  repository_lint: passed
+  repository_typecheck: passed
+  repository_test: passed
+  repository_build: passed
+  prototype_static_validation: passed
+  canonical_design_squad_chain: blocked_missing_paths
+capability_gaps:
+  - "Canonical design-squad readiness scripts are absent from expected paths."
+  - "Canonical internal quality-chain paths reference a missing squads/ directory."

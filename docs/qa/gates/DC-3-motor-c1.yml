@@ -1,0 +1,60 @@
+schema: 1
+story: 'DC-3'
+slug: 'motor-c1'
+title: 'Motor C1 — Capacidade de Corrente'
+gate: PASS
+status_reason: 'All 5 acceptance criteria implemented and verified via numeric worked examples; new AC-DC-24 (F=1/√n) and ≤30% exemption are additive with no breaking changes. Full domain + API suites green, typecheck clean.'
+reviewer: 'Quinn'
+updated: '2026-07-12T23:43:00Z'
+
+evidence:
+  tests_verified_by_qa:
+    - suite: 'tests/domain/dimensionamento-condutores'
+      result: '31/31 PASS'
+      note: 'Includes the 6 focused motor-c1.test.ts worked examples (AC-DC-02/03/14/19/24 + ≤30% exemption)'
+    - suite: 'tests/api/dimensionamento-condutores'
+      result: '2/2 PASS'
+      note: 'Contract tests unaffected — additive optional params'
+  typecheck: 'npx tsc --noEmit → exit 0'
+  contracts:
+    - 'grupo_nao_semelhante?: boolean (optional, additive)'
+    - 'circuitos_desprezaveis_ate_30pct?: number (optional, additive)'
+
+acceptance_criteria:
+  - id: AC-DC-02
+    status: PASS
+    evidence: 'TUE 2F/220V, IB 34,65A, B1, 3 agrupados → n=2, FCA=0,7, IB_fict=49,5A, Iz_base=57, seção 10mm². Verified in source (determinarCondutoresCarregados) and test.'
+  - id: AC-DC-03
+    status: PASS
+    evidence: 'Bifásico com neutro → n_carregados=3 (coluna 3); sem neutro → 2. Confirmed in source lines 29-33.'
+  - id: AC-DC-14
+    status: PASS
+    evidence: '3F+N com TH3>15% → 4 carregados, fator neutro 0,86 rastreado em fatores.neutro; seção 16mm². Source lines 34-36.'
+  - id: AC-DC-19
+    status: PASS
+    evidence: 'Método D usa bloco "solo" (meio="solo"), outros usam "ambiente". Source line 57; test asserts FCT solo 0,89 vs ambiente 1,0.'
+  - id: AC-DC-24
+    status: PASS
+    evidence: 'Grupo não semelhante → F=1/√(nEfetivo) substitui fator tabelado; n=10 → 0,316. Source lines 78-89; alerta FCA-GRUPO-NAO-SEMELHANTE-1-SQRT-N.'
+  - id: EXEMPTION-30PCT
+    status: PASS
+    evidence: '≤30% exemption reduces n before FCA lookup (opt-in, default 0), alerta FCA-CIRCUITOS-DESPREZADOS-30PCT. No auto-invention (Constitution Art. IV respected). Source lines 69-75.'
+
+quality_checks:
+  code_review: PASS  # Clean, isolated in motores/, consumes DC-1 base normativa + DC-2 inputs; no cross-module contamination
+  unit_tests: PASS   # 6 focused worked examples; deterministic numeric assertions
+  acceptance_criteria: PASS
+  no_regressions: PASS  # Full domain (31/31) + API (2/2) suites unaffected
+  performance: PASS  # Pure synchronous domain calc, no I/O
+  security: PASS     # No external input surface; pure computation
+  documentation: PASS  # decision-log-DC-3.md, AC traced to CA-DC-*, IDS ADAPT rationale logged
+
+ids_compliance:
+  decision: 'ADAPT (motor pré-existente) + CREATE (focused test suite)'
+  note: 'CREATE of duplicate motor-c1.ts correctly rejected per REUSE > ADAPT > CREATE. Additive changes <30%, no consumer breakage.'
+
+top_issues: []
+waiver: { active: false }
+
+unblocks:
+  - 'DC-4 (depends on DC-3 Motor C1)'

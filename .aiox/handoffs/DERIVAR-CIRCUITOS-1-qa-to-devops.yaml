@@ -1,0 +1,134 @@
+handoff:
+  from_agent: "@qa (Quinn — Test Architect)"
+  to_agent: "@devops (Gage)"
+  created: "2026-07-29"
+  mode: "yolo (autônomo, sem intervenção humana)"
+
+story_context:
+  story_id: "DERIVAR-CIRCUITOS-1"
+  story_title: "Regularizar derivação de circuitos para dependência sem resultado"
+  story_path: "docs/stories/story-DERIVAR-CIRCUITOS-1-dependencia-sem-resultado.md"
+  story_status: "Done"
+  transicao_aplicada: "InReview -> Done (por @qa, conforme .claude/rules/story-lifecycle.md — CONCERNS move para Done)"
+  branch: "master"
+  submodule: "sistema-de-instala-es-el-tricas-sie-main"
+  gate_file: "docs/qa/gates/DERIVAR-CIRCUITOS-1-gate.yaml"
+  handoff_de_entrada: ".aiox/handoffs/DERIVAR-CIRCUITOS-1-dev-to-qa.yaml (consumido)"
+  blocker_ref: "BLK-DERIVAR-CIRCUITOS-01 (.aiox/workflow-state/BLOCKER-DERIVAR-CIRCUITOS-REGRESSAO.yaml)"
+
+veredito:
+  gate: CONCERNS
+  quality_score: 92
+  recommended_status: "Done (com as ressalvas DC1-001, DC1-002 e DC1-003 registradas — nenhuma atribuível a esta story)"
+  resumo: >-
+    Os 4 ACs estão cobertos por testes nomeados passando (14/14 no arquivo), a guarda de escopo
+    da Task 6 foi respeitada (verificada por diff, byte a byte), typecheck e build passam.
+    Ressalva única e externa: `npx vitest run` ainda não fecha em 0 arquivos falhando — 1 arquivo
+    do domínio queda-tensao falha por TIMEOUT intermitente, NÃO atribuível a esta story e
+    comprovadamente verde quando executado isolado.
+
+gates_reexecutados_pelo_qa:
+  data: "2026-07-29"
+  local: "sistema-de-instala-es-el-tricas-sie-main/"
+  typecheck: "PASS — npx tsc --noEmit, saída vazia, exit 0"
+  teste_escopado: "PASS — Test Files 1 passed (1) | Tests 14 passed (14), 2.46s (baseline do blocker: 1 failed | 11 passed (12))"
+  dominio_calculo: "PASS — Test Files 15 passed (15) | Tests 116 passed (116), 10.03s"
+  build: "PASS — ✓ built in 8.74s"
+  suite_completa: "FAIL_NAO_ATRIBUIVEL — Test Files 1 failed | 128 passed (129) | Tests 1 failed | 892 passed (893), 263.13s"
+  lint_escopado: "PASS_COM_RESSALVA_AMBIENTAL — 329 erros, agregação {\"prettier/prettier\": 329}, uma única mensagem distinta (Delete CR). Controle em arquivo vizinho NÃO tocado (corrente-circuitos.test.ts): 261 erros do mesmo perfil."
+  lint_projeto_inteiro: "NAO_VERIFICADO (fail-closed) — `npx eslint .` trava 25+ min neste repositório"
+
+guarda_de_escopo:
+  resultado: PASS
+  comando: "git diff --stat HEAD -- src/domain/calculo/derivar-circuitos.ts"
+  observado: "1 file changed, 3 insertions(+), 3 deletions(-)"
+  conclusao: >-
+    Exatamente as 3 hunks pré-existentes já catalogadas no blocker. NENHUMA linha nova.
+    A story alterou apenas tests/domain/calculo/derivar-circuitos.test.ts.
+
+arquivos_da_story:
+  - "sistema-de-instala-es-el-tricas-sie-main/tests/domain/calculo/derivar-circuitos.test.ts (modificado — único arquivo de código)"
+  - "docs/stories/story-DERIVAR-CIRCUITOS-1-dependencia-sem-resultado.md (Status, Tasks, DoD, Dev Agent Record, QA Results, Change Log)"
+  - "docs/qa/gates/DERIVAR-CIRCUITOS-1-gate.yaml (criado pelo @qa)"
+  - ".aiox/handoffs/DERIVAR-CIRCUITOS-1-qa-to-devops.yaml (este arquivo)"
+  - ".aiox/workflow-state/BLOCKER-DERIVAR-CIRCUITOS-REGRESSAO.yaml (atualizado)"
+  - ".aiox/logs/DERIVAR-CIRCUITOS-1-yolo.log (anexado)"
+nao_modificado_confirmado: "src/domain/calculo/derivar-circuitos.ts"
+
+ressalvas:
+  - id: DC1-001
+    severity: medium
+    category: tests
+    atribuivel_a_esta_story: false
+    dominio: "queda-tensao / MOD-QT-2"
+    bloqueia_story: false
+    bloqueia_commit_push: true
+    finding: >-
+      `npx vitest run` não fecha em 0 arquivos falhando: 1 failed | 128 passed (129).
+      A falha é TIMEOUT ("Error: Test timed out in 5000ms") em
+      tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts > AC3 (parecer §3.1) >
+      "todos os campos exigidos estão presentes e preenchidos em cada um dos 1.563 registros",
+      NÃO asserção. O mesmo arquivo passa 28/28 em 7,22s quando executado isolado.
+    suggested_owner: "@dev do ciclo MOD-QT-2 / @po"
+    suggested_action: >-
+      Elevar o testTimeout desse `it` (ou movê-lo para fora do laço de 1.563 registros x N campos)
+      para que ele deixe de ser flaky sob carga paralela.
+  - id: DC1-002
+    severity: low
+    category: tests
+    atribuivel_a_esta_story: false
+    bloqueia_story: false
+    bloqueia_commit_push: false
+    finding: >-
+      Débito conhecido, explicitamente fora de escopo por decisão do @po: não há cobertura de
+      integração para o cenário de dependência em RASCUNHO nas telas de Correntes e Divisor de
+      Circuitos. PP-1 hoje está protegido apenas na camada unitária de `derivarCircuitos`.
+    suggested_owner: "@po (priorização de backlog)"
+  - id: DC1-003
+    severity: low
+    category: code
+    atribuivel_a_esta_story: false
+    bloqueia_story: false
+    bloqueia_commit_push: false
+    finding: >-
+      `npx eslint .` (projeto inteiro) permanece NÃO VERIFICADO por trava de 25+ min, e o lint
+      escopado é 100% ruído de CRLF (core.autocrlf=true). Reincidente — mesma constatação do
+      gate MOD-QT-2-02.
+    suggested_owner: "@devops"
+    suggested_action: >-
+      Adicionar `.gitattributes` com `* text=auto eol=lf` (ou endOfLine: "auto" no Prettier) e
+      investigar a lentidão do eslint de projeto inteiro.
+
+impacto_no_blocker:
+  blocker: "BLK-DERIVAR-CIRCUITOS-01"
+  situacao: RESOLVIDO
+  fundamento:
+    - "Teste vermelho eliminado: 14/14 verde, verificado por re-execução independente do @qa."
+    - "Artigo III sanado: o comportamento agora tem story, 4 ACs, PP-1 rastreável e cobertura de regressão."
+    - "Risco de reversão silenciosa mitigado pelo comentário PP-1 in-loco + AC4 protegendo o guard remanescente."
+  gates_anteriores_desbloqueados: >-
+    QT201-001 e QT202-001 (severity high nos gates MOD-QT-2-01 e MOD-QT-2-02) apontavam
+    EXATAMENTE este teste como a causa do `npm test` exit 1. Essa causa está encerrada.
+  ressalva: >-
+    ATENÇÃO @devops — o gate NÃO fica automaticamente liberado. DC1-001 (flaky de timeout em
+    tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts) ainda impede que a suíte
+    feche em 0 de forma DETERMINÍSTICA. É outro item, de outro dono, e constitui um blocker NOVO
+    E DISTINTO (BLK-QT-TIMEOUT-FLAKY-01) — não uma reabertura de BLK-DERIVAR-CIRCUITOS-01.
+
+acao_para_devops:
+  liberado_para_push: false
+  motivo_do_bloqueio: "DC1-001 — suíte não fecha em 0 de forma determinística (blocker novo, BLK-QT-TIMEOUT-FLAKY-01)."
+  pre_condicao_para_liberar: >-
+    `npx vitest run` fechar com 0 arquivos falhando de forma reprodutível dentro de
+    sistema-de-instala-es-el-tricas-sie-main/, o que depende da estabilização do timeout
+    de catalogo-impedancia-completude.test.ts pelo ciclo MOD-QT-2.
+  quando_liberado:
+    - "Commit dos arquivos da story (conventional commit, referenciando [Story DERIVAR-CIRCUITOS-1])."
+    - "Nenhum push ou PR foi realizado pelo @dev ou pelo @qa — autoridade exclusiva de @devops."
+  itens_de_higiene_para_devops:
+    - "DC1-003: normalizar EOL via .gitattributes e destravar o eslint de projeto inteiro."
+
+next_action: >-
+  @devops NÃO deve fazer push ainda. Aguardar a estabilização de DC1-001 pelo ciclo MOD-QT-2
+  (owner: @dev de MOD-QT-2 / @po). A story DERIVAR-CIRCUITOS-1 está Done e pronta para entrar
+  no commit assim que a suíte fechar em 0 de forma determinística.

@@ -1,0 +1,125 @@
+# Edge Case Decision Registry — slides-creator
+# Extracted from McKinsey PPT Architect "TROUBLESHOOTING & EDGE CASES"
+# Consumed by: slide-chief routing + D01/D02/D03 gate advisors + normalize-briefing
+
+schema_version: "1.0"
+name: edge-case-decisions
+owner_squad: slides-creator
+source: "docs/squad/slides/enterprise_slides/output/mckinsey_ppt_architect_instructions.md#TROUBLESHOOTING"
+
+# ═══════════════════════════════════════════════════════════════════════
+# DECISION REGISTRY (indexed by symptom)
+# ═══════════════════════════════════════════════════════════════════════
+edge_cases:
+
+  - id: EC-01
+    symptom: "Material fonte é ambíguo ou contraditório"
+    detected_by: [catalog-sources-apa, p1-fidelity-sampling]
+    resolution_protocol:
+      - step: "NUNCA resolver ambiguidade inventando dados (P1 Fidelidade violation)"
+      - step: "Documentar explicitamente no slide com marker VALIDAR COM CLIENTE"
+      - step: "Sinalizar em vermelho/destaque para revisão obrigatória"
+      - step: "Se crítico para narrativa, pausar e perguntar ao cliente antes de continuar"
+    marker_template: |
+      [VALIDAR COM CLIENTE: Fonte A menciona X, Fonte B menciona Y.
+      Utilizamos X (Fonte A) por ser mais recente, mas requer confirmação.]
+    escalation: D01_gate (narrative approval)
+    owner: content-architect
+
+  - id: EC-02
+    symptom: "Dados insuficientes para preencher slide planejado"
+    detected_by: [catalog-sources-apa, build-pyramid]
+    resolution_protocol:
+      - step: "NÃO inventar dados placeholder (P1 violation)"
+      - step: "Documentar gap explicitamente com marker"
+      - step: "Oferecer 3 opções ao cliente"
+    options:
+      A: "Reduzir escopo do slide (ex: só regiões com dados)"
+      B: "Cliente fornece dados faltantes"
+      C: "Eliminar slide se não essencial"
+    marker_template: |
+      [SLIDE PLANEJADO: {descrição}]
+      [DADOS DISPONÍVEIS: {o que tem}]
+      [DADOS FALTANTES: {o que falta}]
+      [OPÇÕES: A) {reduce} B) {fill} C) {eliminate}]
+      [AGUARDANDO DECISÃO DO CLIENTE]
+    escalation: D01_gate OR D02_gate depending on phase
+    owner: slide-chief
+
+  - id: EC-03
+    symptom: "Número de slides excede target do cliente"
+    detected_by: [classify-slide-type, build-pyramid]
+    resolution_protocol:
+      - step: "NÃO comprimir informação com perda de clareza"
+      - step: "Apresentar 3 opções ao cliente"
+    options:
+      A: "Manter slides, apresentação será X min (vs Y desejado)"
+      B: "Mover slides para Appendix (conteúdo disponível mas não apresentado)"
+      C: "Eliminar seção (explicar impacto na narrativa)"
+    recommendation_priority: "Baseado em prioridade de mensagens na pyramid"
+    escalation: D02_gate (structure approval)
+    owner: content-architect
+
+  - id: EC-04
+    symptom: "Brand guidelines do cliente conflitam com best practices"
+    detected_by: [detect-brand-override, compose-grid-layout]
+    resolution_protocol:
+      - step: "Seguir brand guidelines (cliente > best practices)"
+      - step: "Documentar trade-off explicitamente"
+      - step: "Sugerir alternativas diplomaticamente se houver problemas sérios (ex: contraste WCAG insuficiente)"
+    marker_template: |
+      [NOTA: Brand guidelines especificam {X}, que não é recomendado para
+      apresentações executivas. Seguindo guidelines do cliente mas sinalizando
+      para discussão se necessário.]
+    escalation: D03_gate + STK-10 co-sign
+    owner: visual-scout
+    hard_stop_conditions:
+      - "Contraste WCAG AA falha (< 4.5:1) — sinalizar como bloqueador independente"
+
+  - id: EC-05
+    symptom: "Cliente pede slide de impacto mas dados são negativos"
+    detected_by: [build-pyramid, write-action-titles]
+    resolution_protocol:
+      - step: "NUNCA manipular dados para parecerem melhores (P1 violation)"
+      - step: "Tentar reframing honesto (magnitude, trend, ratio, comparison)"
+      - step: "Se não houver reframing honesto possível, apresentar dado negativo com action plan"
+    reframing_examples:
+      bad: "Receita caiu 30%"
+      good_option_a: "Receita ainda caiu, mas ritmo de declínio desacelerou em 50%"
+      bad_2: "Perdemos 5 clientes top"
+      good_option_b: "Retivemos 82% da base de clientes enterprise apesar de pressão competitiva"
+      when_no_reframing_works:
+        title: "Receita caiu 30% em 2024, exigindo plano de turnaround urgente"
+        content: "Dado + Causas raiz + Próximas ações"
+    escalation: D01_gate
+    owner: content-architect
+
+# ═══════════════════════════════════════════════════════════════════════
+# GENERAL ESCALATION LADDER (applies to any detected edge case)
+# ═══════════════════════════════════════════════════════════════════════
+escalation_ladder:
+  tier_0: "Agent resolves via protocol (no human needed)"
+  tier_1: "slide-chief review + decision"
+  tier_2: "D01/D02/D03 gate (human operator)"
+  tier_3: "STK-10 co-sign (brand/strategic)"
+  tier_4: "HALT pipeline — await client input"
+
+# ═══════════════════════════════════════════════════════════════════════
+# CONSUMER INTEGRATION
+# ═══════════════════════════════════════════════════════════════════════
+integration:
+  slide_chief:
+    action: "Consult this registry before routing any work blocked by data ambiguity"
+  d01_gate:
+    action: "Check if any EC-* markers present in pyramid-tree or sources-apa; surface to Human"
+  d02_gate:
+    action: "Check for EC-03 (slide count) before approving structure"
+  d03_gate:
+    action: "Check for EC-04 (brand conflict) before approving design; trigger STK-10 if needed"
+  normalize_briefing:
+    action: "Pre-detect EC-02 by flagging missing data points in input"
+
+meta:
+  absorbed_from: "mckinsey_ppt_architect_instructions.md lines 1489-1553"
+  absorbed_date: "2026-04-21"
+  total_cases: 5

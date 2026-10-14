@@ -1,0 +1,381 @@
+{
+  "subject": "chatwoot",
+  "type": "product",
+  "generatedAt": "2026-05-06T00:00:00Z",
+  "method": "web-research-docs-and-reviews-and-github",
+  "identity": {
+    "name": "Chatwoot",
+    "company": "Chatwoot Inc.",
+    "category": "OSS + Cloud — Omnichannel customer engagement / helpdesk",
+    "launch_date": "2017",
+    "target_audience": "B2C, e-commerce, technical teams seeking Intercom alternative, regulated industries needing self-hosting, WhatsApp-heavy ops",
+    "tagline": "AI-powered, open-source customer support platform",
+    "url": "https://www.chatwoot.com"
+  },
+  "features": {
+    "categories": [
+      {
+        "name": "AI / Automation",
+        "features": [
+          "Captain AI Agent (auto-resposta first-line)",
+          "Captain Co-Pilot (agent-side AI suggestions, draft, translate)",
+          "Smart FAQs (knowledge gap detection)",
+          "Memories (auto-summarize key conversation details)",
+          "Query (Ask Co-Pilot natural language search)",
+          "Automation rules (Business+)",
+          "Auto-assignment, business hours, auto-responder"
+        ],
+        "depth": "moderate (em rapida evolucao 2026)"
+      },
+      {
+        "name": "Channels",
+        "features": [
+          "Live chat (widget customizavel)",
+          "Email",
+          "WhatsApp Business Cloud API (cliente conecta WABA propria via BSP)",
+          "Facebook Messenger",
+          "Instagram DM",
+          "Telegram (nativo)",
+          "Line",
+          "SMS (via Twilio etc)",
+          "TikTok",
+          "API Channels (custom)"
+        ],
+        "depth": "deep — todos canais nativos via core OSS"
+      },
+      {
+        "name": "Help Center / Knowledge",
+        "features": [
+          "Help Center (Startups+)",
+          "Multilingual",
+          "Articles + categories",
+          "Captain reads from help center as RAG source"
+        ],
+        "depth": "moderate"
+      },
+      {
+        "name": "Ticketing / Inbox",
+        "features": [
+          "Conversations (unified across channels)",
+          "Private notes, @mentions, labels, keyboard shortcuts",
+          "Canned responses, command bar",
+          "Teams (Business+)",
+          "SLA support (Business+)",
+          "Auto-assignment",
+          "Custom views/filters (Startups+)"
+        ],
+        "depth": "deep"
+      },
+      {
+        "name": "Campaigns",
+        "features": [
+          "Campaigns (Startups+)",
+          "Advanced campaigns (Business+)",
+          "Pre-chat forms (Business+)",
+          "Outbound via WhatsApp Cloud API"
+        ],
+        "depth": "moderate"
+      },
+      {
+        "name": "Reporting & Analytics",
+        "features": [
+          "Live reporting (Hacker)",
+          "CSAT reviews (Business+)",
+          "Conversation reports",
+          "Agent reports"
+        ],
+        "depth": "basic-moderate (G2 cita reporting como ponto fraco)"
+      },
+      {
+        "name": "Enterprise / Compliance",
+        "features": [
+          "SSO + SAML (Enterprise)",
+          "Audit logs (Enterprise)",
+          "Agent capacity management (Enterprise)",
+          "Custom branding removal (Enterprise)",
+          "Self-hosted = data sovereignty completa"
+        ],
+        "depth": "deep em self-hosted; Cloud Enterprise tier mais restrito que Intercom Expert"
+      },
+      {
+        "name": "Voice / Video",
+        "features": [
+          "Video/voice support (Enterprise)"
+        ],
+        "depth": "basic"
+      }
+    ],
+    "unique_capabilities": [
+      "Self-hosted MIT — unica do par com data sovereignty completa",
+      "Telegram nativo (Intercom nao tem)",
+      "TikTok channel nativo",
+      "API Channels — extensibilidade open para canais custom",
+      "BYOC WhatsApp WABA — conecta sua propria conta Meta direto, sem markup",
+      "Source code aberto — modificacao + custom UI ilimitados"
+    ],
+    "total_feature_count": "~120 (estimado, baseado em pricing matrix + GitHub)",
+    "source": "https://www.chatwoot.com/pricing"
+  },
+  "pricing": {
+    "model": "per-agent + AI credits + self-hosted free",
+    "currency": "USD",
+    "plans": [
+      {
+        "name": "Hacker (Free)",
+        "price_monthly": 0,
+        "price_annual": 0,
+        "key_features": [
+          "Live chat, private notes, labels, canned responses",
+          "Auto-assignment, business hours",
+          "Live reporting",
+          "Slack integration, DialogFlow"
+        ],
+        "limits": "Up to 2 agents; 500 conversations/mo; 30-day data retention; Captain AI NOT included"
+      },
+      {
+        "name": "Startups",
+        "price_monthly": 19,
+        "price_annual": 19,
+        "key_features": [
+          "Tudo do Hacker",
+          "Email, FB, Instagram, TikTok, WhatsApp, SMS, Telegram, Line",
+          "Help center",
+          "Custom views/filters, transcripts, contact management, campaigns",
+          "300 Captain AI credits/mo"
+        ],
+        "limits": "Unlimited agents; conversations subject to fair use; 1-year retention"
+      },
+      {
+        "name": "Business",
+        "price_monthly": 39,
+        "price_annual": 39,
+        "key_features": [
+          "Tudo do Startups",
+          "Teams, automation rules, custom attributes",
+          "Pre-chat forms, advanced campaigns",
+          "CSAT reviews, SLA support",
+          "500 Captain AI credits/mo"
+        ],
+        "limits": "Unlimited agents; 2-year retention"
+      },
+      {
+        "name": "Enterprise",
+        "price_monthly": 99,
+        "price_annual": 99,
+        "key_features": [
+          "Tudo do Business",
+          "SSO/SAML, audit logs",
+          "Agent capacity management",
+          "Video/voice support",
+          "Custom branding removal",
+          "800 Captain AI credits/mo"
+        ],
+        "limits": "Unlimited; 3-year retention"
+      },
+      {
+        "name": "Self-hosted (Community)",
+        "price_monthly": 0,
+        "price_annual": 0,
+        "key_features": [
+          "All channels nativo",
+          "Unlimited agents, unlimited conversations",
+          "Source code MIT — modificacao livre",
+          "Captain AI NAO incluida (precisa Cloud para Captain)"
+        ],
+        "limits": "Voce hospeda Docker/Heroku; estimado $20-50/mo VPS; sem suporte oficial"
+      }
+    ],
+    "free_tier": {
+      "available": true,
+      "features": ["Hacker (cloud) — 2 agents, 500 conv/mo", "Self-hosted — unlimited"],
+      "limits": "Hacker tem retention curto (30 dias) + sem Captain"
+    },
+    "ai_pricing": {
+      "captain_credits_included": {
+        "hacker": 0,
+        "startups": 300,
+        "business": 500,
+        "enterprise": 800
+      },
+      "extra_credits_pack": {
+        "credits": 1000,
+        "price_usd": 20
+      },
+      "definition_credit": "1 credit ~ 1 AI action (resposta, suggestion, summarization). Documentacao oficial nao detalha custo por tipo de acao.",
+      "deflection_rate_published": "Nao publicado pela Chatwoot",
+      "captain_in_self_hosted": "Self-hosted Community NAO tem Captain — Captain e exclusivo Cloud"
+    },
+    "enterprise": "Plan publicado a $99/agent/mo; custom acima",
+    "minimum_seats": 1,
+    "annual_billing": "Todos os Cloud plans cobram annually para preco listado",
+    "source": "https://www.chatwoot.com/pricing",
+    "as_of_date": "2026-05-06"
+  },
+  "integrations": {
+    "api": {
+      "available": true,
+      "type": "REST",
+      "documentation": "https://www.chatwoot.com/developers/api"
+    },
+    "webhooks": true,
+    "marketplace": {
+      "available": false,
+      "app_count": "0 (nao tem marketplace formal; integracoes via webhooks/API)"
+    },
+    "key_integrations": [
+      "Slack",
+      "DialogFlow",
+      "Twilio (SMS)",
+      "Stripe (via webhook)",
+      "Custom via API",
+      "WABA via BSP (cliente escolhe)"
+    ],
+    "sdk_languages": ["JavaScript", "Ruby", "Python (community)", "PHP (community)"],
+    "plugin_system": false,
+    "in_app_sdk": "Widget chat only (sem messenger SDK profundo como Intercom)",
+    "source": "https://github.com/chatwoot/chatwoot"
+  },
+  "user_experience": {
+    "onboarding": "good (cloud); moderate (self-hosted requer Docker)",
+    "ui_quality": "modern (clean, functional)",
+    "learning_curve": "low (cloud); moderate-steep (self-hosted)",
+    "mobile_app": true,
+    "offline_support": false,
+    "accessibility": "Basico (community-driven; sem statement formal)",
+    "g2_praise": [
+      "Ease of use",
+      "Cost effectiveness (OSS)",
+      "Privacy via self-hosting",
+      "Customization (source code aberto)",
+      "Seamless implementation para small teams",
+      "WhatsApp/Telegram nativo"
+    ],
+    "g2_complaints": [
+      "User Experience nao tao polido quanto Intercom",
+      "Reporting/Analytics fraco",
+      "Portal pode desconectar ocasionalmente",
+      "Dedicated account manager apenas 20+ agents"
+    ],
+    "source": "G2 reviews + community feedback"
+  },
+  "ai_capabilities": {
+    "model": "NAO disclosed (vendor nao publica se usa OpenAI, Anthropic, ou modelo proprio)",
+    "rag_pipeline": "Captain le help center, chats anteriores, FAQs como RAG sources — pipeline detalhado nao publicado",
+    "capabilities": [
+      "AI Assistant: auto-resposta first-line baseada em help center + FAQs",
+      "Co-Pilot: agent-side draft/improve/translate suggestions",
+      "Smart FAQs: surface knowledge gaps from common questions",
+      "Memories: auto-summarize key conversation details",
+      "Query: Ask Co-Pilot natural language search of customer history"
+    ],
+    "deflection_rate_published": "NAO publicado oficialmente",
+    "languages_supported": "8 demonstradas marketing (English, Spanish, French, German, Portuguese, Japanese, Chinese, Arabic) + Malayalam — Portuguese explicito",
+    "training_method": "Captain learns from help center articles, past chats, FAQs",
+    "hallucination_control": "Nao endereado publicamente",
+    "escalation_logic": "Basico — hands off to human when needed (sem detalhes de regras)",
+    "credits_system": "300/500/800 credits/mo por tier; $20/1.000 extras; 1 credit ~ 1 AI action; documentacao detalhada falta",
+    "playground": "Captain tem playground para test custom instructions; falta simulation mode robusto contra past customer questions",
+    "self_hosted_availability": "Captain NAO disponivel em self-hosted Community — somente Cloud",
+    "weaknesses_per_third_party": [
+      "Lacks autonomous workflows (vs Fin)",
+      "Lacks deep knowledge ingestion",
+      "Lacks custom actions (refunds, trial extensions)",
+      "Advanced routing + intent detection limitados",
+      "Sem simulation mode para forecasting deflection antes de go-live"
+    ],
+    "source": "https://www.chatwoot.com/captain/ + eesel.ai blog overview"
+  },
+  "reviews": {
+    "g2": {
+      "rating": 4.4,
+      "review_count": "200+",
+      "top_praise": [
+        "Open source flexibility",
+        "Self-hosting option",
+        "WhatsApp/Telegram channels nativos",
+        "Cost effectiveness",
+        "Easy Slack/email integration"
+      ],
+      "top_complaints": [
+        "UI not as polished as Intercom",
+        "Reporting/Analytics weak",
+        "Portal disconnects occasionally",
+        "Account manager only with 20+ agents"
+      ]
+    },
+    "capterra": {
+      "rating": 4.6,
+      "review_count": "100+"
+    },
+    "github": {
+      "stars": 29100,
+      "forks": 7200,
+      "commits": 6119,
+      "latest_release": "v4.13.0 (Apr 17, 2026)",
+      "active": "Very active (releases monthly)"
+    },
+    "trusted_by": "15.000+ businesses claim",
+    "source": ["https://www.g2.com/products/chatwoot/reviews", "https://github.com/chatwoot/chatwoot"]
+  },
+  "scalability": {
+    "limits": "Cloud subject to fair use; self-hosted unlimited (depends on infra)",
+    "enterprise_features": ["SSO", "SAML", "audit logs", "agent capacity management"],
+    "multi_tenant": false,
+    "data_residency": "Cloud: hosted in their cloud (region nao detalhada); self-hosted: total controle",
+    "sla": "Custom enterprise; nao publicado tier abaixo",
+    "compliance": ["GDPR (com self-hosting completo + Cloud claims)", "Self-hosted permite atender LGPD/HIPAA/PCI dependendo da infra"],
+    "source": "https://www.chatwoot.com/security"
+  },
+  "support": {
+    "docs_quality": "good (community + commercial)",
+    "channels": ["email", "community Discord", "GitHub Issues (OSS)"],
+    "community": {
+      "type": "Discord + GitHub Discussions",
+      "size": "10k+ Discord; 29k GitHub stars community"
+    },
+    "knowledge_base": true,
+    "status_page": true,
+    "source": "https://www.chatwoot.com/help-center"
+  },
+  "differentiators_vs_intercom": [
+    "Self-hosted MIT — data sovereignty + zero license cost",
+    "Free tier permanente + free self-hosted",
+    "Telegram nativo (Intercom NAO suporta)",
+    "TikTok channel nativo",
+    "BYOC WhatsApp — conecta WABA propria sem markup",
+    "Source code modificavel — custom UI/integrations sem limite",
+    "Pricing tier mais barato 50-65% para mesmo headcount",
+    "5x menor cost para SMB (5 agents)",
+    "API Channels para canais custom",
+    "Comunidade open-source contribuindo (29k stars, 7k forks)"
+  ],
+  "weaknesses_vs_intercom": [
+    "Captain AI sem modelo publicado nem deflection rate (Fin tem ambos)",
+    "Captain sem autonomous workflows nem custom actions",
+    "Captain NAO disponivel em self-hosted (so Cloud) — quebra a promessa OSS-only",
+    "Reporting/Analytics fraco (G2 reviewers concordam)",
+    "Sem marketplace formal (apenas API)",
+    "In-app Messenger SDK menos polido que Intercom",
+    "Sem HIPAA out-of-box, sem multibrand (no Cloud)",
+    "Sem pre-built reports tao polished",
+    "Setup self-hosted exige Docker/DevOps",
+    "Sem simulation mode para forecasting deflection",
+    "Sem pre-built case studies enterprise grandes (Intercom tem Lightspeed etc)"
+  ],
+  "sources_consulted": [
+    "https://www.chatwoot.com/pricing (2026-05-06)",
+    "https://www.chatwoot.com/captain/ (2026-05-06)",
+    "https://github.com/chatwoot/chatwoot",
+    "https://www.g2.com/products/chatwoot/reviews",
+    "https://www.eesel.ai/blog/chatwoot-captain (third-party overview 2025)",
+    "https://blog.elest.io/how-chatwoot-can-replace-intercom-for-your-support-team/",
+    "docs/research/2026-05-06-omnichannel-helpdesk-landscape/02-research-report.md secao 2.4"
+  ],
+  "data_quality": {
+    "features": "verified",
+    "pricing": "current",
+    "reviews": "recent",
+    "ai_metrics": "PARTIAL — Captain deflection NAO publicado, G2 reviewers e third-parties indicam Captain mais basico que Fin",
+    "confidence": "high (estrutura) / medium (AI performance comparativa)"
+  }
+}

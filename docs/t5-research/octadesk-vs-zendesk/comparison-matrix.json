@@ -1,0 +1,196 @@
+{
+  "bench_id": "octadesk-vs-zendesk",
+  "generated_at": "2026-05-06T00:00:00Z",
+  "exchange_rate_assumption_usd_to_brl": 5.05,
+  "dimensions": [
+    {
+      "dimension": "WhatsApp Business API integration",
+      "octadesk": {
+        "value": "Cloud API oficial Meta DIRETO (Octadesk como BSP integrador)",
+        "confidence": "H",
+        "notes": "Declarado no site oficial. Tier lock: 2.000 conv/mes (Sea+AI) ou 5.000 conv/mes (Higher). Multi-agent same number nativo. Setup PT-BR end-to-end. Passthrough Meta fees."
+      },
+      "zendesk": {
+        "value": "Cloud API oficial Meta via Sunshine Conversations BSP layer",
+        "confidence": "H",
+        "notes": "Sunshine Conversations adiciona camada (translation layer). Pricing extra: $0.15/notification + monthly fee from $495 + variable per MAU. Multi-channel unified (WhatsApp + FB + Insta + LINE + Apple BC + Telegram + Viber). Setup tecnico mais complexo."
+      },
+      "verdict": "Octadesk: integracao mais direta e transparente, custo previsivel por tier. Zendesk: ecossistema multichannel maior, mas Sunshine adiciona pricing variable + complexidade."
+    },
+    {
+      "dimension": "Brasil-fit operacional",
+      "octadesk": {
+        "value": "BR-native end-to-end",
+        "confidence": "H",
+        "notes": "PT-BR nativo (UI, suporte, docs); pricing em BRL transparente; integracoes BR (VTEX/Tray/NuvemShop/Shopify); ecossistema LWSA (Bling, Vindi, Melhor Envio, Yapay, Etus); LGPD declarada; logos BR (Locaweb, Pfizer, QuintoAndar); customer base 2.500+ empresas BR; equipe local."
+      },
+      "zendesk": {
+        "value": "Localizacao BRL na pagina de pricing; produto traduzido",
+        "confidence": "H",
+        "notes": "Pagina .com.br em PT-BR; pricing BRL para tiers principais (R$135-R$1.105). Mas: add-ons em USD; integracoes BR via PARCEIROS (BCR.CX, Aktie Now) nao first-class; data residency BR nao garantida; sem time local de produto BR comparavel; ecossistema BR ausente."
+      },
+      "verdict": "Octadesk vence claramente em BR-fit. Zendesk localiza pricing mas mantem produto/ecossistema/suporte gringo."
+    },
+    {
+      "dimension": "Pricing transparency e TCO",
+      "octadesk": {
+        "value": "Tier publico R$1.542-R$2.205 + Suite contato sales",
+        "confidence": "H site / M Suite",
+        "notes": "Site /precos: Conversas R$1.542 e Helpdesk R$2.205 publicos. G2 mirror lista Sea+AI R$2.972 com 30 users + 2.000 WA conv. Discrepancia critica vs tech-research (R$79 antigo). WOZ pricing nao publico. Octa Suite enterprise gated."
+      },
+      "zendesk": {
+        "value": "Tier publico R$135-R$1.105 + USD add-ons + contract escalation",
+        "confidence": "H",
+        "notes": "Pagina /pricing: 4 tiers BRL transparentes. Add-ons listados em USD (Copilot $50, QA $35, WFM $25, ADPP $50, Contact Center $50). AI per-resolution $1.50-$2.00. Contract terms duros: annual only, no downgrade mid-term, 5-7% escalation, overages auto-billed. Vendr median deal $47.772/year."
+      },
+      "verdict": "Empate complexo. Zendesk MAIS transparente em quantidade de tiers/add-ons publicos, MENOS transparente em TCO real (escalation + add-ons stack). Octadesk MENOS tiers publicos (Suite gated), MAIS direto em pricing por plano (poucos add-ons listados)."
+    },
+    {
+      "dimension": "TCO simulado: 10 agents BR mid-market 1 ano (sem AI)",
+      "octadesk": {
+        "value": "R$ 35.664 - R$ 35.664",
+        "confidence": "M",
+        "notes": "Sea+AI plan R$2.972/mes = R$35.664/ano (30 users incluso, 2.000 WA conv). Para 10 agents efetivos sub-utilizando o tier."
+      },
+      "zendesk": {
+        "value": "R$ 90.600",
+        "confidence": "H",
+        "notes": "Suite Professional R$755/agent x 10 agents x 12 = R$90.600/ano (sem AI add-ons, sem Sunshine extra). Equivale a $17.940 USD."
+      },
+      "verdict": "Octadesk ~2.5x mais barato em mid-market BR sem AI. Quando incluir AI Agents (Zendesk $1.50-$2.00 res) e Sunshine extras, gap pode chegar a 4-5x."
+    },
+    {
+      "dimension": "TCO simulado: 10 agents BR mid-market 1 ano (com AI agressivo)",
+      "octadesk": {
+        "value": "R$ 35.664+ + WOZ contato (estimativa R$50k-R$80k/ano)",
+        "confidence": "L",
+        "notes": "WOZ pricing nao publico; assumindo similaridade com mercado, projecao R$50k-R$80k/ano para AI agressiva."
+      },
+      "zendesk": {
+        "value": "R$ 281.790",
+        "confidence": "H",
+        "notes": "Calculo eesel.ai: Suite Professional $115 x 10 + Advanced AI $50 x 10 + 2.000 res x $1.50 = $4.650/mo = $55.800/year = R$281.790 ao cambio 5.05."
+      },
+      "verdict": "Em cenario AI agressivo, Octadesk tende a 3-4x mais barato. Mas confidence baixo no Octadesk WOZ."
+    },
+    {
+      "dimension": "Channels nativos",
+      "octadesk": {
+        "value": "WhatsApp + Insta + FB + Email + Webchat (5 nativos)",
+        "confidence": "H",
+        "notes": "Foco em mercado BR: cobre os 5 canais essenciais. Sem Telegram nativo, sem Apple Business Chat, sem LINE, sem SMS (gap relativo)."
+      },
+      "zendesk": {
+        "value": "Email + Chat + Voice (Talk) + WhatsApp + Insta + FB + Twitter + Apple BC + LINE + SMS (10+ nativos)",
+        "confidence": "H",
+        "notes": "Cobertura global completa. Sunshine Conversations BSP unifica os messaging. Talk para voice. Mas Twitter, Apple BC, LINE pouco relevantes para BR."
+      },
+      "verdict": "Zendesk tem mais canais; Octadesk tem os canais BR-relevantes. Para BR-only, Octadesk e suficiente; para enterprise BR multinacional, Zendesk vence."
+    },
+    {
+      "dimension": "AI capability (deflection + copilot)",
+      "octadesk": {
+        "value": "WOZ Agent (ChatGPT-based) - autonomous + copilot + audio transcribe",
+        "confidence": "M",
+        "notes": "WOZ baseado em ChatGPT segundo G2. PT-BR nativo. Modos autonomous + copilot + audio transcribe. Deflection rate nao publicado em benchmark independente. Pricing nao publico."
+      },
+      "zendesk": {
+        "value": "Zendesk AI (Agents + Copilot) post-Ultimate.ai",
+        "confidence": "H",
+        "notes": "AI Agents Essential incluso em Suite + Advanced (paid) + Copilot $50/agent/mo. Deflection 40-50% baseline ate 80% maduro (publicado + Fin Labs benchmark). Per-resolution $1.50/$2.00 transparente. Multi-language including PT-BR."
+      },
+      "verdict": "Zendesk com AI mais maduro e benchmarked. WOZ tem vantagem PT-BR nativo mas dados de performance limitados. Empate funcional, vantagem Zendesk em transparencia."
+    },
+    {
+      "dimension": "Marketplace e ecosystem",
+      "octadesk": {
+        "value": "20-30 integracoes catalogadas + ecossistema LWSA",
+        "confidence": "M",
+        "notes": "Pagina /integracoes lista CRM (HubSpot, Salesforce, Pipedrive, RD), e-com BR (VTEX, Tray, NuvemShop, Shopify, Magento), marketing (RD, ActiveCampaign). Ecossistema LWSA (Bling ERP, Vindi, Melhor Envio, Yapay, Etus). Profundidade nao auditada por conector."
+      },
+      "zendesk": {
+        "value": "1.500+ apps marketplace + Sunshine Conversations + ZAF",
+        "confidence": "H",
+        "notes": "Maior marketplace da categoria. Plug Slack, Github, Jira, SF, HS, Shopify, Stripe, MS365 nativos. SDK em JS/Python/Ruby/PHP. ZAF para custom apps. Mas BR-specific connectors via PARCEIROS (BCR.CX, Aktie Now), nao first-class."
+      },
+      "verdict": "Zendesk vence em volume e ferramentas globais; Octadesk vence em depth BR e ecossistema vertical local."
+    },
+    {
+      "dimension": "Enterprise security e compliance",
+      "octadesk": {
+        "value": "LGPD declarada via LWSA + WOZ data isolation",
+        "confidence": "M",
+        "notes": "LGPD: pagina dedicada + WOZ declara isolamento de dados. GDPR declarada para WOZ. Hosting: presumivel BR via parent LWSA, nao auditado fonte primaria. SOC 2 / ISO 27001: nao publico. SSO/SAML, SCIM, audit logs, sandbox, custom roles, BYOK: nao publico."
+      },
+      "zendesk": {
+        "value": "ISO 27001:2022 + 27017 + 27018 + 27701 + 42001 + CSA STAR AI + GDPR BCR + HIPAA + PCI-DSS + FedRAMP + LGPD + SOC 2 Type II",
+        "confidence": "H",
+        "notes": "Suite completo de certificacoes auditadas. SSO/SAML/JWT/OIDC + SCIM. Custom roles + audit logs + sandbox em Enterprise. BYOK via ADPP. Multi-region (USA, EU, APAC) data residency mas BR nao garantido."
+      },
+      "verdict": "Zendesk vence sem comparacao em enterprise security/compliance. Octadesk tem LGPD operacional mas zero certificacoes publicas auditadas."
+    },
+    {
+      "dimension": "Custom roles, sandbox, audit logs",
+      "octadesk": {
+        "value": "nao publico",
+        "confidence": "L",
+        "notes": "Octa Suite tem branch management e CSM dedicado, mas custom agent roles, sandbox, audit logs detalhados nao listados publicamente. Provavel ausencia ou superficialidade."
+      },
+      "zendesk": {
+        "value": "Custom agent roles + Audit logs + Sandbox 2 inclusos em Enterprise (R$1.105)",
+        "confidence": "H",
+        "notes": "Standard em Enterprise tier. Multi-help-center 300. Test config antes de prod."
+      },
+      "verdict": "Zendesk vence claramente. Para enterprise BR regulado (banco, saude, governo), Octadesk fica de fora ate apresentar essas features."
+    },
+    {
+      "dimension": "HIPAA / PCI-DSS / FedRAMP",
+      "octadesk": {
+        "value": "nao oferecidos",
+        "confidence": "H (gap)",
+        "notes": "Nao listados publicamente. Octadesk nao mira mercado regulado USA/healthcare."
+      },
+      "zendesk": {
+        "value": "HIPAA via BAA + Advanced Compliance add-on; PCI-DSS com redaction; FedRAMP LI-SaaS",
+        "confidence": "H",
+        "notes": "Habilitacao tier-locked em Advanced Compliance + BAA. Premium pricing."
+      },
+      "verdict": "Zendesk para healthcare US ou gov: unico viavel. Octadesk nao compete neste segmento."
+    },
+    {
+      "dimension": "Maturidade e marca",
+      "octadesk": {
+        "value": "12 anos BR / 2.500+ empresas / parte LWSA",
+        "confidence": "H",
+        "notes": "Estabelecido no BR. Logos relevantes (Pfizer, QuintoAndar, Locaweb). LWSA group oferece estabilidade financeira."
+      },
+      "zendesk": {
+        "value": "19 anos global / 14.8% market share / lider categoria",
+        "confidence": "H",
+        "notes": "Lider de mercado. Universo enorme de partners + consultants. Take-private 2022 mas operacao sustentada."
+      },
+      "verdict": "Zendesk lidera em maturidade global; Octadesk em BR. Empate no contexto BR mid-market; Zendesk vence em enterprise multinacional."
+    },
+    {
+      "dimension": "Comunidade reviews",
+      "octadesk": {
+        "value": "G2: 55 reviews | Capterra BR: 6 reviews 4.0/5",
+        "confidence": "M",
+        "notes": "Sample pequeno. Recommendation rate 80% Capterra. Sentiment: ease of use + price + bot intuitive +; instabilidade + outages -."
+      },
+      "zendesk": {
+        "value": "G2: 6.000+ reviews 4.3/5 | Capterra: 4.5/5 milhares | TrustRadius 8.7/10",
+        "confidence": "H",
+        "notes": "Maior universo de reviews da categoria. Sentiment: features + automation + multi-channel +; pricing + complexity + slow support -."
+      },
+      "verdict": "Zendesk vence em volume/credibilidade; Octadesk com sample BR pequeno mas concordante (good value, instabilidade)."
+    }
+  ],
+  "summary_table": {
+    "octadesk_wins": ["Brasil-fit operacional", "TCO BR mid-market sem AI", "WhatsApp setup transparency", "BR ecosystem (LWSA)", "PT-BR nativo end-to-end"],
+    "zendesk_wins": ["Channels nativos (10+)", "AI capability transparency", "Marketplace volume", "Enterprise security e compliance", "Custom roles + sandbox + audit logs", "HIPAA + PCI-DSS + FedRAMP", "Maturidade global", "Comunidade reviews volume"],
+    "ties": ["AI capability funcional (vantagem Zendesk em transparencia)", "Maturidade no contexto BR mid-market"],
+    "octadesk_critical_gaps": ["SOC 2 / ISO 27001 ausentes", "SSO/SAML/SCIM nao publicos", "Custom roles / audit logs / sandbox nao publicos", "Data residency BR nao auditada", "Marketplace ~50x menor", "WOZ deflection nao benchmarked"],
+    "zendesk_critical_gaps_for_br": ["Add-ons em USD (FX risk)", "Sunshine pricing complexity", "BR connectors via PARCEIROS nao first-class", "Sem time local de produto BR", "Data residency BR nao garantida", "Contract terms agressivos (no downgrade, escalation)", "Setup steep learning curve", "Custos add-ons stack rapido"]
+  }
+}

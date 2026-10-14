@@ -1,0 +1,43 @@
+handoff_id: MOD-QT-3-01-dev-to-qa
+from_agent: "@dev"
+to_agent: "@qa"
+story_id: "MOD-QT-3-01"
+story_file: "docs/stories/story-MOD-QT-3-01-modulo-integral-permanente.md"
+status: "InReview"
+last_command: "*develop-yolo"
+created_at: "2026-07-30T00:00:00-03:00"
+consumed_by: "@qa"
+consumed_at: "2026-07-30T00:00:00-03:00"
+resulting_gate: "docs/qa/gates/MOD-QT-3-01-gate.yaml"
+resulting_handoff: ".aiox/handoffs/MOD-QT-3-01-qa-to-devops.yaml"
+summary:
+  objective: "Validar hardening operacional permanente do MOD-QT."
+  implemented:
+    - "Script npm preview:spa usando scripts/static-server.mjs com fallback SPA"
+    - "Teste Vitest de permanencia MOD-QT cobrindo hub, route trees, preview SPA, fallback e artefato dist"
+    - "Smoke local em dist SPA: /, /projetos/demo, /projetos/demo/queda-tensao e assets retornaram 200"
+  files_created:
+    - "sistema-de-instala-es-el-tricas-sie-main/tests/ui/mod-qt-integral-permanente.test.ts"
+  files_modified:
+    - "sistema-de-instala-es-el-tricas-sie-main/package.json"
+    - "docs/stories/story-MOD-QT-3-01-modulo-integral-permanente.md"
+evidence:
+  typecheck: "PASS - npx tsc --noEmit --pretty false"
+  lint_scoped: "PASS - npx eslint tests/ui/mod-qt-integral-permanente.test.ts"
+  lint_full: "CAVEAT - npm run lint executado, timeout em 244s e 604s sem relatorio final"
+  tests_focused: "PASS - 3 arquivos focados, 19/19 testes"
+  tests_full: "CAVEAT - npm test: 134 arquivos PASS, 962 testes PASS, 1 timeout em teste preexistente; caso passou isolado"
+  build: "PASS - npm run build"
+  build_spa: "PASS - npm run build:spa"
+  artifact_queda_tensao: "PASS - rg \"queda-tensao\" dist"
+  artifact_label: "PASS - rg \"Queda de tens\" dist"
+  route_deep_link_200: "PASS - static-server dist retornou 200 para /projetos/demo/queda-tensao"
+constraints_confirmed:
+  - "Nao alterou formulas MOD-QT"
+  - "Nao alterou RetornoMODQT, schemas Zod ou endpoints publicos"
+  - "Nao editou diretorios antigos de deploy"
+  - "Nao executou push/PR/deploy"
+qa_focus:
+  - "Julgar caveat de lint completo por timeout"
+  - "Julgar caveat de npm test completo: timeout de teste preexistente que passa isolado"
+  - "Reexecutar preview:spa se necessario"

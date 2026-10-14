@@ -1,0 +1,221 @@
+{
+  "bench": {
+    "id": "hermes-agent-vs-claude-code",
+    "type": "other",
+    "variant": "2-way",
+    "created_at": "2026-04-04",
+    "analyst": "spy/bench-analyst (backfilled)"
+  },
+  "subjects": [
+    {
+      "key": "hermes",
+      "name": "Hermes",
+      "category": "unknown"
+    },
+    {
+      "key": "claude_code",
+      "name": "Claude Code",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "D1",
+        "name": "Primary Language",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D2",
+        "name": "LOC (non-test)",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D3",
+        "name": "License",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D4",
+        "name": "Agent Loop",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D5",
+        "name": "Model Lock-in",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D6",
+        "name": "Core Tools Count",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D7",
+        "name": "File Operations",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D8",
+        "name": "Terminal/Bash",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D9",
+        "name": "Web Search",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D10",
+        "name": "Browser Automation",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D11",
+        "name": "MCP Support",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D12",
+        "name": "Code Execution",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D13",
+        "name": "Todo/Task Tracking",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D14",
+        "name": "Persistent Memory",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D15",
+        "name": "Session Search/Recall",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D16",
+        "name": "Self-Learning Skills",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D17",
+        "name": "Skills Library",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D18",
+        "name": "Codebase Reasoning",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D19",
+        "name": "Git/GitHub Integration",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D20",
+        "name": "IDE Integration",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D21",
+        "name": "SWE-bench Performance",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D22",
+        "name": "Access Platforms",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D23",
+        "name": "Execution Environments",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D24",
+        "name": "Deployment Cost",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D25",
+        "name": "Scheduling/Cron",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D26",
+        "name": "Voice (TTS/STT)",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D27",
+        "name": "Image Generation",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D28",
+        "name": "Vision/Image Analysis",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D29",
+        "name": "Mixture of Agents (Multi-Model)",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D30",
+        "name": "RL Self-Improvement",
+        "weight_pct": 3,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:10:52.221Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Legacy metadata.json preserved alongside; canonical version at metadata.canonical.json.",
+      "bench.type normalized from \"codebase+product\" to canonical \"other\".",
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

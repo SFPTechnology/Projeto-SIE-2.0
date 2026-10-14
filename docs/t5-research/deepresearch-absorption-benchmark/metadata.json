@@ -1,0 +1,18 @@
+{
+  "schema": "sinkra-bench-metadata-v2",
+  "id": "deepresearch-absorption-benchmark",
+  "title": "DeepResearch Absorption Benchmark",
+  "generated_at": "2026-05-18T18:30:00-03:00",
+  "canonical_path": "docs/bench/deepresearch-absorption-benchmark",
+  "dated_source_path": "docs/bench/2026-05-16-deep-research-absorption-benchmark",
+  "scope": "24 open-source deep research players with local code anatomies",
+  "status": "gold-data-expanded",
+  "language": "pt-BR",
+  "type": "codebase/product absorption analysis",
+  "primary_recommendation": "Construir SINKRA DeepResearchRunner por composição de padrões, não por fork único.",
+  "benchmark": {
+    "type": "codebase/product absorption analysis",
+    "date": "2026-05-18",
+    "title": "DeepResearch Absorption Benchmark"
+  }
+}

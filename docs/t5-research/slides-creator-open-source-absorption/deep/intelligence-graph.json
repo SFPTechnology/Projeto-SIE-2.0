@@ -1,0 +1,1422 @@
+{
+  "schema": "slides-creator-intelligence-graph.v1",
+  "generated_at": "2026-05-17",
+  "thesis": "slide creator skill stack deve ser uma composição, não um fork: narrativa governada do squad, renderer ppt-master, runtime Presenton, QA PPTAgent/powerpoint-skill e UX aprendida de presentation-ai/banana-slides.",
+  "score": 100,
+  "nodes": [
+    {
+      "id": "player:slides_creator",
+      "type": "player",
+      "label": "slide creator skill",
+      "source": "squads/slides-creator"
+    },
+    {
+      "id": "player:ppt_master",
+      "type": "player",
+      "label": "ppt-master",
+      "source": "../bench/ppt-master"
+    },
+    {
+      "id": "player:presenton",
+      "type": "player",
+      "label": "Presenton",
+      "source": "../bench/presenton"
+    },
+    {
+      "id": "player:pptagent",
+      "type": "player",
+      "label": "PPTAgent",
+      "source": "../bench/PPTAgent"
+    },
+    {
+      "id": "player:banana_slides",
+      "type": "player",
+      "label": "banana-slides",
+      "source": "../bench/banana-slides"
+    },
+    {
+      "id": "player:presentation_ai",
+      "type": "player",
+      "label": "presentation-ai",
+      "source": "../bench/presentation-ai"
+    },
+    {
+      "id": "player:powerpoint_skill",
+      "type": "player",
+      "label": "powerpoint-skill",
+      "source": "../bench/powerpoint-skill"
+    },
+    {
+      "id": "player:slide_deck_ai",
+      "type": "player",
+      "label": "slide-deck-ai",
+      "source": "../bench/slide-deck-ai"
+    },
+    {
+      "id": "player:presentagent_2",
+      "type": "player",
+      "label": "PresentAgent-2",
+      "source": "../bench/PresentAgent-2"
+    },
+    {
+      "id": "dimension:input_prompt_generation",
+      "type": "dimension",
+      "label": "Prompt para deck completo",
+      "group": "Entrada",
+      "weight": 2
+    },
+    {
+      "id": "dimension:document_ingestion",
+      "type": "dimension",
+      "label": "Ingestão PDF/DOCX/PPTX/MD",
+      "group": "Entrada",
+      "weight": 2
+    },
+    {
+      "id": "dimension:url_youtube_ingestion",
+      "type": "dimension",
+      "label": "Ingestão URL/YouTube/mídia",
+      "group": "Entrada",
+      "weight": 2
+    },
+    {
+      "id": "dimension:source_grounding_research",
+      "type": "dimension",
+      "label": "Pesquisa e grounding com fontes",
+      "group": "Entrada",
+      "weight": 3
+    },
+    {
+      "id": "dimension:outline_first_workflow",
+      "type": "dimension",
+      "label": "Workflow outline-first",
+      "group": "Planejamento",
+      "weight": 2
+    },
+    {
+      "id": "dimension:consultative_narrative",
+      "type": "dimension",
+      "label": "Narrativa consultiva SINKRA",
+      "group": "Planejamento",
+      "weight": 4
+    },
+    {
+      "id": "dimension:slide_structure_planning",
+      "type": "dimension",
+      "label": "Planejamento slide-a-slide",
+      "group": "Planejamento",
+      "weight": 3
+    },
+    {
+      "id": "dimension:visual_layout_quality",
+      "type": "dimension",
+      "label": "Qualidade visual/layout",
+      "group": "Design",
+      "weight": 2
+    },
+    {
+      "id": "dimension:template_import_replication",
+      "type": "dimension",
+      "label": "Importação/replicação de templates",
+      "group": "Design",
+      "weight": 2
+    },
+    {
+      "id": "dimension:theme_tokens_branding",
+      "type": "dimension",
+      "label": "Temas, tokens e branding",
+      "group": "Design",
+      "weight": 2
+    },
+    {
+      "id": "dimension:native_pptx_objects",
+      "type": "dimension",
+      "label": "PPTX nativo editável",
+      "group": "Renderização",
+      "weight": 5
+    },
+    {
+      "id": "dimension:charts_tables_native",
+      "type": "dimension",
+      "label": "Charts/tabelas nativos",
+      "group": "Renderização",
+      "weight": 3
+    },
+    {
+      "id": "dimension:math_diagrams_technical",
+      "type": "dimension",
+      "label": "Matemática/diagramas técnicos",
+      "group": "Renderização",
+      "weight": 3
+    },
+    {
+      "id": "dimension:animations_transitions_ooxml",
+      "type": "dimension",
+      "label": "Animações/transições OOXML",
+      "group": "Renderização",
+      "weight": 2
+    },
+    {
+      "id": "dimension:narration_audio",
+      "type": "dimension",
+      "label": "Narração/áudio",
+      "group": "Multimídia",
+      "weight": 2
+    },
+    {
+      "id": "dimension:video_export",
+      "type": "dimension",
+      "label": "Exportação vídeo",
+      "group": "Multimídia",
+      "weight": 2
+    },
+    {
+      "id": "dimension:live_preview_annotations",
+      "type": "dimension",
+      "label": "Preview vivo/anotações",
+      "group": "Editor",
+      "weight": 3
+    },
+    {
+      "id": "dimension:prompt_to_edit",
+      "type": "dimension",
+      "label": "Prompt-to-edit UX",
+      "group": "Editor",
+      "weight": 4
+    },
+    {
+      "id": "dimension:regional_element_editing",
+      "type": "dimension",
+      "label": "Edição regional/por elemento",
+      "group": "Editor",
+      "weight": 3
+    },
+    {
+      "id": "dimension:web_editor_runtime",
+      "type": "dimension",
+      "label": "Editor web e runtime visual",
+      "group": "Editor",
+      "weight": 4
+    },
+    {
+      "id": "dimension:collaboration_realtime",
+      "type": "dimension",
+      "label": "Colaboração em tempo real",
+      "group": "Editor",
+      "weight": 2
+    },
+    {
+      "id": "dimension:sharing_publishing",
+      "type": "dimension",
+      "label": "Share/publicação web",
+      "group": "Distribuição",
+      "weight": 3
+    },
+    {
+      "id": "dimension:deck_analytics",
+      "type": "dimension",
+      "label": "Analytics de deck",
+      "group": "Distribuição",
+      "weight": 2
+    },
+    {
+      "id": "dimension:api_generation",
+      "type": "dimension",
+      "label": "API de geração",
+      "group": "Automação",
+      "weight": 4
+    },
+    {
+      "id": "dimension:mcp_automation",
+      "type": "dimension",
+      "label": "MCP/agent tools",
+      "group": "Automação",
+      "weight": 4
+    },
+    {
+      "id": "dimension:cli_headless",
+      "type": "dimension",
+      "label": "CLI/headless batch",
+      "group": "Automação",
+      "weight": 3
+    },
+    {
+      "id": "dimension:provider_registry",
+      "type": "dimension",
+      "label": "Registry multi-provider LLM/imagem",
+      "group": "IA",
+      "weight": 2
+    },
+    {
+      "id": "dimension:local_byok_ollama",
+      "type": "dimension",
+      "label": "BYOK/local/Ollama",
+      "group": "IA",
+      "weight": 4
+    },
+    {
+      "id": "dimension:docker_self_hosted",
+      "type": "dimension",
+      "label": "Docker/self-hosting",
+      "group": "Infra",
+      "weight": 3
+    },
+    {
+      "id": "dimension:desktop_app",
+      "type": "dimension",
+      "label": "Desktop app",
+      "group": "Infra",
+      "weight": 2
+    },
+    {
+      "id": "dimension:qa_evaluation_rubric",
+      "type": "dimension",
+      "label": "QA/evaluation rubric",
+      "group": "Qualidade",
+      "weight": 4
+    },
+    {
+      "id": "dimension:editability_qa",
+      "type": "dimension",
+      "label": "QA de editabilidade PPTX",
+      "group": "Qualidade",
+      "weight": 4
+    },
+    {
+      "id": "dimension:test_fixtures_ci",
+      "type": "dimension",
+      "label": "Fixtures/testes/CI",
+      "group": "Qualidade",
+      "weight": 1
+    },
+    {
+      "id": "dimension:documentation_depth",
+      "type": "dimension",
+      "label": "Documentação operacional",
+      "group": "Maturidade",
+      "weight": 1
+    },
+    {
+      "id": "dimension:license_absorption_safety",
+      "type": "dimension",
+      "label": "Licença segura para absorção",
+      "group": "Risco",
+      "weight": 3
+    },
+    {
+      "id": "dimension:ecosystem_maturity",
+      "type": "dimension",
+      "label": "Maturidade/ecossistema",
+      "group": "Maturidade",
+      "weight": 3
+    },
+    {
+      "id": "persona:scenario_founder_consulting_deck",
+      "type": "persona",
+      "label": "Founder/consultoria B2B",
+      "winner": "ppt_master",
+      "runner": "slides_creator",
+      "delta": 2.79
+    },
+    {
+      "id": "persona:scenario_self_hosted_api_product",
+      "type": "persona",
+      "label": "Produto self-hosted/API",
+      "winner": "presenton",
+      "runner": "presentation_ai",
+      "delta": 18.05
+    },
+    {
+      "id": "persona:scenario_native_pptx_renderer",
+      "type": "persona",
+      "label": "Engenheiro de renderer PPTX",
+      "winner": "ppt_master",
+      "runner": "powerpoint_skill",
+      "delta": 13.79
+    },
+    {
+      "id": "persona:scenario_academic_technical_author",
+      "type": "persona",
+      "label": "Autor técnico/acadêmico",
+      "winner": "powerpoint_skill",
+      "runner": "ppt_master",
+      "delta": 2.48
+    },
+    {
+      "id": "persona:scenario_designer_brand_editor",
+      "type": "persona",
+      "label": "Designer/brand editor",
+      "winner": "presentation_ai",
+      "runner": "presenton",
+      "delta": 5.41
+    },
+    {
+      "id": "persona:scenario_prompt_to_edit_operator",
+      "type": "persona",
+      "label": "Operador prompt-to-edit",
+      "winner": "banana_slides",
+      "runner": "presentation_ai",
+      "delta": 0.39
+    },
+    {
+      "id": "persona:scenario_enterprise_compliance_privacy",
+      "type": "persona",
+      "label": "Enterprise/compliance",
+      "winner": "presenton",
+      "runner": "ppt_master",
+      "delta": 5.27
+    },
+    {
+      "id": "persona:scenario_multimodal_research_video",
+      "type": "persona",
+      "label": "Research multimodal/vídeo",
+      "winner": "presentagent_2",
+      "runner": "ppt_master",
+      "delta": 1.83
+    },
+    {
+      "id": "persona:scenario_sinkra_absorption_architect",
+      "type": "persona",
+      "label": "Arquiteto slide creator skill stack",
+      "winner": "presenton",
+      "runner": "ppt_master",
+      "delta": 4.54
+    },
+    {
+      "id": "persona:scenario_agency_marketing_scale",
+      "type": "persona",
+      "label": "Agência/marketing em escala",
+      "winner": "presentation_ai",
+      "runner": "presenton",
+      "delta": 4.31
+    },
+    {
+      "id": "persona:scenario_devops_batch_automation",
+      "type": "persona",
+      "label": "DevOps/batch automation",
+      "winner": "presenton",
+      "runner": "ppt_master",
+      "delta": 13.41
+    },
+    {
+      "id": "persona:scenario_revenue_enablement_analytics",
+      "type": "persona",
+      "label": "Revenue enablement/analytics",
+      "winner": "presentation_ai",
+      "runner": "presenton",
+      "delta": 0.39
+    },
+    {
+      "id": "gap:native_editable_pptx",
+      "type": "gap",
+      "label": "Criar native-slide-ir.schema.json",
+      "priority": "P0",
+      "order": 1
+    },
+    {
+      "id": "gap:native_editable_pptx",
+      "type": "gap",
+      "label": "Criar renderer PPTX nativo básico",
+      "priority": "P0",
+      "order": 2
+    },
+    {
+      "id": "gap:native_editable_pptx",
+      "type": "gap",
+      "label": "Criar editability-report.json",
+      "priority": "P0",
+      "order": 3
+    },
+    {
+      "id": "gap:api_mcp_self_hosted",
+      "type": "gap",
+      "label": "Criar CLI slides:generate",
+      "priority": "P0",
+      "order": 4
+    },
+    {
+      "id": "gap:api_mcp_self_hosted",
+      "type": "gap",
+      "label": "Criar API POST /slides/generate",
+      "priority": "P0",
+      "order": 5
+    },
+    {
+      "id": "gap:api_mcp_self_hosted",
+      "type": "gap",
+      "label": "Criar MCP slides.generate/review/export",
+      "priority": "P0",
+      "order": 6
+    },
+    {
+      "id": "gap:agentic_planning_reflection",
+      "type": "gap",
+      "label": "Persistir planning-reflection.jsonl",
+      "priority": "P0",
+      "order": 7
+    },
+    {
+      "id": "gap:agentic_planning_reflection",
+      "type": "gap",
+      "label": "Adaptar rubricas PPTEval",
+      "priority": "P0",
+      "order": 8
+    },
+    {
+      "id": "gap:privacy_local_byok",
+      "type": "gap",
+      "label": "Implementar provider registry",
+      "priority": "P0",
+      "order": 9
+    },
+    {
+      "id": "gap:api_mcp_self_hosted",
+      "type": "gap",
+      "label": "Criar workspace por deck",
+      "priority": "P0",
+      "order": 10
+    }
+  ],
+  "edges": [
+    {
+      "from": "persona:scenario_founder_consulting_deck",
+      "to": "player:ppt_master",
+      "relation": "selects",
+      "weight": 77.06
+    },
+    {
+      "from": "persona:scenario_self_hosted_api_product",
+      "to": "player:presenton",
+      "relation": "selects",
+      "weight": 85.59
+    },
+    {
+      "from": "persona:scenario_native_pptx_renderer",
+      "to": "player:ppt_master",
+      "relation": "selects",
+      "weight": 84.07
+    },
+    {
+      "from": "persona:scenario_academic_technical_author",
+      "to": "player:powerpoint_skill",
+      "relation": "selects",
+      "weight": 79.07
+    },
+    {
+      "from": "persona:scenario_designer_brand_editor",
+      "to": "player:presentation_ai",
+      "relation": "selects",
+      "weight": 78.6
+    },
+    {
+      "from": "persona:scenario_prompt_to_edit_operator",
+      "to": "player:banana_slides",
+      "relation": "selects",
+      "weight": 75.43
+    },
+    {
+      "from": "persona:scenario_enterprise_compliance_privacy",
+      "to": "player:presenton",
+      "relation": "selects",
+      "weight": 80.34
+    },
+    {
+      "from": "persona:scenario_multimodal_research_video",
+      "to": "player:presentagent_2",
+      "relation": "selects",
+      "weight": 76.88
+    },
+    {
+      "from": "persona:scenario_sinkra_absorption_architect",
+      "to": "player:presenton",
+      "relation": "selects",
+      "weight": 77.93
+    },
+    {
+      "from": "persona:scenario_agency_marketing_scale",
+      "to": "player:presentation_ai",
+      "relation": "selects",
+      "weight": 75.99
+    },
+    {
+      "from": "persona:scenario_devops_batch_automation",
+      "to": "player:presenton",
+      "relation": "selects",
+      "weight": 81.98
+    },
+    {
+      "from": "persona:scenario_revenue_enablement_analytics",
+      "to": "player:presentation_ai",
+      "relation": "selects",
+      "weight": 70.6
+    },
+    {
+      "from": "persona:scenario_founder_consulting_deck",
+      "to": "dimension:consultative_narrative",
+      "relation": "weights",
+      "weight": 16.05
+    },
+    {
+      "from": "persona:scenario_founder_consulting_deck",
+      "to": "dimension:native_pptx_objects",
+      "relation": "weights",
+      "weight": 13.29
+    },
+    {
+      "from": "persona:scenario_founder_consulting_deck",
+      "to": "dimension:editability_qa",
+      "relation": "weights",
+      "weight": 11.27
+    },
+    {
+      "from": "persona:scenario_founder_consulting_deck",
+      "to": "dimension:qa_evaluation_rubric",
+      "relation": "weights",
+      "weight": 9.68
+    },
+    {
+      "from": "persona:scenario_founder_consulting_deck",
+      "to": "dimension:source_grounding_research",
+      "relation": "weights",
+      "weight": 5.28
+    },
+    {
+      "from": "persona:scenario_self_hosted_api_product",
+      "to": "dimension:api_generation",
+      "relation": "weights",
+      "weight": 16.61
+    },
+    {
+      "from": "persona:scenario_self_hosted_api_product",
+      "to": "dimension:mcp_automation",
+      "relation": "weights",
+      "weight": 15.07
+    },
+    {
+      "from": "persona:scenario_self_hosted_api_product",
+      "to": "dimension:docker_self_hosted",
+      "relation": "weights",
+      "weight": 10.19
+    },
+    {
+      "from": "persona:scenario_self_hosted_api_product",
+      "to": "dimension:local_byok_ollama",
+      "relation": "weights",
+      "weight": 9.1
+    },
+    {
+      "from": "persona:scenario_self_hosted_api_product",
+      "to": "dimension:provider_registry",
+      "relation": "weights",
+      "weight": 5.3
+    },
+    {
+      "from": "persona:scenario_native_pptx_renderer",
+      "to": "dimension:native_pptx_objects",
+      "relation": "weights",
+      "weight": 23.31
+    },
+    {
+      "from": "persona:scenario_native_pptx_renderer",
+      "to": "dimension:charts_tables_native",
+      "relation": "weights",
+      "weight": 11.1
+    },
+    {
+      "from": "persona:scenario_native_pptx_renderer",
+      "to": "dimension:editability_qa",
+      "relation": "weights",
+      "weight": 9.24
+    },
+    {
+      "from": "persona:scenario_native_pptx_renderer",
+      "to": "dimension:math_diagrams_technical",
+      "relation": "weights",
+      "weight": 7.31
+    },
+    {
+      "from": "persona:scenario_native_pptx_renderer",
+      "to": "dimension:animations_transitions_ooxml",
+      "relation": "weights",
+      "weight": 6.14
+    },
+    {
+      "from": "persona:scenario_academic_technical_author",
+      "to": "dimension:math_diagrams_technical",
+      "relation": "weights",
+      "weight": 36.04
+    },
+    {
+      "from": "persona:scenario_academic_technical_author",
+      "to": "dimension:qa_evaluation_rubric",
+      "relation": "weights",
+      "weight": 15.52
+    },
+    {
+      "from": "persona:scenario_academic_technical_author",
+      "to": "dimension:test_fixtures_ci",
+      "relation": "weights",
+      "weight": 6.68
+    },
+    {
+      "from": "persona:scenario_academic_technical_author",
+      "to": "dimension:documentation_depth",
+      "relation": "weights",
+      "weight": 5.08
+    },
+    {
+      "from": "persona:scenario_academic_technical_author",
+      "to": "dimension:charts_tables_native",
+      "relation": "weights",
+      "weight": 4.84
+    },
+    {
+      "from": "persona:scenario_designer_brand_editor",
+      "to": "dimension:web_editor_runtime",
+      "relation": "weights",
+      "weight": 15.32
+    },
+    {
+      "from": "persona:scenario_designer_brand_editor",
+      "to": "dimension:theme_tokens_branding",
+      "relation": "weights",
+      "weight": 9.92
+    },
+    {
+      "from": "persona:scenario_designer_brand_editor",
+      "to": "dimension:template_import_replication",
+      "relation": "weights",
+      "weight": 8.41
+    },
+    {
+      "from": "persona:scenario_designer_brand_editor",
+      "to": "dimension:visual_layout_quality",
+      "relation": "weights",
+      "weight": 6.89
+    },
+    {
+      "from": "persona:scenario_designer_brand_editor",
+      "to": "dimension:live_preview_annotations",
+      "relation": "weights",
+      "weight": 6.55
+    },
+    {
+      "from": "persona:scenario_prompt_to_edit_operator",
+      "to": "dimension:prompt_to_edit",
+      "relation": "weights",
+      "weight": 21.37
+    },
+    {
+      "from": "persona:scenario_prompt_to_edit_operator",
+      "to": "dimension:regional_element_editing",
+      "relation": "weights",
+      "weight": 14.13
+    },
+    {
+      "from": "persona:scenario_prompt_to_edit_operator",
+      "to": "dimension:web_editor_runtime",
+      "relation": "weights",
+      "weight": 11.52
+    },
+    {
+      "from": "persona:scenario_prompt_to_edit_operator",
+      "to": "dimension:live_preview_annotations",
+      "relation": "weights",
+      "weight": 8.07
+    },
+    {
+      "from": "persona:scenario_prompt_to_edit_operator",
+      "to": "dimension:qa_evaluation_rubric",
+      "relation": "weights",
+      "weight": 3.94
+    },
+    {
+      "from": "persona:scenario_enterprise_compliance_privacy",
+      "to": "dimension:license_absorption_safety",
+      "relation": "weights",
+      "weight": 17.74
+    },
+    {
+      "from": "persona:scenario_enterprise_compliance_privacy",
+      "to": "dimension:local_byok_ollama",
+      "relation": "weights",
+      "weight": 10.68
+    },
+    {
+      "from": "persona:scenario_enterprise_compliance_privacy",
+      "to": "dimension:docker_self_hosted",
+      "relation": "weights",
+      "weight": 8.01
+    },
+    {
+      "from": "persona:scenario_enterprise_compliance_privacy",
+      "to": "dimension:source_grounding_research",
+      "relation": "weights",
+      "weight": 6.5
+    },
+    {
+      "from": "persona:scenario_enterprise_compliance_privacy",
+      "to": "dimension:api_generation",
+      "relation": "weights",
+      "weight": 6.17
+    },
+    {
+      "from": "persona:scenario_multimodal_research_video",
+      "to": "dimension:source_grounding_research",
+      "relation": "weights",
+      "weight": 13.78
+    },
+    {
+      "from": "persona:scenario_multimodal_research_video",
+      "to": "dimension:video_export",
+      "relation": "weights",
+      "weight": 11.8
+    },
+    {
+      "from": "persona:scenario_multimodal_research_video",
+      "to": "dimension:narration_audio",
+      "relation": "weights",
+      "weight": 10.23
+    },
+    {
+      "from": "persona:scenario_multimodal_research_video",
+      "to": "dimension:url_youtube_ingestion",
+      "relation": "weights",
+      "weight": 8.67
+    },
+    {
+      "from": "persona:scenario_multimodal_research_video",
+      "to": "dimension:slide_structure_planning",
+      "relation": "weights",
+      "weight": 5.98
+    },
+    {
+      "from": "persona:scenario_sinkra_absorption_architect",
+      "to": "dimension:native_pptx_objects",
+      "relation": "weights",
+      "weight": 11.82
+    },
+    {
+      "from": "persona:scenario_sinkra_absorption_architect",
+      "to": "dimension:api_generation",
+      "relation": "weights",
+      "weight": 9.17
+    },
+    {
+      "from": "persona:scenario_sinkra_absorption_architect",
+      "to": "dimension:mcp_automation",
+      "relation": "weights",
+      "weight": 9.17
+    },
+    {
+      "from": "persona:scenario_sinkra_absorption_architect",
+      "to": "dimension:consultative_narrative",
+      "relation": "weights",
+      "weight": 8.42
+    },
+    {
+      "from": "persona:scenario_sinkra_absorption_architect",
+      "to": "dimension:qa_evaluation_rubric",
+      "relation": "weights",
+      "weight": 7.67
+    },
+    {
+      "from": "persona:scenario_agency_marketing_scale",
+      "to": "dimension:prompt_to_edit",
+      "relation": "weights",
+      "weight": 9.94
+    },
+    {
+      "from": "persona:scenario_agency_marketing_scale",
+      "to": "dimension:web_editor_runtime",
+      "relation": "weights",
+      "weight": 9.17
+    },
+    {
+      "from": "persona:scenario_agency_marketing_scale",
+      "to": "dimension:theme_tokens_branding",
+      "relation": "weights",
+      "weight": 9.1
+    },
+    {
+      "from": "persona:scenario_agency_marketing_scale",
+      "to": "dimension:visual_layout_quality",
+      "relation": "weights",
+      "weight": 8.35
+    },
+    {
+      "from": "persona:scenario_agency_marketing_scale",
+      "to": "dimension:template_import_replication",
+      "relation": "weights",
+      "weight": 7.59
+    },
+    {
+      "from": "persona:scenario_devops_batch_automation",
+      "to": "dimension:cli_headless",
+      "relation": "weights",
+      "weight": 12.5
+    },
+    {
+      "from": "persona:scenario_devops_batch_automation",
+      "to": "dimension:api_generation",
+      "relation": "weights",
+      "weight": 11.41
+    },
+    {
+      "from": "persona:scenario_devops_batch_automation",
+      "to": "dimension:mcp_automation",
+      "relation": "weights",
+      "weight": 11.41
+    },
+    {
+      "from": "persona:scenario_devops_batch_automation",
+      "to": "dimension:docker_self_hosted",
+      "relation": "weights",
+      "weight": 7.5
+    },
+    {
+      "from": "persona:scenario_devops_batch_automation",
+      "to": "dimension:test_fixtures_ci",
+      "relation": "weights",
+      "weight": 6.02
+    },
+    {
+      "from": "persona:scenario_revenue_enablement_analytics",
+      "to": "dimension:sharing_publishing",
+      "relation": "weights",
+      "weight": 10.79
+    },
+    {
+      "from": "persona:scenario_revenue_enablement_analytics",
+      "to": "dimension:consultative_narrative",
+      "relation": "weights",
+      "weight": 10.44
+    },
+    {
+      "from": "persona:scenario_revenue_enablement_analytics",
+      "to": "dimension:deck_analytics",
+      "relation": "weights",
+      "weight": 8.9
+    },
+    {
+      "from": "persona:scenario_revenue_enablement_analytics",
+      "to": "dimension:web_editor_runtime",
+      "relation": "weights",
+      "weight": 6.76
+    },
+    {
+      "from": "persona:scenario_revenue_enablement_analytics",
+      "to": "dimension:input_prompt_generation",
+      "relation": "weights",
+      "weight": 5.96
+    },
+    {
+      "from": "player:presenton",
+      "to": "dimension:input_prompt_generation",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:banana_slides",
+      "to": "dimension:input_prompt_generation",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:presentation_ai",
+      "to": "dimension:input_prompt_generation",
+      "relation": "leads_or_strong",
+      "weight": 90
+    },
+    {
+      "from": "player:ppt_master",
+      "to": "dimension:document_ingestion",
+      "relation": "leads_or_strong",
+      "weight": 90
+    },
+    {
+      "from": "player:presenton",
+      "to": "dimension:document_ingestion",
+      "relation": "leads_or_strong",
+      "weight": 90
+    },
+    {
+      "from": "player:presentagent_2",
+      "to": "dimension:url_youtube_ingestion",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:presentagent_2",
+      "to": "dimension:source_grounding_research",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:slides_creator",
+      "to": "dimension:outline_first_workflow",
+      "relation": "leads_or_strong",
+      "weight": 90
+    },
+    {
+      "from": "player:presentation_ai",
+      "to": "dimension:outline_first_workflow",
+      "relation": "leads_or_strong",
+      "weight": 94
+    },
+    {
+      "from": "player:slides_creator",
+      "to": "dimension:consultative_narrative",
+      "relation": "leads_or_strong",
+      "weight": 98
+    },
+    {
+      "from": "player:slides_creator",
+      "to": "dimension:slide_structure_planning",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:pptagent",
+      "to": "dimension:slide_structure_planning",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:ppt_master",
+      "to": "dimension:template_import_replication",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:presentation_ai",
+      "to": "dimension:theme_tokens_branding",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:ppt_master",
+      "to": "dimension:native_pptx_objects",
+      "relation": "leads_or_strong",
+      "weight": 98
+    },
+    {
+      "from": "player:ppt_master",
+      "to": "dimension:charts_tables_native",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:powerpoint_skill",
+      "to": "dimension:math_diagrams_technical",
+      "relation": "leads_or_strong",
+      "weight": 98
+    },
+    {
+      "from": "player:ppt_master",
+      "to": "dimension:animations_transitions_ooxml",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:ppt_master",
+      "to": "dimension:narration_audio",
+      "relation": "leads_or_strong",
+      "weight": 90
+    },
+    {
+      "from": "player:banana_slides",
+      "to": "dimension:video_export",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:presentagent_2",
+      "to": "dimension:video_export",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:ppt_master",
+      "to": "dimension:live_preview_annotations",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:banana_slides",
+      "to": "dimension:prompt_to_edit",
+      "relation": "leads_or_strong",
+      "weight": 96
+    },
+    {
+      "from": "player:banana_slides",
+      "to": "dimension:regional_element_editing",
+      "relation": "leads_or_strong",
+      "weight": 96
+    },
+    {
+      "from": "player:banana_slides",
+      "to": "dimension:web_editor_runtime",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:presentation_ai",
+      "to": "dimension:web_editor_runtime",
+      "relation": "leads_or_strong",
+      "weight": 94
+    },
+    {
+      "from": "player:presentation_ai",
+      "to": "dimension:sharing_publishing",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:presenton",
+      "to": "dimension:api_generation",
+      "relation": "leads_or_strong",
+      "weight": 98
+    },
+    {
+      "from": "player:presenton",
+      "to": "dimension:mcp_automation",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:slide_deck_ai",
+      "to": "dimension:cli_headless",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:presenton",
+      "to": "dimension:provider_registry",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:slide_deck_ai",
+      "to": "dimension:provider_registry",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:ppt_master",
+      "to": "dimension:local_byok_ollama",
+      "relation": "leads_or_strong",
+      "weight": 90
+    },
+    {
+      "from": "player:presenton",
+      "to": "dimension:local_byok_ollama",
+      "relation": "leads_or_strong",
+      "weight": 98
+    },
+    {
+      "from": "player:powerpoint_skill",
+      "to": "dimension:local_byok_ollama",
+      "relation": "leads_or_strong",
+      "weight": 90
+    },
+    {
+      "from": "player:slide_deck_ai",
+      "to": "dimension:local_byok_ollama",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:presenton",
+      "to": "dimension:docker_self_hosted",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:presenton",
+      "to": "dimension:desktop_app",
+      "relation": "leads_or_strong",
+      "weight": 90
+    },
+    {
+      "from": "player:slides_creator",
+      "to": "dimension:qa_evaluation_rubric",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:pptagent",
+      "to": "dimension:qa_evaluation_rubric",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "player:powerpoint_skill",
+      "to": "dimension:qa_evaluation_rubric",
+      "relation": "leads_or_strong",
+      "weight": 90
+    },
+    {
+      "from": "player:ppt_master",
+      "to": "dimension:editability_qa",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:slides_creator",
+      "to": "dimension:license_absorption_safety",
+      "relation": "leads_or_strong",
+      "weight": 100
+    },
+    {
+      "from": "player:ppt_master",
+      "to": "dimension:license_absorption_safety",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:presenton",
+      "to": "dimension:license_absorption_safety",
+      "relation": "leads_or_strong",
+      "weight": 98
+    },
+    {
+      "from": "player:pptagent",
+      "to": "dimension:license_absorption_safety",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:presentation_ai",
+      "to": "dimension:license_absorption_safety",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:powerpoint_skill",
+      "to": "dimension:license_absorption_safety",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:slide_deck_ai",
+      "to": "dimension:license_absorption_safety",
+      "relation": "leads_or_strong",
+      "weight": 95
+    },
+    {
+      "from": "player:presenton",
+      "to": "dimension:ecosystem_maturity",
+      "relation": "leads_or_strong",
+      "weight": 92
+    },
+    {
+      "from": "gap:native_editable_pptx",
+      "to": "artifact:contracts/native-ir-contract.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:native_editable_pptx",
+      "to": "artifact:deep/renderer-native-pptx.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:native_editable_pptx",
+      "to": "artifact:deep/acceptance-test-plan.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:native_editable_pptx",
+      "to": "artifact:contracts/native-ir-contract.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:native_editable_pptx",
+      "to": "artifact:deep/renderer-native-pptx.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:native_editable_pptx",
+      "to": "artifact:deep/acceptance-test-plan.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:native_editable_pptx",
+      "to": "artifact:contracts/native-ir-contract.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:native_editable_pptx",
+      "to": "artifact:deep/renderer-native-pptx.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:native_editable_pptx",
+      "to": "artifact:deep/acceptance-test-plan.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:contracts/api-contract.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:contracts/mcp-contract.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:deep/api-mcp-runtime.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:contracts/api-contract.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:contracts/mcp-contract.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:deep/api-mcp-runtime.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:contracts/api-contract.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:contracts/mcp-contract.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:deep/api-mcp-runtime.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:agentic_planning_reflection",
+      "to": "artifact:deep/agentic-planning-reflection.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:agentic_planning_reflection",
+      "to": "artifact:contracts/qa-rubric.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:agentic_planning_reflection",
+      "to": "artifact:deep/agentic-planning-reflection.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:agentic_planning_reflection",
+      "to": "artifact:contracts/qa-rubric.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:privacy_local_byok",
+      "to": "artifact:deep/license-risk-assessment.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:privacy_local_byok",
+      "to": "artifact:risk-register.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:contracts/api-contract.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:contracts/mcp-contract.md",
+      "relation": "implemented_by"
+    },
+    {
+      "from": "gap:api_mcp_self_hosted",
+      "to": "artifact:deep/api-mcp-runtime.md",
+      "relation": "implemented_by"
+    }
+  ],
+  "intelligence_loops": [
+    {
+      "loop": "Persona → Dimensão → Player",
+      "use": "Explica por que o vencedor muda por cenário.",
+      "artifacts": [
+        "scenario-scorecards.md",
+        "deep/persona-weight-methodology.md",
+        "comparison-matrix.md"
+      ]
+    },
+    {
+      "loop": "Gap → Fonte → Contrato",
+      "use": "Transforma benchmark em backlog implementável.",
+      "artifacts": [
+        "TODO-coverage.md",
+        "deep/absorption-decision-table.md",
+        "contracts/native-ir-contract.md",
+        "contracts/api-contract.md",
+        "contracts/mcp-contract.md"
+      ]
+    },
+    {
+      "loop": "Segmento → Stack composta → Roadmap",
+      "use": "Evita comparar app, skill e engine na mesma régua.",
+      "artifacts": [
+        "segmented-comparisons.md",
+        "deep/segmented-methodology.md",
+        "absorption-roadmap.md"
+      ]
+    },
+    {
+      "loop": "Risco → Licença → Decisão de absorção",
+      "use": "Separa benchmark comportamental de código copiável.",
+      "artifacts": [
+        "risk-register.md",
+        "deep/license-risk-assessment.md",
+        "ADR-001-absorption-strategy.md"
+      ]
+    }
+  ],
+  "dashboard_contract": {
+    "primary_views": [
+      "slides",
+      "matrix",
+      "personas",
+      "decision",
+      "sources",
+      "weights",
+      "duel"
+    ],
+    "headline_metrics": [
+      "score",
+      "players",
+      "dimensions",
+      "personas",
+      "gaps",
+      "files"
+    ],
+    "narrative_rule": "Slides devem vender a tese composta; matriz prova; personas contextualizam; fontes auditam; gaps viram plano."
+  },
+  "score_semantics": {
+    "bench_intelligence_score": "Mede completude do benchmark, dashboard e apresentação como artefato de decisão.",
+    "implementation_readiness_score": "Mede quanto da stack slide creator skill stack já foi implementada; não é o score exibido no ranking de bench.",
+    "rule": "Score 100 no dash significa bench completo para decisão e apresentação, não produto final entregue."
+  },
+  "implementation_readiness": {
+    "status": "planned_not_implemented",
+    "p0_items": 10,
+    "p1_items": 6,
+    "p2_items": 6,
+    "source": "TODO-coverage.json",
+    "interpretation": "A implementação técnica ainda precisa de epic; isso não reduz a completude do bench como inteligência de decisão."
+  }
+}

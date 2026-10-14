@@ -1,0 +1,140 @@
+# Handoff — @devops (Gage) → próxima sessão @devops
+# Operação de push INTERROMPIDA por falha de autenticação GitHub.
+# Criado: 2026-08-05 ~11:45 (America/Sao_Paulo)
+
+handoff:
+  from_agent: devops
+  to_agent: devops
+  status: BLOCKED
+  blocker: github_auth_invalid
+  consumed: false
+
+contexto:
+  missao_original: >-
+    Dar push do commit e08214a (refresh do technical-debt assessment + plano ND-01
+    de RLS aberto) no submódulo, e depois commitar APENAS o ponteiro do submódulo
+    no repo pai, sem push do pai.
+  resultado: >-
+    Push NÃO realizado. Nenhuma alteração foi feita por mim em nenhum dos dois
+    repos — nem commit, nem stage, nem stash, nem alteração de remote.
+
+blocker:
+  sintoma: |
+    gh auth status  -> "The token in keyring is invalid" (conta SFPTechnology)
+    curl api.github.com com $(gh auth token) -> HTTP 401
+    git ls-remote origin -> "remote: Invalid username or token"
+  descartado:
+    - "WSL: gh não está instalado lá (gh: command not found), ~/.config/gh não existe"
+    - "SSH: não há keypair em ~/.ssh (só known_hosts); ssh -T git@github.com -> Permission denied (publickey)"
+    - "Git Credential Manager: cmdkey /list sem nenhuma entrada github"
+  evidencia_login_nao_concluido: >-
+    %APPDATA%\GitHub CLI\hosts.yml permaneceu com mtime "mai 4 20:55" durante toda
+    a sessão. O gh só reescreve esse arquivo quando o login conclui com sucesso.
+  tentativa_device_flow: >-
+    Iniciei o device flow via curl (client_id público do gh: 178c6fc778ccc68e1d6a,
+    escopos repo/read:org/gist/workflow). O código 7D2D-E430 NUNCA foi autorizado —
+    todas as consultas retornaram authorization_pending, e o poller morreu quando o
+    GitHub passou a devolver HTML em vez de JSON. Esse código já expirou; gerar novo
+    se repetir a abordagem. Nenhum token chegou a ser gravado em disco.
+  nota_importante: >-
+    O dono relatou estar "logado" no GitHub pelo navegador — isso é sessão de browser
+    e NÃO autentica o CLI. O device flow exige clicar em "Authorize" na página
+    github.com/login/device após digitar o código.
+
+resolucao_necessaria:
+  responsavel: dono do projeto (interativo, agente não resolve sozinho)
+  comando: |
+    # No PowerShell/CMD do WINDOWS (não WSL), terminal com TTY real:
+    gh auth login -h github.com -p https -w
+    gh auth status   # sucesso = "Logged in to github.com account SFPTechnology"
+                     #            SEM a linha "token in keyring is invalid"
+  validacao_objetiva: |
+    # os dois devem passar antes de tentar push:
+    curl -s -o /dev/null -w "%{http_code}\n" -H "Authorization: token $(gh auth token)" https://api.github.com/user   # espera 200
+    cd sistema-de-instala-es-el-tricas-sie-main && git ls-remote origin feature/nbr5410-conformidade-closeout          # espera hash, não erro
+
+# ATENÇÃO: o estado abaixo MUDOU durante a sessão — outra frente commitou nos dois
+# repos enquanto eu aguardava a autenticação. Reconferir tudo antes de agir.
+estado_em_2026-08-05T11:45:
+  submodulo:
+    path: sistema-de-instala-es-el-tricas-sie-main/
+    remote: https://github.com/SFPTechnology/sistema-de-instala-es-el-tricas-sie.git
+    branch: feature/nbr5410-conformidade-closeout
+    head: f3f05a180cfcf5ac6995a423eb12bd3aebb032d0
+    worktree_sujo: 167 entradas (modified + untracked) de OUTRAS frentes — não tocar
+    ref_remota_local_stale: cf8490dff75aefcea00acac856946f209a13f2b2
+    aviso_ref_stale: >-
+      Essa ref nunca foi atualizada porque o git fetch jamais teve sucesso.
+      NÃO assumir que o remoto está em cf8490d. Rodar git fetch primeiro e,
+      se aparecer commit inesperado no remoto, PARAR e reportar — não forçar,
+      não fazer merge automático.
+  repo_pai:
+    path: C:\Users\User\Documents\2026\Projects_Smart_Systems\Projeto_SIE
+    remote: https://github.com/SFPTechnology/Projeto-SIE.git
+    branch: master
+    head: fc9a02582b2b7e505027cfd61b8f5a8f234837af
+    worktree_sujo: muitas mudanças de outras frentes — não tocar
+
+mudanca_de_escopo_desde_a_missao_original:
+  - id: ponteiro_ja_commitado
+    fato: >-
+      O passo "commitar o ponteiro do submódulo no repo pai" JÁ FOI FEITO por outra
+      sessão, no commit fc9a025. git ls-tree HEAD do pai aponta para f3f05a180...,
+      idêntico ao HEAD atual do submódulo. O ponteiro está sincronizado e commitado.
+    status_git_pai: >-
+      A entrada aparece como " m" (minúsculo) = apenas conteúdo sujo DENTRO do
+      submódulo, não divergência de ponteiro. Não há nada a commitar aqui.
+    acao: NENHUMA — passo concluído por terceiros, não repetir.
+  - id: push_agora_publica_3_commits
+    fato: >-
+      e08214a continua na história (verificado com git merge-base --is-ancestor),
+      mas ganhou 2 commits em cima, de outra frente (MOD-PROT):
+        f3f05a1  docs(mod-prot): adiciona ADR de contrato de integracao do MOD-PROT
+        9f1b9e8  feat(mod-prot): implementa modulo de dimensionamento de disjuntores
+        e08214a  docs(technical-debt): refresh do assessment + resposta ao ND-01
+    implicacao: >-
+      Um push da branch agora publica os TRÊS commits, não apenas o e08214a da missão
+      original. Isso extrapola o escopo que me foi dado.
+    decisao_requerida_do_dono: >-
+      CONFIRMAR se pode publicar os 3 juntos. NÃO tentar publicar e08214a isolado
+      (git push origin e08214a:refs/heads/... deixaria o tip remoto divergindo do
+      local — pior que o problema que resolve). Se só o e08214a puder sair agora,
+      isso é decisão de branch/cherry-pick do dono, não do agente.
+
+sequencia_apos_auth_ok:
+  - passo: 1
+    cmd: cd sistema-de-instala-es-el-tricas-sie-main && git fetch origin feature/nbr5410-conformidade-closeout
+    criterio: >-
+      Comparar origin/feature/... com o esperado. Se houver commit novo/inesperado
+      no remoto: PARAR e reportar. Não forçar, não fazer merge.
+  - passo: 2
+    cmd: git log --oneline origin/feature/nbr5410-conformidade-closeout..HEAD
+    criterio: Confirmar com o dono quais commits serão publicados (ver mudanca_de_escopo acima).
+  - passo: 3
+    cmd: AIOX_ACTIVE_AGENT=devops git push origin feature/nbr5410-conformidade-closeout
+    nota: >-
+      O prefixo AIOX_ACTIVE_AGENT=devops é obrigatório — hook
+      .claude/hooks/enforce-git-push-authority.cjs (Constitution Art. II) bloqueia
+      push de "@unknown". Nunca desabilitar o hook.
+  - passo: 4
+    cmd: (repo pai) — nada a fazer no ponteiro, já commitado em fc9a025
+  - passo: 5
+    nota: >-
+      Push do repo pai continua FORA DE ESCOPO por decisão do dono. O pai tem 2
+      commits locais não publicados (f9266f3, fc9a025) e árvore muito suja;
+      agrupar isso num push é decisão separada dele.
+
+conteudo_do_commit_alvo_e08214a:
+  arquivos: 6
+  lista:
+    - docs/prd/technical-debt-DELTA-2026-08-05.md
+    - docs/reviews/ND-01-plano-correcao-rls.md
+    - docs/stories/epic-technical-debt.md
+    - docs/stories/story-0-fundacao-engenharia.md
+    - docs/supabase/0015_rls_producao_ND-01.sql
+    - docs/supabase/0015_rls_producao_ND-01.rollback.sql
+  observacao: >-
+    Commit feito com --no-verify (hook de pré-commit acusou drift de tutorial em
+    arquivos não relacionados, de outras sessões). Razão já validada pelo dono.
+    O SQL do ND-01 (RLS aberto em produção) ainda NÃO foi aplicado ao banco —
+    falta acesso/decisão humana, e isso está documentado dentro dos próprios arquivos.

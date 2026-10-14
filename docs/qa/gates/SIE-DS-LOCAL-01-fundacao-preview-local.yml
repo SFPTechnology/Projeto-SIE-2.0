@@ -1,0 +1,79 @@
+schema: 1
+story: "SIE-DS-LOCAL-01"
+story_title: "Fundação local do SIE Command Center (preview)"
+story_path: "docs/stories/story-SIE-DS-LOCAL-01-fundacao-preview-local.md"
+gate: CONCERNS
+status_reason: >-
+  AC1-AC6 PASS com evidência forte: smoke test HTTP real da rota rodando (200, conteúdo
+  esperado), regressão completa 983/983 testes, lint/typecheck/build verdes, AC4 provado
+  via mtime de arquivo (rotas "modificadas" datam de 10 dias antes desta sessão). CONCERNS
+  mantido só porque o CodeRabbit Step 0 (obrigatório) segue indisponível por falha de
+  ambiente (SIGILL/exit 132, mesma causa raiz de SIE-DS-00) — risco prático reduzido pela
+  revisão manual mais extensa realizada nesta story (há código real, ao contrário de SIE-DS-00).
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-31T00:00:00-03:00"
+expires: "2026-08-14T00:00:00-03:00"
+quality_score: 90
+mode: "yolo (agente-a-agente: @sm → @po → @architect → @dev → @qa, sessão manual real)"
+handoff_entrada: ".aiox/handoffs/SIE-DS-LOCAL-01-dev-to-qa.yaml"
+submodule_impact: "aditivo apenas — 8 arquivos novos em src/components/command-center/ e src/routes/; AppShell.tsx com diff vazio; 4 rotas + package.json mostram M no git status mas comprovadamente pré-existentes (mtime anterior à sessão)"
+smoke_test:
+  url: "http://127.0.0.1:5173/sie-command-center-preview"
+  status_code: 200
+  content_checks:
+    - "SIE Command Center"
+    - "Preview local"
+    - "Dados ilustrativos"
+    - "Residência Alfa"
+  legacy_regression_check:
+    url: "http://127.0.0.1:5173/"
+    status_code: 200
+    content_check: "Projetos"
+
+trace_ac:
+  - ac: AC1
+    descricao: "Tokens locais --sie-cc-*"
+    resultado: PASS
+    evidencia: "src/components/command-center/tokens/sie-cc-tokens.css + sie-cc-tokens.test.ts (4/4 testes)"
+  - ac: AC2
+    descricao: "Shell mínimo"
+    resultado: PASS
+    evidencia: "src/components/command-center/EngineeringShell.tsx + EngineeringShell.test.tsx (4/4 testes)"
+  - ac: AC3
+    descricao: "Rota isolada e flagada"
+    resultado: PASS
+    evidencia: "src/routes/sie-command-center-preview.tsx + teste (3/3) + smoke test HTTP"
+  - ac: AC4
+    descricao: "Zero impacto no legado"
+    resultado: PASS
+    evidencia: "git diff vazio em AppShell.tsx; mtime das rotas M = 2026-07-21 (10 dias antes da sessão)"
+  - ac: AC5
+    descricao: "Testado localmente (lint/typecheck/test/build)"
+    resultado: PASS
+    evidencia: "lint limpo, typecheck limpo, 983/983 testes, build client+SSR verde"
+  - ac: AC6
+    descricao: "Instrução de acesso local"
+    resultado: PASS
+    evidencia: "Dev Agent Record > Completion Notes; verificado funcionando via smoke test"
+
+top_issues:
+  - id: "TEST-001"
+    severity: medium
+    finding: "CodeRabbit CLI (WSL) segue indisponível (SIGILL/exit 132) — 2ª story consecutiva sem o Step 0 do QA."
+    suggested_action: "@devops reparar/reinstalar o binário antes de qualquer story com escopo maior que preview local."
+    suggested_owner: devops
+  - id: "DOC-001"
+    severity: low
+    finding: "Checkboxes de Acceptance Criteria no topo da story permanecem [ ] apesar de todos PASS — mesmo padrão de processo de SIE-DS-00 (@dev não os toca por regra de permissão)."
+    suggested_action: "@po marca [x] durante *close-story."
+    suggested_owner: po
+
+waiver: { active: false }
+
+recommendations:
+  immediate: []
+  future:
+    - action: "Reparar binário CodeRabbit no WSL (recorrente, 2ª ocorrência)"
+      refs: ["~/.local/bin/coderabbit"]
+    - action: "Substituir nav placeholder por navegação real quando SIE-DS-02/03 avançarem"
+      refs: ["src/components/command-center/EngineeringShell.tsx"]

@@ -1,0 +1,637 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:10:52.300Z",
+  "source_files": [
+    "battle-card.md",
+    "comparison-matrix.md",
+    "deep/skills-and-internals.md",
+    "deep/synergy-analysis.json",
+    "deep/synergy-analysis.md",
+    "executive-report.md",
+    "gap-analysis.md",
+    "metadata.canonical.json",
+    "metadata.json",
+    "scorecard.json",
+    "scorecard.md"
+  ],
+  "benchmark": {
+    "slug": "hermes-agent-vs-openclaw",
+    "title": "Executive Report: Hermes Agent vs OpenClaw",
+    "date": "undated",
+    "type": "codebase",
+    "variant": "2-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "hermes",
+      "name": "Hermes",
+      "category": "unknown"
+    },
+    {
+      "key": "openclaw",
+      "name": "Openclaw",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "openclaw",
+    "coverage": "structured",
+    "sources": 2,
+    "waves": 0,
+    "dimensions": 11
+  },
+  "matrix": {
+    "players": [
+      "hermes",
+      "openclaw"
+    ],
+    "dimensions": [
+      {
+        "id": "1",
+        "label": "Architecture & Extensibility",
+        "weight": 0
+      },
+      {
+        "id": "2",
+        "label": "Agent Loop & Intelligence",
+        "weight": 0
+      },
+      {
+        "id": "3",
+        "label": "Messaging & Channels",
+        "weight": 0
+      },
+      {
+        "id": "4",
+        "label": "Tools & Capabilities",
+        "weight": 0
+      },
+      {
+        "id": "5",
+        "label": "Memory & Learning",
+        "weight": 0
+      },
+      {
+        "id": "6",
+        "label": "Security & Safety",
+        "weight": 0
+      },
+      {
+        "id": "7",
+        "label": "Developer Experience",
+        "weight": 0
+      },
+      {
+        "id": "8",
+        "label": "Testing & Quality",
+        "weight": 0
+      },
+      {
+        "id": "9",
+        "label": "Native & Multi-Platform",
+        "weight": 0
+      },
+      {
+        "id": "10",
+        "label": "Community & Ecosystem",
+        "weight": 0
+      },
+      {
+        "id": "D11",
+        "label": "AVERAGE",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "1",
+        "label": "Architecture & Extensibility",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 62,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 88,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "label": "Agent Loop & Intelligence",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 85,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 72,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "label": "Messaging & Channels",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 72,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "label": "Tools & Capabilities",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 82,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 78,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "label": "Memory & Learning",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 88,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "label": "Security & Safety",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 82,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "label": "Developer Experience",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 85,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "label": "Testing & Quality",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 55,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "label": "Native & Multi-Platform",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 25,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "10",
+        "label": "Community & Ecosystem",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 55,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 92,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D11",
+        "label": "AVERAGE",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 67.4,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 83.7,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "hermes",
+        "score": 67.4
+      },
+      {
+        "player": "openclaw",
+        "score": 83.7
+      }
+    ],
+    "method": "Derived from markdown table in scorecard.md"
+  },
+  "duels": [
+    {
+      "left": "hermes",
+      "right": "openclaw",
+      "winner": "openclaw",
+      "left_wins": 3,
+      "right_wins": 8,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "1",
+          "label": "Architecture & Extensibility",
+          "left_score": 62,
+          "right_score": 88,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "2",
+          "label": "Agent Loop & Intelligence",
+          "left_score": 85,
+          "right_score": 72,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "3",
+          "label": "Messaging & Channels",
+          "left_score": 72,
+          "right_score": 90,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "4",
+          "label": "Tools & Capabilities",
+          "left_score": 82,
+          "right_score": 78,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "5",
+          "label": "Memory & Learning",
+          "left_score": 88,
+          "right_score": 70,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "6",
+          "label": "Security & Safety",
+          "left_score": 80,
+          "right_score": 82,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "7",
+          "label": "Developer Experience",
+          "left_score": 70,
+          "right_score": 85,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "8",
+          "label": "Testing & Quality",
+          "left_score": 55,
+          "right_score": 90,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "9",
+          "label": "Native & Multi-Platform",
+          "left_score": 25,
+          "right_score": 90,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "10",
+          "label": "Community & Ecosystem",
+          "left_score": 55,
+          "right_score": 92,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D11",
+          "label": "AVERAGE",
+          "left_score": 67.4,
+          "right_score": 83.7,
+          "winner": "openclaw"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "openclaw",
+          "score": 83.7,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "hermes",
+          "score": 67.4,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "hermes",
+          "score": 67.4
+        },
+        {
+          "player": "openclaw",
+          "score": 83.7
+        }
+      ],
+      "verdict": "Openclaw vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-analysis-1",
+      "title": "Methodology",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-2",
+      "title": "Part A: Gaps in Hermes Agent (Features OpenClaw Has)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-3",
+      "title": "GAP-H01: Plugin Architecture & SDK (P0 — HIGH)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-4",
+      "title": "GAP-H02: Native Apps (P1 — HIGH)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-5",
+      "title": "GAP-H03: Testing Infrastructure (P1 — MEDIUM)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-6",
+      "title": "GAP-H04: Cloud Provider Plugins (P1 — LOW)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-7",
+      "title": "GAP-H05: Dev Channels & Release Process (P2 — LOW)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-8",
+      "title": "GAP-H06: Strict Linting & Code Quality (P2 — LOW)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-9",
+      "title": "GAP-H07: Unique Channel Plugins (P2 — MEDIUM)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-10",
+      "title": "GAP-H08: Video Generation (P2 — MEDIUM)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-11",
+      "title": "GAP-H09: LanceDB Vector Memory (P2 — LOW)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-12",
+      "title": "Part B: Gaps in OpenClaw (Features Hermes Has)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/openclaw/openclaw",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/skills-and-internals.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/synergy-analysis.json",
+      "role": "deep",
+      "format": "json"
+    },
+    {
+      "file": "deep/synergy-analysis.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {
+    "date": true
+  }
+}

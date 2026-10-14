@@ -1,0 +1,245 @@
+# Slide Specification Schema — slides-creator
+# Wave A absorption from docs/squad/slides/enterprise_slides/output/mckinsey_ppt_architect_instructions.md
+# Encodes the 10 mandatory components per slide spec (consulting-grade)
+# P2 Especificação obsessiva + P4 Action titles become schema-enforceable
+
+schema_version: "1.0"
+name: slide-spec-schema
+owner_squad: slides-creator
+source_absorption: "ATHENA v2.0 McKinsey PPT Architect Elite"
+enforcement: "SCHEMA (validate-pyramid + validate-action-title consume this)"
+
+# ═══════════════════════════════════════════════════════════════════════
+# 10 MANDATORY COMPONENTS per slide spec
+# ═══════════════════════════════════════════════════════════════════════
+mandatory_components:
+
+  - id: 1_metadata
+    name: Metadata
+    required_fields:
+      - section_number_and_name
+      - position_in_deck  # ex: "7 of 45"
+      - slide_type        # enum: slide_types below
+      - presentation_time_minutes
+      - primary_audience  # enum: [C-level, board, strategy_team, operators, investors]
+      - objective         # 1-sentence goal for this slide
+
+  - id: 2_action_title
+    name: Action Title
+    required_fields:
+      - text              # "[O que aconteceu] + [Magnitude/Por que importa] + [Ação implícita]"
+      - font_family       # default: Helvetica Neue
+      - font_weight       # default: Bold
+      - font_size_pt      # default: 28 (range 24-32)
+      - color_hex         # default: #003B5C (navy)
+      - alignment         # enum: [left, center, right]
+      - grid_position     # {row: 1, cols: "1-12"}
+      - margin_cm         # default: 1.5 from left border
+      - leading           # default: 1.2
+      - max_width_cm      # default: 24
+      - max_wrap_lines    # default: 2
+    formula_anti_pattern:
+      - "Descriptive: 'Análise de mercado'"
+      - "Descriptive: 'Resultados financeiros'"
+    formula_target:
+      - "'Mercado brasileiro crescerá 45% ao ano até 2027, 1.7× mais rápido que média global'"
+      - "'EBITDA expandiu 23% YoY impulsionado por mix de produtos premium (+340bps margem)'"
+
+  - id: 3_layout_grid
+    name: Layout & Grid System
+    required_fields:
+      - grid_columns      # default: 12
+      - grid_rows         # default: 8
+      - slide_aspect      # enum: ["16:9", "9:16", "1:1"]
+      - gutters_cm        # default: 0.5
+      - useful_area_cm    # ex: "24cm × 16cm"
+      - whitespace_pct    # min: 30, target: 30-40
+      - primary_zone      # {rows, cols} where action title lives
+      - content_zone      # {rows, cols} where visual/table lives
+      - footer_zone       # {rows, cols} where citations live
+
+  - id: 4_visual_elements
+    name: Visual Elements (Elements 1-4)
+    min: 1
+    max: 4
+    per_element_required_fields:
+      - element_id        # ex: "Gráfico 3.2", "Tabela 7.1", "Imagem 2"
+      - element_type      # enum: [bar_chart, line_chart, waterfall, scatter, pie, table, insight_box, icon, image]
+      - title             # ex: "Crescimento por Segmento"
+      - grid_position     # {cols, rows}
+      - dimensions_cm     # {width, height}
+      - color_palette_hex # array of exact HEX codes
+      - axis_scale        # for charts: range + increments
+      - typography        # {family, weight, size, color} per text element
+      - data_labels       # always show values on charts
+      - gridlines_opacity # default: 20% (#E5E5E5)
+      - source_footer     # APA citation below element
+      - alt_text          # accessibility
+
+  - id: 5_support_elements
+    name: Support Elements (callouts, insight panels)
+    optional: true
+    fields:
+      - callout_boxes     # key_takeaway boxes with insight
+      - insight_panel     # right-side insight column
+      - decorative_icons  # mood/theme icons
+
+  - id: 6_footer_sources
+    name: Footer & APA Sources
+    required_fields:
+      - citations[]       # array of APA entries
+      - per_citation:
+          - org           # ex: "McKinsey & Company"
+          - title         # ex: "Global AI Survey 2024"
+          - date          # ex: "December 2024"
+          - url           # full URL
+          - access_date   # ex: "Acesso em: 15 dez 2024"
+      - footer_font       # {family: Helvetica Neue, style: italic, size_pt: 9, color: "#6E6E6E"}
+
+  - id: 7_ai_prompts
+    name: AI Generation Prompts (when images needed)
+    conditional: "slide has image_request"
+    min_components: 10
+    required_components:
+      - subject_specification
+      - style_references      # ex: "corporate photography, Annual Report 2024"
+      - composition           # framing, POV, focal point
+      - lighting              # direction, intensity, mood
+      - color_palette         # must match slide palette
+      - environment           # setting, context
+      - technical_params      # resolution, aspect ratio, film/digital
+      - mood_and_emotion
+      - negative_prompts      # what to avoid
+      - reference_images      # if any
+
+  - id: 8_speaker_notes
+    name: Speaker Notes
+    required_fields:
+      - opening_hook          # how to introduce the slide
+      - key_talking_points    # bulleted (max 3-5)
+      - supporting_data       # numbers to cite verbally
+      - anticipated_questions # Q&A prep
+      - transition_line       # how to move to next slide
+      - timing_seconds
+
+  - id: 9_transition_flow
+    name: Transition & Flow
+    required_fields:
+      - previous_slide_id
+      - next_slide_id
+      - transition_rationale  # why this slide follows the previous
+      - narrative_arc_position # where in SCQA this slide sits
+
+  - id: 10_quality_checklist
+    name: Quality Checklist (per-slide)
+    required_checks:
+      - action_title_follows_formula
+      - all_numbers_traceable_to_sources
+      - grid_alignment_precise
+      - typography_consistent
+      - whitespace_30pct_min
+      - every_visual_has_enumeration_id
+      - apa_citations_complete
+      - data_labels_on_all_charts
+      - color_palette_brand_compliant
+      - wcag_contrast_aa_min
+      - vertical_flow_test_pass       # title alone tells the story
+      - speaker_notes_complete
+
+# ═══════════════════════════════════════════════════════════════════════
+# SLIDE TYPE ENUM (11 canonical types)
+# ═══════════════════════════════════════════════════════════════════════
+slide_types:
+  - id: title
+    archetype: templates/slide-archetypes/title.md
+    description: "Cover slide — deck title, subtitle, date, author, confidentiality"
+  - id: executive_summary
+    archetype: templates/slide-archetypes/executive-summary.md
+    description: "Top-of-pyramid — entire deck condensed to 1 slide with 3-5 key takeaways"
+  - id: framework
+    archetype: templates/slide-archetypes/framework.md
+    description: "2x2 matrix, pyramid, value chain, ecosystem map — conceptual structure"
+  - id: data
+    archetype: templates/slide-archetypes/data.md
+    description: "Bar/line/waterfall/scatter charts — quantitative insight"
+  - id: timeline_roadmap
+    archetype: templates/slide-archetypes/timeline-roadmap.md
+    description: "Gantt, milestones, horizon scanning — temporal progression"
+  - id: financial
+    archetype: templates/slide-archetypes/financial.md
+    description: "P&L, bridge chart, EBITDA waterfall — financial analysis"
+  - id: appendix
+    archetype: templates/slide-archetypes/appendix.md
+    description: "Source data, methodology, backup — supporting material"
+  - id: section_divider
+    description: "Section transition — title + Roman numeral + thematic image"
+  - id: text_with_visual
+    description: "Mixed text+visual — insight supported by chart/image"
+  - id: comparison
+    description: "Side-by-side — options, scenarios, before/after"
+  - id: quote
+    description: "Stakeholder voice, CEO message, expert citation"
+
+# ═══════════════════════════════════════════════════════════════════════
+# ENFORCEMENT CONSUMERS
+# ═══════════════════════════════════════════════════════════════════════
+enforcement_consumers:
+  - task: validate-action-title
+    checks: component_2_action_title.formula + components 1/3
+  - task: validate-enumeration-universal
+    checks: component_4_visual_elements.element_id
+  - task: validate-fontes-apa
+    checks: component_6_footer_sources.citations[]
+  - task: validate-pyramid
+    checks: component_9_transition_flow.narrative_arc_position + component_10.vertical_flow_test_pass
+  - task: p1-fidelity-sampling
+    checks: component_4.source_footer + component_6.citations[]
+  - task: emit-deck-spec
+    produces: "deck-spec.yaml conforming to this schema for every slide"
+
+# ═══════════════════════════════════════════════════════════════════════
+# DESIGN SYSTEM BASELINE (from McKinsey Architect)
+# ═══════════════════════════════════════════════════════════════════════
+design_system_baseline:
+  grid:
+    columns: 12
+    rows: 8
+    aspect_ratio: "16:9"
+    useful_area: "24cm × 16cm"
+    gutters_cm: 0.5
+  palette_default:  # brand-override resolves via resolve-active-palette
+    primary: "#003B5C"  # navy
+    secondary: "#6E6E6E"  # gray
+    positive: "#00A86B"  # emerald green (up/good)
+    negative: "#C8102E"  # red (down/bad)
+    neutral_background: "#FFFFFF"
+    gridlines: "#E5E5E5"
+  typography_default:
+    family: "Helvetica Neue"
+    title_weight: Bold
+    title_size_pt: [28, 32]
+    body_weight: Regular
+    body_size_pt: [14, 16]
+    caption_size_pt: [10, 12]
+    data_label_weight: Bold
+    data_label_size_pt: 12
+    footer_style: italic
+    footer_size_pt: 9
+  whitespace_pct_target: [30, 40]
+  chart_selection_rules:
+    comparison_categorical: bar_chart
+    trend_over_time: line_chart
+    decomposition_additive: waterfall_chart
+    correlation_two_vars: scatter_plot
+    part_to_whole_3_or_less: pie_chart
+    part_to_whole_4_or_more: stacked_bar_chart
+
+# ═══════════════════════════════════════════════════════════════════════
+# META
+# ═══════════════════════════════════════════════════════════════════════
+meta:
+  absorbed_from: "docs/squad/slides/enterprise_slides/output/mckinsey_ppt_architect_instructions.md"
+  absorbed_date: "2026-04-20"
+  absorbed_wave: "A (master spec schema extraction)"
+  gold_standard_example: "squads/slides-creator/examples/gold-standard-slide-spec.md"
+  mental_model_reference: "squads/slides-creator/docs/mckinsey-architect-mental-model.md"

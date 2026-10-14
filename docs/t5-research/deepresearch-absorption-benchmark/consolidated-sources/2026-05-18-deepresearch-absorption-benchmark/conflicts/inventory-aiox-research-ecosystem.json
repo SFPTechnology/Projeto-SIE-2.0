@@ -1,0 +1,209 @@
+{
+  "schema": "deepresearch-absorption-benchmark.inventory.v1",
+  "subject_id": "aiox_research_ecosystem",
+  "label": "AIOX Research Ecosystem",
+  "generated_at": "2026-05-18",
+  "topology": "tri-component (Squad + Skill + App) operating as one product",
+  "components": {
+    "squad_research": {
+      "path": "squads/research",
+      "version": "5.0.0",
+      "role": "Cognitive brain — orchestration, persona, methodology, governance",
+      "renamed_from": "spy",
+      "absorbed": ["deep-research v1.0.0 (2026-04-13)", "tech-research skill v2.0.0 (2026-05-16)"],
+      "metrics": {
+        "agents_count": 14,
+        "workflows_count": 6,
+        "tasks_total_md": 129,
+        "tasks_count_estimated": 70,
+        "chiefs": ["research-chief"],
+        "specialist_agents": [
+          "bench-analyst",
+          "booth",
+          "creswell",
+          "dr-orchestrator",
+          "forsgren",
+          "gilad",
+          "klein",
+          "marketing-deepdive",
+          "reference-competitor-clone",
+          "research-chief",
+          "research-operator",
+          "sackett",
+          "tech-research-agent",
+          "benchmark-runtime"
+        ]
+      },
+      "workflows": [
+        "bench-comparison-pipeline.yaml",
+        "tech-research/* (13 phase YAMLs)",
+        "wf-competitive-intel.yaml",
+        "wf-deep-research.yaml",
+        "wf-product-discovery.yaml",
+        "wf-quick-research.yaml"
+      ],
+      "domain_model": {
+        "Strategic": "Posicionamento competitivo, inteligência de mercado e decisões de benchmark",
+        "Tactical": "Orquestração de benchmarks, síntese de evidências e análise comparativa",
+        "Operational": "Coleta, transcrição, publicação e automação de artefatos"
+      },
+      "modes_supported": [
+        "deep technical research",
+        "competitive intelligence",
+        "marketing deep-dive",
+        "product discovery (JTBD/Mom Test/Villain/WTP)",
+        "universal benchmarking (codebase/llm/product/company/technology)",
+        "PICO/OSINT pipeline",
+        "systematic reviews",
+        "decision science / bias detection"
+      ]
+    },
+    "skill_tech_research": {
+      "path": ".claude/skills/tech-research",
+      "version": "2.0.0",
+      "user_invocable": true,
+      "execution_model": "inline persona-fidelity (no subagent spawning)",
+      "pipeline": {
+        "molecules": 7,
+        "atoms": 17,
+        "phase_yamls": 13,
+        "names": [
+          "phase-0-auto-clarify",
+          "phase-1-clarify",
+          "phase-1-5-decompose",
+          "phase-2-generate-prompt",
+          "phase-3-execute-research",
+          "phase-3-2-deep-read",
+          "phase-3-5-evaluate-coverage",
+          "phase-3-6-compress-wave",
+          "phase-3-7-playwright-deep-research",
+          "phase-4-synthesize",
+          "phase-4-5-verify-citations",
+          "phase-5-document"
+        ]
+      },
+      "scripts": {
+        "scaffold.py": "Initialize research folder structure",
+        "next_followup_number.py": "Resolve follow-up file numbering",
+        "credibility_scorer.py": "Source credibility scoring",
+        "output_validator.py": "Validate research outputs",
+        "metrics_collector.py": "Collect pipeline metrics"
+      },
+      "checkpoints": [
+        {
+          "id": "COVERAGE_GATE",
+          "threshold": "coverage >= 70% APPROVE / <50 VETO halt after 3 waves",
+          "max_waves": 3
+        },
+        {
+          "id": "CITATION_GATE",
+          "threshold": "verified_ratio >= 0.85 APPROVE",
+          "max_fix_attempts": 2
+        }
+      ],
+      "modes": [
+        "default (deep technical research)",
+        "--product-discovery / --pd (validate-product-idea, JTBD+Villain+WTP)",
+        "--deep (multi-LLM cross-reference)",
+        "--yolo (autonomy)",
+        "--interactive"
+      ],
+      "incremental_learning_log": ".aiox/learning/logs/tech-research/{slug}-{timestamp}.yaml",
+      "invokers": ["/research-chief validate-product-idea Wave 0", "/skill-creator", "/aiox-architect"],
+      "guardrails": "squads/research/checklists/tech-research/guardrails.yaml",
+      "veto_conditions": [
+        "No implementation (writing code/agents/skills → VETO)",
+        "Outputs only under docs/research/{date}-{slug}/",
+        "Follow-up reuses existing folder",
+        "Sequential by default; waves bounded"
+      ]
+    },
+    "app_research_observatory": {
+      "path": "apps/research",
+      "name": "aiox-research",
+      "version": "0.1.0",
+      "license": "Elastic License v2 (source-available, not OSI)",
+      "stack": "Next.js 16.2.6 (App Router, webpack) + React 19.2.3 + Tailwind v4 + TypeScript 5 strict",
+      "deps": {
+        "next": "^16.2.6",
+        "react": "19.2.3",
+        "react-markdown": "^10.1.0",
+        "remark-gfm": "^4.0.1",
+        "tailwind-merge": "^3.4.0",
+        "yaml": "^2.8.2",
+        "lucide-react": "^0.563.0",
+        "geist": "^1.7.0"
+      },
+      "node_required": "18.18+ or 20+",
+      "routes": {
+        "ui": [
+          "/observatory (browse research/bench/SINKRA Maps)",
+          "/observatory/demo (public visitor mode)",
+          "/observatory/[source] (drill into a source)",
+          "/research (active research console)",
+          "/research/status"
+        ],
+        "api": [
+          "/api/observatory",
+          "/api/observatory/open-folder",
+          "/api/research",
+          "/api/research/runs",
+          "/api/research/runs/[runId]",
+          "/api/research/runs/[runId]/stream",
+          "/api/research/uploads",
+          "/api/research/uploads/audio",
+          "/api/research/uploads/files",
+          "/api/research/clis",
+          "/api/research/consolidations"
+        ]
+      },
+      "features": {
+        "research_execution": "Create research runs in docs/research/ using local CLIs auto-detected or OpenRouter CLI",
+        "observatory_browse": "Render Markdown/YAML/JSON artifacts from docs/research, docs/bench, outputs/sinkra-squad",
+        "tiers": {
+          "Visitante público": "Only /observatory/demo (embedded dataset)",
+          "AIOX Pro": "Demo + Research + Bench + SINKRA Maps pointing to workspace",
+          "AIOX Enterprise": "All + ServiceBus/ClickUp/Google Workspace/ETL integrations"
+        },
+        "streaming": "SSE on /api/research/runs/[runId]/stream",
+        "uploads": "Audio (Whisper transcription) + files",
+        "consolidations": "Aggregate runs into consolidated reports",
+        "local_first": "Reads filesystem directly; no DB required for read-only mode"
+      },
+      "scripts": [
+        "init-observatory.mjs (bootstrap)",
+        "test/test-init.mjs",
+        "repair-legacy-research-runs.mjs"
+      ],
+      "contracts": [
+        "RESEARCH-OBSERVATORY-CONTRACT.md",
+        "HANDOFF-research-compatibility.md",
+        "HANDOFF-open-research-continuation.md"
+      ]
+    }
+  },
+  "ecosystem_strengths": [
+    "Tri-layer separation: brain (squad) / execution (skill) / observability (app)",
+    "Methodology governance: COVERAGE_GATE + CITATION_GATE are real, not aspirational",
+    "Incremental learning log on every phase (vs post-hoc only)",
+    "Multi-mode: tech-research, competitive intel, product discovery, benchmarking, marketing deep-dive",
+    "PT-BR/LatAm-first positioning with workflow verticals (PRD/BMC/battle-card grade)",
+    "Local-first: app reads filesystem, no DB required for read-only mode",
+    "9 dedicated bench tasks for codebase comparison (bench-framework, bench-deep-compare, etc.)",
+    "Subagent inventory of 14 specialist personas (Booth, Creswell, Forsgren, Gilad, Klein, Sackett — academic methodology lineage)",
+    "Tight integration with rest of SINKRA Hub (entry agent, ecosystem-registry, learning logs)",
+    "MIT-style/AGPL-free internal stack — App is Elastic License v2 (commercial protection)"
+  ],
+  "ecosystem_weaknesses": [
+    "No purpose-trained model (vs OpenResearcher 30B / DeepResearcher 7B)",
+    "No Docker sandbox for code execution during research (vs DeerFlow, AutoResearchClaw)",
+    "No persistent cross-session memory (vs DeerFlow TIAMAT)",
+    "No native MCP server exposure (vs LangChain Open DR, GPT-Researcher)",
+    "App is Elastic License v2 (not OSI open-source) — community contribution friction",
+    "No real-time progressive skill loading (vs DeerFlow)",
+    "No public leaderboard score on Deep Research Bench / BrowseComp-Plus / SimpleQA",
+    "No headless API mode (run via skill invocation only, not REST/CLI standalone)",
+    "Citation verification gate exists but no native scholarly database integration (arXiv, PubMed, Semantic Scholar — vs Local Deep Research's 10+ engines)",
+    "Multi-agent orchestration is inline persona-fidelity, not true parallel subagent spawn for the research itself (only for bench-comparison pipeline)"
+  ]
+}

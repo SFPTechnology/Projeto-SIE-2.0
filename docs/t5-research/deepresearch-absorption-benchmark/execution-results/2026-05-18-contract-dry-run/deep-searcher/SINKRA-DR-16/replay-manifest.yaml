@@ -1,0 +1,22 @@
+schema: sinkra-replay-manifest-v1
+run_id: deep-searcher__SINKRA-DR-16
+task_file: tasks/SINKRA-DR-16.yaml
+adapter:
+  id: deep-searcher
+  role: private_kb_rag
+  mode: contract_stub
+  capabilities:
+  - provider_registry
+  - collection_routing
+  - chain_of_rag
+outputs:
+- trace.jsonl
+- tool-calls.jsonl
+- claims.yaml
+- sources.yaml
+- report.md
+- rubric-results.yaml
+- cost-latency.yaml
+- failure-analysis.md
+- replay-manifest.yaml
+mode: contract_dry_run

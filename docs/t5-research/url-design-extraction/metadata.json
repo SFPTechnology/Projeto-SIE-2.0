@@ -1,0 +1,342 @@
+{
+  "bench": {
+    "id": "url-design-extraction",
+    "type": "product",
+    "variant": "n-way",
+    "created_at": "2026-04-27",
+    "analyst": "spy/bench-analyst (backfilled)"
+  },
+  "subjects": [
+    {
+      "key": "sinkra",
+      "name": "Sinkra",
+      "category": "unknown"
+    },
+    {
+      "key": "dembrandt",
+      "name": "Dembrandt",
+      "category": "unknown"
+    },
+    {
+      "key": "designlang",
+      "name": "Designlang",
+      "category": "unknown"
+    },
+    {
+      "key": "hyperdesign",
+      "name": "Hyperdesign",
+      "category": "unknown"
+    },
+    {
+      "key": "project_wallace",
+      "name": "Project Wallace",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "D1",
+        "name": "Extraction core",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D2",
+        "name": "HTTP fetch only (no headless browser)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D3",
+        "name": "Screenshot capture",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D4",
+        "name": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D5",
+        "name": "Inline `<style>` + `style=\"\"` attrs",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D6",
+        "name": "Real DOM computed styles",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D7",
+        "name": "Stealth/captcha solver",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D8",
+        "name": "Auth/cookie support",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D9",
+        "name": "Multi-page crawling (sitemap or links)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D10",
+        "name": "Token analysis",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D11",
+        "name": "DTCG output (W3C spec)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D12",
+        "name": "Native CSS var detection (with selector scope)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D13",
+        "name": "@font-face exhaustive parsing",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D14",
+        "name": "Token usage graph (declarations × references)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D15",
+        "name": "Stable token IDs across runs",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D16",
+        "name": "Component-property override detection (`.btn { border-radius: 0 }`)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D17",
+        "name": "Breakpoints auto-detect",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D18",
+        "name": "Dark mode auto-detect",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D19",
+        "name": "Shadow extraction (elevation ladder)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D20",
+        "name": "Motion / animation tokens",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D21",
+        "name": "Output & validation",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D22",
+        "name": "DESIGN.md output",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D23",
+        "name": "Lint enforcement (`@google/design.md`)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D24",
+        "name": "Provenance per token (machine-readable log)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D25",
+        "name": "Confidence scoring per token (high/medium/low)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D26",
+        "name": "Quality score A-F (multi-dimensional)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D27",
+        "name": "Drift mode (compare local DESIGN.md vs URL)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D28",
+        "name": "Visual diff between two URLs",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D29",
+        "name": "Preview output",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D30",
+        "name": "Single-file standalone HTML (offline)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D31",
+        "name": "Live component preview rendered with extracted tokens",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D32",
+        "name": "WCAG contrast matrix interactive",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D33",
+        "name": "Component variant matrix (states × sizes × variants)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D34",
+        "name": "Logo extraction with priority hierarchy",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D35",
+        "name": "Self-hosted font embedding (data: URLs cross-origin)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D36",
+        "name": "Live motion demo (animated tokens)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D37",
+        "name": "Hero zone with brand identity",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D38",
+        "name": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D39",
+        "name": "Integration & ecosystem",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D40",
+        "name": "Claude Code subprocess (zero API key required)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D41",
+        "name": "MCP server",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D42",
+        "name": "Multi-platform exporters (iOS / Android / Flutter)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D43",
+        "name": "GitHub Action / CI gate",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D44",
+        "name": "VS Code / Raycast / Figma / Chrome extensions",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D45",
+        "name": "`apply` direct write to project",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D46",
+        "name": "`clone` Next.js starter from URL",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D47",
+        "name": "`watch` mode (poll URL on interval)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D48",
+        "name": "`brands` matrix (compare N brands)",
+        "weight_pct": 2,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:09:34.026Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

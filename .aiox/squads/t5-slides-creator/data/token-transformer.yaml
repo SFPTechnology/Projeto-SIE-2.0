@@ -1,0 +1,574 @@
+# Token Transformer — Design Tokens to Engine Themes
+# SSOT for transforming W3C DTCG design tokens into engine-specific theme formats.
+# Consumed by: visual-scout (pre-render token injection), design-renderer (brand verification),
+#               qa-inspector (brand compliance validation).
+# Created by: Story 1.2 (EPIC-SC-V2-001, Sprint 1)
+# Dependencies: visual-engines.yaml (Story 1.1), prototype-d2-tokens.sh (Story 0.5)
+
+token_transformer:
+  version: "1.0.0"
+  created_at: "2026-03-20"
+  epic: EPIC-SC-V2-001
+  story: "1.2"
+  backward_compatible: true
+
+  # ---------------------------------------------------------------------------
+  # TOKEN SOURCE: W3C Design Tokens Community Group (DTCG) Format
+  # Tokens are loaded from workspace/businesses/{brand}/ directory.
+  # ---------------------------------------------------------------------------
+  token_source:
+    description: >
+      Design tokens follow the W3C DTCG specification (https://tr.designtokens.org/format/).
+      Each business in workspace/businesses/{brand}/ may provide tokens via:
+        1. design-system/config.yaml — points to token CSS files and palette definitions
+        2. brand/branding-repository.yaml — contains hex palette under brand.colors
+      The Token Transformer reads from these sources and normalizes into an internal
+      DesignTokens object before converting to engine-specific formats.
+    base_path: "workspace/businesses/{brand}/"
+    lookup_order:
+      - path: "design-system/config.yaml"
+        extract: "themes.{theme}.tokens"
+        format: css_custom_properties
+        description: "Primary source: CSS custom properties from design system config"
+      - path: "brand/branding-repository.yaml"
+        extract: "brand.colors"
+        format: yaml_palette
+        description: "Fallback: YAML palette from brand repository"
+      - path: "L2-tactical/brand/brandbook.yaml"
+        extract: "visual_identity.colors"
+        format: yaml_palette
+        description: "Legacy fallback: color definitions derived from the canonical brandbook"
+    no_tokens_behavior: >
+      When no design tokens are found for a brand, the Token Transformer returns
+      an empty DesignTokens object. Engines degrade gracefully: diagram engines
+      use their default themes, AI image engines omit color constraints from prompts.
+
+  # ---------------------------------------------------------------------------
+  # INTERNAL TOKEN SCHEMA (normalized intermediate format)
+  # All sources are normalized to this schema before engine conversion.
+  # ---------------------------------------------------------------------------
+  normalized_schema:
+    description: >
+      Internal representation used between token loading and engine conversion.
+      This is NOT persisted — it exists in memory during the transform pipeline.
+    fields:
+      palette:
+        type: array
+        items: "string (hex, e.g. #4A90D9)"
+        min_items: 0
+        max_items: 12
+        description: >
+          Ordered brand palette. Index 0 = primary, 1 = secondary,
+          2 = accent, 3 = neutral, 4 = background. Additional slots for
+          extended palettes. Derived from DTCG color.brand.* tokens.
+        semantic_mapping:
+          0: primary
+          1: secondary
+          2: accent
+          3: neutral
+          4: background
+      typography:
+        type: object
+        properties:
+          heading_font:
+            type: string
+            description: "Font family for headings (e.g. 'Space Grotesk')"
+          body_font:
+            type: string
+            description: "Font family for body text (e.g. 'Manrope')"
+          mono_font:
+            type: string
+            description: "Monospace font (e.g. 'IBM Plex Mono')"
+      spacing:
+        type: object
+        properties:
+          base_unit:
+            type: number
+            unit: px
+            description: "Base spacing unit in pixels"
+      background:
+        type: string
+        description: "Background color hex. Defaults to palette[4] or #FFFFFF."
+      style_preference:
+        type: string
+        enum: [flat, isometric, line_art, corporate, hand_drawn, minimal]
+        default: flat
+        description: "Visual style preference for AI-generated images."
+
+  # ---------------------------------------------------------------------------
+  # ENGINE CONVERTERS
+  # Each converter transforms normalized DesignTokens into engine-specific format.
+  # ---------------------------------------------------------------------------
+  converters:
+
+    # =========================================================================
+    # D2 Converter — Design Tokens -> D2 theme-overrides CLI flag
+    # =========================================================================
+    d2:
+      engine_id: d2
+      description: >
+        Converts design tokens to D2 CLI --theme-overrides flag format.
+        D2 uses N (neutral) and B (accent) variables for theming.
+        For Kroki API: tokens are injected as inline D2 vars block prepended
+        to diagram code (Kroki does NOT support --theme-overrides flag).
+      output_format: cli_flag
+      cli_template: "--theme-overrides='N1:${background};N2:${primary};N3:${neutral};B1:${primary};B2:${secondary};B3:${accent};B4:${neutral}'"
+
+      token_to_d2_mapping:
+        # D2 N-variables (Neutral): node fill, stroke, font
+        N1:
+          source: "palette[4]"
+          fallback: "#FFFFFF"
+          semantic: "background / node fill"
+        N2:
+          source: "palette[0]"
+          fallback: "#4A90D9"
+          semantic: "primary / node stroke"
+        N3:
+          source: "palette[3]"
+          fallback: "#34495E"
+          semantic: "neutral / node font color"
+        N7:
+          source: "14"
+          semantic: "font size (fixed)"
+
+        # D2 B-variables (Accent): color progression B1-B6
+        B1:
+          source: "palette[0]"
+          fallback: "#4A90D9"
+          semantic: "primary accent (same as N2)"
+        B2:
+          source: "palette[1]"
+          fallback: "#2ECC71"
+          semantic: "secondary accent"
+        B3:
+          source: "palette[2]"
+          fallback: "#E74C3C"
+          semantic: "tertiary accent"
+        B4:
+          source: "palette[3]"
+          fallback: "#34495E"
+          semantic: "neutral accent"
+        B5:
+          source: "palette[0]"
+          fallback: "#4A90D9"
+          semantic: "extended (cycles primary)"
+        B6:
+          source: "palette[1]"
+          fallback: "#2ECC71"
+          semantic: "extended (cycles secondary)"
+
+      kroki_inline_template: |
+        vars: {
+          d2-config: {
+            theme-overrides: {
+              N1: '${background}'
+              N2: '${primary}'
+              N3: '${neutral}'
+              B1: '${primary}'
+              B2: '${secondary}'
+              B3: '${accent}'
+              B4: '${neutral}'
+            }
+          }
+        }
+
+      example:
+        input:
+          palette: ["#4A90D9", "#2ECC71", "#E74C3C", "#34495E", "#ECF0F1"]
+        output_cli: "--theme-overrides='N1:#ECF0F1;N2:#4A90D9;N3:#34495E;B1:#4A90D9;B2:#2ECC71;B3:#E74C3C;B4:#34495E'"
+        output_kroki: |
+          vars: {
+            d2-config: {
+              theme-overrides: {
+                N1: '#ECF0F1'
+                N2: '#4A90D9'
+                N3: '#34495E'
+                B1: '#4A90D9'
+                B2: '#2ECC71'
+                B3: '#E74C3C'
+                B4: '#34495E'
+              }
+            }
+          }
+
+    # =========================================================================
+    # Mermaid Converter — Design Tokens -> Mermaid %%{init}%% directive
+    # =========================================================================
+    mermaid:
+      engine_id: mermaid
+      description: >
+        Converts design tokens to Mermaid %%{init}%% theme directive.
+        The directive is prepended to the diagram code before sending to Kroki.
+        Mermaid supports themeVariables for granular control.
+      output_format: init_directive
+      directive_template: "%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '${primary}', 'primaryTextColor': '${neutral}', 'primaryBorderColor': '${primary}', 'secondaryColor': '${secondary}', 'tertiaryColor': '${accent}', 'lineColor': '${neutral}', 'fontFamily': '${body_font}', 'fontSize': '14px'}}}%%"
+
+      token_to_mermaid_mapping:
+        primaryColor:
+          source: "palette[0]"
+          fallback: "#4A90D9"
+          semantic: "Primary node background"
+        primaryTextColor:
+          source: "palette[3]"
+          fallback: "#34495E"
+          semantic: "Text color on primary nodes"
+        primaryBorderColor:
+          source: "palette[0]"
+          fallback: "#4A90D9"
+          semantic: "Border color of primary nodes"
+        secondaryColor:
+          source: "palette[1]"
+          fallback: "#2ECC71"
+          semantic: "Secondary node background"
+        tertiaryColor:
+          source: "palette[2]"
+          fallback: "#E74C3C"
+          semantic: "Tertiary node background"
+        lineColor:
+          source: "palette[3]"
+          fallback: "#34495E"
+          semantic: "Connection line color"
+        fontFamily:
+          source: "typography.body_font"
+          fallback: "sans-serif"
+          semantic: "Diagram font family"
+
+      injection_method: prepend_to_diagram_code
+      notes: >
+        The %%{init}%% directive MUST be the first line of the Mermaid diagram code.
+        theme: 'base' ensures all themeVariables are applied without preset interference.
+
+      example:
+        input:
+          palette: ["#4A90D9", "#2ECC71", "#E74C3C", "#34495E", "#ECF0F1"]
+          typography:
+            body_font: "Manrope"
+        output: "%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#4A90D9', 'primaryTextColor': '#34495E', 'primaryBorderColor': '#4A90D9', 'secondaryColor': '#2ECC71', 'tertiaryColor': '#E74C3C', 'lineColor': '#34495E', 'fontFamily': 'Manrope', 'fontSize': '14px'}}}%%"
+
+    # =========================================================================
+    # AI Image Converter — Design Tokens -> Prompt color constraints
+    # =========================================================================
+    ai_image:
+      engine_ids: [gpt_image, recraft, ideogram]
+      description: >
+        Converts design tokens to a prompt suffix that constrains AI image
+        generation to use brand colors. Applied to GPTImageEngine, RecraftEngine,
+        and IdeogramEngine via their brand_injection.template mechanism.
+      output_format: prompt_suffix
+      prompt_template: >
+        IMPORTANT: Use ONLY these brand colors: ${palette_csv}.
+        Background: ${background}. Style: ${style_preference}.
+        Do NOT include text in the image unless explicitly instructed.
+        Do NOT use colors outside the provided palette.
+
+      token_to_prompt_mapping:
+        palette_csv:
+          source: "palette[0..n]"
+          format: "comma-separated hex values"
+          description: "All palette colors joined with commas"
+          example: "#4A90D9, #2ECC71, #E74C3C, #34495E, #ECF0F1"
+        background:
+          source: "palette[4]"
+          fallback: "white"
+          description: "Background color or keyword"
+        style_preference:
+          source: "style_preference"
+          fallback: "flat, clean, professional"
+          description: "Visual style descriptor"
+
+      injection_method: append_to_prompt
+      notes: >
+        AI image engines cannot guarantee exact color compliance. The prompt
+        suffix is best-effort. Post-generation validation via Brand Validator
+        catches deviations. Colors in AI-generated PNGs are verified by extracting
+        dominant colors and comparing against the palette using delta-E.
+
+      example:
+        input:
+          palette: ["#4A90D9", "#2ECC71", "#E74C3C", "#34495E", "#ECF0F1"]
+          style_preference: "flat"
+        output: >
+          IMPORTANT: Use ONLY these brand colors: #4A90D9, #2ECC71, #E74C3C, #34495E, #ECF0F1.
+          Background: #ECF0F1. Style: flat.
+          Do NOT include text in the image unless explicitly instructed.
+          Do NOT use colors outside the provided palette.
+
+    # =========================================================================
+    # Plotly Converter — Design Tokens -> Plotly layout template
+    # =========================================================================
+    plotly:
+      engine_id: plotly
+      description: >
+        Converts design tokens to Plotly figure layout properties.
+        Applied directly to fig.update_layout() in PlotlyEngine.
+      output_format: plotly_layout
+      layout_template:
+        colorway: "${palette_array}"
+        paper_bgcolor: "${background}"
+        plot_bgcolor: "${background}"
+        font:
+          family: "${body_font}"
+          color: "${neutral}"
+        title:
+          font:
+            family: "${heading_font}"
+            color: "${primary}"
+
+      token_to_plotly_mapping:
+        "layout.colorway":
+          source: "palette[0..n]"
+          description: "Chart color sequence"
+        "layout.paper_bgcolor":
+          source: "palette[4]"
+          fallback: "#FFFFFF"
+          description: "Chart paper background"
+        "layout.plot_bgcolor":
+          source: "palette[4]"
+          fallback: "#FFFFFF"
+          description: "Chart plot area background"
+        "layout.font.family":
+          source: "typography.body_font"
+          fallback: "sans-serif"
+        "layout.font.color":
+          source: "palette[3]"
+          fallback: "#34495E"
+        "layout.title.font.family":
+          source: "typography.heading_font"
+          fallback: "sans-serif"
+        "layout.title.font.color":
+          source: "palette[0]"
+          fallback: "#4A90D9"
+
+      example:
+        input:
+          palette: ["#4A90D9", "#2ECC71", "#E74C3C", "#34495E", "#ECF0F1"]
+          typography:
+            heading_font: "Space Grotesk"
+            body_font: "Manrope"
+        output:
+          colorway: ["#4A90D9", "#2ECC71", "#E74C3C", "#34495E", "#ECF0F1"]
+          paper_bgcolor: "#ECF0F1"
+          plot_bgcolor: "#ECF0F1"
+          font:
+            family: "Manrope"
+            color: "#34495E"
+          title:
+            font:
+              family: "Space Grotesk"
+              color: "#4A90D9"
+
+  # ---------------------------------------------------------------------------
+  # BRAND VALIDATOR
+  # Post-generation validation: compares rendered output colors against palette.
+  # ---------------------------------------------------------------------------
+  brand_validator:
+    description: >
+      Validates that generated visuals respect the brand palette. Works differently
+      for SVG (exact hex comparison) and PNG (dominant color extraction + delta-E).
+      Called by VisualEngine.validateBrandCompliance() internally.
+    version: "1.0.0"
+
+    # --- SVG Validation ---
+    svg_validation:
+      method: hex_extraction
+      description: >
+        Parse SVG markup and extract all hex colors from fill, stroke, color,
+        stop-color, and style attributes. Compare each against the allowed palette.
+      extraction_targets:
+        - attribute: fill
+        - attribute: stroke
+        - attribute: color
+        - attribute: stop-color
+        - css_property: "fill"
+        - css_property: "stroke"
+        - css_property: "color"
+        - css_property: "background-color"
+      ignored_colors:
+        - "#000000"   # Black (default SVG)
+        - "#FFFFFF"   # White (default SVG)
+        - "none"
+        - "transparent"
+      comparison: exact_hex_match_or_delta_e
+
+    # --- PNG Validation ---
+    png_validation:
+      method: dominant_color_extraction
+      description: >
+        Extract dominant colors from PNG using color quantization (k-means or
+        median cut). Compare each dominant color against the allowed palette
+        using CIE delta-E 2000 formula.
+      extraction:
+        algorithm: k_means
+        num_colors: 8
+        min_pixel_percentage: 2.0
+        description: "Extract top 8 colors, ignore colors < 2% of pixels"
+      ignored_regions:
+        - "background (if solid, auto-detected)"
+
+    # --- Delta-E Color Distance ---
+    delta_e:
+      formula: "CIE2000"
+      description: >
+        CIE delta-E 2000 is the industry standard for perceptual color difference.
+        A delta-E of 0 = identical, 1 = barely perceptible, 5 = noticeable,
+        10 = clearly different, 50 = opposite colors.
+      thresholds:
+        match:
+          max_delta_e: 5.0
+          verdict: compliant
+          description: "Color is close enough to a palette color. Acceptable."
+        warning:
+          min_delta_e: 5.0
+          max_delta_e: 10.0
+          verdict: warning
+          description: >
+            Color deviates noticeably from palette. Visual warning generated
+            but not blocking. Logged in VisualOutput.metadata.brand_compliance.violations.
+          severity: warning
+        violation:
+          min_delta_e: 10.0
+          verdict: violation
+          description: >
+            Color is clearly off-brand. Triggers color substitution
+            (nearest palette match) for diagram engines. For AI image engines,
+            logged as brand_violation and may trigger re-generation.
+          severity: critical
+
+    # --- WCAG AA Contrast Check ---
+    wcag_contrast:
+      description: >
+        Verifies that text-background color combinations meet WCAG 2.1 AA
+        minimum contrast ratios. Applied to diagram engines where text colors
+        are deterministic.
+      standard: "WCAG 2.1 AA"
+      minimum_ratios:
+        normal_text: 4.5
+        large_text: 3.0
+        ui_components: 3.0
+      large_text_definition: ">= 18pt or >= 14pt bold"
+      check_pairs:
+        - text_source: "N3 (font color)"
+          background_source: "N1 (fill color)"
+          context: "D2 node text on node background"
+        - text_source: "primaryTextColor"
+          background_source: "primaryColor"
+          context: "Mermaid primary node text"
+        - text_source: "palette[3]"
+          background_source: "palette[4]"
+          context: "General text on background"
+      on_failure:
+        action: adjust_contrast
+        method: >
+          Darken or lighten the text color to meet minimum ratio.
+          Preserve hue, adjust lightness in HSL space.
+          Log adjustment in VisualOutput.metadata.brand_compliance.violations
+          with severity=warning.
+
+    # --- Color Substitution Rules ---
+    color_substitution:
+      description: >
+        When a color in the rendered output is not in the allowed palette,
+        substitute it with the nearest palette color (by delta-E distance).
+        Only applies to diagram engines (D2, Mermaid, Plotly) where colors
+        are deterministically set. AI image engines cannot be post-corrected
+        this way (use re-generation instead).
+      applicable_engines: [d2, mermaid, plotly]
+      algorithm: nearest_palette_match
+      steps:
+        - "1. Convert out-of-palette color to CIELAB"
+        - "2. Convert each palette color to CIELAB"
+        - "3. Compute delta-E 2000 between out-of-palette and each palette color"
+        - "4. Select palette color with minimum delta-E"
+        - "5. Replace out-of-palette color with nearest match"
+        - "6. Log substitution in brand_compliance.violations (severity=warning)"
+      forbidden_colors_handling: >
+        Colors listed in brand_constraints.forbidden_colors are NEVER substituted
+        in. If the nearest match is a forbidden color, use the second nearest.
+      notes: >
+        Color substitution happens BEFORE the final SVG/PNG is emitted.
+        The VisualOutput.metadata.colors_used array reflects post-substitution colors.
+
+  # ---------------------------------------------------------------------------
+  # TRANSFORM PIPELINE
+  # End-to-end flow: load tokens -> normalize -> convert -> inject -> validate
+  # ---------------------------------------------------------------------------
+  transform_pipeline:
+    description: >
+      The complete flow from brand directory to themed visual output.
+      Executed by visual-scout before calling engine.render().
+    steps:
+      - step: 1
+        name: load_tokens
+        description: "Read design tokens from workspace/businesses/{brand}/ using lookup_order"
+        input: "brand_id (string)"
+        output: "raw_tokens (format-specific)"
+        on_not_found: "Return empty DesignTokens (engines use defaults)"
+
+      - step: 2
+        name: normalize
+        description: "Convert raw tokens to normalized_schema format"
+        input: "raw_tokens"
+        output: "DesignTokens (normalized)"
+        css_extraction: >
+          For CSS custom properties: parse token files, extract --bb-* vars,
+          map to palette array based on semantic naming.
+
+      - step: 3
+        name: convert
+        description: "Transform normalized tokens to engine-specific format using the appropriate converter"
+        input: "DesignTokens + engine_id"
+        output: "engine_theme (string: CLI flag, directive, prompt suffix, or layout dict)"
+        converter_selection: "converters[engine_id] or converters.ai_image for AI engines"
+
+      - step: 4
+        name: inject
+        description: "Apply the converted theme to the VisualSpec before render()"
+        input: "VisualSpec + engine_theme"
+        output: "VisualSpec (with theme applied)"
+        injection_methods:
+          d2_cli: "Append CLI flag to d2 command args"
+          d2_kroki: "Prepend vars block to diagram_code"
+          mermaid: "Prepend %%{init}%% directive to diagram_code"
+          ai_image: "Append prompt suffix to spec.prompt"
+          plotly: "Merge layout dict into fig.update_layout()"
+
+      - step: 5
+        name: validate
+        description: "Post-render brand compliance check via Brand Validator"
+        input: "VisualOutput + DesignTokens"
+        output: "ValidationResult (compliant: bool, violations: array)"
+        on_violation:
+          diagram_engines: "Apply color substitution, re-render if needed"
+          ai_engines: "Log violation, suggest re-generation with stricter prompt"
+
+  # ---------------------------------------------------------------------------
+  # CONSTRAINTS
+  # ---------------------------------------------------------------------------
+  constraints:
+    backward_compatibility:
+      rule: >
+        Token Transformer is OPTIONAL. When design_tokens is empty or absent
+        in VisualSpec, engines render with their default themes. No error is thrown.
+      source: "epic constraint #1 — all new fields optional"
+
+    brand_agnostic_squad:
+      rule: >
+        This file (token-transformer.yaml) is brand-agnostic. It defines HOW
+        to transform tokens, not WHICH tokens to use. Brand-specific data lives
+        exclusively in workspace/businesses/{brand}/.
+      source: "AIOX squad agnosticism rule (NON-NEGOTIABLE)"
+
+    performance:
+      rule: >
+        Token loading and conversion MUST complete in < 100ms. Token files are
+        small (< 50KB). No network calls. Cache normalized tokens per brand
+        for the duration of a deck generation run.
+      cache_key: "brand_id + token_file_mtime"
+      cache_ttl: "duration of single deck generation (ephemeral)"
+
+    delta_e_precision:
+      rule: >
+        Delta-E calculations MUST use CIE2000 formula, not CIE76 or CIE94.
+        CIE2000 is the most perceptually uniform and is the industry standard.
+      source: "roundtable decision — brand compliance rate >= 95%"

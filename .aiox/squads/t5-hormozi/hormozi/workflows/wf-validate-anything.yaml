@@ -1,0 +1,700 @@
+# Validate Anything Workflow (Universal Business/Offer Validator)
+# Engine: Alex Hormozi 5 Attributes (Sticky, Expensive, Expansion, Air, Unique)
+# Source SOPs: outputs/aiox-sop/hormozi-5-attributes/{sop-evaluate-opportunity,sop-design-sticky-offer,sop-validate-ai-service}.md
+# Version: 1.0.0
+# Pattern: dual-mode (BUSINESS | OFFER) — agnostic of industry/vertical
+
+workflow:
+  id: wf-validate-anything
+  name: "Validate Anything (Universal 5-Attribute Validator)"
+  version: "1.0.0"
+  type: operations
+  orchestrator: hormozi-chief
+  duration: "30-60 min"
+  description: |
+    Workflow de validação UNIVERSAL e agnóstico de domínio. Aceita qualquer
+    objeto de validação — um negócio inteiro, uma oportunidade nova, ou uma
+    oferta específica — e produz um scorecard contínuo (0-10 por dimensão) +
+    constraint score + veredicto acionável.
+
+    MOTOR: Os 5 atributos de Alex Hormozi.
+      1. Sticky    — quanta receita eu retenho ano a ano?
+      2. Expensive — custa um centavo, vendo por um dólar? (gross margin)
+      3. Expansion — a indústria está crescendo? (tailwind)
+      4. Air       — quantas variáveis pra escalar 1 unidade? (complexidade/capex)
+      5. Unique    — o que tenho que outros não replicam? (moat)
+
+    PRINCÍPIO MESTRE: Sticky primeiro. Sem retention, o resto é em vão.
+    Os outros 4 são alavancas a backfill.
+
+    REGRA DE SCORE: nunca usar média das 5 dimensões (média esconde gargalo).
+    Usar min(5 dimensões) como CONSTRAINT SCORE — o negócio/oferta vale o que
+    vale seu elo mais fraco.
+
+    DUAL-MODE: o workflow detecta na PHASE-0 se o objeto é um BUSINESS
+    (negócio/oportunidade) ou uma OFFER (oferta/proposta) e adapta as
+    perguntas-chave de cada dimensão sem mudar o motor.
+
+  best_for:
+    - "Validar entrada em novo mercado/produto/serviço (modo BUSINESS)"
+    - "Revisar portfólio ou negócio existente (modo BUSINESS)"
+    - "Decidir se vale trocar de veículo (modo BUSINESS)"
+    - "Validar uma oferta antes de lançar ou subir preço (modo OFFER)"
+    - "Due diligence rápida de aquisição/parceria (modo BUSINESS)"
+    - "Gate pré-fechamento de venda/contrato (modo OFFER)"
+
+  not_for:
+    - "Decisão tática de curto prazo (copy, canal, criativo) — use workflow específico"
+    - "Validação que não tem dados mínimos de mercado/economics — faça research primeiro"
+    - "Validar framework conceitual ou documento de referência (não é objeto acionável)"
+
+  decision_matrix_fit:
+    complexity: medium
+    agents_required: 4
+    estimated_duration: "30-60 min"
+    user_involvement: "medium (fornece evidência por dimensão)"
+    awareness: "any"
+    sophistication: "any"
+    primary_output: "validation-scorecard.yaml + verdict"
+
+  clone_combinations:
+    primary:
+      - agent: hormozi-chief
+        role: "Orquestração, detecção de modo, consolidação e veredicto"
+        phases: [0, 6, 7]
+      - agent: hormozi-retention
+        role: "Pontuação Sticky (revenue retention, churn, cohort)"
+        phases: [1]
+      - agent: hormozi-pricing
+        role: "Pontuação Expensive (gross margin, decomoditização)"
+        phases: [2]
+      - agent: hormozi-scale
+        role: "Pontuação Expansion + Air (tailwind, complexidade, capex)"
+        phases: [3, 4]
+      - agent: hormozi-offers
+        role: "Pontuação Unique (moat, defensibilidade)"
+        phases: [5]
+    synergies:
+      - agents: [hormozi-retention, hormozi-pricing]
+        pattern: "Sticky define se vale reter; Expensive define se vale a pena reter"
+      - agents: [hormozi-scale, hormozi-offers]
+        pattern: "Air baixo é perdoável se Unique alto (capex vira moat)"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# EXECUTABLE SEQUENCE (canonical contract per workflow-yaml-schema.yaml)
+# ═══════════════════════════════════════════════════════════════════════════════
+# workflow.sequence[] is the canonical executable contract.
+# Agent names MUST NOT use @ prefix.
+
+  sequence:
+    - step: detect-and-frame
+      id: PHASE-0
+      phase: 0
+      phase_name: "Detect Mode & Frame Object"
+      agent: hormozi-chief
+      task: tasks/diagnose-business-stage.md
+      reasoning_tier: planning
+      next: score-sticky
+      outputs:
+        - "outputs/hormozi/{slug}/validation-frame.yaml"
+      checkpoint:
+        criteria:
+          - "Modo detectado e confirmado: BUSINESS ou OFFER"
+          - "Objeto descrito em 1 parágrafo (o quê + para quem + como cobra)"
+          - "Pré-requisitos mínimos presentes (competidores + dados de churn/margem ou benchmark)"
+          - "Se faltar dado de mercado crítico → BLOCK, fazer research antes"
+        human_review: true
+      notes: |
+        Detecção de modo:
+        - BUSINESS: objeto é negócio/oportunidade/mercado/veículo inteiro.
+        - OFFER: objeto é oferta/proposta/produto/serviço específico a vender.
+        As 5 dimensões são as mesmas; só muda a pergunta-chave (ver cada fase).
+        VETO: se objeto for framework/documento de referência (não acionável), HALT.
+
+    - step: score-sticky
+      id: PHASE-1
+      phase: 1
+      phase_name: "Score Sticky (Retention)"
+      agent: hormozi-retention
+      task: tasks/diagnose-churn-rate.md
+      reasoning_tier: verification
+      requires: detect-and-frame
+      next: score-expensive
+      outputs:
+        - "outputs/hormozi/{slug}/score-sticky.yaml"
+      checkpoint:
+        criteria:
+          - "Score Sticky 0-10 com evidência citada (não palpite)"
+          - "Sub-checks aplicados (expansion path, gate M1, gate M6)"
+          - "Se Sticky < 5 → flag como CONSTRAINT ABSOLUTO independente do min"
+        human_review: false
+      notes: |
+        Pergunta-chave BUSINESS: "Quanto da receita de 100 clientes do ano
+        passado eu mantenho este ano?"
+        Pergunta-chave OFFER: "Esta oferta gera recompra/recorrência ou é one-shot?"
+        Escala: 0-2 one-shot puro · 3-5 recompra eventual · 6-8 recorrência
+        churn-alto · 9-10 recorrência baixo-churn + expansion.
+        Sub-checks (+1 cada): NRR >100% via ascensão · M1 (>20% churn) gerido ·
+        gate explícito até M6 (após M6 churn cai ~2%/mês).
+        REGRA: Sticky é o atributo nº1. Se baixo, trabalhe esta alavanca antes.
+
+    - step: score-expensive
+      id: PHASE-2
+      phase: 2
+      phase_name: "Score Expensive (Gross Margin)"
+      agent: hormozi-pricing
+      task: tasks/create-pricing-strategy.md
+      reasoning_tier: verification
+      requires: score-sticky
+      next: score-expansion
+      outputs:
+        - "outputs/hormozi/{slug}/score-expensive.yaml"
+      checkpoint:
+        criteria:
+          - "Score Expensive 0-10 ancorado em gross margin real ou benchmark"
+          - "Sub-checks aplicados (decomoditização, cash cycle, EBITDA proporcional)"
+        human_review: false
+      notes: |
+        Pergunta-chave (ambos modos): "Custa um centavo entregar e cobro um dólar?"
+        Escala (gross margin): 0-2 <20% · 3-5 20-40% · 6-8 40-70% · 9-10 >70%.
+        Sub-checks (+1): produto decomoditizado · cash conversion <30 dias ·
+        EBITDA proporcional ao gross.
+        Heurística: $100M @10% margem < $20M @50% margem. Preferir margem.
+
+    - step: score-expansion
+      id: PHASE-3
+      phase: 3
+      phase_name: "Score Expansion (Industry Tailwind)"
+      agent: hormozi-scale
+      task: tasks/validate-market-selection.md
+      reasoning_tier: verification
+      requires: score-expensive
+      next: score-air
+      outputs:
+        - "outputs/hormozi/{slug}/score-expansion.yaml"
+      checkpoint:
+        criteria:
+          - "Score Expansion 0-10 baseado em CAGR da CATEGORIA (não do meu negócio)"
+          - "3+ sinais independentes de tailwind citados quando score >= 6"
+        human_review: false
+      notes: |
+        Pergunta-chave (ambos modos): "Esta indústria está crescendo, plana ou
+        encolhendo?" Usar CAGR da categoria, não do próprio negócio.
+        Escala: 0-2 encolhendo >5%/ano · 3-5 plana · 6-8 5-15%/ano · 9-10 >15%/ano.
+        Sub-checks (+1): 3+ sinais de tailwind · regulação favorece.
+        Heurística: "se você sabe marketar, não precisa de tailwind — só precisa
+        não estar em headwind". Score >= 5 é aceitável.
+
+    - step: score-air
+      id: PHASE-4
+      phase: 4
+      phase_name: "Score Air (Operational Simplicity)"
+      agent: hormozi-scale
+      task: tasks/diagnose-scaling-constraint.md
+      reasoning_tier: verification
+      requires: score-expansion
+      next: score-unique
+      outputs:
+        - "outputs/hormozi/{slug}/score-air.yaml"
+      checkpoint:
+        criteria:
+          - "Score Air 0-10 baseado em variáveis ativas para escalar +1 unidade"
+          - "Asterisco aplicado: Air baixo NÃO é game over se Unique alto"
+        human_review: false
+      notes: |
+        Pergunta-chave BUSINESS: "Quantas variáveis preciso gerenciar pra
+        expandir produção em 1 unidade?"
+        Pergunta-chave OFFER: "Quanto esforço marginal/capex pra entregar +1 venda?"
+        Escala: 0-2 alta complexidade + alto capex · 3-5 média · 6-8 baixa
+        complexidade capex moderado · 9-10 mínima complexidade + mínimo capex.
+        Sub-checks (+1): escala 10x sem 10x headcount · sem inventory perecível ·
+        sem permits por unidade.
+        ASTERISCO: capex pode virar moat — cruzar com PHASE-5.
+
+    - step: score-unique
+      id: PHASE-5
+      phase: 5
+      phase_name: "Score Unique (Competitive Moat)"
+      agent: hormozi-offers
+      task: tasks/diagnose-value-equation.md
+      reasoning_tier: verification
+      requires: score-air
+      next: consolidate-verdict
+      outputs:
+        - "outputs/hormozi/{slug}/score-unique.yaml"
+      checkpoint:
+        criteria:
+          - "Score Unique 0-10 com tipos de moat enumerados"
+          - "Cada moat reivindicado tem evidência (não aspiração)"
+        human_review: false
+      notes: |
+        Pergunta-chave (ambos modos): "O que sei/tenho que outros não replicam
+        facilmente?"
+        Escala: 0-2 sem moat · 3-5 moat fraco (replicável <6 meses) · 6-8 moat
+        médio (brand, trade secret, processo, data) · 9-10 moat alto (patente
+        defendida, network effect, capex+know-how, recipe+brand global).
+        Sub-checks (+1 por tipo presente): Capital · Know-how proprietário ·
+        Patente (novo+não-óbvio+útil) · Brand (paga premium) · Network effect ·
+        Data exclusiva acumulada.
+
+    - step: consolidate-verdict
+      id: PHASE-6
+      phase: 6
+      phase_name: "Consolidate Scorecard & Verdict"
+      agent: hormozi-chief
+      task: tasks/diagnose-business-stage.md
+      reasoning_tier: planning
+      requires: score-unique
+      next: document-and-route
+      outputs:
+        - "outputs/hormozi/{slug}/validation-scorecard.yaml"
+      checkpoint:
+        criteria:
+          - "Score total (soma 5 dim, max 50) + score com bonus calculados"
+          - "CONSTRAINT SCORE = min(5 dimensões) — NUNCA média"
+          - "Dimensão constraint nomeada explicitamente"
+          - "Veredicto derivado da tabela (TROCAR/MELHORAR/CONTINUAR/DOUBLE DOWN)"
+          - "Regra Sticky aplicada: se Sticky < 5, trata como constraint absoluto"
+        human_review: true
+      notes: |
+        VEREDICTO por constraint score (min das 5):
+          0-3  → TROCAR DE VEÍCULO / NÃO PROSSEGUIR (não vale 5+ anos)
+          4-5  → MELHORAR ALAVANCA (trabalhe a dim constraint 6-12 meses, re-avalie)
+          6-7  → CONTINUAR + OTIMIZAR (viável; foco na dim constraint)
+          8-10 → DOUBLE DOWN (raro; capitalize a velocidade)
+        OVERRIDE STICKY: se Sticky < 5, veredicto rebaixa para MELHORAR ALAVANCA
+        no mínimo, independente do constraint score das outras dimensões.
+
+    - step: document-and-route
+      id: PHASE-7
+      phase: 7
+      phase_name: "Document, Schedule Review & Route"
+      agent: hormozi-chief
+      task: tasks/diagnose-business-stage.md
+      reasoning_tier: implementation
+      requires: consolidate-verdict
+      outputs:
+        - "outputs/hormozi/{slug}/validation-scorecard.yaml"
+        - "outputs/hormozi/{slug}/action-items.md"
+      checkpoint:
+        criteria:
+          - "Scorecard salvo com timestamp"
+          - "Re-avaliação agendada (6 meses para BUSINESS; pré-lançamento para OFFER)"
+          - "Action items vinculados à dimensão CONSTRAINT (não à dim favorita)"
+          - "Handoff routado conforme veredicto"
+        human_review: true
+      notes: |
+        ROUTING por veredicto + dimensão constraint:
+          Constraint = Sticky    → handoff hormozi-retention (ou wf-design-sticky-offer)
+          Constraint = Expensive → handoff hormozi-pricing (ou wf-money-model-design)
+          Constraint = Expansion → handoff hormozi-scale (ou wf-scaling-diagnostic)
+          Constraint = Air       → handoff hormozi-scale
+          Constraint = Unique    → handoff hormozi-offers (ou wf-grand-slam-offer)
+          Veredicto DOUBLE DOWN  → handoff hormozi-scale (capitalize velocidade)
+          Veredicto TROCAR       → handoff hormozi-chief (decisão de pivô)
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# HANDOFF PROMPTS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+  handoff_prompts:
+    chief_to_retention:
+      context: "Modo detectado ({BUSINESS|OFFER}), objeto descrito, pré-requisitos validados."
+      instruction: "Pontue Sticky 0-10 com evidência de retention real. Aplique os 3 sub-checks. Se < 5, sinalize constraint absoluto."
+    retention_to_pricing:
+      context: "Score Sticky + flag de constraint absoluto se aplicável."
+      instruction: "Pontue Expensive 0-10 ancorado em gross margin real ou benchmark de indústria."
+    pricing_to_scale_expansion:
+      context: "Scores Sticky e Expensive registrados."
+      instruction: "Pontue Expansion 0-10 pelo CAGR da categoria. Cite 3+ sinais de tailwind se score >= 6."
+    scale_expansion_to_scale_air:
+      context: "Score Expansion registrado."
+      instruction: "Pontue Air 0-10 pelas variáveis ativas pra escalar +1 unidade. Aplique asterisco do moat."
+    scale_air_to_offers:
+      context: "Scores das 4 primeiras dimensões registrados."
+      instruction: "Pontue Unique 0-10 enumerando tipos de moat com evidência."
+    offers_to_chief:
+      context: "5 dimensões pontuadas com evidência."
+      instruction: "Consolide. Calcule constraint score = min(5). Aplique override Sticky. Derive veredicto e routing."
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SUPPLEMENTAL PHASE METADATA (non-executable)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+  phases:
+    - id: PHASE-0
+      name: "Detect Mode & Frame Object"
+      days: "0 (10 min)"
+      tier: 0
+      description: |
+        Detecta se o objeto é BUSINESS ou OFFER, descreve em 1 parágrafo,
+        e verifica pré-requisitos mínimos (competidores + economics/churn).
+      tasks:
+        - task_file: tasks/diagnose-business-stage.md
+          agent: hormozi-chief
+          required: true
+          description: "Enquadrar objeto e detectar modo de validação"
+          output: "validation-frame.yaml"
+    - id: PHASE-1
+      name: "Score Sticky"
+      days: "0 (5-10 min)"
+      tier: 1
+      description: "Pontuar revenue retention 0-10 com sub-checks de cohort."
+      tasks:
+        - task_file: tasks/diagnose-churn-rate.md
+          agent: hormozi-retention
+          required: true
+          description: "Score Sticky com evidência"
+          output: "score-sticky.yaml"
+    - id: PHASE-2
+      name: "Score Expensive"
+      days: "0 (5 min)"
+      tier: 1
+      description: "Pontuar gross margin 0-10."
+      tasks:
+        - task_file: tasks/diagnose-pricing-power.md
+          agent: hormozi-pricing
+          required: true
+          description: "Score Expensive com evidência"
+          output: "score-expensive.yaml"
+    - id: PHASE-3
+      name: "Score Expansion"
+      days: "0 (5 min)"
+      tier: 1
+      description: "Pontuar tailwind de indústria 0-10 (CAGR categoria)."
+      tasks:
+        - task_file: tasks/diagnose-business-stage.md
+          agent: hormozi-scale
+          required: true
+          description: "Score Expansion com sinais de tailwind"
+          output: "score-expansion.yaml"
+    - id: PHASE-4
+      name: "Score Air"
+      days: "0 (5 min)"
+      tier: 1
+      description: "Pontuar complexidade operacional + capex 0-10."
+      tasks:
+        - task_file: tasks/diagnose-scaling-stage.md
+          agent: hormozi-scale
+          required: true
+          description: "Score Air com asterisco de moat"
+          output: "score-air.yaml"
+    - id: PHASE-5
+      name: "Score Unique"
+      days: "0 (5-10 min)"
+      tier: 1
+      description: "Pontuar moat competitivo 0-10 por tipo."
+      tasks:
+        - task_file: tasks/diagnose-positioning.md
+          agent: hormozi-offers
+          required: true
+          description: "Score Unique enumerando moats"
+          output: "score-unique.yaml"
+    - id: PHASE-6
+      name: "Consolidate & Verdict"
+      days: "0 (5-10 min)"
+      tier: 2
+      description: |
+        Consolida scorecard, calcula constraint score = min(5),
+        aplica override Sticky, deriva veredicto.
+      tasks:
+        - task_file: tasks/diagnose-business-stage.md
+          agent: hormozi-chief
+          required: true
+          description: "Constraint score + veredicto"
+          output: "validation-scorecard.yaml"
+    - id: PHASE-7
+      name: "Document & Route"
+      days: "0 (5 min)"
+      tier: 3
+      description: |
+        Salva scorecard, agenda re-avaliação, cria action items vinculados
+        à dimensão constraint, routa handoff conforme veredicto.
+      tasks:
+        - task_file: tasks/diagnose-business-stage.md
+          agent: hormozi-chief
+          required: true
+          description: "Documentação + routing"
+          output: "action-items.md"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SCORING MODEL (inline structure — domain-specific guidance)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+  scoring_model:
+    description: "Os 5 atributos com escalas 0-10, sub-checks e perguntas duais."
+    constraint_rule: "Score do objeto = min(5 dimensões). Média é PROIBIDA (esconde gargalo)."
+    sticky_override: "Se Sticky < 5, veredicto teto = MELHORAR ALAVANCA, ignore quão altas as outras dimensões estão."
+
+    dimensions:
+      - id: DIM_STICKY
+        name: "Sticky"
+        objective: "Revenue retention ano a ano"
+        question_business: "Quanto da receita de 100 clientes do ano passado eu mantenho este ano?"
+        question_offer: "Esta oferta gera recompra/recorrência ou é one-shot?"
+        scale:
+          "0-2": "One-shot puro (roofing, car sales, casamento, 1ª compra de imóvel)"
+          "3-5": "Recompra eventual (e-commerce médio, educação tradicional, consultoria pontual)"
+          "6-8": "Recorrência com churn alto (SaaS PME early, agências)"
+          "9-10": "Recorrência baixo-churn + expansion (insurance, alarme, banco, comunidade ativa, consumíveis)"
+        sub_checks:
+          - "+1 se NRR >100% via ascensão (cheaper → premium)"
+          - "+1 se M1 (>20% churn) é gerido ativamente"
+          - "+1 se há gate explícito até M6 (após M6 churn ~2%/mês)"
+        priority: "ATRIBUTO Nº1 — se baixo, trabalhe antes dos outros"
+
+      - id: DIM_EXPENSIVE
+        name: "Expensive"
+        objective: "Gross margin"
+        question_business: "Custa um centavo entregar e cobro um dólar?"
+        question_offer: "Custa um centavo entregar e cobro um dólar?"
+        scale:
+          "0-2": "<20% gross margin (grocery, restaurante, commodities)"
+          "3-5": "20-40% (varejo médio, distribuição)"
+          "6-8": "40-70% (consultoria, agência, e-commerce de marca)"
+          "9-10": ">70% (software, mídia, info-produto, comunidade, farma)"
+        sub_checks:
+          - "+1 se produto decomoditizado"
+          - "+1 se cash conversion cycle < 30 dias"
+          - "+1 se EBITDA margin proporcional ao gross"
+        heuristic: "$100M @10% margem < $20M @50% margem"
+
+      - id: DIM_EXPANSION
+        name: "Expansion"
+        objective: "Industry tailwind"
+        question_business: "Esta indústria está crescendo, plana ou encolhendo? (CAGR categoria)"
+        question_offer: "A categoria desta oferta tem demanda crescente?"
+        scale:
+          "0-2": "Encolhendo >5%/ano (jornal, tabaco, varejo genérico, data entry)"
+          "3-5": "Plana (-2% a +2%/ano)"
+          "6-8": "Crescimento moderado (5-15%/ano)"
+          "9-10": "Crescimento alto >15%/ano (AI, energia, cyber, healthcare, e-commerce)"
+        sub_checks:
+          - "+1 se 3+ sinais independentes de tailwind"
+          - "+1 se regulação/política favorece"
+        heuristic: "Se sabe marketar, basta não estar em headwind. Score >= 5 OK."
+
+      - id: DIM_AIR
+        name: "Air"
+        objective: "Baixa complexidade operacional + baixo capex"
+        question_business: "Quantas variáveis preciso gerenciar pra expandir produção em 1 unidade?"
+        question_offer: "Quanto esforço marginal/capex pra entregar +1 venda?"
+        scale:
+          "0-2": "Alta complexidade + alto capex (rede de restaurantes, manufatura)"
+          "3-5": "Média complexidade ou médio capex (agência grande, distribuição)"
+          "6-8": "Baixa complexidade, capex moderado (SaaS B2B com infra própria)"
+          "9-10": "Mínima complexidade + mínimo capex (podcast ad-read, info-produto, comunidade)"
+        sub_checks:
+          - "+1 se escala 10x sem 10x headcount"
+          - "+1 se não depende de inventory perecível"
+          - "+1 se não precisa permits/licenças por unidade"
+        asterisk: "Air baixo NÃO é game over se Unique alto (capex vira moat)"
+
+      - id: DIM_UNIQUE
+        name: "Unique"
+        objective: "Competitive moat"
+        question_business: "O que sei/tenho que outros não replicam facilmente?"
+        question_offer: "O que esta oferta tem que concorrentes não copiam em 6 meses?"
+        scale:
+          "0-2": "Sem moat (commodity, qualquer um entra com R$ 0)"
+          "3-5": "Moat fraco (marca incipiente, processo replicável em 6 meses)"
+          "6-8": "Moat médio (brand reconhecida, trade secret, processo proprietário, data)"
+          "9-10": "Moat alto (patente defendida, network effect, capex+know-how, recipe+brand global)"
+        sub_checks:
+          - "+1 Capital (infra cara que afasta entrantes)"
+          - "+1 Know-how proprietário (recipe, processo, configuração)"
+          - "+1 Patente (novo + não-óbvio + útil — USPTO)"
+          - "+1 Brand (paga premium sobre genérico)"
+          - "+1 Network effect / community lock-in"
+          - "+1 Data exclusiva acumulada com o tempo"
+
+    verdict_table:
+      "0-3": { verdict: "TROCAR DE VEÍCULO / NÃO PROSSEGUIR", action: "Não vale 5+ anos. Avaliar pivô." }
+      "4-5": { verdict: "MELHORAR ALAVANCA", action: "Trabalhe a dim constraint 6-12 meses, re-avalie." }
+      "6-7": { verdict: "CONTINUAR + OTIMIZAR", action: "Viável. Foco na dim constraint." }
+      "8-10": { verdict: "DOUBLE DOWN", action: "Raro. Capitalize a velocidade." }
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# ERROR HANDLING
+# ═══════════════════════════════════════════════════════════════════════════════
+
+  error_handling:
+    on_phase_failure:
+      - log_error: true
+      - notify_user: true
+      - create_remediation_task: true
+      - halt_workflow: false
+    on_checkpoint_failure:
+      - log_failure_reason: true
+      - return_to_previous_phase: true
+      - max_retries: 2
+    on_veto_triggered:
+      - halt_immediately: true
+      - escalate_to: "hormozi-chief"
+      - document_reason: true
+      - require_human_override: true
+    common_failures:
+      - failure: "Faltam competidores ou dados de churn/margem"
+        phase: 0
+        resolution: "BLOCK — fazer research antes de pontuar"
+      - failure: "Objeto é framework/documento, não acionável"
+        phase: 0
+        resolution: "HALT — não validável por este workflow"
+      - failure: "Score sem evidência (palpite)"
+        phase: "1-5"
+        resolution: "Rejeitar score, exigir evidência citada"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CHECKPOINT CONFIGURATION (formal veto conditions)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+  checkpoint_config:
+    - phase: PHASE-0
+      heuristic: "data-sufficiency"
+      criteria: "Pré-requisitos mínimos presentes (competidores + economics)"
+      veto_condition: "Sem dados de mercado → BLOCK, research primeiro"
+    - phase: PHASE-1
+      heuristic: "sticky-first"
+      criteria: "Sticky pontuado com evidência de retention real"
+      veto_condition: "Sticky < 5 → flag constraint absoluto, veredicto teto = MELHORAR"
+    - phase: PHASE-6
+      heuristic: "constraint-not-average"
+      criteria: "Constraint score = min(5 dim), nunca média"
+      veto_condition: "Uso de média das dimensões → recalcular com min()"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# COMPLETION SIGNALS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+  completion_signal: "<promise>COMPLETE</promise>"
+  checkpoint_signal: "<promise>CHECKPOINT:PHASE-X</promise>"
+  blocked_signal: "<promise>BLOCKED:PHASE-X</promise>"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# OUTPUTS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+  outputs:
+    scores:
+      - "outputs/hormozi/{slug}/validation-frame.yaml"
+      - "outputs/hormozi/{slug}/score-sticky.yaml"
+      - "outputs/hormozi/{slug}/score-expensive.yaml"
+      - "outputs/hormozi/{slug}/score-expansion.yaml"
+      - "outputs/hormozi/{slug}/score-air.yaml"
+      - "outputs/hormozi/{slug}/score-unique.yaml"
+    consolidated:
+      - "outputs/hormozi/{slug}/validation-scorecard.yaml"
+      - "outputs/hormozi/{slug}/action-items.md"
+    final_deliverable:
+      name: "Validation Scorecard"
+      location: "outputs/hormozi/{slug}/validation-scorecard.yaml"
+      contents:
+        - "5 scores (0-10) com evidência por dimensão"
+        - "constraint score = min(5)"
+        - "dimensão constraint nomeada"
+        - "veredicto (TROCAR/MELHORAR/CONTINUAR/DOUBLE DOWN)"
+        - "action items vinculados ao constraint"
+        - "data de re-avaliação"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# AGENTS BY PHASE
+# ═══════════════════════════════════════════════════════════════════════════════
+
+  agents_by_phase:
+    PHASE-0:
+      primary: ["hormozi-chief"]
+      secondary: []
+    PHASE-1:
+      primary: ["hormozi-retention"]
+      secondary: []
+    PHASE-2:
+      primary: ["hormozi-pricing"]
+      secondary: []
+    PHASE-3:
+      primary: ["hormozi-scale"]
+      secondary: []
+    PHASE-4:
+      primary: ["hormozi-scale"]
+      secondary: []
+    PHASE-5:
+      primary: ["hormozi-offers"]
+      secondary: []
+    PHASE-6:
+      primary: ["hormozi-chief"]
+      secondary: []
+    PHASE-7:
+      primary: ["hormozi-chief"]
+      secondary: ["hormozi-retention", "hormozi-pricing", "hormozi-scale", "hormozi-offers"]
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# QUALITY CHECKLIST
+# ═══════════════════════════════════════════════════════════════════════════════
+
+  quality_checklist:
+    PHASE-0:
+      - "[ ] Modo (BUSINESS|OFFER) detectado e confirmado"
+      - "[ ] Objeto descrito em 1 parágrafo"
+      - "[ ] Pré-requisitos mínimos presentes"
+    PHASE-1:
+      - "[ ] Sticky 0-10 com evidência"
+      - "[ ] Sub-checks aplicados"
+      - "[ ] Flag de constraint absoluto se < 5"
+    PHASE-2:
+      - "[ ] Expensive 0-10 ancorado em margem"
+    PHASE-3:
+      - "[ ] Expansion 0-10 por CAGR de categoria"
+    PHASE-4:
+      - "[ ] Air 0-10 com asterisco de moat"
+    PHASE-5:
+      - "[ ] Unique 0-10 por tipo de moat com evidência"
+    PHASE-6:
+      - "[ ] Constraint score = min(5), nunca média"
+      - "[ ] Dimensão constraint nomeada"
+      - "[ ] Veredicto derivado da tabela"
+      - "[ ] Override Sticky aplicado se necessário"
+    PHASE-7:
+      - "[ ] Scorecard salvo"
+      - "[ ] Re-avaliação agendada"
+      - "[ ] Action items vinculados ao constraint"
+      - "[ ] Handoff routado por veredicto"
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# GOVERNANCE GATE
+# ═══════════════════════════════════════════════════════════════════════════════
+
+  governance_gate:
+    protocol: "squads/squad-creator/protocols/ai-first-governance.md"
+    required_checks:
+      - "Existing -> Gap -> Decision mapped"
+      - "Canonical sources validated (SOPs hormozi-5-attributes)"
+      - "Contradictions documented"
+      - "Unresolved items explicit"
+    ci_policy:
+      blocking_deterministic_only: true
+      deterministic_checks:
+        - "syntax/schema"
+        - "broken references"
+        - "required files presence"
+        - "security/secrets"
+      semantic_checks_enforced_in_workflow: true
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# METADATA
+# ═══════════════════════════════════════════════════════════════════════════════
+
+  metadata:
+    version: "1.0.0"
+    framework: "AIOX SINKRA v3.2 / Hormozi 5 Attributes"
+    created: "2026-05-21"
+    author: "squad-chief (create-workflow-from-sop)"
+    source_sops:
+      - "outputs/aiox-sop/hormozi-5-attributes/sop-evaluate-opportunity.md"
+      - "outputs/aiox-sop/hormozi-5-attributes/sop-design-sticky-offer.md"
+      - "outputs/aiox-sop/hormozi-5-attributes/sop-validate-ai-service.md"
+    source_mind: "alex_hormozi"
+    primary_use_case: "Validação universal dual-mode de qualquer negócio ou oferta"
+    key_difference: |
+      Diferente de wf-opportunity-screening (PASS/FAIL binário, só pré-oferta),
+      este workflow é dual-mode (BUSINESS|OFFER), produz scorecard contínuo 0-10
+      por dimensão, usa constraint score (min, não média) e gera veredicto em
+      4 níveis com routing automático para a alavanca constraint.

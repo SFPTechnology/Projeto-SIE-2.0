@@ -1,0 +1,74 @@
+handoff:
+  from_agent: "dev"
+  to_agent: "qa"
+  pipeline_id: "MOD-QT-2-05-NAV-LINK"
+  timestamp: "2026-07-29"
+  story_context:
+    story_id: "MOD-QT-2-05"
+    story_path: "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md"
+    story_status: "InReview"
+    current_task: "dev-develop-story complete — awaiting *qa-gate"
+    branch: "master"
+    submodule: "sistema-de-instala-es-el-tricas-sie-main/"
+  implementation_summary: >
+    Link <Link> do TanStack Router com rotulo "Queda de tensao" inserido no bloco
+    deps-hero-links de src/routes/projetos.$projetoId.tsx, na posicao 4 de 6
+    (apos "Dimensionamento de condutores", antes de "Planejador de circuitos").
+    Escopo XS respeitado: +7 linhas em 1 arquivo de codigo + 1 arquivo de teste novo.
+  acceptance_criteria:
+    - id: "AC1"
+      status: "MET"
+      evidence: "tests/ui/projeto-detalhe-nav-links.test.ts — caso AC1: bloco contem 'Queda de tensao' e a tag de abertura correspondente tem className=\"deps-hero-link\". PASS."
+    - id: "AC2"
+      status: "MET"
+      evidence: "tests/ui/projeto-detalhe-nav-links.test.ts — caso AC2: <Link> que envolve o rotulo tem to=\"/projetos/$projetoId/queda-tensao\" e params={{ projetoId }}. Prova de tipo: npx tsc --noEmit exit 0 (o `to` e type-checked contra a route tree gerada)."
+    - id: "AC3"
+      status: "MET"
+      evidence: "tests/ui/projeto-detalhe-nav-links.test.ts — caso AC3: os 6 rotulos aparecem em posicoes estritamente crescentes na ordem canonica; os 5 destinos pre-existentes (2 `to=` + 3 `href={`) continuam literalmente presentes. Reforco: git diff --stat mostra +7 linhas e 0 remocoes."
+    - id: "AC4"
+      status: "N/A (confirmado)"
+      evidence: "tests/ui/__snapshots__/ contem 5 snapshots (correntes-rastreabilidade, edp-sp-isolacao, queda-tensao, unifilar-canvas, unifilar-workspace); nenhum do hub projetos.$projetoId.tsx. Clausula de contingencia nao acionada — nenhum snapshot criado ou regenerado."
+  gates:
+    - name: "npx tsc --noEmit"
+      result: "PASS"
+      detail: "exit 0"
+    - name: "npx vitest run"
+      result: "PASS"
+      detail: "950/950 testes, 133 arquivos, 0 falhas (baseline 947 + 3 novos). Duracao 197.65s"
+    - name: "npx vite build"
+      result: "PASS"
+      detail: "built in 7.74s, exit 0"
+    - name: "npx eslint (escopado aos 2 arquivos tocados)"
+      result: "PASS com caveat ambiental"
+      detail: >
+        Sem nenhum erro de regra real: `npx eslint --rule '{\"prettier/prettier\":\"off\"}'`
+        sobre os 2 arquivos retorna exit 0. O teste novo passa 100% limpo mesmo com prettier ligado.
+        Com prettier ligado, projetos.$projetoId.tsx reporta 146 erros "Delete CR" — um por linha do
+        arquivo inteiro, incluindo as 139 linhas nao tocadas. Causa: core.autocrlf=true; blob no HEAD
+        tem 0 bytes CR (LF puro), worktree tem 146. Artefato de checkout, normalizado de volta no commit.
+        Caveat ja documentada nos ciclos DUC e MOD-QT-2 anteriores.
+  constraints_respected:
+    - "Nenhuma dependencia nova instalada (package.json intocado) — R1 nao ocorreu"
+    - "Nenhum vitest.config.* criado ou alterado"
+    - "ProjetoPage NAO exportado; bloco de links NAO extraido para componente"
+    - "Os 3 <a href> vizinhos NAO migrados para <Link> — divida pre-existente preservada (R2 nao ocorreu)"
+    - "src/domain/, src/routes/projetos.$projetoId_.queda-tensao.tsx, routeTree.gen.ts e routeTree.spa.ts NAO tocados"
+    - "Nenhum git commit ou push executado"
+  files_modified:
+    - "sistema-de-instala-es-el-tricas-sie-main/src/routes/projetos.$projetoId.tsx"
+    - "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md"
+    - ".aiox/workflow-state/MOD-QT-2-05-state.yaml"
+    - ".aiox/logs/MOD-QT-2-05-yolo.log"
+  files_created:
+    - "sistema-de-instala-es-el-tricas-sie-main/tests/ui/projeto-detalhe-nav-links.test.ts"
+    - ".aiox/handoffs/MOD-QT-2-05-dev-to-qa.yaml"
+  decisions:
+    - "IDS: link -> ADAPT do padrao <Link to/params/className> ja presente no mesmo bloco (2 primeiros links). Zero infraestrutura nova."
+    - "IDS: teste -> CREATE justificado (nao existe teste para o hub); padrao de assercao de fonte ADAPTADO de tests/ui/queda-tensao-fluxo-entrada-fechado.test.tsx."
+    - "[AUTO-DECISION] Nome do arquivo de teste -> tests/ui/projeto-detalhe-nav-links.test.ts (extensao .ts, nao .tsx: o teste nao contem JSX, so leitura de fonte). Story permitia nome equivalente."
+    - "[AUTO-DECISION] CRLF do eslint NAO corrigido (reason: normalizar o arquivo para LF alteraria as 139 linhas fora de escopo e a AC3 exige que os 5 links pre-existentes fiquem intactos; git ja normaliza no commit)."
+  blockers: []
+  observations_for_qa:
+    - "Nao-bloqueante: o novo <Link> e o unico link client-side entre dois vizinhos que ainda fazem full-page-reload via <a href>. Inconsistencia pre-existente (drift do commit 1e18cc9), documentada pelo @po e deliberadamente fora de escopo."
+    - "Nenhum retry acionado: todos os gates passaram na primeira execucao."
+  next_action: "@qa executa *qa-gate sobre docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md; transicionar InReview -> Done (PASS/CONCERNS/WAIVED) ou InReview -> InProgress (FAIL)"

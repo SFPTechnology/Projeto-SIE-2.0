@@ -1,0 +1,799 @@
+[
+  {
+    "chunk_id": 0,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "P R O T E Ç Ã O C O N T R A C H O Q U E S E L É T R I C O S"
+    ],
+    "content": "# Proteção contra choques elétricos\n\n<!-- pagina-origem: 1 -->\n\n### P R O T E Ç Ã O C O N T R A C H O Q U E S E L É T R I C O S\n\nProteção contra choques: conceitos.........................................................40\n\nLigação eqüipotencial: conexão das tubulações......................................44\n\nTN,TT e IT: sobrecorrente ou dispositivo DR?...........................................44\n\nSeccionamento automático(I): para começar, eqüipotencialização..........47\n\nSeccionamento automático(II): uso de dispositivo DR.............................49\n\nSeccionamento automático(III): uso de dispositivo a sobrecorrente.......53\n\nFuncionamento e classificação dos dispositivos DR.................................63\n\nDRs sem e com fonte auxiliar...................................................................65\n\nSensibilidade, divisor na aplicação dos dispositivos DR..........................66\n\nTipos de faltas detectáveis pelos dispositivos DR...................................72\n\nCurvas de atuação e seletividade dos dispositivos DR............................75\n\nDRs: disparos indesejáveis e imunidade a transitórios............................81\n\nEntradas, um exemplo prático da dupla isolação na instalação..............85\n\nSeparação elétrica e sistemas isolados....................................................93\n\nSeparação elétrica: o que conta, na prática.............................................95\n\nLocais de serviço elétrico.........................................................................97\n\n<!-- pagina-origem: 2 -->",
+    "paginas_origem": [
+      1,
+      2
+    ],
+    "tokens_estimados": 390,
+    "contem_tabela": false,
+    "sobrepoe_anterior": false
+  },
+  {
+    "chunk_id": 1,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Proteção contra choques: conceitos"
+    ],
+    "content": "## Proteção contra choques: conceitos\n\nA compreensão dos aspectos conceituais da proteção contra choques elétricos é ponto-chave para o entendimento das regras pertinentes da NBR 5410. Assim, a regra fundamental da proteção contra choques — indistintamente, para produtos e instalações — é que – partes vivas perigosas não devem ser acessíveis; e – partes condutivas acessíveis (massas) não devem oferecer perigo, seja em condições normais, seja, em particular, em caso de alguma falha que as tornem acidentalmente vivas. Observe-se que na expressão parte condutiva acessível o termo “condutiva” significa “de material condutor”; partes normalmente destinadas a conduzir corrente são designadas “partes vivas”. Note-se, também, que a questão da acessibilidade tem um tratamento diferenciado, nas normas, dependendo do usuário do produto ou instalação, se é uma pessoa comum ou uma pessoa tecnicamente esclarecida. Da regra fundamental exposta conclui-se, portanto, que a proteção contra choques elétricos deve ser garantida através de duas disposições protetoras, ou duas “linhas de defesa”, quais sejam: – uma proteção básica, que assegura a proteção contra choques elétricos em condições normais, mas que é suscetível de falhar, devendo essa possibilidade de falha ser levada em conta; e – uma proteção supletiva, que assegure a proteção contra choques elétricos em caso de falha da proteção básica. Essa proteção supletiva pode ser implementada: no equipamento ou componente; na instalação; ou parte no equipamento, parte na instalação. - Deduz-se também, do exposto, que a instalação de um equipamento elétrico deve ser compatível com a proteção contra choques de que ele é dotado. Ora, do ponto de vista da proteção contra choques elétricos, a normalização prevê quatro classes de equipamentos: classes 0 (zero), I, II e III. Surgem, assim, diferentes possibilidades de combinação proteção básica + proteção supletiva. As mais comuns são aquelas descritas na tabela I. Deve-se notar que, na verdade, os conceitos de classe 0, classe I, classe II e classe III não são aplicáveis única e exclusivamente a equipamentos elétricos, no sentido estrito do termo (isto é, a equipamentos de utilização, como aparelhos eletrodomésticos, por exemplo), mas também a componentes e a disposições ou soluções construtivas na instalação. Um bom exemplo é o da classe II: podemos tanto ter equipamentos prontos de fábrica classe II, como são as ferramentas elétricas com dupla isolação, quanto arranjos construtivos conceitualmente classe II, como seria o caso de uma linha elétrica constituída de condutores isolados em eletroduto isolante. Aqui, temos um produto pronto de fábrica “apenas” com isolação básica, o condutor isolado, que, associado a um outro componente da instalação, o eletroduto isolante, resulta numa solução equivalente à classe II.",
+    "paginas_origem": [],
+    "tokens_estimados": 711,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 2,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Proteção contra choques: conceitos"
+    ],
+    "content": "Outro exemplo é o da classe III, que é sinônimo de extrabaixa tensão de segurança, ou vice-versa: na maioria dos casos, é difícil até mesmo avaliar, num sistema SELV (sigla em inglês adotada pela norma para identificar a extrabaixa tensão de segurança), o que é do domínio dos materiais/equipamentos e o que é do domínio da instalação. Como previsto, tendo em mente a combinação proteção básica + proteção supletiva, que traduz o espírito da proteção contra choques consagrado pela normalização internacional, fica mais fácil compreender as regras pertinentes da NBR 5410. Mas convém ainda trocar em miúdos alguns conceitos e definições relativos à matéria, a maioria dos quais figura, explícita ou implicitamente, na tabela I. Isolação básica – Isolação aplicada às partes vivas, destinada a assegu-\n\n<!-- tabela-p2-1 -->\n| Tab. I - Combinações mais comuns visando proteção contra choques\nelétricos (equipamento + instalação, ou só equipamento) |  |  |  |\n| --- | --- | --- | --- |\n| Classes de\nequipamentos/\ncomponentes | Proteção básica | Proteção supletiva |  |\n| Classe 0 | Isolação básica | Ambiente (locais não-condutores) |  |\n|  |  | Separação elétrica (um único equipamento alimentado) |  |\n| Classe I | Isolação básica | Eqüipotencialização de\nproteção | Seccionamento automático\nda alimentação |\n| Classe II | Isolação básica | Isolação suplementar |  |\n|  | Isolação reforçada o | u disposições construtivas equivalentes |  |\n| Classe III | Limitação da\ntensão | Separação de proteção de outros circuitos e separação\nbásica da terra |  |\n\n<!-- pagina-origem: 3 -->",
+    "paginas_origem": [
+      3
+    ],
+    "tokens_estimados": 395,
+    "contem_tabela": true,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 3,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Proteção contra choques: conceitos"
+    ],
+    "content": "rar proteção básica contra choques elétricos. Ela não inclui, necessariamente, a isolação utilizada exclusivamente para fins funcionais. Isolação suplementar – Isolação independente e adicional à isolação básica, destinada a assegurar proteção contra choques elétricos em caso de falha da isolação básica (ou seja, assegurar proteção supletiva). Dupla isolação – Isolação compreendendo, ao mesmo tempo, uma isolação básica e uma isolação suplementar. Isolação reforçada – Isolação única, aplicada às partes vivas, que assegura um grau de proteção contra choques elétricos equivalente ao da dupla isolação. A expressão “isolação única” não implica que a isolação deva constituir uma peça homogênea. Ela pode comportar diversas camadas impossíveis de serem ensaiadas isoladamente, como isolação básica ou como isolação suplementar. Eqüipotencialização de proteção – Num equipamento, significa que as partes que compõem a massa do equipamento (já que raramente a massa é uma peça única) devem constituir um conjunto eqüipotencial, provido, ademais, de meios para conexão a um condutor de proteção externo. Note-se que, por definição, compõem a massa do equipamento todas as partes condutivas (de material condutor!) que podem ser tocadas e que não são normalmente vivas, mas que podem se tornar vivas em caso de falta. Deve também ser integrada a esse conjunto eqüipotencial qualquer blindagem de proteção (ver adiante), se existente. É uma exigência que figura nas normas de equipamentos –— aplicável, naturalmente, às versões classe I dos equipamentos. Ligação eqüipotencial – É a eqüipotencialização de proteção aplicada à instalação elétrica (ou parte desta) e a seu ambiente. Seu objetivo é evitar diferenças de potencial perigosas – entre massas e entre massas e os chamados elementos condutivos estranhos à instalação. Separação de proteção – Separação entre circuitos por uma proteção básica e uma proteção supletiva, ou solução equivalente. Isso significa que o circuito protegido deve ser separado de outros circuitos por qualquer um dos seguintes meios: isolação básica mais isolação suplementar, ou seja, dupla isolação; isolação reforçada; blindagem de proteção; combinação das possibilidades anteriores. - Blindagem de proteção – Blindagem condutiva interposta entre as partes vivas perigosas de uma instalação, sistema ou equipamento e a parte (da instalação, sistema ou equipamento) objeto da proteção. A blindagem deve integrar a eqüipotencialização do equipamento ou instalação e, portanto, deve dispor de, ou estar ligada a, meios de conexão ao condutor de proteção.",
+    "paginas_origem": [],
+    "tokens_estimados": 646,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 4,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Proteção contra choques: conceitos"
+    ],
+    "content": "Enfim, quando uma separação de proteção é realizada por meio de blindagem de proteção, os condutores dos circuitos a serem separados devem sê-lo, por exemplo, por uma blindagem metálica – separada de cada circuito adjacente por uma isolação básica dimensionada de acordo com a tensão do circuito correspondente, – conectada, direta ou indiretamente, a terminal para ligação do condutor de proteção externo, e – capaz de suportar as solicitações térmicas e dinâmicas que podem ocorrer em caso de falha de isolamento. Separação básica – É a separação entre circuitos provida pela isolação básica. Por fim, a título de ilustração, analisemos algumas das medidas de proteção contra choques elétricos previstas na NBR 5410, sob o ângulo dos aspectos conceituais aqui expostos (ver tabela I). 1) A proteção por seccionamento automático da alimentação (5.1.3.1 da NBR 5410), que pressupõe equipamentos/componentes classe I, é uma medida em que – a proteção básica é provida pela isolação básica entre partes vivas e partes condutivas acessíveis e – a proteção supletiva (ou proteção em caso de falta) é garantida pela eqüipotencialização de proteção, tanto no plano do equipamento (classe I) quanto no plano da instalação, associada ao seccionamento automático da alimentação. 2) A medida intitulada proteção em locais não-condutores (5.1.3.3 da NBR 5410), na qual se admite o uso de equipamentos/componentes classe 0, comporta – uma proteção básica provida por isolação básica entre partes vivas e partes condutivas acessíveis (a única proteção de que dispõe o equipamento ou componente classe 0) e – uma proteção supletiva representada pela exigência de que o piso e as paredes do local onde serão instalados os equipamentos/componentes classe 0 sejam isolantes. 3) A proteção por SELV (“extrabaixa tensão de segurança”, 5.1.1.1 da NBR 5410), sinônimo de proteção classe III, implica – uma proteção básica provida pela limitação da tensão do circuito SELV e – uma proteção supletiva provida por separação de proteção entre o circuito SELV e outros circuitos e por separação básica entre o circuito SELV e a terra.\n\n<!-- pagina-origem: 4 -->",
+    "paginas_origem": [
+      4
+    ],
+    "tokens_estimados": 534,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 5,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Ligação eqüipotencial: conexão das tubulações"
+    ],
+    "content": "## Ligação eqüipotencial: conexão das tubulações\n\nA o tratar da chamada ligação eqüipotencial principal, a NBR 5410 especifica que tubulações como as de água, gás e esgoto, quando metálicas, sejam nela incluídas. A conexão dessas tubulações à ligação eqüipotencial principal deve ser efetuada o mais próximo possível do ponto em que penetram na edificação. A interligação destes e outros elementos metálicos provenientes do exterior, entre si e a elementos condutivos da própria edificação, visa evitar, através da eqüipotencialização, que faltas de origem externa dêem margem ao aparecimento de diferenças de potencial perigosas entre elementos condutivos do interior da edificação. É uma exigência clara e categórica da NBR 5410. Uma dúvida freqüente dos profissionais de instalações refere-se aos procedimentos para executar a conexão que integrará as canalizações metálicas, em particular a de gás, à ligação eqüipotencial principal. De fato, a canalização de gás merece maiores cuidados e, nesse particular, convém respeitar as seguintes recomendações, adotadas em vários países europeus: a mudança de materiais, nas conexões, não deve ser efetuada sobre a parede da canalização, a fim de evitar as corrosões provocadas por pares galvânicos; tratando-se de canalizações de aço ou cobre, as conexões devem ser constituídas por cintas ou presilhas da mesma natureza da canalização e montadas sobre esta por soldagem (aço) ou brasagem (cobre); no caso de canalização de alumínio, a solução mais freqüente consiste em utilizar uma braçadeira de mesma liga, fixada sobre a canalização por meio de parafusos passantes e porcas em aço inoxidável. Por outro lado, é recomendável dotar a própria canalização de gás de uma luva isolante, próximo ao seu afloramento na edificação (ver figura). Essa luva protegerá a rede de distribuição pública de gás, isolando-a eletricamente da instalação interior da edificação. Conseqüentemente, a eqüipotencialização deve ser realizada após essa luva isolante, ou seja, do lado das instalações internas da edificação. Além disso, o trecho de canalização entre o ponto de penetração e a luva isolante deve ser isolado de qualquer elemento metálico da edificação; quando a extensão desse trecho exigir que a canalização seja fixada em um ou mais pontos à edificação, deve-se interpor um elemento isolante entre a canalização e cada uma das fixações. Convém lembrar que a NBR 5410 proíbe utilizar as canalizações de gás, de água e de outros serviços como eletrodo de aterramento (item 6.4.2.2.4).\n\nEsquema da ligação eqüipotencial principal\n\nOutro dado importante a ser mencionado é que a NBR 5410 inclui, expressamente, entre os elementos que devem figurar na ligação eqüipotencial principal, o eletrodo de aterramento do sistema de proteção contra descargas atmosféricas (“pára-raios” predial) da edificação e o da antena externa de televisão — diretamente ou via eletrodo de aterramento comum, quando de fato o sistema de pára-raios e a antena utilizarem um eletrodo de aterramento comum ao do sistema elétrico.",
+    "paginas_origem": [],
+    "tokens_estimados": 761,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 6,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "TN, TT E IT: sobrecorrente ou dispositivo DR?"
+    ],
+    "content": "## TN, TT E IT: sobrecorrente ou dispositivo DR?\n\nA o apresentar os princípios da proteção contra choques elétricos (contatos indiretos) por seccionamento automático da alimentação, o artigo 5.1.3.1 da NBR 5410 diz que massas devem ser ligadas a\n\n<!-- pagina-origem: 5 -->\n\ncondutores de proteção, compondo uma “rede de aterramento”, e que “um dispositivo de proteção deve seccionar automaticamente a alimentação do circuito por ele protegido sempre que uma falta entre parte viva e massa der origem a uma tensão de contato perigosa”. O tempo máximo admissível para a consumação desse seccionamento, que antes da última edição da norma (1997) era dado em função da tensão de contato presumida, hoje é dado diretamente em função da tensão fase–terra Uo da instalação, nas tabelas 20 e 21 da norma. A primeira, aqui reproduzida como tabela I, é válida para esquemas TN e a segunda para esquemas IT. A edição 1997 também tornou mais claro o tipo de dispositivo que deve ser usado na proteção por seccionamento automático da alimentação — dispositivo a sobrecorrente ou dispositivo a corrente diferencial-residual? Essa questão remete, necessariamente, ao exame do esquema de aterramento. Dependendo do esquema de aterramento, apenas um dos dispositivos, ou ambos, podem ser utilizados. No esquema TN-C, o dispositivo capaz de garantir a proteção por seccionamento automático é necessariamente um dispositivo a sobrecorrente, dada a incompatibilidade entre o PEN (condutor reunindo as funções de neutro e de proteção), que constitui o traço característico do esquema TN-C, e o princípio de funcionamento dos dispositivos a corrente diferencial-residual. No esquema TN-S, é possível utilizar tanto o dispositivo a sobrecorrente quanto o dispositivo a corrente diferencial-residual. Já no esquema TT, de acordo com a edição 1997, só é possível utilizar, na proteção por seccionamento automático, dispositivos a corrente diferencial-residual. Quanto ao esquema IT (item 5.1.3.1.6), convém lembrar, inicialmente, que a definição do tipo de dispositivo é a mesma aplicável ao esquema TN ou TT, dependendo da forma como as massas estão aterradas. Quando as massas são aterradas individualmente, ou por grupos, aplicam-se as regras prescritas para o esquema TT — portanto, dispositivos DR. Quando todas as massas são interligadas (massas coletivamente aterradas), valem as regras do esquema TN — portanto, dispositivo a sobrecorrente ou dispositivo DR. Agora, independentemente do esquema de aterramento, TN, TT ou IT, o uso de proteção DR, mais particularmente de alta sensibilidade (isto é, com corrente diferencial-residual nominal I∆Ν igual ou inferior a 30 mA), tornou-se expressamente obrigatória, com a edição de 1997, nos seguintes casos (artigo 5.1.2.5): a) circuitos que sirvam a pontos situados em locais contendo banheira ou chuveiro; b) circuitos que alimentem tomadas de corrente situadas em áreas externas à edificação; c) circuitos de tomadas de corrente situadas em áreas internas que possam vir a alimentar equipamentos no exterior; e d) circuitos de tomadas de corrente de cozinhas, copas-\n\n![Figura vetorial da página 5](figura-vetorial-p5-1)",
+    "paginas_origem": [
+      5
+    ],
+    "tokens_estimados": 788,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 7,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "TN, TT E IT: sobrecorrente ou dispositivo DR?"
+    ],
+    "content": "> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig.1 – Os casos (e exceções) em que a norma exige proteção diferencial-residual de alta sensibilidade (I∆N ≤30 mA).\n\n<!-- pagina-origem: 6 -->\n\n<!-- tabela-p6-1 -->\n| Tab. I – Tempos de seccionamento máximos no\nesquema TN (tabela 20 da NBR 5410) |  |  |\n| --- | --- | --- |\n| Tensão\nnominal\nfase-terra\n(V) | Tempos de\nseccionamento (s) |  |\n|  | Situação 1 | Situação 2 |\n| 115,120,127\n220\n277\n100\n>400 | 0,8\n0,4\n0,4\n0,2\n0,1 | 0,35\n0,20\n0,20\n0,05\n0,02 |\n| Tabela 20 da NBR 5410. Os tempos de seccionamento máximos admissíveis são dados agora diretamente em função da\ntensão fase–terra: na tabela 20, os valores a serem observados nos esquemas TN e, na tabela 21, os valores aplicáveis a\nesquemas IT |  |  |\n\ncozinhas, lavanderias, áreas de serviço, garagens e, no geral, de todo local interno molhado em uso normal ou sujeito a lavagens. O documento admite que sejam excluídos, na alínea a), os circuitos que alimentem aparelhos de iluminação posicionados a uma altura igual ou superior a 2,50 m; e, na alínea d), as tomadas de corrente claramente destinadas a alimentar refrigeradores e congeladores e que não fiquem diretamente acessíveis. O texto conclui o artigo 5.1.2.5 com a observação de que “a proteção dos circuitos pode ser realizada individualmente ou por grupos de circuitos.” A figura 1 ilustra a exigência, esclarecendo também as exceções previstas.\n\n## Seccionamento automático (I): para começar, eqüipotencialização",
+    "paginas_origem": [
+      6
+    ],
+    "tokens_estimados": 387,
+    "contem_tabela": true,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 8,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Seccionamento automático (I): para começar, eqüipotencialização"
+    ],
+    "content": "No artigo anterior, ficou clara a relação entre o tipo de dispositivo a ser usado na proteção contra choques elétricos (contatos indiretos) por seccionamento automático da alimentação e o esquema de aterramento. No esquema TT, só pode ser usado dispositivo DR. No esquema TN-C, só dispositivo a sobrecorrente. No esquema TN-S, qualquer um dos dois (sobrecorrente ou DR). E, finalmente, no esquema IT, a definição do tipo de dispositivo depende da forma como as massas estão aterradas: dispositivo DR quando as massas são aterradas individualmente ou por grupos; dispositivo a sobrecorrente ou DR, quando todas as massas são interligadas (massas coletivamente aterradas). Analisou-se, portanto, a seleção do dispositivo a ser usado na proteção por seccionamento automático — que é função do esquema de aterramento. Mas, e a aplicação desse dispositivo? Enfim, como se aplicam, na prática, as regras do seccionamento automático? Como se incorpora essa exigência da norma ao projeto de uma instalação elétrica? O lado prático da aplicação da regra gira, mais uma vez, em torno do dispositivo a ser usado nessa função. Isso, evidentemente, pressupondo que uma exigência indissociável do seccionamento automático esteja previamente cumprida. Qual? A da eqüipotencialização de proteção, isto é, da realização de ligações eqüipotenciais — uma, geralmente referida como ligação eqüipotencial principal, ou tantas quantas forem necessárias, sendo as ligações eqüipotenciais adicionais geralmente referidas como ligações eqüipotenciais locais. A primeira (principal) é aquela associada ao chamado terminal de aterramento principal (TAP), ao qual se ligam as tubulações metálicas de serviços e utilidades, o mais próximo possível do ponto em que ingressam na edificação, e as estruturas metálicas e outros elementos condutivos que integram a edificação. A essa eqüipotencialização se juntam, naturalmente, os itens que compõem a própria definição do TAP: o(s) condutor(es) de proteção principal(ais) — princi- • pal no sentido de que são ligados ao TAP, previsivelmente, o condutor ou condutores de proteção que constituem o tronco da arborescência formada pela rede de condutores de proteção; o condutor que conecta ao TAP o condutor da alimenta- • ção a ser aterrado (em geral o neutro), quando isso for previsto, o que depende do esquema de aterramento adotado; o(s) condutor(es) de aterramento proveniente(s) do(s) • eletrodo(s) de aterramento existente(s) na edificação. Já as ligações eqüipotenciais locais são aquelas destinadas a constituir um ponto de referência tal que, na ocorrência de uma falta, seu potencial possa ser considerado como praticamente equivalente ao da ligação eqüipotencial principal (ver figura 1). O exemplo típico é o da eqüipotencialização realizada em andares da edificação, tendo como centroestrela o quadro de distribuição do andar respectivo. Como na ligação eqüipotencial principal, a eqüipotencialização local reúne os condutores de proteção dos circuitos, as tubulações metálicas e os elementos condutivos da edificação. Uma exigência implicitamente associada à eqüipotencialização de proteção é, claro, que todas as massas da ins-\n\n<!-- pagina-origem: 7 -->",
+    "paginas_origem": [
+      7
+    ],
+    "tokens_estimados": 797,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 9,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Seccionamento automático (II): uso de dispositivo DR"
+    ],
+    "content": "![Figura vetorial da página 7](figura-vetorial-p7-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Ligações eqüipotenciais principal (LEP) e local (LEL)\n\ntalação estejam ligadas a esse sistema via condutores de proteção — só se admitindo a exclusão de equipamentos ou de partes da instalação que forem objeto de outra medida de proteção contra choques (contatos indiretos). Enfim, o condutor de proteção é e deve ser um elemento onipresente na instalação. Em todos os seus circuitos. Assim, cumpridos todos os requisitos da eqüipotencialização de proteção, vejamos então como se incorpora a exigência do seccionamento automático, especificamente, ao projeto de uma instalação elétrica. E já que isso, como mencionado, gira em torno do dispositivo de proteção a ser utilizado, examinemos, primeiro, o uso de dispositivo DR e, em seguida, o de dispositivo a sobrecorrente. É do que tratam os dois artigos a seguir.\n\n## Seccionamento automático (II): uso de dispositivo DR\n\nPode-se dizer que não há razões para preocupação, quanto ao atendimento da regra do seccionamento automático, quando se usam dispositivos DR — a não ser que a proteção diferencial-residual usada seja de baixíssima sensibilidade. É como se, ao usar DR, a observância do seccionamento automático pudesse passar ao largo do projeto. A análise das regras do seccionamento associado ao uso de DR, feita a seguir, demonstra isso.",
+    "paginas_origem": [],
+    "tokens_estimados": 369,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 10,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Seccionamento automático (II): uso de dispositivo DR",
+      "Esquema TT"
+    ],
+    "content": "### Esquema TT\n\nComecemos pelo uso do DR numa instalação TT (onde só é mesmo possível usar tal dispositivo) e, por tabela, no esquema IT em que as massas são aterradas individualmente ou por grupos (seccionamento na ocorrência de segunda falta). Ora, a NBR 5410 diz que a seguinte condição deve ser atendida:\n\nRA. I∆n ≤UL\n\nA figura 1 traz uma instalação TT esquemática, para ilustrar a condição imposta. Lembremos que: RA é a resistência do eletrodo de aterramento das massas (ou, para sermos mais precisos, e sempre em favor da segurança, assumamos RA como sendo a soma das resistências do condutor de proteção PE e do eletrodo de aterramento das massas); I∆N é a corrente diferencial-residual nominal de atuação do dispositivo (a chamada “sensibilidade”); e UL é a tensão de contato limite, isto é, o valor a partir do qual uma tensão de contato passa a ser considerada perigosa. Na situação 1 definida pela norma, que corresponde a condições de influências externas consideradas normais (situação úmida), UL vale 50 V. E na situação 2, “condições molhadas”, UL vale a metade, 25 V. Assim, se for usado um DR com sensibilidade de 30 mA na nossa instalação-exemplo, a regra da norma(1) impõe que RA deverá ser de, no máximo, 1667 Ωna situação 1 (50/0,03); ou de •\n\n<!-- pagina-origem: 8 -->\n\n![Figura vetorial da página 8](figura-vetorial-p8-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Seccionamento automático no esquema TT, com DR (necessariamente). Para não oferecer perigo, a tensão de contato Uc não deve ultrapassar a tensão de contato limite UL. Caso ultrapasse, o DR deve atuar. E para que o DR atue, a corrente de falta para a terra Ia deve atingir, no mínimo, o valor da corrente diferencial-residual de atuação I∆n. Assim, para garantir a circulação para a terra de I∆n, no mínimo, a norma determina que a soma das resistências do PE e de RA não pode exceder UL/I∆n LEP = ligação eqüipotencial principal; EC = elemento condutivo (da edificação)\n\n833 Ωna situação 2 (25/0,03). • Fiquemos, para maior segurança, com os 833 Ω, já que nossa instalação poderá ter massas na situação 1 e outras na situação 2. De qualquer forma, uma resistência de aterramento muito fácil de obter, não? Um DR de menor sensibilidade evidentemente irá estreitar o valor máximo admissível da resistência de aterramento das massas. Mas nada que assuste. Veja-se o exemplo de um DR de 300 mA: RA ≤167 Ω(50/0,3) na situação 1; e • RA ≤ 83 Ω(25/0,3) na situação 2. •",
+    "paginas_origem": [
+      8
+    ],
+    "tokens_estimados": 634,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 11,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Seccionamento automático (II): uso de dispositivo DR",
+      "Esquema TN-S"
+    ],
+    "content": "### Esquema TN-S\n\nApelando para a gíria, o uso de dispositivo DR no esquema TN-S — e em esquemas IT onde todas as massas são interligadas, já que o raciocínio é o mesmo — chega a ser “covardia”. Veja-se a figura 3. Para que haja o seccionamento automático da instalação TN-S aí ilustrada, é preciso, simplesmente, que a corrente de falta Ia atinja o limiar de atuação (sensibilidade) do dispositivo DR que a protege. Ora, como manda a regra da NBR 5410 referente ao seccionamento automático em esquemas TN e como a própria figura deixa patente, a impedância do percurso da corrente de falta deve então ser baixa “o suficiente” para que possa circular a corrente que levará o dispositivo a atuar [Na prática, não há a mínima dúvida sobre isso, evidentemente, mas o que importa aqui é o raciocínio]. Partindo da expressão usada na norma, Zs. Ia ≤Uo\n\nvem\n\nZs ≤Uo / Ia\n\nonde Zs é a impedância do percurso da corrente de falta; Ia é a corrente que deve assegurar a atuação do dispositivo de proteção; e Uo é a tensão nominal entre fase e terra. Como o dispositivo usado é um DR, resulta suficiente, para a atuação do dispositivo, que Ia seja igual a I∆n. Logo,\n\nZs ≤Uo / I∆n\n\nClaramente a condição será facilmente atendida mesmo com dispositivos DR de baixa sensibilidade. Até porque, como é inerente ao esquema TN, o percurso da corrente de falta é um caminho totalmente metálico, o que antecipa uma Zs muito baixa. De qualquer forma, vejamos dois exemplos numéricos “extremos”. O primeiro, supondo “mínima” I∆n (sensibilidade “máxima”) e “máxima” tensão fase–neutro. E o segundo, o contrário. Sejam, no primeiro caso,\n\nI∆n = 30 mA e Uo = 220 V;\n\ne, no segundo,\n\nI∆n = 500 mA e Uo = 127 V.\n\nTemos, no primeiro caso,\n\n![Figura vetorial da página 8](figura-vetorial-p8-2)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 2 – A condição a ser preenchida no seccionamento automático em esquema TT deriva da assunção da tensão de contato como igual à tensão de falta\n\n<!-- pagina-origem: 9 -->\n\nZs ≤220 / 0,03 Zs ≤7333 Ω\n\ne, no segundo,\n\nZs ≤127 / 0,5 Zs ≤254 Ω\n\n![Figura vetorial da página 9](figura-vetorial-p9-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 3 – Uso de dispositivo DR em esquema TN-S LEP = ligação eqüipotencial principal; EC = elemento condutivo (da edificação); Uc = tensão de contato\n\nO valor real de Zs, evidentemente, estará “infinitamente” abaixo dos apurados nas conjecturas. Tanto que reside aí o porquê de não ser pertinente, no seccionamento com DR em esquema TN, uma eventual discussão sobre se a condição preenchida é ou não suficiente em determinada situação (referimo-nos às situações 1 e 2 definidas pela norma e intervenientes no equacionamento do seccionamento automático. Frise-se, porém, que essa indiferença do seccionamento automático em esquemas TN às duas situações de influências externas consideradas na norma só é totalmente válida quando o dispositivo usado for o DR. Se o dispositivo for a sobrecorrente, como se verá adiante, podese ignorá-las em alguns casos, mas não em outros.",
+    "paginas_origem": [
+      9
+    ],
+    "tokens_estimados": 792,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 12,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Seccionamento automático (III): uso de dispositivo a sobrecorrente"
+    ],
+    "content": "Notas (1) Para os curiosos acerca da origem da expressão RA. I∆n ≤UL, aqui vai a explicação. Raciocinando em favor da segurança, supõe-se que a pessoa seja submetida a uma tensão de contato igual à tensão de falta (ver figura 2), isto é,\n\nUc = Uf = Ia. RA,\n\nsendo Ia a corrente de falta, ou corrente que circula para a terra. Ora, Uc não deve exceder UL, isto é, Uc ≤UL, vale dizer Ia. RA ≤UL Por outro lado, como temos um dispositivo DR protegendo o circuito e o dispositivo funciona como um “monitor de corrente de fuga à terra”, que atua tão logo a corrente para a terra atinja seu limiar de disparo (sensibilidade), o valor máximo teórico que Ia pode assumir, numa situação pré-desligamento, é mesmo I∆n (ou uma pequena fração aquém desse limiar, já que, por norma, o dispositivo deve seguramente disparar com I∆n). Logo, I∆n. RA ≤UL\n\n## Seccionamento automático (III): uso de dispositivo a sobrecorrente\n\nNo estudo do seccionamento automático usando dispositivo a sobrecorrente, é suficiente analisar a aplicação do dispositivo ao esquema TN. De um lado, porque a NBR 5410 não admite mesmo que lhe seja atribuída essa função no esquema TT. E, de outro, porque a análise aplicável ao caso de segunda falta no esquema IT, quando se tem um IT com todas as massas interligadas, é exatamente a mesma feita para o TN. O equacionamento da proteção por seccionamento automático quando se usa dispositivo a sobrecorrente, se não é algo que praticamente dispensa verificações, como se dá com o emprego de DRs, também está longe de ser uma tarefa complicada. Pelo menos, não a verificação, em si (o que não quer dizer que o cumprimento das regras pertinentes seja simples). De fato, checar se as exigências da norma referentes ao seccionamento via dispositivo a sobrecorrente estão sendo atendidas, ou não, é um passo facilmente integrável à rotina de cálculos ou procedimentos que o profissional segue no projeto dos circuitos de uma instalação. Até porque é uma etapa que tira proveito de etapas anteriores, dentro da evolução natural do projeto. Nem poderia ser diferente. Afinal, o cumprimento da função de seccionamento automático está sendo atribuída a um dispositivo que, presumivelmente, cumpre antes, ou cumulativamente, a função que dele se espera pela própria característica de funcionamento: a proteção contra sobrecorrentes. É esse, com efeito, o proveito que se tira de um procedimento anterior e incontornável da rotina de projeto:\n\n<!-- pagina-origem: 10 -->",
+    "paginas_origem": [
+      10
+    ],
+    "tokens_estimados": 617,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 13,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Seccionamento automático (III): uso de dispositivo a sobrecorrente"
+    ],
+    "content": "tendo já sido equacionada ou dimensionada a proteção contra sobrecorrentes, resta assim, na verificação do seccionamento, apenas a cômoda tarefa de conferir se o disjuntor ou fusível definido na proteção contra sobrecorrentes pode cumprir também a função de seccionamento automático exigida pela proteção contra choques (contatos indiretos). E qual é mesmo essa rotina de projeto? Mais exatamente, quais são os passos trilhados na determinação das seções dos condutores e seleção dos dispositivos de proteção? Uma seqüência típica seria: 1.Determinação da corrente de projeto do circuito; 2.Determinação das seções dos condutores de fase (critério da capacidade de condução de corrente), neutro e de proteção; 3.Verificação das quedas de tensão; 4.Seleção do dispositivo de proteção contra sobrecargas; 5.Verificação da proteção contra curtos-circuitos; e ei-la, 6.Verificação da proteção contra choques elétricos (contatos indiretos) por seccionamento automático da alimentação. Portanto, a verificação de que estamos tratando seria a última etapa dessa seqüência. Identificada a seqüência, ou a posição do passo dentro da seqüência, como realizar esse passo, isto é, como o projetista deve proceder, na prática, para verificar se o circuito conta ou não com proteção contra choques elétricos? Como conferir se o dispositivo de proteção contra sobrecorrentes definido assegura também a proteção contra contatos indiretos? Na prática, tudo o que o projetista tem a fazer é verificar se o comprimento do circuito em questão ultrapassa ou não um certo limite. Esses limites podem ser obtidos de tabelas geralmente disponíveis em literatura de fabricante. Basta entrar na tabela com a – corrente nominal do dispositivo de proteção contra sobrecorrentes selecionado e com a – seção dos condutores de fase do circuito sendo analisado, e a tabela fornece o comprimento máximo admissível do circuito, isto é, o comprimento até o qual o seccionamento automático fica garantido. A tabela I ilustra uma dessas tabelas. Assim, por exemplo, um circuito com condutores de fase de 16 mm2(cobre) e protegido contra sobrecorrentes por um disjuntor modular tipo B com do circuito corrente nominal de 50 A terá também proteção contra contatos indiretos, provida pelo disjuntor, se seu comprimento não for superior aos 250 m indicados na tabela [Este detalhe será retomado adiante, mas não custa adiantar: minidisjuntores tipo B são disjuntores, conforme a NBR IEC 60898, com faixa de disparo magnético de 3 a 5 x In, sendo In a corrente nominal do disjuntor]. Neste ponto, é natural que se pergunte: a tabela do exemplo e outras tabelas análogas são válidas dentro de que limites ou para quais condições? Ou, indo ao cerne da questão, buscando uma resposta que preencha todas as outras: de onde saiu a tabela? Por trás de toda tabela do gênero há, claro, um método simplificado. Os valores da tabela I foram calculados a partir da expressão",
+    "paginas_origem": [],
+    "tokens_estimados": 731,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 14,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Seccionamento automático (III): uso de dispositivo a sobrecorrente"
+    ],
+    "content": "8,0 U S φ o = L max ρ + 1(m) I a onde Uo é a tensão fase–neutro, em volts; Sφ é a seção nominal dos condutores de fase, em mm2; ρ é a resistividade do material condutor, em Ω.mm2/m, à temperatura de regime; m é a relação entre as seções do condutor de fase e do condutor de proteção, isto é, S φ = m S PE Ia é a corrente, em ampères, que assegura a atuação do dispositivo de proteção (dispositivo a sobrecorrente) dentro do tempo de seccionamento máximo admissível fixado pela NBR 5410. Isso não explica tudo, ainda, sobre os números da tabela, mas fiquemos, por enquanto, nas explanações sobre a expressão e o método.\n\nExemplo de tabela, encontrável em literatura de fabricantes, que fornece o comprimento máximo de circuito até o qual o seccionamento fica garantido. Basta entrar com a seção do condutor de fase e a corrente nominal do dispositivo de proteção contra sobrecorrentes\n\n<!-- pagina-origem: 11 -->",
+    "paginas_origem": [
+      11
+    ],
+    "tokens_estimados": 228,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 15,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Seccionamento automático (III): uso de dispositivo a sobrecorrente"
+    ],
+    "content": "Os tempos de seccionamento máximos admissíveis no esquema TN são dados na tabela 20 da NBR 5410 O método assume, como hipóteses, que a tensão na origem do circuito se mantém em 80% • da tensão nominal (portanto, a parte a montante corresponderia a 20% da impedância total do percurso da corrente de falta). Daí a parcela 0,8 Uo constante da expressão; e que o condutor de proteção está disposto na proximida- • de imediata dos condutores vivos, sem interposição de elementos ferromagnéticos. É o caso, por exemplo, quando o condutor de proteção é uma das veias do mesmo cabo multipolar ou então é um condutor separado, mas correndo no mesmo conduto (eletroduto, eletrocalha, leito para cabos, etc.). Essa condição também permite assumir que a reatância é pequena face à resistência do cabo, podendo então ser desprezada para cabos de até 120 mm2. O termo Ia da expressão carece uma explicação mais detalhada. Como indicado, é a corrente que irá garantir a atuação do dispositivo dentro do tempo máximo admissível para a consumação do seccionamento — tempo este, no caso do esquema TN, fixado pela tabela 20 da NBR 5410, aqui reproduzida como tabela II. Supondo (ver tabela II) que a tensão nominal fase–neutro do circuito que estamos analisando quanto ao seccionamento automático seja de 220 V, o tempo máximo de seccionamento — na situação 1, por exemplo — seria de 0,4 s. Para determinar a Ia correspondente, basta então entrar com esse tempo de seccionamento máximo admissível (vamos chamá-lo ts) na curva tempo–corrente do dispositivo de proteção a sobrecorrente. No caso de um dispositivo fusível, como mostra a figura 1, a corrente Ia é obtida do cruzamento de ts com a curva tempo máximo de interrupção–corrente do fusível. Afinal, raciocinando sempre em favor da segurança, é preciso ter certeza da atuação do fusível e, por norma, só a curva do tempo máximo de interrupção nos garante isso. No caso de disjuntores termomagnéticos, todos os tempos máximos de seccionamento prescritos pela norma — não importa se situação 1 ou situação 2 — caem dentro da faixa de disparo magnético (ou disparo instantâneo) do disjuntor. De fato, como se pode ver na tabela II, todos os tempos ficam abaixo de 1 s; e, como mostra a figura 2, todos situam-se então na faixa de disparo magnético. A figura 2 traz as curvas tempo–corrente de dois disjuntores conforme a NBR IEC 60898: o tipo B, com disparo magnético entre 3 e 5 vezes a corrente nominal In; e o tipo C, com disparo magnético entre 5 e 10 x In (a NBR IEC 60898 prevê ainda um terceiro tipo, D, com disparo magnético entre 10 e 20 × In). A exemplo do raciocínio aplicado aos fusíveis, aqui também, em favor da segurança, Ia seria sempre 5 x In no caso de disjuntores tipo B, 10 x In no caso dos do tipo C e 20 × In no caso dos do tipo D. Fica clara, a essa altura, a idéia-síntese por trás do método, da tabela ou, enfim, do procedimento de se checar a observância da regra do seccionamento automático verificando se o comprimento do circuito ultrapassa ou não os valores tabelados.",
+    "paginas_origem": [],
+    "tokens_estimados": 759,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 16,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Seccionamento automático (III): uso de dispositivo a sobrecorrente"
+    ],
+    "content": "O que o projetista faz, ao confrontar o comprimento real de seu circuito com o valor tabelado, é verificar se a impedância do circuito é baixa o suficiente para permitir a circulação de Ia. Aliás, esse é o objetivo do jogo: garantir, de qualquer forma, a circulação de Ia — e, assim, a atuação do dispositivo. Dessa forma, se porventura o comprimento real do circuito sendo projetado for superior ao comprimento máximo admissível, dado na tabela, o projetista deve então rever seu dimensionamento — por exemplo, aumentando a seção nominal do condutor, de tal modo que o comprimento máximo admissível com a nova seção seja superior ou, no mínimo, igual ao comprimento real do circuito.\n\n![Figura vetorial da página 11](figura-vetorial-p11-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Obtenção da corrente Ia, capaz de garantir a atuação do dispositivo fusível, a partir do tempo de seccionamento máximo ts\n\n<!-- pagina-origem: 12 -->\n\nNessa altura, também, fica claro, face à abordagem trilhada, que o fato de as massas alimentadas pelo circuito estarem na situação 1 ou na situação 2 não tem qualquer relevância se o dispositivo a sobrecorrente utilizado no seccionamento automático for um disjuntor termomagnético. Afinal, o objetivo por trás de Lmax (ou seja, da fixação de um comprimento máximo admissível de circuito) é garantir, no caso de disjuntores, a atuação magnética, \"instantânea\", do dispositivo; e essa atuação não ultrapassa, tipicamente, meio-ciclo. Já se o dispositivo a sobrecorrente for um fusível, o fato de as massas estarem na situação 1 ou numa situação 2 pode pesar significativamente no comprimento máximo admissível do circuito — o tempo de seccionamento menor exigido na situação 2 poderá levar a uma Ia significativamente maior e, portanto, a um Lmax significativamente menor. Podemos, agora, voltar à tabela I, e à expressão da qual deriva, para identificar a origem dos valores aí lançados. Não só pela vontade ou pelo dever de explicar, mas porque, de posse dessas informações, o projetista poderá montar suas próprias tabelas. Pois bem. Na tabela I a tensão fase–neutro Uo considerada é 220 V. Outros parâmetros fixados na montagem da tabela (traduzindo: “a tabela é válida para...”) são: condutores de cobre, com ρ = 0,0225 Ω.mm2/m; • m = 1, isto é, condutores de fase e condutor de proteção • apresentando a mesma seção; esquema TN. • A tabela refere-se, ainda, como já mencionado, a disjuntores tipo B e, portanto, a uma Ia = 5 x In. Como fazer quando o condutor não for de cobre, a seção do PE for inferior à do condutor de fase,a tensão fase-\n\n![Figura vetorial da página 12](figura-vetorial-p12-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.",
+    "paginas_origem": [
+      12
+    ],
+    "tokens_estimados": 709,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 17,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Seccionamento automático (III): uso de dispositivo a sobrecorrente"
+    ],
+    "content": "Fig. 2 – No caso de disjuntores termomagnéticos (a figura mostra duas curvas de disjuntores conforme a NBR IEC 60898), todos os tempos de seccionamento máximos impostos pela NBR 5410 caem dentro da faixa de disparo magnético (disparo instantâneo, ou disparo por curto-circuito) neutro não for 220 V, o esquema de aterramento não for TN e/ou o disjuntor não for tipo B? Na verdade, é possível obter, a partir dos valores da tabela I ou de qualquer tabela similar, o Lmax para virtualmente qualquer outra condição. De fato, suponhamos, genericamente, que nessa outra condição qualquer, diferente das condições assumidas no cálculo dos valores da tabela I, o condutor seja de um metal com resistividade ρ'; 1. 2. a relação entre as seções do condutor de fase e do condutor de proteção seja m'; 3. a tensão fase-neutro seja U'o; 4. o esquema de aterramento seja IT; 5. o disjuntor seja tipo C ou tipo D (conforme NBR IEC 60898). Para cada condição que difira das adotadas na tabela, teríamos um fator de correção correspondente. E o fator de correção total, portanto, caso todas as condições sejam diferentes, corresponderia à aplicação cumulativa de todos os cinco fatores, isto é, f = f1 × f2 × f3 × f4 × f5 Esses fatores são, via de regra, mera aritmética. Assim, temos:\n\nFator de correção f1: • ρ,0 0225 cobre = = f 1 ′ ′ ρ ρ No caso de condutor de alumínio, com ρ'= 0,0363 Ω.mm2/m, f1 = 0,0225/0,0363 = 0,62\n\nFator de correção f2: •\n\n2 = m f 2 ′ + 1 Na prática, os valores possíveis de m' (além do m = 1 considerado na elaboração da tabela) seriam 2, 3 e 4. Logo, – para m' = 2, f2 = 2/3 = 0,67 – para m' = 3, f2 = 2/4 = 0,5 – para m' = 4, f2 = 2/5 = 0,25\n\nFator de correção f3: •\n\n' U o = f 3 220 Fator de correção f4 (esquema IT): •\n\n3 = = f,0 86 4 2\n\n<!-- pagina-origem: 13 -->\n\nFator de correção f5: • – para disjuntor tipo C, f5 = 5/10 = 0,5 – para disjuntor tipo D, f5 = 5/20 = 0,25",
+    "paginas_origem": [
+      13
+    ],
+    "tokens_estimados": 473,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 18,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Seccionamento automático (III): uso de dispositivo a sobrecorrente"
+    ],
+    "content": "Como se vê, não há segredo em construir tabelas que forneçam os comprimentos máximos admissíveis para os circuitos, como a tabela I.Nem em determinar os fatores de correção adequados. No primeiro caso, pode-se até dispensar o catálogo de fabricante, quando o dispositivo a sobrecorrente considerado dispuser de norma, a exemplo da NBR IEC 60898, que facilite a tarefa. No segundo, como observado, trata-se de simples aritmética. Por fim, mas não por último, a pergunta talvez mais incômoda. Falamos de comprimento máximo de circuito. Toda medida de comprimento deve ter, claro, uma referência, uma origem. Portanto, o comprimento máximo admissível do circuito é contado a partir de sua origem, o quadro de distribuição onde nasce, certo? Depende. Lembremos, inicialmente, que toda essa verificação acerca do seccionamento automático, em que intervêm os tempos máximos de seccionamento impostos pela norma, refere-se, em particular, a circuitos terminais. Nos circuitos de distribuição, obedecidos certos cuidados, a norma admite um tempo de seccionamento que pode ir até 5 s. Por outro lado, o raciocínio que fundamenta a abordagem aqui seguida no equacionamento do seccionamento automático, e que embute considerações a respeito da tensão de contato presumida, pode ser sintetizado na idéia de que essa tensão de contato corresponde, simplificamente, à queda de tensão, no condutor de proteção, provocada pela circulação da corrente de falta, desde a extremidade do circuito, sentido carga–fonte, até... Até? Eis aí a resposta sobre a origem a ser efetivamente adotada para o circuito cujo comprimento se quer confrontar com os comprimentos máximos fornecidos pelas tabelas. Pois o que está em jogo é a referência de potencial a ser considerada. Em que potencial se encontram outras massas ou elementos condutivos da edificação com os quais a pessoa pode estar em contato enquanto toca a massa sob falta? Se esse outro elemento contra o qual pode se estabelecer a tensão de contato — suscetível, assim, de constituir sua referência de potencial — fossem apenas massas de equipamentos alimentados pelo mesmo quadro de distribuição, com certeza a origem do circuito seria o quadro. Mas, e se forem massas de outros circuitos e, sobretudo, elementos condutivos da edificação?\n\n![Figura vetorial da página 13](figura-vetorial-p13-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 3 – Com a ligação eqüipotencial local (LEL), o ponto de referência B pode ser considerado como estando no mesmo potencial da ligação eqüipotencial principal (LEP). A tensão de contato é igual à queda de tensão, no condutor de proteção PE, entre a massa M e o ponto de referência B; a queda de tensão entre o ponto de referência B e a ligação eqüipotencial principal LEP não é levada em conta",
+    "paginas_origem": [],
+    "tokens_estimados": 711,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 19,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Funcionamento e classificação dos dispositivos DR"
+    ],
+    "content": "Portanto, a origem a ser considerada corresponde à eqüipotencialização mais próxima, a montante. Se existir uma ligação eqüipotencial — seja ela a ligação eqüipotencial principal ou uma ligação eqüipotencial local — no nível do quadro de distribuição que origina o circuito, ou então a uma distância a montante insuficiente para gerar dúvidas sobre a eqüipotencialidade, a origem a ser considerada é, mais uma vez, o próprio quadro. Caso contrário, a origem a ser adotada é a referência de eqüipotencialidade mais próxima, não importa quão distante ela esteja. A figura 3, que esquematicamente mostra a ligação eqüipotencial principal e uma ligação eqüipotencial local de uma edificação, ilustra as observações e o raciocínio expostos.\n\n<!-- pagina-origem: 14 -->\n\n## Funcionamento e classificação dos dispositivos DR\n\nA NBR 5410 utiliza a expressão “dispositivos de proteção a corrente diferencial-residual” ou, abreviadamente, “dispositivos DR”, para se referir, genericamente, à proteção diferencial-residual — qualquer que seja a forma que ela venha a assumir. De fato, o “dispositivo” de que fala a norma pode ter várias “caras”. Assim, na prática a proteção diferencial-residual pode ser realizada através de: interruptores diferenciais-residuais, • disjuntores com proteção diferencial-residual incorporada, • tomadas com interruptor DR incorporado, • blocos diferenciais acopláveis a disjuntores em caixa • moldada ou a disjuntores modulares (minidisjuntores), e peças avulsas (relé DR e transformador de corrente toroi- • dal), que são associadas ao disparador de um disjuntor ou a um contator; ou, ainda, associadas apenas a um elemento de sinalização e/ou alarme, se eventualmente for apenas este, e não um desligamento, o objetivo pretendido com a detecção diferencial-residual. O termo “dispositivo” será aqui usado com a mesma abrangência adotada pela norma brasileira e pela normalização inter-\n\n![Figura vetorial da página 14](figura-vetorial-p14-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.",
+    "paginas_origem": [
+      14
+    ],
+    "tokens_estimados": 520,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 20,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Funcionamento e classificação dos dispositivos DR"
+    ],
+    "content": "Fig. 1 – Ocorrendo uma corrente de falta à terra Id, a corrente “de retono” I2 não será mais igual à corrente “de ida” I1 e essa diferença provoca a circulação de uma corrente I3 no enrolamento de detecção. Cria-se, no circuito magnético do relé, um campo que vence o campo permanente gerado pelo pequeno ímã, liberando a alavanca. A liberação da alavanca detona o mecanismo de abertura dos contatos nacional, isto é, designando qualquer das concepções de produto ou arranjo capaz de assegurar proteção diferencial-residual. Por sinal, o uso do termo “diferencial”, como na expressão “proteção diferencial” ou “proteção diferencial-residual”, não é unanimidade. Mesmo nos países latinos em que a denominação “proteção diferencial” ficou consagrada, como na Itália, França ou Espanha, há quem não concorde com ela. Credita-se direito preferencial de seu uso (por anterioridade ou maior difusão, sabe-se lá) à homônima usada em sistemas de média e alta tensão — a proteção diferencial de linhas, de cabos, de transformadores ou de geradores. Sugerese, ao invés, o emprego de “proteção residual” — alinhada, portanto, com a redação em inglês das normas IEC pertinentes, que convencionou denominar os dispositivos RCDs - Residual Current Devices. Então: proteção diferencial, proteção residual, proteção diferencial-residual, proteção DR ou o quê? O leitor que faça sua escolha. Ficaremos aqui com todos, indistintamente. Com a tranqüilidade de não estar criando qualquer confusão, já que o contexto é bem definido.\n\nVista em corte de um interruptor diferencial tetrapolar",
+    "paginas_origem": [],
+    "tokens_estimados": 392,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 21,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Funcionamento e classificação dos dispositivos DR",
+      "Princípio de funcionamento"
+    ],
+    "content": "### Princípio de funcionamento\n\nComo funciona o dispositivo diferencial? Ele mede permanentemente a soma vetorial das correntes que percorrem os condutores de um circuito (figura 1a). Enquanto o circuito se mantiver eletricamente são, a soma vetorial das correntes nos seus condutores é praticamente nula. Ocorrendo falha de isolamento em um equipamento alimentado por esse circuito, irromperá uma corrente de falta à terra — ou, numa linguagem rudimentar, haverá “vazamento” de corrente para a terra. Devido a esse “vazamento”, a soma vetorial das correntes nos condutores monitorados pelo DR não é mais nula e o dispositivo detecta justamente essa diferença de corrente. A situação é análoga se alguma pessoa vier a tocar uma parte viva do circuito protegido: a porção de corrente que irá\n\n<!-- pagina-origem: 15 -->\n\ncircular pelo corpo da pessoa provocará igualmente um desequilíbrio na soma vetorial das correntes — diferença então detectada pelo dispositivo diferencial, tal como se fosse uma corrente de falta à terra. Quando essa diferença atinge um determinado valor, é ativado um relé. Via de regra, este relé irá promover a abertura dos contatos principais do próprio dispositivo ou do dispositivo associado (contator ou disjuntor). Poderia, eventualmente, como observado no início, apenas acionar um alarme visual ou sonoro. Mas estamos tratando de proteção; e proteção, no caso mais geral, significa desligamento do circuito afetado pelo incidente detectado.\n\nAs normas referem-se a “dispositivos diferenciais” de forma genérica. Isso significa que o “dispositivo”pode ser um interruptor diferencial (bipolar, 1a, ou tetrapolar, 1b), um disjuntor diferencial (2), uma tomada diferencial (3) ou, ainda, um relé diferencial e respectivo TC toroidal (4) — associados, neste último caso, ao disparador de um disjuntor ou contator Portanto, um dispositivo diferencial é composto, basicamente, dos seguintes elementos (figura 1b): um TC de detecção, toroidal, sobre o qual são enrolados, • de forma idêntica, cada um dos condutores do circuito, e que acomoda também o enrolamento de detecção, responsável pela medição das diferenças entre as correntes dos diferentes condutores; e um elemento de “processamento” do sinal e que coman- • da o disparo do DR, geralmente designado relé diferencial ou relé sensível. O funcionamento do relé diferencial pode ser direto, sem aporte de energia auxiliar; ou então demandar a amplificação do sinal, requerendo, neste caso, aporte de energia auxiliar. Este aspecto, aliás, é um dos ângulos sob os quais se pode classificar os dispositivos diferenciais.",
+    "paginas_origem": [
+      15
+    ],
+    "tokens_estimados": 650,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 22,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "DRs sem e com fonte auxiliar"
+    ],
+    "content": "### Classificação dos DRs\n\nDe fato, quando se procura diferenciar os dispositivos DR, especificando um como tipo “x” e outro como tipo “y”, essa diferenciação segue sempre um determinado critério. Assim, pode-se classificar — ou diferenciar — os dispositivos segundo diversos critérios: modo de funcionamento (dependente ou não de fonte auxiliar); tipo de montagem ou instalação (fixo/para uso móvel); número de pólos (unipolar, bipolar, etc.); sensibilidade (baixa/alta); se incorporam ou não proteção contra sobrecorrentes; se a sensibilidade pode ser ou não alterada (relés ajustáveis/não ajustáveis); atuação (instantânea/temporizada); tipos de corrente de falta detectáveis; e assim por diante. É disso que tratam os quatro artigos a seguir, analisando a diferenças entre os DRs disponíveis no mercado segundo: o modo de funcionamento; • a sensibilidade; • os tipos de correntes de falta detectáveis; e • as características de atuação. • Finalmente, no quinto artigo dedicado especificamente ao estudo dos dispositivos DR, é abordado o problema dos disparos indesejáveis.\n\n## DRs sem e com fonte auxiliar\n\nUm primeiro ângulo sob o qual podem ser examinados os dispositivos DR disponíveis no mercado é o modo de funcionamento. Ora, o funcionamento de um relé diferencial-residual pode ser direto, sem aporte\n\n<!-- pagina-origem: 16 -->\n\nde energia auxiliar; ou então demandar a amplificação do sinal, requerendo, neste caso, aporte de energia auxiliar — a fonte auxiliar podendo ser a própria rede. No primeiro caso, temos os relés puramente eletromagnéticos; no segundo, relés eletrônicos ou mistos. Os dispositivos que independem totalmente de energia auxiliar podem ser utilizados, sem restrições, na proteção contra os contatos indiretos, na proteção complementar contra os contatos diretos (quando de alta sensibilidade) e na proteção contra riscos de incêndio. Totalmente independente significa que todas as funções envolvidas na proteção diferencial-residual (detecção, medição e comparação e interrupção) dispensam, de fato, aporte de energia auxiliar. E a alusão a uso sem restrição presta-se, na verdade, a um contraponto: o de que as normas de instalação, em geral, impõem restrições, isso sim, ao emprego dos dispositivos cujo funcionamento depende da tensão da rede ou de fonte auxiliar.",
+    "paginas_origem": [
+      16
+    ],
+    "tokens_estimados": 576,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 23,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "DRs sem e com fonte auxiliar",
+      "O QUE DIZ A NBR 5410"
+    ],
+    "content": "### O QUE DIZ A NBR 5410\n\nEm 6.3.3.2.2, a NBR 5410 admite o uso de dispositivos DR tanto do tipo sem fonte auxiliar como do tipo dependente de fonte auxiliar (que, acrescenta, pode ser a própria rede de alimentação). Mas ressalva, neste caso, que o uso de versões que não atuem automaticamente no caso de falha da fonte auxiliar é admitido somente se: –a proteção contra os contatos indiretos for assegurada por outros meios no caso de falha da fonte auxiliar; ou se –os dispositivos forem instalados em instalações operadas, ensaiadas e mantidas por pessoas advertidas (BA4) ou qualificadas (BA5).\n\nMas, também aqui, na seara específica dos dispositivos que dependem de fonte auxiliar, podem-se distinguir variantes oferecendo maior ou menor segurança — inclusive níveis de segurança equivalentes ao dos dispositivos que não dependem de fonte auxiliar. Essas variantes podem ser agrupadas em duas categorias: – a dos dispositivos com abertura automática em caso de falha da fonte auxiliar, conhecidos como dispositivos de “abertura forçada”, ou de “segurança positiva” (a denominação, fail safe em inglês, não é específica de DRs, mas aplicada a todo dispositivo de comando, manobra e/ou proteção que automaticamente comuta para uma posição segura na ocorrência de falha que possa comprometer seu desempenho); e – a dos que não se abrem automaticamente em caso de falha da fonte auxiliar. Nesta última categoria, por sua vez, distinguem-se também duas vertentes: 1) dispositivos capazes de atuar (disparar) caso sobrevenha uma situação de perigo após a falha da fonte auxiliar. Esse perigo seria, tipicamente, o surgimento de uma falta fase–massa; e 2) dispositivos incapazes de garantir o desligamento em tais situações. A tabela I relaciona os tipos de DR quanto ao modo de funcionamento e indica as aplicações, na proteção contra choques, a que eles estão habilitados.",
+    "paginas_origem": [],
+    "tokens_estimados": 468,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 24,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Sensibilidade, divisor na aplicação dos dispositivos DR"
+    ],
+    "content": "## Sensibilidade, divisor na aplicação dos dispositivos DR\n\nA sensibilidade, ou corrente diferencial-residual nominal de atuação (I∆n), é uma espécie de divisor de águas na aplicação dos dispositivos DR, sobretudo na aplicação que se tornou sua marca registrada: a proteção contra choques elétricos. Com efeito, é a sensibilidade o primeiro fator a ditar se um DR pode ser aplicado à proteção contra contatos indiretos e à proteção complementar contra contatos diretos; ou se ele pode ser aplicado apenas contra contatos indiretos. O número mágico, divisor de águas: 30 mA. Assim, os DRs com corrente de atuação superior a 30 mA, que compõem o grupo dos dispositivos de baixa sensibilidade, só são admitidos na proteção contra contatos indiretos. E o grupo dos DRs com corrente de atuação igual ou inferior a 30 mA, classificado como de alta sensibilidade, pode ser utilizado tanto na proteção contra contatos indiretos quanto na proteção complementar contra contatos diretos. As razões que qualificam os dispositivos de até 30 mA como os únicos capazes de prover proteção complementar contra contatos diretos são muito consistentes, porque calcadas nas conclusões do mais completo estudo até hoje produzido sobre os efeitos da corrente elétrica no corpo humano, que é o relatório IEC 60479 (ver boxe “A origem de todas as regras” e apêndice “Por que dispositivo DR de alta sensibilidade”). Também é fixado um limite máximo, em termos de\n\n<!-- pagina-origem: 17 -->",
+    "paginas_origem": [
+      17
+    ],
+    "tokens_estimados": 367,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 25,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Sensibilidade, divisor na aplicação dos dispositivos DR",
+      "SENSIBILIDADE: O ESSENCIAL"
+    ],
+    "content": "### SENSIBILIDADE: O ESSENCIAL\n\nUso obrigatório de DR de alta sensibilidade (≤30 mA): –na proteção complementar contra choques elétricos em circuitos de banheiros, tomadas externas, tomadas de cozinhas, lavanderias, áreas de serviço, garagens e assemelhados [5.1.2.5.1 da NBR 5410]. Uso de DR de alta sensibilidade (≤ 30 mA) como alternativa: –na proteção de tomadas de corrente situadas no volume 2 de piscinas (as outras opções são separação elétrica individual e SELV) [9.2.4.3.2]; –na proteção de equipamentos de utilização (de classe I) situados no volume 2 de piscinas (as outras opções são classe II, separação elétrica e SELV) [9.2.4.4.3].\n\nUm dos documentos da IEC mais citados e respeitados, em todo o mundo, pelo seu valor científico, é a Publicação 60479, que aborda os efeitos da corrente elétrica no corpo humano.Fruto de estudos e pesquisas que representam o conhecimento mais atual sobre o assunto,o documento foi elaborado por um grupo de especialistas incluindo médicos, fisiologistas e engenheiros eletricistas. No que se refere especificamente aos efeitos da corrente alternada de freqüência industrial, as conclusões essenciais do documento estão sintetizadas na figura 1, que avalia esses efeitos em função da intensidade e do tempo de passagem da corrente. Distinguem-se, no gráfico, quatro zonas, de gravidade crescente: • Zona 1 (≤0,5 mA) – Normalmente, nenhum efeito perceptível. • Zona 2 – Sente-se a passagem da corrente,mas mas não se manifesta qualquer reação do corpo humano. • Zona 3 – Zona em que se manifesta o efeito de agarramento: uma pessoa empunhando o elemento causador do choque elétrico não consegue mais largá-lo.Todavia, não há seqüelas após interrupção da corrente. • Zona 4 – Probabilidade, crescente com a intensidade e duração da cor-rente, de ocorrência do efeito mais perigoso do choque elétrico, que é a fibrilação ventricular. Na proteção contra choques elétricos estabelecida pelas normas de instalação, é levado em conta apenas o risco de eletrocussão devido à fibrilação ventricular. Como esse risco, Uso previsto de DR com sensibilidade ≤500 mA: –um dos meios prescritos para limitar as correntes de falta/fuga à terra em locais que processem ou armazenem materiais inflamáveis (locais BE2) [5.8.2.2.10] Uso obrigatório de DR, de sensibilidade indeterminada: –na proteção contra choques elétricos por seccionamento automático em esquemas TT [5.1.3.1.5-b]; –na proteção contra choques elétricos por seccionamento automático em esquemas IT, quando as massas forem aterradas individualmente ou por grupos [5.1.3.1.6-e]. Uso alternativo de DR, de sensibilidade indeterminada: –na proteção contra choques elétricos por seccionamento automático em esquemas TN-S e em trechos TN- S de esquemas TN-C-S (a outra opção é o uso de dispositivos a sobrecorrente) [5.1.3.1.4–g].",
+    "paginas_origem": [],
+    "tokens_estimados": 705,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 26,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Sensibilidade, divisor na aplicação dos dispositivos DR",
+      "A origem de todas as regras"
+    ],
+    "content": "a exemplo dos demais efeitos,é função da intensidade (além do tempo de passagem) da corrente, o documento IEC também traz detalhes deste parâmetro, apurados indiretamente — vale dizer, com dados experimentais, trabalhados estatisticamente, acerca da impedância do corpo humano e da tensão de contato associada. De fato, a impedância do corpo humano varia com o valor da tensão de contato aplicada. E varia, também, com o trajeto da corrente no corpo e com as condições de umidade da pele. Note-se, sobreposta ao gráfico, a curva de atuação de um dispositivo DR de 30 mA (ver apêndice “Por que dispositivo DR de alta sensibilidade”).\n\n![Figura vetorial da página 17](figura-vetorial-p17-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Gráfico dos efeitos da corrente elétrica no corpo humano, de acordo com a IEC 60479. Sobreposta ao gráfico, a curva de atuação de um dispositivo DR de 30 mA\n\n### A origem de todas as regras\n\n<!-- pagina-origem: 18 -->\n\ncorrente de atuação do DR, na outra aplicação prescrita pela normas de instalação em geral, que é a proteção contra riscos de incêndio. Aqui, o DR é previsto como um dos meios para limitar as correntes de falta/fuga à terra em locais classificados como BE2, isto é, locais que processem ou armazenem materiais inflamáveis, como papel, palha, farinha, açúcar, fragmentos de madeira, fibras, hidrocarbonetos, matérias plásticas, etc. Na NBR 5410 e, em geral, nas normas nacionais de instalação alinhadas com a IEC 60364 (Electrical Installations of Buildings), a proteção diferencial especificada é de no máximo 500 mA (item 5.8.2.2.10 da NBR 5410), sendo mesmo recomendável DR de no máximo 300 mA. O dispositivo atua antes que a soma das correntes de fuga da instalação ou",
+    "paginas_origem": [
+      18
+    ],
+    "tokens_estimados": 451,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 27,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Sensibilidade, divisor na aplicação dos dispositivos DR",
+      "A origem de todas as regras"
+    ],
+    "content": "O que explica a distinção entre DRs que só podem ser usados na proteção contra contatos indiretos e DRs que podem ser usados, além disso, na proteção complementar contra contatos diretos? Na normalização IEC e de todos os países que com ela se alinham, tornou-se já uma abordagem clássica, quando o assunto é proteção contra choques elétricos, distinguir duas situações de choque: as associadas ao risco de contatos diretos e as associadas ao risco de contatos indiretos. Do ponto de vista dos efeitos no corpo humano (ver boxe “A origem de todas as regras”), tanto faz se o choque é de contato direto ou indireto. Assim, por que a distinção? Porque ela é útil, até certo ponto, para dar racionalidade às possíveis medidas de proteção contra choques elétricos, permitindo uma formulação conceitualmente mais consistente e uma aplicação mais precisa. Os contatos diretos são os contatos com partes vivas, isto é, partes sob tensão em serviço normal — por exemplo, uma pessoa que toca nos pinos de um plugue enquanto o retira da tomada; ou uma pessoa que toca, por descuido ou imprudência, nos barramentos de um quadro de distribuição. As situações ilustradas evidenciam que a proteção contra contatos diretos é, tipicamente, uma proteção a ser provida pelos próprios produtos — vale dizer, já exigível dos componentes utilizados na instalação. É por isso que as normas de plugues e tomadas para uso predial impõem contato recuado para as tomadas e bainha isolante cobrindo parcialmente os pinos do plugue. Os quadros de distribuição, se já vêm montados de fábrica ou na forma de kits, devem incluir um espelho ou contraporta, com a função, justamente, de oferecer uma barreira contra partes vivas em seu interior. A proteção contra contatos diretos é, com efeito, um atrido(s) circuito(s) por ele protegido ultrapasse esse valor — considerado suscetível de provocar ignição nos materiais combustíveis presentes no local. Enfim, o DR permite supervisionar o nível de isolamento da instalação ou de parte da instalação e limitar os riscos de incêndio devidos a faltas não-diretas. É sempre oportuno ressaltar que, por norma, um DR pode atuar para qualquer valor de corrente residual entre 0,5 I∆n e I∆n. O limite inferior também tem seu próprio nome: corrente residual nominal de não-atuação I∆no. Logo, I∆no = 0,5 I∆n. Assim, o dispositivo não deve atuar com correntes até I∆no, inclusive; e não pode deixar de atuar com correntes iguais ou superiores a I∆n.",
+    "paginas_origem": [],
+    "tokens_estimados": 614,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 28,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Sensibilidade, divisor na aplicação dos dispositivos DR",
+      "A origem de todas as regras"
+    ],
+    "content": "buto típico de produto (ou componente). Mas sempre sobrarão buracos ou providências a serem resolvidas no âmbito da instalação. Por exemplo, na instalação de um equipamento de utilização, em que se conecta o rabicho do equipamento aos condutores disponíveis na caixa de derivação, é de se esperar que o instalador cubra as emendas com fita isolante ou utilize emendas pré-isoladas. O exemplo é banal, mas é, de qualquer forma, um exemplo de proteção contra contatos diretos provida na instalação. Na montagem do quadro de distribuição, o instalador não pode esquecer do espelho que acompanha o kit, fixando-o de forma a não ser facilmente removível; ou mesmo prover ele próprio a barreira, se eventualmente o quadro for do tipo “construído no local”. Partes vivas em condições normais — este é o pontochave da proteção contra contatos diretos. E se se trata de parte normalmente sob tensão, não há como fugir do “óbvio”, tal como prevêem as normas: isolar ou confinar tais partes. Isolá-las mediante aplicação de isolação sólida ou de afastamento; ou confiná-las no interior de invólucros ou atrás de barreiras.(1) Esse é o ponto-chave porque dá nitidez conceitual à divisão entre contatos diretos e contatos indiretos. Pois o contato indireto é aquele com partes que não são vivas em condições normais, mas que acidentalmente se tornam vivas, em conseqüência de falha na isolação do equipamento ou componente. Isso significa que a proteção contra contatos indiretos supõe, como condição prévia, que tenham sido atendidas exigências da proteção contra contatos diretos, como a isolação básica. Temos, então, o equivalente a duas linhas de defesa: a primeira representada pela proteção contra contatos diretos (via de regra, como visto, atributo de produto); e a segunda pela proteção contra contatos indire-",
+    "paginas_origem": [],
+    "tokens_estimados": 452,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 29,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Sensibilidade, divisor na aplicação dos dispositivos DR",
+      "Por que dispositivo DR de alta sensibilidade"
+    ],
+    "content": "### Por que dispositivo DR de alta sensibilidade\n\n<!-- pagina-origem: 19 -->\n\ntos, em que a segurança básica do produto ganha uma proteção supletiva, de prontidão — já que a primeira defesa, tipicamente a isolação básica, é suscetível de falhar. Essa segunda linha de defesa pode ser provida pelo próprio produto, por medidas apropriadas na instalação ou por ambos. No primeiro caso, temos os equipamentos classe II, como o conhecido exemplo das ferramentas elétricas portáteis de dupla isolação. A concepção ou construção da ferramenta é tal que uma falha na isolação das partes vivas não resulta em risco de choque elétrico para a pessoa que a empunha. Já um equipamento classe 0 (zero), cuja proteção inerente contra choques repousa unicamente numa isolação básica, só pode ser usado, segundo as normas de instalação, em local com paredes e pisos isolantes e com nenhum ou poucos elementos construtivos suscetíveis de nele introduzir o potencial de terra. Portanto, a segunda linha de defesa é aquela imposta pela norma de instalação: o local tem de ser não-condutor! É justamente a ausência do potencial da terra, que de outra forma daria margem ao aparecimento de uma tensão de contato perigosa, que constitui a proteção em caso de falha na isolação do equipamento classe 0. Por fim, a proteção contra contatos indiretos proporcionada em parte pelo equipamento e em parte pela instalação é aquela tipicamente associada aos equipamentos classe I. Um equipamento classe I tem algo além da isolação básica: sua massa é provida de meios de aterramento, isto é, o equipamento vem com condutor de proteção (condutor PE, ou “fio terra”), incorporado ou não ao cordão de ligação, ou então sua caixa de terminais inclui um terminal PE para aterramento. Essa é a parte que toca ao próprio equipamento. A parte que toca à instalação é ligar esse equipamento adequadamente, conectando-se o PE do equipamento ao PE da instalação, na tomada ou caixa de derivação — o que pressupõe uma instalação dotada de condutor PE, evidentemente (e isso deve ser regra, e não exceção!); e garantir que, em caso de falha na isolação desse equipamento, um dispositivo de proteção atue automaticamente, promovendo o desligamento do circuito. Essas providências que competem à instalação não são nada mais nada menos que os princípios da chamada proteção por seccionamento automático da alimentação (no caso da NBR 5410, item 5.1.3.1). Ora, as reflexões deste capítulo do Guia EM da NBR 5410 são dedicadas aos dispositivos diferenciais. Em matéria de proteção contra contatos indiretos, o dispositivo diferencial figura na norma de instalações vinculado à medida proteção por seccionamento automático da alimentação. Portanto, quando se discute dispositivo DR, na proteção contra contatos indiretos, estamos falando de proteção por seccionamento automático. Assim, tendo em vista o objetivo de distinguir conceitualmente o uso de DRs na proteção contra contatos indiretos e na proteção complementar contra contatos diretos, é importante reter dois aspectos essenciais da proteção (contra contatos indiretos) por seccionamento da alimentação:",
+    "paginas_origem": [
+      19
+    ],
+    "tokens_estimados": 779,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 30,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Sensibilidade, divisor na aplicação dos dispositivos DR",
+      "Por que dispositivo DR de alta sensibilidade"
+    ],
+    "content": "1) a ação protetora se dá automaticamente, no instante da ocorrência da falha de isolamento, independentemente de haver ou não alguém em contato com a massa do equipamento cuja isolação veio a falhar; e 2) se porventura houver uma pessoa em contato com a massa do equipamento, no momento da falha, a hipotética vítima não seria o único caminho para a corrente de falta à terra, já que a massa do equipamento está presumivelmente “aterrada” (ligada ao sistema de condutores de proteção da instalação). Já a proteção (complementar) contra contatos diretos que um DR deve ser capaz de oferecer se inspira num cenário mais delicado do ponto de vista da segurança, assumindo que “nem tudo sai como no papel”, ou que “nem tudo se mantém sob controle.” Não constitui exatamente uma redundância, no sentido de representar o que seria uma terceira linha de defesa. Falta-lhe o mesmo caráter preventivo das medidas discutidas anteriormente, lembrando mais um último recurso. O objetivo já não é tanto evitar o choque, mas evitar que ele tenha conseqüências graves ou funestas — assumindo assim que o choque aconteceu, que algo falhou. O quê? Pode ser a manutenção, inadequada ou inexistente. Pode ser o desgaste da isolação — que nem sempre resulta em uma falha capaz de acionar a proteção por seccionamento automático, como no caso de um cordão de ligação cujo manuseio excessivo acaba por expor partes vivas, de uma forma nem sempre perceptível. Pode ser o uso de aparelhos (especialmente os portáteis) em ambientes ou condições molhadas, quando não a sua imersão acidental na água, situações em que a isolação praticamente deixa de existir. Pode ser o uso (indevido) de equipamentos classe 0 em locais não-isolantes — perigo mais grave se o local for úmido ou molhado e se os equipamentos forem portáteis. Pode ser a perda ou interrupção do condutor de proteção. Podem ser, e esse é um ponto importante, riscos difusos, mas reais, que as normas têm dificuldade em abordar, como os decorrentes de descuido ou imprudência dos usuários. Ora, todos esses casos deixam entrever que na chamada proteção complementar contra contatos diretos a ocorrência do choque elétrico praticamente deixa de ser uma possibilidade para ser uma premissa. E que, por um motivo ou outro, não se pode contar com o “aterramento” como um caminho paralelo ao corpo humano, dividindo com este a corrente de falta à terra. Enfim, supõe-se que a corrente de falta fluirá toda pelo corpo da pessoa. Nessas condições, é fácil perceber, examinando-se o gráfico da IEC 60479 (figura 1 do boxe “A origem de todas as regras”), que só um dispositivo diferencial com sensibilidade de no máximo 30 mA oferece efetiva proteção. Qualquer dispositivo com corrente de atuação superior a 30 mA implicaria risco de fibrilação ventricular, fatal para as pes-\n\n<!-- pagina-origem: 20 -->",
+    "paginas_origem": [
+      20
+    ],
+    "tokens_estimados": 708,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 31,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Sensibilidade, divisor na aplicação dos dispositivos DR",
+      "Por que dispositivo DR de alta sensibilidade"
+    ],
+    "content": "soas. Afinal, para que um DR atue é preciso que circule uma corrente de falta à terra (a mesma corrente que percorrerá o corpo da pessoa, no caso) igual à sua corrente de atuação. As normas de DR estipulam que o disparo do dispositivo deve se dar entre 50% e 100% da corrente de atuação, é verdade. E na prática os fabricantes costumam calibrar seus dispositivos para algo entre 70% e 75% da sensibilidade nominal. Mas a segurança impõe um raciocínio conservador, que é o de considerar que o dispositivo (só) irá disparar com perto de 100% da corrente de atuação — pois a norma do produto assim permite. Não se diz que um DR de 30 mA, por exemplo, oferece proteção (complementar) contra contatos diretos porque pode atuar, por norma, a partir de 15 mA, mas porque atuando com seus 30 mA nominais ele ainda garante a segurança. Fica evidenciado, portanto, que apenas os DRs de alta sensibilidade garantem proteção (complementar) contra contatos diretos. Já na proteção contra contatos indiretos podem ser usados dispositivos com qualquer sensibilidade — desde que, claro, a resistência de aterramento das massas ou a impedância do caminho da corrente de falta seja compatível com a sensibilidade adotada. Na verdade, o rótulo proteção complementar contra contatos diretos não é o mais adequado, capaz de refletir todos os casos que aí se abrigam. Certo, é sob esse título que várias normas de instalação, incluindo a nossa NBR 5410 (item 5.1.2.5), impõem o uso de DRs de alta sensibilidade a, por exemplo, tomadas ou circuitos de tomadas situadas em áreas externas e em áreas molhadas. É sob esse rótulo, também, que tratamos até aqui do assunto. Mas os casos todos que a medida contempla, embora talvez sejam assimiláveis, indistintamente, a uma situação de contato direto, não seriam a rigor classificáveis como tal. Parte deles são mesmo casos em que se admite a falha de algum ingrediente da proteção contra contatos indiretos — como a perda ou interrupção do",
+    "paginas_origem": [],
+    "tokens_estimados": 491,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 32,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Tipos de faltas detectáveis pelos dispositivos DR"
+    ],
+    "content": "## Tipos de faltas detectáveis pelos dispositivos DR\n\nDepois do modo de funcionamento e da sensibilidade, já vistos nos artigos precedentes, um terceiro ângulo do qual os dispositivos DR devem ser examinados refere-se à sua “capacidade de detecção”, vale dizer, aos tipos de corrente de falta que eles são capazes de detectar. Neste particular, a normalicondutor de proteção, por exemplo. No fundo, como já mencionado, o cerne da questão e da medida é propor um remédio para casos que são difusos. Por isso, pela impossibilidade e inutilidade de encontrar um nome mais preciso para algo que não se pode precisar, melhor seria rotular a medida de proteção complementar contra choques elétricos, simplesmente. Seja como for, convém notar que o termo complementar usado no título da medida não é gratuito. Ele tem um significado importante. A proteção é complementar porque não dispensa a adoção das medidas contra contatos diretos de caráter geral relacionadas na norma. E não dispensa, entre outras razões, porque o dispositivo diferencial não atua se a corrente que circular pela pessoa, resultante do contato direto, não percorrer também a “terra”. Assim, por exemplo, se a pessoa se encontra isolada do potencial da terra e toca simultaneamente em duas fases distintas, não haverá fuga para a “terra” e, portanto, o dispositivo enxerga a pessoa como se fosse uma carga qualquer, deixando de atuar. Notas\n\n(1) Existe ainda outra possibilidade, de aplicação bem particular, que é assegurar que a tensão utilizada, a fonte que a supre e as condições de instalação — tudo isso combinado — não ofereçam qualquer risco. Tal possibilidade tem nome: SELV, ou extrabaixa tensão de segurança. As normas de instalação, incluindo a nossa NBR 5410, apresentam a SELV como aplicável a partes ou itens de uma instalação. Um exemplo notório de SELV é o de sistemas e aparelhos de iluminação com lâmpadas halógenas funcionando a 12 V. Muitos dos trilhos ou varais eletrificados que sustentam lâmpadas halógenas dicróicas na iluminação de lojas são linhas de contato absolutamente nuas. O mesmo se dá com certos aparelhos de iluminação de mesa muito difundidos, em que o conjunto óptico ou a lâmpada halógena, simplesmente, é alojada na extremidade de duas hastes metálicas telescópicas. São as próprias hastes que conduzem energia para a lâmpada e, portanto, não deixam de ser partes vivas.\n\nzação IEC distingue três tipos de DR: • tipo AC, sensível apenas a corrente alternada. Ou seja, o disparo é garantido para correntes (diferenciais) alternadas senoidais; • tipo A, sensível a corrente alternada e a corrente contínua pulsante; e • tipo B, sensível a corrente alternada, a corrente contínua pulsante e a corrente contínua pura (lisa). O primeiro tipo é o mais tradicional. Por sinal, os outros dois só foram introduzidos comercialmente, e na ordem apresentada, depois de a classificação ter sido formulada e oficializada. A classificação representou, portanto, um convite aos fabricantes, para que desenvolvessem os novos tipos propostos. A idéia de que seria necessário dispor de novos DRs, com\n\n<!-- pagina-origem: 21 -->",
+    "paginas_origem": [
+      21
+    ],
+    "tokens_estimados": 779,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 33,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Tipos de faltas detectáveis pelos dispositivos DR"
+    ],
+    "content": "as características dos tipos A e B, surgiu como uma conseqüência natural da evolução das instalações, com a multiplicação dos equipamentos e aparelhos que incorporam semicondutores, em especial, dispositivos retificadores (diodos, tiristores, triacs). Eles estão presentes, tipicamente, nas fontes de alimentação e no comando de potência dos aparelhos. Quando ocorre uma falta à terra na saída de um retificador, a corrente que circula pode conter uma componente contínua, de certo nível. A classificação IEC procura traduzir, assim, a habilidade de um dispositivo DR em funcionar corretamente com correntes residuais que incluem uma componente contínua.\n\nDo ponto de vista do tipo de corrente de falta detectável, os dispositivos diferenciais mais tradicionais são aqueles que a normalização IEC veio a classificar como AC, sensíveis apenas a correntes alternadas. Mais recentes, os dispositivos tipo A representaram um alargamento da capacidade de detecção: além das formas CA, eles reconhecem também correntes contínuas pulsantes. Hoje, os fabricantes oferecem versões de DR capazes de detectar virtualmente todos os tipos de corrente residual. Esse empenho, naturalmente, tem a ver com a própria evolução das instalações, que cada vez mais incorporam artefatos eletrônicos. Por exemplo, o avanço da automação, principalmente em aplicações industriais e comerciais, traz como conseqüência inevitável o aumento do número de circuitos em que as correntes de falta prováveis são do tipo lisa ou quase lisa (com baixa ondulação residual). É o caso dos circuitos para regulação de velocidade alimentados por pontes retificadoras polifásicas, de várias concepções. Os dispositivos com largo espectro de detecção se enquadrariam no que os documentos IEC previram como tipo B, sensíveis a correntes alternadas, a correntes contínuas pulsantes e a correntes contínuas puras. Para que o dispositivo possa detectar correntes residuais contínuas lisas, uma solução, como mosta a figura, é incluir um segundo sensor (TC), que age sobre o disparador por meio de uma unidade eletrônica de medição e comparação. A unidade eletrônica requer alimentação auxiliar, extraída da própria rede, mas isso é feito sem qualquer prejuízo à segurança — tal como nos dispositivos que não dependem da tensão da rede. Os cuidados nesse sentido, A Alemanha e a Holanda não mais permitem o uso do tipo AC. Na Suíça, o uso é admitido mas com fortes restrições. A justificativa holandesa para a proibição: “O crescente uso de componentes eletrônicos em aparelhos domésticos justifica a exclusão dos DRs incapazes de detectar correntes residuais CC pulsantes.” Outros países europeus entendem, diferentemente, que não há razão suficiente para se banir o tipo AC, especialmente em instalações domésticas, concordando, em contrapartida, que em instalações elétricas de edificações comerciais, de serviços e industriais — onde se tem, de fato, um grande número de equipamentos de informática e eletrônicos, incluindo os de",
+    "paginas_origem": [],
+    "tokens_estimados": 747,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 34,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Tipos de faltas detectáveis pelos dispositivos DR",
+      "Uma detecção de largo espectro"
+    ],
+    "content": "como também ilustra a figura, envolvem a obtenção da alimentação auxiliar a partir de todos os condutores vivos, incluindo o neutro. Na ocorrência de uma falta à terra no circuito por ele protegido, o dispositivo disparará mesmo se dois dos condutores de fase e o neutro estiverem interrompidos. Além disso, o funcionamento seguro do dispositivo é garantido mesmo quando a tensão de alimentação cair a 70% da nominal.\n\nConstituição de um dispositivo diferencial capaz de detectar correntes de falta CA, CC pulsantes e CC lisas: R = relé de disparo; A= unidade de medição e comparação para correntes residuais contínuas lisas; T = botão de teste; W1 = sensor de correntes senoidais e correntes contínuas pulsantes; W2 = sensor de correntes contínuas puras.\n\n### Uma detecção de largo espectro\n\n<!-- pagina-origem: 22 -->\n\neletrônica de potência — podem ser necessários DRs do tipo A ou mesmo do tipo B. Outros, ainda, defendem a necessidade do tipo A mas desdenham o tipo B, pois “o tipo A é suficiente para a maioria das aplicações.” E, finalmente, há quem não veja necessidade de restrições ao tipo AC “se a instalação for do tipo TN e o dispositivo diferencial for usado como proteção complementar contra contatos diretos” — querendo com isso dizer que se a proteção contra contatos indiretos por seccionamento automático for garantida (também) por dispositivos a sobrecorrente, os DRs do tipo AC seriam perfeitamente aceitáveis, já que neste caso eles estariam formalmente destinados à proteção complementar contra contatos diretos, embora possam funcionar também como proteção redundante contra contatos indiretos. Por trás desse debate, já antigo dentro da IEC, situase a questão de decidir se a norma de instalação deveria reconhecer apenas um tipo de DR — e neste caso qual — ou deixar isso em aberto. Eleger um único tipo, fixando-o como sinônimo de proteção diferencial em todas as regras pertinentes, traz alguma comodidade. Afinal, no projeto da instalação muitas vezes não se conhecem, de antemão, os equipamentos ou aparelhos que serão atendidos por tal circuito ou tal quadro de distribuição. E a hipótese da livre escolha poderia assim conduzir, por pressão de custos ou alguma outra razão, a uma escolha equivocada, incompatível com a natureza do equipamento posteriormente instalado.\n\nO que diz a NBR 5410\n\nÉ possível que na próxima edição da NBR 5410 o assunto seja aprofundado. Mas a versão em vigor, de 1997, não se manifesta sobre a seleção do tipo de DR face à composição da corrente de falta.A única e lacônica observação acerca de possível incompatibilidade ou insuficiência do dispositivo frente às correntes de falta suscetíveis de por ele circular, é a da alínea d) de 6.3.3.2: “Quando equipamentos elétricos susceptíveis de produzir corrente contínua forem instalados a jusante de um dispositivo DR, devem ser tomadas precauções para que em caso de falta à terra as correntes contínuas não perturbem o funcionamento dos dispositivos DR nem comprometam a segurança.”",
+    "paginas_origem": [
+      22
+    ],
+    "tokens_estimados": 749,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 35,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Tipos de faltas detectáveis pelos dispositivos DR",
+      "Uma detecção de largo espectro"
+    ],
+    "content": "A consagração de um dos tipos como padrão talvez levasse também a uma diminuição geral dos custos do produto, pelo efeito de escala. Restaria saber qual. O tipo B, que tem o maior espectro de detecção (ver boxe Uma detecção de largo espectro)? Mas ele não é mais caro e, além disso, não exige sempre fonte auxiliar, gerando as dúvidas habituais acerca da confiabilidade, incluindo aí a dos componentes eletrônicos utilizados? O adicional de detecção que ele aporta é um ganho pouco significativo ou o número de casos que o exigiriam tende de fato a crescer? O tipo A não seria, ao invés, suficiente para a grande maioria dos casos? Ou, então, por que não ficar logo com o tipo tradicional, AC, tratando à parte os casos por ele não cobertos, com regras de instalação específicas, acauteladoras? Tudo isso foi discutido e tentado. Foi tentado até mesmo um compromisso envolvendo fabricantes de DR e os fabricantes de equipamentos suscetíveis de gerar correntes de falta com componente contínua. A idéia seria ungir o diferencial tipo A, ou mesmo o AC, e obter então dos fabricantes de equipamentos alterações no projeto e/ou na construção dos equipamentos, com a sanção da norma técnica respectiva, de forma a compatibilizar as correntes de falta por eles produzidas com o desempenho do DR escolhido. Como ficou? No âmbito da IEC, ficou ou tende a ficar cada um por si e Deus por todos. Admite-se o uso dos três tipos de DR e, assim, o caso de equipamentos suscetíveis de produzir correntes de falta à terra com componente contínua (equipamentos instalados a jusante do DR) é abordado com um leque de cautelas. As alternativas sugeridas para que a segurança não fique prejudicada incluem: – uso de diferencial capaz de detectar as correntes de falta geradas pelo equipamento (portanto, DR do tipo A ou do tipo B, dependendo do caso); – classe II (se o equipamento ou a parte do equipamento que produz componentes CC for classe II, desaparece o problema); – o equipamento é alimentado por meio de um transformador de separação; – o próprio equipamento ou parte do equipamento que produz componente CC incorpora dispositivo de proteção capaz de desligá-lo na ocorrência de falta à terra com componente CC.",
+    "paginas_origem": [],
+    "tokens_estimados": 551,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 36,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Curvas de atuação e seletividade dos dispositivos DR"
+    ],
+    "content": "## Curvas de atuação e seletividade dos dispositivos DR\n\nA normalização IEC estabelece limites tempo–corrente para a atuação dos dispositivos diferenciais — e, com isso, mais um critério de classificação do produto.\n\n<!-- pagina-origem: 23 -->\n\nComo informa a tabela I, as normas IEC 61008 e IEC 61009 estabelecem limites tempo–corrente definidores de dois tipos de DR, batizados G e S. Para o primeiro, a normalização só especifica limites máximos, ou seja, o tempo máximo em que o dispositivo deve efetivar o desligamento do circuito protegido (tempos máximos de interrupção, to). Já o tipo S deve obedecer também a tempos mínimos de não-atuação (tno) — isto é, ele só pode atuar depois de decorrido o tempo tno. Os valores de to e de tno são especificados em função da corrente residual. Assim, na representação gráfica desses limites, como mostrado na figura 1, o tipo G é ilustrado apenas com uma linha, ou curva; enquanto o tipo S é retratado com uma faixa. Esses dados explicam ainda por que o tipo G, formalmente “de uso geral”, é referido também como instantâneo. E o tipo S, analogamente, como seletivo. Na prática, porém, o tratamento das normas IEC aos limites tempo-corrente deu margem ao lançamento de dispositivos que atendem os tempos máximos de interrupção fixados para o tipo G mas que não são instantâneos. Isso é\n\n![Figura vetorial da página 23](figura-vetorial-p23-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.",
+    "paginas_origem": [
+      23
+    ],
+    "tokens_estimados": 376,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 37,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Curvas de atuação e seletividade dos dispositivos DR"
+    ],
+    "content": "Fig. 1 – Curvas de atuação dos dispositivos diferenciais tipo G e tipo S, conforme IEC 61008 e 61009 feito incorporando-se ao relé um microtemporizador eletrônico. Tais DRs são conhecidos genericamente como dispositivos residuais de curto retardo (short-time delayed residual current devices). Esse curto retardo é de cerca de 10 ms, geralmente. A figura 2 ilustra as faixas tempo–corrente — extraídas de catálogo de fabricante — de um DR dito instantâneo, de um DR de curto retardo e de um DR tipo S (seletivo), todas tendo como fundo os limites tempo–corrente estabelecidos pela normalização IEC para os dispositivos tipos G e S. A razão que levou ao nascimento do tipo S é, fundamentalmente, aquela que lhe deu alcunha: seletividade. Respeitadas duas condições na seleção dos dispositivos, pode-se então compor uma proteção seletiva com diferencial tipo S a montante de dispositivo(s) tipo G. Que condições? Primeiramente, como já foi observado (ver artigo “Sensibilidade, divisor na aplicação dos dispositivos DR”), as normas estabelecem que o dispositivo diferencial não deve atuar para correntes até a corrente residual nominal de não-atuação (I∆no), inclusive, e não pode deixar de atuar para correntes iguais ou superiores à corrente residual nominal de atuação (I∆n). Como as normas também fixam que I∆no = 0,5 I∆n, a faixa em que o DR pode atuar, portanto, vai de 0,5 I∆n a I∆n. Fica evidente, assim, a primeira condição: a corrente de atuação (I∆n) do dispositivo de jusante deve ser menor que a corrente de não-atuação (I∆no) do dispositivo de montante. Como a relação entre I∆n e I∆no, para um mesmo dispositivo, é de 2, resulta que o dispositivo de montante precisa ter uma corrente residual de atuação (I∆n) no mínimo o do-\n\nFig. 2 – Curvas de dispositivos diferenciais, extraídas de catálogo de fabricante: 1) tipo G; 2) tipo curto retardo; e 3) tipo S. Também estão ilustrados os limites tempo–corrente especificados pela normalização IEC (em azul, a faixa limite para o tipo S e, em vermelho, a curva dos tempos máximos de interrupção fixados para o tipo G)\n\n<!-- pagina-origem: 24 -->\n\nbro da do dispositivo de jusante para se assegurar a seletividade. Por exemplo, um DR com I∆n = 500 mA pode ser seletivo com um DR de I∆n = 100 mA, mas não o será com um DR de I∆n = 300 mA. A segunda condição: o tempo máximo de interrupção do dispositivo de jusante deve ser inferior ao tempo mínimo de não-atuação do dispositivo de montante. Esta condição implica que o dispositivo de montante seja, por exemplo, do tipo S.\n\nO que diz a NBR 5410",
+    "paginas_origem": [
+      24
+    ],
+    "tokens_estimados": 638,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 38,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Curvas de atuação e seletividade dos dispositivos DR"
+    ],
+    "content": "No capítulo 6.4, em que trata da seleção e instalação dos dispositivos de proteção, seccionamento e comando, a NBR 5410 dedica o artigo 6.3.7.3 à seletividade entre dispositivos DR. Primeiramente, a norma lembra que a seletividade (entre dispositivos DR em série) pode ser exigida por razões de serviço, “notadamente quando a segurança está envolvida, de modo a manter a alimentação de partes da instalação não afetadas por uma falta eventual.” São duas as condições que ela estipula para que seja assegurada seletividade entre dois dispositivos DR em série: •a característica tempo–corrente de não-atuação do dispositivo DR a montante deve ficar acima da característica tempo–corrente de atuação total do dispositivo DR a jusante; e •a corrente nominal de atuação do dispositivo DR localizado a montante deve ser maior que a do dispositivo a jusante. Como se vê, a orientação aqui fornecida pelo Guia EM, sobre seletividade entre DRs, traduz de uma forma bem prática e precisa essa regra da norma. Mas a NBR 5410 aborda ainda o assunto em 5.1.3.1.5, que trata da proteção (contra choques elétricos) por seccionamento automático no esquema TT. Neste caso preciso, como já explicado anteriormente, só se pode mesmo usar dispositivo DR. O documento indica que, “visando seletividade, dispositivos DR do tipo S conforme IEC 61008-1 e IEC 61009-1 podem ser utilizados em série com dispositivos DR do tipo geral. E para assegurar seletividade com os DRs do tipo S, admite-se um tempo de atuação não superior a 1 s em circuitos de distribuição.”\n\nA figura 3 ilustra as duas condições, fazendo uso das curvas G e S normalizadas pela IEC. A curva G faz o papel de dispositivo de jusante e, obviamente, a S o de montante. A abcissa inicial da curva S foi posicionada em 2 x I∆n justamente para ilustrar a primeira condição (considerando a unidade “I∆n” do eixo das abcissas referente, claro, ao dispositivo G, de jusante). A figura deixa clara a seletividade.\n\n![Figura vetorial da página 24](figura-vetorial-p24-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 3 – Seletividade entre dispositivos diferenciais\n\nNo exemplo ilustrado, o tipo G poderia ser tanto do tipo instantâneo, que é de fato o previsto pelas normas IEC 61008 e IEC 61009, quanto do tipo denominado “de curto retardo”. Por outro lado, as condições para seletividade e as curvas de atuação dos dispositivos tornam muito difícil, para não dizer impossível a proteção seletiva reunindo em série um DR instantâneo e outro de curto retardo. Resta, assim, como única chance de seletividade, o exemplo dado: DR do tipo instantâneo ou de curto retardo a jusante, coordenado com um tipo S a montante (1). Logo, por que os fabricantes desenvolveram e oferecem a versão de curto retardo (que tem um retardo, ou tempo de não-atuação, de apenas 10 ms, tipicamente...)? Ou: por que razão usar um diferencial de curto retardo ao invés de um instantâneo? Qual a vantagem? A resposta serve como rito de passagem para o artigo seguinte: porque eles foram concebidos para evitar disparos indesejáveis.\n\nNotas",
+    "paginas_origem": [],
+    "tokens_estimados": 782,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 39,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "DRs: disparos indesejáveis e imunidade a transitórios"
+    ],
+    "content": "(1) Na verdade, não se trata da única possibilidade, considerando todo o arsenal de dispositivos DR que o mercado oferece. É a única no campo específico dos dispositivos cobertos pelas normas IEC 1008 e IEC 1009.\n\n<!-- pagina-origem: 25 -->\n\n## DRs: disparos indesejáveis e imunidade a transitórios\n\nUma antiga queixa associada ao uso dos dispositivos diferenciais refere-se à sua atuação em situações que não se configuram realmente como de falta à terra. O disparo do DR, nessas condições, desligando parte de ou toda uma instalação, pode trazer problemas e até prejuízos para o usuário — o que leva, às vezes, à remoção pura e simples do dispositivo, eliminando toda proteção. No fundo, esta é apenas uma das facetas daquele que parece ser o eterno dilema em torno das proteções em geral: como conciliar os imperativos de segurança e os da continuidade de serviço? Aliás, em certos casos a própria continuidade de serviço pode representar um grande imperativo de segurança. Não é outra a razão, por exemplo, de se impor que a alimentação de centros cirúrgicos, em hospitais, seja feita com a adoção de um sistema IT local. Não se admite perder a continuidade de serviço nem mesmo na ocorrência de uma (primeira) falta à terra. A atuação do dispositivo diferencial sem a efetiva ocorrência de uma falta à terra comporta até quatro ângulos de análise, segundo a causa determinante: 1) correntes de fuga permanentes; 2) vícios de construção; 3) fatores acidentais; e 4) fenômenos transitórios e perturbações eletromagnéticas em geral.",
+    "paginas_origem": [
+      25
+    ],
+    "tokens_estimados": 384,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 40,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "DRs: disparos indesejáveis e imunidade a transitórios",
+      "Correntes de fuga permanentes"
+    ],
+    "content": "### Correntes de fuga permanentes\n\nToda instalação elétrica possui uma corrente de fuga para a terra constituída pela capacitância dos condutores (tanto maior quanto mais extensa for a instalação) e pelas correntes de fuga (normais) dos equipamentos de utilização. Essa corrente de fuga pode ser sensivelmente aumentada pelas capacitâncias de filtragem (ligadas à massa) de certos equipamentos eletrônicos. Assim, em matéria de correntes de fuga permanentes, os disparos indevidos podem ser evitados com adequada Os locais contendo banheira ou chuveiro são ambientes que exigem maiores cuidados na proteção contra choques elétricos, tendo em vista os riscos que significam as condições de umidade, de corpo molhado, de imersão. Por isso, a NBR 5410 exige que os circuitos servindo pontos situados nesses locais disponham de proteção diferencial-residual de alta sensibilidade (≤30 mA). Como compatibilizar essa exigência com aquecedores de água elétricos instantâneos (chuveiros, duchas, torneiras e aparelhos tipo aquecedor central)? Evitando o uso de aquecedores que apresentem correntes de fuga à terra elevadas. Alguns fabricantes brasileiros têm se empenhado em reduzir ao máximo essas fugas, introduzindo melhorias construtivas em seus produtos. E demonstrado, assim, que a convivência entre chuveiros e DR de alta sensibilidade pode (e deve) ser pacífica. Como também demonstram, aliás, exemplos vindos de fora. É o caso da ducha elétrica instantânea da foto, que incorpora proteção DR de 15 mA! O produto ilustrado na foto, em particular, é fabricado na Malásia.\n\navaliação, na fase de projeto, da corrente de fuga prevista para a instalação como um todo ou para setores da instalação. Por norma, como já explicado, um dispositivo diferencial pode atuar a partir de 0,5 I∆n. E as normas de instalação recomendam que a soma das correntes de fuga prevista para o circuito ou setores protegidos por um DR não ultrapasse um terço de I∆n. Esse objetivo pode levar à subdivisão dos circuitos. Fica claro, por outro lado, que sem os devidos cuidados tanto maior será a probabilidade de desligamentos quanto maior a sensibilidade do DR utilizado. Sem desmerecer as dicas que manuais de fabricantes e a literatura técnica em geral fornecem, a avaliação da corrente de fuga permanente, com vista a compatibilizar esse\n\n<!-- pagina-origem: 26 -->",
+    "paginas_origem": [
+      26
+    ],
+    "tokens_estimados": 586,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 41,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "DRs: disparos indesejáveis e imunidade a transitórios",
+      "Vícios de construção e fatores acidentais"
+    ],
+    "content": "parâmetro e a sensibilidade do dispositivo, será sempre um processo impregnado de empirismo. Aí ajuda muito a experiência do projetista ou instalador. Não há fórmulas ou tabelas milagrosas capazes de fornecer uma resposta precisa para essa avaliação. No Brasil, um caso particular de corrente de fuga permanente tem ocupado o centro dos debates: o dos aquecedores de água elétricos instantâneos (sejam eles chuveiros, torneiras ou aparelhos tipo aquecedor central), em especial os com resistência nua e carcaça metálica, que podem apresentar correntes de fuga à terra elevadas. A norma NBR 5410 prevê que todos os circuitos que sirvam a pontos localizados em banheiros (incluindo, portanto, os aquecedores elétricos de água) sejam protegidos por DR com I∆n = 30 mA. A solução para compatibilizar DR e aquecedor é adotar modelos de aquecedor com nível adequado de corrente de fuga à terra, se necessário consultando o fabricante — eventualmente, tendo à mão dados acerca da resistividade da água fornecida localmente.\n\n### Vícios de construção e fatores acidentais\n\nO dispositivo diferencial é inimigo de gambiarras. Por isso mesmo conquistou o ódio dos eletricistas “espertos”. E ganhou o título de persona non grata, pelo seu papel de dedo-duro da instalação. Definitivamente, o DR tem muito má vontade com a instalação incorreta (mas mais barata!) de interruptores paralelos, de campainhas e outros vícios de construção. Dizem, também, que ele não simpatiza com cachorros, ratos e outros animais que apreciam o PVC de eletrodutos e condutores, por compulsão inata ou necessidade alimentar. A edição de Eletricidade Moderna de janeiro de 1986 trouxe um artigo que relata casos no mínimo curiosos de desligamento de DR por vícios de construção e pela deterioração da isolação provocada por animais.\n\n### Fenômenos transitórios e outras perturbações eletromagnéticas",
+    "paginas_origem": [],
+    "tokens_estimados": 467,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 42,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "DRs: disparos indesejáveis e imunidade a transitórios",
+      "Fenômenos transitórios e outras perturbações eletromagnéticas"
+    ],
+    "content": "São principalmente os fenômenos transitórios — responsáveis por muitos dos desligamentos “inexplicáveis” — que têm impelido os fabricantes e pesquisadores a aperfeiçoar a tecnologia dos dispositivos diferenciais; e, junto com os foros de normalização, a conceber ensaios e exigências que possam garantir ao DR a melhor imunidade possível a tais perturbações. Os fenômenos transitórios capazes de perturbar o dispositivo diferencial são, principalmente: 1) as correntes de energização (inrush); 2) as sobretensões temporárias; e 3) as sobretensões transitórias. Outras perturbações que também podem afetar o correto funcionamento do DR são: transitórios devidos a bobinas de contatores, relés e contatos secos; as descargas eletrostáticas; as interrupções e quedas de tensão de curta duração; as variações de freqüência; os campos magnéticos irradiados por linhas elétricas; e as interferências de alta freqüência. As correntes transitórias de energização são aquelas decorrentes das capacitâncias da instalação. As sobretensões temporárias são aquelas impostas às fases sãs de uma instalação com esquema IT quando uma das fases vai à terra. Essa elevação repentina e brutal da tensão, nas capacitâncias da instalação, provoca instantaneamente o aparecimento de correntes transitórias. As sobretensões transitórias são aquelas de origem atmosférica ou devidas a manobras (atuação de proteções na rede de média tensão ou na distribuição em BT, chaveamento de cargas indutivas, etc.). As de origem atmosférica, em particular, podem ser de três tipos: sem disrupção na instalação; com disrupção mas sem corrente subseqüente; e com disrupção e corrente subseqüente. Os surtos de corrente associados às sobretensões podem fluir para terra pelas capacitâncias da instalação, pelos pára-raios ou descarregadores de surto ou, ainda, por disrupções em pontos fracos da instalação. Nos laboratórios e, conseqüentemente, nos trabalhos de normalização, os estudiosos procuram definir e/ou identificar as formas de onda de ensaio que melhor simulam cada um dos tipos de sobretensões. Aliás, não só a forma de onda, como todo o ensaio — isto é, incluindo os procedimentos. Foi assim que as normas IEC de dispositivos diferenciais, em particular a IEC 61008 e a IEC 61009, as mais recentes, introduziram ensaios destinados a verificar e garantir imunidade a disparos indesejáveis, bem como a compatibilidade eletromagnética do produto. Os ensaios são de fato suficientes para garantir uma imunidade, senão completa, pelo menos adequada à grande maioria dos casos? Este é um ponto ainda controverso. E envolve, particularmente, os dispositivos do tipo instantâneo ou sem retardo. A leitura de documentos de trabalho da IEC permite deduzir que a maior parte dos países com participação ativa nas normas de DR e de instalação considera os ensaios previstos satisfatórios — e, portanto, que os dispositivos conforme as atuais exigências das normas são “suficientemente resistentes a disparos indesejáveis e a interferência eletromagnética em aplicações normais.” Mas especialistas de alguns países não pensam assim. Os requisitos não seriam suficientes para garantir que o dis-\n\n<!-- pagina-origem: 27 -->",
+    "paginas_origem": [
+      27
+    ],
+    "tokens_estimados": 797,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 43,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "DRs: disparos indesejáveis e imunidade a transitórios",
+      "O que dizem os símbolos"
+    ],
+    "content": "### O que dizem os símbolos\n\nÉ uma regra usual da normalização estipular que os produtos sejam marcados, de forma visível, com algumas informações, na forma de expressões, números ou símbolos, capazes de permitir a identificação rápida de suas características — ou, pelo menos, das características essenciais. Alguns desses códigos gravados no produto são, de fato, flagrantemente claros para um profissional de eletricidade. Não há dificuldade alguma em deduzir, por exemplo, que o número precedido do símbolo \"UN\" se refere à tensão nominal do produto; que o valor da corrente nominal é aquele junto ao símbolo \"IN\"; que as letras \"IP\" seguidas de dois algarismos traduzem o grau de proteção característico do invólucro do produto; e mesmo que a expressão \"I∆N 0,3 A\" estampada num dispositivo diferencial significa que sua sensibilidade — ou corrente diferencial-residual nominal de atuação — é de 300 mA. Mas nem todos os símbolos usados na identificação de um dispositivo diferencial são de conhecimento geral. É o caso daqueles explicados a seguir, quase todos extraídos ou derivados da normalização IEC.\n\nSignifica que o dispositivo diferencial-residual é do tipo AC, sensível a correntes de falta CA.\n\nIdentifica os dispositivos diferenciais do tipo A, capazes de detectar correntes alternadas e correntes contínuas pulsantes (correntes que caem a zero, ou quase, por no mínimo meio-ciclo em cada ciclo completo da freqüência da rede).\n\nInforma que o dispositivo é sensível a correntes contínuas lisas ou virtualmente lisas — isto é, com reduzida ondulação. Nos documentos IEC, um dispositivo capaz de detectar todas as formas de corrente acima relacionadas (alternada, contínua pulsante e contínua pura) é classificado como tipo B.\n\nIndica que o dispositivo é do tipo sem retardo, \"instantâneo\" ou, ainda, tipo G. O \"G\" vem de \"uso geral\", que é como as normas IEC qualificam tal dispositivo. Sua curva de atuação se situa no interior da zona tempo-corrente batizada curva G (ver artigo anterior “Curva de atuação e seletividade dos dispositivos DR”).\n\nTambém se refere à curva de atuação do dispositivo, mas informando, neste caso, que o dispositivo é do tipo S, ou \"seletivo\". A normalização IEC define como tais os dipositivos cuja atuação se situe dentro dos limites da zona tempo–corrente por ela batizada curva S. Os dispositivos do tipo S têm um retardo, ou tempo de não-atuação.\n\nIndica que o dispositivo foi submetido a ensaios destinados a garantir imunidade (pelo menos até certo nível) contra atuação incorreta devida a transitórios.\n\nAs marcações revelam virtualmente tudo sobre o produto: 1) a sensibilidade é de 30 mA; 2) o dispositivo é do tipo G (instantâneo); 3) é do tipo A (sensível a CA e a CC pulsante); 4) a corrente nominal é de 16 A. E fica evidente, também, que se trata de um dispositivo do tipo disjuntor diferencial, com 5) curva de disparo por curto-circuito, ou disparo magnético, do tipo B (faixa de disparo entre 3 e 5 x IN) e com 6) capacidade de interrupção de 10 kA.\n\n<!-- pagina-origem: 28 -->",
+    "paginas_origem": [
+      28
+    ],
+    "tokens_estimados": 760,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 44,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "DRs: disparos indesejáveis e imunidade a transitórios",
+      "O que dizem os símbolos"
+    ],
+    "content": "positivo instantâneo ou sem retardo fique livre de disparos indesejáveis provocados, mais exatamente, por sobretensões de origem atmosférica causadoras de disrupções acompanhadas de corrente subseqüente.\n\nO que diz a NBR 5410\n\nEm matéria de disparos indesejáveis, a NBR 5410 limita-se a chamar a atenção para as correntes de fuga naturais da instalação. Em 6.3.3.2.1, o documento determina que “os dispositivos DR devem ser selecionados e os circuitos elétricos divididos de forma tal que as correntes de fuga à terra suscetíveis de circular durante o funcionamento normal das cargas alimentadas não possam provocar a atuação desnecessária do dispositivo.” E lembra que os DRs podem atuar para qualquer valor de corrente diferencial superior a 50% da corrente de disparo nominal.\n\nE neste ponto voltamos aos DRs de curto retardo comentados no artigo anterior (“Curvas de atuação e seletividade dos dispositivos DR”). Pois para os especialistas insatisfeitos somente os diferenciais com curto retardo são inerentemente imunes a tais disparos. Eles entendem, ainda, que um tempo de não-atuação de 10 ms seria suficiente para evitar o desligamento indesejável, pois os surtos de corrente devidos a sobretensões teriam duração inferior a essa. Pelo sim, pelo não, como mencionado, há fabricantes que oferecem diferenciais “tipo G” de curto retardo. E que o apontam, ainda, como o mais adequado para circuitos particularmente sujeitos a correntes transitórias “normais” potencialmente perturbadoras, como os circuitos muito extensos ou que alimentam muitas lâmpadas fluorescentes. Além disso, os fabricantes costumam ensaiar o diferencial de curto retardo com impulsos de corrente 8/20 µs de amplitude bem superior à prescrita para o tipo\n\n- (instantâneo) — uma amplitude próxima da do ensaio\n\nprevisto para o tipo S (seletivo). Com efeito, segundo a IEC, a amplitude do impulso 8/20 µs deve ser de 200 A para o tipo G e de 5 kA para o tipo S; já o dispositivo de curto retardo é ensaiado com 3 kA — pelo menos segundo o catálogo de um fabricante. Para aqueles que julgam satisfatórios os atuais ensaios especificados na normalização IEC, os dispositivos tipo S e, no geral, os dispositivos com retardo só são realmente necessários, do ponto de vista da resistência a disparos indesejáveis e a interferências eletromagnéticas, em aplicações especiais — ou então nos casos em que se faz necessária seletividade entre DRs.",
+    "paginas_origem": [],
+    "tokens_estimados": 604,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 45,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Entradas, um exemplo prático da dupla isolação na instalação"
+    ],
+    "content": "## Entradas, um exemplo prático da dupla isolação na instalação\n\nA s entradas das instalações consumidoras BT constituem uma boa oportunidade para demonstrar como se pode caçar dois coelhos com uma só cajadada. Isto é: de como é possível aplicar, na instalação, o conceito da dupla isolação — que muitos associam apenas a produtos ou conjuntos prontos de fábrica —, preenchendo, ao mesmo tempo, uma reconhecida lacuna das instalações, que é a freqüente inexistência de proteção contra choques elétricos no trecho que vai da caixa de medição ao quadro de distribuição interno da instalação. De fato, constata-se freqüente inobservância da NBR 5410 nas entradas das instalações. A situação mais visível, de mais fácil exemplificação, é a das instalações elétricas residenciais, em casas e apartamentos. Presumindo-se, que nessas instalações, conforme a regra geral do seccionamento automático (proteção comtra choques elétricos, mais exatamente contra contatos indiretos) seja garantida, como manda o bom senso, por proteção diferencial-residual, verifica-se que essa proteção é geralmente instalada no quadro de distribuição da instalação consumidora — seja o dispositivo DR um único, interruptor ou disjuntor, sejam vários, para cada circuito terminal. A proteção fica garantida, portanto, desse ponto (quadro) em diante, no sentido de jusante. E a montante? Como fica todo o trecho que vai da caixa ou centro de medição (ou, antes, do ponto de entrega) até o quadro de distribuição? Como garantir a proteção contra choques elétricos (contatos indiretos) nesse trecho? Para maior clareza, vamos recorrer à figura 1, que mostra um padrão de entrada típico — aplicável, em particular, a edificações individuais atendidas diretamente em BT por rede de distribuição aérea. Mas as idéias e princípios aqui expostos têm caráter abrangente e podem ser transpostos, mutatis mutandis, a outros tipos de instalações residenciais, inclusive prédios de apartamentos. A figura ajuda a caracterizar bem o trecho analisado, que se estende do ponto de entrega ao quadro de distribui-\n\n<!-- pagina-origem: 29 -->",
+    "paginas_origem": [
+      29
+    ],
+    "tokens_estimados": 524,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 46,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Entradas, um exemplo prático da dupla isolação na instalação"
+    ],
+    "content": "ção, já no interior da residência. Até a saída da caixa de medição e proteção, é a concessionária que “dá as cartas”, isto é, fixa os padrões a serem seguidos. A própria NBR 5410 esclarece que suas regras são aplicáveis, no caso de instalações alimentadas diretamente por rede de distribuição pública em baixa tensão, a partir dos terminais de saída do dispositivo de proteção situado após o medidor. Mas isso também não impede que se analise a questão proposta globalmente, com reflexões que talvez possam ser úteis até para as próprias concessionárias, uma vez que embora fixar os padrões de entrada seja matéria de sua livre competência, essa liberdade deve respeitar os conceitos técnicos envolvidos e que sustentam a norma de instalações elétricas. Mais uma vez: como garantir proteção contra choques (contatos indiretos) no trecho em questão? Considerando todos os aspectos envolvidos, desde a segurança, em si, até o lado prático, que passa pelo reconhecimento dos padrões de entrada típicos adotados pelas concessionárias brasileiras, a solução que melhor conviria ao caso seria realizar essa parte da instalação segundo o princípio da proteção classe II — vale dizer, adotando uma solução construtiva que ofereça segurança equivalente à dos equipamentos e componentes classe II. Essa segurança se baseia na dupla isolação, isto é, na existência, conjunta, de isolação básica e de isolação suplementar. Assim, estaria preenchido o princípio da dupla linha de defesa que caracteriza a proteção contra choques elétricos, como explicado no artigo “Proteção contra choques: conceitos.” Geralmente as pessoas associam o conceito de classe II, ou dupla isolação, apenas a aparelhos ou equipamentos de utilização fornecidos como tais, como alguns eletrodomésticos e ferramentas elétricas portáteis. No entanto, os exem-\n\n![Figura vetorial da página 29](figura-vetorial-p29-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.",
+    "paginas_origem": [],
+    "tokens_estimados": 498,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 47,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Entradas, um exemplo prático da dupla isolação na instalação"
+    ],
+    "content": "Fig. 1 – Padrão de entrada típico de instalação residencial plos e os casos em que o conceito pode ser aplicado são bem mais amplos. Mesmo no campo essencialmente industrial, novos materiais isolantes e novas técnicas de concepção têm impulsionado a adoção da classe II, como é o caso dos quadros elétricos, em invólucros isolantes, conhecidos como de “isolação total”, previstos na norma IEC, em normas de outros países e na NBR 6808, “Conjuntos de manobra e controle de baixa tensão montados em fábrica”. Componentes ou partes de uma instalação elétrica também podem ser considerados, por construção ou por medidas adotadas durante a montagem, como capazes de oferecer uma segurança equivalente à da classe II. No primeiro caso temos, por exemplo, cabos isolados dotados, adicionalmente, de cobertura (cabos uni e multipolares), sem qualquer elemento metálico; no segundo, o recurso de envolver componentes ou partes da instalação dotados apenas de isolação básica com caixas ou, em sentido mais amplo, invólucros de material isolante capazes de desempenhar a função de isolação suplementar. Aliás, esse entendimento está claramente expresso na NBR 5410, no artigo que trata da “proteção pelo emprego de equipamentos classe II ou por isolação equivalente” (item 5.1.3.2), onde a norma diz que uma das possíveis soluções é a aplicação de uma isolação suplementar (aos componentes que possuam apenas isolação básica) durante a execução da instalação elétrica. A obtenção de uma segurança equivalente a classe II pelo uso de isolação suplementar exige a observância de\n\nFig. 2 – Medidas para se obter, no interior de uma caixa de medição metálica, uma segurança comparável à da classe II. Supõe-se que a caixa seja provida de placas de madeira no fundo, para fixação do medidor e do dispositivo de proteção. O terminal de aterramento principal não entra diretamente nessas considerações; evidentemente, ele é exigido em toda instalação, mas sua presença na ilustração destina-se apenas a completá-la\n\n<!-- pagina-origem: 30 -->\n\numas tantas regras básicas, contidas na própria NBR 5410. Essas regras impõem, essencialmente, que os invólucros (genericamente falando) garantidores • da isolação suplementar apresentem características apropriadas às solicitações a que poderão ser submetidos, de tal maneira que a isolação seja mantida ao longo do tempo; a proibição de qualquer disposição ou elemento susce- • tível de comprometer a segurança classe II; a fixação segura e durável dos elementos que provêem • a isolação suplementar. Então, como transpor a noção da dupla isolação à entrada da instalação? Considerando os padrões de entrada BT típicos das concessionárias brasileiras, os invólucros que abrigam a alimentação do consumidor, sentido fonte–carga, são (ver\n\n![Figura vetorial da página 30](figura-vetorial-p30-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.",
+    "paginas_origem": [
+      30
+    ],
+    "tokens_estimados": 734,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 48,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Entradas, um exemplo prático da dupla isolação na instalação"
+    ],
+    "content": "figura 1) o eletroduto de entrada, a caixa de medição, o eletroduto de saída da caixa de medição e o quadro de distribuição — e, eventualmente, caixas de passagem no trecho entre a medição e o quadro de distribuição. Bem, se todos esses elementos — eletrodutos, caixas e quadro — forem de material isolante, já teremos aí, em princípio, uma solução comparável à proteção classe II, obedecidas todas as regras pertinentes da NBR 5410 (5.1.3.2). Na prática, porém, tem predominado no Brasil o uso de elementos metálicos — pelo menos no que se refere à caixa de medição e, embora já nem tanto como no passado, ao quadro de distribuição, uma vez que em matéria de eletrodutos o tipo isolante, rígido ou flexível, tem sido bastante utilizado. Mas mesmo nessas condições é possível aplicar o conceito de isolação suplementar — basicamente provendo-a à margem dos invólucros metálicos, que deixariam assim de ser propriamente “massas” para serem apenas “elementos condutivos”. Lembremos, mais uma vez, no que tange a fios e cabos, que podem ser considerados como oferecendo segurança equivalente a classe II: condutores isolados, sem cobertura, em eletroduto isolante; • cabos unipolares ou cabo multipolar (que são, por defi- • nição, dotados de cobertura), qualquer que seja a natureza do eletroduto, metálico ou isolante. Esclarecido esse ponto, resta saber que providências adotar, no interior das caixas metálicas — a de medição e a do quadro de distribuição —, de modo a obter uma solução aceitável, à luz do conceito classe II. Para ser classe II, o equipamento, componente ou parte da instalação deve ser concebido e realizado de maneira a tornar improvável qualquer falta entre as partes vivas e as partes condutivas acessíveis. Ou seja: dentro das condições de utilização previstas, a ocorrência de qualquer falha não deve resultar na propagação de um potencial perigoso para a superfície externa. As figuras 2, 3 e 4 mostram, com o nível de detalhes possível em ilustrações necessariamente genéricas (para que as idéias possam ser transpostas caso a caso), como esse conceito associado à classe II poderia ser implementado, durante a instalação, ao caso aqui examinado, dos invólucros metálicos. A linha de alimentação (condutores) deve ser, ela própria, “classe II.” Portanto, são as três possibilidades mencionadas anteriormente: condutores isolados envolvidos por eletroduto isolante (a isolação suplementar); cabos unipolares; cabo multipolar. Mas esses condutores têm pontos de afloramento, em que sua isolação é necessariamente rompida: na entrada e saída do medidor, na entrada e saída dos dispositivos de comando e/ou proteção. E é aí que surge o risco maior de propagação de potencial perigoso para o invólucro metálico: ocorrendo afrouxamento da conexão, o condutor pode se soltar e entrar em contato com o invólucro ou com uma peça metálica em contato com o invólucro. Para evitar esse risco, alguns cuidados se impõem.",
+    "paginas_origem": [],
+    "tokens_estimados": 734,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 49,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Entradas, um exemplo prático da dupla isolação na instalação"
+    ],
+    "content": "A linha deve ser fixada, através de braçadeiras isolantes, em tantos pontos quantos necessários — e, em especial, o mais próximo possível dos terminais dos aparelhos, limitando-se também o trecho de condutor, no afloramento, ao mínimo possível, apenas o suficiente para a conexão. Os demais pontos de fixação devem ser em número e localização tais que fiquem aliviadas as tensões mecânicas sobre as conexões. No caso da caixa de medição (figura 2), supõe-se que tanto o compartimento do medidor quanto o da proteção tenham a usual placa de madeira no fundo, onde são fixados o medidor e o dispositivo de proteção — e que evita, portanto, o contato de um condutor vivo solto com o fundo da\n\n![Figura vetorial da página 30](figura-vetorial-p30-2)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 3 – Entrada e saída da caixa de medição e entrada no quadro de distribuição no caso de condutores isolados, sem cobertura\n\n<!-- pagina-origem: 31 -->",
+    "paginas_origem": [
+      31
+    ],
+    "tokens_estimados": 254,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 50,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Entradas, um exemplo prático da dupla isolação na instalação"
+    ],
+    "content": "caixa metálica. Se eventualmente não houver ou não for aplicada qualquer placa isolante no fundo da caixa, devese reforçar a segurança, no afloramento dos condutores, com outros expedientes. Por exemplo, montando uma canaleta de material isolante, do tipo com rasgos laterais e provida de tampa, junto aos bornes dos aparelhos (vide figura 4b). Essa canaleta não pode ser fixada à caixa (de medição ou do quadro de distribuição) por meio de peças metálicas; ou então deve ser de comprimento tal que sua fixação por peça metálicas, nas extremidades, não implique risco de contato de um condutor vivo, que venha a se soltar, com essas peças. O quadro de distribuição, como se vê na figura 4, compreende uma parte em classe II e outra parte, a jusante, em classe I, sendo que a “linha” divisória entre elas corresponde aos terminais de saída do(s) dispositivo(s) DR. Por isso, a figura 4 ilustra dois casos: a) proteção diferencial integrada à “chave geral”, seja essa chave um interruptor ou disjuntor; b) proteção diferencial incorporada aos disjuntores de cada circuito terminal. Com a massa do quadro ligada ao aterramento de proteção, teríamos então proteção por seccionamento automático da alimentação para qualquer falta que ocorresse a jusante do(s) DR(s). Finalmente, convém lembrar a necessidade de serem observadas todas as demais regras aplicáveis ao caso, referentes à proteção contra contatos diretos e à adequação dos componentes da instalação às influências externas dominantes. Com efeito, as recomendações apresentadas até aqui têm em vista, em particular, a proteção contra contatos incanaletas e a aparelhagem deve ser o menor possível, preferencialmente nulo) diretos. Conseqüentemente, há que se atentar ainda para o outro aspecto da proteção contra choques, que é a proteção contra contatos diretos. No caso concreto do exemplo utilizado, e considerando que a caixa de medição — ou o compartimento da medição, propriamente dita — é geralmente lacrada, inacessível ao consumidor, isso significa que o quadro de distribuição e o compartimento de proteção da caixa do medidor (se não for lacrado) devem ser providos com barreira que proteja contra contatos acidentais com partes vivas. Importante: essa barreira deve ser no mínimo IP2X e sua abertura ou remoção só deve ser possível com o uso de chave ou ferramenta — por exemplo, chave de fenda. Enfim, as exigências são aquelas de 5.1.2.2 (Proteção por meio de barreiras ou invólucros) da NBR 5410. Portanto, não são admitidos meros fechos ou trincos. Claro: essa barreira pode ser a própria tampa, desde que obedecidas as exigências. Caso não haja barreira e a porta ou tampa possa ser aberta sem uso de ferramenta ou chave, então todos os componentes no interior do invólucro devem ter suas partes vivas tornadas inacessíveis, por construção ou montagem.",
+    "paginas_origem": [],
+    "tokens_estimados": 707,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 51,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Separação elétrica e sistemas isolados"
+    ],
+    "content": "Outra observação importante é de que o recurso à dupla isolação para garantir proteção contra choques elétricos em trechos ou partes da instalação, como foi aqui explorado, não dispensa a presença, em absoluto, do condutor de proteção. No trecho analisado ou em qualquer outro segmento que venha a ser objeto de dupla isolação, o condutor de proteção deve estar presente nos circuitos envolvidos — seja na forma de PE, seja na forma de PEN.\n\n![Figura vetorial da página 31](figura-vetorial-p31-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 4 – Quadro de distribuição parte em “classe II”, parte em classe I: a) proteção diferencial-residual integrada à “chave geral” (no caso, um interruptor); b) proteção diferencial-residual a cargo dos disjuntores dos circuitos terminais (o afastamento entre as\n\n<!-- pagina-origem: 32 -->\n\n## Separação elétrica e sistemas isolados",
+    "paginas_origem": [
+      32
+    ],
+    "tokens_estimados": 237,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 52,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Separação elétrica e sistemas isolados"
+    ],
+    "content": "Uma das medidas de proteção contra choques elétricos previstas na NBR 5410, desde a edição de 1980, é a chamada “separação elétrica.” Ao contrário da proteção por seccionamento automático da alimentação, ela não se presta a uso generalizado, porquanto isso seria inviável, na prática. Pela própria natureza, é uma medida de aplicação mais pontual. Isso não impediu que ela despertasse, e talvez ainda desperte, uma certa confusão entre os profissionais de instalações. Alegam-se conflitos entre as disposições da medida e a prática de instalações. Seja como for, a dúvida tem o condão de tocar em pontos essenciais para a compreensão de ambas — da medida e da situação que se contrapõe como conflitante. O questionamento começa com a lembrança de que a medida “proteção por separação elétrica”, tal como apresentada pela NBR 5410, se traduz pelo uso de um transformador de separação, cujo circuito secundário é isolado (nenhum condutor vivo aterrado, inclusive neutro). E lembra ainda que, pelas disposições da norma, a(s) massa(s) do(s) equipamento(s) alimentado(s) não deve(m) ser aterrada(s) e nem ligada(s) a massas de outros circuitos e/ou a elementos condutivos estranhos à instalação — embora o documento exija que as massas do circuito separado (portanto, quando a fonte de separação alimenta mais de um equipamento) sejam interligadas por um condutor PE próprio, de eqüipotencialização. É o que diz, de fato, o item 5.1.3.5.4 da NBR 5410. Isso do lado da norma. Do lado da prática, como presumido conflito com a norma é mencionado o exemplo de instalações elétricas de salas cirúrgicas de hospitais, “em que o sistema também é isolado, usando-se igualmente um transformador de separação, mas todos os equipamentos por ele alimentados têm suas massas aterradas.” E invoca-se, ainda, a literatura sobre o assunto, “que recomenda mesmo a realização de uma ampla e irrestrita rede de aterramento, incluindo as massas dos equipamentos, a mesa cirúrgica, gabinetes e outros objetos metálicos, a malha metálica sob o piso condutivo, etc.” Daí a dúvida: a norma, no item referente à “separação elétrica”, manda isolar da terra as massas dos equipamentos alimentados pelo transformador de separação; já a prática, pelo menos em instalações em salas cirúrgicas, é aterrar e eqüipotencializar tudo. Como se explica então o conflito? Não há conflito algum. Uma coisa é proteção (contra choques) por separação elétrica. E outra é a prática adotada, por exemplo, nas instalações de centros cirúrgicos (pelo menos, em instalações dignas do nome), que reflete preocupações e objetivos que não são os mesmos da proteção por separação elétrica. Vejamos os conceitos envolvidos em cada caso, detalhadamente. A separação elétrica, como mencionado, é uma medida de aplicação limitada.",
+    "paginas_origem": [],
+    "tokens_estimados": 693,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 53,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Separação elétrica e sistemas isolados"
+    ],
+    "content": "A proteção contra choques (contra contatos indiretos) que ela proporciona repousa – numa separação, entre o circuito separado e outros circuitos, incluindo o circuito primário que o alimenta, equivalente na prática à dupla isolação; – na isolação entre o circuito separado e a terra; e, ainda, – na ausência de contato entre a(s) massa(s) do circuito separado, de um lado, e a terra, outras massas (de outros circuitos) e/ou elementos condutivos, de outro. Portanto, mais do que isolado, o circuito separado constitui um sistema elétrico “ilhado”. A segurança contra choques que ele oferece baseia-se na preservação dessas condições. Os transformadores de separação utilizados na alimentação de salas cirúrgicas também se destinam a criar um sistema isolado. Mas não é por ser o transformador de separação que seu emprego significa necessariamente proteção por separação elétrica. Seu objetivo, na alimentação de salas cirúrgicas, não é sequer a proteção contra choques. O que se visa, essencialmente, é garantir maior continuidade da alimentação, através da realização de um sistema IT local. Como uma instalação IT (sistema isolado) não possui qualquer ponto da alimentação diretamente aterrado, a alimentação se mantém na ocorrência de uma primeira falta. Graças à sinalização de um dispositivo supervisor de isolamento (DSI), essa falta pode e deve ser então localizada e eliminada antes que sobrevenha uma segunda falta — que provocaria, aí sim, o seccionamento da alimentação. E essa preocupação com a continuidade de serviço é evidente, já que a interrupção de energia poderia colocar em risco a vida de pacientes. Portanto, no que se refere à proteção contra choques elétricos, a instalação IT médica — como qualquer outra instalação concebida conforme o esquema IT — não constitui, ela própria, qualquer forma de proteção, estando sujeita às prescrições que a NBR 5410 estabelece para os sistemas IT em geral. E isso significa, ao contrário\n\n<!-- pagina-origem: 33 -->\n\ndo que reza a proteção por separação elétrica, o aterramento de todas as massas e, enfim, uma eqüipotencialização geral e irrestrita, envolvendo tudo quanto é massa e elemento condutivo.",
+    "paginas_origem": [
+      33
+    ],
+    "tokens_estimados": 542,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 54,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Separação elétrica: o que conta, na prática"
+    ],
+    "content": "## Separação elétrica: o que conta, na prática\n\nA o tratar da proteção por separação elétrica, a NBR 5410 admite que o circuito separado alimente um único equipamento ou mais de um equipamento (item 5.1.3.5.1). Mas atenção: este não é um mero detalhe. Começando pelo fato de que a norma faz essa distinção. E trata distintamente as duas situações, exigindo providências extras quando a fonte de separação alimenta mais de um equipamento. Não é só. Em outros trechos da norma, que indicam, concretamente, situações em que a medida pode ser aplicada, a distinção é retomada. Onde? Na parte 9, mais exatamente nos capítulos referentes a locais contendo banheira ou chuveiro, a piscinas e a compartimentos condutores. E de que forma pode ser aí usada a separação elétrica? Vejamos: na alimentação de tomadas situadas no volume 3 de • locais contendo banheira ou chuveiro (9.1.4.3.2); na alimentação de tomadas situadas no volume 2 de • piscinas (9.2.4.3.2); na alimentação de equipamentos de utilização situa- • dos no volume 2 de piscinas (9.2.4.4.3); na alimentação de ferramentas portáteis e de apare- • lhos de medição portáteis em compartimentos condutores (alínea a) de 9.3.2.2.2); e na alimentação de equipamentos fixos em comparti- • mentos condutores (alínea c) de 9.3.2.2.2). Finalmente, sob que condições a separação elétrica pode ser usada, nos casos listados? É aí, precisamente, que a distinção entre alimentação de um único e de vários equipamentos é retomada. E, mais uma vez, com uma particularidade que faz a diferença. Em todos os casos listados exigese que a separação elétrica seja individual, isto é, que o circuito separado alimente um único equipamento/tomada. A separação elétrica individual é, por assim dizer, o retrato ideal da separação elétrica como medida de proteção. Sendo o circuito separado isolado da terra, uma falha na isolação do equipamento alimentado, que tornasse viva sua massa, não resultaria em choque elétrico, pela inexistência de caminho para a circulação da hipotética corrente de falta. Até aí, nenhuma diferença entre a separação individual e a que alimenta vários equipamentos. Mas evitando-se a alimentação de vários equipamentos — vale dizer, sendo o equipamento alimentado único —, descarta-se, por exemplo, o risco de contato simultâneo com massas que porventura se tornem vivas pela ocorrência de faltas envolvendo duas fases distintas. Daí, aliás, a exigência de eqüipotencialização (não aterrada!) entre massas quando o circuito separado alimenta mais de um equipamento. E não pára por aí. Exige-se ainda, além da eqüipotencialização das massas, que um dispositivo de proteção seccione automaticamente a alimentação do circuito separado, num tempo máximo estipulado, se, preexistindo uma primeira falta, envolvendo uma massa, sobrevir uma segunda falta, envolvendo outra massa e outro condutor (distinto do primeiro).",
+    "paginas_origem": [],
+    "tokens_estimados": 718,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 55,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Separação elétrica: o que conta, na prática"
+    ],
+    "content": "Nos exemplos mais concretos de aplicação de separação elétrica como medida de proteção contra choques, a fonte de separação (transformador de separação) alimenta um único equipamento. É o caso das tomadas especiais, usadas em banheiros, para alimentação de barbeadores elétricos, muito comuns na Europa. Um relé térmico limita a potência disponível a 20 VA. Outro exemplo são os transformadores de separação usados na alimentação individual de ferramentas ou equipamentos portáteis, em canteiros de obras e serviços industriais realizados no interior de compartimentos condutores ou locais metálicos (serviços de caldeiraria, tipicamente).\n\n<!-- pagina-origem: 34 -->\n\nO essencial Embora a NBR 5410 preveja que a separação elétrica, como medida de proteção contra choques (contatos indiretos), possa ser realizada alimentando um ou mais de um equipamento, convém esquecer esta segunda possibilidade. Por razões práticas, assuma que separação elétrica é sempre individual, isto é, alimentando um único equipamento. Os casos concretos de aplicação da medida mencionados na norma reiteram esse ponto de vista. Em todos eles a norma ressalva que a aplicação da medida deve se limitar a um único equipamento alimentado: • na alimentação de tomadas situadas no volume 3 de locais contendo banheira ou chuveiro (9.1.4.3.2); • na alimentação de tomadas situadas no volume 2 de piscinas (9.2.4.3.2); • na alimentação de equipamentos de utilização situados no volume 2 de piscinas (9.2.4.4.3); • na alimentação de ferramentas portáteis e de aparelhos de medição portáteis em compartimentos condutores (alínea a) de 9.3.2.2.2); e • na alimentação de equipamentos fixos em compartimentos condutores (alínea c) de 9.3.2.2.2).",
+    "paginas_origem": [
+      34
+    ],
+    "tokens_estimados": 428,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 56,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Separação elétrica: o que conta, na prática"
+    ],
+    "content": "Ora, isso não lembra a medida de proteção (contra choques) por seccionamento automático da alimentação? Lembra, não. É a mesma coisa. Na verdade, como se vê, a proteção por separação elétrica em que a fonte de separação alimenta vários equipamentos é um IT disfarçado. Um IT cuja eqüipotencialização das massas é ilhada, para evitar que elas sejam “contaminadas”, isto é, para evitar que outras massas ou outros condutores de proteção, estranhos ao circuito separado, transfiram eventualmente potenciais perigosos para as suas (do circuito separado) massas. Tudo isso reforça a conclusão de que, na prática, proteção por separação elétrica é sinônimo de separação elétrica individual, ou seja, limitada a um único equipamento alimentado. Ademais, diante das exigências extras e da duvidosa ou inglória tarefa de evitar que as massas do circuito separado entrem em contato com a terra ou com outras massas, que sentido há em se optar pela medida? Se se pretende, por alguma razão, explorar a característica de se ter uma alimentação isolada da terra, por que então não partir logo para a adoção do esquema IT e delegar a proteção contra choques elétricos às regras do seccionamento automático da alimentação? — já que todas as medidas de proteção contra choques são teoricamente equivalentes do ponto de vista da segurança que proporcionam. Nesse sentido, o questionamento que pretexta o artigo anterior, sobre as diferenças entre separação elétrica e sistema IT, erra no acessório mas desnuda o essencial. Certo, a motivação maior em torno do IT é a continuidade de serviço, enquanto a separação elétrica, com esse nome, figura na norma explicitamente como medida de proteção contra choques. Mas por que alguém usaria a separação elétrica que não a individual? Pergunta para a próxima revisão da norma.",
+    "paginas_origem": [],
+    "tokens_estimados": 451,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 57,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Locais de serviço elétrico"
+    ],
+    "content": "## Locais de serviço elétrico\n\nNa proteção contra contatos diretos, isto é, contra contatos acidentais com partes vivas, as medidas de aplicação geral são a proteção por isolação das partes vivas (5.1.2.1 da NBR 5410) e a proteção por meio de barreiras ou invólucros (5.1.2.2). Mas há casos em que a NBR 5410 admite o uso de medidas de proteção (contra contatos diretos) apenas parciais ou mesmo a sua dispensa. Trata-se, essencialmente, dos chamados “locais de serviço elétrico” — locais técnicos que abrigam equipamentos elétricos e nos quais é proibido o ingresso de pessoas que não sejam advertidas ou qualificadas (BA4 e BA5, segundo a classificação da própria norma). Em suma, o acesso a esses locais é restrito apenas aos técnicos responsá-\n\n![Figura vetorial da página 34](figura-vetorial-p34-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Passagens destinadas à operação e manutenção em locais com proteção parcial por meio de obstáculos\n\n<!-- pagina-origem: 35 -->\n\nveis pela operação e manutenção do sistema elétrico. O assunto é tratado na seção 5.8.1 da NBR 5410 (Seleção das medidas de proteção contra choques elétricos em função das influências externas). Nesses locais, como mencionado, a norma admite que a proteção contra contatos acidentais com partes vivas seja apenas parcial, através do uso de obstáculos (5.1.2.3 da NBR 5410) e/ou da colocação fora de alcance (5.1.2.4), e até mesmo a inexistência de qualquer tipo de proteção. Mas quando as medidas parciais são efetivamente necessárias e quando elas podem ser dispensadas, pura e simplesmente? As diferenças essenciais entre os dois casos referem-se às características do local e às distâncias mínimas de segurança a serem observadas nas passagens destinadas à circulação do pessoal de operação e manutenção. Em ambos, ressalte-se, vale a regra geral: só se admite o ingresso de pessoas BA4 e BA5. Além disso, – o local deve ser sinalizado de forma clara e visível, por meio de indicações apropriadas; e – as passagens com extensão superior a 20 m devem ser acessíveis nas duas extremidades, recomendando-se que também o sejam passagens menores, com comprimento superior a 6 m. Mas para que no local a proteção, inclusive a parcial, possa ser omitida, a pessoa BA4 ou BA5 deve estar devidamente instruída • com relação às condições do local e às tarefas a serem nele executadas; a pessoa BA4 ou BA5 só deve poder nele ingressar com • o auxílio ou a liberação de algum dispositivo especial; e as portas de acesso devem permitir a fácil saída das pes- • soas. A abertura das portas, pelo lado interno do local, deve ser possível sem o uso de chaves, mesmo que as portas sejam fechadas a chave do exterior.\n\n<!-- pagina-origem: 36 -->\n\n![Figura vetorial da página 36](figura-vetorial-p36-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 2 – Passagens com partes vivas de um único lado",
+    "paginas_origem": [
+      35,
+      36
+    ],
+    "tokens_estimados": 753,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 58,
+    "heading_path": [
+      "Proteção contra choques elétricos",
+      "Locais de serviço elétrico",
+      "Distâncias mínimas em locais sem proteção"
+    ],
+    "content": "### Distâncias mínimas em locais com proteção parcial\n\nQuanto às distâncias mínimas, a figura 1 ilustra os valores a serem observados nos locais nos quais se prevê ou que exigem pelo menos a proteção parcial — seja por meio de obstáculos, por colocação fora de alcance ou, ainda, por uma mistura de ambas. Assim, a distância mínima entre obstáculos, entre manípulos • de dispositivos elétricos (punhos, volantes, alavancas, etc.), entre obstáculos e parede ou entre manípulos e pa- Fig. 3 – Passagens com partes vivas dos dois lados, sem proteção\n\nrede é de 700 mm; e a altura da passagem sob tela ou painel deve ser de pe- • lo menos 2000 mm. As distâncias indicadas são válidas considerando-se todas as partes dos painéis devidamente montadas e fechadas.\n\n### Distâncias mínimas em locais sem proteção\n\nJá as distâncias mínimas aplicáveis a locais desprovidos de qualquer meio de proteção contra contatos diretos estão indicadas na tabela I e nas figuras 2 e 3.",
+    "paginas_origem": [],
+    "tokens_estimados": 241,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  }
+]

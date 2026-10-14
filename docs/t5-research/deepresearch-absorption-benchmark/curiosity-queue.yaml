@@ -1,0 +1,12 @@
+schema: bench-curiosity-queue.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+open_questions:
+- id: CQ-01
+  category: technical
+  question: Are vendor-reported benchmark scores reproducible in our environment?
+  priority: HIGH
+  why_it_matters: Determines confidence band of bench claims
+  next_action: Reproduce top 2 player benchmark claims locally
+statistics:
+  total_open: 1

@@ -1,0 +1,310 @@
+# Slide Component Vocabulary — slides-creator (100% BRAND-AGNOSTIC & REPO-AGNOSTIC)
+# Squad is portable: may live in any repo, consumed by any app. Zero hard refs.
+
+schema_version: "3.0"
+name: slide-component-vocabulary
+owner_squad: slides-creator
+stack_target: "React 18+ TSX / Tailwind v4 / shadcn/ui new-york baseline / Lucide OR Tabler icons / Framer Motion OR equivalent motion lib"
+
+# ═══════════════════════════════════════════════════════════════════════
+# CANONICAL DIMENSIONS (geometric, universal)
+# ═══════════════════════════════════════════════════════════════════════
+canonical_dimensions:
+  slide:
+    width_px: 1920
+    height_px: 1080
+    aspect_ratio: "16:9"
+  scaling_contract:
+    pattern: "transform: scale(containerWidth / 1920) via ResizeObserver"
+    purpose: "responsive embed in any container without re-flowing internal 1920-based layout"
+    implementation_freedom: "consumer app implements its own SlideFrame wrapper per house style"
+  canvas:
+    padding_desktop_default: "96px 120px"
+    padding_alt: "corner ticks + content-centered"
+  grid:
+    columns: 12
+    rows: 8
+    gap: "Tailwind gap utilities OR explicit px/rem per house scale"
+  typography_scale_pt: [8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 20, 22, 24, 26, 28, 32, 34, 42, 48, 52, 72, 80, 120, 140, 220]
+  weights: [300, 400, 500, 600, 700, 800, 900]
+  whitespace_pct_target: [30, 40]
+
+# ═══════════════════════════════════════════════════════════════════════
+# TECHNOLOGY DISCIPLINE (contract — enforced at emit-deck-spec gate)
+# ═══════════════════════════════════════════════════════════════════════
+tech_discipline:
+  forbidden:
+    - "hardcoded hex/oklch/rgba in slide TSX (always use CSS variable)"
+    - "inline fontFamily string literals (always use var(--font-*) CSS var)"
+    - "3+ accent colors on one slide (one accent max per frame)"
+    - "raw HTML templates (output is TSX React functional components)"
+    - "Tailwind CDN (consumer must use local Tailwind v4 build)"
+    - "brand-name as text display element (use inline SVG asset instead)"
+    - "local ticker/marquee implementations (declare as contract slot, consumer provides)"
+    - "section without motion wrapper (unless motion_level == none AND justified)"
+    - "bypass prefers-reduced-motion (every animated element respects)"
+  mandatory:
+    - "CSS variables for ALL colors, fonts, spacing — consumer app defines {prefix}-tokens in its globals"
+    - 'shadcn/ui baseline config: {style: new-york, baseColor: neutral, cssVariables: true}'
+    - "TypeScript strict mode, zero `any`"
+    - "class merge utility (equivalent of `cn()` from @/lib/utils)"
+    - "prefers-reduced-motion respect on every animated element"
+    - 'alias imports (consumer defines @/components, @/lib/utils, @/components/ui, @/hooks per their tsconfig paths)'
+
+# ═══════════════════════════════════════════════════════════════════════
+# CHROME ATOM CONTRACT (interface — name + implementation up to consumer)
+# ═══════════════════════════════════════════════════════════════════════
+chrome_atom_contract:
+  purpose: "Unified slide chrome — corners + watermark + section tag + footer + page number + decorative layers"
+  required_props:
+    children:
+      type: ReactNode
+      required: true
+    className:
+      type: string
+      required: false
+    aspectRatio:
+      type: string
+      default: "16/9"
+    fixed:
+      type: "{ width: number; height: number } | null"
+      purpose: "Override aspectRatio with explicit px dimensions"
+    corners:
+      type: boolean
+      default: true
+    cornersOpacity:
+      type: number
+      default: 0.25
+    watermark:
+      type: "'logo' | string | null"
+      purpose: "Background mark — logo SVG or text/number placeholder"
+    eyebrow:
+      type: string
+      purpose: "Top-left metadata mark (eg: '◤ NN / TITLE')"
+    sectionTag:
+      type: string
+      purpose: "Top-right code tag"
+    footerLabel:
+      type: string
+      purpose: "Bottom-center UPPERCASE mono label"
+    pageNumber:
+      type: string
+    pageTotal:
+      type: string
+      purpose: "If set, renders 'NN / TOTAL'"
+    hazard:
+      type: boolean
+      default: false
+      purpose: "6px stripe at bottom edge"
+    background:
+      type: string
+      default: "var(--{prefix}-bg)"
+      purpose: "Resolved via brand-parametric slot"
+  behavior:
+    reduces_motion: "MUST wrap children with motion-aware primitive that short-circuits on useReducedMotion()"
+    ref_forwarding: "recommended"
+  implementation_name: "consumer chooses (DeckChrome, StageFrame, SlideShell, etc.)"
+  source_of_truth: "This contract. Consumer ships its own implementation."
+
+# ═══════════════════════════════════════════════════════════════════════
+# COMPONENTS — grouped by purpose layer (TSX-native, slot-based)
+# ═══════════════════════════════════════════════════════════════════════
+
+structural_components:
+  slide_frame:
+    purpose: "Responsive wrapper with 1920→container scaling via ResizeObserver"
+    contract: "Consumer implements; squad emits deck-spec referencing slot by role."
+  slide_chrome:
+    contract_ref: chrome_atom_contract
+  motion_section:
+    purpose: "Animated section wrapper — MUST wrap slide body when motion_level ≠ none"
+    reduces_motion: required
+
+title_components:
+  display_title:
+    purpose: "Slide mega title (hero, cover, section-break)"
+    sizing: "clamp(80px, 11.5vw, 220px), weight 900, tight negative tracking"
+    color_slot: "var(--{prefix}-fg)"
+    variants: [display_xl, display_l_120_140, display_m_48_56]
+  action_title:
+    purpose: "Primary insight per P4 Action Titles — [fact]+[magnitude]+[implication]"
+    sizing: "26-34pt, weight 700, line-height 1.15, -0.5px tracking, max 2 lines"
+    appears_in_types: [cover, exec-summary, data, framework, financial, roadmap, conclusion]
+    required: true
+  subtitle:
+    purpose: "Context line — audience, date, classification"
+    sizing: "18-24pt, weight 400, alpha-muted color"
+  eyebrow:
+    purpose: "Top-left metadata label surfaced via chrome_atom_contract"
+    format: "mono family, 18-22pt, 0.14em tracking, uppercase"
+
+kpi_components:
+  big_number_block:
+    purpose: "KPI callout — value (42-80pt), label (12-14pt), description (body)"
+    shadcn_pattern: "Card + CardTitle + CardContent + CardDescription composition"
+    appears_in_types: [data, exec-summary, financial, conclusion]
+  metrics_row:
+    purpose: "3-column horizontal KPI strip"
+    rule_of_three: enforced
+    appears_in_types: [data, exec-summary, conclusion]
+  bar_chart:
+    purpose: "Horizontal/vertical bar comparison"
+    motion_contract: "grow animation with stagger"
+  donut_chart:
+    purpose: "Part-to-whole 3-4 segments"
+  funnel:
+    purpose: "Conversion funnel"
+
+insight_components:
+  analysis_panel:
+    purpose: "Framed insight box interpreting adjacent data"
+    shadcn_pattern: "Alert OR Card with left-border accent"
+  alert_box:
+    purpose: "Warning/risk flag"
+    shadcn_pattern: "Alert variant in {destructive, warning, info}"
+  rag_status_band:
+    purpose: "Traffic-light status container"
+    semantic_mapping:
+      green: "on-track / positive / recommended"
+      orange: "at-risk / neutral / caveat"
+      red: "off-track / alert / blocker"
+    shadcn_pattern: "Badge OR Card with semantic color var"
+
+navigation_components:
+  agenda_list:
+    purpose: "TOC with sequential numbering"
+    appears_in_types: [agenda, toc, table-of-contents]
+  section_break:
+    purpose: "Inter-act transition slide"
+    motion_level: cinematic
+  appendix_banner:
+    purpose: "Section divider for appendix slides"
+  arrow_indicator:
+    purpose: "Flow/direction connector (SVG path)"
+    motion_contract: "path-draw animation"
+
+metadata_components:
+  footer_sources:
+    purpose: "APA citations inline"
+    typography: "italic mono 9-11pt, low-contrast color via var(--{prefix}-dim)"
+    required_fields_per_citation: [org, title, date, url, access_date]
+  page_number:
+    purpose: "Position indicator via chrome_atom_contract pageNumber + pageTotal"
+
+# ═══════════════════════════════════════════════════════════════════════
+# MOTION CONTRACT (tier semantics — preset names are consumer-implementation)
+# ═══════════════════════════════════════════════════════════════════════
+motion:
+  levels:
+    cinematic:
+      description: "Multi-layer 4-6s choreography"
+      use_for: [hero, title, section-break]
+    basic:
+      description: "Per-element fade/slide/scale, 1-2s total"
+      use_for: "default for all content slides"
+    none:
+      description: "No motion"
+      use_for: "static reference slides only (MUST be justified)"
+  preset_categories:
+    entry: "fadeIn, fadeUp, slideIn equivalents — light entry"
+    emphatic: "scaleIn, numberReveal equivalents — count-up / pop"
+    reveal_mask: "clipReveal, growHeight equivalents — mask unveil"
+    directional: "slideLeft/slideRight — list direction lock"
+    stagger_helper: "staggered-list helper per index/base"
+    cinematic_tier:
+      - letter_poof
+      - diagonal_entrance
+      - parallax_layer
+      - path_draw
+      - brand_flash
+      - scroll_reveal
+      - scanline_sweep
+      - diagonal_sweep
+      - cut_to_black
+  accessibility_contract: "Every slide MUST respect prefers-reduced-motion"
+  implementation_freedom: "Consumer picks Framer Motion, Motion One, CSS animations, etc. Squad specifies tier semantics, not library."
+
+# ═══════════════════════════════════════════════════════════════════════
+# BRAND-PARAMETRIC SLOTS (resolved via active-palette.yaml + consumer globals)
+# ═══════════════════════════════════════════════════════════════════════
+brand_parametric_slots:
+  css_var_contract:
+    prefix_placeholder: "{prefix}"
+    resolution: "Consumer declares {prefix} in its globals.css (eg: bb, rp, acme) and defines the tokens below"
+    required_tokens:
+      - "var(--{prefix}-bg) — primary background"
+      - "var(--{prefix}-fg) — primary foreground"
+      - "var(--{prefix}-accent) — single accent per frame"
+      - "var(--{prefix}-dim) — muted foreground"
+      - "var(--{prefix}-surface) — cards/panels"
+      - "var(--{prefix}-border) — separators"
+      - "var(--{prefix}-positive) — RAG green semantic"
+      - "var(--{prefix}-neutral) — RAG orange semantic"
+      - "var(--{prefix}-alert) — RAG red semantic"
+  font_var_contract:
+    required_tokens:
+      - "var(--font-{prefix}-display) — hero titles"
+      - "var(--font-{prefix}-sans) — body"
+      - "var(--font-{prefix}-mono) — metadata/footer"
+  shadcn_baseline:
+    style: new-york
+    rsc: true
+    tsx: true
+    baseColor: neutral
+    cssVariables: true
+    iconLibrary: "lucide (preferred) or equivalent"
+    aliases_contract:
+      components: "@/components"
+      utils: "@/lib/utils"
+      ui: "@/components/ui"
+      lib: "@/lib"
+      hooks: "@/hooks"
+    note: "Consumer configures actual tsconfig paths; these aliases are the default contract"
+
+# ═══════════════════════════════════════════════════════════════════════
+# SLIDE REGISTRY SCHEMA (emit-deck-spec produces entries conforming to this)
+# ═══════════════════════════════════════════════════════════════════════
+registry_schema:
+  entry_fields:
+    id: "kebab-case unique within deck"
+    label: "human-readable title"
+    category: "enum — see 8-ato narrative"
+    component_ref: "resolved consumer-side — path to TSX functional component"
+    version: "1 | 2 | 3 (V3 = full chrome_atom + full motion)"
+    motionLevel: "none | basic | cinematic"
+    heroSlide: "boolean (showcase/hero flag)"
+    bundleRef: "string | null (optional bundle card reference)"
+  8_ato_narrative_structure:
+    description: "8-act narrative progression for consulting-grade decks (brand-agnostic)"
+    atos:
+      - { ato: 1, name: ABERTURA, purpose: "cover, profile, welcome, logo, TOC, section-break" }
+      - { ato: 2, name: PROBLEMA, purpose: "statement of the problem, tensions, status quo" }
+      - { ato: 3, name: VISÃO,     purpose: "mission, vision, target state" }
+      - { ato: 4, name: MÉTODO,    purpose: "approach, framework, steps, methodology" }
+      - { ato: 5, name: PROVA,     purpose: "metrics, charts, case studies, evidence" }
+      - { ato: 6, name: CONFIANÇA, purpose: "team, experts, quotes, social proof" }
+      - { ato: 7, name: VISUAL,    purpose: "imagery, portfolio, product demos" }
+      - { ato: 8, name: FECHAMENTO, purpose: "CTA, pricing, contact, close" }
+
+# ═══════════════════════════════════════════════════════════════════════
+# CONSUMER INTEGRATION CONTRACT
+# ═══════════════════════════════════════════════════════════════════════
+consumers:
+  - task: classify-slide-type
+    usage: "Map content → category (8-ato) + pattern_id + component_ref"
+  - task: compose-grid-layout
+    usage: "Instantiate pattern anatomy using {prefix}-CSS vars + Tailwind v4 + shadcn/ui primitives"
+  - task: emit-deck-spec
+    usage: "deck-spec.yaml entries include motionLevel, category, pattern_id, consumer_component_ref"
+  - task: handoff-render-request
+    usage: "render-request.yaml targets any consumer app conforming to tech_discipline contract"
+  - template: templates/slide-component.tsx.hbs
+    usage: "Parametric TSX skeleton — consumer resolves brand.prefix + consumer.imports at materialization"
+
+meta:
+  version: "3.0"
+  brand_agnostic: true
+  repo_agnostic: true
+  portable: true
+  no_hard_refs_to: [any concrete app path, any brand name, any specific CSS var prefix, any specific font name, any concrete component import path]
+  only_contracts: "This file specifies contracts and schemas. Consumer apps implement + resolve."

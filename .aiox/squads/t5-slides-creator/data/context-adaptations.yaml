@@ -1,0 +1,142 @@
+# Context Adaptations — slides-creator
+# Extracted from McKinsey PPT Architect "ADAPTAÇÕES POR CONTEXTO"
+# Executable lookup: normalize-briefing + write-action-titles + create-presentation consume this
+
+schema_version: "1.0"
+name: context-adaptations
+owner_squad: slides-creator
+source: "docs/squad/slides/enterprise_slides/output/mckinsey_ppt_architect_instructions.md#ADAPTAÇÕES POR CONTEXTO"
+
+# ═══════════════════════════════════════════════════════════════════════
+# LANGUAGE ADAPTATIONS (lookup by briefing.normalized.language)
+# ═══════════════════════════════════════════════════════════════════════
+language:
+  pt-BR:
+    default: true
+    title_case: sentence_case  # "Market share caiu 15% em 2023"
+    number_format:
+      thousands_separator: "."
+      decimal_separator: ","
+      example: "1.234,56"
+    date_format_short: "DD/MM/AAAA"
+    date_format_long: "15 de dezembro de 2024"
+    apa_style: "APA latino-americano"
+
+  en:
+    title_case: title_case  # "Market Share Declined by 15% in 2023"
+    number_format:
+      thousands_separator: ","
+      decimal_separator: "."
+      example: "1,234.56"
+    date_format_short: "MM/DD/YYYY"
+    date_format_long: "December 15, 2024"
+    apa_style: "APA americano"
+
+  es:
+    title_case: sentence_case
+    number_format:
+      thousands_separator: "."
+      decimal_separator: ","
+      example: "1.234,56"
+    date_format_short: "DD/MM/AAAA"
+    date_format_long: "15 de diciembre de 2024"
+    apa_style: "APA latino-americano"
+
+# ═══════════════════════════════════════════════════════════════════════
+# CULTURAL ADAPTATIONS (lookup by briefing.normalized.audience.culture)
+# ═══════════════════════════════════════════════════════════════════════
+culture:
+  asia_east:  # China, Japão, Coreia
+    formality_level: high
+    initial_slides: "more_formal"
+    density_tolerance: high
+    color_semantics:
+      red: "luck/prosperity (positive)"
+      white: "mourning in some contexts (use cautiously)"
+    number_semantics:
+      "8": auspicious
+      "4": avoided (death association)
+    narrative_style: hierarchy_respecting
+
+  middle_east:
+    formality_level: high
+    opulence: "moderate_acceptable (gold, premium materials positive)"
+    human_representation: "consider_abstraction (avoid detailed faces in some contexts)"
+    reading_direction_arabic: "right_to_left (if applicable)"
+    narrative_style: relationship_first
+
+  latam:
+    formality_level: moderate
+    warmth: high
+    color_palette: "vibrant_colors_acceptable"
+    narrative_style: "more_contextual (expect_narrative_buildup)"
+    density_tolerance: moderate
+
+  europe_north:  # Escandinávia, UK, Alemanha, Holanda
+    formality_level: moderate
+    minimalism: "high (less_is_more)"
+    sustainability_esg: "mention_valued"
+    narrative_style: "direct (less_emotional_storytelling, high_efficiency)"
+    density_tolerance: low
+
+  us:
+    formality_level: moderate
+    storytelling: "high (hero_journey_structures_work)"
+    data_density: moderate
+    narrative_style: "insight_first + proof"
+
+# ═══════════════════════════════════════════════════════════════════════
+# AUDIENCE ADAPTATIONS (lookup by briefing.normalized.audience.role)
+# ═══════════════════════════════════════════════════════════════════════
+audience:
+  c_level:
+    slide_count_target: "max 15-20 for 30min"
+    density: low  # 1-2 key points per slide
+    data_depth: "high-level + strategic implications"
+    action_titles: "insight + magnitude + implied_action"
+    appendix_usage: "move details to appendix"
+
+  board:
+    slide_count_target: "max 10-15 for 30min"
+    density: very_low  # 1 key point per slide
+    data_depth: "executive_summary_quality"
+    action_titles: "decision_oriented"
+    approval_markers: "explicit_decisions_requested slides"
+
+  strategy_team:
+    slide_count_target: "20-40"
+    density: moderate  # 2-3 key points per slide
+    data_depth: "analytical_depth + methodology"
+    action_titles: "analytical + framework_based"
+
+  operators:
+    slide_count_target: "15-30"
+    density: moderate_to_high
+    data_depth: "process_depth + operational_detail"
+    action_titles: "action_oriented + operational"
+
+  investors:
+    slide_count_target: "15-25"
+    density: low
+    data_depth: "financial_rigor + market_context"
+    action_titles: "value_creation_oriented"
+    required_sections: [problem, solution, market, traction, team, ask]
+
+# ═══════════════════════════════════════════════════════════════════════
+# CONSUMER TASKS
+# ═══════════════════════════════════════════════════════════════════════
+consumers:
+  - task: normalize-briefing
+    purpose: "Extract audience.culture + audience.role + language from briefing; apply defaults"
+  - task: write-action-titles
+    purpose: "Apply title_case rule by language"
+  - task: create-presentation
+    purpose: "Apply number/date format by language across all slides"
+  - task: validate-fontes-apa
+    purpose: "Apply APA style per language rule"
+  - task: compose-grid-layout
+    purpose: "Adjust density + whitespace by audience.role"
+
+meta:
+  absorbed_from: "mckinsey_ppt_architect_instructions.md lines 1435-1487"
+  absorbed_date: "2026-04-21"

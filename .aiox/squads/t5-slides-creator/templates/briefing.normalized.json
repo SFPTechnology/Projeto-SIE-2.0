@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "slides-creator/briefing.normalized",
+  "title": "Normalized Briefing Contract",
+  "description": "Output schema for slide-chief briefing normalization. Produced by *normalize-briefing and consumed by content-architect, template-curator, and downstream agents.",
+  "version": "1.2.0",
+  "type": "object",
+  "required": [
+    "topic",
+    "objective",
+    "audience",
+    "context",
+    "duration_minutes",
+    "format",
+    "mode",
+    "aspect_ratio",
+    "induction_mode",
+    "max_slides",
+    "brand_config_resolved",
+    "source_materials_count",
+    "reference_assets_count",
+    "output_targets",
+    "warnings",
+    "blockers"
+  ],
+  "properties": {
+    "topic": {
+      "type": "string",
+      "description": "Explicit presentation topic. MUST be present -- halt intake if missing after 1 clarification."
+    },
+    "objective": {
+      "type": "string",
+      "description": "What should the audience DO, FEEL, or KNOW after this deck. MUST be present."
+    },
+    "audience": {
+      "type": "string",
+      "description": "Target audience. Inferred from context if missing, flagged for confirmation."
+    },
+    "context": {
+      "type": "string",
+      "description": "WHERE the presentation will be delivered. Determines mode selection."
+    },
+    "duration_minutes": {
+      "type": "number",
+      "description": "Estimated duration. Inferred from format defaults if not specified."
+    },
+    "format": {
+      "type": "string",
+      "enum": ["ted_keynote", "pitch_deck", "sales_deck", "technical", "zoom_virtual", "carousel_stories", "general"],
+      "description": "Presentation format. Determines mode override, slide count, and dominant types."
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["palco", "live", "async"],
+      "description": "Delivery mode. Determines word limits, whitespace, animation, safe zones."
+    },
+    "aspect_ratio": {
+      "type": "string",
+      "enum": ["16:9", "16:10", "9:16", "1:1"],
+      "description": "Canvas aspect ratio. Default 16:9 for projector/monitor."
+    },
+    "induction_mode": {
+      "type": "string",
+      "enum": ["registry_first", "reference_first"],
+      "description": "Template selection strategy. reference_first when screenshots/PPTX are present."
+    },
+    "max_slides": {
+      "type": "number",
+      "description": "Maximum slide count. Derived from format range or duration estimate."
+    },
+    "brand_config_resolved": {
+      "type": "boolean",
+      "description": "Whether brand config was resolved from workspace or briefing."
+    },
+    "brand_config_source": {
+      "type": "string",
+      "description": "Path or reference to the brand config source. Optional if brand_config_resolved=false."
+    },
+    "source_materials_count": {
+      "type": "number",
+      "description": "Number of source materials provided. 0 triggers briefing-only warnings."
+    },
+    "reference_assets_count": {
+      "type": "number",
+      "description": "Number of reference assets (screenshots, PPTX). >0 triggers reference_first mode."
+    },
+    "output_targets": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Delivery targets. Default: ['ds']."
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Non-blocking warnings surfaced during normalization."
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Blocking issues that halt the pipeline. Must be empty to proceed."
+    },
+    "education_mode": {
+      "type": "boolean",
+      "default": false,
+      "description": "When true, activates andragogic rules in the pipeline (Mayer, Kolb, DPC, Dreyfus, Scaffolding). When false, pipeline operates identically to v1. Optional -- defaults to false for backward compatibility."
+    },
+    "audience_profile": {
+      "type": "object",
+      "description": "Detailed audience profile for Dreyfus-calibrated content. Complements (does not replace) the required 'audience' string field. Optional -- omit for non-educational decks.",
+      "properties": {
+        "dreyfus_level": {
+          "type": "string",
+          "enum": ["novice", "advanced_beginner", "competent", "proficient", "expert"],
+          "description": "Dreyfus model skill acquisition level. Determines max_variables, rule provision, example density, and vocabulary pre-training requirements."
+        },
+        "context": {
+          "type": "string",
+          "description": "Educational context: course name, training program, workshop setting, etc."
+        },
+        "prior_knowledge": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of concepts/skills the audience already possesses. Used by K8 killer item to skip pre-training for known terms."
+        }
+      }
+    },
+    "source_type": {
+      "type": "string",
+      "enum": ["manual", "document", "youtube", "audio"],
+      "default": "manual",
+      "description": "Origin of the briefing content. 'manual' = user-authored, 'document' = extracted from docs, 'youtube' = extracted from YouTube video, 'audio' = extracted from audio file. Optional -- defaults to 'manual' for backward compatibility with v1 briefings."
+    },
+    "youtube_source": {
+      "type": "object",
+      "description": "YouTube source metadata and adaptation decisions. Present only when source_type='youtube'. Consumed by content-architect (visual_moments for visual_strategy) and visual-scout (keyframe paths as reference_assets).",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Original YouTube video URL."
+        },
+        "video_id": {
+          "type": "string",
+          "description": "YouTube video ID (11 characters)."
+        },
+        "extraction_profile": {
+          "type": "string",
+          "enum": ["youtube_captions", "whisper_local", "whisper_api", "assemblyai"],
+          "description": "Transcript source used during extraction. Maps to youtube-extraction.schema.json extraction_status.transcript_source."
+        },
+        "chapters": {
+          "type": "array",
+          "description": "Video chapters from extraction. Timestamps in float seconds.",
+          "items": {
+            "type": "object",
+            "required": ["timestamp_seconds", "title"],
+            "properties": {
+              "timestamp_seconds": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Chapter start in seconds (float)."
+              },
+              "title": {
+                "type": "string",
+                "description": "Chapter title."
+              },
+              "summary": {
+                "type": "string",
+                "description": "Generated summary of chapter content."
+              },
+              "adapted": {
+                "type": "boolean",
+                "description": "Whether this chapter was adapted per user preferences."
+              }
+            }
+          }
+        },
+        "visual_moments": {
+          "type": "array",
+          "description": "Visual moments from video frame analysis. Consumed by content-architect framework_5 (Semantic Classification Engine) to inform visual_strategy when available. Filtered: speaker_only removed, confidence >= 0.3.",
+          "items": {
+            "type": "object",
+            "required": ["timestamp_seconds", "type", "confidence"],
+            "properties": {
+              "timestamp_seconds": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Timestamp in seconds (float)."
+              },
+              "type": {
+                "type": "string",
+                "enum": ["diagram", "code", "text_slide", "whiteboard", "screen_demo", "infographic", "other"],
+                "description": "Visual content classification. 'speaker_only' excluded (filtered during extraction)."
+              },
+              "description": {
+                "type": "string",
+                "description": "Textual description of the visual content."
+              },
+              "text_content": {
+                "type": "string",
+                "description": "OCR text from the frame when applicable."
+              },
+              "frame_path": {
+                "type": "string",
+                "description": "Relative path to the extracted keyframe."
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Classification confidence (0.0 to 1.0). Minimum 0.3 after filtering."
+              }
+            }
+          }
+        },
+        "adaptation": {
+          "type": "object",
+          "description": "User adaptation preferences collected during youtube-to-briefing Stage 5 Q&A.",
+          "properties": {
+            "target_product": {
+              "type": "string",
+              "description": "Product/service to adapt the content for. Original video content if user chose to keep as-is."
+            },
+            "target_audience": {
+              "type": "string",
+              "description": "Target audience for the adapted presentation."
+            },
+            "tone_override": {
+              "type": "string",
+              "description": "Tone preference: formal, conversational, technical, inspirational, etc."
+            },
+            "keep_vs_adapt": {
+              "type": "string",
+              "enum": ["keep", "adapt", "hybrid"],
+              "description": "'keep' = use original content as-is, 'adapt' = transform for target product/audience, 'hybrid' = keep structure but adapt examples and context."
+            },
+            "structure_decisions": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Chapter-level decisions: which to keep, remove, or adapt."
+            }
+          }
+        }
+      }
+    }
+  },
+  "_example": {
+    "topic": "AIOX Platform Overview",
+    "objective": "Convince investors to fund Series A",
+    "audience": "VC partners and angel investors",
+    "context": "In-person pitch meeting, conference room",
+    "duration_minutes": 20,
+    "format": "pitch_deck",
+    "mode": "palco",
+    "aspect_ratio": "16:9",
+    "induction_mode": "registry_first",
+    "max_slides": 12,
+    "brand_config_resolved": true,
+    "brand_config_source": "workspace/businesses/aiox/",
+    "source_materials_count": 3,
+    "reference_assets_count": 0,
+    "output_targets": ["ds"],
+    "warnings": [],
+    "blockers": [],
+    "education_mode": false
+  }
+}

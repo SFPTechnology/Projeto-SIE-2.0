@@ -1,0 +1,292 @@
+schema: research-sources.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+sources:
+- id: source:drbench-repo
+  title: drbench — GitHub repo
+  url: ServiceNow/drbench
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/drbench
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:deer-flow-repo
+  title: deer-flow — GitHub repo
+  url: bytedance/deer-flow
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/deer-flow
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:autoresearchclaw-repo
+  title: autoresearchclaw — GitHub repo
+  url: aiming-lab/AutoResearchClaw
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/autoresearchclaw
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:storm-repo
+  title: storm — GitHub repo
+  url: stanford-oval/storm
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/storm
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:gpt-researcher-repo
+  title: gpt-researcher — GitHub repo
+  url: assafelovic/gpt-researcher
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/gpt-researcher
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:local-deep-research-repo
+  title: local-deep-research — GitHub repo
+  url: LearningCircuit/local-deep-research
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/local-deep-research
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:mirothinker-repo
+  title: mirothinker — GitHub repo
+  url: MiroMindAI/MiroThinker
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/mirothinker
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:deep-searcher-repo
+  title: deep-searcher — GitHub repo
+  url: zilliztech/deep-searcher
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/deep-searcher
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:langchain-open-deep-research-repo
+  title: langchain-open-deep-research — GitHub repo
+  url: langchain-ai/open_deep_research
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/langchain-open-deep-research
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:deep-research-bench-repo
+  title: deep-research-bench — GitHub repo
+  url: Ayanami0730/deep_research_bench
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/deep-research-bench
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:node-deepresearch-repo
+  title: node-deepresearch — GitHub repo
+  url: jina-ai/node-DeepResearch
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/node-deepresearch
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:miroflow-repo
+  title: miroflow — GitHub repo
+  url: MiroMindAI/MiroFlow
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/miroflow
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:miroeval-repo
+  title: miroeval — GitHub repo
+  url: MiroMindAI/MiroEval
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/miroeval
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:deepresearcher-repo
+  title: deepresearcher — GitHub repo
+  url: GAIR-NLP/DeepResearcher
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/deepresearcher
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:livedrbench-repo
+  title: livedrbench — GitHub repo
+  url: microsoft/LiveDRBench
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/livedrbench
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:mirorl-repo
+  title: mirorl — GitHub repo
+  url: MiroMindAI/MiroRL
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/mirorl
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:mirotrain-repo
+  title: mirotrain — GitHub repo
+  url: MiroMindAI/MiroTrain
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/mirotrain
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:alibaba-deepresearch-repo
+  title: alibaba-deepresearch — GitHub repo
+  url: Alibaba-NLP/DeepResearch
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/alibaba-deepresearch
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:agent-browser-workspace-repo
+  title: agent-browser-workspace — GitHub repo
+  url: k-kolomeitsev/agent-browser-workspace
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/agent-browser-workspace
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:dzhng-deep-research-repo
+  title: dzhng-deep-research — GitHub repo
+  url: dzhng/deep-research
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/dzhng-deep-research
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:openresearcher-repo
+  title: openresearcher — GitHub repo
+  url: TIGER-AI-Lab/OpenResearcher
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/openresearcher
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:nickscamara-open-deep-research-repo
+  title: nickscamara-open-deep-research — GitHub repo
+  url: nickscamara/open-deep-research
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/nickscamara-open-deep-research
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:jigsawstack-deep-research-repo
+  title: jigsawstack-deep-research — GitHub repo
+  url: JigsawStack/deep-research
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/jigsawstack-deep-research
+  used_in:
+  - players.yaml
+  - comparison-matrix.json
+- id: source:auto-deep-research-repo
+  title: auto-deep-research — GitHub repo
+  url: HKUDS/Auto-Deep-Research
+  publisher: community
+  source_type: repo
+  official: true
+  credibility: 95
+  accessed_at: '2026-05-18'
+  local_clone: outputs/decoded/auto-deep-research
+  used_in:
+  - players.yaml
+  - comparison-matrix.json

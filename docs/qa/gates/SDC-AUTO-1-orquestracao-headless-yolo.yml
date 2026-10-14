@@ -1,0 +1,65 @@
+schema: 1
+story: SDC-AUTO-1
+story_title: Implementar orquestracao headless YOLO do SDC ate deploy
+gate: CONCERNS
+status_reason: >-
+  A implementacao atende ao fluxo principal, aos bloqueios criticos e aos testes
+  adicionais solicitados no review anterior. Os gates npm globais da raiz foram
+  restaurados para o escopo SDC-AUTO-1; a aprovacao plena fica limitada apenas
+  por CodeRabbit indisponivel no WSL atual.
+reviewer: Quinn (Test Architect)
+updated: '2026-07-27T12:00:00-03:00'
+
+top_issues:
+  - id: QA-SDC-AUTO-1-002
+    severity: medium
+    summary: CodeRabbit nao executa no WSL atual; binario falha com Illegal instruction antes de version/help/doctor.
+    refs:
+      - .aiox-core/core/quality-gates/quality-gate-config.yaml
+      - docs/qa/coderabbit-reports/SDC-AUTO-1-coderabbit-environment.md
+      - docs/stories/story-SDC-AUTO-1-orquestracao-headless-yolo.md
+    suggested_owner: devops
+
+waiver:
+  active: false
+
+quality_score: 90
+expires: '2026-08-10T12:00:00-03:00'
+
+evidence:
+  tests_reviewed: 18
+  risks_identified: 1
+  trace:
+    ac_covered: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    ac_gaps: []
+    notes: >-
+      Dev added direct tests for manifest immutability on resume, every remote
+      authorization flag group, all completed remote effects on resume, and
+      guided/interactive metadata preservation.
+
+nfr_validation:
+  security:
+    status: CONCERNS
+    notes: Redaction and authority checks are implemented, but CodeRabbit evidence is unavailable because the local WSL binary is incompatible with the current CPU exposure.
+  performance:
+    status: PASS
+    notes: Runner is deterministic and bounded by maxTransitions; no runtime performance risk identified in reviewed scope.
+  reliability:
+    status: PASS
+    notes: Resume/idempotency and manifest mutation paths are now directly covered by tests.
+  maintainability:
+    status: PASS
+    notes: Runner and CLI are small, isolated, CommonJS-compatible, and exported through the orchestration index.
+
+recommendations:
+  immediate:
+    - action: Run CodeRabbit on an AVX2-capable host/runner, via GitHub Actions, or with a CodeRabbit-provided non-AVX2-compatible binary before production publication.
+      refs:
+        - .aiox-core/core/quality-gates/quality-gate-config.yaml
+        - docs/qa/coderabbit-reports/SDC-AUTO-1-coderabbit-environment.md
+      suggested_owner: devops
+  future:
+    - action: Add a repository-local qa-gate template if the AIOX task expects template rendering.
+      refs:
+        - .aiox-core/development/templates/qa-gate-tmpl.yaml
+      suggested_owner: qa

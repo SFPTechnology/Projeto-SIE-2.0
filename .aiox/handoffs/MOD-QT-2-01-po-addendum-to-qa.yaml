@@ -1,0 +1,111 @@
+handoff_id: MOD-QT-2-01-po-addendum-to-qa
+consumed: true
+consumed_at: "2026-07-28"
+consumed_by: "@qa (Quinn) — PO-DIV-02 RESOLVIDA; PO-DIV-01 reclassificada; lint/build reexecutados (build PASS, lint projeto NAO VERIFICADO); decisao dos 4 ACs = opcao (b)"
+created_at: "2026-07-28"
+from_agent: "@po"
+to_agent: "@qa"
+type: addendum
+supplements: ".aiox/handoffs/MOD-QT-2-01-dev-to-qa.yaml"
+workflow: "MOD-QT-2-MOTOR-QUEDA-TENSAO"
+story: "docs/stories/story-MOD-QT-2-01-motor-calculo-queda-tensao.md"
+
+purpose: >-
+  Verificacao independente executada por @po apos o fechamento da Fase D.
+  NAO substitui o handoff do @dev. Registra duas divergencias entre o que o
+  handoff dev-to-qa afirma e o que a re-execucao dos gates mostrou, mais uma
+  correcao de precisao no Definition of Done (item 4) de autoria do @po.
+
+po_independent_verification:
+  executed_at: "2026-07-28"
+  scope: "typecheck + test + inspecao de diff do contrato publico"
+
+  contrato_publico:
+    resultado: PASS
+    detalhe: >-
+      otimizar-condutor.schema.ts com git diff VAZIO (ValidarMODQTSchema e
+      RetornoMODQTSchema intactos). contratos.ts aparece como 'M', mas o diff
+      esta inteiramente confinado a interface ResultadoDimensionamento
+      (+ib_a, +i2_a, +fonte_i2), que e trabalho nao commitado de MOD-CC/AUTO-OTI,
+      alheio a esta story. RetornoMODQT permanece byte-a-byte identico (linhas 50-56).
+      Rota inalterada. Conclusao: nenhuma violacao de contrato atribuivel ao MOD-QT-2.
+
+  typecheck:
+    resultado: PASS
+    detalhe: "tsc --noEmit sem saida — confirma o registro do @dev."
+
+divergencias_encontradas:
+  - id: "PO-DIV-01"
+    severidade: MEDIA
+    campo_no_handoff_dev: "gates_tecnicos.test: PASS # 793 testes / 793 passando / 0 falhando / 336 arquivos"
+    observado_pelo_po: "Test Files: 1 failed | 122 passed (123). Tests: 793 passed (793)."
+    analise: >-
+      Os 793 testes individuais realmente passam — essa parte do registro do @dev esta correta.
+      Mas 'npm test' NAO fecha limpo: 1 arquivo de teste falha na coleta
+      (tests/domain/calculo/derivar-circuitos.test.ts — "No test suite found in file").
+      O handoff afirma "0 falhando", o que e verdadeiro na dimensao de testes e
+      falso na dimensao de arquivos. Tambem ha divergencia de contagem de arquivos
+      (handoff diz 336, execucao mostra 123) — provavelmente contagem de outra coisa.
+    acao_para_qa: >-
+      Nao aceitar "test: PASS" sem qualificar. Decidir se 1 test file failed e
+      CONCERNS ou FAIL segundo o criterio do gate de QA.
+
+  - id: "PO-DIV-02"
+    severidade: ALTA
+    achado: >-
+      tests/domain/calculo/derivar-circuitos.test.ts esta com 0 linhas na worktree.
+      No HEAD tinha 281 linhas. O diff e '281 deletions(-)', nao commitado.
+      Ou seja: 281 linhas de cobertura de teste de derivar-circuitos foram
+      esvaziadas e nao estao rodando.
+    atribuicao: >-
+      NAO atribuivel ao MOD-QT-2 pelo conteudo (dominio calculo/derivar-circuitos,
+      sem relacao com queda-tensao), mas esta na mesma worktree suja que sera
+      commitada junto. Provavelmente residual de MOD-CC/AUTO-OTI nao commitado.
+    risco: >-
+      Regressao de cobertura silenciosa. Se essa worktree for commitada como esta,
+      281 linhas de teste desaparecem do repositorio sem registro em nenhuma story.
+    acao_para_qa: >-
+      Escalar antes de qualquer PASS. Ou o arquivo e restaurado (git checkout HEAD --
+      tests/domain/calculo/derivar-circuitos.test.ts), ou a delecao precisa de
+      justificativa escrita em alguma story. Nao e decisao do @po nem do @qa
+      apagar cobertura sem rastro.
+
+nao_verificado_pelo_po:
+  - gate: lint
+    motivo: >-
+      Re-execucao iniciada mas sem produzir saida em ~35 minutos (aparentemente
+      travada ou muito lenta neste ambiente). NAO confirmado independentemente.
+      O @dev registrou PASS (18 erros prettier corrigidos com --fix na 1a execucao).
+  - gate: build
+    motivo: "Nao alcancado — ficou atras do lint na mesma cadeia."
+  acao_para_qa: "Re-executar lint e build isoladamente e confirmar."
+
+po_correcao_no_dod:
+  item: 4
+  motivo: >-
+    O criterio original que eu mesmo escrevi ("git diff vazio" para contratos.ts,
+    otimizar-condutor.schema.ts e servico-dimensionamento-condutores.ts) estava
+    errado como redigido: a worktree ja chegou suja nesta story, com trabalho nao
+    commitado de epicos anteriores. Aplicado literalmente, faria o @qa reprovar
+    o item 4 por um 'M' que nao tem nada a ver com o MOD-QT-2.
+  correcao: >-
+    Item 4 reescrito para criterio por SIMBOLO (RetornoMODQT, ValidarMODQTSchema,
+    RetornoMODQTSchema, rota) em vez de por arquivo, com o resultado da verificacao
+    ja registrado. Nenhuma flexibilizacao: o contrato continua inalteravel.
+
+escopo_ui_fatiado:
+  observacao: >-
+    @dev fatiou Tasks 4.2-4.7 (endpoints auxiliares §23.2 + UI Carbon §24-§25) para
+    MOD-QT-2-02, deixando AC8, AC9, AC12 e AC14 sem evidencia. Isso foi feito sob a
+    autoridade que eu concedi explicitamente em DEV-06 e na "Nota de sequenciamento"
+    da story — e uma decisao legitima, nao uma omissao.
+  posicao_do_po: >-
+    Aceito como CONCERNS, nao como FAIL. Mas o item 2 do Definition of Done
+    ("todos os 20 ACs cobertos") NAO esta atendido nesta entrega, e a story nao pode
+    ser marcada Done sem que @qa registre formalmente o waiver desses 4 ACs OU que
+    MOD-QT-2-02 seja criada e vinculada. Cabe ao @qa escolher; cabe ao @po (eu)
+    criar MOD-QT-2-02 se a opcao for vincular.
+
+next_action: >-
+  @qa executa *review com este addendum lido junto do handoff dev-to-qa.
+  Prioridade de investigacao: PO-DIV-02 (cobertura deletada) antes de qualquer veredito.

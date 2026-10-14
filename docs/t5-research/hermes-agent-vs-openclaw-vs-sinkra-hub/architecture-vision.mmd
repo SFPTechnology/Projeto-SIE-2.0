@@ -1,0 +1,137 @@
+%%{ init: { 'theme': 'dark', 'themeVariables': { 'primaryColor': '#10B981', 'primaryTextColor': '#e2e8f0', 'primaryBorderColor': '#10B981', 'lineColor': '#64748b', 'secondaryColor': '#3B82F6', 'tertiaryColor': '#8B5CF6', 'background': '#0f172a', 'mainBkg': '#1e293b', 'nodeBorder': '#475569' } } }%%
+
+graph TB
+    subgraph USERS["👤 End Users (4 Businesses × 23+ Channels)"]
+        U1["AllFluence"]
+        U2["AIOX"]
+        U3["Academia Lendária"]
+        U4["Billion"]
+    end
+
+    subgraph L1["LAYER 1: DISTRIBUTION — OpenClaw"]
+        direction LR
+        subgraph CHANNELS["📱 23+ Channels"]
+            CH1["Telegram"]
+            CH2["Discord"]
+            CH3["Slack"]
+            CH4["WhatsApp"]
+            CH5["iMessage"]
+            CH6["Teams"]
+            CH7["Signal"]
+            CH8["12+ more..."]
+        end
+        subgraph APPS["📲 Native Apps"]
+            APP1["macOS"]
+            APP2["iOS"]
+            APP3["Android"]
+        end
+        subgraph PLUGINS["🧩 93 Extensions"]
+            P1["35 Providers"]
+            P2["23 Channels"]
+            P3["24 Tools"]
+            P4["Plugin SDK\n50+ exports"]
+        end
+        GW["🌐 Gateway Protocol"]
+        CANVAS["🖼️ Canvas (a2ui)"]
+    end
+
+    subgraph L2["LAYER 2: INTELLIGENCE — Hermes Agent"]
+        direction LR
+        subgraph BRAIN["🧠 AIAgent Core"]
+            AGENT["AIAgent\n(run_agent.py)"]
+            SKILL["Skill Loop\n(self-creating\nself-improving)"]
+            HONCHO["Honcho Memory\n(dialectic\nuser modeling)"]
+            ROUTE["Smart Routing\n+ Credential Pool"]
+        end
+        subgraph TOOLS["🔧 Tools (49 + 93 OC plugins)"]
+            T1["Terminal\n(6 backends)"]
+            T2["Browser\n(Camofox)"]
+            T3["File/Web/Code"]
+            T4["MCP\n(bidirectional)"]
+            T5["Vision/TTS/STT"]
+        end
+        subgraph RL["🔬 RL Pipeline"]
+            BATCH["Batch Runner"]
+            ATROPOS["Atropos RL"]
+            TRAJ["Trajectory\nCompression"]
+        end
+    end
+
+    subgraph L3["LAYER 3: GOVERNANCE — Sinkra Hub"]
+        direction LR
+        subgraph CONSTITUTION["📜 Constitution"]
+            CONST["322-line\nConstitution"]
+            AUTH["Authority\nMatrix"]
+            OWNERS["CODEOWNERS"]
+        end
+        subgraph SQUADS["🏛️ 53 Squads / 473 Agents"]
+            SQ1["sinkra-squad"]
+            SQ2["copy (53 agents)"]
+            SQ3["backlog-ops (26)"]
+            SQ4["design-system (18)"]
+            SQ5["45+ more..."]
+        end
+        subgraph QA["✅ Quality Gates"]
+            META["META_AXIOMAS"]
+            CHECK["483 Checklists"]
+            TMPL["621 Templates"]
+            TASK["1,834 Task Defs"]
+        end
+        subgraph BIZ["🏢 4 Businesses"]
+            BIZ1["AllFluence\nL0-L4"]
+            BIZ2["AIOX\nL0-L4"]
+            BIZ3["Acad. Lendária\nL0-L4"]
+            BIZ4["Billion\nL0-L4"]
+        end
+    end
+
+    subgraph FLYWHEEL["🔄 Training Flywheel"]
+        FW1["Conversations\nfrom 23 channels"]
+        FW2["Trajectory\nexport (JSONL)"]
+        FW3["Quality gate\nvalidation"]
+        FW4["RL Training\n(Atropos)"]
+        FW5["Better models\ndeployed back"]
+    end
+
+    %% User to Distribution
+    U1 & U2 & U3 & U4 --> CHANNELS & APPS
+
+    %% Distribution to Intelligence
+    CHANNELS --> GW
+    APPS --> GW
+    GW -->|"OpenAI JSON"| AGENT
+
+    %% Intelligence internal
+    AGENT --> SKILL
+    AGENT --> HONCHO
+    AGENT --> ROUTE
+    AGENT --> TOOLS
+    SKILL -->|"New skills"| AGENT
+
+    %% Intelligence to Governance
+    AGENT -->|"Outputs"| META
+    SKILL -->|"Skills for review"| CHECK
+
+    %% Governance to Business
+    CONST --> AUTH
+    AUTH --> SQUADS
+    SQUADS --> QA
+    QA --> BIZ
+
+    %% Flywheel
+    GW -->|"Conversations"| FW1
+    FW1 --> FW2
+    FW2 --> FW3
+    FW3 -->|"Validated"| FW4
+    FW4 --> FW5
+    FW5 -->|"Improved"| AGENT
+
+    %% Sinkra validates flywheel
+    META -.->|"Quality gate"| FW3
+
+    %% Styles
+    style L1 fill:#1e3a5f,stroke:#3B82F6,color:#e2e8f0
+    style L2 fill:#1a3a2a,stroke:#10B981,color:#e2e8f0
+    style L3 fill:#2d1b4e,stroke:#8B5CF6,color:#e2e8f0
+    style FLYWHEEL fill:#3b1a1a,stroke:#EF4444,color:#e2e8f0
+    style USERS fill:#1e293b,stroke:#64748b,color:#e2e8f0

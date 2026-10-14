@@ -1,0 +1,103 @@
+{
+  "bench_id": "visual-embedding-models-2026-05-06",
+  "bench_type": "universal-bench",
+  "lens": "Best visual backbone for an OSS substitute of Eddie AI's B-Roll Finder — semantic search inside a personal B-roll library, matching transcript text to visual content",
+  "subjects": [
+    {
+      "id": "siglip",
+      "label": "SigLIP / SigLIP 2 (Google)",
+      "primary_url": "https://huggingface.co/google/siglip-base-patch16-256",
+      "secondary_urls": [
+        "https://huggingface.co/blog/siglip2",
+        "https://arxiv.org/abs/2502.14786",
+        "https://arxiv.org/pdf/2303.15343"
+      ],
+      "variants_evaluated": [
+        "google/siglip-base-patch16-256",
+        "google/siglip-base-patch16-256-multilingual",
+        "google/siglip2-base-patch16-224",
+        "google/siglip2-so400m-patch14-384"
+      ]
+    },
+    {
+      "id": "openclip",
+      "label": "OpenCLIP (LAION/mlfoundations)",
+      "primary_url": "https://github.com/mlfoundations/open_clip",
+      "secondary_urls": [
+        "https://huggingface.co/laion/CLIP-ViT-L-14-laion2B-s32B-b82K",
+        "https://huggingface.co/laion/CLIP-ViT-bigG-14-laion2B-39B-b160k",
+        "https://huggingface.co/laion/CLIP-ViT-L-14-DataComp.XL-s13B-b90K",
+        "https://laion.ai/blog/giant-openclip/",
+        "https://laion.ai/blog/large-openclip/",
+        "https://arxiv.org/pdf/2212.07143"
+      ],
+      "variants_evaluated": [
+        "ViT-L/14 (LAION-2B)",
+        "ViT-L/14 (DataComp-XL)",
+        "ViT-H/14 (LAION-2B)",
+        "ViT-G/14 (LAION-2B)"
+      ]
+    },
+    {
+      "id": "clip-openai",
+      "label": "CLIP (OpenAI original)",
+      "primary_url": "https://github.com/openai/CLIP",
+      "secondary_urls": [
+        "https://huggingface.co/openai/clip-vit-large-patch14",
+        "https://huggingface.co/openai/clip-vit-base-patch32",
+        "https://openai.com/index/clip/"
+      ],
+      "variants_evaluated": [
+        "ViT-B/32",
+        "ViT-B/16",
+        "ViT-L/14",
+        "ViT-L/14@336px"
+      ]
+    }
+  ],
+  "criteria": [
+    "Retrieval accuracy (zero-shot ImageNet, COCO/Flickr30k retrieval, MTEB-multimodal)",
+    "Inference speed on Apple Silicon (M1-M3) and Linux GPU",
+    "License clarity for commercial use",
+    "Easy integration with FAISS / ChromaDB / pgvector",
+    "Multilingual prompt support (including Portuguese)"
+  ],
+  "scoring_dimensions": [
+    "Maturity",
+    "Ecosystem",
+    "DX",
+    "Performance",
+    "Scalability",
+    "Community"
+  ],
+  "scoring_scale": "0-100",
+  "level_taxonomy": [
+    "Forte",
+    "Parcial",
+    "Sem equivalente"
+  ],
+  "persona": {
+    "name": "Sinkra Hub — OSS B-Roll Finder Builder",
+    "context": "Sinkra Hub creator building OSS substitute for Eddie AI's B-Roll Finder. Personal B-roll library (~1k–50k clips), semantic search via transcript text. Mac M-series for dev, Linux GPU for batch indexing.",
+    "weights": {
+      "Maturity": 0.15,
+      "Ecosystem": 0.15,
+      "DX": 0.20,
+      "Performance": 0.25,
+      "Scalability": 0.10,
+      "Community": 0.15
+    }
+  },
+  "related_benches": [
+    "docs/bench/submagic-vs-eddie-ai/"
+  ],
+  "constraints": {
+    "max_search_calls": 12,
+    "search_calls_used": 10,
+    "no_install": true,
+    "language_in_artifacts": "pt-BR"
+  },
+  "verdict_summary": "OpenCLIP ViT-L/14 (DataComp-XL) como default; SigLIP-2 base/multilingual quando prompts em português ou outros idiomas dominam o corpus; OpenAI CLIP apenas para baseline/reproduzir paper.",
+  "generated_at": "2026-05-06",
+  "generated_by": "Universal Bench Analyst (Claude)"
+}

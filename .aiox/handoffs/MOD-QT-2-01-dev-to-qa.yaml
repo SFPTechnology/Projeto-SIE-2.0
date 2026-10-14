@@ -1,0 +1,202 @@
+handoff_id: MOD-QT-2-01-dev-to-qa
+consumed: true
+consumed_at: "2026-07-28"
+consumed_by: "@qa (Quinn) — gate CONCERNS, ver .aiox/handoffs/MOD-QT-2-01-qa-to-devops.yaml"
+created_at: "2026-07-27"
+from_agent: "@dev"
+to_agent: "@qa"
+last_command: "*develop MOD-QT-2-01 --mode yolo"
+next_command: "*review docs/stories/story-MOD-QT-2-01-motor-calculo-queda-tensao.md --mode yolo"
+workflow: "MOD-QT-2-MOTOR-QUEDA-TENSAO"
+state: "QA_REVIEW"
+mode: "yolo"
+human_intervention: false
+source_plan: "docs/PLANO-YOLO-IMPLEMENTACAO-MOD-QT-2.md"
+normative_source: "Arquivos_Diversos/PROMPT-QUEDA-TENSAO-v2.2.md"
+
+story:
+  path: "docs/stories/story-MOD-QT-2-01-motor-calculo-queda-tensao.md"
+  status_before: "Ready"
+  status_after: "InReview"
+  version: "0.4"
+  package: "Pacote 1 (parcial — núcleo completo, UI fatiada)"
+  branch: "master"
+
+gates_tecnicos:
+  lint: PASS          # 0 erros; 18 erros prettier na 1a execucao corrigidos com --fix (retry 1/3)
+  typecheck: PASS     # tsc --noEmit sem saida
+  test: PASS          # 793 testes / 793 passando / 0 falhando / 336 arquivos; exit 0 em 5 execucoes
+  build: PASS         # built in 25.73s, dist/client + dist/server
+  retries_usados: 1
+  blocked: false
+
+ca_qt_19_nao_regressao:
+  ordem: "PRIMEIRO teste escrito e executado, antes de qualquer outro do motor (Task 3 / §33 passo 3)"
+  resultado: PASS
+  divergencia_encontrada: true
+  divergencia_casos: "11 de 504 combinacoes varridas"
+  faixa_afetada: "3,10% < ΔV_mock <= 3,94%"
+  causa_normativa: >-
+    Mock usa resistividade generica ρ=0,0172 Ω·mm²/m a ~20°C; motor usa R tabelada por secao
+    a temperatura de servico (70°C PVC — §13.3 CONFIRMADO, §13.4 provisoria). Razao
+    R(70°C)/(ρ·1000/S) fica entre 1,262 e 1,290 em toda a faixa 1,5–25 mm². Divergencia
+    CONSERVADORA: o motor nunca aprova o que o mock reprovava. E a "melhoria esperada e
+    documentada" prevista na nota final do §13.4.
+  tratamento: >-
+    Aplicada a clausula "Or" do AC17. O teste caracteriza a divergencia em vez de mascara-la:
+    (a) banda segura — toda entrada com ΔV_mock <= 3,10% aprovada SEM EXCECAO; (b) toda
+    divergencia tem razao motor/mock dentro de [1,25; 1,30], provando causa unica — qualquer
+    divergencia fora dessa faixa REPROVA o teste; (c) lista de divergencias nao pode ser vazia,
+    o efeito fica registrado e nao suprimido.
+  r09_respeitado: true
+  valores_ajustados_para_forcar_aprovacao: "NENHUM"
+  impacto_operacional: >-
+    Circuitos hoje aprovados no C5 com ΔV entre ~3,1% e 4,0% (pela conta do mock) podem passar
+    a reprovar. Nao e bug: e o calculo passando a considerar a temperatura de servico.
+    secao_requerida_mm2 devolve a secao corretiva e o laco C1/C2/C6 do MOD-DC ja sabe consumi-la.
+
+cobertura_acs:
+  cobertos_por_teste: 16
+  total: 20
+  lista_coberta: [AC1, AC2, AC3, AC4, AC5, AC6, AC7, AC10, AC11, AC13, AC15, AC16, AC17, AC18, AC19, AC20]
+  sem_evidencia: [AC8, AC9, AC12, AC14]
+  motivo_sem_evidencia: >-
+    Dependem da UI (Tasks 4.3–4.7), fatiada para MOD-QT-2-02 sob a autoridade concedida em
+    DEV-06 e na "Nota de sequenciamento" da propria story. Decisao D-06 no Dev Agent Record.
+    Registrar print de UI inexistente seria evidencia fabricada — nao foi feito.
+  testes_novos: 44
+  suite_mod_qt_1_preservada: "10 testes, sem edicao, passando com o motor real"
+
+contrato_publico:
+  alterado: false
+  otimizar_condutor_schema_ts: "git status LIMPO — nenhuma modificacao"
+  retorno_mod_qt_interface: "contratos.ts linhas 50-56 — NENHUM hunk"
+  rota: "POST /api/v1/modulos/mod-qt/validar — inalterada"
+  comportamento_preservado:
+    - "timeout 5s (Promise.race + AbortSignal)"
+    - "persistencia via retornosDownstream.registrar"
+    - "codigos mod_qt_timeout / mod_qt_erro / mod_qt_contrato_invalido"
+    - "_setClienteModQTParaTeste / _resetClienteModQTParaTeste (reset agora restaura o motor REAL)"
+  routetree: "routeTree.gen.ts e routeTree.spa.ts NAO tocados — nenhuma rota nova; RSK-8 nao materializou"
+
+qa_must_know:
+  - id: "QA-01"
+    topic: "Como validar o item 4 do Definition of Done"
+    note: >-
+      O DoD pede "git diff VAZIO" em contratos.ts / otimizar-condutor.schema.ts /
+      servico-dimensionamento-condutores.ts. O schema esta realmente intocado, mas os outros dois
+      aparecem como M no git status por trabalho NAO COMMITADO DE STORIES ANTERIORES (MOD-DC /
+      AUTO-OTI) que ja existia no worktree sujo antes desta story. Validar por AUSENCIA DE HUNK
+      nas linhas do contrato, nao por diff vazio do arquivo inteiro:
+      `git diff -U0 -- src/domain/dimensionamento-condutores/contratos.ts` produz hunks apenas em
+      @@ -174,0 +175 @@ e @@ -176,0 +178,2 @@, ambos dentro de ResultadoDimensionamento
+      (ib_a / i2_a / fonte_i2). RetornoMODQT (50-56) nao tem hunk algum.
+  - id: "QA-02"
+    topic: "Divergencia esperada no CA-QT-19"
+    note: >-
+      O teste de nao-regressao PASSA mas REGISTRA 11 divergencias por desenho. Isso e o
+      comportamento correto sob a clausula "Or" do AC17, nao uma falha tolerada. Se um dia a
+      lista ficar vazia, o teste tambem falha (assercao (c)) — sinal de que alguem mexeu na
+      tabela de impedancia.
+  - id: "QA-03"
+    topic: "Padrao de fases do endpoint diverge da letra da Task 2.3"
+    note: >-
+      A Task 2.3 sugeria trifasico como padrao; foi implementado MONOFASICO (fator 2). Razao
+      registrada na decisao D-01: e o default do proprio documento-fonte (§20, num_fases=1), e o
+      comportamento do mock substituido, e √3 produz queda ~13,4% MENOR — adota-lo cegamente
+      poderia aprovar circuito monofasico nao conforme, violando fail-closed (plano §2.2) e o
+      espirito de R-09. Nenhum AC exige trifasico como padrao do endpoint. Se @qa julgar que
+      isso extrapola a autoridade de @dev, e correcao de uma linha em CONTEXTO_PADRAO_ENDPOINT.
+  - id: "QA-04"
+    topic: "AC18 (CA-QT-20) virou inspecao automatizada"
+    note: >-
+      A story previa grep manual. Foi implementado como teste executavel que le os proprios
+      arquivos-fonte e exige a citacao "NBR 5410:2004, §6.2.7" + "CONFIRMADO" no bloco da
+      declaracao, e ausencia de literal duplicado no motor. Evidencia mais forte que o grep.
+  - id: "QA-05"
+    topic: "Artigo IV — verificar que nada foi promovido"
+    note: >-
+      Toda a TABELA_IMPEDANCIA tem status_verificacao "[VERIFICAR]" (teste explicito varre a
+      tabela inteira). VER-QT-02, VER-QT-03, VER-QT-04 e VER-QT-07 continuam abertos. Aluminio
+      degrada com alerta em vez de receber X inventado. Bifasico usa fator 2 com alerta.
+  - id: "QA-07"
+    topic: "Achado PRE-EXISTENTE fora do escopo desta story"
+    note: >-
+      tests/domain/calculo/derivar-circuitos.test.ts esta VAZIO (0 linhas; git diff mostra 281
+      deletions). O reporter JSON do Vitest marca o arquivo como suite falha ("No test suite
+      found in file"), embora vitest run saia com exit 0 e nenhum teste falhe. Esta story NAO
+      tocou esse arquivo nem nada em tests/domain/calculo/ — o esvaziamento veio do mesmo
+      trabalho nao commitado de sessao anterior que deixou o worktree sujo (ver QA-01).
+      Nao foi corrigido por estar fora do escopo. Provavel destino: git checkout do arquivo
+      antes do commit, decisao de quem consolidar o worktree (@qa ou @devops).
+  - id: "QA-06"
+    topic: "Ordem sugerida de revisao"
+    note: >-
+      1) ca-qt-19-nao-regressao.test.ts (gate zero e o ponto de maior risco);
+      2) diff de modulos.mod-qt.validar.ts (mock fora de producao, contrato intacto);
+      3) normativa/limites.ts e normativa/tabela-impedancia.ts (Artigo IV);
+      4) motor-queda-tensao.ts (§18-§20);
+      5) cobertura dos 16 ACs.
+
+pendencias_tecnicas:
+  - id: "PT-01"
+    item: "5 endpoints auxiliares §23.2 (Task 4.2)"
+    destino: "MOD-QT-2-02"
+  - id: "PT-02"
+    item: "UI Carbon §24-§25 (Tasks 4.3-4.6) — cobre AC8, AC9, AC12, AC14"
+    destino: "MOD-QT-2-02"
+  - id: "PT-03"
+    item: "Testes E2E/UI (Task 4.7)"
+    destino: "MOD-QT-2-02"
+  - id: "PT-04"
+    item: "VER-QT-02 / VER-QT-03 — resistencia e reatancia reais (Cu e Al)"
+    destino: "Pacote 2 — bloqueado por fonte externa"
+  - id: "PT-05"
+    item: "VER-QT-07 — alinea 6.2.7.1 aplicavel ao modelo EDP-SP"
+    destino: "Pacote 3 — bloqueado por fonte externa"
+  - id: "PT-06"
+    item: "VER-QT-04 — fator do circuito bifasico"
+    destino: "Pacote 4 — bloqueado por fonte externa"
+  - id: "PT-07"
+    item: "Persistencia §17 (tabela impedancia_condutor, colunas de alimentador/resultado)"
+    destino: "MOD-QT-2-02 — motor e stateless (§27), nao exigiu persistencia nova"
+
+arquivos:
+  criados:
+    - "sistema-de-instala-es-el-tricas-sie-main/src/domain/queda-tensao/contratos.ts"
+    - "sistema-de-instala-es-el-tricas-sie-main/src/domain/queda-tensao/erros.ts"
+    - "sistema-de-instala-es-el-tricas-sie-main/src/domain/queda-tensao/index.ts"
+    - "sistema-de-instala-es-el-tricas-sie-main/src/domain/queda-tensao/normativa/limites.ts"
+    - "sistema-de-instala-es-el-tricas-sie-main/src/domain/queda-tensao/normativa/resistividade.ts"
+    - "sistema-de-instala-es-el-tricas-sie-main/src/domain/queda-tensao/normativa/tabela-impedancia.ts"
+    - "sistema-de-instala-es-el-tricas-sie-main/src/domain/queda-tensao/motores/motor-queda-tensao.ts"
+    - "sistema-de-instala-es-el-tricas-sie-main/src/domain/queda-tensao/motores/simulador-cenarios.ts"
+    - "sistema-de-instala-es-el-tricas-sie-main/tests/domain/queda-tensao/ca-qt-19-nao-regressao.test.ts"
+    - "sistema-de-instala-es-el-tricas-sie-main/tests/domain/queda-tensao/motor-queda-tensao.test.ts"
+    - "sistema-de-instala-es-el-tricas-sie-main/tests/api/modulos-mod-qt-motor-real.test.ts"
+  modificados:
+    - "sistema-de-instala-es-el-tricas-sie-main/src/routes/api/v1/modulos.mod-qt.validar.ts"
+
+git:
+  commit_realizado: false
+  push_realizado: false
+  nota: >-
+    @dev nao commitou nem fez push, conforme instrucao da Fase D. git add/commit/push e
+    responsabilidade posterior ao gate de QA (@devops, com autorizacao explicita do usuario).
+
+blockers: []
+
+dev_exit_criteria_atendidos:
+  - "Motor real substitui validarModQTMock no caminho de producao"
+  - "Contrato publico, schemas e rota inalterados"
+  - "CA-QT-19 executado primeiro e PASS, com divergencia documentada por causa normativa"
+  - "4 gates tecnicos PASS"
+  - "Story em InReview com Dev Agent Record, Debug Log, Completion Notes, File List e Change Log preenchidos"
+  - "Nenhum VER-QT promovido a CONFIRMADO"
+
+next_action: >-
+  @qa executa *review sobre a story. Atencao especial a QA-01 (leitura do git diff no worktree
+  sujo herdado), QA-02 (divergencia registrada por desenho no CA-QT-19) e QA-03 (padrao
+  monofasico vs. a letra da Task 2.3). Veredito CONCERNS e o resultado esperado se a ausencia de
+  evidencia de AC8/AC9/AC12/AC14 for tratada como fatiamento autorizado (DEV-06); FAIL se @qa
+  entender que a story so fecha com a UI.

@@ -1,0 +1,19 @@
+{
+  "benchmark_id": "slides-creator-open-source-absorption",
+  "date": "2026-05-17",
+  "type": "codebase/product absorption analysis",
+  "local_clone_root": "../bench",
+  "internal_target": "squads/slides-creator",
+  "external_repositories": [
+    "hugohe3/ppt-master",
+    "Anionex/banana-slides",
+    "presenton/presenton",
+    "icip-cas/PPTAgent",
+    "allweonedev/presentation-ai",
+    "barun-saha/slide-deck-ai",
+    "Noi1r/powerpoint-skill",
+    "AIGeeksGroup/PresentAgent-2"
+  ],
+  "verdict": "absorb capabilities, do not fork a single project",
+  "primary_recommendation": "Build slide creator skill stack on top of existing slides-creator governance, adding native editable PPTX, app/API runtime, prompt-to-edit UX, and agentic planning."
+}

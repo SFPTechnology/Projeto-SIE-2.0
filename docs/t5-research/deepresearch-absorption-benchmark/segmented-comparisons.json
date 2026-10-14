@@ -1,0 +1,432 @@
+{
+  "schema": "sinkra-scenario-scorecards-v2",
+  "generated_at": "2026-05-18T18:30:00-03:00",
+  "scenarios": [
+    {
+      "id": "architecture_absorption",
+      "title": "Melhor arquitetura para absorção imediata",
+      "rationale": "Padrões de runtime, lifecycle, graph, actions e contracts.",
+      "top": [
+        {
+          "rank": 1,
+          "slug": "deer-flow",
+          "name": "DeerFlow",
+          "score": 96,
+          "decision": "absorb_core_patterns",
+          "why": "Run lifecycle, skill frontmatter allowed-tools, RunJournal/StreamBridge."
+        },
+        {
+          "rank": 2,
+          "slug": "langchain-open-deep-research",
+          "name": "LangChain Open Deep Research",
+          "score": 92,
+          "decision": "absorb_graph_pattern",
+          "why": "Supervisor/researcher subgraphs, ConductResearch paralelo, tool contract."
+        },
+        {
+          "rank": 3,
+          "slug": "gpt-researcher",
+          "name": "GPT-Researcher",
+          "score": 89,
+          "decision": "absorb_facade_and_strategy",
+          "why": "Source strategy, retriever fan-out, MCP retriever, context compression."
+        },
+        {
+          "rank": 4,
+          "slug": "drbench",
+          "name": "DRBench",
+          "score": 88,
+          "decision": "absorb_fixture_oracle",
+          "why": "task/eval/env/report_insights contract, score_report, private-KB fixture."
+        },
+        {
+          "rank": 5,
+          "slug": "local-deep-research",
+          "name": "Local Deep Research",
+          "score": 88,
+          "decision": "absorb_private_local_adapter",
+          "why": "MCP/API programática, AdvancedSearchSystem, search engine registry."
+        },
+        {
+          "rank": 6,
+          "slug": "autoresearchclaw",
+          "name": "AutoResearchClaw",
+          "score": 87,
+          "decision": "absorb_contracts_gates",
+          "why": "StageContract, VerifiedRegistry, stage ledger, HITL policy."
+        },
+        {
+          "rank": 7,
+          "slug": "deep-searcher",
+          "name": "DeepSearcher",
+          "score": 87,
+          "decision": "absorb_rag_patterns",
+          "why": "Provider registry, collection routing, ChainOfRAG, sentence-window wider_text."
+        },
+        {
+          "rank": 8,
+          "slug": "deep-research-bench",
+          "name": "Deep Research Bench",
+          "score": 86,
+          "decision": "absorb_evaluator",
+          "why": "Fixture/evaluator adapter, submitted article contract, utils/api boundary."
+        }
+      ]
+    },
+    {
+      "id": "private_kb_grounding",
+      "title": "Melhor para private-KB/local-first",
+      "rationale": "Dados internos sintéticos, RAG privado, isolamento e controle local.",
+      "top": [
+        {
+          "rank": 1,
+          "slug": "local-deep-research",
+          "name": "Local Deep Research",
+          "score": 96,
+          "decision": "absorb_private_local_adapter",
+          "why": "MCP/API programática, AdvancedSearchSystem, search engine registry."
+        },
+        {
+          "rank": 2,
+          "slug": "drbench",
+          "name": "DRBench",
+          "score": 95,
+          "decision": "absorb_fixture_oracle",
+          "why": "task/eval/env/report_insights contract, score_report, private-KB fixture."
+        },
+        {
+          "rank": 3,
+          "slug": "deep-searcher",
+          "name": "DeepSearcher",
+          "score": 95,
+          "decision": "absorb_rag_patterns",
+          "why": "Provider registry, collection routing, ChainOfRAG, sentence-window wider_text."
+        },
+        {
+          "rank": 4,
+          "slug": "storm",
+          "name": "STORM",
+          "score": 84,
+          "decision": "absorb_interfaces_artifacts",
+          "why": "Interface Information/Retriever/Engine/Agent, VectorRM, intermediate artifacts."
+        },
+        {
+          "rank": 5,
+          "slug": "agent-browser-workspace",
+          "name": "Agent Browser Workspace",
+          "score": 80,
+          "decision": "absorb_toolkit_adapter",
+          "why": "Chrome CDP, links.json, Markdown/PDF extraction, site profiles/controllers."
+        },
+        {
+          "rank": 6,
+          "slug": "deer-flow",
+          "name": "DeerFlow",
+          "score": 68,
+          "decision": "absorb_core_patterns",
+          "why": "Run lifecycle, skill frontmatter allowed-tools, RunJournal/StreamBridge."
+        },
+        {
+          "rank": 7,
+          "slug": "gpt-researcher",
+          "name": "GPT-Researcher",
+          "score": 68,
+          "decision": "absorb_facade_and_strategy",
+          "why": "Source strategy, retriever fan-out, MCP retriever, context compression."
+        },
+        {
+          "rank": 8,
+          "slug": "mirothinker",
+          "name": "MiroThinker",
+          "score": 68,
+          "decision": "absorb_profile_trace_patterns",
+          "why": "Profiles Hydra, ToolManager MCP, TaskLog/TraceAnalyzer."
+        }
+      ]
+    },
+    {
+      "id": "evaluation_value",
+      "title": "Melhor para avaliação gold",
+      "rationale": "Harness, métricas, judge contracts, claim-level scoring e fixtures.",
+      "top": [
+        {
+          "rank": 1,
+          "slug": "drbench",
+          "name": "DRBench",
+          "score": 96,
+          "decision": "absorb_fixture_oracle",
+          "why": "task/eval/env/report_insights contract, score_report, private-KB fixture."
+        },
+        {
+          "rank": 2,
+          "slug": "livedrbench",
+          "name": "LiveDRBench",
+          "score": 92,
+          "decision": "absorb_metric_contract",
+          "why": "Claim-level precision/recall/F1, category graders, anti-leakage key."
+        },
+        {
+          "rank": 3,
+          "slug": "miroeval",
+          "name": "MiroEval",
+          "score": 88,
+          "decision": "absorb_evaluator",
+          "why": "Segment-parallel-merge, rubrica dinâmica, process/report alignment."
+        },
+        {
+          "rank": 4,
+          "slug": "deep-research-bench",
+          "name": "Deep Research Bench",
+          "score": 84,
+          "decision": "absorb_evaluator",
+          "why": "Fixture/evaluator adapter, submitted article contract, utils/api boundary."
+        },
+        {
+          "rank": 5,
+          "slug": "autoresearchclaw",
+          "name": "AutoResearchClaw",
+          "score": 80,
+          "decision": "absorb_contracts_gates",
+          "why": "StageContract, VerifiedRegistry, stage ledger, HITL policy."
+        },
+        {
+          "rank": 6,
+          "slug": "deer-flow",
+          "name": "DeerFlow",
+          "score": 42,
+          "decision": "absorb_core_patterns",
+          "why": "Run lifecycle, skill frontmatter allowed-tools, RunJournal/StreamBridge."
+        },
+        {
+          "rank": 7,
+          "slug": "storm",
+          "name": "STORM",
+          "score": 42,
+          "decision": "absorb_interfaces_artifacts",
+          "why": "Interface Information/Retriever/Engine/Agent, VectorRM, intermediate artifacts."
+        },
+        {
+          "rank": 8,
+          "slug": "gpt-researcher",
+          "name": "GPT-Researcher",
+          "score": 42,
+          "decision": "absorb_facade_and_strategy",
+          "why": "Source strategy, retriever fan-out, MCP retriever, context compression."
+        }
+      ]
+    },
+    {
+      "id": "scientific_pipeline",
+      "title": "Melhor para pesquisa científica",
+      "rationale": "Papers, literatura, prior art, stage gates e artefatos intermediários.",
+      "top": [
+        {
+          "rank": 1,
+          "slug": "autoresearchclaw",
+          "name": "AutoResearchClaw",
+          "score": 96,
+          "decision": "absorb_contracts_gates",
+          "why": "StageContract, VerifiedRegistry, stage ledger, HITL policy."
+        },
+        {
+          "rank": 2,
+          "slug": "storm",
+          "name": "STORM",
+          "score": 92,
+          "decision": "absorb_interfaces_artifacts",
+          "why": "Interface Information/Retriever/Engine/Agent, VectorRM, intermediate artifacts."
+        },
+        {
+          "rank": 3,
+          "slug": "openresearcher",
+          "name": "OpenResearcher",
+          "score": 88,
+          "decision": "clean_room_patterns",
+          "why": "browser.search/open/find contract, append-only shards, retriever fixture."
+        },
+        {
+          "rank": 4,
+          "slug": "deepresearcher",
+          "name": "DeepResearcher",
+          "score": 84,
+          "decision": "pattern_first",
+          "why": "agent_grpo.n/idx, multi-trajectories, web_search/browse contract."
+        },
+        {
+          "rank": 5,
+          "slug": "drbench",
+          "name": "DRBench",
+          "score": 40,
+          "decision": "absorb_fixture_oracle",
+          "why": "task/eval/env/report_insights contract, score_report, private-KB fixture."
+        },
+        {
+          "rank": 6,
+          "slug": "deer-flow",
+          "name": "DeerFlow",
+          "score": 40,
+          "decision": "absorb_core_patterns",
+          "why": "Run lifecycle, skill frontmatter allowed-tools, RunJournal/StreamBridge."
+        },
+        {
+          "rank": 7,
+          "slug": "gpt-researcher",
+          "name": "GPT-Researcher",
+          "score": 40,
+          "decision": "absorb_facade_and_strategy",
+          "why": "Source strategy, retriever fan-out, MCP retriever, context compression."
+        },
+        {
+          "rank": 8,
+          "slug": "local-deep-research",
+          "name": "Local Deep Research",
+          "score": 40,
+          "decision": "absorb_private_local_adapter",
+          "why": "MCP/API programática, AdvancedSearchSystem, search engine registry."
+        }
+      ]
+    },
+    {
+      "id": "training_methodology",
+      "title": "Melhor para metodologia RL/treino",
+      "rationale": "Reward shaping, trajectories, post-training e tool-use multi-turn.",
+      "top": [
+        {
+          "rank": 1,
+          "slug": "mirorl",
+          "name": "MiroRL",
+          "score": 96,
+          "decision": "pattern_first",
+          "why": "Reward shaping para tool-use, MCPTool, rollout state machine."
+        },
+        {
+          "rank": 2,
+          "slug": "deepresearcher",
+          "name": "DeepResearcher",
+          "score": 92,
+          "decision": "pattern_first",
+          "why": "agent_grpo.n/idx, multi-trajectories, web_search/browse contract."
+        },
+        {
+          "rank": 3,
+          "slug": "mirotrain",
+          "name": "MiroTrain",
+          "score": 88,
+          "decision": "pattern_first",
+          "why": "Wrapper config-first, dataset/tokenizer adapter, Ulysses, Qwen3 MoE."
+        },
+        {
+          "rank": 4,
+          "slug": "openresearcher",
+          "name": "OpenResearcher",
+          "score": 84,
+          "decision": "clean_room_patterns",
+          "why": "browser.search/open/find contract, append-only shards, retriever fixture."
+        },
+        {
+          "rank": 5,
+          "slug": "drbench",
+          "name": "DRBench",
+          "score": 36,
+          "decision": "absorb_fixture_oracle",
+          "why": "task/eval/env/report_insights contract, score_report, private-KB fixture."
+        },
+        {
+          "rank": 6,
+          "slug": "deer-flow",
+          "name": "DeerFlow",
+          "score": 36,
+          "decision": "absorb_core_patterns",
+          "why": "Run lifecycle, skill frontmatter allowed-tools, RunJournal/StreamBridge."
+        },
+        {
+          "rank": 7,
+          "slug": "autoresearchclaw",
+          "name": "AutoResearchClaw",
+          "score": 36,
+          "decision": "absorb_contracts_gates",
+          "why": "StageContract, VerifiedRegistry, stage ledger, HITL policy."
+        },
+        {
+          "rank": 8,
+          "slug": "storm",
+          "name": "STORM",
+          "score": 36,
+          "decision": "absorb_interfaces_artifacts",
+          "why": "Interface Information/Retriever/Engine/Agent, VectorRM, intermediate artifacts."
+        }
+      ]
+    },
+    {
+      "id": "product_ux_reference",
+      "title": "Melhor referência de produto/UX",
+      "rationale": "Loops de chat, runs, threads, artifacts e experiência de pesquisa.",
+      "top": [
+        {
+          "rank": 1,
+          "slug": "deer-flow",
+          "name": "DeerFlow",
+          "score": 96,
+          "decision": "absorb_core_patterns",
+          "why": "Run lifecycle, skill frontmatter allowed-tools, RunJournal/StreamBridge."
+        },
+        {
+          "rank": 2,
+          "slug": "gpt-researcher",
+          "name": "GPT-Researcher",
+          "score": 92,
+          "decision": "absorb_facade_and_strategy",
+          "why": "Source strategy, retriever fan-out, MCP retriever, context compression."
+        },
+        {
+          "rank": 3,
+          "slug": "nickscamara-open-deep-research",
+          "name": "nickscamara/open-deep-research",
+          "score": 88,
+          "decision": "reference_ux_baseline",
+          "why": "Loop search-extract-gap-repeat-synthesize, event vocabulary."
+        },
+        {
+          "rank": 4,
+          "slug": "jigsawstack-deep-research",
+          "name": "JigsawStack Deep Research",
+          "score": 84,
+          "decision": "absorb_interface_avoid_globals",
+          "why": "Factory pequena, provider custom web_search, roles de modelo separados."
+        },
+        {
+          "rank": 5,
+          "slug": "node-deepresearch",
+          "name": "Jina node-DeepResearch",
+          "score": 80,
+          "decision": "absorb_action_schema",
+          "why": "schemas.ts, safe-generator, ações search/visit/reflect/answer/coding."
+        },
+        {
+          "rank": 6,
+          "slug": "drbench",
+          "name": "DRBench",
+          "score": 42,
+          "decision": "absorb_fixture_oracle",
+          "why": "task/eval/env/report_insights contract, score_report, private-KB fixture."
+        },
+        {
+          "rank": 7,
+          "slug": "autoresearchclaw",
+          "name": "AutoResearchClaw",
+          "score": 42,
+          "decision": "absorb_contracts_gates",
+          "why": "StageContract, VerifiedRegistry, stage ledger, HITL policy."
+        },
+        {
+          "rank": 8,
+          "slug": "storm",
+          "name": "STORM",
+          "score": 42,
+          "decision": "absorb_interfaces_artifacts",
+          "why": "Interface Information/Retriever/Engine/Agent, VectorRM, intermediate artifacts."
+        }
+      ]
+    }
+  ]
+}

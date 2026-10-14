@@ -1,0 +1,115 @@
+# Deck Template — Executive Pitch (McKinsey + Y Combinator hybrid)
+# Schema ref: templates/schemas/deck-template.schema.yaml
+# Pilot status: MSN-2026-SLIDES-NARRATIVE-DESIGN DEV-2026-003 (2 de 2 pilots)
+
+id: "executive-pitch"
+name: "Executive Pitch (decisao em 15-30min)"
+version: "1.0.0"
+family: pitch
+
+summary:
+  pick_for: >-
+    Pitch para tomador de decisao senior (C-level, board, investidor) com 15-30min.
+    Objetivo: convencer de uma DECISAO especifica (aprovar, investir, mudar direcao).
+    Funciona quando audiencia ja conhece contexto e precisa de prova + recomendacao.
+  skip_if: >-
+    Audiencia frio precisando educacao (use webinar-sales). Tempo >45min (use tactical-masterclass).
+    Decisao binaria simples (use board-update). Investidor pre-seed precisando de visao ampla
+    (criar pitch-deck-seed template em Mission futura).
+
+audience_fit:
+  primary: executive
+  size_range: 1_to_5
+  delivery_modes: [in_person, async_pdf]
+  attention_budget_min: 30
+
+arc:
+  arc_type: executive_pitch
+  beats:
+    - beat_type: hook
+      narrative_function: "Governing thought + recomendacao upfront (Pyramid Principle: answer first)"
+      slides_estimated: 1
+      optional: false
+    - beat_type: tension
+      narrative_function: "Situation + Complication: por que decisao importa AGORA"
+      slides_estimated: 2
+      optional: false
+    - beat_type: proof
+      narrative_function: "3 pilares de evidencia que sustentam a recomendacao"
+      slides_estimated: 3
+      optional: false
+    - beat_type: mechanism
+      narrative_function: "Como executar (roadmap + recursos + marcos)"
+      slides_estimated: 2
+      optional: false
+    - beat_type: objection_handling
+      narrative_function: "Riscos antecipados + mitigacao"
+      slides_estimated: 1
+      optional: true
+    - beat_type: cta
+      narrative_function: "Decisao pedida: o que precisa de SIM agora"
+      slides_estimated: 1
+      optional: false
+
+slide_functions_recommended:
+  - {sequence: 1, beat_ref: B-01, function: cover, suggested_slide_template: "hook-opening", density_target: minimal}
+  - {sequence: 2, beat_ref: B-02, function: tension_amplify, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 3, beat_ref: B-02, function: contrast, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 4, beat_ref: B-03, function: proof, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 5, beat_ref: B-03, function: proof, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 6, beat_ref: B-03, function: proof, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 7, beat_ref: B-04, function: mechanism_step, suggested_slide_template: "proof-stack", density_target: high}
+  - {sequence: 8, beat_ref: B-04, function: mechanism_step, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 9, beat_ref: B-05, function: objection_neutralize, suggested_slide_template: "proof-stack", density_target: medium, optional: true}
+  - {sequence: 10, beat_ref: B-06, function: cta_concrete, suggested_slide_template: "cta-concrete", density_target: minimal}
+
+slide_count_range:
+  min: 8
+  max: 12
+  target: 10
+  rationale: "Executive audience tolera menos slides. 1 governing thought + 3 proofs + roadmap + decision = 10 slides max."
+
+default_theme: "editorial-pentagram"
+
+composition_overrides:
+  grid_columns: 12
+  baseline_padding_pt: 56
+  title_anchor: top_left
+  footer_present: true
+  slide_number_visible: true  # executivos verificam onde estao
+
+qa_emphasis:
+  narrativa_weight_boost: 0.5  # governing thought + pyramid sao a vida
+  design_weight_boost: 0.0
+  acuracia_weight_boost: 0.5   # claims executivos exigem source rigoroso
+  rationale: "Executive pitch: narrativa Pyramid + sources rigorosos sao decisivos. Design importa para credibilidade mas nao protagoniza."
+
+visual_density_default: moderate
+
+failure_modes:
+  - mode: "Buried lede"
+    symptom: "Recomendacao aparece no slide 8 em vez do slide 1"
+    prevention: "Pyramid: answer first. Slide 1-2 DEVE ter recomendacao + razao em 1 frase"
+  - mode: "Proof stack flutuante"
+    symptom: "3 proofs apresentados mas sem voltar ao governing thought"
+    prevention: "Cada slide de proof deve fechar com 'portanto, governing thought'"
+  - mode: "Decisao difusa"
+    symptom: "CTA = 'pensem sobre isso'"
+    prevention: "CTA DEVE ser binario (SIM/NAO sobre proposta especifica) com data"
+
+speaker_role: solo_presenter
+
+compatible_outputs: [tsx_consumer_app, html_standalone, pdf, pptx_native]
+
+source_provenance:
+  inspired_by:
+    - "Barbara Minto — Pyramid Principle (governing thought first)"
+    - "Y Combinator demo day pitch structure"
+    - "McKinsey consulting deck conventions"
+  bench_ref:
+    - "/Users/alan/Code/bench/ppt-master/examples/ppt169_顶级咨询风_重庆市区域报告_ppt169_20251213/"
+    - "/Users/alan/Code/bench/ppt-master/examples/ppt169_麦肯锡风_kimsoong_customer_loyalty/"
+  author: "slides-creator squad — MSN-2026-SLIDES-NARRATIVE-DESIGN"
+  date_created: "2026-05-17"
+
+evidence_ref: null

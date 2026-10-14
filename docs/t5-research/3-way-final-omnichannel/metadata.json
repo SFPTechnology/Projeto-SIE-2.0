@@ -1,0 +1,114 @@
+{
+  "bench_id": "3-way-final-omnichannel",
+  "type": "consolidated_synthesis",
+  "generated_at": "2026-05-06",
+  "analyst": "spy/bench-analyst v3.0",
+  "purpose": "Consolidate 3 paired benchmarks (Chatwoot/Zendesk, Intercom/Chatwoot, Octadesk/Zendesk) into a single 4-player matrix with persona-recalibrated rankings, TCO comparison, AI ranking, WhatsApp ranking, and decision matrix.",
+  "scope": "synthesis_only",
+  "constraints": [
+    "No new web research (relies on already-generated bench artifacts + tech-research)",
+    "No new OSS clone analysis",
+    "PT-BR reports",
+    "Executive max 4000 words"
+  ],
+  "subjects": [
+    {
+      "id": "chatwoot",
+      "type": "OSS+Cloud",
+      "license": "MIT",
+      "origin": "India",
+      "anos": 9,
+      "tech_research_score": 92.5
+    },
+    {
+      "id": "zendesk",
+      "type": "SaaS Proprietary",
+      "license": "Proprietary",
+      "origin": "USA",
+      "anos": 19,
+      "tech_research_score": 84.5
+    },
+    {
+      "id": "octadesk",
+      "type": "SaaS Proprietary",
+      "license": "Proprietary",
+      "origin": "Brasil",
+      "anos": 12,
+      "tech_research_score": 82.0
+    },
+    {
+      "id": "intercom",
+      "type": "SaaS Proprietary",
+      "license": "Proprietary",
+      "origin": "USA",
+      "anos": 15,
+      "tech_research_score": 81.0
+    }
+  ],
+  "input_artifacts": {
+    "tech_research": [
+      "docs/research/2026-05-06-omnichannel-helpdesk-landscape/02-research-report.md",
+      "docs/research/2026-05-06-omnichannel-helpdesk-landscape/03-recommendations.md",
+      "docs/research/2026-05-06-omnichannel-helpdesk-landscape/comparison-table.md"
+    ],
+    "bench_1_chatwoot_vs_zendesk": [
+      "docs/bench/chatwoot-vs-zendesk/scorecard.json",
+      "docs/bench/chatwoot-vs-zendesk/scorecard.md",
+      "docs/bench/chatwoot-vs-zendesk/executive-report.md",
+      "docs/bench/chatwoot-vs-zendesk/gap-analysis.md",
+      "docs/bench/chatwoot-vs-zendesk/deep/feature-comparison.md",
+      "docs/bench/chatwoot-vs-zendesk/deep/pricing-analysis.md",
+      "docs/bench/chatwoot-vs-zendesk/deep/risk-analysis.md"
+    ],
+    "bench_2_intercom_vs_chatwoot": [
+      "docs/bench/intercom-vs-chatwoot/scorecard.json",
+      "docs/bench/intercom-vs-chatwoot/scorecard.md",
+      "docs/bench/intercom-vs-chatwoot/executive-report.md",
+      "docs/bench/intercom-vs-chatwoot/gap-analysis.md",
+      "docs/bench/intercom-vs-chatwoot/deep/ai-capability.md",
+      "docs/bench/intercom-vs-chatwoot/deep/pricing-tco.md",
+      "docs/bench/intercom-vs-chatwoot/deep/inapp-vs-omnichannel.md"
+    ],
+    "bench_3_octadesk_vs_zendesk": [
+      "docs/bench/octadesk-vs-zendesk/scorecard.json",
+      "docs/bench/octadesk-vs-zendesk/scorecard.md",
+      "docs/bench/octadesk-vs-zendesk/executive-report.md",
+      "docs/bench/octadesk-vs-zendesk/gap-analysis.md",
+      "docs/bench/octadesk-vs-zendesk/deep/whatsapp-integration.md",
+      "docs/bench/octadesk-vs-zendesk/deep/brasil-fit.md",
+      "docs/bench/octadesk-vs-zendesk/deep/feature-gap-enterprise.md"
+    ]
+  },
+  "consolidated_dimensions": [
+    {"id": "D1", "name": "Canais nativos (incluindo WhatsApp depth)", "weight_neutral": 12},
+    {"id": "D2", "name": "AI capability + transparencia + deflection publicado", "weight_neutral": 18},
+    {"id": "D3", "name": "Pricing transparency + TCO real (3 cenarios)", "weight_neutral": 15},
+    {"id": "D4", "name": "Governance / Compliance (HIPAA, SOC2, FedRAMP, LGPD, EU residency)", "weight_neutral": 12},
+    {"id": "D5", "name": "Ecosystem / Marketplace / integracoes", "weight_neutral": 8},
+    {"id": "D6", "name": "Comunidade / Maturidade / reviews", "weight_neutral": 8},
+    {"id": "D7", "name": "Flexibilidade (self-hosted, customizacao, sovereignty)", "weight_neutral": 10},
+    {"id": "D8", "name": "Brasil-fit (BSP local, integracoes BR, BRL pricing, suporte PT-BR)", "weight_neutral": 12},
+    {"id": "D9", "name": "In-app messaging strength", "weight_neutral": 5}
+  ],
+  "personas": [
+    {"id": "smb_br_ecommerce", "label": "SMB BR e-commerce (5-10 agents, <=1k conv/mes)"},
+    {"id": "midmarket_br", "label": "Mid-market BR (50-100 agents, ~10k conv/mes)"},
+    {"id": "enterprise_br_multinacional", "label": "Enterprise BR multinacional (100+ agents, regulado)"},
+    {"id": "global_saas_b2b", "label": "Global SaaS B2B (20-30 agents, EU+US, GDPR strict)"}
+  ],
+  "outputs": [
+    "metadata.json",
+    "consolidated-scorecard.json",
+    "consolidated-scorecard.md",
+    "cross-bench-matrix.json",
+    "cross-bench-matrix.md",
+    "triangulation-analysis.md",
+    "tco-comparison-4-players.md",
+    "ai-capability-ranking.md",
+    "whatsapp-integration-ranking.md",
+    "final-recommendation-matrix.md",
+    "executive-report-3way.md",
+    "battle-card-3way.md"
+  ],
+  "confidence_global": "H em estruturais (pricing pages, certs publicas, GitHub stars); M em AI deflection real (Captain/WOZ nao publicados); M em Octadesk Suite enterprise (gated); M em Sunshine variable pricing"
+}

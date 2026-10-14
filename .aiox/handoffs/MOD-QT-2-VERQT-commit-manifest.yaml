@@ -1,0 +1,218 @@
+schema: 1
+manifest_id: "MOD-QT-2-VERQT-commit-manifest"
+pipeline_id: "MOD-QT-2-RESOLUCAO-VERQT"
+agent: "@devops (Gage)"
+created: "2026-07-29"
+status: "PREPARADO — nenhum git add / commit / push executado"
+
+aviso: >-
+  Este manifesto define o commit por PATH EXPLICITO. `git add -A` e `git add .` sao
+  PROIBIDOS: a worktree do submodulo contem trabalho alheio nao commitado (MOD-CC,
+  AUTO-OTI, protecao, dimensionamento-condutores, derivar-circuitos, tutoriais, artefatos
+  de build). Nenhum arquivo fora deste manifesto deve entrar no commit.
+
+repositorios:
+  submodulo:
+    path: "sistema-de-instala-es-el-tricas-sie-main"
+    remote: "https://github.com/SFPTechnology/sistema-de-instala-es-el-tricas-sie.git"
+    branch: "feature/nbr5410-conformidade-closeout"
+  raiz:
+    path: "."
+    branch: "master"
+    nota: "Rastreia o submodulo como conteudo modificado. O ponteiro so pode ser commitado DEPOIS do commit no submodulo."
+
+# ---------------------------------------------------------------------------
+# GATES TECNICOS — REEXECUTADOS PELO @devops EM 2026-07-29 (nao aceitos por alegacao)
+# ---------------------------------------------------------------------------
+gates_reverificados:
+  typecheck: { comando: "npx tsc --noEmit", resultado: PASS, detalhe: "exit 0, sem saida" }
+  build:     { comando: "npx vite build",   resultado: PASS, detalhe: "built in 7.81s, exit 0" }
+  testes:    { comando: "npx vitest run",   resultado: PASS, detalhe: "Test Files 132 passed (132) | Tests 947 passed (947) | exit 0 | 233,73 s" }
+  lint_projeto_inteiro:
+    comando: "npx eslint ."
+    resultado: NAO_EXECUTADO
+    motivo: "Trava ambiental pre-existente, documentada nos dois gates de QA. Nao presumido PASS."
+  coderabbit:
+    resultado: NAO_EXECUTADO
+    motivo: "Review pre-PR e etapa da criacao do PR, que aguarda autorizacao do usuario."
+
+# ---------------------------------------------------------------------------
+# SET A — ESCOPO DAS STORIES (fonte: File List de MOD-QT-2-03 e MOD-QT-2-04)
+# 35 arquivos no submodulo. 32 untracked (??), 3 tracked modificados (M).
+# Os 3 tracked tiveram o diff inspecionado hunk a hunk: 100% queda-tensao, 0 hunks alheios.
+# ---------------------------------------------------------------------------
+set_a_submodulo:
+  script_gerador:
+    - "scripts/gerar-catalogo-impedancia-prysmian.mjs"          # ?? MOD-QT-2-03 C-01
+  dominio_normativa:
+    - "src/domain/queda-tensao/normativa/impedancias-prysmian-rev10.json"  # ?? 1.563 registros
+    - "src/domain/queda-tensao/normativa/impedancias-prysmian-rev10.ts"    # ??
+    - "src/domain/queda-tensao/normativa/resolver-perfil-impedancia.ts"    # ??
+    - "src/domain/queda-tensao/normativa/opcoes-perfil-cabo.ts"            # ?? MOD-QT-2-04
+    - "src/domain/queda-tensao/normativa/limites.ts"                       # ?? perfil EDP-SP v09
+  dominio_nucleo:
+    - "src/domain/queda-tensao/contratos.ts"                    # ??
+    - "src/domain/queda-tensao/erros.ts"                        # ??
+    - "src/domain/queda-tensao/index.ts"                        # ??
+    - "src/domain/queda-tensao/motores/motor-queda-tensao.ts"   # ??
+    - "src/domain/queda-tensao/motores/simulador-cenarios.ts"   # ??
+  integracao:
+    - "src/domain/servicos/servico-queda-tensao.ts"                     # ??
+    - "src/infra/repositorios/repositorio-queda-tensao-config.ts"       # ??
+    - "src/api/schemas/queda-tensao.ts"                                 # ?? (NAO e contrato publico)
+    - "src/routes/api/v1/modulos.mod-qt.validar.ts"                     # M  (so corpo do handler; rota intacta)
+    - "src/routes/api/v1/projetos.$projetoId.alimentador.ts"            # ??
+    - "src/routes/api/v1/projetos.$projetoId.queda-tensao-lote.ts"      # ??
+    - "src/lib/api-client.ts"                                           # M  (diff 100% queda-tensao)
+  ui:
+    - "src/routes/projetos.$projetoId_.queda-tensao.tsx"                # ??
+    - "src/components/app/queda-tensao/SeletorPerfilCabo.tsx"           # ?? MOD-QT-2-04 C-03
+    - "src/components/app/queda-tensao/PainelAlimentador.tsx"           # ?? AC6
+  testes:
+    - "tests/domain/queda-tensao/fixtures/perfil-impedancia-fixture.ts"        # ??
+    - "tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts"       # ??
+    - "tests/domain/queda-tensao/resolver-perfil-impedancia.test.ts"           # ??
+    - "tests/domain/queda-tensao/integracao-mod-dc-c5-fail-closed.test.ts"     # ??
+    - "tests/domain/queda-tensao/limites-edp-sp-v09.test.ts"                   # ??
+    - "tests/domain/queda-tensao/opcoes-perfil-cabo.test.ts"                   # ??
+    - "tests/domain/queda-tensao/ca-qt-19-nao-regressao.test.ts"               # ?? oracle independente
+    - "tests/domain/queda-tensao/motor-queda-tensao.test.ts"                   # ??
+    - "tests/api/queda-tensao-endpoints.test.ts"                               # ??
+    - "tests/api/modulos-mod-qt-motor-real.test.ts"                            # ??
+    - "tests/api/modulos-mod-qt.test.ts"                                       # M  (diff 100% queda-tensao)
+    - "tests/ui/queda-tensao.vrt.test.tsx"                                     # ??
+    - "tests/ui/queda-tensao-fluxo-entrada-fechado.test.tsx"                   # ??
+    - "tests/ui/__snapshots__/queda-tensao.vrt.test.tsx.snap"                  # ??
+
+set_a_raiz:
+  stories:
+    - "docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md"
+    - "docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md"
+  gates_qa:
+    - "docs/qa/gates/MOD-QT-2-03-gate.yaml"
+    - "docs/qa/gates/MOD-QT-2-04-gate.yaml"
+  controle:
+    - ".aiox/workflow-state/MOD-QT-2-VERQT-state.yaml"
+    - ".aiox/logs/MOD-QT-2-VERQT-yolo.log"
+    - ".aiox/handoffs/MOD-QT-2-VERQT-sm-to-po.yaml"
+    - ".aiox/handoffs/MOD-QT-2-VERQT-po-to-dev.yaml"
+    - ".aiox/handoffs/MOD-QT-2-VERQT-dev-to-qa.yaml"
+    - ".aiox/handoffs/MOD-QT-2-VERQT-qa-to-devops.yaml"
+    - ".aiox/handoffs/MOD-QT-2-VERQT-commit-manifest.yaml"
+    - ".aiox/handoffs/MOD-QT-2-VERQT-commit-message.txt"
+    - ".aiox/handoffs/MOD-QT-2-VERQT-pr-description.md"
+    - ".aiox/handoffs/MOD-QT-2-VERQT-changelog.md"
+  documento_fonte_do_C06:
+    - "Arquivos_Diversos/PROMPT-QUEDA-TENSAO-v2.2.md"     # File List de MOD-QT-2-04
+
+# ---------------------------------------------------------------------------
+# SET B — DEPENDENCIAS TRANSITIVAS NAO COMMITADAS (BLOQUEANTE, DECISAO DO USUARIO)
+# ---------------------------------------------------------------------------
+set_b_dependencias_transitivas:
+  severidade: BLOQUEANTE_PARA_COMMIT_ISOLADO
+  achado: >-
+    O diretorio `src/domain/queda-tensao/` NUNCA foi commitado — esta inteiro como untracked.
+    As stories 03/04 descrevem varios arquivos como "modificados", mas para o git eles sao
+    NOVOS. Consequencia: um commit contendo APENAS o Set A NAO COMPILA, porque
+    `src/domain/queda-tensao/index.ts` reexporta modulos de MOD-QT-2-01/-02 que ficariam
+    de fora, e a rota de queda de tensao importa componentes de MOD-QT-2-02.
+  verificado_por: "leitura dos imports/exports, nao por inferencia"
+  arquivos:
+    - path: "src/domain/queda-tensao/normativa/resistividade.ts"
+      origem: "MOD-QT-2-01"
+      exigido_por: "src/domain/queda-tensao/index.ts (export *), modulos.mod-qt.validar.ts, 3 suites"
+    - path: "src/domain/queda-tensao/normativa/tabela-impedancia.ts"
+      origem: "MOD-QT-2-01"
+      exigido_por: "src/domain/queda-tensao/index.ts (export *), motor-queda-tensao.ts"
+    - path: "src/components/app/queda-tensao/PainelSimulacaoQuedaTensao.tsx"
+      origem: "MOD-QT-2-02"
+      exigido_por: "src/routes/projetos.$projetoId_.queda-tensao.tsx, tests/ui/queda-tensao.vrt.test.tsx"
+    - path: "src/components/app/queda-tensao/TabelaResultadosQuedaTensao.tsx"
+      origem: "MOD-QT-2-02"
+      exigido_por: "src/routes/projetos.$projetoId_.queda-tensao.tsx"
+    - path: "src/components/app/queda-tensao/ArvoreQuedaAcumulada.tsx"
+      origem: "MOD-QT-2-02"
+      exigido_por: "PainelSimulacaoQuedaTensao.tsx"
+    - path: "src/components/app/queda-tensao/GraficoBarrasQueda.tsx"
+      origem: "MOD-QT-2-02"
+      exigido_por: "PainelSimulacaoQuedaTensao.tsx"
+    - path: "src/components/app/queda-tensao/acessibilidade-queda-tensao.ts"
+      origem: "MOD-QT-2-02"
+      exigido_por: "PainelAlimentador.tsx, tests/ui/queda-tensao.vrt.test.tsx"
+    - path: "src/components/app/queda-tensao/cenarios-queda-tensao.ts"
+      origem: "MOD-QT-2-02"
+      exigido_por: "src/routes/projetos.$projetoId_.queda-tensao.tsx, tests/ui/queda-tensao.vrt.test.tsx"
+    - path: "src/infra/supabase/repo-queda-tensao-config.supabase.ts"
+      origem: "MOD-QT-2-02"
+      exigido_por: "src/infra/contexto.ts"
+  candidatos_do_mesmo_pipeline_nao_exigidos_por_import:
+    - "src/routes/api/v1/projetos.$projetoId.circuitos.$circuitoId.aplicar-cenario.ts"
+    - "src/routes/api/v1/projetos.$projetoId.circuitos.$circuitoId.simular-queda.ts"
+    - "src/routes/api/v1/projetos.$projetoId.queda-tensao.resumo.ts"
+    - "src/routes/api/v1/tabelas.impedancia.ts"
+    nota: "MOD-QT-2-02. Sao rotas registradas via routeTree (Set C); deixa-las de fora quebra o routeTree."
+  decisao_requerida_do_usuario: >-
+    NAO RESOLVIDO POR @devops. Opcoes: (a) incluir o Set B no mesmo commit, reconhecendo que
+    ele carrega MOD-QT-2-01/-02 (mesmo pipeline, ja com gates de QA proprios em
+    docs/qa/gates/MOD-QT-2-01-gate.yaml e -02); (b) commit separado previo so de
+    MOD-QT-2-01/-02 e depois o commit desta cadeia. A opcao (b) e a mais limpa em historia,
+    porem exige um ciclo de @devops proprio para aquelas stories.
+
+# ---------------------------------------------------------------------------
+# SET C — ARQUIVOS COMPARTILHADOS CONTAMINADOS (DECISAO DO USUARIO)
+# ---------------------------------------------------------------------------
+set_c_compartilhados_contaminados:
+  severidade: ATENCAO
+  achado: >-
+    Arquivos tracked necessarios para o wiring do modulo, cujo diff mistura queda-tensao com
+    trabalho alheio nao commitado. Estagia-los inteiros CARREGA o trabalho alheio junto.
+    Nenhum deles consta das File Lists das duas stories.
+  arquivos:
+    - { path: "src/routeTree.gen.ts",       linhas_alteradas: 158, linhas_nao_queda: 28, nota: "gerado; registra tambem rotas de protecao/fornecimento/padrao-entrada alheias" }
+    - { path: "src/routeTree.spa.ts",       linhas_alteradas: 14,  linhas_nao_queda: 2 }
+    - { path: "src/hooks/queries.ts",       linhas_alteradas: 12,  linhas_nao_queda: 4 }
+    - { path: "src/infra/contexto.ts",      linhas_alteradas: 8,   linhas_nao_queda: 3, nota: "1 hunk alheio e so reflow de prettier em repoDimOverrides" }
+    - { path: "src/api/contexto-singleton.ts", linhas_alteradas: 2, linhas_nao_queda: 0, nota: "limpo — pode entrar sem contaminacao" }
+  decisao_requerida_do_usuario: >-
+    NAO RESOLVIDO POR @devops. Um commit sem estes arquivos nao registra as rotas novas.
+    Um commit com eles carrega hunks de outros epicos. Resolver por `git add -p` (staging por
+    hunk) exige decisao de escopo que pertence ao dono do pipeline.
+
+# ---------------------------------------------------------------------------
+# NAO COMMITAR EM HIPOTESE ALGUMA
+# ---------------------------------------------------------------------------
+nao_commitar:
+  - "hostinger-spa.zip / hostinger-spa-original-20260721.zip / hostinger-spa2/ / hostinger-spa3/  # artefatos de build"
+  - "src/domain/dimensionamento-condutores/**                                                     # MOD-DC, trabalho alheio"
+  - "src/domain/calculo/**                                                                        # derivar-circuitos/otimizador/padrao-entrada, alheio"
+  - "src/components/app/dimensionamento-condutores/**                                             # MOD-CC/AUTO-OTI, alheio"
+  - "src/domain/nbr/**, src/components/app/FornecimentoSelector.*                                 # alheio"
+  - "docs/*.html, docs/TUTORIAL-*, docs/MANUAL-*, docs/.tutorial-*.manifest.json                  # tutoriais, outro ciclo"
+  - ".htaccess                                                                                    # infra de deploy, outro ciclo"
+  - ".aiox/handoffs/DERIVAR-CIRCUITOS-1-*.yaml, .aiox/workflow-state/BLOCKER-DERIVAR-*.yaml       # outra cadeia"
+  - ".aiox-core/**                                                                                # framework, fora deste ciclo"
+
+opcional_recomendado_decisao_do_usuario:
+  - path: "docs/research/{2026-07-28}-resolucao-ver-qt.md"
+    motivo: "Fonte normativa citada na mensagem de commit; hoje untracked. Sem ela a referencia do commit aponta para arquivo inexistente no repositorio."
+  - path: "docs/research/2026-07-28-resolucao-ver-qt/"
+    motivo: "Relatorio de extracao + impedancia-prysmian.json — insumo verificavel do catalogo (SHA-256)."
+
+ordem_de_execucao_proposta:
+  - "1. cd sistema-de-instala-es-el-tricas-sie-main"
+  - "2. git add <paths do Set A submodulo> (+ Set B e Set C conforme decisao do usuario)"
+  - "3. git status --porcelain para CONFERIR o staged antes de commitar — nenhum path alheio"
+  - "4. git commit -F ../.aiox/handoffs/MOD-QT-2-VERQT-commit-message.txt"
+  - "5. cd .. && git add <paths do Set A raiz> + sistema-de-instala-es-el-tricas-sie-main (ponteiro)"
+  - "6. git commit (mesma mensagem, escopo docs/controle + ponteiro do submodulo)"
+  - "7. git push  <<-- REQUER AUTORIZACAO EXPLICITA DO USUARIO"
+  - "8. gh pr create -F .aiox/handoffs/MOD-QT-2-VERQT-pr-description.md  <<-- REQUER AUTORIZACAO EXPLICITA"
+
+acoes_executadas_por_devops:
+  git_add: false
+  git_commit: false
+  git_push: false
+  gh_pr_create: false
+  gh_pr_merge: false
+  deploy: false
+  codigo_fonte_alterado: false

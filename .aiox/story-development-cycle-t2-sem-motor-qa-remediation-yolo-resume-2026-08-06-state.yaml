@@ -1,0 +1,43 @@
+workflow_state:
+  workflow_id: story-development-cycle-t2-sem-motor-qa-remediation-yolo-resume
+  instance_id: story-development-cycle-t2-sem-motor-qa-remediation-yolo-resume-2026-08-06
+  mode: yolo
+  status: blocked
+  started_at: "2026-08-06T16:51:38.0283477-03:00"
+  updated_at: "2026-08-06T16:51:38.0283477-03:00"
+  current_step: validate_resume_state
+  completed_steps: []
+  target:
+    story_id: T2-SEM-MOTOR-1
+    story_status: InProgress
+    source_state: .aiox/story-development-cycle-t2-sem-motor-qa-remediation-yolo-2026-08-06-state.yaml
+  preflight:
+    workflow_file: .aiox-core/development/workflows/story-development-cycle-t2-sem-motor-qa-remediation-yolo-resume.yaml
+    workflow_validation: previously_passed_strict
+    source_status: blocked
+    required_blocker: CODERABBIT-WSL-AVX2
+    coderabbit_probe: "Illegal instruction before --version response"
+    coderabbit_review_started: false
+    latest_attempt:
+      requested_at: "2026-08-06T16:55:00-03:00"
+      requested_mode: yolo
+      authentication_requested: false
+      result: blocked_by_declared_prerequisite
+  inherited_evidence:
+    tests: "1175/1175 PASS"
+    typecheck: PASS
+    lint: PASS
+    build: pending_final_rerun
+    build_spa: pending_final_rerun
+  blocking_reason: >-
+    Current WSL host still lacks a compatible CodeRabbit runner; the official
+    binary aborts with SIGILL. No review, Task 6, InReview transition or QA
+    revalidation may be claimed.
+  resume_conditions:
+    - AVX2-capable WSL/Linux runner or official non-AVX2 CodeRabbit build
+    - existing CodeRabbit authentication
+    - authorized isolated T2 diff
+  audit:
+    requested_by: User
+    orchestrator: aiox-master
+    remote_operations: forbidden

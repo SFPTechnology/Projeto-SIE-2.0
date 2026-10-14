@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help — Conformidade NBR 5410</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .help-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .help-header {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .help-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .help-header p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        .help-content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            color: #1e40af;
+            font-size: 22px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .section h3 {
+            color: #1e40af;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .field-section {
+            background: #f9f9f9;
+            border-left: 4px solid #1e40af;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .field-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e40af;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .field-icon {
+            font-size: 24px;
+        }
+
+        .field-description {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .field-opcoes, .field-exemplos, .field-erros {
+            margin-top: 15px;
+        }
+
+        .opcoes-list {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .opcoes-list li {
+            background: white;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid #4ade80;
+            border-radius: 4px;
+        }
+
+        .opcoes-list li strong {
+            color: #1e40af;
+        }
+
+        .opcao-valor {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+        }
+
+        thead {
+            background: #1e40af;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tbody tr:hover {
+            background: #f5f5f5;
+        }
+
+        .alerta {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .alerta-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .alerta.critico {
+            background: #fee2e2;
+            border-left-color: #ef4444;
+        }
+
+        .alerta.critico .alerta-icon {
+            color: #ef4444;
+        }
+
+        .alerta.info {
+            background: #dbeafe;
+            border-left-color: #0284c7;
+        }
+
+        .alerta.info .alerta-icon {
+            color: #0284c7;
+        }
+
+        .exemplo {
+            background: #f0fdf4;
+            border-left: 3px solid #22c55e;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+            color: #166534;
+        }
+
+        .exemplo.invalido {
+            background: #fef2f2;
+            border-left-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .checklist {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 0;
+        }
+
+        .checklist-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checklist-item.critico {
+            background: #fffaf0;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+
+        .tag.obrigatorio {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .tag.recomendado {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .tag.opcional {
+            background: #e0f2fe;
+            color: #0c4a6e;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: #f9f9f9;
+            padding: 15px;
+            font-weight: bold;
+            color: #1e40af;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #f0f0f0;
+        }
+
+        .faq-answer {
+            padding: 15px;
+            color: #666;
+            background: white;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-toggle {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .footer {
+            background: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .regras-ouro {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .regra {
+            background: #f0fdf4;
+            border: 1px solid #22c55e;
+            border-radius: 4px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .regra-numero {
+            display: inline-block;
+            background: #22c55e;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            line-height: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .regra-texto {
+            font-weight: bold;
+            color: #166534;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .regras-ouro {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+
+            .help-header {
+                padding: 20px;
+            }
+
+            .help-header h1 {
+                font-size: 22px;
+            }
+
+            .section h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="help-container">
+        <!-- HEADER -->
+        <div class="help-header">
+            <h1>📋 Guia de Ajuda — Conformidade NBR 5410</h1>
+            <p>Validação de segurança elétrica em banheiros conforme NBR 5410:2004</p>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="help-content">
+
+            <!-- VISÃO GERAL -->
+            <div class="section">
+                <h2>O que é este formulário?</h2>
+                <p>Este formulário implementa os requisitos técnicos da <strong>NBR 5410:2004</strong> — <em>Instalações Elétricas de Baixa Tensão em Edificações</em>. É um instrumento de validação de conformidade para circuitos e equipamentos em ambientes de banheiro, que possuem requisitos de proteção rigorosos.</p>
+
+                <div class="alerta info">
+                    <span class="alerta-icon">ℹ️</span>
+                    <div>
+                        <strong>A NBR 5410 é a norma brasileira que estabelece as exigências essenciais de segurança para instalações elétricas.</strong> Cumprir seus requisitos em banheiros é CRÍTICO para prevenir acidentes elétricos.
+                    </div>
+                </div>
+            </div>
+
+            <!-- REGRAS DE OURO -->
+            <div class="section">
+                <h2>⚡ 3 Regras de Ouro</h2>
+                <div class="regras-ouro">
+                    <div class="regra">
+                        <div class="regra-numero">1</div>
+                        <div class="regra-texto">Zona 1-2 SEMPRE precisa de DB</div>
+                    </div>
+                    <div class="regra">
+                        <div class="regra-numero">2</div>
+                        <div class="regra-texto">Zona 1-2 SEMPRE precisa de IP ≥ 4</div>
+                    </div>
+                    <div class="regra">
+                        <div class="regra-numero">3</div>
+                        <div class="regra-texto">Documente tudo nas Observações</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAMPOS -->
+            <div class="section">
+                <h2>📝 Descrição dos 6 Campos</h2>
+
+                <!-- CAMPO 1: ZONA DO BANHEIRO -->
+                <div class="field-section">
+                    <div class="field-title">
+                        <span class="field-icon">1️⃣</span>
+                        Zona do Banheiro <span class="tag obrigatorio">OBRIGATÓRIO</span>
+                    </div>
+                    <div class="field-description">
+                        Define a localização do equipamento em relação à banheira. Diferentes zonas exigem diferentes níveis de proteção.
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Zona</th>
+                                <th>Localização</th>
+                                <th>Distância da Banheira</th>
+                                <th>IP Mínimo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Zona 0</strong></td>
+                                <td>Interior da banheira</td>
+                                <td>0m (dentro)</td>
+                                <td>IPX7/X8</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zona 1</strong></td>
+                                <td>Ao redor da banheira</td>
+                                <td>0 a 0,6m</td>
+                                <td><strong>IPX4</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zona 2</strong></td>
+                                <td>Próximo à banheira</td>
+                                <td>0,6m a 1,2m</td>
+                                <td><strong>IPX4</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Zona 3</strong></td>
+                                <td>Fora do banheiro</td>
+                                <td>>1,2m</td>
+                                <td>IPX1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="field-exemplos">
+                        <strong>📌 Exemplos:</strong>
+                        <div class="exemplo">Tomada a 0,3m do espelho → Zona 1</div>
+                        <div class="exemplo">Tomada a 0,8m da banheira → Zona 2</div>
+                        <div class="exemplo">Ventilador a 2m de distância → Zona 3</div>
+                    </div>
+                </div>
+
+                <!-- CAMPO 2: DB INFORMADO -->
+                <div class="field-section">
+                    <div class="field-title">
+                        <span class="field-icon">2️⃣</span>
+                        DB Informado <span class="tag obrigatorio">OBRIGATÓRIO</span>
+                    </div>
+                    <div class="field-description">
+                        Indica se há proteção por Disjuntor Residual (DR/DDR) no projeto. É o componente de proteção contra choques elétricos mais importante.
+                    </div>
+
+                    <div class="field-opcoes">
+                        <strong>Opções:</strong>
+                        <ul class="opcoes-list">
+                            <li>
+                                <span class="opcao-valor">✅ SIM</span>
+                                <strong>Circuito protegido por DR</strong> — Projeto seguro
+                            </li>
+                            <li>
+                                <span class="opcao-valor">❌ NÃO</span>
+                                <strong>Circuito sem proteção</strong> — NÃO-CONFORME (crítico!)
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="alerta critico">
+                        <span class="alerta-icon">⚠️</span>
+                        <div>
+                            <strong>Crítico:</strong> Se a zona é 1 ou 2 e o DB é "Não", o projeto está NÃO-CONFORME com NBR 5410. DR é obrigatório.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAMPO 3: GRAU DE PROTEÇÃO IP -->
+                <div class="field-section">
+                    <div class="field-title">
+                        <span class="field-icon">3️⃣</span>
+                        Grau de Proteção IP <span class="tag obrigatorio">OBRIGATÓRIO</span>
+                    </div>
+                    <div class="field-description">
+                        Código de proteção do equipamento contra contato com partes vivas e ingresso de água. Formato: <strong>IPXY</strong> (exemplo: IP44, IPX7).
+                    </div>
+
+                    <h3>📊 Tabela de Proteção (Y — Água)</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Proteção</th>
+                                <th>Quando Usar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>IPX1</td>
+                                <td>Gotejamento</td>
+                                <td>Zona 3 (áreas secas)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IPX4</strong></td>
+                                <td><strong>Jatos de água</strong></td>
+                                <td><strong>Zona 1-2 (padrão)</strong></td>
+                            </tr>
+                            <tr>
+                                <td>IPX5</td>
+                                <td>Jatos potentes</td>
+                                <td>Áreas externas</td>
+                            </tr>
+                            <tr>
+                                <td>IPX7</td>
+                                <td>Submersão temporária</td>
+                                <td>Zona 0 (raro)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="field-exemplos">
+                        <strong>✅ Exemplos Válidos:</strong>
+                        <div class="exemplo">IP44 — Padrão para banheiro (Zona 1-2)</div>
+                        <div class="exemplo">IP54 — Proteção extra</div>
+                        <div class="exemplo">IPX7 — Submersível</div>
+                    </div>
+
+                    <div class="field-exemplos">
+                        <strong>❌ Exemplos Inválidos:</strong>
+                        <div class="exemplo invalido">IP20 — Inadequado em banheiro</div>
+                        <div class="exemplo invalido">IP 44 — Não escrever com espaço</div>
+                        <div class="exemplo invalido">IP00 — Não permitido</div>
+                    </div>
+                </div>
+
+                <!-- CAMPO 4: INFLUÊNCIA EXTERNA -->
+                <div class="field-section">
+                    <div class="field-title">
+                        <span class="field-icon">4️⃣</span>
+                        Influência Externa <span class="tag opcional">OPCIONAL</span>
+                    </div>
+                    <div class="field-description">
+                        Indica se há fatores ambientais adicionais (temperatura extrema, sauna, umidade muito alta, etc.).
+                    </div>
+
+                    <div class="field-opcoes">
+                        <strong>Opções:</strong>
+                        <ul class="opcoes-list">
+                            <li>
+                                <span class="opcao-valor">OBRIGATÓRIO</span>
+                                Há fatores especiais (ex: sauna, ambiente muito úmido)
+                            </li>
+                            <li>
+                                <span class="opcao-valor">OPCIONAL</span>
+                                Banheiro comum, sem fatores adicionais (padrão)
+                            </li>
+                            <li>
+                                <span class="opcao-valor">NÃO APLICÁVEL</span>
+                                Circuito em área seca ou sem relevância
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- CAMPO 5: CLASSE -->
+                <div class="field-section">
+                    <div class="field-title">
+                        <span class="field-icon">5️⃣</span>
+                        Classe <span class="tag obrigatorio">OBRIGATÓRIO</span>
+                    </div>
+                    <div class="field-description">
+                        Classificação técnica do equipamento. Exemplos: AD2 (tomada), AL2 (iluminação), MD1 (motor/ventilador).
+                    </div>
+
+                    <h3>📌 Códigos Comuns para Banheiro:</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Equipamento</th>
+                                <th>Proteção</th>
+                                <th>IP Mín.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>AD2</strong></td>
+                                <td>Tomada em banheiro</td>
+                                <td>Reforçada</td>
+                                <td>IP44</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AL2</strong></td>
+                                <td>Iluminação LED/fluorescente</td>
+                                <td>Reforçada</td>
+                                <td>IP44</td>
+                            </tr>
+                            <tr>
+                                <td><strong>MD1</strong></td>
+                                <td>Ventilador/exaustor</td>
+                                <td>Simples</td>
+                                <td>IP44</td>
+                            </tr>
+                            <tr>
+                                <td>AD4</td>
+                                <td>Proteção máxima</td>
+                                <td>Máxima</td>
+                                <td>IP65</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="alerta critico">
+                        <span class="alerta-icon">⚠️</span>
+                        <div>
+                            <strong>Nunca use AD1 em banheiro.</strong> Classe 1 é apenas para áreas secas.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAMPO 6: OBSERVAÇÕES -->
+                <div class="field-section">
+                    <div class="field-title">
+                        <span class="field-icon">6️⃣</span>
+                        Observações <span class="tag opcional">OPCIONAL</span>
+                    </div>
+                    <div class="field-description">
+                        Campo para notas técnicas que justificam a conformidade ou documentam particularidades.
+                    </div>
+
+                    <div class="field-exemplos">
+                        <strong>✅ Exemplos Bons:</strong>
+                        <div class="exemplo">
+                            "Tomada Legrand, classe AD2, IP44, protegida por DR 30mA, Zona 2"
+                        </div>
+                        <div class="exemplo">
+                            "Luminária LED anti-embaçamento, IP67, adequada para Zona 1"
+                        </div>
+                        <div class="exemplo">
+                            "Ventilador Intelbras com sensor automático, DR independente 30mA"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHECKLIST -->
+            <div class="section">
+                <h2>✅ Checklist Rápida</h2>
+                <div class="checklist">
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Zona selecionada (0-3)?</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>IP adequado para a zona?</label>
+                    </div>
+                    <div class="checklist-item critico">
+                        <input type="checkbox">
+                        <label><strong>DB informado para Zona 1-2?</strong></label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Classe selecionada?</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <label>Observações preenchidas (se necessário)?</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="section">
+                <h2>❓ Dúvidas Frequentes</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>P: Qual é a diferença entre IP44 e IPX4?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>IP44:</strong> Proteção contra contato (até 1mm) + Jatos de água</p>
+                        <p><strong>IPX4:</strong> Sem proteção contra contato + Jatos de água</p>
+                        <p style="margin-top: 10px;"><strong>Conclusão:</strong> Em banheiros, <strong>IP44 é preferível</strong> pois oferece ambas as proteções.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>P: Posso usar tomada IP20 em banheiro se tiver DR?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Não.</strong> O DR protege contra choques elétricos, mas não contra água. Uma tomada IP20 deixa partes vivas expostas à umidade, causando corrosão e risco de curto-circuito.</p>
+                        <p style="margin-top: 10px;"><strong>Conclusão:</strong> <strong>IP44 é obrigatório</strong> em Zona 1-2, independentemente do DR.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>P: É necessário DR em Zona 3?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Tecnicamente não é obrigatório</strong> (Zona 3 está fora do banheiro), mas é <strong>altamente recomendado</strong>.</p>
+                        <p style="margin-top: 10px;">Se a mesma DR alimenta Zona 1-2, qualquer circuito associado herda a proteção, o que é uma boa prática.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>P: O que fazer se o equipamento não tem IP especificado?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Não use.</strong> Equipamentos sem certificação ou especificação de IP não devem ser instalados em banheiros.</p>
+                        <p style="margin-top: 10px;">Solicite ao fornecedor a documentação técnica ou procure uma alternativa certificada.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>P: Posso usar classe AD1 em banheiro?</span>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>Não.</strong> Classe AD1 é apenas para áreas secas (IP20).</p>
+                        <p style="margin-top: 10px;"><strong>Classe AD2 é o mínimo</strong> para banheiros (Zona 2-3).<br><strong>Classe AD4 é melhor</strong> para Zona 1.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REFERÊNCIAS -->
+            <div class="section">
+                <h2>📚 Referências Normativas</h2>
+                <ul>
+                    <li><strong>NBR 5410:2004</strong> — Instalações Elétricas de Baixa Tensão em Edificações (principal)</li>
+                    <li><strong>IEC 60529</strong> — Índice de Proteção (IP)</li>
+                    <li><strong>IEC 61008-1</strong> — Disjuntores Diferenciais-Residuais para uso doméstico</li>
+                </ul>
+                <p style="margin-top: 15px; color: #666; font-size: 13px;">
+                    Para documentação completa e exemplos detalhados, consulte: <strong>docs/NBR5410-Conformidade-Guia-Completo.md</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>Conformidade = Segurança.</strong> Não há atalhos. Este guia é um instrumento de validação de conformidade conforme NBR 5410:2004.</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Documento gerado por: Atlas (AIOX Analyst) | Synkra AIOX Framework | Data: 2026-06-21</p>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT PARA FAQ -->
+    <script>
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

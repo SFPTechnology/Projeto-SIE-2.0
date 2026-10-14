@@ -1,0 +1,55 @@
+workflow_state:
+  run_id: "sie-command-center-precondition-check-2026-07-31T05-50-15.883Z"
+  manifest_fingerprint: null
+  source_artifact: "docs/workflows/WORKFLOW-SDC-SIE-COMMAND-CENTER-YOLO.md"
+  story_id: null
+  status: "blocked"
+  current_phase: "manifest_validation"
+  terminal_state: "BLOCKED"
+  reasons:
+    - code: "ARCHITECT_PHASE_UNSUPPORTED"
+      detail: >
+        .aiox-core/core/orchestration/sdc-headless-yolo-runner.js e
+        .aiox-core/development/scripts/sdc-headless-yolo.js não possuem nenhuma
+        função/fase 'architect' distinta (grep case-insensitive sem matches em
+        ambos). O runner atual só executa sm -> po -> dev -> qa -> devops,
+        confirmando o gap documentado na seção 6 do workflow-fonte.
+    - code: "SIE_DS_PRECONDITION_BLOCKED"
+      detail: >
+        Manifesto imutável (seção 7) inexistente para este escopo — nenhum
+        branch/remote/ambiente/deploy_runbook/autorizações foi declarado.
+        Não é permitido fabricar essas autorizações.
+  precondition_checklist:
+    design_artifacts_section_3_1: "PASS — 11/11 arquivos existem e são legíveis"
+    state_yaml_status: "PASS — outputs/design-system/sie-command-center/.state.yaml status=ready_for_review"
+    repo_and_frontend_identified: "PASS — submódulo sistema-de-instala-es-el-tricas-sie-main"
+    preexisting_user_changes_inventoried: "NOT_DONE"
+    legacy_maintenance_rollback_strategy: "UNVERIFIED — presente em migration/adoption-plan.md, não auditado nesta checagem"
+    manifest_declares_branch_remote_env_runbook: "FAIL — manifesto ausente"
+    adapter_exposes_architect_phase: "FAIL — confirmado por grep, sem ocorrências"
+    runtime_persists_architect_ratification: "FAIL — decorre do item anterior"
+    deploy_runbook_exists: "UNVERIFIED — sem manifesto para apontar runbook"
+    rollback_authorized_before_deploy: "FAIL — sem manifesto, sem autorização"
+  agents:
+    sm: null
+    po: null
+    architect: null
+    dev: null
+    qa: null
+    devops: null
+  verdicts:
+    po: null
+    architect: null
+    qa: null
+  counters:
+    po_iterations: 0
+    architect_iterations: 0
+    qa_iterations: 0
+  gates: null
+  delivery: null
+  next_action_required: >
+    Implementar e testar o adapter da fase @architect no runner headless,
+    criar o manifesto imutável live (com branch/remote/ambiente/runbook
+    reais e autorizações explícitas) e implementar o coordenador
+    ordered_story_set (seção 7.1) antes de qualquer execução live.
+    Nenhuma story foi criada; nenhum código de produção foi alterado.

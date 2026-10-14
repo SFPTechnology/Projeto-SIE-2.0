@@ -1,0 +1,86 @@
+{
+  "bench_id": "chatwoot-vs-zendesk",
+  "bench_type": "product",
+  "comparison_mode": "product_comparison_no_clone",
+  "subject_a": {
+    "name": "Chatwoot",
+    "category": "Open-Source + Cloud SaaS",
+    "license": "MIT",
+    "country_origin": "India",
+    "founded": 2017,
+    "version_evaluated": "v4.13.0",
+    "version_release_date": "2026-04-17",
+    "vendor_url": "https://www.chatwoot.com",
+    "repo_url": "https://github.com/chatwoot/chatwoot"
+  },
+  "subject_b": {
+    "name": "Zendesk",
+    "category": "SaaS Enterprise",
+    "license": "Proprietary",
+    "country_origin": "USA",
+    "founded": 2007,
+    "version_evaluated": "Suite (Team/Growth/Professional/Enterprise) — 2026 pricing model",
+    "vendor_url": "https://www.zendesk.com",
+    "repo_url": null
+  },
+  "bench_date": "2026-05-06",
+  "analyst": "spy/bench-analyst v3.0",
+  "pipeline_phase": "1 of 3 (par 1: OSS-MIT vs SaaS-Enterprise)",
+  "pipeline_context": {
+    "next_pairs": [
+      "Intercom vs Chatwoot",
+      "Octadesk vs Zendesk"
+    ],
+    "downstream_step": "bench-score 3-way consolidation post-3 pairs",
+    "tech_research_source": "docs/research/2026-05-06-omnichannel-helpdesk-landscape/"
+  },
+  "central_tension": "OSS MIT lider (Chatwoot, 29.1k stars) vs SaaS Enterprise lider global (Zendesk, 14.8% market share). Modelos economicos opostos. Quando Chatwoot e suficiente, quando Zendesk e necessario, qual o delta real de capability/TCO/risk.",
+  "scoring_dimensions": [
+    {"id": "C1", "name": "Canais nativos", "weight_pct": 15, "rationale": "Quantidade + qualidade integracao WhatsApp Cloud API"},
+    {"id": "C2", "name": "AI capability", "weight_pct": 20, "rationale": "Captain AI vs Zendesk AI Agents (post-Ultimate.ai)"},
+    {"id": "C3", "name": "Pricing transparency e TCO real", "weight_pct": 15, "rationale": "Custo real total ate steady-state com AI"},
+    {"id": "C4", "name": "Governance/Compliance", "weight_pct": 10, "rationale": "Audit, SLA, EU hosting, HIPAA"},
+    {"id": "C5", "name": "Ecosystem/Marketplace/integrations", "weight_pct": 10, "rationale": "Apps disponiveis + maturidade dos conectores"},
+    {"id": "C6", "name": "Comunidade/suporte/maturidade", "weight_pct": 10, "rationale": "Reviews + share + idade do produto"},
+    {"id": "C7", "name": "Flexibilidade", "weight_pct": 10, "rationale": "Self-hosted, customizacao, API openness"},
+    {"id": "C8", "name": "Brasil-fit", "weight_pct": 10, "rationale": "WhatsApp BSP local, pricing BRL, integracoes VTEX/Shopify"}
+  ],
+  "language_outputs": "PT-BR (project Sinkra is BR)",
+  "deliverables": [
+    "metadata.json",
+    "inventory-chatwoot.json",
+    "inventory-chatwoot.md",
+    "inventory-zendesk.json",
+    "inventory-zendesk.md",
+    "comparison-matrix.json",
+    "comparison-matrix.md",
+    "scorecard.json",
+    "scorecard.md",
+    "gap-analysis.json",
+    "gap-analysis.md",
+    "battle-card.md",
+    "executive-report.md",
+    "deep/feature-comparison.md",
+    "deep/pricing-analysis.md",
+    "deep/risk-analysis.md"
+  ],
+  "data_sources": {
+    "tier_1_high_confidence": [
+      "https://www.chatwoot.com/pricing (fetched 2026-05-06)",
+      "https://github.com/chatwoot/chatwoot (fetched 2026-05-06)",
+      "https://www.zendesk.com/pricing/ (via search 2026-05-06)",
+      "https://www.zendesk.com/trust-center/",
+      "Tech-research report 02-research-report.md (cobertura 92%)"
+    ],
+    "tier_2_medium_confidence": [
+      "G2 reviews aggregations",
+      "eesel.ai/blog (Zendesk pricing/security/residency 2026)",
+      "costbench.com/software/help-desk/zendesk/",
+      "deepwiki Chatwoot WhatsApp channel"
+    ],
+    "tier_3_low_confidence": [
+      "Generic vendor comparison blogs (research.com, sourceforge, wappalyzer)"
+    ]
+  },
+  "completeness_target": "Standard+ (15 artifacts, deep dive nas 3 dimensoes mais carregadas: features/pricing/risk)"
+}

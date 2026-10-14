@@ -1,0 +1,183 @@
+{
+  "benchmark_id": "intercom-vs-chatwoot",
+  "generated_at": "2026-05-06T00:00:00Z",
+  "method": "bidirectional gap analysis — what each could absorb from the other",
+  "summary": {
+    "intercom_could_absorb_from_chatwoot": 6,
+    "chatwoot_could_absorb_from_intercom": 8,
+    "philosophy_gaps_unbridgeable": 2
+  },
+  "intercom_gaps": [
+    {
+      "id": "GAP-INT-01",
+      "description": "Sem self-hosted / on-premise option",
+      "what_chatwoot_has": "MIT self-hosted ilimitado, data sovereignty completa",
+      "absorption_complexity": "VERY HIGH",
+      "blockers": ["Modelo de negocio Intercom 100% SaaS", "Vendor lock-in e parte do moat"],
+      "priority": "P3 — filosofico, nao absorvivel",
+      "estimated_effort": "indefinido — exigiria reescrita do modelo comercial",
+      "rationale": "Chatwoot ganhou esse moat. Intercom nunca vai oferecer self-hosted sem destruir SaaS revenue model."
+    },
+    {
+      "id": "GAP-INT-02",
+      "description": "Sem free tier permanente",
+      "what_chatwoot_has": "Hacker permanente (2 agents, 500 conv) + self-hosted unlimited free",
+      "absorption_complexity": "MEDIUM",
+      "blockers": ["Resistencia interna ao acquisition cost de free tier"],
+      "priority": "P2 — competitivo SMB",
+      "estimated_effort": "3-6 meses para roll-out + modelagem CAC/LTV",
+      "rationale": "HubSpot/Tidio mostraram que free tier permanente captura SMB e converte. Intercom poderia oferecer Essential Free com 1 agent + 100 conv/mo."
+    },
+    {
+      "id": "GAP-INT-03",
+      "description": "Sem Telegram, TikTok, Line nativos",
+      "what_chatwoot_has": "Todos 3 nativos via core OSS",
+      "absorption_complexity": "LOW",
+      "blockers": ["Roadmap priorities — Intercom focou WhatsApp + Insta + FB para West market"],
+      "priority": "P1 — gap de mercado real (LATAM, Asia)",
+      "estimated_effort": "1-3 meses por canal (APIs documentadas e oficiais)",
+      "rationale": "Mercados Asia + LATAM dependem de Telegram/Line. Sem isso, Intercom esta out em verticais B2C globais."
+    },
+    {
+      "id": "GAP-INT-04",
+      "description": "API Channels para custom canais",
+      "what_chatwoot_has": "API Channels — extensibilidade open para canais custom",
+      "absorption_complexity": "MEDIUM",
+      "blockers": ["Filosofia closed-platform"],
+      "priority": "P2 — desenvolvedores power users",
+      "estimated_effort": "3-6 meses + governance API",
+      "rationale": "Intercom tem App Store mas nao API channels primitivos. Customers ficam dependentes do que Intercom apps oferecem."
+    },
+    {
+      "id": "GAP-INT-05",
+      "description": "Source code modificavel (open source)",
+      "what_chatwoot_has": "MIT — codigo aberto modificavel",
+      "absorption_complexity": "VERY HIGH",
+      "blockers": ["Modelo de negocio fundamental"],
+      "priority": "P3 — filosofico, nao absorvivel",
+      "estimated_effort": "indefinido",
+      "rationale": "Intercom proprietary by design. Sem chance de virar open source."
+    },
+    {
+      "id": "GAP-INT-06",
+      "description": "AI cost predictability (credits flat vs per-resolution)",
+      "what_chatwoot_has": "Credits flat por tier + extras predictable $20/1k",
+      "absorption_complexity": "LOW",
+      "blockers": ["Modelo per-resolution e revenue-positive para Intercom"],
+      "priority": "P2 — competitivo",
+      "estimated_effort": "1-2 meses (pricing redesign)",
+      "rationale": "Intercom poderia oferecer plano flat AI (ex: $200/mo unlimited Fin para Pro tier) como opcao para teams que querem previsibilidade. Diferencia competitivo."
+    }
+  ],
+  "chatwoot_gaps": [
+    {
+      "id": "GAP-CW-01",
+      "description": "Captain AI sem modelo publicado nem deflection rate validado",
+      "what_intercom_has": "Fin Apex 1.0 modelo proprietary com 51-67% deflection publicado + 6-step RAG pipeline + patents",
+      "absorption_complexity": "HIGH",
+      "blockers": ["R&D investment substancial; Intercom investiu ~3 anos em Fin"],
+      "priority": "P0 — gap maior do match-up",
+      "estimated_effort": "12-18 meses para parity comparable + benchmarks publicos",
+      "rationale": "Sem deflection rate publicado e benchmarked, Captain perde batalhas pre-sale para Fin. Chatwoot precisa: (1) publicar modelo subjacente, (2) publicar deflection rate validado por terceiros, (3) adicionar autonomous workflows + custom actions + simulation mode."
+    },
+    {
+      "id": "GAP-CW-02",
+      "description": "Captain sem custom AI actions (refunds, trial extensions, calls to systems)",
+      "what_intercom_has": "Fin executa actions em sistemas externos via workflows + integrations",
+      "absorption_complexity": "MEDIUM",
+      "blockers": ["Engineering effort + integrations partnerships"],
+      "priority": "P1 — competitivo direto",
+      "estimated_effort": "6-9 meses",
+      "rationale": "Sem custom actions, Captain e fancy FAQ bot. Fin entrega resolucao real. Gap absorvivel via webhooks + tool calls + LLM agentic patterns."
+    },
+    {
+      "id": "GAP-CW-03",
+      "description": "Captain sem pre-deployment simulation mode",
+      "what_intercom_has": "Fin pode ser testada com past customer questions antes de go-live",
+      "absorption_complexity": "MEDIUM",
+      "blockers": ["Engineering effort + dataset replay infra"],
+      "priority": "P1 — competitivo",
+      "estimated_effort": "3-6 meses",
+      "rationale": "Customers querem forecast deflection antes de pagar credits. Sem simulation, vao live as cegas. Absorvivel via batch replay engine."
+    },
+    {
+      "id": "GAP-CW-04",
+      "description": "Captain NAO disponivel em self-hosted",
+      "what_intercom_has": "N/A — Intercom todo Cloud",
+      "absorption_complexity": "MEDIUM",
+      "blockers": ["LLM API costs em self-hosted distribuiveis", "Modelo BYO LLM API key vs hosted"],
+      "priority": "P0 — quebra promessa OSS pura",
+      "estimated_effort": "6-9 meses",
+      "rationale": "Self-hosted users sentem traidos — entram pela MIT licenca mas Captain (a feature mais demandada) e Cloud-only. Solucao: BYOLM (bring your own LLM API key — OpenAI/Anthropic/local Ollama) com Captain logic em self-hosted."
+    },
+    {
+      "id": "GAP-CW-05",
+      "description": "Reporting & Analytics fraco (G2 reviewers concordam)",
+      "what_intercom_has": "Pre-built reports robusto + Pro Analytics add-on + custom reports",
+      "absorption_complexity": "MEDIUM",
+      "blockers": ["Engineering effort em data viz + reporting infra"],
+      "priority": "P1 — drag em deals enterprise",
+      "estimated_effort": "6-12 meses",
+      "rationale": "Reporting e o ponto fraco mais citado em G2 reviews Chatwoot. Investir em dashboards prebuit + custom reports + agent performance analytics + SLA tracking visual."
+    },
+    {
+      "id": "GAP-CW-06",
+      "description": "Sem marketplace formal de apps",
+      "what_intercom_has": "App Store 300+ apps polished",
+      "absorption_complexity": "MEDIUM-HIGH",
+      "blockers": ["Network effects para atrair developers", "Governance + review process"],
+      "priority": "P2 — ecossistema partner-driven",
+      "estimated_effort": "12-18 meses para marketplace funcional",
+      "rationale": "Marketplace formal acelera adocao + monetiza ecossistema. Chatwoot tem API + webhooks mas falta vitrine. Absorvivel mas exige investimento sustentado."
+    },
+    {
+      "id": "GAP-CW-07",
+      "description": "Multibrand support",
+      "what_intercom_has": "Expert tier — multiplas brands em uma instancia",
+      "absorption_complexity": "MEDIUM",
+      "blockers": ["Reformulacao de tenancy model"],
+      "priority": "P2 — competitivo enterprise",
+      "estimated_effort": "6-9 meses",
+      "rationale": "Cliente enterprise multi-brand (holding com 3-5 brands) precisa multibrand. Chatwoot Cloud nao oferece; self-hosted resolve via deploys multiples mas com overhead."
+    },
+    {
+      "id": "GAP-CW-08",
+      "description": "In-app Messenger SDK polido para SaaS B2B",
+      "what_intercom_has": "Best-in-class — SDK iOS/Android/Web/RN/Flutter; Product Tours; Checklists",
+      "absorption_complexity": "HIGH",
+      "blockers": ["Investimento substancial em SDK + product tours engine"],
+      "priority": "P2 — vertical SaaS B2B",
+      "estimated_effort": "12-18 meses",
+      "rationale": "Chatwoot widget e funcional mas nao no nivel Intercom. Para capturar SaaS B2B in-app heavy, gap precisa fechar. Mas: market core de Chatwoot e B2C/e-commerce/WhatsApp-first onde gap e menos relevante."
+    }
+  ],
+  "philosophy_gaps_unbridgeable": [
+    {
+      "id": "PHIL-01",
+      "description": "Modelo de negocio: SaaS proprietary vs OSS + Cloud",
+      "intercom_position": "Total proprietary cloud lock-in. Premium positioning. R&D pesado em AI proprio.",
+      "chatwoot_position": "MIT open source + Cloud commercial. Comunidade contribui. Pricing 50-65% menor.",
+      "absorbable": false,
+      "implications": "Cada player escolhe metade do mercado. Tentar absorver o outro lado destrui o moat de cada um."
+    },
+    {
+      "id": "PHIL-02",
+      "description": "Foco vertical: SaaS B2B in-app vs B2C/e-commerce omnichannel",
+      "intercom_position": "Construido para SaaS B2B com usuarios logados; in-app messenger desde 2011.",
+      "chatwoot_position": "Construido para B2C omnichannel; WhatsApp-first; canais diversos.",
+      "absorbable": "parcialmente",
+      "implications": "Intercom pode adicionar canais; Chatwoot pode polir Messenger. Mas DNA cada um aponta para um mercado diferente."
+    }
+  ],
+  "absorption_priority_matrix": {
+    "intercom_should_invest": {
+      "P1": ["GAP-INT-03 — Telegram/TikTok/Line nativos"],
+      "P2": ["GAP-INT-02 — Free tier permanente", "GAP-INT-04 — API Channels", "GAP-INT-06 — AI cost predictability"]
+    },
+    "chatwoot_should_invest": {
+      "P0": ["GAP-CW-01 — Captain AI parity (modelo + deflection + simulation)", "GAP-CW-04 — Captain em self-hosted (BYOLM)"],
+      "P1": ["GAP-CW-02 — Custom AI actions", "GAP-CW-03 — Simulation mode", "GAP-CW-05 — Reporting"],
+      "P2": ["GAP-CW-06 — Marketplace", "GAP-CW-07 — Multibrand", "GAP-CW-08 — In-app SDK"]
+    }
+  }
+}

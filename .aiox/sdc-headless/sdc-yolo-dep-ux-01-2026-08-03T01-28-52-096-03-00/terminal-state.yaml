@@ -1,0 +1,15 @@
+run_id: "sdc-yolo-dep-ux-01-2026-08-03T01-28-52-096-03-00"
+workflow_id: "sdc-yolo-dep-ux-01"
+terminal_state: "worktree_blocked"
+completed_at: "2026-08-03T01:28:52-03:00"
+manifest_fingerprint: "c49c60abbdc9887c9b6c06764d21cf8b3520301ec8d301e452855e3ee20b7580"
+completed_phases:
+  - P0
+  - P1
+  - P2
+evidence_root: ".aiox/sdc-headless/sdc-yolo-dep-ux-01-2026-08-03T01-28-52-096-03-00"
+remote_effects_executed: false
+code_changes_executed: false
+blocker:
+  type: "preexisting_worktree_overlap"
+  required_recovery: "Reconcile ownership of TabelaDependencias.tsx and styles.css, or provide an isolated clean baseline; initiate a new run with a new immutable manifest."

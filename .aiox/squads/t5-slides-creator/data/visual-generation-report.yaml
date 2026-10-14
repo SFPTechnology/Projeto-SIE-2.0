@@ -1,0 +1,521 @@
+# Visual Generation Report Schema
+# SSOT for the output report emitted by visual-scout after orchestrating visual generation.
+# Consumed by: slide-chief (pipeline reporting), qa-inspector (quality gate),
+#               design-renderer (asset routing), cost-tracking (budget reconciliation).
+# Created by: Story 2.2 (EPIC-SC-V2-001, Sprint 2)
+# Dependencies:
+#   - squads/slides-creator/data/visual-engines.yaml (Story 1.1 -- engine registry)
+#   - squads/slides-creator/data/semantic-classification.yaml (Story 2.1 -- content_types)
+#   - squads/slides-creator/data/asset-resolution.yaml (Story 1.3 -- asset_ref schema)
+#   - squads/slides-creator/data/cache-config.yaml (Story 1.6 -- cache stats)
+#   - squads/slides-creator/data/cost-tracking.yaml (Story 1.4 -- cost log)
+#   - squads/slides-creator/data/token-transformer.yaml (Story 1.2 -- brand validation)
+
+visual_generation_report:
+  version: "1.0.0"
+  created_at: "2026-03-20"
+  epic: EPIC-SC-V2-001
+  story: "2.2"
+  output_file: "visual-generation-report.json"
+
+  # ---------------------------------------------------------------------------
+  # REPORT SCHEMA
+  # Emitted by visual-scout after visual generation orchestration completes.
+  # One report per deck generation run.
+  # ---------------------------------------------------------------------------
+  schema:
+    deck_id:
+      type: string
+      required: true
+      description: "Deck identifier from deck-manifest.json."
+
+    generation_run_id:
+      type: string
+      format: uuid_v4
+      required: true
+      description: "Unique identifier for this generation run."
+
+    timestamp:
+      type: string
+      format: iso_8601
+      required: true
+      description: "When the generation run completed."
+
+    feature_flag:
+      type: string
+      value: "ENABLE_VISUAL_GENERATION"
+      required: true
+      description: "Feature flag that was active during this run."
+
+    # --- Per-Slide Results ---
+    slides:
+      type: array
+      required: true
+      description: "One entry per slide in the deck."
+      items:
+        slide_id:
+          type: string
+          required: true
+          description: "Slide identifier (e.g., slide-01)."
+
+        status:
+          type: string
+          enum: [generated, fallback_to_search, skipped]
+          required: true
+          description: >
+            generated: visual was successfully created by an engine.
+            fallback_to_search: all engines failed or were skipped, fell through
+            to contextual_search in asset-resolution chain.
+            skipped: slide has engine=none or visual_strategy absent (text-only).
+
+        engine_used:
+          type: string
+          enum: [d2, mermaid, gpt_image, recraft, plotly, ideogram, null]
+          required: true
+          description: "Engine that produced the final visual, or null if skipped/fallback."
+
+        engine_category:
+          type: string
+          enum: [diagram, ai_image, ai_vector, data_viz, null]
+          required: false
+          description: "Category of the engine used (from engines_registry)."
+
+        content_type:
+          type: string
+          enum: [process, hierarchy, comparison, cycle, data, concept, cause_effect, timeline, system, definition, quote, demo, null]
+          required: true
+          description: "Content type from visual_strategy (Story 2.1 classification)."
+
+        visual_type:
+          type: string
+          enum: [flowchart, tree, table, venn, cycle_chart, bar_chart, metaphor, timeline, architecture, icon_card, infographic, none, null]
+          required: true
+          description: "Visual type from visual_strategy."
+
+        cost_usd:
+          type: number
+          precision: 4
+          required: true
+          description: "Cost incurred for this slide's visual generation. 0.0000 for free engines or cache hits."
+
+        cache_hit:
+          type: boolean
+          required: true
+          description: "True if the visual was served from cache (no API call)."
+
+        cache_key:
+          type: string
+          required: false
+          description: "SHA-256 cache key if generated or cache hit. Null if skipped."
+
+        generation_time_ms:
+          type: number
+          required: true
+          description: "Wall-clock time for this slide's visual generation in milliseconds. 0 if skipped."
+
+        output_format:
+          type: string
+          enum: [svg, png, null]
+          required: true
+          description: "Format of the generated visual output."
+
+        output_path:
+          type: string
+          required: false
+          description: "Filesystem path to the generated asset. Null if skipped."
+
+        brand_compliance:
+          type: object
+          required: false
+          description: "Brand validation result from Brand Validator (token-transformer.yaml)."
+          properties:
+            compliant:
+              type: boolean
+              description: "True if all colors pass delta-E thresholds."
+            violations_count:
+              type: number
+              description: "Number of brand violations detected."
+            wcag_aa_pass:
+              type: boolean
+              description: "True if text-background contrast meets WCAG 2.1 AA."
+            colors_substituted:
+              type: number
+              description: "Number of out-of-palette colors substituted (diagram engines only)."
+            max_delta_e:
+              type: number
+              description: "Maximum delta-E value found between output colors and palette."
+
+        alt_text:
+          type: string
+          required: false
+          description: >
+            LLM-generated alt text for accessibility. Describes the visual content
+            for screen readers. Null if skipped.
+
+        svg_to_png_converted:
+          type: boolean
+          required: false
+          description: "True if SVG was converted to PNG via cairosvg (DPI 300)."
+
+        fallback_chain:
+          type: array
+          required: false
+          description: "Engines attempted before success or fallback_to_search."
+          items:
+            engine_id:
+              type: string
+            status:
+              type: string
+              enum: [success, failed, skipped_budget, skipped_unavailable]
+            error_type:
+              type: string
+              required: false
+              enum: [engine_failure, brand_violation, timeout, budget_exceeded, null]
+            error_message:
+              type: string
+              required: false
+
+        retry_count:
+          type: number
+          required: true
+          description: "Total retry attempts across all engines for this slide."
+
+    # --- Summary Metrics ---
+    summary:
+      type: object
+      required: true
+      description: "Aggregated metrics for the entire generation run."
+      properties:
+        total_slides:
+          type: number
+          description: "Total number of slides in the deck."
+
+        generated:
+          type: number
+          description: "Number of slides with status=generated."
+
+        fallback_to_search:
+          type: number
+          description: "Number of slides with status=fallback_to_search."
+
+        skipped:
+          type: number
+          description: "Number of slides with status=skipped (engine=none)."
+
+        generation_rate_pct:
+          type: number
+          description: "Percentage of non-skipped slides that were generated: (generated / (total - skipped)) * 100."
+
+        total_cost_usd:
+          type: number
+          precision: 4
+          description: "Total cost across all slides."
+
+        budget_remaining_usd:
+          type: number
+          precision: 4
+          description: "Remaining deck budget after this run."
+
+        cache_hits:
+          type: number
+          description: "Total slides served from cache."
+
+        cache_hit_rate_pct:
+          type: number
+          description: "Cache hit rate: (cache_hits / generated) * 100."
+
+        total_generation_time_ms:
+          type: number
+          description: "Total wall-clock time for all generations."
+
+        avg_generation_time_ms:
+          type: number
+          description: "Average generation time per generated slide."
+
+        engines_used:
+          type: object
+          description: "Count of slides per engine."
+          properties:
+            d2: { type: number }
+            mermaid: { type: number }
+            gpt_image: { type: number }
+            recraft: { type: number }
+            plotly: { type: number }
+            ideogram: { type: number }
+
+        brand_compliance_rate_pct:
+          type: number
+          description: "Percentage of generated slides that passed brand validation."
+
+        alt_text_coverage_pct:
+          type: number
+          description: "Percentage of generated slides with alt text."
+
+  # ---------------------------------------------------------------------------
+  # STATUS DEFINITIONS
+  # ---------------------------------------------------------------------------
+  status_definitions:
+    generated:
+      meaning: >
+        Visual was successfully created by a VisualEngine. Asset is ready for
+        design-renderer consumption. Includes brand validation result.
+      valid_engines: [d2, mermaid, gpt_image, recraft, plotly, ideogram]
+
+    fallback_to_search:
+      meaning: >
+        All engines in the fallback chain failed or were skipped (budget, unavailable).
+        Visual-scout falls through to contextual_search in the asset-resolution chain.
+        This is NOT a failure -- it means the search-based pipeline handles this slide.
+      causes:
+        - "All engines failed with VisualError"
+        - "Budget cap reached and only paid engines are viable"
+        - "API keys missing for required engines"
+        - "Circuit breaker tripped on all fallback engines"
+
+    skipped:
+      meaning: >
+        Slide does not require visual generation. Either engine=none in visual_strategy,
+        or visual_strategy is absent (v1 manifest without classification).
+      causes:
+        - "content_type: definition, quote, demo"
+        - "TITLE or CLOSING slide"
+        - "visual_strategy not present (v1 backward compat)"
+
+  # ---------------------------------------------------------------------------
+  # GENERATION ORCHESTRATION FLOW (consumed by visual-scout)
+  # ---------------------------------------------------------------------------
+  orchestration_flow:
+    description: >
+      Step-by-step flow that visual-scout follows to orchestrate visual generation
+      for all slides in a deck. This is the core implementation logic for Story 2.2.
+
+    pre_conditions:
+      - "deck-manifest.json loaded with visual_strategy per slide (Story 2.1)"
+      - "ENABLE_VISUAL_GENERATION feature flag is true"
+      - "Design tokens loaded for the brand (Token Transformer, Story 1.2)"
+      - "Cost tracker initialized with deck budget (Story 1.4)"
+      - "Cache config loaded (Story 1.6)"
+
+    steps:
+      - step: 1
+        name: classify_slides
+        description: >
+          Read visual_strategy from each slide in deck-manifest.json.
+          Partition slides into three groups:
+          - generate_group: slides with engine != none (need visual generation)
+          - skip_group: slides with engine == none (text-only, skip generation)
+          - unclassified_group: slides without visual_strategy (v1 backward compat, skip)
+        output: "Three arrays: generate_group, skip_group, unclassified_group"
+
+      - step: 2
+        name: batch_generation
+        description: >
+          Process generate_group slides in parallel batches.
+          Concurrency limit: 3 simultaneous engine calls (Promise.allSettled).
+          Recraft calls throttled to 2 concurrent within any batch.
+          Each slide follows the per-slide generation flow (step 3).
+        concurrency:
+          global_limit: 3
+          recraft_limit: 2
+          batch_method: "Promise.allSettled()"
+          error_handling: >
+            Promise.allSettled ensures all slides are attempted even if some fail.
+            Failed slides get status=fallback_to_search, not an error that stops the batch.
+
+      - step: 3
+        name: per_slide_generation
+        description: >
+          For each slide in generate_group, execute the generate branch from
+          asset-resolution.yaml -> generate_operational_flow:
+        sub_steps:
+          - "3a: Cache lookup (cache-config.yaml). On hit: return cached output, skip render."
+          - "3b: Budget pre-check (cost-tracking.yaml). If estimate > remaining: skip paid engines."
+          - "3c: Engine selection (visual-engines.yaml routing_table). Get primary engine."
+          - "3d: Token transform (token-transformer.yaml). Convert design tokens to engine format."
+          - "3e: Content generation (see step 4 below). Generate diagram code OR image prompt."
+          - "3f: Render (engine.render(spec)). Invoke the selected engine."
+          - "3g: Brand validation (token-transformer.yaml brand_validator). Check compliance."
+          - "3h: SVG-to-PNG conversion if needed (cairosvg, DPI 300)."
+          - "3i: Alt text generation (LLM call). Generate accessibility description."
+          - "3j: Cache write (cache-config.yaml). Store output for future reuse."
+          - "3k: Cost logging (cost-tracking.yaml). Record actual cost."
+          - "3l: Emit slide result to report."
+
+      - step: 4
+        name: content_generation_by_engine_type
+        description: >
+          How the LLM generates content depends on the engine type:
+
+        diagram_engines:
+          engines: [d2, mermaid]
+          flow: >
+            1. LLM receives slide content (headline, bullets, narrative_purpose) +
+               content_type + visual_type.
+            2. LLM generates diagram source code in the engine's syntax
+               (D2 syntax for d2, Mermaid syntax for mermaid).
+            3. Token Transformer injects brand theme into the code
+               (D2: theme-overrides vars block, Mermaid: %%{init}%% directive).
+            4. Code is sent to engine.render() (Kroki API or CLI).
+            5. On syntax error: LLM re-generates code (1 retry).
+          llm_prompt_template: |
+            Generate a {visual_type} diagram in {engine} syntax based on this slide content:
+
+            Headline: {headline}
+            Bullets: {bullets}
+            Content Type: {content_type}
+            Purpose: {narrative_purpose}
+
+            RULES:
+            - Use clear, concise labels (max 4 words per node)
+            - Limit to {max_elements} elements for readability
+            - Include directional flow where applicable
+            - Do NOT include styling/theming (it will be injected separately)
+            - Output ONLY the diagram code, no explanation
+
+        ai_image_engines:
+          engines: [gpt_image, recraft, ideogram]
+          flow: >
+            1. LLM receives slide content + content_type + visual_type +
+               brand_constraints (palette, style_preference, background).
+            2. LLM generates an image generation prompt optimized for the target engine.
+            3. Token Transformer appends brand constraint suffix to the prompt.
+            4. Prompt is sent to engine.render() (API call).
+            5. On content filter or failure: try fallback engine.
+          llm_prompt_template: |
+            Generate an image generation prompt for {engine} based on this slide content:
+
+            Headline: {headline}
+            Content Type: {content_type}
+            Visual Type: {visual_type}
+            Purpose: {narrative_purpose}
+            Style: {style_preference}
+            Aspect Ratio: {aspect_ratio}
+
+            RULES:
+            - Describe the visual concept, not the text content
+            - Focus on metaphor, composition, and visual storytelling
+            - Do NOT include specific text to render in the image
+            - Keep prompt under 200 words
+            - Specify: flat illustration, clean lines, professional
+            - Output ONLY the image prompt, no explanation
+
+        data_chart_engine:
+          engines: [plotly]
+          flow: >
+            1. Read data_points from slide content payload.
+            2. Determine chart_type from visual_type mapping:
+               bar_chart -> go.Bar, line -> go.Scatter, pie -> go.Pie.
+            3. Token Transformer provides Plotly layout template with brand colors.
+            4. Construct Plotly figure specification (data + layout).
+            5. Engine.render() executes locally (no API call, zero cost).
+          data_extraction: >
+            data_points are extracted from slide content. Expected format:
+            [{label: string, value: number, ...}]. If data_points are absent
+            but content has metrics/numbers, LLM extracts structured data first.
+
+      - step: 5
+        name: alt_text_generation
+        description: >
+          After visual generation, LLM generates alt text for accessibility.
+          Single batched LLM call for all generated slides (cost-efficient).
+        llm_prompt_template: |
+          Generate concise alt text for each visual below. Alt text should:
+          - Describe WHAT the visual shows (not how it looks)
+          - Be 1-2 sentences, under 125 characters
+          - Include key data points for charts
+          - Describe flow direction for diagrams
+          - Not start with "Image of" or "Picture of"
+
+          Visuals:
+          {{visuals_json}}
+
+          Return JSON array: [{"slide_id": "...", "alt_text": "..."}]
+
+      - step: 6
+        name: svg_to_png_conversion
+        description: >
+          For slides that need PNG output but received SVG from diagram engines,
+          convert using cairosvg at DPI 300.
+        trigger: "output_format == svg AND downstream requires png"
+        command: >
+          python3 -c "import cairosvg; cairosvg.svg2png(
+            url='${svg_path}', write_to='${png_path}', dpi=300
+          )"
+        quality_rules:
+          - "DPI must be 300 (presentation-quality)"
+          - "Width must be >= 1920px for full-bleed slides"
+          - "No anti-aliasing artifacts on text"
+
+      - step: 7
+        name: emit_report
+        description: >
+          Compile all slide results into visual-generation-report.json.
+          Calculate summary metrics. Write to output directory.
+        output: "visual-generation-report.json"
+
+    post_conditions:
+      - "visual-generation-report.json exists with all slides accounted for"
+      - "Every generated slide has brand_compliance populated"
+      - "Every generated slide has alt_text populated"
+      - "Cost log updated with all API calls (cost-tracking.yaml)"
+      - "Cache updated with all new generations (cache-config.yaml)"
+      - "Cache stats updated with hits/misses"
+
+  # ---------------------------------------------------------------------------
+  # FALLBACK BEHAVIOR
+  # When generation fails for a slide, what happens
+  # ---------------------------------------------------------------------------
+  fallback_behavior:
+    description: >
+      When a slide's primary engine fails, visual-scout follows the engine's
+      fallback_engines list (from visual-engines.yaml). If all engine fallbacks
+      are exhausted, the slide falls through to contextual_search in the
+      asset-resolution chain.
+
+    fallback_chain_per_engine:
+      d2: [mermaid]
+      mermaid: [d2]
+      gpt_image: [ideogram, recraft]
+      recraft: [gpt_image, ideogram]
+      plotly: [gpt_image]
+      ideogram: [gpt_image, recraft]
+
+    max_fallback_depth: 2
+    after_exhaustion: >
+      Set slide status to fallback_to_search. The slide enters the
+      contextual_search step of asset-resolution.yaml. If search also fails,
+      the slide gets a degraded_placeholder.
+
+  # ---------------------------------------------------------------------------
+  # CROSS REFERENCES
+  # ---------------------------------------------------------------------------
+  cross_references:
+    semantic_classification:
+      file: "squads/slides-creator/data/semantic-classification.yaml"
+      provides: "content_type and visual_type per slide (input to orchestration)"
+      story: "2.1"
+
+    visual_engines:
+      file: "squads/slides-creator/data/visual-engines.yaml"
+      provides: "engines_registry, routing_table, orchestration config"
+      story: "1.1"
+
+    asset_resolution:
+      file: "squads/slides-creator/data/asset-resolution.yaml"
+      provides: "generate_operational_flow, fallback chain"
+      story: "1.3"
+
+    cache_config:
+      file: "squads/slides-creator/data/cache-config.yaml"
+      provides: "cache lookup/write algorithms, L1/L2 levels"
+      story: "1.6"
+
+    token_transformer:
+      file: "squads/slides-creator/data/token-transformer.yaml"
+      provides: "converters (D2, Mermaid, AI, Plotly), brand_validator"
+      story: "1.2"
+
+    cost_tracking:
+      file: "squads/slides-creator/data/cost-tracking.yaml"
+      provides: "budget_caps, pre_call_check, cost_log, circuit_breaker"
+      story: "1.4"

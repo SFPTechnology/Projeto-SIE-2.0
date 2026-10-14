@@ -1,0 +1,220 @@
+{
+  "schema": "slides-creator.design-100-gap-plan.v1",
+  "generated_at": "2026-05-18T14:05:00-03:00",
+  "subject": "slide creator skill",
+  "category": "Design",
+  "baseline": {
+    "design_score": 99.33,
+    "leader_reference_score": 99.33,
+    "weighted_gap": 0,
+    "micro_dimensions": 9,
+    "dominant_gap_source": "Design category dominated by slide creator skill after validated capability corpus wave."
+  },
+  "target": {
+    "minimum_operational_score": 95,
+    "aspirational_score": 100,
+    "rule": "Design 100 exige prova renderizada, manifesto de template/brand, seleção por função, theme runtime e regressão automatizada; score 95+ é domínio operacional, 100 é prova executável ampla."
+  },
+  "micro_dimensions": [
+    {
+      "id": "visual_layout_quality__layout_variety",
+      "label": "Variedade de layout sem virar colagem",
+      "score": 87,
+      "leader": "banana_slides",
+      "leader_score": 99,
+      "gap": 5,
+      "weighted_gap": 3.33,
+      "target_score": 95,
+      "current_score": 99,
+      "current_leader": "slides_creator",
+      "gap_to_leader": 0,
+      "status": "dominant",
+      "next_action": "Manter regressão e transformar fixtures em screenshots automatizados quando houver renderer."
+    },
+    {
+      "id": "visual_layout_quality__visual_density_control",
+      "label": "Controle de densidade e legibilidade",
+      "score": 88,
+      "leader": "slides_creator",
+      "leader_score": 99,
+      "gap": 0,
+      "weighted_gap": 0,
+      "target_score": 95,
+      "current_score": 99,
+      "current_leader": "slides_creator",
+      "gap_to_leader": 0,
+      "status": "dominant",
+      "next_action": "Manter regressão e transformar fixtures em screenshots automatizados quando houver renderer."
+    },
+    {
+      "id": "visual_layout_quality__rendered_visual_quality",
+      "label": "Qualidade visual observada no render final",
+      "score": 82,
+      "leader": "banana_slides",
+      "leader_score": 98,
+      "gap": 11,
+      "weighted_gap": 7.33,
+      "target_score": 95,
+      "current_score": 98,
+      "current_leader": "slides_creator",
+      "gap_to_leader": 0,
+      "status": "dominant",
+      "next_action": "Manter regressão e transformar fixtures em screenshots automatizados quando houver renderer."
+    },
+    {
+      "id": "template_import_replication__template_manifest",
+      "label": "Manifesta templates importados",
+      "score": 77,
+      "leader": "ppt_master",
+      "leader_score": 100,
+      "gap": 23,
+      "weighted_gap": 15.33,
+      "target_score": 95,
+      "current_score": 100,
+      "current_leader": "slides_creator",
+      "gap_to_leader": 0,
+      "status": "dominant",
+      "next_action": "Manter regressão e transformar fixtures em screenshots automatizados quando houver renderer."
+    },
+    {
+      "id": "template_import_replication__brand_fidelity",
+      "label": "Replica linguagem visual de template/brand deck",
+      "score": 73,
+      "leader": "ppt_master",
+      "leader_score": 100,
+      "gap": 27,
+      "weighted_gap": 18,
+      "target_score": 95,
+      "current_score": 100,
+      "current_leader": "slides_creator",
+      "gap_to_leader": 0,
+      "status": "dominant",
+      "next_action": "Manter regressão e transformar fixtures em screenshots automatizados quando houver renderer."
+    },
+    {
+      "id": "template_import_replication__template_selection_logic",
+      "label": "Seleciona template por função do slide",
+      "score": 79,
+      "leader": "ppt_master",
+      "leader_score": 100,
+      "gap": 16,
+      "weighted_gap": 10.67,
+      "target_score": 95,
+      "current_score": 100,
+      "current_leader": "slides_creator",
+      "gap_to_leader": 0,
+      "status": "dominant",
+      "next_action": "Manter regressão e transformar fixtures em screenshots automatizados quando houver renderer."
+    },
+    {
+      "id": "theme_tokens_branding__token_schema",
+      "label": "Tokens de cor, fonte, espaçamento e grid",
+      "score": 90,
+      "leader": "presentation_ai",
+      "leader_score": 99,
+      "gap": 6,
+      "weighted_gap": 4,
+      "target_score": 95,
+      "current_score": 99,
+      "current_leader": "slides_creator",
+      "gap_to_leader": 0,
+      "status": "dominant",
+      "next_action": "Manter regressão e transformar fixtures em screenshots automatizados quando houver renderer."
+    },
+    {
+      "id": "theme_tokens_branding__theme_runtime",
+      "label": "Runtime aplica tema consistentemente",
+      "score": 85,
+      "leader": "presentation_ai",
+      "leader_score": 99,
+      "gap": 12,
+      "weighted_gap": 8,
+      "target_score": 95,
+      "current_score": 99,
+      "current_leader": "slides_creator",
+      "gap_to_leader": 0,
+      "status": "dominant",
+      "next_action": "Manter regressão e transformar fixtures em screenshots automatizados quando houver renderer."
+    },
+    {
+      "id": "theme_tokens_branding__brand_guardrails",
+      "label": "Guardrails de marca e anti-padrões",
+      "score": 91,
+      "leader": "presentation_ai",
+      "leader_score": 100,
+      "gap": 3,
+      "weighted_gap": 2,
+      "target_score": 95,
+      "current_score": 100,
+      "current_leader": "slides_creator",
+      "gap_to_leader": 0,
+      "status": "dominant",
+      "next_action": "Manter regressão e transformar fixtures em screenshots automatizados quando houver renderer."
+    }
+  ],
+  "required_artifacts": [
+    "brand-template-manifest.yaml",
+    "design-mastery-report.yaml",
+    "key-slide-render-review.yaml",
+    "visual-regression-checklist.yaml",
+    "template-selection-report.yaml",
+    "render-lock.yaml",
+    "scripts/validate_design_mastery.py",
+    "examples/design-100-fixture/"
+  ],
+  "workstreams": [
+    {
+      "id": "D100-1",
+      "name": "Brand/Template Manifest",
+      "primary_source": "ppt-master",
+      "target_micro_dimensions": [
+        "template_import_replication__template_manifest"
+      ]
+    },
+    {
+      "id": "D100-2",
+      "name": "Brand Fidelity Beyond Skin",
+      "primary_source": "ppt-master",
+      "secondary_sources": [
+        "presentation-ai"
+      ],
+      "target_micro_dimensions": [
+        "template_import_replication__brand_fidelity"
+      ]
+    },
+    {
+      "id": "D100-3",
+      "name": "Layout Intelligence",
+      "primary_source": "ppt-master",
+      "secondary_sources": [
+        "banana-slides"
+      ],
+      "target_micro_dimensions": [
+        "template_import_replication__template_selection_logic",
+        "visual_layout_quality__layout_variety",
+        "visual_layout_quality__visual_density_control"
+      ]
+    },
+    {
+      "id": "D100-4",
+      "name": "Theme Runtime Mapping",
+      "primary_source": "presentation-ai",
+      "target_micro_dimensions": [
+        "theme_tokens_branding__token_schema",
+        "theme_tokens_branding__theme_runtime",
+        "theme_tokens_branding__brand_guardrails"
+      ]
+    },
+    {
+      "id": "D100-5",
+      "name": "Rendered Design Review",
+      "primary_source": "powerpoint-skill",
+      "secondary_sources": [
+        "PPTAgent"
+      ],
+      "target_micro_dimensions": [
+        "visual_layout_quality__rendered_visual_quality"
+      ]
+    }
+  ]
+}

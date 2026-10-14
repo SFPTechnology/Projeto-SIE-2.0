@@ -1,0 +1,41 @@
+{
+  "schema": "slides-creator-evidence-ledger.v1",
+  "generated_at": "2026-05-17",
+  "claims": [
+    {
+      "id": "ev-ppt-master-native-pptx",
+      "claim": "ppt-master é a melhor referência de PPTX nativo editável",
+      "evidence": ["../bench/ppt-master/README.md", "../bench/ppt-master/docs/templates-guide.md", "../bench/ppt-master/skills/ppt-master/workflows/live-preview.md"],
+      "confidence": "high",
+      "impact": "Wave 1 and Wave 2"
+    },
+    {
+      "id": "ev-presenton-api-mcp",
+      "claim": "Presenton é a melhor referência para API/MCP/self-hosted",
+      "evidence": ["../bench/presenton/README.md", "../bench/presenton/docker-compose.yml", "../bench/presenton/servers/fastapi", "../bench/presenton/servers/nextjs"],
+      "confidence": "high",
+      "impact": "services/slides-api and MCP"
+    },
+    {
+      "id": "ev-pptagent-reflection",
+      "claim": "PPTAgent é a melhor referência para planning/reflection",
+      "evidence": ["../bench/PPTAgent/README.md", "../bench/PPTAgent/pptagent/pptgen.py", "../bench/PPTAgent/deeppresenter"],
+      "confidence": "high",
+      "impact": "planning-reflection.jsonl and QA rubrics"
+    },
+    {
+      "id": "ev-banana-ux-license",
+      "claim": "banana-slides é referência de UX, mas não de código",
+      "evidence": ["../bench/banana-slides/README_EN.md", "inventories/banana-slides.md"],
+      "confidence": "high",
+      "impact": "UX benchmark only until legal decision"
+    },
+    {
+      "id": "ev-slides-creator-core",
+      "claim": "slides-creator deve seguir como cérebro governado",
+      "evidence": ["squads/slides-creator/README.md", "squads/slides-creator/ARCHITECTURE.md", "squads/slides-creator/workflows/generate-presentation.yaml", ".agents/skills/slides-chief/SKILL.md"],
+      "confidence": "high",
+      "impact": "slide creator skill stack core"
+    }
+  ]
+}

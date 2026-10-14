@@ -1,0 +1,49 @@
+schema: 1
+story: "MOD-QT-3-01"
+story_title: "Modulo de Queda de Tensao Integral e Permanente"
+gate: "CONCERNS"
+status_reason: "AC1-AC5 estao cobertos por testes focados, build SPA/SSR e smoke de deep link. O gate fica em CONCERNS porque lint completo nao termina e a suite completa ainda tem um timeout ambiental/preexistente, embora o caso passe isolado."
+reviewer: "Quinn (@qa)"
+updated: "2026-07-30T00:00:00-03:00"
+top_issues:
+  - id: "MNT-007"
+    severity: "medium"
+    finding: "Full lint/test gates are not cleanly reproducible end-to-end in this local environment: npm run lint timed out, and npm test had one preexisting timeout under full-suite load."
+    suggested_action: "Create a maintenance story to split/optimize long-running scans and set explicit timeout strategy for known source-scan tests."
+  - id: "MNT-008"
+    severity: "low"
+    finding: "package.json contains preexisting unrelated docs:tutorial script changes in the same diff as the new preview:spa script."
+    suggested_action: "DevOps should review/stage package.json intentionally before push/PR."
+waiver:
+  active: false
+quality_score: 88
+evidence:
+  tests_reviewed:
+    count: 7
+  risks_identified:
+    count: 2
+  trace:
+    ac_covered: [1, 2, 3, 4, 5, 6]
+    ac_gaps: []
+nfr_validation:
+  security:
+    status: "PASS"
+    notes: "No auth, data, schema, endpoint or runtime security surface changed; preview server is local tooling."
+  performance:
+    status: "CONCERNS"
+    notes: "Vite chunk-size warning and full lint/test runtime instability remain; no new user runtime heavy path was introduced."
+  reliability:
+    status: "PASS"
+    notes: "SPA fallback and deep link responses verified with real static server after build:spa."
+  maintainability:
+    status: "CONCERNS"
+    notes: "Regression test and canonical preview script improve maintainability, but repository-wide gates still need runtime stabilization."
+recommendations:
+  immediate: []
+  future:
+    - action: "Optimize or split full lint/test commands so required quality gates produce deterministic results in local and CI contexts."
+      refs:
+        - "sistema-de-instala-es-el-tricas-sie-main/tests/ui/queda-tensao-fluxo-entrada-fechado.test.tsx"
+    - action: "Review package.json staging to avoid bundling unrelated docs:tutorial changes with this story unintentionally."
+      refs:
+        - "sistema-de-instala-es-el-tricas-sie-main/package.json"

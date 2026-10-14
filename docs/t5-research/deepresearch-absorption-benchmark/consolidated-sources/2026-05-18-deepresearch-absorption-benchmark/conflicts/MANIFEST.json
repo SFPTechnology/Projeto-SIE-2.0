@@ -1,0 +1,398 @@
+{
+  "schema": "bench-manifest.v1",
+  "generated_at": "2026-05-18",
+  "slug": "2026-05-18-deepresearch-absorption-benchmark",
+  "file_count": 78,
+  "files": [
+    {
+      "file": "ADR-001-absorption-strategy.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "INDEX.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "MANIFEST.json",
+      "role": "manifest",
+      "format": "json"
+    },
+    {
+      "file": "README.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "absorption-roadmap.md",
+      "role": "planning",
+      "format": "md"
+    },
+    {
+      "file": "action-plan.yaml",
+      "role": "actions",
+      "format": "yaml"
+    },
+    {
+      "file": "architecture-blueprint.md",
+      "role": "architecture",
+      "format": "md"
+    },
+    {
+      "file": "architecture-blueprint.mmd",
+      "role": "architecture",
+      "format": "mmd"
+    },
+    {
+      "file": "battle-card.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "bench-contract.json",
+      "role": "contract",
+      "format": "json"
+    },
+    {
+      "file": "bench-output-dash.json",
+      "role": "dashboard",
+      "format": "json"
+    },
+    {
+      "file": "capability-matrix.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "claims.yaml",
+      "role": "claims",
+      "format": "yaml"
+    },
+    {
+      "file": "comparison-matrix.json",
+      "role": "matrix",
+      "format": "json"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "contracts/api-contract.md",
+      "role": "contract",
+      "format": "md"
+    },
+    {
+      "file": "contracts/mcp-contract.md",
+      "role": "contract",
+      "format": "md"
+    },
+    {
+      "file": "contracts/qa-rubric.json",
+      "role": "contract",
+      "format": "json"
+    },
+    {
+      "file": "contracts/qa-rubric.md",
+      "role": "contract",
+      "format": "md"
+    },
+    {
+      "file": "curiosity-queue.yaml",
+      "role": "questions",
+      "format": "yaml"
+    },
+    {
+      "file": "dashboard-intelligence.md",
+      "role": "intelligence",
+      "format": "md"
+    },
+    {
+      "file": "dashboard-manifest.yaml",
+      "role": "manifest",
+      "format": "yaml"
+    },
+    {
+      "file": "decision-ledger.yaml",
+      "role": "decisions",
+      "format": "yaml"
+    },
+    {
+      "file": "decision-rubric.yaml",
+      "role": "rubric",
+      "format": "yaml"
+    },
+    {
+      "file": "deep/absorption-decision-table.md",
+      "role": "deep-dive",
+      "format": "md"
+    },
+    {
+      "file": "deep/agentic-planning-reflection.md",
+      "role": "deep-dive",
+      "format": "md"
+    },
+    {
+      "file": "deep/coverage-map.md",
+      "role": "deep-dive",
+      "format": "md"
+    },
+    {
+      "file": "deep/evidence-strength-map.json",
+      "role": "deep-dive",
+      "format": "json"
+    },
+    {
+      "file": "deep/evidence-strength-map.md",
+      "role": "deep-dive",
+      "format": "md"
+    },
+    {
+      "file": "deep/implementation-playbook.md",
+      "role": "deep-dive",
+      "format": "md"
+    },
+    {
+      "file": "deep/intelligence-graph.md",
+      "role": "deep-dive",
+      "format": "md"
+    },
+    {
+      "file": "deep/license-risk-assessment.md",
+      "role": "deep-dive",
+      "format": "md"
+    },
+    {
+      "file": "deep/open-source-to-sinkra-map.md",
+      "role": "deep-dive",
+      "format": "md"
+    },
+    {
+      "file": "deep/persona-weight-methodology.json",
+      "role": "deep-dive",
+      "format": "json"
+    },
+    {
+      "file": "deep/persona-weight-methodology.md",
+      "role": "deep-dive",
+      "format": "md"
+    },
+    {
+      "file": "deep/repo-notes.md",
+      "role": "deep-dive",
+      "format": "md"
+    },
+    {
+      "file": "deep/segment-deep-analysis.md",
+      "role": "deep-dive",
+      "format": "md"
+    },
+    {
+      "file": "dependency-graph.md",
+      "role": "architecture",
+      "format": "md"
+    },
+    {
+      "file": "evaluation-rubric.yaml",
+      "role": "rubric",
+      "format": "yaml"
+    },
+    {
+      "file": "execution-log.jsonl",
+      "role": "events",
+      "format": "jsonl"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "full-comparison.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.json",
+      "role": "analysis",
+      "format": "json"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventories/autoresearchclaw.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventories/deepresearcher.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventories/deerflow.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventories/gpt-researcher.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventories/jina-node-deepresearch.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventories/langchain-open-deep-research.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventories/local-deep-research.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventories/openresearcher.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventories/tongyi-deepresearch.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventory-aiox-research-ecosystem.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "inventory-aiox-research-ecosystem.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventory-open-source-stack.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "matrices.yaml",
+      "role": "matrices",
+      "format": "yaml"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metrics.yaml",
+      "role": "metrics",
+      "format": "yaml"
+    },
+    {
+      "file": "pipeline-state.yaml",
+      "role": "pipeline",
+      "format": "yaml"
+    },
+    {
+      "file": "players.yaml",
+      "role": "players",
+      "format": "yaml"
+    },
+    {
+      "file": "quality-audit.md",
+      "role": "analysis",
+      "format": "md"
+    },
+    {
+      "file": "quick-wins.md",
+      "role": "quick-wins",
+      "format": "md"
+    },
+    {
+      "file": "research-graph.json",
+      "role": "graph",
+      "format": "json"
+    },
+    {
+      "file": "research-profile.yaml",
+      "role": "profile",
+      "format": "yaml"
+    },
+    {
+      "file": "risk-register.json",
+      "role": "risk",
+      "format": "json"
+    },
+    {
+      "file": "risk-register.md",
+      "role": "risk",
+      "format": "md"
+    },
+    {
+      "file": "risk-register.yaml",
+      "role": "risk",
+      "format": "yaml"
+    },
+    {
+      "file": "scenario-scorecards.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scenario-scorecards.md",
+      "role": "scorecard",
+      "format": "md"
+    },
+    {
+      "file": "scope-contract.yaml",
+      "role": "scope",
+      "format": "yaml"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    },
+    {
+      "file": "segmented-comparisons.json",
+      "role": "matrix",
+      "format": "json"
+    },
+    {
+      "file": "segmented-comparisons.md",
+      "role": "matrix",
+      "format": "md"
+    },
+    {
+      "file": "sources.yaml",
+      "role": "sources",
+      "format": "yaml"
+    },
+    {
+      "file": "story-ready-backlog.md",
+      "role": "planning",
+      "format": "md"
+    },
+    {
+      "file": "validation-report.yaml",
+      "role": "validation",
+      "format": "yaml"
+    }
+  ]
+}

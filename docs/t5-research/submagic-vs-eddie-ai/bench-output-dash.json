@@ -1,0 +1,879 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:10:52.692Z",
+  "source_files": [
+    "README.md",
+    "battle-card.md",
+    "comparison-matrix.md",
+    "deep/feature-comparison.md",
+    "deep/oss-substitution-roadmap.md",
+    "executive-report.md",
+    "gap-analysis.md",
+    "inventory-eddie-ai.md",
+    "inventory-submagic.md",
+    "metadata.canonical.json",
+    "metadata.json",
+    "scorecard.md"
+  ],
+  "benchmark": {
+    "slug": "submagic-vs-eddie-ai",
+    "title": "Bench — Submagic vs Eddie AI",
+    "date": "undated",
+    "type": "product",
+    "variant": "3-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "submagic",
+      "name": "Submagic",
+      "category": "unknown"
+    },
+    {
+      "key": "eddie_ai",
+      "name": "Eddie Ai",
+      "category": "unknown"
+    },
+    {
+      "key": "signals",
+      "name": "Signals",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "submagic",
+    "coverage": "structured",
+    "sources": 56,
+    "waves": 0,
+    "dimensions": 6
+  },
+  "matrix": {
+    "players": [
+      "submagic",
+      "eddie_ai",
+      "signals"
+    ],
+    "dimensions": [
+      {
+        "id": "D1",
+        "label": "Features (depth + breadth)",
+        "weight": 0
+      },
+      {
+        "id": "D2",
+        "label": "UX/Design",
+        "weight": 0
+      },
+      {
+        "id": "D3",
+        "label": "Pricing (value/cost)",
+        "weight": 0
+      },
+      {
+        "id": "D4",
+        "label": "Integration",
+        "weight": 0
+      },
+      {
+        "id": "D5",
+        "label": "Support",
+        "weight": 0
+      },
+      {
+        "id": "D6",
+        "label": "Market Fit",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "D1",
+        "label": "Features (depth + breadth)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "submagic",
+            "score": 82,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "eddie_ai",
+            "score": 78,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "signals",
+            "score": 34,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "label": "UX/Design",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "submagic",
+            "score": 88,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "eddie_ai",
+            "score": 72,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "signals",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D3",
+        "label": "Pricing (value/cost)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "submagic",
+            "score": 85,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "eddie_ai",
+            "score": 65,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "signals",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D4",
+        "label": "Integration",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "submagic",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "eddie_ai",
+            "score": 88,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "signals",
+            "score": 3,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D5",
+        "label": "Support",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "submagic",
+            "score": 75,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "eddie_ai",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "signals",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D6",
+        "label": "Market Fit",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "submagic",
+            "score": 92,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "eddie_ai",
+            "score": 84,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "signals",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "submagic",
+        "score": 82
+      },
+      {
+        "player": "eddie_ai",
+        "score": 76.17
+      },
+      {
+        "player": "signals",
+        "score": 22.83
+      }
+    ],
+    "method": "Derived from markdown table in scorecard.md"
+  },
+  "duels": [
+    {
+      "left": "submagic",
+      "right": "eddie_ai",
+      "winner": "submagic",
+      "left_wins": 5,
+      "right_wins": 1,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Features (depth + breadth)",
+          "left_score": 82,
+          "right_score": 78,
+          "winner": "submagic"
+        },
+        {
+          "dimension": "D2",
+          "label": "UX/Design",
+          "left_score": 88,
+          "right_score": 72,
+          "winner": "submagic"
+        },
+        {
+          "dimension": "D3",
+          "label": "Pricing (value/cost)",
+          "left_score": 85,
+          "right_score": 65,
+          "winner": "submagic"
+        },
+        {
+          "dimension": "D4",
+          "label": "Integration",
+          "left_score": 70,
+          "right_score": 88,
+          "winner": "eddie_ai"
+        },
+        {
+          "dimension": "D5",
+          "label": "Support",
+          "left_score": 75,
+          "right_score": 70,
+          "winner": "submagic"
+        },
+        {
+          "dimension": "D6",
+          "label": "Market Fit",
+          "left_score": 92,
+          "right_score": 84,
+          "winner": "submagic"
+        }
+      ]
+    },
+    {
+      "left": "submagic",
+      "right": "signals",
+      "winner": "submagic",
+      "left_wins": 5,
+      "right_wins": 1,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Features (depth + breadth)",
+          "left_score": 82,
+          "right_score": 34,
+          "winner": "submagic"
+        },
+        {
+          "dimension": "D2",
+          "label": "UX/Design",
+          "left_score": 88,
+          "right_score": 0,
+          "winner": "submagic"
+        },
+        {
+          "dimension": "D3",
+          "label": "Pricing (value/cost)",
+          "left_score": 85,
+          "right_score": 0,
+          "winner": "submagic"
+        },
+        {
+          "dimension": "D4",
+          "label": "Integration",
+          "left_score": 70,
+          "right_score": 3,
+          "winner": "submagic"
+        },
+        {
+          "dimension": "D5",
+          "label": "Support",
+          "left_score": 75,
+          "right_score": 100,
+          "winner": "signals"
+        },
+        {
+          "dimension": "D6",
+          "label": "Market Fit",
+          "left_score": 92,
+          "right_score": 0,
+          "winner": "submagic"
+        }
+      ]
+    },
+    {
+      "left": "eddie_ai",
+      "right": "signals",
+      "winner": "eddie_ai",
+      "left_wins": 5,
+      "right_wins": 1,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Features (depth + breadth)",
+          "left_score": 78,
+          "right_score": 34,
+          "winner": "eddie_ai"
+        },
+        {
+          "dimension": "D2",
+          "label": "UX/Design",
+          "left_score": 72,
+          "right_score": 0,
+          "winner": "eddie_ai"
+        },
+        {
+          "dimension": "D3",
+          "label": "Pricing (value/cost)",
+          "left_score": 65,
+          "right_score": 0,
+          "winner": "eddie_ai"
+        },
+        {
+          "dimension": "D4",
+          "label": "Integration",
+          "left_score": 88,
+          "right_score": 3,
+          "winner": "eddie_ai"
+        },
+        {
+          "dimension": "D5",
+          "label": "Support",
+          "left_score": 70,
+          "right_score": 100,
+          "winner": "signals"
+        },
+        {
+          "dimension": "D6",
+          "label": "Market Fit",
+          "left_score": 84,
+          "right_score": 0,
+          "winner": "eddie_ai"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "submagic",
+          "score": 82,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "eddie_ai",
+          "score": 76.17,
+          "delta": ""
+        },
+        {
+          "rank": 3,
+          "player": "signals",
+          "score": 22.83,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "submagic",
+          "score": 82
+        },
+        {
+          "player": "eddie_ai",
+          "score": 76.17
+        },
+        {
+          "player": "signals",
+          "score": 22.83
+        }
+      ],
+      "verdict": "Submagic vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-analysis-1",
+      "title": "Gaps de Submagic (features que Submagic NÃO tem mas Eddie tem)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-2",
+      "title": "Gaps de Eddie AI (features que Eddie NÃO tem mas Submagic tem)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-3",
+      "title": "Categorização para substituição open-source",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-4",
+      "title": "Tier 1 — Substituível com OSS maduro hoje (qualidade comparable ou melhor)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-5",
+      "title": "Tier 2 — Substituível parcialmente (qualidade inferior ou requer integração)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-6",
+      "title": "Tier 3 — Sem substituto OSS bom hoje",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-7",
+      "title": "Insight estratégico",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/mutonby/openshorts",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.submagic.co/",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://docs.submagic.co/api-reference/upload-project",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://care.submagic.co/",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.heyeddie.ai/",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.heyeddie.ai/features",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://help.heyeddie.ai/",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/SYSTRAN/faster-whisper",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/m-bain/whisperX",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/ggerganov/whisper.cpp",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/openai/whisper",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/pyannote/pyannote-audio",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/NVIDIA/NeMo",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/resemble-ai/Resemblyzer",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/mlfoundations/open_clip",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/openai/CLIP",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://huggingface.co/google/siglip-base-patch16-256",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/salesforce/LAVIS",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/ultralytics/ultralytics",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/facebookresearch/faiss",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/chroma-core/chroma",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/qdrant/qdrant",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/pgvector/pgvector",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/milvus-io/milvus",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/benfmiller/audalign",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://ffmpeg.org/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/WyattBlue/auto-editor",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/unconv/captacity",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/URUWorks/TeroSubtitler",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/SubtitleEdit/subtitleedit",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/Aegisub/Aegisub",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/remotion-dev/remotion",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/motion-canvas/motion-canvas",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/Zulko/moviepy",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/OpenShot/openshot-qt",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/olive-editor/olive",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://invent.kde.org/multimedia/kdenlive",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.blender.org/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/Professor833/video_semantic_search",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/danielgural/semantic_video_search",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/mli/autocut",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/AcademySoftwareFoundation/OpenTimelineIO",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/markreidvfx/pyaaf2",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/ollama/ollama",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://docs.submagic.co/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://thebusinessdive.com/submagic-review",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://filmora.wondershare.com/video-editor-review/submagic-review.html",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://aicloudbase.com/tool/submagic",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://ucstrategies.com/news/submagic-review-2026-pricing-features-is-it-worth-it-for-creators/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://aichief.com/ai-video-tools/eddie-ai/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.capterra.com/p/10041690/Eddie-AI/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.bestaitools.com/tool/eddie-ai/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.jimgrootes.com/heyeddie-ai-review-what-it-does-who-its-for-what-it-costs-and-how-to-use-it-without-getting-disappointed/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://nofilmschool.com/eddie-ai-new-features",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.cined.com/eddie-ai-update-announced-support-for-multiple-languages-b-roll-and-a-roll-logging/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "README.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/feature-comparison.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/oss-substitution-roadmap.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventory-eddie-ai.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventory-submagic.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {
+    "date": true
+  }
+}

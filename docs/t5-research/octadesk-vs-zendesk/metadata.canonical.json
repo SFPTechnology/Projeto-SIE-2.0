@@ -1,0 +1,88 @@
+{
+  "bench": {
+    "id": "octadesk-vs-zendesk",
+    "type": "product",
+    "variant": "2-way",
+    "created_at": "2026-05-07",
+    "analyst": "spy/bench-analyst (backfilled)"
+  },
+  "subjects": [
+    {
+      "key": "octadesk",
+      "name": "Octadesk",
+      "category": "unknown"
+    },
+    {
+      "key": "zendesk",
+      "name": "Zendesk",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "C1",
+        "name": "WhatsApp Business API integration",
+        "weight_pct": 25,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "C2",
+        "name": "Brasil-fit operacional",
+        "weight_pct": 20,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "C3",
+        "name": "Feature parity enterprise",
+        "weight_pct": 15,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "C4",
+        "name": "AI capability",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "C5",
+        "name": "Pricing transparency e TCO BR",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "C6",
+        "name": "Marketplace e ecosystem",
+        "weight_pct": 5,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "C7",
+        "name": "Maturidade governance compliance",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "C8",
+        "name": "Comunidade reviews",
+        "weight_pct": 5,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:10:52.535Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Legacy metadata.json preserved alongside; canonical version at metadata.canonical.json.",
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

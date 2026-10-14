@@ -1,0 +1,149 @@
+handoff_id: DERIVAR-CIRCUITOS-1-dev-to-qa
+story_id: DERIVAR-CIRCUITOS-1
+consumed: false
+created_at: "2026-07-28"
+from_agent: "@dev"
+to_agent: "@qa"
+last_command: "*develop DERIVAR-CIRCUITOS-1 --mode yolo"
+next_command: "*qa-gate DERIVAR-CIRCUITOS-1"
+workflow: "BLK-DERIVAR-CIRCUITOS-01-REGULARIZACAO"
+state: "READY_FOR_QA"
+mode: "yolo"
+human_intervention: false
+blocker_ref: "BLK-DERIVAR-CIRCUITOS-01 (.aiox/workflow-state/BLOCKER-DERIVAR-CIRCUITOS-REGRESSAO.yaml)"
+handoff_anterior: ".aiox/handoffs/DERIVAR-CIRCUITOS-1-po-to-dev.yaml (consumido)"
+
+story:
+  path: "docs/stories/story-DERIVAR-CIRCUITOS-1-dependencia-sem-resultado.md"
+  status_before: "Ready"
+  status_after: "InReview"
+  version: "0.4"
+  acceptance_criteria_count: 4
+  tasks_concluidas: "6/6"
+
+implementacao:
+  arquivos_modificados:
+    - path: "sistema-de-instala-es-el-tricas-sie-main/tests/domain/calculo/derivar-circuitos.test.ts"
+      natureza: "1 teste substituido (AC1) + 2 testes novos (AC2, AC4) + comentario de rastreabilidade PP-1"
+    - path: "docs/stories/story-DERIVAR-CIRCUITOS-1-dependencia-sem-resultado.md"
+      natureza: "Status, Tasks/Subtasks, DoD, Dev Agent Record, Change Log"
+  arquivos_NAO_modificados:
+    - path: "src/domain/calculo/derivar-circuitos.ts"
+      confirmacao: >-
+        Task 6 respeitada. git diff --stat HEAD segue nas mesmas 3 insercoes / 3 delecoes
+        pre-existentes. Nenhum defeito real identificado na leitura integral do modulo.
+  ids_decisions:
+    - item: "Fixtures padraoBi / entradaSala / resultadoSala / ref()"
+      decisao: REUSE
+      motivo: "Ja existem no proprio arquivo e cobrem os dados exatos dos ACs."
+    - item: "Fixture com vIlumTug indefinido (padraoTriSemFaseNeutro)"
+      decisao: CREATE
+      motivo: >-
+        Nenhum fixture existente omite tensao_fase_neutro; o campo e opcional em
+        src/domain/modelo/padrao-fornecimento.ts. Mantido local ao it para nao ampliar superficie.
+    - item: "src/domain/calculo/derivar-circuitos.ts"
+      decisao: NAO_TOCAR
+      motivo: "Task 6 / guarda de escopo."
+
+ac_evidencia:
+  - ac: AC1
+    teste: 'it("dependência sem resultado emite apenas circuitos de carga adicional (AC1)")'
+    evidencia: >-
+      ids toEqual ["ADD-Sala-Chuveiro","ADD-Sala-Lampada"]; not.toContain "ILUM-Sala"/"TUG-Sala";
+      chuveiro tue/5600 VA/220 V/tensao_resolucao.origem "declarada"/trifasica false;
+      lampada iluminacao/200 VA/127 V. PASS.
+  - ac: AC2
+    teste: 'it("dependência sem resultado e sem cargas adicionais retorna lista vazia (AC2)")'
+    evidencia: >-
+      Duas variantes: cargasAdicionais [] e cargasAdicionais ausente (undefined) — ambas toEqual([]).
+      A segunda excede o minimo do AC e protege o `?? []` da linha 130 do modulo. PASS.
+  - ac: AC3
+    teste: "11 testes pre-existentes do arquivo"
+    evidencia: >-
+      Nenhuma assercao alterada, nenhuma linha desses testes tocada. Execucao: 14 passed
+      (11 originais + 3 novos). PASS.
+  - ac: AC4
+    teste: 'it("vIlumTug ausente pula a dependência mesmo com resultado e cargas adicionais (AC4)")'
+    evidencia: >-
+      padraoTriSemFaseNeutro (sistema "tri", tensoes_ofertadas [220,380], tensao_fase_fase 380,
+      SEM tensao_fase_neutro) + resultado resultadoSala + cargas adicionais validas -> toEqual([]).
+      Guard de tensao confirmado absoluto. PASS.
+
+gates:
+  - gate: "teste escopado"
+    comando: "npx vitest run tests/domain/calculo/derivar-circuitos.test.ts"
+    resultado: "PASS — Test Files 1 passed (1) | Tests 14 passed (14), 2.71s"
+    antes: "Test Files 1 failed (1) | Tests 1 failed | 11 passed (12)"
+  - gate: "dominio calculo"
+    comando: "npx vitest run tests/domain/calculo"
+    resultado: "PASS — 15 passed (15) | 116 passed (116), 9.99s"
+  - gate: "typecheck"
+    comando: "npm run typecheck"
+    resultado: "PASS — saida vazia, exit 0"
+  - gate: "build"
+    comando: "npm run build"
+    resultado: "PASS — built in 7.41s"
+  - gate: "lint escopado"
+    comando: "npx eslint tests/domain/calculo/derivar-circuitos.test.ts"
+    resultado: "PASS_COM_RESSALVA_AMBIENTAL"
+    detalhe: >-
+      329 erros, 100% prettier/prettier "Delete CR" (verificado via -f json:
+      {"prettier/prettier":329}, uma unica mensagem distinta). Zero achados de outras regras.
+      Causa ambiental: core.autocrlf=true; git ls-files --eol da i/lf w/crlf para este arquivo
+      E para arquivos vizinhos nao tocados. Duracao ~64s (nao travou em modo escopado).
+      `npx eslint .` NAO executado — trava conhecida de 25+ min.
+  - gate: "suite completa"
+    comando: "npm test"
+    resultado: "6 failed | 120 passed (126) — Tests 41 failed | 786 passed (827), 250.44s"
+    veredito_para_esta_story: "NAO_ATRIBUIVEL — ver bloco suite_completa"
+
+suite_completa:
+  fechou_em_zero_failed: false
+  arquivo_desta_story: "VERDE (14/14)"
+  efeito_liquido_desta_story: "-1 arquivo falhando (derivar-circuitos.test.ts saiu do vermelho)"
+  arquivos_falhando:
+    - "tests/domain/queda-tensao/motor-queda-tensao.test.ts (untracked)"
+    - "tests/domain/queda-tensao/ca-qt-19-nao-regressao.test.ts (untracked)"
+    - "tests/api/queda-tensao-endpoints.test.ts (untracked)"
+    - "tests/api/modulos-mod-qt-motor-real.test.ts (untracked)"
+    - "tests/api/modulos-mod-qt.test.ts"
+    - "tests/ui/queda-tensao.vrt.test.tsx (untracked)"
+  nao_atribuivel_a_esta_story:
+    - "Todos os 6 sao do dominio queda-tensao / MOD-QT-2, proibido a este @dev pelo handoff do @po."
+    - >-
+      Falha dominante: ErroQuedaTensao 'familia_id ausente no contexto' lancado em
+      src/domain/queda-tensao/motores/motor-queda-tensao.ts:171 — nenhum caminho passa por derivarCircuitos.
+    - "git status mostra src/domain/queda-tensao/ inteiro como untracked (??) — trabalho em voo do agente paralelo."
+    - "tests/domain/calculo inteiro esta verde (116/116)."
+  observacao_de_baseline: >-
+    O baseline informado no handoff (1 failed | 125 passed) mudou entre a validacao do @po e esta
+    implementacao, porque o @dev paralelo adicionou arquivos de teste novos a worktree.
+  acao_tomada: "NENHUMA — proibicao explicita de tocar em queda-tensao/MOD-QT-2."
+
+artigo_iv_task_5:
+  motivacao_historica_localizada: false
+  investigacao:
+    - "git log --oneline -- src/domain/calculo/derivar-circuitos.ts: cb782d6, e7431ca, 5374f45, 574ef8d, 3d59bfb, 4c186a3, 80727db — nenhum menciona o guard !r nem dependencia sem resultado."
+    - "git diff --stat HEAD -- src/domain/calculo/derivar-circuitos.ts: as 3 insercoes / 3 delecoes seguem NAO COMMITADAS, logo nao existe mensagem de commit, PR ou revisao associada."
+    - "Nenhum comentario no codigo de producao explica a remocao do guard."
+  registro: >-
+    "comportamento preservado por decisao do usuario; nenhuma AC/epic de origem localizada alem
+    desta story." O requisito que sustenta o comportamento e PP-1, declarado prospectivamente pelo
+    dono do produto em 2026-07-28 e registrado por @po na story. NENHUMA motivacao historica foi
+    inventada (Artigo IV respeitado).
+
+qa_focus:
+  - "Verificar que src/domain/calculo/derivar-circuitos.ts permanece com o diff pre-existente de 3+/3- (Task 6)."
+  - "Verificar que nenhuma das 11 assercoes pre-existentes do arquivo de teste foi alterada (AC3)."
+  - "Confirmar que os 6 arquivos falhando na suite completa sao exclusivamente de queda-tensao/MOD-QT-2 e nao regridem por causa desta story."
+  - "Decidir o veredito considerando que o gate 'npm test == 0 failed' depende do fechamento do ciclo MOD-QT-2 paralelo, fora do controle desta story."
+  - "Debito conhecido (nao e AC): ausencia de cobertura de integracao para o cenario RASCUNHO nas telas de Correntes/Divisor de Circuitos."
+
+blocked_for_qa:
+  - "Alterar src/domain/calculo/derivar-circuitos.ts."
+  - "Tocar em src/domain/queda-tensao/ ou nos testes MOD-QT-2 (agente paralelo ativo)."
+  - "git commit / git push / gh pr create — exclusivos de @devops apos o QA gate."
+
+gate_devops: >-
+  BLOQUEADO_ATE_RESOLUCAO — permanece bloqueado ate o QA gate desta story aprovar E a suite
+  completa fechar com 0 arquivos falhando (o que depende tambem do ciclo MOD-QT-2 paralelo).

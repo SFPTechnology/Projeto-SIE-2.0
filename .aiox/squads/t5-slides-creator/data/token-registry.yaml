@@ -1,0 +1,203 @@
+# SINKRA Token Registry — slides-creator
+# GAP-001 closure — 9 canonical SINKRA families
+# Version: 1.0.0
+# Generated: 2026-04-20 | Upgrade Phase 4-7 Wave 1
+
+schema_version: "1.0"
+name: slides-creator-token-registry
+owner_squad: slides-creator
+sinkra_framework: v3.2
+
+# ═══════════════════════════════════════════════════════════════════════
+# FAMILY 1: Process Tokens
+# ═══════════════════════════════════════════════════════════════════════
+process:
+  - id: SLIDES_CREATOR
+    producer: squad meta
+    consumers: [all atoms]
+    description: "Root process identity"
+  - id: GENERATE_PRESENTATION
+    producer: workflow v2.0.0
+    consumers: [slide-chief, create-presentation]
+    description: "Main workflow Organism"
+
+# ═══════════════════════════════════════════════════════════════════════
+# FAMILY 2: Task Tokens (28 atoms)
+# ═══════════════════════════════════════════════════════════════════════
+task:
+  # Narrative
+  - { id: catalog-sources-apa,          phase: P01, session: SESSION-NARR, producer: content-architect, consumer: [validate-fontes-apa, p1-fidelity-sampling] }
+  - { id: distill-governing-thought,    phase: P01, session: SESSION-NARR, producer: content-architect, consumer: [build-pyramid] }
+  - { id: build-pyramid,                phase: P01, session: SESSION-NARR, producer: content-architect, consumer: [apply-scqa, write-action-titles, validate-pyramid, emit-deck-spec] }
+  - { id: apply-scqa,                   phase: P01, session: SESSION-NARR, producer: content-architect, consumer: [write-action-titles, validate-vertical-flow] }
+  - { id: write-action-titles,          phase: P02, session: SESSION-NARR, producer: content-architect, consumer: [run-vertical-test, validate-action-title, emit-deck-spec] }
+  - { id: run-vertical-test,            phase: P02, session: SESSION-QA,   producer: qa-inspector,     consumer: [D02_gate] }
+  # Spec
+  - { id: classify-slide-type,          phase: P03, session: SESSION-SPEC, producer: template-curator, consumer: [select-chart-type, compose-grid-layout] }
+  - { id: select-chart-type,            phase: P03, session: SESSION-SPEC, producer: template-curator, consumer: [compose-grid-layout] }
+  - { id: compose-grid-layout,          phase: P03, session: SESSION-SPEC, producer: design-renderer,  consumer: [emit-deck-spec] }
+  - { id: emit-deck-spec,               phase: P04, session: SESSION-SPEC, producer: design-renderer,  consumer: [P05_validators, handoff-render-request] }
+  # Brand
+  - { id: detect-brand-override,        phase: P03, session: SESSION-SPEC, producer: visual-scout,     consumer: [register-palette-override, resolve-active-palette] }
+  - { id: register-palette-override,    phase: P03, session: null,         producer: Human (STK-10),   consumer: [resolve-active-palette] }
+  - { id: resolve-active-palette,       phase: P03, session: SESSION-SPEC, producer: visual-scout,     consumer: [compose-grid-layout, emit-deck-spec, handoff-render-request] }
+  # QA
+  - { id: validate-pyramid,             phase: P05, session: SESSION-QA,   producer: qa-inspector,     consumer: [qa_verdict] }
+  - { id: validate-vertical-flow,       phase: P05, session: SESSION-QA,   producer: qa-inspector,     consumer: [qa_verdict] }
+  - { id: validate-enumeration-universal, phase: P05, session: SESSION-QA, producer: qa-inspector,     consumer: [qa_verdict] }
+  - { id: validate-fontes-apa,          phase: P05, session: SESSION-QA,   producer: qa-inspector,     consumer: [qa_verdict] }
+  - { id: validate-action-title,        phase: P05, session: SESSION-QA,   producer: qa-inspector,     consumer: [qa_verdict] }
+  - { id: p1-fidelity-sampling,         phase: P05, session: SESSION-QA,   producer: Human (reviewer), consumer: [qa_verdict] }
+  # Intake
+  - { id: load-kb-bundle,               phase: P00, session: null, producer: Worker, consumer: [content-architect, template-curator] }
+  - { id: normalize-briefing,           phase: P00, session: null, producer: slide-chief, consumer: [catalog-sources-apa, distill-governing-thought] }
+  - { id: youtube-to-briefing,          phase: P00, session: null, producer: Worker, consumer: [normalize-briefing], conditional: "input_type == youtube" }
+  # Handoff
+  - { id: handoff-render-request,       phase: P06, session: null, producer: design-renderer, consumer: [apps/ds runtime BLOCKED] }
+  - { id: prepare-ds-presenter,         phase: P06, session: null, producer: Worker, consumer: [apps/ds runtime BLOCKED] }
+  # CRUD
+  - { id: create-presentation,          phase: P06, session: null, producer: Human (operator), consumer: [Human reviewer] }
+  - { id: review-presentation,          phase: null, session: null, producer: Human (reviewer), consumer: [] }
+  - { id: update-slides-creator,        phase: null, session: null, producer: Human (@architect), consumer: [] }
+  - { id: delete-slides-creator,        phase: null, session: null, producer: Human (@devops), consumer: [] }
+
+# ═══════════════════════════════════════════════════════════════════════
+# FAMILY 3: Executor Tokens
+# ═══════════════════════════════════════════════════════════════════════
+executor:
+  - { id: HUMAN,  count: 6,  threshold_coherence: 0.7,  description: "judgment/creativity/brand alignment" }
+  - { id: AGENT,  count: 10, threshold_coherence: 0.9,  description: "analysis/generation/pattern recognition" }
+  - { id: WORKER, count: 12, threshold_coherence: 0.95, description: "deterministic/API/file ops" }
+  - { id: CLONE,  count: 0,  threshold_coherence: 0.9,  description: "(not used — no methodology-rigidity > 0.8)" }
+
+# ═══════════════════════════════════════════════════════════════════════
+# FAMILY 4: Artifact Tokens
+# ═══════════════════════════════════════════════════════════════════════
+artifact:
+  - { id: NORMALIZED_BRIEFING, template: templates/briefing.normalized.json, producer: normalize-briefing, consumer: [P01_atoms], lifecycle: [draft, validated, approved] }
+  - { id: PYRAMID_TREE,        template: templates/pyramid-tree.yaml, producer: build-pyramid, consumer: [write-action-titles, classify-slide-type, validate-pyramid], lifecycle: [draft, validated, approved] }
+  - { id: SCQA_MAP,            template: templates/scqa-map.yaml, producer: apply-scqa, consumer: [write-action-titles, validate-vertical-flow], lifecycle: [draft, validated, approved] }
+  - { id: SOURCES_APA,         template: "inline sources-apa.yaml", producer: catalog-sources-apa, consumer: [validate-fontes-apa, p1-fidelity-sampling], lifecycle: [draft, validated, approved] }
+  - { id: DECK_SPEC,           template: templates/deck-spec.yaml, producer: emit-deck-spec, consumer: [P05_validators, handoff-render-request, create-presentation], lifecycle: [draft, validated, approved] }
+  - { id: DECK_MANIFEST,       template: templates/deck-manifest.json, producer: create-presentation, consumer: [Human reviewer], lifecycle: [draft, validated, approved] }
+  - { id: QA_REPORT,           template: templates/qa-report.json, producer: qa-inspector, consumer: [qa_verdict, Human reviewer], lifecycle: [draft, validated, approved] }
+  - { id: RENDER_REQUEST,      template: templates/render-request.yaml, producer: handoff-render-request, consumer: [apps/ds (BLOCKED)], lifecycle: [draft, validated, approved] }
+  - { id: ACTIVE_PALETTE,      template: "inline active-palette.yaml", producer: resolve-active-palette, consumer: [compose-grid-layout, emit-deck-spec], lifecycle: [draft, approved] }
+
+# ═══════════════════════════════════════════════════════════════════════
+# FAMILY 5: Checkpoint Tokens
+# ═══════════════════════════════════════════════════════════════════════
+checkpoint:
+  - id: D01
+    phase: P01
+    type: Human
+    verdict_enum: [APPROVED, REJECTED, WAIVED]
+    artifact_template: templates/checkpoint-schema.yaml
+    sla_ladder_hours: [24, 72, 168]
+  - id: D02
+    phase: P02
+    type: Human
+    verdict_enum: [APPROVED, REJECTED, WAIVED]
+    non_overridable_preconditions: ["vertical-test == PASS"]
+  - id: D03
+    phase: P03
+    type: Human
+    verdict_enum: [APPROVED, REJECTED, WAIVED]
+    co_sign_required_on: "brand override present"
+    co_signer: STK-10
+  - id: qa_verdict
+    phase: P05
+    type: Computed
+    verdict_enum: [PASS, FAIL]
+    pass_criteria: "narrative_dim >= 7 AND ppteval_composite >= 7"
+    fail_router: { narrative: P01, spec: P03, vertical: P02 }
+
+# ═══════════════════════════════════════════════════════════════════════
+# FAMILY 6: Pattern Tokens (pattern_library SC-* namespace)
+# ═══════════════════════════════════════════════════════════════════════
+pattern:
+  - { id: SC-TP-001, category: TaskPattern,       scope: "Standard task anatomy (8 SINKRA fields)" }
+  - { id: SC-EP-001, category: ExecutorPattern,   scope: "Human executor shape" }
+  - { id: SC-EP-002, category: ExecutorPattern,   scope: "Agent executor shape" }
+  - { id: SC-EP-003, category: ExecutorPattern,   scope: "Hybrid (Agent+Human) shape" }
+  - { id: SC-EP-004, category: ExecutorPattern,   scope: "Worker executor shape" }
+  - { id: SC-PP-001, category: ProcessPattern,    scope: "Narrative discipline pipeline (Pyramid+SCQA+APA)" }
+  - { id: SC-IP-001, category: IntegrationPattern, scope: "Brand config integration from workspace/L2-tactical/brand/" }
+  - { id: SC-AP-001, category: AutomationPattern, scope: "Deterministic validator via Worker" }
+  - { id: SC-DP-001, category: DocumentationPattern, scope: "SOP structure (brand-agnostic)" }
+
+# ═══════════════════════════════════════════════════════════════════════
+# FAMILY 7: Decision Tokens (agent heuristics)
+# ═══════════════════════════════════════════════════════════════════════
+decision:
+  - { namespace: BN_, range: "BN_001..BN_006", source: agents/slide-chief.md, scope: "Briefing normalization heuristics" }
+  - { namespace: IM_, range: "IM_001..IM_002", source: agents/slide-chief.md, scope: "Induction method heuristics" }
+  - { namespace: MS_, range: "MS_001..MS_003", source: agents/slide-chief.md, scope: "Max-slides heuristics" }
+  - { namespace: RH_, range: "RH_001..RH_010", source: agents/slide-chief.md, scope: "Routing heuristics" }
+  - { namespace: K,   range: "K1..K9",         source: agents/qa-inspector.md, scope: "QA killer items" }
+
+# ═══════════════════════════════════════════════════════════════════════
+# FAMILY 8: QualityGate Tokens
+# ═══════════════════════════════════════════════════════════════════════
+quality_gate:
+  - { id: BRAND_TOKEN_COMPLIANCE, executor: Worker, threshold: "token_usage >= 95% AND 0 custom violations", schema_ref: data/checkpoint-schema.yaml }
+  - { id: VISUAL_REGRESSION,      executor: Worker, threshold: "< 2% pixel diff from reference" }
+  - { id: ACCESSIBILITY,          executor: Worker, threshold: "0 WCAG AA violations" }
+  - { id: PPTEVAL_COMPOSITE,      executor: Agent,  threshold: "Design >= 7 AND Content >= 7 AND Coherence >= 7 AND GAD >= 7", aggregation: AND }
+  - { id: HUMAN_VISUAL_APPROVAL,  executor: Human,  threshold: "explicit approval", required_for: "external-facing artifacts only" }
+
+# ═══════════════════════════════════════════════════════════════════════
+# FAMILY 9: Handoff Tokens
+# ═══════════════════════════════════════════════════════════════════════
+handoff:
+  - id: BC-08_RENDER_REQUEST
+    scope: "slides-creator → apps/ds runtime"
+    producer: handoff-render-request
+    consumer: apps/ds runtime OR LLM-direct fallback
+    schema: templates/render-request.yaml
+    status: handoff_only  # apps/ds runtime absent
+    fallback_semantics: "emit anyway, await runtime reconnection"
+  - id: BC-D01_NARRATIVE_APPROVAL
+    scope: "Phase P01 → P02"
+    producer: content-architect
+    consumer: slide-chief (gate)
+  - id: BC-D02_STRUCTURE_APPROVAL
+    scope: "Phase P02 → P03"
+    producer: content-architect
+    consumer: slide-chief (gate)
+  - id: BC-D03_DESIGN_APPROVAL
+    scope: "Phase P03 → P04"
+    producer: design-renderer + template-curator
+    consumer: slide-chief (gate)
+    co_sign: "STK-10 if brand override"
+
+# ═══════════════════════════════════════════════════════════════════════
+# TOKEN LINEAGE (Token → Atom → Molecule → Organism)
+# ═══════════════════════════════════════════════════════════════════════
+token_lineage:
+  - token: PYRAMID_TREE (Artifact)
+    atom_producer: build-pyramid
+    molecule: MOL-NARR-PYRAMID
+    organism: ORG-GENERATE-PRESENTATION
+  - token: DECK_SPEC (Artifact)
+    atom_producer: emit-deck-spec
+    molecule: MOL-SPEC-EMISSION
+    organism: ORG-GENERATE-PRESENTATION
+  - token: D01/D02/D03 (Checkpoint)
+    atom_producer: [content-architect, design-renderer+template-curator]
+    molecule: (phase-level gate, not a molecule)
+    organism: ORG-GENERATE-PRESENTATION
+  - token: BRAND_TOKEN_COMPLIANCE (QualityGate)
+    consumed_at: P05
+    molecule: MOL-QA-NARRATIVE
+    organism: ORG-GENERATE-PRESENTATION
+
+# ═══════════════════════════════════════════════════════════════════════
+# METADATA
+# ═══════════════════════════════════════════════════════════════════════
+meta:
+  total_token_families: 9
+  total_token_values: 120+  # 2 process + 28 tasks + 4 executors + 9 artifacts + 4 checkpoints + 9 patterns + 30+ decisions + 5 quality_gates + 4 handoffs
+  lifecycle_supported: [draft, validated, approved, superseded, archived]
+  gap_closed: GAP-001
+  compatible_with: sinkra-v3.2

@@ -1,0 +1,49 @@
+handoff:
+  from_agent: "@architect"
+  to_agent: "@dev"
+  story_context:
+    story_id: "SIE-DS-00"
+    story_path: "docs/stories/story-SIE-DS-00-readiness-namespace-canonico.md"
+    story_status: "Ready"
+    current_task: "Ratificação arquitetural concluída (PASS); aguardando *develop-yolo SIE-DS-00"
+    branch: "master"
+  decisions:
+    - "Namespace ratificado: --sie-cc-* (CSS custom properties), src/components/command-center/ (paths), [data-theme=\"sie-cc\"] (tema, se necessário). Motivo: --sie-* puro já é usado em produção por src/components/unifilar/tokens_sie.css e consumidores reais (UnifilarCanvas.tsx, UnifilarWorkspace.tsx, GraficoBarrasQueda.tsx, PainelSimulacaoQuedaTensao.tsx, simbolos_iec.tsx, src/styles.css)."
+    - "Feature flag: VITE_FEATURE_SIE_COMMAND_CENTER (import.meta.env, padrão já usado no projeto), default off = legado."
+    - "Stack confirmado real (não presumido): @carbon/react, @carbon/styles, @carbon/icons-react + 26 pacotes @radix-ui/react-* + tailwindcss v4 + class-variance-authority/clsx/tailwind-merge, todos em package.json."
+    - "Roteamento é TanStack Router file-based (src/routes/*.tsx); AppShell é importado por rota, não há wrapper global — EngineeringShell futuro (SIE-DS-02) é aditivo por rota, nunca substitui AppShell.tsx."
+    - "AC4 permanece verdadeiro: gap ARCHITECT_PHASE_UNSUPPORTED no runner headless NÃO foi resolvido por esta ratificação manual. Resolução é framework core, fora do escopo de @dev."
+  files_modified:
+    - "docs/stories/story-SIE-DS-00-readiness-namespace-canonico.md"
+  blockers: []
+  next_action: >
+    @dev executa *develop-yolo SIE-DS-00: cria docs/architecture/DECISION-SIE-DS-00-readiness-namespace-canonico.md
+    consolidando este architecture_verdict (AC1-AC4) e confirma File List (zero arquivo de
+    sistema-de-instala-es-el-tricas-sie-main/src/ tocado — AC5). Nenhum código de produção,
+    nenhum token, nenhum componente é criado nesta story — isso é escopo de SIE-DS-01/02.
+
+architecture_verdict:
+  story_id: "SIE-DS-00"
+  verdict: "PASS"
+  namespace: "--sie-cc-* (CSS custom properties) | src/components/command-center/ (paths) | [data-theme=\"sie-cc\"] (tema, se necessário)"
+  integration_points:
+    - "src/routes/*.tsx (TanStack Router, por rota, sem wrapper global)"
+    - "src/components/app/AppShell.tsx permanece default; EngineeringShell (SIE-DS-02) é aditivo"
+    - "VITE_FEATURE_SIE_COMMAND_CENTER (import.meta.env, padrão já usado no projeto)"
+  protected_legacy_paths:
+    - "src/components/app/AppShell.tsx"
+    - "src/components/unifilar/**"
+    - "src/components/app/queda-tensao/**"
+    - "src/styles.css"
+    - "src/routes/**"
+  feature_flag_strategy: "Env flag VITE_FEATURE_SIE_COMMAND_CENTER, default off = legado"
+  rollback_strategy: "Fase 1: remover import da camada de tokens. Fase 2: desativar a flag. Sem migração de dados."
+  risks:
+    - "Namespace --sie-* já em uso pelo legado — mitigado com --sie-cc-* nesta ratificação"
+    - "Especificidade CSS Carbon g100 vs. tokens --sie-cc-* deve ser testada em SIE-DS-01"
+  evidence:
+    - "src/components/unifilar/tokens_sie.css (linhas 1-30)"
+    - "outputs/design-system/sie-command-center/tokens/sie-premium.css (linhas 4-32)"
+    - "package.json (@carbon/react, @carbon/styles, @carbon/icons-react, 26x @radix-ui/react-*, tailwindcss, class-variance-authority, clsx, tailwind-merge)"
+    - "src/routes/diagnostico.tsx (uso de AppShell por rota)"
+    - "src/routes/diagnostico.spa.tsx, src/lib/config.server.ts (padrão import.meta.env.VITE_* já em uso)"

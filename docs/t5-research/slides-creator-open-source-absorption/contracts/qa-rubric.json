@@ -1,0 +1,25 @@
+{
+  "schema": "slides-os-qa-rubric.v1",
+  "dimensions": [
+    {"id": "narrative", "label": "Narrativa", "weight": 25},
+    {"id": "sources", "label": "Acurácia e fontes", "weight": 20},
+    {"id": "design", "label": "Design", "weight": 15},
+    {"id": "editability", "label": "Editabilidade", "weight": 20},
+    {"id": "brand", "label": "Template/brand", "weight": 10},
+    {"id": "technical", "label": "Técnica", "weight": 10}
+  ],
+  "killer_items": [
+    "pptx_repair_required",
+    "action_title_rasterized",
+    "critical_claim_without_source",
+    "cropped_text",
+    "illegible_contrast",
+    "briefing_violation",
+    "missing_requested_export"
+  ],
+  "release_thresholds": {
+    "passed": {"min_score": 85, "killer_items": 0},
+    "concerns": {"min_score": 75, "max_score": 84, "killer_items": 0},
+    "failed": {"min_score": 0}
+  }
+}

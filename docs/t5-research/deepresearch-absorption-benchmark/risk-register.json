@@ -1,0 +1,150 @@
+{
+  "schema": "sinkra-risk-register-v2",
+  "generated_at": "2026-05-18T18:30:00-03:00",
+  "risks": [
+    {
+      "slug": "drbench",
+      "name": "DRBench",
+      "risk": "docker_heavy_judge_mediated_no_trace",
+      "mitigation": "Sandbox, allowlist, redaction e trace obrigatório antes de execução."
+    },
+    {
+      "slug": "deer-flow",
+      "name": "DeerFlow",
+      "risk": "docker_socket_process_local_state_skill_mutation",
+      "mitigation": "Sandbox, allowlist, redaction e trace obrigatório antes de execução."
+    },
+    {
+      "slug": "autoresearchclaw",
+      "name": "AutoResearchClaw",
+      "risk": "generated_code_subprocess_agents_scraping_fallback",
+      "mitigation": "Sandbox, allowlist, redaction e trace obrigatório antes de execução."
+    },
+    {
+      "slug": "storm",
+      "name": "STORM",
+      "risk": "external_apis_home_cache_nondeterminism",
+      "mitigation": "Adapter SINKRA com contratos de sources/claims/cost e testes de replay."
+    },
+    {
+      "slug": "gpt-researcher",
+      "name": "GPT-Researcher",
+      "risk": "llm_parsing_duplicate_routes_license_divergence",
+      "mitigation": "Clean-room + revisão jurídica antes de copiar código."
+    },
+    {
+      "slug": "local-deep-research",
+      "name": "Local Deep Research",
+      "risk": "broken_cli_sqlcipher_fallback_mcp_auth_deps",
+      "mitigation": "Sandbox, allowlist, redaction e trace obrigatório antes de execução."
+    },
+    {
+      "slug": "mirothinker",
+      "name": "MiroThinker",
+      "risk": "credentials_logs_boxed_output",
+      "mitigation": "Sandbox, allowlist, redaction e trace obrigatório antes de execução."
+    },
+    {
+      "slug": "deep-searcher",
+      "name": "DeepSearcher",
+      "risk": "web_search_todo_global_state_ast_literal_eval",
+      "mitigation": "Adapter SINKRA com contratos de sources/claims/cost e testes de replay."
+    },
+    {
+      "slug": "langchain-open-deep-research",
+      "name": "LangChain Open Deep Research",
+      "risk": "exception_masking_langgraph_coupling_external_apis",
+      "mitigation": "Adapter SINKRA com contratos de sources/claims/cost e testes de replay."
+    },
+    {
+      "slug": "deep-research-bench",
+      "name": "Deep Research Bench",
+      "risk": "hidden_cost_shell_eval_relative_score",
+      "mitigation": "Sandbox, allowlist, redaction e trace obrigatório antes de execução."
+    },
+    {
+      "slug": "node-deepresearch",
+      "name": "Jina node-DeepResearch",
+      "risk": "jina_dependency_codesandbox_secret_validation",
+      "mitigation": "Sandbox, allowlist, redaction e trace obrigatório antes de execução."
+    },
+    {
+      "slug": "miroflow",
+      "name": "MiroFlow",
+      "risk": "missing_config_broken_tool_boxed_output",
+      "mitigation": "Adapter SINKRA com contratos de sources/claims/cost e testes de replay."
+    },
+    {
+      "slug": "miroeval",
+      "name": "MiroEval",
+      "risk": "multimodal_path_hydra_global_private_method",
+      "mitigation": "Adapter SINKRA com contratos de sources/claims/cost e testes de replay."
+    },
+    {
+      "slug": "deepresearcher",
+      "name": "DeepResearcher",
+      "risk": "file_ipc_threads_api_placeholders_package_identity",
+      "mitigation": "Adapter SINKRA com contratos de sources/claims/cost e testes de replay."
+    },
+    {
+      "slug": "livedrbench",
+      "name": "LiveDRBench",
+      "risk": "openai_judge_no_pins_assert_validation",
+      "mitigation": "Adapter SINKRA com contratos de sources/claims/cost e testes de replay."
+    },
+    {
+      "slug": "mirorl",
+      "name": "MiroRL",
+      "risk": "gpu_cuda_xml_parsing_verl_coupling",
+      "mitigation": "Adapter SINKRA com contratos de sources/claims/cost e testes de replay."
+    },
+    {
+      "slug": "mirotrain",
+      "name": "MiroTrain",
+      "risk": "cuda_flashattention_monkey_patch_distributed_validation",
+      "mitigation": "Adapter SINKRA com contratos de sources/claims/cost e testes de replay."
+    },
+    {
+      "slug": "alibaba-deepresearch",
+      "name": "Alibaba/Tongyi DeepResearch",
+      "risk": "external_services_unstructured_trace_shared_state",
+      "mitigation": "Adapter SINKRA com contratos de sources/claims/cost e testes de replay."
+    },
+    {
+      "slug": "agent-browser-workspace",
+      "name": "Agent Browser Workspace",
+      "risk": "authenticated_profile_raw_evaluate_selector_drift",
+      "mitigation": "Sandbox, allowlist, redaction e trace obrigatório antes de execução."
+    },
+    {
+      "slug": "dzhng-deep-research",
+      "name": "dzhng/deep-research",
+      "risk": "no_provenance_api_bug_env_drift",
+      "mitigation": "Adapter SINKRA com contratos de sources/claims/cost e testes de replay."
+    },
+    {
+      "slug": "openresearcher",
+      "name": "OpenResearcher",
+      "risk": "missing_license_trust_remote_code_heavy_setup",
+      "mitigation": "Clean-room + revisão jurídica antes de copiar código."
+    },
+    {
+      "slug": "nickscamara-open-deep-research",
+      "name": "nickscamara/open-deep-research",
+      "risk": "json_parse_anonymous_auth_firecrawl_monolith",
+      "mitigation": "Clean-room + revisão jurídica antes de copiar código."
+    },
+    {
+      "slug": "jigsawstack-deep-research",
+      "name": "JigsawStack Deep Research",
+      "risk": "global_singletons_raw_logging_unvalidated_citations",
+      "mitigation": "Clean-room + revisão jurídica antes de copiar código."
+    },
+    {
+      "slug": "auto-deep-research",
+      "name": "HKUDS Auto-Deep-Research",
+      "risk": "remote_tcp_server_shell_execution_no_trace",
+      "mitigation": "Clean-room + revisão jurídica antes de copiar código."
+    }
+  ]
+}

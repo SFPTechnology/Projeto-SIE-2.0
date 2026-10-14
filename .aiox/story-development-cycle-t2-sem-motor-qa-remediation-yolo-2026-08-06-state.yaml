@@ -1,0 +1,82 @@
+workflow_state:
+  workflow_id: story-development-cycle-t2-sem-motor-qa-remediation-yolo
+  instance_id: story-development-cycle-t2-sem-motor-qa-remediation-yolo-2026-08-06
+  mode: yolo
+  status: blocked
+  started_at: "2026-08-06T01:18:25.0082626-03:00"
+  updated_at: "2026-08-06T02:31:01.2426038-03:00"
+  current_step: repair_and_run_coderabbit_wsl
+  completed_steps:
+    - preflight_and_scope_lock
+    - remediate_tests_and_lint
+  target:
+    story_id: T2-SEM-MOTOR-1
+    story_status: InProgress
+    qa_gate: FAIL
+  baseline:
+    root_branch: master
+    subapp_branch: feature/nbr5410-conformidade-closeout
+    root_status_entries: 166
+    root_status_fingerprint: b29ec423ee2ec14c8a18f4c31c53ae10b54c2acb
+    subapp_status_entries: 183
+    subapp_status_fingerprint: 7e4fc13db3f8d3b52aa824f805a2d9f260b7de84
+    policy: preserve_all_preexisting_changes
+  authorized_scope:
+    - sistema-de-instala-es-el-tricas-sie-main/tests/api/modulos-mod-cc.test.ts
+    - sistema-de-instala-es-el-tricas-sie-main/tests/api/modulos-mod-sec.test.ts
+    - sistema-de-instala-es-el-tricas-sie-main/tests/ui/dimensionamento-condutores.vrt.test.tsx
+    - sistema-de-instala-es-el-tricas-sie-main/src/domain/nbr/catalogo-fornecimento.ts
+    - sistema-de-instala-es-el-tricas-sie-main/src/domain/nbr/catalogo-fornecimento.data.json
+    - sistema-de-instala-es-el-tricas-sie-main/package.json
+    - sistema-de-instala-es-el-tricas-sie-main/eslint.config.*
+    - sistema-de-instala-es-el-tricas-sie-main/.eslintignore
+    - sistema-de-instala-es-el-tricas-sie-main/files proven by failing gates
+    - docs/stories/story-T2-SEM-MOTOR-1-ausencia-motor-tipado.md
+    - docs/qa/gates/T2-SEM-MOTOR-1-ausencia-motor-tipado.yml
+    - docs/qa/coderabbit-reports/T2-SEM-MOTOR-1-*
+  blockers:
+    - id: QA-T2-001
+      status: open
+    - id: QA-T2-002
+      status: open
+    - id: QA-T2-003
+      status: open
+    - id: QA-T2-004
+      status: deferred_nonblocking
+    - id: CODERABBIT-WSL-AVX2
+      status: blocking
+      reason: >-
+        Official CodeRabbit Linux x64 binaries abort with SIGILL on the Ivy Bridge
+        host, which has AVX but no AVX2; no supported baseline or native Windows
+        build is available.
+      resume_conditions:
+        - official Linux x64 build compatible with non-AVX2 CPUs
+        - AVX2-capable WSL/Linux runner with existing authentication
+        - authorized isolated commit/worktree plus a compatible runner
+  evidence:
+    remediate_tests_and_lint:
+      status: completed
+      injected_api_tests: "26/26 PASS"
+      focused_tests: "61/61 PASS"
+      typecheck: "PASS (exit 0)"
+      lint: "PASS (exit 0, 43.2s, 0 errors, 6 warnings)"
+      global_tests: "165/165 files, 1175/1175 tests PASS (exit 0, 173.5s)"
+      diff_check: "PASS (exit 0)"
+      historical_catalog_timeout: "not reproduced; no timeout increased"
+      catalog_diagnosis: "environmental CPU contention from orphan ESLint processes"
+      lint_diagnosis: "flat config traversed generated bundles, Python venv and caches"
+    repair_and_run_coderabbit_wsl:
+      status: blocked_environment
+      cli_version: unavailable
+      version_exit_code: 132
+      auth_status: unavailable
+      review_executed: false
+      critical_findings: unavailable
+      high_findings: unavailable
+      original_binary_preserved: true
+      report: docs/qa/coderabbit-reports/T2-SEM-MOTOR-1-coderabbit-wsl-2026-08-06.md
+  audit:
+    requested_by: User
+    orchestrator: aiox-master
+    remote_operations_authorized: false
+    destructive_operations_authorized: false

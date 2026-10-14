@@ -1,0 +1,9 @@
+schema: sinkra-rubric-results-v1
+run_id: local-deep-research__SINKRA-DR-30
+mode: contract_dry_run
+scores:
+  required_outputs: 100
+  claim_schema: 100
+  source_schema: 100
+  real_execution: 0
+verdict: PASS_CONTRACT_ONLY

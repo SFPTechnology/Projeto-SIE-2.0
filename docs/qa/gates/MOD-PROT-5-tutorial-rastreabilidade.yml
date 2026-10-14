@@ -1,0 +1,75 @@
+schema: 1
+story: 'MOD-PROT-5'
+story_title: 'Tutorial e Rastreabilidade'
+gate: PASS
+status_reason: >-
+  Re-gate após remediação. As 5 ACs atendidas. AC3 fechada pela revisão de conteúdo do
+  tutorial e reassinatura do manifesto (commit 2ecd1ca). AC4 reavaliada: o achado original
+  era um FALSO NEGATIVO — o rastreio existe e sempre existiu, em outro módulo.
+reviewer: 'Quinn'
+updated: '2026-08-08T04:20:00Z'
+supersedes:
+  gate: FAIL
+  dated: '2026-08-08T00:30:00Z'
+
+correcao_do_gate_anterior:
+  finding_id: REQ-002
+  veredito_anterior: NOT_MET
+  veredito_corrigido: MET
+  causa_do_erro: >-
+    A verificação original grepou "rastreio" apenas em src/domain/dimensionamento-disjuntores/,
+    src/domain/servicos/, src/components/ e src/routes/api/. O rastreio do MOD-PROT vive em
+    src/domain/dimensionamento-condutores/servico-dimensionamento-condutores.ts:355-367,
+    fora do conjunto pesquisado. Erro de escopo de busca do revisor, não defeito do código.
+  evidencia: >-
+    rastreioDownstream.protecao é gravado quando parametros.origem_in === "MOD-PROT",
+    com comentário literal "Story MOD-PROT-5: rastreabilidade da decisao de protecao,
+    mesmo padrao de c4_seccionamento".
+
+traceability:
+  - ac: 1
+    status: MET
+    evidence: 'Par docs/TUTORIAL-DIMENSIONAMENTO-DISJUNTORES.{md,html} presente e sincronizado'
+  - ac: 2
+    status: MET
+    evidence: 'Unidade registrada em scripts/tutorial-dimensionamento-condutores-manifest.mjs'
+  - ac: 3
+    status: MET
+    evidence: >-
+      npm run docs:tutorial:check → "[dimensionamento-disjuntores] OK: nenhum arquivo-fonte
+      mudou desde o ultimo update do tutorial (2026-08-08T03:47:49.375Z), e .md/.html estao
+      sincronizados." Conteúdo revisado ANTES da reassinatura: seções 2, 5 e 6 do .md e do
+      .html passaram a documentar o caso SEM-MOTOR como ausência declarada e justificada.
+  - ac: 4
+    status: MET
+    evidence: >-
+      rastreio.protecao no resultado do MOD-DC, no padrão C4: fonte {documento MOD-PROT,
+      tabela = norma_dispositivo}, valor = in_a, status_verificacao derivado de
+      capacidade_interrupcao. AC reescrita por @po em 2026-08-08 para resolver
+      inconsistência interna do texto original (ver ADR D7).
+  - ac: 5
+    status: MET
+    evidence: 'Eventos emitidos em servico-dimensionamento-disjuntores.ts:86,105, com 2 testes'
+
+evidence:
+  typecheck: 'npm run typecheck → exit 0'
+  lint: 'npm run lint → exit 0'
+  build: 'npm run build → exit 0'
+  build_spa: 'npm run build:spa → exit 0'
+  tests: '1214/1215; falha única é flake de timeout de 5s (passa com --testTimeout=60000)'
+  docs_tutorial_check_unidade: 'dimensionamento-disjuntores OK'
+
+top_issues:
+  - id: 'DOC-003'
+    severity: low
+    finding: >-
+      npm run docs:tutorial:check global retorna exit 1 por drift PREEXISTENTE em 4 unidades
+      de outras frentes: dimensionamento-condutores, dc-parametros-auditoria, tug-iluminacao,
+      queda-tensao-mod-qt. Não atribuível ao MOD-PROT.
+    suggested_action: >-
+      Cada frente responsável deve revisar seu tutorial. Enquanto isso, o gate global de
+      docs:tutorial:check não pode ser usado como critério de release de nenhuma story.
+
+waiver: { active: false }
+
+recommended_status: 'Aprovado — apto a Done'

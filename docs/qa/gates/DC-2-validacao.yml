@@ -1,0 +1,24 @@
+schema: 1
+story: 'DC-2'
+gate: PASS
+status_reason: 'Guardas de validacao de entradas implementadas e cobertas por testes; ACs em escopo (04, 05, 13) verdes com evidencia real, tsc/eslint limpos.'
+reviewer: 'Quinn'
+updated: '2026-07-12T23:30:00Z'
+top_issues: []
+waiver: { active: false }
+
+evidence:
+  focused_tests: '13/13 pass (tests/domain/dimensionamento-condutores/mod-dc.test.ts)'
+  domain_suite: '25/25 pass (tests/domain/dimensionamento-condutores/)'
+  typecheck: 'tsc --noEmit exit 0'
+  ac_traceability:
+    AC-DC-04: 'ERRO-TENSAO-AUSENTE — coberto (AC-1)'
+    AC-DC-05: 'ERRO-ISOLACAO-AUSENTE + ERRO-METODO-AUSENTE — coberto (AC-2); dropdown UI = DC-8'
+    AC-DC-13: 'ERRO-MATERIAL-NAO-ADMITIDO (Al x contexto/BA5/BD) — coberto (AC-3)'
+    AC-DC-17: 'FORA DE ESCOPO — cor/funcao pertence ao dominio neutro/PE (DC-5); ERRO-COR-FUNCAO reservado no catalogo'
+
+notes:
+  - 'IDS REUSE: validarEntradasDimensionamento reaproveitado do modulo MOD-DC sem reescrita; story adicionou apenas cobertura de testes (ADAPT).'
+  - 'Funcao pura, isolada em src/domain/dimensionamento-condutores/; importa apenas ../contratos + ../erros. Sem contaminacao cross-module.'
+  - 'Discrepancia Dev Notes vs implementacao: o pseudocodigo ilustrativo na story mostra guarda de cor_neutro (ERRO-COR-FUNCAO); a implementacao real corretamente NAO a inclui, pois AC-DC-17 foi diferida para DC-5. Comportamento correto.'
+  - 'DC-3 desbloqueado.'

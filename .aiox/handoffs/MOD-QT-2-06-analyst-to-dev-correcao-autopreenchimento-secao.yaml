@@ -1,0 +1,114 @@
+handoff_id: MOD-QT-2-06-analyst-to-dev-correcao-autopreenchimento-secao
+from_agent: "@analyst"
+to_agent: "@dev"
+story_id: "MOD-QT-2-06"
+story_file: "docs/stories/story-MOD-QT-2-06-persistencia-secao-mod-dc.md"
+status: "Ready"
+decision: "CORRECTION_REQUESTED"
+created_at: "2026-07-30T00:00:00-03:00"
+consumed: true
+consumed_by: "@dev"
+consumed_at: "2026-07-30T01:58:00-03:00"
+next_command: "*develop-yolo docs/stories/story-MOD-QT-2-06-persistencia-secao-mod-dc.md"
+
+source_request:
+  user_message: >-
+    Usuario confirmou, a partir do Screenshot_210.jpg, que a coluna "S (mm2)"
+    da tela de Queda de Tensao deveria vir preenchida automaticamente com os
+    dados ja armazenados no sistema, permitindo alteracao posterior se necessario,
+    e pediu encaminhamento para @dev realizar as correcoes.
+  screenshot_path: "C:/Users/User/Downloads/Screenshot_210.jpg"
+  observed_issue:
+    - "Coluna S (mm2) aparece como '-' para todos os circuitos."
+    - "IB(A) e L(m) aparecem em alguns itens, mas a ausencia de S mantem Status PEND."
+    - "Isso bloqueia/atrapalha testes de queda de tensao e gera retrabalho manual."
+
+analysis_summary:
+  conclusion: >-
+    A expectativa do usuario e correta e ja esta formalizada em MOD-QT-2-06:
+    a secao final calculada/persistida pelo MOD-DC deve autopreencher S (mm2)
+    no MOD-QT, respeitando a precedencia de overrides auditados.
+  expected_precedence:
+    - "1. Override explicito/auditado do MOD-QT."
+    - "2. Secao persistida do MOD-DC por projeto/circuito."
+    - "3. Ausencia real: null, coluna '-', status PEND."
+  non_goal: >-
+    Nao calcular ou estimar uma secao padrao com parametros genericos para
+    mascarar ausencia de persistencia. Se nao houver resultado real do MOD-DC,
+    manter PEND.
+
+required_dev_work:
+  - id: "DEV-CORR-01"
+    task: "Reproduzir o bug visual com o projeto/cenario do screenshot."
+    details:
+      - "Abrir a tela de Queda de Tensao e confirmar se S (mm2) segue vazia apos calculo do MOD-DC."
+      - "Verificar se o MOD-DC esta persistindo secao_fase_mm2 no repositorio esperado."
+      - "Verificar se o MOD-QT esta lendo o repositorio antes de montar o lote."
+  - id: "DEV-CORR-02"
+    task: "Corrigir o caminho MOD-DC -> persistencia -> MOD-QT."
+    details:
+      - "Garantir persistencia real de secao_fase_mm2 ao calcular MOD-DC."
+      - "Garantir leitura por projeto/circuito no calculo em lote do MOD-QT."
+      - "Preservar precedencia: override MOD-QT > secao MOD-DC > PEND."
+  - id: "DEV-CORR-03"
+    task: "Validar edicao posterior auditada."
+    details:
+      - "Confirmar que alteracao manual de S usa fluxo auditado de aplicar cenario."
+      - "Confirmar justificativa obrigatoria e historico antes/depois."
+      - "Nao criar caminho silencioso de edicao direta em config.secoes_aplicadas_mm2."
+  - id: "DEV-CORR-04"
+    task: "Adicionar ou ajustar testes de regressao."
+    details:
+      - "Teste AC2: circuito com secao MOD-DC persistida exibe S automaticamente no MOD-QT."
+      - "Teste AC2: override MOD-QT prevalece sobre secao MOD-DC."
+      - "Teste AC2: sem secao persistida e sem override continua PEND."
+      - "Teste UI/render: tabela renderiza valor de S em vez de '-' quando item.secao_mm2 esta preenchido."
+
+acceptance_criteria:
+  - id: "AC-CORR-01"
+    text: >-
+      Given um circuito ja dimensionado no MOD-DC com secao_fase_mm2 persistida,
+      When a tela Queda de Tensao calcula/renderiza o lote,
+      Then a coluna S (mm2) exibe automaticamente a secao persistida.
+  - id: "AC-CORR-02"
+    text: >-
+      Given uma secao aplicada manualmente pelo MOD-QT com justificativa,
+      When o lote e recalculado,
+      Then essa secao prevalece sobre a secao original do MOD-DC.
+  - id: "AC-CORR-03"
+    text: >-
+      Given um circuito sem secao persistida do MOD-DC e sem override MOD-QT,
+      When a tabela e renderizada,
+      Then S permanece '-' e Status permanece PEND, sem estimativa inventada.
+  - id: "AC-CORR-04"
+    text: >-
+      Given a correcao implementada,
+      When os gates rodam,
+      Then contratos publicos do MOD-QT e formulas dos motores MOD-QT/MOD-DC permanecem intactos.
+
+hard_constraints:
+  - "Nao inventar secao padrao/generica."
+  - "Nao alterar formulas dos motores de dimensionamento ou queda de tensao."
+  - "Nao quebrar RetornoMODQT, ValidarMODQTSchema, RetornoMODQTSchema nem POST /api/v1/modulos/mod-qt/validar."
+  - "Nao criar edicao silenciosa da coluna S."
+  - "Preservar mudancas nao relacionadas no worktree."
+  - "Nao executar git push, PR, tag ou release; exclusivo de @devops."
+
+suggested_files_to_inspect:
+  - "sistema-de-instala-es-el-tricas-sie-main/src/domain/servicos/servico-dimensionamento-condutores.ts"
+  - "sistema-de-instala-es-el-tricas-sie-main/src/domain/servicos/servico-queda-tensao.ts"
+  - "sistema-de-instala-es-el-tricas-sie-main/src/infra/repositorios/repositorio-resultado-dimensionamento-condutores.ts"
+  - "sistema-de-instala-es-el-tricas-sie-main/src/infra/supabase/repo-resultado-dimensionamento-condutores.supabase.ts"
+  - "sistema-de-instala-es-el-tricas-sie-main/src/components/app/queda-tensao/TabelaResultadosQuedaTensao.tsx"
+  - "sistema-de-instala-es-el-tricas-sie-main/src/routes/projetos.$projetoId_.queda-tensao.tsx"
+  - "sistema-de-instala-es-el-tricas-sie-main/tests/api/dimensionamento-condutores-flow.test.ts"
+  - "sistema-de-instala-es-el-tricas-sie-main/tests/api/queda-tensao-endpoints.test.ts"
+  - "sistema-de-instala-es-el-tricas-sie-main/tests/ui/queda-tensao.vrt.test.tsx"
+
+quality_gates_required:
+  - "npm run lint"
+  - "npm run typecheck"
+  - "npm test"
+  - "npm run build"
+
+required_completion_handoff: ".aiox/handoffs/MOD-QT-2-06-dev-to-qa-correcao-autopreenchimento-secao.yaml"

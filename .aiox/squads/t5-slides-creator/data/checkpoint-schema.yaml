@@ -1,0 +1,137 @@
+# Target: squads/slides-creator/data/checkpoint-schema.yaml
+# Purpose: Common schema for D01/D02/D03 + brand-override approval artifacts.
+# Consumer: Workers (schema validator), Human executors (fill artifact), slide-chief (guard).
+# Reuses pattern from squads/slides-creator/workflows/generate-presentation.yaml#checkpoint.policy
+# (always_active, fail_fast: true).
+
+schema_version: "1.0"
+name: checkpoint-schema
+version: "1.0.0"
+owner_squad: slides-creator
+
+# =============================================================================
+# SCHEMA (JSON Schema-like, YAML encoded)
+# =============================================================================
+schema:
+  type: object
+  required: [gate_id, status, approver, timestamp]
+  properties:
+    gate_id:
+      type: string
+      enum: [D01, D02, D03, BRAND_OVERRIDE, QA_VERDICT]
+    status:
+      type: string
+      enum: [pending, approved, rejected, waived]
+      description: "pending = awaiting; approved = proceed; rejected = return to upstream phase; waived = advisory mode only (requires deviation)"
+    approver:
+      type: object
+      required: [stakeholder_ref, name]
+      properties:
+        stakeholder_ref:   {type: string, description: "e.g. STK-07-client-strategy"}
+        name:              {type: string}
+        organization:      {type: string}
+        email:             {type: string, format: email}
+    timestamp:
+      type: string
+      format: date-time
+      description: "ISO-8601 UTC — when the approval was recorded"
+    notes:
+      type: string
+      description: "Required when status == rejected; optional otherwise. Captures reviewer rationale or conditions."
+    approval_artifact_ref:
+      type: string
+      description: "Path to signed document, email thread, Notion page, etc. Optional but recommended for audit."
+    prior_versions:
+      type: array
+      description: "History of this gate for this deck_slug if the gate was re-opened"
+      items:
+        type: object
+        properties:
+          status:    {type: string}
+          timestamp: {type: string}
+          notes:     {type: string}
+    sla_breach:
+      type: object
+      description: "Populated when SLA ladder triggers"
+      properties:
+        at_24h:  {type: boolean}
+        at_72h:  {type: boolean}
+        at_168h: {type: boolean}
+        auto_paused: {type: boolean}
+
+# =============================================================================
+# INSTANCE EXAMPLES (drop-in templates for humans filling approval artifacts)
+# =============================================================================
+examples:
+
+  approved_d01:
+    gate_id: D01
+    status: approved
+    approver:
+      stakeholder_ref: "STK-07-client-strategy"
+      name: "Joana Silva"
+      organization: "Flash Inc"
+      email: "joana.silva@flash.com"
+    timestamp: "2026-04-20T14:32:00Z"
+    notes: "Análise coerente com briefing. Pillar 3 pode ficar mais conciso, mas não bloqueia."
+    approval_artifact_ref: "outputs/slides-creator/flash-2026/approvals/D01-approval-email.pdf"
+
+  rejected_d02:
+    gate_id: D02
+    status: rejected
+    approver:
+      stakeholder_ref: "STK-07-client-strategy"
+      name: "Joana Silva"
+      organization: "Flash Inc"
+    timestamp: "2026-04-20T16:10:00Z"
+    notes: "Slides 7-9 não seguem o arco SCQA esperado. Complication precisa ficar mais forte antes da Answer."
+    approval_artifact_ref: null
+
+  pending_d03:
+    gate_id: D03
+    status: pending
+    approver:
+      stakeholder_ref: "STK-07-client-strategy"
+      name: "(awaiting)"
+    timestamp: "2026-04-20T11:00:00Z"
+    notes: "Enviado para revisão do brand steward + strategy team — SLA 72h"
+
+  waived_d01_advisory:
+    gate_id: D01
+    status: waived
+    approver:
+      stakeholder_ref: "STK-05-sr-consultant"
+      name: "Alan Nicolas"
+    timestamp: "2026-04-20T09:00:00Z"
+    notes: "Modo advisory acionado (flag --gate-mode advisory). Deviation registrada em deviations.yaml#DEV-2026-002."
+    approval_artifact_ref: "outputs/slides-creator/flash-2026/deviations.yaml#DEV-2026-002"
+
+# =============================================================================
+# PIPELINE GUARD BEHAVIOR (consumed by workflow transitions)
+# =============================================================================
+guard:
+  block_transition_if:
+    - "file not exists"
+    - "schema validation fails"
+    - "status in [pending, rejected]"
+    - "status == waived AND gate_mode != advisory"
+  allow_transition_if:
+    - "status == approved"
+    - "status == waived AND gate_mode == advisory AND deviation logged"
+
+# =============================================================================
+# SLA LADDER (applied by orchestrator clock)
+# =============================================================================
+sla_defaults:
+  - { at: 24h, action: "nudge senior consultant (SendMessage + notification channel)" }
+  - { at: 72h, action: "escalate to C-level stakeholder ref" }
+  - { at: 168h, action: "auto_pause — mark workflow paused; require manual resume" }
+
+# =============================================================================
+# FILESYSTEM CONVENTION
+# =============================================================================
+filesystem:
+  path_template: "outputs/slides-creator/{deck_slug}/checkpoints/{gate_id}.yaml"
+  rationale: "Per artifact-classification.md — outputs/ (not workspace/) because these are deck-specific transitional artifacts regenerable from pipeline run."
+  git_tracked: true
+  retention: "keep for 1 release cycle (or CODEOWNERS policy)"

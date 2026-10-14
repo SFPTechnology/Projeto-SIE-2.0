@@ -1,0 +1,66 @@
+schema: 1
+story: "SIE-DS-06"
+story_title: "Canvas + Inspector para Unifilar (CanvasInspectorTemplate)"
+story_path: "docs/stories/story-SIE-DS-06-canvas-inspector-unifilar.md"
+gate: CONCERNS
+status_reason: >-
+  AC1-AC8 PASS: UnifilarWorkspace real integrado sem modificação (git diff vazio no
+  diretório inteiro src/components/unifilar/), fronteira de namespace corrigida
+  (achado real de contraste --sie-texto vs --sie-cc-text-primary), fixture corrigido
+  com 2 bugs reais achados via typecheck (tests/ fora do tsconfig.json). Regressão
+  152/1051 (zero falha real). CONCERNS mantido pela indisponibilidade do CodeRabbit —
+  8ª story consecutiva.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-31T00:00:00-03:00"
+expires: "2026-08-14T00:00:00-03:00"
+quality_score: 90
+mode: "yolo (agente-a-agente: @sm → @po → @architect → @dev → @qa, sem fase @devops)"
+
+smoke_test:
+  url: "http://127.0.0.1:5173/sie-command-center-preview"
+  status_code: 200
+  content_checks:
+    - "Diagrama unifilar interativo do projeto"
+    - "Memorial técnico"
+    - "ADD-Cozinha-MicroOndas"
+  contrast_boundary_check: "Seção do Unifilar referencia --sie-texto, não referencia --sie-cc-text-primary — confirmado via HTML servido pelo dev server real."
+  legacy_regression_check:
+    urls: ["http://127.0.0.1:5173/", "http://127.0.0.1:5173/diagnostico"]
+    status_code: 200
+
+trace_ac:
+  - { ac: AC1, descricao: "Integração real do UnifilarWorkspace", resultado: PASS }
+  - { ac: AC2, descricao: "Fixture reaproveitado (corrigido, não inventado)", resultado: PASS }
+  - { ac: AC3, descricao: "Integração no shell com ContextHeader próprio", resultado: PASS }
+  - { ac: AC4, descricao: "Export preservado", resultado: PASS }
+  - { ac: AC5, descricao: "Zero modificação do Unifilar real (diff do diretório inteiro)", resultado: PASS }
+  - { ac: AC6, descricao: "Fronteira de namespace / contraste", resultado: PASS }
+  - { ac: AC7, descricao: "Zero impacto no legado geral", resultado: PASS }
+  - { ac: AC8, descricao: "Testado localmente", resultado: PASS }
+
+top_issues:
+  - id: "TEST-001"
+    severity: high
+    finding: "CodeRabbit CLI (WSL) indisponível pela 8ª story consecutiva (SIGILL/exit 132)."
+    suggested_action: "@devops — crítico antes de SIE-DS-07 (gate de qualidade formal)."
+    suggested_owner: devops
+  - id: "ARCH-002"
+    severity: medium
+    finding: "tests/ui/unifilar-workspace.vrt.test.tsx tem fixture desatualizado (circuitos_bloqueados ausente, código de diagnóstico ATN-DR-PENDENTE inválido) — nunca detectado porque tests/ está fora de tsconfig.json (só src/** incluído)."
+    suggested_action: "Avaliar inclusão de tests/ no typecheck do projeto; corrigir o fixture original separadamente."
+    suggested_owner: dev
+  - id: "DOC-001"
+    severity: low
+    finding: "Checkboxes de Acceptance Criteria permanecem [ ] apesar de todos PASS — padrão recorrente."
+    suggested_action: "@po marca [x] durante *close-story."
+    suggested_owner: po
+
+waiver: { active: false }
+
+recommendations:
+  immediate:
+    - action: "Reparar binário CodeRabbit no WSL — 8ª ocorrência, crítico antes de SIE-DS-07"
+      refs: ["~/.local/bin/coderabbit"]
+  future:
+    - action: "Avaliar incluir tests/ no tsconfig.json para pegar bugs de tipo em fixtures de teste"
+      refs: ["tsconfig.json", "tests/ui/unifilar-workspace.vrt.test.tsx"]

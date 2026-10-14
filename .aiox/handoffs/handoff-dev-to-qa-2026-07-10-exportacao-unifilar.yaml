@@ -1,0 +1,31 @@
+handoff:
+  from_agent: "dev"
+  to_agent: "qa"
+  pipeline_id: "yolo-exportacao-unifilar"
+  story_context:
+    story_id: "epic-unifilar-completo/story-1.6-parcial"
+    story_path: "sistema-de-instala-es-el-tricas-sie-main/docs/reports/workflow-yolo-exportacao-unifilar.md"
+    story_status: "InReview"
+    current_task: "validar-resultado (Fase 3)"
+    branch: "feature/nbr5410-conformidade-closeout"
+  decisions:
+    - "Sonda Python (spawn python -c) com cache 30s decide capacidades reais"
+    - "Exit 3 do CLI (sucesso parcial) vira naoGerados[] na resposta, nunca 500"
+    - "Artefatos em tmpdir/sie-unifilar-export com TTL 30min + registro em memória"
+    - "Layout clustered degrada p/ linear com diagnóstico ATENCAO nesta versão"
+    - "UI importa apenas types do boundary server (import type — SPA-safe)"
+  files_modified:
+    - "src/server/unifilar-export/{tipos,capacidades-export,executar-pipeline,artefatos-temporarios}.ts (+3 testes)"
+    - "src/api/schemas/unifilar-export.ts (+ teste)"
+    - "src/routes/api/v1/projetos.$projetoId.unifilar.{capacidades,exportar}.ts"
+    - "src/routes/api/v1/unifilar.artefatos.$artefatoId.ts"
+    - "src/components/unifilar/{UnifilarExportConfigModal.tsx (+teste), UnifilarExportBar.tsx, exportar-unifilar.ts}"
+    - "src/hooks/queries.ts, src/routes/projetos.$projetoId_.unifilar.tsx"
+    - "export/sie_unifilar_export/{cli.py, carimbo.py (novo), exportar_svg.py, exportar_dxf.py}"
+    - "export/tests/test_cli.py (+7 testes)"
+  blockers: []
+  next_action: >
+    Validar: suíte vitest completa (regressão), pytest export/ (34 passed em CPython
+    3.12), eslint/tsc verdes, e2e CLI verificado (SVG + carimbo + relatorio + skips).
+    Confirmar fallback JSON intocado e critérios da seção 6 do doc de arquitetura.
+  consumed: true

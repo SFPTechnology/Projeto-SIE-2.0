@@ -1,0 +1,27 @@
+schema: sinkra-deepresearch-task-v1
+id: SINKRA-DR-09
+group: public_web_en
+language: en
+kind: public_web
+prompt: 'SINKRA-DR-09: executar pesquisa public_web_en com claims verificáveis, fontes
+  e relatório comparativo para decisão SINKRA.'
+source_mix:
+  public_web: high
+  private_kb: none
+  papers: low
+required_outputs:
+- trace.jsonl
+- tool-calls.jsonl
+- claims.yaml
+- sources.yaml
+- report.md
+- rubric-results.yaml
+- cost-latency.yaml
+- failure-analysis.md
+- replay-manifest.yaml
+gold_claims_file: fixtures/gold-claims/SINKRA-DR-09.yaml
+private_kb_fixture: null
+acceptance:
+  minimum_supported_claims: 5
+  forbid_private_leak: true
+  require_cost_latency: true

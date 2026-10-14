@@ -1,0 +1,37 @@
+{
+  "schema": "deepresearch-absorption-benchmark.qa-rubric.v1",
+  "generated_at": "2026-05-18",
+  "per_gap_acceptance": {
+    "GAP-01": {"tests": 6, "all_must_pass": true, "criteria": ["container_hardened", "resource_limits", "timeout_works", "sse_streaming", "security_audit", "phase_yaml_invokes"]},
+    "GAP-02": {"tests": 5, "all_must_pass": true, "criteria": ["pip_install_clean", "docker_pull_run", "ci_auto_publish", "notice_txt_valid", "standalone_no_hub"]},
+    "GAP-03": {"tests": 6, "all_must_pass": true, "criteria": ["claude_desktop_integration", "cursor_integration", "stdio_transport", "http_sse_transport", "schema_validation", "error_codes_consistent"]},
+    "GAP-04": {"tests": 5, "all_must_pass": true, "criteria": ["auto_detect_gpu", "switch_ui_works", "byok_fallback", "performance_baseline", "notice_compliance"]},
+    "GAP-05": {"tests": 6, "all_must_pass": true, "criteria": ["persist_cross_session", "confidence_recalculated", "phase_0_reads", "phase_5_writes", "schema_versioned", "performance_under_load"]},
+    "GAP-06": {"tests": 5, "all_must_pass": true, "criteria": ["arxiv_adapter", "pubmed_adapter", "semantic_scholar_adapter", "citation_gate_prefers_scholarly", "academic_query_test"]},
+    "GAP-07": {"tests": 4, "all_must_pass": true, "criteria": ["bench_reproducible", "score_published", "badge_on_readme", "score_vs_baseline"]},
+    "GAP-08": {"deferred": true},
+    "GAP-09": {"tests": 4, "all_must_pass": true, "criteria": ["sandbox_available_dep", "generates_accurate", "embedded_in_report", "multiple_formats"]},
+    "GAP-10": {"tests": 3, "all_must_pass": true, "criteria": ["agplv3_license_present", "differentiation_clear", "ci_lint_license"]}
+  },
+  "regression_tests": {
+    "must_pass_before_any_merge": [
+      "coverage_gate_still_vetos",
+      "citation_gate_still_vetos",
+      "incremental_learning_log",
+      "product_discovery_mode",
+      "multi_mode_unified",
+      "pt_br_vertical",
+      "tri_layer_separation",
+      "workflow_scaffold"
+    ]
+  },
+  "overall_targets": {
+    "aiox_score_target": 88,
+    "aiox_score_baseline": 60.25,
+    "aiox_ranking_target": "#1 or #2 in segment",
+    "scenarios_wins_target": 5,
+    "scenarios_wins_baseline": 3
+  },
+  "sign_off_required_from": ["@aiox-architect", "@aiox-qa", "@aiox-pm"],
+  "quorum_acceptable": "2 of 3 founders or roundtable consensus"
+}

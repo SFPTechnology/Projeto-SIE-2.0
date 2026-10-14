@@ -1,0 +1,34 @@
+{
+  "schema": "slides-creator-absorption-todo.v1",
+  "sort": "coverage",
+  "generated_at": "2026-05-17",
+  "items": [
+    {"order": 1, "priority": "P0", "title": "Criar native-slide-ir.schema.json", "source": "ppt-master + slides-creator", "coverage_gap": "native_editable_pptx"},
+    {"order": 2, "priority": "P0", "title": "Criar renderer PPTX nativo básico", "source": "ppt-master", "coverage_gap": "native_editable_pptx"},
+    {"order": 3, "priority": "P0", "title": "Criar editability-report.json", "source": "ppt-master", "coverage_gap": "native_editable_pptx"},
+    {"order": 4, "priority": "P0", "title": "Criar CLI slides:generate", "source": "Presenton + slide-deck-ai", "coverage_gap": "api_mcp_self_hosted"},
+    {"order": 5, "priority": "P0", "title": "Criar API POST /slides/generate", "source": "Presenton", "coverage_gap": "api_mcp_self_hosted"},
+    {"order": 6, "priority": "P0", "title": "Criar MCP slides.generate/review/export", "source": "Presenton + PPTAgent", "coverage_gap": "api_mcp_self_hosted"},
+    {"order": 7, "priority": "P0", "title": "Persistir planning-reflection.jsonl", "source": "PPTAgent", "coverage_gap": "agentic_planning_reflection"},
+    {"order": 8, "priority": "P0", "title": "Adaptar rubricas PPTEval", "source": "PPTAgent", "coverage_gap": "agentic_planning_reflection"},
+    {"order": 9, "priority": "P0", "title": "Implementar provider registry", "source": "Presenton + slide-deck-ai", "coverage_gap": "privacy_local_byok"},
+    {"order": 10, "priority": "P0", "title": "Criar workspace por deck", "source": "Presenton", "coverage_gap": "api_mcp_self_hosted"},
+    {"order": 11, "priority": "P1", "title": "Outline editor mínimo", "source": "presentation-ai", "coverage_gap": "web_editor_theme_runtime"},
+    {"order": 12, "priority": "P1", "title": "Prompt-to-edit com diff", "source": "banana-slides + ppt-master", "coverage_gap": "prompt_to_edit_ux"},
+    {"order": 13, "priority": "P1", "title": "Theme picker e import de PPTX", "source": "Presenton + presentation-ai + ppt-master", "coverage_gap": "web_editor_theme_runtime"},
+    {"order": 14, "priority": "P1", "title": "OMML/math support", "source": "powerpoint-skill", "coverage_gap": "math_diagrams_academic"},
+    {"order": 15, "priority": "P1", "title": "Diagram engines", "source": "powerpoint-skill", "coverage_gap": "math_diagrams_academic"},
+    {"order": 16, "priority": "P1", "title": "Visual QA screenshots", "source": "PPTAgent + powerpoint-skill", "coverage_gap": "narrative_governance_qa"},
+    {"order": 17, "priority": "P2", "title": "Share links", "source": "Gamma + presentation-ai", "coverage_gap": "share_publish_analytics"},
+    {"order": 18, "priority": "P2", "title": "Analytics", "source": "Gamma benchmark", "coverage_gap": "share_publish_analytics"},
+    {"order": 19, "priority": "P2", "title": "Narração/TTS", "source": "ppt-master", "coverage_gap": "multimodal_video_narration"},
+    {"order": 20, "priority": "P2", "title": "Export MP4", "source": "ppt-master + banana-slides", "coverage_gap": "multimodal_video_narration"},
+    {"order": 21, "priority": "P2", "title": "Query→research→deck", "source": "PresentAgent-2", "coverage_gap": "source_document_parsing"},
+    {"order": 22, "priority": "P2", "title": "Q&A sobre apresentação", "source": "PresentAgent-2", "coverage_gap": "multimodal_video_narration"}
+  ],
+  "blocked": [
+    {"title": "Reuso de código banana-slides", "reason": "AGPL-3.0", "next_step": "ADR/licença"},
+    {"title": "Reuso de código PresentAgent-2", "reason": "Licença não verificada", "next_step": "Confirmar licença"},
+    {"title": "Fork único", "reason": "Perde governança SINKRA", "next_step": "Absorção modular"}
+  ]
+}

@@ -1,0 +1,20 @@
+run_id: "sdc-yolo-dep-ux-01-2026-08-03T01-34-05-127-03-00"
+workflow_id: "sdc-yolo-dep-ux-01"
+terminal_state: "ready_for_devops"
+completed_at: "2026-08-03T02:04:32-03:00"
+manifest_fingerprint: "a96a39eb597981b8c1e5dd6213c21b991dacf4f468e39d02c53852d05e9c9c63"
+completed_phases:
+  - P0
+  - P1
+  - P2
+  - P3
+  - P4
+  - P5
+  - P6
+  - P7
+  - P8
+evidence_root: ".aiox/sdc-headless/sdc-yolo-dep-ux-01-2026-08-03T01-34-05-127-03-00"
+remote_effects_executed: false
+code_changes_executed: true
+qa_verdict: "PASS WITH CONCERNS / WAIVED"
+release_gate_requirement: "Run global lint, typecheck and test successfully in a reconciled worktree before merge or release."

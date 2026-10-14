@@ -1,0 +1,306 @@
+{
+  "schema": "slides-creator.template-volume-benchmark.v1",
+  "generated_at": "2026-05-18T16:05:00-03:00",
+  "subject": "slide creator skill",
+  "verdict": {
+    "ahead_in_renderable_template_volume": false,
+    "ahead_in_contracts_routing_qa": true,
+    "summary": "slide creator skill lidera Design e Planejamento/Narrativa por corpus validado; Waves 10-11 adicionaram delivery/API/MCP e gramática narrativa-design/editor sem inflar contagem visual."
+  },
+  "slide_creator": {
+    "template_yaml_files": 75,
+    "deck_route_templates": 20,
+    "copy_deck_templates": 4,
+    "playbooks": 8,
+    "slide_function_templates": 60,
+    "visual_templates": 105,
+    "chart_data_modes": 14,
+    "image_types": 15,
+    "layout_families": 5,
+    "media_layouts": 4,
+    "composition_patterns": 5,
+    "brand_system_patterns": 8,
+    "aiox_deep_patterns": 11,
+    "redpine_deep_patterns": 8,
+    "theme_profiles": 25,
+    "brand_system_profiles": 2,
+    "design_philosophies": 20,
+    "runtime_contracts": 29,
+    "qa_gate_items": 24,
+    "research_routes": 4,
+    "import_packs": 6,
+    "wireframes_html": 58,
+    "design_100_fixture_files": 6,
+    "source_deck_fixtures": 8,
+    "brand_fidelity_playbooks": 4,
+    "rendered_design_fixture_sets": 5,
+    "import_files": 5,
+    "eval_files": 3,
+    "design_regression_cases": 30,
+    "template_import_regression_cases": 20,
+    "theme_runtime_snapshot_cases": 16,
+    "narrative_regression_cases": 25,
+    "runtime_gap_groups": 6,
+    "speaker_note_modes": 4,
+    "delivery_share_contracts": 1,
+    "api_mcp_cli_contracts": 1,
+    "delivery_validator": 1,
+    "narrative_design_moment_archetypes": 9,
+    "storyboard_edit_contracts": 1,
+    "narrative_design_validator": 1
+  },
+  "latest_wave": {
+    "route_templates_added_total": 13,
+    "slide_function_templates_added_total": 50,
+    "visual_templates_added_total": 87,
+    "theme_profiles_added_total": 22,
+    "wireframes_html_added_total": 53,
+    "wave_1": {
+      "route_templates_added": 5,
+      "slide_function_templates_added": 12,
+      "visual_templates_added": 28,
+      "theme_profiles_added": 8,
+      "wireframes_html_added": 6
+    },
+    "wave_2": {
+      "route_templates_added": 8,
+      "slide_function_templates_added": 18,
+      "visual_templates_added": 20,
+      "theme_profiles_added": 9,
+      "wireframes_html_added": 10
+    },
+    "wave_3": {
+      "route_templates_added": 0,
+      "slide_function_templates_added": 12,
+      "visual_templates_added": 19,
+      "theme_profiles_added": 5,
+      "wireframes_html_added": 12
+    },
+    "wave_4": {
+      "route_templates_added": 0,
+      "slide_function_templates_added": 0,
+      "visual_templates_added": 0,
+      "theme_profiles_added": 0,
+      "wireframes_html_added": 17
+    },
+    "qa_revision": {
+      "route_templates_added": 0,
+      "slide_function_templates_added": 0,
+      "visual_templates_added": 10,
+      "theme_profiles_added": 0,
+      "wireframes_html_added": 0,
+      "cross_reference_missing_after_fix": 0
+    },
+    "wave_5": {
+      "route_templates_added": 0,
+      "slide_function_templates_added": 8,
+      "visual_templates_added": 10,
+      "theme_profiles_added": 0,
+      "wireframes_html_added": 8,
+      "source": "Presenton utility layouts: Code, ProductOverview, general final/navigation slides."
+    },
+    "useful_template_focus": [
+      "AI product demo",
+      "design system audit",
+      "investor update",
+      "technical architecture review",
+      "customer case study",
+      "executive summary",
+      "decision options",
+      "financial waterfall",
+      "risk heatmap",
+      "pricing table",
+      "case study proof",
+      "fundraising pitch",
+      "sales proposal",
+      "QBR operating review",
+      "training course",
+      "workshop facilitation",
+      "product launch",
+      "incident postmortem",
+      "hiring onboarding",
+      "risk heatmap",
+      "pricing table",
+      "launch calendar",
+      "cohort retention",
+      "unit economics",
+      "scoring transparency",
+      "persona fit",
+      "requirements traceability",
+      "compliance readiness",
+      "survey results",
+      "roadmap status",
+      "portfolio allocation",
+      "brand principles",
+      "social proof wall",
+      "objection matrix",
+      "user story map",
+      "architecture tradeoff",
+      "competitive landscape",
+      "dependency map",
+      "decision tree",
+      "data lineage",
+      "experiment grid",
+      "quote evidence panel",
+      "sankey flow",
+      "scatter plot",
+      "org chart",
+      "value chain",
+      "responsibility matrix",
+      "feature matrix",
+      "harvey balls table",
+      "dashboard grid",
+      "screen sequence",
+      "roadmap decision",
+      "moodboard grid",
+      "API request response",
+      "code explanation",
+      "mission vision",
+      "business challenges",
+      "service catalog",
+      "team credentials",
+      "table of contents",
+      "contact next step",
+      "Design source deck fixtures",
+      "brand fidelity playbooks",
+      "rendered design fixture sets",
+      "transparent Design score evidence"
+    ],
+    "wave_6_design_mastery": {
+      "source_deck_fixtures_added": 8,
+      "brand_fidelity_playbooks_added": 4,
+      "rendered_design_fixture_sets_added": 5,
+      "runtime_score_evidence_added": 1,
+      "source": "Design 100 gap closure: source-deck fixtures, brand fidelity playbooks, rendered fixture routing and transparent score ledger."
+    },
+    "wave_7_design_capability_corpus": {
+      "design_regression_cases": 30,
+      "template_import_regression_cases": 20,
+      "theme_runtime_snapshot_cases": 16,
+      "validator": "scripts/validate_design_capability.py",
+      "result": "Design average 99.33 and 9/9 Design line wins in the matrix."
+    },
+    "wave_8_narrative_capability_corpus": {
+      "narrative_regression_cases": 25,
+      "validator": "scripts/validate_narrative_capability.py",
+      "result": "Planning/Narrative average 100 and 9/9 Planning line wins in the matrix."
+    },
+    "wave_9_storyboard_runtime_bridge": {
+      "new_contracts": [
+        "storyboard-render-bridge",
+        "speaker-notes-narration",
+        "runtime-gap-absorption-corpus"
+      ],
+      "validator": "scripts/validate_runtime_gap_capability.py",
+      "result": "Consolidated score moved to 74.27, passing Presenton and narrowing the gap to ppt-master."
+    },
+    "wave_10_delivery_api_contracts": {
+      "new_contracts": [
+        "delivery-package-contract",
+        "api-mcp-cli-contract"
+      ],
+      "validator": "scripts/validate_delivery_capability.py",
+      "result": "Consolidated score moved to 77.51. slide creator skill now ranks #1 in the absorption map while keeping PPTX renderer, editor runtime, infra and multimedia as implementation gaps."
+    },
+    "wave_11_narrative_design_editor_bridge": {
+      "new_contracts": [
+        "narrative-design-moment-grammar",
+        "storyboard-edit-contract"
+      ],
+      "moment_archetypes": 9,
+      "validator": "scripts/validate_narrative_design_capability.py",
+      "result": "Consolidated score moved to 77.93; Editor improved only where storyboard-safe edit contracts add evidence, while runtime gaps remain explicit."
+    }
+  },
+  "players": {
+    "Presenton": {
+      "template_families": 13,
+      "slide_component_tsx": 183,
+      "strength": "renderable app template library"
+    },
+    "ppt-master": {
+      "layout_families": 17,
+      "layout_svg_files": 86,
+      "layout_design_specs": 17,
+      "chart_svg_templates": 71,
+      "image_type_templates": 15,
+      "example_spec_locks": 9,
+      "icon_svgs": 11631,
+      "strength": "editable visual template and chart library"
+    },
+    "presentation-ai": {
+      "template_ids": 233,
+      "theme_names": 38,
+      "strength": "large parameterized visual/template taxonomy and themes"
+    },
+    "PPTAgent": {
+      "template_packs": 6,
+      "source_pptx": 6,
+      "slide_induction_files": 6,
+      "strength": "real PPTX packs with induction metadata"
+    },
+    "PresentAgent-2": {
+      "resource_template_pptx": 5,
+      "all_resource_pptx": 9,
+      "strength": "PPTX resources and multimodal research deck assets"
+    },
+    "banana-slides": {
+      "job_template_rows": 2,
+      "template_models": 2,
+      "strength": "prompt-to-edit and runtime UX, not local template volume"
+    },
+    "powerpoint-skill": {
+      "example_pptx": 1,
+      "strength": "technical QA, diagrams and PowerPoint safety"
+    },
+    "slide-deck-ai": {
+      "prompt_templates": 2,
+      "strength": "simple CLI/prompt generation"
+    }
+  },
+  "reference_targets": {
+    "deck_playbooks": {
+      "minimum": 12,
+      "reference": 20
+    },
+    "slide_function_templates": {
+      "minimum": 40,
+      "reference": 80
+    },
+    "visual_layout_templates": {
+      "minimum": 60,
+      "reference": 150
+    },
+    "chart_diagram_templates": {
+      "minimum": 50,
+      "reference": 100
+    },
+    "theme_profiles": {
+      "minimum": 20,
+      "reference": 40
+    },
+    "brand_template_manifests": {
+      "minimum": 10,
+      "reference": 30
+    },
+    "wireframes_html_tmpl": {
+      "minimum": 50,
+      "reference": 150
+    },
+    "design_fixtures_validated": {
+      "minimum": 10,
+      "reference": 30
+    },
+    "source_decks_pptx": {
+      "minimum": 5,
+      "reference": 20
+    }
+  },
+  "recommended_absorption": [
+    "Transform presentation-ai 233 template IDs into a local taxonomy by category and usage, without copying UI.",
+    "Create Presenton-inspired HTML/TMPL slot templates for the strongest families.",
+    "Map ppt-master 71 chart templates and 86 layout SVGs into local visual_templates and wireframes.",
+    "Grow theme profiles from 3 to at least 20.",
+    "Create at least 10 Design 100 fixtures that pass validate_design_mastery.py."
+  ]
+}

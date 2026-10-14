@@ -1,0 +1,570 @@
+{
+  "benchmark_id": "intercom-vs-chatwoot",
+  "generated_at": "2026-05-06T00:00:00Z",
+  "subjects": {
+    "a": "intercom",
+    "b": "chatwoot"
+  },
+  "equivalence_levels": {
+    "5": "Forte — Funcionalidade equivalente, mesma profundidade",
+    "4": "Parcial alta — Equivalente forte com pequenas diferencas de escopo",
+    "3": "Parcial — Equivalente parcial, diferencas significativas",
+    "2": "Fraco — Equivalente fraco, gap substancial",
+    "1": "Sem equivalente — Sem correspondencia direta"
+  },
+  "categories": [
+    {
+      "category": "AI / Automation",
+      "rows": [
+        {
+          "feature": "AI Agent autonomous deflection",
+          "intercom": "Fin AI Agent — Fin Apex 1.0 (proprietary, patented), $0.99/resolution, 51% medio publicado",
+          "chatwoot": "Captain AI — modelo nao disclosed, credits-based (300/500/800/mo + $20/1k extras), deflection nao publicado",
+          "paridade": 3,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Intercom publica modelo + deflection rate + tem RAG patentes. Chatwoot Captain e mais basico (third-parties citam falta de autonomous workflows, custom actions, simulation)",
+          "confidence": "High"
+        },
+        {
+          "feature": "Agent-side AI assistant (copilot)",
+          "intercom": "Fin Copilot — $29/agent/mo (10 conv free); draft, summary, translate, suggest",
+          "chatwoot": "Captain Co-Pilot — incluido nos credits; draft, improve, translate",
+          "paridade": 4,
+          "delta_direction": "Empate (paridade alta)",
+          "delta_rationale": "Funcionalidade equivalente; diferenca esta no modelo de cobranca",
+          "confidence": "High"
+        },
+        {
+          "feature": "Knowledge gap detection",
+          "intercom": "Implicito via Fin reports + analytics",
+          "chatwoot": "Smart FAQs (explicit feature)",
+          "paridade": 4,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Chatwoot tem feature explicita; Intercom faz via reports indiretos",
+          "confidence": "Medium"
+        },
+        {
+          "feature": "Conversation summarization",
+          "intercom": "Fin Copilot summary",
+          "chatwoot": "Memories (auto-summarize)",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Ambos suportam; profundidade similar",
+          "confidence": "High"
+        },
+        {
+          "feature": "Automation rules / workflows",
+          "intercom": "Workflows (Advanced+, $85/seat)",
+          "chatwoot": "Automation rules (Business+, $39/seat)",
+          "paridade": 4,
+          "delta_direction": "Chatwoot (preco)",
+          "delta_rationale": "Funcionalidade equivalente; Chatwoot acessa por menos da metade do preco",
+          "confidence": "High"
+        },
+        {
+          "feature": "Custom AI actions (refunds, trial extensions)",
+          "intercom": "Suportado via Fin workflows + integration apps",
+          "chatwoot": "NAO suportado nativamente (third-parties citam ausencia)",
+          "paridade": 2,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Gap substancial — Intercom permite Fin executar acoes em sistemas externos; Chatwoot Captain limitado a respostas",
+          "confidence": "Medium"
+        },
+        {
+          "feature": "Pre-deployment simulation",
+          "intercom": "Suportado (Fin pode ser testada antes go-live)",
+          "chatwoot": "NAO suportado (third-parties citam ausencia)",
+          "paridade": 2,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Chatwoot Captain tem playground mas falta simulation mode contra past customer questions",
+          "confidence": "Medium"
+        }
+      ]
+    },
+    {
+      "category": "Channels",
+      "rows": [
+        {
+          "feature": "In-app Messenger",
+          "intercom": "Best-in-class — Messenger SDK iOS/Android/Web/RN/Flutter polido",
+          "chatwoot": "Widget chat customizavel; SDK menos profundo",
+          "paridade": 3,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Intercom designed para in-app SaaS; Chatwoot widget e funcional mas nao no mesmo nivel",
+          "confidence": "High"
+        },
+        {
+          "feature": "Email shared inbox",
+          "intercom": "Suportado (todos tiers)",
+          "chatwoot": "Suportado (Startups+)",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Funcionalidade equivalente",
+          "confidence": "High"
+        },
+        {
+          "feature": "WhatsApp Business Cloud API",
+          "intercom": "Cloud-Direct oficial Meta (todos tiers); outbound campaigns requer Proactive Support Plus add-on $99/mo",
+          "chatwoot": "BYOC — cliente conecta WABA propria via BSP de escolha; sem markup; outbound included Startups+",
+          "paridade": 4,
+          "delta_direction": "Chatwoot (BYOC)",
+          "delta_rationale": "Chatwoot deixa cliente escolher BSP e pagar Meta direto; Intercom abstrai mas adiciona add-on para outbound",
+          "confidence": "High"
+        },
+        {
+          "feature": "Facebook Messenger",
+          "intercom": "Nativo",
+          "chatwoot": "Nativo (Startups+)",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Funcionalidade equivalente",
+          "confidence": "High"
+        },
+        {
+          "feature": "Instagram DM",
+          "intercom": "Nativo",
+          "chatwoot": "Nativo (Startups+)",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Funcionalidade equivalente",
+          "confidence": "High"
+        },
+        {
+          "feature": "Telegram",
+          "intercom": "NAO suportado nativamente",
+          "chatwoot": "Nativo (Startups+)",
+          "paridade": 1,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Sem equivalente em Intercom",
+          "confidence": "High"
+        },
+        {
+          "feature": "TikTok",
+          "intercom": "NAO suportado nativamente",
+          "chatwoot": "Nativo (Startups+)",
+          "paridade": 1,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Sem equivalente em Intercom",
+          "confidence": "High"
+        },
+        {
+          "feature": "Line",
+          "intercom": "NAO suportado nativamente (mercados Asia)",
+          "chatwoot": "Nativo (Startups+)",
+          "paridade": 1,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Sem equivalente em Intercom",
+          "confidence": "High"
+        },
+        {
+          "feature": "SMS",
+          "intercom": "Nativo (todos tiers)",
+          "chatwoot": "Nativo via Twilio (Startups+)",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Funcionalidade equivalente",
+          "confidence": "High"
+        },
+        {
+          "feature": "Custom API channels",
+          "intercom": "Limitado (Apps via App Store)",
+          "chatwoot": "API Channels — extensibilidade open para canais custom",
+          "paridade": 2,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Chatwoot permite criar canal proprio via API; Intercom limita a integracoes via App Store",
+          "confidence": "High"
+        }
+      ]
+    },
+    {
+      "category": "Help Center / Knowledge",
+      "rows": [
+        {
+          "feature": "Public help center",
+          "intercom": "Suportado (Essential+)",
+          "chatwoot": "Suportado (Startups+)",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Funcionalidade equivalente",
+          "confidence": "High"
+        },
+        {
+          "feature": "Multilingual help center",
+          "intercom": "Advanced+ ($85/seat)",
+          "chatwoot": "Hacker free + Startups+",
+          "paridade": 4,
+          "delta_direction": "Chatwoot (preco)",
+          "delta_rationale": "Chatwoot oferece em tier inferior",
+          "confidence": "High"
+        },
+        {
+          "feature": "RAG source para AI",
+          "intercom": "Help center + procedures + policies (Fin Flywheel)",
+          "chatwoot": "Help center + past chats + FAQs",
+          "paridade": 4,
+          "delta_direction": "Intercom (procedures + policies)",
+          "delta_rationale": "Intercom permite Fin treinar em procedures/policies operacionais formais; Chatwoot mais basico",
+          "confidence": "Medium"
+        }
+      ]
+    },
+    {
+      "category": "Ticketing / Inbox",
+      "rows": [
+        {
+          "feature": "Shared inbox / conversations",
+          "intercom": "Suportado (Essential+)",
+          "chatwoot": "Suportado (Hacker+)",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Funcionalidade equivalente",
+          "confidence": "High"
+        },
+        {
+          "feature": "Multiple inboxes",
+          "intercom": "Advanced+ ($85)",
+          "chatwoot": "Suportado todos tiers",
+          "paridade": 4,
+          "delta_direction": "Chatwoot (preco)",
+          "delta_rationale": "Chatwoot oferece desde Hacker; Intercom gata em Advanced",
+          "confidence": "High"
+        },
+        {
+          "feature": "Round-robin assignment",
+          "intercom": "Advanced+",
+          "chatwoot": "Auto-assignment todos tiers",
+          "paridade": 4,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Chatwoot auto-assignment desde Hacker; Intercom gata em Advanced",
+          "confidence": "High"
+        },
+        {
+          "feature": "SLAs",
+          "intercom": "Expert ($132)",
+          "chatwoot": "Business+ ($39)",
+          "paridade": 4,
+          "delta_direction": "Chatwoot (preco)",
+          "delta_rationale": "Chatwoot oferece SLA por 70% menos preco",
+          "confidence": "High"
+        },
+        {
+          "feature": "Custom attributes",
+          "intercom": "Advanced+",
+          "chatwoot": "Business+",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Ambos suportam em mid-tier",
+          "confidence": "High"
+        },
+        {
+          "feature": "CSAT surveys",
+          "intercom": "Proactive Support Plus add-on $99/mo",
+          "chatwoot": "Business+ ($39) included",
+          "paridade": 4,
+          "delta_direction": "Chatwoot (preco + included)",
+          "delta_rationale": "Intercom cobra add-on separado; Chatwoot inclui em tier mid",
+          "confidence": "High"
+        }
+      ]
+    },
+    {
+      "category": "Proactive Support / Outbound",
+      "rows": [
+        {
+          "feature": "In-app outbound messages",
+          "intercom": "Best-in-class — banners, tooltips, in-app messages, surveys",
+          "chatwoot": "Campaigns (Startups+); menos polished",
+          "paridade": 3,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Intercom designed para SaaS in-app proactive; Chatwoot campaigns mais basico",
+          "confidence": "High"
+        },
+        {
+          "feature": "Product Tours",
+          "intercom": "Proactive Support Plus add-on",
+          "chatwoot": "NAO disponivel",
+          "paridade": 1,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Sem equivalente em Chatwoot",
+          "confidence": "High"
+        },
+        {
+          "feature": "WhatsApp outbound campaigns",
+          "intercom": "Requer Proactive Support Plus $99/mo",
+          "chatwoot": "Included Startups+",
+          "paridade": 4,
+          "delta_direction": "Chatwoot (preco)",
+          "delta_rationale": "Chatwoot include em tier base; Intercom add-on",
+          "confidence": "High"
+        }
+      ]
+    },
+    {
+      "category": "Reporting & Analytics",
+      "rows": [
+        {
+          "feature": "Pre-built reports",
+          "intercom": "Robusto (todos tiers)",
+          "chatwoot": "Live reporting + conversation reports basico",
+          "paridade": 3,
+          "delta_direction": "Intercom",
+          "delta_rationale": "G2 reviewers concordam: Intercom reporting mais polished; Chatwoot reporting cited como ponto fraco",
+          "confidence": "High"
+        },
+        {
+          "feature": "Custom reports",
+          "intercom": "Pro Analytics add-on $99/mo",
+          "chatwoot": "Limited (Enterprise)",
+          "paridade": 3,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Intercom oferece via add-on documentado; Chatwoot mais limitado",
+          "confidence": "Medium"
+        },
+        {
+          "feature": "SLA tracking dashboard",
+          "intercom": "Expert ($132)",
+          "chatwoot": "Business+ ($39)",
+          "paridade": 4,
+          "delta_direction": "Chatwoot (preco)",
+          "delta_rationale": "Chatwoot oferece SLA tracking em mid-tier",
+          "confidence": "Medium"
+        }
+      ]
+    },
+    {
+      "category": "Enterprise / Compliance",
+      "rows": [
+        {
+          "feature": "SSO / SAML",
+          "intercom": "Expert ($132)",
+          "chatwoot": "Enterprise Cloud ($99)",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Ambos gatam em top tier; preco similar",
+          "confidence": "High"
+        },
+        {
+          "feature": "HIPAA",
+          "intercom": "Expert ($132)",
+          "chatwoot": "NAO out-of-box; possivel via self-hosted com infra HIPAA",
+          "paridade": 2,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Intercom HIPAA certification ready; Chatwoot exige self-hosted + infra cliente",
+          "confidence": "High"
+        },
+        {
+          "feature": "Audit logs",
+          "intercom": "Expert ($132)",
+          "chatwoot": "Enterprise Cloud ($99)",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Equivalente",
+          "confidence": "High"
+        },
+        {
+          "feature": "Multibrand",
+          "intercom": "Expert ($132)",
+          "chatwoot": "NAO suportado",
+          "paridade": 1,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Sem equivalente em Chatwoot",
+          "confidence": "High"
+        },
+        {
+          "feature": "Data sovereignty / self-hosting",
+          "intercom": "NAO disponivel — total vendor lock-in",
+          "chatwoot": "Self-hosted MIT — controle total",
+          "paridade": 1,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Sem equivalente em Intercom — diferencial absoluto Chatwoot",
+          "confidence": "High"
+        },
+        {
+          "feature": "Compliance certifications",
+          "intercom": "SOC2, ISO 27001/27018/27701, HIPAA, GDPR, CCPA",
+          "chatwoot": "GDPR claims; sem SOC2/ISO publica do Cloud; self-hosted permite atender LGPD",
+          "paridade": 2,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Intercom enterprise-grade; Chatwoot Cloud sem certs publicas",
+          "confidence": "High"
+        }
+      ]
+    },
+    {
+      "category": "Pricing / Commercial",
+      "rows": [
+        {
+          "feature": "Free tier",
+          "intercom": "NAO permanente — apenas 14-day trial",
+          "chatwoot": "Hacker permanente (2 agents, 500 conv) + self-hosted unlimited",
+          "paridade": 1,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Sem equivalente em Intercom",
+          "confidence": "High"
+        },
+        {
+          "feature": "Entry pricing",
+          "intercom": "$29/seat/mo Essential",
+          "chatwoot": "$0 Hacker + $19/agent Startups",
+          "paridade": 2,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Chatwoot $0 entry vs Intercom $29; gap substancial",
+          "confidence": "High"
+        },
+        {
+          "feature": "Mid-tier pricing (full features)",
+          "intercom": "$85/seat Advanced + $0.99/res Fin + $99 add-ons",
+          "chatwoot": "$39/agent Business + 500 credits incl + $20/1k extras",
+          "paridade": 2,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Chatwoot Business 50-65% mais barato que Intercom Advanced para mesma profundidade",
+          "confidence": "High"
+        },
+        {
+          "feature": "AI cost predictability",
+          "intercom": "Per-resolution $0.99 — variavel com volume; G2 cita pricing surprises",
+          "chatwoot": "Credits flat por tier + extras predictable $20/1k",
+          "paridade": 3,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Chatwoot credits sao flat e mais previsiveis; Intercom per-resolution varia substancialmente",
+          "confidence": "Medium"
+        },
+        {
+          "feature": "Self-hosted (no SaaS dependency)",
+          "intercom": "NAO disponivel",
+          "chatwoot": "MIT self-hosted ilimitado",
+          "paridade": 1,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Diferencial absoluto Chatwoot",
+          "confidence": "High"
+        }
+      ]
+    },
+    {
+      "category": "Integracoes / Marketplace",
+      "rows": [
+        {
+          "feature": "API REST",
+          "intercom": "REST + GraphQL",
+          "chatwoot": "REST",
+          "paridade": 4,
+          "delta_direction": "Intercom (GraphQL)",
+          "delta_rationale": "Intercom oferece GraphQL alem de REST",
+          "confidence": "High"
+        },
+        {
+          "feature": "Webhooks",
+          "intercom": "Sim",
+          "chatwoot": "Sim",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Equivalente",
+          "confidence": "High"
+        },
+        {
+          "feature": "Marketplace formal",
+          "intercom": "App Store 300+ apps",
+          "chatwoot": "Sem marketplace formal; integracoes via API/webhooks",
+          "paridade": 2,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Intercom marketplace amadurecido; Chatwoot depende de community + integracoes manuais",
+          "confidence": "High"
+        },
+        {
+          "feature": "SDKs in-app",
+          "intercom": "JavaScript, iOS, Android, RN, Flutter — best-in-class",
+          "chatwoot": "JavaScript core; community SDKs Ruby/Python/PHP",
+          "paridade": 3,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Intercom SDK polished e cobre mais plataformas; Chatwoot widget mais simples",
+          "confidence": "High"
+        },
+        {
+          "feature": "Source code access",
+          "intercom": "NAO (proprietary)",
+          "chatwoot": "MIT — codigo aberto e modificavel",
+          "paridade": 1,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Diferencial absoluto Chatwoot",
+          "confidence": "High"
+        }
+      ]
+    },
+    {
+      "category": "Comunidade / Maturidade",
+      "rows": [
+        {
+          "feature": "GitHub stars",
+          "intercom": "N/A (proprietary; sem repo publico)",
+          "chatwoot": "29.100 stars, 7.200 forks, 6.119 commits",
+          "paridade": 1,
+          "delta_direction": "Chatwoot",
+          "delta_rationale": "Sem equivalente em Intercom",
+          "confidence": "High"
+        },
+        {
+          "feature": "G2 reviews count",
+          "intercom": "5.000+",
+          "chatwoot": "200+",
+          "paridade": 2,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Intercom 25x mais reviews G2",
+          "confidence": "High"
+        },
+        {
+          "feature": "G2 rating",
+          "intercom": "4.5/5",
+          "chatwoot": "4.4/5",
+          "paridade": 5,
+          "delta_direction": "Empate (delta 0.1)",
+          "delta_rationale": "Ratings essencialmente equivalentes",
+          "confidence": "High"
+        },
+        {
+          "feature": "Market share",
+          "intercom": "12.77%",
+          "chatwoot": "Nao publicado; trusted by claim 15.000+ businesses",
+          "paridade": 2,
+          "delta_direction": "Intercom",
+          "delta_rationale": "Intercom mid-market global; Chatwoot mais nichado",
+          "confidence": "Medium"
+        },
+        {
+          "feature": "Release cadence",
+          "intercom": "Cloud SaaS — releases continuos invisiveis",
+          "chatwoot": "Monthly releases publicas (v4.13.0 Apr 17 2026)",
+          "paridade": 5,
+          "delta_direction": "Empate",
+          "delta_rationale": "Ambos ativos; modelos diferentes",
+          "confidence": "High"
+        }
+      ]
+    }
+  ],
+  "summary_counts": {
+    "intercom_advantage": 12,
+    "chatwoot_advantage": 18,
+    "tied_or_equivalent": 13,
+    "total_features_compared": 43
+  },
+  "advantages_by_category": {
+    "intercom_strong": [
+      "AI sophistication (Fin Apex 1.0, deflection publicado, custom actions, simulation)",
+      "In-app Messenger (best-in-class)",
+      "Marketplace + SDKs polidos",
+      "Reporting & Analytics",
+      "Compliance/Enterprise certifications",
+      "Multibrand"
+    ],
+    "chatwoot_strong": [
+      "Self-hosted MIT (data sovereignty)",
+      "Free tier permanente + $19 entry",
+      "Telegram + TikTok + Line nativos",
+      "BYOC WhatsApp sem markup",
+      "Source code modificavel",
+      "Pricing 50-65% mais barato em mid-tier",
+      "AI credits previsivel vs per-resolution",
+      "API Channels custom"
+    ]
+  }
+}

@@ -1,0 +1,284 @@
+# Deck Template Schema — Slides Creator Squad
+# Mission: MSN-2026-SLIDES-NARRATIVE-DESIGN (DEV-2026-003, scope expansion)
+# Created: 2026-05-17
+# Version: 1.0.0
+#
+# Contract for deck-level templates ("roteiros"). A deck template defines
+# the NARRATIVE ARC + SUGGESTED SLIDE FUNCTIONS + DEFAULT THEME + EXECUTION CONSTRAINTS
+# for a class of presentations (e.g., webinar-sales, executive-pitch, board-update).
+#
+# Inspired by:
+#   - ppt-master/skills/ppt-master/templates/layouts/{family}/design_spec.md (11-section contract)
+#   - ppt-master charts_index.json (Pick for / Skip if pattern)
+#   - PPTAgent roles/planner.yaml (purpose + topic + indexes)
+#   - Presenton presentation-templates/{family}/settings.json (per-family settings)
+
+meta:
+  schema_version: "1.0.0"
+  schema_kind: "deck-template"
+  consumer_tasks:
+    - "tasks/compress-outline-to-slide-functions.md (uses deck-template to derive story_arc baseline)"
+    - "tasks/select-deck-template.md (NEW — to be created in MSN-2026-SLIDES-TEMPLATES-ARCHITECTURE)"
+    - "tasks/define-design-direction.md (consumes default_theme + composition_overrides)"
+
+# ─────────────────────────────────────────────────────
+# DECK TEMPLATE SCHEMA
+# ─────────────────────────────────────────────────────
+deck_template:
+  required: [id, name, summary, audience_fit, arc, slide_functions_recommended, default_theme]
+  fields:
+
+    id:
+      type: string
+      pattern: "^[a-z][a-z0-9-]+[a-z0-9]$"
+      example: "webinar-sales-perfect-webinar"
+      description: "kebab-case unique id. Must match filename (without .yaml)."
+
+    name:
+      type: string
+      max_length: 60
+      example: "Perfect Webinar (Russell Brunson)"
+
+    version:
+      type: string
+      pattern: "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+      default: "1.0.0"
+
+    family:
+      type: enum
+      values: [webinar, pitch, board_update, financial, demo, masterclass, proposal, sales_call, research, benchmark, vsl, workshop]
+      description: "Broad category for navigation"
+
+    summary:
+      type: object
+      required: true
+      fields:
+        pick_for:
+          type: string
+          max_length: 240
+          description: "When to choose this deck template. Concrete situations."
+          example: "Webinar de vendas com 60-90min, audiencia frio-morno, oferta de R$ 500-5000, objetivo: conversao direta para checkout."
+        skip_if:
+          type: string
+          max_length: 240
+          description: "When NOT to choose. Alternative deck templates."
+          example: "Tempo < 30min (use executive-pitch). Audiencia quente ja convertida (use sales-call-live-close). Ticket > R$ 5000 com ciclo de venda longo (use proposal-sow)."
+      pattern_inspired_by: "ppt-master charts_index.json contrastive summaries"
+
+    audience_fit:
+      type: object
+      required: true
+      fields:
+        primary:
+          type: enum
+          values: [cold_lead, warm_lead, hot_lead, prospect, customer, executive, board, investor, peer, student, mass_audience]
+        size_range:
+          type: enum
+          values: [1_to_5, 5_to_20, 20_to_200, 200_to_2000, 2000_plus]
+        delivery_modes:
+          type: list
+          item_enum: [in_person, webinar_live, webinar_replay, async_video, async_pdf, async_email, mobile_share]
+        attention_budget_min:
+          type: integer
+          minimum: 5
+          maximum: 240
+
+    arc:
+      type: object
+      required: true
+      description: "Narrative arc baseline per data/story-arc.schema.yaml"
+      fields:
+        arc_type:
+          type: enum
+          values: [educational_workshop, executive_pitch, sales_narrative, thought_leadership, product_demo, board_update, case_study]
+        beats:
+          type: list
+          min_items: 4
+          max_items: 8
+          item_schema:
+            beat_type: "enum (matches story-arc.schema.yaml beat_types)"
+            narrative_function: "string"
+            slides_estimated: "integer 1-3"
+            optional: "boolean — true if this beat can be cut to fit appetite"
+
+    slide_functions_recommended:
+      type: list
+      min_items: 4
+      description: "Ordered list of slide functions per beat. Maps to slide templates in slide/ dir."
+      item_schema:
+        sequence: "integer (s01, s02, ...)"
+        beat_ref: "string (B-NN)"
+        function:
+          enum_ref: "data/slide-function-map.schema.yaml#slide_function_map.entries[].function"
+        suggested_slide_template:
+          type: string
+          description: "Reference to slide/{function}.yaml. Hint, not hard binding."
+        density_target:
+          enum: [minimal, low, medium, high]
+        optional:
+          type: boolean
+          default: false
+
+    slide_count_range:
+      type: object
+      required: true
+      fields:
+        min: integer
+        max: integer
+        target: integer
+        rationale:
+          type: string
+          example: "Webinar de 60-90min comporta 12-18 slides com 4-6min por slide em media."
+
+    default_theme:
+      type: string
+      description: "Reference to templates/theme/{theme}.yaml. Can be overridden in design-direction."
+      example: "editorial-pentagram"
+
+    composition_overrides:
+      type: object
+      required: false
+      description: "Optional overrides over default theme composition_rules"
+      fields:
+        grid_columns: "integer"
+        baseline_padding_pt: "integer"
+        title_anchor: "enum"
+        footer_present: "boolean"
+        slide_number_visible: "boolean"
+
+    density_limits_overrides:
+      type: object
+      required: false
+      description: "Optional density override for this deck class (sales decks may allow higher density on financial slides, e.g.)"
+
+    qa_emphasis:
+      type: object
+      required: true
+      description: "Per qa-rubric.yaml — which dimensions matter MOST for this deck class. Used by qa-inspector to weight findings."
+      fields:
+        narrativa_weight_boost: "number 0-1 (additive to default 25)"
+        design_weight_boost: "number 0-1"
+        acuracia_weight_boost: "number 0-1"
+        rationale: "string"
+      example:
+        narrativa_weight_boost: 0.0
+        design_weight_boost: 0.0
+        acuracia_weight_boost: 0.5  # sales decks need extra source rigor
+        rationale: "Sales deck: claim accuracy more important than usual (compliance risk)."
+
+    visual_density_default:
+      type: enum
+      values: [sparse, moderate, dense]
+      default: moderate
+
+    failure_modes:
+      type: list
+      description: "Known anti-patterns specific to this deck class"
+      item_schema:
+        mode: string
+        symptom: string
+        prevention: string
+
+    speaker_role:
+      type: enum
+      values: [solo_presenter, panelist, narrator_voiceover, async_no_speaker]
+      default: solo_presenter
+
+    compatible_outputs:
+      type: list
+      item_enum: [tsx_consumer_app, html_standalone, pptx_native, pdf, mp4, web_share_link]
+      description: "Which output formats this deck template renders cleanly to"
+
+    source_provenance:
+      type: object
+      required: true
+      fields:
+        inspired_by:
+          type: list
+          item_type: string
+          description: "Methodology, author, framework, prior deck"
+          example: ["Russell Brunson - Perfect Webinar", "DotCom Secrets - The Big Domino"]
+        bench_ref:
+          type: list
+          item_type: string
+          description: "Bench repo paths if pattern absorbed"
+          example: ["/Users/alan/Code/bench/ppt-master/examples/ppt169_kimsoong_loyalty_programme/"]
+        author:
+          type: string
+          example: "slides-creator squad — MSN-2026-SLIDES-NARRATIVE-DESIGN"
+        date_created: "YYYY-MM-DD"
+
+    evidence_ref:
+      type: ["string", "null"]
+      description: "Path to evidence.yaml with extended rationale, sources, risks. Keeps deck template itself short."
+
+# ─────────────────────────────────────────────────────
+# VALIDATION RULES
+# ─────────────────────────────────────────────────────
+validation_rules:
+  - rule: "id matches filename (without .yaml)"
+    severity: blocking
+  - rule: "summary.pick_for AND summary.skip_if both non-empty"
+    severity: blocking
+    rationale: "Contrastive summary is non-negotiable (ppt-master pattern)"
+  - rule: "arc.beats >= 4 AND <= 8"
+    severity: blocking
+  - rule: "slide_functions_recommended >= 4"
+    severity: blocking
+  - rule: "default_theme references existing theme/{theme}.yaml"
+    severity: blocking
+  - rule: "source_provenance.inspired_by non-empty (always declare provenance)"
+    severity: blocking
+  - rule: "summary.skip_if mentions at least 1 alternative deck template"
+    severity: high
+    rationale: "Helps strategist navigate catalog"
+
+# ─────────────────────────────────────────────────────
+# EXAMPLE (minimal valid stub — see deck/webinar-sales-perfect-webinar.yaml for full)
+# ─────────────────────────────────────────────────────
+example_minimal:
+  id: "stub-example"
+  name: "Stub Example"
+  family: pitch
+  summary:
+    pick_for: "Use when you need a minimal example for validating the schema."
+    skip_if: "For real decks, use webinar-sales-perfect-webinar OR executive-pitch."
+  audience_fit:
+    primary: prospect
+    size_range: 5_to_20
+    delivery_modes: [in_person]
+    attention_budget_min: 30
+  arc:
+    arc_type: executive_pitch
+    beats:
+      - beat_type: hook
+        narrative_function: "Hook the audience"
+        slides_estimated: 1
+        optional: false
+      - beat_type: proof
+        narrative_function: "Demonstrate evidence"
+        slides_estimated: 2
+        optional: false
+      - beat_type: mechanism
+        narrative_function: "Explain how"
+        slides_estimated: 2
+        optional: false
+      - beat_type: cta
+        narrative_function: "Ask for next step"
+        slides_estimated: 1
+        optional: false
+  slide_functions_recommended:
+    - {sequence: 1, beat_ref: B-01, function: cover, suggested_slide_template: "hook-opening", density_target: minimal}
+    - {sequence: 2, beat_ref: B-02, function: proof, suggested_slide_template: "proof-stack", density_target: medium}
+    - {sequence: 3, beat_ref: B-02, function: proof, suggested_slide_template: "proof-stack", density_target: medium}
+    - {sequence: 4, beat_ref: B-03, function: mechanism_step, suggested_slide_template: "mechanism-step", density_target: medium}
+    - {sequence: 5, beat_ref: B-03, function: mechanism_step, suggested_slide_template: "mechanism-step", density_target: medium}
+    - {sequence: 6, beat_ref: B-04, function: cta_concrete, suggested_slide_template: "cta-concrete", density_target: minimal}
+  slide_count_range: {min: 5, max: 8, target: 6, rationale: "Stub example."}
+  default_theme: "editorial-pentagram"
+  qa_emphasis: {narrativa_weight_boost: 0, design_weight_boost: 0, acuracia_weight_boost: 0, rationale: "Default weights."}
+  source_provenance:
+    inspired_by: ["schema validation"]
+    bench_ref: []
+    author: "slides-creator squad"
+    date_created: "2026-05-17"

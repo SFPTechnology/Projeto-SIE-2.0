@@ -1,0 +1,898 @@
+# VisualEngine Interface Contract + Operational Implementation
+# SSOT for the strategy pattern that abstracts visual rendering engines.
+# Consumed by: visual-scout (routing), design-renderer (output handling),
+#               qa-inspector (cost/quality validation), content-architect (spec emission).
+# Created by: Story 0.1 (EPIC-SC-V2-001, Sprint 0)
+# Implemented by: Story 1.1 (EPIC-SC-V2-001, Sprint 1) -- operational config per engine
+
+visual_engine_contract:
+  version: "1.1.0"
+  created_at: "2026-03-19"
+  updated_at: "2026-03-20"
+  epic: EPIC-SC-V2-001
+  stories: ["0.1", "1.1"]
+  backward_compatible: true
+
+  # ---------------------------------------------------------------------------
+  # INTERFACE: VisualEngine
+  # The strategy pattern interface. Each engine implements these 4 methods.
+  # ---------------------------------------------------------------------------
+  interfaces:
+    VisualEngine:
+      description: >
+        Abstract interface for visual rendering engines. Each concrete engine
+        (D2, Mermaid, GPT Image, Recraft, Plotly, Ideogram) implements this
+        contract. The visual-scout selects and invokes engines through this
+        uniform API.
+      methods:
+        render:
+          signature: "render(spec: VisualSpec) -> VisualOutput | VisualError"
+          description: >
+            Generate a visual from the given spec. MUST call
+            validateBrandCompliance internally before emitting VisualOutput.
+            On failure, returns VisualError with fallback_suggestion.
+          preconditions:
+            - "spec.engine matches this engine's id"
+            - "spec.design_tokens is present (may be empty object for no-brand contexts)"
+          postconditions:
+            - "VisualOutput.metadata.colors_used is populated"
+            - "VisualOutput.metadata.dimensions is populated"
+            - "Brand compliance was validated before output emission"
+
+        supports:
+          signature: "supports(engine: EngineType) -> boolean"
+          description: >
+            Returns true if this engine implementation handles the given
+            engine type identifier. Used by visual-scout for routing.
+
+        estimateCost:
+          signature: "estimateCost(spec: VisualSpec) -> CostEstimate"
+          description: >
+            Returns the estimated cost in USD for rendering the given spec.
+            Used by visual-scout to enforce the per-deck budget cap.
+          return_type:
+            amount_usd:
+              type: number
+              precision: 4
+              description: "Cost in USD with 4 decimal places (e.g. 0.0400)"
+            currency: "USD"
+            confidence:
+              type: string
+              enum: [exact, estimated]
+              description: "exact for fixed-price APIs, estimated for token-based"
+
+        validateBrandCompliance:
+          signature: "validateBrandCompliance(output: VisualOutput, tokens: DesignTokens) -> ValidationResult"
+          description: >
+            Post-generation validation. Checks that the rendered output
+            respects the brand constraints encoded in design tokens.
+            Called internally by render() before emitting output.
+            Can also be called externally by visual-scout for re-validation.
+          return_type:
+            compliant:
+              type: boolean
+            violations:
+              type: array
+              items:
+                field: string
+                expected: string
+                actual: string
+                severity: "string (enum: critical, warning)"
+
+  # ---------------------------------------------------------------------------
+  # TYPE: VisualSpec (input to render)
+  # ---------------------------------------------------------------------------
+    VisualSpec:
+      description: >
+        Input specification for visual generation. Emitted by content-architect
+        as part of the enriched deck-manifest (slides[].visual_strategy).
+        All fields that do not exist in the v1 briefing are OPTIONAL.
+      fields:
+        engine:
+          type: string
+          enum: [d2, mermaid, gpt_image, recraft, plotly, ideogram]
+          required: true
+          description: "Target engine identifier. Must match an engine in engines_registry."
+
+        content_type:
+          type: string
+          enum: [process, hierarchy, comparison, concept, data, timeline, architecture, icon]
+          required: true
+          description: >
+            Semantic classification of the content to be visualized.
+            Determined by content-architect during visual strategy phase.
+
+        visual_type:
+          type: string
+          enum: [flowchart, sequence, mindmap, er, gantt, infographic, illustration, chart, svg_icon, diagram]
+          required: true
+          description: >
+            Concrete visual output type. Maps content_type to a renderable
+            format supported by the selected engine.
+
+        design_tokens:
+          type: object
+          required: false
+          default: {}
+          description: >
+            W3C DTCG design tokens from aiox-design squad. Contains palette,
+            typography, spacing. Optional -- engines degrade gracefully
+            without tokens (use engine defaults).
+          properties:
+            palette:
+              type: array
+              items: "string (hex color, e.g. #4A90D9)"
+              description: "Ordered brand palette. First color = primary."
+            typography:
+              type: object
+              properties:
+                heading_font: string
+                body_font: string
+            spacing:
+              type: object
+              properties:
+                base_unit: "number (px)"
+
+        brand_constraints:
+          type: object
+          required: false
+          default: {}
+          description: >
+            Additional brand rules beyond design tokens. Optional.
+            When present, validateBrandCompliance uses these for validation.
+          properties:
+            forbidden_colors:
+              type: array
+              items: "string (hex)"
+              description: "Colors that must NOT appear in the output."
+            style_preference:
+              type: string
+              enum: [flat, isometric, line_art, corporate, hand_drawn, minimal]
+              description: "Visual style preference for AI-generated images."
+            background:
+              type: string
+              enum: [white, transparent, brand_primary, dark]
+              default: white
+            max_text_in_image:
+              type: boolean
+              default: false
+              description: "If false, text should be added via PPTX layer, not baked into the image."
+
+        prompt:
+          type: string
+          required: false
+          description: >
+            LLM-generated prompt for AI image engines (gpt_image, recraft,
+            ideogram). Not used by diagram engines (d2, mermaid, plotly).
+
+        diagram_code:
+          type: string
+          required: false
+          description: >
+            Source code for diagram engines (D2 syntax, Mermaid syntax, Plotly
+            JSON). Not used by AI image engines.
+
+        aspect_ratio:
+          type: string
+          enum: ["16:9", "4:3", "1:1", "9:16"]
+          required: false
+          default: "16:9"
+          description: "Target aspect ratio for the generated visual."
+
+        multi_slide:
+          type: boolean
+          required: false
+          default: false
+          description: >
+            If true, the visual spans multiple slides (panoramic). Deferred
+            to v2.1 -- currently always false.
+
+        multi_slide_group:
+          type: string
+          required: false
+          description: >
+            Group identifier for panoramic visuals. All slides in the same
+            group share the same base visual with different viewBox segments.
+            Deferred to v2.1.
+
+  # ---------------------------------------------------------------------------
+  # TYPE: VisualOutput (output from render)
+  # ---------------------------------------------------------------------------
+    VisualOutput:
+      description: >
+        Output from a successful render() call. Consumed by design-renderer
+        for slide composition and by qa-inspector for quality validation.
+      fields:
+        format:
+          type: string
+          enum: [svg, png]
+          required: true
+          description: "Output format. SVG for diagram engines, PNG for AI image engines."
+
+        data:
+          type: string
+          required: true
+          description: >
+            The visual content. For SVG: raw SVG markup string.
+            For PNG: base64-encoded image data or filesystem path.
+
+        metadata:
+          type: object
+          required: true
+          properties:
+            colors_used:
+              type: array
+              items: "string (hex)"
+              description: >
+                Colors present in the output. Extracted post-render for
+                brand compliance validation.
+            dimensions:
+              type: object
+              required: true
+              properties:
+                width:
+                  type: number
+                  description: "Width in pixels"
+                height:
+                  type: number
+                  description: "Height in pixels"
+            engine_id:
+              type: string
+              description: "Which engine produced this output."
+            generation_time_ms:
+              type: number
+              description: "Wall-clock time for generation in milliseconds."
+            cost_usd:
+              type: number
+              precision: 4
+              description: "Actual cost incurred for this generation."
+            cache_hit:
+              type: boolean
+              description: "True if served from cache (L1/L2/L3)."
+            brand_compliance:
+              type: object
+              properties:
+                compliant: boolean
+                violations_count: number
+                violations: array
+
+  # ---------------------------------------------------------------------------
+  # TYPE: VisualError (error from render)
+  # ---------------------------------------------------------------------------
+    VisualError:
+      description: >
+        Error returned when render() fails. Contains enough context for
+        visual-scout to attempt fallback to another engine.
+      fields:
+        type:
+          type: string
+          enum: [engine_failure, brand_violation, timeout]
+          required: true
+          description: >
+            engine_failure: API/CLI returned error or invalid output.
+            brand_violation: Output failed validateBrandCompliance.
+            timeout: Engine did not respond within configured timeout.
+
+        message:
+          type: string
+          required: true
+          description: "Human-readable error description."
+
+        engine_id:
+          type: string
+          required: true
+          description: "Which engine failed."
+
+        fallback_suggestion:
+          type: string
+          required: false
+          enum: [d2, mermaid, gpt_image, recraft, plotly, ideogram, null]
+          description: >
+            Suggested fallback engine ID from engines_registry, or null if
+            no fallback is viable. visual-scout uses this to attempt the
+            next engine in the fallback chain.
+
+        original_spec:
+          type: object
+          required: false
+          description: "The VisualSpec that caused the failure, for retry/debug."
+
+  # ---------------------------------------------------------------------------
+  # ENGINES REGISTRY
+  # Story 0.1: interface contract. Story 1.1: operational implementation.
+  # Each engine entry has: identity, capabilities, render_config, supports,
+  # estimateCost, timeout, fallback_chain -- per the VisualEngine interface.
+  # ---------------------------------------------------------------------------
+  engines_registry:
+
+    # =========================================================================
+    # D2Engine — Deterministic diagram via D2 CLI or Kroki API
+    # =========================================================================
+    - id: d2
+      name: "D2Engine"
+      description: "D2 diagram language via CLI or Kroki API. Deterministic layout."
+      category: diagram
+      capabilities:
+        content_types: [process, hierarchy, architecture, comparison]
+        visual_types: [flowchart, sequence, er, diagram]
+        output_formats: [svg, png]
+        supports_theming: true
+        supports_brand_colors: true
+        deterministic_layout: true
+      cost_per_call:
+        amount_usd: 0.0000
+        model: free_oss
+      api_endpoint: "http://localhost:8000/d2/svg"
+      api_type: kroki_self_hosted
+      timeout_ms: 10000
+      fallback_engines: [mermaid]
+
+      # --- Story 1.1: Operational Implementation ---
+      render_config:
+        primary_method: kroki_api
+        fallback_method: d2_cli
+        kroki_api:
+          url: "${KROKI_URL:-http://localhost:8000}/d2/svg"
+          method: POST
+          content_type: "text/plain"
+          body: "${spec.diagram_code}"
+          response_format: svg
+          health_check: "${KROKI_URL:-http://localhost:8000}/health"
+        d2_cli:
+          command: "d2"
+          args: ["--theme-overrides", "${theme_overrides}", "${input_file}", "${output_file}"]
+          input_format: ".d2 file"
+          output_format: ".svg file"
+          layout_engines: [dagre, elk, tala]
+          default_layout: dagre
+        theme_injection:
+          method: d2_theme_overrides
+          mapping:
+            "design_tokens.palette[0]": "N2,B1"   # primary -> node stroke + accent 1
+            "design_tokens.palette[1]": "B2"       # secondary -> accent 2
+            "design_tokens.palette[2]": "B3"       # accent -> accent 3
+            "design_tokens.palette[3]": "N3,B4"    # neutral -> font color + accent 4
+            "design_tokens.background": "N1"        # background -> node fill
+          cli_format: "N1:${bg};N2:${primary};N3:${neutral};B1:${primary};B2:${secondary};B3:${accent};B4:${neutral}"
+          kroki_format: "inline D2 vars block (Kroki does NOT support --theme-overrides)"
+        png_conversion:
+          tool: cairosvg
+          dpi: 300
+          command: "python3 -c \"import cairosvg; cairosvg.svg2png(url='${svg_path}', write_to='${png_path}', dpi=300)\""
+      supports_check:
+        returns_true_for: [d2]
+        validation: "spec.engine == 'd2'"
+      estimate_cost:
+        amount_usd: 0.0000
+        confidence: exact
+        rationale: "Free OSS. No API cost. Local CLI or self-hosted Kroki."
+      error_handling:
+        on_kroki_down: "fallback to d2_cli standalone"
+        on_syntax_error: "re-generate D2 code via LLM (1 retry)"
+        on_timeout: "emit VisualError(type=timeout, fallback_suggestion=mermaid)"
+        retry_count: 1
+        retry_delay_ms: 0
+      notes: >
+        Self-hosted via Kroki Docker. Layout engines: dagre, elk, tala.
+        Theme overrides support brand palette injection.
+        Known issue: Kroki API does NOT support --theme-overrides flag;
+        use inline D2 style vars for Kroki theming (see Story 1.2 Token Transformer).
+
+    # =========================================================================
+    # MermaidEngine — Mermaid.js diagrams via Kroki API
+    # =========================================================================
+    - id: mermaid
+      name: "MermaidEngine"
+      description: "Mermaid.js diagrams via Kroki API. Markdown-like syntax."
+      category: diagram
+      capabilities:
+        content_types: [process, hierarchy, timeline, comparison]
+        visual_types: [flowchart, sequence, mindmap, gantt, er, diagram]
+        output_formats: [svg, png]
+        supports_theming: true
+        supports_brand_colors: true
+        deterministic_layout: false
+      cost_per_call:
+        amount_usd: 0.0000
+        model: free_oss
+      api_endpoint: "http://localhost:8000/mermaid/svg"
+      api_type: kroki_self_hosted
+      timeout_ms: 10000
+      fallback_engines: [d2]
+
+      # --- Story 1.1: Operational Implementation ---
+      render_config:
+        primary_method: kroki_api
+        fallback_method: null  # no CLI fallback for Mermaid; fall through to D2
+        kroki_api:
+          url: "${KROKI_URL:-http://localhost:8000}/mermaid/svg"
+          method: POST
+          content_type: "text/plain"
+          body: "${spec.diagram_code}"
+          response_format: svg
+          health_check: "${KROKI_URL:-http://localhost:8000}/health"
+        theme_injection:
+          method: mermaid_init_directive
+          format: "%%{init: {'themeVariables': {'primaryColor': '${primary}', 'secondaryColor': '${secondary}', 'tertiaryColor': '${accent}', 'primaryTextColor': '${neutral}', 'primaryBorderColor': '${primary}'}}}%%"
+          prepend_to: diagram_code
+        png_conversion:
+          tool: cairosvg
+          dpi: 300
+      supports_check:
+        returns_true_for: [mermaid]
+        validation: "spec.engine == 'mermaid'"
+      estimate_cost:
+        amount_usd: 0.0000
+        confidence: exact
+        rationale: "Free OSS via self-hosted Kroki. Mermaid sidecar container included."
+      error_handling:
+        on_kroki_down: "emit VisualError(type=engine_failure, fallback_suggestion=d2)"
+        on_syntax_error: "re-generate Mermaid code via LLM (1 retry)"
+        on_timeout: "emit VisualError(type=timeout, fallback_suggestion=d2)"
+        retry_count: 1
+        retry_delay_ms: 0
+      notes: >
+        Self-hosted via Kroki Docker (kroki-mermaid sidecar on port 8002).
+        Supports more diagram types than D2 but layout is less deterministic.
+        LLMs generate Mermaid syntax well. Theme injection via %%{init}%% directive.
+
+    # =========================================================================
+    # GPTImageEngine — OpenAI GPT Image API for infographics/illustrations
+    # =========================================================================
+    - id: gpt_image
+      name: "GPTImageEngine"
+      description: "OpenAI GPT Image 1.5 API. Best text-in-image accuracy."
+      category: ai_image
+      capabilities:
+        content_types: [concept, comparison, data]
+        visual_types: [infographic, illustration]
+        output_formats: [png]
+        supports_theming: false
+        supports_brand_colors: true
+        deterministic_layout: false
+      cost_per_call:
+        amount_usd: 0.0400
+        model: gpt-image-1.5
+      api_endpoint: "https://api.openai.com/v1/images/generations"
+      api_type: rest
+      timeout_ms: 30000
+      fallback_engines: [ideogram, recraft]
+
+      # --- Story 1.1: Operational Implementation ---
+      render_config:
+        primary_method: openai_api
+        openai_api:
+          url: "https://api.openai.com/v1/images/generations"
+          method: POST
+          auth: "Bearer ${OPENAI_API_KEY}"
+          headers:
+            Content-Type: "application/json"
+          request_body:
+            model: "gpt-image-1"
+            prompt: "${spec.prompt}"
+            n: 1
+            size: "1536x1024"   # 16:9 closest supported
+            quality: "medium"
+            output_format: "png"
+          response_path: "data[0].b64_json"
+          response_format: png_base64
+        brand_injection:
+          method: prompt_suffix
+          template: >
+            IMPORTANT: Use ONLY these brand colors: ${palette_csv}.
+            Background: ${background}. Style: ${style_preference}.
+            Do NOT include text in the image unless explicitly instructed.
+        size_mapping:
+          "16:9": "1536x1024"
+          "4:3": "1024x1024"
+          "1:1": "1024x1024"
+          "9:16": "1024x1536"
+      supports_check:
+        returns_true_for: [gpt_image]
+        validation: "spec.engine == 'gpt_image'"
+        requires_env: "OPENAI_API_KEY"
+      estimate_cost:
+        amount_usd: 0.0400
+        confidence: exact
+        rationale: "Fixed price per generation. gpt-image-1 medium quality."
+        budget_warning: "At $0.04/image, 50 images = $2.00 (deck budget cap)."
+      error_handling:
+        on_rate_limit: "emit VisualError(type=engine_failure, fallback_suggestion=ideogram)"
+        on_content_filter: "emit VisualError(type=engine_failure, fallback_suggestion=ideogram)"
+        on_api_error: "emit VisualError(type=engine_failure, fallback_suggestion=ideogram)"
+        on_timeout: "emit VisualError(type=timeout, fallback_suggestion=ideogram)"
+        retry_count: 0  # fallback directly, do not retry paid APIs
+        retry_delay_ms: 0
+      notes: >
+        Best for infographics with text. ~95% text accuracy.
+        Prompt engineering critical for consistent style.
+        Budget cap applies: $2.00/deck max.
+        No retry on failure -- fall through to ideogram or recraft.
+
+    # =========================================================================
+    # RecraftEngine — Native SVG vector generation
+    # =========================================================================
+    - id: recraft
+      name: "RecraftEngine"
+      description: "Recraft V4 API. Only engine that generates native SVG vectors."
+      category: ai_vector
+      capabilities:
+        content_types: [icon, concept, comparison]
+        visual_types: [svg_icon, illustration, diagram]
+        output_formats: [svg, png]
+        supports_theming: false
+        supports_brand_colors: true
+        deterministic_layout: false
+      cost_per_call:
+        amount_usd: 0.0800
+        model: recraft-v4
+      api_endpoint: "https://external.api.recraft.ai/v1/images/generations"
+      api_type: rest
+      timeout_ms: 20000
+      fallback_engines: [gpt_image, ideogram]
+
+      # --- Story 1.1: Operational Implementation ---
+      render_config:
+        primary_method: recraft_api
+        recraft_api:
+          url: "https://external.api.recraft.ai/v1/images/generations"
+          method: POST
+          auth: "Bearer ${RECRAFT_API_KEY}"
+          headers:
+            Content-Type: "application/json"
+          request_body:
+            prompt: "${spec.prompt}"
+            style: "digital_illustration"
+            model: "recraftv3"
+            response_format: "svg"
+            size: "1536x1024"
+          response_path: "data[0].url"
+          response_format: svg_url  # download SVG from returned URL
+        brand_injection:
+          method: prompt_suffix
+          template: >
+            Use ONLY these colors: ${palette_csv}.
+            Style: ${style_preference}. Flat design, clean vectors.
+        size_mapping:
+          "16:9": "1536x1024"
+          "4:3": "1024x1024"
+          "1:1": "1024x1024"
+          "9:16": "1024x1536"
+        key_absent_fallback:
+          condition: "RECRAFT_API_KEY is not set"
+          action: "emit VisualError(type=engine_failure, fallback_suggestion=gpt_image)"
+          message: "Recraft API key not configured. Falling back to GPTImageEngine."
+      supports_check:
+        returns_true_for: [recraft]
+        validation: "spec.engine == 'recraft'"
+        requires_env: "RECRAFT_API_KEY"
+      estimate_cost:
+        amount_usd: 0.0800
+        confidence: exact
+        rationale: "Fixed price per generation. Recraft v3 SVG output."
+        budget_warning: "At $0.08/image, 25 images = $2.00 (deck budget cap)."
+      error_handling:
+        on_api_error: "emit VisualError(type=engine_failure, fallback_suggestion=gpt_image)"
+        on_timeout: "emit VisualError(type=timeout, fallback_suggestion=gpt_image)"
+        on_key_absent: "emit VisualError(type=engine_failure, fallback_suggestion=gpt_image)"
+        retry_count: 1
+        retry_delay_ms: 2000  # Recraft rate limit: backoff
+        concurrency_limit: 2   # Recraft API limited to 2 concurrent
+      notes: >
+        Unique SVG-native capability. Ideal for icons, logos, and
+        editable diagram overlays. Higher cost justified by vector output.
+        Falls back to GPTImageEngine if RECRAFT_API_KEY absent.
+        Concurrency limited to 2 simultaneous calls.
+
+    # =========================================================================
+    # PlotlyEngine — Local data visualization (no API cost)
+    # =========================================================================
+    - id: plotly
+      name: "PlotlyEngine"
+      description: "Plotly charting library for data visualizations."
+      category: data_viz
+      capabilities:
+        content_types: [data, comparison, timeline]
+        visual_types: [chart, infographic]
+        output_formats: [svg, png]
+        supports_theming: true
+        supports_brand_colors: true
+        deterministic_layout: true
+      cost_per_call:
+        amount_usd: 0.0000
+        model: free_oss
+      api_endpoint: local_library
+      api_type: python_library
+      timeout_ms: 5000
+      fallback_engines: [gpt_image]
+
+      # --- Story 1.1: Operational Implementation ---
+      render_config:
+        primary_method: python_local
+        python_local:
+          library: plotly
+          renderer: kaleido
+          execution: |
+            import plotly.graph_objects as go
+            import plotly.io as pio
+            fig = go.Figure(data=spec.data_points, layout=spec.layout)
+            fig.update_layout(template="plotly_white")
+            pio.write_image(fig, output_path, format="${format}", width=1920, height=1080, scale=2)
+          output_formats:
+            svg: "plotly.io.write_image(fig, path, format='svg')"
+            png: "plotly.io.write_image(fig, path, format='png', scale=2)"
+          chart_types:
+            bar: "go.Bar"
+            line: "go.Scatter(mode='lines')"
+            pie: "go.Pie"
+            scatter: "go.Scatter(mode='markers')"
+            treemap: "go.Treemap"
+            funnel: "go.Funnel"
+            heatmap: "go.Heatmap"
+        theme_injection:
+          method: plotly_template
+          mapping:
+            "design_tokens.palette[0]": "layout.colorway[0]"
+            "design_tokens.palette[1]": "layout.colorway[1]"
+            "design_tokens.palette[2]": "layout.colorway[2]"
+            "design_tokens.typography.heading_font": "layout.title.font.family"
+            "design_tokens.typography.body_font": "layout.font.family"
+            "design_tokens.background": "layout.paper_bgcolor"
+      supports_check:
+        returns_true_for: [plotly]
+        validation: "spec.engine == 'plotly'"
+        requires_packages: ["plotly", "kaleido"]
+      estimate_cost:
+        amount_usd: 0.0000
+        confidence: exact
+        rationale: "Local Python library. Zero API cost."
+      error_handling:
+        on_missing_data: "emit VisualError(type=engine_failure, fallback_suggestion=gpt_image, message='No data_points in spec')"
+        on_render_error: "emit VisualError(type=engine_failure, fallback_suggestion=gpt_image)"
+        on_timeout: "emit VisualError(type=timeout, fallback_suggestion=gpt_image)"
+        retry_count: 0
+        retry_delay_ms: 0
+      notes: >
+        Local Python library. No API cost. Best for structured data
+        visualization (bar, line, pie, scatter, treemap). Exports to
+        SVG/PNG via plotly.io.write_image(). Requires kaleido for PNG export.
+
+    # =========================================================================
+    # IdeogramEngine — Typography-focused AI image generation
+    # =========================================================================
+    - id: ideogram
+      name: "IdeogramEngine"
+      description: "Ideogram v3 API. Excellent typography and style consistency."
+      category: ai_image
+      capabilities:
+        content_types: [concept, comparison]
+        visual_types: [infographic, illustration]
+        output_formats: [png]
+        supports_theming: false
+        supports_brand_colors: true
+        deterministic_layout: false
+      cost_per_call:
+        amount_usd: 0.0400
+        model: ideogram-v3
+      api_endpoint: "https://api.ideogram.ai/generate"
+      api_type: rest
+      timeout_ms: 25000
+      fallback_engines: [gpt_image, recraft]
+
+      # --- Story 1.1: Operational Implementation ---
+      render_config:
+        primary_method: ideogram_api
+        ideogram_api:
+          url: "https://api.ideogram.ai/generate"
+          method: POST
+          auth: "Api-Key ${IDEOGRAM_API_KEY}"
+          headers:
+            Content-Type: "application/json"
+          request_body:
+            image_request:
+              prompt: "${spec.prompt}"
+              model: "V_2"
+              magic_prompt_option: "AUTO"
+              aspect_ratio: "ASPECT_16_9"
+              style_type: "DESIGN"
+          response_path: "data[0].url"
+          response_format: png_url  # download PNG from returned URL
+        brand_injection:
+          method: prompt_suffix
+          template: >
+            Color palette: ${palette_csv}. Background: ${background}.
+            Visual style: ${style_preference}. Clean, professional.
+        aspect_ratio_mapping:
+          "16:9": "ASPECT_16_9"
+          "4:3": "ASPECT_4_3"
+          "1:1": "ASPECT_1_1"
+          "9:16": "ASPECT_9_16"
+        style_code:
+          description: >
+            Ideogram supports style_code for visual consistency across
+            multiple generations. Pass style_code from first generation
+            to subsequent ones for cross-slide visual coherence.
+          usage: "response.data[0].style_code -> next request.style_code"
+      supports_check:
+        returns_true_for: [ideogram]
+        validation: "spec.engine == 'ideogram'"
+        requires_env: "IDEOGRAM_API_KEY"
+      estimate_cost:
+        amount_usd: 0.0400
+        confidence: exact
+        rationale: "Fixed price per generation. Ideogram v2 model."
+      error_handling:
+        on_api_error: "emit VisualError(type=engine_failure, fallback_suggestion=gpt_image)"
+        on_timeout: "emit VisualError(type=timeout, fallback_suggestion=gpt_image)"
+        retry_count: 0
+        retry_delay_ms: 0
+      notes: >
+        Style code feature enables cross-slide visual consistency.
+        Strong typography handling. Good fallback for text-heavy visuals
+        when GPT Image is unavailable.
+
+  # ---------------------------------------------------------------------------
+  # CONSTRAINTS (from epic non-negotiables + roundtable decisions)
+  # ---------------------------------------------------------------------------
+  constraints:
+    backward_compatibility:
+      rule: >
+        All fields in VisualSpec that do not exist in the v1 briefing
+        MUST be optional with sensible defaults. Pipeline v1 must continue
+        to function without any visual_strategy fields present.
+      constraint_id: 1
+      source: "epic constraint #1 + architectural decision #9"
+
+    cost_precision:
+      rule: >
+        estimateCost(spec) MUST return amount_usd with precision of 4
+        decimal places (e.g. 0.0400, not 0.04).
+      constraint_id: 2
+      source: "roundtable section 2.1"
+
+    brand_validation_order:
+      rule: >
+        validateBrandCompliance MUST be called internally by render()
+        BEFORE emitting VisualOutput. If brand validation fails, render()
+        returns VisualError with type=brand_violation.
+      constraint_id: 3
+      source: "roundtable section 2.1 -- observacao critica"
+
+    fallback_suggestion_scope:
+      rule: >
+        VisualError.fallback_suggestion MUST be one of the engine IDs
+        registered in engines_registry, or null if no fallback is viable.
+        Never suggest an engine not in the registry.
+      constraint_id: 4
+      source: "story 0.1 implementation roadmap, passo 3"
+
+    budget_cap:
+      rule: >
+        Total cost of visual generation per deck MUST NOT exceed $2.00 USD.
+        visual-scout enforces this using estimateCost() before each render().
+        When cap is reached, only free engines (d2, mermaid, plotly) are allowed.
+      constraint_id: 5
+      source: "epic architectural decision #10"
+
+    kroki_self_hosted:
+      rule: >
+        D2 and Mermaid engines MUST use self-hosted Kroki instance.
+        Public kroki.io is FORBIDDEN due to data security concerns
+        (diagrams may contain business-sensitive information).
+      constraint_id: 6
+      source: "epic constraint #7 + architectural decision #8"
+
+    feature_flag:
+      rule: >
+        Visual generation is gated behind ENABLE_VISUAL_GENERATION feature
+        flag. When disabled, visual-scout skips the ai_generation tier
+        entirely and falls through to degraded_placeholder.
+      constraint_id: 7
+      source: "epic constraint #6"
+
+  # ---------------------------------------------------------------------------
+  # ROUTING TABLE
+  # Maps content_type to recommended engine, with fallback chain.
+  # Used by visual-scout for engine selection.
+  # ---------------------------------------------------------------------------
+  routing_table:
+    - content_type: process
+      primary_engine: mermaid
+      fallback_chain: [d2]
+      visual_type: flowchart
+      rationale: "Mermaid has simpler syntax for flowcharts; D2 for complex layouts"
+
+    - content_type: hierarchy
+      primary_engine: d2
+      fallback_chain: [mermaid]
+      visual_type: diagram
+      rationale: "D2 supports nested containers natively"
+
+    - content_type: comparison
+      primary_engine: recraft
+      fallback_chain: [gpt_image, ideogram]
+      visual_type: infographic
+      rationale: "SVG editable output preferred for comparison visuals"
+
+    - content_type: concept
+      primary_engine: gpt_image
+      fallback_chain: [ideogram, recraft]
+      visual_type: illustration
+      rationale: "Best instruction-following for abstract concepts"
+
+    - content_type: data
+      primary_engine: plotly
+      fallback_chain: [gpt_image]
+      visual_type: chart
+      rationale: "Plotly gives deterministic data-accurate charts; AI fallback for styled infographics"
+
+    - content_type: timeline
+      primary_engine: mermaid
+      fallback_chain: [d2, plotly]
+      visual_type: gantt
+      rationale: "Native Gantt chart support in Mermaid"
+
+    - content_type: architecture
+      primary_engine: d2
+      fallback_chain: [mermaid]
+      visual_type: diagram
+      rationale: "D2 TALA/ELK layout is superior for architecture diagrams"
+
+    - content_type: icon
+      primary_engine: recraft
+      fallback_chain: [ideogram]
+      visual_type: svg_icon
+      rationale: "Only engine that generates native SVG vectors"
+
+  # ---------------------------------------------------------------------------
+  # ORCHESTRATION CONFIG (Story 1.1)
+  # Global operational parameters for visual-scout engine orchestration.
+  # ---------------------------------------------------------------------------
+  orchestration:
+    feature_flag: ENABLE_VISUAL_GENERATION
+    default_timeout_ms: 30000
+    budget_cap_per_deck_usd: 2.0000
+    budget_cap_per_video_usd: 5.0000
+    budget_cap_monthly_usd: 100.0000
+    concurrency_limit: 3          # max simultaneous API calls (Promise.allSettled)
+    concurrency_overrides:
+      recraft: 2                  # Recraft API rate-limited to 2 concurrent
+
+    fallback_strategy:
+      description: >
+        When an engine fails, visual-scout follows the engine's fallback_engines
+        list in order. If all engine fallbacks are exhausted, fall through to
+        the asset-resolution.yaml chain (contextual_search -> degraded_placeholder).
+      max_fallback_depth: 2       # max engines to try before giving up
+      on_all_engines_exhausted: "fall_through_to_asset_resolution_chain"
+
+    engine_selection_algorithm:
+      description: >
+        visual-scout selects engine using routing_table[content_type].primary_engine.
+        Before invoking, it checks: (1) budget remaining via estimateCost(),
+        (2) engine availability via supports(), (3) API key presence.
+        If primary fails pre-checks, iterate fallback_chain in order.
+      steps:
+        - "1. Lookup routing_table by spec.content_type"
+        - "2. Get primary_engine from route"
+        - "3. Check estimateCost() <= remaining_budget"
+        - "4. Check supports() returns true"
+        - "5. Check required API key is present in env"
+        - "6. If all pass: invoke render(spec)"
+        - "7. If render fails: try next in fallback_chain"
+        - "8. If fallback_chain exhausted: fall through to contextual_search"
+      budget_exceeded_behavior: >
+        When deck budget cap is reached, ONLY free engines are allowed
+        (d2, mermaid, plotly). Paid engines (gpt_image, recraft, ideogram)
+        are skipped with VisualError(type=engine_failure, message="budget exceeded").
+
+    cache_integration:
+      description: >
+        Before invoking any engine, visual-scout checks cache (Story 1.6).
+        Cache key = SHA256(engine_id + diagram_code|prompt + design_tokens_hash).
+        If cache hit: return cached VisualOutput with cache_hit=true.
+      cache_directory: "${SLIDES_CACHE_DIR:-cache/slides-v2}"
+      cache_levels:
+        L1: "diagrams/ — exact diagram code match (TTL: indefinite)"
+        L2: "images/ — exact prompt+engine match (TTL: 30 days)"
+        L3: "templates/ — reusable visual patterns (TTL: indefinite)"

@@ -1,0 +1,36 @@
+workflow_state:
+  run_id: "sie-command-center-local-preview-SIE-DS-LOCAL-01-2026-07-31"
+  source_artifact: "docs/workflows/WORKFLOW-SDC-SIE-COMMAND-CENTER-LOCAL-PREVIEW-YOLO.md"
+  story_id: "SIE-DS-LOCAL-01"
+  status: "local_done"
+  current_phase: "local_done"
+  agents:
+    sm: "completed"
+    po: "GO (9/10)"
+    architect: "PASS"
+    dev: "completed"
+    qa: "CONCERNS"
+    devops: null
+  verdicts:
+    po: "GO"
+    architect: "PASS"
+    qa: "CONCERNS"
+  gates:
+    lint: "passed"
+    typecheck: "passed"
+    tests: "passed (983/983, full regression)"
+    build: "passed (client+ssr)"
+    coderabbit: "unavailable (SIGILL/exit 132, environment)"
+    legacy_regression: "passed (AppShell.tsx diff vazio; smoke test manual da rota raiz)"
+    smoke_test_new_route: "passed (HTTP 200, conteúdo confirmado)"
+  delivery:
+    branch: "master"
+    commit: null
+    pull_request: null
+    release: null
+    environment: "local dev server only (http://127.0.0.1:5173)"
+    deploy_status: "not_applicable — nenhum deploy autorizado por este workflow"
+    rollback_status: "not_applicable — nada foi publicado remotamente"
+  local_access:
+    url: "http://127.0.0.1:5173/sie-command-center-preview"
+    requires: "VITE_FEATURE_SIE_COMMAND_CENTER=true em .env.local (já configurado)"

@@ -1,0 +1,71 @@
+workflow_phase: prototype
+mission: build (protótipo de referência) — precedida por audit
+scope: spec de tokens + shell de referência em UMA rota
+executed_at: "2026-08-01"
+target: sistema-de-instala-es-el-tricas-sie-main
+
+decisoes_vinculantes_do_usuario:
+  - "Entrega em duas etapas: spec + protótipo primeiro; propagação só após aprovação"
+  - "Tema é camada sobre Carbon — Carbon segue como engine de componentes"
+  - "Cores de marca: primária #0B3367, secundária #061E3D"
+
+tokens:
+  arquivo: src/styles/sie-theme.css
+  estrategia: "reatribuição de valores aos tokens --cds-* existentes (theming oficial Carbon)"
+  especificidade: ':root[data-sie-theme="X"] .cds--Y (0,2,1) > .cds--Y (0,1,0)'
+  rampa_marca: 10 degraus (--sie-blue-10..100), âncoras 70=#0b3367 e 90=#061e3d
+  temas: [dark (default), light]
+  mapeamentos_chave:
+    dark_background: "#061e3d (secundária da marca substitui o cinza #161616 do g100)"
+    dark_interactive: "#7db4f0 (primária é escura demais para texto sobre dark: 1.45:1)"
+    dark_button_primary: "#1b5598 (texto branco 7.50:1)"
+    light_interactive: "#0b3367 (primária rende 12.47:1 sobre branco)"
+    light_background: "#f4f7fb (canvas azulado, mantém temperatura da marca)"
+  status_reconciliados:
+    problema: "auditoria achou 3 vermelhos e 3 verdes para os mesmos conceitos"
+    solucao: "1 par por estado por tema, todos >=4.5:1"
+
+componentes_criados:
+  - src/styles/sie-theme.css
+  - src/lib/sie-theme.ts
+  - src/hooks/use-sie-theme.ts
+  - src/components/app/sie-shell/SieShell.tsx
+  - src/components/app/sie-shell/SieSidebar.tsx
+  - src/components/app/sie-shell/ThemeToggle.tsx
+  - src/components/app/sie-shell/nav-model.ts
+  - src/components/app/sie-shell/sie-shell.css
+  - src/components/app/sie-shell/sie-theme-contrast.test.ts
+  - src/components/app/sie-shell/nav-model.test.ts
+
+rota_de_referencia: src/routes/index.tsx
+rotas_intocadas: 9 (seguem em AppShell antigo, sem alteração)
+
+validacao:
+  tsc: "0 erros"
+  eslint: "0 erros"
+  testes_novos: "49 passando (37 contraste + 12 navegação)"
+  suite_completa: "1104/1105 — 1 falha pré-existente (snapshot queda-tensao, botão Tutorial de outra sessão)"
+  build_spa: "OK em 21.55s"
+  css_adicionado: "26.9 KB fonte / ~6.7 KB gzip"
+
+achado_novo_critico:
+  id: rota-diagnostico-ausente-no-spa
+  descricao: "/diagnostico existe em routeTree.gen.ts (SSR) mas NÃO em routeTree.spa.ts — 404 em produção"
+  como_apareceu: "tsc rejeitou o tipo ao montar o menu dinâmico"
+  status: "NÃO corrigido — exige decisão do usuário (muda bundle de produção)"
+  confirma: "armadilha #2 de docs/DEPLOY-SPA-HOSTINGER.md, prevista na auditoria"
+
+pendente_de_decisao_do_usuario:
+  - "Registrar /diagnostico em routeTree.spa.ts?"
+  - "Command Center: light-mode + fonte Inter é intencional ou drift?"
+  - "Aprovar propagação do SieShell para as outras 9 rotas"
+
+auditoria_anterior_resumo:
+  design_systems_detectados: 5
+  css_prod_e_carbon_puro: "953.265 de 953.581 bytes — delta 316"
+  shadcn_dead_code: "46 componentes, 4360 LOC, 0 imports externos"
+  tokens_bespoke: "126 em 3 vocabulários (--sie-cc-*, --sie-*, --div-*)"
+
+next_missions:
+  - consolidate
+  - tokenize

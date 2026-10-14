@@ -1,0 +1,91 @@
+workflow: "MOD-QT-2-05-NAV-LINK"
+mode: "yolo"
+current_state: "COMPLETE"
+next_agent: null
+story_id: "MOD-QT-2-05"
+story_path: "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md"
+story_status: "Done"
+history:
+  - state: "STORY_DRAFT"
+    agent: "@sm"
+    timestamp: "2026-07-29"
+    output: "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md"
+    status: "complete"
+  - state: "STORY_VALIDATION"
+    agent: "@po"
+    timestamp: "2026-07-29"
+    output: ".aiox/handoffs/MOD-QT-2-05-po-to-dev.yaml"
+    status: "complete"
+    verdict: "GO"
+    score: "10/10 (7/10 pre-correcao)"
+    notes: "Defeito bloqueante corrigido: story prescrevia Testing Library, ausente do repositorio. 3 decisoes do @sm confirmadas com verificacao independente de codigo."
+  - state: "STORY_IMPLEMENTATION"
+    agent: "@dev"
+    timestamp: "2026-07-29"
+    output: ".aiox/handoffs/MOD-QT-2-05-dev-to-qa.yaml"
+    status: "complete"
+    acceptance_criteria: "AC1 MET, AC2 MET, AC3 MET, AC4 N/A (confirmado — nenhum snapshot do hub)"
+    gates:
+      tsc: "exit 0"
+      vitest: "950/950 (133 arquivos) — baseline 947 + 3 novos"
+      vite_build: "exit 0 (7.74s)"
+      eslint_escopado: "sem erro de regra real; caveat ambiental CRLF (core.autocrlf=true) documentada"
+    notes: "+7 linhas em src/routes/projetos.$projetoId.tsx e 1 arquivo de teste novo. Nenhuma dependencia instalada, nenhum vitest.config alterado, nenhum <a href> vizinho migrado, route trees intocadas. Nenhum retry acionado."
+  - state: "QA_GATE"
+    agent: "@qa"
+    timestamp: "2026-07-29"
+    output: "docs/qa/gates/MOD-QT-2-05-gate.yaml"
+    status: "complete"
+    verdict: "CONCERNS"
+    score: "95/100"
+    status_transition: "InReview -> Done"
+    acceptance_criteria: "AC1 MET, AC2 MET, AC3 MET, AC4 N/A confirmado — todos verificados por reexecucao independente do @qa"
+    gates_reexecutados_pelo_qa:
+      tsc: "exit 0"
+      vitest_isolado: "1/1 arquivo, 3/3 testes, exit 0, 897ms"
+      vitest_full: "133/133 arquivos, 950/950 testes, 0 falhas, exit 0, 199,36s (baseline 947 preservado)"
+      vite_build: "exit 0, built in 8.22s"
+      git_diff: "+7 / -0 confirmado (numstat), hunk unico @@ -96,6 +96,13 @@"
+      eslint_escopado: "exit 1, 146 erros — 146/146 prettier/prettier 'Delete CR', uma por linha do arquivo inteiro (139 fora das linhas novas); com prettier off -> exit 0"
+      eslint_projeto_inteiro: "NAO_VERIFICADO (trava ambiental) — unica razao do CONCERNS"
+    verificacao_de_causa_crlf: >-
+      Alegacao do @dev SUSTENTADA por prova independente que ele nao apresentou: o mesmo eslint
+      em src/routes/index.tsx (arquivo LIMPO em git status, sem relacao com esta story) retorna
+      exit 1 com 140/140 prettier/prettier identicos e 140 bytes CR na worktree. Contraprova:
+      __root.tsx (tambem limpo) tem 0 CR e passa exit 0. Worktree com line endings mistos sob
+      core.autocrlf=true; blob no HEAD com 0 CR. NAO e FAIL.
+    escopo: "find src tests -newermt '2026-07-29 10:00' -> exatamente 2 arquivos (rota + teste). domain/queda-tensao, rota destino e ambas as route trees limpas. package.json M por trabalho alheio (scripts docs:tutorial); dependencies intocado, zero testing-library/jsdom/happy-dom."
+    ressalvas: "MNT-005 (eslint . nao verificado), MNT-006 (line endings mistos — .gitattributes para @devops), DBT-005 (3 <a href> nao migrados — backlog @po), OPS-001 (BLK-QT-TIMEOUT-FLAKY-01, 4a execucao sem repro)"
+    correcoes_exigidas: "nenhuma"
+  - state: "PUBLISH"
+    agent: "@devops"
+    timestamp: "2026-07-29"
+    status: "complete"
+    gates_reexecutados_pelo_devops:
+      tsc: "npx tsc --noEmit — exit 0"
+      vite_build: "npx vite build — exit 0, built in 12.97s"
+      git_diff: "+7 / -0 confirmado em src/routes/projetos.$projetoId.tsx"
+      vitest_full: "nao reexecutado — nenhuma alteracao de codigo-fonte desde o PASS 950/950 do @qa (worktree confirmada por git status)"
+    commits:
+      submodulo:
+        repo: "sistema-de-instala-es-el-tricas-sie-main"
+        branch: "feature/nbr5410-conformidade-closeout"
+        hash: "55d0c09"
+        mensagem: "feat(mod-qt): adiciona link de navegacao \"Queda de tensao\" no hub do projeto [MOD-QT-2-05]"
+        arquivos: "src/routes/projetos.$projetoId.tsx (M), tests/ui/projeto-detalhe-nav-links.test.ts (A) — stage por caminho explicito"
+      repo_raiz:
+        branch: "master"
+        hash: "c76e27d"
+        mensagem: "docs(mod-qt): story, gate de QA e artefatos de controle MOD-QT-2-05 + ponteiro do submodulo"
+        arquivos: "story, docs/qa/gates/MOD-QT-2-05-gate.yaml, 4 handoffs do ciclo, ponteiro do submodulo 53feb7a -> 55d0c09"
+    push:
+      executado: true
+      aceito_pelo_remoto: true
+      submodulo: "origin/feature/nbr5410-conformidade-closeout — 225856f..55d0c09 (publicou 53feb7a de MOD-QT-2-03/-04 + 55d0c09 desta story)"
+      repo_raiz: "origin/master — 98d9af0..c76e27d (publicou 1192234 de MOD-QT-2-03/-04 + c76e27d desta story)"
+      force_push: false
+    worktree_suja:
+      preservada: true
+      nota: "~95 entradas de outros epicos (MOD-CC, AUTO-OTI, tutoriais MOD-DC, hostinger-spa*) no submodulo e ~50 no raiz permanecem intocadas. Nenhum `git add -A` / `git add .` foi executado."
+    nota_log: ".aiox/logs/ e gitignored (.gitignore:18 `logs/`) — MOD-QT-2-05-yolo.log atualizado localmente, nao versionado."
+next_steps: []

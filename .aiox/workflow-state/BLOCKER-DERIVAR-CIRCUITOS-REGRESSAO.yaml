@@ -1,0 +1,249 @@
+blocker_id: BLK-DERIVAR-CIRCUITOS-01
+severidade: ALTA
+status: RESOLVIDO  # em 2026-07-29 pelo QA gate de DERIVAR-CIRCUITOS-1; ver status_final_deste_blocker
+detectado_por: "@aiox-master (Orion)"
+detectado_em: "2026-07-28"
+contexto: >-
+  Detectado durante o preflight do workflow MOD-QT-2-RESOLUCAO-VERQT, ao executar
+  a suite de testes de baseline. NAO e atribuivel ao MOD-QT-2; e trabalho nao
+  commitado de MOD-CC / AUTO-OTI presente na mesma worktree.
+
+evidencia:
+  suite_baseline:
+    comando: "npx vitest run"
+    resultado: "Test Files 1 failed | 125 passed (126) — Tests 1 failed | 832 passed (833)"
+    duracao_s: 225.56
+  teste_falhando:
+    arquivo: "tests/domain/calculo/derivar-circuitos.test.ts"
+    linha: 85
+    nome: "dependencia sem resultado e ignorada"
+    assercao: "expect(derivarCircuitos([{ entrada: entradaSala }], padraoBi)).toEqual([])"
+    observado: >-
+      retorna 2 circuitos de carga adicional em vez de []:
+      (1) ADD-Sala-Chuveiro — tipo "tue", potencia_total_VA 5600, tensao_V 220,
+          tensao_resolucao { origem: "declarada", confirmada: true, rotulo: "220 V declarada" };
+      (2) ADD-Sala-Lampada — tipo "iluminacao", potencia_total_VA 200, tensao_V 127, sem tensao_resolucao.
+      Nenhum circuito ILUM-Sala ou TUG-Sala e emitido (guard `> 0` com VA zerado).
+    observado_corrigido_em: "2026-07-28"
+    observado_corrigido_por: "@po (Pax)"
+    observado_valor_anterior: "retorna 1 circuito ADD-Sala-Lampada (carga adicional) em vez de []"
+    observado_evidencia: >-
+      npx vitest run tests/domain/calculo/derivar-circuitos.test.ts executado em
+      2026-07-28 de dentro de sistema-de-instala-es-el-tricas-sie-main/:
+      "Test Files 1 failed (1) | Tests 1 failed | 11 passed (12)";
+      diff da assercao mostra "expected [ …(2) ] to deeply equal []".
+
+causa_raiz:
+  arquivo: "src/domain/calculo/derivar-circuitos.ts"
+  diff_nao_commitado: "3 insercoes / 3 delecoes"
+  alteracoes:
+    - linha: 99
+      antes: "if (!r || !vIlumTug) continue;"
+      depois: "if (!vIlumTug) continue;"
+    - linha: 108
+      antes: "const ilumVA = r.iluminacao.valor.vaTotal;"
+      depois: "const ilumVA = r?.iluminacao.valor.vaTotal ?? 0;"
+    - linha: 119
+      antes: "const tugVA = r.tomadas.valor.vaTotal;"
+      depois: "const tugVA = r?.tomadas.valor.vaTotal ?? 0;"
+  analise: >-
+    Mudanca deliberada de comportamento: dependencias SEM `resultado` deixaram de
+    ser puladas e passam a emitir circuitos de cargas adicionais. O teste que
+    assegurava o comportamento anterior nao foi atualizado nem substituido.
+
+historico:
+  - data: "2026-07-28"
+    evento: >-
+      @po registrou em .aiox/handoffs/MOD-QT-2-01-po-addendum-to-qa.yaml (PO-DIV-02)
+      que tests/domain/calculo/derivar-circuitos.test.ts estava com 0 linhas na
+      worktree (281 delecoes nao commitadas) — 281 linhas de cobertura esvaziadas.
+  - data: "2026-07-28"
+    evento: >-
+      No preflight deste workflow o arquivo aparece restaurado com 281 linhas.
+      A restauracao expos a regressao real que o esvaziamento ocultava.
+  - data: "2026-07-28"
+    evento: >-
+      @sm (River) criou a story de regularizacao e sinalizou divergencia factual no
+      campo evidencia.teste_falhando.observado (1 circuito registrado vs 2 observados),
+      sem autoridade para editar este artefato.
+  - data: "2026-07-28"
+    evento: >-
+      @po (Pax) reexecutou o teste, CONFIRMOU a divergencia e corrigiu
+      evidencia.teste_falhando.observado de "1 circuito ADD-Sala-Lampada" para os
+      2 circuitos reais (ADD-Sala-Chuveiro e ADD-Sala-Lampada), com evidencia de
+      execucao anexada. O valor anterior fica preservado em observado_valor_anterior.
+  - data: "2026-07-28"
+    evento: >-
+      @po (Pax) validou a story (*validate-story-draft) com veredito GO 9/10 apos
+      correcoes de PO: Status Draft -> Ready. Handoffs renomeados do prefixo incorreto
+      MOD-CC-DERIVAR-CIRCUITOS para o story-id canonico DERIVAR-CIRCUITOS-1
+      (a investigacao do @sm concluiu que a mudanca NAO pertence ao epico MOD-CC).
+  - data: "2026-07-28"
+    evento: >-
+      @dev (Dex) executou *develop DERIVAR-CIRCUITOS-1 --mode yolo. Atualizou APENAS
+      tests/domain/calculo/derivar-circuitos.test.ts (1 assercao substituida para AC1 +
+      2 testes novos para AC2/AC4 + comentario de rastreabilidade PP-1); src/domain/calculo/
+      derivar-circuitos.ts NAO foi tocado (Task 6 — diff segue em 3 insercoes / 3 delecoes).
+      Arquivo do teste passou de "1 failed | 11 passed (12)" para "14 passed (14)".
+      Story: Ready -> InProgress -> InReview (v0.4).
+      Task 5 / Artigo IV: nenhuma motivacao historica documental localizada (git log do arquivo
+      nao menciona o guard `!r`; o diff continua nao commitado, logo sem mensagem de commit ou PR).
+      Ausencia registrada explicitamente no Dev Agent Record; nada inventado.
+  - data: "2026-07-28"
+    evento: >-
+      ATENCAO — o baseline "1 failed | 125 passed (126)" mudou durante o ciclo. Apos a correcao,
+      npm test fecha em "6 failed | 120 passed (126) — Tests 41 failed | 786 passed (827)".
+      Os 6 arquivos falhando sao TODOS do dominio queda-tensao/MOD-QT-2 (motor-queda-tensao,
+      ca-qt-19-nao-regressao, queda-tensao-endpoints, modulos-mod-qt-motor-real, modulos-mod-qt,
+      queda-tensao.vrt), em sua maioria untracked — trabalho paralelo em voo de outro @dev.
+      Nenhum e atribuivel a DERIVAR-CIRCUITOS-1: tests/domain/calculo esta 116/116 verde e a falha
+      dominante e ErroQuedaTensao "familia_id ausente" em motor-queda-tensao.ts:171.
+      Efeito liquido desta story sobre o gate: -1 arquivo falhando.
+  - data: "2026-07-29"
+    evento: >-
+      @qa (Quinn) executou *qa-gate DERIVAR-CIRCUITOS-1 em modo YOLO. Veredito CONCERNS,
+      quality_score 92. Gate file: docs/qa/gates/DERIVAR-CIRCUITOS-1-gate.yaml.
+      4/4 ACs PASS com rastreabilidade verificada CONTRA O ARQUIVO de teste (AC3 verificado por
+      diff: 50 insercoes / 2 delecoes, as 2 delecoes sao exatamente o `it` obsoleto da linha 85).
+      Task 6 confirmada byte a byte: src/domain/calculo/derivar-circuitos.ts segue em 3+/3-
+      pre-existentes, NENHUMA linha nova. Gates re-executados de forma independente:
+      typecheck PASS; escopado 14/14 PASS (2,46s); tests/domain/calculo 116/116 PASS;
+      build PASS (8,74s); lint escopado PASS com ressalva ambiental (329 erros, 100% prettier
+      "Delete CR"; controle em arquivo vizinho nao tocado: 261 erros do mesmo perfil);
+      `npx eslint .` NAO VERIFICADO (fail-closed). Artigo IV PASS — os 7 commits do arquivo
+      re-conferidos, ausencia de motivacao documental confirmada como ESTRUTURAL, nada inventado.
+      Story: InReview -> Done (v0.5).
+      Handoff de saida: .aiox/handoffs/DERIVAR-CIRCUITOS-1-qa-to-devops.yaml.
+  - data: "2026-07-29"
+    evento: >-
+      CORRECAO DE NUMEROS — o relato do @dev ("6 failed | 120 passed (126)") era um retrato honesto
+      do momento, com o ciclo paralelo MOD-QT-2-03 em voo (familia_id ausente no contexto).
+      Aquele trabalho fechou depois. A re-execucao do @qa em 2026-07-29 observou
+      "Test Files 1 failed | 128 passed (129) — Tests 1 failed | 892 passed (893)", 263,13s.
+      A UNICA falha remanescente e TIMEOUT (5000ms), nao assercao, em
+      tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts; o mesmo arquivo passa
+      28/28 em 7,22s quando executado isolado. Registrado como blocker NOVO E DISTINTO
+      (BLK-QT-TIMEOUT-FLAKY-01), nao como reabertura deste.
+
+blockers_derivados:
+  - id: BLK-QT-TIMEOUT-FLAKY-01
+    severidade: MEDIA
+    status: ABERTO
+    detectado_por: "@qa (Quinn)"
+    detectado_em: "2026-07-29"
+    origem: "Identificado durante o QA gate de DERIVAR-CIRCUITOS-1 (ressalva DC1-001 do gate file)."
+    relacao_com_este_blocker: >-
+      DISTINTO. NAO e reabertura de BLK-DERIVAR-CIRCUITOS-01, que permanece RESOLVIDO.
+      Outro dominio (queda-tensao), outro dono, outra causa (flakiness de timeout sob carga
+      paralela, nao regressao de comportamento).
+    arquivo: "tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts"
+    teste: 'AC3 (parecer §3.1) > "todos os campos exigidos estao presentes e preenchidos em cada um dos 1.563 registros"'
+    natureza: >-
+      TIMEOUT, nao assercao: "Error: Test timed out in 5000ms". O teste itera 1.563 registros x N
+      campos obrigatorios dentro do testTimeout padrao do Vitest, sob contencao de 129 arquivos em
+      paralelo. Verde isolado: Test Files 1 passed (1) | Tests 28 passed (28), 7,22s.
+    impacto: >-
+      Torna o gate "suite limpa" do @devops NAO DETERMINISTICO — este e o custo real, mais alto
+      que a falha em si. Enquanto aberto, `npx vitest run` nao fecha em 0 de forma reproduzivel.
+    nao_atribuivel_a: "DERIVAR-CIRCUITOS-1 (nenhum caminho de codigo de queda-tensao passa por derivarCircuitos; tests/domain/calculo esta 116/116 verde)"
+    dono_sugerido: "@dev do ciclo MOD-QT-2 / @po"
+    acao_sugerida: >-
+      Elevar o testTimeout desse `it` ou move-lo para fora do laco de 1.563 registros x N campos,
+      eliminando a flakiness sob carga paralela.
+    verificacao_independente:
+      por: "@qa (Quinn)"
+      em: "2026-07-29"
+      contexto: "QA gate de MOD-QT-2-03 e MOD-QT-2-04"
+      metodo: "2 execucoes completas e consecutivas de `npx vitest run` no submodule"
+      resultado: >-
+        NAO REPRODUZIDO. Execucao 1: Test Files 132 passed (132), Tests 947 passed (947),
+        242,56 s, exit 0. Execucao 2: Test Files 132 passed (132), Tests 947 passed (947),
+        239,01 s, exit 0. Nenhum timeout em
+        tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts.
+      severidade_revisada: "MEDIA -> BAIXA"
+      status_revisado: "ABERTO (nao fechado)"
+      justificativa_de_nao_fechamento: >-
+        A causa estrutural permanece INALTERADA: o `it` das linhas 156-172 continua
+        iterando 1.563 registros x 13 campos com callback de mensagem por assert, sem
+        `testTimeout` proprio e sem override no config do Vitest. Ha evidencia de NAO
+        REPRODUCAO nesta rodada, nao de correcao. Blocker de outro @qa nao e fechado sem
+        evidencia de correcao.
+      referencias:
+        - "docs/qa/gates/MOD-QT-2-03-gate.yaml (V10, OPS-001)"
+        - "docs/qa/gates/MOD-QT-2-04-gate.yaml (V10, OPS-001)"
+
+rastreabilidade:
+  story_associada: NENHUMA
+  busca_executada: "grep 'derivar-circuitos|derivarCircuitos' em docs/stories/"
+  achados: >-
+    Somente MOD-QT-2-01, MOD-QT-2-02 (mencao incidental) e
+    HANDOFF-CORRECAO-CIRCUITOS-TENSAO-INCOMPATIVEL-to-DEV.md, que trata de
+    circuitos com tensao incompativel e nao cobre a remocao do guard `!r`.
+  conclusao: >-
+    Violacao do Artigo III (Story-Driven Development): mudanca de comportamento de
+    dominio sem story, sem AC e sem atualizacao de teste.
+
+impacto:
+  - "npm test NAO fecha limpo — bloqueia o gate tecnico de qualquer story deste ciclo."
+  - "Bloqueia @devops: nao e admissivel commit/push com a suite vermelha."
+  - "Risco de regressao silenciosa se o esvaziamento do teste for recommitado."
+
+nao_atribuivel_a:
+  - "MOD-QT-2-01"
+  - "MOD-QT-2-02"
+  - "MOD-QT-2-03 (resolucao VER-QT)"
+  - "MOD-QT-2-04 (resolucao VER-QT)"
+  justificativa: >-
+    Dominio calculo/derivar-circuitos, sem qualquer relacao com queda-tensao.
+
+resolucoes_possiveis:
+  - id: R1
+    acao: "Reverter src/domain/calculo/derivar-circuitos.ts ao HEAD (restaurar o guard `!r`)."
+    risco: "Pode quebrar funcionalidade de MOD-CC / AUTO-OTI que dependa do novo comportamento."
+    requer: "Verificar quais testes de MOD-CC/AUTO-OTI passam a falhar."
+  - id: R2
+    acao: "Atualizar o teste para o novo comportamento intencional, sob uma story do MOD-CC/AUTO-OTI."
+    risco: "Exige story com AC declarando o comportamento novo — nao pode ser decisao de um agente."
+    requer: "@sm cria story; @po valida; @dev implementa."
+  - id: R3
+    acao: "Escalar ao usuario para decidir entre R1 e R2."
+    risco: "Nenhum."
+
+decisao: >-
+  R2 — story criada e VALIDADA: docs/stories/story-DERIVAR-CIRCUITOS-1-dependencia-sem-resultado.md
+  (Status: Ready, GO 9/10 por @po em 2026-07-28). Usuario autorizou preservar o comportamento novo;
+  a story declara o principio de produto PP-1 como requisito rastreavel proprio, formaliza 4 ACs e
+  manda corrigir tests/domain/calculo/derivar-circuitos.test.ts:85 (NAO reverter o src/).
+  Handoffs: .aiox/handoffs/DERIVAR-CIRCUITOS-1-sm-to-po.yaml (consumido),
+  .aiox/handoffs/DERIVAR-CIRCUITOS-1-po-to-dev.yaml (ativo).
+  Proximo passo: @dev *develop DERIVAR-CIRCUITOS-1.
+decisor_apropriado: "usuario (decisao de preservar o comportamento) / @po (validacao da story)"
+current_state: "READY_FOR_DEVOPS — QA gate concluido (CONCERNS, score 92), story DERIVAR-CIRCUITOS-1 em Done"
+next_agent: "@devops"
+next_command: "aguardar estabilizacao de BLK-QT-TIMEOUT-FLAKY-01 antes de commit/push"
+handoff_ativo: ".aiox/handoffs/DERIVAR-CIRCUITOS-1-qa-to-devops.yaml"
+handoffs_consumidos:
+  - ".aiox/handoffs/DERIVAR-CIRCUITOS-1-sm-to-po.yaml"
+  - ".aiox/handoffs/DERIVAR-CIRCUITOS-1-po-to-dev.yaml"
+  - ".aiox/handoffs/DERIVAR-CIRCUITOS-1-dev-to-qa.yaml"
+story_id: "DERIVAR-CIRCUITOS-1"
+epico: >-
+  NENHUM. A investigacao do @sm descartou MOD-CC (curto-circuito C3) e AUTO-OTI
+  (otimizacao de dimensionamento) como origem. Story standalone de regularizacao.
+gate_devops: >-
+  BLOQUEADO — porem NAO mais por este blocker. Situacao em 2026-07-29 pos-@qa:
+  BLK-DERIVAR-CIRCUITOS-01 esta RESOLVIDO (derivar-circuitos.test.ts verde 14/14 por re-execucao
+  independente do @qa; Artigo III sanado pela story com 4 ACs e PP-1 rastreavel; QT201-001 e
+  QT202-001 tinham EXATAMENTE este teste como causa do `npm test` exit 1 — causa encerrada).
+  O gate permanece bloqueado por um item NOVO E DISTINTO: BLK-QT-TIMEOUT-FLAKY-01 (ver
+  blockers_derivados) — 1 arquivo do dominio queda-tensao falha por TIMEOUT intermitente, o que
+  impede a suite de fechar em 0 de forma DETERMINISTICA. Outro dominio, outro dono.
+  Pre-condicao para liberar: `npx vitest run` fechar com 0 arquivos falhando de forma reproduzivel
+  dentro de sistema-de-instala-es-el-tricas-sie-main/.
+  ATENCAO: nao reabrir BLK-DERIVAR-CIRCUITOS-01 por causa de BLK-QT-TIMEOUT-FLAKY-01.
+
+status_final_deste_blocker:
+  status: RESOLVIDO
+  resolvido_em: "2026-07-29"
+  resolvido_por: "story DERIVAR-CIRCUITOS-1 (QA gate CONCERNS, quality_score 92, @qa Quinn)"
+  gate_file: "docs/qa/gates/DERIVAR-CIRCUITOS-1-gate.yaml"

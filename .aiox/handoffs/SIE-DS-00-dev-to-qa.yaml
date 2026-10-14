@@ -1,0 +1,24 @@
+handoff:
+  from_agent: "@dev"
+  to_agent: "@qa"
+  story_context:
+    story_id: "SIE-DS-00"
+    story_path: "docs/stories/story-SIE-DS-00-readiness-namespace-canonico.md"
+    story_status: "InReview"
+    current_task: "*develop-yolo concluído; aguardando *review / *gate"
+    branch: "master"
+  decisions:
+    - "Único artefato de produção da story: docs/architecture/DECISION-SIE-DS-00-readiness-namespace-canonico.md, consolidando sem alteração o architecture_verdict já ratificado (PASS) por @architect."
+    - "CodeRabbit self-healing (light, @dev) NÃO foi executado com sucesso: binário WSL ~/.local/bin/coderabbit retorna SIGILL/exit 132 mesmo em --version, falha de ambiente anterior a qualquer parsing de conteúdo. Documentado em Dev Agent Record > Debug Log References. Não bloqueante nesta story (zero código executável), mas recomendo @qa tentar reproduzir o full self-healing (3 iterações) antes do gate, e reportar a @devops se persistir — pode bloquear o Pre-PR de SIE-DS-01 em diante, que já envolverá código real."
+    - "AC5 confirmado: nenhum arquivo em sistema-de-instala-es-el-tricas-sie-main/src/ foi tocado."
+  files_modified:
+    - "docs/architecture/DECISION-SIE-DS-00-readiness-namespace-canonico.md"
+    - "docs/stories/story-SIE-DS-00-readiness-namespace-canonico.md"
+  blockers:
+    - "CodeRabbit CLI indisponível neste ambiente (SIGILL/exit 132) — não bloqueia esta story (sem código), mas é um risco de ambiente a validar antes de SIE-DS-01."
+  next_action: >
+    @qa executa *review SIE-DS-00 e *gate SIE-DS-00 — 7 quality checks do workflow-fonte,
+    com foco em: AC1-AC5 satisfeitos, rastreabilidade das citações no DECISION doc,
+    consistência com o architecture_verdict de @architect, ausência de regressão no legado
+    (trivial aqui — zero código), e decisão sobre o achado CodeRabbit indisponível
+    (aceitar como CONCERNS documentado vs. escalar).

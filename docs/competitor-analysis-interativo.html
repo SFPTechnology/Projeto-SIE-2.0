@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Consulta interativa da análise competitiva das seções unifilares do SIE.">
+  <title>Análise Competitiva | SIE</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --reader-scale: 1;
+      --font-ui: Inter, "Segoe UI", Arial, sans-serif;
+      --font-doc: Arial, Helvetica, sans-serif;
+      --font-code: "Cascadia Code", "IBM Plex Mono", Consolas, monospace;
+      --bg: #edf2f4;
+      --surface: #ffffff;
+      --surface-subtle: #f5f7f8;
+      --surface-raised: #ffffff;
+      --text: #172023;
+      --text-muted: #59676c;
+      --border: #cdd7da;
+      --border-strong: #9cadaf;
+      --accent: #006b5f;
+      --accent-strong: #004f47;
+      --accent-soft: #d9f0eb;
+      --signal: #d7a500;
+      --signal-soft: #fff4c2;
+      --danger: #b4232d;
+      --danger-soft: #fde7e9;
+      --info: #1d5f91;
+      --info-soft: #e3f0fa;
+      --focus: #005fcc;
+      --code-bg: #11191b;
+      --code-text: #e7f3f1;
+      --shadow: 0 12px 34px rgba(29, 45, 48, 0.12);
+      --header-h: 68px;
+      --sidebar-w: 304px;
+      --content-w: 900px;
+      --radius: 6px;
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #151a1a;
+      --surface: #202626;
+      --surface-subtle: #282f2e;
+      --surface-raised: #242b2a;
+      --text: #f2f6f5;
+      --text-muted: #b5c0bd;
+      --border: #465250;
+      --border-strong: #687875;
+      --accent: #70d8c2;
+      --accent-strong: #9ce6d6;
+      --accent-soft: #173c35;
+      --signal: #f2c94c;
+      --signal-soft: #493d12;
+      --danger: #ff8389;
+      --danger-soft: #4c2427;
+      --info: #78b9e6;
+      --info-soft: #1f3c50;
+      --focus: #9dccff;
+      --code-bg: #0c1112;
+      --code-text: #e7f3f1;
+      --shadow: 0 14px 38px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-h) + 24px);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-ui);
+      line-height: 1.55;
+      letter-spacing: 0;
+    }
+
+    body.is-locked {
+      overflow: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+      letter-spacing: 0;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    a {
+      color: var(--accent-strong);
+      text-underline-offset: 0.18em;
+      text-decoration-thickness: 1px;
+    }
+
+    [data-theme="dark"] a {
+      color: var(--accent);
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      z-index: 1000;
+      padding: 10px 14px;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--focus);
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .reading-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 120;
+      width: 0;
+      height: 3px;
+      background: var(--accent);
+      transition: width 80ms linear;
+    }
+
+    .app-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      min-height: var(--header-h);
+      display: grid;
+      grid-template-columns: minmax(260px, 1fr) auto auto;
+      align-items: center;
+      gap: 18px;
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--border);
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-kicker {
+      margin: 0;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      margin: 2px 0 0;
+      overflow: hidden;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 700;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mode-switcher {
+      display: inline-grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 3px;
+      border: 1px solid var(--border);
+      background: var(--surface-subtle);
+    }
+
+    .mode-button {
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 0;
+      border-radius: 3px;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .mode-button[aria-pressed="true"] {
+      background: var(--surface);
+      color: var(--accent-strong);
+      box-shadow: 0 1px 4px rgba(24, 38, 40, 0.12);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .icon-button {
+      width: 38px;
+      height: 38px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .icon-button:hover {
+      border-color: var(--border);
+      background: var(--surface-subtle);
+      color: var(--text);
+    }
+
+    .menu-button {
+      display: none;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      padding-top: var(--header-h);
+    }
+
+    .sidebar {
+      position: fixed;
+      inset: var(--header-h) auto 0 0;
+      z-index: 80;
+      width: var(--sidebar-w);
+      overflow: hidden;
+      border-right: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .sidebar-inner {
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 14px;
+      padding: 18px 14px 14px;
+    }
+
+    .document-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 1px solid var(--border);
+      background: var(--border);
+    }
+
+    .fact {
+      min-width: 0;
+      padding: 10px 6px;
+      background: var(--surface-subtle);
+      text-align: center;
+    }
+
+    .fact strong {
+      display: block;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .fact span {
+      display: block;
+      margin-top: 2px;
+      color: var(--text-muted);
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 40px;
+      padding: 0 38px 0 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .search-count {
+      position: absolute;
+      right: 10px;
+      bottom: 11px;
+      color: var(--text-muted);
+      font-size: 10px;
+    }
+
+    .toc {
+      min-height: 0;
+      overflow: auto;
+      padding-right: 4px;
+      scrollbar-width: thin;
+    }
+
+    .toc-heading {
+      margin: 0 0 8px 6px;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .toc-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .toc-link {
+      display: block;
+      margin: 1px 0;
+      padding: 7px 9px;
+      border-left: 3px solid transparent;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .toc-link:hover {
+      background: var(--surface-subtle);
+      color: var(--text);
+    }
+
+    .toc-link.is-active {
+      border-left-color: var(--accent);
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .sidebar-footer {
+      padding: 10px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--font-code);
+      font-size: 9px;
+      line-height: 1.5;
+      word-break: break-all;
+    }
+
+    .main {
+      min-width: 0;
+      margin-left: var(--sidebar-w);
+      padding: 32px clamp(20px, 4vw, 64px) 80px;
+    }
+
+    .reader-toolbar {
+      width: min(100%, var(--content-w));
+      min-height: 48px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 0 auto 14px;
+      padding: 6px 8px 6px 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .reader-status {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    .integrity-dot {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .reader-actions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .document-paper {
+      width: min(100%, var(--content-w));
+      min-height: 80vh;
+      margin: 0 auto;
+      padding: clamp(32px, 6vw, 72px);
+      border: 1px solid var(--border);
+      background: var(--surface-raised);
+      box-shadow: var(--shadow);
+    }
+
+    .rendered-view {
+      min-width: 0;
+      max-width: 100%;
+      font-family: var(--font-doc);
+      font-size: calc(16px * var(--reader-scale));
+      line-height: 1.72;
+      overflow-wrap: break-word;
+    }
+
+    .rendered-view > h1 {
+      max-width: 760px;
+      margin: 0 0 26px;
+      color: var(--text);
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1.04;
+    }
+
+    .rendered-view h2,
+    .rendered-view h3,
+    .rendered-view h4,
+    .rendered-view h5,
+    .rendered-view h6 {
+      position: relative;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .rendered-view h2 {
+      margin: 64px 0 22px;
+      padding: 0 0 12px;
+      border-bottom: 2px solid var(--accent);
+      font-size: calc(28px * var(--reader-scale));
+    }
+
+    .rendered-view h2::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 72px;
+      height: 5px;
+      background: var(--signal);
+    }
+
+    .rendered-view h3 {
+      margin: 40px 0 14px;
+      font-size: calc(21px * var(--reader-scale));
+    }
+
+    .rendered-view h4 {
+      margin: 28px 0 10px;
+      color: var(--accent-strong);
+      font-size: calc(17px * var(--reader-scale));
+    }
+
+    .rendered-view p {
+      margin: 0 0 1em;
+    }
+
+    .rendered-view ul,
+    .rendered-view ol {
+      margin: 0.5em 0 1.25em;
+      padding-left: 1.55em;
+    }
+
+    .rendered-view li {
+      margin: 0.32em 0;
+      padding-left: 0.18em;
+    }
+
+    .rendered-view li::marker {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .rendered-view blockquote {
+      margin: 22px 0 30px;
+      padding: 18px 20px;
+      border-left: 5px solid var(--accent);
+      background: var(--accent-soft);
+      color: var(--text);
+    }
+
+    .rendered-view blockquote p:last-child {
+      margin-bottom: 0;
+    }
+
+    .rendered-view hr {
+      margin: 52px 0;
+      border: 0;
+      border-top: 1px solid var(--border-strong);
+    }
+
+    .rendered-view strong {
+      color: var(--text);
+    }
+
+    .rendered-view code:not(pre code) {
+      padding: 0.12em 0.34em;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: var(--surface-subtle);
+      color: var(--danger);
+      font-family: var(--font-code);
+      font-size: 0.88em;
+    }
+
+    .code-block {
+      position: relative;
+      margin: 24px 0 30px;
+      border: 1px solid #344244;
+      border-radius: var(--radius);
+      background: var(--code-bg);
+      color: var(--code-text);
+      overflow: hidden;
+    }
+
+    .code-label {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5px 8px 5px 14px;
+      border-bottom: 1px solid #344244;
+      color: #a8bab7;
+      font-family: var(--font-ui);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .code-block pre {
+      margin: 0;
+      padding: 20px;
+      overflow: auto;
+      font-family: var(--font-code);
+      font-size: 13px;
+      line-height: 1.55;
+      white-space: pre;
+    }
+
+    .copy-code {
+      width: 32px;
+      height: 28px;
+      border: 1px solid #4d5d5f;
+      border-radius: 3px;
+      background: transparent;
+      color: #d5e0de;
+      cursor: pointer;
+    }
+
+    .table-scroll {
+      margin: 24px 0 32px;
+      overflow-x: auto;
+      border-top: 2px solid var(--text);
+      border-bottom: 1px solid var(--text);
+    }
+
+    .rendered-view table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: calc(13px * var(--reader-scale));
+      line-height: 1.4;
+    }
+
+    .rendered-view th,
+    .rendered-view td {
+      min-width: 130px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .rendered-view th {
+      background: var(--surface-subtle);
+      color: var(--text);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .rendered-view tbody tr:nth-child(even) {
+      background: color-mix(in srgb, var(--surface-subtle) 62%, transparent);
+    }
+
+    .rendered-view tbody tr:hover {
+      background: var(--accent-soft);
+    }
+
+    .diagram {
+      margin: 28px 0 34px;
+      border: 1px solid var(--border);
+      background: var(--surface-subtle);
+    }
+
+    .diagram figcaption {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .diagram-canvas {
+      min-height: 180px;
+      overflow: auto;
+      padding: 14px;
+    }
+
+    .diagram svg {
+      min-width: 680px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .diagram details {
+      border-top: 1px solid var(--border);
+    }
+
+    .diagram summary {
+      padding: 10px 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 11px;
+    }
+
+    .diagram pre {
+      margin: 0;
+      padding: 14px;
+      overflow: auto;
+      background: var(--code-bg);
+      color: var(--code-text);
+      font-family: var(--font-code);
+      font-size: 12px;
+    }
+
+    mark {
+      padding: 0.05em 0.1em;
+      background: var(--signal-soft);
+      color: var(--text);
+      box-shadow: 0 0 0 1px var(--signal);
+    }
+
+    mark.is-current {
+      background: var(--signal);
+      color: #17120a;
+    }
+
+    .source-view {
+      display: none;
+    }
+
+    .source-view pre {
+      margin: 0;
+      color: var(--text);
+      font-family: var(--font-code);
+      font-size: calc(13px * var(--reader-scale));
+      line-height: 1.6;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    [data-mode="source"] .rendered-view {
+      display: none;
+    }
+
+    [data-mode="source"] .source-view {
+      display: block;
+    }
+
+    [data-mode="abnt"] {
+      --content-w: 210mm;
+      --reader-scale: 1;
+    }
+
+    [data-mode="abnt"] .main {
+      background: #cfd5d7;
+    }
+
+    [data-mode="abnt"] .document-paper {
+      width: 210mm;
+      max-width: 100%;
+      min-height: 297mm;
+      padding: 30mm 20mm 20mm 30mm;
+      border: 0;
+      background: #ffffff;
+      color: #000000;
+      box-shadow: 0 10px 36px rgba(18, 27, 30, 0.2);
+    }
+
+    [data-mode="abnt"] .rendered-view {
+      color: #000000;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12pt;
+      line-height: 1.5;
+      text-align: justify;
+    }
+
+    [data-mode="abnt"] .rendered-view > h1 {
+      margin: 0 0 30mm;
+      color: #000000;
+      font-size: 14pt;
+      line-height: 1.5;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    [data-mode="abnt"] .rendered-view h2 {
+      margin: 0 0 1.5em;
+      padding: 0;
+      border: 0;
+      color: #000000;
+      font-size: 12pt;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    [data-mode="abnt"] .rendered-view h2::before {
+      display: none;
+    }
+
+    [data-mode="abnt"] .rendered-view h3,
+    [data-mode="abnt"] .rendered-view h4 {
+      color: #000000;
+      font-size: 12pt;
+      text-align: left;
+    }
+
+    [data-mode="abnt"] .rendered-view p {
+      margin: 0;
+      text-indent: 1.25cm;
+    }
+
+    [data-mode="abnt"] .rendered-view h1 + blockquote,
+    [data-mode="abnt"] .rendered-view h2 + p,
+    [data-mode="abnt"] .rendered-view h3 + p,
+    [data-mode="abnt"] .rendered-view h4 + p,
+    [data-mode="abnt"] .rendered-view blockquote p,
+    [data-mode="abnt"] .rendered-view li p {
+      text-indent: 0;
+    }
+
+    [data-mode="abnt"] .rendered-view blockquote {
+      margin: 0 0 1.5em;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #000000;
+      font-size: 10pt;
+      line-height: 1;
+      text-align: left;
+    }
+
+    [data-mode="abnt"] .rendered-view a,
+    [data-mode="abnt"] .rendered-view code:not(pre code) {
+      color: #000000;
+    }
+
+    [data-mode="abnt"] .rendered-view table {
+      color: #000000;
+      font-size: 10pt;
+      line-height: 1;
+    }
+
+    [data-mode="abnt"] .rendered-view th,
+    [data-mode="abnt"] .rendered-view td {
+      background: #ffffff;
+      color: #000000;
+      border-color: #000000;
+    }
+
+    [data-mode="abnt"] .rendered-view hr {
+      border-color: #000000;
+    }
+
+    [data-mode="abnt"] .diagram {
+      background: #ffffff;
+      border-color: #000000;
+    }
+
+    .sidebar-backdrop {
+      display: none;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 200;
+      max-width: min(360px, calc(100vw - 36px));
+      padding: 12px 14px;
+      border: 1px solid var(--border-strong);
+      border-left: 4px solid var(--accent);
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      font-size: 12px;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1040px) {
+      .app-header {
+        grid-template-columns: minmax(200px, 1fr) auto;
+      }
+
+      .mode-switcher {
+        order: 3;
+        grid-column: 1 / -1;
+        width: 100%;
+      }
+
+      :root {
+        --header-h: 116px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      :root {
+        --header-h: 116px;
+      }
+
+      .menu-button {
+        display: inline-grid;
+      }
+
+      .brand-kicker {
+        display: none;
+      }
+
+      .sidebar {
+        z-index: 150;
+        width: min(88vw, 340px);
+        transform: translateX(-105%);
+        transition: transform 180ms ease;
+      }
+
+      .sidebar.is-open {
+        transform: translateX(0);
+      }
+
+      .sidebar-backdrop {
+        position: fixed;
+        inset: var(--header-h) 0 0 0;
+        z-index: 140;
+        display: block;
+        border: 0;
+        background: rgba(10, 16, 17, 0.58);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 180ms ease;
+      }
+
+      .sidebar-backdrop.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .main {
+        margin-left: 0;
+        padding: 20px 12px 64px;
+      }
+
+      .document-paper {
+        padding: 28px 20px;
+      }
+
+      .reader-status span:last-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      [data-mode="abnt"] .document-paper {
+        width: 100%;
+        min-height: auto;
+        padding: 30px 22px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      html,
+      body {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      .app-header {
+        width: 100vw;
+        max-width: 100%;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        padding-inline: 10px;
+      }
+
+      .brand {
+        gap: 8px;
+      }
+
+      .brand-title {
+        font-size: 12px;
+      }
+
+      .mode-switcher,
+      .mode-button {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .header-actions .font-control {
+        display: none;
+      }
+
+      .reader-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .reader-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+
+      .rendered-view > h1 {
+        font-size: 30px;
+      }
+
+      .rendered-view h2 {
+        font-size: 23px;
+      }
+
+      .table-scroll,
+      .diagram,
+      .diagram-canvas {
+        max-width: 100%;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 30mm 20mm 20mm 30mm;
+      }
+
+      :root {
+        color-scheme: light;
+      }
+
+      body,
+      [data-mode="abnt"] .main {
+        background: #ffffff !important;
+      }
+
+      .app-header,
+      .sidebar,
+      .sidebar-backdrop,
+      .reader-toolbar,
+      .reading-progress,
+      .toast,
+      .skip-link {
+        display: none !important;
+      }
+
+      .app-shell {
+        padding: 0;
+      }
+
+      .main {
+        margin: 0;
+        padding: 0;
+      }
+
+      .document-paper,
+      [data-mode="abnt"] .document-paper {
+        width: auto;
+        min-height: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-shadow: none !important;
+      }
+
+      .rendered-view {
+        display: block !important;
+        color: #000000 !important;
+        font-family: Arial, Helvetica, sans-serif !important;
+        font-size: 12pt !important;
+        line-height: 1.5 !important;
+        text-align: justify;
+      }
+
+      .source-view {
+        display: none !important;
+      }
+
+      .doc-section {
+        break-inside: auto;
+      }
+
+      .doc-section + .doc-section > h2 {
+        break-before: page;
+      }
+
+      h2,
+      h3,
+      h4,
+      table,
+      figure,
+      pre,
+      blockquote {
+        break-inside: avoid;
+      }
+
+      a {
+        color: #000000 !important;
+        text-decoration: none;
+      }
+
+      a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 9pt;
+        overflow-wrap: anywhere;
+      }
+
+      .copy-code,
+      details {
+        display: none !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light" data-mode="reading">
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+
+  <header class="app-header">
+    <div class="brand">
+      <button class="icon-button menu-button" id="menu-button" type="button" aria-label="Abrir sumário" title="Abrir sumário">☰</button>
+      <div class="brand-mark" aria-hidden="true">SIE</div>
+      <div class="brand-copy">
+        <p class="brand-kicker">Inteligência documental</p>
+        <p class="brand-title">Análise competitiva das seções unifilares</p>
+      </div>
+    </div>
+
+    <div class="mode-switcher" role="group" aria-label="Modo de visualização">
+      <button class="mode-button" type="button" data-mode-target="reading" aria-pressed="true">Leitura</button>
+      <button class="mode-button" type="button" data-mode-target="abnt" aria-pressed="false" title="Visualização A4 baseada na ABNT NBR 14724:2024">ABNT</button>
+      <button class="mode-button" type="button" data-mode-target="source" aria-pressed="false">Fonte</button>
+    </div>
+
+    <div class="header-actions">
+      <button class="icon-button font-control" id="font-decrease" type="button" aria-label="Diminuir texto" title="Diminuir texto">A−</button>
+      <button class="icon-button font-control" id="font-increase" type="button" aria-label="Aumentar texto" title="Aumentar texto">A+</button>
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Alternar tema" title="Alternar tema">◐</button>
+      <button class="icon-button" id="print-button" type="button" aria-label="Imprimir em formato ABNT" title="Imprimir em formato ABNT">⎙</button>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação do documento">
+      <div class="sidebar-inner">
+        <div class="document-facts" aria-label="Estatísticas do documento">
+          <div class="fact"><strong>24</strong><span>seções</span></div>
+          <div class="fact"><strong>1.668</strong><span>linhas</span></div>
+          <div class="fact"><strong>8.497</strong><span>palavras</span></div>
+        </div>
+
+        <div class="search-wrap">
+          <label for="document-search">Pesquisar no relatório</label>
+          <input class="search-input" id="document-search" type="search" autocomplete="off" placeholder="Termo, módulo, concorrente...">
+          <span class="search-count" id="search-count" aria-live="polite">0</span>
+        </div>
+
+        <nav class="toc" aria-label="Sumário">
+          <p class="toc-heading">Sumário</p>
+          <ol class="toc-list" id="toc-list"></ol>
+        </nav>
+
+        <div class="sidebar-footer">
+          <strong>Fonte íntegra</strong><br>
+          SHA-256 22858151645ba8e7b48246dad5e1e319b3cc153a48abfcf1b2a093aa9153fa08<br>
+          1.668 linhas incorporadas
+        </div>
+      </div>
+    </aside>
+
+    <button class="sidebar-backdrop" id="sidebar-backdrop" type="button" aria-label="Fechar sumário"></button>
+
+    <main class="main" id="conteudo">
+      <div class="reader-toolbar" aria-label="Ferramentas do documento">
+        <div class="reader-status">
+          <span class="integrity-dot" aria-hidden="true"></span>
+          <span>Conteúdo integral verificado · 22858151645b</span>
+        </div>
+        <div class="reader-actions">
+          <button class="icon-button" id="copy-source" type="button" aria-label="Copiar Markdown original" title="Copiar Markdown original">⧉</button>
+          <button class="icon-button" id="download-source" type="button" aria-label="Baixar Markdown original" title="Baixar Markdown original">⇩</button>
+          <button class="icon-button" id="copy-link" type="button" aria-label="Copiar link da seção atual" title="Copiar link da seção atual">#</button>
+        </div>
+      </div>
+
+      <article class="document-paper" aria-label="Análise competitiva">
+        <div class="rendered-view" id="rendered-view"></div>
+        <div class="source-view" id="source-view" aria-label="Fonte Markdown original">
+          <pre id="source-pre"></pre>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script id="markdown-source" type="application/json">"# Análise Competitiva: Seções Unifilar do SIE\n\n> **Status:** Análise consolidada\n> **Data-base:** 2026-07-30\n> **Escopo:** \"Unifilar interativo\" e \"Diagrama unifilar completo\"\n> **Responsável:** @analyst (Atlas)\n> **Natureza:** Benchmarking e recomendações; não autoriza implementação sem PRD, arquitetura e stories\n\n## 1. Escopo e metodologia\n\n### 1.1 Objetivo\n\nRealizar benchmarking funcional, técnico e visual para:\n\n- diferenciar claramente as duas seções;\n- identificar lacunas de conteúdo, navegação e representação gráfica;\n- elevar o padrão técnico dos diagramas sem alterar cálculos elétricos;\n- definir recomendações para hierarquias, fluxos, tabelas, símbologia, memorial e documentação;\n- preservar o `UnifilarGraph` como fonte canonica, sem inferir valores ausentes.\n\nNesta análise, \"organogramas\" será interpretado como diagramas hierárquicos e\ntopológicos da instalacao, e não como elementos decorativos.\n\n### 1.2 Fronteira funcional\n\n| Seção | Papel recomendado |\n|---|---|\n| **Unifilar interativo** | Workspace operacional para explorar topologia, filtrar, localizar problemas e inspecionar circuitos. |\n| **Diagrama unifilar completo** | Prancha técnica normalizada para conferência, impressão, arquivo, revisão e exportacao. |\n\nEssa separação já está declarada no PRD, mas ainda não está suficientemente\nevidente na experiencia visual. O codigo atual tambem mantem a barra de\nexportacao no workspace interativo, embora o PRD a atribua a seção completa.\n\n### 1.3 Eixos de avaliacao\n\n| Eixo operacional | Eixo documental |\n|---|---|\n| Explorar e diagnosticar | Conferir e entregar |\n| Zoom, pan, filtros e busca | Folha, carimbo e revisão |\n| Inspector e rastreabilidade | Legenda, notas e quadro de cargas |\n| Camadas e agrupamentos | Hierarquia gráfica deterministica |\n| Estados dinamicos | Snapshot técnico auditavel |\n\nCada referência será avaliada nos dois eixos, evitando tratar uma prancha\ntécnica como um workspace ou transformar o workspace em uma folha estatica.\n\n### 1.4 Referências propostas\n\n| Categoria | Referência | Razao |\n|---|---|---|\n| Concorrente direto | **AltoQi Builder Elétrico** | Une hierarquia do quadro, dimensionamento, informações configuráveis e diagrama atualizado com o projeto. |\n| Adjacente BIM | **Autodesk Revit MEP** | Referência em templates de quadros, tabelas de circuitos, resumos de cargas e composição em folhas. |\n| Aspiracional interativo | **ETAP** | Referência em diagramas inteligentes, hierarquia multinível, datablocks, alinhamento automático e visualização de resultados. |\n| Aspiracional documental | **EPLAN Electric P8** | Referência em representação unifilar, paginas técnicas, estruturas de rede e sincronização entre representações. |\n| Substituto aberto | **QElectroTech** | Referência acessivel para biblioteca de símbolos, fólios e documentação esquematica. |\n\n### 1.5 Critérios de comparação\n\n1. Clareza da topologia e hierarquia elétrica.\n2. Densidade e organização das informações por circuito.\n3. Símbologia, linhas, identificadores e nomenclatura.\n4. Navegação, zoom, seleção, filtros e rastreabilidade.\n5. Estados de erro, atencao, pendencia e conformidade.\n6. Quadros de cargas, resumos e datablocks.\n7. Pranchas, legenda, carimbo, revisão e exportacao.\n8. Escalabilidade para projetos com muitos circuitos.\n9. Padronizacao entre tela, SVG, PDF e DXF.\n10. Acessibilidade e legibilidade técnica.\n11. Sucesso da tarefa para engenheiro, projetista e técnico de execução.\n12. Coerência entre a experiencia visual e a arquitetura do produto.\n\n### 1.6 Perspectivas dos stakeholders\n\n- **Engenheiro eletricista:** validação de topologia, fases, proteções,\n  condutores, seções, grandezas, status e referências normativas.\n- **Projetista:** documentação entregavel, identificadores, legenda, quadro de\n  cargas, notas, carimbo, revisão, paginação e exportacao vetorial.\n- **Técnico de execução:** localização inequívoca de circuito, origem, destino,\n  proteção e condutores em tela e impressão.\n- **UX designer:** divulgacao progressiva das informações, legibilidade e\n  diferenciação visual entre os dois contextos.\n- **Desenvolvimento:** fonte de dados, símbologia e regras de layout\n  compartilhadas, com composicoes adequadas a cada finalidade.\n\n### 1.7 Base normativa visual\n\nA avaliacao considerara:\n\n- IEC 60617 para símbolos graficos eletrotécnicos;\n- IEC 61082-1 para apresentação de documentos usados em eletrotecnologia;\n- ISO 7200 para campos de carimbo e cabeçalho de documentos técnicos.\n\n### 1.8 Entregaveis da análise\n\n1. Matriz de responsabilidades entre as duas seções.\n2. Arquitetura de informação recomendada para cada tela.\n3. Blueprint visual com topologia, datablocks, tabelas técnicas, legenda e carimbo.\n4. Matriz comparativa dos concorrentes e referências aspiracionais.\n5. Recomendações priorizadas por impacto, esforço e dependencia.\n\n### 1.9 Fontes e limitações\n\nFontes:\n\n- artefatos locais do SIE: PRDs, stories, relatorios e codigo-fonte;\n- documentação oficial dos produtos comparados;\n- paginas oficiais da IEC e ISO para o enquadramento documental.\n\nLimitacoes:\n\n- comparação baseada em documentação oficial pública, sem teste pratico das\n  licencas comerciais;\n- participacao de mercado, receita e precos não seráo estimados sem dados\n  verificaveis;\n- recomendações técnicas não substituem validação de engenharia ou análise\n  normativa integral;\n- a análise não autoriza alteracoes no cálculo, no MOD-DC ou no contrato canônico.\n\n### 1.10 Referências iniciais\n\n- [AltoQi Builder - diagramas unifilar e multifilar](https://suporte.altoqi.com.br/hc/pt-br/articles/115001610573)\n- [Autodesk Revit - Panel Schedules](https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-3D2D0E77-ED17-4FBF-AAE4-CB9185A3F779.htm)\n- [ETAP - Intelligent Electrical One-Line Diagram](https://etap.com/product/intelligent-electrical-one-line-diagram)\n- [EPLAN - Single-line Representation](https://www.eplan.help/en-us/Infoportal/Content/Plattform/2026/Content/htm/singlepole_k_start.htm)\n- [QElectroTech - User Manual](https://download.qelectrotech.org/qet/manual_0.7/build/_downloads/408498051918f1618a071fe56e737db5/QElectroTechdoc-0.8.pdf)\n- [IEC 61082-1:2014](https://webstore.iec.ch/en/publication/4469)\n- [ISO 7200:2004](https://www.iso.org/standard/35446.html)\n\n---\n\n## 2. Resumo executivo\n\n### 2.1 Diagnóstico central\n\nO SIE já possui a maior parte da fundacao necessaria para combinar inteligencia\noperacional e documentação profissional:\n\n- contrato canônico `UnifilarGraph` versionado;\n- identificadores estaveis por circuito;\n- origem, regra, formula, entradas e referência normativa;\n- diagnósticos, pendencias e estados explicitos;\n- projeção read-only dos condutores do MOD-DC;\n- motor de layout puro e deterministico;\n- serializacao do snapshot JSON;\n- pipeline CLI para SVG, PDF e DXF;\n- carimbo e opcoes de papel, escala e layout;\n- fronteira TanStack -> CLI sem acesso do Python ao Supabase.\n\nO problema principal não e ausencia de dados. E a forma como esses dados chegam\nas duas experiencias:\n\n1. O **Unifilar interativo** concentra exploracao, filtros, diagnósticos,\n   memorial e, atualmente, controles de exportacao.\n2. O **Diagrama unifilar completo** reutiliza uma representação linear legada,\n   sem materializar integralmente a disciplina documental prevista no PRD.\n3. A conversão para `CircuitoCanonico` perde parte do conteúdo já presente no\n   `UnifilarGraph`, incluindo a projeção estruturada de condutores.\n4. As duas telas usam composição visual semelhante e compartilham o mesmo\n   inspector, reduzindo a percepcao de finalidades distintas.\n\n### 2.2 Tese de transformacao\n\n> O SIE deve manter uma unica fonte semantica de dados e criar duas projecoes\n> especializadas: uma para investigar o projeto e outra para documenta-lo.\n\nIsso significa:\n\n- **fonte unica**, mas não componente unico;\n- **mesmos circuitos, valores, status e origens**, mas layouts diferentes;\n- **estado operacional separado do estado documental**;\n- **edicao técnica sempre no modulo proprietario**, nunca no desenho;\n- **artefatos documentais derivados do mesmo snapshot exibido na tela**.\n\n### 2.3 Resultado esperado\n\n| Contexto | Resultado esperado |\n|---|---|\n| Unifilar interativo | Workspace técnico para localizar, comparar, diagnosticar e rastrear circuitos. |\n| Diagrama unifilar completo | Prancha técnica deterministica para conferência, revisão, impressão, arquivo e exportacao. |\n| Contrato canônico | Unica fonte para UI, memorial, JSON, SVG, PDF e DXF. |\n| Rastreabilidade | Qualquer símbolo ou valor conduz ao circuito, origem, regra, entradas e owner. |\n| Padronizacao | Símbologia, nomenclatura, status e perfis de informação coerentes em todos os formatos. |\n\n### 2.4 Recomendações de maior impacto\n\n| Ordem | Recomendação | Impacto |\n|---:|---|---|\n| 1 | Fazer a seção completa consumir `UnifilarGraph` sem a projeção legada com perda de dados. | Preserva condutores, origem, status e rastreio. |\n| 2 | Retirar a responsabilidade documental do workspace interativo e coloca-la na rota completa. | Torna a fronteira entre explorar e entregar visivel. |\n| 3 | Criar um `PranchaModel` derivado, sem copiar ou recalcular fatos elétricos. | Permite folha, carimbo, legenda, tabelas e multipaginas. |\n| 4 | Adotar datablocks configuráveis por perfil de leitura. | Aumenta densidade técnica sem poluir o desenho. |\n| 5 | Preservar `exportRef` nos elementos e no manifesto de exportacao. | Liga tela, snapshot e artefatos. |\n| 6 | Reconciliar o catalogo de símbolos React/Python. | Evita divergência entre navegador e documento. |\n| 7 | Diferenciar visualmente o workspace da prancha. | Reduz ambiguidade e melhora a expectativa de uso. |\n\n---\n\n## 3. Estado atual do SIE\n\n### 3.1 Legenda dos achados\n\n- **EVIDENCIA:** comportamento encontrado em codigo, PRD, story ou ADR.\n- **INFERENCIA:** conclusão analítica derivada das evidências.\n- **PROPOSTA:** recomendação que ainda depende de decisão de produto,\n  arquitetura, story e validação.\n\n### 3.2 Unifilar interativo\n\n**EVIDENCIA.** A rota `/projetos/:projetoId/unifilar` funciona como workspace\noperacional e oferece:\n\n- indicadores de IB maximo, potencia por fase e desequilibrio;\n- busca por circuito ou dependencia;\n- filtros de severidade, fases, origem e prontidao;\n- modos de layout linear e agrupado;\n- agrupamento por dependencia, tipo, fase ou grupo EDP;\n- zoom, pan, ajuste a tela e minimapa;\n- seleção acessivel por mouse e teclado;\n- inspector com resumo, formula, origem, diagnósticos e comparação de controle;\n- download do JSON canônico;\n- controles de exportacao condicionados ao pipeline Python.\n\nO workspace e construido diretamente sobre `UnifilarGraph`, consulta pura,\nmotor de layout deterministico e memorial indexado por circuito.\n\n### 3.3 Diagrama unifilar completo\n\n**EVIDENCIA.** A rota `/projetos/:projetoId/unifilar-diagrama` oferece:\n\n- sequencia Rede EDP -> medidor -> quadro -> barramento;\n- derivação por circuito;\n- DR condicional;\n- disjuntor e símbolo de carga;\n- rotulo com nome, VA, tensão e IB;\n- selo de ATENCAO ou ERRO;\n- clique ou teclado para abrir o inspector;\n- legenda estatica de símbolos.\n\nO componente `UnifilarDiagramaSecao` monta o mesmo grafo, mas envia para\n`UnifilarHero` uma lista convertida para o shape legado `CircuitoCanonico`.\n\n### 3.4 Comparação do estado atual\n\n| Dimensão | Interativo | Completo |\n|---|---|---|\n| Papel declarado | Workspace operacional | Documento técnico |\n| Modelo consumido visualmente | `UnifilarGraph` | `CircuitoCanonico` derivado |\n| Layout | Linear ou agrupado | Linear fixo |\n| Busca e filtros | Sim | Não |\n| Zoom e pan | Sim | Não |\n| Inspector | Completo | Mesmo inspector |\n| Condutores MOD-DC | Disponiveis no contrato | Não materializados integralmente no Hero |\n| Perfil de campos | Fixo no node/inspector | Rotulo fixo |\n| Folha e margens | Não aplicável | Não materializadas na visualização web |\n| Carimbo e revisão | Não deveriam ser responsabilidade da rota | Previstos no pipeline, pouco visíveis na tela |\n| Exportacao | Atualmente presente | Deveria ser o contexto principal segundo o PRD |\n| Legenda | Incorporada a experiencia | Estatica abaixo do diagrama |\n| Percepcao visual | Card escuro de workspace | Card escuro semelhante |\n\n### 3.5 Findings estruturais\n\n#### F-01 - Fronteira conceitual forte, diferenciação visual fraca\n\n**EVIDENCIA.** PRD e glossario distinguem explicitamente workspace operacional\ne documentação técnica.\n\n**INFERENCIA.** Como as duas seções usam cabeçalhos, superficies, cores e\ninspector semelhantes, o usuario pode interpreta-las como duas versões do\nmesmo diagrama, não como duas etapas complementares.\n\n#### F-02 - Exportacao esta associada ao contexto incorreto\n\n**EVIDENCIA.** O PRD determina que configuração e exportacao profissional\npertencam a `/unifilar-diagrama`. O codigo atual ainda renderiza\n`UnifilarExportBar` no workspace interativo.\n\n**INFERENCIA.** A localização atual reforca a confusão de papéis e reduz a\ndisciplina documental da seção completa.\n\n#### F-03 - A seção completa usa uma projeção com perda de dados\n\n**EVIDENCIA.** `paraCircuitoCanonico()` define `disjuntor_a` e `secao_mm2` como\n`null`, enquanto `UnifilarGraph` 1.1 já suporta `condutores` com owner,\nmaterial, isolacao, fase, neutro, PE, PEN, status, critério e rastreio.\n\n**INFERENCIA.** A tela completa não consegue ser mais completa do que o shape\nlegado que recebe, ainda que o contrato já tenha informações superiores.\n\n#### F-04 - O desenho técnico ainda não e uma prancha\n\n**EVIDENCIA.** A pagina web exibe o diagrama em um card responsivo e uma legenda\nseparada.\n\n**INFERENCIA.** Faltam sinais documentais na propria visualização: folha,\nmargens, zonas, titulo, identificacao do projeto, revisão, quadro de circuitos,\nnotas e composição previsivel para impressão.\n\n#### F-05 - O mesmo inspector atende tarefas diferentes\n\n**EVIDENCIA.** As duas seções reutilizam `UnifilarInspector`.\n\n**INFERENCIA.** O reaproveitamento de dados e positivo, mas o painel completo de\ndiagnóstico pode competir com a leitura da prancha. Na seção documental, o\nclique deveria priorizar localização, referências cruzadas e ficha técnica do\nelemento, sem transformar a folha em outro workspace.\n\n#### F-06 - A base de rastreabilidade e um diferencial real\n\n**EVIDENCIA.** O contrato inclui `dependenciaId`, `origem`, `rastreio`,\n`diagnosticos`, `pendencias`, owner MOD-DC e `exportRef`.\n\n**INFERENCIA.** O SIE pode superar ferramentas orientadas apenas a desenho se\ntransformar esses campos em navegação e evidência documental.\n\n---\n\n## 4. Panorama competitivo\n\n### 4.1 Estrutura funcional\n\nO conjunto competitivo e fragmentado por objetivo:\n\n| Segmento | Referências | Centro de valor |\n|---|---|---|\n| Projeto elétrico predial brasileiro | AltoQi Builder | Dimensionamento, detalhamento, quadros e entrega no contexto nacional |\n| BIM predial | Autodesk Revit MEP | Coordenacao, parametros, tabelas e folhas |\n| Sistemas elétricos de potencia | ETAP | Modelo inteligente, análise e operação sobre o unifilar |\n| ECAD industrial | EPLAN | Documentação padronizada e sincronização entre representações |\n| Desenho elétrico assistido | QElectroTech | Construcao de esquemas, fólios e biblioteca de símbolos |\n\n**INFERENCIA.** Nenhuma referência pública analisada combina exatamente:\n\n- contexto NBR 5410 e EDP;\n- rastreio de origem e formula;\n- workspace web;\n- contrato versionado comum;\n- exportacao vetorial derivada do mesmo snapshot.\n\nEssa combinacao representa o espaço de diferenciação do SIE.\n\n### 4.2 Priorização qualitativa\n\nNão foram encontrados dados públicos suficientes para estimar participacao de\nmercado de forma defensavel. A priorização usa:\n\n- sobreposicao com o trabalho realizado pelo SIE;\n- pressão de benchmark sobre qualidade visual e técnica;\n- transferibilidade dos padroes para a arquitetura atual.\n\n| Prioridade | Referência | Sobreposicao | Pressão de benchmark | Papel na análise |\n|---|---|---:|---:|---|\n| P1 | AltoQi Builder | Alta | Alta | Concorrente funcional direto |\n| P2 | ETAP | Média | Alta | Referência para inteligencia operacional |\n| P2 | Autodesk Revit MEP | Média | Alta | Referência para tabelas e folhas |\n| P3 | EPLAN | Baixa/média | Média/alta | Referência para disciplina documental |\n| P4 | QElectroTech | Média | Baixa/média | Referência aberta de desenho e símbolos |\n\n### 4.3 Mapa de posicionamento\n\nEixos:\n\n- horizontal: disciplina documental;\n- vertical: inteligencia operacional.\n\n| Posicao qualitativa | Solucoes |\n|---|---|\n| Alta inteligencia + alta disciplina documental | ETAP, EPLAN em seus dominios |\n| Alta inteligencia + disciplina documental em evolucao | SIE atual |\n| Inteligencia predial + forte entrega documental | AltoQi Builder |\n| Coordenacao parametrica + forte composição documental | Revit MEP |\n| Desenho manual + documentação basica | QElectroTech |\n\n**PROPOSTA.** O posicionamento-alvo do SIE e ocupar alta inteligencia e alta\ndisciplina documental no nicho de instala??es elétricas de baixa tensão\norientadas ao contexto brasileiro.\n\n---\n\n## 5. Perfis dos concorrentes e referências\n\n### 5.1 AltoQi Builder Elétrico - Prioridade 1\n\n#### Evidências públicas\n\nA documentação oficial descreve o diagrama unifilar editavel como representação\nsimultanea da planilha de dimensionamento e da visualização hierarquica do\nquadro. O diagrama e atualizado quando o projeto muda. A ferramenta permite:\n\n- ordenacao dos circuitos conforme o gerenciador do quadro;\n- agrupamento logico de circuitos protegidos por IDR;\n- informações adicionais configuráveis;\n- biblioteca de símbolos;\n- personalizacao da exibição de textos;\n- alteracao de componentes por meio das propriedades do quadro;\n- integração do detalhe com pranchas.\n\n#### Pontos fortes\n\n- Proximidade com o fluxo de projeto predial brasileiro.\n- Relacao clara entre quadro, dimensionamento e desenho.\n- Atualizacao do diagrama a partir do modelo.\n- Personalizacao documental.\n- Visão hierarquica orientada ao quadro.\n\n#### Pontos de atencao\n\n- Experiencia fortemente associada a ambiente CAD/desktop.\n- Personalizacao pode aumentar variabilidade entre documentos.\n- Edicao visual não deve incentivar divergência entre desenho e cálculo.\n\n#### Aprendizado aplicável ao SIE\n\n1. Ordenacao e hierarquia devem refletir a estrutura do quadro.\n2. Campos do datablock devem ser configuráveis por perfil.\n3. Componentes são alterados na origem e o diagrama se atualiza.\n4. Documento e planilha técnica devem ser complementares.\n\n#### O que não copiar\n\n- Edicao livre de fatos elétricos diretamente na prancha.\n- Complexidade CAD sem beneficio para o usuario web.\n- Dependencia de ajustes manuais para obter consistencia.\n\n### 5.2 ETAP - Prioridade 2\n\n#### Evidências públicas\n\nO ETAP apresenta o one-line diagram como interface inteligente para modelar,\nvalidar, visualizar, analisar, monitorar e gerenciar sistemas elétricos. Entre\nos recursos documentados:\n\n- Auto-Build com espacamento e alinhamento por regras;\n- DataBlocks configuráveis;\n- redes compostas e sub-redes aninhadas;\n- símbolos multicoloridos;\n- integração entre sistemas AC, DC e aterramento;\n- formatação automática de unidades e precisão;\n- exibição ou ocultacao conforme zoom, equipamento, estado e resultado;\n- temas e coloração orientados aos resultados.\n\n#### Pontos fortes\n\n- Diagrama como interface do modelo, não como imagem final.\n- Divulgacao progressiva de informação.\n- Hierarquia multinível.\n- Datablocks reutilizaveis.\n- Regras de layout e precisão.\n\n#### Pontos de atencao\n\n- Escopo de potencia e simulacao muito superior ao dominio atual do SIE.\n- Densidade e configurabilidade podem aumentar curva de aprendizagem.\n- Cores de resultado precisam de alternativa textual para acessibilidade.\n\n#### Aprendizado aplicável ao SIE\n\n1. Datablocks por perfil de tarefa.\n2. Informacao visivel conforme nivel de zoom.\n3. Sub-redes para quadros e grupos.\n4. Layout automático como função deterministica.\n5. Resultado técnico junto do elemento, não apenas em painel separado.\n\n#### O que não copiar\n\n- Escopo industrial não requerido pelos artefatos do SIE.\n- Simulacoes ou estados elétricos inexistentes no contrato.\n- Complexidade visual permanente.\n\n### 5.3 Autodesk Revit MEP - Prioridade 2\n\n#### Evidências públicas\n\nA documentação do Revit estrutura panel schedules em quatro partes:\n\n1. cabeçalho;\n2. tabela de circuitos;\n3. resumo de cargas;\n4. rodape.\n\nOs schedules podem ser agrupados, ordenados e filtrados por parametros do\npainel, sistema de distribuição, nivel, numero de fases e parametros de projeto.\nTemplates controlam formato, largura, bordas, slots, colunas e resumo.\n\n#### Pontos fortes\n\n- Estrutura documental previsivel.\n- Templates compartilhados.\n- Integração entre parametros e folhas.\n- Tabela de circuitos e resumo como parte do documento.\n- Atualizacao de instancias associadas ao template.\n\n#### Pontos de atencao\n\n- O BIM completo e desnecessario para o escopo atual do SIE.\n- Uma tabela não substitui a topologia elétrica.\n- Excesso de parametrizacao pode esconder a tarefa principal.\n\n#### Aprendizado aplicável ao SIE\n\n1. Organizar a prancha em zonas funcionais.\n2. Tratar quadro de circuitos e resumo de cargas como componentes de primeira\n   classe.\n3. Usar templates documentais versionados.\n4. Permitir agrupamento e ordenacao sem alterar o dado elétrico.\n\n#### O que não copiar\n\n- Dependencia de um modelo BIM para tarefas que o SIE já resolve pelo contrato.\n- Interface de authoring generica.\n\n### 5.4 EPLAN Electric P8 - Prioridade 3\n\n#### Evidências públicas\n\nA documentação do EPLAN afirma que a representação unifilar simplifica\ncomponentes e conexoes, permite visoes gerais de planta e estruturas de rede,\noferece símbolos de conexão agrupada e sincroniza funções entre diferentes\ntipos de representação. Relatorios multifilares podem ser derivados mesmo\nquando o projeto usa representação unifilar.\n\n#### Pontos fortes\n\n- Disciplina de paginas e tipos de documento.\n- Referências cruzadas.\n- Sincronização entre representações.\n- Estruturas de rede e modulos padronizados.\n- Separação entre função e forma de representação.\n\n#### Pontos de atencao\n\n- Dominio industrial e de maquinas difere do foco predial do SIE.\n- Sistema de designacao e paginas pode ser excessivo para projetos menores.\n\n#### Aprendizado aplicável ao SIE\n\n1. Uma função elétrica pode ter varias representações sem duplicar o dado.\n2. A referência cruzada deve ser parte do documento.\n3. Paginas e seções devem ter tipos explicitos.\n4. O símbolo representa uma função identificada, não um desenho isolado.\n\n#### O que não copiar\n\n- Estruturas industriais sem requisito.\n- Taxonomia documental mais complexa do que o projeto exige.\n\n### 5.5 QElectroTech - Prioridade 4\n\n#### Evidências públicas\n\nO manual oficial apresenta suporte a diagramas unifilares, multifilares,\ncontrole, fólios e colecoes de elementos. A proposta e centrada na composição\nde esquemas elétricos por elementos e condutores.\n\n#### Pontos fortes\n\n- Amplitude de símbolos.\n- Modelo de fólios.\n- Baixa barreira de acesso.\n- Referência util para convencoes de edicao e bibliotecas.\n\n#### Pontos de atencao\n\n- Predominio de fluxo manual de desenho.\n- Menor evidência pública de rastreio semantico e cálculo integrado.\n- Risco de o documento se tornar fonte paralela ao modelo.\n\n#### Aprendizado aplicável ao SIE\n\n1. Biblioteca de símbolos deve ser navegavel e documentada.\n2. Fólios e referências entre folhas importam para diagramas extensos.\n3. O editor deve manter regras claras de conexão.\n\n#### O que não copiar\n\n- Transformar o SIE em editor elétrico generico.\n- Permitir desenho desconectado do contrato canônico.\n\n---\n\n## 6. Matriz comparativa\n\nEscala qualitativa:\n\n- **Forte:** capacidade central e públicamente documentada.\n- **Parcial:** capacidade existente, limitada ou não central.\n- **Não evidênciado:** não confirmado nas fontes analisadas.\n- **Diferencial SIE:** capacidade especifica encontrada nos artefatos locais.\n\n| Capacidade | SIE atual | AltoQi | ETAP | Revit MEP | EPLAN | QElectroTech |\n|---|---|---|---|---|---|---|\n| Topologia unifilar | Forte | Forte | Forte | Parcial | Forte | Forte |\n| Hierarquia de quadros/sub-redes | Parcial | Forte | Forte | Parcial | Forte | Parcial |\n| Layout automático deterministico | Forte | Forte | Forte | Parcial | Parcial | Não evidênciado |\n| Busca e filtros operacionais | Forte | Parcial | Forte | Forte em schedules | Forte em navegadores | Parcial |\n| Datablocks configuráveis | Parcial | Forte | Forte | Forte em tabelas | Forte | Parcial |\n| Inspector com origem e formula | Diferencial SIE | Não evidênciado | Parcial por dados/resultados | Parcial por parametros | Parcial | Não evidênciado |\n| Referência normativa por regra | Diferencial SIE | Parcial | Parcial | Não evidênciado | Parcial | Não evidênciado |\n| Estados VERIFICAR/NÃO_APLICÁVEL | Forte no contrato | Não evidênciado | Parcial | Parcial | Parcial | Não evidênciado |\n| Condutores com owner MOD-DC | Forte no contrato | Forte no dominio | Forte em outro dominio | Parcial | Forte | Parcial |\n| Tabela de circuitos/cargas | Parcial na experiencia | Forte | Forte por resultados | Forte | Forte por relatorios | Parcial |\n| Folha, cabeçalho e rodape | Forte no pipeline, fraco na tela | Forte | Forte | Forte | Forte | Forte |\n| Carimbo e revisão | Disponivel no pipeline | Forte | Forte | Forte | Forte | Parcial |\n| JSON canônico versionado | Forte | Não evidênciado | Modelo proprio | Modelo proprio | Modelo proprio | Formato proprio |\n| SVG/PDF/DXF do mesmo snapshot | Forte na arquitetura | Parcial | Forte em formatos proprios | Forte em folhas | Forte | Parcial |\n| Experiencia web | Forte | Não central | Parcial/cloud | Não central | Não central | Não central |\n| Contexto NBR 5410/EDP | Diferencial SIE | Forte no Brasil | Não central | Não central | Não central | Não central |\n\n### 6.1 Conclusão da matriz\n\nO SIE não precisa vencer pela amplitude das ferramentas maduras. Sua vantagem\npotencial e a integridade do fluxo:\n\n```text\nrequisito e dependencia\n    -> calculo\n    -> contrato rastreavel\n    -> investigacao no workspace\n    -> snapshot\n    -> documento tecnico\n```\n\nFerramentas concorrentes demonstram padroes importantes, mas a combinacao de\nrastreio de regra, origem fisica, estado explicito e exportacao por contrato e\nparticularmente valiosa para o SIE.\n\n---\n\n## 7. Análise estrategica\n\n### 7.1 SWOT do SIE\n\n#### Forcas\n\n- Contrato canônico versionado.\n- Separação entre dominio de cálculo e visualização.\n- Rastreio por regra, formula, entradas e referência.\n- Owner explicito para condutores MOD-DC.\n- Estados ausentes sem inferencia silenciosa.\n- Layout puro e testavel.\n- Experiencia web com busca, filtros, zoom e teclado.\n- Pipeline CLI desacoplado do banco.\n- Exportacao baseada no snapshot.\n\n#### Fraquezas\n\n- Diferenciação visual insuficiente entre as duas seções.\n- Seção completa dependente de shape legado.\n- Informacao técnica concentrada no inspector.\n- Ausencia de datablocks configuráveis no desenho.\n- Prancha não materializada integralmente na interface.\n- Símbologia duplicada entre React e Python.\n- Exportacao associada ao contexto interativo.\n- Hierarquia atual limitada essencialmente ao barramento e circuitos.\n\n#### Oportunidades\n\n- Posicionar o SIE como workspace auditavel para baixa tensão.\n- Criar perfis de leitura para projetista, revisor e execução.\n- Ligar cada item da prancha ao memorial e a origem.\n- Reduzir retrabalho manual em CAD.\n- Gerar pacote documental coerente: JSON, SVG, PDF, DXF e manifesto.\n- Explorar revisões e comparação entre snapshots.\n- Transformar diagnósticos em indice de pendencias da prancha.\n\n#### Ameacas\n\n- Crescimento de escopo para simulacao industrial.\n- Tentativa de reproduzir um CAD generico.\n- Divergência visual e semantica entre React e Python.\n- Excesso de informação reduzindo legibilidade.\n- Afirmacoes normativas sem validação integral.\n- Edicao na prancha criando segunda fonte de verdade.\n- Performance degradada em projetos extensos.\n\n### 7.2 Oportunidade de espaço proprio\n\n**PROPOSTA.** O SIE pode se diferenciar como:\n\n> Ambiente web de engenharia para investigar e documentar instala??es\n> elétricas de baixa tensão com rastreabilidade do requisito ao artefato.\n\nEsse posicionamento evita competir diretamente com:\n\n- autoria BIM completa;\n- simulacao de sistemas de potencia;\n- ECAD industrial;\n- desenho CAD generico.\n\n---\n\n## 8. Principio construtivo: uma fonte, duas projecoes\n\n### 8.1 Arquitetura conceitual\n\n```text\nMODULOS PROPRIETARIOS\nCorrentes | Divisor | MOD-DC | Dependencias\n                  |\n                  v\n        montarUnifilarGraph()\n                  |\n                  v\n       UnifilarGraph 1.1 imutavel\n topologia | valores | origem | rastreio\n diagnosticos | condutores | exportRef\n          /                         \\\n         /                           \\ snapshot JSON\n        v                             v\nPROJECAO OPERACIONAL          PROJECAO DOCUMENTAL\nUnifilar interativo           Diagrama completo\nbusca e filtros               papel e margens\nzoom e selecao                carimbo e revisao\nagrupamentos                  legenda e notas\ninspector                     tabelas e datablocks\nestado dinamico               SVG/PDF/DXF\n```\n\n### 8.2 Tres tipos de estado\n\n| Tipo | Exemplos | Autoridade |\n|---|---|---|\n| Técnico canônico | IB, tensão, fases, condutores, status, origem, regra | Modulos de dominio -> `UnifilarGraph` |\n| Operacional | busca, filtros, zoom, seleção, grupos colapsados | Estado do workspace |\n| Documental | papel, escala, layout, carimbo, revisão, perfil de campos | `DocumentProfile`/opcoes de exportacao |\n\nRegras:\n\n1. Estado operacional não altera o contrato.\n2. Estado documental não recalcula fatos elétricos.\n3. Alteracao técnica retorna ao modulo owner.\n4. O grafo e regenerado apos mudanca valida.\n5. Todas as representações leem a nova versão.\n\n### 8.3 Invariantes\n\n1. Mesmo `node.id` em tela, JSON e artefatos.\n2. Mesmo `exportRef` em todas as representações.\n3. `null` permanece `null`.\n4. `VERIFICAR` nunca recebe valor visual presumido.\n5. A UI não calcula seção, proteção, demanda ou corrente.\n6. O renderer não acessa Supabase.\n7. Mesmo grafo + mesmo perfil = mesma composição logica.\n8. Filtro e zoom não alteram o documento oficial, salvo escolha documental\n   explicita e registrada.\n\n### 8.4 Correção do bridge legado\n\nEstado atual:\n\n```text\nUnifilarGraph\n  -> paraCircuitoCanonico()\n     -> disjuntor_a: null\n     -> secao_mm2: null\n     -> UnifilarHero\n```\n\nEstado-alvo:\n\n```text\nUnifilarGraph\n  -> projetarPrancha(graph, documentProfile)\n     -> PranchaModel\n        -> preview React\n        -> snapshot JSON\n        -> CLI SVG/PDF/DXF\n```\n\n`CircuitoCanonico` pode permanecer temporariamente para compatibilidade, mas não\ndeve limitar a experiencia documental.\n\n---\n\n## 9. Modelo documental proposto\n\n### 9.1 PranchaModel\n\n**PROPOSTA sujeita a @architect.** `PranchaModel` e um read model de composição,\nnão um novo dominio elétrico.\n\n```text\nPranchaModel\n|-- meta\n|   |-- projetoId\n|   |-- graphVersion\n|   |-- documentProfileId\n|   |-- revisao\n|   `-- geradoEm\n|-- folhas[]\n|   |-- papel, orientacao e margens\n|   |-- zonas\n|   |-- diagramas[]\n|   |-- tabelas[]\n|   |-- notas[]\n|   |-- legenda\n|   `-- carimbo\n`-- referencias[]\n    |-- exportRef\n    |-- folha\n    |-- coordenada\n    `-- tipoRepresentacao\n```\n\nO modelo pode conter posicoes, quebras de folha e estilos, mas qualquer valor\nelétrico deve referênciar o node de origem.\n\n### 9.2 DocumentProfile\n\nPerfis sugeridos:\n\n| Perfil | Uso | Campos principais |\n|---|---|---|\n| Compacto | Visão geral | circuito, descrição, fase, potencia, status |\n| Engenharia | Conferência | tensão, IB, proteção, condutores, critério |\n| Execução | Campo | origem/destino, proteção, fase, N, PE/PEN, eletroduto |\n| Auditoria | Revisão | regra, referência, fonte, status e exportRef |\n\nPerfis controlam visibilidade e formatação. Eles não criam campos ausentes.\n\n### 9.3 DataBlock por circuito\n\nExemplo conceitual:\n\n```text\n+--------------------------------------------------+\n| C07 | TUG COZINHA                     ATENCAO     |\n| R+S | 220 V | 2200 VA | IB 10,00 A               |\n| DJ [VERIFICAR] | F 2,5 | N 2,5 | PE 2,5 mm2      |\n| Origem: Cozinha | Regra: ... | Ref: U:1.1:C07    |\n+--------------------------------------------------+\n```\n\nCamadas:\n\n- linha 1: identidade e severidade;\n- linha 2: grandezas elétricas;\n- linha 3: proteção e condutores;\n- linha 4: origem e rastreabilidade.\n\nNo workspace, o DataBlock pode variar conforme zoom. Na prancha, o perfil e\nfixado no momento da geracao.\n\n### 9.4 Manifesto documental\n\n**PROPOSTA.** Cada pacote exportado deve possuir manifesto legível por maquina:\n\n```text\nprojetoId\ngraphVersion\ndocumentProfile\nopcoes de papel/escala/layout\nformatos gerados\ndiagnosticos\ncircuitos e exportRefs\nrevisao\ndata\n```\n\nHash do snapshot e hash dos artefatos são opcoes de hardening a serem avaliadas\npor arquitetura; não são requisitos atuais confirmados.\n\n---\n\n## 10. Rastreabilidade ponta a ponta\n\n### 10.1 Cadeia esperada\n\n```text\nSimbolo ou DataBlock\n      |\n      v\nexportRef\n      |\n      v\nUnifilarNode\n      |\n      +--> dependenciaId --> ambiente/carga de origem\n      |\n      +--> rastreio --> regra --> referencia normativa\n      |                  |\n      |                  +--> formula e entradas\n      |\n      +--> condutores --> owner MOD-DC\n      |\n      +--> diagnosticos e pendencias\n```\n\n### 10.2 Interação no workspace\n\nAo selecionar um circuito:\n\n1. destacar node, arestas e grupo;\n2. manter diagnósticos obrigatórios visíveis;\n3. mostrar DataBlock completo;\n4. abrir rastreio em etapas:\n   `origem -> regra -> entradas -> resultado`;\n5. oferecer navegação ao modulo owner quando houver acao autorizada;\n6. nunca permitir editar o valor calculado diretamente no SVG.\n\n### 10.3 Evidência na prancha\n\nNa prancha:\n\n- cada circuito recebe identificador estavel;\n- referências cruzadas indicam folha/zona quando houver quebra;\n- legenda explica estados e convencoes;\n- tabela lista diagnósticos e pendencias;\n- manifesto relaciona `exportRef` com folha e posicao;\n- o preview pode permitir clique para abrir memorial, sem alterar o documento.\n\n### 10.4 Rastreio nos formatos\n\n| Formato | Estrategia |\n|---|---|\n| JSON | Campos completos do contrato e manifesto |\n| SVG | `id` ou `data-export-ref` nos grupos de circuito |\n| PDF | Indice/tabela de referências e links quando suportados |\n| DXF | Layers, handles ou atributos conforme capacidade validada |\n\nAs técnicas especificas de PDF/DXF precisam de avaliacao do @architect e do\n@dev antes de virar critério de aceite.\n\n---\n\n## 11. Transformacao do Unifilar interativo\n\n### 11.1 Missão\n\n> Responder rapidamente: onde esta o circuito, qual seu estado, por que possui\n> esse resultado e qual modulo e responsável pela correção?\n\n### 11.2 Arquitetura de informação\n\n```text\n+-----------------------------------------------------------------------+\n| Projeto > Eletrica > [Explorar] [Documentar]       Snapshot / status  |\n+-----------------------------------------------------------------------+\n| KPIs tecnicos: IB max | fases | desequilibrio | erros | pendencias    |\n+-----------------------------------------------------------------------+\n| Busca | filtros | agrupamento | camadas | ajustar vista               |\n+--------------------+--------------------------------+-----------------+\n| Navegador          | Canvas tecnico                 | Inspector       |\n| - Quadros          | topologia e DataBlocks         | Resumo          |\n| - Dependencias     | zoom/pan/minimapa              | Rastreio        |\n| - Fases            | selecao e foco                 | Diagnosticos    |\n| - Pendencias       |                                | Origem/owner    |\n+--------------------+--------------------------------+-----------------+\n```\n\n**PROPOSTA.** As abas \"Explorar\" e \"Documentar\" podem manter as rotas atuais,\nservindo apenas como navegação contextual e sinal de finalidade.\n\n### 11.3 Diagramas adequados ao workspace\n\n| Diagrama | Pergunta respondida | Fonte |\n|---|---|---|\n| Arvore elétrica | Como quadros e circuitos se relacionam? | nodes e edges |\n| Mapa de dependencias | Qual ambiente/carga originou o circuito? | `origem` |\n| Fluxo de rastreio | Como o valor foi derivado? | `rastreio` |\n| Distribuição por fases | Como as cargas estão distribuidas? | fases e resumo |\n| Mapa de diagnósticos | Onde estão erros e atenções? | diagnósticos |\n\nNão se recomenda usar fluxogramas genericos quando a topologia elétrica ou uma\ntabela técnica responder melhor.\n\n### 11.4 Hierarquia visual\n\nNivel 1 - sempre visivel:\n\n- quadro/barramento;\n- identificador e nome;\n- fase;\n- severidade;\n- continuidade topologica.\n\nNivel 2 - zoom intermédiario:\n\n- tensão;\n- potencia;\n- IB;\n- proteção;\n- status de dimensionamento.\n\nNivel 3 - seleção ou zoom alto:\n\n- condutores;\n- metodo;\n- origem;\n- critério decisivo;\n- referências e pendencias.\n\n### 11.5 Interacoes prioritarias\n\n- Busca com foco e realce.\n- Filtros compostos com contador vivo.\n- Agrupamento por quadro/dependencia/tipo/fase.\n- Colapso de sub-redes.\n- Breadcrumb técnico ao entrar em um grupo.\n- Seleção sincronizada entre arvore, canvas e inspector.\n- Atalho para voltar a visão geral.\n- Copia da referência técnica do circuito.\n- Comparação entre estado automático e manual quando o contrato fornecer dados.\n\n### 11.6 Mudancas recomendadas\n\n| Atual | Recomendado |\n|---|---|\n| Cards de circuito com informação fixa | DataBlocks por zoom e perfil |\n| Inspector unico e extenso | Resumo persistente + abas focadas |\n| Exportacao no workspace | Link para a area Documentar |\n| Agrupamento visual em bandas | Hierarquia de quadros/sub-redes quando o contrato suportar |\n| Cores de severidade | Cor + icone + texto/codigo |\n| Metricas em tiles equivalentes | Faixa compacta priorizada por risco |\n\n### 11.7 O que evitar\n\n- Simular edicao CAD.\n- Permitir arrasto que altere ordem elétrica sem comando de dominio.\n- Exibir todos os campos em todos os niveis de zoom.\n- Usar cor como unica indicacao.\n- Ocultar diagnósticos obrigatórios por causa de filtros.\n- Transformar o workspace em preview permanente de papel.\n\n---\n\n## 12. Transformacao do Diagrama unifilar completo\n\n### 12.1 Missão\n\n> Responder: este documento representa integralmente o snapshot aprovado e\n> possui informação suficiente para conferência, execução, revisão e arquivo?\n\n### 12.2 Experiencia-alvo\n\nA primeira area da rota deve ser um preview real de folha, não um card de\ndashboard. Controles documentais ficam em uma barra discreta acima ou ao lado.\n\n```text\n+-----------------------------------------------------------------------+\n| Projeto > Eletrica > [Explorar] [Documentar]   Revisao | Gerar        |\n+----------------------+------------------------------------------------+\n| Configuracao         | PREVIEW DA FOLHA                              |\n| Papel/orientacao     | +------------------------------------------+  |\n| Perfil de campos     | | Titulo / identificacao                   |  |\n| Layout               | |------------------------------------------|  |\n| Escala               | | Diagrama hierarquico                     |  |\n| Carimbo              | | + DataBlocks                             |  |\n| Revisao/data         | |                                          |  |\n| Formatos             | |------------------------------------------|  |\n| Diagnosticos         | | Quadro de circuitos | legenda | notas    |  |\n|                      | |------------------------------------------|  |\n|                      | | Carimbo / revisao / folha                |  |\n|                      | +------------------------------------------+  |\n+----------------------+------------------------------------------------+\n```\n\n### 12.3 Anatomia recomendada da prancha\n\n1. Identificacao da folha e titulo.\n2. Diagrama unifilar hierárquico.\n3. DataBlocks dos circuitos.\n4. Quadro de circuitos/cargas.\n5. Resumo de fases e cargas.\n6. Legenda de símbolos e estados.\n7. Notas e referências normativas aplicadas.\n8. Lista de pendencias quando existente.\n9. Carimbo com projeto, responsável, escala, revisão, data e folha.\n\n### 12.4 Hierarquia elétrica do desenho\n\n```text\nConcessionaria / entrada\n  -> medicao\n    -> protecao geral\n      -> quadro principal\n        -> barramentos R/S/T/N/PE\n          -> dispositivo de protecao do circuito\n            -> DR/DPS quando aplicavel e confirmado\n              -> condutores\n                -> carga ou quadro subordinado\n```\n\nSomente elementos existentes no contrato podem ser materializados. Elementos\nausentes devem aparecer como `VERIFICAR` ou ser omitidos conforme regra\ndocumentada, nunca presumidos.\n\n### 12.5 Quadro de circuitos\n\nCampos candidatos, condicionados a disponibilidade:\n\n| Grupo | Campos |\n|---|---|\n| Identidade | circuito, descrição, origem, grupo |\n| Elétrico | fases, tensão, potencia, IB |\n| Proteção | requisito DR, dispositivo, corrente nominal quando disponivel |\n| Condutores | material, isolacao, fase, neutro, PE/PEN |\n| Instalacao | metodo de referência, eletroduto |\n| Decisão | critério decisivo, status de dimensionamento |\n| Rastreio | regra, referência, owner, exportRef |\n\nO perfil documental define quais colunas aparecem em cada entrega.\n\n### 12.6 Legenda profissional\n\nA legenda deve:\n\n- mostrar o símbolo na mesma proporção usada no documento;\n- apresentar nome técnico e codigo interno;\n- indicar a referência do catalogo validado;\n- explicar tracejádo, estados e referências cruzadas;\n- incluir apenas símbolos usados na folha, com opcao de catalogo completo;\n- ser gerada pela mesma fonte de símbolos do renderer.\n\n### 12.7 Carimbo e revisão\n\nO pipeline atual já suporta projeto, responsável técnico, papel, escala, revisão\ne data. A visualização deve tornar esses campos parte do preview.\n\nCampos e comprimentos devem ser validados segundo o padrão documental adotado.\nA ISO 7200 e referência para campos de cabeçalho e carimbo, mas não substitui\nrequisitos locais e profissionais.\n\n### 12.8 Estrategia multipagina\n\n**PROPOSTA.** Para projetos extensos:\n\n1. folha de visão geral;\n2. uma folha por quadro ou sub-rede;\n3. quadro de circuitos nas folhas correspondentes;\n4. referências cruzadas entre alimentador e destino;\n5. indice de folhas e revisões.\n\nQuebras devem ser deterministicas. O mesmo snapshot e perfil devem produzir a\nmesma divisão logica.\n\n### 12.9 Interação permitida no preview\n\n- zoom e pan do papel;\n- selecionar circuito para realcar referências;\n- abrir ficha técnica em painel auxiliar;\n- alternar perfil antes da geracao;\n- validar pendencias;\n- gerar formatos dispon?veis.\n\nNão deve ser permitido:\n\n- mover símbolos de forma que altere semantica;\n- editar valores calculados;\n- ocultar erro bloqueante sem registro;\n- alterar o snapshot durante uma revisão sem gerar nova versão.\n\n---\n\n## 13. Sistema visual e padronizacao\n\n### 13.1 Principio\n\nO workspace pode usar uma interface operacional escura, desde que legível. A\nprancha deve simular o meio final de entrega: superficie clara, margens\ndefinidas, linhas técnicas e uso restrito de cor.\n\n### 13.2 Diferenciação visual\n\n| Elemento | Interativo | Completo |\n|---|---|---|\n| Superficie | Workspace operacional | Folha técnica |\n| Fundo | Tema da aplicação | Branco ou equivalente de impressão |\n| Cor | Estados e seleção | Excecao, revisão e diagnóstico |\n| Tipografia | Interface e leitura dinamica | Documento e identificacao técnica |\n| Controles | Busca, filtro, zoom | Papel, perfil, revisão e exportacao |\n| Densidade | Progressiva | Deterministica |\n| Layout | Adaptavel | Proporção de folha |\n\n### 13.3 Tokens semanticos\n\nDefinir tokens por função, não por cor arbitraria:\n\n- `diagram-line-primary`;\n- `diagram-line-secondary`;\n- `diagram-line-pending`;\n- `diagram-text-primary`;\n- `diagram-text-muted`;\n- `diagram-status-info`;\n- `diagram-status-warning`;\n- `diagram-status-error`;\n- `diagram-selection`;\n- `sheet-border`;\n- `sheet-grid`;\n- `sheet-title-block`.\n\nMapeamentos de espessura para tela e impressão devem ser validados em testes de\nrenderizacao, evitando assumir equivalencia direta entre pixels e milimetros.\n\n### 13.4 Tipografia\n\n- Manter familia legível e já adotada pelo produto.\n- Usar numeros tabulares para grandezas.\n- Diferenciar identificador, descrição e valor.\n- Evitar texto menor do que o validado para impressão no papel escolhido.\n- Manter unidades junto ao valor.\n- Preservar zeros e precisão conforme regra de formatação, não por preferência\n  visual do componente.\n\n### 13.5 Símbolos\n\n- Uma identidade por símbolo.\n- Geometria baseada em grid e proporcoes comuns.\n- Mesma semantica no React e Python.\n- Catalogo versionado.\n- Estado pendente não modifica o significado do símbolo; modifica estilo e\n  anotacao.\n- Símbolos novos exigem validação técnica e documental.\n\n### 13.6 Rotulo padrão de circuito\n\nOrdem sugerida:\n\n```text\nID | descricao | fase(s) | tensao\npotencia | IB | protecao\nF/N/PE/PEN | metodo | status\n```\n\nO perfil pode reduzir campos, mas deve preservar identidade e estado.\n\n### 13.7 Estados\n\n| Estado | Representação |\n|---|---|\n| Confirmado | Linha continua + valor |\n| Verificar | Linha/contorno diferenciado + texto `VERIFICAR` |\n| Não aplicável | Ausencia controlada ou `N/A`, conforme perfil |\n| Atencao | Icone + codigo + texto, alem da cor |\n| Erro | Icone + codigo + texto, alem da cor |\n| Provisorio | Marca persistente no cabeçalho e no circuito quando relevante |\n\n---\n\n## 14. Diagramas, fluxos e organização profissional\n\n### 14.1 Quando usar cada representação\n\n| Necessidade | Representação recomendada |\n|---|---|\n| Estrutura elétrica | Diagrama unifilar hierárquico |\n| Relacao quadro-circuito | Arvore ou rede composta |\n| Origem do circuito | Mapa de dependencia |\n| Derivação de um valor | Fluxo de rastreio |\n| Cargas por fase | Barras comparativas ou tabela |\n| Conformidade | Lista priorizada e fluxo de decisão |\n| Sequencia de revisão/exportacao | Fluxograma de processo |\n| Responsabilidade entre modulos | Diagrama de ownership |\n\n### 14.2 Fluxo de rastreio\n\n```mermaid\nflowchart LR\n  A[Ambiente ou carga] --> B[Circuito]\n  B --> C[Regra aplicada]\n  C --> D[Entradas]\n  D --> E[Resultado]\n  E --> F[Diagnosticos]\n  E --> G[UnifilarGraph]\n  G --> H[Workspace]\n  G --> I[Prancha e exportacao]\n```\n\n### 14.3 Ownership construtivo\n\n```mermaid\nflowchart TD\n  DEP[Dependencias] --> COR[Servico de correntes]\n  COR --> DIV[Divisao de circuitos]\n  DIV --> DC[MOD-DC]\n  COR --> UFG[UnifilarGraph]\n  DIV --> UFG\n  DC --> UFG\n  UFG --> UI[Unifilar interativo]\n  UFG --> DOC[Diagrama completo]\n  DOC --> CLI[CLI de exportacao]\n```\n\nEsses diagramas explicam relacoes. Eles não substituem o unifilar elétrico\nprincipal.\n\n---\n\n## 15. Catalogo unico de símbolos\n\n### 15.1 Problema\n\nO PRD registra duplicação entre componentes React e implementação Python.\nMesmo quando os nomes coincidem, duas geometrias independentes podem divergir\nem proporção, ponto de conexão, legenda e cobertura.\n\n### 15.2 Direcao recomendada\n\n**PROPOSTA sujeita a arquitetura.**\n\nCriar um registro versionado com:\n\n- id do símbolo;\n- nome;\n- categoria;\n- pontos de conexão;\n- viewBox/grid;\n- estados suportados;\n- referência documental;\n- variantes permitidas;\n- codigo da legenda.\n\nReact e Python podem manter renderizadores proprios, mas devem consumir os\nmesmos metadados e fixtures de conformidade.\n\n### 15.3 Testes de reconciliacao\n\n- Todos os ids do contrato possuem símbolo ou fallback explicito.\n- React e Python reconhecem a mesma versão do catalogo.\n- Legenda usa os símbolos efetivamente renderizados.\n- Fixtures comparam dimensoes, ancoras e identificadores.\n- Símbolo desconhecido gera diagnóstico, não desaparece silenciosamente.\n\n---\n\n## 16. Integração com a estrutura existente\n\n### 16.1 Componentes preservados\n\n| Componente/camada | Papel futuro |\n|---|---|\n| `UnifilarGraph` | Fonte canonica |\n| `montarUnifilarGraph` | Projeção dos modulos proprietarios |\n| `serializarUnifilarGraph` | Snapshot para UI/CLI |\n| `layout-unifilar.ts` | Base do layout operacional |\n| `UnifilarCanvas` | Canvas do workspace |\n| `UnifilarInspector` | Base de rastreio, com composição orientada ao contexto |\n| `UnifilarExportBar` | Controles documentais na rota completa |\n| API TanStack | Orquestracao segura do CLI |\n| CLI Python | Validação e renderizacao profissional |\n\n### 16.2 Componentes candidatos\n\nOs nomes abaixo são conceituais e não constituem decisão de arquitetura:\n\n| Candidato | Responsabilidade |\n|---|---|\n| `DocumentProfile` | Campos e configuração documental |\n| `PranchaModel` | Composição pura das folhas |\n| `UnifilarSheetPreview` | Preview React do modelo documental |\n| `CircuitDataBlock` | Informacao técnica por circuito |\n| `CircuitSchedule` | Quadro de circuitos/cargas |\n| `TraceabilityManifest` | Referências entre snapshot e artefatos |\n| `SymbolRegistry` | Metadados comuns de símbologia |\n\n### 16.3 Fronteiras\n\n- `domain/` não importa componentes.\n- Pipeline Python não acessa banco.\n- UI não deriva regra normativa.\n- Renderer não altera snapshot.\n- Perfil documental não e armazenado como fato elétrico.\n- Alteracoes de dominio ocorrem apenas por comandos dos modulos owners.\n\n---\n\n## 17. Roteiro de evolucao\n\nQualquer implementação deve iniciar por PRD/épico/story conforme a Constitution.\n\n### Fase 0 - Decisoes e contratos\n\nObjetivo:\n\n- confirmar escopo;\n- aprovar modelo de projeção documental;\n- validar fronteiras de ownership;\n- definir fonte da símbologia.\n\nResponsaveis sugeridos:\n\n- @pm/@po: escopo e priorização;\n- @architect: contratos e boundaries;\n- @ux-design-expert: arquitetura da informação e preview;\n- @sm: stories.\n\n### Fase 1 - Correção estrutural\n\nEntregas:\n\n- seção completa consumindo `UnifilarGraph`;\n- remocao da dependencia funcional do shape legado;\n- exportacao no contexto documental;\n- invariantes de dados entre rotas;\n- nenhuma regressão no workspace.\n\nPrioridade: **P0**.\n\n### Fase 2 - Diferenciação das experiencias\n\nEntregas:\n\n- navegação Explorar/Documentar;\n- workspace sem controles documentais;\n- preview de folha na rota completa;\n- DataBlock compacto no workspace;\n- painel documental focado em folha e referências.\n\nPrioridade: **P0/P1**.\n\n### Fase 3 - Prancha profissional\n\nEntregas:\n\n- `DocumentProfile`;\n- `PranchaModel`;\n- quadro de circuitos;\n- resumo de cargas/fases;\n- legenda contextual;\n- carimbo no preview;\n- diagnósticos documentais.\n\nPrioridade: **P1**.\n\n### Fase 4 - Rastreabilidade de artefatos\n\nEntregas:\n\n- `exportRef` preservado no SVG;\n- manifesto de exportacao;\n- referências de folha/zona;\n- consistencia JSON/SVG/PDF/DXF;\n- relatorio de campos ausentes.\n\nPrioridade: **P1**.\n\n### Fase 5 - Escala e refinamento\n\nEntregas:\n\n- sub-redes e quadros subordinados quando suportados pelo contrato;\n- multipaginas;\n- perfis de execução e auditoria;\n- comparação entre revisões, se aprovada;\n- validação com usuarios.\n\nPrioridade: **P2**.\n\n### 17.1 Matriz impacto x esforço\n\n| Iniciativa | Impacto | Esforço estimado qualitativo |\n|---|---:|---:|\n| Consumir grafo diretamente na seção completa | Muito alto | Medio |\n| Mover exportacao para Documentar | Alto | Baixo/medio |\n| Diferenciar visualmente as rotas | Alto | Medio |\n| DataBlocks por perfil | Alto | Medio |\n| Preview de folha | Alto | Medio/alto |\n| Quadro de circuitos | Alto | Medio |\n| Registro unico de símbolos | Muito alto | Alto |\n| Manifesto de rastreabilidade | Alto | Medio |\n| Multipaginas | Medio/alto | Alto |\n| Comparação de revisões | Medio | Alto |\n\nEstimativas precisam ser refinadas pelo @architect e @dev apos stories.\n\n---\n\n## 18. Critérios de qualidade propostos\n\nEstes critérios devem ser convertidos em acceptance criteria por @po/@sm antes\nde implementação.\n\n### 18.1 Integridade de dados\n\n- Todos os circuitos do snapshot aparecem ou possuem justificativa de exclusão.\n- Identificadores e `exportRef` permanecem estaveis.\n- Nenhum valor `null` e substituido por default visual.\n- Condutores exibidos correspondem ao owner MOD-DC.\n- A UI não recalcula resultados.\n- O manifesto e os artefatos referênciam a versão do grafo.\n\n### 18.2 Determinismo\n\n- Mesmo grafo e perfil produzem mesma ordem, agrupamento e quebra logica.\n- Filtros do workspace não alteram o documento oficial.\n- Datas vari?veis são controladas por opcao explicita.\n- Snapshots de teste cobrem layouts representativos.\n\n### 18.3 Legibilidade\n\n- Textos não colidem com símbolos.\n- Rotulos longos possuem estrategia de quebra ou abreviacao documentada.\n- Estados possuem texto e icone, não apenas cor.\n- Preview continua legível nos papéis suportados.\n- Projetos extensos não comprimem indefinidamente a tipografia.\n\n### 18.4 Rastreabilidade\n\n- Selecionar um circuito localiza sua origem.\n- Valor técnico conduz a regra e entradas quando dispon?veis.\n- Artefato conduz ao mesmo `exportRef`.\n- Diagnósticos obrigatórios não podem ser ocultados silenciosamente.\n- Campos ausentes geram relatorio claro.\n\n### 18.5 Acessibilidade\n\n- Operação por teclado.\n- Foco visivel.\n- `aria-label` com identidade e estado.\n- Ordem de tabulacao coerente com a topologia.\n- Contraste validado.\n- Conteúdo equivalente para indicacoes cromaticas.\n\n### 18.6 Qualidade de engenharia\n\n- lint, typecheck, testes e build verdes;\n- testes do CLI Python verdes;\n- fixtures de React/Python reconciliadas;\n- cobertura dos estados vazio, parcial, verificar, atencao e erro;\n- checklist e File List da story atualizados.\n\n---\n\n## 19. Cenarios de validação com usuarios\n\n### Engenheiro eletricista\n\n1. Localizar o circuito com maior IB.\n2. Confirmar fases, tensão, proteção e condutores.\n3. Identificar a regra e as entradas do cálculo.\n4. Conferir se a prancha representa o mesmo snapshot.\n\n### Projetista\n\n1. Selecionar perfil de entrega.\n2. Configurar papel, escala, revisão e carimbo.\n3. Conferir quebras e quadro de circuitos.\n4. Gerar PDF/DXF sem ajuste manual de valores.\n\n### Técnico de execução\n\n1. Encontrar circuito por ambiente/carga.\n2. Identificar fase, proteção e condutores.\n3. Entender símbolos pela legenda.\n4. Seguir referência para outra folha ou quadro.\n\n### Revisor/QA\n\n1. Filtrar erros e pendencias.\n2. Comparar node, memorial e documento.\n3. Verificar campos `VERIFICAR`.\n4. Auditar `exportRef`, revisão e manifesto.\n\nMetricas de tempo e sucesso devem ser medidas primeiro como baseline; este\nrelatorio não estabelece metas numericas sem observacao de usuarios.\n\n---\n\n## 20. Riscos e mitigacoes\n\n| Risco | Efeito | Mitigacao |\n|---|---|---|\n| Duplicar modelo no `PranchaModel` | Divergência de valores | Guardar referências; fatos permanecem no grafo |\n| React e Python divergem | Tela diferente do artefato | Registro comum, fixtures e testes cruzados |\n| Excesso de campos | Diagrama ilegível | Perfis e divulgacao progressiva |\n| Edicao direta na prancha | Segunda fonte de verdade | Acoes retornam ao modulo owner |\n| Uso excessivo de cor | Falha de acessibilidade/impressão | Icone, texto, padrão e contraste |\n| Projetos grandes | Compressão ou lentidao | Sub-redes, virtualizacao e multipaginas |\n| Quebra não deterministica | Revisões inconsistentes | Algoritmo puro e snapshots |\n| Norma citada incorretamente | Risco técnico | Validação especializada e rastreio da fonte |\n| Escopo industrial | Perda de foco | Limites explicitos do PRD |\n| Documento com dados pendentes | Entrega inadequada | Gate e lista de pendencias |\n\n---\n\n## 21. Recomendações estrategicas finais\n\n1. **Tratar o UnifilarGraph como produto interno.** Versão, validação e\n   compatibilidade devem receber o mesmo rigor de uma API.\n2. **Diferenciar por tarefa.** Explorar e Documentar devem parecer etapas\n   complementares, não telas duplicadas.\n3. **Eliminar a projeção documental com perda.** A seção completa deve acessar\n   toda a semantica do contrato 1.1.\n4. **Transformar rastreio em interface.** Origem, regra, owner e exportRef devem\n   ser navegaveis.\n5. **Usar datablocks configuráveis.** Eles conciliam densidade técnica e\n   legibilidade.\n6. **Materializar a folha no navegador.** O usuario precisa conferir o que será\n   entregue antes de exportar.\n7. **Padronizar símbolos e perfis.** React, Python, legenda e documentos devem\n   compartilhar identidade e fixtures.\n8. **Manter CLI como autoridade de exportacao.** A UI configura e observa; o\n   pipeline valida e gera.\n9. **Não inventar informação ausente.** `VERIFICAR` e parte da qualidade do\n   produto, não uma falha estetica.\n10. **Validar com tarefas reais.** O sucesso deve ser medido por conferência,\n    diagnóstico, rastreio e entrega, não apenas por aparencia.\n\n---\n\n## 22. Plano de monitoramento competitivo\n\n### Referências a acompanhar\n\n| Prioridade | Fonte | O que observar |\n|---|---|---|\n| Alta | AltoQi Builder | Evolucao de diagramas, quadros, campos e pranchas |\n| Alta | ETAP | DataBlocks, hierarquia, filtros por zoom e visualização de resultados |\n| Média | Revit MEP | Templates de schedules, folhas e parametros |\n| Média | EPLAN | Sincronização entre representações e referências cruzadas |\n| Baixa/média | QElectroTech | Símbolos, fólios e convencoes abertas |\n\n### Cadência\n\n- Mensal: atualizacoes de produto relevantes.\n- Trimestral: revisar matriz de capacidades.\n- Por épico unifilar: verificar se novos requisitos alteram a fronteira entre\n  Interativo e Completo.\n- Por revisão normativa: revalidar referências e catalogo de símbolos.\n\n---\n\n## 23. Fontes\n\n### 23.1 Artefatos locais do SIE\n\n- `sistema-de-instala-es-el-tricas-sie-main/docs/prd/diagrama-unifilar-completo-prd.md`\n- `sistema-de-instala-es-el-tricas-sie-main/docs/prd/reestruturacao-camada-unifilar-prd.md`\n- `sistema-de-instala-es-el-tricas-sie-main/docs/stories/story-11.1-secao-diagrama-unifilar-completo.md`\n- `sistema-de-instala-es-el-tricas-sie-main/docs/reports/analise-modulo-unifilar-interativo-2026-07-09.md`\n- `sistema-de-instala-es-el-tricas-sie-main/docs/architecture/exportacao-unifilar-contratos-rotas-boundaries.md`\n- `sistema-de-instala-es-el-tricas-sie-main/src/domain/unifilar/unifilar-graph.ts`\n- `sistema-de-instala-es-el-tricas-sie-main/src/domain/unifilar/layout-unifilar.ts`\n- `sistema-de-instala-es-el-tricas-sie-main/src/components/unifilar/unifilar-adapter.ts`\n- `sistema-de-instala-es-el-tricas-sie-main/src/components/unifilar/UnifilarWorkspace.tsx`\n- `sistema-de-instala-es-el-tricas-sie-main/src/components/unifilar/UnifilarDiagramaSecao.tsx`\n- `sistema-de-instala-es-el-tricas-sie-main/src/components/unifilar/UnifilarHero.tsx`\n- `sistema-de-instala-es-el-tricas-sie-main/src/components/unifilar/UnifilarInspector.tsx`\n- `sistema-de-instala-es-el-tricas-sie-main/src/components/unifilar/UnifilarLegenda.tsx`\n\n### 23.2 Fontes externas oficiais\n\n- [AltoQi - Como gerar e personalizar os diagramas Unifilar editavel e Multifilar](https://suporte.altoqi.com.br/hc/pt-br/articles/115001610573)\n- [AltoQi Builder - Software para projetos elétricos em BIM](https://website.altoqi.com.br/builder/software-para-projetos-elétricos-em-bim)\n- [ETAP - Intelligent Electrical One-Line Diagram](https://etap.com/product/intelligent-electrical-one-line-diagram)\n- [Autodesk Revit - Panel Schedules](https://help.autodesk.com/cloudhelp/2026/ENU/Revit-DocumentPresent/files/GUID-3D2D0E77-ED17-4FBF-AAE4-CB9185A3F779.htm)\n- [Autodesk Revit - Customize Panel Schedule Templates](https://help.autodesk.com/cloudhelp/2024/ENU/Revit-GetStarted/files/GUID-583B892A-09C3-443A-A4F5-10CD808571A4.htm)\n- [EPLAN - Single-line Representation](https://www.eplan.help/en-us/Infoportal/Content/Plattform/2026/Content/htm/singlepole_k_start.htm)\n- [QElectroTech - User Manual](https://download.qelectrotech.org/qet/manual_0.7/build/_downloads/408498051918f1618a071fe56e737db5/QElectroTechdoc-0.8.pdf)\n- [IEC 61082-1:2014](https://webstore.iec.ch/en/publication/4469)\n- [ISO 7200:2004](https://www.iso.org/standard/35446.html)\n- [ISO 7083:2021](https://www.iso.org/standard/66740.html)\n\n---\n\n## 24. Encaminhamento recomendado\n\nEste relatorio deve ser entregue:\n\n1. ao @pm/@po para converter as recomendações aprovadas em escopo;\n2. ao @architect para validar `PranchaModel`, `DocumentProfile`, registro de\n   símbolos e manifestos;\n3. ao @ux-design-expert para wireframes e especificacao visual;\n4. ao @sm para criar stories com acceptance criteria;\n5. ao @dev e @qa somente depois da story estar Ready.\n\nNenhuma proposta deste documento deve ser implementada como requisito implicito.\n"</script>
+  <script>
+    (function () {
+      "use strict";
+
+      var markdown = JSON.parse(document.getElementById("markdown-source").textContent);
+      var renderedView = document.getElementById("rendered-view");
+      var sourcePre = document.getElementById("source-pre");
+      var tocList = document.getElementById("toc-list");
+      var sidebar = document.getElementById("sidebar");
+      var sidebarBackdrop = document.getElementById("sidebar-backdrop");
+      var searchInput = document.getElementById("document-search");
+      var searchCount = document.getElementById("search-count");
+      var toast = document.getElementById("toast");
+      var currentSectionId = "";
+      var searchMatches = [];
+      var currentMatch = -1;
+      var toastTimer = 0;
+      var slugCounts = new Map();
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function slugify(value) {
+        var base = value
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "") || "secao";
+        var count = slugCounts.get(base) || 0;
+        slugCounts.set(base, count + 1);
+        return count === 0 ? base : base + "-" + (count + 1);
+      }
+
+      function renderInline(value) {
+        var codeTokens = [];
+        var text = String(value).replace(/\x60([^\x60]+)\x60/g, function (_, code) {
+          var token = "@@CODE" + codeTokens.length + "@@";
+          codeTokens.push("<code>" + escapeHtml(code) + "</code>");
+          return token;
+        });
+        text = escapeHtml(text);
+        text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (_, label, href) {
+          var safeHref = href.replace(/&amp;/g, "&");
+          var external = /^https?:\/\//i.test(safeHref);
+          return '<a href="' + escapeHtml(safeHref) + '"' +
+            (external ? ' target="_blank" rel="noopener noreferrer"' : "") +
+            ">" + label + "</a>";
+        });
+        text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+        text = text.replace(/(^|[^*])\*([^*]+)\*/g, "$1<em>$2</em>");
+        codeTokens.forEach(function (token, index) {
+          text = text.replace("@@CODE" + index + "@@", token);
+        });
+        return text;
+      }
+
+      function isTableSeparator(line) {
+        return /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(line);
+      }
+
+      function splitTableRow(line) {
+        return line.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map(function (cell) {
+          return cell.trim();
+        });
+      }
+
+      function isListLine(line) {
+        return /^\s*[-*+]\s+/.test(line) || /^\s*\d+\.\s+/.test(line);
+      }
+
+      function isSpecial(lines, index) {
+        var line = lines[index] || "";
+        var next = lines[index + 1] || "";
+        return /^#{1,6}\s+/.test(line) ||
+          /^\s*`{3}/.test(line) ||
+          /^\s*>/.test(line) ||
+          /^\s*---+\s*$/.test(line) ||
+          isListLine(line) ||
+          (/^\s*\|/.test(line) && isTableSeparator(next));
+      }
+
+      function renderMarkdown(source) {
+        slugCounts.clear();
+        var lines = source.replace(/\r\n/g, "\n").split("\n");
+        var out = [];
+        var i = 0;
+        var sectionOpen = false;
+
+        while (i < lines.length) {
+          var line = lines[i];
+
+          if (!line.trim()) {
+            i += 1;
+            continue;
+          }
+
+          var fence = line.match(/^\s*`{3}\s*([^\s]*)\s*$/);
+          if (fence) {
+            var language = fence[1] || "texto";
+            var codeLines = [];
+            i += 1;
+            while (i < lines.length && !/^\s*`{3}\s*$/.test(lines[i])) {
+              codeLines.push(lines[i]);
+              i += 1;
+            }
+            i += 1;
+            var code = codeLines.join("\n");
+            if (language.toLowerCase() === "mermaid") {
+              out.push(
+                '<figure class="diagram" data-graph="' + encodeURIComponent(code) + '">' +
+                '<figcaption>Diagrama técnico</figcaption>' +
+                '<div class="diagram-canvas"></div>' +
+                '<details><summary>Ver definição textual</summary><pre>' +
+                escapeHtml(code) +
+                "</pre></details></figure>"
+              );
+            } else {
+              out.push(
+                '<div class="code-block"><div class="code-label"><span>' +
+                escapeHtml(language) +
+                '</span><button class="copy-code" type="button" aria-label="Copiar bloco de código" title="Copiar bloco">⧉</button></div><pre><code>' +
+                escapeHtml(code) +
+                "</code></pre></div>"
+              );
+            }
+            continue;
+          }
+
+          var heading = line.match(/^(#{1,6})\s+(.+)$/);
+          if (heading) {
+            var level = heading[1].length;
+            var label = heading[2].trim();
+            var id = slugify(label);
+            if (level === 2) {
+              if (sectionOpen) out.push("</section>");
+              out.push('<section class="doc-section" data-section-id="' + id + '">');
+              sectionOpen = true;
+            }
+            out.push("<h" + level + ' id="' + id + '">' + renderInline(label) + "</h" + level + ">");
+            i += 1;
+            continue;
+          }
+
+          if (/^\s*---+\s*$/.test(line)) {
+            out.push("<hr>");
+            i += 1;
+            continue;
+          }
+
+          if (/^\s*>/.test(line)) {
+            var quote = [];
+            while (i < lines.length && /^\s*>/.test(lines[i])) {
+              quote.push(lines[i].replace(/^\s*>\s?/, ""));
+              i += 1;
+            }
+            out.push("<blockquote><p>" + quote.map(renderInline).join("<br>") + "</p></blockquote>");
+            continue;
+          }
+
+          if (/^\s*\|/.test(line) && isTableSeparator(lines[i + 1] || "")) {
+            var headers = splitTableRow(line);
+            i += 2;
+            var rows = [];
+            while (i < lines.length && /^\s*\|/.test(lines[i])) {
+              rows.push(splitTableRow(lines[i]));
+              i += 1;
+            }
+            var table = '<div class="table-scroll" tabindex="0"><table><thead><tr>';
+            headers.forEach(function (cell) {
+              table += "<th scope=\"col\">" + renderInline(cell) + "</th>";
+            });
+            table += "</tr></thead><tbody>";
+            rows.forEach(function (row) {
+              table += "<tr>";
+              headers.forEach(function (_, index) {
+                table += "<td>" + renderInline(row[index] || "") + "</td>";
+              });
+              table += "</tr>";
+            });
+            table += "</tbody></table></div>";
+            out.push(table);
+            continue;
+          }
+
+          if (isListLine(line)) {
+            var ordered = /^\s*\d+\.\s+/.test(line);
+            var tag = ordered ? "ol" : "ul";
+            var items = [];
+            while (i < lines.length) {
+              var itemMatch = ordered
+                ? lines[i].match(/^\s*\d+\.\s+(.+)$/)
+                : lines[i].match(/^\s*[-*+]\s+(.+)$/);
+              if (!itemMatch) break;
+              var item = itemMatch[1];
+              i += 1;
+              while (
+                i < lines.length &&
+                /^\s{2,}\S/.test(lines[i]) &&
+                !isListLine(lines[i]) &&
+                !/^\s*`{3}/.test(lines[i])
+              ) {
+                item += " " + lines[i].trim();
+                i += 1;
+              }
+              items.push(item);
+              while (i < lines.length && !lines[i].trim()) {
+                var lookAhead = lines[i + 1] || "";
+                if ((ordered && /^\s*\d+\.\s+/.test(lookAhead)) ||
+                    (!ordered && /^\s*[-*+]\s+/.test(lookAhead))) {
+                  i += 1;
+                } else {
+                  break;
+                }
+              }
+            }
+            out.push("<" + tag + ">" + items.map(function (item) {
+              return "<li>" + renderInline(item) + "</li>";
+            }).join("") + "</" + tag + ">");
+            continue;
+          }
+
+          var paragraph = [line.trim()];
+          i += 1;
+          while (i < lines.length && lines[i].trim() && !isSpecial(lines, i)) {
+            paragraph.push(lines[i].trim());
+            i += 1;
+          }
+          out.push("<p>" + renderInline(paragraph.join(" ")) + "</p>");
+        }
+
+        if (sectionOpen) out.push("</section>");
+        return out.join("\n");
+      }
+
+      function parseGraph(source) {
+        var lines = source.split("\n").map(function (line) { return line.trim(); }).filter(Boolean);
+        var direction = /\bLR\b/.test(lines[0] || "") ? "LR" : "TD";
+        var nodes = new Map();
+        var edges = [];
+        lines.slice(1).forEach(function (line) {
+          var match = line.match(/^(\w+)(?:\[([^\]]+)\])?\s*-->\s*(\w+)(?:\[([^\]]+)\])?$/);
+          if (!match) return;
+          var from = match[1];
+          var to = match[3];
+          if (match[2]) nodes.set(from, match[2]);
+          if (match[4]) nodes.set(to, match[4]);
+          if (!nodes.has(from)) nodes.set(from, from);
+          if (!nodes.has(to)) nodes.set(to, to);
+          edges.push({ from: from, to: to });
+        });
+        return { direction: direction, nodes: nodes, edges: edges };
+      }
+
+      function createSvgElement(name, attrs) {
+        var element = document.createElementNS("http://www.w3.org/2000/svg", name);
+        Object.keys(attrs || {}).forEach(function (key) {
+          element.setAttribute(key, String(attrs[key]));
+        });
+        return element;
+      }
+
+      function renderGraph(figure) {
+        var source = decodeURIComponent(figure.dataset.graph || "");
+        var graph = parseGraph(source);
+        var canvas = figure.querySelector(".diagram-canvas");
+        if (!graph.edges.length) {
+          canvas.innerHTML = '<p>Definição de diagrama disponível abaixo.</p>';
+          return;
+        }
+
+        var indegree = new Map();
+        var adjacency = new Map();
+        graph.nodes.forEach(function (_, id) {
+          indegree.set(id, 0);
+          adjacency.set(id, []);
+        });
+        graph.edges.forEach(function (edge) {
+          indegree.set(edge.to, (indegree.get(edge.to) || 0) + 1);
+          adjacency.get(edge.from).push(edge.to);
+        });
+
+        var levels = new Map();
+        var queue = [];
+        indegree.forEach(function (degree, id) {
+          if (degree === 0) {
+            queue.push(id);
+            levels.set(id, 0);
+          }
+        });
+        while (queue.length) {
+          var id = queue.shift();
+          (adjacency.get(id) || []).forEach(function (child) {
+            levels.set(child, Math.max(levels.get(child) || 0, (levels.get(id) || 0) + 1));
+            indegree.set(child, indegree.get(child) - 1);
+            if (indegree.get(child) === 0) queue.push(child);
+          });
+        }
+        graph.nodes.forEach(function (_, id) {
+          if (!levels.has(id)) levels.set(id, 0);
+        });
+
+        var groups = new Map();
+        levels.forEach(function (level, id) {
+          if (!groups.has(level)) groups.set(level, []);
+          groups.get(level).push(id);
+        });
+        var maxLevel = Math.max.apply(null, Array.from(groups.keys()));
+        var nodeW = 190;
+        var nodeH = 58;
+        var levelGap = graph.direction === "LR" ? 80 : 64;
+        var rowGap = graph.direction === "LR" ? 34 : 42;
+        var positions = new Map();
+
+        groups.forEach(function (ids, level) {
+          ids.forEach(function (id, index) {
+            var x = graph.direction === "LR"
+              ? 28 + level * (nodeW + levelGap)
+              : 28 + index * (nodeW + rowGap);
+            var y = graph.direction === "LR"
+              ? 28 + index * (nodeH + rowGap)
+              : 28 + level * (nodeH + levelGap);
+            positions.set(id, { x: x, y: y });
+          });
+        });
+
+        var maxGroupSize = Math.max.apply(null, Array.from(groups.values()).map(function (ids) {
+          return ids.length;
+        }));
+        var width = graph.direction === "LR"
+          ? 56 + (maxLevel + 1) * nodeW + maxLevel * levelGap
+          : 56 + maxGroupSize * nodeW + Math.max(0, maxGroupSize - 1) * rowGap;
+        var height = graph.direction === "LR"
+          ? 56 + maxGroupSize * nodeH + Math.max(0, maxGroupSize - 1) * rowGap
+          : 56 + (maxLevel + 1) * nodeH + maxLevel * levelGap;
+
+        var svg = createSvgElement("svg", {
+          viewBox: "0 0 " + width + " " + height,
+          width: width,
+          height: height,
+          role: "img",
+          "aria-label": "Diagrama de fluxo com " + graph.nodes.size + " elementos"
+        });
+        var title = createSvgElement("title");
+        title.textContent = "Fluxo técnico derivado da definição Mermaid";
+        svg.appendChild(title);
+        var defs = createSvgElement("defs");
+        var marker = createSvgElement("marker", {
+          id: "arrow-" + Math.random().toString(36).slice(2),
+          viewBox: "0 0 10 10",
+          refX: 9,
+          refY: 5,
+          markerWidth: 7,
+          markerHeight: 7,
+          orient: "auto-start-reverse"
+        });
+        marker.appendChild(createSvgElement("path", {
+          d: "M 0 0 L 10 5 L 0 10 z",
+          fill: "var(--accent)"
+        }));
+        defs.appendChild(marker);
+        svg.appendChild(defs);
+        var markerId = marker.id;
+
+        graph.edges.forEach(function (edge) {
+          var from = positions.get(edge.from);
+          var to = positions.get(edge.to);
+          var path;
+          if (graph.direction === "LR") {
+            var sx = from.x + nodeW;
+            var sy = from.y + nodeH / 2;
+            var tx = to.x;
+            var ty = to.y + nodeH / 2;
+            var mx = (sx + tx) / 2;
+            path = "M " + sx + " " + sy + " H " + mx + " V " + ty + " H " + tx;
+          } else {
+            var sx2 = from.x + nodeW / 2;
+            var sy2 = from.y + nodeH;
+            var tx2 = to.x + nodeW / 2;
+            var ty2 = to.y;
+            var my = (sy2 + ty2) / 2;
+            path = "M " + sx2 + " " + sy2 + " V " + my + " H " + tx2 + " V " + ty2;
+          }
+          svg.appendChild(createSvgElement("path", {
+            d: path,
+            fill: "none",
+            stroke: "var(--accent)",
+            "stroke-width": 2,
+            "marker-end": "url(#" + markerId + ")"
+          }));
+        });
+
+        graph.nodes.forEach(function (label, id) {
+          var pos = positions.get(id);
+          var group = createSvgElement("g", { transform: "translate(" + pos.x + " " + pos.y + ")" });
+          group.appendChild(createSvgElement("rect", {
+            width: nodeW,
+            height: nodeH,
+            rx: 4,
+            fill: "var(--surface)",
+            stroke: "var(--border-strong)",
+            "stroke-width": 1.5
+          }));
+          var words = label.split(/\s+/);
+          var lines = [""];
+          words.forEach(function (word) {
+            var current = lines[lines.length - 1];
+            if ((current + " " + word).trim().length > 24 && lines.length < 2) {
+              lines.push(word);
+            } else {
+              lines[lines.length - 1] = (current + " " + word).trim();
+            }
+          });
+          var text = createSvgElement("text", {
+            x: nodeW / 2,
+            y: lines.length === 1 ? 34 : 26,
+            fill: "var(--text)",
+            "font-family": "Arial, sans-serif",
+            "font-size": 13,
+            "font-weight": 700,
+            "text-anchor": "middle"
+          });
+          lines.forEach(function (textLine, index) {
+            var tspan = createSvgElement("tspan", {
+              x: nodeW / 2,
+              dy: index === 0 ? 0 : 17
+            });
+            tspan.textContent = textLine;
+            text.appendChild(tspan);
+          });
+          group.appendChild(text);
+          svg.appendChild(group);
+        });
+
+        canvas.replaceChildren(svg);
+      }
+
+      function buildToc() {
+        var headings = Array.from(renderedView.querySelectorAll("h2"));
+        tocList.innerHTML = "";
+        headings.forEach(function (heading) {
+          var item = document.createElement("li");
+          var link = document.createElement("a");
+          link.className = "toc-link";
+          link.href = "#" + heading.id;
+          link.textContent = heading.textContent;
+          link.dataset.target = heading.id;
+          link.addEventListener("click", function () {
+            closeSidebar();
+          });
+          item.appendChild(link);
+          tocList.appendChild(item);
+        });
+      }
+
+      function clearMarks() {
+        renderedView.querySelectorAll("mark").forEach(function (mark) {
+          mark.replaceWith(document.createTextNode(mark.textContent));
+        });
+        renderedView.normalize();
+        searchMatches = [];
+        currentMatch = -1;
+      }
+
+      function runSearch() {
+        clearMarks();
+        var query = searchInput.value.trim();
+        Array.from(tocList.querySelectorAll(".toc-link")).forEach(function (link) {
+          link.parentElement.hidden = query.length > 1 &&
+            !link.textContent.toLocaleLowerCase("pt-BR").includes(query.toLocaleLowerCase("pt-BR"));
+        });
+        if (query.length < 2) {
+          searchCount.textContent = "0";
+          return;
+        }
+
+        var walker = document.createTreeWalker(renderedView, NodeFilter.SHOW_TEXT, {
+          acceptNode: function (node) {
+            if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+            if (node.parentElement.closest("script, style, .code-label, button")) {
+              return NodeFilter.FILTER_REJECT;
+            }
+            return NodeFilter.FILTER_ACCEPT;
+          }
+        });
+        var nodes = [];
+        var current;
+        while ((current = walker.nextNode())) nodes.push(current);
+        var escaped = query.replace(/[.*+?^{}$()|[\]\\]/g, "\\$&");
+        var regex = new RegExp(escaped, "gi");
+
+        nodes.forEach(function (node) {
+          var value = node.nodeValue;
+          if (!regex.test(value)) return;
+          regex.lastIndex = 0;
+          var fragment = document.createDocumentFragment();
+          var lastIndex = 0;
+          var match;
+          while ((match = regex.exec(value))) {
+            fragment.appendChild(document.createTextNode(value.slice(lastIndex, match.index)));
+            var mark = document.createElement("mark");
+            mark.dataset.searchMatch = "";
+            mark.textContent = match[0];
+            fragment.appendChild(mark);
+            lastIndex = match.index + match[0].length;
+          }
+          fragment.appendChild(document.createTextNode(value.slice(lastIndex)));
+          node.replaceWith(fragment);
+        });
+        searchMatches = Array.from(renderedView.querySelectorAll("mark"));
+        searchCount.textContent = String(searchMatches.length);
+        if (searchMatches.length) selectMatch(0);
+      }
+
+      function selectMatch(index) {
+        if (!searchMatches.length) return;
+        currentMatch = (index + searchMatches.length) % searchMatches.length;
+        searchMatches.forEach(function (match) { match.classList.remove("is-current"); });
+        searchMatches[currentMatch].classList.add("is-current");
+        searchMatches[currentMatch].scrollIntoView({ behavior: "smooth", block: "center" });
+        searchCount.textContent = (currentMatch + 1) + "/" + searchMatches.length;
+      }
+
+      function setMode(mode, persist) {
+        document.body.dataset.mode = mode;
+        document.querySelectorAll("[data-mode-target]").forEach(function (button) {
+          button.setAttribute("aria-pressed", String(button.dataset.modeTarget === mode));
+        });
+        if (persist !== false) localStorage.setItem("sie-report-mode", mode);
+        if (mode === "source") {
+          sourcePre.focus({ preventScroll: true });
+        }
+      }
+
+      function setTheme(theme) {
+        document.body.dataset.theme = theme;
+        localStorage.setItem("sie-report-theme", theme);
+      }
+
+      function openSidebar() {
+        sidebar.classList.add("is-open");
+        sidebarBackdrop.classList.add("is-open");
+        document.body.classList.add("is-locked");
+        document.getElementById("menu-button").setAttribute("aria-expanded", "true");
+      }
+
+      function closeSidebar() {
+        sidebar.classList.remove("is-open");
+        sidebarBackdrop.classList.remove("is-open");
+        document.body.classList.remove("is-locked");
+        document.getElementById("menu-button").setAttribute("aria-expanded", "false");
+      }
+
+      function showToast(message) {
+        clearTimeout(toastTimer);
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        toastTimer = window.setTimeout(function () {
+          toast.classList.remove("is-visible");
+        }, 2200);
+      }
+
+      function copyText(value, successMessage) {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(value).then(function () {
+            showToast(successMessage);
+          });
+          return;
+        }
+        var textarea = document.createElement("textarea");
+        textarea.value = value;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        textarea.remove();
+        showToast(successMessage);
+      }
+
+      function initializeObservers() {
+        var headings = Array.from(renderedView.querySelectorAll("h2"));
+        var observer = new IntersectionObserver(function (entries) {
+          var visible = entries
+            .filter(function (entry) { return entry.isIntersecting; })
+            .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
+          if (!visible.length) return;
+          currentSectionId = visible[0].target.id;
+          tocList.querySelectorAll(".toc-link").forEach(function (link) {
+            link.classList.toggle("is-active", link.dataset.target === currentSectionId);
+          });
+        }, { rootMargin: "-18% 0px -72% 0px", threshold: [0, 1] });
+        headings.forEach(function (heading) { observer.observe(heading); });
+      }
+
+      renderedView.innerHTML = renderMarkdown(markdown);
+      sourcePre.textContent = markdown;
+      buildToc();
+      renderedView.querySelectorAll(".diagram").forEach(renderGraph);
+      renderedView.querySelectorAll(".copy-code").forEach(function (button) {
+        button.addEventListener("click", function () {
+          copyText(button.closest(".code-block").querySelector("code").textContent, "Bloco copiado.");
+        });
+      });
+      initializeObservers();
+
+      document.querySelectorAll("[data-mode-target]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          setMode(button.dataset.modeTarget);
+        });
+      });
+
+      document.getElementById("theme-toggle").addEventListener("click", function () {
+        setTheme(document.body.dataset.theme === "dark" ? "light" : "dark");
+      });
+      document.getElementById("font-decrease").addEventListener("click", function () {
+        var current = Number(getComputedStyle(document.documentElement).getPropertyValue("--reader-scale")) || 1;
+        var next = Math.max(0.88, Math.round((current - 0.06) * 100) / 100);
+        document.documentElement.style.setProperty("--reader-scale", String(next));
+        localStorage.setItem("sie-report-scale", String(next));
+      });
+      document.getElementById("font-increase").addEventListener("click", function () {
+        var current = Number(getComputedStyle(document.documentElement).getPropertyValue("--reader-scale")) || 1;
+        var next = Math.min(1.24, Math.round((current + 0.06) * 100) / 100);
+        document.documentElement.style.setProperty("--reader-scale", String(next));
+        localStorage.setItem("sie-report-scale", String(next));
+      });
+      document.getElementById("print-button").addEventListener("click", function () {
+        var previous = document.body.dataset.mode;
+        setMode("abnt", false);
+        window.setTimeout(function () {
+          window.print();
+          window.setTimeout(function () { setMode(previous, false); }, 250);
+        }, 120);
+      });
+      document.getElementById("copy-source").addEventListener("click", function () {
+        copyText(markdown, "Markdown integral copiado.");
+      });
+      document.getElementById("download-source").addEventListener("click", function () {
+        var blob = new Blob([markdown], { type: "text/markdown;charset=utf-8" });
+        var url = URL.createObjectURL(blob);
+        var anchor = document.createElement("a");
+        anchor.href = url;
+        anchor.download = "competitor-analysis.md";
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        URL.revokeObjectURL(url);
+        showToast("Download do Markdown iniciado.");
+      });
+      document.getElementById("copy-link").addEventListener("click", function () {
+        var value = location.href.split("#")[0] + (currentSectionId ? "#" + currentSectionId : "");
+        copyText(value, "Link da seção copiado.");
+      });
+      document.getElementById("menu-button").addEventListener("click", function () {
+        if (sidebar.classList.contains("is-open")) closeSidebar();
+        else openSidebar();
+      });
+      sidebarBackdrop.addEventListener("click", closeSidebar);
+
+      var searchTimer = 0;
+      searchInput.addEventListener("input", function () {
+        clearTimeout(searchTimer);
+        searchTimer = window.setTimeout(runSearch, 180);
+      });
+      searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" && searchMatches.length) {
+          event.preventDefault();
+          selectMatch(currentMatch + (event.shiftKey ? -1 : 1));
+        }
+        if (event.key === "Escape") {
+          searchInput.value = "";
+          runSearch();
+          searchInput.blur();
+        }
+      });
+
+      window.addEventListener("keydown", function (event) {
+        if (event.key === "/" && !/input|textarea/i.test(document.activeElement.tagName)) {
+          event.preventDefault();
+          searchInput.focus();
+          openSidebar();
+        }
+        if (event.key === "Escape") closeSidebar();
+      });
+
+      window.addEventListener("scroll", function () {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        var ratio = max > 0 ? window.scrollY / max : 0;
+        document.getElementById("reading-progress").style.width = Math.min(100, ratio * 100) + "%";
+      }, { passive: true });
+
+      var storedTheme = localStorage.getItem("sie-report-theme");
+      var preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      setTheme(storedTheme || preferredTheme);
+      var storedMode = localStorage.getItem("sie-report-mode");
+      setMode(["reading", "abnt", "source"].includes(storedMode) ? storedMode : "reading", false);
+      var storedScale = Number(localStorage.getItem("sie-report-scale"));
+      if (storedScale >= 0.88 && storedScale <= 1.24) {
+        document.documentElement.style.setProperty("--reader-scale", String(storedScale));
+      }
+
+      if (location.hash) {
+        window.setTimeout(function () {
+          var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+          if (target) target.scrollIntoView();
+        }, 40);
+      }
+    })();
+  </script>
+</body>
+</html>

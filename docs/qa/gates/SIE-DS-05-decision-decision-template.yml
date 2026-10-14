@@ -1,0 +1,59 @@
+schema: 1
+story: "SIE-DS-05-decision"
+story_title: "DecisionTemplate (comparação de opções)"
+story_path: "docs/stories/story-SIE-DS-05-decision-decision-template.md"
+gate: CONCERNS
+status_reason: >-
+  AC1-AC9 PASS: DecisionPanel completo (ContextSummary, OptionComparison via radio nativo,
+  ImpactSummary reativo, Confirmation inline sem dialog). Fecha o item canônico SIE-DS-05.
+  Regressão completa 1047/1047, build SPA verde, AC8 confirmado. CONCERNS mantido pela
+  indisponibilidade do CodeRabbit — 7ª story consecutiva, QA recomenda resolver antes de
+  SIE-DS-06/07.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-31T00:00:00-03:00"
+expires: "2026-08-14T00:00:00-03:00"
+quality_score: 90
+mode: "yolo (agente-a-agente: @sm → @po → @architect → @dev → @qa, sem fase @devops)"
+
+smoke_test:
+  url: "http://127.0.0.1:5173/sie-command-center-preview"
+  status_code: 200
+  content_checks:
+    - "Método de instalação — Circuito C14"
+    - "Confirmar (demonstrativo)"
+  note: "Checagem ad-hoc inicial teve 2 falsos negativos por falha da própria checagem PowerShell (encoding, regex sem escopo) — corrigidos escopando à section do DecisionPanel; testes automatizados (renderToStaticMarkup) já validavam corretamente."
+  legacy_regression_check:
+    url: "http://127.0.0.1:5173/"
+    status_code: 200
+    content_check: "Projetos"
+
+trace_ac:
+  - { ac: AC1, descricao: "DecisionPanel", resultado: PASS }
+  - { ac: AC2, descricao: "ContextSummary", resultado: PASS }
+  - { ac: AC3, descricao: "OptionComparison", resultado: PASS }
+  - { ac: AC4, descricao: "ImpactSummary", resultado: PASS }
+  - { ac: AC5, descricao: "Confirmation", resultado: PASS }
+  - { ac: AC6, descricao: "Acessibilidade", resultado: PASS }
+  - { ac: AC7, descricao: "Zero cálculo real", resultado: PASS }
+  - { ac: AC8, descricao: "Zero impacto no legado", resultado: PASS }
+  - { ac: AC9, descricao: "Testado localmente", resultado: PASS }
+
+top_issues:
+  - id: "TEST-001"
+    severity: high
+    finding: "CodeRabbit CLI (WSL) indisponível pela 7ª story consecutiva (SIGILL/exit 132). Severidade elevada de medium para high nesta story: SIE-DS-06/07 (próximas) envolvem código real do Unifilar e um gate de qualidade formal que depende deste step."
+    suggested_action: "@devops — resolver antes de iniciar SIE-DS-06."
+    suggested_owner: devops
+  - id: "DOC-001"
+    severity: low
+    finding: "Checkboxes de Acceptance Criteria permanecem [ ] apesar de todos PASS — padrão recorrente."
+    suggested_action: "@po marca [x] durante *close-story."
+    suggested_owner: po
+
+waiver: { active: false }
+
+recommendations:
+  immediate:
+    - action: "Reparar binário CodeRabbit no WSL — 7ª ocorrência, agora com severidade alta"
+      refs: ["~/.local/bin/coderabbit"]
+  future: []

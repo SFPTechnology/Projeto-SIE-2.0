@@ -1,0 +1,374 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "slides-creator/deck-manifest",
+  "title": "Deck Manifest Contract v1.2.0",
+  "description": "Renderer-agnostic manifest produced by content-architect. Consumed by template-curator, visual-scout, design-renderer, and qa-inspector. content_status remains 'partial' until all downstream phases complete. v1.1.0 adds optional version field and per-slide visual_strategy for engine routing. v1.2.0 adds optional andragogic_metadata per slide, deck_pedagogy at root, and audience_profile at root for education_mode support (Story 3.3).",
+  "type": "object",
+  "required": [
+    "deck_id",
+    "topic",
+    "objective",
+    "audience",
+    "format",
+    "mode",
+    "aspect_ratio",
+    "output_targets",
+    "content_status",
+    "slides"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Schema version. Added in v1.1.0. Optional for backward compatibility with v1 manifests.",
+      "default": "1.0.0"
+    },
+    "deck_id": {
+      "type": "string",
+      "description": "Unique deck identifier."
+    },
+    "topic": { "type": "string" },
+    "objective": { "type": "string" },
+    "audience": { "type": "string" },
+    "format": { "type": "string" },
+    "mode": {
+      "type": "string",
+      "enum": ["palco", "live", "async"]
+    },
+    "aspect_ratio": { "type": "string" },
+    "output_targets": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "content_status": {
+      "type": "string",
+      "enum": ["partial", "complete"],
+      "description": "Stays 'partial' until template, asset, render, and QA phases complete."
+    },
+    "education_mode": {
+      "type": "boolean",
+      "default": false,
+      "description": "When true, andragogic sequencing is applied. Copied from briefing.education_mode. Optional for backward compatibility."
+    },
+    "audience_profile": {
+      "type": "object",
+      "description": "Audience characterization for Dreyfus calibration. Optional -- absent in non-educational decks. Added in v1.2.0.",
+      "properties": {
+        "dreyfus_level": {
+          "type": "string",
+          "enum": ["novice", "advanced_beginner", "competent", "proficient", "expert"],
+          "description": "Dreyfus skill acquisition level of the target audience."
+        },
+        "context": {
+          "type": "string",
+          "description": "Learning context (e.g., 'corporate training', 'university course', 'bootcamp')."
+        },
+        "prior_knowledge": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Topics the audience is assumed to already know."
+        }
+      }
+    },
+    "deck_pedagogy": {
+      "type": "object",
+      "description": "Deck-level pedagogical summary. Emitted only when education_mode=true. Added in v1.2.0 (Story 3.3).",
+      "properties": {
+        "kolb_phases_present": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["EC", "OR", "CA", "EA"] },
+          "description": "Which Kolb phases are present across the entire deck."
+        },
+        "kolb_complete": {
+          "type": "boolean",
+          "description": "True if all 4 Kolb phases (EC, OR, CA, EA) are present in every module."
+        },
+        "dpc_distribution": {
+          "type": "object",
+          "description": "Count of slides per DPC type across the deck.",
+          "properties": {
+            "D": { "type": "number", "description": "Declarative slides count" },
+            "P": { "type": "number", "description": "Procedural slides count" },
+            "C": { "type": "number", "description": "Conditional slides count" }
+          }
+        },
+        "avg_cognitive_load": {
+          "type": "number",
+          "description": "Average cognitive load score (0-1) across all slides."
+        },
+        "term_glossary": {
+          "type": "array",
+          "description": "All technical terms introduced across the deck, in order of first appearance.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "term": { "type": "string" },
+              "defined_in_slide": { "type": "string", "description": "slide_id where the term is first introduced" }
+            }
+          }
+        }
+      }
+    },
+    "source_bundle_summary": {
+      "type": "object",
+      "properties": {
+        "source_count": { "type": "number" },
+        "evidence_count": { "type": "number" },
+        "assumption_count": { "type": "number" }
+      }
+    },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["slide_id", "slide_number", "slide_type", "narrative_role", "intent", "payload", "content_constraints"],
+        "properties": {
+          "slide_id": { "type": "string" },
+          "slide_number": { "type": "number" },
+          "section": { "type": "string" },
+          "slide_type": {
+            "type": "string",
+            "enum": ["TITLE", "SECTION_BREAK", "STATEMENT", "CONTENT", "COMPARISON", "METRIC", "DATA_VIZ", "IMAGE", "BUILD", "CODE", "CLOSING"],
+            "description": "Must be one of the 11 canonical slide types. QUOTE is NOT canonical -- use content_variant=quote instead."
+          },
+          "content_variant": {
+            "type": "string",
+            "description": "Optional variant qualifier (e.g. 'quote', 'case_snapshot', 'objection')."
+          },
+          "narrative_role": { "type": "string" },
+          "intent": { "type": "string" },
+          "evidence_refs": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "headline": { "type": "string" },
+              "subheadline": { "type": "string" },
+              "bullets": { "type": "array", "items": { "type": "string" } },
+              "metrics": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": { "type": "string" },
+                    "value": { "type": "string" },
+                    "evidence_ref": { "type": "string" }
+                  }
+                }
+              },
+              "comparison": {
+                "type": "object",
+                "properties": {
+                  "left": { "type": "string" },
+                  "right": { "type": "string" }
+                }
+              },
+              "data_points": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": { "type": "string" },
+                    "value": { "type": "string" },
+                    "evidence_ref": { "type": "string" }
+                  }
+                }
+              },
+              "image_requests": { "type": "array", "items": { "type": "string" } },
+              "build_steps": { "type": "array", "items": { "type": "string" } },
+              "code_excerpt": { "type": "string" },
+              "call_to_action": { "type": "string" }
+            }
+          },
+          "speaker_notes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "content_constraints": {
+            "type": "object",
+            "properties": {
+              "mode": { "type": "string" },
+              "max_words": { "type": "number" },
+              "paragraph_policy": { "type": "string" },
+              "whitespace_floor_percent": { "type": "number" },
+              "notes_required": { "type": "boolean" }
+            }
+          },
+          "template_hints": {
+            "type": "object",
+            "properties": {
+              "visual_priority": { "type": "string" },
+              "density": { "type": "string" },
+              "candidate_family": { "type": "string" }
+            }
+          },
+          "visual_strategy": {
+            "type": "object",
+            "description": "Visual generation strategy per slide. Added in v1.1.0. Optional -- absent in v1 manifests. When present, drives visual-scout engine routing.",
+            "properties": {
+              "content_type": {
+                "type": "string",
+                "enum": ["process", "hierarchy", "comparison", "cycle", "data", "concept", "cause_effect", "timeline", "system", "definition", "quote", "demo"],
+                "description": "Semantic classification of the slide content. 12 canonical types."
+              },
+              "visual_type": {
+                "type": "string",
+                "enum": ["flowchart", "tree", "table", "venn", "cycle_chart", "bar_chart", "metaphor", "timeline", "architecture", "icon_card", "infographic", "none"],
+                "description": "Concrete visual output type mapped from content_type. 12 canonical types."
+              },
+              "engine": {
+                "type": "string",
+                "enum": ["d2", "mermaid", "gpt_image", "recraft", "plotly", "ideogram"],
+                "description": "Target rendering engine. Must match an engine in visual-engines.yaml registry."
+              },
+              "multi_slide": {
+                "type": "boolean",
+                "default": false,
+                "description": "If true, visual spans multiple slides (panoramic). Deferred to v2.1 -- currently always false."
+              },
+              "complexity": {
+                "type": "string",
+                "enum": ["low", "medium", "high"],
+                "description": "Estimated visual complexity. Influences engine selection and cost estimation."
+              },
+              "estimated_elements": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Estimated number of visual elements (nodes, bars, icons). Used for cost and layout planning."
+              }
+            }
+          },
+          "andragogic_metadata": {
+            "type": "object",
+            "description": "Per-slide pedagogical metadata. Emitted only when education_mode=true. Added in v1.2.0 (Story 3.3).",
+            "properties": {
+              "kolb_phase": {
+                "type": "string",
+                "enum": ["EC", "OR", "CA", "EA"],
+                "description": "Kolb experiential learning phase: EC (Concrete Experience), OR (Reflective Observation), CA (Abstract Conceptualization), EA (Active Experimentation)."
+              },
+              "dpc_type": {
+                "type": "string",
+                "enum": ["D", "P", "C"],
+                "description": "DPC knowledge type: D (Declarative -- what is it), P (Procedural -- how to do it), C (Conditional -- when/why to use it)."
+              },
+              "complexity_level": {
+                "type": "string",
+                "enum": ["low", "medium", "high"],
+                "description": "Cognitive complexity of the slide content."
+              },
+              "support_level": {
+                "type": "string",
+                "enum": ["full", "partial", "hints", "minimal"],
+                "description": "Scaffolding support level. Must decrease (fade) across the module: full -> partial -> hints -> minimal."
+              },
+              "prerequisites": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Terms or concepts that must have been introduced before this slide."
+              },
+              "introduces_terms": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "New technical terms introduced in this slide. Used by K8 jargon gate and term_glossary."
+              }
+            }
+          },
+          "unresolved_fields": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "unresolved_bindings": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Fields that remain unresolved at content phase: template_ref, asset_refs, tsx_component."
+    }
+  },
+  "_forbidden_fields_note": "The manifest MUST NOT contain: tsx, className, inline_style, final_template_ref, resolved_asset_url. These belong to downstream agents.",
+  "_example": {
+    "version": "1.2.0",
+    "deck_id": "deck-aiox-pitch-001",
+    "topic": "AIOX Platform Overview",
+    "objective": "Convince investors to fund Series A",
+    "audience": "VC partners",
+    "format": "pitch_deck",
+    "mode": "palco",
+    "aspect_ratio": "16:9",
+    "output_targets": ["ds"],
+    "content_status": "partial",
+    "education_mode": false,
+    "source_bundle_summary": {
+      "source_count": 3,
+      "evidence_count": 12,
+      "assumption_count": 2
+    },
+    "_example_education_mode": {
+      "_note": "When education_mode=true, the following fields are also present:",
+      "education_mode": true,
+      "audience_profile": {
+        "dreyfus_level": "advanced_beginner",
+        "context": "corporate training",
+        "prior_knowledge": ["basic programming", "git fundamentals"]
+      },
+      "deck_pedagogy": {
+        "kolb_phases_present": ["EC", "OR", "CA", "EA"],
+        "kolb_complete": true,
+        "dpc_distribution": { "D": 5, "P": 8, "C": 3 },
+        "avg_cognitive_load": 0.45,
+        "term_glossary": [
+          { "term": "API", "defined_in_slide": "slide-02" },
+          { "term": "endpoint", "defined_in_slide": "slide-04" }
+        ]
+      },
+      "andragogic_metadata_example": {
+        "kolb_phase": "EC",
+        "dpc_type": "D",
+        "complexity_level": "low",
+        "support_level": "full",
+        "prerequisites": [],
+        "introduces_terms": ["API"]
+      }
+    },
+    "slides": [
+      {
+        "slide_id": "slide-01",
+        "slide_number": 1,
+        "section": "Opening",
+        "slide_type": "TITLE",
+        "narrative_role": "Hook and establish identity",
+        "intent": "Present company name, tagline, and speaker",
+        "evidence_refs": ["src-001"],
+        "payload": {
+          "headline": "AIOX",
+          "subheadline": "AI-Orchestrated Full Stack Development"
+        },
+        "speaker_notes": ["Introduce yourself. State the problem in one sentence."],
+        "content_constraints": {
+          "mode": "palco",
+          "max_words": 15,
+          "paragraph_policy": "forbidden",
+          "whitespace_floor_percent": 50,
+          "notes_required": true
+        },
+        "template_hints": {
+          "visual_priority": "content_first",
+          "density": "minimal"
+        },
+        "visual_strategy": {
+          "content_type": "concept",
+          "visual_type": "illustration",
+          "engine": "gpt_image",
+          "multi_slide": false,
+          "complexity": "low",
+          "estimated_elements": 3
+        },
+        "unresolved_fields": ["template_ref", "asset_refs"]
+      }
+    ],
+    "unresolved_bindings": ["template_ref", "asset_refs", "tsx_component"]
+  }
+}

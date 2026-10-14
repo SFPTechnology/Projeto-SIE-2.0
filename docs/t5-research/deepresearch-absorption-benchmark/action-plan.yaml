@@ -1,0 +1,15 @@
+schema: bench-action-plan.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+decision:
+  summary: GO seletive absorption via REUSE > ADAPT > CREATE
+  authority: '@vision-strategist + @aiox-architect + @aiox-pm'
+  confidence: 0.85
+actions: []
+roadmap_phasing:
+  wave_1_p0: []
+  wave_2_p1: []
+  wave_3_p2: []
+aggregates:
+  total_actions: 0
+  total_effort_pts: 0

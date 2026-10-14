@@ -1,0 +1,364 @@
+schema: 1
+story: "MOD-QT-2-01"
+story_title: "Motor Real de Cálculo de Queda de Tensão (Pacote 1)"
+story_path: "docs/stories/story-MOD-QT-2-01-motor-calculo-queda-tensao.md"
+gate: CONCERNS
+status_reason: >-
+  Núcleo do Pacote 1 entregue e rastreável: contrato público byte-a-byte intacto, CA-QT-19/21/22
+  com testes nomeados passando, nenhum [VERIFICAR] promovido a CONFIRMADO. Duas ressalvas não
+  atribuíveis à story impedem PASS limpo: `npm test` sai com exit 1 por regressão em
+  src/domain/calculo/derivar-circuitos.ts (épico alheio) e o lint de projeto inteiro não conclui
+  neste ambiente (lint escopado aos arquivos da story: PASS).
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-28T19:30:00-03:00"
+expires: "2026-08-11T19:30:00-03:00"
+quality_score: 80
+mode: "yolo (autônomo, sem intervenção humana)"
+normative_source: "Arquivos_Diversos/PROMPT-QUEDA-TENSAO-v2.2.md (MOD-QT-v2.2)"
+review_criteria_source: "docs/PLANO-YOLO-IMPLEMENTACAO-MOD-QT-2.md §6.4"
+submodule_branch: "feature/nbr5410-conformidade-closeout"
+
+# ---------------------------------------------------------------------------
+# Critérios do plano §6.4
+# ---------------------------------------------------------------------------
+criterios_plano_6_4:
+  - id: 1
+    criterio: "Rastreabilidade PROMPT-QUEDA-TENSAO-v2.2 → story → código → teste"
+    resultado: PASS
+    evidencia: >-
+      16 blocos `describe`/`it` nomeados com o par AC↔CA-QT (AC1/CA-QT-01 … AC20/CA-QT-22)
+      extraídos por inspeção dos arquivos de teste. Story mapeia AC↔CA-QT item a item contra §26.
+      Motor em src/domain/queda-tensao/ com citação de §N em cada arquivo normativo.
+
+  - id: 2
+    criterio: "Contrato público byte-a-byte inalterado (CA-QT-18)"
+    resultado: PASS
+    evidencia: >-
+      `git diff -- src/api/schemas/otimizar-condutor.schema.ts` VAZIO (arquivo sequer aparece em
+      git status). `RetornoMODQT` comparado literalmente contra `git show HEAD:` — as 5 linhas de
+      campo são idênticas. `git diff -U0 -- contratos.ts` produz hunks apenas em
+      @@ -174,0 +175 @@ e @@ -176,0 +178,2 @@, ambos dentro de `ResultadoDimensionamento`
+      (ib_a/i2_a/fonte_i2), trabalho de MOD-CC/AUTO-OTI alheio a esta story.
+      Rota `POST /api/v1/modulos/mod-qt/validar` com path e assinatura inalterados.
+    metodo: "Critério por SÍMBOLO (correção @po no addendum), não por arquivo."
+
+  - id: 3
+    criterio: "Resultado com valores [VERIFICAR] propaga a marcação no campo fonte (CA-QT-12)"
+    resultado: PASS
+    evidencia: >-
+      `construirFonte()` (motor-queda-tensao.ts:455-489) emite `R={R}Ω/km {status_resistencia}`,
+      com status vindo do registro de impedância — sempre "[VERIFICAR]" hoje. Teste
+      "AC10 / CA-QT-12 — rastreabilidade de valores [VERIFICAR] (Artigo IV)" no motor e
+      "AC10 / CA-QT-12: fonte da resposta propaga [VERIFICAR]..." no endpoint. Ambos passando.
+
+  - id: 4
+    criterio: "CA-QT-19 (não-regressão) e CA-QT-21/CA-QT-22 (limite EDP 1% e [VERIFICAR] do total)"
+    resultado: PASS
+    evidencia: >-
+      CA-QT-19: describe "CA-QT-19 — não-regressão do mock (gate bloqueante, roda primeiro)"
+      + "AC17 / CA-QT-19: caso aprovado pelo mock continua aprovado pelo endpoint com o motor real".
+      Divergência de 11/504 combinações caracterizada com causa normativa (R tabelada a 70°C vs
+      ρ genérica a 20°C, razão 1,262–1,290), conservadora, com assertiva que REPROVA divergência
+      fora da faixa e que exige lista não-vazia. Nenhum valor ajustado para forçar aprovação (R-09).
+      CA-QT-21: limite 1,0% via `limiteDoTrechoPct()` quando origem contém RAMAL-ENTRADA-EDP.
+      CA-QT-22: `MARCACAO_VERIFICAR_ALINEA` aplicada quando limite total ∈ {5,0; 7,0}.
+
+  - id: 5
+    criterio: "Nenhum item da lista NÃO TOCAR (§31) alterado"
+    resultado: PASS
+    evidencia: >-
+      Contrato/schemas/rota verificados no critério 2. `src/routeTree.gen.ts` e
+      `src/routeTree.spa.ts` NÃO alterados por esta story (RSK-8 não materializou — as alterações
+      nesses arquivos vieram depois, de MOD-QT-2-02). `servico-dimensionamento-condutores.ts` com
+      hunks apenas de MOD-DC (isolação XLPE→EPR, VER-DC-01-TABELA-36/37), alheios a queda de tensão.
+
+  - id: 6
+    criterio: "Gates técnicos (lint, typecheck, test, build) + checklist OWASP"
+    resultado: CONCERNS
+    detalhe: "ver bloco gates_tecnicos_observados"
+
+  - id: 7
+    criterio: "Checklist de segurança básica (OWASP) sobre o código novo"
+    resultado: PASS_COM_OBSERVACOES
+    detalhe: "ver bloco security_review"
+
+# ---------------------------------------------------------------------------
+# Gates técnicos — números REAIS observados por @qa nesta sessão
+# ---------------------------------------------------------------------------
+gates_tecnicos_observados:
+  executados_em: "sistema-de-instala-es-el-tricas-sie-main/"
+  executados_por: "@qa (Quinn) — re-execução independente, 2026-07-28"
+
+  typecheck:
+    resultado: PASS
+    comando: "npx tsc --noEmit"
+    saida: "vazia"
+    exit_code: 0
+
+  build:
+    resultado: PASS
+    comando: "npm run build"
+    saida: "✓ built in 8.50s — dist/client + dist/server gerados"
+    exit_code: 0
+    nota: >-
+      Confirma o gate que o @po não conseguiu verificar. Chunk
+      `projetos._projetoId_.queda-tensao-*.js` presente no bundle.
+
+  lint:
+    resultado: PARCIAL
+    projeto_inteiro:
+      resultado: NAO_VERIFICADO
+      comando: "npx eslint ."
+      observado: >-
+        Sem produzir saída após ~20 minutos de execução em background — mesmo comportamento
+        relatado pelo @po (~35 min sem retorno). NÃO assumido como PASS (fail-closed).
+    escopo_da_story:
+      resultado: PASS
+      comando: >-
+        npx eslint src/domain/queda-tensao src/routes/api/v1/modulos.mod-qt.validar.ts
+        tests/domain/queda-tensao tests/api/modulos-mod-qt-motor-real.test.ts
+      exit_code: 0
+      saida: "vazia — 0 erros, 0 warnings"
+
+  test:
+    resultado: FAIL_NAO_ATRIBUIVEL
+    comando: "npx vitest run"
+    exit_code: 1
+    numeros_reais:
+      test_files: "1 failed | 125 passed (126)"
+      tests: "1 failed | 832 passed (833)"
+      duracao: "357.02s"
+    teste_que_falha: "tests/domain/calculo/derivar-circuitos.test.ts > derivarCircuitos > dependência sem resultado é ignorada"
+    erro: "AssertionError: expected [ …(2) ] to deeply equal []"
+    causa_raiz_identificada: >-
+      Alteração NÃO COMMITADA em src/domain/calculo/derivar-circuitos.ts: a guarda
+      `if (!r || !vIlumTug) continue;` foi trocada por `if (!vIlumTug) continue;` e os acessos
+      passaram a `r?.iluminacao...?? 0` / `r?.tomadas...?? 0`. Com isso, dependência SEM
+      `resultado` deixou de ser ignorada e passa a derivar circuitos — exatamente o que o teste
+      restaurado assere. Diff: 3 inserções / 3 remoções.
+    atribuicao: >-
+      NÃO ATRIBUÍVEL a MOD-QT-2-01. Domínio `src/domain/calculo/` (MOD-CC / AUTO-OTI / DUC),
+      sem qualquer relação com `queda-tensao`. Nenhum arquivo desta story toca esse domínio.
+    subsuite_da_story:
+      resultado: PASS
+      comando: "npx vitest run tests/domain/queda-tensao tests/api/modulos-mod-qt-motor-real.test.ts tests/api/modulos-mod-qt.test.ts tests/api/queda-tensao-endpoints.test.ts tests/ui/queda-tensao.vrt.test.tsx"
+      numeros: "6 arquivos passed (6) | 76 testes passed (76)"
+      exit_code: 0
+
+  coderabbit:
+    resultado: NAO_VERIFICADO
+    motivo: >-
+      Binário presente em WSL (~/.local/bin/coderabbit), mas `coderabbit auth status` não
+      retornou saída. Não executado sobre worktree de 116 arquivos de múltiplos épicos — o
+      resultado seria dominado por código alheio às stories. Registrado como NÃO VERIFICADO,
+      nunca PASS presumido. Pendência PT-09 permanece com @devops.
+
+# ---------------------------------------------------------------------------
+# Divergências do @po
+# ---------------------------------------------------------------------------
+divergencias_po:
+  - id: PO-DIV-01
+    severidade_original: MEDIA
+    status: RESOLVIDA_PARCIALMENTE_E_RECLASSIFICADA
+    achado_original: >-
+      Handoff do @dev afirma "793 testes / 0 falhando"; @po observou "Test Files: 1 failed |
+      122 passed" por falha de COLETA (arquivo vazio, "No test suite found in file").
+    observado_por_qa: >-
+      A falha mudou de natureza. O arquivo foi restaurado (281 linhas) e agora a suíte COLETA
+      normalmente — mas 1 teste REALMENTE FALHA por assertiva de comportamento. A contagem
+      atual é 833 testes (1 falha) em 126 arquivos (1 falho), exit 1.
+      A crítica do @po ao registro do @dev procede e foi mantida: `test: PASS` no handoff
+      dev-to-qa NÃO deve ser aceito sem qualificação. A contagem de "336 arquivos" do @dev
+      também não se reproduz (126 arquivos de teste).
+    acao: >-
+      Registrado como issue de severidade HIGH com owner FORA destas stories (ver top_issues
+      QT201-001). Não penaliza o veredito das stories, mas BLOQUEIA o commit do worktree.
+
+  - id: PO-DIV-02
+    severidade_original: ALTA
+    status: RESOLVIDA
+    achado_original: >-
+      tests/domain/calculo/derivar-circuitos.test.ts com 0 linhas na worktree contra 281 no HEAD
+      (281 deletions não commitadas) — regressão silenciosa de cobertura.
+    verificado_por_qa: >-
+      `wc -l` = 281 linhas e `git diff --stat` do arquivo SEM SAÍDA (idêntico ao HEAD).
+      A deleção foi revertida. A cobertura de derivar-circuitos está de volta e executando.
+    consequencia: >-
+      A restauração do arquivo é a causa direta da falha do critério 6 (test): com a suíte de
+      volta, ela passou a denunciar a regressão real que existia em
+      src/domain/calculo/derivar-circuitos.ts. O achado do @po estava correto e a resolução
+      dele expôs um segundo defeito, maior. Escalado como QT201-001.
+
+# ---------------------------------------------------------------------------
+# Decisão formal sobre AC8, AC9, AC12, AC14 (delegada pelo @po)
+# ---------------------------------------------------------------------------
+decisao_acs_sem_evidencia:
+  acs: [AC8, AC9, AC12, AC14]
+  ca_qt_equivalentes: [CA-QT-10, CA-QT-11, CA-QT-14, CA-QT-16]
+  opcao_escolhida: "(b) — vincular MOD-QT-2-01 a MOD-QT-2-02 e avaliar os 4 ACs no gate de -02"
+  waiver_concedido: false
+  justificativa: >-
+    A opção (a) (waiver) descarregaria os 4 ACs SEM evidência. A opção (b) os descarrega COM
+    evidência: MOD-QT-2-02 já existe, está InReview, implementa exatamente esses 4 critérios
+    (renumerados AC1–AC4, texto Gherkin idêntico) e foi gateada por @qa na MESMA sessão, com
+    os 4 ACs cobertos por testes nomeados passando (76/76 na subsuíte). Sob fail-closed,
+    evidência real é estritamente superior a dispensa formal — por isso (b), não (a).
+  efeito_no_dod_item_2: >-
+    O item 2 do Definition of Done ("todos os 20 ACs cobertos") é considerado ATENDIDO EM
+    CONJUNTO pelo par MOD-QT-2-01 + MOD-QT-2-02, e NÃO por MOD-QT-2-01 isoladamente.
+    O fatiamento (DEV-06 + Nota de sequenciamento do @po) é reconhecido como legítimo.
+  condicao_vinculante: >-
+    MOD-QT-2-01 só permanece Done enquanto MOD-QT-2-02 estiver Done. Reversão de -02 reabre
+    a pendência de AC8/AC9/AC12/AC14 em -01.
+
+# ---------------------------------------------------------------------------
+# Definition of Done — item a item
+# ---------------------------------------------------------------------------
+definition_of_done:
+  - item: 1
+    descricao: "CA-QT-19 executado primeiro e passando, ou divergência com causa normativa"
+    resultado: PASS
+  - item: 2
+    descricao: "Todos os 20 ACs cobertos com a evidência exigida"
+    resultado: PASS_EM_CONJUNTO
+    nota: "16/20 em -01; AC8/AC9/AC12/AC14 em MOD-QT-2-02 (decisão (b) acima)."
+  - item: 3
+    descricao: "validarModQTMock fora do caminho de produção; _set/_reset funcionais"
+    resultado: PASS
+    evidencia: >-
+      modulos.mod-qt.validar.ts:110-125 — `validarModQTReal` chama calcularQuedaTensao +
+      mapearParaRetornoPublico; RHO_COBRE/TENSAO_REF_V removidos; `_resetClienteModQTParaTeste`
+      restaura o motor REAL.
+  - item: 4
+    descricao: "Contrato público intacto (critério por símbolo)"
+    resultado: PASS
+  - item: 5
+    descricao: "Nenhum VER-QT promovido a CONFIRMADO"
+    resultado: PASS
+    evidencia: >-
+      TABELA_IMPEDANCIA com status_verificacao "[VERIFICAR]" em 100% dos registros
+      (STATUS_IMPEDANCIA_PROVISORIA). VER-QT-02/03/04/07 abertos. Al degrada com dois alertas
+      explícitos; método COMPLETO degrada para SIMPLIFICADO com alerta em vez de inventar X.
+      Bifásico usa fator 2 com "[VERIFICAR — VER-QT-04]". limites.ts marca CONFIRMADO apenas o
+      que o §13.1/§13.8 confirma.
+  - item: 6
+    descricao: "Checklist §32 percorrido item a item"
+    resultado: PASS
+  - item: 7
+    descricao: "lint, typecheck, test, build passando"
+    resultado: PARCIAL
+    nota: "typecheck PASS, build PASS, lint PASS no escopo da story (projeto inteiro NÃO VERIFICADO), test FAIL não atribuível (QT201-001)."
+  - item: 8
+    descricao: "File List fiel ao diff real"
+    resultado: PASS
+    evidencia: "11 arquivos declarados conferidos em disco e em git status."
+  - item: 9
+    descricao: "Nenhum item da lista NÃO TOCAR alterado"
+    resultado: PASS
+
+# ---------------------------------------------------------------------------
+top_issues:
+  - id: QT201-001
+    severity: high
+    category: tests
+    finding: >-
+      `npm test` sai com exit 1: tests/domain/calculo/derivar-circuitos.test.ts >
+      "dependência sem resultado é ignorada" falha. Causa: alteração não commitada em
+      src/domain/calculo/derivar-circuitos.ts removeu a guarda `!r`.
+    atribuivel_a_esta_story: false
+    suggested_owner: po
+    bloqueia_story: false
+    bloqueia_commit_push: true
+    recomendacao: >-
+      O épico dono de src/domain/calculo/ (MOD-CC / AUTO-OTI / DUC) deve decidir: restaurar a
+      guarda `!r` OU atualizar o teste com justificativa registrada em story própria.
+      Nenhum commit da worktree antes disso.
+
+  - id: QT201-002
+    severity: medium
+    category: process
+    finding: >-
+      `npx eslint .` não conclui neste ambiente (>20 min sem saída), impedindo confirmação do
+      gate de lint em escopo de projeto. Reproduzido independentemente por @po e por @qa.
+    atribuivel_a_esta_story: false
+    suggested_owner: dev
+    recomendacao: >-
+      Investigar performance do ESLint (provável varredura de dist/ ou node_modules sem ignore
+      adequado). Registrar `eslint --cache` ou revisar `ignores` no flat config.
+
+  - id: QT201-003
+    severity: low
+    category: docs
+    finding: >-
+      Handoff dev-to-qa registra "793 testes / 0 falhando / 336 arquivos" e "test: PASS".
+      Reexecução observa 833 testes em 126 arquivos com 1 falha. O número de arquivos do @dev
+      não se reproduz e o PASS não se sustenta sem qualificação.
+    atribuivel_a_esta_story: true
+    suggested_owner: dev
+    recomendacao: "Registrar sempre o exit code e a linha-resumo literal do runner."
+
+waiver: { active: false }
+
+evidence:
+  tests_reviewed: 76
+  tests_novos_da_story: 44
+  risks_identified: 3
+  trace:
+    ac_covered: [1, 2, 3, 4, 5, 6, 7, 10, 11, 13, 15, 16, 17, 18, 19, 20]
+    ac_gaps: []
+    ac_delegados_a_mod_qt_2_02: [8, 9, 12, 14]
+
+nfr_validation:
+  security:
+    status: PASS
+    notes: >-
+      Endpoint público inalterado. Entrada validada por Zod antes de qualquer uso. Sem SQL
+      dinâmico, sem eval, sem segredo hardcoded. Logs registram `origem` (dado de auditoria já
+      existente), não payload sensível. Ausência de authn/authz nas rotas /api/v1 é
+      característica pré-existente de todo o projeto (0 rotas com authorization/getUser/session),
+      não introduzida por esta story.
+  performance:
+    status: PASS
+    notes: >-
+      AC11/CA-QT-13 com teste de lote de 44 circuitos abaixo de 2s, passando. Timeout de 5s do
+      endpoint preservado. Motor stateless, sem I/O no caminho de cálculo.
+  reliability:
+    status: PASS
+    notes: >-
+      Fail-closed respeitado: comprimento ausente/inválido não calcula (R-08); impedância não
+      tabelada não estima (Artigo IV); reatância ausente degrada com alerta explícito.
+      Timeout/erro continuam devolvendo PENDENTE sem lançar exceção.
+  maintainability:
+    status: PASS
+    notes: >-
+      Limite de 4% definido em um único ponto (limites.ts) com citação normativa, e um teste lê
+      o próprio arquivo-fonte para exigir a citação — inspeção convertida em asserção executável,
+      evidência mais forte que o grep manual previsto na story.
+
+recommendations:
+  immediate:
+    - action: "Resolver QT201-001 antes de qualquer commit/push da worktree do submódulo"
+      refs: ["src/domain/calculo/derivar-circuitos.ts", "tests/domain/calculo/derivar-circuitos.test.ts"]
+      owner: "@po / dono do épico MOD-CC-AUTO-OTI-DUC"
+  future:
+    - action: "Substituir a tabela de impedância provisória [VERIFICAR] por catálogo Prysmian com fonte primária"
+      refs: ["src/domain/queda-tensao/normativa/tabela-impedancia.ts"]
+      owner: "MOD-QT-2-03 / MOD-QT-2-04 (em criação pelo @sm)"
+    - action: "Investigar lentidão do `eslint .` (QT201-002)"
+      refs: ["eslint.config.js"]
+      owner: "@dev"
+    - action: "Executar CodeRabbit sobre o diff das stories após consolidação do worktree (PT-09)"
+      owner: "@devops"
+
+# ---------------------------------------------------------------------------
+nota_ver_qt:
+  texto: >-
+    Os valores [VERIFICAR] da tabela de impedância NÃO são motivo de reprovação: eram o escopo
+    correto e declarado do Pacote 1. A resolução dos VER-QT-02/VER-QT-03 está endereçada por
+    MOD-QT-2-03 / MOD-QT-2-04 (em criação pelo @sm), que substituirão
+    src/domain/queda-tensao/normativa/tabela-impedancia.ts por um catálogo Prysmian com fonte
+    primária. @qa verificou e CONFIRMA que nenhum valor [VERIFICAR] foi promovido a CONFIRMADO
+    nesta entrega.
+
+recommended_status: "Done (com as ressalvas QT201-001 e QT201-002 registradas)"
+handoff: ".aiox/handoffs/MOD-QT-2-01-qa-to-devops.yaml"

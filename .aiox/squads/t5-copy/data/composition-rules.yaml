@@ -1,0 +1,62 @@
+# Composition Rules — Copy Squad
+# Defines domain boundaries, handoff contracts, and cross-domain transitions
+
+meta:
+  squad: copy
+  version: "1.0.0"
+  created_date: "2026-04-12"
+  created_by: "/sinkra-upgrade-squad"
+
+domains:
+  strategic:
+    name: "Strategic"
+    description: "Intake, diagnóstico, e definição de posicionamento. Decide O QUE e POR QUÊ."
+    molecules: [mol_intake, mol_tier0_diagnosis, mol_strategy]
+    executor_constraint: "Agent e Clone permitidos. Worker apenas para context loading."
+    entry_gate: null
+    exit_gate: "QG-CP-2.1 (Strategy Approval)"
+
+  tactical:
+    name: "Tactical"
+    description: "Produção de copy, emails, ads, páginas. Executa o COMO."
+    molecules: [mol_core_copy, mol_email_system, mol_ads, mol_funnel_pages, mol_authority]
+    executor_constraint: "Clone predominante. Agent para coordenação."
+    entry_gate: "QG-CP-2.1 (Strategy must be approved)"
+    exit_gate: "QG-CP-3.1 (Execution Completeness)"
+
+  operational:
+    name: "Operational"
+    description: "QA, review, packaging, entrega, e meta-evolução."
+    molecules: [mol_quality, mol_delivery, mol_meta]
+    executor_constraint: "Todos os 4 tipos. Human obrigatório no final delivery gate."
+    entry_gate: "QG-CP-3.1 (Copy must be complete)"
+    exit_gate: "QG-CP-5.1 (Packaging & Handoff)"
+
+handoff_contracts:
+  strategic_to_tactical:
+    from_domain: Strategic
+    to_domain: Tactical
+    gate: "QG-CP-2.1"
+    required_tokens: [TKC-001, TKC-002, TKC-004]
+    description: "Strategy approved → copy production can begin. Awareness, mecanismo, e posicionamento devem estar validados."
+
+  tactical_to_operational:
+    from_domain: Tactical
+    to_domain: Operational
+    gate: "QG-CP-3.1"
+    required_tokens: [TKC-003, TKC-005, TKC-009]
+    description: "Copy assets complete → QA review and packaging. Todos os deliverables devem estar draft-ready."
+
+  operational_to_delivery:
+    from_domain: Operational
+    to_domain: "External (client/launch-owner)"
+    gate: "QG-CP-5.1"
+    required_tokens: [TKC-018]
+    description: "QA passed → final handoff to human accountable. Delivery manifest presente e owners explícitos."
+
+rules:
+  - "Atoms compose only from the level immediately below (Rule from compositional_hierarchy)"
+  - "No domain can be skipped — Strategic → Tactical → Operational is mandatory sequence"
+  - "Quality gates are BLOCKING between domains — no advisory-only gates at domain boundaries"
+  - "Human accountable is required at the Operational → Delivery transition (QG-CP-5.1)"
+  - "Clone tasks within Tactical domain may run in parallel within a molecule"

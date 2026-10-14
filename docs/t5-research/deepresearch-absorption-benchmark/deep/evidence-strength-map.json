@@ -1,0 +1,21 @@
+{
+  "schema": "evidence-strength-map-v1",
+  "generated_at": "2026-05-18T19:20:00-03:00",
+  "levels": {
+    "high": "artefato code-anatomist local + registry",
+    "medium": "registry + inferência conservadora",
+    "low": "sinal indireto"
+  },
+  "dimensions": [
+    "architecture_absorption",
+    "trace_observability",
+    "private_kb_grounding",
+    "evaluation_value",
+    "implementation_maturity",
+    "scientific_pipeline",
+    "training_methodology",
+    "product_ux_reference",
+    "compliance_safety",
+    "sinkra_fit"
+  ]
+}

@@ -1,0 +1,483 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-17T16:25:04.283Z",
+  "source_files": [
+    "battle-card.md",
+    "comparison-matrix.json",
+    "comparison-matrix.md",
+    "deep/product-analysis.md",
+    "executive-report.md",
+    "gap-analysis.json",
+    "gap-analysis.md",
+    "inventory-gamma.json",
+    "inventory-presenton.json",
+    "metadata.json",
+    "scorecard.json",
+    "scorecard.md"
+  ],
+  "benchmark": {
+    "slug": "presenton-vs-gamma",
+    "title": "Executive Report — Presenton vs Gamma",
+    "date": "2026-05-17",
+    "type": "product",
+    "variant": "2-way",
+    "analyst": "bench-analyst"
+  },
+  "players": [
+    {
+      "key": "presenton",
+      "name": "Presenton",
+      "category": "unknown"
+    },
+    {
+      "key": "gamma",
+      "name": "Gamma",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "gamma",
+    "coverage": "structured",
+    "sources": 9,
+    "waves": 0,
+    "dimensions": 6
+  },
+  "matrix": {
+    "players": [
+      "presenton",
+      "gamma"
+    ],
+    "dimensions": [
+      {
+        "id": "D1",
+        "label": "Core Features",
+        "weight": 0.25
+      },
+      {
+        "id": "D2",
+        "label": "User Experience",
+        "weight": 0.2
+      },
+      {
+        "id": "D3",
+        "label": "Pricing & Value",
+        "weight": 0.15
+      },
+      {
+        "id": "D4",
+        "label": "Integrations",
+        "weight": 0.15
+      },
+      {
+        "id": "D5",
+        "label": "Support & Community",
+        "weight": 0.1
+      },
+      {
+        "id": "D6",
+        "label": "Scalability",
+        "weight": 0.15
+      }
+    ],
+    "rows": [
+      {
+        "id": "D1",
+        "label": "Core Features",
+        "weight": 0.25,
+        "cells": [
+          {
+            "player": "presenton",
+            "score": 82,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "gamma",
+            "score": 92,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "label": "User Experience",
+        "weight": 0.2,
+        "cells": [
+          {
+            "player": "presenton",
+            "score": 72,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "gamma",
+            "score": 95,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D3",
+        "label": "Pricing & Value",
+        "weight": 0.15,
+        "cells": [
+          {
+            "player": "presenton",
+            "score": 94,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "gamma",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D4",
+        "label": "Integrations",
+        "weight": 0.15,
+        "cells": [
+          {
+            "player": "presenton",
+            "score": 88,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "gamma",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D5",
+        "label": "Support & Community",
+        "weight": 0.1,
+        "cells": [
+          {
+            "player": "presenton",
+            "score": 72,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "gamma",
+            "score": 85,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D6",
+        "label": "Scalability",
+        "weight": 0.15,
+        "cells": [
+          {
+            "player": "presenton",
+            "score": 84,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "gamma",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "presenton",
+        "score": 82
+      },
+      {
+        "player": "gamma",
+        "score": 88
+      }
+    ],
+    "method": "Derived from markdown table in scorecard.md"
+  },
+  "duels": [
+    {
+      "left": "presenton",
+      "right": "gamma",
+      "winner": "gamma",
+      "left_wins": 1,
+      "right_wins": 5,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Core Features",
+          "left_score": 82,
+          "right_score": 92,
+          "winner": "gamma"
+        },
+        {
+          "dimension": "D2",
+          "label": "User Experience",
+          "left_score": 72,
+          "right_score": 95,
+          "winner": "gamma"
+        },
+        {
+          "dimension": "D3",
+          "label": "Pricing & Value",
+          "left_score": 94,
+          "right_score": 70,
+          "winner": "presenton"
+        },
+        {
+          "dimension": "D4",
+          "label": "Integrations",
+          "left_score": 88,
+          "right_score": 90,
+          "winner": "gamma"
+        },
+        {
+          "dimension": "D5",
+          "label": "Support & Community",
+          "left_score": 72,
+          "right_score": 85,
+          "winner": "gamma"
+        },
+        {
+          "dimension": "D6",
+          "label": "Scalability",
+          "left_score": 84,
+          "right_score": 90,
+          "winner": "gamma"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "gamma",
+          "score": 88,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "presenton",
+          "score": 82,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "presenton",
+          "score": 82
+        },
+        {
+          "player": "gamma",
+          "score": 88
+        }
+      ],
+      "verdict": "Gamma vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "presenton_gaps-1",
+      "title": "less proven non-technical UX",
+      "priority": "P0",
+      "complexity": "HIGH",
+      "rationale": ""
+    },
+    {
+      "id": "presenton_gaps-2",
+      "title": "weaker SaaS sharing/collaboration",
+      "priority": "P1",
+      "complexity": "MEDIUM",
+      "rationale": ""
+    },
+    {
+      "id": "presenton_gaps-3",
+      "title": "narrower import surface",
+      "priority": "P1",
+      "complexity": "MEDIUM",
+      "rationale": ""
+    },
+    {
+      "id": "presenton_gaps-4",
+      "title": "less mature team analytics/workspace workflow",
+      "priority": "P1",
+      "complexity": "MEDIUM",
+      "rationale": ""
+    },
+    {
+      "id": "gamma_gaps-5",
+      "title": "no self-hosting",
+      "priority": "P0",
+      "complexity": "LOW",
+      "rationale": ""
+    },
+    {
+      "id": "gamma_gaps-6",
+      "title": "no local Ollama workflow",
+      "priority": "P0",
+      "complexity": "LOW",
+      "rationale": ""
+    },
+    {
+      "id": "gamma_gaps-7",
+      "title": "less data/infrastructure control",
+      "priority": "P0",
+      "complexity": "LOW",
+      "rationale": ""
+    },
+    {
+      "id": "gamma_gaps-8",
+      "title": "credit/subscription dependency",
+      "priority": "P1",
+      "complexity": "MEDIUM",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/presenton/presenton",
+      "file": "executive-report.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://docs.presenton.ai/index",
+      "file": "executive-report.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://gamma.app/products/presentations",
+      "file": "executive-report.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://help.gamma.app/fr/articles/8022861",
+      "file": "executive-report.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://help.gamma.app/en/articles/11047840-how-can-i-import-slides-or-documents-into-gamma",
+      "file": "executive-report.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://gamma.app/es/pricing",
+      "file": "executive-report.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://developers.gamma.app/",
+      "file": "executive-report.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://gamma.app/integrations",
+      "file": "executive-report.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://developers.gamma.app/get-started/access-and-pricing",
+      "file": "inventory-gamma.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.json",
+      "role": "comparison-matrix",
+      "format": "json"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/product-analysis.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.json",
+      "role": "gap-analysis",
+      "format": "json"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventory-gamma.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "inventory-presenton.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {}
+}

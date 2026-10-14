@@ -1,0 +1,174 @@
+{
+  "benchmark_id": "bench-gstack-vs-aiox-2026-04-13",
+  "scoring_method": "Weighted 6-dimension scoring (bench-dimension-packs.yaml, type=codebase)",
+  "scale": "0-100 per dimension, weighted average for final score",
+  "dimensions": [
+    {
+      "id": "arch",
+      "name": "Architecture",
+      "weight": 0.20,
+      "gstack": {
+        "score": 62,
+        "signals": {
+          "folder_structure": "Flat — 37 skill dirs, 1 core lib (browse/), 30 bin scripts. Simple but no hierarchy.",
+          "separation_of_concerns": "Skills are independent (good). No shared state except browser daemon. No squad/agent hierarchy.",
+          "modularity": "Each skill is self-contained SKILL.md. Browser is well-modularized (28 TS files). No cross-skill composition."
+        }
+      },
+      "aiox": {
+        "score": 92,
+        "signals": {
+          "folder_structure": "8-layer architecture (L1-L8). 54 squads, 461 agents, 107 skills. Deep, formal hierarchy.",
+          "separation_of_concerns": "Squad isolation, agent authority matrix, artifact classification decision tree, business isolation.",
+          "modularity": "Squads are self-contained with config.yaml, agents/, tasks/, workflows/, templates/, checklists/, data/."
+        }
+      },
+      "delta": -30,
+      "advantage": "AIOX"
+    },
+    {
+      "id": "testing",
+      "name": "Testing & QA",
+      "weight": 0.20,
+      "gstack": {
+        "score": 75,
+        "signals": {
+          "test_files": "82 test files, 3-tier system. E2E tests cost $3.85/run, LLM-as-judge $0.15.",
+          "coverage_config": "No formal coverage threshold. slop-scan for design quality.",
+          "ci_checks": "6 GitHub Actions workflows. SKILL.md freshness validation in CI."
+        }
+      },
+      "aiox": {
+        "score": 88,
+        "signals": {
+          "test_files": "3,566 test files. CodeRabbit self-healing (3 iterations). Runner-lib coverage baseline.",
+          "coverage_config": "Coverage baselines in outputs/qa/coverage-baseline.json. Floor minus 5 points.",
+          "ci_checks": "ci-gate.yml + 14 hooks + 10+ validators + doctor.js comprehensive health."
+        }
+      },
+      "delta": -13,
+      "advantage": "AIOX"
+    },
+    {
+      "id": "docs",
+      "name": "Documentation",
+      "weight": 0.15,
+      "gstack": {
+        "score": 78,
+        "signals": {
+          "readme_quality": "405-line README with quick start, all 37 skills listed, philosophy.",
+          "inline_docs": "37,391 lines of SKILL.md content. Each skill ~1K lines of detailed instructions.",
+          "api_docs": "BROWSER.md (25KB) full command reference. ARCHITECTURE.md (21KB) design decisions."
+        }
+      },
+      "aiox": {
+        "score": 85,
+        "signals": {
+          "readme_quality": "CLAUDE.md (288 lines) is concise but references 16 rule files for depth.",
+          "inline_docs": "107 skills + 593 templates + 446 checklists. 353 stories + 46 epics for traceability.",
+          "api_docs": "Per-service architecture docs. Document registry governance. ADR decision records."
+        }
+      },
+      "delta": -7,
+      "advantage": "AIOX"
+    },
+    {
+      "id": "automation",
+      "name": "Automation",
+      "weight": 0.20,
+      "gstack": {
+        "score": 70,
+        "signals": {
+          "ci_cd": "6 GitHub Actions. Skill generation pipeline (gen-skill-docs.ts, 658 LOC).",
+          "scripts": "30 bin scripts + 17 scripts. Dev-setup symlink automation.",
+          "hooks_linting": "Conductor lifecycle hooks. No pre-push validation hooks."
+        }
+      },
+      "aiox": {
+        "score": 90,
+        "signals": {
+          "ci_cd": "ci-gate.yml + pre-push-validation.sh + 10+ validators (YAML, squads, structure, dialect, schema, paths, etc.)",
+          "scripts": "51 scripts. doctor.js runs ALL validators. Registry governance check.",
+          "hooks_linting": "14 hooks (enforce-git-push-authority, enforce-quality-first, enforce-story-reference, etc.)"
+        }
+      },
+      "delta": -20,
+      "advantage": "AIOX"
+    },
+    {
+      "id": "extensibility",
+      "name": "Extensibility",
+      "weight": 0.15,
+      "gstack": {
+        "score": 72,
+        "signals": {
+          "plugin_system": "Drop SKILL.md in directory. Template system for multi-host generation. Chrome extension.",
+          "config": "gstack-config (6 settings). Per-project config in ~/.gstack/projects/.",
+          "api_surface": "HTTP API for browser daemon. OpenClaw integration. Pair-agent cross-vendor."
+        }
+      },
+      "aiox": {
+        "score": 88,
+        "signals": {
+          "plugin_system": "Squad creation pipeline. Skill-creator skill. Workflow-to-skill transformer. Squad-creator with validation.",
+          "config": "core-config.yaml with SINKRA extensions. Active-operator.yaml. Token registries.",
+          "api_surface": "ServiceBus. MCP server integration. ClickUp adapter. Google Workspace adapter. ETL pipeline."
+        }
+      },
+      "delta": -16,
+      "advantage": "AIOX"
+    },
+    {
+      "id": "code_quality",
+      "name": "Code Quality",
+      "weight": 0.10,
+      "gstack": {
+        "score": 82,
+        "signals": {
+          "linting": "Bun linting. actionlint.yaml for CI workflows. slop-scan for generated content.",
+          "type_safety": "Full TypeScript strict mode. All browse/ typed.",
+          "patterns": "Agent-oriented error handling (wrapError). Ring buffer logging. Ref system pattern."
+        }
+      },
+      "aiox": {
+        "score": 80,
+        "signals": {
+          "linting": "validate:yaml, validate:squads, validate:workspace-dialect, validate:schema-compat.",
+          "type_safety": "TypeScript strict mode in packages/. YAML schema validation.",
+          "patterns": "Constitutional enforcement. IDS hierarchy (REUSE>ADAPT>CREATE). Artifact classification."
+        }
+      },
+      "delta": 2,
+      "advantage": "gstack"
+    }
+  ],
+  "final_scores": {
+    "gstack": {
+      "weighted_total": 72.4,
+      "breakdown": {
+        "arch": "62 x 0.20 = 12.4",
+        "testing": "75 x 0.20 = 15.0",
+        "docs": "78 x 0.15 = 11.7",
+        "automation": "70 x 0.20 = 14.0",
+        "extensibility": "72 x 0.15 = 10.8",
+        "code_quality": "82 x 0.10 = 8.2"
+      },
+      "note": "gstack excels at Browser integration (score: 5/5), Multi-host (5/5), and Error handling (5/5)"
+    },
+    "aiox": {
+      "weighted_total": 88.1,
+      "breakdown": {
+        "arch": "92 x 0.20 = 18.4",
+        "testing": "88 x 0.20 = 17.6",
+        "docs": "85 x 0.15 = 12.75",
+        "automation": "90 x 0.20 = 18.0",
+        "extensibility": "88 x 0.15 = 13.2",
+        "code_quality": "80 x 0.10 = 8.0"
+      },
+      "note": "AIOX excels at Governance (5/5), Process methodology (5/5), Parallelism (5/5), Registry (5/5)"
+    },
+    "delta": -15.7,
+    "overall_advantage": "AIOX",
+    "confidence": "HIGH"
+  }
+}

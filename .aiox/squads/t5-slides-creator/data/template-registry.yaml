@@ -1,0 +1,622 @@
+registry:
+  id: slides-creator-template-registry
+  version: 1.1.0
+  mirrored_at: 2026-03-16
+  canonical_runtime_source: apps/ds/src/components/brandbook/slides/registry.ts
+  canonical_runtime_source_status: implemented
+  total_templates: 61
+  category_counts:
+    ESTRUTURA: 12
+    CONTEUDO: 13
+    DADOS: 14
+    VISUAL: 18
+    BRAND: 4
+  decision_notes:
+    - "The canonical inventory source is the implemented ds runtime registry."
+    - "The legacy 7-category split in docs/projects/slides-creator-prd.md remains supporting evidence only."
+    - "Mirrored entries use version registry-tsx-v1 until an explicit promotion flow lands."
+    - "Manifest slide_type values may arrive in content-contract aliases and must be normalized before category lookup."
+  governance_notes:
+    - id: GOV-001
+      subject: "QUOTE is content_variant, not canonical slide_type"
+      decision: >-
+        QUOTE is NOT one of the 11 canonical slide types defined in SOP-SLIDES-001.
+        Incoming QUOTE requests are normalized to CONTENT or STATEMENT with
+        content_variant=quote. The SlideQuote runtime component remains in the
+        registry as a valid template binding target for slides carrying the quote
+        variant. This decision resolves the incoherence between SOP-SLIDES-003
+        (which listed QUOTE as a direct type) and the canonical 11-type system.
+      authority: "content-architect governance_resolution.contradiction_001"
+      recorded_at: 2026-03-19
+  slide_type_aliases:
+    SECTION-BREAK: SECTION_BREAK
+    DATA-VIZ: DATA_VIZ
+  slide_type_category_map:
+    TITLE: [ESTRUTURA, BRAND]
+    SECTION_BREAK: [ESTRUTURA]
+    STATEMENT: [ESTRUTURA, BRAND, CONTEUDO]
+    CONTENT: [CONTEUDO, VISUAL]
+    COMPARISON: [DADOS, CONTEUDO]
+    METRIC: [DADOS]
+    DATA_VIZ: [DADOS]
+    IMAGE: [VISUAL]
+    BUILD: [CONTEUDO, DADOS]
+    CODE: [CONTEUDO]
+    CLOSING: [ESTRUTURA, BRAND]
+  selection_policy:
+    normalize_aliases_before_lookup: true
+    registry_first_when:
+      - no reference_assets are present
+      - a valid template_id already exists in the manifest
+    reference_first_when:
+      - screenshots are present
+      - PPTX reference assets are present
+      - visual fidelity is explicitly prioritized
+    no_silent_overwrite: true
+  templates:
+    - id: company-profile
+      label: "Company Profile"
+      category: ESTRUTURA
+      component_name: SlideCompanyProfile
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: title-hero
+      label: "Title Hero"
+      category: ESTRUTURA
+      component_name: SlideTitleHero
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: welcome-message
+      label: "Welcome Message"
+      category: ESTRUTURA
+      component_name: SlideWelcomeMessage
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: table-of-contents
+      label: "Table of Contents"
+      category: ESTRUTURA
+      component_name: SlideTableOfContents
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: text-only
+      label: "Text Only"
+      category: CONTEUDO
+      component_name: SlideTextOnly
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: image-text
+      label: "Image + Text"
+      category: VISUAL
+      component_name: SlideImageText
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: bullet-list
+      label: "Bullet List"
+      category: CONTEUDO
+      component_name: SlideBulletList
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: numbered-list
+      label: "Numbered List"
+      category: CONTEUDO
+      component_name: SlideNumberedList
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: what-we-do
+      label: "What We Do"
+      category: CONTEUDO
+      component_name: SlideWhatWeDo
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: icon-grid
+      label: "Icon Grid"
+      category: CONTEUDO
+      component_name: SlideIconGrid
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: mission-dots
+      label: "Mission"
+      category: CONTEUDO
+      component_name: SlideMissionDots
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: section-break
+      label: "Section Break"
+      category: ESTRUTURA
+      component_name: SlideSectionBreak
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: accent-inverted
+      label: "Accent Inverted"
+      category: BRAND
+      component_name: SlideAccentInverted
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: accent-split
+      label: "Accent Split"
+      category: BRAND
+      component_name: SlideAccentSplit
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: metrics
+      label: "Metrics / KPI"
+      category: DADOS
+      component_name: SlideMetrics
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: big-number
+      label: "Big Number"
+      category: DADOS
+      component_name: SlideBigNumber
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: comparison
+      label: "Before / After"
+      category: DADOS
+      component_name: SlideComparison
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: bar-chart
+      label: "Bar Chart"
+      category: DADOS
+      component_name: SlideBarChart
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: horizontal-bar
+      label: "Horizontal Bar"
+      category: DADOS
+      component_name: SlideHorizontalBar
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: donut-chart
+      label: "Donut Chart"
+      category: DADOS
+      component_name: SlideDonutChart
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: funnel
+      label: "Funnel"
+      category: DADOS
+      component_name: SlideFunnel
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: swot
+      label: "SWOT Analysis"
+      category: DADOS
+      component_name: SlideSWOT
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: timeline
+      label: "Timeline"
+      category: DADOS
+      component_name: SlideTimeline
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: history-grid
+      label: "History Grid"
+      category: DADOS
+      component_name: SlideHistoryGrid
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: full-image
+      label: "Full Image"
+      category: VISUAL
+      component_name: SlideFullImage
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: gallery-grid
+      label: "Gallery Grid"
+      category: VISUAL
+      component_name: SlideGalleryGrid
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: gallery-asymmetric
+      label: "Gallery Asymmetric"
+      category: VISUAL
+      component_name: SlideGalleryAsymmetric
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: portfolio
+      label: "Portfolio"
+      category: VISUAL
+      component_name: SlidePortfolio
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: collaboration
+      label: "Collaboration"
+      category: VISUAL
+      component_name: SlideCollaboration
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: device-desktop
+      label: "Device Desktop"
+      category: VISUAL
+      component_name: SlideDeviceMockup
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: device-mobile
+      label: "Device Mobile"
+      category: VISUAL
+      component_name: SlideDeviceMobile
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: team
+      label: "Team"
+      category: CONTEUDO
+      component_name: SlideTeam
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: expert
+      label: "Expert"
+      category: CONTEUDO
+      component_name: SlideExpert
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: quote
+      label: "Quote"
+      category: CONTEUDO
+      component_name: SlideQuote
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+      governance_note: >-
+        DEPRECATED as direct slide_type. QUOTE is NOT one of the 11 canonical
+        slide types. Incoming QUOTE requests must be normalized to CONTENT or
+        STATEMENT with content_variant=quote. The SlideQuote component remains
+        available as a template binding target for slides that carry the quote
+        variant, but must never appear as slide_type=QUOTE in deck-manifest.json.
+        Decision: content-architect governance_resolution.contradiction_001.
+    - id: client-logos
+      label: "Client Logos"
+      category: VISUAL
+      component_name: SlideClientLogos
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: typography
+      label: "Tipografia"
+      category: BRAND
+      component_name: SlideTypography
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: color-palette
+      label: "Paleta de Cores"
+      category: BRAND
+      component_name: SlideColorPalette
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: pricing-table
+      label: "Tabela de Precos"
+      category: ESTRUTURA
+      component_name: SlidePricingTable
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: speaker-hero
+      label: "Speaker Hero"
+      category: VISUAL
+      component_name: SlideSpeakerHero
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: ecosystem
+      label: "Ecossistema Orbital"
+      category: CONTEUDO
+      component_name: SlideEcosystem
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: logo-centered
+      label: "Logo Centralizado"
+      category: ESTRUTURA
+      component_name: SlideLogoCentered
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: social-proof-collage
+      label: "Prova Social Collage"
+      category: VISUAL
+      component_name: SlideSocialProofCollage
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: clients-avatar-grid
+      label: "Grid de Clientes"
+      category: VISUAL
+      component_name: SlideClientsAvatarGrid
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: product-demo
+      label: "Demo de Produto"
+      category: VISUAL
+      component_name: SlideProductDemo
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: stats-row
+      label: "Numeros em Linha"
+      category: DADOS
+      component_name: SlideStatsRow
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: vs-comparison
+      label: "VS Comparacao"
+      category: CONTEUDO
+      component_name: SlideVsComparison
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: chat-screenshot
+      label: "Screenshot de Chat"
+      category: VISUAL
+      component_name: SlideChatScreenshot
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: case-study-bold
+      label: "Case Study Bold"
+      category: DADOS
+      component_name: SlideCaseStudyBold
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: mind-map
+      label: "Mapa Mental"
+      category: CONTEUDO
+      component_name: SlideMindMap
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: statement-bold
+      label: "Statement Bold"
+      category: ESTRUTURA
+      component_name: SlideStatementBold
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: steps-bento
+      label: "Passos Bento Grid"
+      category: CONTEUDO
+      component_name: SlideStepsBento
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: case-client
+      label: "Case de Cliente"
+      category: VISUAL
+      component_name: SlideCaseClient
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: contact
+      label: "Contato"
+      category: ESTRUTURA
+      component_name: SlideContactInfo
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: closing-photo
+      label: "Encerramento + Foto"
+      category: ESTRUTURA
+      component_name: SlideClosingPhoto
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: cta
+      label: "Obrigado"
+      category: ESTRUTURA
+      component_name: SlideCTA
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template
+    - id: diagram-center
+      label: "Diagram Center"
+      category: VISUAL
+      component_name: SlideDiagramCenter
+      version: registry-tsx-v1.1
+      provenance:
+        source: squads/slides-creator/templates/deck-manifest.json
+        status: planned
+        type: visual_generation_template
+      added_by: "Story 1.5 (EPIC-SC-V2-001)"
+      description: "SVG/PNG diagram centered with title above. For visual_strategy slides with engine d2/mermaid."
+    - id: diagram-text-split
+      label: "Diagram + Text Split"
+      category: VISUAL
+      component_name: SlideDiagramTextSplit
+      version: registry-tsx-v1.1
+      provenance:
+        source: squads/slides-creator/templates/deck-manifest.json
+        status: planned
+        type: visual_generation_template
+      added_by: "Story 1.5 (EPIC-SC-V2-001)"
+      description: "60% diagram + 40% text split layout. For slides combining visual and explanatory content."
+    - id: infographic-full
+      label: "Infographic Full"
+      category: VISUAL
+      component_name: SlideInfographicFull
+      version: registry-tsx-v1.1
+      provenance:
+        source: squads/slides-creator/templates/deck-manifest.json
+        status: planned
+        type: visual_generation_template
+      added_by: "Story 1.5 (EPIC-SC-V2-001)"
+      description: "Full-bleed infographic layout. For AI-generated infographics via gpt_image/recraft/ideogram."
+    - id: data-chart
+      label: "Data Chart"
+      category: DADOS
+      component_name: SlideDataChart
+      version: registry-tsx-v1.1
+      provenance:
+        source: squads/slides-creator/templates/deck-manifest.json
+        status: planned
+        type: visual_generation_template
+      added_by: "Story 1.5 (EPIC-SC-V2-001)"
+      description: "Plotly-generated chart layout. For data visualization via plotly engine."
+    - id: comparison-split
+      label: "Comparison Split"
+      category: DADOS
+      component_name: SlideComparisonSplit
+      version: registry-tsx-v1.1
+      provenance:
+        source: squads/slides-creator/templates/deck-manifest.json
+        status: planned
+        type: visual_generation_template
+      added_by: "Story 1.5 (EPIC-SC-V2-001)"
+      description: "Side-by-side comparison with visual elements. For comparison content_type with generated visuals."
+    - id: the-end
+      label: "The End"
+      category: ESTRUTURA
+      component_name: SlideTheEnd
+      version: registry-tsx-v1
+      provenance:
+        source: apps/ds/src/components/brandbook/slides/registry.ts
+        status: implemented
+        type: canonical_runtime_template

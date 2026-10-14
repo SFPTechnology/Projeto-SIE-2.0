@@ -1,0 +1,55 @@
+{
+  "schema": "2026-05-16-deep-research-absorption-benchmark.gap-analysis.v1",
+  "generated_at": "2026-05-18",
+  "gaps": [
+    {
+      "id": "G01",
+      "gap": "Nenhum player une RL-trained + busca web real-time + licença totalmente aberta + operação simples.",
+      "impact": "ALTO",
+      "closest_players": [
+        "DeepResearcher",
+        "OpenResearcher"
+      ],
+      "action": "Separar trilha de benchmark de accuracy da trilha de adoção operacional."
+    },
+    {
+      "id": "G02",
+      "gap": "Benchmarks públicos ainda medem accuracy factual mais do que qualidade narrativa, auditabilidade e utilidade executiva.",
+      "impact": "ALTO",
+      "closest_players": [
+        "Deep Research Bench",
+        "OpenResearcher"
+      ],
+      "action": "Criar avaliação interna SP-TECH-RESEARCH com rubrica de síntese, citações e decisão."
+    },
+    {
+      "id": "G03",
+      "gap": "Pouca cobertura para PT-BR e pesquisas em domínios locais.",
+      "impact": "MÉDIO",
+      "closest_players": [
+        "nenhum"
+      ],
+      "action": "Montar fixture multilíngue com queries reais do Hub."
+    },
+    {
+      "id": "G04",
+      "gap": "Privacidade + multi-agent continua mal atendido.",
+      "impact": "MÉDIO",
+      "closest_players": [
+        "Local Deep Research",
+        "DeerFlow"
+      ],
+      "action": "Testar Local Deep Research para dados sensíveis e DeerFlow/GPT-Researcher para dados públicos."
+    },
+    {
+      "id": "G05",
+      "gap": "Métricas de stars e hype são voláteis.",
+      "impact": "MÉDIO",
+      "closest_players": [
+        "DeerFlow",
+        "Hermes Agent"
+      ],
+      "action": "Revalidar stars/releases antes de decisão de adoção."
+    }
+  ]
+}

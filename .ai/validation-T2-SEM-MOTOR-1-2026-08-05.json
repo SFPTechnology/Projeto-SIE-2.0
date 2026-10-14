@@ -1,0 +1,89 @@
+{
+  "story_id": "T2-SEM-MOTOR-1",
+  "story_file": "docs/stories/story-T2-SEM-MOTOR-1-ausencia-motor-tipado.md",
+  "validated_at": "2026-08-05",
+  "validated_by": "@po (Pax)",
+  "project_type": "brownfield",
+  "ui_scope": false,
+  "verdict": "GO",
+  "implementation_readiness_score": 9,
+  "confidence": "high",
+  "epic_context_accumulator": "empty_no_session_state",
+  "status_transition": {
+    "from": "Draft",
+    "to": "Ready"
+  },
+  "template_compliance": {
+    "status": "PASS",
+    "missing_required_sections": [],
+    "unfilled_template_placeholders": [],
+    "future_agent_sections_present": true
+  },
+  "executor_assignment": {
+    "status": "PASS",
+    "executor": "@dev",
+    "quality_gate": "@architect",
+    "final_quality_verdict_owner": "@qa",
+    "executor_differs_from_quality_gate": true,
+    "quality_gate_tools_present": true
+  },
+  "category_results": {
+    "file_structure_and_source_tree": "PASS",
+    "ui_frontend": "N/A",
+    "acceptance_criteria": "PASS",
+    "testing_instructions": "PASS",
+    "security_considerations": "PASS",
+    "task_sequence": "PASS",
+    "coderabbit_integration": "PASS",
+    "anti_hallucination": "PASS",
+    "dev_agent_readiness": "PASS"
+  },
+  "po_master_checklist": {
+    "project_setup_existing_system": "PASS",
+    "infrastructure_deployment": "N/A_NO_INFRA_CHANGE",
+    "external_dependencies": "N/A",
+    "ui_ux": "N/A",
+    "user_agent_responsibility": "PASS",
+    "feature_sequencing": "PASS",
+    "risk_management": "PASS",
+    "mvp_scope_alignment": "PASS",
+    "documentation_handoff": "PASS",
+    "post_mvp_considerations": "PASS_WITH_ADVISORY"
+  },
+  "critical_issues": [],
+  "fixes_applied_during_validation": [
+    "Added the typed NAO-APLICAVEL variant to the MOD-SEC domain-union requirement.",
+    "Aligned executor mapping to @dev with @architect as technical quality gate while preserving @qa authority for the final quality verdict.",
+    "Added explicit security, compatibility, and rollback guidance.",
+    "Updated story status from Draft to Ready and added semantic Change Log entry 0.1.1."
+  ],
+  "should_fix": [
+    "Annotate the parent epic with this remediation story so historical mock-based acceptance criteria are not read as current behavior.",
+    "Sync the story to the configured PM tool when a connector becomes available."
+  ],
+  "nice_to_have": [
+    "Add a CI workflow that runs the application Vitest suite; the source plan records this protection gap.",
+    "Restore or replace the missing docs/framework coding-standards, tech-stack, and source-tree documents."
+  ],
+  "anti_hallucination_findings": {
+    "unverifiable_claims": [],
+    "source_conflicts": [
+      "The parent epic records historical mock-verdict behavior; the later T2 correction plan intentionally supersedes that behavior for default clients."
+    ],
+    "resolution": "The story is explicitly framed as a brownfield remediation and cites the T2 plan as the current correction artifact."
+  },
+  "coderabbit": {
+    "enabled": true,
+    "story_type": "API",
+    "secondary_types": ["Architecture", "Integration"],
+    "complexity": "Medium",
+    "pre_commit": true,
+    "pre_pr": true,
+    "pre_deployment": false,
+    "self_healing": "@dev light, 2 iterations, 15 minutes, CRITICAL only"
+  },
+  "handoff": {
+    "next_agent": "@dev",
+    "next_command": "*develop T2-SEM-MOTOR-1"
+  }
+}

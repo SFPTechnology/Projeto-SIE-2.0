@@ -1,0 +1,69 @@
+{
+  "benchmark": {
+    "id": "hermes-agent-vs-openclaw-vs-sinkra-hub",
+    "type": "codebase",
+    "variant": "three-way",
+    "created": "2026-04-04",
+    "analyst": "bench-analyst@spy",
+    "depth": "full",
+    "version": "3.0.0",
+    "prior_benchmark": "hermes-agent-vs-openclaw"
+  },
+  "subjects": {
+    "hermes_agent": {
+      "name": "Hermes Agent",
+      "repo": "github.com/NousResearch/hermes-agent",
+      "language": "Python",
+      "loc": 300967,
+      "files": 1324,
+      "commits": 3207,
+      "contributors": 202,
+      "agents": 1,
+      "tools": 49,
+      "skills": 116,
+      "messaging_platforms": 17,
+      "version": "v0.7.0"
+    },
+    "openclaw": {
+      "name": "OpenClaw",
+      "repo": "github.com/openclaw/openclaw",
+      "language": "TypeScript",
+      "loc": 1841934,
+      "files": 12150,
+      "commits": 26602,
+      "contributors": 1584,
+      "extensions": 93,
+      "skills": 53,
+      "messaging_channels": 23,
+      "native_apps": 3,
+      "version": "v2026.4.2"
+    },
+    "sinkra_hub": {
+      "name": "Sinkra Hub",
+      "repo": "github.com/SynkraAI/sinkra-hub",
+      "languages": ["TypeScript", "Python", "Shell", "YAML", "Markdown"],
+      "loc_code": 555864,
+      "loc_yaml": 2651539,
+      "loc_md": 5966990,
+      "loc_total_all": 9175893,
+      "files": 32357,
+      "commits": 1153,
+      "contributors": 4,
+      "squads": 53,
+      "agents": 473,
+      "skills": 57,
+      "templates": 621,
+      "checklists": 483,
+      "tasks": 1834,
+      "data_files": 1809,
+      "stories": 185,
+      "hooks": 10,
+      "rules": 5,
+      "businesses": 4,
+      "apps": 4,
+      "services": 10,
+      "packages": 6,
+      "version": "v2.1 (SINKRA v3.1)"
+    }
+  }
+}

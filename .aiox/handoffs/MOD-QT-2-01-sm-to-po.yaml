@@ -1,0 +1,62 @@
+handoff_id: MOD-QT-2-01-sm-to-po
+consumed: true
+consumed_at: "2026-07-27"
+consumed_by: "@po — veredito GO 10/10, story Draft->Ready, handoff MOD-QT-2-01-po-to-dev.yaml criado"
+created_at: "2026-07-27"
+from_agent: "@sm"
+to_agent: "@po"
+last_command: "*draft MOD-QT-2-01 --mode yolo --source Arquivos_Diversos/PROMPT-QUEDA-TENSAO-v2.2.md"
+next_command: "*validate-story-draft docs/stories/story-MOD-QT-2-01-motor-calculo-queda-tensao.md --mode yolo"
+workflow: "MOD-QT-2-MOTOR-QUEDA-TENSAO"
+mode: "yolo"
+human_intervention: false
+source_plan: "docs/PLANO-YOLO-IMPLEMENTACAO-MOD-QT-2.md"
+normative_source: "Arquivos_Diversos/PROMPT-QUEDA-TENSAO-v2.2.md"
+predecessor_story: "docs/stories/MOD-QT-1-refined.md"
+
+story_created:
+  path: "docs/stories/story-MOD-QT-2-01-motor-calculo-queda-tensao.md"
+  status: "Draft"
+  package: "Pacote 1 (liberado) — motor de cálculo, substituição do mock, simulador, UI Carbon, limite EDP 1%"
+
+scope_summary:
+  - "Motor real de cálculo de queda de tensão (monofásico/bifásico/trifásico, Cu/Al, PVC/EPR/XLPE, método simplificado ≤25mm² e completo >25mm²)."
+  - "Substituição de validarModQTMock em src/routes/api/v1/modulos.mod-qt.validar.ts pelo motor real, sem alterar o contrato público."
+  - "Validação de não-regressão CA-QT-19 obrigatória ANTES de qualquer outro teste do motor."
+  - "Simulador de cenários (§21) e UI Carbon mínima (§24-§25) com painel de alimentador, tabela de resultados e gráfico de barras."
+  - "Limite EDP-SP de 1% no ramal de entrada (§13.8, CONFIRMADO) implementado sem alterar o contrato público."
+  - "22 acceptance criteria traduzidos de CA-QT-01 a CA-QT-22 (documento-fonte §26), em formato Gherkin."
+
+out_of_scope_explicit:
+  - id: "VER-QT-02"
+    item: "Valores reais de resistência (Ω/km) por seção, Cu e Al"
+    reason: "Requer catálogo de fabricante (Prysmian/Nexans) ou IEC 60364-5-52 Annex G — não disponível no projeto"
+  - id: "VER-QT-03"
+    item: "Valores reais de reatância indutiva (Ω/km) por seção"
+    reason: "Mesma fonte bloqueada de VER-QT-02"
+  - id: "VER-QT-04"
+    item: "Fórmula do fator multiplicativo para circuito bifásico (2 ou √3)"
+    reason: "Fonte normativa não localizada — motor usa fator 2 conservador com alerta, nunca resolve automaticamente"
+  - id: "VER-QT-07"
+    item: "Qual alínea da NBR 5410 6.2.7.1 se aplica ao modelo EDP-SP (7% vs 5%)"
+    reason: "Requer confirmação junto à concessionária ou fonte documental adicional"
+
+decisions_made:
+  - "Contrato público (RetornoMODQT, ValidarMODQTSchema, rota do endpoint) declarado INALTERÁVEL na própria story, conforme §15.1/§31 do documento-fonte."
+  - "Tabela de impedância e resistividade usam valores provisórios do documento-fonte §13.4/§13.6, todos com status_verificacao='[VERIFICAR]' — nenhum promovido a CONFIRMADO."
+  - "Novo domínio criado em src/domain/queda-tensao/, paralelo estrutural a src/domain/dimensionamento-condutores/ (MOD-DC), conforme convenção já estabelecida no projeto."
+  - "Adicionada seção CodeRabbit Integration completa na story (Story Type Analysis, Specialized Agents, Quality Gates, Self-Healing, Focus Areas), pois coderabbit_integration.enabled=true em core-config.yaml — story predecessora MOD-QT-1 não tinha essa seção, mas o checklist de draft exige quando o flag está ativo."
+  - "Limite EDP 1% implementado como decisão de @dev (chamada separada origem=RAMAL-ENTRADA-EDP ou lógica interna), conforme nota explícita do documento-fonte §13.8 — não é decisão fechada pela story."
+
+po_validation_focus:
+  - "Confirmar que nenhum AC da story trata item [VERIFICAR] (VER-QT-02/03/04/07) como resolvido/CONFIRMADO."
+  - "Confirmar que a story não altera RetornoMODQT, ValidarMODQTSchema, ou a rota do endpoint — qualquer tentativa é NO-GO automático (regra do plano YOLO §6.2)."
+  - "Verificar rastreabilidade: todo AC aponta a uma seção numerada do documento-fonte (§18-§26)."
+  - "Aplicar checklist de 10 pontos de .claude/rules/story-lifecycle.md Fase 2."
+  - "Se GO (>=7/10): atualizar Status Draft -> Ready e criar handoff para @dev."
+  - "Se NO-GO: listar fixes obrigatórios; após 3 ciclos NO-GO, workflow marcado BLOCKED conforme plano YOLO."
+
+blocked:
+  - "Aprovar qualquer tarefa de Pacote 2/3/4 nesta story."
+  - "Marcar item [VERIFICAR] como CONFIRMADO sem fonte externa nova."
+  - "Alterar contrato público ou lista NÃO TOCAR (§31 do documento-fonte)."

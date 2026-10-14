@@ -1,0 +1,786 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:10:52.536Z",
+  "source_files": [
+    "battle-card.md",
+    "comparison-matrix.json",
+    "comparison-matrix.md",
+    "deep/brasil-fit.md",
+    "deep/feature-gap-enterprise.md",
+    "deep/whatsapp-integration.md",
+    "executive-report.md",
+    "gap-analysis.json",
+    "gap-analysis.md",
+    "inventory-octadesk.json",
+    "inventory-octadesk.md",
+    "inventory-zendesk.json",
+    "inventory-zendesk.md",
+    "metadata.canonical.json",
+    "metadata.json",
+    "scorecard.json",
+    "scorecard.md"
+  ],
+  "benchmark": {
+    "slug": "octadesk-vs-zendesk",
+    "title": "Executive Report - Octadesk vs Zendesk",
+    "date": "undated",
+    "type": "product",
+    "variant": "2-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "octadesk",
+      "name": "Octadesk",
+      "category": "unknown"
+    },
+    {
+      "key": "zendesk",
+      "name": "Zendesk",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "zendesk",
+    "coverage": "structured",
+    "sources": 36,
+    "waves": 0,
+    "dimensions": 8
+  },
+  "matrix": {
+    "players": [
+      "octadesk",
+      "zendesk"
+    ],
+    "dimensions": [
+      {
+        "id": "C1",
+        "label": "WhatsApp Business API integration",
+        "weight": 25
+      },
+      {
+        "id": "C2",
+        "label": "Brasil-fit operacional",
+        "weight": 20
+      },
+      {
+        "id": "C3",
+        "label": "Feature parity enterprise",
+        "weight": 15
+      },
+      {
+        "id": "C4",
+        "label": "AI capability",
+        "weight": 10
+      },
+      {
+        "id": "C5",
+        "label": "Pricing transparency e TCO BR",
+        "weight": 10
+      },
+      {
+        "id": "C6",
+        "label": "Marketplace e ecosystem",
+        "weight": 5
+      },
+      {
+        "id": "C7",
+        "label": "Maturidade governance compliance",
+        "weight": 10
+      },
+      {
+        "id": "C8",
+        "label": "Comunidade reviews",
+        "weight": 5
+      }
+    ],
+    "rows": [
+      {
+        "id": "C1",
+        "label": "WhatsApp Business API integration",
+        "weight": 25,
+        "cells": [
+          {
+            "player": "octadesk",
+            "score": 92,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "zendesk",
+            "score": 78,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "C2",
+        "label": "Brasil-fit operacional",
+        "weight": 20,
+        "cells": [
+          {
+            "player": "octadesk",
+            "score": 95,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "zendesk",
+            "score": 50,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "C3",
+        "label": "Feature parity enterprise",
+        "weight": 15,
+        "cells": [
+          {
+            "player": "octadesk",
+            "score": 35,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "zendesk",
+            "score": 95,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "C4",
+        "label": "AI capability",
+        "weight": 10,
+        "cells": [
+          {
+            "player": "octadesk",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "zendesk",
+            "score": 85,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "C5",
+        "label": "Pricing transparency e TCO BR",
+        "weight": 10,
+        "cells": [
+          {
+            "player": "octadesk",
+            "score": 65,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "zendesk",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "C6",
+        "label": "Marketplace e ecosystem",
+        "weight": 5,
+        "cells": [
+          {
+            "player": "octadesk",
+            "score": 60,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "zendesk",
+            "score": 95,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "C7",
+        "label": "Maturidade governance compliance",
+        "weight": 10,
+        "cells": [
+          {
+            "player": "octadesk",
+            "score": 45,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "zendesk",
+            "score": 95,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "C8",
+        "label": "Comunidade reviews",
+        "weight": 5,
+        "cells": [
+          {
+            "player": "octadesk",
+            "score": 55,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "zendesk",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "octadesk",
+        "score": 71
+      },
+      {
+        "player": "zendesk",
+        "score": 78
+      }
+    ],
+    "method": "Derived from markdown table in scorecard.md"
+  },
+  "duels": [
+    {
+      "left": "octadesk",
+      "right": "zendesk",
+      "winner": "zendesk",
+      "left_wins": 2,
+      "right_wins": 6,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "C1",
+          "label": "WhatsApp Business API integration",
+          "left_score": 92,
+          "right_score": 78,
+          "winner": "octadesk"
+        },
+        {
+          "dimension": "C2",
+          "label": "Brasil-fit operacional",
+          "left_score": 95,
+          "right_score": 50,
+          "winner": "octadesk"
+        },
+        {
+          "dimension": "C3",
+          "label": "Feature parity enterprise",
+          "left_score": 35,
+          "right_score": 95,
+          "winner": "zendesk"
+        },
+        {
+          "dimension": "C4",
+          "label": "AI capability",
+          "left_score": 70,
+          "right_score": 85,
+          "winner": "zendesk"
+        },
+        {
+          "dimension": "C5",
+          "label": "Pricing transparency e TCO BR",
+          "left_score": 65,
+          "right_score": 70,
+          "winner": "zendesk"
+        },
+        {
+          "dimension": "C6",
+          "label": "Marketplace e ecosystem",
+          "left_score": 60,
+          "right_score": 95,
+          "winner": "zendesk"
+        },
+        {
+          "dimension": "C7",
+          "label": "Maturidade governance compliance",
+          "left_score": 45,
+          "right_score": 95,
+          "winner": "zendesk"
+        },
+        {
+          "dimension": "C8",
+          "label": "Comunidade reviews",
+          "left_score": 55,
+          "right_score": 90,
+          "winner": "zendesk"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "zendesk",
+          "score": 78,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "octadesk",
+          "score": 71,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "octadesk",
+          "score": 71
+        },
+        {
+          "player": "zendesk",
+          "score": 78
+        }
+      ],
+      "verdict": "Zendesk vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise-1",
+      "title": "Sem certificacoes auditadas publicas (SOC 2 Type II, ISO 27001:2022, ISO 27017/18/701)",
+      "priority": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise-2",
+      "title": "SSO/SAML/OIDC + SCIM provisioning nao publico",
+      "priority": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise-3",
+      "title": "Custom agent roles, audit logs detalhados, sandbox environment",
+      "priority": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise-4",
+      "title": "HIPAA via BAA, PCI-DSS com redaction tools, FedRAMP",
+      "priority": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise-5",
+      "title": "WOZ deflection rate nao benchmarked publicamente",
+      "priority": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise-6",
+      "title": "Marketplace de apps muito menor (~20-30 vs 1.500+ Zendesk)",
+      "priority": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise-7",
+      "title": "Estabilidade operacional (instabilidades reportadas em reviews Capterra BR)",
+      "priority": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise-8",
+      "title": "Sample de reviews publicos pequeno (G2 55 / Capterra 6)",
+      "priority": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise-9",
+      "title": "Multi-help-center (Zendesk 300; Octadesk presumivel 1)",
+      "priority": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise-10",
+      "title": "Sunshine Conversations-equivalente (multi-channel BSP unificado: Apple BC, LINE, WeChat, Telegram, Viber)",
+      "priority": "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme-11",
+      "title": "Sem time local de produto BR (suporte via canal de revenda)",
+      "priority": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme-12",
+      "title": "Integracoes BR via PARCEIROS (BCR.CX, Aktie Now), nao first-class",
+      "priority": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme-13",
+      "title": "Add-ons em USD (FX risk para BR)",
+      "priority": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme-14",
+      "title": "Sunshine Conversations pricing variable opaco ($0.15/notif + $495+/mo + per-MAU)",
+      "priority": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme-15",
+      "title": "Contract terms agressivos (annual only, no downgrade mid-term, 5-7% escalation, overages auto-billed)",
+      "priority": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme-16",
+      "title": "Setup steep learning curve (multiplas reviews G2 mencionam)",
+      "priority": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme-17",
+      "title": "Data residency BR nao garantida (USA/EU only)",
+      "priority": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme-18",
+      "title": "Ecossistema BR ausente (LWSA equivalente)",
+      "priority": "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.octadesk.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.octadesk.com/integracoes",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://pt.octadesk.com/lgpd",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.octadesk.com/politicas",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.octadesk.com/termos-uso",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://blog.octadesk.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com.br/pricing/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com/trust-center/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com.br/marketplace/apps/support/813236/vtex-by-bcrcx/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com.br/marketplace/apps/support/147884/vtex-by-aktie-now/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.eesel.ai/blog/zendesk-security-and-compliance",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.capterra.com.br/software/192993/octadesk",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.g2.com/products/octadesk/pricing",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.eesel.ai/blog/zendesk-saas-enterprise",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.supportbench.com/zendesk-enterprise-vs-supportbench-enterprise-security-compliance-audit/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://support.zendesk.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.octadesk.com/precos",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.eesel.ai/blog/zendesk-sunshine-conversations",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.eesel.ai/blog/zendesk-whatsapp",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://whatsappbusiness.com/products/platform-pricing/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.engagelab.com/blog/whatsapp-business-api-pricing",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.uptail.ai/blog/whatsapp-business-api-pricing-2026-what-it-costs-and-how-billing-works",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://loop.octadesk.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.octadesk.com/blog/site-seguro-aumenta-vendas-online",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.g2.com/products/octadesk/reviews",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zohoflow.com/apps/octadesk/integrations/shopify",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com.br/pricing",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com/marketplace/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.g2.com/products/zendesk-support-suite/reviews",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com/service/ai/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.zendesk.com/pricing/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://developer.zendesk.com",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://learn.g2.com/zendesk-review",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.eesel.ai/blog/zendesk-pricing-2026",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://supp.support/blog/zendesk-pricing-2026-full-breakdown",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.json",
+      "role": "comparison-matrix",
+      "format": "json"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/brasil-fit.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/feature-gap-enterprise.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "deep/whatsapp-integration.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.json",
+      "role": "gap-analysis",
+      "format": "json"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventory-octadesk.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "inventory-octadesk.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventory-zendesk.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "inventory-zendesk.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {
+    "date": true
+  }
+}

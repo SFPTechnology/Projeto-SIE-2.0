@@ -1,0 +1,146 @@
+{
+  "schema": "bench-sources-v1",
+  "generated_at": "2026-05-18T00:17:45.178Z",
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://help.gamma.app/en/articles/8077107-i-want-to-know-more-about-upgrading-my-workspace-to-gamma-s-paid-plans",
+      "title": "Gamma Help Center: upgrading subscription",
+      "credibility": "H",
+      "subject": "gamma"
+    },
+    {
+      "id": "S02",
+      "url": "https://help.gamma.app/fr/articles/8022861",
+      "title": "Gamma Help Center: export PDF, PNG, PPTX",
+      "credibility": "H",
+      "subject": "gamma"
+    },
+    {
+      "id": "S03",
+      "url": "https://www.canva.com/create/ai-presentations/",
+      "title": "Canva AI presentation maker",
+      "credibility": "H",
+      "subject": "canva"
+    },
+    {
+      "id": "S04",
+      "url": "https://www.canva.dev/docs/connect/api-reference/exports/",
+      "title": "Canva Connect API: export formats",
+      "credibility": "H",
+      "subject": "canva"
+    },
+    {
+      "id": "S05",
+      "url": "https://www.beautiful.ai/pricing?force_isolation=true",
+      "title": "Beautiful.ai pricing",
+      "credibility": "H",
+      "subject": "beautiful_ai"
+    },
+    {
+      "id": "S06",
+      "url": "https://support.beautiful.ai/hc/en-us/articles/30629528652685-Exporting-your-slides-and-presentations",
+      "title": "Beautiful.ai export help",
+      "credibility": "H",
+      "subject": "beautiful_ai"
+    },
+    {
+      "id": "S07",
+      "url": "https://tome.app/help/en/articles/8381205-how-to-use-tome-a-step-by-step-guide",
+      "title": "Tome Help Center: AI, pricing, PDF export, no PPT",
+      "credibility": "H",
+      "subject": "tome"
+    },
+    {
+      "id": "S08",
+      "url": "https://aiwiki.ai/wiki/tome_ai",
+      "title": "Tome AI Wiki: pivot and presentation sunset timeline",
+      "credibility": "M",
+      "subject": "tome"
+    },
+    {
+      "id": "S09",
+      "url": "https://pitch.com/pricing/us",
+      "title": "Pitch pricing and AI/collaboration/export features",
+      "credibility": "H",
+      "subject": "pitch"
+    },
+    {
+      "id": "S10",
+      "url": "https://plusai.com/pricing",
+      "title": "Plus AI pricing, PowerPoint and Google Slides integration",
+      "credibility": "H",
+      "subject": "plus_ai"
+    },
+    {
+      "id": "S11",
+      "url": "https://guide.plusai.com/plus-ai/generate-a-presentation/text-to-presentation",
+      "title": "Plus AI guide: generate from text/file in Slides/PowerPoint",
+      "credibility": "H",
+      "subject": "plus_ai"
+    },
+    {
+      "id": "S12",
+      "url": "https://www.decktopus.com/pricing",
+      "title": "Decktopus pricing and AI credit limits",
+      "credibility": "H",
+      "subject": "decktopus"
+    },
+    {
+      "id": "S13",
+      "url": "https://www.slidesai.io/?via=uniteai",
+      "title": "SlidesAI product page",
+      "credibility": "H",
+      "subject": "slidesai"
+    },
+    {
+      "id": "S14",
+      "url": "https://costbench.com/software/ai-presentations/slidesai/",
+      "title": "SlidesAI pricing 2026 analysis",
+      "credibility": "M",
+      "subject": "slidesai"
+    },
+    {
+      "id": "S15",
+      "url": "https://presenton.ai/",
+      "title": "Presenton product page: open-source AI presentation generator",
+      "credibility": "H",
+      "subject": "presenton"
+    },
+    {
+      "id": "S16",
+      "url": "https://github.com/presenton/presenton",
+      "title": "Presenton GitHub repository",
+      "credibility": "H",
+      "subject": "presenton"
+    },
+    {
+      "id": "S17",
+      "url": "https://docs.presenton.ai/api-reference/presentation/export-presentation-as-pptx-or-pdf-v1",
+      "title": "Presenton API export PPTX/PDF/PNG",
+      "credibility": "H",
+      "subject": "presenton"
+    },
+    {
+      "id": "S18",
+      "url": "https://www.reddit.com/r/AIToolsAndTips/comments/1sz7f9y/ai_presentation_tools_that_export_to_powerpoint/",
+      "title": "Practitioner thread: PPT export reliability",
+      "credibility": "L",
+      "subject": "both"
+    },
+    {
+      "id": "S19",
+      "url": "https://www.presentations.ai/blog/beautiful-ai-pricing",
+      "title": "Presentations.ai blog: Beautiful.ai pricing comparison",
+      "credibility": "M",
+      "subject": "presentations_ai"
+    },
+    {
+      "id": "S20",
+      "url": "https://www.reddit.com/r/bestai2026/comments/1t27l69/the_best_ai_presentation_tools_in_2026_i_tested/",
+      "title": "Practitioner benchmark thread: AI presentation tools 2026",
+      "credibility": "L",
+      "subject": "both"
+    }
+  ]
+}

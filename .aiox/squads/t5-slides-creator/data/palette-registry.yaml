@@ -1,0 +1,122 @@
+# Target: squads/slides-creator/data/palette-registry.yaml
+# Purpose: Canonical palette + client brand overrides (with audit trail).
+# Consumers: Workers `detect-brand-override`, `resolve-active-palette`. Human `register-palette-override`.
+# Invariant: Override NEVER edits canonical. Audit trail mandatory.
+
+schema_version: "1.0"
+name: palette-registry
+version: "1.0.0"
+owner_squad: slides-creator
+
+# =============================================================================
+# CANONICAL — McKinsey-aligned default (never modified after first commit)
+# =============================================================================
+canonical:
+  id: PALETTE-CANONICAL-MCKINSEY
+  name: "McKinsey canonical palette"
+  immutable: true
+  hex:
+    primary_navy:     "#003B5C"
+    neutral_gray:     "#6E6E6E"
+    success_green:    "#00A86B"
+    alert_red:        "#C8102E"
+  typography:
+    family: "Helvetica Neue"
+    title_pt: [28, 32]
+    body_pt:  [14, 16]
+    caption_pt: [10, 12]
+  grid:
+    columns: 12
+    rows: 8
+    aspect_ratio: "16:9"
+    whitespace_min_pct: 30
+  wcag_verified:
+    primary_on_white:  {ratio: 12.3, level: "AAA"}
+    gray_on_white:     {ratio: 5.7,  level: "AA"}
+    green_on_white:    {ratio: 4.8,  level: "AA"}
+    red_on_white:      {ratio: 5.1,  level: "AA"}
+
+# =============================================================================
+# OVERRIDES — per-project deviations from canonical.
+# Each entry = one client brand. Never edited; only replaced via new entry (version bump).
+# =============================================================================
+overrides:
+  - slug: "flash-2026"
+    name: "Flash 2026 (cliente seed — audit proof)"
+    version: "1.0.0"
+    created_date: "2026-04-01"
+    deck_refs: ["HTMLs Flash.md"]
+    approver:
+      stakeholder_ref: "STK-10-flash-brand-steward"
+      name: "Flash brand team"
+      approval_artifact_ref: "outputs/slides-creator/flash-2026/checkpoints/brand-override.yaml"
+    hex:
+      primary_navy:     "#1E1E2E"   # Midnight Navy
+      accent_pink:      "#FF006B"
+      neutral_white:    "#FFFFFF"
+      accent_gold:      "#D4AF37"
+    typography:
+      family: "Roboto"
+      title_pt: [38, 44]
+      body_pt:  [16, 18]
+    grid:
+      columns: 12
+      rows: 8
+      aspect_ratio: "16:9"
+      whitespace_min_pct: 25        # slight relaxation — client chose denser layout
+    wcag_ratios_verified:
+      white_on_midnight:   {ratio: 14.2, level: "AAA"}
+      pink_on_midnight:    {ratio: 4.6,  level: "AA"}
+      gold_on_midnight:    {ratio: 7.1,  level: "AAA"}
+    trade_off: >-
+      Cliente escolheu Midnight Navy + Pink para reforçar identidade Flash 2026 (lançamento
+      de produto). Paleta canônica McKinsey rejeitada pelo brand steward — não alinha com
+      posicionamento disruptivo do produto. Trade-off: perde consistência cross-deck
+      McKinsey, ganha alinhamento de marca do cliente. WCAG preservado (ratios ≥ 4.5:1).
+    font_rationale: >-
+      Roboto em vez de Helvetica Neue — alinhamento com stack Tailwind + Google Fonts já
+      utilizado nos outros materiais Flash 2026. Sem impacto em legibilidade.
+
+# =============================================================================
+# LOOKUP INTERFACE (consumed by resolve-active-palette Worker)
+# =============================================================================
+lookup:
+  input_schema:
+    project_slug: "string"
+    force_canonical: "boolean (optional — forces canonical even if override exists)"
+  output_schema:
+    palette_id: "PALETTE-CANONICAL-MCKINSEY | PALETTE-OVERRIDE-{slug}"
+    hex: "map<string, string>"
+    typography: "object"
+    grid: "object"
+    wcag_status: "PASS | FAIL"
+    rationale: "string (inherited from canonical or override)"
+
+# =============================================================================
+# REGISTRATION WORKFLOW (human task `register-palette-override`)
+# =============================================================================
+registration_protocol:
+  required_inputs:
+    - hex map (≥1 color differs from canonical)
+    - rationale (≥50 words, explains why canonical insufficient)
+    - trade_off (≥30 words, acknowledges what is lost)
+    - wcag_ratios_verified (computed beforehand via resolve-active-palette)
+    - approver stakeholder_ref
+    - approval_artifact_ref (path to signed approval artifact)
+  validation:
+    - "rationale must not be empty or 'client requested'"
+    - "all hex pairs relevant to deck must have WCAG ratio ≥ 4.5:1"
+    - "override slug must be unique (case-insensitive)"
+    - "canonical entry must not be modified — only new overrides appended"
+  side_effect:
+    - "Append to overrides[]"
+    - "Git commit with message: 'palette-registry: add override {slug}'"
+    - "CODEOWNERS: slides-creator maintainers must approve PR"
+
+# =============================================================================
+# FAIL-FAST
+# =============================================================================
+fail_fast:
+  - "Override lookup by slug not found → fail explicit (no silent fallback to canonical unless force_canonical)"
+  - "WCAG ratio below threshold during resolve → fail with remediation hint"
+  - "Canonical entry attempt to modify → reject PR (immutable)"

@@ -1,0 +1,116 @@
+{
+  "schema": "bench-contract.v1",
+  "slug": "deepresearch-absorption-benchmark",
+  "type": "absorption-benchmark",
+  "generated_at": "2026-05-18T21:24:02.013Z",
+  "decision_improved": "Comparar AIOX Research, como referência interna SINKRA/Squad Research, contra 24 players externos de deep research para decidir padrões de absorção, gaps e adapters prioritários.",
+  "anchor": {
+    "id": "aiox_research",
+    "label": "AIOX Research",
+    "role": "internal_reference_first_column",
+    "source": "SINKRA Hub / Squad Research"
+  },
+  "taxonomy": {
+    "categories": [
+      "Agentic Planning Control",
+      "Multi-Agent Orchestration",
+      "Tool Runtime Integration",
+      "Research Depth Synthesis",
+      "Evidence Fidelity Evaluation",
+      "UX Operator Control",
+      "Private Kb Grounding",
+      "Architecture Absorption",
+      "Implementation Maturity",
+      "Trace Observability",
+      "Evaluation Value",
+      "Scientific Pipeline",
+      "Training Methodology",
+      "Product Ux Reference",
+      "Compliance Safety",
+      "Sinkra Fit"
+    ],
+    "groups": [
+      "Agentic Planning Control",
+      "Multi-Agent Orchestration",
+      "Tool Runtime Integration",
+      "Research Depth Synthesis",
+      "Evidence Fidelity Evaluation",
+      "UX Operator Control",
+      "Private Kb Grounding",
+      "Architecture Absorption",
+      "Implementation Maturity",
+      "Trace Observability",
+      "Evaluation Value",
+      "Scientific Pipeline",
+      "Training Methodology",
+      "Product Ux Reference",
+      "Compliance Safety",
+      "Sinkra Fit"
+    ],
+    "row_unit": "feature_specific_microcapability_row",
+    "player_model": "AIOX Research internal reference plus externally cloned/evaluated open-source deep-research players",
+    "dimension_source": "130 feature-specific microdimensions derived from bench-output-dash.json, local clone scans in ../bench, inventories, scorecard, code-anatomist outputs and expanded agentic/provider/research-depth analysis.",
+    "atom_count": 133
+  },
+  "scoring_model": {
+    "formula": "Sum(score_microdimension × row.weight) / Sum(row.weight), excluding zero-weight self-reference rows.",
+    "score_range": "0-100",
+    "method_family": "weighted_sum_microcapability_130_feature_specific",
+    "scale": "0 means absent/non-operational; 50 means partial/default/uncertain; 70-84 strong; 85-100 reference capability for that microdimension.",
+    "weight_policy": "Weights prioritize Agentic Planning Control, Tool Runtime Integration, Research Depth Synthesis, Multi-Agent Orchestration, Evidence Fidelity Evaluation and UX Operator Control. Sinkra Fit has weight 0 to avoid anchor self-reference inflating weighted totals.",
+    "normalization": "All player scores are normalized to 0-100. Missing or weak evidence is low-confidence and should not be interpreted as execution proof without source/replay.",
+    "tie_break_policy": "Prefer stronger local evidence, replayability, implementation depth, source/provider breadth, factual verification and operator control; keep ties explicit when weighted gaps are small."
+  },
+  "expected_sources": [
+    {
+      "type": "github-clone",
+      "policy": "MANDATORY for codebase claims"
+    },
+    {
+      "type": "README",
+      "policy": "REQUIRED for ALTA confidence"
+    },
+    {
+      "type": "license-file",
+      "policy": "MANDATORY direct inspection"
+    }
+  ],
+  "completeness_criteria": {
+    "inventories_per_player": true,
+    "scoring_disclosed": true,
+    "evidence_per_claim": true,
+    "license_per_player": true
+  },
+  "version": "1.2.0",
+  "status": "gold_published",
+  "thresholds": {
+    "players": {
+      "minimum": 10,
+      "preferred": 25
+    },
+    "macro_rows": {
+      "minimum": 10,
+      "preferred": 16
+    },
+    "micro_rows": {
+      "minimum": 48,
+      "preferred": 130
+    },
+    "personas": {
+      "minimum": 6,
+      "preferred": 8
+    },
+    "graph_nodes": {
+      "minimum": 40,
+      "preferred": 70
+    },
+    "graph_edges": {
+      "minimum": 120,
+      "preferred": 276
+    },
+    "artifacts": {
+      "minimum": 90,
+      "preferred": 190
+    }
+  }
+}

@@ -1,0 +1,185 @@
+{{!--
+  Parametric TSX Slide Component Skeleton — slides-creator (100% BRAND-AGNOSTIC)
+
+  Stack contract:
+    - React 18+ TSX
+    - Tailwind v4 (@import "tailwindcss" in consumer globals.css)
+    - shadcn/ui new-york baseline + cssVariables: true
+    - Icon library: Lucide preferred, consumer may substitute
+    - Motion library: Framer Motion preferred, consumer may substitute as long as
+      useReducedMotion equivalent exists
+    - CSS variables only (zero hardcoded hex/rgba/oklch)
+
+  Placeholders resolved at materialization:
+    {{consumer.imports.chrome}}        — path to consumer's Chrome atom implementation
+    {{consumer.imports.motion}}        — path to consumer's motion preset module
+    {{consumer.imports.cn}}            — path to consumer's class-merge utility
+    {{brand.css_var_prefix}}           — eg: "bb", "rp", "acme" (consumer-chosen)
+    {{brand.background_token}}         — token suffix (eg: "bg", "dark")
+    {{brand.accent_token}}             — token suffix (eg: "accent", "lime", "red")
+    {{brand.fg_token}}                 — token suffix (eg: "fg", "cream", "ink")
+    {{brand.dim_token}}                — token suffix (eg: "dim", "muted", "fg-3")
+    {{brand.display_font}}             — token suffix (eg: "display", "hero")
+
+  Variables from emit-deck-spec + resolve-active-palette:
+    slide           { id, label, category, ato, version, motionLevel, heroSlide, bundleRef, pattern_id }
+    chrome          { eyebrow, sectionTag, footerLabel, pageNumber, pageTotal, corners, watermark, hazard }
+    brand           { css_var_prefix, background_token, accent_token, fg_token, dim_token, display_font }
+    content         { action_title, subtitle?, content_blocks[] }
+    consumer        { imports: { chrome, motion, cn, ChromeComponent } }
+--}}
+"use client"
+
+import type { ReactNode } from "react"
+import { motion, useReducedMotion } from "{{consumer.imports.motion_lib}}"
+import { cn } from "{{consumer.imports.cn}}"
+import { {{consumer.imports.ChromeComponent}} } from "{{consumer.imports.chrome}}"
+import {
+  fadeIn,
+  fadeUp,
+  scaleIn,
+  staggerV2,
+} from "{{consumer.imports.motion_presets}}"
+
+/**
+ * {{slide.label}}
+ *
+ * Slide ID:  {{slide.id}}
+ * Category:  {{slide.category}}  (ato {{slide.ato}})
+ * Pattern:   {{slide.pattern_id}}  (see data/slide-layout-patterns.yaml)
+ * Version:   {{slide.version}}
+ * Motion:    {{slide.motionLevel}}
+ *
+ * Generated from templates/slide-component.tsx.hbs by emit-deck-spec.
+ * Conforms to data/slide-component-vocabulary.yaml v3.0 (brand-agnostic).
+ */
+
+export interface {{pascalCase slide.id}}Props {
+  /** Brand parametric CSS vars injected as style. Resolved by consumer at build. */
+  brandVars?: Record<string, string>
+  /** Override chrome defaults */
+  chromeOverrides?: Partial<React.ComponentProps<typeof {{consumer.imports.ChromeComponent}}>>
+  className?: string
+}
+
+export function {{pascalCase slide.id}}({
+  brandVars,
+  chromeOverrides,
+  className,
+}: {{pascalCase slide.id}}Props = {}) {
+  const reduce = useReducedMotion()
+
+  return (
+    <{{consumer.imports.ChromeComponent}}
+      eyebrow="{{chrome.eyebrow}}"
+      sectionTag="{{chrome.sectionTag}}"
+      footerLabel="{{chrome.footerLabel}}"
+      pageNumber="{{chrome.pageNumber}}"
+      pageTotal="{{chrome.pageTotal}}"
+      corners={ {{chrome.corners}} }
+      watermark={ {{chrome.watermark}} }
+      hazard={ {{chrome.hazard}} }
+      background="var(--{{brand.css_var_prefix}}-{{brand.background_token}})"
+      className={cn("text-[color:var(--{{brand.css_var_prefix}}-{{brand.fg_token}})]", className)}
+      {...chromeOverrides}
+      style={brandVars as React.CSSProperties}
+    >
+      {{!-- Action Title — always present per P4 Action Titles invariant --}}
+      {{#if content.action_title}}
+      <motion.h1
+        {...(reduce ? {} : fadeUp(0.1))}
+        className={cn(
+          "font-[family-name:var(--font-{{brand.css_var_prefix}}-{{brand.display_font}})]",
+          "text-[clamp(26px,3vw,34px)] font-bold leading-[1.15] tracking-[-0.5px]",
+          "max-w-[850px]",
+        )}
+      >
+        {{content.action_title}}
+      </motion.h1>
+      {{/if}}
+
+      {{#if content.subtitle}}
+      <motion.p
+        {...(reduce ? {} : fadeIn(0.3))}
+        className="mt-6 text-[22px] font-normal text-[color:var(--{{brand.css_var_prefix}}-{{brand.dim_token}})]"
+      >
+        {{content.subtitle}}
+      </motion.p>
+      {{/if}}
+
+      {{!-- Pattern body scaffolded by pattern_id (LP-*) --}}
+      {{#ifEquals slide.pattern_id "LP-002"}}
+        {{!-- action_title_plus_3_kpis --}}
+        <div className="mt-12 grid grid-cols-3 gap-8">
+          {{#each content.kpis}}
+          <motion.div
+            {...(reduce ? {} : staggerV2({{@index}}, 0.5))}
+            className="flex flex-col gap-2"
+          >
+            <div className="text-[clamp(48px,6vw,72px)] font-extrabold leading-none tabular-nums text-[color:var(--{{../brand.css_var_prefix}}-{{../brand.accent_token}})]">
+              {{this.value}}
+            </div>
+            <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[color:var(--{{../brand.css_var_prefix}}-{{../brand.dim_token}})]">
+              {{this.label}}
+            </div>
+            <div className="text-sm opacity-80">
+              {{this.description}}
+            </div>
+          </motion.div>
+          {{/each}}
+        </div>
+      {{/ifEquals}}
+
+      {{#ifEquals slide.pattern_id "LP-004"}}
+        {{!-- framework_2x2_matrix --}}
+        <div className="relative mt-8 grid grid-cols-2 grid-rows-2 gap-4 h-[520px]">
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[color:var(--{{brand.css_var_prefix}}-border)]" />
+          <div className="absolute top-1/2 left-0 right-0 h-px bg-[color:var(--{{brand.css_var_prefix}}-border)]" />
+          {{#each content.quadrants}}
+          <motion.div
+            {...(reduce ? {} : scaleIn(0.4 + {{@index}} * 0.15))}
+            className="rounded-lg border p-6 flex flex-col justify-center border-[color:var(--{{../brand.css_var_prefix}}-border)] bg-[color:var(--{{../brand.css_var_prefix}}-surface)]"
+          >
+            <div className="text-sm font-semibold uppercase tracking-wider text-[color:var(--{{../brand.css_var_prefix}}-{{../brand.accent_token}})]">
+              {{this.label}}
+            </div>
+            <div className="mt-2 text-xl font-bold">{{this.title}}</div>
+            <p className="mt-2 text-sm opacity-80">{{this.description}}</p>
+          </motion.div>
+          {{/each}}
+        </div>
+      {{/ifEquals}}
+
+      {{#ifEquals slide.pattern_id "LP-007"}}
+        {{!-- rag_status_matrix --}}
+        <div className="mt-8 grid grid-cols-3 gap-6">
+          {{#each content.rag_bands}}
+          <motion.div
+            {...(reduce ? {} : fadeUp(0.3 + {{@index}} * 0.12))}
+            data-rag-level="{{this.level}}"
+            className={cn(
+              "rounded-sm border-l-4 p-4",
+              "{{this.level}}" === "green"  && "border-[color:var(--{{../brand.css_var_prefix}}-positive)] bg-[color:var(--{{../brand.css_var_prefix}}-positive)]/10",
+              "{{this.level}}" === "orange" && "border-[color:var(--{{../brand.css_var_prefix}}-neutral)] bg-[color:var(--{{../brand.css_var_prefix}}-neutral)]/10",
+              "{{this.level}}" === "red"    && "border-[color:var(--{{../brand.css_var_prefix}}-alert)] bg-[color:var(--{{../brand.css_var_prefix}}-alert)]/10",
+            )}
+          >
+            <div className="text-sm font-bold uppercase tracking-wider mb-1">{{this.header}}</div>
+            <p className="text-sm">{{this.description}}</p>
+            {{#if this.time}}
+            <div className="text-xs opacity-60 mt-2">{{this.time}}</div>
+            {{/if}}
+          </motion.div>
+          {{/each}}
+        </div>
+      {{/ifEquals}}
+
+      {{!-- Additional pattern_id scaffolds (LP-001, LP-003, LP-005, LP-006, LP-008, LP-009, LP-010)
+           follow the same shape — reference data/slide-layout-patterns.yaml anatomy section
+           and instantiate using consumer's chrome_atom + CSS vars + Tailwind v4 utilities. --}}
+
+    </{{consumer.imports.ChromeComponent}}>
+  )
+}
+
+export default {{pascalCase slide.id}}

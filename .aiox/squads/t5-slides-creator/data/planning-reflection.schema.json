@@ -1,0 +1,127 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "planning-reflection-entry",
+  "description": "Single line of planning-reflection.jsonl emitted by Design Planner / qa-inspector / content-architect during critique and revision passes. Mission: MSN-2026-SLIDES-NARRATIVE-DESIGN T-003.",
+  "type": "object",
+  "required": ["timestamp", "phase", "agent", "entry_type", "decision"],
+  "additionalProperties": false,
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp of the entry"
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "narrative_planning",
+        "evidence_planning",
+        "design_planning",
+        "draft",
+        "critique",
+        "revision",
+        "qa",
+        "release"
+      ],
+      "description": "Which pipeline phase emitted the entry"
+    },
+    "iteration": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3,
+      "description": "Critique/revision iteration number (capped at 2 + 1 final)"
+    },
+    "agent": {
+      "type": "string",
+      "description": "Agent reference (e.g. @content-architect, @design-planner, @qa-inspector)"
+    },
+    "slide_id": {
+      "type": ["string", "null"],
+      "description": "Slide identifier (e.g. s03) OR null when entry is deck-level"
+    },
+    "deck_id": {
+      "type": "string",
+      "description": "Deck identifier (slug)"
+    },
+    "entry_type": {
+      "type": "string",
+      "enum": [
+        "hypothesis",
+        "critique",
+        "evidence_gap",
+        "decision",
+        "revision_applied",
+        "escalation",
+        "score_before_after"
+      ],
+      "description": "Type of reflection entry"
+    },
+    "dimension": {
+      "type": ["string", "null"],
+      "enum": [
+        null,
+        "narrativa",
+        "design",
+        "acuracia",
+        "editabilidade",
+        "brand",
+        "tecnica",
+        "pyramid_mece",
+        "vertical_flow",
+        "action_title_rhetoric",
+        "governing_thought_strength",
+        "scqa_depth",
+        "story_arc",
+        "slide_function_map",
+        "density",
+        "hierarchy",
+        "contrast",
+        "readability",
+        "visual_coherence",
+        "fontes_apa",
+        "p1_fidelity",
+        "enumeration_universal"
+      ],
+      "description": "qa-rubric.yaml dimension or sub_dimension this entry addresses"
+    },
+    "claim": {
+      "type": "string",
+      "description": "Short text describing the hypothesis, finding, or decision"
+    },
+    "evidence": {
+      "type": ["string", "null"],
+      "description": "Concrete evidence backing the claim (e.g. 'action title lacks verb', 'contrast 3.2:1 vs WCAG 4.5:1')"
+    },
+    "decision": {
+      "type": "string",
+      "description": "Action taken or proposed (e.g. 'rewrite headline', 'split slide', 'escalate to Human')"
+    },
+    "before": {
+      "type": ["object", "null"],
+      "description": "Pre-revision state (free-form object: score, text, score by dim)"
+    },
+    "after": {
+      "type": ["object", "null"],
+      "description": "Post-revision state (same shape as before)"
+    },
+    "route_to": {
+      "type": ["object", "null"],
+      "description": "Routing decision per qa-routing-table.yaml",
+      "properties": {
+        "agent": {"type": "string"},
+        "task": {"type": "string"},
+        "session": {"type": "string"}
+      }
+    },
+    "severity": {
+      "type": ["string", "null"],
+      "enum": [null, "low", "medium", "high", "critical", "blocking"],
+      "description": "Severity of the finding when entry_type=critique or evidence_gap"
+    },
+    "iteration_cap_reached": {
+      "type": "boolean",
+      "default": false,
+      "description": "True when this is the last allowed iteration (2 of 2). Next critique escalates to Human."
+    }
+  }
+}

@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Protótipo independente do SIE Command Center, nova proposta de design system para o Projeto SIE."
+    />
+    <title>SIE Command Center — Protótipo de Design System</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-density="comfortable">
+    <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
+    <div class="app-shell">
+      <aside class="side-rail" id="side-rail" aria-label="Navegação principal">
+        <div class="brand-lockup">
+          <span class="brand-mark" aria-hidden="true">S</span>
+          <span class="brand-copy">
+            <strong>SIE</strong>
+            <small>Engineering OS</small>
+          </span>
+        </div>
+
+        <nav class="module-nav" aria-label="Módulos do projeto">
+          <section class="nav-group" aria-labelledby="nav-geral">
+            <h2 id="nav-geral">Workspace</h2>
+            <button class="nav-item is-active" type="button" data-view="overview" aria-current="page">
+              <span class="nav-icon" aria-hidden="true">⌂</span>
+              <span>Visão geral</span>
+            </button>
+            <button class="nav-item" type="button" data-view="ambientes">
+              <span class="nav-icon" aria-hidden="true">▦</span>
+              <span>Ambientes e cargas</span>
+              <span class="nav-count">12</span>
+            </button>
+          </section>
+
+          <section class="nav-group" aria-labelledby="nav-entrada">
+            <h2 id="nav-entrada">Entrada</h2>
+            <button class="nav-item" type="button" data-view="padrao">
+              <span class="nav-icon" aria-hidden="true">⇥</span>
+              <span>Padrão de entrada</span>
+              <span class="status-dot is-success" title="Concluído"></span>
+            </button>
+          </section>
+
+          <section class="nav-group" aria-labelledby="nav-calculo">
+            <h2 id="nav-calculo">Dimensionamento</h2>
+            <button class="nav-item" type="button" data-view="circuitos">
+              <span class="nav-icon" aria-hidden="true">⑂</span>
+              <span>Circuitos</span>
+              <span class="nav-count">18</span>
+            </button>
+            <button class="nav-item" type="button" data-view="correntes">
+              <span class="nav-icon" aria-hidden="true">A</span>
+              <span>Correntes</span>
+              <span class="status-dot is-success" title="Concluído"></span>
+            </button>
+            <button class="nav-item" type="button" data-view="condutores">
+              <span class="nav-icon" aria-hidden="true">Ø</span>
+              <span>Condutores</span>
+              <span class="status-dot is-warning" title="Requer atenção"></span>
+            </button>
+            <button class="nav-item" type="button" data-view="queda">
+              <span class="nav-icon" aria-hidden="true">Δ</span>
+              <span>Queda de tensão</span>
+              <span class="status-dot is-warning" title="Requer atenção"></span>
+            </button>
+          </section>
+
+          <section class="nav-group" aria-labelledby="nav-documentacao">
+            <h2 id="nav-documentacao">Documentação</h2>
+            <button class="nav-item" type="button" data-view="unifilar">
+              <span class="nav-icon" aria-hidden="true">⌁</span>
+              <span>Diagrama unifilar</span>
+            </button>
+            <button class="nav-item" type="button" data-view="diagnostico">
+              <span class="nav-icon" aria-hidden="true">✓</span>
+              <span>Diagnóstico</span>
+              <span class="nav-count nav-count-alert">3</span>
+            </button>
+          </section>
+        </nav>
+
+        <div class="rail-footer">
+          <button class="rail-action" type="button" id="help-trigger">
+            <span aria-hidden="true">?</span>
+            <span>Ajuda e atalhos</span>
+          </button>
+          <div class="concept-label">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            Conceito v1 · isolado
+          </div>
+        </div>
+      </aside>
+
+      <div class="content-shell">
+        <header class="app-header">
+          <button
+            class="icon-button mobile-menu-trigger"
+            type="button"
+            id="mobile-menu-trigger"
+            aria-controls="side-rail"
+            aria-expanded="false"
+            aria-label="Abrir menu"
+          >
+            <span aria-hidden="true">☰</span>
+          </button>
+
+          <button class="project-switcher" type="button" aria-label="Trocar projeto">
+            <span class="project-avatar" aria-hidden="true">RS</span>
+            <span class="project-switcher-copy">
+              <small>Projeto ativo</small>
+              <strong>Residência Sabiá</strong>
+            </span>
+            <span aria-hidden="true">⌄</span>
+          </button>
+
+          <div class="header-divider" aria-hidden="true"></div>
+
+          <div class="sync-state" role="status">
+            <span class="sync-dot" aria-hidden="true"></span>
+            <span>Estado demonstrativo</span>
+          </div>
+
+          <div class="header-spacer"></div>
+
+          <button class="command-trigger" type="button" id="command-trigger">
+            <span aria-hidden="true">⌕</span>
+            <span>Buscar módulo ou ação</span>
+            <kbd>Ctrl K</kbd>
+          </button>
+
+          <button
+            class="icon-button"
+            type="button"
+            id="density-trigger"
+            aria-label="Alternar densidade da interface"
+            title="Alternar densidade"
+          >
+            <span aria-hidden="true">≡</span>
+          </button>
+
+          <button class="author-button" type="button" aria-label="Autor atual: Projetista">
+            <span>P</span>
+          </button>
+        </header>
+
+        <main class="main-content" id="conteudo-principal" tabindex="-1">
+          <div class="page-heading">
+            <div>
+              <nav class="breadcrumbs" aria-label="Trilha de navegação">
+                <a href="#portfolio">Projetos</a>
+                <span aria-hidden="true">/</span>
+                <a href="#residencia-sabia">Residência Sabiá</a>
+                <span aria-hidden="true">/</span>
+                <span id="breadcrumb-current" aria-current="page">Visão geral</span>
+              </nav>
+              <div class="title-row">
+                <h1 id="view-title">Visão geral do projeto</h1>
+                <span class="status-badge status-badge-info">Em dimensionamento</span>
+              </div>
+              <p id="view-description">
+                Acompanhe o fluxo técnico, riscos e próximos cálculos em uma única superfície.
+              </p>
+            </div>
+            <div class="page-actions">
+              <button class="button button-secondary" type="button" id="inspector-trigger">
+                <span aria-hidden="true">◫</span>
+                Inspetor
+              </button>
+              <button class="button button-primary" type="button" id="validate-trigger">
+                <span aria-hidden="true">✓</span>
+                Validar projeto
+              </button>
+            </div>
+          </div>
+
+          <div class="prototype-disclaimer" role="note">
+            <span aria-hidden="true">◇</span>
+            <span>
+              Dados ilustrativos para avaliação da interface. Nenhum cálculo, projeto ou arquivo original foi
+              alterado.
+            </span>
+          </div>
+
+          <section class="metric-grid" aria-label="Resumo técnico">
+            <article class="metric-card">
+              <div class="metric-card-head">
+                <span class="metric-label">Fluxo concluído</span>
+                <span class="metric-trend is-positive">+2 etapas</span>
+              </div>
+              <strong class="metric-value">72%</strong>
+              <div class="metric-progress" aria-label="72 por cento concluído">
+                <span class="metric-progress-fill metric-progress-72"></span>
+              </div>
+              <small>8 de 11 verificações demonstrativas</small>
+            </article>
+            <article class="metric-card">
+              <div class="metric-card-head">
+                <span class="metric-label">Circuitos</span>
+                <span class="metric-caption">18 total</span>
+              </div>
+              <strong class="metric-value">15</strong>
+              <small>conformes · 3 requerem revisão</small>
+            </article>
+            <article class="metric-card">
+              <div class="metric-card-head">
+                <span class="metric-label">Pior queda</span>
+                <span class="status-badge status-badge-warning">Atenção</span>
+              </div>
+              <strong class="metric-value">3,82%</strong>
+              <small>Circuito C14 · limite ilustrativo 4,00%</small>
+            </article>
+            <article class="metric-card metric-card-inverse">
+              <div class="metric-card-head">
+                <span class="metric-label">Demanda calculada</span>
+                <span class="metric-caption">Trifásico</span>
+              </div>
+              <strong class="metric-value">19,4 kVA</strong>
+              <small>Padrão demonstrativo: EDP São Paulo</small>
+            </article>
+          </section>
+
+          <div class="workspace-grid">
+            <div class="workspace-primary">
+              <section class="panel workflow-panel" aria-labelledby="workflow-title">
+                <div class="panel-header">
+                  <div>
+                    <span class="eyebrow">FLUXO TÉCNICO</span>
+                    <h2 id="workflow-title">Jornada do projeto</h2>
+                  </div>
+                  <button class="text-button" type="button" data-view-target="diagnostico">
+                    Ver diagnóstico
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+                <ol class="workflow-steps">
+                  <li class="workflow-step is-complete">
+                    <button type="button" data-view-target="ambientes">
+                      <span class="step-index">01</span>
+                      <span class="step-copy">
+                        <strong>Levantamento</strong>
+                        <small>Ambientes e cargas</small>
+                      </span>
+                      <span class="step-state">Concluído</span>
+                    </button>
+                  </li>
+                  <li class="workflow-step is-complete">
+                    <button type="button" data-view-target="padrao">
+                      <span class="step-index">02</span>
+                      <span class="step-copy">
+                        <strong>Entrada</strong>
+                        <small>Fornecimento e demanda</small>
+                      </span>
+                      <span class="step-state">Concluído</span>
+                    </button>
+                  </li>
+                  <li class="workflow-step is-active">
+                    <button type="button" data-view-target="condutores">
+                      <span class="step-index">03</span>
+                      <span class="step-copy">
+                        <strong>Dimensionamento</strong>
+                        <small>Correntes, condutores e queda</small>
+                      </span>
+                      <span class="step-state">Em curso</span>
+                    </button>
+                  </li>
+                  <li class="workflow-step">
+                    <button type="button" data-view-target="unifilar">
+                      <span class="step-index">04</span>
+                      <span class="step-copy">
+                        <strong>Documentação</strong>
+                        <small>Unifilar e diagnóstico final</small>
+                      </span>
+                      <span class="step-state">Pendente</span>
+                    </button>
+                  </li>
+                </ol>
+              </section>
+
+              <section class="panel engineering-panel" aria-labelledby="engineering-title">
+                <div class="panel-header engineering-header">
+                  <div>
+                    <span class="eyebrow">ENGINEERING WORKSPACE</span>
+                    <h2 id="engineering-title">Circuitos críticos</h2>
+                  </div>
+                  <div class="segmented-control" role="group" aria-label="Modo de visualização">
+                    <button class="is-selected" type="button" aria-pressed="true">Tabela</button>
+                    <button type="button" aria-pressed="false">Diagrama</button>
+                  </div>
+                </div>
+
+                <div class="engineering-split">
+                  <div class="table-region" tabindex="0" aria-label="Tabela rolável de circuitos">
+                    <table>
+                      <caption class="visually-hidden">
+                        Circuitos com estado, corrente, seção e queda de tensão
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th scope="col">Circuito</th>
+                          <th scope="col">Estado</th>
+                          <th scope="col">IB</th>
+                          <th scope="col">Seção</th>
+                          <th scope="col">ΔV</th>
+                          <th scope="col"><span class="visually-hidden">Ação</span></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="is-selected" tabindex="0" data-circuit="C14">
+                          <th scope="row">
+                            <strong>C14</strong>
+                            <small>Forno elétrico</small>
+                          </th>
+                          <td><span class="status-badge status-badge-warning">Revisar</span></td>
+                          <td class="mono">28,7 A</td>
+                          <td class="mono">4 mm²</td>
+                          <td class="mono value-warning">3,82%</td>
+                          <td><button class="row-action" type="button" aria-label="Inspecionar circuito C14">→</button></td>
+                        </tr>
+                        <tr tabindex="0" data-circuit="C08">
+                          <th scope="row">
+                            <strong>C08</strong>
+                            <small>Ar-condicionado suíte</small>
+                          </th>
+                          <td><span class="status-badge status-badge-success">Conforme</span></td>
+                          <td class="mono">12,4 A</td>
+                          <td class="mono">2,5 mm²</td>
+                          <td class="mono">2,16%</td>
+                          <td><button class="row-action" type="button" aria-label="Inspecionar circuito C08">→</button></td>
+                        </tr>
+                        <tr tabindex="0" data-circuit="C03">
+                          <th scope="row">
+                            <strong>C03</strong>
+                            <small>TUG cozinha</small>
+                          </th>
+                          <td><span class="status-badge status-badge-success">Conforme</span></td>
+                          <td class="mono">16,9 A</td>
+                          <td class="mono">2,5 mm²</td>
+                          <td class="mono">2,48%</td>
+                          <td><button class="row-action" type="button" aria-label="Inspecionar circuito C03">→</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="diagram-region" aria-label="Prévia conceitual do diagrama unifilar">
+                    <div class="diagram-toolbar">
+                      <span>QD-01 · Pavimento térreo</span>
+                      <button type="button" aria-label="Abrir diagrama em tela cheia">⛶</button>
+                    </div>
+                    <svg viewBox="0 0 520 240" role="img" aria-labelledby="diagram-title diagram-desc">
+                      <title id="diagram-title">Diagrama unifilar conceitual</title>
+                      <desc id="diagram-desc">
+                        Entrada alimentando quadro QD-01 e três circuitos, com C14 destacado para revisão.
+                      </desc>
+                      <g class="diagram-grid">
+                        <path d="M0 40H520M0 80H520M0 120H520M0 160H520M0 200H520" />
+                        <path d="M40 0V240M80 0V240M120 0V240M160 0V240M200 0V240M240 0V240M280 0V240M320 0V240M360 0V240M400 0V240M440 0V240M480 0V240" />
+                      </g>
+                      <g class="diagram-lines">
+                        <path d="M48 120H150" />
+                        <path d="M190 120H250V54H326" />
+                        <path d="M250 120H326" />
+                        <path d="M250 120V186H326" />
+                      </g>
+                      <g class="diagram-node">
+                        <circle cx="48" cy="120" r="12" />
+                        <text x="48" y="151" text-anchor="middle">ENTRADA</text>
+                      </g>
+                      <g class="diagram-board">
+                        <rect x="150" y="92" width="40" height="56" rx="4" />
+                        <text x="170" y="125" text-anchor="middle">QD</text>
+                      </g>
+                      <g class="diagram-circuit">
+                        <rect x="326" y="35" width="140" height="38" rx="4" />
+                        <text x="344" y="58">C08 · 2,16%</text>
+                      </g>
+                      <g class="diagram-circuit is-warning">
+                        <rect x="326" y="101" width="140" height="38" rx="4" />
+                        <text x="344" y="124">C14 · 3,82%</text>
+                      </g>
+                      <g class="diagram-circuit">
+                        <rect x="326" y="167" width="140" height="38" rx="4" />
+                        <text x="344" y="190">C03 · 2,48%</text>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <aside class="inspector-panel" id="inspector-panel" aria-labelledby="inspector-title">
+              <div class="inspector-header">
+                <div>
+                  <span class="eyebrow">INSPETOR</span>
+                  <h2 id="inspector-title">Circuito C14</h2>
+                </div>
+                <button class="icon-button inspector-close" type="button" aria-label="Fechar inspetor">×</button>
+              </div>
+              <div class="inspector-status">
+                <span class="status-badge status-badge-warning">Requer revisão</span>
+                <small>Atualizado no cenário demonstrativo</small>
+              </div>
+              <dl class="property-list">
+                <div>
+                  <dt>Aplicação</dt>
+                  <dd>Forno elétrico</dd>
+                </div>
+                <div>
+                  <dt>Fases</dt>
+                  <dd class="mono">2F · 220 V</dd>
+                </div>
+                <div>
+                  <dt>Corrente de projeto</dt>
+                  <dd class="mono">28,7 A</dd>
+                </div>
+                <div>
+                  <dt>Condutor</dt>
+                  <dd class="mono">Cu · 4 mm²</dd>
+                </div>
+                <div>
+                  <dt>Comprimento</dt>
+                  <dd class="mono">34,0 m</dd>
+                </div>
+              </dl>
+              <div class="inspector-callout">
+                <span class="callout-icon" aria-hidden="true">!</span>
+                <div>
+                  <strong>Margem reduzida</strong>
+                  <p>A queda demonstrativa está próxima do limite. Revise comprimento e seção antes da documentação.</p>
+                </div>
+              </div>
+              <section class="inspector-section" aria-labelledby="trace-title">
+                <div class="section-title-row">
+                  <h3 id="trace-title">Rastreabilidade</h3>
+                  <span class="status-dot is-success" title="Dados rastreáveis"></span>
+                </div>
+                <ol class="trace-list">
+                  <li>
+                    <span class="trace-dot"></span>
+                    <div>
+                      <strong>Carga do ambiente</strong>
+                      <small>Cozinha · forno</small>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="trace-dot"></span>
+                    <div>
+                      <strong>Corrente calculada</strong>
+                      <small>Motor de corrente</small>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="trace-dot"></span>
+                    <div>
+                      <strong>Dimensionamento</strong>
+                      <small>Seção e proteção</small>
+                    </div>
+                  </li>
+                </ol>
+              </section>
+              <div class="inspector-actions">
+                <button class="button button-secondary" type="button">Abrir cálculo</button>
+                <button class="button button-primary" type="button">Simular ajuste</button>
+              </div>
+            </aside>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <dialog class="command-palette" id="command-palette" aria-labelledby="command-title">
+      <div class="command-header">
+        <span aria-hidden="true">⌕</span>
+        <label class="visually-hidden" for="command-search" id="command-title">Buscar módulo ou ação</label>
+        <input
+          id="command-search"
+          type="search"
+          placeholder="Digite um módulo ou ação…"
+          autocomplete="off"
+        />
+        <kbd>Esc</kbd>
+      </div>
+      <div class="command-results" id="command-results" role="listbox" aria-label="Resultados">
+        <button type="button" role="option" data-command-view="overview">
+          <span class="command-symbol" aria-hidden="true">⌂</span>
+          <span>
+            <strong>Ir para Visão geral</strong>
+            <small>Navegação</small>
+          </span>
+          <kbd>G V</kbd>
+        </button>
+        <button type="button" role="option" data-command-view="condutores">
+          <span class="command-symbol" aria-hidden="true">Ø</span>
+          <span>
+            <strong>Abrir Dimensionamento de condutores</strong>
+            <small>Módulo</small>
+          </span>
+          <kbd>G D</kbd>
+        </button>
+        <button type="button" role="option" data-command-view="queda">
+          <span class="command-symbol" aria-hidden="true">Δ</span>
+          <span>
+            <strong>Abrir Queda de tensão</strong>
+            <small>Módulo</small>
+          </span>
+          <kbd>G Q</kbd>
+        </button>
+        <button type="button" role="option" data-command-action="validate">
+          <span class="command-symbol" aria-hidden="true">✓</span>
+          <span>
+            <strong>Validar projeto</strong>
+            <small>Ação demonstrativa</small>
+          </span>
+          <kbd>V</kbd>
+        </button>
+      </div>
+      <footer class="command-footer">
+        <span><kbd>↑</kbd><kbd>↓</kbd> navegar</span>
+        <span><kbd>Enter</kbd> selecionar</span>
+        <span>Protótipo local</span>
+      </footer>
+    </dialog>
+
+    <div class="toast-region" aria-live="polite" aria-atomic="true">
+      <div class="toast" id="prototype-toast" role="status" hidden>
+        <span class="toast-icon" aria-hidden="true">◇</span>
+        <div>
+          <strong>Ação demonstrativa</strong>
+          <span id="toast-message">Interação registrada apenas no protótipo.</span>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

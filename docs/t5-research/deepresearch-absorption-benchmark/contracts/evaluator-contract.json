@@ -1,0 +1,19 @@
+{
+  "schema": "sinkra-evaluator-contract-v1",
+  "inputs": [
+    "claims.yaml",
+    "sources.yaml",
+    "report.md",
+    "gold_claims.yaml"
+  ],
+  "outputs": [
+    "rubric-results.yaml",
+    "failure-analysis.md"
+  ],
+  "metrics": [
+    "claim_recall",
+    "claim_source_support_rate",
+    "private_kb_support_rate",
+    "cost_per_accepted_report"
+  ]
+}

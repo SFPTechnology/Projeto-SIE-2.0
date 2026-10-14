@@ -1,0 +1,33 @@
+schema: sinkra-gold-claims-v1
+task_id: SINKRA-DR-26
+claims:
+- id: SINKRA-DR-26-C1
+  text: Claim gold sintético 1 para scientific_literature.
+  required: true
+  source_refs:
+  - SINKRA-DR-26-S1
+- id: SINKRA-DR-26-C2
+  text: Claim gold sintético 2 para scientific_literature.
+  required: true
+  source_refs:
+  - SINKRA-DR-26-S2
+- id: SINKRA-DR-26-C3
+  text: Claim gold sintético 3 para scientific_literature.
+  required: true
+  source_refs:
+  - SINKRA-DR-26-S3
+- id: SINKRA-DR-26-C4
+  text: Claim gold sintético 4 para scientific_literature.
+  required: false
+  source_refs:
+  - SINKRA-DR-26-S4
+- id: SINKRA-DR-26-C5
+  text: Claim gold sintético 5 para scientific_literature.
+  required: false
+  source_refs:
+  - SINKRA-DR-26-S5
+- id: SINKRA-DR-26-C6
+  text: Claim gold sintético 6 para scientific_literature.
+  required: false
+  source_refs:
+  - SINKRA-DR-26-S6

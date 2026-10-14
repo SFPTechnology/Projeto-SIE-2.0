@@ -1,0 +1,446 @@
+{
+  "conformidade_nbr5410": {
+    "titulo": "Conformidade NBR 5410 — Instalações Elétricas em Banheiros",
+    "descricao": "Formulário de validação de segurança elétrica conforme NBR 5410:2004 (Instalações Elétricas de Baixa Tensão em Edificações)",
+    "versao": "1.0",
+    "data_atualizacao": "2026-06-21",
+    "referencia_completa": "docs/NBR5410-Conformidade-Guia-Completo.md",
+    "referencia_rapida": "docs/NBR5410-Help-Rapido.md",
+    "campos": {
+      "zona_do_banheiro": {
+        "label": "Zona do Banheiro",
+        "tipo": "dropdown",
+        "obrigatorio": true,
+        "descricao_curta": "Localização do equipamento em relação à banheira",
+        "descricao_longa": "Define a classificação ambiental do banheiro conforme os requisitos de proteção da NBR 5410. A norma divide o banheiro em zonas concêntricas, cada uma com diferentes riscos de choque elétrico e contato com água. Diferentes zonas exigem diferentes graus de proteção IP, tipos de disjuntores e proteções.",
+        "opcoes": [
+          {
+            "valor": "zona_0",
+            "label": "Zona 0",
+            "localizacao": "Interior da banheira/chuveiro",
+            "descricao": "Volume onde a água está presente permanentemente ou com frequência elevada",
+            "ip_minimo": "IPX7 ou IPX8",
+            "db_obrigatorio": null,
+            "classe_minima": "—",
+            "notas": "Equipamentos especiais apenas; raro em banheiros residenciais"
+          },
+          {
+            "valor": "zona_1",
+            "label": "Zona 1",
+            "localizacao": "Ao redor da banheira/chuveiro",
+            "descricao": "De 0 a 0,6m horizontalmente; de 0 a 2,25m verticalmente",
+            "ip_minimo": "IPX4",
+            "db_obrigatorio": true,
+            "classe_minima": "AD2",
+            "notas": "Proteção máxima obrigatória; jatos de água frequentes"
+          },
+          {
+            "valor": "zona_2",
+            "label": "Zona 2",
+            "localizacao": "Área ampliada ao redor",
+            "descricao": "De 0,6m a 1,2m horizontalmente além da Zona 1",
+            "ip_minimo": "IPX4",
+            "db_obrigatorio": true,
+            "classe_minima": "AD2",
+            "notas": "Proteção reforçada obrigatória; jatos de água ocasionais"
+          },
+          {
+            "valor": "zona_3",
+            "label": "Zona 3",
+            "localizacao": "Externo ao banheiro",
+            "descricao": "Área próxima às zonas anteriores; até 2,4m da banheira",
+            "ip_minimo": "IPX1",
+            "db_obrigatorio": false,
+            "classe_minima": "AD1",
+            "notas": "Proteção menor; recomendável ainda instalar DB por boas práticas"
+          }
+        ],
+        "instrucoes_preenchimento": "1. Identifique a localização física do equipamento/circuito dentro do banheiro. 2. Meça a distância da banheira. 3. Consulte a tabela e selecione a zona correspondente.",
+        "exemplos": [
+          "Tomada a 0,3m da banheira → Zona 1",
+          "Tomada a 0,8m da banheira → Zona 2",
+          "Circuito para ventilador a 2m de distância → Zona 3"
+        ],
+        "erros_comuns": [
+          "Não medir a distância corretamente",
+          "Confundir zona com tipo de banheiro",
+          "Selecionar zona muito restritiva por precaução"
+        ]
+      },
+      "db_informado": {
+        "label": "DB Informado",
+        "tipo": "dropdown",
+        "obrigatorio": true,
+        "descricao_curta": "Há proteção por Disjuntor Residual (DR/DDR)?",
+        "descricao_longa": "Indica se foi especificado um Disjuntor Diferencial-Residual (DR/DDR) no projeto. É o componente de proteção contra choques elétricos mais importante em banheiros. Um DR detecta correntes de fuga e desliga instantaneamente (10-30ms). DB = Disjuntor; DR = Disjuntor Residual; DDR = Disjuntor Diferencial-Residual.",
+        "opcoes": [
+          {
+            "valor": "sim",
+            "label": "Sim",
+            "significado": "DB/DR foi especificado no projeto",
+            "conformidade": "✅ Conforme",
+            "sensibilidade_tipica": "30mA",
+            "classe_tipica": "Classe A (detecta corrente alternada)",
+            "notas": "O circuito tem proteção contra choques elétricos"
+          },
+          {
+            "valor": "nao",
+            "label": "Não",
+            "significado": "DB/DR não foi informado",
+            "conformidade": "❌ Não-conforme (em Zona 1-2)",
+            "sensibilidade_tipica": "—",
+            "classe_tipica": "—",
+            "notas": "Circuito desprotegido (CRÍTICO). Obrigatório revise do projeto."
+          }
+        ],
+        "instrucoes_preenchimento": "1. Revise o projeto elétrico/diagrama unifilar do banheiro. 2. Identifique se há um DR/DDR alimentando o circuito. 3. Se SIM → Selecione 'Sim'. 4. Se NÃO → Selecione 'Não' e ALERTE — projeto precisa de revisão.",
+        "requisitos_nbr5410": "Todos os circuitos em banheiro (Zona 1-2) DEVEM ter DB/DR",
+        "alerta_critico": "Circuitos sem DR em Zona 1-2 são a causa principal de acidentes elétricos em banheiros. Se 'Não' for selecionado, o projeto está NÃO-CONFORME com NBR 5410.",
+        "erros_comuns": [
+          "Selecionar 'Não' sem alertar sobre a não-conformidade",
+          "Confundir DB (disjuntor) com DR (disjuntor residual) — são diferentes",
+          "Não verificar o diagrama unifilar antes de preencher"
+        ]
+      },
+      "grau_de_protecao_ip": {
+        "label": "Grau de Proteção IP",
+        "tipo": "texto",
+        "obrigatorio": true,
+        "descricao_curta": "Código de proteção do equipamento contra água e contato",
+        "descricao_longa": "Define o Índice de Proteção (IP) de um equipamento contra contato com partes vivas e ingresso de água/umidade. Formato: IPXY onde X = Proteção contra contato (0-6), Y = Proteção contra água (0-8). Diferentes zonas exigem diferentes mínimos de proteção.",
+        "formato": "IPxy ou IPXy (exemplo: IP44, IPX7)",
+        "tabela_protecao_x": [
+          { "codigo": 0, "descricao": "Nenhuma proteção" },
+          { "codigo": 1, "descricao": "Proteção contra contato com o dedo (≥50mm)" },
+          { "codigo": 2, "descricao": "Proteção contra dedos/objetos finos (≥12.5mm)" },
+          { "codigo": 3, "descricao": "Proteção contra ferramentas finas/arame (≥2.5mm)" },
+          { "codigo": 4, "descricao": "Proteção contra fios/objetos ≥1mm" },
+          { "codigo": 5, "descricao": "Proteção completa contra poeira prejudicial" },
+          { "codigo": 6, "descricao": "À prova de poeira (hermeticamente fechado)" }
+        ],
+        "tabela_protecao_y": [
+          { "codigo": 0, "descricao": "Nenhuma proteção" },
+          { "codigo": 1, "descricao": "Gotejamento vertical" },
+          { "codigo": 2, "descricao": "Gotejamento até 15° da vertical" },
+          { "codigo": 3, "descricao": "Aspersão/jatos até 60° da vertical" },
+          { "codigo": 4, "descricao": "Jatos de água em todas as direções (PADRÃO BANHEIRO)" },
+          { "codigo": 5, "descricao": "Jatos potentes de água em todas as direções" },
+          { "codigo": 6, "descricao": "Enxurrada/mar" },
+          { "codigo": 7, "descricao": "Imersão temporária até 1m por até 30min" },
+          { "codigo": 8, "descricao": "Submersão contínua (profundidade especificada)" }
+        ],
+        "requisitos_por_zona": [
+          { "zona": "Zona 0", "ip_minimo": "IPX7 ou IPX8", "justificativa": "Submersão contínua/frequente" },
+          { "zona": "Zona 1", "ip_minimo": "IPX4", "justificativa": "Jatos de água frequentes" },
+          { "zona": "Zona 2", "ip_minimo": "IPX4", "justificativa": "Jatos de água ocasionais" },
+          { "zona": "Zona 3", "ip_minimo": "IPX1", "justificativa": "Gotejamento acidental" }
+        ],
+        "exemplos_validos": [
+          "IP44 — Proteção contra fios + jatos (banheiro padrão)",
+          "IP54 — Proteção contra poeira + jatos (banheiro úmido)",
+          "IP65 — À prova de poeira + jatos potentes (áreas externas)",
+          "IPX7 — Submersão (Zona 0)"
+        ],
+        "exemplos_invalidos": [
+          "IP20 — Apenas para áreas secas (❌ inadequado em banheiro)",
+          "IP00 — Sem proteção (❌ não permitido em banheiro)",
+          "IP 44 — Com espaço (❌ padrão é sem espaço)"
+        ],
+        "instrucoes_preenchimento": "1. Localize a placa técnica ou datasheet do equipamento. 2. Procure pelo código IP. 3. Verifique se é adequado para a zona. 4. Digite o código exato (ex: IP44, IPX7, sem espaços).",
+        "erros_comuns": [
+          "Deixar em branco (campo obrigatório)",
+          "Escrever 'IP 44' com espaço",
+          "Usar IP menor que o requerido para a zona",
+          "Confundir X (contato) com Y (água)"
+        ]
+      },
+      "influencia_externa": {
+        "label": "Influência Externa",
+        "tipo": "dropdown",
+        "obrigatorio": false,
+        "descricao_curta": "Há fatores ambientais adicionais?",
+        "descricao_longa": "Classifica fatores ambientais adicionais que afetam a escolha de materiais, acabamentos e proteções além do requisito básico de proteção contra água. Exemplos: temperatura extrema, corrosividade, umidade muito alta, radiação solar intensa, vibração.",
+        "opcoes": [
+          {
+            "valor": "obrigatorio",
+            "label": "Obrigatório",
+            "quando_usar": "Há fatores ambientais críticos que exigem proteção/material especial",
+            "exemplos": [
+              "Banheiro em sauna (temperatura 80°C)",
+              "Ambiente com umidade relativa >80%",
+              "Proximidade com produtos corrosivos"
+            ]
+          },
+          {
+            "valor": "opcional",
+            "label": "Opcional",
+            "quando_usar": "Não há fatores especiais; equipamento é resistente o suficiente",
+            "exemplos": [
+              "Banheiro residencial comum em clima temperado",
+              "Ambiente bem ventilado"
+            ]
+          },
+          {
+            "valor": "nao_aplicavel",
+            "label": "Não aplicável",
+            "quando_usar": "Circuito não é afetado por condições ambientais",
+            "exemplos": [
+              "Circuito em áreas secas",
+              "Tomada em sala de estar"
+            ]
+          }
+        ],
+        "exemplos_fatores": [
+          "Temperatura extrema (muito quente ou fria)",
+          "Corrosividade (proximidade com mar, produtos químicos)",
+          "Umidade relativa alta (saunas, cozinhas comerciais)",
+          "Radiação solar intensa (áreas externas)",
+          "Vibração/movimento (proximidade a máquinas)",
+          "Poluição (indústrias próximas)"
+        ],
+        "instrucoes_preenchimento": "1. Analise o ambiente do banheiro. 2. Se há fatores especiais → Selecione 'Obrigatório' e documente nas Observações. 3. Se é banheiro comum → Selecione 'Opcional'. 4. Se não se aplica → Selecione 'Não aplicável'.",
+        "notas": "Em banheiros com umidade normal, a proteção contra água (IP4X) já é suficiente. Use 'Obrigatório' apenas se há fatores ADICIONAIS além da umidade típica."
+      },
+      "classe": {
+        "label": "Classe",
+        "tipo": "texto",
+        "obrigatorio": true,
+        "descricao_curta": "Classificação técnica do equipamento (código padrão)",
+        "descricao_longa": "Define a classificação técnica do equipamento ou circuito conforme a NBR 5410. Os códigos estabelecem o padrão de proteção e acabamento esperado. Formato: {Categoria}{Subcategoria}{Nível}. Exemplo: AD2 = Acessório Dispositivo Classe 2.",
+        "nomenclatura": {
+          "primeira_letra": "Categoria (A=Acessório, M=Motor, E=Equipamento)",
+          "segunda_letra": "Subcategoria (D=Dispositivo, L=Luminária)",
+          "numeros": "Classe de proteção (1-4, de menor para maior proteção)"
+        },
+        "codigos_principais": [
+          {
+            "codigo": "AD1",
+            "nome": "Acessório Dispositivo Classe 1",
+            "protecao": "Básica",
+            "uso": "Tomada em área seca",
+            "ip_minimo": "IP20",
+            "para_banheiro": false
+          },
+          {
+            "codigo": "AD2",
+            "nome": "Acessório Dispositivo Classe 2",
+            "protecao": "Reforçada",
+            "uso": "Tomada em banheiro (sem DB integrado)",
+            "ip_minimo": "IP44",
+            "para_banheiro": true,
+            "frequencia": "MAIS COMUM"
+          },
+          {
+            "codigo": "AD3",
+            "nome": "Acessório Dispositivo Classe 3",
+            "protecao": "Extra reforçada",
+            "uso": "Tomada em banheiro com proteção adicional",
+            "ip_minimo": "IP54",
+            "para_banheiro": true
+          },
+          {
+            "codigo": "AD4",
+            "nome": "Acessório Dispositivo Classe 4",
+            "protecao": "Máxima",
+            "uso": "Equipamento classe II ou com DB integrado",
+            "ip_minimo": "IP65",
+            "para_banheiro": true
+          },
+          {
+            "codigo": "MD1",
+            "nome": "Motor Dispositivo Classe 1",
+            "protecao": "—",
+            "uso": "Ventilador/Exaustor simples",
+            "ip_minimo": "IP44",
+            "para_banheiro": true,
+            "frequencia": "MAIS COMUM"
+          },
+          {
+            "codigo": "MD2",
+            "nome": "Motor Dispositivo Classe 2",
+            "protecao": "—",
+            "uso": "Ventilador com termostato",
+            "ip_minimo": "IP54",
+            "para_banheiro": true
+          },
+          {
+            "codigo": "AL1",
+            "nome": "Acessório Luminária Classe 1",
+            "protecao": "Proteção básica",
+            "uso": "Iluminação incandescente",
+            "ip_minimo": "IP20",
+            "para_banheiro": false
+          },
+          {
+            "codigo": "AL2",
+            "nome": "Acessório Luminária Classe 2",
+            "protecao": "Proteção reforçada",
+            "uso": "Iluminação LED/fluorescente em banheiro",
+            "ip_minimo": "IP44",
+            "para_banheiro": true,
+            "frequencia": "MAIS COMUM"
+          }
+        ],
+        "selecao_por_tipo": [
+          {
+            "tipo": "Tomada",
+            "cenario": "Zona 1-2, sem DB integrado",
+            "classe": "AD2"
+          },
+          {
+            "tipo": "Tomada",
+            "cenario": "Zona 1-2, com DB integrado ou classe II",
+            "classe": "AD4"
+          },
+          {
+            "tipo": "Tomada",
+            "cenario": "Zona 3",
+            "classe": "AD2"
+          },
+          {
+            "tipo": "Iluminação",
+            "cenario": "Comum em banheiro",
+            "classe": "AL2"
+          },
+          {
+            "tipo": "Iluminação",
+            "cenario": "Com proteção extra (LED selada)",
+            "classe": "AL3"
+          },
+          {
+            "tipo": "Ventilação",
+            "cenario": "Ventilador/exaustor simples",
+            "classe": "MD1"
+          },
+          {
+            "tipo": "Ventilação",
+            "cenario": "Ventilador com termostato/timer",
+            "classe": "MD2"
+          }
+        ],
+        "instrucoes_preenchimento": "1. Identifique o tipo de equipamento (tomada, luminária, ventilador). 2. Verifique a zona. 3. Consulte a tabela de seleção. 4. Digite o código exato.",
+        "exemplos": [
+          {
+            "equipamento": "Tomada dupla em Zona 2",
+            "classe": "AD2",
+            "justificativa": "Acessório, dispositivo, nível 2 (banheiro)"
+          },
+          {
+            "equipamento": "Ventilador exaustor em Zona 3",
+            "classe": "MD1",
+            "justificativa": "Motor, dispositivo, nível 1 (simples)"
+          },
+          {
+            "equipamento": "Luminária em Zona 1",
+            "classe": "AL2",
+            "justificativa": "Acessório, luminária, nível 2 (banheiro)"
+          }
+        ],
+        "erros_comuns": [
+          "Usar AD1 em banheiro (inadequado; IP20 é insuficiente)",
+          "Misturar letras maiúsculas/minúsculas (padrão: AD2, não ad2)",
+          "Inventar códigos inexistentes (ex: AD5 — máximo é AD4)",
+          "Não validar classe com a zona selecionada"
+        ]
+      },
+      "observacoes": {
+        "label": "Observações",
+        "tipo": "textarea",
+        "obrigatorio": false,
+        "descricao_curta": "Notas técnicas adicionais e justificativas",
+        "descricao_longa": "Campo livre para notas técnicas adicionais que justificam escolhas de conformidade, alertam sobre particularidades do circuito, documentam exceções ou facilitam auditorias futuras. Uma boa observação torna o projeto auditável e defensável.",
+        "estrutura_recomendada": "[Tipo de Equipamento] [Localização] [Proteção/Classe] [Justificativa/Referência NBR]",
+        "exemplos_validos": [
+          "Circuito protegido por DR classe A, sensibilidade 30mA, conforme Tabela 33 da NBR 5410",
+          "Tomada localizada a 0,4m horizontalmente da banheira, enquadrada em Zona 1",
+          "Equipamento classe II (duplo isolamento), não requer DR adicional",
+          "Luminária LED IP67 submersível, adequada para Zona 0 em futuras ampliações",
+          "Ventilador exaustor com sensor de umidade e timer automático, MD2"
+        ],
+        "exemplos_invalidos": [
+          "OK (vago, não técnico)",
+          "Tomada (informação insuficiente)",
+          "Conforme (sem justificativa)"
+        ],
+        "dicas": [
+          "Cite a norma/tabela quando relevante",
+          "Documente fatores de decisão",
+          "Referencie distâncias (ex: 0,5m da banheira)",
+          "Indique sensibilidade do DR se houver",
+          "Deixe em branco se conformidade é óbvia"
+        ]
+      }
+    },
+    "regras_ouro": [
+      "Zona 1-2 SEMPRE precisa de DB (disjuntor residual)",
+      "Zona 1-2 SEMPRE precisa de IP mínimo 4 (jatos de água)",
+      "Documente tudo nas Observações (futura auditoria)"
+    ],
+    "checklist": [
+      {
+        "item": "Zona selecionada (0-3)?",
+        "critico": false
+      },
+      {
+        "item": "IP adequado para zona?",
+        "critico": false
+      },
+      {
+        "item": "DB informado para Zona 1-2?",
+        "critico": true
+      },
+      {
+        "item": "Classe selecionada?",
+        "critico": false
+      },
+      {
+        "item": "Observações preenchidas?",
+        "critico": false
+      }
+    ],
+    "bloqueadores_criticos": [
+      {
+        "condicao": "Zona 1 ou 2 SEM DB",
+        "severidade": "CRÍTICO",
+        "acao": "Projeto NÃO-CONFORME"
+      },
+      {
+        "condicao": "IP menor que IPX4 em Zona 1-2",
+        "severidade": "CRÍTICO",
+        "acao": "Equipamento inadequado"
+      },
+      {
+        "condicao": "Equipamento com IP00 em qualquer banheiro",
+        "severidade": "CRÍTICO",
+        "acao": "Não permitido"
+      },
+      {
+        "condicao": "Classe AD1 em banheiro",
+        "severidade": "CRÍTICO",
+        "acao": "Classe inadequada"
+      }
+    ],
+    "faq": [
+      {
+        "pergunta": "Qual é a diferença entre IP44 e IPX4?",
+        "resposta": "IP44: Proteção contra contato (até 1mm) + Jatos de água. IPX4: Sem proteção contra contato + Jatos de água. Em banheiros, IP44 é preferível."
+      },
+      {
+        "pergunta": "Posso usar tomada IP20 em banheiro se tiver DR?",
+        "resposta": "Não. O DR protege contra choques, mas não contra água. IP44 é obrigatório em Zona 1-2."
+      },
+      {
+        "pergunta": "É necessário DR em Zona 3?",
+        "resposta": "Tecnicamente não é obrigatório, mas é altamente recomendado."
+      },
+      {
+        "pergunta": "O que fazer se o equipamento não tem IP especificado?",
+        "resposta": "Não use. Solicite documentação técnica ou procure alternativa certificada."
+      },
+      {
+        "pergunta": "Posso usar classe AD1 em banheiro?",
+        "resposta": "Não. AD1 é apenas para áreas secas. AD2 é mínimo para banheiros."
+      }
+    ]
+  }
+}

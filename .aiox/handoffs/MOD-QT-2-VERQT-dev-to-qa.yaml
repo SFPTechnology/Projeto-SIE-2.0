@@ -1,0 +1,316 @@
+handoff_id: MOD-QT-2-VERQT-dev-to-qa
+consumed: false
+consumed_at: null
+consumed_by: null
+created_at: "2026-07-29"
+from_agent: "@dev"
+to_agent: "@qa"
+last_command: "*dev-develop-story docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md --mode yolo"
+next_command: "*qa-gate docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md && *qa-gate docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md"
+updated_at: "2026-07-29"
+update_note: >
+  ATUALIZADO: MOD-QT-2-04 foi implementada e esta pronta para gate. A secao
+  `mod_qt_2_04` ao final deste arquivo e a fonte de verdade dela; as secoes
+  `ac_evidence` e `gates` acima permanecem referentes a MOD-QT-2-03.
+workflow: "MOD-QT-2-RESOLUCAO-VERQT"
+mode: "yolo"
+human_intervention: false
+consumes_handoff: ".aiox/handoffs/MOD-QT-2-VERQT-po-to-dev.yaml"
+
+stories:
+  - story_id: "MOD-QT-2-03"
+    path: "docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md"
+    scope: "C-01, C-02, C-04, C-07, C-08 (+ AC16)"
+    status: "InReview"
+    ac_total: 16
+    ac_com_evidencia_automatizada: 16
+    ready_for_gate: true
+  - story_id: "MOD-QT-2-04"
+    path: "docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md"
+    scope: "C-03, C-05, C-06"
+    status: "InReview"
+    ac_total: 9
+    ac_com_evidencia_automatizada: 9
+    ready_for_gate: true
+    detalhe: "ver secao `mod_qt_2_04` ao final deste arquivo"
+
+# ---------------------------------------------------------------------------
+# EVIDENCIA POR AC — todos com teste automatizado, nenhum por inspecao manual
+# ---------------------------------------------------------------------------
+ac_evidence:
+  AC1:
+    evidencia: "tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts :: 'contém exatamente 1.563 registros' + 'nenhum valor de Rca/XL difere do artefato' + 'não declara nenhuma tabela genérica TABELA_CU/TABELA_AL'"
+    resultado: PASS
+    nota: "Contraprova independente: o teste le o artefato de extracao do repositorio-raiz e compara celula a celula."
+  AC2:
+    evidencia: "mesma suite :: '24 células não publicadas, todas com Rca e XL nulos' + 'nenhum registro tem Rca = 0 ou XL = 0'"
+    resultado: PASS
+  AC3:
+    evidencia: "mesma suite :: 'todos os campos exigidos presentes nos 1.563 registros' + 'PO-01 fonte_id/SHA-256' + 'PO-01 versao_fonte como PROVENIENCIA' + 'PO-03 fonte_id nao aparece em assinatura nem filtro'"
+    resultado: PASS
+  AC4:
+    evidencia: "mesma suite :: 'reproduz o formato do parecer §6 C-01' + 'a citação é montada a partir do registro (sem rótulo fixo de fabricante)'"
+    resultado: PASS
+  AC5:
+    evidencia: "tests/domain/queda-tensao/resolver-perfil-impedancia.test.ts :: registro unico; aliases que compartilham celula; varredura de toda a familia de fixture; coerencia de metal; coerencia de quantidade_de_condutores_carregados"
+    resultado: PASS
+  AC6:
+    evidencia: "mesma suite :: 6 casos it.each de rejeicao com codigo esperado + 'a rejeicao ocorre ANTES de montar RetornoMODQT'"
+    resultado: PASS
+    nota: "ErroQuedaTensao usado com 5 codigos NOVOS; a CLASSE e sua forma permanecem inalteradas (FIX-E)."
+  AC7:
+    evidencia: "catalogo-impedancia-completude.test.ts :: motor nao importa tabela-impedancia, nao chama buscarImpedancia nem resistenciaPorIsolacao + resolver-perfil-impedancia.test.ts :: 'Rca vem exclusivamente do catalogo'"
+    resultado: PASS
+  AC8:
+    evidencia: "tests/domain/queda-tensao/motor-queda-tensao.test.ts :: 'AC8 — bifásico fase-fase usa fator 2 CITADO em fonte e NÃO emite mais [VERIFICAR — VER-QT-04]' + 'o motor não declara mais o fator bifásico como não confirmado; cita o parecer §3.3'"
+    resultado: PASS
+    nota: "Enum BIFASICO_FASE_FASE_SEM_NEUTRO NAO foi criado (correcao FIX-A respeitada). Fator 2 inalterado; V_nominal fase-fase asseverado."
+  AC9:
+    evidencia: "tests/domain/queda-tensao/ca-qt-19-nao-regressao.test.ts :: 'grade permanece 8x9x7 = 504' + 'todos os 504 vetores coincidem com o ORACLE independente'"
+    resultado: PASS
+    nota: >
+      Oracle le o JSON BRUTO do catalogo via readFileSync e aplica a formula do parecer
+      §3.3 diretamente. NAO importa motor-queda-tensao.ts nem usa valor pre-calculado.
+      A razao motor/mock virou teste separado rotulado DIAGNOSTICO LEGADO, calculado em
+      runtime, sem limiar de aprovacao.
+  AC10:
+    evidencia: "mesma suite :: 'nenhuma saida aprovada carrega [VERIFICAR]' + 'vetores SEM perfil sao rejeitados antes de qualquer resultado'"
+    resultado: PASS
+    nota: "Vetores inelegiveis sao ADICIONAIS (0.5/3/300/400/500 mm2), conforme FIX-B: a grade legada nao tem vetor inelegivel por secao."
+  AC11:
+    evidencia: "catalogo-impedancia-completude.test.ts :: '9 tabelas presentes' + 'contagem por tabela coincide com o artefato' + '12 topologias representadas'"
+    resultado: PASS
+  AC12:
+    evidencia: "mesma suite :: 'nao ha perfil_id duplicado' + 'perfil_id composto com familia_grupo_id' + 'PO-02 13 aliases -> 9 grupos' + 'chave de busca univoca 1.563/1.563' + 'Rca e XL andam sempre em par'"
+    resultado: PASS
+  AC13:
+    evidencia: "mesma suite :: 'URL, revisao, tabela e pagina em todo registro' + 'RSK-A3: 62 registros com nota_restricao, so nas tabelas 33 e 36' + 'a restricao chega ao resultado do motor como alerta'"
+    resultado: PASS
+  AC14:
+    evidencia: "resolver-perfil-impedancia.test.ts :: it.each dos 6 casos negativos + 'celula vazia rejeitada, nunca 0' + 'conduto ferromagnetico e REJEICAO: nenhuma topologia do catalogo o representa'"
+    resultado: PASS
+  AC15:
+    evidencia: "catalogo-impedancia-completude.test.ts :: it.each de 5 combinacoes (Cu70 mono / Cu70 bi / Cu70 tri / Al70 tri / Cu90 tri) + 'limites 4%, 5% e 1% avaliados contra o valor calculado'"
+    resultado: PASS
+  AC16:
+    evidencia: >
+      5 pontos de chamada migrados (servico-queda-tensao.ts, modulos.mod-qt.validar.ts,
+      projetos.$projetoId.alimentador.ts, projetos.$projetoId.queda-tensao-lote.ts,
+      simulador-cenarios.ts); 5 suites atualizadas; teste dedicado
+      tests/domain/queda-tensao/integracao-mod-dc-c5-fail-closed.test.ts.
+    resultado: PASS
+    nota: >
+      QUINTA SUITE DESCOBERTA: tests/api/modulos-mod-qt.test.ts (MOD-QT-1) nao constava do
+      handoff nem da File List do @po e tambem exercitava o endpoint. Migrada do mesmo modo
+      e acrescida de um teste do fail-closed. Registrar no gate.
+
+# ---------------------------------------------------------------------------
+# GATES TECNICOS — numeros reais medidos
+# ---------------------------------------------------------------------------
+gates:
+  typecheck:
+    comando: "npx tsc --noEmit"
+    resultado: PASS
+    exit: 0
+  test:
+    comando: "npx vitest run"
+    resultado: PASS
+    test_files: "129 passed (129)"
+    tests: "893 passed (893)"
+    duracao_s: 185.8
+    falhas_novas: 0
+    nota: >
+      O baseline informado pelo lead registrava 1 falha pre-existente em
+      tests/domain/calculo/derivar-circuitos.test.ts. No fechamento desta story a suite
+      completa esta integralmente verde. Esse arquivo NAO foi tocado por este trabalho
+      (nao consta da File List) — a mudanca de estado nao veio daqui.
+  build:
+    comando: "npx vite build"
+    resultado: PASS
+    duracao: "7.23s"
+  lint_escopado:
+    comando: "npx eslint <arquivos alterados>"
+    resultado: PASS
+    exit: 0
+    nota: "Precedido de `npx prettier --write` nos mesmos arquivos."
+  lint_completo:
+    comando: "npx eslint ."
+    resultado: NAO_VERIFICADO
+    motivo: "Travamento ambiental pre-existente (>25 min sem saida), reproduzido por 3 agentes."
+    presumido_pass: false
+
+# ---------------------------------------------------------------------------
+# EFEITO OBSERVAVEL DECLARADO — RSK-A6 materializado (NAO e regressao)
+# ---------------------------------------------------------------------------
+efeito_fail_closed:
+  endpoint_validar: "POST /api/v1/modulos/mod-qt/validar responde 422 com status PENDENTE e codigo ERRO-PERFIL-IMPEDANCIA-CHAVE-INVALIDA enquanto o perfil nao trafegar."
+  lote: "Circuito volta com status PENDENTE, resultado=null, retorno_publico=null e o codigo de erro em alertas."
+  mod_dc_c5: "Recebe AUSENCIA de retorno_qt -> C5 PENDENTE / AGUARDANDO-QT. Nunca APROVADO sem perfil."
+  base_normativa: "parecer §8 — 'durante esse intervalo, o MOD-QT-2 nao deve emitir calculos de queda de tensao para projetos reais'."
+  desbloqueio: "C-03 da story MOD-QT-2-04 (fluxo de entrada fechado) preenche QuedaTensaoConfig.perfil_cabo pela UI."
+
+# ---------------------------------------------------------------------------
+# PONTOS DE ATENCAO PARA O GATE DE @qa
+# ---------------------------------------------------------------------------
+atencao_qa:
+  - "Verificar o contrato publico POR SIMBOLO (nao por status M de arquivo): RetornoMODQT, ValidarMODQTSchema, RetornoMODQTSchema e o path da rota. modulos.mod-qt.validar.ts foi alterado APENAS no corpo do handler (tratamento de ErroQuedaTensao -> 422)."
+  - "Novos artefatos NAO previstos na File List do @sm/@po, todos justificados no Dev Agent Record: scripts/gerar-catalogo-impedancia-prysmian.mjs (D-03-01), tests/.../fixtures/perfil-impedancia-fixture.ts (PO-02), tests/.../integracao-mod-dc-c5-fail-closed.test.ts (AC16), src/api/schemas/queda-tensao.ts + repositorio-queda-tensao-config.ts (D-03-08, conduto de persistencia do perfil)."
+  - "src/api/schemas/queda-tensao.ts foi ESTENDIDO (PerfilCaboSchema em ConfiguracaoAlimentadorSchema). NAO e nenhum dos 4 simbolos imutaveis — estes vivem em otimizar-condutor.schema.ts, intocado."
+  - "Snapshot de tests/ui/queda-tensao.vrt.test.tsx foi REGENERADO: o campo `fonte` mudou de conteudo (saiu [VERIFICAR], entrou a citacao da fonte primaria). Mudanca de evidencia, nao de comportamento visual."
+  - "Metodo SIMPLIFICADO/COMPLETO (corte em 25 mm2) foi PRESERVADO deliberadamente (D-03-10). Nao esta em C-01..C-08; remover seria escopo novo."
+  - "isolacao deixou de selecionar R (D-03-11): a temperatura de operacao vem do registro, porque a familia a determina (fonte p.21 §6.3). Nenhuma regra isolacao x temperatura foi inventada."
+  - "tests/api/modulos-mod-qt.test.ts era a 5a suite afetada e nao constava de nenhum artefato de planejamento."
+
+anti_fraude:
+  skips_introduzidos: 0
+  suites_deletadas: 0
+  valores_arredondados_interpolados_extrapolados: 0
+  xl_zero: 0
+  familia_padrao: "NENHUMA"
+  fallback_7pct: "NENHUM"
+  arquivos_mod_dc_alterados: 0
+  verificacao: "tests/domain/queda-tensao/integracao-mod-dc-c5-fail-closed.test.ts varre src/domain/dimensionamento-condutores/*.ts e falha se algum importar o catalogo ou o resolvedor."
+
+pendencias_registradas_fora_de_escopo:
+  - id: "MOD-DC-PRD-13.6"
+    status: "ABERTO — inalterado por esta story."
+  - id: "SEGUNDA-FONTE-FABRICANTE"
+    status: "BACKLOG — decisao PO-03; catalogo ja e agnostico de fabricante por construcao."
+  - id: "LINT-GLOBAL-TRAVA"
+    status: "ABERTO — defeito ambiental de tooling, anterior a esta story."
+
+git:
+  commit_realizado: false
+  push_realizado: false
+  nota: "@dev nao commita nesta cadeia; o lead/@devops conduz o versionamento."
+
+bloqueios: []
+
+# ===========================================================================
+# MOD-QT-2-04 — C-03 (fluxo de entrada fechado), C-05 (perfil EDP-SP v09),
+# C-06 (alturas de tomada). Implementada em 2026-07-29 por @dev (Dex).
+# ===========================================================================
+mod_qt_2_04:
+  story_id: "MOD-QT-2-04"
+  path: "docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md"
+  status: "InReview"
+  ready_for_gate: true
+  sessoes: 2
+  nota_de_retomada: >
+    A primeira sessao foi interrompida por limite de sessao da API (nao por erro) e ja havia
+    entregue: limites.ts (perfil EDP-SP v09), opcoes-perfil-cabo.ts, SeletorPerfilCabo.tsx,
+    a supressao condicional no motor e a propagacao de perfil_atendimento ate o schema.
+    NADA disso tinha teste, e o SeletorPerfilCabo estava ORFAO (nenhum caminho de UI o
+    renderizava). A segunda sessao verificou o estado real antes de reimplementar, integrou
+    o seletor a tela, escreveu os testes das 9 ACs e fechou C-06.
+
+  ac_evidence:
+    AC1:
+      evidencia: "tests/domain/queda-tensao/opcoes-perfil-cabo.test.ts :: describe 'AC1' + tests/ui/queda-tensao-fluxo-entrada-fechado.test.tsx :: 'todas as escolhas sao listas (select); nao ha campo de texto livre'"
+      resultado: PASS
+      nota: "O teste de UI assere ausencia de <input type=text> e <textarea> no seletor de cabo."
+    AC2:
+      evidencia: "opcoes-perfil-cabo.test.ts :: describe 'AC2' (cascata estreita a cada nivel; combinacao sem registro nao submete; familia fora do mapa nao abre lista)"
+      resultado: PASS
+      nota: "As listas sao comparadas contra o CATALOGO_IMPEDANCIA real, nao contra literais."
+    AC3:
+      evidencia: "opcoes-perfil-cabo.test.ts :: describe 'AC3 / AC8' + teste de UI homonimo (InlineNotification 'Metodo indisponivel', role=alert, 5 selects disabled)"
+      resultado: PASS
+    AC4:
+      evidencia: "tests/domain/queda-tensao/limites-edp-sp-v09.test.ts :: describe 'AC4' (limite_total_pct=5, limite_conexao_medicao_pct=1, status CONFIRMADO, alinea citada)"
+      resultado: PASS
+    AC5:
+      evidencia: "limites-edp-sp-v09.test.ts :: describe 'AC5' — registro fechado com 1 perfil; nenhum perfil com 7%; LIMITES_TOTAIS_PCT intacto; inspecao de codigo de 3 arquivos contra `?? 7` / `|| 7` / `limite* = 7`"
+      resultado: PASS
+    AC6:
+      evidencia: "limites-edp-sp-v09.test.ts :: describe 'AC6' — 5 casos de divergencia (outra distribuidora / outro padrao / outra versao / rede subterranea / MT) + 5 casos de campo ausente, todos null; teste de UI confirma o seletor de escopo no PainelAlimentador"
+      resultado: PASS
+    AC7:
+      evidencia: "tests/ui/queda-tensao-fluxo-entrada-fechado.test.tsx :: describe 'AC7' — 2 varreduras recursivas de src/**/*.{ts,tsx} + verificacao do documento-fonte"
+      resultado: PASS
+      nota: >
+        Confirmado que HOJE nenhum arquivo de src/ menciona altura de tomada — a guarda e
+        preventiva, exatamente como a story e o @po declararam (ponto retido da nota 9/10).
+        A verificacao do .md e `skip` quando o arquivo nao existe (vive fora do submodule).
+    AC8:
+      evidencia: "opcoes-perfil-cabo.test.ts :: 'todo o caminho de decisao roda sem produzir chave de calculo' + 'inspecao de codigo: nenhum caminho de UI/opcoes invoca calcularQuedaTensao()' (3 arquivos varridos)"
+      resultado: PASS
+      nota: "NAO usa vi.spyOn em namespace ESM (fragil). A inspecao prova algo mais forte: nem import do motor existe no caminho de entrada."
+    AC9:
+      evidencia: "tests/domain/queda-tensao/motor-queda-tensao.test.ts :: describe 'AC9 (MOD-QT-2-04)' (4 casos) + tests/api/modulos-mod-qt-motor-real.test.ts :: it 'AC9 (MOD-QT-2-04)'"
+      resultado: PASS
+      nota: >
+        DoD 5B verificado: os 2 testes de CA-QT-22 NAO foram removidos nem silenciados —
+        permanecem, com titulo ajustado para 'SEM perfil de atendimento'. Casos cobertos:
+        (a) perfil + limite coincidente -> sem [VERIFICAR], cita PT.DT.PDN.00068 v09;
+        (b) mesmo calculo SEM perfil -> marcacao volta (a excecao e do perfil, nao do valor 5%);
+        (c) perfil declarado com limite divergente -> marcacao PERMANECE + alerta + limite NAO ajustado;
+        (d) perfil inexistente no registro -> nada suprimido.
+
+  gates:
+    typecheck:
+      comando: "npx tsc --noEmit"
+      resultado: PASS
+      exit: 0
+    test:
+      comando: "npx vitest run"
+      resultado: PASS
+      test_files: "132 passed (132)"
+      tests: "947 passed (947)"
+      duracao_s: 186.5
+      baseline_anterior: "893 (pos MOD-QT-2-03)"
+      delta: "+54 testes desta story"
+      falhas_novas: 0
+      nota: "Sem flakiness de catalogo-impedancia-completude.test.ts nesta execucao."
+    build:
+      comando: "npx vite build"
+      resultado: PASS
+      duracao: "7.69s"
+    lint_escopado:
+      comando: "npx eslint <8 arquivos tocados>"
+      resultado: PASS
+      exit: 0
+      nota: "6 violacoes prettier/prettier corrigidas com --fix; nenhuma violacao de regra logica."
+    lint_completo:
+      comando: "npx eslint ."
+      resultado: NAO_VERIFICADO
+      motivo: "Travamento ambiental pre-existente, reproduzido por multiplos agentes."
+      presumido_pass: false
+
+  contrato_publico_por_simbolo:
+    RetornoMODQT: "INTACTO — src/domain/dimensionamento-condutores/contratos.ts nao tocado"
+    ValidarMODQTSchema: "INTACTO — otimizar-condutor.schema.ts nao tocado"
+    RetornoMODQTSchema: "INTACTO — validado positivamente no novo teste de AC9 (safeParse().success === true)"
+    rota_validar: "INTACTA — modulos.mod-qt.validar.ts nao tocado nesta story"
+
+  atencao_qa:
+    - "SeletorPerfilCabo.tsx e opcoes-perfil-cabo.ts foram criados na sessao ANTERIOR desta mesma story; a File List da story distingue o que veio de cada sessao."
+    - "Snapshot tests/ui/__snapshots__/queda-tensao.vrt.test.tsx.snap REGENERADO: a pagina passou a compor o SeletorPerfilCabo. Mudanca de composicao esperada, nao regressao visual."
+    - "api-client.configurarAlimentador ganhou 4o parametro OPCIONAL (perfilCabo). Nao e nenhum dos 4 simbolos imutaveis; a rota HTTP equivalente ja aceitava perfil_cabo desde MOD-QT-2-03."
+    - "D-04-01/D-04-02: o perfil de atendimento CONFIRMA o limite, nunca o SUBSTITUI no motor. Divergencia gera alerta, mantem [VERIFICAR] e NAO ajusta o limite. Quem aplica o limite do perfil e o servico, na montagem da requisicao."
+    - "D-04-03 (debito DT-04-01): metal/temperatura/secao da selecao de cabo NAO sao persistidos — PerfilCaboProjeto e contrato de MOD-QT-2-03 (InReview) e nao foi estendido. Ao reabrir a tela o projetista reescolhe esses 3 campos; a config anterior NAO e perdida (o servico preserva atual.perfil_cabo quando nada resolvido e enviado)."
+    - "C-06 e majoritariamente documental, como a story declara. O teste de AC7 e guarda de regressao preventiva: hoje nao ha o que corrigir em src/."
+    - "VER-QT-07 foi marcado no documento-fonte como PARCIAL (resolvido so no perfil EDP-SP v09), nunca como resolvido em geral."
+
+  anti_fraude:
+    skips_introduzidos: 0
+    suites_deletadas: 0
+    testes_ca_qt_22_removidos: 0
+    fallback_7pct: "NENHUM — verificado por inspecao de codigo em 3 arquivos (AC5)"
+    familia_padrao: "NENHUMA — verificado no dominio e na UI (PO-02)"
+    fabricante_em_rotulo_fixo: "NENHUM — verificado no dominio e na UI (PO-03)"
+    perfil_reutilizado_fora_do_escopo: "NENHUM — 10 casos negativos (AC6)"
+    arquivos_mod_dc_alterados: 0
+    arquivos_mod_qt_2_03_inreview_alterados: 0
+    nota: "impedancias-prysmian-rev10.{ts,json} e resolver-perfil-impedancia.ts apenas consumidos. Nenhum defeito encontrado neles."
+
+  debitos_registrados:
+    - id: "DT-04-01"
+      item: "Persistir metal/temperatura_operacao_c/secao_mm2 do perfil de cabo — exige ampliar PerfilCaboProjeto (propriedade de MOD-QT-2-03)."
+      status: "BACKLOG"
+    - id: "DT-04-02"
+      item: "material do alimentador (Cu/Al) e metal do catalogo (CU/AL) sao vocabularios paralelos sem validacao cruzada."
+      status: "BACKLOG — fora de C-03/C-05/C-06"
+    - id: "MOD-DC-PRD-13.6"
+      item: "Impacto do limite 7% -> 5% no MOD-DC."
+      status: "ABERTO — inalterado por esta story (RSK cross-modulo da propria story)."

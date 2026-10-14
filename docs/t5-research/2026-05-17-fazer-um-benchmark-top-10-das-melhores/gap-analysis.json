@@ -1,0 +1,249 @@
+{
+  "schema": "gap-analysis-v1",
+  "generated_at": "2026-05-18T00:17:45.178Z",
+  "gaps": [
+    {
+      "id": "GAP-GAMMA-01",
+      "title": "PPTX exportável não significa PPTX limpo para cliente",
+      "subject": "gamma",
+      "priority": "P1",
+      "complexity": "MEDIUM",
+      "rationale": "Gamma é excelente para publicação web/PDF, mas apresentações complexas podem exigir reconstrução ao entrar em PowerPoint.",
+      "dimension": "export_fidelity"
+    },
+    {
+      "id": "GAP-CANVA-01",
+      "title": "Geração narrativa por prompt abaixo dos líderes AI-native",
+      "subject": "canva",
+      "priority": "P2",
+      "complexity": "MEDIUM",
+      "rationale": "Canva vence como suíte de design, mas a geração de narrativa deck-first ainda não é tão boa quanto Gamma/Plus.",
+      "dimension": "prompt_generation"
+    },
+    {
+      "id": "GAP-PLUS-01",
+      "title": "Menos impacto visual no primeiro draft",
+      "subject": "plus_ai",
+      "priority": "P2",
+      "complexity": "LOW",
+      "rationale": "Plus AI prioriza editabilidade e integração nativa; decks podem precisar de designer/template forte para wow visual.",
+      "dimension": "visual_quality"
+    },
+    {
+      "id": "GAP-PITCH-01",
+      "title": "AI não é o motor central da experiência",
+      "subject": "pitch",
+      "priority": "P2",
+      "complexity": "LOW",
+      "rationale": "Pitch é excepcional para colaboração, mas menos agressivo em geração completa por prompt.",
+      "dimension": "prompt_generation"
+    },
+    {
+      "id": "GAP-BEAUTIFUL-01",
+      "title": "Custo e rigidez para pequenos times",
+      "subject": "beautiful_ai",
+      "priority": "P1",
+      "complexity": "LOW",
+      "rationale": "Sem free permanente e com Team caro, o TCO sobe rápido para squads de growth.",
+      "dimension": "pricing_value"
+    },
+    {
+      "id": "GAP-PRESENTON-01",
+      "title": "Maturidade operacional menor",
+      "subject": "presenton",
+      "priority": "P1",
+      "complexity": "HIGH",
+      "rationale": "Open source e controle são fortes, mas adoção, UI e suporte dependem de setup interno ou cloud emergente.",
+      "dimension": "maturity"
+    },
+    {
+      "id": "GAP-TOME-01",
+      "title": "Risco de continuidade para novos decks",
+      "subject": "tome",
+      "priority": "P0",
+      "complexity": "HIGH",
+      "rationale": "Fontes indicam pivot/sunset do produto original de apresentações; além disso, help oficial aponta PDF sem PPT.",
+      "dimension": "risk_control"
+    },
+    {
+      "id": "GAP-SLIDESAI-01",
+      "title": "Qualidade visual limitada para high-stakes",
+      "subject": "slidesai",
+      "priority": "P2",
+      "complexity": "MEDIUM",
+      "rationale": "Útil para produtividade dentro do Google Slides, mas fraco para decks premium de venda/fundraising.",
+      "dimension": "visual_quality"
+    },
+    {
+      "id": "GAP-DECKTOPUS-01",
+      "title": "Transparência inferior em PPTX e limites por crédito",
+      "subject": "decktopus",
+      "priority": "P2",
+      "complexity": "LOW",
+      "rationale": "Pricing publica PDF export e créditos anuais, mas PPTX/fidelidade não aparecem como diferencial claro.",
+      "dimension": "export_fidelity"
+    },
+    {
+      "id": "GAP-PRESENTATIONS-01",
+      "title": "Evidência pública insuficiente para recomendação principal",
+      "subject": "presentations_ai",
+      "priority": "P2",
+      "complexity": "MEDIUM",
+      "rationale": "A proposta é relevante, mas a coleta encontrou menos fontes oficiais operacionais que nos líderes.",
+      "dimension": "maturity"
+    }
+  ],
+  "tradeoffs": [
+    "Gamma maximiza velocidade e estética inicial, mas o custo aparece quando PPTX fiel é obrigatório.",
+    "Canva maximiza valor de suíte e colaboração de marketing, mas não é o gerador narrativo mais forte.",
+    "Plus AI sacrifica um pouco de wow visual para ganhar em editabilidade nativa e fluxo corporativo.",
+    "Presenton troca maturidade de SaaS por controle, API, self-host e baixo lock-in.",
+    "Tome deve ser tratado como legado/risco, não como escolha principal para novas operações."
+  ],
+  "cliffs": [
+    {
+      "player": "gamma",
+      "trigger": "Cliente exige PPTX totalmente editável e fiel",
+      "impact": "Retrabalho provável em PowerPoint/Slides."
+    },
+    {
+      "player": "canva",
+      "trigger": "Deck narrativo complexo gerado só por prompt",
+      "impact": "Exige direção humana e edição manual."
+    },
+    {
+      "player": "beautiful_ai",
+      "trigger": "Time pequeno precisa de muitos assentos",
+      "impact": "TCO cresce rápido no Team."
+    },
+    {
+      "player": "tome",
+      "trigger": "Novo workflow de apresentações em 2026",
+      "impact": "Risco de produto/pivot torna adoção não recomendada."
+    },
+    {
+      "player": "presenton",
+      "trigger": "Time sem engenharia/ops",
+      "impact": "Self-host/API vira custo operacional."
+    },
+    {
+      "player": "slidesai",
+      "trigger": "Deck premium para venda/fundraising",
+      "impact": "Qualidade visual pode ficar abaixo do necessário."
+    }
+  ],
+  "tco": {
+    "currency": "USD",
+    "unit": "USD/yr",
+    "scenarios": {
+      "solo_founder": {
+        "label": "Solo founder · 1 usuário · 2-6 decks/mês",
+        "rows": [
+          {
+            "player": "gamma",
+            "setup": "Plus/Pro",
+            "low": 96,
+            "high": 240,
+            "baseline": true
+          },
+          {
+            "player": "canva",
+            "setup": "Pro",
+            "low": 120,
+            "high": 156
+          },
+          {
+            "player": "plus_ai",
+            "setup": "Basic/Pro",
+            "low": 120,
+            "high": 300
+          },
+          {
+            "player": "beautiful_ai",
+            "setup": "Pro annual/monthly",
+            "low": 144,
+            "high": 540
+          },
+          {
+            "player": "presenton",
+            "setup": "Self-host BYOK",
+            "low": 0,
+            "high": 300
+          }
+        ]
+      },
+      "growth_squad_10": {
+        "label": "Growth squad · 10 usuários · colaboração e marca",
+        "rows": [
+          {
+            "player": "canva",
+            "setup": "Teams/Business",
+            "low": 1200,
+            "high": 2400,
+            "baseline": true
+          },
+          {
+            "player": "pitch",
+            "setup": "Team annual",
+            "low": 2280,
+            "high": 2760
+          },
+          {
+            "player": "plus_ai",
+            "setup": "Basic/Pro annual",
+            "low": 1200,
+            "high": 2400
+          },
+          {
+            "player": "beautiful_ai",
+            "setup": "Team annual",
+            "low": 4800,
+            "high": 6000
+          },
+          {
+            "player": "gamma",
+            "setup": "Team/Business",
+            "low": 2400,
+            "high": 4800
+          }
+        ]
+      },
+      "enterprise_control": {
+        "label": "Enterprise/API · governança, privacidade, escala",
+        "rows": [
+          {
+            "player": "presenton",
+            "setup": "Self-host/API + infra/modelos",
+            "low": 1500,
+            "high": 12000,
+            "baseline": true
+          },
+          {
+            "player": "plus_ai",
+            "setup": "Enterprise",
+            "low": 5000,
+            "high": 25000
+          },
+          {
+            "player": "canva",
+            "setup": "Enterprise",
+            "low": 5000,
+            "high": 30000
+          },
+          {
+            "player": "beautiful_ai",
+            "setup": "Enterprise",
+            "low": 8000,
+            "high": 40000
+          },
+          {
+            "player": "pitch",
+            "setup": "Enterprise",
+            "low": 5000,
+            "high": 25000
+          }
+        ]
+      }
+    }
+  }
+}

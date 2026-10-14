@@ -1,0 +1,25 @@
+handoff:
+  from_agent: "architect"
+  to_agent: "dev"
+  pipeline_id: "yolo-exportacao-unifilar"
+  story_context:
+    story_id: "epic-unifilar-completo/story-1.6-parcial"
+    story_path: "sistema-de-instala-es-el-tricas-sie-main/docs/reports/workflow-yolo-exportacao-unifilar.md"
+    story_status: "InProgress"
+    current_task: "implementar-artefatos (Fase 2)"
+    branch: "feature/nbr5410-conformidade-closeout"
+  decisions:
+    - "Endpoint no runtime TanStack Start chamando CLI Python isolado (sem FastAPI)"
+    - "Snapshot UnifilarGraph.json serializado no TS e passado por arquivo ao CLI"
+    - "Capacidades via sonda python -c com cache TTL 30s; UI degrada p/ JSON-only em falha"
+    - "Artefatos em tmpdir com TTL 30min + rota de download dedicada"
+    - "CLI ganha --papel/--escala/--layout/--strict/--carimbo-*/--relatorio retrocompatíveis"
+  files_modified:
+    - "sistema-de-instala-es-el-tricas-sie-main/docs/architecture/exportacao-unifilar-contratos-rotas-boundaries.md"
+  blockers: []
+  next_action: >
+    Implementar boundary src/server/unifilar-export/ (tipos, capacidades, pipeline,
+    artefatos), schema Zod, 3 rotas API, extensões do CLI Python (flags + carimbo +
+    relatorio), modal de configuração e evolução da UnifilarExportBar, com testes
+    TS (vitest) e Python (pytest). Critérios de aceite na seção 6 do doc de arquitetura.
+  consumed: true

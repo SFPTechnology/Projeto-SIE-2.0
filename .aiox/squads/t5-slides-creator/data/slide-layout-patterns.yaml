@@ -1,0 +1,200 @@
+# Slide Layout Patterns — slides-creator (META)
+# Cross-archetype layout primitives extracted from empirical specimen (28-slide Board deck)
+# Pattern IDs (LP-*) are brand-agnostic composition blueprints
+
+schema_version: "1.0"
+name: slide-layout-patterns
+owner_squad: slides-creator
+purpose: "Canonical layout pattern library — composable, content-free"
+grid_baseline: "12 cols × 8 rows, 1280×720, gap 0.5cm"
+
+patterns:
+
+  - id: LP-001
+    name: hero_cover
+    applies_to_slide_types: [cover, title, section_divider]
+    semantic: "Deck/section entry — single strong message + identity"
+    anatomy:
+      rows_3_5_cols_1_9: action_title (display 42-52pt)
+      rows_5_6_cols_1_9: subtitle (lead 20-24pt, alpha-muted)
+      rows_7_8_cols_1_3: badge_confidential + logo_area
+      decorative:
+        full: pattern_overlay (opacity 0.08)
+        corner: glow_accent (blur 80px, opacity 0.4)
+    whitespace_pct: 55
+    examples_count_in_specimen: 2
+
+  - id: LP-002
+    name: action_title_plus_3_kpis
+    applies_to_slide_types: [data, executive_summary, conclusion]
+    semantic: "Insight statement supported by 3 quantified proof points"
+    anatomy:
+      row_1_cols_1_12: action_title (heading 26-28pt, full width)
+      rows_3_5_cols_1_4: big_number_block (value + label + desc)
+      rows_3_5_cols_5_8: big_number_block
+      rows_3_5_cols_9_12: big_number_block
+      rows_6_7_cols_1_12: analysis_panel (single-paragraph synthesis)
+      row_8_cols_1_12: footer_sources (APA italic 9pt)
+    whitespace_pct: 32
+    examples_count_in_specimen: 5
+
+  - id: LP-003
+    name: action_title_plus_horizontal_bars
+    applies_to_slide_types: [data, financial]
+    semantic: "Ranking/comparison across categories"
+    anatomy:
+      row_1_cols_1_12: action_title
+      rows_3_7_cols_1_9: bar_container sequence (label + bar-fill with width_pct)
+      rows_3_7_cols_10_12: analysis_panel (insight callout)
+      row_8: footer_sources
+    whitespace_pct: 30
+    examples_count_in_specimen: 4
+
+  - id: LP-004
+    name: framework_2x2_matrix
+    applies_to_slide_types: [framework, perceptual_map]
+    semantic: "Two-axis positioning (quadrants)"
+    anatomy:
+      row_1: action_title
+      row_2_cols_1_12: axis_label_x (center)
+      rows_3_7_col_1: axis_label_y (rotated 90)
+      rows_3_5_cols_4_7: quadrant_Q2 (upper-left)
+      rows_3_5_cols_8_11: quadrant_Q1 (upper-right)
+      rows_6_7_cols_4_7: quadrant_Q3 (lower-left)
+      rows_6_7_cols_8_11: quadrant_Q4 (lower-right)
+      row_8: axis_min_max markers (x-min, x-max, y-min, y-max)
+    whitespace_pct: 28
+    examples_count_in_specimen: 2
+
+  - id: LP-005
+    name: framework_3_pillars
+    applies_to_slide_types: [framework, strategy]
+    semantic: "Three-prong decomposition (vision → pillars)"
+    anatomy:
+      row_1: action_title
+      rows_3_6_cols_1_4: pillar_1 (header + body + icon)
+      rows_3_6_cols_5_8: pillar_2
+      rows_3_6_cols_9_12: pillar_3
+      rows_7_8: arrow_indicator connecting pillars (optional)
+    whitespace_pct: 30
+    examples_count_in_specimen: 1
+    rule_of_three: enforced
+
+  - id: LP-006
+    name: timeline_horizontal_roadmap
+    applies_to_slide_types: [timeline_roadmap, roadmap]
+    semantic: "Temporal progression with milestones"
+    anatomy:
+      row_1: action_title
+      rows_3_7_cols_1_12: horizontal_axis (time periods Q1/Q2/Q3/Q4 or years)
+      rows_4_6: bar_containers spanning time periods (span_q1, span_q2, span_q1_q2, etc.)
+      rows_3_7: milestone_markers with labels
+      row_8: footer_sources + legend
+    whitespace_pct: 25
+    examples_count_in_specimen: 3
+
+  - id: LP-007
+    name: rag_status_matrix
+    applies_to_slide_types: [framework, risk_assessment]
+    semantic: "Traffic-light status across dimensions"
+    anatomy:
+      row_1: action_title
+      rows_3_7_cols_1_12: grid of band-green + band-orange + band-red blocks
+      each_band_slot:
+        band_header: RAG-colored title
+        band_desc: explanation
+        band_time: timeframe if temporal
+      row_8: footer_sources + RAG legend
+    whitespace_pct: 28
+    examples_count_in_specimen: 2
+    required_semantic:
+      green: on-track OR positive OR recommended
+      orange: at-risk OR neutral OR caveat
+      red: off-track OR alert OR blocker
+
+  - id: LP-008
+    name: single_mega_number
+    applies_to_slide_types: [data, executive_summary, conclusion]
+    semantic: "One number that carries the entire slide"
+    anatomy:
+      row_1: action_title (heading 22-26pt)
+      rows_3_5_cols_1_12: hero_number (display 72-80pt, centered OR left-aligned)
+      rows_6_7_cols_1_12: description_block (body 14-16pt)
+      row_8: footer_sources
+    whitespace_pct: 50
+    examples_count_in_specimen: 1
+    use_when: "Single metric drives the narrative (eg: 'R$ 150 bi')"
+
+  - id: LP-009
+    name: agenda_list
+    applies_to_slide_types: [agenda, toc]
+    semantic: "Sequential navigation"
+    anatomy:
+      row_1: 'title ("Agenda" / "Conteúdo")'
+      rows_3_7_cols_1_6: agenda_blocks 1-N (with agenda-number + title + optional description)
+      rows_3_7_cols_7_12: decorative_image OR current_section_highlight
+      row_8: page_number
+    whitespace_pct: 40
+    examples_count_in_specimen: 1
+
+  - id: LP-010
+    name: appendix_table_dense
+    applies_to_slide_types: [appendix, backup]
+    semantic: "Reference material — higher density acceptable"
+    anatomy:
+      row_1: "appendix_banner (Appendix X: Title)"
+      rows_2_7_cols_1_12: table OR bibliography-grid (typography body 10-12pt)
+      row_8: footer_sources + page_number
+    whitespace_pct: 15
+    examples_count_in_specimen: 6
+    density_exception: "Whitespace target relaxed for reference content"
+
+# ═══════════════════════════════════════════════════════════════════════
+# PATTERN SELECTION HEURISTICS (for classify-slide-type + compose-grid-layout)
+# ═══════════════════════════════════════════════════════════════════════
+selection_heuristics:
+  content_shape_to_pattern:
+    "single_insight + 3_proof_points": LP-002
+    "ranking_comparison_categorical": LP-003
+    "two_axis_positioning": LP-004
+    "three_way_decomposition": LP-005
+    "temporal_progression": LP-006
+    "multi_dimensional_status": LP-007
+    "single_hero_metric": LP-008
+    "reference_dense": LP-010
+    "section_transition": LP-001
+    "navigation_menu": LP-009
+
+  rule_of_three_alignment:
+    description: "Pyramid principle favors 3 branches — LP-002, LP-005 naturally accommodate"
+    enforce_on: [LP-005, LP-006, LP-007]
+
+  density_by_slide_type:
+    cover: [LP-001]
+    data: [LP-002, LP-003, LP-008]
+    framework: [LP-004, LP-005, LP-007]
+    timeline: [LP-006]
+    financial: [LP-002, LP-003]
+    appendix: [LP-010]
+    agenda: [LP-009]
+    conclusion: [LP-002, LP-008]
+
+# ═══════════════════════════════════════════════════════════════════════
+# CONSUMER INTEGRATION
+# ═══════════════════════════════════════════════════════════════════════
+consumers:
+  - task: classify-slide-type
+    usage: "Map briefing content shape → pattern_id via selection_heuristics"
+  - task: compose-grid-layout
+    usage: "Instantiate pattern anatomy into grid_coords for each slide"
+  - task: emit-deck-spec
+    usage: "Reference pattern_id in deck-spec.yaml per slide"
+  - task: validate-pyramid
+    usage: "Check rule_of_three_alignment for framework slides"
+
+meta:
+  absorbed_from: "HTMLs Flash.md (empirical specimen, 28 slides)"
+  absorbed_date: "2026-04-21"
+  total_patterns: 10
+  brand_agnostic: true
+  all_patterns_instantiated_in_specimen: true

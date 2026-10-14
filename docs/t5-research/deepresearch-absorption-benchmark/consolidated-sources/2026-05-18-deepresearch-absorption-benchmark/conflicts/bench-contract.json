@@ -1,0 +1,78 @@
+{
+  "schema": "bench-contract.v1",
+  "slug": "deepresearch-absorption-benchmark",
+  "type": "absorption-benchmark",
+  "generated_at": "2026-05-18",
+  "decision_improved": "",
+  "anchor": {
+    "id": "aiox_research_ecosystem",
+    "label": "AIOX Research Ecosystem",
+    "components": [
+      {
+        "kind": "squad",
+        "id": "research",
+        "path": "squads/research",
+        "version": "5.0.0",
+        "role": "Cognitive brain — 14 agents, 6 workflows, ~70 tasks, absorbed tech-research v2.0.0 and deep-research v1.0.0"
+      },
+      {
+        "kind": "skill",
+        "id": "tech-research",
+        "path": ".claude/skills/tech-research",
+        "version": "2.0.0",
+        "role": "Execution pipeline — 7 molecules, 17 atoms, multi-wave search, COVERAGE_GATE + CITATION_GATE"
+      },
+      {
+        "kind": "app",
+        "id": "apps-research",
+        "path": "apps/research",
+        "version": "0.1.0",
+        "role": "Research Observatory — Next.js 16 local-first console for browsing research/bench/SINKRA artifacts"
+      }
+    ]
+  },
+  "taxonomy": {
+    "groups": [
+      "Entrada",
+      "Planejamento",
+      "Execucao",
+      "Multi-Agente",
+      "Modelo",
+      "Memoria",
+      "Sandbox",
+      "Citacoes",
+      "Saida",
+      "Observabilidade",
+      "Distribuicao",
+      "Licenca",
+      "Governance"
+    ],
+    "atom_count": 0
+  },
+  "scoring_model": {
+    "formula": "Sum(group_score × group_weight) / Sum(group_weights = 100)",
+    "score_range": "0-100"
+  },
+  "expected_sources": [
+    {
+      "type": "github-clone",
+      "policy": "MANDATORY for codebase claims"
+    },
+    {
+      "type": "README",
+      "policy": "REQUIRED for ALTA confidence"
+    },
+    {
+      "type": "license-file",
+      "policy": "MANDATORY direct inspection"
+    }
+  ],
+  "completeness_criteria": {
+    "inventories_per_player": true,
+    "scoring_disclosed": true,
+    "evidence_per_claim": true,
+    "license_per_player": true
+  },
+  "version": "1.0.0",
+  "status": "gold_published"
+}

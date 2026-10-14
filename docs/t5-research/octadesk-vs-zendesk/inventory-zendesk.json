@@ -1,0 +1,389 @@
+{
+  "subject": "zendesk",
+  "type": "product",
+  "generatedAt": "2026-05-06T00:00:00Z",
+  "method": "web-research-docs-and-reviews",
+  "identity": {
+    "name": "Zendesk for Customer Service (Suite)",
+    "company": "Zendesk Inc. (private equity-owned post-2022 take-private)",
+    "category": "Customer service / helpdesk SaaS enterprise global",
+    "launch_date": "2007 (~19 anos)",
+    "target_audience": "SMB to enterprise; mid-market e enterprise referenciam mais",
+    "tagline": "Customer service made effortless",
+    "url": "https://www.zendesk.com",
+    "country_origin": "USA",
+    "market_share": "14.80% categoria customer experience (lider global, 6sense data)"
+  },
+  "features": {
+    "categories": [
+      {
+        "name": "Suporte multicanal (Suite)",
+        "features": [
+          "Email, chat, voice (Talk), WhatsApp via Sunshine Conversations, Instagram, Facebook, Twitter, Apple Business Chat, Line, SMS",
+          "Help Center / Guide multi-help-center (ate 300 em Enterprise)",
+          "Communities / Gather"
+        ],
+        "depth": "deep"
+      },
+      {
+        "name": "Agent Workspace",
+        "features": [
+          "Unified inbox cross-channel",
+          "Triggers, automations, views, workflows",
+          "Macros e templates de resposta",
+          "Side conversations (loop interno)"
+        ],
+        "depth": "deep"
+      },
+      {
+        "name": "AI Agents (post-Ultimate.ai)",
+        "features": [
+          "AI Agents Essential (incluso em Suite)",
+          "AI Agents Advanced (add-on)",
+          "Copilot ($50/agent/mo) - reply suggest + summarize",
+          "Resolucao 40-50% baseline ate 80% maduro (declarado)"
+        ],
+        "depth": "deep mas fragmentada (multiplas aquisicoes)"
+      },
+      {
+        "name": "Reporting & Analytics",
+        "features": [
+          "Explore (built-in BI)",
+          "Custom dashboards",
+          "Forecasting (ADPP+)"
+        ],
+        "depth": "deep"
+      },
+      {
+        "name": "Voice (Talk)",
+        "features": [
+          "Inbound/outbound voice nativo",
+          "IVR, recording, voicemail",
+          "Contact Center add-on $50/agent/mo"
+        ],
+        "depth": "moderate (cobranca usage extra)"
+      },
+      {
+        "name": "Workforce Management",
+        "features": [
+          "WFM add-on $25/agent/mo",
+          "Schedule + adherence + forecasting"
+        ],
+        "depth": "moderate"
+      },
+      {
+        "name": "Quality Assurance",
+        "features": [
+          "QA add-on $35/agent/mo",
+          "Conversation review + scorecards"
+        ],
+        "depth": "moderate"
+      }
+    ],
+    "unique_capabilities": [
+      "Maior marketplace de apps da categoria (1.500+ apps)",
+      "Suite plans modulares (Team -> Enterprise) com upgrades graduais",
+      "Sunshine Conversations BSP nativo (WhatsApp + WeChat + LINE + Apple Business Chat)",
+      "Multi-help-center (ate 300 em Enterprise) - unico no segmento",
+      "Sandbox 2 inclusos em Enterprise",
+      "Custom agent roles em Enterprise",
+      "Audit logs em Enterprise",
+      "BYOK encryption via ADPP add-on",
+      "FedRAMP LI-SaaS (gov USA)",
+      "ISO 27001:2022, 27017, 27018, 27701, 42001, CSA STAR AI L1+L2"
+    ],
+    "total_feature_count_estimate": 200,
+    "source": "https://www.zendesk.com.br/pricing + Trust Center + eesel.ai 2026 guide",
+    "confidence": "H em features publicas; M em add-ons gated"
+  },
+  "pricing": {
+    "model": "per-agent-per-month-annual-billing",
+    "currency_main": "BRL na pagina .com.br + USD em add-ons",
+    "tiers_zendesk_brasil_pricing_page": [
+      {
+        "name": "Support Team",
+        "price_monthly_brl": 135,
+        "billing": "anual",
+        "scope": "ticketing-only baseline",
+        "source": "https://www.zendesk.com.br/pricing"
+      },
+      {
+        "name": "Suite Team",
+        "price_monthly_brl": 359,
+        "billing": "anual",
+        "scope": "omnichannel basico (email + chat + voice + WhatsApp via Sunshine)",
+        "source": "https://www.zendesk.com.br/pricing"
+      },
+      {
+        "name": "Suite Professional",
+        "price_monthly_brl": 755,
+        "billing": "anual",
+        "scope": "advanced workflows + custom roles parcial",
+        "source": "https://www.zendesk.com.br/pricing"
+      },
+      {
+        "name": "Suite Enterprise",
+        "price_monthly_brl": 1105,
+        "billing": "anual",
+        "scope": "full enterprise: multi-help-center, sandbox, audit log, custom agent roles",
+        "source": "https://www.zendesk.com.br/pricing"
+      }
+    ],
+    "tiers_usd_referencia_global": [
+      {"name": "Suite Team", "price_monthly_usd": 55},
+      {"name": "Suite Growth", "price_monthly_usd": 89},
+      {"name": "Suite Professional", "price_monthly_usd": 115},
+      {"name": "Suite Enterprise", "price_monthly_usd": 169}
+    ],
+    "addons_listados_pagina_brasil": [
+      {"name": "Copilot (AI)", "price_usd": 50, "unit": "agent/mo annual", "source": "zendesk.com.br/pricing"},
+      {"name": "Quality Assurance", "price_usd": 35, "unit": "agent/mo annual"},
+      {"name": "Workforce Management", "price_usd": 25, "unit": "agent/mo annual"},
+      {"name": "Advanced Data Privacy & Protection (ADPP)", "price_usd": 50, "unit": "agent/mo annual"},
+      {"name": "Contact Center (Voice)", "price_usd": 50, "unit": "agent/mo annual"}
+    ],
+    "addons_pricing_extras_2026": {
+      "ai_agents_essential": "incluso em Suite",
+      "ai_agents_advanced": "contato sales (purchase per resolution)",
+      "ai_agents_per_resolution": {
+        "committed_plan": 1.50,
+        "pay_as_you_go": 2.00,
+        "definition": "Bot fully handled conversation without human; verificado 72h apos + checked by LLM",
+        "source": "eesel.ai 2026 guide"
+      }
+    },
+    "free_tier": {
+      "available": false,
+      "trial": "14 dias",
+      "source": "zendesk.com.br/pricing"
+    },
+    "enterprise": "Suite Enterprise R$1.105/agent/mo + Enterprise Plus contato sales",
+    "contract_terms_critical": [
+      "Annual billing only para preco listado (monthly +15-25%)",
+      "Downgrades blocked mid-contract",
+      "30 dias notice via revops@zendesk.com para nao-renovacao",
+      "Sem refund early cancellation",
+      "5-7% price escalation clauses anuais",
+      "Overages auto-billed sem grace period (Jan 2026 update)"
+    ],
+    "tco_examples_2026": [
+      {
+        "team_size": "5-person startup",
+        "base": "Suite Growth $89 x 5 = $445/mo",
+        "ai": "AI Agents 500 res x $1.50 = $750/mo",
+        "total_mo": 1195,
+        "total_year": 14340,
+        "currency": "USD"
+      },
+      {
+        "team_size": "10-person mid-market",
+        "base": "Suite Professional $115 x 10 = $1.150/mo",
+        "advanced_ai": "$50 x 10 = $500/mo",
+        "ai_resolutions": "2.000 res x $1.50 = $3.000/mo",
+        "total_mo": 4650,
+        "total_year": 55800,
+        "currency": "USD"
+      }
+    ],
+    "vendr_median_deal": {"value_usd_year": 47772, "discount_typical": "15%"},
+    "source_main": "https://www.zendesk.com.br/pricing + eesel.ai 2026 + helpjuice + supportbench",
+    "as_of_date": "2026-05-06",
+    "data_quality": "H para tier publico site BRL; H para add-ons listados; H para AI per-resolution; M para tier USD historico (Growth nao listado em /pt-br)"
+  },
+  "integrations": {
+    "api": {
+      "available": true,
+      "type": "REST + GraphQL parcial",
+      "documentation": "developer.zendesk.com (extenso)"
+    },
+    "webhooks": true,
+    "marketplace": {
+      "available": true,
+      "app_count": "1.500+ apps",
+      "url": "https://www.zendesk.com/marketplace/",
+      "source": "Zendesk site oficial + research market data"
+    },
+    "key_integrations_native": {
+      "global": ["Slack", "GitHub", "Jira", "Salesforce", "HubSpot", "Shopify", "Stripe", "Microsoft 365"],
+      "ai_voice": ["Talk nativo", "Sunshine Conversations BSP nativo"],
+      "br_ecommerce_via_partners": [
+        "VTEX by BCR.CX (parceiro)",
+        "VTEX by Aktie Now (parceiro)",
+        "Tray (nao confirmado app dedicado)",
+        "NuvemShop (nao confirmado app dedicado)"
+      ]
+    },
+    "br_integrations_gap": "Falta de connectors NATIVOS first-class para Tray, NuvemShop, RD Station, Bling, Conta Azul. Conectores VTEX existem mas via parceiros (BCR.CX, Aktie Now). Profundidade depende do parceiro.",
+    "sdk_languages": ["JavaScript", "Python", "Ruby", "PHP"],
+    "plugin_system": "Zendesk Apps Framework (ZAF)",
+    "sunshine_conversations_pricing": {
+      "model": "fixed monthly fee + variable per MAU + per notification",
+      "starter_price_from_usd": 0.15,
+      "unit": "per notification (custom channels/WhatsApp/in-app messaging)",
+      "monthly_fee_from_usd": 495,
+      "editions": ["Starter", "Premium", "Enterprise"],
+      "source": "GetApp + TrustRadius + Capterra"
+    },
+    "source": "https://www.zendesk.com/marketplace/ + zendesk.com.br/marketplace/apps/support",
+    "confidence": "H para apps count global; M para BR-specific connector depth"
+  },
+  "user_experience": {
+    "onboarding": "moderate-complex (G2: 'configuration takes longer than expected, requires technical expertise')",
+    "ui_quality": "modern but feature-dense",
+    "learning_curve": "moderate-steep (G2 mention 'steep learning curve' multiplas vezes)",
+    "mobile_app": true,
+    "offline_support": "limited",
+    "accessibility": "WCAG 2.1 AA (declarado)",
+    "language_ptbr": "tradus PT-BR (nao nativo)",
+    "source": "G2 reviews summary 6.000+ + Trust Center",
+    "confidence": "H"
+  },
+  "reviews": {
+    "g2": {
+      "rating": 4.3,
+      "review_count": 6000,
+      "review_count_note": "G2 cita 6.000+ reviews",
+      "top_praise": [
+        "Ease of Use (532 mentions)",
+        "Features (402)",
+        "Customer Support (286)",
+        "Helpful (280)",
+        "Ticket Management (257)",
+        "Strong automation, robust reporting, multi-channel unified"
+      ],
+      "top_complaints": [
+        "Cost / pricing escalation (66 mentions: 'expensive for smaller teams')",
+        "Limited Features customization (123 mentions)",
+        "Ticketing complexity (94 mentions)",
+        "Customer support slow / unhelpful (73 mentions)",
+        "Integration issues at scale (55 mentions)",
+        "Steep learning curve",
+        "Configuration complexity",
+        "Add-ons stack ($50 Copilot + $25 WFM + $35 QA + $50 ADPP)"
+      ],
+      "payback_period_g2": "17 meses",
+      "source": "https://www.g2.com/products/zendesk-support-suite/reviews + learn.g2.com/zendesk-review"
+    },
+    "capterra": {
+      "rating": 4.5,
+      "review_count": "extenso (milhares)",
+      "source": "G2/Capterra agregados"
+    },
+    "trustradius": {"rating": 8.7, "scale": "10"},
+    "confidence": "H"
+  },
+  "scalability": {
+    "limits": {
+      "Suite Team": "single help center, agent workspace basic",
+      "Suite Professional": "5 help centers + side conversations + custom views",
+      "Suite Enterprise": "300 help centers + sandbox 2 inclusos + custom agent roles + audit logs",
+      "Suite Enterprise Plus": "additional sandbox + 99.9% SLA + premium support"
+    },
+    "enterprise_features": [
+      "SSO/SAML (2 configs) + JWT (2) + OIDC",
+      "SCIM provisioning",
+      "Custom agent roles (Enterprise)",
+      "Audit logs (Enterprise)",
+      "Sandbox environments (Enterprise = 2; Plus = +)",
+      "Multi-help-center (300 em Enterprise)",
+      "BYOK via AWS KMS + Azure Key Vault + Google Cloud (ADPP add-on $50/agent)",
+      "RBAC granular",
+      "2FA",
+      "DDoS via Cloudflare + AWS",
+      "IDPS, SIEM real-time",
+      "AES-256 at rest, TLS 1.2+ in transit"
+    ],
+    "compliance": [
+      "ISO 27001:2022",
+      "ISO 27017:2015",
+      "ISO 27018:2019",
+      "ISO 27701:2019",
+      "ISO 42001 (AI mgmt)",
+      "CSA STAR AI Levels 1 & 2",
+      "GDPR (BCRs approved by Irish DPC - 2nd company ever)",
+      "CCPA/CPRA",
+      "HIPAA (via BAA + Advanced Compliance add-on)",
+      "PCI-DSS (com redaction tools)",
+      "FedRAMP LI-SaaS (gov USA)",
+      "LGPD (Brazil) declarado",
+      "SOC 2 Type II (sob NDA via Trust Center)"
+    ],
+    "multi_tenant": true,
+    "data_residency": "Multiple regions (USA, EU, APAC). EU hosting via Zendesk Data Center selection",
+    "data_residency_br_specific": "Nao garantido data center BR. Dados podem residir USA/EU. Risk concrete para LGPD operadores que precisam de residencia BR estrita",
+    "sla": "99.9% Enterprise Plus; 99.5% baseline Enterprise",
+    "source": "https://www.zendesk.com/trust-center/ + eesel.ai 2026 + supportbench audit",
+    "confidence": "H"
+  },
+  "support": {
+    "docs_quality": "excellent (developer.zendesk.com + support.zendesk.com extensos)",
+    "channels": ["Standard support (todos planos)", "Premium Support (paid add-on)", "Premier Plus (Enterprise+)", "Email", "Chat (limited)", "Phone (premium tiers)"],
+    "language": "ingles principal; PT-BR via traducao",
+    "community": {"type": "Zendesk Community + Trailhead-equivalente", "size": "milhares"},
+    "knowledge_base": true,
+    "status_page": true,
+    "br_local_team": "presenca via canal de revenda BR mas nao um time local de produto comparavel a Octadesk",
+    "source": "https://support.zendesk.com",
+    "confidence": "H"
+  },
+  "ai_native": {
+    "name": "Zendesk AI (Agents + Copilot)",
+    "engine_declarado": "post-Ultimate.ai acquisition + proprio LLM stack",
+    "modes": ["AI Agents Essential (free in Suite)", "AI Agents Advanced (paid)", "Copilot $50/agent/mo", "Bots automation"],
+    "language": "multi-language including PT-BR",
+    "deflection_rate_publicado": "40-50% baseline ate 80% maduro (declarado pela Zendesk + 3rd party benchmarks Fin Labs)",
+    "pricing_model": "Hybrid: per-seat ($50 Copilot) + per-resolution AI Agents ($1.50 committed / $2.00 PAYG)",
+    "automated_resolution_definition": "Bot fully handled sem human; verificado 72h sem follow-up + LLM check",
+    "data_isolation_declarada": true,
+    "source": "https://www.zendesk.com/service/ai/ + eesel.ai 2026 + Trust Center",
+    "confidence": "H"
+  },
+  "whatsapp_integration": {
+    "claim_oficial_meta": true,
+    "claim_text": "Zendesk eh BSP credenciado oficial Meta",
+    "bsp_role": "Zendesk BSP via Sunshine Conversations + Cloud API direct",
+    "cloud_api_only": true,
+    "cloud_api_post_oct_2025_compliance": "compativel",
+    "sunshine_conversations": {
+      "role": "Translation layer entre support team e messaging apps",
+      "channels_unified": ["WhatsApp", "FB Messenger", "Instagram", "Apple Business Chat", "LINE", "Telegram", "Viber"],
+      "pricing_extra": "$0.15/notification para custom channels/WhatsApp/in-app; fixed monthly fee + variable per MAU + per notification; starter $495/mo via GetApp",
+      "transparency_score": "low-medium (multiplas variaveis: MAU + notifications + edition)"
+    },
+    "message_pricing_passthrough": true,
+    "free_window_24h": "padrao Meta service window",
+    "templates_approval_flow": "padrao Meta com Sunshine intermediation",
+    "multi_agent_same_number": "via agent workspace",
+    "tier_lock": "WhatsApp via Sunshine Conversations (Suite Team em diante)",
+    "source": "Zendesk Trust Center + eesel.ai Sunshine guide + GetApp",
+    "confidence": "H para oficialidade Cloud API; M para Sunshine pricing exato (gated)"
+  },
+  "sources_consulted": [
+    "https://www.zendesk.com",
+    "https://www.zendesk.com.br/pricing/",
+    "https://www.zendesk.com/pricing/ (redirects to .com.br for BR users)",
+    "https://www.zendesk.com/marketplace/",
+    "https://www.zendesk.com/trust-center/",
+    "https://support.zendesk.com",
+    "https://developer.zendesk.com",
+    "https://www.g2.com/products/zendesk-support-suite/reviews",
+    "https://learn.g2.com/zendesk-review",
+    "https://www.eesel.ai/blog/zendesk-pricing-2026 (helpjuice mirror)",
+    "https://www.eesel.ai/blog/zendesk-sunshine-conversations",
+    "https://www.eesel.ai/blog/zendesk-whatsapp",
+    "https://www.eesel.ai/blog/zendesk-security-and-compliance",
+    "https://www.eesel.ai/blog/zendesk-saas-enterprise",
+    "https://supp.support/blog/zendesk-pricing-2026-full-breakdown",
+    "https://www.supportbench.com/zendesk-enterprise-vs-supportbench-enterprise-security-compliance-audit/",
+    "https://www.zendesk.com.br/marketplace/apps/support/813236/vtex-by-bcrcx/",
+    "https://www.zendesk.com.br/marketplace/apps/support/147884/vtex-by-aktie-now/",
+    "docs/research/2026-05-06-omnichannel-helpdesk-landscape/02-research-report.md (sec 2.1)"
+  ],
+  "data_quality": {
+    "features": "verified",
+    "pricing": "current (BRL site + USD reference + AI per-resolution + contract terms)",
+    "reviews": "recent (G2 6.000+; Capterra extenso)",
+    "compliance": "verified (Trust Center publica)",
+    "confidence": "high"
+  }
+}

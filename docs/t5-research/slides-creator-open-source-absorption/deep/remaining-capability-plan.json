@@ -1,0 +1,131 @@
+{
+  "schema": "remaining-capability-plan.v3",
+  "generated_at": "2026-05-18T16:05:00-03:00",
+  "summary": "Design e Planejamento/Narrativa continuam líderes. A nova gramática de momento narrativo-design aumenta repetibilidade e o storyboard-edit-contract melhora o preparo para editor, mas o próximo salto real ainda exige runtime executável.",
+  "groups": [
+    {
+      "group": "Automação",
+      "slides_creator_score": 87.24,
+      "leader": "presenton",
+      "leader_label": "Presenton",
+      "leader_score": 95.48,
+      "priority": "P1",
+      "next_move": "Converter contrato validado em CLI/API/MCP ou share runtime funcional."
+    },
+    {
+      "group": "Design",
+      "slides_creator_score": 99.44,
+      "leader": "slides_creator",
+      "leader_label": "slide creator skill",
+      "leader_score": 99.44,
+      "priority": "P2",
+      "next_move": "Manter regressão e acrescentar fixtures reais/renderizados por tipo de deck."
+    },
+    {
+      "group": "Distribuição",
+      "slides_creator_score": 76.13,
+      "leader": "slides_creator",
+      "leader_label": "slide creator skill",
+      "leader_score": 76.13,
+      "priority": "P1",
+      "next_move": "Converter contrato validado em CLI/API/MCP ou share runtime funcional."
+    },
+    {
+      "group": "Editor",
+      "slides_creator_score": 53.87,
+      "leader": "banana_slides",
+      "leader_label": "banana-slides",
+      "leader_score": 87.02,
+      "priority": "P0",
+      "next_move": "Materializar o storyboard-edit-contract em editor/runtime executável."
+    },
+    {
+      "group": "Entrada",
+      "slides_creator_score": 82.15,
+      "leader": "presentagent_2",
+      "leader_label": "PresentAgent-2",
+      "leader_score": 91.67,
+      "priority": "P2",
+      "next_move": "Harden com testes, fixtures e casos reais."
+    },
+    {
+      "group": "IA",
+      "slides_creator_score": 90.67,
+      "leader": "presenton",
+      "leader_label": "Presenton",
+      "leader_score": 99.67,
+      "priority": "P2",
+      "next_move": "Harden com testes, fixtures e casos reais."
+    },
+    {
+      "group": "Infra",
+      "slides_creator_score": 40.27,
+      "leader": "presenton",
+      "leader_label": "Presenton",
+      "leader_score": 97.8,
+      "priority": "P0",
+      "next_move": "Materializar runtime executável; contratos já não bastam."
+    },
+    {
+      "group": "Maturidade",
+      "slides_creator_score": 91.75,
+      "leader": "presenton",
+      "leader_label": "Presenton",
+      "leader_score": 93.0,
+      "priority": "P2",
+      "next_move": "Harden com testes, fixtures e casos reais."
+    },
+    {
+      "group": "Multimídia",
+      "slides_creator_score": 58.33,
+      "leader": "presentagent_2",
+      "leader_label": "PresentAgent-2",
+      "leader_score": 92.17,
+      "priority": "P0",
+      "next_move": "Materializar runtime executável; contratos já não bastam."
+    },
+    {
+      "group": "Planejamento",
+      "slides_creator_score": 100.0,
+      "leader": "slides_creator",
+      "leader_label": "slide creator skill",
+      "leader_score": 100.0,
+      "priority": "P2",
+      "next_move": "Manter regressão e acrescentar fixtures reais/renderizados por tipo de deck."
+    },
+    {
+      "group": "Qualidade",
+      "slides_creator_score": 95.89,
+      "leader": "slides_creator",
+      "leader_label": "slide creator skill",
+      "leader_score": 95.89,
+      "priority": "P2",
+      "next_move": "Manter regressão e acrescentar fixtures reais/renderizados por tipo de deck."
+    },
+    {
+      "group": "Renderização",
+      "slides_creator_score": 65.1,
+      "leader": "ppt_master",
+      "leader_label": "ppt-master",
+      "leader_score": 93.72,
+      "priority": "P0",
+      "next_move": "Materializar runtime executável; contratos já não bastam."
+    },
+    {
+      "group": "Risco",
+      "slides_creator_score": 100.0,
+      "leader": "slides_creator",
+      "leader_label": "slide creator skill",
+      "leader_score": 100.0,
+      "priority": "P2",
+      "next_move": "Manter regressão e acrescentar fixtures reais/renderizados por tipo de deck."
+    }
+  ],
+  "next_wave": [
+    "Implementar editor mínimo sobre storyboard-edit-contract",
+    "Implementar PPTX/render executável com DrawingML, charts nativos e roundtrip",
+    "Implementar CLI/API/MCP runner usando contratos novos",
+    "Implementar share package runtime com permissões e analytics reais",
+    "Implementar TTS/video worker para multimídia"
+  ]
+}

@@ -1,0 +1,2384 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:09:33.942Z",
+  "source_files": [
+    "comparison-matrix.md",
+    "metadata.json"
+  ],
+  "benchmark": {
+    "slug": "skill-frontmatter-6way",
+    "title": "Skill Frontmatter 6way",
+    "date": "2026-04-06",
+    "type": "product",
+    "variant": "5-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "sinkra",
+      "name": "Sinkra",
+      "category": "unknown"
+    },
+    {
+      "key": "openclaw",
+      "name": "Openclaw",
+      "category": "unknown"
+    },
+    {
+      "key": "bmad",
+      "name": "Bmad",
+      "category": "unknown"
+    },
+    {
+      "key": "gsd_2",
+      "name": "Gsd 2",
+      "category": "unknown"
+    },
+    {
+      "key": "hermes",
+      "name": "Hermes",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "sinkra",
+    "coverage": "structured",
+    "sources": 1,
+    "waves": 0,
+    "dimensions": 18
+  },
+  "matrix": {
+    "players": [
+      "sinkra",
+      "openclaw",
+      "bmad",
+      "gsd_2",
+      "hermes"
+    ],
+    "dimensions": [
+      {
+        "id": "D1",
+        "label": "`name`",
+        "weight": 0
+      },
+      {
+        "id": "D2",
+        "label": "`description`",
+        "weight": 0
+      },
+      {
+        "id": "D3",
+        "label": "`version`",
+        "weight": 0
+      },
+      {
+        "id": "D4",
+        "label": "`user-invocable`",
+        "weight": 0
+      },
+      {
+        "id": "D5",
+        "label": "`allowed-tools`",
+        "weight": 0
+      },
+      {
+        "id": "D6",
+        "label": "`model`",
+        "weight": 0
+      },
+      {
+        "id": "D7",
+        "label": "`effort`",
+        "weight": 0
+      },
+      {
+        "id": "D8",
+        "label": "`context`",
+        "weight": 0
+      },
+      {
+        "id": "D9",
+        "label": "`agent`",
+        "weight": 0
+      },
+      {
+        "id": "D10",
+        "label": "`paths`",
+        "weight": 0
+      },
+      {
+        "id": "D11",
+        "label": "`shell`",
+        "weight": 0
+      },
+      {
+        "id": "D12",
+        "label": "`hooks`",
+        "weight": 0
+      },
+      {
+        "id": "D13",
+        "label": "`arguments`",
+        "weight": 0
+      },
+      {
+        "id": "D14",
+        "label": "`argument-hint`",
+        "weight": 0
+      },
+      {
+        "id": "D15",
+        "label": "`when_to_use`",
+        "weight": 0
+      },
+      {
+        "id": "D16",
+        "label": "`disable-model-invocation`",
+        "weight": 0
+      },
+      {
+        "id": "D17",
+        "label": "`maxTurns`",
+        "weight": 0
+      },
+      {
+        "id": "D18",
+        "label": "`memory`",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "D1",
+        "label": "`name`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "label": "`description`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D3",
+        "label": "`version`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D4",
+        "label": "`user-invocable`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D5",
+        "label": "`allowed-tools`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D6",
+        "label": "`model`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D7",
+        "label": "`effort`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D8",
+        "label": "`context`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D9",
+        "label": "`agent`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D10",
+        "label": "`paths`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D11",
+        "label": "`shell`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D12",
+        "label": "`hooks`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D13",
+        "label": "`arguments`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D14",
+        "label": "`argument-hint`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D15",
+        "label": "`when_to_use`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D16",
+        "label": "`disable-model-invocation`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D17",
+        "label": "`maxTurns`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "D18",
+        "label": "`memory`",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          },
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "comparison-matrix.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "sinkra",
+        "score": 38.89
+      },
+      {
+        "player": "openclaw",
+        "score": 22.22
+      },
+      {
+        "player": "bmad",
+        "score": 11.11
+      },
+      {
+        "player": "gsd_2",
+        "score": 33.33
+      },
+      {
+        "player": "hermes",
+        "score": 16.67
+      }
+    ],
+    "method": "Derived from markdown table in comparison-matrix.md"
+  },
+  "duels": [
+    {
+      "left": "sinkra",
+      "right": "openclaw",
+      "winner": "sinkra",
+      "left_wins": 4,
+      "right_wins": 1,
+      "ties": 13,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "`name`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "`description`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "`version`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D4",
+          "label": "`user-invocable`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "`allowed-tools`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D6",
+          "label": "`model`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D7",
+          "label": "`effort`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D8",
+          "label": "`context`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "`agent`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D10",
+          "label": "`paths`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "`shell`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "`hooks`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "`arguments`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "`argument-hint`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D15",
+          "label": "`when_to_use`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "`disable-model-invocation`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "`maxTurns`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D18",
+          "label": "`memory`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "sinkra",
+      "right": "bmad",
+      "winner": "sinkra",
+      "left_wins": 5,
+      "right_wins": 0,
+      "ties": 13,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "`name`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "`description`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "`version`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D4",
+          "label": "`user-invocable`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D5",
+          "label": "`allowed-tools`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "`model`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D7",
+          "label": "`effort`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D8",
+          "label": "`context`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "`agent`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D10",
+          "label": "`paths`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "`shell`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "`hooks`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "`arguments`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "`argument-hint`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D15",
+          "label": "`when_to_use`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "`disable-model-invocation`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "`maxTurns`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D18",
+          "label": "`memory`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "sinkra",
+      "right": "gsd_2",
+      "winner": "sinkra",
+      "left_wins": 5,
+      "right_wins": 4,
+      "ties": 9,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "`name`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "`description`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "`version`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D4",
+          "label": "`user-invocable`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D5",
+          "label": "`allowed-tools`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D6",
+          "label": "`model`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D7",
+          "label": "`effort`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D8",
+          "label": "`context`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "`agent`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D10",
+          "label": "`paths`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "`shell`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "`hooks`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "`arguments`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "`argument-hint`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D15",
+          "label": "`when_to_use`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "`disable-model-invocation`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "`maxTurns`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D18",
+          "label": "`memory`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "gsd_2"
+        }
+      ]
+    },
+    {
+      "left": "sinkra",
+      "right": "hermes",
+      "winner": "sinkra",
+      "left_wins": 4,
+      "right_wins": 0,
+      "ties": 14,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "`name`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "`description`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "`version`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "`user-invocable`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D5",
+          "label": "`allowed-tools`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "`model`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D7",
+          "label": "`effort`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D8",
+          "label": "`context`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "`agent`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D10",
+          "label": "`paths`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "`shell`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "`hooks`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "`arguments`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "`argument-hint`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D15",
+          "label": "`when_to_use`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "`disable-model-invocation`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "`maxTurns`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D18",
+          "label": "`memory`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "openclaw",
+      "right": "bmad",
+      "winner": "openclaw",
+      "left_wins": 2,
+      "right_wins": 0,
+      "ties": 16,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "`name`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "`description`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "`version`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "`user-invocable`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D5",
+          "label": "`allowed-tools`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D6",
+          "label": "`model`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D7",
+          "label": "`effort`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "`context`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "`agent`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "`paths`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "`shell`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "`hooks`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "`arguments`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "`argument-hint`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D15",
+          "label": "`when_to_use`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "`disable-model-invocation`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "`maxTurns`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "`memory`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "openclaw",
+      "right": "gsd_2",
+      "winner": "gsd_2",
+      "left_wins": 1,
+      "right_wins": 3,
+      "ties": 14,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "`name`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "`description`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "`version`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "`user-invocable`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D5",
+          "label": "`allowed-tools`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "`model`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D7",
+          "label": "`effort`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "`context`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "`agent`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "`paths`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "`shell`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "`hooks`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "`arguments`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "`argument-hint`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D15",
+          "label": "`when_to_use`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "`disable-model-invocation`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "`maxTurns`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "`memory`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "gsd_2"
+        }
+      ]
+    },
+    {
+      "left": "openclaw",
+      "right": "hermes",
+      "winner": "openclaw",
+      "left_wins": 2,
+      "right_wins": 1,
+      "ties": 15,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "`name`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "`description`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "`version`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D4",
+          "label": "`user-invocable`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D5",
+          "label": "`allowed-tools`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D6",
+          "label": "`model`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D7",
+          "label": "`effort`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "`context`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "`agent`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "`paths`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "`shell`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "`hooks`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "`arguments`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "`argument-hint`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D15",
+          "label": "`when_to_use`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "`disable-model-invocation`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "`maxTurns`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "`memory`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "bmad",
+      "right": "gsd_2",
+      "winner": "gsd_2",
+      "left_wins": 0,
+      "right_wins": 4,
+      "ties": 14,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "`name`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "`description`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "`version`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "`user-invocable`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "`allowed-tools`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D6",
+          "label": "`model`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D7",
+          "label": "`effort`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "`context`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "`agent`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "`paths`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "`shell`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "`hooks`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "`arguments`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "`argument-hint`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D15",
+          "label": "`when_to_use`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "`disable-model-invocation`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "`maxTurns`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "`memory`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "gsd_2"
+        }
+      ]
+    },
+    {
+      "left": "bmad",
+      "right": "hermes",
+      "winner": "hermes",
+      "left_wins": 0,
+      "right_wins": 1,
+      "ties": 17,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "`name`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "`description`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "`version`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D4",
+          "label": "`user-invocable`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "`allowed-tools`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "`model`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D7",
+          "label": "`effort`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "`context`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "`agent`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "`paths`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "`shell`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "`hooks`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "`arguments`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "`argument-hint`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D15",
+          "label": "`when_to_use`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "`disable-model-invocation`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "`maxTurns`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "`memory`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "gsd_2",
+      "right": "hermes",
+      "winner": "gsd_2",
+      "left_wins": 4,
+      "right_wins": 1,
+      "ties": 13,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "`name`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "`description`",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "`version`",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D4",
+          "label": "`user-invocable`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "`allowed-tools`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D6",
+          "label": "`model`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D7",
+          "label": "`effort`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "`context`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "`agent`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "`paths`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "`shell`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "`hooks`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "`arguments`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "`argument-hint`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D15",
+          "label": "`when_to_use`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "`disable-model-invocation`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "`maxTurns`",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "`memory`",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "gsd_2"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "sinkra",
+          "score": 38.89,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "gsd_2",
+          "score": 33.33,
+          "delta": ""
+        },
+        {
+          "rank": 3,
+          "player": "openclaw",
+          "score": 22.22,
+          "delta": ""
+        },
+        {
+          "rank": 4,
+          "player": "hermes",
+          "score": 16.67,
+          "delta": ""
+        },
+        {
+          "rank": 5,
+          "player": "bmad",
+          "score": 11.11,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "sinkra",
+          "score": 38.89
+        },
+        {
+          "player": "openclaw",
+          "score": 22.22
+        },
+        {
+          "player": "bmad",
+          "score": 11.11
+        },
+        {
+          "player": "gsd_2",
+          "score": 33.33
+        },
+        {
+          "player": "hermes",
+          "score": 16.67
+        }
+      ],
+      "verdict": "Sinkra vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [],
+  "sources": [
+    {
+      "url": "https://",
+      "file": "comparison-matrix.md",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "missing",
+    "sources": "derived"
+  },
+  "inferred": {}
+}

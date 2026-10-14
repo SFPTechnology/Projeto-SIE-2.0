@@ -1,0 +1,186 @@
+{
+  "schema": "slides-creator.absorption-decision-table.v1",
+  "generated_at": "2026-05-17",
+  "rows": [
+    {
+      "capability": "Native editable PPTX",
+      "primary_source": "ppt-master",
+      "secondary_source": "powerpoint-skill",
+      "priority": "P0",
+      "risk": "medium",
+      "target_artifact": "services/slides-renderer/native-ir + svg-to-pptx",
+      "why": "Sem isso, a solução não compete em B2B editável."
+    },
+    {
+      "capability": "Template replication/import",
+      "primary_source": "ppt-master",
+      "secondary_source": "Presenton/presentation-ai",
+      "priority": "P0",
+      "risk": "medium",
+      "target_artifact": "template-registry + pptx-template-importer",
+      "why": "Necessário para decks de marca e clientes."
+    },
+    {
+      "capability": "API generation runtime",
+      "primary_source": "Presenton",
+      "secondary_source": "slide-deck-ai",
+      "priority": "P0",
+      "risk": "low",
+      "target_artifact": "services/slides-api POST /slides/generate",
+      "why": "Transforma skill em produto operável."
+    },
+    {
+      "capability": "MCP tools",
+      "primary_source": "Presenton",
+      "secondary_source": "PPTAgent",
+      "priority": "P0",
+      "risk": "low",
+      "target_artifact": "mcp/slides-server",
+      "why": "Permite operação por agentes e automações."
+    },
+    {
+      "capability": "Narrative governance",
+      "primary_source": "slide creator skill",
+      "secondary_source": "PPTAgent",
+      "priority": "P0",
+      "risk": "low",
+      "target_artifact": "slides-chief/content-architect/qa-inspector",
+      "why": "Diferencial próprio; não substituir."
+    },
+    {
+      "capability": "Editability QA",
+      "primary_source": "ppt-master",
+      "secondary_source": "powerpoint-skill",
+      "priority": "P0",
+      "risk": "medium",
+      "target_artifact": "qa/editability-report.json",
+      "why": "Provar que PPTX é editável, não só gerado."
+    },
+    {
+      "capability": "Provider registry BYOK/Ollama",
+      "primary_source": "Presenton",
+      "secondary_source": "slide-deck-ai/presentation-ai",
+      "priority": "P0",
+      "risk": "low",
+      "target_artifact": "services/slides-ai-provider-registry",
+      "why": "Privacidade/custo/enterprise."
+    },
+    {
+      "capability": "CLI/headless batch",
+      "primary_source": "slide-deck-ai",
+      "secondary_source": "Presenton",
+      "priority": "P1",
+      "risk": "low",
+      "target_artifact": "npm run slides:generate + Python adapter",
+      "why": "Operação recorrente e CI."
+    },
+    {
+      "capability": "Reflection/PPTEval",
+      "primary_source": "PPTAgent",
+      "secondary_source": "SINKRA qa-inspector",
+      "priority": "P1",
+      "risk": "medium",
+      "target_artifact": "planning-reflection.jsonl + qa-report.json",
+      "why": "Melhora coerência e revisão."
+    },
+    {
+      "capability": "Math/diagram pipeline",
+      "primary_source": "powerpoint-skill",
+      "secondary_source": "ppt-master charts",
+      "priority": "P1",
+      "risk": "medium",
+      "target_artifact": "math-diagram-engine + OMML injection",
+      "why": "Necessário para decks técnicos e acadêmicos."
+    },
+    {
+      "capability": "Editor outline/theme",
+      "primary_source": "presentation-ai",
+      "secondary_source": "Presenton",
+      "priority": "P1",
+      "risk": "medium",
+      "target_artifact": "apps/slides-editor outline + theme manager",
+      "why": "Adoção diária e branding."
+    },
+    {
+      "capability": "Prompt-to-edit by slide/region",
+      "primary_source": "banana-slides",
+      "secondary_source": "presentation-ai",
+      "priority": "P1",
+      "risk": "high-license",
+      "target_artifact": "prompt-edit command layer",
+      "why": "UX importante, mas sem copiar código AGPL."
+    },
+    {
+      "capability": "Share runtime",
+      "primary_source": "presentation-ai",
+      "secondary_source": "Presenton",
+      "priority": "P1",
+      "risk": "medium",
+      "target_artifact": "web presentation + permissions",
+      "why": "Substitui fluxo de link do Gamma."
+    },
+    {
+      "capability": "Analytics deck/slide",
+      "primary_source": "PostHog/Umami/Plausible",
+      "secondary_source": "Gamma benchmark",
+      "priority": "P2",
+      "risk": "low",
+      "target_artifact": "deck-publication analytics events",
+      "why": "Gap geral OSS; compor separado."
+    },
+    {
+      "capability": "Realtime collaboration",
+      "primary_source": "Yjs/Hocuspocus",
+      "secondary_source": "presentation-ai patterns",
+      "priority": "P2",
+      "risk": "medium",
+      "target_artifact": "editor-state CRDT",
+      "why": "Depois de editor/export estabilizados."
+    },
+    {
+      "capability": "Video/narration export",
+      "primary_source": "PresentAgent-2",
+      "secondary_source": "ppt-master/banana-slides",
+      "priority": "P2",
+      "risk": "medium-high",
+      "target_artifact": "video-export service",
+      "why": "Alto valor, não bloqueia MVP."
+    },
+    {
+      "capability": "Interactive Q&A grounded",
+      "primary_source": "PresentAgent-2",
+      "secondary_source": "SINKRA evidence ledger",
+      "priority": "P3",
+      "risk": "medium-high",
+      "target_artifact": "deck Q&A index + video seek",
+      "why": "Diferencial futuro."
+    },
+    {
+      "capability": "Desktop app",
+      "primary_source": "Presenton",
+      "secondary_source": "Electron wrapper",
+      "priority": "P3",
+      "risk": "low",
+      "target_artifact": "package after web/runtime stable",
+      "why": "Não priorizar antes de runtime."
+    },
+    {
+      "capability": "Markdown/web fallback",
+      "primary_source": "Slidev/Marp",
+      "secondary_source": "slide-deck-ai",
+      "priority": "P3",
+      "risk": "low",
+      "target_artifact": "fallback renderer",
+      "why": "Útil para docs/técnico; não substitui PPTX editável."
+    },
+    {
+      "capability": "Legal isolation for AGPL/no-license",
+      "primary_source": "license-risk-assessment",
+      "secondary_source": "ADR jurídico",
+      "priority": "P0",
+      "risk": "high",
+      "target_artifact": "policy + forbidden copy rules",
+      "why": "Bloqueia absorção direta de banana/sem licença."
+    }
+  ]
+}

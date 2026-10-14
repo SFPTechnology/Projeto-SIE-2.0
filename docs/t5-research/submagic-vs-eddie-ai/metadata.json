@@ -1,0 +1,67 @@
+{
+  "benchmark": {
+    "subject_a": "Submagic",
+    "subject_b": "Eddie AI",
+    "comparison_type": "product",
+    "lens": "feature-extraction-for-oss-substitution",
+    "depth": "standard-plus-oss-deep",
+    "requested_by": "Alan Nicolas (@oalanicolas)",
+    "requester_intent": "Identificar features que importam para depois caçar alternativas open-source para cada uma",
+    "branch": "oalanicolas",
+    "created": "2026-05-06",
+    "updated": "2026-05-06",
+    "version": "1.0.0"
+  },
+  "scoring_method": {
+    "scale": "0-100 per dimension",
+    "dimensions": [
+      "Features (depth and breadth)",
+      "UX/Design (workflow ergonomics)",
+      "Pricing (value vs cost)",
+      "Integration (NLE, social, API)",
+      "Support (docs, community, languages)",
+      "Market Fit (target user clarity)"
+    ],
+    "equivalence_levels": ["forte 5/5", "parcial_alta 4/5", "parcial 3/5", "fraco 2/5", "sem_equivalente 1/5"]
+  },
+  "data_sources": {
+    "submagic": {
+      "official_site": "https://www.submagic.co/",
+      "official_docs": "https://docs.submagic.co/",
+      "help_center": "https://care.submagic.co/",
+      "third_party_reviews": [
+        "https://thebusinessdive.com/submagic-review",
+        "https://filmora.wondershare.com/video-editor-review/submagic-review.html",
+        "https://aicloudbase.com/tool/submagic",
+        "https://ucstrategies.com/news/submagic-review-2026-pricing-features-is-it-worth-it-for-creators/"
+      ],
+      "confidence": "High"
+    },
+    "eddie_ai": {
+      "official_site": "https://www.heyeddie.ai/",
+      "official_features_page": "https://www.heyeddie.ai/features",
+      "help_center": "https://help.heyeddie.ai/",
+      "third_party_reviews": [
+        "https://aichief.com/ai-video-tools/eddie-ai/",
+        "https://www.capterra.com/p/10041690/Eddie-AI/",
+        "https://www.bestaitools.com/tool/eddie-ai/",
+        "https://www.jimgrootes.com/heyeddie-ai-review-what-it-does-who-its-for-what-it-costs-and-how-to-use-it-without-getting-disappointed/",
+        "https://nofilmschool.com/eddie-ai-new-features",
+        "https://www.cined.com/eddie-ai-update-announced-support-for-multiple-languages-b-roll-and-a-roll-logging/"
+      ],
+      "confidence": "High"
+    }
+  },
+  "artifacts": [
+    "metadata.json",
+    "inventory-submagic.md",
+    "inventory-eddie-ai.md",
+    "comparison-matrix.md",
+    "scorecard.md",
+    "gap-analysis.md",
+    "battle-card.md",
+    "executive-report.md",
+    "deep/feature-comparison.md",
+    "deep/oss-substitution-roadmap.md"
+  ]
+}

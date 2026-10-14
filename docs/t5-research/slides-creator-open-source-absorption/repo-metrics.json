@@ -1,0 +1,55 @@
+{
+  "schema": "slides-creator-repo-metrics.v1",
+  "generated_at": "2026-05-17",
+  "ignored_dirs": [".git", "node_modules", ".next", "dist", "build", "__pycache__"],
+  "repos": [
+    {
+      "key": "ppt_master",
+      "files": 13196,
+      "top_extensions": [[".svg", 12447], [".md", 319], [".png", 235], [".py", 105], [".jpg", 32], [".pptx", 23], [".json", 10], [".csv", 7]],
+      "root_files": ["requirements.txt", "README.md", "LICENSE"]
+    },
+    {
+      "key": "banana_slides",
+      "files": 472,
+      "top_extensions": [[".py", 181], [".ts", 91], [".tsx", 54], [".mdx", 30], [".md", 19], [".webp", 14], [".sh", 12], [".yml", 11]],
+      "root_files": ["package.json", "pyproject.toml", "docker-compose.yml", "README.md", "LICENSE"]
+    },
+    {
+      "key": "presenton",
+      "files": 2343,
+      "top_extensions": [[".svg", 1525], [".tsx", 366], [".py", 188], [".ts", 120], [".json", 33], [".png", 28], ["(none)", 18], [".js", 9]],
+      "root_files": ["package.json", "docker-compose.yml", "README.md", "LICENSE"]
+    },
+    {
+      "key": "pptagent",
+      "files": 218,
+      "top_extensions": [[".py", 71], [".jpg", 53], [".txt", 21], [".json", 16], [".yaml", 14], [".md", 9], [".pptx", 9], ["(none)", 4]],
+      "root_files": ["pyproject.toml", "docker-compose.yml", "README.md", "LICENSE"]
+    },
+    {
+      "key": "presentation_ai",
+      "files": 878,
+      "top_extensions": [[".tsx", 662], [".ts", 190], [".json", 7], [".js", 3], [".woff", 3], [".css", 3], ["(none)", 2], [".md", 2]],
+      "root_files": ["package.json", "README.md", "LICENSE"]
+    },
+    {
+      "key": "slide_deck_ai",
+      "files": 439,
+      "top_extensions": [[".png", 319], [".rst", 52], [".py", 27], [".json", 7], [".md", 6], [".txt", 6], ["(none)", 5], [".pptx", 5]],
+      "root_files": ["pyproject.toml", "requirements.txt", "README.md", "LICENSE"]
+    },
+    {
+      "key": "powerpoint_skill",
+      "files": 19,
+      "top_extensions": [[".md", 6], [".py", 6], ["(none)", 2], [".json", 2], [".pdf", 1], [".js", 1], [".pptx", 1]],
+      "root_files": ["README.md", "LICENSE"]
+    },
+    {
+      "key": "presentagent_2",
+      "files": 626,
+      "top_extensions": [[".py", 285], [".png", 98], [".txt", 42], [".jpg", 35], [".md", 27], [".jsonl", 17], [".sh", 16], [".yaml", 16]],
+      "root_files": ["requirements.txt", "README.md"]
+    }
+  ]
+}

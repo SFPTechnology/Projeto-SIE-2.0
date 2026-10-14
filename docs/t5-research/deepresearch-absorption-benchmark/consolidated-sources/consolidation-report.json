@@ -1,0 +1,626 @@
+{
+  "schema": "deepresearch-bench-consolidation-report-v1",
+  "generated_at": "2026-05-18T20:30:00-03:00",
+  "canonical": "docs/bench/deepresearch-absorption-benchmark",
+  "duplicate_folders": [
+    {
+      "slug": "2026-05-18-deepresearch-absorption-benchmark",
+      "path": "docs/bench/2026-05-18-deepresearch-absorption-benchmark",
+      "files": 81,
+      "bytes": 1556835,
+      "unique_promoted": 39,
+      "conflicts_preserved": 42,
+      "skipped": 0
+    },
+    {
+      "slug": "2026-05-16-deep-research-absorption-benchmark",
+      "path": "docs/bench/2026-05-16-deep-research-absorption-benchmark",
+      "files": 25,
+      "bytes": 135923,
+      "unique_promoted": 1,
+      "conflicts_preserved": 24,
+      "skipped": 0
+    }
+  ],
+  "promoted_unique": [
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/.synapse/vault/ops/sessions/20260518-161741.json",
+      "to": "docs/bench/deepresearch-absorption-benchmark/.synapse/vault/ops/sessions/20260518-161741.json",
+      "bytes": 201
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/2026-05-18-131747-command-messageresearch-benchcommand-message.txt",
+      "to": "docs/bench/deepresearch-absorption-benchmark/2026-05-18-131747-command-messageresearch-benchcommand-message.txt",
+      "bytes": 179634
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/ADR-001-absorption-strategy.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/ADR-001-absorption-strategy.md",
+      "bytes": 5654
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/absorption-roadmap.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/absorption-roadmap.md",
+      "bytes": 8358
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/action-plan.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/action-plan.yaml",
+      "bytes": 10244
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/architecture-blueprint.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/architecture-blueprint.md",
+      "bytes": 12969
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/architecture-blueprint.mmd",
+      "to": "docs/bench/deepresearch-absorption-benchmark/architecture-blueprint.mmd",
+      "bytes": 2162
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/capability-matrix.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/capability-matrix.md",
+      "bytes": 7964
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/claims.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/claims.yaml",
+      "bytes": 9796
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/contracts/api-contract.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/contracts/api-contract.md",
+      "bytes": 3526
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/contracts/mcp-contract.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/contracts/mcp-contract.md",
+      "bytes": 3889
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/contracts/qa-rubric.json",
+      "to": "docs/bench/deepresearch-absorption-benchmark/contracts/qa-rubric.json",
+      "bytes": 2355
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/contracts/qa-rubric.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/contracts/qa-rubric.md",
+      "bytes": 4851
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/curiosity-queue.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/curiosity-queue.yaml",
+      "bytes": 4113
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/dashboard-manifest.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/dashboard-manifest.yaml",
+      "bytes": 5254
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/decision-ledger.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/decision-ledger.yaml",
+      "bytes": 7724
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/decision-rubric.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/decision-rubric.yaml",
+      "bytes": 8565
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/agentic-planning-reflection.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/deep/agentic-planning-reflection.md",
+      "bytes": 4447
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/coverage-map.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/deep/coverage-map.md",
+      "bytes": 3530
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/license-risk-assessment.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/deep/license-risk-assessment.md",
+      "bytes": 4063
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/open-source-to-sinkra-map.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/deep/open-source-to-sinkra-map.md",
+      "bytes": 5978
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/repo-notes.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/deep/repo-notes.md",
+      "bytes": 5699
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/dependency-graph.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/dependency-graph.md",
+      "bytes": 6670
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/evaluation-rubric.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/evaluation-rubric.yaml",
+      "bytes": 6116
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/execution-log.jsonl",
+      "to": "docs/bench/deepresearch-absorption-benchmark/execution-log.jsonl",
+      "bytes": 4872
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/full-comparison.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/full-comparison.md",
+      "bytes": 20116
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/matrices.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/matrices.yaml",
+      "bytes": 7346
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/metrics.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/metrics.yaml",
+      "bytes": 1301
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/pipeline-state.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/pipeline-state.yaml",
+      "bytes": 4779
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/players.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/players.yaml",
+      "bytes": 6418
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/quality-audit.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/quality-audit.md",
+      "bytes": 7062
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/quick-wins.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/quick-wins.md",
+      "bytes": 3179
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/research-graph.json",
+      "to": "docs/bench/deepresearch-absorption-benchmark/research-graph.json",
+      "bytes": 16411
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/research-profile.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/research-profile.yaml",
+      "bytes": 2740
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/risk-register.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/risk-register.yaml",
+      "bytes": 5128
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/scope-contract.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/scope-contract.yaml",
+      "bytes": 3239
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/skill-gap-analysis-tech-research.md",
+      "to": "docs/bench/deepresearch-absorption-benchmark/skill-gap-analysis-tech-research.md",
+      "bytes": 13517
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/sources.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/sources.yaml",
+      "bytes": 6206
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/validation-report.yaml",
+      "to": "docs/bench/deepresearch-absorption-benchmark/validation-report.yaml",
+      "bytes": 6018
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/sources.json",
+      "to": "docs/bench/deepresearch-absorption-benchmark/sources.json",
+      "bytes": 3243
+    }
+  ],
+  "preserved_conflicts": [
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/INDEX.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/INDEX.md",
+      "legacy_bytes": 4413,
+      "canonical_bytes": 4906
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/MANIFEST.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/MANIFEST.json",
+      "legacy_bytes": 8100,
+      "canonical_bytes": 674659
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/README.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/README.md",
+      "legacy_bytes": 4956,
+      "canonical_bytes": 5598
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/battle-card.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/battle-card.md",
+      "legacy_bytes": 4952,
+      "canonical_bytes": 1256
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/bench-contract.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/bench-contract.json",
+      "legacy_bytes": 2016,
+      "canonical_bytes": 3653
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/bench-output-dash.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/bench-output-dash.json",
+      "legacy_bytes": 585109,
+      "canonical_bytes": 2794371
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/comparison-matrix.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/comparison-matrix.json",
+      "legacy_bytes": 335222,
+      "canonical_bytes": 501239
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/comparison-matrix.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/comparison-matrix.md",
+      "legacy_bytes": 22009,
+      "canonical_bytes": 2737
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/dashboard-intelligence.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/dashboard-intelligence.md",
+      "legacy_bytes": 4081,
+      "canonical_bytes": 487
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/absorption-decision-table.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/deep/absorption-decision-table.md",
+      "legacy_bytes": 3290,
+      "canonical_bytes": 1199
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/evidence-strength-map.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/deep/evidence-strength-map.json",
+      "legacy_bytes": 2655,
+      "canonical_bytes": 535
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/evidence-strength-map.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/deep/evidence-strength-map.md",
+      "legacy_bytes": 3268,
+      "canonical_bytes": 127
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/implementation-playbook.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/deep/implementation-playbook.md",
+      "legacy_bytes": 8172,
+      "canonical_bytes": 221
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/intelligence-graph.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/deep/intelligence-graph.md",
+      "legacy_bytes": 4769,
+      "canonical_bytes": 88
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/persona-weight-methodology.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/deep/persona-weight-methodology.json",
+      "legacy_bytes": 1626,
+      "canonical_bytes": 23642
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/persona-weight-methodology.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/deep/persona-weight-methodology.md",
+      "legacy_bytes": 1377,
+      "canonical_bytes": 997
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/deep/segment-deep-analysis.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/deep/segment-deep-analysis.md",
+      "legacy_bytes": 5530,
+      "canonical_bytes": 122
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/executive-report.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/executive-report.md",
+      "legacy_bytes": 7541,
+      "canonical_bytes": 2297
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/gap-analysis.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/gap-analysis.json",
+      "legacy_bytes": 11968,
+      "canonical_bytes": 1702
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/gap-analysis.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/gap-analysis.md",
+      "legacy_bytes": 5893,
+      "canonical_bytes": 1198
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventories/autoresearchclaw.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventories/autoresearchclaw.md",
+      "legacy_bytes": 3224,
+      "canonical_bytes": 1432
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventories/deepresearcher.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventories/deepresearcher.md",
+      "legacy_bytes": 3499,
+      "canonical_bytes": 1397
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventories/deerflow.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventories/deerflow.md",
+      "legacy_bytes": 2601,
+      "canonical_bytes": 313
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventories/gpt-researcher.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventories/gpt-researcher.md",
+      "legacy_bytes": 2409,
+      "canonical_bytes": 1457
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventories/jina-node-deepresearch.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventories/jina-node-deepresearch.md",
+      "legacy_bytes": 3397,
+      "canonical_bytes": 383
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventories/langchain-open-deep-research.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventories/langchain-open-deep-research.md",
+      "legacy_bytes": 2662,
+      "canonical_bytes": 1551
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventories/local-deep-research.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventories/local-deep-research.md",
+      "legacy_bytes": 2646,
+      "canonical_bytes": 1488
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventories/openresearcher.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventories/openresearcher.md",
+      "legacy_bytes": 3513,
+      "canonical_bytes": 1451
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventories/tongyi-deepresearch.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventories/tongyi-deepresearch.md",
+      "legacy_bytes": 3442,
+      "canonical_bytes": 391
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventory-aiox-research-ecosystem.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventory-aiox-research-ecosystem.json",
+      "legacy_bytes": 8820,
+      "canonical_bytes": 1552
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventory-aiox-research-ecosystem.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventory-aiox-research-ecosystem.md",
+      "legacy_bytes": 9425,
+      "canonical_bytes": 1118
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/inventory-open-source-stack.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/inventory-open-source-stack.json",
+      "legacy_bytes": 9176,
+      "canonical_bytes": 10285
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/metadata.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/metadata.json",
+      "legacy_bytes": 3731,
+      "canonical_bytes": 786
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/risk-register.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/risk-register.json",
+      "legacy_bytes": 4017,
+      "canonical_bytes": 5676
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/risk-register.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/risk-register.md",
+      "legacy_bytes": 5661,
+      "canonical_bytes": 3381
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/scenario-scorecards.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/scenario-scorecards.json",
+      "legacy_bytes": 6670,
+      "canonical_bytes": 21122
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/scenario-scorecards.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/scenario-scorecards.md",
+      "legacy_bytes": 5361,
+      "canonical_bytes": 7136
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/scorecard.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/scorecard.json",
+      "legacy_bytes": 7175,
+      "canonical_bytes": 57615
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/scorecard.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/scorecard.md",
+      "legacy_bytes": 5326,
+      "canonical_bytes": 2662
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/segmented-comparisons.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/segmented-comparisons.json",
+      "legacy_bytes": 3985,
+      "canonical_bytes": 14477
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/segmented-comparisons.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/segmented-comparisons.md",
+      "legacy_bytes": 3818,
+      "canonical_bytes": 7281
+    },
+    {
+      "from": "docs/bench/2026-05-18-deepresearch-absorption-benchmark/story-ready-backlog.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-18-deepresearch-absorption-benchmark/conflicts/story-ready-backlog.md",
+      "legacy_bytes": 7236,
+      "canonical_bytes": 1053
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/INDEX.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/INDEX.md",
+      "legacy_bytes": 873,
+      "canonical_bytes": 4906
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/MANIFEST.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/MANIFEST.json",
+      "legacy_bytes": 1249,
+      "canonical_bytes": 674659
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/README.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/README.md",
+      "legacy_bytes": 2415,
+      "canonical_bytes": 5598
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/battle-card.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/battle-card.md",
+      "legacy_bytes": 645,
+      "canonical_bytes": 1256
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/bench-output-dash.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/bench-output-dash.json",
+      "legacy_bytes": 13791,
+      "canonical_bytes": 2794371
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/comparison-matrix.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/comparison-matrix.json",
+      "legacy_bytes": 11673,
+      "canonical_bytes": 501239
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/comparison-matrix.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/comparison-matrix.md",
+      "legacy_bytes": 1323,
+      "canonical_bytes": 2737
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/dashboard-intelligence.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/dashboard-intelligence.md",
+      "legacy_bytes": 375,
+      "canonical_bytes": 487
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/deep/methodology.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/deep/methodology.md",
+      "legacy_bytes": 1287,
+      "canonical_bytes": 1309
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/deep/sinkra-adoption-map.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/deep/sinkra-adoption-map.md",
+      "legacy_bytes": 411,
+      "canonical_bytes": 1567
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/evidence-ledger.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/evidence-ledger.json",
+      "legacy_bytes": 2954,
+      "canonical_bytes": 15411
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/evidence-ledger.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/evidence-ledger.md",
+      "legacy_bytes": 2323,
+      "canonical_bytes": 11023
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/executive-report.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/executive-report.md",
+      "legacy_bytes": 6881,
+      "canonical_bytes": 2297
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/gap-analysis.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/gap-analysis.json",
+      "legacy_bytes": 1728,
+      "canonical_bytes": 1702
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/gap-analysis.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/gap-analysis.md",
+      "legacy_bytes": 961,
+      "canonical_bytes": 1198
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/implementation-readiness-gate.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/implementation-readiness-gate.json",
+      "legacy_bytes": 1074,
+      "canonical_bytes": 1501
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/implementation-readiness-gate.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/implementation-readiness-gate.md",
+      "legacy_bytes": 665,
+      "canonical_bytes": 800
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/metadata.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/metadata.json",
+      "legacy_bytes": 10665,
+      "canonical_bytes": 786
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/risk-register.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/risk-register.json",
+      "legacy_bytes": 1568,
+      "canonical_bytes": 5676
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/risk-register.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/risk-register.md",
+      "legacy_bytes": 1083,
+      "canonical_bytes": 3381
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/scenario-scorecards.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/scenario-scorecards.json",
+      "legacy_bytes": 19030,
+      "canonical_bytes": 21122
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/scenario-scorecards.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/scenario-scorecards.md",
+      "legacy_bytes": 3341,
+      "canonical_bytes": 7136
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/scorecard.json",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/scorecard.json",
+      "legacy_bytes": 43217,
+      "canonical_bytes": 57615
+    },
+    {
+      "from": "docs/bench/2026-05-16-deep-research-absorption-benchmark/scorecard.md",
+      "preserved_as": "docs/bench/deepresearch-absorption-benchmark/consolidated-sources/2026-05-16-deep-research-absorption-benchmark/conflicts/scorecard.md",
+      "legacy_bytes": 3148,
+      "canonical_bytes": 2662
+    }
+  ],
+  "skipped_same_or_older": []
+}

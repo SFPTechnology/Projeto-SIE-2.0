@@ -1,0 +1,154 @@
+workflow: MOD-QT-2-MOTOR-QUEDA-TENSAO
+story_id: MOD-QT-2-01
+related_stories: ["MOD-QT-2-02"]
+mode: yolo
+human_intervention: false
+default_on_missing_evidence: BLOCK
+updated_at: "2026-07-28"
+updated_by: "@qa (Quinn)"
+
+current_state: QA_GATE_EMITIDO
+next_state: DEVOPS_PREPARACAO
+next_agent: "@devops"
+next_command: "*prepare-release MOD-QT-2-01 --no-push"
+
+gate_result:
+  MOD-QT-2-01:
+    verdict: CONCERNS
+    quality_score: 80
+    story_status: "InReview -> Done"
+    artifact: "docs/qa/gates/MOD-QT-2-01-gate.yaml"
+  MOD-QT-2-02:
+    verdict: CONCERNS
+    quality_score: 80
+    story_status: "InReview -> Done"
+    artifact: "docs/qa/gates/MOD-QT-2-02-gate.yaml"
+
+state_history:
+  - state: PREFLIGHT_DOCUMENTAL
+    result: pass
+    agent: "@aiox-master"
+    date: "2026-07-27"
+  - state: STORY_DRAFT
+    result: pass
+    agent: "@sm"
+    date: "2026-07-27"
+    artifact: "docs/stories/story-MOD-QT-2-01-motor-calculo-queda-tensao.md"
+  - state: STORY_VALIDATION
+    result: go
+    agent: "@po"
+    date: "2026-07-27"
+    score: "10/10"
+    story_status: "Draft -> Ready"
+    artifact: ".aiox/handoffs/MOD-QT-2-01-po-to-dev.yaml"
+  - state: IMPLEMENTATION
+    result: pass
+    agent: "@dev"
+    date: "2026-07-27"
+    story_status: "Ready -> InProgress -> InReview"
+    artifact: ".aiox/handoffs/MOD-QT-2-01-dev-to-qa.yaml"
+    nota: "Tasks 4.2-4.7 fatiadas para MOD-QT-2-02 sob DEV-06"
+  - state: PO_INDEPENDENT_VERIFICATION
+    result: concerns
+    agent: "@po"
+    date: "2026-07-28"
+    artifact: ".aiox/handoffs/MOD-QT-2-01-po-addendum-to-qa.yaml"
+    divergencias: ["PO-DIV-01", "PO-DIV-02"]
+  - state: STORY_DRAFT_02
+    result: pass
+    agent: "@sm"
+    date: "2026-07-28"
+    artifact: "docs/stories/story-MOD-QT-2-02-simulador-endpoints-ui.md"
+  - state: IMPLEMENTATION_02
+    result: pass
+    agent: "@dev"
+    date: "2026-07-28"
+    story_status: "Ready -> InProgress -> InReview"
+  - state: QA_GATE
+    result: concerns
+    agent: "@qa"
+    date: "2026-07-28"
+    stories: ["MOD-QT-2-01", "MOD-QT-2-02"]
+    story_status: "InReview -> Done (ambas)"
+    artifacts:
+      - "docs/qa/gates/MOD-QT-2-01-gate.yaml"
+      - "docs/qa/gates/MOD-QT-2-02-gate.yaml"
+      - ".aiox/handoffs/MOD-QT-2-01-qa-to-devops.yaml"
+
+# ---------------------------------------------------------------------------
+gates_tecnicos_qa:
+  executados_por: "@qa"
+  data: "2026-07-28"
+  submodule_branch: "feature/nbr5410-conformidade-closeout"
+  typecheck: { resultado: PASS, exit_code: 0 }
+  build: { resultado: PASS, exit_code: 0, tempo: "8.50s" }
+  lint_escopo_story: { resultado: PASS, exit_code: 0 }
+  lint_projeto_inteiro: { resultado: NAO_VERIFICADO, motivo: "sem saida apos ~20min" }
+  test:
+    resultado: FAIL_NAO_ATRIBUIVEL
+    exit_code: 1
+    test_files: "1 failed | 125 passed (126)"
+    tests: "1 failed | 832 passed (833)"
+  test_subsuite_mod_qt: { resultado: PASS, exit_code: 0, arquivos: 6, testes: 76 }
+  coderabbit: { resultado: NAO_VERIFICADO }
+
+divergencias_po_status:
+  PO-DIV-01: RESOLVIDA_PARCIALMENTE_E_RECLASSIFICADA
+  PO-DIV-02: RESOLVIDA
+
+decisoes_qa:
+  acs_sem_evidencia:
+    acs: [AC8, AC9, AC12, AC14]
+    opcao: "(b) vinculacao a MOD-QT-2-02"
+    waiver_concedido: false
+  pt_11_grafico_svg: ACEITO
+
+counters:
+  no_go_cycles: 0
+  no_go_limit: 3
+  gate_failures: 0
+  gate_failure_limit: 3
+
+scope_locks:
+  package: "Pacote 1"
+  blocked_packages: ["Pacote 2 (VER-QT-02/03)", "Pacote 3 (VER-QT-07)", "Pacote 4 (VER-QT-04)"]
+  immutable_contract:
+    - "src/domain/dimensionamento-condutores/contratos.ts :: RetornoMODQT"
+    - "src/api/schemas/otimizar-condutor.schema.ts :: ValidarMODQTSchema"
+    - "src/api/schemas/otimizar-condutor.schema.ts :: RetornoMODQTSchema"
+    - "POST /api/v1/modulos/mod-qt/validar"
+  contrato_verificado_por_qa: "2026-07-28 — INTACTO (criterio por simbolo)"
+  push_authorization: "requer autorizacao explicita do usuario (@devops apenas prepara)"
+
+# ---------------------------------------------------------------------------
+blockers_ativos:
+  - id: QT201-001
+    severidade: HIGH
+    descricao: >-
+      `npm test` sai com exit 1. tests/domain/calculo/derivar-circuitos.test.ts >
+      "dependencia sem resultado e ignorada" falha por alteracao nao commitada em
+      src/domain/calculo/derivar-circuitos.ts (guarda `!r` removida).
+    atribuivel_as_stories_mod_qt: false
+    bloqueia_story: false
+    bloqueia_commit_push: true
+    owner: "@po / dono do epico MOD-CC-AUTO-OTI-DUC"
+
+pendencias_abertas:
+  - id: QT201-002
+    item: "`eslint .` nao conclui neste ambiente"
+    owner: "@dev"
+  - id: QT202-002
+    item: "`parametros` com z.record + cast duplo em aplicar-cenario.ts:37 (OWASP A03)"
+    owner: "@dev"
+  - id: PT-08
+    item: "Criar tabela `queda_tensao_config` + policy anon no Supabase"
+    owner: "@data-engineer"
+  - id: PT-09
+    item: "Executar CodeRabbit apos consolidacao do worktree"
+    owner: "@devops"
+  - id: VER-QT-02/03
+    item: "Tabela de impedancia real (catalogo Prysmian)"
+    owner: "MOD-QT-2-03 / MOD-QT-2-04 (em criacao pelo @sm)"
+  - id: VER-QT-04/07
+    item: "Fator bifasico e alinea 6.2.7.1 EDP-SP"
+    owner: "Pacotes 3 e 4 — bloqueados por fonte externa"

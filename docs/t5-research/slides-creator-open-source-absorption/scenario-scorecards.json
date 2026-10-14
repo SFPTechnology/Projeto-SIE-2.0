@@ -1,0 +1,5877 @@
+{
+  "schema": "slides-creator-persona-scorecards.v4",
+  "generated_at": "2026-05-18",
+  "method": "Personas recalculadas sobre 108 microdimensões; os pesos macro originais foram distribuídos entre checks operacionais filhos para manter a intenção de cada persona.",
+  "dimensions": [
+    {
+      "index": 1,
+      "id": "input_prompt_generation__intent_capture",
+      "parent_id": "input_prompt_generation",
+      "label": "Captura intenção, público, tese e restrições antes de gerar",
+      "question": "O player força briefing suficiente antes de escrever slides?",
+      "weight": 0.6667,
+      "group": "Entrada"
+    },
+    {
+      "index": 2,
+      "id": "input_prompt_generation__outline_prompting",
+      "parent_id": "input_prompt_generation",
+      "label": "Transforma prompt em outline revisável antes do deck",
+      "question": "Existe etapa explícita de outline/estrutura antes da geração final?",
+      "weight": 0.6667,
+      "group": "Entrada"
+    },
+    {
+      "index": 3,
+      "id": "input_prompt_generation__full_deck_autonomy",
+      "parent_id": "input_prompt_generation",
+      "label": "Gera deck completo a partir de ideia curta",
+      "question": "Consegue sair de prompt curto para deck inteiro com pouca intervenção?",
+      "weight": 0.6667,
+      "group": "Entrada"
+    },
+    {
+      "index": 4,
+      "id": "document_ingestion__file_type_coverage",
+      "parent_id": "document_ingestion",
+      "label": "Cobertura de tipos PDF/DOCX/PPTX/MD",
+      "question": "Quais formatos reais são aceitos como entrada?",
+      "weight": 0.6667,
+      "group": "Entrada"
+    },
+    {
+      "index": 5,
+      "id": "document_ingestion__semantic_extraction",
+      "parent_id": "document_ingestion",
+      "label": "Extração semântica de claims, seções, tabelas e evidências",
+      "question": "A ingestão preserva significado e não só texto bruto?",
+      "weight": 0.6667,
+      "group": "Entrada"
+    },
+    {
+      "index": 6,
+      "id": "document_ingestion__pptx_reverse_ingestion",
+      "parent_id": "document_ingestion",
+      "label": "Ingestão/reaproveitamento de PPTX existente",
+      "question": "Consegue ler/renovar/importar PPTX como fonte ou template?",
+      "weight": 0.6667,
+      "group": "Entrada"
+    },
+    {
+      "index": 7,
+      "id": "url_youtube_ingestion__url_fetch",
+      "parent_id": "url_youtube_ingestion",
+      "label": "Ingestão de URL/site/documento remoto",
+      "question": "Lê páginas ou documentos remotos sem copiar manualmente?",
+      "weight": 0.6667,
+      "group": "Entrada"
+    },
+    {
+      "index": 8,
+      "id": "url_youtube_ingestion__youtube_media",
+      "parent_id": "url_youtube_ingestion",
+      "label": "YouTube/vídeo como fonte de narrativa",
+      "question": "Usa vídeo/transcrição/mídia como insumo para slides?",
+      "weight": 0.6667,
+      "group": "Entrada"
+    },
+    {
+      "index": 9,
+      "id": "url_youtube_ingestion__media_to_slide_mapping",
+      "parent_id": "url_youtube_ingestion",
+      "label": "Mapeia mídia para momentos/trechos do deck",
+      "question": "Relaciona trechos de vídeo/áudio com slides ou Q&A?",
+      "weight": 0.6667,
+      "group": "Entrada"
+    },
+    {
+      "index": 10,
+      "id": "source_grounding_research__source_routing",
+      "parent_id": "source_grounding_research",
+      "label": "Roteia fonte por tipo: web, scholar, local, vídeo ou benchmark",
+      "question": "Existe política de seleção de fontes por tipo?",
+      "weight": 1,
+      "group": "Entrada"
+    },
+    {
+      "index": 11,
+      "id": "source_grounding_research__claim_evidence_trace",
+      "parent_id": "source_grounding_research",
+      "label": "Liga claim a evidência e confiança",
+      "question": "Cada afirmação crítica pode virar ledger?",
+      "weight": 1,
+      "group": "Entrada"
+    },
+    {
+      "index": 12,
+      "id": "source_grounding_research__freshness_verification",
+      "parent_id": "source_grounding_research",
+      "label": "Verifica frescor e risco factual",
+      "question": "Há cuidado explícito com data, fonte primária e obsolescência?",
+      "weight": 1,
+      "group": "Entrada"
+    },
+    {
+      "index": 13,
+      "id": "outline_first_workflow__editable_outline",
+      "parent_id": "outline_first_workflow",
+      "label": "Outline editável antes da geração",
+      "question": "Usuário consegue revisar estrutura antes do render?",
+      "weight": 0.6667,
+      "group": "Planejamento"
+    },
+    {
+      "index": 14,
+      "id": "outline_first_workflow__section_hierarchy",
+      "parent_id": "outline_first_workflow",
+      "label": "Hierarquia seções > slides > beats",
+      "question": "O outline carrega função por seção e slide?",
+      "weight": 0.6667,
+      "group": "Planejamento"
+    },
+    {
+      "index": 15,
+      "id": "outline_first_workflow__outline_to_slide_trace",
+      "parent_id": "outline_first_workflow",
+      "label": "Rastreio outline -> slide final",
+      "question": "A decisão estrutural permanece auditável até o deck?",
+      "weight": 0.6667,
+      "group": "Planejamento"
+    },
+    {
+      "index": 16,
+      "id": "consultative_narrative__belief_shift",
+      "parent_id": "consultative_narrative",
+      "label": "Define mudança de crença da audiência",
+      "question": "A narrativa declara de onde a audiência sai e para onde vai?",
+      "weight": 1.3333,
+      "group": "Planejamento"
+    },
+    {
+      "index": 17,
+      "id": "consultative_narrative__executive_pyramid",
+      "parent_id": "consultative_narrative",
+      "label": "Usa lógica SCQA/Pyramid/action-title",
+      "question": "Há mecanismo consultivo para síntese executiva?",
+      "weight": 1.3333,
+      "group": "Planejamento"
+    },
+    {
+      "index": 18,
+      "id": "consultative_narrative__cta_decision_design",
+      "parent_id": "consultative_narrative",
+      "label": "Conecta história ao CTA ou decisão final",
+      "question": "O deck fecha com decisão, próximo passo ou venda clara?",
+      "weight": 1.3333,
+      "group": "Planejamento"
+    },
+    {
+      "index": 19,
+      "id": "slide_structure_planning__slide_function_map",
+      "parent_id": "slide_structure_planning",
+      "label": "Mapa de função por slide",
+      "question": "Cada slide tem função, mensagem e razão de existir?",
+      "weight": 1,
+      "group": "Planejamento"
+    },
+    {
+      "index": 20,
+      "id": "slide_structure_planning__key_slide_critique",
+      "parent_id": "slide_structure_planning",
+      "label": "Critica slides decisivos antes da produção total",
+      "question": "Capa, reframe, mecanismo, prova e CTA são avaliados cedo?",
+      "weight": 1,
+      "group": "Planejamento"
+    },
+    {
+      "index": 21,
+      "id": "slide_structure_planning__speaker_flow",
+      "parent_id": "slide_structure_planning",
+      "label": "Fluxo de fala/transição entre slides",
+      "question": "O planejamento inclui ritmo e transições orais?",
+      "weight": 1,
+      "group": "Planejamento"
+    },
+    {
+      "index": 22,
+      "id": "visual_layout_quality__layout_variety",
+      "parent_id": "visual_layout_quality",
+      "label": "Variedade de layout sem virar colagem",
+      "question": "Evita repetição de cards/bullets e mantém coerência?",
+      "weight": 0.6667,
+      "group": "Design"
+    },
+    {
+      "index": 23,
+      "id": "visual_layout_quality__visual_density_control",
+      "parent_id": "visual_layout_quality",
+      "label": "Controle de densidade e legibilidade",
+      "question": "Define limites de texto, hierarquia e respiro?",
+      "weight": 0.6667,
+      "group": "Design"
+    },
+    {
+      "index": 24,
+      "id": "visual_layout_quality__rendered_visual_quality",
+      "parent_id": "visual_layout_quality",
+      "label": "Qualidade visual observada no render final",
+      "question": "O output final parece polido e apresentável?",
+      "weight": 0.6667,
+      "group": "Design"
+    },
+    {
+      "index": 25,
+      "id": "template_import_replication__template_manifest",
+      "parent_id": "template_import_replication",
+      "label": "Manifesta templates importados",
+      "question": "Extrai masters, layouts, fontes, cores e assets?",
+      "weight": 0.6667,
+      "group": "Design"
+    },
+    {
+      "index": 26,
+      "id": "template_import_replication__brand_fidelity",
+      "parent_id": "template_import_replication",
+      "label": "Replica linguagem visual de template/brand deck",
+      "question": "Consegue seguir um deck de referência sem só copiar estética superficial?",
+      "weight": 0.6667,
+      "group": "Design"
+    },
+    {
+      "index": 27,
+      "id": "template_import_replication__template_selection_logic",
+      "parent_id": "template_import_replication",
+      "label": "Seleciona template por função do slide",
+      "question": "Escolhe estrutura por job-to-be-done, não só aparência?",
+      "weight": 0.6667,
+      "group": "Design"
+    },
+    {
+      "index": 28,
+      "id": "theme_tokens_branding__token_schema",
+      "parent_id": "theme_tokens_branding",
+      "label": "Tokens de cor, fonte, espaçamento e grid",
+      "question": "Existe contrato explícito de design tokens?",
+      "weight": 0.6667,
+      "group": "Design"
+    },
+    {
+      "index": 29,
+      "id": "theme_tokens_branding__theme_runtime",
+      "parent_id": "theme_tokens_branding",
+      "label": "Runtime aplica tema consistentemente",
+      "question": "O tema realmente chega ao render/editor?",
+      "weight": 0.6667,
+      "group": "Design"
+    },
+    {
+      "index": 30,
+      "id": "theme_tokens_branding__brand_guardrails",
+      "parent_id": "theme_tokens_branding",
+      "label": "Guardrails de marca e anti-padrões",
+      "question": "Há regras para impedir design fora da marca?",
+      "weight": 0.6667,
+      "group": "Design"
+    },
+    {
+      "index": 31,
+      "id": "native_pptx_objects__drawingml_shapes",
+      "parent_id": "native_pptx_objects",
+      "label": "Gera shapes/textos nativos DrawingML",
+      "question": "Texto, formas e layout são editáveis no PowerPoint?",
+      "weight": 1.6667,
+      "group": "Renderização"
+    },
+    {
+      "index": 32,
+      "id": "native_pptx_objects__image_vs_object_policy",
+      "parent_id": "native_pptx_objects",
+      "label": "Evita transformar tudo em imagem",
+      "question": "Há política para quando usar imagem vs objeto editável?",
+      "weight": 1.6667,
+      "group": "Renderização"
+    },
+    {
+      "index": 33,
+      "id": "native_pptx_objects__powerpoint_reopen_fidelity",
+      "parent_id": "native_pptx_objects",
+      "label": "Reabre no PowerPoint sem quebrar layout",
+      "question": "O arquivo abre em PowerPoint com fidelidade real?",
+      "weight": 1.6667,
+      "group": "Renderização"
+    },
+    {
+      "index": 34,
+      "id": "charts_tables_native__native_charts",
+      "parent_id": "charts_tables_native",
+      "label": "Charts nativos e editáveis",
+      "question": "Gráficos são objetos nativos, não screenshots?",
+      "weight": 1,
+      "group": "Renderização"
+    },
+    {
+      "index": 35,
+      "id": "charts_tables_native__table_rebuild",
+      "parent_id": "charts_tables_native",
+      "label": "Reconstrói tabelas com hierarquia e destaques",
+      "question": "Tabelas são recriadas com formatação, headers e insights?",
+      "weight": 1,
+      "group": "Renderização"
+    },
+    {
+      "index": 36,
+      "id": "charts_tables_native__data_contract",
+      "parent_id": "charts_tables_native",
+      "label": "Contrato de dados para charts/tabelas",
+      "question": "Valida shape de dados antes de renderizar?",
+      "weight": 1,
+      "group": "Renderização"
+    },
+    {
+      "index": 37,
+      "id": "math_diagrams_technical__latex_omml",
+      "parent_id": "math_diagrams_technical",
+      "label": "LaTeX/OMML para matemática editável ou nítida",
+      "question": "Fórmulas têm pipeline técnico controlado?",
+      "weight": 1,
+      "group": "Renderização"
+    },
+    {
+      "index": 38,
+      "id": "math_diagrams_technical__diagram_engines",
+      "parent_id": "math_diagrams_technical",
+      "label": "Mermaid/Graphviz/TikZ/diagram engines",
+      "question": "Diagramas técnicos são gerados por engine apropriado?",
+      "weight": 1,
+      "group": "Renderização"
+    },
+    {
+      "index": 39,
+      "id": "math_diagrams_technical__technical_visual_qa",
+      "parent_id": "math_diagrams_technical",
+      "label": "QA técnico de overflow, tema e legibilidade",
+      "question": "Verifica clipping, cores e legibilidade de diagramas?",
+      "weight": 1,
+      "group": "Renderização"
+    },
+    {
+      "index": 40,
+      "id": "animations_transitions_ooxml__global_animation_defaults",
+      "parent_id": "animations_transitions_ooxml",
+      "label": "Animações/transições padrão",
+      "question": "Tem padrão de animação exportável?",
+      "weight": 0.6667,
+      "group": "Renderização"
+    },
+    {
+      "index": 41,
+      "id": "animations_transitions_ooxml__object_animation_control",
+      "parent_id": "animations_transitions_ooxml",
+      "label": "Controle por objeto/ordem/timing",
+      "question": "Permite ajustar animação de objeto específico?",
+      "weight": 0.6667,
+      "group": "Renderização"
+    },
+    {
+      "index": 42,
+      "id": "animations_transitions_ooxml__animation_validation",
+      "parent_id": "animations_transitions_ooxml",
+      "label": "Valida configuração de animações",
+      "question": "Há validação para animação antes do export?",
+      "weight": 0.6667,
+      "group": "Renderização"
+    },
+    {
+      "index": 43,
+      "id": "narration_audio__speaker_notes",
+      "parent_id": "narration_audio",
+      "label": "Speaker notes estruturadas",
+      "question": "Notas ajudam apresentação e não viram script ruim?",
+      "weight": 0.6667,
+      "group": "Multimídia"
+    },
+    {
+      "index": 44,
+      "id": "narration_audio__tts_voiceover",
+      "parent_id": "narration_audio",
+      "label": "TTS/narração automática",
+      "question": "Gera áudio narrado ou voiceover?",
+      "weight": 0.6667,
+      "group": "Multimídia"
+    },
+    {
+      "index": 45,
+      "id": "narration_audio__audio_sync",
+      "parent_id": "narration_audio",
+      "label": "Sincroniza áudio com slide/trecho",
+      "question": "Áudio se conecta ao momento visual?",
+      "weight": 0.6667,
+      "group": "Multimídia"
+    },
+    {
+      "index": 46,
+      "id": "video_export__ppt_to_video",
+      "parent_id": "video_export",
+      "label": "Exporta deck para vídeo/MP4",
+      "question": "Consegue produzir vídeo de apresentação?",
+      "weight": 0.6667,
+      "group": "Multimídia"
+    },
+    {
+      "index": 47,
+      "id": "video_export__interactive_video_qa",
+      "parent_id": "video_export",
+      "label": "Q&A ou navegação sobre vídeo",
+      "question": "Permite interação com vídeo/documento?",
+      "weight": 0.6667,
+      "group": "Multimídia"
+    },
+    {
+      "index": 48,
+      "id": "video_export__media_asset_pipeline",
+      "parent_id": "video_export",
+      "label": "Pipeline de assets multimídia",
+      "question": "Organiza imagens/áudio/vídeo como artefatos?",
+      "weight": 0.6667,
+      "group": "Multimídia"
+    },
+    {
+      "index": 49,
+      "id": "live_preview_annotations__live_preview_server",
+      "parent_id": "live_preview_annotations",
+      "label": "Preview vivo local/web",
+      "question": "Renderiza preview clicável durante produção?",
+      "weight": 1,
+      "group": "Editor"
+    },
+    {
+      "index": 50,
+      "id": "live_preview_annotations__visual_annotation_loop",
+      "parent_id": "live_preview_annotations",
+      "label": "Anotações visuais viram correções",
+      "question": "Usuário consegue marcar e aplicar ajuste visual?",
+      "weight": 1,
+      "group": "Editor"
+    },
+    {
+      "index": 51,
+      "id": "live_preview_annotations__render_snapshot_review",
+      "parent_id": "live_preview_annotations",
+      "label": "Revisão por screenshot/thumbnail",
+      "question": "Gera imagem para QA antes de entregar?",
+      "weight": 1,
+      "group": "Editor"
+    },
+    {
+      "index": 52,
+      "id": "prompt_to_edit__natural_language_edit",
+      "parent_id": "prompt_to_edit",
+      "label": "Edição por linguagem natural",
+      "question": "Prompt altera deck/slide sem mexer no código?",
+      "weight": 1.3333,
+      "group": "Editor"
+    },
+    {
+      "index": 53,
+      "id": "prompt_to_edit__diff_before_apply",
+      "parent_id": "prompt_to_edit",
+      "label": "Diff antes de aplicar edição",
+      "question": "Mostra mudança proposta antes de modificar artefato?",
+      "weight": 1.3333,
+      "group": "Editor"
+    },
+    {
+      "index": 54,
+      "id": "prompt_to_edit__edit_history",
+      "parent_id": "prompt_to_edit",
+      "label": "Histórico reversível de edição",
+      "question": "Registra quem mudou o quê e por quê?",
+      "weight": 1.3333,
+      "group": "Editor"
+    },
+    {
+      "index": 55,
+      "id": "regional_element_editing__slide_region_targeting",
+      "parent_id": "regional_element_editing",
+      "label": "Target por slide, região ou elemento",
+      "question": "Prompt seleciona parte específica do slide?",
+      "weight": 1,
+      "group": "Editor"
+    },
+    {
+      "index": 56,
+      "id": "regional_element_editing__object_identity",
+      "parent_id": "regional_element_editing",
+      "label": "Identidade estável de objetos",
+      "question": "Objetos têm IDs/paths para edição precisa?",
+      "weight": 1,
+      "group": "Editor"
+    },
+    {
+      "index": 57,
+      "id": "regional_element_editing__localized_visual_regen",
+      "parent_id": "regional_element_editing",
+      "label": "Regenera só a área necessária",
+      "question": "Evita refazer o deck inteiro para uma correção pequena?",
+      "weight": 1,
+      "group": "Editor"
+    },
+    {
+      "index": 58,
+      "id": "web_editor_runtime__canvas_editor",
+      "parent_id": "web_editor_runtime",
+      "label": "Canvas/editor web para slides",
+      "question": "Existe editor visual real?",
+      "weight": 1.3333,
+      "group": "Editor"
+    },
+    {
+      "index": 59,
+      "id": "web_editor_runtime__rich_text_blocks",
+      "parent_id": "web_editor_runtime",
+      "label": "Blocos ricos: texto, mídia, charts, componentes",
+      "question": "Editor manipula blocos além de texto?",
+      "weight": 1.3333,
+      "group": "Editor"
+    },
+    {
+      "index": 60,
+      "id": "web_editor_runtime__state_management_undo",
+      "parent_id": "web_editor_runtime",
+      "label": "Estado, undo/redo e persistência",
+      "question": "Runtime tem estado robusto para edição?",
+      "weight": 1.3333,
+      "group": "Editor"
+    },
+    {
+      "index": 61,
+      "id": "collaboration_realtime__review_comments",
+      "parent_id": "collaboration_realtime",
+      "label": "Comentários/revisão assíncrona",
+      "question": "Permite revisão colaborativa?",
+      "weight": 0.6667,
+      "group": "Editor"
+    },
+    {
+      "index": 62,
+      "id": "collaboration_realtime__multi_user_realtime",
+      "parent_id": "collaboration_realtime",
+      "label": "Colaboração multiusuário em tempo real",
+      "question": "Suporta coedição simultânea?",
+      "weight": 0.6667,
+      "group": "Editor"
+    },
+    {
+      "index": 63,
+      "id": "collaboration_realtime__approval_workflow",
+      "parent_id": "collaboration_realtime",
+      "label": "Workflow de aprovação/versões",
+      "question": "Aprovação e versionamento são explícitos?",
+      "weight": 0.6667,
+      "group": "Editor"
+    },
+    {
+      "index": 64,
+      "id": "sharing_publishing__public_link",
+      "parent_id": "sharing_publishing",
+      "label": "Link público/privado para apresentar",
+      "question": "Publica deck em URL?",
+      "weight": 1,
+      "group": "Distribuição"
+    },
+    {
+      "index": 65,
+      "id": "sharing_publishing__export_formats",
+      "parent_id": "sharing_publishing",
+      "label": "Export PDF/PPTX/imagens",
+      "question": "Entrega formatos esperados para cliente?",
+      "weight": 1,
+      "group": "Distribuição"
+    },
+    {
+      "index": 66,
+      "id": "sharing_publishing__permission_model",
+      "parent_id": "sharing_publishing",
+      "label": "Permissões e controle de acesso",
+      "question": "Distingue público, privado e compartilhado?",
+      "weight": 1,
+      "group": "Distribuição"
+    },
+    {
+      "index": 67,
+      "id": "deck_analytics__view_events",
+      "parent_id": "deck_analytics",
+      "label": "Eventos de visualização por deck/slide",
+      "question": "Mede views, tempo ou progressão?",
+      "weight": 0.6667,
+      "group": "Distribuição"
+    },
+    {
+      "index": 68,
+      "id": "deck_analytics__engagement_insight",
+      "parent_id": "deck_analytics",
+      "label": "Insights de engajamento acionáveis",
+      "question": "Mostra onde audiência engaja ou abandona?",
+      "weight": 0.6667,
+      "group": "Distribuição"
+    },
+    {
+      "index": 69,
+      "id": "deck_analytics__crm_followup_signal",
+      "parent_id": "deck_analytics",
+      "label": "Sinal para follow-up comercial",
+      "question": "Analytics alimenta próxima ação de vendas?",
+      "weight": 0.6667,
+      "group": "Distribuição"
+    },
+    {
+      "index": 70,
+      "id": "api_generation__rest_generate_endpoint",
+      "parent_id": "api_generation",
+      "label": "Endpoint REST para gerar deck",
+      "question": "Há API documentada para geração?",
+      "weight": 1.3333,
+      "group": "Automação"
+    },
+    {
+      "index": 71,
+      "id": "api_generation__job_queue_status",
+      "parent_id": "api_generation",
+      "label": "Job assíncrono com status e artefatos",
+      "question": "Geração longa tem fila/status/retry?",
+      "weight": 1.3333,
+      "group": "Automação"
+    },
+    {
+      "index": 72,
+      "id": "api_generation__api_contract_schema",
+      "parent_id": "api_generation",
+      "label": "Contrato estável de input/output",
+      "question": "API tem schema/contrato claro?",
+      "weight": 1.3333,
+      "group": "Automação"
+    },
+    {
+      "index": 73,
+      "id": "mcp_automation__mcp_server_tools",
+      "parent_id": "mcp_automation",
+      "label": "MCP/tools para geração e edição",
+      "question": "Expõe capacidades para agentes?",
+      "weight": 1.3333,
+      "group": "Automação"
+    },
+    {
+      "index": 74,
+      "id": "mcp_automation__agent_orchestration",
+      "parent_id": "mcp_automation",
+      "label": "Orquestra etapas por agente/workflow",
+      "question": "Planeja, executa, revisa e corrige via agentes?",
+      "weight": 1.3333,
+      "group": "Automação"
+    },
+    {
+      "index": 75,
+      "id": "mcp_automation__tool_safety_boundaries",
+      "parent_id": "mcp_automation",
+      "label": "Limites de ferramenta e segurança operacional",
+      "question": "Evita ações perigosas ou não verificadas?",
+      "weight": 1.3333,
+      "group": "Automação"
+    },
+    {
+      "index": 76,
+      "id": "cli_headless__batch_generation",
+      "parent_id": "cli_headless",
+      "label": "Batch/headless para múltiplos decks",
+      "question": "Roda sem UI e em lote?",
+      "weight": 1,
+      "group": "Automação"
+    },
+    {
+      "index": 77,
+      "id": "cli_headless__local_cli_commands",
+      "parent_id": "cli_headless",
+      "label": "CLI clara para gerar/exportar/revisar",
+      "question": "Comandos são documentados e reproduzíveis?",
+      "weight": 1,
+      "group": "Automação"
+    },
+    {
+      "index": 78,
+      "id": "cli_headless__ci_automation_fit",
+      "parent_id": "cli_headless",
+      "label": "Cabe em CI ou pipeline automatizado",
+      "question": "É adequado para automação testável?",
+      "weight": 1,
+      "group": "Automação"
+    },
+    {
+      "index": 79,
+      "id": "provider_registry__llm_provider_switching",
+      "parent_id": "provider_registry",
+      "label": "Troca de provedores LLM",
+      "question": "Suporta OpenAI/Gemini/Anthropic/local?",
+      "weight": 0.6667,
+      "group": "IA"
+    },
+    {
+      "index": 80,
+      "id": "provider_registry__image_provider_switching",
+      "parent_id": "provider_registry",
+      "label": "Troca de provedores de imagem/stock",
+      "question": "DALL-E/Gemini/Pexels/stock etc. são roteáveis?",
+      "weight": 0.6667,
+      "group": "IA"
+    },
+    {
+      "index": 81,
+      "id": "provider_registry__provider_policy",
+      "parent_id": "provider_registry",
+      "label": "Política de custo, privacidade e fallback",
+      "question": "Escolhe provedor por restrição, não só disponibilidade?",
+      "weight": 0.6667,
+      "group": "IA"
+    },
+    {
+      "index": 82,
+      "id": "local_byok_ollama__byok_config",
+      "parent_id": "local_byok_ollama",
+      "label": "BYOK explícito",
+      "question": "Usuário traz chave sem lock-in?",
+      "weight": 1.3333,
+      "group": "IA"
+    },
+    {
+      "index": 83,
+      "id": "local_byok_ollama__ollama_lmstudio",
+      "parent_id": "local_byok_ollama",
+      "label": "Ollama/LM Studio/modelos locais",
+      "question": "Roda com modelos locais?",
+      "weight": 1.3333,
+      "group": "IA"
+    },
+    {
+      "index": 84,
+      "id": "local_byok_ollama__privacy_mode",
+      "parent_id": "local_byok_ollama",
+      "label": "Modo privacidade sem SaaS obrigatório",
+      "question": "Pode operar sem enviar dados para SaaS externo?",
+      "weight": 1.3333,
+      "group": "IA"
+    },
+    {
+      "index": 85,
+      "id": "docker_self_hosted__docker_compose",
+      "parent_id": "docker_self_hosted",
+      "label": "Docker Compose/local deploy",
+      "question": "Subir localmente é documentado?",
+      "weight": 1,
+      "group": "Infra"
+    },
+    {
+      "index": 86,
+      "id": "docker_self_hosted__service_topology",
+      "parent_id": "docker_self_hosted",
+      "label": "Topologia serviços app/API/storage",
+      "question": "Arquitetura self-hosted está clara?",
+      "weight": 1,
+      "group": "Infra"
+    },
+    {
+      "index": 87,
+      "id": "docker_self_hosted__production_ops",
+      "parent_id": "docker_self_hosted",
+      "label": "Operação: env, storage, logs, upgrade",
+      "question": "Tem sinal de produção, não só demo?",
+      "weight": 1,
+      "group": "Infra"
+    },
+    {
+      "index": 88,
+      "id": "desktop_app__desktop_packaging",
+      "parent_id": "desktop_app",
+      "label": "App desktop empacotado",
+      "question": "Tem desktop para Mac/Windows/Linux?",
+      "weight": 0.6667,
+      "group": "Infra"
+    },
+    {
+      "index": 89,
+      "id": "desktop_app__offline_local_use",
+      "parent_id": "desktop_app",
+      "label": "Uso local/offline prático",
+      "question": "Funciona sem serviço remoto obrigatório?",
+      "weight": 0.6667,
+      "group": "Infra"
+    },
+    {
+      "index": 90,
+      "id": "desktop_app__installer_update_path",
+      "parent_id": "desktop_app",
+      "label": "Instalador e atualização",
+      "question": "Distribuição desktop parece sustentável?",
+      "weight": 0.6667,
+      "group": "Infra"
+    },
+    {
+      "index": 91,
+      "id": "qa_evaluation_rubric__narrative_qa",
+      "parent_id": "qa_evaluation_rubric",
+      "label": "QA de narrativa, tese e CTA",
+      "question": "Avalia se a história convence?",
+      "weight": 1.3333,
+      "group": "Qualidade"
+    },
+    {
+      "index": 92,
+      "id": "qa_evaluation_rubric__visual_qa",
+      "parent_id": "qa_evaluation_rubric",
+      "label": "QA visual/rendered key slides",
+      "question": "Avalia output visual, não só texto?",
+      "weight": 1.3333,
+      "group": "Qualidade"
+    },
+    {
+      "index": 93,
+      "id": "qa_evaluation_rubric__release_killer_items",
+      "parent_id": "qa_evaluation_rubric",
+      "label": "Itens bloqueantes de release",
+      "question": "Há critérios que impedem entrega mesmo com média alta?",
+      "weight": 1.3333,
+      "group": "Qualidade"
+    },
+    {
+      "index": 94,
+      "id": "editability_qa__pptx_object_inspection",
+      "parent_id": "editability_qa",
+      "label": "Inspeciona objetos editáveis no PPTX",
+      "question": "Valida shapes/text/charts editáveis?",
+      "weight": 1.3333,
+      "group": "Qualidade"
+    },
+    {
+      "index": 95,
+      "id": "editability_qa__placeholder_residue_check",
+      "parent_id": "editability_qa",
+      "label": "Verifica placeholders/resíduos técnicos",
+      "question": "Procura marcadores não substituídos e XML quebrado?",
+      "weight": 1.3333,
+      "group": "Qualidade"
+    },
+    {
+      "index": 96,
+      "id": "editability_qa__roundtrip_powerpoint",
+      "parent_id": "editability_qa",
+      "label": "Roundtrip PowerPoint/LibreOffice/PDF",
+      "question": "Abre/converte para provar integridade?",
+      "weight": 1.3333,
+      "group": "Qualidade"
+    },
+    {
+      "index": 97,
+      "id": "test_fixtures_ci__unit_integration_tests",
+      "parent_id": "test_fixtures_ci",
+      "label": "Testes unitários/integração",
+      "question": "Há testes reais cobrindo pipeline?",
+      "weight": 0.3333,
+      "group": "Qualidade"
+    },
+    {
+      "index": 98,
+      "id": "test_fixtures_ci__golden_deck_fixtures",
+      "parent_id": "test_fixtures_ci",
+      "label": "Fixtures/golden decks",
+      "question": "Tem decks de regressão para comparar output?",
+      "weight": 0.3333,
+      "group": "Qualidade"
+    },
+    {
+      "index": 99,
+      "id": "test_fixtures_ci__ci_quality_gate",
+      "parent_id": "test_fixtures_ci",
+      "label": "Quality gate executável em CI",
+      "question": "Validação automatizada bloqueia regressões?",
+      "weight": 0.3333,
+      "group": "Qualidade"
+    },
+    {
+      "index": 100,
+      "id": "documentation_depth__operator_docs",
+      "parent_id": "documentation_depth",
+      "label": "Docs operacionais para usuário/agente",
+      "question": "Instruções são claras para rodar o sistema?",
+      "weight": 0.3333,
+      "group": "Maturidade"
+    },
+    {
+      "index": 101,
+      "id": "documentation_depth__developer_docs",
+      "parent_id": "documentation_depth",
+      "label": "Docs de arquitetura/extensão",
+      "question": "Explica como contribuir e estender?",
+      "weight": 0.3333,
+      "group": "Maturidade"
+    },
+    {
+      "index": 102,
+      "id": "documentation_depth__example_library",
+      "parent_id": "documentation_depth",
+      "label": "Exemplos e templates documentados",
+      "question": "Há biblioteca de exemplos reutilizáveis?",
+      "weight": 0.3333,
+      "group": "Maturidade"
+    },
+    {
+      "index": 103,
+      "id": "license_absorption_safety__license_clarity",
+      "parent_id": "license_absorption_safety",
+      "label": "Licença clara no repositório",
+      "question": "A licença é explícita e compatível?",
+      "weight": 1,
+      "group": "Risco"
+    },
+    {
+      "index": 104,
+      "id": "license_absorption_safety__code_reuse_safety",
+      "parent_id": "license_absorption_safety",
+      "label": "Segurança para copiar/adaptar código",
+      "question": "Podemos absorver código sem risco?",
+      "weight": 1,
+      "group": "Risco"
+    },
+    {
+      "index": 105,
+      "id": "license_absorption_safety__behavioral_absorption_safety",
+      "parent_id": "license_absorption_safety",
+      "label": "Segurança para absorver padrão/comportamento",
+      "question": "Mesmo sem copiar código, dá para absorver padrões?",
+      "weight": 1,
+      "group": "Risco"
+    },
+    {
+      "index": 106,
+      "id": "ecosystem_maturity__repo_activity_size",
+      "parent_id": "ecosystem_maturity",
+      "label": "Tamanho/atividade/sinais de manutenção",
+      "question": "Projeto parece mantido e com massa crítica?",
+      "weight": 1,
+      "group": "Maturidade"
+    },
+    {
+      "index": 107,
+      "id": "ecosystem_maturity__architecture_cohesion",
+      "parent_id": "ecosystem_maturity",
+      "label": "Coesão arquitetural",
+      "question": "Código e artefatos formam sistema coerente?",
+      "weight": 1,
+      "group": "Maturidade"
+    },
+    {
+      "index": 108,
+      "id": "ecosystem_maturity__absorption_cost",
+      "parent_id": "ecosystem_maturity",
+      "label": "Custo de absorção para SINKRA",
+      "question": "Quanto menor esforço para absorver com segurança, maior score.",
+      "weight": 0.9995,
+      "group": "Maturidade"
+    }
+  ],
+  "personas": [
+    {
+      "id": "scenario_founder_consulting_deck",
+      "label": "Founder/consultoria B2B",
+      "sub": "Deck executivo editável, narrativa forte, fontes rastreáveis e entrega rápida para cliente.",
+      "job": "Transformar briefing estratégico em apresentação comercial consultiva, editável em PowerPoint e defensável em reunião.",
+      "must_have": [
+        "Narrativa consultiva",
+        "PPTX editável",
+        "QA de editabilidade",
+        "Fontes rastreáveis",
+        "Entrega rápida"
+      ],
+      "anti_goals": [
+        "Editor bonito sem saída PPTX robusta",
+        "Deck sem prova/fonte",
+        "Vídeo ou web-only como entrega principal"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "consultative_narrative__belief_shift",
+          "parent_id": "consultative_narrative",
+          "label": "Define mudança de crença da audiência",
+          "group": "Planejamento",
+          "weight": 5.35
+        },
+        {
+          "id": "consultative_narrative__executive_pyramid",
+          "parent_id": "consultative_narrative",
+          "label": "Usa lógica SCQA/Pyramid/action-title",
+          "group": "Planejamento",
+          "weight": 5.35
+        },
+        {
+          "id": "consultative_narrative__cta_decision_design",
+          "parent_id": "consultative_narrative",
+          "label": "Conecta história ao CTA ou decisão final",
+          "group": "Planejamento",
+          "weight": 5.35
+        },
+        {
+          "id": "native_pptx_objects__drawingml_shapes",
+          "parent_id": "native_pptx_objects",
+          "label": "Gera shapes/textos nativos DrawingML",
+          "group": "Renderização",
+          "weight": 4.43
+        },
+        {
+          "id": "native_pptx_objects__image_vs_object_policy",
+          "parent_id": "native_pptx_objects",
+          "label": "Evita transformar tudo em imagem",
+          "group": "Renderização",
+          "weight": 4.43
+        },
+        {
+          "id": "native_pptx_objects__powerpoint_reopen_fidelity",
+          "parent_id": "native_pptx_objects",
+          "label": "Reabre no PowerPoint sem quebrar layout",
+          "group": "Renderização",
+          "weight": 4.43
+        },
+        {
+          "id": "editability_qa__pptx_object_inspection",
+          "parent_id": "editability_qa",
+          "label": "Inspeciona objetos editáveis no PPTX",
+          "group": "Qualidade",
+          "weight": 3.76
+        },
+        {
+          "id": "editability_qa__placeholder_residue_check",
+          "parent_id": "editability_qa",
+          "label": "Verifica placeholders/resíduos técnicos",
+          "group": "Qualidade",
+          "weight": 3.76
+        },
+        {
+          "id": "editability_qa__roundtrip_powerpoint",
+          "parent_id": "editability_qa",
+          "label": "Roundtrip PowerPoint/LibreOffice/PDF",
+          "group": "Qualidade",
+          "weight": 3.76
+        },
+        {
+          "id": "qa_evaluation_rubric__narrative_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA de narrativa, tese e CTA",
+          "group": "Qualidade",
+          "weight": 3.23
+        },
+        {
+          "id": "qa_evaluation_rubric__visual_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA visual/rendered key slides",
+          "group": "Qualidade",
+          "weight": 3.23
+        },
+        {
+          "id": "qa_evaluation_rubric__release_killer_items",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "Itens bloqueantes de release",
+          "group": "Qualidade",
+          "weight": 3.23
+        },
+        {
+          "id": "source_grounding_research__source_routing",
+          "parent_id": "source_grounding_research",
+          "label": "Roteia fonte por tipo: web, scholar, local, vídeo ou benchmark",
+          "group": "Entrada",
+          "weight": 1.76
+        },
+        {
+          "id": "source_grounding_research__claim_evidence_trace",
+          "parent_id": "source_grounding_research",
+          "label": "Liga claim a evidência e confiança",
+          "group": "Entrada",
+          "weight": 1.76
+        },
+        {
+          "id": "source_grounding_research__freshness_verification",
+          "parent_id": "source_grounding_research",
+          "label": "Verifica frescor e risco factual",
+          "group": "Entrada",
+          "weight": 1.76
+        },
+        {
+          "id": "slide_structure_planning__slide_function_map",
+          "parent_id": "slide_structure_planning",
+          "label": "Mapa de função por slide",
+          "group": "Planejamento",
+          "weight": 1.76
+        },
+        {
+          "id": "slide_structure_planning__key_slide_critique",
+          "parent_id": "slide_structure_planning",
+          "label": "Critica slides decisivos antes da produção total",
+          "group": "Planejamento",
+          "weight": 1.76
+        },
+        {
+          "id": "slide_structure_planning__speaker_flow",
+          "parent_id": "slide_structure_planning",
+          "label": "Fluxo de fala/transição entre slides",
+          "group": "Planejamento",
+          "weight": 1.76
+        },
+        {
+          "id": "charts_tables_native__native_charts",
+          "parent_id": "charts_tables_native",
+          "label": "Charts nativos e editáveis",
+          "group": "Renderização",
+          "weight": 1.23
+        },
+        {
+          "id": "charts_tables_native__table_rebuild",
+          "parent_id": "charts_tables_native",
+          "label": "Reconstrói tabelas com hierarquia e destaques",
+          "group": "Renderização",
+          "weight": 1.23
+        },
+        {
+          "id": "charts_tables_native__data_contract",
+          "parent_id": "charts_tables_native",
+          "label": "Contrato de dados para charts/tabelas",
+          "group": "Renderização",
+          "weight": 1.23
+        },
+        {
+          "id": "local_byok_ollama__byok_config",
+          "parent_id": "local_byok_ollama",
+          "label": "BYOK explícito",
+          "group": "IA",
+          "weight": 1.11
+        },
+        {
+          "id": "local_byok_ollama__ollama_lmstudio",
+          "parent_id": "local_byok_ollama",
+          "label": "Ollama/LM Studio/modelos locais",
+          "group": "IA",
+          "weight": 1.11
+        },
+        {
+          "id": "local_byok_ollama__privacy_mode",
+          "parent_id": "local_byok_ollama",
+          "label": "Modo privacidade sem SaaS obrigatório",
+          "group": "IA",
+          "weight": 1.11
+        }
+      ],
+      "weights": [
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        1.76,
+        1.76,
+        1.76,
+        0.29,
+        0.29,
+        0.29,
+        5.35,
+        5.35,
+        5.35,
+        1.76,
+        1.76,
+        1.76,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        4.43,
+        4.43,
+        4.43,
+        1.23,
+        1.23,
+        1.23,
+        0.4367,
+        0.4367,
+        0.4367,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.29,
+        0.4367,
+        0.4367,
+        0.4367,
+        0.5833,
+        0.5833,
+        0.5833,
+        0.4367,
+        0.4367,
+        0.4367,
+        0.5833,
+        0.5833,
+        0.5833,
+        0.29,
+        0.29,
+        0.29,
+        0.4367,
+        0.4367,
+        0.4367,
+        0.29,
+        0.29,
+        0.29,
+        0.5833,
+        0.5833,
+        0.5833,
+        0.5833,
+        0.5833,
+        0.5833,
+        0.4367,
+        0.4367,
+        0.4367,
+        0.29,
+        0.29,
+        0.29,
+        1.11,
+        1.11,
+        1.11,
+        0.4367,
+        0.4367,
+        0.4367,
+        0.29,
+        0.29,
+        0.29,
+        3.2267,
+        3.2267,
+        3.2267,
+        3.7567,
+        3.7567,
+        3.7567,
+        0.1467,
+        0.1467,
+        0.1467,
+        0.1467,
+        0.1467,
+        0.1467,
+        0.9667,
+        0.9667,
+        0.9667,
+        0.4367,
+        0.4367,
+        0.4359
+      ],
+      "totals": [
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 81.59
+        },
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 78.5
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 73.67
+        },
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 69.74
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 67.79
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 67.78
+        },
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 63.99
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 54.96
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 54.54
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "slides_creator",
+          "score": 80.31,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "ppt_master",
+          "score": 77.06,
+          "delta": 3.25
+        },
+        {
+          "rank": 3,
+          "player": "pptagent",
+          "score": 73.09,
+          "delta": 7.22
+        },
+        {
+          "rank": 4,
+          "player": "presenton",
+          "score": 69.14,
+          "delta": 11.17
+        },
+        {
+          "rank": 5,
+          "player": "presentagent_2",
+          "score": 67.59,
+          "delta": 12.72
+        },
+        {
+          "rank": 6,
+          "player": "powerpoint_skill",
+          "score": 66.15,
+          "delta": 14.16
+        },
+        {
+          "rank": 7,
+          "player": "presentation_ai",
+          "score": 63.52,
+          "delta": 16.79
+        },
+        {
+          "rank": 8,
+          "player": "banana_slides",
+          "score": 54.92,
+          "delta": 25.39
+        },
+        {
+          "rank": 9,
+          "player": "slide_deck_ai",
+          "score": 54.86,
+          "delta": 25.45
+        }
+      ],
+      "winner": "slides_creator",
+      "runner": "ppt_master",
+      "delta": 3.25,
+      "verdict": "Após a absorção, slide creator skill assume a liderança para founder/consultoria porque combina narrativa, QA, playbooks, contratos autocontidos e validação; ppt-master segue como engine obrigatória para PPTX editável.",
+      "tiebreaker": "Se a pergunta for apenas renderer PowerPoint, ppt-master vence. Se a pergunta for criação governada de deck consultivo, slide creator skill vence.",
+      "leader": "slide creator skill"
+    },
+    {
+      "id": "scenario_self_hosted_api_product",
+      "label": "Produto self-hosted/API",
+      "sub": "Operação privada com Docker, API, MCP, BYOK, Ollama e automação por agentes.",
+      "job": "Disponibilizar geração de apresentações como produto interno/API governada e executável localmente.",
+      "must_have": [
+        "API de geração",
+        "MCP/tools",
+        "Docker/self-hosting",
+        "BYOK/Ollama",
+        "Provider registry",
+        "Workspace por execução"
+      ],
+      "anti_goals": [
+        "Fluxo apenas UI",
+        "Dependência de SaaS fechado",
+        "Sem isolamento de dados por run"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "api_generation__rest_generate_endpoint",
+          "parent_id": "api_generation",
+          "label": "Endpoint REST para gerar deck",
+          "group": "Automação",
+          "weight": 5.54
+        },
+        {
+          "id": "api_generation__job_queue_status",
+          "parent_id": "api_generation",
+          "label": "Job assíncrono com status e artefatos",
+          "group": "Automação",
+          "weight": 5.54
+        },
+        {
+          "id": "api_generation__api_contract_schema",
+          "parent_id": "api_generation",
+          "label": "Contrato estável de input/output",
+          "group": "Automação",
+          "weight": 5.54
+        },
+        {
+          "id": "mcp_automation__mcp_server_tools",
+          "parent_id": "mcp_automation",
+          "label": "MCP/tools para geração e edição",
+          "group": "Automação",
+          "weight": 5.02
+        },
+        {
+          "id": "mcp_automation__agent_orchestration",
+          "parent_id": "mcp_automation",
+          "label": "Orquestra etapas por agente/workflow",
+          "group": "Automação",
+          "weight": 5.02
+        },
+        {
+          "id": "mcp_automation__tool_safety_boundaries",
+          "parent_id": "mcp_automation",
+          "label": "Limites de ferramenta e segurança operacional",
+          "group": "Automação",
+          "weight": 5.02
+        },
+        {
+          "id": "docker_self_hosted__docker_compose",
+          "parent_id": "docker_self_hosted",
+          "label": "Docker Compose/local deploy",
+          "group": "Infra",
+          "weight": 3.4
+        },
+        {
+          "id": "docker_self_hosted__service_topology",
+          "parent_id": "docker_self_hosted",
+          "label": "Topologia serviços app/API/storage",
+          "group": "Infra",
+          "weight": 3.4
+        },
+        {
+          "id": "docker_self_hosted__production_ops",
+          "parent_id": "docker_self_hosted",
+          "label": "Operação: env, storage, logs, upgrade",
+          "group": "Infra",
+          "weight": 3.4
+        },
+        {
+          "id": "local_byok_ollama__byok_config",
+          "parent_id": "local_byok_ollama",
+          "label": "BYOK explícito",
+          "group": "IA",
+          "weight": 3.03
+        },
+        {
+          "id": "local_byok_ollama__ollama_lmstudio",
+          "parent_id": "local_byok_ollama",
+          "label": "Ollama/LM Studio/modelos locais",
+          "group": "IA",
+          "weight": 3.03
+        },
+        {
+          "id": "local_byok_ollama__privacy_mode",
+          "parent_id": "local_byok_ollama",
+          "label": "Modo privacidade sem SaaS obrigatório",
+          "group": "IA",
+          "weight": 3.03
+        },
+        {
+          "id": "provider_registry__llm_provider_switching",
+          "parent_id": "provider_registry",
+          "label": "Troca de provedores LLM",
+          "group": "IA",
+          "weight": 1.77
+        },
+        {
+          "id": "provider_registry__image_provider_switching",
+          "parent_id": "provider_registry",
+          "label": "Troca de provedores de imagem/stock",
+          "group": "IA",
+          "weight": 1.77
+        },
+        {
+          "id": "provider_registry__provider_policy",
+          "parent_id": "provider_registry",
+          "label": "Política de custo, privacidade e fallback",
+          "group": "IA",
+          "weight": 1.77
+        },
+        {
+          "id": "cli_headless__batch_generation",
+          "parent_id": "cli_headless",
+          "label": "Batch/headless para múltiplos decks",
+          "group": "Automação",
+          "weight": 1.65
+        },
+        {
+          "id": "cli_headless__local_cli_commands",
+          "parent_id": "cli_headless",
+          "label": "CLI clara para gerar/exportar/revisar",
+          "group": "Automação",
+          "weight": 1.65
+        },
+        {
+          "id": "cli_headless__ci_automation_fit",
+          "parent_id": "cli_headless",
+          "label": "Cabe em CI ou pipeline automatizado",
+          "group": "Automação",
+          "weight": 1.65
+        },
+        {
+          "id": "license_absorption_safety__license_clarity",
+          "parent_id": "license_absorption_safety",
+          "label": "Licença clara no repositório",
+          "group": "Risco",
+          "weight": 1.16
+        },
+        {
+          "id": "license_absorption_safety__code_reuse_safety",
+          "parent_id": "license_absorption_safety",
+          "label": "Segurança para copiar/adaptar código",
+          "group": "Risco",
+          "weight": 1.16
+        },
+        {
+          "id": "license_absorption_safety__behavioral_absorption_safety",
+          "parent_id": "license_absorption_safety",
+          "label": "Segurança para absorver padrão/comportamento",
+          "group": "Risco",
+          "weight": 1.16
+        },
+        {
+          "id": "desktop_app__desktop_packaging",
+          "parent_id": "desktop_app",
+          "label": "App desktop empacotado",
+          "group": "Infra",
+          "weight": 1.02
+        },
+        {
+          "id": "desktop_app__offline_local_use",
+          "parent_id": "desktop_app",
+          "label": "Uso local/offline prático",
+          "group": "Infra",
+          "weight": 1.02
+        },
+        {
+          "id": "desktop_app__installer_update_path",
+          "parent_id": "desktop_app",
+          "label": "Instalador e atualização",
+          "group": "Infra",
+          "weight": 1.02
+        }
+      ],
+      "weights": [
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.41,
+        0.41,
+        0.41,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.5467,
+        0.5467,
+        0.5467,
+        0.41,
+        0.41,
+        0.41,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.6833,
+        0.6833,
+        0.6833,
+        0.41,
+        0.41,
+        0.41,
+        0.41,
+        0.41,
+        0.41,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.41,
+        0.41,
+        0.41,
+        0.5467,
+        0.5467,
+        0.5467,
+        0.41,
+        0.41,
+        0.41,
+        0.5467,
+        0.5467,
+        0.5467,
+        0.2733,
+        0.2733,
+        0.2733,
+        0.41,
+        0.41,
+        0.41,
+        0.2733,
+        0.2733,
+        0.2733,
+        5.5367,
+        5.5367,
+        5.5367,
+        5.0233,
+        5.0233,
+        5.0233,
+        1.6533,
+        1.6533,
+        1.6533,
+        1.7667,
+        1.7667,
+        1.7667,
+        3.0333,
+        3.0333,
+        3.0333,
+        3.3967,
+        3.3967,
+        3.3967,
+        1.02,
+        1.02,
+        1.02,
+        0.5467,
+        0.5467,
+        0.5467,
+        0.5467,
+        0.5467,
+        0.5467,
+        0.6333,
+        0.6333,
+        0.6333,
+        0.1367,
+        0.1367,
+        0.1367,
+        1.1567,
+        1.1567,
+        1.1567,
+        0.41,
+        0.41,
+        0.4107
+      ],
+      "totals": [
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 87.64
+        },
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 70.64
+        },
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 68.19
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 67.11
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 66.75
+        },
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 66.43
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 64.16
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 59.13
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 50.07
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "presenton",
+          "score": 85.59,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "slides_creator",
+          "score": 68.97,
+          "delta": 16.62
+        },
+        {
+          "rank": 3,
+          "player": "presentation_ai",
+          "score": 67.54,
+          "delta": 18.05
+        },
+        {
+          "rank": 4,
+          "player": "presentagent_2",
+          "score": 66.38,
+          "delta": 19.21
+        },
+        {
+          "rank": 5,
+          "player": "slide_deck_ai",
+          "score": 66.32,
+          "delta": 19.27
+        },
+        {
+          "rank": 6,
+          "player": "ppt_master",
+          "score": 65.72,
+          "delta": 19.87
+        },
+        {
+          "rank": 7,
+          "player": "pptagent",
+          "score": 63.8,
+          "delta": 21.79
+        },
+        {
+          "rank": 8,
+          "player": "banana_slides",
+          "score": 59.16,
+          "delta": 26.43
+        },
+        {
+          "rank": 9,
+          "player": "powerpoint_skill",
+          "score": 49.58,
+          "delta": 36.01
+        }
+      ],
+      "winner": "presenton",
+      "runner": "slides_creator",
+      "delta": 16.62,
+      "verdict": "Presenton lidera porque já combina produto, API, MCP, Docker, desktop e providers em um pacote absorvível.",
+      "tiebreaker": "Se o escopo for batch Python simples em vez de produto, slide-deck-ai sobe como fallback, mas não como core.",
+      "leader": "Presenton"
+    },
+    {
+      "id": "scenario_native_pptx_renderer",
+      "label": "Engenheiro de renderer PPTX",
+      "sub": "Fidelidade PowerPoint, shapes nativos, charts, OOXML, templates e QA de editabilidade.",
+      "job": "Converter IR/DeckSpec em PPTX nativo, editável e verificável sem rasterizar o deck inteiro.",
+      "must_have": [
+        "PPTX nativo",
+        "Charts/tabelas nativos",
+        "OOXML",
+        "QA de editabilidade",
+        "Template import"
+      ],
+      "anti_goals": [
+        "HTML screenshot como slide",
+        "PDF como saída principal",
+        "Sem relatório por objeto"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "native_pptx_objects__drawingml_shapes",
+          "parent_id": "native_pptx_objects",
+          "label": "Gera shapes/textos nativos DrawingML",
+          "group": "Renderização",
+          "weight": 7.77
+        },
+        {
+          "id": "native_pptx_objects__image_vs_object_policy",
+          "parent_id": "native_pptx_objects",
+          "label": "Evita transformar tudo em imagem",
+          "group": "Renderização",
+          "weight": 7.77
+        },
+        {
+          "id": "native_pptx_objects__powerpoint_reopen_fidelity",
+          "parent_id": "native_pptx_objects",
+          "label": "Reabre no PowerPoint sem quebrar layout",
+          "group": "Renderização",
+          "weight": 7.77
+        },
+        {
+          "id": "charts_tables_native__native_charts",
+          "parent_id": "charts_tables_native",
+          "label": "Charts nativos e editáveis",
+          "group": "Renderização",
+          "weight": 3.7
+        },
+        {
+          "id": "charts_tables_native__table_rebuild",
+          "parent_id": "charts_tables_native",
+          "label": "Reconstrói tabelas com hierarquia e destaques",
+          "group": "Renderização",
+          "weight": 3.7
+        },
+        {
+          "id": "charts_tables_native__data_contract",
+          "parent_id": "charts_tables_native",
+          "label": "Contrato de dados para charts/tabelas",
+          "group": "Renderização",
+          "weight": 3.7
+        },
+        {
+          "id": "editability_qa__pptx_object_inspection",
+          "parent_id": "editability_qa",
+          "label": "Inspeciona objetos editáveis no PPTX",
+          "group": "Qualidade",
+          "weight": 3.08
+        },
+        {
+          "id": "editability_qa__placeholder_residue_check",
+          "parent_id": "editability_qa",
+          "label": "Verifica placeholders/resíduos técnicos",
+          "group": "Qualidade",
+          "weight": 3.08
+        },
+        {
+          "id": "editability_qa__roundtrip_powerpoint",
+          "parent_id": "editability_qa",
+          "label": "Roundtrip PowerPoint/LibreOffice/PDF",
+          "group": "Qualidade",
+          "weight": 3.08
+        },
+        {
+          "id": "math_diagrams_technical__latex_omml",
+          "parent_id": "math_diagrams_technical",
+          "label": "LaTeX/OMML para matemática editável ou nítida",
+          "group": "Renderização",
+          "weight": 2.44
+        },
+        {
+          "id": "math_diagrams_technical__diagram_engines",
+          "parent_id": "math_diagrams_technical",
+          "label": "Mermaid/Graphviz/TikZ/diagram engines",
+          "group": "Renderização",
+          "weight": 2.44
+        },
+        {
+          "id": "math_diagrams_technical__technical_visual_qa",
+          "parent_id": "math_diagrams_technical",
+          "label": "QA técnico de overflow, tema e legibilidade",
+          "group": "Renderização",
+          "weight": 2.44
+        },
+        {
+          "id": "animations_transitions_ooxml__global_animation_defaults",
+          "parent_id": "animations_transitions_ooxml",
+          "label": "Animações/transições padrão",
+          "group": "Renderização",
+          "weight": 2.05
+        },
+        {
+          "id": "animations_transitions_ooxml__object_animation_control",
+          "parent_id": "animations_transitions_ooxml",
+          "label": "Controle por objeto/ordem/timing",
+          "group": "Renderização",
+          "weight": 2.05
+        },
+        {
+          "id": "animations_transitions_ooxml__animation_validation",
+          "parent_id": "animations_transitions_ooxml",
+          "label": "Valida configuração de animações",
+          "group": "Renderização",
+          "weight": 2.05
+        },
+        {
+          "id": "qa_evaluation_rubric__narrative_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA de narrativa, tese e CTA",
+          "group": "Qualidade",
+          "weight": 1.57
+        },
+        {
+          "id": "qa_evaluation_rubric__visual_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA visual/rendered key slides",
+          "group": "Qualidade",
+          "weight": 1.57
+        },
+        {
+          "id": "qa_evaluation_rubric__release_killer_items",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "Itens bloqueantes de release",
+          "group": "Qualidade",
+          "weight": 1.57
+        },
+        {
+          "id": "template_import_replication__template_manifest",
+          "parent_id": "template_import_replication",
+          "label": "Manifesta templates importados",
+          "group": "Design",
+          "weight": 1.29
+        },
+        {
+          "id": "template_import_replication__brand_fidelity",
+          "parent_id": "template_import_replication",
+          "label": "Replica linguagem visual de template/brand deck",
+          "group": "Design",
+          "weight": 1.29
+        },
+        {
+          "id": "template_import_replication__template_selection_logic",
+          "parent_id": "template_import_replication",
+          "label": "Seleciona template por função do slide",
+          "group": "Design",
+          "weight": 1.29
+        },
+        {
+          "id": "test_fixtures_ci__unit_integration_tests",
+          "parent_id": "test_fixtures_ci",
+          "label": "Testes unitários/integração",
+          "group": "Qualidade",
+          "weight": 0.9
+        },
+        {
+          "id": "test_fixtures_ci__golden_deck_fixtures",
+          "parent_id": "test_fixtures_ci",
+          "label": "Fixtures/golden decks",
+          "group": "Qualidade",
+          "weight": 0.9
+        },
+        {
+          "id": "test_fixtures_ci__ci_quality_gate",
+          "parent_id": "test_fixtures_ci",
+          "label": "Quality gate executável em CI",
+          "group": "Qualidade",
+          "weight": 0.9
+        }
+      ],
+      "weights": [
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        1.2867,
+        1.2867,
+        1.2867,
+        0.2767,
+        0.2767,
+        0.2767,
+        7.77,
+        7.77,
+        7.77,
+        3.7,
+        3.7,
+        3.7,
+        2.4367,
+        2.4367,
+        2.4367,
+        2.0467,
+        2.0467,
+        2.0467,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        1.5667,
+        1.5667,
+        1.5667,
+        3.08,
+        3.08,
+        3.08,
+        0.8967,
+        0.8967,
+        0.8967,
+        0.14,
+        0.14,
+        0.14,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4135
+      ],
+      "totals": [
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 86.24
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 72.38
+        },
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 71.55
+        },
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 68.37
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 67.77
+        },
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 61.52
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 59.73
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 54.96
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 52.81
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "ppt_master",
+          "score": 84.07,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "slides_creator",
+          "score": 70.73,
+          "delta": 13.34
+        },
+        {
+          "rank": 3,
+          "player": "powerpoint_skill",
+          "score": 70.28,
+          "delta": 13.79
+        },
+        {
+          "rank": 4,
+          "player": "presenton",
+          "score": 67.61,
+          "delta": 16.46
+        },
+        {
+          "rank": 5,
+          "player": "pptagent",
+          "score": 67.44,
+          "delta": 16.63
+        },
+        {
+          "rank": 6,
+          "player": "presentation_ai",
+          "score": 61.04,
+          "delta": 23.03
+        },
+        {
+          "rank": 7,
+          "player": "presentagent_2",
+          "score": 59.57,
+          "delta": 24.5
+        },
+        {
+          "rank": 8,
+          "player": "banana_slides",
+          "score": 55.18,
+          "delta": 28.89
+        },
+        {
+          "rank": 9,
+          "player": "slide_deck_ai",
+          "score": 52.68,
+          "delta": 31.39
+        }
+      ],
+      "winner": "ppt_master",
+      "runner": "slides_creator",
+      "delta": 13.34,
+      "verdict": "ppt-master vence como engine principal; powerpoint-skill complementa matemática, diagramas e disciplina de QA.",
+      "tiebreaker": "Se o deck é acadêmico/matemático, powerpoint-skill reduz o gap apesar de perder como renderer geral.",
+      "leader": "ppt-master"
+    },
+    {
+      "id": "scenario_academic_technical_author",
+      "label": "Autor técnico/acadêmico",
+      "sub": "Fórmulas, diagramas, tabelas, notas, consistência visual e validação técnica.",
+      "job": "Gerar aulas, relatórios técnicos e apresentações acadêmicas com notação e diagramas corretos.",
+      "must_have": [
+        "Math/OMML",
+        "Diagramas",
+        "Tabelas",
+        "QA técnico",
+        "Fixtures determinísticas"
+      ],
+      "anti_goals": [
+        "Visual premium sem rigor técnico",
+        "Fórmula rasterizada sem editabilidade",
+        "Sem validação de layout"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "math_diagrams_technical__latex_omml",
+          "parent_id": "math_diagrams_technical",
+          "label": "LaTeX/OMML para matemática editável ou nítida",
+          "group": "Renderização",
+          "weight": 12.01
+        },
+        {
+          "id": "math_diagrams_technical__diagram_engines",
+          "parent_id": "math_diagrams_technical",
+          "label": "Mermaid/Graphviz/TikZ/diagram engines",
+          "group": "Renderização",
+          "weight": 12.01
+        },
+        {
+          "id": "math_diagrams_technical__technical_visual_qa",
+          "parent_id": "math_diagrams_technical",
+          "label": "QA técnico de overflow, tema e legibilidade",
+          "group": "Renderização",
+          "weight": 12.01
+        },
+        {
+          "id": "qa_evaluation_rubric__narrative_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA de narrativa, tese e CTA",
+          "group": "Qualidade",
+          "weight": 5.17
+        },
+        {
+          "id": "qa_evaluation_rubric__visual_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA visual/rendered key slides",
+          "group": "Qualidade",
+          "weight": 5.17
+        },
+        {
+          "id": "qa_evaluation_rubric__release_killer_items",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "Itens bloqueantes de release",
+          "group": "Qualidade",
+          "weight": 5.17
+        },
+        {
+          "id": "test_fixtures_ci__unit_integration_tests",
+          "parent_id": "test_fixtures_ci",
+          "label": "Testes unitários/integração",
+          "group": "Qualidade",
+          "weight": 2.23
+        },
+        {
+          "id": "test_fixtures_ci__golden_deck_fixtures",
+          "parent_id": "test_fixtures_ci",
+          "label": "Fixtures/golden decks",
+          "group": "Qualidade",
+          "weight": 2.23
+        },
+        {
+          "id": "test_fixtures_ci__ci_quality_gate",
+          "parent_id": "test_fixtures_ci",
+          "label": "Quality gate executável em CI",
+          "group": "Qualidade",
+          "weight": 2.23
+        },
+        {
+          "id": "documentation_depth__operator_docs",
+          "parent_id": "documentation_depth",
+          "label": "Docs operacionais para usuário/agente",
+          "group": "Maturidade",
+          "weight": 1.69
+        },
+        {
+          "id": "documentation_depth__developer_docs",
+          "parent_id": "documentation_depth",
+          "label": "Docs de arquitetura/extensão",
+          "group": "Maturidade",
+          "weight": 1.69
+        },
+        {
+          "id": "documentation_depth__example_library",
+          "parent_id": "documentation_depth",
+          "label": "Exemplos e templates documentados",
+          "group": "Maturidade",
+          "weight": 1.69
+        },
+        {
+          "id": "charts_tables_native__native_charts",
+          "parent_id": "charts_tables_native",
+          "label": "Charts nativos e editáveis",
+          "group": "Renderização",
+          "weight": 1.61
+        },
+        {
+          "id": "charts_tables_native__table_rebuild",
+          "parent_id": "charts_tables_native",
+          "label": "Reconstrói tabelas com hierarquia e destaques",
+          "group": "Renderização",
+          "weight": 1.61
+        },
+        {
+          "id": "charts_tables_native__data_contract",
+          "parent_id": "charts_tables_native",
+          "label": "Contrato de dados para charts/tabelas",
+          "group": "Renderização",
+          "weight": 1.61
+        },
+        {
+          "id": "editability_qa__pptx_object_inspection",
+          "parent_id": "editability_qa",
+          "label": "Inspeciona objetos editáveis no PPTX",
+          "group": "Qualidade",
+          "weight": 1.44
+        },
+        {
+          "id": "editability_qa__placeholder_residue_check",
+          "parent_id": "editability_qa",
+          "label": "Verifica placeholders/resíduos técnicos",
+          "group": "Qualidade",
+          "weight": 1.44
+        },
+        {
+          "id": "editability_qa__roundtrip_powerpoint",
+          "parent_id": "editability_qa",
+          "label": "Roundtrip PowerPoint/LibreOffice/PDF",
+          "group": "Qualidade",
+          "weight": 1.44
+        },
+        {
+          "id": "source_grounding_research__source_routing",
+          "parent_id": "source_grounding_research",
+          "label": "Roteia fonte por tipo: web, scholar, local, vídeo ou benchmark",
+          "group": "Entrada",
+          "weight": 1.08
+        },
+        {
+          "id": "source_grounding_research__claim_evidence_trace",
+          "parent_id": "source_grounding_research",
+          "label": "Liga claim a evidência e confiança",
+          "group": "Entrada",
+          "weight": 1.08
+        },
+        {
+          "id": "source_grounding_research__freshness_verification",
+          "parent_id": "source_grounding_research",
+          "label": "Verifica frescor e risco factual",
+          "group": "Entrada",
+          "weight": 1.08
+        },
+        {
+          "id": "native_pptx_objects__drawingml_shapes",
+          "parent_id": "native_pptx_objects",
+          "label": "Gera shapes/textos nativos DrawingML",
+          "group": "Renderização",
+          "weight": 0.73
+        },
+        {
+          "id": "native_pptx_objects__image_vs_object_policy",
+          "parent_id": "native_pptx_objects",
+          "label": "Evita transformar tudo em imagem",
+          "group": "Renderização",
+          "weight": 0.73
+        },
+        {
+          "id": "native_pptx_objects__powerpoint_reopen_fidelity",
+          "parent_id": "native_pptx_objects",
+          "label": "Reabre no PowerPoint sem quebrar layout",
+          "group": "Renderização",
+          "weight": 0.73
+        }
+      ],
+      "weights": [
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        1.08,
+        1.08,
+        1.08,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.3733,
+        0.3733,
+        0.3733,
+        0.28,
+        0.28,
+        0.28,
+        0.4533,
+        0.4533,
+        0.4533,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.7333,
+        0.7333,
+        0.7333,
+        1.6133,
+        1.6133,
+        1.6133,
+        12.0133,
+        12.0133,
+        12.0133,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.28,
+        0.28,
+        0.28,
+        0.3733,
+        0.3733,
+        0.3733,
+        0.28,
+        0.28,
+        0.28,
+        0.3733,
+        0.3733,
+        0.3733,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.28,
+        0.28,
+        0.28,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.3733,
+        0.3733,
+        0.3733,
+        0.3733,
+        0.3733,
+        0.3733,
+        0.28,
+        0.28,
+        0.28,
+        0.1867,
+        0.1867,
+        0.1867,
+        0.3733,
+        0.3733,
+        0.3733,
+        0.28,
+        0.28,
+        0.28,
+        0.1867,
+        0.1867,
+        0.1867,
+        5.1733,
+        5.1733,
+        5.1733,
+        1.44,
+        1.44,
+        1.44,
+        2.2267,
+        2.2267,
+        2.2267,
+        1.6933,
+        1.6933,
+        1.6933,
+        0.28,
+        0.28,
+        0.28,
+        0.28,
+        0.28,
+        0.2798
+      ],
+      "totals": [
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 84.64
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 80.95
+        },
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 78.24
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 66.28
+        },
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 59.43
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 56.56
+        },
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 49.52
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 48.95
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 43.48
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "slides_creator",
+          "score": 82.49,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "powerpoint_skill",
+          "score": 79.07,
+          "delta": 3.42
+        },
+        {
+          "rank": 3,
+          "player": "ppt_master",
+          "score": 76.59,
+          "delta": 5.9
+        },
+        {
+          "rank": 4,
+          "player": "pptagent",
+          "score": 65.99,
+          "delta": 16.5
+        },
+        {
+          "rank": 5,
+          "player": "presenton",
+          "score": 58.51,
+          "delta": 23.98
+        },
+        {
+          "rank": 6,
+          "player": "presentagent_2",
+          "score": 56.31,
+          "delta": 26.18
+        },
+        {
+          "rank": 7,
+          "player": "presentation_ai",
+          "score": 49.24,
+          "delta": 33.25
+        },
+        {
+          "rank": 8,
+          "player": "slide_deck_ai",
+          "score": 48.83,
+          "delta": 33.66
+        },
+        {
+          "rank": 9,
+          "player": "banana_slides",
+          "score": 43.49,
+          "delta": 39
+        }
+      ],
+      "winner": "slides_creator",
+      "runner": "powerpoint_skill",
+      "delta": 3.42,
+      "verdict": "powerpoint-skill vence quando a persona exige notação matemática, diagramas, rubrica técnica e documentação operacional antes de produto web ou renderer geral.",
+      "tiebreaker": "Se o deck acadêmico também exigir alta fidelidade de template corporativo, combine powerpoint-skill com ppt-master.",
+      "leader": "slide creator skill"
+    },
+    {
+      "id": "scenario_designer_brand_editor",
+      "label": "Designer/brand editor",
+      "sub": "Editor web, temas, branding, templates, sharing e ajuste visual contínuo.",
+      "job": "Criar e ajustar decks com identidade visual, preview rápido, tema reaplicável e colaboração com stakeholders.",
+      "must_have": [
+        "Editor web",
+        "Temas/tokens",
+        "Template import",
+        "Preview vivo",
+        "Sharing",
+        "Colaboração"
+      ],
+      "anti_goals": [
+        "CLI-only",
+        "Sem runtime visual",
+        "Sem aplicação consistente de marca"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "web_editor_runtime__canvas_editor",
+          "parent_id": "web_editor_runtime",
+          "label": "Canvas/editor web para slides",
+          "group": "Editor",
+          "weight": 5.11
+        },
+        {
+          "id": "web_editor_runtime__rich_text_blocks",
+          "parent_id": "web_editor_runtime",
+          "label": "Blocos ricos: texto, mídia, charts, componentes",
+          "group": "Editor",
+          "weight": 5.11
+        },
+        {
+          "id": "web_editor_runtime__state_management_undo",
+          "parent_id": "web_editor_runtime",
+          "label": "Estado, undo/redo e persistência",
+          "group": "Editor",
+          "weight": 5.11
+        },
+        {
+          "id": "theme_tokens_branding__token_schema",
+          "parent_id": "theme_tokens_branding",
+          "label": "Tokens de cor, fonte, espaçamento e grid",
+          "group": "Design",
+          "weight": 3.31
+        },
+        {
+          "id": "theme_tokens_branding__theme_runtime",
+          "parent_id": "theme_tokens_branding",
+          "label": "Runtime aplica tema consistentemente",
+          "group": "Design",
+          "weight": 3.31
+        },
+        {
+          "id": "theme_tokens_branding__brand_guardrails",
+          "parent_id": "theme_tokens_branding",
+          "label": "Guardrails de marca e anti-padrões",
+          "group": "Design",
+          "weight": 3.31
+        },
+        {
+          "id": "template_import_replication__template_manifest",
+          "parent_id": "template_import_replication",
+          "label": "Manifesta templates importados",
+          "group": "Design",
+          "weight": 2.8
+        },
+        {
+          "id": "template_import_replication__brand_fidelity",
+          "parent_id": "template_import_replication",
+          "label": "Replica linguagem visual de template/brand deck",
+          "group": "Design",
+          "weight": 2.8
+        },
+        {
+          "id": "template_import_replication__template_selection_logic",
+          "parent_id": "template_import_replication",
+          "label": "Seleciona template por função do slide",
+          "group": "Design",
+          "weight": 2.8
+        },
+        {
+          "id": "visual_layout_quality__layout_variety",
+          "parent_id": "visual_layout_quality",
+          "label": "Variedade de layout sem virar colagem",
+          "group": "Design",
+          "weight": 2.3
+        },
+        {
+          "id": "visual_layout_quality__visual_density_control",
+          "parent_id": "visual_layout_quality",
+          "label": "Controle de densidade e legibilidade",
+          "group": "Design",
+          "weight": 2.3
+        },
+        {
+          "id": "visual_layout_quality__rendered_visual_quality",
+          "parent_id": "visual_layout_quality",
+          "label": "Qualidade visual observada no render final",
+          "group": "Design",
+          "weight": 2.3
+        },
+        {
+          "id": "live_preview_annotations__live_preview_server",
+          "parent_id": "live_preview_annotations",
+          "label": "Preview vivo local/web",
+          "group": "Editor",
+          "weight": 2.18
+        },
+        {
+          "id": "live_preview_annotations__visual_annotation_loop",
+          "parent_id": "live_preview_annotations",
+          "label": "Anotações visuais viram correções",
+          "group": "Editor",
+          "weight": 2.18
+        },
+        {
+          "id": "live_preview_annotations__render_snapshot_review",
+          "parent_id": "live_preview_annotations",
+          "label": "Revisão por screenshot/thumbnail",
+          "group": "Editor",
+          "weight": 2.18
+        },
+        {
+          "id": "regional_element_editing__slide_region_targeting",
+          "parent_id": "regional_element_editing",
+          "label": "Target por slide, região ou elemento",
+          "group": "Editor",
+          "weight": 1.93
+        },
+        {
+          "id": "regional_element_editing__object_identity",
+          "parent_id": "regional_element_editing",
+          "label": "Identidade estável de objetos",
+          "group": "Editor",
+          "weight": 1.93
+        },
+        {
+          "id": "regional_element_editing__localized_visual_regen",
+          "parent_id": "regional_element_editing",
+          "label": "Regenera só a área necessária",
+          "group": "Editor",
+          "weight": 1.93
+        },
+        {
+          "id": "sharing_publishing__public_link",
+          "parent_id": "sharing_publishing",
+          "label": "Link público/privado para apresentar",
+          "group": "Distribuição",
+          "weight": 1.93
+        },
+        {
+          "id": "sharing_publishing__export_formats",
+          "parent_id": "sharing_publishing",
+          "label": "Export PDF/PPTX/imagens",
+          "group": "Distribuição",
+          "weight": 1.93
+        },
+        {
+          "id": "sharing_publishing__permission_model",
+          "parent_id": "sharing_publishing",
+          "label": "Permissões e controle de acesso",
+          "group": "Distribuição",
+          "weight": 1.93
+        },
+        {
+          "id": "prompt_to_edit__natural_language_edit",
+          "parent_id": "prompt_to_edit",
+          "label": "Edição por linguagem natural",
+          "group": "Editor",
+          "weight": 1.82
+        },
+        {
+          "id": "prompt_to_edit__diff_before_apply",
+          "parent_id": "prompt_to_edit",
+          "label": "Diff antes de aplicar edição",
+          "group": "Editor",
+          "weight": 1.82
+        },
+        {
+          "id": "prompt_to_edit__edit_history",
+          "parent_id": "prompt_to_edit",
+          "label": "Histórico reversível de edição",
+          "group": "Editor",
+          "weight": 1.82
+        }
+      ],
+      "weights": [
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.4167,
+        0.4167,
+        0.4167,
+        2.2967,
+        2.2967,
+        2.2967,
+        2.8033,
+        2.8033,
+        2.8033,
+        3.3067,
+        3.3067,
+        3.3067,
+        0.6933,
+        0.6933,
+        0.6933,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        2.1833,
+        2.1833,
+        2.1833,
+        1.8167,
+        1.8167,
+        1.8167,
+        1.9333,
+        1.9333,
+        1.9333,
+        5.1067,
+        5.1067,
+        5.1067,
+        1.54,
+        1.54,
+        1.54,
+        1.9333,
+        1.9333,
+        1.9333,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.14,
+        0.14,
+        0.14,
+        0.14,
+        0.14,
+        0.14,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4144
+      ],
+      "totals": [
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 80.59
+        },
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 74.62
+        },
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 73.47
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 71.88
+        },
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 65.92
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 57.33
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 55.23
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 44.57
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 42.25
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "presentation_ai",
+          "score": 78.6,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "presenton",
+          "score": 73.19,
+          "delta": 5.41
+        },
+        {
+          "rank": 3,
+          "player": "ppt_master",
+          "score": 72,
+          "delta": 6.6
+        },
+        {
+          "rank": 4,
+          "player": "banana_slides",
+          "score": 70.68,
+          "delta": 7.92
+        },
+        {
+          "rank": 5,
+          "player": "slides_creator",
+          "score": 65.38,
+          "delta": 13.22
+        },
+        {
+          "rank": 6,
+          "player": "pptagent",
+          "score": 57.14,
+          "delta": 21.46
+        },
+        {
+          "rank": 7,
+          "player": "presentagent_2",
+          "score": 55.1,
+          "delta": 23.5
+        },
+        {
+          "rank": 8,
+          "player": "powerpoint_skill",
+          "score": 43.87,
+          "delta": 34.73
+        },
+        {
+          "rank": 9,
+          "player": "slide_deck_ai",
+          "score": 42.12,
+          "delta": 36.48
+        }
+      ],
+      "winner": "presentation_ai",
+      "runner": "presenton",
+      "delta": 5.41,
+      "verdict": "presentation-ai lidera por editor/tema/share; Presenton fica próximo quando self-host e produto importam.",
+      "tiebreaker": "Se a prioridade mudar para API/self-hosting, Presenton passa a ser a base do produto.",
+      "leader": "presentation-ai"
+    },
+    {
+      "id": "scenario_prompt_to_edit_operator",
+      "label": "Operador prompt-to-edit",
+      "sub": "Usuário quer alterar slides por linguagem natural, região, bloco e iteração visual rápida.",
+      "job": "Iterar em cima de um deck existente com comandos naturais e diffs por elemento ou região.",
+      "must_have": [
+        "Prompt-to-edit",
+        "Edição regional",
+        "Preview",
+        "Diff de alteração",
+        "Undo/reroute"
+      ],
+      "anti_goals": [
+        "Regenerar deck inteiro para cada ajuste",
+        "Edição textual sem contexto visual",
+        "Cópia de código AGPL sem decisão jurídica"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "prompt_to_edit__natural_language_edit",
+          "parent_id": "prompt_to_edit",
+          "label": "Edição por linguagem natural",
+          "group": "Editor",
+          "weight": 7.12
+        },
+        {
+          "id": "prompt_to_edit__diff_before_apply",
+          "parent_id": "prompt_to_edit",
+          "label": "Diff antes de aplicar edição",
+          "group": "Editor",
+          "weight": 7.12
+        },
+        {
+          "id": "prompt_to_edit__edit_history",
+          "parent_id": "prompt_to_edit",
+          "label": "Histórico reversível de edição",
+          "group": "Editor",
+          "weight": 7.12
+        },
+        {
+          "id": "regional_element_editing__slide_region_targeting",
+          "parent_id": "regional_element_editing",
+          "label": "Target por slide, região ou elemento",
+          "group": "Editor",
+          "weight": 4.71
+        },
+        {
+          "id": "regional_element_editing__object_identity",
+          "parent_id": "regional_element_editing",
+          "label": "Identidade estável de objetos",
+          "group": "Editor",
+          "weight": 4.71
+        },
+        {
+          "id": "regional_element_editing__localized_visual_regen",
+          "parent_id": "regional_element_editing",
+          "label": "Regenera só a área necessária",
+          "group": "Editor",
+          "weight": 4.71
+        },
+        {
+          "id": "web_editor_runtime__canvas_editor",
+          "parent_id": "web_editor_runtime",
+          "label": "Canvas/editor web para slides",
+          "group": "Editor",
+          "weight": 3.84
+        },
+        {
+          "id": "web_editor_runtime__rich_text_blocks",
+          "parent_id": "web_editor_runtime",
+          "label": "Blocos ricos: texto, mídia, charts, componentes",
+          "group": "Editor",
+          "weight": 3.84
+        },
+        {
+          "id": "web_editor_runtime__state_management_undo",
+          "parent_id": "web_editor_runtime",
+          "label": "Estado, undo/redo e persistência",
+          "group": "Editor",
+          "weight": 3.84
+        },
+        {
+          "id": "live_preview_annotations__live_preview_server",
+          "parent_id": "live_preview_annotations",
+          "label": "Preview vivo local/web",
+          "group": "Editor",
+          "weight": 2.69
+        },
+        {
+          "id": "live_preview_annotations__visual_annotation_loop",
+          "parent_id": "live_preview_annotations",
+          "label": "Anotações visuais viram correções",
+          "group": "Editor",
+          "weight": 2.69
+        },
+        {
+          "id": "live_preview_annotations__render_snapshot_review",
+          "parent_id": "live_preview_annotations",
+          "label": "Revisão por screenshot/thumbnail",
+          "group": "Editor",
+          "weight": 2.69
+        },
+        {
+          "id": "qa_evaluation_rubric__narrative_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA de narrativa, tese e CTA",
+          "group": "Qualidade",
+          "weight": 1.31
+        },
+        {
+          "id": "qa_evaluation_rubric__visual_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA visual/rendered key slides",
+          "group": "Qualidade",
+          "weight": 1.31
+        },
+        {
+          "id": "qa_evaluation_rubric__release_killer_items",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "Itens bloqueantes de release",
+          "group": "Qualidade",
+          "weight": 1.31
+        },
+        {
+          "id": "visual_layout_quality__layout_variety",
+          "parent_id": "visual_layout_quality",
+          "label": "Variedade de layout sem virar colagem",
+          "group": "Design",
+          "weight": 1.29
+        },
+        {
+          "id": "visual_layout_quality__visual_density_control",
+          "parent_id": "visual_layout_quality",
+          "label": "Controle de densidade e legibilidade",
+          "group": "Design",
+          "weight": 1.29
+        },
+        {
+          "id": "visual_layout_quality__rendered_visual_quality",
+          "parent_id": "visual_layout_quality",
+          "label": "Qualidade visual observada no render final",
+          "group": "Design",
+          "weight": 1.29
+        },
+        {
+          "id": "collaboration_realtime__review_comments",
+          "parent_id": "collaboration_realtime",
+          "label": "Comentários/revisão assíncrona",
+          "group": "Editor",
+          "weight": 1.04
+        },
+        {
+          "id": "collaboration_realtime__multi_user_realtime",
+          "parent_id": "collaboration_realtime",
+          "label": "Colaboração multiusuário em tempo real",
+          "group": "Editor",
+          "weight": 1.04
+        },
+        {
+          "id": "collaboration_realtime__approval_workflow",
+          "parent_id": "collaboration_realtime",
+          "label": "Workflow de aprovação/versões",
+          "group": "Editor",
+          "weight": 1.04
+        },
+        {
+          "id": "license_absorption_safety__license_clarity",
+          "parent_id": "license_absorption_safety",
+          "label": "Licença clara no repositório",
+          "group": "Risco",
+          "weight": 0.92
+        },
+        {
+          "id": "license_absorption_safety__code_reuse_safety",
+          "parent_id": "license_absorption_safety",
+          "label": "Segurança para copiar/adaptar código",
+          "group": "Risco",
+          "weight": 0.92
+        },
+        {
+          "id": "license_absorption_safety__behavioral_absorption_safety",
+          "parent_id": "license_absorption_safety",
+          "label": "Segurança para absorver padrão/comportamento",
+          "group": "Risco",
+          "weight": 0.92
+        }
+      ],
+      "weights": [
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.4167,
+        0.4167,
+        0.4167,
+        1.2867,
+        1.2867,
+        1.2867,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.6933,
+        0.6933,
+        0.6933,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        2.69,
+        2.69,
+        2.69,
+        7.1233,
+        7.1233,
+        7.1233,
+        4.71,
+        4.71,
+        4.71,
+        3.84,
+        3.84,
+        3.84,
+        1.0367,
+        1.0367,
+        1.0367,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.4167,
+        0.4167,
+        0.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        1.3133,
+        1.3133,
+        1.3133,
+        0.5567,
+        0.5567,
+        0.5567,
+        0.14,
+        0.14,
+        0.14,
+        0.14,
+        0.14,
+        0.14,
+        0.9233,
+        0.9233,
+        0.9233,
+        0.4167,
+        0.4167,
+        0.4144
+      ],
+      "totals": [
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 76.56
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 76.53
+        },
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 76.44
+        },
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 70.71
+        },
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 63.32
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 57.27
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 56.45
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 44.18
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 40.67
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "banana_slides",
+          "score": 75.43,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "presentation_ai",
+          "score": 75.04,
+          "delta": 0.39
+        },
+        {
+          "rank": 3,
+          "player": "ppt_master",
+          "score": 74.83,
+          "delta": 0.6
+        },
+        {
+          "rank": 4,
+          "player": "presenton",
+          "score": 69.74,
+          "delta": 5.69
+        },
+        {
+          "rank": 5,
+          "player": "slides_creator",
+          "score": 62.72,
+          "delta": 12.71
+        },
+        {
+          "rank": 6,
+          "player": "pptagent",
+          "score": 57.11,
+          "delta": 18.32
+        },
+        {
+          "rank": 7,
+          "player": "presentagent_2",
+          "score": 56.43,
+          "delta": 19
+        },
+        {
+          "rank": 8,
+          "player": "powerpoint_skill",
+          "score": 43.62,
+          "delta": 31.81
+        },
+        {
+          "rank": 9,
+          "player": "slide_deck_ai",
+          "score": 40.54,
+          "delta": 34.89
+        }
+      ],
+      "winner": "presentation_ai",
+      "runner": "presentation_ai",
+      "delta": 0.39,
+      "verdict": "banana-slides vence como benchmark comportamental; para absorção segura, converter em contrato/teste e implementar em base permissiva.",
+      "tiebreaker": "Para implementação direta, prefira presentation-ai/Presenton e use banana-slides como referência black-box.",
+      "leader": "presentation-ai"
+    },
+    {
+      "id": "scenario_enterprise_compliance_privacy",
+      "label": "Enterprise/compliance",
+      "sub": "Privacidade, BYOK/local, licença, auditabilidade, self-hosting e rastreabilidade de fontes.",
+      "job": "Rodar geração de slides com dados sensíveis, auditoria, licença segura e opção sem envio para SaaS externo.",
+      "must_have": [
+        "Licença segura",
+        "BYOK/local",
+        "Self-hosting",
+        "Grounding",
+        "QA",
+        "Logs auditáveis"
+      ],
+      "anti_goals": [
+        "Licença copyleft sem ADR",
+        "SaaS-only",
+        "Sem trilha de fontes ou decisões"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "license_absorption_safety__license_clarity",
+          "parent_id": "license_absorption_safety",
+          "label": "Licença clara no repositório",
+          "group": "Risco",
+          "weight": 5.91
+        },
+        {
+          "id": "license_absorption_safety__code_reuse_safety",
+          "parent_id": "license_absorption_safety",
+          "label": "Segurança para copiar/adaptar código",
+          "group": "Risco",
+          "weight": 5.91
+        },
+        {
+          "id": "license_absorption_safety__behavioral_absorption_safety",
+          "parent_id": "license_absorption_safety",
+          "label": "Segurança para absorver padrão/comportamento",
+          "group": "Risco",
+          "weight": 5.91
+        },
+        {
+          "id": "local_byok_ollama__byok_config",
+          "parent_id": "local_byok_ollama",
+          "label": "BYOK explícito",
+          "group": "IA",
+          "weight": 3.56
+        },
+        {
+          "id": "local_byok_ollama__ollama_lmstudio",
+          "parent_id": "local_byok_ollama",
+          "label": "Ollama/LM Studio/modelos locais",
+          "group": "IA",
+          "weight": 3.56
+        },
+        {
+          "id": "local_byok_ollama__privacy_mode",
+          "parent_id": "local_byok_ollama",
+          "label": "Modo privacidade sem SaaS obrigatório",
+          "group": "IA",
+          "weight": 3.56
+        },
+        {
+          "id": "docker_self_hosted__docker_compose",
+          "parent_id": "docker_self_hosted",
+          "label": "Docker Compose/local deploy",
+          "group": "Infra",
+          "weight": 2.67
+        },
+        {
+          "id": "docker_self_hosted__service_topology",
+          "parent_id": "docker_self_hosted",
+          "label": "Topologia serviços app/API/storage",
+          "group": "Infra",
+          "weight": 2.67
+        },
+        {
+          "id": "docker_self_hosted__production_ops",
+          "parent_id": "docker_self_hosted",
+          "label": "Operação: env, storage, logs, upgrade",
+          "group": "Infra",
+          "weight": 2.67
+        },
+        {
+          "id": "source_grounding_research__source_routing",
+          "parent_id": "source_grounding_research",
+          "label": "Roteia fonte por tipo: web, scholar, local, vídeo ou benchmark",
+          "group": "Entrada",
+          "weight": 2.17
+        },
+        {
+          "id": "source_grounding_research__claim_evidence_trace",
+          "parent_id": "source_grounding_research",
+          "label": "Liga claim a evidência e confiança",
+          "group": "Entrada",
+          "weight": 2.17
+        },
+        {
+          "id": "source_grounding_research__freshness_verification",
+          "parent_id": "source_grounding_research",
+          "label": "Verifica frescor e risco factual",
+          "group": "Entrada",
+          "weight": 2.17
+        },
+        {
+          "id": "api_generation__rest_generate_endpoint",
+          "parent_id": "api_generation",
+          "label": "Endpoint REST para gerar deck",
+          "group": "Automação",
+          "weight": 2.06
+        },
+        {
+          "id": "api_generation__job_queue_status",
+          "parent_id": "api_generation",
+          "label": "Job assíncrono com status e artefatos",
+          "group": "Automação",
+          "weight": 2.06
+        },
+        {
+          "id": "api_generation__api_contract_schema",
+          "parent_id": "api_generation",
+          "label": "Contrato estável de input/output",
+          "group": "Automação",
+          "weight": 2.06
+        },
+        {
+          "id": "mcp_automation__mcp_server_tools",
+          "parent_id": "mcp_automation",
+          "label": "MCP/tools para geração e edição",
+          "group": "Automação",
+          "weight": 2.06
+        },
+        {
+          "id": "mcp_automation__agent_orchestration",
+          "parent_id": "mcp_automation",
+          "label": "Orquestra etapas por agente/workflow",
+          "group": "Automação",
+          "weight": 2.06
+        },
+        {
+          "id": "mcp_automation__tool_safety_boundaries",
+          "parent_id": "mcp_automation",
+          "label": "Limites de ferramenta e segurança operacional",
+          "group": "Automação",
+          "weight": 2.06
+        },
+        {
+          "id": "qa_evaluation_rubric__narrative_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA de narrativa, tese e CTA",
+          "group": "Qualidade",
+          "weight": 2.06
+        },
+        {
+          "id": "qa_evaluation_rubric__visual_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA visual/rendered key slides",
+          "group": "Qualidade",
+          "weight": 2.06
+        },
+        {
+          "id": "qa_evaluation_rubric__release_killer_items",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "Itens bloqueantes de release",
+          "group": "Qualidade",
+          "weight": 2.06
+        },
+        {
+          "id": "editability_qa__pptx_object_inspection",
+          "parent_id": "editability_qa",
+          "label": "Inspeciona objetos editáveis no PPTX",
+          "group": "Qualidade",
+          "weight": 1.55
+        },
+        {
+          "id": "editability_qa__placeholder_residue_check",
+          "parent_id": "editability_qa",
+          "label": "Verifica placeholders/resíduos técnicos",
+          "group": "Qualidade",
+          "weight": 1.55
+        },
+        {
+          "id": "editability_qa__roundtrip_powerpoint",
+          "parent_id": "editability_qa",
+          "label": "Roundtrip PowerPoint/LibreOffice/PDF",
+          "group": "Qualidade",
+          "weight": 1.55
+        }
+      ],
+      "weights": [
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        2.1667,
+        2.1667,
+        2.1667,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.55,
+        0.55,
+        0.55,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.69,
+        0.69,
+        0.69,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.55,
+        0.55,
+        0.55,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.55,
+        0.55,
+        0.55,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        2.0567,
+        2.0567,
+        2.0567,
+        2.0567,
+        2.0567,
+        2.0567,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        3.56,
+        3.56,
+        3.56,
+        2.67,
+        2.67,
+        2.67,
+        0.2767,
+        0.2767,
+        0.2767,
+        2.0567,
+        2.0567,
+        2.0567,
+        1.5533,
+        1.5533,
+        1.5533,
+        0.89,
+        0.89,
+        0.89,
+        0.89,
+        0.89,
+        0.89,
+        5.9133,
+        5.9133,
+        5.9133,
+        0.4133,
+        0.4133,
+        0.4125
+      ],
+      "totals": [
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 81.49
+        },
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 80.61
+        },
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 75.98
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 72.33
+        },
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 71.24
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 67.09
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 64.74
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 60.09
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 51.36
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "presenton",
+          "score": 80.34,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "slides_creator",
+          "score": 79.04,
+          "delta": 1.3
+        },
+        {
+          "rank": 3,
+          "player": "ppt_master",
+          "score": 75.07,
+          "delta": 5.27
+        },
+        {
+          "rank": 4,
+          "player": "pptagent",
+          "score": 71.98,
+          "delta": 8.36
+        },
+        {
+          "rank": 5,
+          "player": "presentation_ai",
+          "score": 70.64,
+          "delta": 9.7
+        },
+        {
+          "rank": 6,
+          "player": "slide_deck_ai",
+          "score": 66.53,
+          "delta": 13.81
+        },
+        {
+          "rank": 7,
+          "player": "powerpoint_skill",
+          "score": 64.01,
+          "delta": 16.33
+        },
+        {
+          "rank": 8,
+          "player": "presentagent_2",
+          "score": 60.73,
+          "delta": 19.61
+        },
+        {
+          "rank": 9,
+          "player": "banana_slides",
+          "score": 53.12,
+          "delta": 27.22
+        }
+      ],
+      "winner": "presenton",
+      "runner": "slides_creator",
+      "delta": 1.3,
+      "verdict": "Presenton lidera como runtime privado; SINKRA e ppt-master entram para governança, editabilidade e rastreabilidade.",
+      "tiebreaker": "banana-slides e PresentAgent-2 ficam fora do core até licença/risco estarem resolvidos.",
+      "leader": "Presenton"
+    },
+    {
+      "id": "scenario_multimodal_research_video",
+      "label": "Research multimodal/vídeo",
+      "sub": "Query aberta vira pesquisa, fonte multimodal, slides, narração, vídeo e Q&A grounded.",
+      "job": "Transformar fontes multimodais em deck narrado com pesquisa, evidências, export vídeo e Q&A sobre o conteúdo.",
+      "must_have": [
+        "URL/YouTube",
+        "Grounding",
+        "Narração",
+        "Vídeo",
+        "Q&A",
+        "Planejamento"
+      ],
+      "anti_goals": [
+        "Deck sem fontes",
+        "Vídeo sem PPTX",
+        "Pipeline multimodal sem governança"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "source_grounding_research__source_routing",
+          "parent_id": "source_grounding_research",
+          "label": "Roteia fonte por tipo: web, scholar, local, vídeo ou benchmark",
+          "group": "Entrada",
+          "weight": 4.59
+        },
+        {
+          "id": "source_grounding_research__claim_evidence_trace",
+          "parent_id": "source_grounding_research",
+          "label": "Liga claim a evidência e confiança",
+          "group": "Entrada",
+          "weight": 4.59
+        },
+        {
+          "id": "source_grounding_research__freshness_verification",
+          "parent_id": "source_grounding_research",
+          "label": "Verifica frescor e risco factual",
+          "group": "Entrada",
+          "weight": 4.59
+        },
+        {
+          "id": "video_export__ppt_to_video",
+          "parent_id": "video_export",
+          "label": "Exporta deck para vídeo/MP4",
+          "group": "Multimídia",
+          "weight": 3.93
+        },
+        {
+          "id": "video_export__interactive_video_qa",
+          "parent_id": "video_export",
+          "label": "Q&A ou navegação sobre vídeo",
+          "group": "Multimídia",
+          "weight": 3.93
+        },
+        {
+          "id": "video_export__media_asset_pipeline",
+          "parent_id": "video_export",
+          "label": "Pipeline de assets multimídia",
+          "group": "Multimídia",
+          "weight": 3.93
+        },
+        {
+          "id": "narration_audio__speaker_notes",
+          "parent_id": "narration_audio",
+          "label": "Speaker notes estruturadas",
+          "group": "Multimídia",
+          "weight": 3.41
+        },
+        {
+          "id": "narration_audio__tts_voiceover",
+          "parent_id": "narration_audio",
+          "label": "TTS/narração automática",
+          "group": "Multimídia",
+          "weight": 3.41
+        },
+        {
+          "id": "narration_audio__audio_sync",
+          "parent_id": "narration_audio",
+          "label": "Sincroniza áudio com slide/trecho",
+          "group": "Multimídia",
+          "weight": 3.41
+        },
+        {
+          "id": "url_youtube_ingestion__url_fetch",
+          "parent_id": "url_youtube_ingestion",
+          "label": "Ingestão de URL/site/documento remoto",
+          "group": "Entrada",
+          "weight": 2.89
+        },
+        {
+          "id": "url_youtube_ingestion__youtube_media",
+          "parent_id": "url_youtube_ingestion",
+          "label": "YouTube/vídeo como fonte de narrativa",
+          "group": "Entrada",
+          "weight": 2.89
+        },
+        {
+          "id": "url_youtube_ingestion__media_to_slide_mapping",
+          "parent_id": "url_youtube_ingestion",
+          "label": "Mapeia mídia para momentos/trechos do deck",
+          "group": "Entrada",
+          "weight": 2.89
+        },
+        {
+          "id": "slide_structure_planning__slide_function_map",
+          "parent_id": "slide_structure_planning",
+          "label": "Mapa de função por slide",
+          "group": "Planejamento",
+          "weight": 1.99
+        },
+        {
+          "id": "slide_structure_planning__key_slide_critique",
+          "parent_id": "slide_structure_planning",
+          "label": "Critica slides decisivos antes da produção total",
+          "group": "Planejamento",
+          "weight": 1.99
+        },
+        {
+          "id": "slide_structure_planning__speaker_flow",
+          "parent_id": "slide_structure_planning",
+          "label": "Fluxo de fala/transição entre slides",
+          "group": "Planejamento",
+          "weight": 1.99
+        },
+        {
+          "id": "qa_evaluation_rubric__narrative_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA de narrativa, tese e CTA",
+          "group": "Qualidade",
+          "weight": 1.87
+        },
+        {
+          "id": "qa_evaluation_rubric__visual_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA visual/rendered key slides",
+          "group": "Qualidade",
+          "weight": 1.87
+        },
+        {
+          "id": "qa_evaluation_rubric__release_killer_items",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "Itens bloqueantes de release",
+          "group": "Qualidade",
+          "weight": 1.87
+        },
+        {
+          "id": "document_ingestion__file_type_coverage",
+          "parent_id": "document_ingestion",
+          "label": "Cobertura de tipos PDF/DOCX/PPTX/MD",
+          "group": "Entrada",
+          "weight": 1.33
+        },
+        {
+          "id": "document_ingestion__semantic_extraction",
+          "parent_id": "document_ingestion",
+          "label": "Extração semântica de claims, seções, tabelas e evidências",
+          "group": "Entrada",
+          "weight": 1.33
+        },
+        {
+          "id": "document_ingestion__pptx_reverse_ingestion",
+          "parent_id": "document_ingestion",
+          "label": "Ingestão/reaproveitamento de PPTX existente",
+          "group": "Entrada",
+          "weight": 1.33
+        },
+        {
+          "id": "sharing_publishing__public_link",
+          "parent_id": "sharing_publishing",
+          "label": "Link público/privado para apresentar",
+          "group": "Distribuição",
+          "weight": 1.21
+        },
+        {
+          "id": "sharing_publishing__export_formats",
+          "parent_id": "sharing_publishing",
+          "label": "Export PDF/PPTX/imagens",
+          "group": "Distribuição",
+          "weight": 1.21
+        },
+        {
+          "id": "sharing_publishing__permission_model",
+          "parent_id": "sharing_publishing",
+          "label": "Permissões e controle de acesso",
+          "group": "Distribuição",
+          "weight": 1.21
+        }
+      ],
+      "weights": [
+        1.0667,
+        1.0667,
+        1.0667,
+        1.3267,
+        1.3267,
+        1.3267,
+        2.89,
+        2.89,
+        2.89,
+        4.5933,
+        4.5933,
+        4.5933,
+        0.2867,
+        0.2867,
+        0.2867,
+        0.5733,
+        0.5733,
+        0.5733,
+        1.9933,
+        1.9933,
+        1.9933,
+        0.2867,
+        0.2867,
+        0.2867,
+        0.2867,
+        0.2867,
+        0.2867,
+        0.2867,
+        0.2867,
+        0.2867,
+        0.7167,
+        0.7167,
+        0.7167,
+        0.43,
+        0.43,
+        0.43,
+        0.43,
+        0.43,
+        0.43,
+        0.2867,
+        0.2867,
+        0.2867,
+        3.41,
+        3.41,
+        3.41,
+        3.9333,
+        3.9333,
+        3.9333,
+        0.43,
+        0.43,
+        0.43,
+        0.5733,
+        0.5733,
+        0.5733,
+        0.43,
+        0.43,
+        0.43,
+        0.5733,
+        0.5733,
+        0.5733,
+        0.2867,
+        0.2867,
+        0.2867,
+        1.21,
+        1.21,
+        1.21,
+        0.2867,
+        0.2867,
+        0.2867,
+        0.5733,
+        0.5733,
+        0.5733,
+        0.5733,
+        0.5733,
+        0.5733,
+        0.43,
+        0.43,
+        0.43,
+        0.2867,
+        0.2867,
+        0.2867,
+        0.5733,
+        0.5733,
+        0.5733,
+        0.43,
+        0.43,
+        0.43,
+        0.2867,
+        0.2867,
+        0.2867,
+        1.8733,
+        1.8733,
+        1.8733,
+        0.5733,
+        0.5733,
+        0.5733,
+        0.1433,
+        0.1433,
+        0.1433,
+        0.1433,
+        0.1433,
+        0.1433,
+        0.43,
+        0.43,
+        0.43,
+        0.43,
+        0.43,
+        0.4301
+      ],
+      "totals": [
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 78.56
+        },
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 76.45
+        },
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 69.25
+        },
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 62.05
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 60.45
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 59.39
+        },
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 56.67
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 48.81
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 47.98
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "presentagent_2",
+          "score": 76.88,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "ppt_master",
+          "score": 75.05,
+          "delta": 1.83
+        },
+        {
+          "rank": 3,
+          "player": "slides_creator",
+          "score": 68.61,
+          "delta": 8.27
+        },
+        {
+          "rank": 4,
+          "player": "presenton",
+          "score": 61.39,
+          "delta": 15.49
+        },
+        {
+          "rank": 5,
+          "player": "pptagent",
+          "score": 59.96,
+          "delta": 16.92
+        },
+        {
+          "rank": 6,
+          "player": "banana_slides",
+          "score": 58.91,
+          "delta": 17.97
+        },
+        {
+          "rank": 7,
+          "player": "presentation_ai",
+          "score": 56.24,
+          "delta": 20.64
+        },
+        {
+          "rank": 8,
+          "player": "powerpoint_skill",
+          "score": 48.32,
+          "delta": 28.56
+        },
+        {
+          "rank": 9,
+          "player": "slide_deck_ai",
+          "score": 47.84,
+          "delta": 29.04
+        }
+      ],
+      "winner": "presentagent_2",
+      "runner": "ppt_master",
+      "delta": 1.83,
+      "verdict": "PresentAgent-2 vence como referência de futuro multimodal, mas não substitui o renderer PPTX no MVP corporativo.",
+      "tiebreaker": "Se a entrega final ainda é PPTX editável, ppt-master continua obrigatório no pipeline.",
+      "leader": "PresentAgent-2"
+    },
+    {
+      "id": "scenario_sinkra_absorption_architect",
+      "label": "Arquiteto slide creator skill stack",
+      "sub": "Decisão de stack: absorver o melhor de cada camada sem fork único e sem risco de licença.",
+      "job": "Projetar a stack final combinando narrativa, renderer, runtime, agentes, QA, licenças e roadmap de absorção.",
+      "must_have": [
+        "Composição modular",
+        "PPTX nativo",
+        "API/MCP",
+        "QA",
+        "Licença",
+        "Local/BYOK"
+      ],
+      "anti_goals": [
+        "Fork único",
+        "Ranking absoluto injusto",
+        "Absorção de código com risco jurídico"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "native_pptx_objects__drawingml_shapes",
+          "parent_id": "native_pptx_objects",
+          "label": "Gera shapes/textos nativos DrawingML",
+          "group": "Renderização",
+          "weight": 3.94
+        },
+        {
+          "id": "native_pptx_objects__image_vs_object_policy",
+          "parent_id": "native_pptx_objects",
+          "label": "Evita transformar tudo em imagem",
+          "group": "Renderização",
+          "weight": 3.94
+        },
+        {
+          "id": "native_pptx_objects__powerpoint_reopen_fidelity",
+          "parent_id": "native_pptx_objects",
+          "label": "Reabre no PowerPoint sem quebrar layout",
+          "group": "Renderização",
+          "weight": 3.94
+        },
+        {
+          "id": "api_generation__rest_generate_endpoint",
+          "parent_id": "api_generation",
+          "label": "Endpoint REST para gerar deck",
+          "group": "Automação",
+          "weight": 3.06
+        },
+        {
+          "id": "api_generation__job_queue_status",
+          "parent_id": "api_generation",
+          "label": "Job assíncrono com status e artefatos",
+          "group": "Automação",
+          "weight": 3.06
+        },
+        {
+          "id": "api_generation__api_contract_schema",
+          "parent_id": "api_generation",
+          "label": "Contrato estável de input/output",
+          "group": "Automação",
+          "weight": 3.06
+        },
+        {
+          "id": "mcp_automation__mcp_server_tools",
+          "parent_id": "mcp_automation",
+          "label": "MCP/tools para geração e edição",
+          "group": "Automação",
+          "weight": 3.06
+        },
+        {
+          "id": "mcp_automation__agent_orchestration",
+          "parent_id": "mcp_automation",
+          "label": "Orquestra etapas por agente/workflow",
+          "group": "Automação",
+          "weight": 3.06
+        },
+        {
+          "id": "mcp_automation__tool_safety_boundaries",
+          "parent_id": "mcp_automation",
+          "label": "Limites de ferramenta e segurança operacional",
+          "group": "Automação",
+          "weight": 3.06
+        },
+        {
+          "id": "consultative_narrative__belief_shift",
+          "parent_id": "consultative_narrative",
+          "label": "Define mudança de crença da audiência",
+          "group": "Planejamento",
+          "weight": 2.81
+        },
+        {
+          "id": "consultative_narrative__executive_pyramid",
+          "parent_id": "consultative_narrative",
+          "label": "Usa lógica SCQA/Pyramid/action-title",
+          "group": "Planejamento",
+          "weight": 2.81
+        },
+        {
+          "id": "consultative_narrative__cta_decision_design",
+          "parent_id": "consultative_narrative",
+          "label": "Conecta história ao CTA ou decisão final",
+          "group": "Planejamento",
+          "weight": 2.81
+        },
+        {
+          "id": "qa_evaluation_rubric__narrative_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA de narrativa, tese e CTA",
+          "group": "Qualidade",
+          "weight": 2.56
+        },
+        {
+          "id": "qa_evaluation_rubric__visual_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA visual/rendered key slides",
+          "group": "Qualidade",
+          "weight": 2.56
+        },
+        {
+          "id": "qa_evaluation_rubric__release_killer_items",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "Itens bloqueantes de release",
+          "group": "Qualidade",
+          "weight": 2.56
+        },
+        {
+          "id": "license_absorption_safety__license_clarity",
+          "parent_id": "license_absorption_safety",
+          "label": "Licença clara no repositório",
+          "group": "Risco",
+          "weight": 2.17
+        },
+        {
+          "id": "license_absorption_safety__code_reuse_safety",
+          "parent_id": "license_absorption_safety",
+          "label": "Segurança para copiar/adaptar código",
+          "group": "Risco",
+          "weight": 2.17
+        },
+        {
+          "id": "license_absorption_safety__behavioral_absorption_safety",
+          "parent_id": "license_absorption_safety",
+          "label": "Segurança para absorver padrão/comportamento",
+          "group": "Risco",
+          "weight": 2.17
+        },
+        {
+          "id": "local_byok_ollama__byok_config",
+          "parent_id": "local_byok_ollama",
+          "label": "BYOK explícito",
+          "group": "IA",
+          "weight": 2.06
+        },
+        {
+          "id": "local_byok_ollama__ollama_lmstudio",
+          "parent_id": "local_byok_ollama",
+          "label": "Ollama/LM Studio/modelos locais",
+          "group": "IA",
+          "weight": 2.06
+        },
+        {
+          "id": "local_byok_ollama__privacy_mode",
+          "parent_id": "local_byok_ollama",
+          "label": "Modo privacidade sem SaaS obrigatório",
+          "group": "IA",
+          "weight": 2.06
+        },
+        {
+          "id": "editability_qa__pptx_object_inspection",
+          "parent_id": "editability_qa",
+          "label": "Inspeciona objetos editáveis no PPTX",
+          "group": "Qualidade",
+          "weight": 1.8
+        },
+        {
+          "id": "editability_qa__placeholder_residue_check",
+          "parent_id": "editability_qa",
+          "label": "Verifica placeholders/resíduos técnicos",
+          "group": "Qualidade",
+          "weight": 1.8
+        },
+        {
+          "id": "editability_qa__roundtrip_powerpoint",
+          "parent_id": "editability_qa",
+          "label": "Roundtrip PowerPoint/LibreOffice/PDF",
+          "group": "Qualidade",
+          "weight": 1.8
+        }
+      ],
+      "weights": [
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        2.8067,
+        2.8067,
+        2.8067,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        3.94,
+        3.94,
+        3.94,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.4133,
+        0.4133,
+        0.4133,
+        1.3033,
+        1.3033,
+        1.3033,
+        0.4133,
+        0.4133,
+        0.4133,
+        1.3033,
+        1.3033,
+        1.3033,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        3.0567,
+        3.0567,
+        3.0567,
+        3.0567,
+        3.0567,
+        3.0567,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        2.0567,
+        2.0567,
+        2.0567,
+        1.4167,
+        1.4167,
+        1.4167,
+        0.2767,
+        0.2767,
+        0.2767,
+        2.5567,
+        2.5567,
+        2.5567,
+        1.8033,
+        1.8033,
+        1.8033,
+        0.1367,
+        0.1367,
+        0.1367,
+        0.1367,
+        0.1367,
+        0.1367,
+        2.1667,
+        2.1667,
+        2.1667,
+        0.4133,
+        0.4133,
+        0.4122
+      ],
+      "totals": [
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 78.65
+        },
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 74.86
+        },
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 74.05
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 69.74
+        },
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 68.67
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 64.83
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 60.71
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 59.8
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 58.16
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "presenton",
+          "score": 77.51,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "slides_creator",
+          "score": 73.73,
+          "delta": 3.78
+        },
+        {
+          "rank": 3,
+          "player": "ppt_master",
+          "score": 72.97,
+          "delta": 4.54
+        },
+        {
+          "rank": 4,
+          "player": "pptagent",
+          "score": 69.28,
+          "delta": 8.23
+        },
+        {
+          "rank": 5,
+          "player": "presentation_ai",
+          "score": 68,
+          "delta": 9.51
+        },
+        {
+          "rank": 6,
+          "player": "presentagent_2",
+          "score": 64.85,
+          "delta": 12.66
+        },
+        {
+          "rank": 7,
+          "player": "powerpoint_skill",
+          "score": 59.6,
+          "delta": 17.91
+        },
+        {
+          "rank": 8,
+          "player": "slide_deck_ai",
+          "score": 59.45,
+          "delta": 18.06
+        },
+        {
+          "rank": 9,
+          "player": "banana_slides",
+          "score": 58.64,
+          "delta": 18.87
+        }
+      ],
+      "winner": "presenton",
+      "runner": "slides_creator",
+      "delta": 3.78,
+      "verdict": "A resposta correta é composição: SINKRA narrative core + ppt-master renderer + Presenton runtime + PPTAgent/powerpoint-skill QA.",
+      "tiebreaker": "Não escolher vencedor único; usar o ranking para priorizar ordem de absorção por camada.",
+      "leader": "Presenton"
+    },
+    {
+      "id": "scenario_agency_marketing_scale",
+      "label": "Agência/marketing em escala",
+      "sub": "Produção recorrente de decks visualmente fortes, reaproveitando temas, versões, vídeos curtos e links compartilháveis.",
+      "job": "Produzir muitas variações de decks para campanhas, propostas e relatórios com marca consistente e ciclos rápidos de revisão.",
+      "must_have": [
+        "Temas",
+        "Prompt-to-edit",
+        "Visual/layout",
+        "Share",
+        "Vídeo",
+        "Colaboração",
+        "Templates"
+      ],
+      "anti_goals": [
+        "Saída apenas técnica",
+        "Sem editor para revisão de marca",
+        "Sem publicação/compartilhamento"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "prompt_to_edit__natural_language_edit",
+          "parent_id": "prompt_to_edit",
+          "label": "Edição por linguagem natural",
+          "group": "Editor",
+          "weight": 3.31
+        },
+        {
+          "id": "prompt_to_edit__diff_before_apply",
+          "parent_id": "prompt_to_edit",
+          "label": "Diff antes de aplicar edição",
+          "group": "Editor",
+          "weight": 3.31
+        },
+        {
+          "id": "prompt_to_edit__edit_history",
+          "parent_id": "prompt_to_edit",
+          "label": "Histórico reversível de edição",
+          "group": "Editor",
+          "weight": 3.31
+        },
+        {
+          "id": "web_editor_runtime__canvas_editor",
+          "parent_id": "web_editor_runtime",
+          "label": "Canvas/editor web para slides",
+          "group": "Editor",
+          "weight": 3.06
+        },
+        {
+          "id": "web_editor_runtime__rich_text_blocks",
+          "parent_id": "web_editor_runtime",
+          "label": "Blocos ricos: texto, mídia, charts, componentes",
+          "group": "Editor",
+          "weight": 3.06
+        },
+        {
+          "id": "web_editor_runtime__state_management_undo",
+          "parent_id": "web_editor_runtime",
+          "label": "Estado, undo/redo e persistência",
+          "group": "Editor",
+          "weight": 3.06
+        },
+        {
+          "id": "theme_tokens_branding__token_schema",
+          "parent_id": "theme_tokens_branding",
+          "label": "Tokens de cor, fonte, espaçamento e grid",
+          "group": "Design",
+          "weight": 3.03
+        },
+        {
+          "id": "theme_tokens_branding__theme_runtime",
+          "parent_id": "theme_tokens_branding",
+          "label": "Runtime aplica tema consistentemente",
+          "group": "Design",
+          "weight": 3.03
+        },
+        {
+          "id": "theme_tokens_branding__brand_guardrails",
+          "parent_id": "theme_tokens_branding",
+          "label": "Guardrails de marca e anti-padrões",
+          "group": "Design",
+          "weight": 3.03
+        },
+        {
+          "id": "visual_layout_quality__layout_variety",
+          "parent_id": "visual_layout_quality",
+          "label": "Variedade de layout sem virar colagem",
+          "group": "Design",
+          "weight": 2.78
+        },
+        {
+          "id": "visual_layout_quality__visual_density_control",
+          "parent_id": "visual_layout_quality",
+          "label": "Controle de densidade e legibilidade",
+          "group": "Design",
+          "weight": 2.78
+        },
+        {
+          "id": "visual_layout_quality__rendered_visual_quality",
+          "parent_id": "visual_layout_quality",
+          "label": "Qualidade visual observada no render final",
+          "group": "Design",
+          "weight": 2.78
+        },
+        {
+          "id": "template_import_replication__template_manifest",
+          "parent_id": "template_import_replication",
+          "label": "Manifesta templates importados",
+          "group": "Design",
+          "weight": 2.53
+        },
+        {
+          "id": "template_import_replication__brand_fidelity",
+          "parent_id": "template_import_replication",
+          "label": "Replica linguagem visual de template/brand deck",
+          "group": "Design",
+          "weight": 2.53
+        },
+        {
+          "id": "template_import_replication__template_selection_logic",
+          "parent_id": "template_import_replication",
+          "label": "Seleciona template por função do slide",
+          "group": "Design",
+          "weight": 2.53
+        },
+        {
+          "id": "sharing_publishing__public_link",
+          "parent_id": "sharing_publishing",
+          "label": "Link público/privado para apresentar",
+          "group": "Distribuição",
+          "weight": 2.42
+        },
+        {
+          "id": "sharing_publishing__export_formats",
+          "parent_id": "sharing_publishing",
+          "label": "Export PDF/PPTX/imagens",
+          "group": "Distribuição",
+          "weight": 2.42
+        },
+        {
+          "id": "sharing_publishing__permission_model",
+          "parent_id": "sharing_publishing",
+          "label": "Permissões e controle de acesso",
+          "group": "Distribuição",
+          "weight": 2.42
+        },
+        {
+          "id": "video_export__ppt_to_video",
+          "parent_id": "video_export",
+          "label": "Exporta deck para vídeo/MP4",
+          "group": "Multimídia",
+          "weight": 1.78
+        },
+        {
+          "id": "video_export__interactive_video_qa",
+          "parent_id": "video_export",
+          "label": "Q&A ou navegação sobre vídeo",
+          "group": "Multimídia",
+          "weight": 1.78
+        },
+        {
+          "id": "video_export__media_asset_pipeline",
+          "parent_id": "video_export",
+          "label": "Pipeline de assets multimídia",
+          "group": "Multimídia",
+          "weight": 1.78
+        },
+        {
+          "id": "collaboration_realtime__review_comments",
+          "parent_id": "collaboration_realtime",
+          "label": "Comentários/revisão assíncrona",
+          "group": "Editor",
+          "weight": 1.53
+        },
+        {
+          "id": "collaboration_realtime__multi_user_realtime",
+          "parent_id": "collaboration_realtime",
+          "label": "Colaboração multiusuário em tempo real",
+          "group": "Editor",
+          "weight": 1.53
+        },
+        {
+          "id": "collaboration_realtime__approval_workflow",
+          "parent_id": "collaboration_realtime",
+          "label": "Workflow de aprovação/versões",
+          "group": "Editor",
+          "weight": 1.53
+        }
+      ],
+      "weights": [
+        1.2767,
+        1.2767,
+        1.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.55,
+        0.55,
+        0.55,
+        0.4133,
+        0.4133,
+        0.4133,
+        2.7833,
+        2.7833,
+        2.7833,
+        2.53,
+        2.53,
+        2.53,
+        3.0333,
+        3.0333,
+        3.0333,
+        0.69,
+        0.69,
+        0.69,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.2767,
+        1.78,
+        1.78,
+        1.78,
+        0.4133,
+        0.4133,
+        0.4133,
+        3.3133,
+        3.3133,
+        3.3133,
+        0.4133,
+        0.4133,
+        0.4133,
+        3.0567,
+        3.0567,
+        3.0567,
+        1.53,
+        1.53,
+        1.53,
+        2.42,
+        2.42,
+        2.42,
+        1.2767,
+        1.2767,
+        1.2767,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.55,
+        0.55,
+        0.55,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.2767,
+        0.2767,
+        0.2767,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.55,
+        0.1367,
+        0.1367,
+        0.1367,
+        0.1367,
+        0.1367,
+        0.1367,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4133,
+        0.4134
+      ],
+      "totals": [
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 77.8
+        },
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 72.99
+        },
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 71.88
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 71.15
+        },
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 65.7
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 58.32
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 56.6
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 46.02
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 43.37
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "presentation_ai",
+          "score": 75.99,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "presenton",
+          "score": 71.68,
+          "delta": 4.31
+        },
+        {
+          "rank": 3,
+          "player": "ppt_master",
+          "score": 70.71,
+          "delta": 5.28
+        },
+        {
+          "rank": 4,
+          "player": "banana_slides",
+          "score": 70.04,
+          "delta": 5.95
+        },
+        {
+          "rank": 5,
+          "player": "slides_creator",
+          "score": 65.12,
+          "delta": 10.87
+        },
+        {
+          "rank": 6,
+          "player": "presentagent_2",
+          "score": 57.99,
+          "delta": 18
+        },
+        {
+          "rank": 7,
+          "player": "pptagent",
+          "score": 56.42,
+          "delta": 19.57
+        },
+        {
+          "rank": 8,
+          "player": "powerpoint_skill",
+          "score": 45.45,
+          "delta": 30.54
+        },
+        {
+          "rank": 9,
+          "player": "slide_deck_ai",
+          "score": 43.25,
+          "delta": 32.74
+        }
+      ],
+      "winner": "presentation_ai",
+      "runner": "presenton",
+      "delta": 4.31,
+      "verdict": "presentation-ai vence para operação de marca/editor; banana-slides inspira velocidade de edição e Presenton cobre produto self-hosted.",
+      "tiebreaker": "Se escala exigir API e isolamento por cliente, Presenton sobe; se exigir ajuste visual em massa, presentation-ai continua na frente.",
+      "leader": "presentation-ai"
+    },
+    {
+      "id": "scenario_devops_batch_automation",
+      "label": "DevOps/batch automation",
+      "sub": "Geração headless em lote, CI, CLI, API, logs, fixtures e execução local reproduzível.",
+      "job": "Rodar geração e validação de decks em pipelines automatizados, sem depender de cliques em UI.",
+      "must_have": [
+        "CLI/headless",
+        "API",
+        "MCP",
+        "Docker",
+        "Fixtures/CI",
+        "Logs",
+        "Provider registry"
+      ],
+      "anti_goals": [
+        "UI-only",
+        "Sem fixture",
+        "Sem API estável",
+        "Sem isolamento de workspace"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "cli_headless__batch_generation",
+          "parent_id": "cli_headless",
+          "label": "Batch/headless para múltiplos decks",
+          "group": "Automação",
+          "weight": 4.17
+        },
+        {
+          "id": "cli_headless__local_cli_commands",
+          "parent_id": "cli_headless",
+          "label": "CLI clara para gerar/exportar/revisar",
+          "group": "Automação",
+          "weight": 4.17
+        },
+        {
+          "id": "cli_headless__ci_automation_fit",
+          "parent_id": "cli_headless",
+          "label": "Cabe em CI ou pipeline automatizado",
+          "group": "Automação",
+          "weight": 4.17
+        },
+        {
+          "id": "api_generation__rest_generate_endpoint",
+          "parent_id": "api_generation",
+          "label": "Endpoint REST para gerar deck",
+          "group": "Automação",
+          "weight": 3.8
+        },
+        {
+          "id": "api_generation__job_queue_status",
+          "parent_id": "api_generation",
+          "label": "Job assíncrono com status e artefatos",
+          "group": "Automação",
+          "weight": 3.8
+        },
+        {
+          "id": "api_generation__api_contract_schema",
+          "parent_id": "api_generation",
+          "label": "Contrato estável de input/output",
+          "group": "Automação",
+          "weight": 3.8
+        },
+        {
+          "id": "mcp_automation__mcp_server_tools",
+          "parent_id": "mcp_automation",
+          "label": "MCP/tools para geração e edição",
+          "group": "Automação",
+          "weight": 3.8
+        },
+        {
+          "id": "mcp_automation__agent_orchestration",
+          "parent_id": "mcp_automation",
+          "label": "Orquestra etapas por agente/workflow",
+          "group": "Automação",
+          "weight": 3.8
+        },
+        {
+          "id": "mcp_automation__tool_safety_boundaries",
+          "parent_id": "mcp_automation",
+          "label": "Limites de ferramenta e segurança operacional",
+          "group": "Automação",
+          "weight": 3.8
+        },
+        {
+          "id": "docker_self_hosted__docker_compose",
+          "parent_id": "docker_self_hosted",
+          "label": "Docker Compose/local deploy",
+          "group": "Infra",
+          "weight": 2.5
+        },
+        {
+          "id": "docker_self_hosted__service_topology",
+          "parent_id": "docker_self_hosted",
+          "label": "Topologia serviços app/API/storage",
+          "group": "Infra",
+          "weight": 2.5
+        },
+        {
+          "id": "docker_self_hosted__production_ops",
+          "parent_id": "docker_self_hosted",
+          "label": "Operação: env, storage, logs, upgrade",
+          "group": "Infra",
+          "weight": 2.5
+        },
+        {
+          "id": "test_fixtures_ci__unit_integration_tests",
+          "parent_id": "test_fixtures_ci",
+          "label": "Testes unitários/integração",
+          "group": "Qualidade",
+          "weight": 2.01
+        },
+        {
+          "id": "test_fixtures_ci__golden_deck_fixtures",
+          "parent_id": "test_fixtures_ci",
+          "label": "Fixtures/golden decks",
+          "group": "Qualidade",
+          "weight": 2.01
+        },
+        {
+          "id": "test_fixtures_ci__ci_quality_gate",
+          "parent_id": "test_fixtures_ci",
+          "label": "Quality gate executável em CI",
+          "group": "Qualidade",
+          "weight": 2.01
+        },
+        {
+          "id": "local_byok_ollama__byok_config",
+          "parent_id": "local_byok_ollama",
+          "label": "BYOK explícito",
+          "group": "IA",
+          "weight": 1.92
+        },
+        {
+          "id": "local_byok_ollama__ollama_lmstudio",
+          "parent_id": "local_byok_ollama",
+          "label": "Ollama/LM Studio/modelos locais",
+          "group": "IA",
+          "weight": 1.92
+        },
+        {
+          "id": "local_byok_ollama__privacy_mode",
+          "parent_id": "local_byok_ollama",
+          "label": "Modo privacidade sem SaaS obrigatório",
+          "group": "IA",
+          "weight": 1.92
+        },
+        {
+          "id": "provider_registry__llm_provider_switching",
+          "parent_id": "provider_registry",
+          "label": "Troca de provedores LLM",
+          "group": "IA",
+          "weight": 1.9
+        },
+        {
+          "id": "provider_registry__image_provider_switching",
+          "parent_id": "provider_registry",
+          "label": "Troca de provedores de imagem/stock",
+          "group": "IA",
+          "weight": 1.9
+        },
+        {
+          "id": "provider_registry__provider_policy",
+          "parent_id": "provider_registry",
+          "label": "Política de custo, privacidade e fallback",
+          "group": "IA",
+          "weight": 1.9
+        },
+        {
+          "id": "qa_evaluation_rubric__narrative_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA de narrativa, tese e CTA",
+          "group": "Qualidade",
+          "weight": 1.46
+        },
+        {
+          "id": "qa_evaluation_rubric__visual_qa",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "QA visual/rendered key slides",
+          "group": "Qualidade",
+          "weight": 1.46
+        },
+        {
+          "id": "qa_evaluation_rubric__release_killer_items",
+          "parent_id": "qa_evaluation_rubric",
+          "label": "Itens bloqueantes de release",
+          "group": "Qualidade",
+          "weight": 1.46
+        }
+      ],
+      "weights": [
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.3867,
+        0.3867,
+        0.3867,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.5167,
+        0.5167,
+        0.5167,
+        0.3867,
+        0.3867,
+        0.3867,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.6467,
+        0.6467,
+        0.6467,
+        0.3867,
+        0.3867,
+        0.3867,
+        0.3867,
+        0.3867,
+        0.3867,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.3867,
+        0.3867,
+        0.3867,
+        0.5167,
+        0.5167,
+        0.5167,
+        0.3867,
+        0.3867,
+        0.3867,
+        0.5167,
+        0.5167,
+        0.5167,
+        0.2567,
+        0.2567,
+        0.2567,
+        0.3867,
+        0.3867,
+        0.3867,
+        0.2567,
+        0.2567,
+        0.2567,
+        3.8033,
+        3.8033,
+        3.8033,
+        3.8033,
+        3.8033,
+        3.8033,
+        4.1667,
+        4.1667,
+        4.1667,
+        1.9,
+        1.9,
+        1.9,
+        1.9233,
+        1.9233,
+        1.9233,
+        2.5,
+        2.5,
+        2.5,
+        0.2567,
+        0.2567,
+        0.2567,
+        1.4567,
+        1.4567,
+        1.4567,
+        0.5167,
+        0.5167,
+        0.5167,
+        2.0067,
+        2.0067,
+        2.0067,
+        1.3033,
+        1.3033,
+        1.3033,
+        1.3267,
+        1.3267,
+        1.3267,
+        0.3867,
+        0.3867,
+        0.3841
+      ],
+      "totals": [
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 83.83
+        },
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 76.15
+        },
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 69.53
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 68.15
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 67.32
+        },
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 66.75
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 66.55
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 57.25
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 55.4
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "presenton",
+          "score": 81.98,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "slides_creator",
+          "score": 74.18,
+          "delta": 7.8
+        },
+        {
+          "rank": 3,
+          "player": "ppt_master",
+          "score": 68.57,
+          "delta": 13.41
+        },
+        {
+          "rank": 4,
+          "player": "slide_deck_ai",
+          "score": 67.35,
+          "delta": 14.63
+        },
+        {
+          "rank": 5,
+          "player": "pptagent",
+          "score": 67,
+          "delta": 14.98
+        },
+        {
+          "rank": 6,
+          "player": "presentagent_2",
+          "score": 66.27,
+          "delta": 15.71
+        },
+        {
+          "rank": 7,
+          "player": "presentation_ai",
+          "score": 66.21,
+          "delta": 15.77
+        },
+        {
+          "rank": 8,
+          "player": "banana_slides",
+          "score": 57.15,
+          "delta": 24.83
+        },
+        {
+          "rank": 9,
+          "player": "powerpoint_skill",
+          "score": 54.66,
+          "delta": 27.32
+        }
+      ],
+      "winner": "presenton",
+      "runner": "slides_creator",
+      "delta": 7.8,
+      "verdict": "Presenton ainda lidera produto/API/MCP, mas SINKRA reduziu gap com job-state, provider routing, workflow modes e validação de pacote.",
+      "tiebreaker": "Se o requisito é apenas gerar PPTX em job Python simples, slide-deck-ai sobe; se precisa produto/serviço, Presenton permanece líder.",
+      "leader": "Presenton"
+    },
+    {
+      "id": "scenario_revenue_enablement_analytics",
+      "label": "Revenue enablement/analytics",
+      "sub": "Decks de vendas compartilháveis, rastreáveis, com narrativa, versões por ICP e analytics de consumo.",
+      "job": "Criar decks comerciais por segmento e medir leitura, engajamento e evolução das versões.",
+      "must_have": [
+        "Narrativa",
+        "Share/publicação",
+        "Analytics",
+        "Branding",
+        "Prompt completo",
+        "Colaboração",
+        "PPTX editável"
+      ],
+      "anti_goals": [
+        "Deck sem métrica de consumo",
+        "Sem versão por ICP",
+        "Sem edição comercial rápida"
+      ],
+      "decisive_dimensions": [
+        {
+          "id": "sharing_publishing__public_link",
+          "parent_id": "sharing_publishing",
+          "label": "Link público/privado para apresentar",
+          "group": "Distribuição",
+          "weight": 3.6
+        },
+        {
+          "id": "sharing_publishing__export_formats",
+          "parent_id": "sharing_publishing",
+          "label": "Export PDF/PPTX/imagens",
+          "group": "Distribuição",
+          "weight": 3.6
+        },
+        {
+          "id": "sharing_publishing__permission_model",
+          "parent_id": "sharing_publishing",
+          "label": "Permissões e controle de acesso",
+          "group": "Distribuição",
+          "weight": 3.6
+        },
+        {
+          "id": "consultative_narrative__belief_shift",
+          "parent_id": "consultative_narrative",
+          "label": "Define mudança de crença da audiência",
+          "group": "Planejamento",
+          "weight": 3.48
+        },
+        {
+          "id": "consultative_narrative__executive_pyramid",
+          "parent_id": "consultative_narrative",
+          "label": "Usa lógica SCQA/Pyramid/action-title",
+          "group": "Planejamento",
+          "weight": 3.48
+        },
+        {
+          "id": "consultative_narrative__cta_decision_design",
+          "parent_id": "consultative_narrative",
+          "label": "Conecta história ao CTA ou decisão final",
+          "group": "Planejamento",
+          "weight": 3.48
+        },
+        {
+          "id": "deck_analytics__view_events",
+          "parent_id": "deck_analytics",
+          "label": "Eventos de visualização por deck/slide",
+          "group": "Distribuição",
+          "weight": 2.97
+        },
+        {
+          "id": "deck_analytics__engagement_insight",
+          "parent_id": "deck_analytics",
+          "label": "Insights de engajamento acionáveis",
+          "group": "Distribuição",
+          "weight": 2.97
+        },
+        {
+          "id": "deck_analytics__crm_followup_signal",
+          "parent_id": "deck_analytics",
+          "label": "Sinal para follow-up comercial",
+          "group": "Distribuição",
+          "weight": 2.97
+        },
+        {
+          "id": "web_editor_runtime__canvas_editor",
+          "parent_id": "web_editor_runtime",
+          "label": "Canvas/editor web para slides",
+          "group": "Editor",
+          "weight": 2.25
+        },
+        {
+          "id": "web_editor_runtime__rich_text_blocks",
+          "parent_id": "web_editor_runtime",
+          "label": "Blocos ricos: texto, mídia, charts, componentes",
+          "group": "Editor",
+          "weight": 2.25
+        },
+        {
+          "id": "web_editor_runtime__state_management_undo",
+          "parent_id": "web_editor_runtime",
+          "label": "Estado, undo/redo e persistência",
+          "group": "Editor",
+          "weight": 2.25
+        },
+        {
+          "id": "input_prompt_generation__intent_capture",
+          "parent_id": "input_prompt_generation",
+          "label": "Captura intenção, público, tese e restrições antes de gerar",
+          "group": "Entrada",
+          "weight": 1.99
+        },
+        {
+          "id": "input_prompt_generation__outline_prompting",
+          "parent_id": "input_prompt_generation",
+          "label": "Transforma prompt em outline revisável antes do deck",
+          "group": "Entrada",
+          "weight": 1.99
+        },
+        {
+          "id": "input_prompt_generation__full_deck_autonomy",
+          "parent_id": "input_prompt_generation",
+          "label": "Gera deck completo a partir de ideia curta",
+          "group": "Entrada",
+          "weight": 1.99
+        },
+        {
+          "id": "theme_tokens_branding__token_schema",
+          "parent_id": "theme_tokens_branding",
+          "label": "Tokens de cor, fonte, espaçamento e grid",
+          "group": "Design",
+          "weight": 1.99
+        },
+        {
+          "id": "theme_tokens_branding__theme_runtime",
+          "parent_id": "theme_tokens_branding",
+          "label": "Runtime aplica tema consistentemente",
+          "group": "Design",
+          "weight": 1.99
+        },
+        {
+          "id": "theme_tokens_branding__brand_guardrails",
+          "parent_id": "theme_tokens_branding",
+          "label": "Guardrails de marca e anti-padrões",
+          "group": "Design",
+          "weight": 1.99
+        },
+        {
+          "id": "prompt_to_edit__natural_language_edit",
+          "parent_id": "prompt_to_edit",
+          "label": "Edição por linguagem natural",
+          "group": "Editor",
+          "weight": 1.76
+        },
+        {
+          "id": "prompt_to_edit__diff_before_apply",
+          "parent_id": "prompt_to_edit",
+          "label": "Diff antes de aplicar edição",
+          "group": "Editor",
+          "weight": 1.76
+        },
+        {
+          "id": "prompt_to_edit__edit_history",
+          "parent_id": "prompt_to_edit",
+          "label": "Histórico reversível de edição",
+          "group": "Editor",
+          "weight": 1.76
+        },
+        {
+          "id": "collaboration_realtime__review_comments",
+          "parent_id": "collaboration_realtime",
+          "label": "Comentários/revisão assíncrona",
+          "group": "Editor",
+          "weight": 1.74
+        },
+        {
+          "id": "collaboration_realtime__multi_user_realtime",
+          "parent_id": "collaboration_realtime",
+          "label": "Colaboração multiusuário em tempo real",
+          "group": "Editor",
+          "weight": 1.74
+        },
+        {
+          "id": "collaboration_realtime__approval_workflow",
+          "parent_id": "collaboration_realtime",
+          "label": "Workflow de aprovação/versões",
+          "group": "Editor",
+          "weight": 1.74
+        }
+      ],
+      "weights": [
+        1.9867,
+        1.9867,
+        1.9867,
+        1.4967,
+        1.4967,
+        1.4967,
+        0.27,
+        0.27,
+        0.27,
+        1.3833,
+        1.3833,
+        1.3833,
+        0.27,
+        0.27,
+        0.27,
+        3.48,
+        3.48,
+        3.48,
+        0.4033,
+        0.4033,
+        0.4033,
+        0.27,
+        0.27,
+        0.27,
+        0.27,
+        0.27,
+        0.27,
+        1.9867,
+        1.9867,
+        1.9867,
+        1.6533,
+        1.6533,
+        1.6533,
+        0.4033,
+        0.4033,
+        0.4033,
+        0.4033,
+        0.4033,
+        0.4033,
+        0.27,
+        0.27,
+        0.27,
+        0.27,
+        0.27,
+        0.27,
+        0.27,
+        0.27,
+        0.27,
+        0.4033,
+        0.4033,
+        0.4033,
+        1.7633,
+        1.7633,
+        1.7633,
+        0.4033,
+        0.4033,
+        0.4033,
+        2.2533,
+        2.2533,
+        2.2533,
+        1.74,
+        1.74,
+        1.74,
+        3.5967,
+        3.5967,
+        3.5967,
+        2.9667,
+        2.9667,
+        2.9667,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.4033,
+        0.4033,
+        0.4033,
+        0.27,
+        0.27,
+        0.27,
+        0.54,
+        0.54,
+        0.54,
+        0.4033,
+        0.4033,
+        0.4033,
+        0.27,
+        0.27,
+        0.27,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.1333,
+        0.1333,
+        0.1333,
+        0.1333,
+        0.1333,
+        0.1333,
+        0.4033,
+        0.4033,
+        0.4033,
+        0.4033,
+        0.4033,
+        0.4043
+      ],
+      "totals": [
+        {
+          "player": "presentation_ai",
+          "label": "presentation-ai",
+          "score": 72.1
+        },
+        {
+          "player": "presenton",
+          "label": "Presenton",
+          "score": 71.53
+        },
+        {
+          "player": "slides_creator",
+          "label": "slide creator skill",
+          "score": 66.2
+        },
+        {
+          "player": "ppt_master",
+          "label": "ppt-master",
+          "score": 64.14
+        },
+        {
+          "player": "banana_slides",
+          "label": "banana-slides",
+          "score": 62.77
+        },
+        {
+          "player": "presentagent_2",
+          "label": "PresentAgent-2",
+          "score": 57.6
+        },
+        {
+          "player": "pptagent",
+          "label": "PPTAgent",
+          "score": 56.32
+        },
+        {
+          "player": "slide_deck_ai",
+          "label": "slide-deck-ai",
+          "score": 45.55
+        },
+        {
+          "player": "powerpoint_skill",
+          "label": "powerpoint-skill",
+          "score": 44.49
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "presentation_ai",
+          "score": 70.6,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "presenton",
+          "score": 70.21,
+          "delta": 0.39
+        },
+        {
+          "rank": 3,
+          "player": "slides_creator",
+          "score": 65.82,
+          "delta": 4.78
+        },
+        {
+          "rank": 4,
+          "player": "ppt_master",
+          "score": 63.29,
+          "delta": 7.31
+        },
+        {
+          "rank": 5,
+          "player": "banana_slides",
+          "score": 62.18,
+          "delta": 8.42
+        },
+        {
+          "rank": 6,
+          "player": "presentagent_2",
+          "score": 57.34,
+          "delta": 13.26
+        },
+        {
+          "rank": 7,
+          "player": "pptagent",
+          "score": 56,
+          "delta": 14.6
+        },
+        {
+          "rank": 8,
+          "player": "slide_deck_ai",
+          "score": 45.49,
+          "delta": 25.11
+        },
+        {
+          "rank": 9,
+          "player": "powerpoint_skill",
+          "score": 44.04,
+          "delta": 26.56
+        }
+      ],
+      "winner": "presentation_ai",
+      "runner": "presenton",
+      "delta": 0.39,
+      "verdict": "presentation-ai lidera em share/editor; SINKRA e ppt-master entram quando narrativa consultiva e PPTX editável viram requisito de enterprise sales.",
+      "tiebreaker": "Se analytics/share forem inegociáveis, priorize presentation-ai; se a entrega formal for PowerPoint, componha com ppt-master.",
+      "leader": "presentation-ai"
+    }
+  ]
+}

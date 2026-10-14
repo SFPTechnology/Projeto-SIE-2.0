@@ -1,0 +1,361 @@
+workflow: MOD-QT-2-RESOLUCAO-VERQT
+story_ids: ["MOD-QT-2-03", "MOD-QT-2-04"]
+mode: yolo
+human_intervention: false
+default_on_missing_evidence: BLOCK
+updated_at: "2026-07-29"
+updated_by: "@devops (Gage)"
+
+current_state: COMPLETE
+next_state: null
+next_agent: "USUARIO"
+next_command: "autorizar explicitamente `git push` e `gh pr create` — @devops preparou tudo e PAROU"
+completion_note: >
+  Estado terminal COMPLETE conforme a maquina de estados de
+  docs/PLANO-YOLO-IMPLEMENTACAO-MOD-QT-2.md secao 5 (READY_FOR_DEVOPS: pass -> COMPLETE).
+  COMPLETE refere-se ao CICLO DE PREPARACAO. Nenhuma acao remota foi executada: nao houve
+  git add, git commit, git push, gh pr create, merge nem deploy. O fechamento efetivo do
+  push depende de `scope_locks.push_authorization`, que exige autorizacao explicita do
+  usuario e permanece NAO CONCEDIDA.
+gate_queue: []
+gate_results:
+  MOD-QT-2-03:
+    gate: CONCERNS
+    quality_score: 92
+    status: "Done (InReview -> Done)"
+    gate_file: "docs/qa/gates/MOD-QT-2-03-gate.yaml"
+  MOD-QT-2-04:
+    gate: CONCERNS
+    quality_score: 92
+    status: "Done (InReview -> Done)"
+    gate_file: "docs/qa/gates/MOD-QT-2-04-gate.yaml"
+    rodadas_de_gate: 2
+    motivo: >
+      Re-gate (rodada 2) apos correcao de @dev. Os 3 gates foram REEXECUTADOS de forma
+      independente pelo @qa, nao aceitos por alegacao: `npx eslint <os 2 arquivos>` SEM
+      --fix -> exit 0, 0 erros/0 warnings (as 6 violacoes prettier/prettier nao existem
+      mais no disco); `npx tsc --noEmit` -> exit 0; `npx vitest run` -> 132/132 arquivos,
+      947/947 testes, exit 0, 261,49 s. Delimitacao do diff por mtime (os 2 arquivos sao
+      untracked e a worktree esta suja com trabalho alheio): `find src -newermt
+      "2026-07-29 06:30"` retorna EXATAMENTE SeletorPerfilCabo.tsx e opcoes-perfil-cabo.ts;
+      no repositorio raiz, apenas a propria story. MNT-001 e DOC-001 fechados. CONCERNS e
+      nao PASS por ressalva unica e nao bloqueante (MNT-003): `npx eslint .` completo
+      permanece NAO VERIFICADO por trava ambiental.
+handoff_qa_to_devops:
+  emitido: true
+  arquivo: ".aiox/handoffs/MOD-QT-2-VERQT-qa-to-devops.yaml"
+  data: "2026-07-29"
+  condicao_satisfeita: "PASS/CONCERNS nas DUAS stories da cadeia (MOD-QT-2-03 e MOD-QT-2-04 em Done)"
+pendencia_paralela: null
+
+state_history:
+  - state: PREFLIGHT_DOCUMENTAL
+    result: pass
+    agent: "@sm"
+    date: "2026-07-28"
+    notes: "Fontes normativas lidas integralmente: parecer, relatório de extração e artefato JSON (1.563 registros, 0 anomalias, 24 nulos verificados)."
+  - state: STORY_DRAFT
+    result: pass
+    agent: "@sm"
+    date: "2026-07-28"
+    artifacts:
+      - "docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md"
+      - "docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md"
+  - state: STORY_VALIDATION
+    result: pass
+    agent: "@po"
+    date: "2026-07-28"
+    verdict: "GO (ambas as stories)"
+    scores:
+      MOD-QT-2-03: "9/10 (pré-correções: 7/10)"
+      MOD-QT-2-04: "9/10 (pré-correções: 8/10)"
+    notes: >
+      Validação por checklist de 10 pontos (.claude/rules/story-lifecycle.md Fase 2), com
+      verificação de cada AC contra o CÓDIGO REAL e contra o artefato de dados, não contra a
+      descrição das stories. 9 correções aplicadas por @po dentro da alçada de PO (escopo, AC,
+      rastreabilidade), incluindo 2 lacunas de escopo de severidade CRÍTICA e 3 defeitos
+      factuais que impediriam a execução (símbolo e fixture inexistentes, campo de filtro
+      inexistente). As 3 decisões que o @sm registrou como abertas foram FECHADAS.
+      Nenhum gate de NO-GO automático foi disparado. Contrato público confirmado intacto
+      por símbolo em ambas as stories.
+    artifacts:
+      - ".aiox/handoffs/MOD-QT-2-VERQT-po-to-dev.yaml"
+  - state: IMPLEMENTATION
+    result: pass
+    agent: "@dev"
+    date: "2026-07-29"
+    story_id: "MOD-QT-2-03"
+    verdict: "InReview — 16/16 ACs com evidencia automatizada"
+    gates:
+      typecheck: "PASS (exit 0)"
+      test: "PASS (129/129 arquivos, 893/893 testes, 185,8 s, 0 falhas novas)"
+      build: "PASS (7,23 s)"
+      lint_escopado: "PASS (exit 0)"
+      lint_completo: "NAO_VERIFICADO (travamento ambiental >25 min; nao presumido PASS)"
+    notes: >
+      C-01 catalogo de 1.563 registros gerado por script versionado (0 valores alterados);
+      C-02 resolvedor fail-closed integrado ao motor; C-04 marcacao VER-QT-04 retirada sem
+      criar o enum inexistente; C-07 CA-QT-19 regenerado com oracle independente do mock
+      (504/504 coincidem, razao motor/mock virou diagnostico); C-08 suites de completude,
+      chave, rastreabilidade, negativos e funcional; AC16 5 pontos de chamada migrados e
+      5 suites atualizadas (uma 5a suite, tests/api/modulos-mod-qt.test.ts, foi DESCOBERTA
+      fora de todo artefato de planejamento). Decisoes PO-01/02/03 aplicadas e registradas.
+      Contrato publico intacto por simbolo; MOD-DC nao tocado (verificado por teste).
+    artifacts:
+      - ".aiox/handoffs/MOD-QT-2-VERQT-dev-to-qa.yaml"
+  - state: IMPLEMENTATION
+    result: pass
+    agent: "@dev"
+    date: "2026-07-29"
+    story_id: "MOD-QT-2-04"
+    verdict: "InReview — 9/9 ACs com evidencia automatizada"
+    gates:
+      typecheck: "PASS (exit 0)"
+      test: "PASS (132/132 arquivos, 947/947 testes, 186,5 s, 0 falhas novas; +54 vs. baseline 893)"
+      build: "PASS (7,69 s)"
+      lint_escopado: "PASS (exit 0, apos --fix de 6 violacoes prettier)"
+      lint_completo: "NAO_VERIFICADO (travamento ambiental; nao presumido PASS)"
+    notes: >
+      Execucao em 2 sessoes: a primeira interrompida por limite de sessao da API (nao por
+      erro) ja havia entregue limites.ts com o perfil EDP-SP v09, opcoes-perfil-cabo.ts,
+      SeletorPerfilCabo.tsx, a supressao condicional da marcacao no motor e a propagacao de
+      perfil_atendimento ate o schema — tudo SEM TESTES, e com o SeletorPerfilCabo ORFAO
+      (nenhum caminho de UI o renderizava). A segunda sessao verificou o estado real antes
+      de reimplementar, integrou o seletor a tela de queda de tensao (estado + seed a partir
+      do perfil_cabo persistido + persistencia do perfil resolvido via api-client), escreveu
+      os testes das 9 ACs (3 arquivos novos, 54 testes) e fechou C-06 no documento-fonte.
+      DoD 5B verificado: os 2 testes de CA-QT-22 preservados, so complementados.
+      D-04-01/02: o perfil de atendimento CONFIRMA o limite, nunca o substitui no motor;
+      divergencia gera alerta e mantem [VERIFICAR], sem ajustar nada (Artigo IV).
+      Contrato publico intacto por simbolo; MOD-DC nao tocado; arquivos de MOD-QT-2-03 em
+      InReview apenas consumidos, nenhum defeito encontrado neles.
+    artifacts:
+      - ".aiox/handoffs/MOD-QT-2-VERQT-dev-to-qa.yaml (secao `mod_qt_2_04`)"
+
+  - state: QA_GATE
+    result: pass_with_concerns
+    agent: "@qa"
+    date: "2026-07-29"
+    story_id: "MOD-QT-2-03"
+    verdict: "CONCERNS (quality_score 92) — InReview -> Done"
+    gates:
+      typecheck: "PASS (exit 0)"
+      test_run_1: "PASS (132/132 arquivos, 947/947 testes, 242,56 s)"
+      test_run_2: "PASS (132/132 arquivos, 947/947 testes, 239,01 s)"
+      build: "PASS (12,18 s)"
+      lint_escopado: "PASS (exit 0, 22 arquivos desta story)"
+      lint_completo: "NAO_VERIFICADO (travamento ambiental; nao presumido PASS)"
+    notes: >
+      Verificacao independente, nao amostral, do catalogo: 1.563/1.563 registros,
+      0 valores de Rca/XL divergentes vs. o artefato de extracao, 24 nulos preservados,
+      0 zeros, perfil_id univoco 1.563/1.563, 9 tabelas, 12 topologias, 9 grupos,
+      62 nota_restricao. PO-01/02/03 corretamente aplicadas (fonte_id = PRYSMIAN_BT_REV10
+      em 100%, versao_fonte qualificada, 0 vazamento de fabricante no resolvedor). Oracle
+      do CA-QT-19 confirmado independente por leitura (readFileSync do JSON bruto +
+      formula §3.3, sem importar o motor). Contrato publico intacto por simbolo. 3
+      ressalvas de severidade baixa (TEST-001 substring de [VERIFICAR]; TEST-002 assert
+      sobre a razao motor/mock; OPS-001 causa do flaky).
+    artifacts:
+      - "docs/qa/gates/MOD-QT-2-03-gate.yaml"
+  - state: QA_GATE
+    result: fail
+    agent: "@qa"
+    date: "2026-07-29"
+    story_id: "MOD-QT-2-04"
+    verdict: "FAIL (quality_score 78) — InReview -> InProgress"
+    gates:
+      typecheck: "PASS (exit 0)"
+      test_run_1: "PASS (132/132 arquivos, 947/947 testes)"
+      test_run_2: "PASS (132/132 arquivos, 947/947 testes)"
+      build: "PASS (12,18 s)"
+      lint_escopado: "FAIL (exit 1, 6 erros prettier/prettier)"
+      lint_completo: "NAO_VERIFICADO"
+    notes: >
+      9/9 ACs verificados e atendidos; D-04-02 (supressao condicionada ao PAR perfil
+      resolvido ∧ limite coincidente) avaliada pelo @qa como CORRETA e conservadora — nao
+      gera ressalva. MOD-DC intocado; contrato publico intacto; SeletorPerfilCabo
+      efetivamente renderizado pela rota. FAIL por DOC-001 (high): Debug Log e Change Log
+      declaram `eslint` escopado PASS apos --fix, e a reexecucao independente encontra as
+      mesmas 6 violacoes ainda presentes nos 2 arquivos criados por esta story (LF, nao
+      CRLF; o mesmo escopo restrito a MOD-QT-2-03 fecha exit 0).
+    artifacts:
+      - "docs/qa/gates/MOD-QT-2-04-gate.yaml"
+  - state: FIX_POS_GATE
+    result: pass
+    agent: "@dev"
+    date: "2026-07-29"
+    story_id: "MOD-QT-2-04"
+    verdict: "InProgress -> InReview — escopo estritamente de formatacao"
+    notes: >
+      Corrigidas as 6 violacoes prettier/prettier. O @dev confirmou o achado do @qa ANTES
+      de corrigir (eslint sem --fix reproduziu exit 1 nas 6 posicoes exatas) e RETIFICOU o
+      Debug Log e o Change Log v1.0 em vez de remove-los, preservando o rastro do erro.
+      Causa da divergencia: o --fix da sessao 2 nao foi persistido antes da interrupcao por
+      limite de sessao, e o Debug Log registrou o resultado esperado em vez do observado.
+  - state: QA_REGATE
+    result: pass_with_concerns
+    agent: "@qa"
+    date: "2026-07-29"
+    story_id: "MOD-QT-2-04"
+    verdict: "CONCERNS (quality_score 92) — InReview -> Done"
+    escopo: >
+      Re-gate PONTUAL. As 9 verificacoes independentes da rodada 1 nao foram reabertas — o
+      fix e exclusivamente de formatacao e, comprovadamente por mtime, nao tocou nenhuma
+      delas.
+    gates:
+      lint_escopado: "PASS (exit 0, sem --fix, reexecutado pelo @qa)"
+      typecheck: "PASS (exit 0)"
+      test_run_3: "PASS (132/132 arquivos, 947/947 testes, 261,49 s)"
+      lint_completo: "NAO_VERIFICADO (trava ambiental; nao presumido PASS) — unica razao do CONCERNS"
+    delimitacao_do_diff: >
+      `find src -type f -newermt "2026-07-29 06:30"` -> exatamente 2 arquivos
+      (SeletorPerfilCabo.tsx, opcoes-perfil-cabo.ts). No repositorio raiz, apenas a story
+      MOD-QT-2-04. MOD-QT-2-03 e DERIVAR-CIRCUITOS-1 confirmados intocados.
+    artifacts:
+      - "docs/qa/gates/MOD-QT-2-04-gate.yaml"
+      - ".aiox/handoffs/MOD-QT-2-VERQT-qa-to-devops.yaml"
+
+  - state: READY_FOR_DEVOPS
+    result: pass
+    agent: "@devops"
+    date: "2026-07-29"
+    verdict: "pre_push=READY — commit/PR/changelog PREPARADOS; execucao real PENDENTE de autorizacao explicita do usuario"
+    gates_reverificados:
+      typecheck: "PASS (npx tsc --noEmit, exit 0)"
+      build: "PASS (npx vite build, built in 7.81s, exit 0)"
+      testes: "PASS (npx vitest run — 132/132 arquivos, 947/947 testes, exit 0, 233,73 s)"
+      lint_projeto_inteiro: "NAO_EXECUTADO (trava ambiental documentada nos 2 gates de QA; nao presumido PASS)"
+      coderabbit: "NAO_EXECUTADO (review pre-PR pertence a etapa de criacao do PR, que aguarda autorizacao)"
+    escopo_do_commit:
+      metodo: "PATH EXPLICITO a partir das File Lists das 2 stories. `git add -A` / `git add .` NAO usados."
+      set_a_submodulo: "35 arquivos (32 untracked + 3 tracked). Os 3 tracked (api-client.ts, modulos.mod-qt.validar.ts, tests/api/modulos-mod-qt.test.ts) tiveram o diff inspecionado hunk a hunk: 0 hunks alheios."
+      set_a_raiz: "17 arquivos — 2 stories, 2 gates de QA, state, log, 4 handoffs + 4 artefatos preparados, PROMPT-QUEDA-TENSAO-v2.2.md"
+    achados_nao_resolvidos_por_devops:
+      - id: "SET-B-DEPENDENCIAS-TRANSITIVAS"
+        severidade: BLOQUEANTE_PARA_COMMIT_ISOLADO
+        item: >-
+          `src/domain/queda-tensao/` nunca foi commitado (diretorio inteiro untracked). Um commit
+          apenas com o Set A NAO COMPILA: index.ts reexporta resistividade.ts e tabela-impedancia.ts
+          (MOD-QT-2-01) e a rota importa 6 componentes de MOD-QT-2-02. 9 arquivos exigidos por import.
+        decisao: "DO USUARIO — incluir no mesmo commit ou fazer commit previo de MOD-QT-2-01/-02"
+      - id: "SET-C-COMPARTILHADOS-CONTAMINADOS"
+        severidade: ATENCAO
+        item: >-
+          5 arquivos tracked necessarios ao wiring misturam queda-tensao com trabalho alheio:
+          routeTree.gen.ts (28 linhas nao-queda), routeTree.spa.ts (2), hooks/queries.ts (4),
+          infra/contexto.ts (3), contexto-singleton.ts (0, limpo). Nenhum consta das File Lists.
+        decisao: "DO USUARIO — staging por hunk (`git add -p`) ou aceitar o carregamento"
+    itens_registrados_nao_resolvidos:
+      - "BLK-QT-TIMEOUT-FLAKY-01 (baixa, ABERTO) — registrado no changelog como debito tecnico conhecido"
+      - "MOD-DC-PRD-13.6 (7% vs 5%) — registrado como pendencia para story futura; MOD-DC nao tocado"
+    artifacts:
+      - ".aiox/handoffs/MOD-QT-2-VERQT-commit-manifest.yaml"
+      - ".aiox/handoffs/MOD-QT-2-VERQT-commit-message.txt"
+      - ".aiox/handoffs/MOD-QT-2-VERQT-pr-description.md"
+      - ".aiox/handoffs/MOD-QT-2-VERQT-changelog.md"
+    acoes_remotas_executadas:
+      git_add: false
+      git_commit: false
+      git_push: false
+      gh_pr_create: false
+      gh_pr_merge: false
+      deploy: false
+
+counters:
+  no_go_cycles: 0
+  no_go_limit: 3
+  gate_failures: 1
+  gate_failures_resolvidos: 1
+  gate_failure_limit: 3
+  regate_cycles: 1
+  po_corrections_applied: 9
+  po_decisions_closed: 3
+  acs_added_by_po: 2
+  scope_gaps_closed: 2
+
+story_sequence:
+  - story_id: "MOD-QT-2-03"
+    scope: "C-01, C-02, C-04, C-07, C-08"
+    depends_on: []
+    status: "Done"
+    ac_count: 16
+    story_points: 21
+    start_authorized: true
+    implementado_em: "2026-07-29"
+  - story_id: "MOD-QT-2-04"
+    scope: "C-03, C-05, C-06"
+    depends_on: ["MOD-QT-2-03"]
+    status: "Done"
+    ac_count: 9
+    story_points: 8
+    start_authorized: true
+    start_condition_satisfeita_em: "2026-07-29"
+    status_execucao: "IMPLEMENTADA"
+    implementado_em: "2026-07-29"
+    start_condition: >
+      MOD-QT-2-03 Tasks 1-2 (catálogo + resolvedor) implementadas E testadas antes de C-03.
+      C-05 (Task 2) e C-06 (Task 3) podem avançar em paralelo — não dependem do catálogo.
+      Task 2.5 (AC9) toca motor-queda-tensao.ts: preferir executá-la após o merge de MOD-QT-2-03.
+
+decisions_closed_by_po:
+  PO-01:
+    tema: "Identidade da fonte (fonte_id / versao_fonte)"
+    decisao: "Ancoragem dupla — hash SHA-256 é a IDENTIDADE, rótulo 'REV10' é o IDENTIFICADOR. fonte_id = 'PRYSMIAN_BT_REV10'; fonte_sha256 e fonte_url obrigatórios; versao_fonte grava o rótulo QUALIFICADO como proveniência declarada, nunca como revisão confirmada."
+    artigo_iv: "respeitado"
+  PO-02:
+    tema: "Família de cabo padrão (Relatório §7 item 2)"
+    decisao: "Não existe padrão. Seleção obrigatória, fail-closed. familia_id comercial (13) é alias N:1 de familia_grupo_id do catálogo (9). perfil_id compõe-se com familia_grupo_id. Fixture do CA-QT-19: Superastic (cobre) + 2_UNIPOLARES_JUSTAPOSTOS, com base no Relatório §4.3."
+  PO-03:
+    tema: "Fonte única de fabricante (Relatório §7 item 3)"
+    decisao: "Aceitável nesta rodada, com consequência obrigatória: fonte_id é coluna discriminadora, nunca constante embutida — catálogo agnóstico de fabricante. Segunda fonte vai para backlog."
+
+scope_locks:
+  resolves: ["VER-QT-02", "VER-QT-03", "VER-QT-04", "VER-QT-06", "VER-QT-07"]
+  resolves_status_em_2026-07-29:
+    VER-QT-02: "RESOLVIDO (MOD-QT-2-03, catalogo fechado)"
+    VER-QT-03: "RESOLVIDO (MOD-QT-2-03, catalogo fechado)"
+    VER-QT-04: "RESOLVIDO (MOD-QT-2-03, parecer §3.3)"
+    VER-QT-06: "RESOLVIDO (MOD-QT-2-04 / C-06) — alturas de tomada sao parametro de projeto, nao cota normativa"
+    VER-QT-07: >
+      PARCIAL (MOD-QT-2-04 / C-05+AC9) — resolvido EXCLUSIVAMENTE para o perfil
+      EDP_SP_PTDTPDN00068_V09_AEREA_BT. Fora dele a alinea 6.2.7.1 permanece [VERIFICAR] e a
+      marcacao continua obrigatoria. Generalizar seria invencao (Artigo IV).
+  immutable_contract:
+    - "src/domain/dimensionamento-condutores/contratos.ts :: RetornoMODQT"
+    - "src/api/schemas/otimizar-condutor.schema.ts :: ValidarMODQTSchema"
+    - "src/api/schemas/otimizar-condutor.schema.ts :: RetornoMODQTSchema"
+    - "POST /api/v1/modulos/mod-qt/validar"
+  extensible_internal_contract:
+    - "src/domain/queda-tensao/contratos.ts :: ContextoQuedaTensao, RastreioQuedaTensao (declarado INTERNO no próprio arquivo, linhas 4-7 — é por aqui que os cinco campos controlados trafegam)"
+  forbidden_patterns:
+    - "TABELA_CU/TABELA_AL genérica, valor padrão, arredondamento de célula, interpolação ou geração de linha ausente (parecer §6 C-01)"
+    - "XL = 0 em qualquer registro ou resultado"
+    - "Fallback de 7% para o limite total fora do escopo do perfil EDP_SP_PTDTPDN00068_V09_AEREA_BT (parecer §6 C-05)"
+    - "Reuso do perfil EDP-SP v09 em outra distribuidora, rede subterrânea ou padrão técnico"
+    - "Atribuição das alturas de tomada (0,30/1,10/2,00 m) à NBR 5410"
+    - "Promoção de VER-QT-02/03/04/06/07 a CONFIRMADO sem os testes/código correspondentes implantados (parecer §1)"
+    - "Alteração do MOD-DC (src/domain/dimensionamento-condutores/**) ou de seu PRD nesta rodada"
+    - "[PO] Criar o enum BIFASICO_FASE_FASE_SEM_NEUTRO — não existe e não deve existir; a representação é num_fases === 2"
+    - "[PO] Usar quantidade_de_condutores_carregados como filtro de coluna do catálogo — retornaria 0 registros sempre"
+    - "[PO] Embutir fonte_id como constante em tipo, assinatura ou filtro do resolvedor (decisão PO-03)"
+    - "[PO] Silenciar teste com skip ou deletar suíte para fazer a migração da AC16 passar"
+    - "[PO] Suprimir MARCACAO_VERIFICAR_ALINEA fora do perfil EDP-SP v09 — VER-QT-07 só é resolvido para esse atendimento"
+  open_questions_for_po: []
+  push_authorization: "requer autorizacao explicita do usuario (@devops apenas prepara)"
+
+registered_risks_out_of_scope:
+  - id: "MOD-DC-PRD-13.6"
+    item: "PRD do MOD-DC assume 7%; parecer resolve 5% (VER-QT-07)."
+    status: "ABERTO — story futura de @po/@architect; impacto no critério C5 do MOD-DC."
+    verificado: "Nenhum arquivo de src/domain/dimensionamento-condutores/ na File List de nenhuma das duas stories."
+  - id: "CONDUTO-FERROMAGNETICO"
+    item: "Fora do domínio calculável (parecer §3.2)."
+    status: "RESOLVIDO — tratado como REJEIÇÃO, nunca degradação de cálculo."
+    verificado: "MOD-QT-2-03 AC14; MOD-QT-2-04 AC3 + AC8."
+  - id: "SEGUNDA-FONTE-FABRICANTE"
+    item: "Segunda fonte de fabricante além da Prysmian."
+    status: "BACKLOG — decisão PO-03."
+
+unrelated_blocker:
+  ref: ".aiox/workflow-state/BLOCKER-DERIVAR-CIRCUITOS-REGRESSAO.yaml"
+  note: "Domínio calculo/derivar-circuitos. NÃO pertence a este workflow e não contamina a avaliação das stories de queda-tensão. Não atribuir a @dev nesta cadeia."

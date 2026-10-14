@@ -1,0 +1,247 @@
+handoff_id: MOD-QT-2-01-qa-to-devops
+consumed: false
+created_at: "2026-07-28"
+from_agent: "@qa"
+to_agent: "@devops"
+last_command: "*review docs/stories/story-MOD-QT-2-01-motor-calculo-queda-tensao.md --mode yolo"
+next_command: "*prepare-release MOD-QT-2-01 --no-push"
+workflow: "MOD-QT-2-MOTOR-QUEDA-TENSAO"
+state: "READY_FOR_DEVOPS"
+mode: "yolo"
+human_intervention: false
+source_plan: "docs/PLANO-YOLO-IMPLEMENTACAO-MOD-QT-2.md §6.4 / §6.5"
+normative_source: "Arquivos_Diversos/PROMPT-QUEDA-TENSAO-v2.2.md (MOD-QT-v2.2)"
+
+# ---------------------------------------------------------------------------
+# ATENÇÃO @devops — LEIA ANTES DE QUALQUER COMANDO GIT
+# ---------------------------------------------------------------------------
+push_status: BLOQUEADO
+push_bloqueado_por: "QT201-001"
+push_authorization: >-
+  Mesmo após a resolução de QT201-001, `git push` / `gh pr create` continuam exigindo
+  AUTORIZAÇÃO EXPLÍCITA DO USUÁRIO (plano §6.5 + Git Safety Protocol). @devops apenas PREPARA.
+
+aviso_critico: >-
+  As DUAS stories passaram no gate de QA (CONCERNS) e estão Done. Isso NÃO significa que a
+  worktree do submódulo esteja pronta para commit. `npx vitest run` sai com EXIT 1 por uma
+  regressão de OUTRO ÉPICO presente na mesma worktree suja. Commitar como está grava um
+  branch com suíte vermelha. Ver bloco `blocker_de_commit`.
+
+# ---------------------------------------------------------------------------
+stories:
+  - path: "docs/stories/story-MOD-QT-2-01-motor-calculo-queda-tensao.md"
+    id: "MOD-QT-2-01"
+    titulo: "Motor Real de Cálculo de Queda de Tensão (Pacote 1)"
+    status_before: "InReview"
+    status_after: "Done"
+    version: "0.8"
+    gate: CONCERNS
+    quality_score: 80
+    gate_file: "docs/qa/gates/MOD-QT-2-01-gate.yaml"
+  - path: "docs/stories/story-MOD-QT-2-02-simulador-endpoints-ui.md"
+    id: "MOD-QT-2-02"
+    titulo: "Simulador de Cenários — Endpoints Auxiliares e UI Carbon"
+    status_before: "InReview"
+    status_after: "Done"
+    version: "0.4"
+    gate: CONCERNS
+    quality_score: 80
+    gate_file: "docs/qa/gates/MOD-QT-2-02-gate.yaml"
+
+submodule:
+  path: "sistema-de-instala-es-el-tricas-sie-main/"
+  branch: "feature/nbr5410-conformidade-closeout"
+  worktree_status: "SUJA — ~116 arquivos modificados de múltiplos épicos (MOD-CC / AUTO-OTI / MOD-DC / DUC / MOD-QT-2)"
+
+# ---------------------------------------------------------------------------
+gates_tecnicos_verificados_por_qa:
+  data: "2026-07-28"
+  typecheck:
+    resultado: PASS
+    comando: "npx tsc --noEmit"
+    exit_code: 0
+  build:
+    resultado: PASS
+    comando: "npm run build"
+    exit_code: 0
+    tempo: "8.50s"
+  lint_escopo_das_stories:
+    resultado: PASS
+    exit_code: 0
+    nota: "21 arquivos das duas stories — 0 erros, 0 warnings"
+  lint_projeto_inteiro:
+    resultado: NAO_VERIFICADO
+    motivo: "npx eslint . sem saída após ~20 min (travamento também observado pelo @po). NÃO assumido como PASS."
+    acao_devops: "Re-tentar com `eslint --cache` ou em CI antes do PR."
+  test:
+    resultado: FAIL_NAO_ATRIBUIVEL
+    comando: "npx vitest run"
+    exit_code: 1
+    test_files: "1 failed | 125 passed (126)"
+    tests: "1 failed | 832 passed (833)"
+    duracao: "357.02s"
+  test_subsuite_mod_qt:
+    resultado: PASS
+    exit_code: 0
+    arquivos: 6
+    testes: 76
+  coderabbit:
+    resultado: NAO_VERIFICADO
+    motivo: "binário presente em WSL, `auth status` sem retorno; worktree multi-épico"
+    acao_devops: "PT-09 — executar sobre o diff consolidado antes do PR"
+
+# ---------------------------------------------------------------------------
+blocker_de_commit:
+  id: QT201-001
+  severidade: HIGH
+  teste_que_falha: "tests/domain/calculo/derivar-circuitos.test.ts > derivarCircuitos > dependência sem resultado é ignorada"
+  erro: "AssertionError: expected [ …(2) ] to deeply equal []"
+  causa_raiz: >-
+    Alteração NÃO COMMITADA em src/domain/calculo/derivar-circuitos.ts: a guarda
+    `if (!r || !vIlumTug) continue;` foi trocada por `if (!vIlumTug) continue;`, com os acessos
+    passando a `r?.iluminacao...?? 0` e `r?.tomadas...?? 0`. Dependência sem `resultado` deixou
+    de ser ignorada. Diff: 3 inserções / 3 remoções.
+  atribuicao: >-
+    NÃO atribuível a MOD-QT-2-01 nem a MOD-QT-2-02. Domínio `src/domain/calculo/`
+    (MOD-CC / AUTO-OTI / DUC). Nenhum arquivo das duas stories toca esse domínio.
+  owner: "@po / dono do épico MOD-CC-AUTO-OTI-DUC"
+  resolucao_exigida: >-
+    Restaurar a guarda `!r` OU atualizar o teste com justificativa registrada em story própria.
+    NÃO é decisão de @qa nem de @devops alterar comportamento de domínio alheio.
+  contexto_historico: >-
+    Este blocker só é visível porque a deleção de 281 linhas de
+    tests/domain/calculo/derivar-circuitos.test.ts (PO-DIV-02, escalada pelo @po) foi revertida.
+    Com a cobertura de volta, ela denunciou a regressão real. A escalada do @po funcionou.
+
+# ---------------------------------------------------------------------------
+escopo_atribuivel_as_stories:
+  nota_critica: >-
+    @devops NÃO deve atribuir a estas stories nenhuma alteração fora do domínio `queda-tensao`.
+    O critério de contrato público é por SÍMBOLO, não por arquivo (correção do @po no addendum).
+  arquivos_das_stories:
+    mod_qt_2_01:
+      criados: 11
+      modificados: ["src/routes/api/v1/modulos.mod-qt.validar.ts"]
+    mod_qt_2_02:
+      criados: 21
+      modificados:
+        - "src/api/contexto-singleton.ts"
+        - "src/api/http.ts"
+        - "src/domain/estado/eventos.ts"
+        - "src/infra/contexto.ts"
+        - "src/lib/api-client.ts"
+        - "src/hooks/queries.ts"
+        - "src/routeTree.gen.ts"
+        - "src/routeTree.spa.ts"
+  contrato_publico_verificado_por_qa:
+    resultado: INTACTO
+    metodo: "comparação por símbolo contra `git show HEAD:`"
+    detalhe: >-
+      otimizar-condutor.schema.ts com diff VAZIO. RetornoMODQT idêntico ao HEAD.
+      Rota POST /api/v1/modulos/mod-qt/validar com path e assinatura inalterados.
+      contratos.ts aparece como M, mas só com hunks de ResultadoDimensionamento
+      (ib_a/i2_a/fonte_i2) — MOD-CC/AUTO-OTI, alheio ao MOD-QT-2.
+
+# ---------------------------------------------------------------------------
+decisoes_de_qa_registradas:
+  - id: "QA-DEC-01"
+    questao: "AC8, AC9, AC12, AC14 de MOD-QT-2-01 sem evidência própria"
+    decisao: "Opção (b) — vinculação a MOD-QT-2-02. NENHUM waiver concedido."
+    efeito: >-
+      Item 2 do DoD de MOD-QT-2-01 atendido EM CONJUNTO pelo par de stories, com evidência
+      real (testes nomeados passando) em vez de dispensa formal.
+    condicao: "MOD-QT-2-01 só permanece Done enquanto MOD-QT-2-02 estiver Done."
+  - id: "QA-DEC-02"
+    questao: "PT-11 / D-02 — gráfico em SVG puro em vez de @carbon/charts-react"
+    decisao: "ACEITO como implementação equivalente."
+    razao: >-
+      @carbon/charts-react é d3/useEffect; sob renderToStaticMarkup (único mecanismo de
+      evidência do repo) produziria contêiner vazio, tornando IMPOSSÍVEL a evidência que a
+      própria AC3 exige. Requisito funcional atendido e testado. Sem invenção normativa.
+  - id: "QA-DEC-03"
+    questao: "D-01 — padrão monofásico no endpoint em vez do trifásico sugerido na Task 2.3"
+    decisao: "MANTIDA."
+    razao: >-
+      Fail-closed: √3 produz queda ~13,4% menor e poderia aprovar circuito monofásico não
+      conforme. É o default do §20 do documento-fonte e preserva a semântica de CA-QT-19.
+      Nenhum AC exige trifásico como padrão do endpoint.
+
+artigo_iv_verificado:
+  resultado: PASS
+  detalhe: >-
+    100% da TABELA_IMPEDANCIA com status_verificacao "[VERIFICAR]". VER-QT-02/03/04/07 abertos.
+    NENHUM valor promovido a CONFIRMADO. Al degrada com dois alertas; método COMPLETO degrada
+    para SIMPLIFICADO com alerta em vez de inventar X; bifásico usa fator 2 com
+    "[VERIFICAR — VER-QT-04]". Resolução dos VER-QT endereçada por MOD-QT-2-03 / MOD-QT-2-04
+    (catálogo Prysmian com fonte primária, em criação pelo @sm).
+
+# ---------------------------------------------------------------------------
+acoes_devops_sugeridas:
+  - ordem: 1
+    acao: "NÃO commitar. Escalar QT201-001 ao dono do épico MOD-CC/AUTO-OTI/DUC."
+    bloqueante: true
+  - ordem: 2
+    acao: "Após resolução de QT201-001, reexecutar `npx vitest run` e exigir exit 0."
+    bloqueante: true
+  - ordem: 3
+    acao: "Reexecutar `npx eslint .` (com cache ou em CI) e confirmar o gate não verificado."
+    bloqueante: false
+  - ordem: 4
+    acao: "Executar CodeRabbit sobre o diff consolidado (PT-09)."
+    bloqueante: false
+  - ordem: 5
+    acao: >-
+      Preparar mensagem de commit e descrição de PR referenciando MOD-QT-2-01 + MOD-QT-2-02 e a
+      fonte PROMPT-QUEDA-TENSAO-v2.2.md. CONTEÚDO PRONTO, NÃO EXECUTADO (plano §6.5).
+    bloqueante: false
+  - ordem: 6
+    acao: "Registrar READY_FOR_DEVOPS e aguardar autorização explícita do usuário para push/PR."
+    bloqueante: false
+
+commit_message_sugerida: |
+  feat: implementa motor real de queda de tensão MOD-QT-2 (Pacote 1)
+
+  Substitui validarModQTMock pelo motor real NBR 5410:2004 §6.2.7 em
+  src/domain/queda-tensao/, e entrega os endpoints auxiliares §23.2 mais a
+  UI Carbon do simulador (§24-§25).
+
+  [Story MOD-QT-2-01] Motor + substituição do mock + não-regressão CA-QT-19
+  [Story MOD-QT-2-02] 6 endpoints auxiliares + UI Carbon + gráfico + árvore
+
+  Contrato público (RetornoMODQT, ValidarMODQTSchema, RetornoMODQTSchema, rota
+  POST /api/v1/modulos/mod-qt/validar) INALTERADO — verificado por símbolo.
+  Nenhum VER-QT promovido a CONFIRMADO (Artigo IV).
+
+  QA gates: CONCERNS/CONCERNS (docs/qa/gates/MOD-QT-2-0{1,2}-gate.yaml)
+  Fonte: Arquivos_Diversos/PROMPT-QUEDA-TENSAO-v2.2.md (MOD-QT-v2.2)
+
+pendencias_para_outros_agentes:
+  - id: QT201-001
+    owner: "@po / dono do épico MOD-CC-AUTO-OTI-DUC"
+    severidade: HIGH
+  - id: QT201-002
+    owner: "@dev"
+    item: "`eslint .` não conclui — investigar ignores/cache"
+    severidade: MEDIUM
+  - id: QT202-002
+    owner: "@dev"
+    item: "`parametros` com z.record + cast duplo em aplicar-cenario.ts:37 (OWASP A03)"
+    severidade: MEDIUM
+  - id: PT-08
+    owner: "@data-engineer"
+    item: "Criar tabela `queda_tensao_config` + policy anon no Supabase"
+    severidade: LOW
+  - id: PT-09
+    owner: "@devops"
+    item: "Executar CodeRabbit"
+    severidade: LOW
+
+blockers:
+  - "QT201-001 — bloqueia commit/push, NÃO bloqueia as stories"
+
+next_action: >-
+  @devops executa a preparação operacional (§6.5) SEM commit e SEM push. O primeiro passo é
+  escalar QT201-001 ao dono do épico MOD-CC/AUTO-OTI/DUC: a worktree não pode ser commitada com
+  `vitest run` em exit 1. As duas stories MOD-QT-2 estão Done e seu código está verde
+  (subsuíte 76/76), mas elas compartilham worktree com trabalho de outros épicos que está
+  vermelho. Consolidar o worktree é pré-requisito, e não é decisão de @qa.

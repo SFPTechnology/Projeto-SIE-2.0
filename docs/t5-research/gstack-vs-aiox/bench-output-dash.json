@@ -1,0 +1,466 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:10:52.143Z",
+  "source_files": [
+    "battle-card.md",
+    "comparison-matrix.json",
+    "comparison-matrix.md",
+    "executive-report.md",
+    "gap-analysis.json",
+    "gap-analysis.md",
+    "inventory-aiox.json",
+    "inventory-gstack.json",
+    "metadata.canonical.json",
+    "metadata.json",
+    "scorecard.json",
+    "scorecard.md"
+  ],
+  "benchmark": {
+    "slug": "gstack-vs-aiox",
+    "title": "Executive Report: gstack vs AIOX (Sinkra Hub)",
+    "date": "undated",
+    "type": "codebase",
+    "variant": "2-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "gstack",
+      "name": "Gstack",
+      "category": "unknown"
+    },
+    {
+      "key": "aiox",
+      "name": "Aiox",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "aiox",
+    "coverage": "structured",
+    "sources": 1,
+    "waves": 0,
+    "dimensions": 6
+  },
+  "matrix": {
+    "players": [
+      "gstack",
+      "aiox"
+    ],
+    "dimensions": [
+      {
+        "id": "arch",
+        "label": "Architecture",
+        "weight": 0.2
+      },
+      {
+        "id": "testing",
+        "label": "Testing & QA",
+        "weight": 0.2
+      },
+      {
+        "id": "docs",
+        "label": "Documentation",
+        "weight": 0.15
+      },
+      {
+        "id": "automation",
+        "label": "Automation",
+        "weight": 0.2
+      },
+      {
+        "id": "extensibility",
+        "label": "Extensibility",
+        "weight": 0.15
+      },
+      {
+        "id": "code_quality",
+        "label": "Code Quality",
+        "weight": 0.1
+      }
+    ],
+    "rows": [
+      {
+        "id": "arch",
+        "label": "Architecture",
+        "weight": 0.2,
+        "cells": [
+          {
+            "player": "gstack",
+            "score": 62,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "aiox",
+            "score": 92,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "testing",
+        "label": "Testing & QA",
+        "weight": 0.2,
+        "cells": [
+          {
+            "player": "gstack",
+            "score": 75,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "aiox",
+            "score": 88,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "docs",
+        "label": "Documentation",
+        "weight": 0.15,
+        "cells": [
+          {
+            "player": "gstack",
+            "score": 78,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "aiox",
+            "score": 85,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "automation",
+        "label": "Automation",
+        "weight": 0.2,
+        "cells": [
+          {
+            "player": "gstack",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "aiox",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "extensibility",
+        "label": "Extensibility",
+        "weight": 0.15,
+        "cells": [
+          {
+            "player": "gstack",
+            "score": 72,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "aiox",
+            "score": 88,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "code_quality",
+        "label": "Code Quality",
+        "weight": 0.1,
+        "cells": [
+          {
+            "player": "gstack",
+            "score": 82,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "aiox",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "gstack",
+        "score": 72.1
+      },
+      {
+        "player": "aiox",
+        "score": 87.95
+      }
+    ],
+    "method": "Weighted 6-dimension scoring (bench-dimension-packs.yaml, type=codebase)"
+  },
+  "duels": [
+    {
+      "left": "gstack",
+      "right": "aiox",
+      "winner": "aiox",
+      "left_wins": 1,
+      "right_wins": 5,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "arch",
+          "label": "Architecture",
+          "left_score": 62,
+          "right_score": 92,
+          "winner": "aiox"
+        },
+        {
+          "dimension": "testing",
+          "label": "Testing & QA",
+          "left_score": 75,
+          "right_score": 88,
+          "winner": "aiox"
+        },
+        {
+          "dimension": "docs",
+          "label": "Documentation",
+          "left_score": 78,
+          "right_score": 85,
+          "winner": "aiox"
+        },
+        {
+          "dimension": "automation",
+          "label": "Automation",
+          "left_score": 70,
+          "right_score": 90,
+          "winner": "aiox"
+        },
+        {
+          "dimension": "extensibility",
+          "label": "Extensibility",
+          "left_score": 72,
+          "right_score": 88,
+          "winner": "aiox"
+        },
+        {
+          "dimension": "code_quality",
+          "label": "Code Quality",
+          "left_score": 82,
+          "right_score": 80,
+          "winner": "gstack"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "aiox",
+          "score": 87.95,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "gstack",
+          "score": 72.1,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "gstack",
+          "score": 72.1
+        },
+        {
+          "player": "aiox",
+          "score": 87.95
+        }
+      ],
+      "verdict": "Aiox vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-analysis-1",
+      "title": "Summary",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-2",
+      "title": "AIOX Gaps (Absorption Candidates)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-3",
+      "title": "P0 — Must-Have",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-4",
+      "title": "P1 — Should-Have",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-5",
+      "title": "P2 — Nice-to-Have",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-6",
+      "title": "P3 — Low Priority",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-7",
+      "title": "gstack Gaps (AIOX Differentials)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-8",
+      "title": "Critical (gstack cannot compete here)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-9",
+      "title": "High (significant structural disadvantage)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-10",
+      "title": "Medium (notable advantages)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-11",
+      "title": "Absorption Roadmap",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/garrytan/gstack",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.json",
+      "role": "comparison-matrix",
+      "format": "json"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.json",
+      "role": "gap-analysis",
+      "format": "json"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventory-aiox.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "inventory-gstack.json",
+      "role": "inventory",
+      "format": "json"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {
+    "date": true
+  }
+}

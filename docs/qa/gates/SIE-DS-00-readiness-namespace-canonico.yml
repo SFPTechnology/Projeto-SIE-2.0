@@ -1,0 +1,61 @@
+schema: 1
+story: "SIE-DS-00"
+story_title: "Readiness e namespace canônico do SIE Command Center"
+story_path: "docs/stories/story-SIE-DS-00-readiness-namespace-canonico.md"
+gate: CONCERNS
+status_reason: >-
+  AC1-AC5 implementados e verificados independentemente (rastreabilidade cruzada + git status
+  confirmando AC5). CodeRabbit self-healing (Step 0, obrigatório) não pôde ser executado: o
+  binário WSL crasha com SIGILL/exit 132 até em --version, falha de ambiente anterior a
+  qualquer conteúdo, não um defeito desta story (artefato é Markdown puro, zero código).
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-31T00:00:00-03:00"
+expires: "2026-08-14T00:00:00-03:00"
+quality_score: 90
+mode: "yolo (agente-a-agente: @sm → @po → @architect → @dev → @qa, sessão manual real)"
+handoff_entrada: ".aiox/handoffs/SIE-DS-00-dev-to-qa.yaml"
+submodule_impact: "nenhum (verificado via git status --porcelain no submódulo; pre-existing dirty state de outros épicos não relacionado a esta story)"
+
+trace_ac:
+  - ac: AC1
+    descricao: "Decisão de consumo direto vs. promoção canônica"
+    resultado: PASS
+    evidencia: "docs/architecture/DECISION-SIE-DS-00-readiness-namespace-canonico.md §1"
+  - ac: AC2
+    descricao: "Namespace aditivo sem colisão"
+    resultado: PASS
+    evidencia: "docs/architecture/DECISION-SIE-DS-00-readiness-namespace-canonico.md §2 — --sie-cc-*, verificação de colisão via grep documentada"
+  - ac: AC3
+    descricao: "Feature flag e rollback"
+    resultado: PASS
+    evidencia: "docs/architecture/DECISION-SIE-DS-00-readiness-namespace-canonico.md §3 — VITE_FEATURE_SIE_COMMAND_CENTER"
+  - ac: AC4
+    descricao: "Gap ARCHITECT_PHASE_UNSUPPORTED documentado sem bypass"
+    resultado: PASS
+    evidencia: "docs/architecture/DECISION-SIE-DS-00-readiness-namespace-canonico.md §4"
+  - ac: AC5
+    descricao: "Zero impacto em código de produção"
+    resultado: PASS
+    evidencia: "docs/architecture/DECISION-SIE-DS-00-readiness-namespace-canonico.md §5 + git status --porcelain (verificação independente do QA)"
+
+top_issues:
+  - id: "TEST-001"
+    severity: medium
+    finding: "CodeRabbit CLI (WSL, ~/.local/bin/coderabbit) crasha com SIGILL/exit 132 mesmo em --version — Step 0 obrigatório de *review não pôde ser executado nesta nem na revisão anterior de @dev."
+    suggested_action: "@devops reinstala/reautentica o binário CodeRabbit no WSL antes de iniciar SIE-DS-01, que produzirá código real e depende do scanner."
+    suggested_owner: devops
+  - id: "DOC-001"
+    severity: low
+    finding: "Checkboxes da seção 'Acceptance Criteria' no topo da story permanecem [ ] apesar de AC1-AC5 estarem satisfeitos — @dev corretamente não os tocou (regra de permissão do agente), mas nenhum agente subsequente os atualizou."
+    suggested_action: "@po marca os checkboxes [x] durante *close-story, alinhando com o padrão de story-AUTO-OTI-1.1.md."
+    suggested_owner: po
+
+waiver: { active: false }
+
+recommendations:
+  immediate: []
+  future:
+    - action: "Reparar binário CodeRabbit no WSL (SIGILL/exit 132)"
+      refs: ["~/.local/bin/coderabbit"]
+    - action: "Sincronizar checkboxes de Acceptance Criteria no fechamento da story"
+      refs: ["docs/stories/story-SIE-DS-00-readiness-namespace-canonico.md"]

@@ -1,0 +1,14 @@
+{
+  "presenton_gaps": [
+    {"gap": "less proven non-technical UX", "priority": "P0", "absorption_complexity": "HIGH"},
+    {"gap": "weaker SaaS sharing/collaboration", "priority": "P1", "absorption_complexity": "MEDIUM"},
+    {"gap": "narrower import surface", "priority": "P1", "absorption_complexity": "MEDIUM"},
+    {"gap": "less mature team analytics/workspace workflow", "priority": "P1", "absorption_complexity": "MEDIUM"}
+  ],
+  "gamma_gaps": [
+    {"gap": "no self-hosting", "priority": "P0", "absorption_complexity": "LOW"},
+    {"gap": "no local Ollama workflow", "priority": "P0", "absorption_complexity": "LOW"},
+    {"gap": "less data/infrastructure control", "priority": "P0", "absorption_complexity": "LOW"},
+    {"gap": "credit/subscription dependency", "priority": "P1", "absorption_complexity": "MEDIUM"}
+  ]
+}

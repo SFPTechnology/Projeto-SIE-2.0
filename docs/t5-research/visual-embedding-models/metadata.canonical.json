@@ -1,0 +1,93 @@
+{
+  "bench": {
+    "id": "visual-embedding-models",
+    "type": "other",
+    "variant": "n-way",
+    "created_at": "2026-05-07",
+    "analyst": "spy/bench-analyst (backfilled)"
+  },
+  "subjects": [
+    {
+      "key": "siglip_siglip_2",
+      "name": "Siglip Siglip 2",
+      "category": "unknown"
+    },
+    {
+      "key": "openclip",
+      "name": "Openclip",
+      "category": "unknown"
+    },
+    {
+      "key": "clip_openai",
+      "name": "Clip Openai",
+      "category": "unknown"
+    },
+    {
+      "key": "siglip",
+      "name": "siglip",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "D1",
+        "name": "Maturity",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D2",
+        "name": "Ecosystem",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D3",
+        "name": "DX (developer experience)",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D4",
+        "name": "Performance (acurácia × latência)",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D5",
+        "name": "Scalability (escolha de tamanhos)",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D6",
+        "name": "Community (atualizações, tutoriais, issues)",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D7",
+        "name": "Persona-weighted (B-roll OSS)",
+        "weight_pct": 14,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:10:52.767Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Legacy metadata.json preserved alongside; canonical version at metadata.canonical.json.",
+      "bench.type normalized from \"universal-bench\" to canonical \"other\".",
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

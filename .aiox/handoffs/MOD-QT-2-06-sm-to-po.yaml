@@ -1,0 +1,62 @@
+handoff_id: MOD-QT-2-06-sm-to-po
+consumed: false
+consumed_at: null
+consumed_by: null
+created_at: "2026-07-29"
+from_agent: "@sm"
+to_agent: "@po"
+last_command: "*draft MOD-QT-2-06 --mode yolo --source .aiox/handoffs/MOD-QT-2-06-analyst-to-dev.yaml"
+next_command: "*validate-story-draft docs/stories/story-MOD-QT-2-06-persistencia-secao-mod-dc.md --mode yolo"
+workflow: "MOD-QT-2-06-AUTOPREENCHER-SECAO-MOD-DC"
+mode: "yolo"
+human_intervention: false
+source_handoff: ".aiox/handoffs/MOD-QT-2-06-analyst-to-dev.yaml"
+predecessor_stories:
+  - "docs/stories/story-MOD-QT-2-01-motor-calculo-queda-tensao.md (Done)"
+  - "docs/stories/story-MOD-QT-2-02-simulador-endpoints-ui.md (Done)"
+  - "docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md (Done)"
+  - "docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md (Done)"
+  - "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md (Done)"
+
+story_created:
+  path: "docs/stories/story-MOD-QT-2-06-persistencia-secao-mod-dc.md"
+  status: "Draft"
+  title: "Persistência da Seção do MOD-DC, Autopreenchimento em MOD-QT e Edição Auditada"
+
+trigger:
+  - "Usuário reportou que a coluna 'S (mm²)' da tela de Queda de Tensão aparece sempre vazia ('—')."
+  - "@analyst (Alex) confirmou que o autopreenchimento a partir do MOD-DC é a expectativa correta de negócio."
+  - "@dev investigou (DEV-01) e descobriu que o MOD-DC não persiste nada hoje (tudo em useState local); uma primeira implementação que contornava isso calculando uma seção com parâmetros fixos/genéricos foi REVERTIDA antes de qualquer commit por violar a constraint 'não inventar seção padrão para circuito'."
+
+scope_summary:
+  - "AC1: MOD-DC passa a persistir secao_fase_mm2 por projeto/circuito ao clicar 'Calcular' — repositório novo, sem alterar fórmulas de dimensionamento."
+  - "AC2: MOD-QT lê essa seção persistida como S (mm²) inicial, com precedência: override MOD-QT explícito > seção persistida MOD-DC > ausência real = null/PEND."
+  - "AC3: Campo S editável na tabela de resultados de Queda de Tensão, reaproveitando o fluxo já auditado de 'aplicar cenário' (justificativa obrigatória + evento QUEDA_TENSAO_CENARIO_APLICADO), nunca edição silenciosa."
+  - "AC4: Nenhuma regressão de contrato público (RetornoMODQT/schemas/rota) nem de fórmulas do motor MOD-QT ou dos motores C1-C6 de MOD-DC."
+
+out_of_scope_explicit:
+  - item: "Persistir o objeto ParametrosDimensionamento completo do MOD-DC"
+    reason: "Escopo mínimo necessário é apenas o resultado (secao_fase_mm2 por circuito); persistir parâmetros de entrada completos é story futura, se necessário."
+  - item: "Coluna/badge visual de origem da seção na UI"
+    reason: "Bônus se houver tempo; não bloqueante. Handoff original já previa isso como possível débito técnico."
+  - item: "Authn/authz das rotas novas"
+    reason: "Dívida pré-existente do projeto inteiro (nenhuma rota /api/v1 tem authn/authz hoje, achado QT202-002 de MOD-QT-2-02); esta story não resolve nem piora."
+
+decisions_made:
+  - "[AUTO-DECISION] Chave de persistência do resultado MOD-DC (por circuito vs. JSONB único por projeto) → deixada a critério de @dev/@data-engineer na Task 1, documentando a escolha no Dev Agent Record. Reason: ambos os formatos são compatíveis com o padrão já estabelecido (RepoQuedaTensaoConfig usa JSONB único por projeto); decidir sem mais contexto de volume de circuitos por projeto seria prematuro e não muda o contrato dos ACs."
+  - "[AUTO-DECISION] Reaproveitar aplicarCenario (ou variante muito próxima) para a edição do campo S em vez de desenhar um novo endpoint de override → reason: é o único caminho já auditado (R-11) existente no projeto; criar um segundo caminho de gravação duplicaria lógica e é exatamente o risco R3 documentado na story."
+  - "Story tratada como correção/manutenção nova (não reabertura de MOD-QT-2-02, que está Done) — mesma orientação do handoff do @analyst."
+  - "Nenhum documento normativo novo é necessário: esta story é engenharia de integração/persistência entre dois módulos já normativamente resolvidos (Artigo IV respeitado por não introduzir nenhuma fórmula nova)."
+
+po_validation_focus:
+  - "Confirmar que nenhum AC reintroduz a tentativa revertida de seção 'padrão'/genérica (R1 da story) — checar especialmente Dev Notes e Tasks 3-4."
+  - "Confirmar que AC3 realmente amarra a edição inline ao fluxo aplicarCenario existente, não a um endpoint novo paralelo (R3)."
+  - "Confirmar que a nova tabela Supabase tem task explícita de policy anon e degradação graciosa (R2), seguindo o padrão das 8 tabelas já documentadas no CLAUDE.md do submódulo."
+  - "Aplicar checklist de 10 pontos de .claude/rules/story-lifecycle.md Fase 2 / .aiox-core/product/checklists/story-draft-checklist.md."
+  - "Se GO (>=7/10): atualizar Status Draft -> Ready e criar handoff para @dev."
+  - "Se NO-GO: listar fixes obrigatórios."
+
+blocked:
+  - "Aprovar qualquer alteração de fórmula em src/domain/queda-tensao/motores/** ou na lógica C1-C6 de src/domain/dimensionamento-condutores/**."
+  - "Aprovar qualquer seção 'estimada'/genérica para circuito sem cálculo real do MOD-DC ou override auditado do MOD-QT."
+  - "Alterar contrato público (RetornoMODQT, ValidarMODQTSchema, RetornoMODQTSchema, rota POST /api/v1/modulos/mod-qt/validar)."

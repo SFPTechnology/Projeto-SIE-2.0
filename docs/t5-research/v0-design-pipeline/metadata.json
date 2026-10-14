@@ -1,0 +1,88 @@
+{
+  "bench": {
+    "id": "v0-design-pipeline",
+    "type": "technology",
+    "variant": "2-way",
+    "created_at": "2026-04-19",
+    "analyst": "spy/bench-analyst (backfilled)"
+  },
+  "subjects": [
+    {
+      "key": "subject_a",
+      "name": "Subject A",
+      "category": "unknown"
+    },
+    {
+      "key": "subject_b",
+      "name": "Subject B",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "layer-1-rag",
+        "name": "Camada 1 — Intent Detection + RAG Injection",
+        "weight_pct": 13,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "layer-2-stream",
+        "name": "Camada 2 — Stream Interception + Real-Time Correction",
+        "weight_pct": 13,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "layer-3-ast",
+        "name": "Camada 3 — AST AutoFix + Deterministic Validation",
+        "weight_pct": 13,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "catalog-ai-ready",
+        "name": "Catálogo AI-Ready (llms.txt, endpoints, registry)",
+        "weight_pct": 13,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "hooks-posttooluse",
+        "name": "Hooks PostToolUse de Design",
+        "weight_pct": 13,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "prompt-injection",
+        "name": "Prompt Injection Pipeline",
+        "weight_pct": 13,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "design-knowledge-depth",
+        "name": "Profundidade de Conhecimento de Design",
+        "weight_pct": 13,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "operational-coverage",
+        "name": "Cobertura Operacional (tasks, agentes, checklists)",
+        "weight_pct": 13,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:09:34.108Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "WARNING: dash carries placeholder subjects ('Subject A/B') — replace with actual names before publishing.",
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

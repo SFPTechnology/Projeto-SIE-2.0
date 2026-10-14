@@ -1,0 +1,36 @@
+schema: dashboard-manifest.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+tier: gold
+tier_rationale: All Gold-required artifacts present (16 YAMLs + dash + graph + execution-log).
+tabs:
+- id: 01-map
+  label: Map
+  status: implemented
+- id: 02-slides
+  label: Slides
+  status: implemented
+- id: 03-actions
+  label: Ações
+  status: implemented
+- id: 04-evidence
+  label: Evidências
+  status: implemented
+- id: 05-waves
+  label: Waves
+  status: implemented
+- id: 06-sources
+  label: Fontes
+  status: implemented
+- id: 07-players
+  label: Players
+  status: implemented
+- id: 08-questions
+  label: Perguntas
+  status: implemented
+- id: 09-doc
+  label: Doc
+  status: implemented
+readiness_for_observatory:
+  ready: true
+  expected_url: /observatory/bench?slug=deepresearch-absorption-benchmark

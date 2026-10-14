@@ -1,0 +1,27 @@
+schema: sinkra-deepresearch-task-v1
+id: SINKRA-DR-33
+group: browser_realism
+language: mixed
+kind: browser
+prompt: 'SINKRA-DR-33: executar pesquisa browser_realism com claims verificáveis,
+  fontes e relatório comparativo para decisão SINKRA.'
+source_mix:
+  public_web: high
+  private_kb: none
+  papers: low
+required_outputs:
+- trace.jsonl
+- tool-calls.jsonl
+- claims.yaml
+- sources.yaml
+- report.md
+- rubric-results.yaml
+- cost-latency.yaml
+- failure-analysis.md
+- replay-manifest.yaml
+gold_claims_file: fixtures/gold-claims/SINKRA-DR-33.yaml
+private_kb_fixture: null
+acceptance:
+  minimum_supported_claims: 5
+  forbid_private_leak: true
+  require_cost_latency: true

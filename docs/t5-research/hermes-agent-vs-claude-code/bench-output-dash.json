@@ -1,0 +1,1335 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:10:52.221Z",
+  "source_files": [
+    "battle-card.md",
+    "comparison-matrix.json",
+    "comparison-matrix.md",
+    "deep/hybrid-architecture.md",
+    "deep/internal-analysis-cross-reference.md",
+    "executive-report.md",
+    "gap-analysis.json",
+    "gap-analysis.md",
+    "metadata.canonical.json",
+    "metadata.json",
+    "scorecard.json",
+    "scorecard.md",
+    "synergy-analysis.json",
+    "synergy-analysis.md"
+  ],
+  "benchmark": {
+    "slug": "hermes-agent-vs-claude-code",
+    "title": "Hermes Agent vs Claude Code — Deep Benchmark Report",
+    "date": "2026-04-04",
+    "type": "codebase+product",
+    "variant": "2-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "hermes",
+      "name": "Hermes",
+      "category": "unknown"
+    },
+    {
+      "key": "claude_code",
+      "name": "Claude Code",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "hermes",
+    "coverage": "structured",
+    "sources": 13,
+    "waves": 0,
+    "dimensions": 30
+  },
+  "matrix": {
+    "players": [
+      "hermes",
+      "claude_code"
+    ],
+    "dimensions": [
+      {
+        "id": "D1",
+        "label": "Primary Language",
+        "weight": 0
+      },
+      {
+        "id": "D2",
+        "label": "LOC (non-test)",
+        "weight": 0
+      },
+      {
+        "id": "D3",
+        "label": "License",
+        "weight": 0
+      },
+      {
+        "id": "D4",
+        "label": "Agent Loop",
+        "weight": 0
+      },
+      {
+        "id": "D5",
+        "label": "Model Lock-in",
+        "weight": 0
+      },
+      {
+        "id": "D6",
+        "label": "Core Tools Count",
+        "weight": 0
+      },
+      {
+        "id": "D7",
+        "label": "File Operations",
+        "weight": 0
+      },
+      {
+        "id": "D8",
+        "label": "Terminal/Bash",
+        "weight": 0
+      },
+      {
+        "id": "D9",
+        "label": "Web Search",
+        "weight": 0
+      },
+      {
+        "id": "D10",
+        "label": "Browser Automation",
+        "weight": 0
+      },
+      {
+        "id": "D11",
+        "label": "MCP Support",
+        "weight": 0
+      },
+      {
+        "id": "D12",
+        "label": "Code Execution",
+        "weight": 0
+      },
+      {
+        "id": "D13",
+        "label": "Todo/Task Tracking",
+        "weight": 0
+      },
+      {
+        "id": "D14",
+        "label": "Persistent Memory",
+        "weight": 0
+      },
+      {
+        "id": "D15",
+        "label": "Session Search/Recall",
+        "weight": 0
+      },
+      {
+        "id": "D16",
+        "label": "Self-Learning Skills",
+        "weight": 0
+      },
+      {
+        "id": "D17",
+        "label": "Skills Library",
+        "weight": 0
+      },
+      {
+        "id": "D18",
+        "label": "Codebase Reasoning",
+        "weight": 0
+      },
+      {
+        "id": "D19",
+        "label": "Git/GitHub Integration",
+        "weight": 0
+      },
+      {
+        "id": "D20",
+        "label": "IDE Integration",
+        "weight": 0
+      },
+      {
+        "id": "D21",
+        "label": "SWE-bench Performance",
+        "weight": 0
+      },
+      {
+        "id": "D22",
+        "label": "Access Platforms",
+        "weight": 0
+      },
+      {
+        "id": "D23",
+        "label": "Execution Environments",
+        "weight": 0
+      },
+      {
+        "id": "D24",
+        "label": "Deployment Cost",
+        "weight": 0
+      },
+      {
+        "id": "D25",
+        "label": "Scheduling/Cron",
+        "weight": 0
+      },
+      {
+        "id": "D26",
+        "label": "Voice (TTS/STT)",
+        "weight": 0
+      },
+      {
+        "id": "D27",
+        "label": "Image Generation",
+        "weight": 0
+      },
+      {
+        "id": "D28",
+        "label": "Vision/Image Analysis",
+        "weight": 0
+      },
+      {
+        "id": "D29",
+        "label": "Mixture of Agents (Multi-Model)",
+        "weight": 0
+      },
+      {
+        "id": "D30",
+        "label": "RL Self-Improvement",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "D1",
+        "label": "Primary Language",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 3.11,
+            "confidence": "",
+            "notes": "Different stacks, different ecosystems",
+            "source": "Core Architecture"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Different stacks, different ecosystems",
+            "source": "Core Architecture"
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "label": "LOC (non-test)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 169185,
+            "confidence": "",
+            "notes": "",
+            "source": "Core Architecture"
+          },
+          {
+            "player": "claude_code",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "Core Architecture"
+          }
+        ]
+      },
+      {
+        "id": "D3",
+        "label": "License",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes fully open; Claude Code source visible via npm sourcemap but proprietary",
+            "source": "Core Architecture"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes fully open; Claude Code source visible via npm sourcemap but proprietary",
+            "source": "Core Architecture"
+          }
+        ]
+      },
+      {
+        "id": "D4",
+        "label": "Agent Loop",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Both implement tool-calling agent loops. Claude Code has extended thinking advantage",
+            "source": "Core Architecture"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Both implement tool-calling agent loops. Claude Code has extended thinking advantage",
+            "source": "Core Architecture"
+          }
+        ]
+      },
+      {
+        "id": "D5",
+        "label": "Model Lock-in",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 200,
+            "confidence": "",
+            "notes": "Fundamental architectural difference. Hermes model-agnostic by design",
+            "source": "Core Architecture"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Fundamental architectural difference. Hermes model-agnostic by design",
+            "source": "Core Architecture"
+          }
+        ]
+      },
+      {
+        "id": "D6",
+        "label": "Core Tools Count",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 49,
+            "confidence": "",
+            "notes": "Hermes has 3x more tools but many are domain-specific (HA, TTS, image gen)",
+            "source": "Tools & Capabilities"
+          },
+          {
+            "player": "claude_code",
+            "score": 15,
+            "confidence": "",
+            "notes": "Hermes has 3x more tools but many are domain-specific (HA, TTS, image gen)",
+            "source": "Tools & Capabilities"
+          }
+        ]
+      },
+      {
+        "id": "D7",
+        "label": "File Operations",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Both capable. Claude Code Edit is more precise (diff-based vs full rewrite)",
+            "source": "Tools & Capabilities"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Both capable. Claude Code Edit is more precise (diff-based vs full rewrite)",
+            "source": "Tools & Capabilities"
+          }
+        ]
+      },
+      {
+        "id": "D8",
+        "label": "Terminal/Bash",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 7,
+            "confidence": "",
+            "notes": "Hermes wins on execution backends (Docker/SSH/Modal). Claude Code wins on sandboxing",
+            "source": "Tools & Capabilities"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes wins on execution backends (Docker/SSH/Modal). Claude Code wins on sandboxing",
+            "source": "Tools & Capabilities"
+          }
+        ]
+      },
+      {
+        "id": "D9",
+        "label": "Web Search",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes has more search providers. Claude Code integrated natively",
+            "source": "Tools & Capabilities"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes has more search providers. Claude Code integrated natively",
+            "source": "Tools & Capabilities"
+          }
+        ]
+      },
+      {
+        "id": "D10",
+        "label": "Browser Automation",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes: Camoufox anti-detection. Claude Code: Chrome native integration",
+            "source": "Tools & Capabilities"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes: Camoufox anti-detection. Claude Code: Chrome native integration",
+            "source": "Tools & Capabilities"
+          }
+        ]
+      },
+      {
+        "id": "D11",
+        "label": "MCP Support",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Both support MCP. Claude Code has broader transport support",
+            "source": "Tools & Capabilities"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Both support MCP. Claude Code has broader transport support",
+            "source": "Tools & Capabilities"
+          }
+        ]
+      },
+      {
+        "id": "D12",
+        "label": "Code Execution",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "Tools & Capabilities"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "Tools & Capabilities"
+          }
+        ]
+      },
+      {
+        "id": "D13",
+        "label": "Todo/Task Tracking",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "Tools & Capabilities"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "Tools & Capabilities"
+          }
+        ]
+      },
+      {
+        "id": "D14",
+        "label": "Persistent Memory",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 25,
+            "confidence": "",
+            "notes": "Both have persistent memory. Hermes has pluggable backends. Claude Code has rules system",
+            "source": "Memory & Learning"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Both have persistent memory. Hermes has pluggable backends. Claude Code has rules system",
+            "source": "Memory & Learning"
+          }
+        ]
+      },
+      {
+        "id": "D15",
+        "label": "Session Search/Recall",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 5,
+            "confidence": "",
+            "notes": "Major Hermes advantage. Can answer 'what did we discuss last week about X?'",
+            "source": "Memory & Learning"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Major Hermes advantage. Can answer 'what did we discuss last week about X?'",
+            "source": "Memory & Learning"
+          }
+        ]
+      },
+      {
+        "id": "D16",
+        "label": "Self-Learning Skills",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes creates reusable procedural knowledge from experience. Claude Code cannot",
+            "source": "Memory & Learning"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes creates reusable procedural knowledge from experience. Claude Code cannot",
+            "source": "Memory & Learning"
+          }
+        ]
+      },
+      {
+        "id": "D17",
+        "label": "Skills Library",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 73,
+            "confidence": "",
+            "notes": "Hermes has rich ecosystem. Claude Code skills are project-local",
+            "source": "Memory & Learning"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes has rich ecosystem. Claude Code skills are project-local",
+            "source": "Memory & Learning"
+          }
+        ]
+      },
+      {
+        "id": "D18",
+        "label": "Codebase Reasoning",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Major Claude Code advantage. Purpose-built for code understanding",
+            "source": "Coding & Development"
+          },
+          {
+            "player": "claude_code",
+            "score": 200,
+            "confidence": "",
+            "notes": "Major Claude Code advantage. Purpose-built for code understanding",
+            "source": "Coding & Development"
+          }
+        ]
+      },
+      {
+        "id": "D19",
+        "label": "Git/GitHub Integration",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Claude Code is deeply integrated with Git/GitHub workflows",
+            "source": "Coding & Development"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Claude Code is deeply integrated with Git/GitHub workflows",
+            "source": "Coding & Development"
+          }
+        ]
+      },
+      {
+        "id": "D20",
+        "label": "IDE Integration",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Claude Code major advantage for developer workflow",
+            "source": "Coding & Development"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Claude Code major advantage for developer workflow",
+            "source": "Coding & Development"
+          }
+        ]
+      },
+      {
+        "id": "D21",
+        "label": "SWE-bench Performance",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 477,
+            "confidence": "",
+            "notes": "Claude Code is top-tier for code generation benchmarks",
+            "source": "Coding & Development"
+          },
+          {
+            "player": "claude_code",
+            "score": 80.8,
+            "confidence": "",
+            "notes": "Claude Code is top-tier for code generation benchmarks",
+            "source": "Coding & Development"
+          }
+        ]
+      },
+      {
+        "id": "D22",
+        "label": "Access Platforms",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 15,
+            "confidence": "",
+            "notes": "Different focus: Hermes=messaging everywhere, Claude Code=development everywhere",
+            "source": "Platform & Deployment"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Different focus: Hermes=messaging everywhere, Claude Code=development everywhere",
+            "source": "Platform & Deployment"
+          }
+        ]
+      },
+      {
+        "id": "D23",
+        "label": "Execution Environments",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes much more flexible for infrastructure",
+            "source": "Platform & Deployment"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes much more flexible for infrastructure",
+            "source": "Platform & Deployment"
+          }
+        ]
+      },
+      {
+        "id": "D24",
+        "label": "Deployment Cost",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 5,
+            "confidence": "",
+            "notes": "Hermes dramatically cheaper for high-volume use",
+            "source": "Platform & Deployment"
+          },
+          {
+            "player": "claude_code",
+            "score": 20,
+            "confidence": "",
+            "notes": "Hermes dramatically cheaper for high-volume use",
+            "source": "Platform & Deployment"
+          }
+        ]
+      },
+      {
+        "id": "D25",
+        "label": "Scheduling/Cron",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Both capable. Hermes delivers to any platform. Claude Code cloud-managed",
+            "source": "Platform & Deployment"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Both capable. Hermes delivers to any platform. Claude Code cloud-managed",
+            "source": "Platform & Deployment"
+          }
+        ]
+      },
+      {
+        "id": "D26",
+        "label": "Voice (TTS/STT)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 5,
+            "confidence": "",
+            "notes": "Hermes bidirectional voice. Claude Code input-only",
+            "source": "Multimodal & Advanced"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes bidirectional voice. Claude Code input-only",
+            "source": "Multimodal & Advanced"
+          }
+        ]
+      },
+      {
+        "id": "D27",
+        "label": "Image Generation",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 2,
+            "confidence": "",
+            "notes": "",
+            "source": "Multimodal & Advanced"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "Multimodal & Advanced"
+          }
+        ]
+      },
+      {
+        "id": "D28",
+        "label": "Vision/Image Analysis",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "Claude Code has better native vision. Hermes routes to auxiliary models",
+            "source": "Multimodal & Advanced"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Claude Code has better native vision. Hermes routes to auxiliary models",
+            "source": "Multimodal & Advanced"
+          }
+        ]
+      },
+      {
+        "id": "D29",
+        "label": "Mixture of Agents (Multi-Model)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 4,
+            "confidence": "",
+            "notes": "Hermes true multi-model consensus. Claude Code single-model parallelism",
+            "source": "Multimodal & Advanced"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "Hermes true multi-model consensus. Claude Code single-model parallelism",
+            "source": "Multimodal & Advanced"
+          }
+        ]
+      },
+      {
+        "id": "D30",
+        "label": "RL Self-Improvement",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hermes",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "Multimodal & Advanced"
+          },
+          {
+            "player": "claude_code",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "Multimodal & Advanced"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "hermes",
+        "score": 5668.5
+      },
+      {
+        "player": "claude_code",
+        "score": 13.86
+      }
+    ],
+    "method": "Derived from comparison-matrix.json"
+  },
+  "duels": [
+    {
+      "left": "hermes",
+      "right": "claude_code",
+      "winner": "hermes",
+      "left_wins": 13,
+      "right_wins": 2,
+      "ties": 15,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Primary Language",
+          "left_score": 3.11,
+          "right_score": 0,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D2",
+          "label": "LOC (non-test)",
+          "left_score": 169185,
+          "right_score": 100,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D3",
+          "label": "License",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "Agent Loop",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Model Lock-in",
+          "left_score": 200,
+          "right_score": 0,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D6",
+          "label": "Core Tools Count",
+          "left_score": 49,
+          "right_score": 15,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D7",
+          "label": "File Operations",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "Terminal/Bash",
+          "left_score": 7,
+          "right_score": 0,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D9",
+          "label": "Web Search",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "Browser Automation",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "MCP Support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "Code Execution",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "Todo/Task Tracking",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "Persistent Memory",
+          "left_score": 25,
+          "right_score": 0,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D15",
+          "label": "Session Search/Recall",
+          "left_score": 5,
+          "right_score": 0,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D16",
+          "label": "Self-Learning Skills",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "Skills Library",
+          "left_score": 73,
+          "right_score": 0,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D18",
+          "label": "Codebase Reasoning",
+          "left_score": 0,
+          "right_score": 200,
+          "winner": "claude_code"
+        },
+        {
+          "dimension": "D19",
+          "label": "Git/GitHub Integration",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D20",
+          "label": "IDE Integration",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D21",
+          "label": "SWE-bench Performance",
+          "left_score": 477,
+          "right_score": 80.8,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D22",
+          "label": "Access Platforms",
+          "left_score": 15,
+          "right_score": 0,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D23",
+          "label": "Execution Environments",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D24",
+          "label": "Deployment Cost",
+          "left_score": 5,
+          "right_score": 20,
+          "winner": "claude_code"
+        },
+        {
+          "dimension": "D25",
+          "label": "Scheduling/Cron",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D26",
+          "label": "Voice (TTS/STT)",
+          "left_score": 5,
+          "right_score": 0,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D27",
+          "label": "Image Generation",
+          "left_score": 2,
+          "right_score": 0,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D28",
+          "label": "Vision/Image Analysis",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D29",
+          "label": "Mixture of Agents (Multi-Model)",
+          "left_score": 4,
+          "right_score": 0,
+          "winner": "hermes"
+        },
+        {
+          "dimension": "D30",
+          "label": "RL Self-Improvement",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "hermes",
+          "score": 5668.5,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "claude_code",
+          "score": 13.86,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "hermes",
+          "score": 5668.5
+        },
+        {
+          "player": "claude_code",
+          "score": 13.86
+        }
+      ],
+      "verdict": "Hermes vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-analysis-1",
+      "title": "PART 1: Gaps Hermes Has → Claude Code Missing (14 gaps)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-2",
+      "title": "Coverage com Sinkra-Hub + Claude Code Nativo",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-3",
+      "title": "TIER 1 — Gaps Criticos",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-4",
+      "title": "TIER 2 — Gaps Significativos",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-5",
+      "title": "TIER 3 — Gaps Menores",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-6",
+      "title": "PART 2: Gaps Claude Code Has → Hermes Missing (8 gaps)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-7",
+      "title": "PART 3: Absorption Roadmap",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-8",
+      "title": "Prioridade P0 — Fazer AGORA",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-9",
+      "title": "Prioridade P1 — Proximo Sprint",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-10",
+      "title": "Prioridade P2 — Backlog",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-11",
+      "title": "Prioridade P3 — Nice to Have",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-12",
+      "title": "Coverage Projection",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://hermes-agent.nousresearch.com/docs/developer-guide/architecture/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://medium.com/@Daniel.O.Ayo/claude-vs-hermes-vs-openclaw-which-ai-agent-is-actually-worth-paying-for-in-2026-81ad77de8225",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://thenewstack.io/persistent-ai-agents-compared/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.openaitoolshub.org/en/blog/hermes-agent-ai-review",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://deepwiki.com/NousResearch/hermes-agent",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/anthropics/claude-code",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.gartner.com/en/research/methodologies/magic-quadrants-research",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.forrester.com/policies/forrester-wave-methodology/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.brightwolves.com/post/the-9-3-1-synergy-framework",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://klue.com/blog/competitive-battlecards-101",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.stratechi.com/synergies/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.json",
+      "role": "comparison-matrix",
+      "format": "json"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "deep/hybrid-architecture.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/internal-analysis-cross-reference.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.json",
+      "role": "gap-analysis",
+      "format": "json"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    },
+    {
+      "file": "synergy-analysis.json",
+      "role": "other",
+      "format": "json"
+    },
+    {
+      "file": "synergy-analysis.md",
+      "role": "other",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {}
+}

@@ -1,0 +1,6155 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:09:34.026Z",
+  "source_files": [
+    "INDEX.md",
+    "TECH-RESEARCH-2026-04-29.md",
+    "UPDATE-2026-04-29.md",
+    "full-comparison.md",
+    "gap-absorption-roadmap.md",
+    "metadata.json",
+    "scorecard.json",
+    "url-design-extraction-bench.md"
+  ],
+  "benchmark": {
+    "slug": "url-design-extraction",
+    "title": "URL → Design.md Extraction Benchmark",
+    "date": "2026-04-27",
+    "type": "product",
+    "variant": "5-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "sinkra",
+      "name": "Sinkra",
+      "category": "unknown"
+    },
+    {
+      "key": "dembrandt",
+      "name": "Dembrandt",
+      "category": "unknown"
+    },
+    {
+      "key": "designlang",
+      "name": "Designlang",
+      "category": "unknown"
+    },
+    {
+      "key": "hyperdesign",
+      "name": "Hyperdesign",
+      "category": "unknown"
+    },
+    {
+      "key": "project_wallace",
+      "name": "Project Wallace",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "sinkra",
+    "coverage": "structured",
+    "sources": 29,
+    "waves": 0,
+    "dimensions": 48
+  },
+  "matrix": {
+    "players": [
+      "sinkra",
+      "dembrandt",
+      "designlang",
+      "hyperdesign",
+      "project_wallace"
+    ],
+    "dimensions": [
+      {
+        "id": "D1",
+        "label": "Extraction core",
+        "weight": 0
+      },
+      {
+        "id": "D2",
+        "label": "HTTP fetch only (no headless browser)",
+        "weight": 0
+      },
+      {
+        "id": "D3",
+        "label": "Screenshot capture",
+        "weight": 0
+      },
+      {
+        "id": "D4",
+        "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+        "weight": 0
+      },
+      {
+        "id": "D5",
+        "label": "Inline `<style>` + `style=\"\"` attrs",
+        "weight": 0
+      },
+      {
+        "id": "D6",
+        "label": "Real DOM computed styles",
+        "weight": 0
+      },
+      {
+        "id": "D7",
+        "label": "Stealth/captcha solver",
+        "weight": 0
+      },
+      {
+        "id": "D8",
+        "label": "Auth/cookie support",
+        "weight": 0
+      },
+      {
+        "id": "D9",
+        "label": "Multi-page crawling (sitemap or links)",
+        "weight": 0
+      },
+      {
+        "id": "D10",
+        "label": "Token analysis",
+        "weight": 0
+      },
+      {
+        "id": "D11",
+        "label": "DTCG output (W3C spec)",
+        "weight": 0
+      },
+      {
+        "id": "D12",
+        "label": "Native CSS var detection (with selector scope)",
+        "weight": 0
+      },
+      {
+        "id": "D13",
+        "label": "@font-face exhaustive parsing",
+        "weight": 0
+      },
+      {
+        "id": "D14",
+        "label": "Token usage graph (declarations × references)",
+        "weight": 0
+      },
+      {
+        "id": "D15",
+        "label": "Stable token IDs across runs",
+        "weight": 0
+      },
+      {
+        "id": "D16",
+        "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+        "weight": 0
+      },
+      {
+        "id": "D17",
+        "label": "Breakpoints auto-detect",
+        "weight": 0
+      },
+      {
+        "id": "D18",
+        "label": "Dark mode auto-detect",
+        "weight": 0
+      },
+      {
+        "id": "D19",
+        "label": "Shadow extraction (elevation ladder)",
+        "weight": 0
+      },
+      {
+        "id": "D20",
+        "label": "Motion / animation tokens",
+        "weight": 0
+      },
+      {
+        "id": "D21",
+        "label": "Output & validation",
+        "weight": 0
+      },
+      {
+        "id": "D22",
+        "label": "DESIGN.md output",
+        "weight": 0
+      },
+      {
+        "id": "D23",
+        "label": "Lint enforcement (`@google/design.md`)",
+        "weight": 0
+      },
+      {
+        "id": "D24",
+        "label": "Provenance per token (machine-readable log)",
+        "weight": 0
+      },
+      {
+        "id": "D25",
+        "label": "Confidence scoring per token (high/medium/low)",
+        "weight": 0
+      },
+      {
+        "id": "D26",
+        "label": "Quality score A-F (multi-dimensional)",
+        "weight": 0
+      },
+      {
+        "id": "D27",
+        "label": "Drift mode (compare local DESIGN.md vs URL)",
+        "weight": 0
+      },
+      {
+        "id": "D28",
+        "label": "Visual diff between two URLs",
+        "weight": 0
+      },
+      {
+        "id": "D29",
+        "label": "Preview output",
+        "weight": 0
+      },
+      {
+        "id": "D30",
+        "label": "Single-file standalone HTML (offline)",
+        "weight": 0
+      },
+      {
+        "id": "D31",
+        "label": "Live component preview rendered with extracted tokens",
+        "weight": 0
+      },
+      {
+        "id": "D32",
+        "label": "WCAG contrast matrix interactive",
+        "weight": 0
+      },
+      {
+        "id": "D33",
+        "label": "Component variant matrix (states × sizes × variants)",
+        "weight": 0
+      },
+      {
+        "id": "D34",
+        "label": "Logo extraction with priority hierarchy",
+        "weight": 0
+      },
+      {
+        "id": "D35",
+        "label": "Self-hosted font embedding (data: URLs cross-origin)",
+        "weight": 0
+      },
+      {
+        "id": "D36",
+        "label": "Live motion demo (animated tokens)",
+        "weight": 0
+      },
+      {
+        "id": "D37",
+        "label": "Hero zone with brand identity",
+        "weight": 0
+      },
+      {
+        "id": "D38",
+        "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+        "weight": 0
+      },
+      {
+        "id": "D39",
+        "label": "Integration & ecosystem",
+        "weight": 0
+      },
+      {
+        "id": "D40",
+        "label": "Claude Code subprocess (zero API key required)",
+        "weight": 0
+      },
+      {
+        "id": "D41",
+        "label": "MCP server",
+        "weight": 0
+      },
+      {
+        "id": "D42",
+        "label": "Multi-platform exporters (iOS / Android / Flutter)",
+        "weight": 0
+      },
+      {
+        "id": "D43",
+        "label": "GitHub Action / CI gate",
+        "weight": 0
+      },
+      {
+        "id": "D44",
+        "label": "VS Code / Raycast / Figma / Chrome extensions",
+        "weight": 0
+      },
+      {
+        "id": "D45",
+        "label": "`apply` direct write to project",
+        "weight": 0
+      },
+      {
+        "id": "D46",
+        "label": "`clone` Next.js starter from URL",
+        "weight": 0
+      },
+      {
+        "id": "D47",
+        "label": "`watch` mode (poll URL on interval)",
+        "weight": 0
+      },
+      {
+        "id": "D48",
+        "label": "`brands` matrix (compare N brands)",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "D1",
+        "label": "Extraction core",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "label": "HTTP fetch only (no headless browser)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D3",
+        "label": "Screenshot capture",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D4",
+        "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D5",
+        "label": "Inline `<style>` + `style=\"\"` attrs",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D6",
+        "label": "Real DOM computed styles",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D7",
+        "label": "Stealth/captcha solver",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D8",
+        "label": "Auth/cookie support",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D9",
+        "label": "Multi-page crawling (sitemap or links)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D10",
+        "label": "Token analysis",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D11",
+        "label": "DTCG output (W3C spec)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D12",
+        "label": "Native CSS var detection (with selector scope)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D13",
+        "label": "@font-face exhaustive parsing",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D14",
+        "label": "Token usage graph (declarations × references)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D15",
+        "label": "Stable token IDs across runs",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D16",
+        "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D17",
+        "label": "Breakpoints auto-detect",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D18",
+        "label": "Dark mode auto-detect",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D19",
+        "label": "Shadow extraction (elevation ladder)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D20",
+        "label": "Motion / animation tokens",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D21",
+        "label": "Output & validation",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D22",
+        "label": "DESIGN.md output",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D23",
+        "label": "Lint enforcement (`@google/design.md`)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D24",
+        "label": "Provenance per token (machine-readable log)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D25",
+        "label": "Confidence scoring per token (high/medium/low)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D26",
+        "label": "Quality score A-F (multi-dimensional)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D27",
+        "label": "Drift mode (compare local DESIGN.md vs URL)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D28",
+        "label": "Visual diff between two URLs",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D29",
+        "label": "Preview output",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D30",
+        "label": "Single-file standalone HTML (offline)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D31",
+        "label": "Live component preview rendered with extracted tokens",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D32",
+        "label": "WCAG contrast matrix interactive",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D33",
+        "label": "Component variant matrix (states × sizes × variants)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D34",
+        "label": "Logo extraction with priority hierarchy",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D35",
+        "label": "Self-hosted font embedding (data: URLs cross-origin)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D36",
+        "label": "Live motion demo (animated tokens)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D37",
+        "label": "Hero zone with brand identity",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D38",
+        "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D39",
+        "label": "Integration & ecosystem",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D40",
+        "label": "Claude Code subprocess (zero API key required)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D41",
+        "label": "MCP server",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D42",
+        "label": "Multi-platform exporters (iOS / Android / Flutter)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D43",
+        "label": "GitHub Action / CI gate",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D44",
+        "label": "VS Code / Raycast / Figma / Chrome extensions",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D45",
+        "label": "`apply` direct write to project",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D46",
+        "label": "`clone` Next.js starter from URL",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D47",
+        "label": "`watch` mode (poll URL on interval)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D48",
+        "label": "`brands` matrix (compare N brands)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "dembrandt",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "designlang",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "hyperdesign",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "project_wallace",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "sinkra",
+        "score": 58.33
+      },
+      {
+        "player": "dembrandt",
+        "score": 22.92
+      },
+      {
+        "player": "designlang",
+        "score": 56.25
+      },
+      {
+        "player": "hyperdesign",
+        "score": 12.5
+      },
+      {
+        "player": "project_wallace",
+        "score": 16.67
+      }
+    ],
+    "method": "Derived from markdown table in full-comparison.md"
+  },
+  "duels": [
+    {
+      "left": "sinkra",
+      "right": "dembrandt",
+      "winner": "sinkra",
+      "left_wins": 22,
+      "right_wins": 5,
+      "ties": 21,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Extraction core",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "HTTP fetch only (no headless browser)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D3",
+          "label": "Screenshot capture",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D4",
+          "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Inline `<style>` + `style=\"\"` attrs",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Real DOM computed styles",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D7",
+          "label": "Stealth/captcha solver",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D8",
+          "label": "Auth/cookie support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Multi-page crawling (sitemap or links)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D10",
+          "label": "Token analysis",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "DTCG output (W3C spec)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "Native CSS var detection (with selector scope)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D13",
+          "label": "@font-face exhaustive parsing",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D14",
+          "label": "Token usage graph (declarations × references)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D15",
+          "label": "Stable token IDs across runs",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D16",
+          "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D17",
+          "label": "Breakpoints auto-detect",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D18",
+          "label": "Dark mode auto-detect",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D19",
+          "label": "Shadow extraction (elevation ladder)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D20",
+          "label": "Motion / animation tokens",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D21",
+          "label": "Output & validation",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D22",
+          "label": "DESIGN.md output",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D23",
+          "label": "Lint enforcement (`@google/design.md`)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D24",
+          "label": "Provenance per token (machine-readable log)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D25",
+          "label": "Confidence scoring per token (high/medium/low)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D26",
+          "label": "Quality score A-F (multi-dimensional)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D27",
+          "label": "Drift mode (compare local DESIGN.md vs URL)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D28",
+          "label": "Visual diff between two URLs",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D29",
+          "label": "Preview output",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D30",
+          "label": "Single-file standalone HTML (offline)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D31",
+          "label": "Live component preview rendered with extracted tokens",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D32",
+          "label": "WCAG contrast matrix interactive",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D33",
+          "label": "Component variant matrix (states × sizes × variants)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D34",
+          "label": "Logo extraction with priority hierarchy",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D35",
+          "label": "Self-hosted font embedding (data: URLs cross-origin)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D36",
+          "label": "Live motion demo (animated tokens)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D37",
+          "label": "Hero zone with brand identity",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D38",
+          "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D39",
+          "label": "Integration & ecosystem",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D40",
+          "label": "Claude Code subprocess (zero API key required)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D41",
+          "label": "MCP server",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D42",
+          "label": "Multi-platform exporters (iOS / Android / Flutter)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D43",
+          "label": "GitHub Action / CI gate",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D44",
+          "label": "VS Code / Raycast / Figma / Chrome extensions",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D45",
+          "label": "`apply` direct write to project",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D46",
+          "label": "`clone` Next.js starter from URL",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D47",
+          "label": "`watch` mode (poll URL on interval)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D48",
+          "label": "`brands` matrix (compare N brands)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "sinkra",
+      "right": "designlang",
+      "winner": "sinkra",
+      "left_wins": 14,
+      "right_wins": 13,
+      "ties": 21,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Extraction core",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "HTTP fetch only (no headless browser)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D3",
+          "label": "Screenshot capture",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D4",
+          "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Inline `<style>` + `style=\"\"` attrs",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Real DOM computed styles",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D7",
+          "label": "Stealth/captcha solver",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "Auth/cookie support",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D9",
+          "label": "Multi-page crawling (sitemap or links)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D10",
+          "label": "Token analysis",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "DTCG output (W3C spec)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "Native CSS var detection (with selector scope)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D13",
+          "label": "@font-face exhaustive parsing",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "Token usage graph (declarations × references)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D15",
+          "label": "Stable token IDs across runs",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D17",
+          "label": "Breakpoints auto-detect",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D18",
+          "label": "Dark mode auto-detect",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D19",
+          "label": "Shadow extraction (elevation ladder)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D20",
+          "label": "Motion / animation tokens",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D21",
+          "label": "Output & validation",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D22",
+          "label": "DESIGN.md output",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D23",
+          "label": "Lint enforcement (`@google/design.md`)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D24",
+          "label": "Provenance per token (machine-readable log)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D25",
+          "label": "Confidence scoring per token (high/medium/low)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D26",
+          "label": "Quality score A-F (multi-dimensional)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D27",
+          "label": "Drift mode (compare local DESIGN.md vs URL)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D28",
+          "label": "Visual diff between two URLs",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D29",
+          "label": "Preview output",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D30",
+          "label": "Single-file standalone HTML (offline)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D31",
+          "label": "Live component preview rendered with extracted tokens",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D32",
+          "label": "WCAG contrast matrix interactive",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D33",
+          "label": "Component variant matrix (states × sizes × variants)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D34",
+          "label": "Logo extraction with priority hierarchy",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D35",
+          "label": "Self-hosted font embedding (data: URLs cross-origin)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D36",
+          "label": "Live motion demo (animated tokens)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D37",
+          "label": "Hero zone with brand identity",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D38",
+          "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D39",
+          "label": "Integration & ecosystem",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D40",
+          "label": "Claude Code subprocess (zero API key required)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D41",
+          "label": "MCP server",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D42",
+          "label": "Multi-platform exporters (iOS / Android / Flutter)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D43",
+          "label": "GitHub Action / CI gate",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D44",
+          "label": "VS Code / Raycast / Figma / Chrome extensions",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D45",
+          "label": "`apply` direct write to project",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D46",
+          "label": "`clone` Next.js starter from URL",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D47",
+          "label": "`watch` mode (poll URL on interval)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D48",
+          "label": "`brands` matrix (compare N brands)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        }
+      ]
+    },
+    {
+      "left": "sinkra",
+      "right": "hyperdesign",
+      "winner": "sinkra",
+      "left_wins": 25,
+      "right_wins": 3,
+      "ties": 20,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Extraction core",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "HTTP fetch only (no headless browser)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D3",
+          "label": "Screenshot capture",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "hyperdesign"
+        },
+        {
+          "dimension": "D4",
+          "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Inline `<style>` + `style=\"\"` attrs",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Real DOM computed styles",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "hyperdesign"
+        },
+        {
+          "dimension": "D7",
+          "label": "Stealth/captcha solver",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "hyperdesign"
+        },
+        {
+          "dimension": "D8",
+          "label": "Auth/cookie support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Multi-page crawling (sitemap or links)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "Token analysis",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "DTCG output (W3C spec)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D12",
+          "label": "Native CSS var detection (with selector scope)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D13",
+          "label": "@font-face exhaustive parsing",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D14",
+          "label": "Token usage graph (declarations × references)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D15",
+          "label": "Stable token IDs across runs",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D17",
+          "label": "Breakpoints auto-detect",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D18",
+          "label": "Dark mode auto-detect",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D19",
+          "label": "Shadow extraction (elevation ladder)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D20",
+          "label": "Motion / animation tokens",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D21",
+          "label": "Output & validation",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D22",
+          "label": "DESIGN.md output",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D23",
+          "label": "Lint enforcement (`@google/design.md`)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D24",
+          "label": "Provenance per token (machine-readable log)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D25",
+          "label": "Confidence scoring per token (high/medium/low)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D26",
+          "label": "Quality score A-F (multi-dimensional)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D27",
+          "label": "Drift mode (compare local DESIGN.md vs URL)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D28",
+          "label": "Visual diff between two URLs",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D29",
+          "label": "Preview output",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D30",
+          "label": "Single-file standalone HTML (offline)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D31",
+          "label": "Live component preview rendered with extracted tokens",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D32",
+          "label": "WCAG contrast matrix interactive",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D33",
+          "label": "Component variant matrix (states × sizes × variants)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D34",
+          "label": "Logo extraction with priority hierarchy",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D35",
+          "label": "Self-hosted font embedding (data: URLs cross-origin)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D36",
+          "label": "Live motion demo (animated tokens)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D37",
+          "label": "Hero zone with brand identity",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D38",
+          "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D39",
+          "label": "Integration & ecosystem",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D40",
+          "label": "Claude Code subprocess (zero API key required)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D41",
+          "label": "MCP server",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D42",
+          "label": "Multi-platform exporters (iOS / Android / Flutter)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D43",
+          "label": "GitHub Action / CI gate",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D44",
+          "label": "VS Code / Raycast / Figma / Chrome extensions",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D45",
+          "label": "`apply` direct write to project",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D46",
+          "label": "`clone` Next.js starter from URL",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D47",
+          "label": "`watch` mode (poll URL on interval)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D48",
+          "label": "`brands` matrix (compare N brands)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "sinkra",
+      "right": "project_wallace",
+      "winner": "sinkra",
+      "left_wins": 21,
+      "right_wins": 1,
+      "ties": 26,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Extraction core",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "HTTP fetch only (no headless browser)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Screenshot capture",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Inline `<style>` + `style=\"\"` attrs",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Real DOM computed styles",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D7",
+          "label": "Stealth/captcha solver",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "Auth/cookie support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Multi-page crawling (sitemap or links)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "Token analysis",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "DTCG output (W3C spec)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "Native CSS var detection (with selector scope)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "@font-face exhaustive parsing",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D14",
+          "label": "Token usage graph (declarations × references)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D15",
+          "label": "Stable token IDs across runs",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D16",
+          "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D17",
+          "label": "Breakpoints auto-detect",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D18",
+          "label": "Dark mode auto-detect",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D19",
+          "label": "Shadow extraction (elevation ladder)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D20",
+          "label": "Motion / animation tokens",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D21",
+          "label": "Output & validation",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D22",
+          "label": "DESIGN.md output",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D23",
+          "label": "Lint enforcement (`@google/design.md`)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D24",
+          "label": "Provenance per token (machine-readable log)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D25",
+          "label": "Confidence scoring per token (high/medium/low)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D26",
+          "label": "Quality score A-F (multi-dimensional)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D27",
+          "label": "Drift mode (compare local DESIGN.md vs URL)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D28",
+          "label": "Visual diff between two URLs",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D29",
+          "label": "Preview output",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D30",
+          "label": "Single-file standalone HTML (offline)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D31",
+          "label": "Live component preview rendered with extracted tokens",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D32",
+          "label": "WCAG contrast matrix interactive",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D33",
+          "label": "Component variant matrix (states × sizes × variants)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D34",
+          "label": "Logo extraction with priority hierarchy",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D35",
+          "label": "Self-hosted font embedding (data: URLs cross-origin)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D36",
+          "label": "Live motion demo (animated tokens)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D37",
+          "label": "Hero zone with brand identity",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D38",
+          "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D39",
+          "label": "Integration & ecosystem",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D40",
+          "label": "Claude Code subprocess (zero API key required)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D41",
+          "label": "MCP server",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D42",
+          "label": "Multi-platform exporters (iOS / Android / Flutter)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D43",
+          "label": "GitHub Action / CI gate",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D44",
+          "label": "VS Code / Raycast / Figma / Chrome extensions",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D45",
+          "label": "`apply` direct write to project",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D46",
+          "label": "`clone` Next.js starter from URL",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D47",
+          "label": "`watch` mode (poll URL on interval)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D48",
+          "label": "`brands` matrix (compare N brands)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "dembrandt",
+      "right": "designlang",
+      "winner": "designlang",
+      "left_wins": 3,
+      "right_wins": 19,
+      "ties": 26,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Extraction core",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "HTTP fetch only (no headless browser)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Screenshot capture",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Inline `<style>` + `style=\"\"` attrs",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Real DOM computed styles",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D7",
+          "label": "Stealth/captcha solver",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D8",
+          "label": "Auth/cookie support",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D9",
+          "label": "Multi-page crawling (sitemap or links)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "Token analysis",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "DTCG output (W3C spec)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "Native CSS var detection (with selector scope)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "@font-face exhaustive parsing",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D14",
+          "label": "Token usage graph (declarations × references)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D15",
+          "label": "Stable token IDs across runs",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D16",
+          "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "Breakpoints auto-detect",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "Dark mode auto-detect",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D19",
+          "label": "Shadow extraction (elevation ladder)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D20",
+          "label": "Motion / animation tokens",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D21",
+          "label": "Output & validation",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D22",
+          "label": "DESIGN.md output",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D23",
+          "label": "Lint enforcement (`@google/design.md`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D24",
+          "label": "Provenance per token (machine-readable log)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D25",
+          "label": "Confidence scoring per token (high/medium/low)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D26",
+          "label": "Quality score A-F (multi-dimensional)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D27",
+          "label": "Drift mode (compare local DESIGN.md vs URL)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D28",
+          "label": "Visual diff between two URLs",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D29",
+          "label": "Preview output",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D30",
+          "label": "Single-file standalone HTML (offline)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D31",
+          "label": "Live component preview rendered with extracted tokens",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D32",
+          "label": "WCAG contrast matrix interactive",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D33",
+          "label": "Component variant matrix (states × sizes × variants)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D34",
+          "label": "Logo extraction with priority hierarchy",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D35",
+          "label": "Self-hosted font embedding (data: URLs cross-origin)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D36",
+          "label": "Live motion demo (animated tokens)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D37",
+          "label": "Hero zone with brand identity",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D38",
+          "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D39",
+          "label": "Integration & ecosystem",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D40",
+          "label": "Claude Code subprocess (zero API key required)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D41",
+          "label": "MCP server",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D42",
+          "label": "Multi-platform exporters (iOS / Android / Flutter)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D43",
+          "label": "GitHub Action / CI gate",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D44",
+          "label": "VS Code / Raycast / Figma / Chrome extensions",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D45",
+          "label": "`apply` direct write to project",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D46",
+          "label": "`clone` Next.js starter from URL",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D47",
+          "label": "`watch` mode (poll URL on interval)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D48",
+          "label": "`brands` matrix (compare N brands)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "designlang"
+        }
+      ]
+    },
+    {
+      "left": "dembrandt",
+      "right": "hyperdesign",
+      "winner": "dembrandt",
+      "left_wins": 5,
+      "right_wins": 0,
+      "ties": 43,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Extraction core",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "HTTP fetch only (no headless browser)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Screenshot capture",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Inline `<style>` + `style=\"\"` attrs",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Real DOM computed styles",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D7",
+          "label": "Stealth/captcha solver",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "Auth/cookie support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Multi-page crawling (sitemap or links)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D10",
+          "label": "Token analysis",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "DTCG output (W3C spec)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D12",
+          "label": "Native CSS var detection (with selector scope)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "@font-face exhaustive parsing",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "Token usage graph (declarations × references)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D15",
+          "label": "Stable token IDs across runs",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D16",
+          "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "Breakpoints auto-detect",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "Dark mode auto-detect",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D19",
+          "label": "Shadow extraction (elevation ladder)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D20",
+          "label": "Motion / animation tokens",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D21",
+          "label": "Output & validation",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D22",
+          "label": "DESIGN.md output",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D23",
+          "label": "Lint enforcement (`@google/design.md`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D24",
+          "label": "Provenance per token (machine-readable log)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D25",
+          "label": "Confidence scoring per token (high/medium/low)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D26",
+          "label": "Quality score A-F (multi-dimensional)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D27",
+          "label": "Drift mode (compare local DESIGN.md vs URL)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D28",
+          "label": "Visual diff between two URLs",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D29",
+          "label": "Preview output",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D30",
+          "label": "Single-file standalone HTML (offline)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D31",
+          "label": "Live component preview rendered with extracted tokens",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D32",
+          "label": "WCAG contrast matrix interactive",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D33",
+          "label": "Component variant matrix (states × sizes × variants)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D34",
+          "label": "Logo extraction with priority hierarchy",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D35",
+          "label": "Self-hosted font embedding (data: URLs cross-origin)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D36",
+          "label": "Live motion demo (animated tokens)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D37",
+          "label": "Hero zone with brand identity",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D38",
+          "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D39",
+          "label": "Integration & ecosystem",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D40",
+          "label": "Claude Code subprocess (zero API key required)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D41",
+          "label": "MCP server",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D42",
+          "label": "Multi-platform exporters (iOS / Android / Flutter)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D43",
+          "label": "GitHub Action / CI gate",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D44",
+          "label": "VS Code / Raycast / Figma / Chrome extensions",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D45",
+          "label": "`apply` direct write to project",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D46",
+          "label": "`clone` Next.js starter from URL",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D47",
+          "label": "`watch` mode (poll URL on interval)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D48",
+          "label": "`brands` matrix (compare N brands)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "dembrandt",
+      "right": "project_wallace",
+      "winner": "dembrandt",
+      "left_wins": 7,
+      "right_wins": 4,
+      "ties": 37,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Extraction core",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "HTTP fetch only (no headless browser)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D3",
+          "label": "Screenshot capture",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D4",
+          "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Inline `<style>` + `style=\"\"` attrs",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Real DOM computed styles",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D7",
+          "label": "Stealth/captcha solver",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D8",
+          "label": "Auth/cookie support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Multi-page crawling (sitemap or links)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D10",
+          "label": "Token analysis",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "DTCG output (W3C spec)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "Native CSS var detection (with selector scope)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D13",
+          "label": "@font-face exhaustive parsing",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "Token usage graph (declarations × references)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D15",
+          "label": "Stable token IDs across runs",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "Breakpoints auto-detect",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "Dark mode auto-detect",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D19",
+          "label": "Shadow extraction (elevation ladder)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D20",
+          "label": "Motion / animation tokens",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D21",
+          "label": "Output & validation",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D22",
+          "label": "DESIGN.md output",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D23",
+          "label": "Lint enforcement (`@google/design.md`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D24",
+          "label": "Provenance per token (machine-readable log)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D25",
+          "label": "Confidence scoring per token (high/medium/low)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "dembrandt"
+        },
+        {
+          "dimension": "D26",
+          "label": "Quality score A-F (multi-dimensional)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D27",
+          "label": "Drift mode (compare local DESIGN.md vs URL)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D28",
+          "label": "Visual diff between two URLs",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D29",
+          "label": "Preview output",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D30",
+          "label": "Single-file standalone HTML (offline)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D31",
+          "label": "Live component preview rendered with extracted tokens",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D32",
+          "label": "WCAG contrast matrix interactive",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D33",
+          "label": "Component variant matrix (states × sizes × variants)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D34",
+          "label": "Logo extraction with priority hierarchy",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D35",
+          "label": "Self-hosted font embedding (data: URLs cross-origin)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D36",
+          "label": "Live motion demo (animated tokens)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D37",
+          "label": "Hero zone with brand identity",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D38",
+          "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D39",
+          "label": "Integration & ecosystem",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D40",
+          "label": "Claude Code subprocess (zero API key required)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D41",
+          "label": "MCP server",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D42",
+          "label": "Multi-platform exporters (iOS / Android / Flutter)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D43",
+          "label": "GitHub Action / CI gate",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D44",
+          "label": "VS Code / Raycast / Figma / Chrome extensions",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D45",
+          "label": "`apply` direct write to project",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D46",
+          "label": "`clone` Next.js starter from URL",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D47",
+          "label": "`watch` mode (poll URL on interval)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D48",
+          "label": "`brands` matrix (compare N brands)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "designlang",
+      "right": "hyperdesign",
+      "winner": "designlang",
+      "left_wins": 22,
+      "right_wins": 1,
+      "ties": 25,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Extraction core",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "HTTP fetch only (no headless browser)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Screenshot capture",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Inline `<style>` + `style=\"\"` attrs",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Real DOM computed styles",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D7",
+          "label": "Stealth/captcha solver",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "hyperdesign"
+        },
+        {
+          "dimension": "D8",
+          "label": "Auth/cookie support",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D9",
+          "label": "Multi-page crawling (sitemap or links)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D10",
+          "label": "Token analysis",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "DTCG output (W3C spec)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D12",
+          "label": "Native CSS var detection (with selector scope)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "@font-face exhaustive parsing",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D14",
+          "label": "Token usage graph (declarations × references)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D15",
+          "label": "Stable token IDs across runs",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D16",
+          "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "Breakpoints auto-detect",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "Dark mode auto-detect",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D19",
+          "label": "Shadow extraction (elevation ladder)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D20",
+          "label": "Motion / animation tokens",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D21",
+          "label": "Output & validation",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D22",
+          "label": "DESIGN.md output",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D23",
+          "label": "Lint enforcement (`@google/design.md`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D24",
+          "label": "Provenance per token (machine-readable log)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D25",
+          "label": "Confidence scoring per token (high/medium/low)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D26",
+          "label": "Quality score A-F (multi-dimensional)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D27",
+          "label": "Drift mode (compare local DESIGN.md vs URL)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D28",
+          "label": "Visual diff between two URLs",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D29",
+          "label": "Preview output",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D30",
+          "label": "Single-file standalone HTML (offline)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D31",
+          "label": "Live component preview rendered with extracted tokens",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D32",
+          "label": "WCAG contrast matrix interactive",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D33",
+          "label": "Component variant matrix (states × sizes × variants)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D34",
+          "label": "Logo extraction with priority hierarchy",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D35",
+          "label": "Self-hosted font embedding (data: URLs cross-origin)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D36",
+          "label": "Live motion demo (animated tokens)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D37",
+          "label": "Hero zone with brand identity",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D38",
+          "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D39",
+          "label": "Integration & ecosystem",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D40",
+          "label": "Claude Code subprocess (zero API key required)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D41",
+          "label": "MCP server",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D42",
+          "label": "Multi-platform exporters (iOS / Android / Flutter)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D43",
+          "label": "GitHub Action / CI gate",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D44",
+          "label": "VS Code / Raycast / Figma / Chrome extensions",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D45",
+          "label": "`apply` direct write to project",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D46",
+          "label": "`clone` Next.js starter from URL",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D47",
+          "label": "`watch` mode (poll URL on interval)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D48",
+          "label": "`brands` matrix (compare N brands)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        }
+      ]
+    },
+    {
+      "left": "designlang",
+      "right": "project_wallace",
+      "winner": "designlang",
+      "left_wins": 23,
+      "right_wins": 4,
+      "ties": 21,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Extraction core",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "HTTP fetch only (no headless browser)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D3",
+          "label": "Screenshot capture",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D4",
+          "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Inline `<style>` + `style=\"\"` attrs",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Real DOM computed styles",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D7",
+          "label": "Stealth/captcha solver",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "Auth/cookie support",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D9",
+          "label": "Multi-page crawling (sitemap or links)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D10",
+          "label": "Token analysis",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "DTCG output (W3C spec)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "Native CSS var detection (with selector scope)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D13",
+          "label": "@font-face exhaustive parsing",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D14",
+          "label": "Token usage graph (declarations × references)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D15",
+          "label": "Stable token IDs across runs",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D16",
+          "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "Breakpoints auto-detect",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "Dark mode auto-detect",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D19",
+          "label": "Shadow extraction (elevation ladder)",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D20",
+          "label": "Motion / animation tokens",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D21",
+          "label": "Output & validation",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D22",
+          "label": "DESIGN.md output",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D23",
+          "label": "Lint enforcement (`@google/design.md`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D24",
+          "label": "Provenance per token (machine-readable log)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D25",
+          "label": "Confidence scoring per token (high/medium/low)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D26",
+          "label": "Quality score A-F (multi-dimensional)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D27",
+          "label": "Drift mode (compare local DESIGN.md vs URL)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D28",
+          "label": "Visual diff between two URLs",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D29",
+          "label": "Preview output",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D30",
+          "label": "Single-file standalone HTML (offline)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D31",
+          "label": "Live component preview rendered with extracted tokens",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D32",
+          "label": "WCAG contrast matrix interactive",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D33",
+          "label": "Component variant matrix (states × sizes × variants)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D34",
+          "label": "Logo extraction with priority hierarchy",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D35",
+          "label": "Self-hosted font embedding (data: URLs cross-origin)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D36",
+          "label": "Live motion demo (animated tokens)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D37",
+          "label": "Hero zone with brand identity",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D38",
+          "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D39",
+          "label": "Integration & ecosystem",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D40",
+          "label": "Claude Code subprocess (zero API key required)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D41",
+          "label": "MCP server",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D42",
+          "label": "Multi-platform exporters (iOS / Android / Flutter)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D43",
+          "label": "GitHub Action / CI gate",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D44",
+          "label": "VS Code / Raycast / Figma / Chrome extensions",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D45",
+          "label": "`apply` direct write to project",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D46",
+          "label": "`clone` Next.js starter from URL",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D47",
+          "label": "`watch` mode (poll URL on interval)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        },
+        {
+          "dimension": "D48",
+          "label": "`brands` matrix (compare N brands)",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "designlang"
+        }
+      ]
+    },
+    {
+      "left": "hyperdesign",
+      "right": "project_wallace",
+      "winner": "project_wallace",
+      "left_wins": 4,
+      "right_wins": 6,
+      "ties": 38,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Extraction core",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D2",
+          "label": "HTTP fetch only (no headless browser)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D3",
+          "label": "Screenshot capture",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "hyperdesign"
+        },
+        {
+          "dimension": "D4",
+          "label": "`<link rel=\"stylesheet\">` + preload + @import resolved",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "Inline `<style>` + `style=\"\"` attrs",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Real DOM computed styles",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "hyperdesign"
+        },
+        {
+          "dimension": "D7",
+          "label": "Stealth/captcha solver",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "hyperdesign"
+        },
+        {
+          "dimension": "D8",
+          "label": "Auth/cookie support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Multi-page crawling (sitemap or links)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "Token analysis",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "DTCG output (W3C spec)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D12",
+          "label": "Native CSS var detection (with selector scope)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D13",
+          "label": "@font-face exhaustive parsing",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D14",
+          "label": "Token usage graph (declarations × references)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D15",
+          "label": "Stable token IDs across runs",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D16",
+          "label": "Component-property override detection (`.btn { border-radius: 0 }`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D17",
+          "label": "Breakpoints auto-detect",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D18",
+          "label": "Dark mode auto-detect",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D19",
+          "label": "Shadow extraction (elevation ladder)",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "project_wallace"
+        },
+        {
+          "dimension": "D20",
+          "label": "Motion / animation tokens",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D21",
+          "label": "Output & validation",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D22",
+          "label": "DESIGN.md output",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "hyperdesign"
+        },
+        {
+          "dimension": "D23",
+          "label": "Lint enforcement (`@google/design.md`)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D24",
+          "label": "Provenance per token (machine-readable log)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D25",
+          "label": "Confidence scoring per token (high/medium/low)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D26",
+          "label": "Quality score A-F (multi-dimensional)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D27",
+          "label": "Drift mode (compare local DESIGN.md vs URL)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D28",
+          "label": "Visual diff between two URLs",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D29",
+          "label": "Preview output",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D30",
+          "label": "Single-file standalone HTML (offline)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D31",
+          "label": "Live component preview rendered with extracted tokens",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D32",
+          "label": "WCAG contrast matrix interactive",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D33",
+          "label": "Component variant matrix (states × sizes × variants)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D34",
+          "label": "Logo extraction with priority hierarchy",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D35",
+          "label": "Self-hosted font embedding (data: URLs cross-origin)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D36",
+          "label": "Live motion demo (animated tokens)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D37",
+          "label": "Hero zone with brand identity",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D38",
+          "label": "Token export buttons (Tailwind / CSS-vars / DTCG / Style Dictionary)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D39",
+          "label": "Integration & ecosystem",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D40",
+          "label": "Claude Code subprocess (zero API key required)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D41",
+          "label": "MCP server",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D42",
+          "label": "Multi-platform exporters (iOS / Android / Flutter)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D43",
+          "label": "GitHub Action / CI gate",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D44",
+          "label": "VS Code / Raycast / Figma / Chrome extensions",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D45",
+          "label": "`apply` direct write to project",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D46",
+          "label": "`clone` Next.js starter from URL",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D47",
+          "label": "`watch` mode (poll URL on interval)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D48",
+          "label": "`brands` matrix (compare N brands)",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "sinkra",
+          "score": 58.33,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "designlang",
+          "score": 56.25,
+          "delta": ""
+        },
+        {
+          "rank": 3,
+          "player": "dembrandt",
+          "score": 22.92,
+          "delta": ""
+        },
+        {
+          "rank": 4,
+          "player": "project_wallace",
+          "score": 16.67,
+          "delta": ""
+        },
+        {
+          "rank": 5,
+          "player": "hyperdesign",
+          "score": 12.5,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "sinkra",
+          "score": 58.33
+        },
+        {
+          "player": "dembrandt",
+          "score": 22.92
+        },
+        {
+          "player": "designlang",
+          "score": 56.25
+        },
+        {
+          "player": "hyperdesign",
+          "score": 12.5
+        },
+        {
+          "player": "project_wallace",
+          "score": 16.67
+        }
+      ],
+      "verdict": "Sinkra vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-absorption-roadmap-1",
+      "title": "Recently Absorbed (DONE 2026-04-26 → 2026-04-27)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-2",
+      "title": "Priority Matrix — Remaining Gaps",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-3",
+      "title": "Wave 1 — Quick wins (≤2h each)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-4",
+      "title": "Wave 2 — Strategic features (3-6h each)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-5",
+      "title": "Wave 3 — Differentiator (1-2h each)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-6",
+      "title": "Wave 4 — Ecosystem (1+ dia cada)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-7",
+      "title": "Absorption by Category",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-8",
+      "title": "Drift & Observability (4 items — Wave 1 + 2)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-9",
+      "title": "Integration & Ecosystem (5 items — Wave 2 + 4)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-10",
+      "title": "Auth & Coverage (3 items — Wave 1 + 2)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-11",
+      "title": "Differentiators (6 items — Wave 3)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-12",
+      "title": "Recommended Sprint (4h, immediate value)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.anthropic.com/",
+      "file": "INDEX.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.apple.com/",
+      "file": "INDEX.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://brand.aioxsquad.ai/brandbook/guidelines",
+      "file": "INDEX.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://ui.shadcn.com/docs/theming",
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://ui.shadcn.com/docs/components-json",
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://ui.shadcn.com/schema.json",
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/reg-viz/reg-cli",
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "http://garris.github.io/BackstopJS/",
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://playwright.dev/docs/test-snapshots",
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/postcss/postcss-selector-parser",
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/csstools/postcss-plugins/tree/main/packages/selector-specificity",
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/projectwallace/css-design-tokens",
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/stitch-design-md/",
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/google-labs-code/design.md/releases",
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://example`",
+      "file": "UPDATE-2026-04-29.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/dembrandt/dembrandt",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.dembrandt.com/blackpaper",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://designlang.manavaryasingh.com/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/Manavarya09/design-extract",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://superposition.design/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://www.projectwallace.com/design-tokens",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/VoltAgent/awesome-design-md",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/bergside/design-md-chrome",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://the-decoder.com/googles-open-source-design-md-gives-ai-agents-a-prompt-ready-blueprint-for-brand-consistent-design/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://dev.to/thevangelist/i-built-dembrandt-extract-any-websites-design-system-in-seconds-open-source-2n6d",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://chromewebstore.google.com/detail/design-token-extractor/iibemocnockckccgcihcmjkciicfoclh",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/hyperbrowserai/hyperbrowser-app-examples/tree/main/hyperdesign",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://open-design-app.vercel.app/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://tokencss.com/",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "INDEX.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "TECH-RESEARCH-2026-04-29.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "UPDATE-2026-04-29.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "full-comparison.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-absorption-roadmap.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "url-design-extraction-bench.md",
+      "role": "other",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {}
+}

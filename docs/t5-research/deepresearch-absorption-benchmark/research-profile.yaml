@@ -1,0 +1,15 @@
+schema: bench-research-profile.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+mission:
+  question: Compare anchor vs players
+  decision_unlocked: Absorption playbook + ADR sign-off
+  consumer: '@vision-strategist + @aiox-architect + @aiox-pm'
+method:
+  type: absorption-benchmark
+  comparison_pattern: 1 anchor × N players
+  evaluation: weighted-multi-dim with persona overrides
+output:
+  format_dual: JSON for machines, MD for humans
+  destination: docs/bench/deepresearch-absorption-benchmark/
+  observatory_consumption: /observatory/bench?slug=deepresearch-absorption-benchmark

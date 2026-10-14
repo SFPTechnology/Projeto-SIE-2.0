@@ -1,0 +1,86 @@
+handoff_id: MOD-QT-2-VERQT-sm-to-po
+consumed: true
+consumed_at: "2026-07-28"
+consumed_by: "@po (Pax) — *validate-story-draft, veredito GO/GO. Ver .aiox/handoffs/MOD-QT-2-VERQT-po-to-dev.yaml"
+created_at: "2026-07-28"
+from_agent: "@sm"
+to_agent: "@po"
+last_command: "*draft MOD-QT-2-VERQT --mode yolo --source docs/research/{2026-07-28}-resolucao-ver-qt.md"
+next_command: "*validate-story-draft docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md --mode yolo"
+workflow: "MOD-QT-2-RESOLUCAO-VERQT"
+mode: "yolo"
+human_intervention: false
+source_plan: "docs/PLANO-YOLO-IMPLEMENTACAO-MOD-QT-2.md"
+normative_source: "docs/research/{2026-07-28}-resolucao-ver-qt.md"
+supporting_source: "docs/research/2026-07-28-resolucao-ver-qt/RELATORIO-EXTRACAO-IMPEDANCIA.md"
+data_artifact: "docs/research/2026-07-28-resolucao-ver-qt/impedancia-prysmian.json"
+predecessor_stories:
+  - "docs/stories/story-MOD-QT-2-01-motor-calculo-queda-tensao.md (InReview)"
+  - "docs/stories/story-MOD-QT-2-02-simulador-endpoints-ui.md (InReview)"
+
+stories_created:
+  - path: "docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md"
+    status: "Draft"
+    scope: "C-01, C-02, C-04, C-07, C-08 (parecer §6) — catálogo fechado de impedância, resolvedor de perfil, correção do fator bifásico, regeneração de CA-QT-19, testes de completude"
+    ac_count: 15
+    blocked_by: null
+  - path: "docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md"
+    status: "Draft"
+    scope: "C-03, C-05, C-06 (parecer §6) — fluxo de entrada fechado, perfil de limite EDP-SP v09, correção de alturas de tomada"
+    ac_count: 8
+    blocked_by: "MOD-QT-2-03"
+
+scope_summary:
+  - "Resolve definitivamente VER-QT-02, VER-QT-03, VER-QT-04, VER-QT-06 e VER-QT-07, conforme parecer decisório de 2026-07-28."
+  - "Catálogo fechado de 1.563 registros (tabelas 28-36, Prysmian BT), extraído sem interpolação, arredondamento ou geração de linha ausente."
+  - "resolverPerfilImpedancia() falha determinística para chave sem correspondência exata, antes da montagem de RetornoMODQT."
+  - "Fator 2 confirmado para bifásico fase-fase, com tensão de referência fase-fase."
+  - "CA-QT-19 regenerado com oracle independente do mock, mantendo os 504 vetores; razão motor/mock vira diagnóstico legado."
+  - "Fluxo de entrada fechado (listas dependentes do catálogo, sem texto livre; conduto ferromagnético fora do domínio)."
+  - "Perfil EDP_SP_PTDTPDN00068_V09_AEREA_BT com limite_total_pct=5 e limite_conexao_medicao_pct=1, sem fallback de 7%."
+  - "Alturas de tomada tratadas como parâmetros de projeto, sem atribuição à NBR 5410."
+  - "23 acceptance criteria no total (15 + 8), todos rastreados a seção numerada do parecer ou do relatório de extração — nenhum AC sem fonte."
+
+out_of_scope_explicit:
+  - id: "MOD-DC-PRD-13.6"
+    item: "PRD do MOD-DC assume limite EDP-SP de 7%; o parecer resolve o limite correto como 5% (VER-QT-07)."
+    reason: "Risco cross-módulo registrado nas duas stories — NÃO decidido nem alterado nesta rodada. Requer story própria de @po/@architect avaliando impacto no critério C5 do MOD-DC."
+    status: "ABERTO — pendência explícita para story futura"
+  - id: "FONTE-ID-VERSIONAMENTO"
+    item: "Parecer §3.1 exige fonte_id='PRYSMIAN_BT_REV10'; o artefato de dados já extraído grava fonte_id='PRYSMIAN_BT_GUIA' em todos os 1.563 registros. O rótulo 'Rev. 10' consta apenas no nome do arquivo da URL; metadados internos do PDF indicam criação em 2020-09-22. Identificador confiável: SHA-256 82131cb4aa4b2c66c4835a8fd71bb18bfe72266e0fae1f48b3cc3f05c06ea54a."
+    reason: "BLOQUEIO POTENCIAL — questão aberta para decisão do @po, registrada em ambas as stories. @sm NÃO decidiu qual grafia usar."
+    status: "ABERTO — decisão de @po necessária antes ou durante a implementação de MOD-QT-2-03"
+  - id: "RELATORIO-SS7-ITEM-2"
+    item: "Qual família de cabo é o padrão do projeto, se houver, e como o usuário a seleciona."
+    reason: "Não decidido pelo parecer nem pelas stories criadas."
+    status: "ABERTO — pendência para @po/@architect"
+  - id: "RELATORIO-SS7-ITEM-3"
+    item: "Se vincular a base de produção a um único fabricante (Prysmian) é aceitável, ou se convém obter uma segunda fonte."
+    reason: "Não decidido pelo parecer nem pelas stories criadas."
+    status: "ABERTO — pendência para @po"
+
+decisions_made:
+  - "Contrato público (RetornoMODQT, ValidarMODQTSchema, RetornoMODQTSchema, rota do endpoint) declarado INALTERÁVEL em ambas as stories, verificação por símbolo (critério já estabelecido por @po em MOD-QT-2-01)."
+  - "Escopo dividido em 2 stories seguindo a agrupação C-01/C-02/C-04/C-07/C-08 (dados+motor) vs C-03/C-05/C-06 (fluxo de entrada+limites+UI), com dependência explícita blockedBy declarada na segunda."
+  - "Todo AC rastreado a seção numerada do parecer (§N) ou do relatório de extração (Relatório §N) — nenhum AC sem fonte, conforme Artigo IV."
+  - "Discrepância fonte_id registrada como questão aberta em ambas as stories, com recomendação (não decisão) de ancorar a identidade da fonte no hash SHA-256 em vez do rótulo de revisão."
+  - "Risco cross-módulo do limite EDP 7%->5% no MOD-DC registrado explicitamente nas duas stories como pendência para story futura — nenhuma alteração ao MOD-DC foi proposta ou executada."
+  - "Item 1 e item 4 do Relatório §7 marcados como RESOLVIDOS pelo parecer (bloqueio de chave incompleta; exclusão do conduto ferromagnético); itens 2, 3 e 5 marcados como ABERTOS, conforme instrução da missão."
+  - "C-06 (alturas de tomada) verificado como não implementado em código hoje (busca confirmada) — tratado como correção preventiva/documental mais teste de regressão, não como bugfix de UI existente."
+
+po_validation_focus:
+  - "Confirmar que nenhuma story trata a discrepância fonte_id como resolvida — deve permanecer questão aberta até decisão explícita de @po."
+  - "Decidir a discrepância fonte_id (PRYSMIAN_BT_REV10 vs PRYSMIAN_BT_GUIA vs ancoragem por hash SHA-256) antes ou durante a validação de MOD-QT-2-03."
+  - "Confirmar que nenhuma story altera RetornoMODQT, ValidarMODQTSchema, RetornoMODQTSchema, ou a rota do endpoint — qualquer tentativa é NO-GO automático."
+  - "Confirmar que nenhuma story altera o MOD-DC (src/domain/dimensionamento-condutores/**) ou seu PRD — o risco do limite 7%->5% deve permanecer registrado, não resolvido, nesta rodada."
+  - "Verificar rastreabilidade: todo AC aponta a uma seção numerada do parecer ou do relatório de extração."
+  - "Validar a dependência blockedBy de MOD-QT-2-04 sobre MOD-QT-2-03 — confirmar que a ordem de implementação proposta é exequível."
+  - "Aplicar checklist de 10 pontos de .claude/rules/story-lifecycle.md Fase 2 a cada uma das 2 stories."
+  - "Se GO (>=7/10) em cada story: atualizar Status Draft -> Ready e criar handoff para @dev."
+  - "Se NO-GO: listar fixes obrigatórios; após 3 ciclos NO-GO por story, workflow marcado BLOCKED."
+
+blocked:
+  - "Decidir a discrepância fonte_id sem registrar explicitamente a divergência entre parecer e artefato de dados."
+  - "Marcar VER-QT-02/03/04/06/07 como CONFIRMADO sem que o código/testes correspondentes existam (o parecer resolve a NORMA; a EVIDÊNCIA DE EXECUÇÃO permanece REPROVADA até implantação, conforme parecer §1)."
+  - "Alterar o MOD-DC ou seu PRD §13.6 nesta rodada."
+  - "Aprovar MOD-QT-2-04 para implementação antes de MOD-QT-2-03 ter, no mínimo, catálogo e resolvedor testados."

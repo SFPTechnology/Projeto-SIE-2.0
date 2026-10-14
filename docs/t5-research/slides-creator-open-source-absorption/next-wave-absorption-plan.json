@@ -1,0 +1,283 @@
+{
+  "schema": "slides-creator.next-wave-absorption-plan.v1",
+  "generated_at": "2026-05-18",
+  "subject": "slide creator skill",
+  "baseline": {
+    "score": 77.93,
+    "micro_dimensions": 108,
+    "cells": 972,
+    "gap_rows": 86,
+    "advantage_rows": 22,
+    "p1_open": 38,
+    "p2_open": 34,
+    "gaps_against_leader": 72,
+    "advantages_or_ties": 36
+  },
+  "target": {
+    "wave": "Wave 3",
+    "minimum_score": 82,
+    "strategy": "close P1 runtime/editability/editor gaps and bring Design to 95-100 with executable evidence before changing matrix scores",
+    "design_category_minimum": 95
+  },
+  "cluster_debt": [
+    {
+      "cluster": "Editor",
+      "weighted_debt": 760.67,
+      "gap_count": 15,
+      "primary_sources": [
+        "presentation-ai",
+        "banana-slides",
+        "ppt-master"
+      ]
+    },
+    {
+      "cluster": "Renderização",
+      "weighted_debt": 434.01,
+      "gap_count": 12,
+      "primary_sources": [
+        "ppt-master",
+        "powerpoint-skill"
+      ]
+    },
+    {
+      "cluster": "Automação",
+      "weighted_debt": 309.33,
+      "gap_count": 9,
+      "primary_sources": [
+        "Presenton",
+        "slide-deck-ai"
+      ]
+    },
+    {
+      "cluster": "Infra",
+      "weighted_debt": 287.68,
+      "gap_count": 6,
+      "primary_sources": [
+        "Presenton"
+      ]
+    },
+    {
+      "cluster": "Multimídia",
+      "weighted_debt": 223.35,
+      "gap_count": 6,
+      "primary_sources": [
+        "PresentAgent-2",
+        "ppt-master"
+      ]
+    },
+    {
+      "cluster": "Distribuição",
+      "weighted_debt": 201.33,
+      "gap_count": 6,
+      "primary_sources": [
+        "presentation-ai",
+        "Presenton"
+      ]
+    }
+  ],
+  "score_projections": [
+    {
+      "scenario": "Renderização to 90",
+      "projected_score": 74.88
+    },
+    {
+      "scenario": "Renderização + Automação to 90",
+      "projected_score": 77.14
+    },
+    {
+      "scenario": "Renderização + Automação + Infra to 90",
+      "projected_score": 79.62
+    },
+    {
+      "scenario": "Top 20 weighted gaps to 90",
+      "projected_score": 80.99
+    },
+    {
+      "scenario": "All P1 gaps to 90",
+      "projected_score": 82.06
+    },
+    {
+      "scenario": "All P1 gaps to 95",
+      "projected_score": 83.41
+    }
+  ],
+  "workstreams": [
+    {
+      "id": "W3.0",
+      "name": "Baseline reprodutível de absorção",
+      "priority": "P0",
+      "sources": [
+        "ppt-master",
+        "Presenton",
+        "presentation-ai",
+        "banana-slides",
+        "slide-deck-ai"
+      ],
+      "deliverables": [
+        "outputs/bench/slides-ai/{project}/ with input, command, hash and artifacts",
+        "deep/wave-3-evidence-ledger.md"
+      ]
+    },
+    {
+      "id": "W3.1",
+      "name": "Native IR + Renderer MVP",
+      "priority": "P0",
+      "sources": [
+        "ppt-master",
+        "powerpoint-skill"
+      ],
+      "target_micro_dimensions": [
+        "native_pptx_objects__drawingml_shapes",
+        "native_pptx_objects__powerpoint_reopen_fidelity",
+        "native_pptx_objects__image_vs_object_policy",
+        "render_fidelity__roundtrip_powerpoint",
+        "render_fidelity__pptx_editability_inspection"
+      ],
+      "deliverables": [
+        "native-slide-ir.schema.json",
+        "DeckSpec to Native IR converter",
+        "Editable PPTX renderer MVP",
+        "editability-report.json"
+      ]
+    },
+    {
+      "id": "W3.2",
+      "name": "Runtime CLI/API/MCP",
+      "priority": "P0",
+      "sources": [
+        "Presenton",
+        "slide-deck-ai"
+      ],
+      "target_micro_dimensions": [
+        "api_mcp_self_hosted__mcp_tools",
+        "api_mcp_self_hosted__rest_endpoint",
+        "api_mcp_self_hosted__async_job_artifacts",
+        "api_mcp_self_hosted__stable_io_contract",
+        "api_mcp_self_hosted__tool_safety_limits",
+        "batch_automation__clear_cli",
+        "batch_automation__ci_pipeline_fit"
+      ],
+      "deliverables": [
+        "slides:generate CLI",
+        "slides API endpoints",
+        "slides MCP tools",
+        "job/status/artifacts/qa contracts"
+      ]
+    },
+    {
+      "id": "W3.3",
+      "name": "Operação local self-hosted",
+      "priority": "P1",
+      "sources": [
+        "Presenton"
+      ],
+      "target_micro_dimensions": [
+        "self_hosted_runtime__docker_compose",
+        "self_hosted_runtime__local_offline_mode",
+        "self_hosted_runtime__service_topology",
+        "self_hosted_runtime__storage_logs_upgrade",
+        "privacy_local_byok__explicit_byok",
+        "privacy_local_byok__local_models"
+      ],
+      "deliverables": [
+        "local compose or script",
+        "workspace storage structure",
+        ".env.example",
+        "dummy/local/BYOK providers",
+        "healthcheck"
+      ]
+    },
+    {
+      "id": "W3.4",
+      "name": "Editor mínimo com diff",
+      "priority": "P1",
+      "sources": [
+        "presentation-ai",
+        "banana-slides"
+      ],
+      "target_micro_dimensions": [
+        "web_editor_runtime__canvas_editor",
+        "web_editor_runtime__state_management_undo",
+        "web_editor_runtime__rich_blocks",
+        "prompt_to_edit__language_editing",
+        "prompt_to_edit__diff_before_apply",
+        "prompt_to_edit__target_slide_region_element",
+        "prompt_to_edit__regenerate_only_needed_area"
+      ],
+      "deliverables": [
+        "outline editor",
+        "slide preview",
+        "prompt edit command model",
+        "reversible patch history"
+      ]
+    },
+    {
+      "id": "W3.4D",
+      "name": "Design 100",
+      "priority": "P1",
+      "sources": [
+        "ppt-master",
+        "presentation-ai",
+        "banana-slides",
+        "powerpoint-skill"
+      ],
+      "target_micro_dimensions": [
+        "visual_layout_quality__layout_variety",
+        "visual_layout_quality__rendered_visual_quality",
+        "template_import_replication__template_manifest",
+        "template_import_replication__brand_fidelity",
+        "template_import_replication__template_selection_logic",
+        "theme_tokens_branding__token_schema",
+        "theme_tokens_branding__theme_runtime",
+        "theme_tokens_branding__brand_guardrails"
+      ],
+      "deliverables": [
+        "templates/visual/design-mastery-contract.yaml",
+        "brand-template-manifest.yaml",
+        "design-mastery-report.yaml",
+        "key-slide-render-review.yaml",
+        "visual-regression-checklist.yaml",
+        "visual QA gates for brand fidelity, rendered quality, and template replication"
+      ],
+      "acceptance": [
+        "decisive slides pass rendered design review",
+        "layout selection is tied to slide function and rejected runners-up",
+        "theme tokens apply to text, charts, diagrams, shapes, tables, and media",
+        "premium deck design score is at least 95"
+      ]
+    },
+    {
+      "id": "W3.5",
+      "name": "Bench feedback loop",
+      "priority": "P0",
+      "sources": [
+        "comparison-matrix",
+        "dashboard"
+      ],
+      "deliverables": [
+        "updated matrix with evidence-backed score changes",
+        "updated micro gap map",
+        "updated scorecards",
+        "updated bench-output-dash.json"
+      ]
+    }
+  ],
+  "out_of_scope": [
+    "desktop app packaging",
+    "MP4/video narration",
+    "realtime collaboration",
+    "advanced analytics",
+    "Gamma-style rich UI beyond minimum editor"
+  ],
+  "quality_gates": [
+    "validate changed YAML",
+    "JSON/schema validation for Native IR/job/artifacts/QA",
+    "CLI smoke with dummy provider",
+    "PPTX roundtrip/editability check",
+    "narrative QA preservation",
+    "design QA for overflow/contrast/density",
+    "license QA for AGPL/no-license boundaries"
+  ],
+  "updated_after_wave_10": "Delivery/API/MCP contracts are validated; next score growth must come from executable renderer/editor/infra runtime.",
+  "updated_after_wave_11": "Narrative-design moment grammar and storyboard-edit contracts are validated; next score growth should come from executable editor/PPTX/infra runtime."
+}

@@ -1,0 +1,3146 @@
+{
+  "schema": "slides-creator-open-source-absorption.matrix.v2",
+  "generated_at": "2026-05-18",
+  "scale": "0-100 per dimension; weighted total uses weights summing to 100",
+  "players": [
+    {
+      "id": "slides_creator",
+      "label": "slide creator skill",
+      "color": "#9EAD4D",
+      "source": ".claude/skills/slide-creator"
+    },
+    {
+      "id": "ppt_master",
+      "label": "ppt-master",
+      "color": "#6E99D4",
+      "source": "../bench/ppt-master"
+    },
+    {
+      "id": "presenton",
+      "label": "Presenton",
+      "color": "#C98455",
+      "source": "../bench/presenton"
+    },
+    {
+      "id": "pptagent",
+      "label": "PPTAgent",
+      "color": "#9277C9",
+      "source": "../bench/PPTAgent"
+    },
+    {
+      "id": "banana_slides",
+      "label": "banana-slides",
+      "color": "#5AC18E",
+      "source": "../bench/banana-slides"
+    },
+    {
+      "id": "presentation_ai",
+      "label": "presentation-ai",
+      "color": "#598BFF",
+      "source": "../bench/presentation-ai"
+    },
+    {
+      "id": "powerpoint_skill",
+      "label": "powerpoint-skill",
+      "color": "#7B55FF",
+      "source": "../bench/powerpoint-skill"
+    },
+    {
+      "id": "slide_deck_ai",
+      "label": "slide-deck-ai",
+      "color": "#A1B750",
+      "source": "../bench/slide-deck-ai"
+    },
+    {
+      "id": "presentagent_2",
+      "label": "PresentAgent-2",
+      "color": "#7897C9",
+      "source": "../bench/PresentAgent-2"
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "input_prompt_generation",
+      "label": "Prompt para deck completo",
+      "weight": 2,
+      "group": "Entrada"
+    },
+    {
+      "id": "document_ingestion",
+      "label": "Ingestão PDF/DOCX/PPTX/MD",
+      "weight": 2,
+      "group": "Entrada"
+    },
+    {
+      "id": "url_youtube_ingestion",
+      "label": "Ingestão URL/YouTube/mídia",
+      "weight": 2,
+      "group": "Entrada"
+    },
+    {
+      "id": "source_grounding_research",
+      "label": "Pesquisa e grounding com fontes",
+      "weight": 3,
+      "group": "Entrada"
+    },
+    {
+      "id": "outline_first_workflow",
+      "label": "Workflow outline-first",
+      "weight": 2,
+      "group": "Planejamento"
+    },
+    {
+      "id": "consultative_narrative",
+      "label": "Narrativa consultiva SINKRA",
+      "weight": 4,
+      "group": "Planejamento"
+    },
+    {
+      "id": "slide_structure_planning",
+      "label": "Planejamento slide-a-slide",
+      "weight": 3,
+      "group": "Planejamento"
+    },
+    {
+      "id": "visual_layout_quality",
+      "label": "Qualidade visual/layout",
+      "weight": 2,
+      "group": "Design"
+    },
+    {
+      "id": "template_import_replication",
+      "label": "Importação/replicação de templates",
+      "weight": 2,
+      "group": "Design"
+    },
+    {
+      "id": "theme_tokens_branding",
+      "label": "Temas, tokens e branding",
+      "weight": 2,
+      "group": "Design"
+    },
+    {
+      "id": "native_pptx_objects",
+      "label": "PPTX nativo editável",
+      "weight": 5,
+      "group": "Renderização"
+    },
+    {
+      "id": "charts_tables_native",
+      "label": "Charts/tabelas nativos",
+      "weight": 3,
+      "group": "Renderização"
+    },
+    {
+      "id": "math_diagrams_technical",
+      "label": "Matemática/diagramas técnicos",
+      "weight": 3,
+      "group": "Renderização"
+    },
+    {
+      "id": "animations_transitions_ooxml",
+      "label": "Animações/transições OOXML",
+      "weight": 2,
+      "group": "Renderização"
+    },
+    {
+      "id": "narration_audio",
+      "label": "Narração/áudio",
+      "weight": 2,
+      "group": "Multimídia"
+    },
+    {
+      "id": "video_export",
+      "label": "Exportação vídeo",
+      "weight": 2,
+      "group": "Multimídia"
+    },
+    {
+      "id": "live_preview_annotations",
+      "label": "Preview vivo/anotações",
+      "weight": 3,
+      "group": "Editor"
+    },
+    {
+      "id": "prompt_to_edit",
+      "label": "Prompt-to-edit UX",
+      "weight": 4,
+      "group": "Editor"
+    },
+    {
+      "id": "regional_element_editing",
+      "label": "Edição regional/por elemento",
+      "weight": 3,
+      "group": "Editor"
+    },
+    {
+      "id": "web_editor_runtime",
+      "label": "Editor web e runtime visual",
+      "weight": 4,
+      "group": "Editor"
+    },
+    {
+      "id": "collaboration_realtime",
+      "label": "Colaboração em tempo real",
+      "weight": 2,
+      "group": "Editor"
+    },
+    {
+      "id": "sharing_publishing",
+      "label": "Share/publicação web",
+      "weight": 3,
+      "group": "Distribuição"
+    },
+    {
+      "id": "deck_analytics",
+      "label": "Analytics de deck",
+      "weight": 2,
+      "group": "Distribuição"
+    },
+    {
+      "id": "api_generation",
+      "label": "API de geração",
+      "weight": 4,
+      "group": "Automação"
+    },
+    {
+      "id": "mcp_automation",
+      "label": "MCP/agent tools",
+      "weight": 4,
+      "group": "Automação"
+    },
+    {
+      "id": "cli_headless",
+      "label": "CLI/headless batch",
+      "weight": 3,
+      "group": "Automação"
+    },
+    {
+      "id": "provider_registry",
+      "label": "Registry multi-provider LLM/imagem",
+      "weight": 2,
+      "group": "IA"
+    },
+    {
+      "id": "local_byok_ollama",
+      "label": "BYOK/local/Ollama",
+      "weight": 4,
+      "group": "IA"
+    },
+    {
+      "id": "docker_self_hosted",
+      "label": "Docker/self-hosting",
+      "weight": 3,
+      "group": "Infra"
+    },
+    {
+      "id": "desktop_app",
+      "label": "Desktop app",
+      "weight": 2,
+      "group": "Infra"
+    },
+    {
+      "id": "qa_evaluation_rubric",
+      "label": "QA/evaluation rubric",
+      "weight": 4,
+      "group": "Qualidade"
+    },
+    {
+      "id": "editability_qa",
+      "label": "QA de editabilidade PPTX",
+      "weight": 4,
+      "group": "Qualidade"
+    },
+    {
+      "id": "test_fixtures_ci",
+      "label": "Fixtures/testes/CI",
+      "weight": 1,
+      "group": "Qualidade"
+    },
+    {
+      "id": "documentation_depth",
+      "label": "Documentação operacional",
+      "weight": 1,
+      "group": "Maturidade"
+    },
+    {
+      "id": "license_absorption_safety",
+      "label": "Licença segura para absorção",
+      "weight": 3,
+      "group": "Risco"
+    },
+    {
+      "id": "ecosystem_maturity",
+      "label": "Maturidade/ecossistema",
+      "weight": 3,
+      "group": "Maturidade"
+    }
+  ],
+  "rows": [
+    {
+      "id": "input_prompt_generation",
+      "label": "Prompt para deck completo",
+      "weight": 2,
+      "group": "Entrada",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 94,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 82,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 75,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 90,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 85,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presenton",
+      "best_player": "presenton",
+      "best_score": 95
+    },
+    {
+      "id": "document_ingestion",
+      "label": "Ingestão PDF/DOCX/PPTX/MD",
+      "weight": 2,
+      "group": "Entrada",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 78,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 90,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 90,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 65,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 80,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/ppt-master",
+      "best_player": "ppt_master",
+      "best_score": 90
+    },
+    {
+      "id": "url_youtube_ingestion",
+      "label": "Ingestão URL/YouTube/mídia",
+      "weight": 2,
+      "group": "Entrada",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 60,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 82,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 60,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 40,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/PresentAgent-2",
+      "best_player": "presentagent_2",
+      "best_score": 92
+    },
+    {
+      "id": "source_grounding_research",
+      "label": "Pesquisa e grounding com fontes",
+      "weight": 3,
+      "group": "Entrada",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 88,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 50,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 40,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/PresentAgent-2",
+      "best_player": "presentagent_2",
+      "best_score": 95
+    },
+    {
+      "id": "outline_first_workflow",
+      "label": "Workflow outline-first",
+      "weight": 2,
+      "group": "Planejamento",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 95,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 62,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 82,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 94,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 65,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presentation-ai",
+      "best_player": "slides_creator",
+      "best_score": 95
+    },
+    {
+      "id": "consultative_narrative",
+      "label": "Narrativa consultiva SINKRA",
+      "weight": 4,
+      "group": "Planejamento",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 99,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 60,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 62,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 80,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 58,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 52,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 72,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "squads/slides-creator",
+      "best_player": "slides_creator",
+      "best_score": 99
+    },
+    {
+      "id": "slide_structure_planning",
+      "label": "Planejamento slide-a-slide",
+      "weight": 3,
+      "group": "Planejamento",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 97,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 76,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 80,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 60,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 68,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "squads/slides-creator",
+      "best_player": "slides_creator",
+      "best_score": 97
+    },
+    {
+      "id": "visual_layout_quality",
+      "label": "Qualidade visual/layout",
+      "weight": 2,
+      "group": "Design",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 84,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 86,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 82,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 80,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 86,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 62,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 76,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/banana-slides",
+      "best_player": "banana_slides",
+      "best_score": 88
+    },
+    {
+      "id": "template_import_replication",
+      "label": "Importação/replicação de templates",
+      "weight": 2,
+      "group": "Design",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 74,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 65,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 72,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 42,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 40,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/ppt-master",
+      "best_player": "ppt_master",
+      "best_score": 95
+    },
+    {
+      "id": "theme_tokens_branding",
+      "label": "Temas, tokens e branding",
+      "weight": 2,
+      "group": "Design",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 86,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 65,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 84,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 52,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presentation-ai",
+      "best_player": "presentation_ai",
+      "best_score": 92
+    },
+    {
+      "id": "native_pptx_objects",
+      "label": "PPTX nativo editável",
+      "weight": 5,
+      "group": "Renderização",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 60,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 98,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 75,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 80,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 70,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 70,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 65,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 68,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/ppt-master",
+      "best_player": "ppt_master",
+      "best_score": 98
+    },
+    {
+      "id": "charts_tables_native",
+      "label": "Charts/tabelas nativos",
+      "weight": 3,
+      "group": "Renderização",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 76,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 72,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 60,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 86,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 58,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 62,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/ppt-master",
+      "best_player": "ppt_master",
+      "best_score": 92
+    },
+    {
+      "id": "math_diagrams_technical",
+      "label": "Matemática/diagramas técnicos",
+      "weight": 3,
+      "group": "Renderização",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 82,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 30,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 98,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 42,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/powerpoint-skill",
+      "best_player": "powerpoint_skill",
+      "best_score": 98
+    },
+    {
+      "id": "animations_transitions_ooxml",
+      "label": "Animações/transições OOXML",
+      "weight": 2,
+      "group": "Renderização",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "squads/slides-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 92,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 40,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 30,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/ppt-master",
+      "best_player": "ppt_master",
+      "best_score": 92
+    },
+    {
+      "id": "narration_audio",
+      "label": "Narração/áudio",
+      "weight": 2,
+      "group": "Multimídia",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "squads/slides-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 90,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 30,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 40,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 82,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/ppt-master",
+      "best_player": "ppt_master",
+      "best_score": 90
+    },
+    {
+      "id": "video_export",
+      "label": "Exportação vídeo",
+      "weight": 2,
+      "group": "Multimídia",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 40,
+          "confidence": "low",
+          "notes": "",
+          "source": "squads/slides-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 40,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 20,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/PresentAgent-2",
+      "best_player": "presentagent_2",
+      "best_score": 95
+    },
+    {
+      "id": "live_preview_annotations",
+      "label": "Preview vivo/anotações",
+      "weight": 3,
+      "group": "Editor",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 54,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 60,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 68,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/ppt-master",
+      "best_player": "ppt_master",
+      "best_score": 95
+    },
+    {
+      "id": "prompt_to_edit",
+      "label": "Prompt-to-edit UX",
+      "weight": 4,
+      "group": "Editor",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 55,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 68,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 52,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 96,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 82,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 30,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/banana-slides",
+      "best_player": "banana_slides",
+      "best_score": 96
+    },
+    {
+      "id": "regional_element_editing",
+      "label": "Edição regional/por elemento",
+      "weight": 3,
+      "group": "Editor",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 52,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 82,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 60,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 48,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 96,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 28,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 50,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/banana-slides",
+      "best_player": "banana_slides",
+      "best_score": 96
+    },
+    {
+      "id": "web_editor_runtime",
+      "label": "Editor web e runtime visual",
+      "weight": 4,
+      "group": "Editor",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 52,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 52,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 85,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 38,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 94,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 20,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 30,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 50,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presentation-ai",
+      "best_player": "presentation_ai",
+      "best_score": 94
+    },
+    {
+      "id": "collaboration_realtime",
+      "label": "Colaboração em tempo real",
+      "weight": 2,
+      "group": "Editor",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 30,
+          "confidence": "low",
+          "notes": "",
+          "source": "squads/slides-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 40,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 55,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 88,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 15,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 15,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presentation-ai",
+      "best_player": "presentation_ai",
+      "best_score": 88
+    },
+    {
+      "id": "sharing_publishing",
+      "label": "Share/publicação web",
+      "weight": 3,
+      "group": "Distribuição",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 42,
+          "confidence": "low",
+          "notes": "",
+          "source": "squads/slides-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 75,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 15,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 20,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presentation-ai",
+      "best_player": "presentation_ai",
+      "best_score": 92
+    },
+    {
+      "id": "deck_analytics",
+      "label": "Analytics de deck",
+      "weight": 2,
+      "group": "Distribuição",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "squads/slides-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 20,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 20,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 40,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 10,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 10,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 20,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presentation-ai",
+      "best_player": "presentation_ai",
+      "best_score": 40
+    },
+    {
+      "id": "api_generation",
+      "label": "API de geração",
+      "weight": 4,
+      "group": "Automação",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 64,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 50,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 98,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 50,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 68,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 72,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 35,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 78,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 78,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presenton",
+      "best_player": "presenton",
+      "best_score": 98
+    },
+    {
+      "id": "mcp_automation",
+      "label": "MCP/agent tools",
+      "weight": 4,
+      "group": "Automação",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 60,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 40,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 75,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 25,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 60,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presenton",
+      "best_player": "presenton",
+      "best_score": 95
+    },
+    {
+      "id": "cli_headless",
+      "label": "CLI/headless batch",
+      "weight": 3,
+      "group": "Automação",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 80,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 72,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 85,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 60,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/slide-deck-ai",
+      "best_player": "slide_deck_ai",
+      "best_score": 92
+    },
+    {
+      "id": "provider_registry",
+      "label": "Registry multi-provider LLM/imagem",
+      "weight": 2,
+      "group": "IA",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 86,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 80,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 72,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 85,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presenton",
+      "best_player": "presenton",
+      "best_score": 95
+    },
+    {
+      "id": "local_byok_ollama",
+      "label": "BYOK/local/Ollama",
+      "weight": 4,
+      "group": "IA",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 88,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 90,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 98,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 70,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 75,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 85,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 90,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 78,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presenton",
+      "best_player": "presenton",
+      "best_score": 98
+    },
+    {
+      "id": "docker_self_hosted",
+      "label": "Docker/self-hosting",
+      "weight": 3,
+      "group": "Infra",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "squads/slides-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 65,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 75,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 80,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presenton",
+      "best_player": "presenton",
+      "best_score": 95
+    },
+    {
+      "id": "desktop_app",
+      "label": "Desktop app",
+      "weight": 2,
+      "group": "Infra",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 20,
+          "confidence": "low",
+          "notes": "",
+          "source": "squads/slides-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 35,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 90,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 20,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 15,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 15,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 10,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 15,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 15,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presenton",
+      "best_player": "presenton",
+      "best_score": 90
+    },
+    {
+      "id": "qa_evaluation_rubric",
+      "label": "QA/evaluation rubric",
+      "weight": 4,
+      "group": "Qualidade",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 98,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 50,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 50,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 90,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "squads/slides-creator",
+      "best_player": "slides_creator",
+      "best_score": 98
+    },
+    {
+      "id": "editability_qa",
+      "label": "QA de editabilidade PPTX",
+      "weight": 4,
+      "group": "Qualidade",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 92,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 65,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 72,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/ppt-master",
+      "best_player": "ppt_master",
+      "best_score": 95
+    },
+    {
+      "id": "test_fixtures_ci",
+      "label": "Fixtures/testes/CI",
+      "weight": 1,
+      "group": "Qualidade",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 92,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 60,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 45,
+          "confidence": "low",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 65,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 55,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 50,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "squads/slides-creator",
+      "best_player": "slides_creator",
+      "best_score": 92
+    },
+    {
+      "id": "documentation_depth",
+      "label": "Documentação operacional",
+      "weight": 1,
+      "group": "Maturidade",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 96,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 70,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 86,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 75,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 58,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 72,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 78,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 65,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 62,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "squads/slides-creator",
+      "best_player": "slides_creator",
+      "best_score": 96
+    },
+    {
+      "id": "license_absorption_safety",
+      "label": "Licença segura para absorção",
+      "weight": 3,
+      "group": "Risco",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 100,
+          "confidence": "high",
+          "notes": "",
+          "source": "squads/slides-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 98,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 25,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 95,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 20,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "squads/slides-creator",
+      "best_player": "slides_creator",
+      "best_score": 100
+    },
+    {
+      "id": "ecosystem_maturity",
+      "label": "Maturidade/ecossistema",
+      "weight": 3,
+      "group": "Maturidade",
+      "cells": [
+        {
+          "player": "slides_creator",
+          "score": 86,
+          "confidence": "high",
+          "notes": "Atualizado em 2026-05-18 após absorção autocontida da skill: workflow-modes, playbook-routing, contracts de story/function/design, render-lock, job-state, source-of-truth, QA killer items, validators e independência de squads.",
+          "source": ".claude/skills/slide-creator"
+        },
+        {
+          "player": "ppt_master",
+          "score": 88,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/ppt-master"
+        },
+        {
+          "player": "presenton",
+          "score": 92,
+          "confidence": "high",
+          "notes": "",
+          "source": "../bench/presenton"
+        },
+        {
+          "player": "pptagent",
+          "score": 72,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PPTAgent"
+        },
+        {
+          "player": "banana_slides",
+          "score": 65,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/banana-slides"
+        },
+        {
+          "player": "presentation_ai",
+          "score": 76,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/presentation-ai"
+        },
+        {
+          "player": "powerpoint_skill",
+          "score": 62,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/powerpoint-skill"
+        },
+        {
+          "player": "slide_deck_ai",
+          "score": 60,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/slide-deck-ai"
+        },
+        {
+          "player": "presentagent_2",
+          "score": 58,
+          "confidence": "medium",
+          "notes": "",
+          "source": "../bench/PresentAgent-2"
+        }
+      ],
+      "evidence": "../bench/presenton",
+      "best_player": "presenton",
+      "best_score": 92
+    }
+  ],
+  "weighted_totals": [
+    {
+      "player": "ppt_master",
+      "label": "ppt-master",
+      "score": 73.41,
+      "by_group": {
+        "Entrada": 74.78,
+        "Planejamento": 65.78,
+        "Design": 86.33,
+        "Renderização": 91.08,
+        "Multimídia": 89,
+        "Editor": 70.69,
+        "Distribuição": 29,
+        "Automação": 52.36,
+        "IA": 86.67,
+        "Infra": 53,
+        "Qualidade": 84.67,
+        "Maturidade": 83.5,
+        "Risco": 95
+      }
+    },
+    {
+      "player": "presenton",
+      "label": "Presenton",
+      "score": 72.87,
+      "by_group": {
+        "Entrada": 71.11,
+        "Planejamento": 73.78,
+        "Design": 78.33,
+        "Renderização": 61.23,
+        "Multimídia": 32.5,
+        "Editor": 65.44,
+        "Distribuição": 59,
+        "Automação": 93.36,
+        "IA": 97,
+        "Infra": 93,
+        "Qualidade": 57.22,
+        "Maturidade": 90.5,
+        "Risco": 98
+      }
+    },
+    {
+      "player": "slides_creator",
+      "label": "slide creator skill",
+      "score": 70.6,
+      "by_group": {
+        "Entrada": 80.89,
+        "Planejamento": 97.44,
+        "Design": 81.33,
+        "Renderização": 64.92,
+        "Multimídia": 42.5,
+        "Editor": 50.38,
+        "Distribuição": 35.2,
+        "Automação": 66.91,
+        "IA": 87.33,
+        "Infra": 41,
+        "Qualidade": 94.67,
+        "Maturidade": 88.5,
+        "Risco": 100
+      }
+    },
+    {
+      "player": "presentation_ai",
+      "label": "presentation-ai",
+      "score": 66.63,
+      "by_group": {
+        "Entrada": 55,
+        "Planejamento": 72.67,
+        "Design": 88.67,
+        "Renderização": 51.54,
+        "Multimídia": 37.5,
+        "Editor": 82.38,
+        "Distribuição": 71.2,
+        "Automação": 61.18,
+        "IA": 85,
+        "Infra": 51,
+        "Qualidade": 51.67,
+        "Maturidade": 75,
+        "Risco": 95
+      }
+    },
+    {
+      "player": "pptagent",
+      "label": "PPTAgent",
+      "score": 63.18,
+      "by_group": {
+        "Entrada": 68.22,
+        "Planejamento": 84.44,
+        "Design": 72.33,
+        "Renderização": 65.77,
+        "Multimídia": 35,
+        "Editor": 45.88,
+        "Distribuição": 23,
+        "Automação": 66.73,
+        "IA": 65,
+        "Infra": 50,
+        "Qualidade": 79.56,
+        "Maturidade": 72.75,
+        "Risco": 95
+      }
+    },
+    {
+      "player": "presentagent_2",
+      "label": "PresentAgent-2",
+      "score": 62.38,
+      "by_group": {
+        "Entrada": 89.44,
+        "Planejamento": 78.67,
+        "Design": 58.67,
+        "Renderização": 53.15,
+        "Multimídia": 88.5,
+        "Editor": 47.19,
+        "Distribuição": 29,
+        "Automação": 72.91,
+        "IA": 78,
+        "Infra": 48,
+        "Qualidade": 69.11,
+        "Maturidade": 59,
+        "Risco": 20
+      }
+    },
+    {
+      "player": "banana_slides",
+      "label": "banana-slides",
+      "score": 60.01,
+      "by_group": {
+        "Entrada": 55.44,
+        "Planejamento": 57.33,
+        "Design": 71.33,
+        "Renderização": 49.23,
+        "Multimídia": 73.5,
+        "Editor": 85,
+        "Distribuição": 52,
+        "Automação": 53.36,
+        "IA": 74,
+        "Infra": 48,
+        "Qualidade": 45,
+        "Maturidade": 63.25,
+        "Risco": 25
+      }
+    },
+    {
+      "player": "powerpoint_skill",
+      "label": "powerpoint-skill",
+      "score": 54.17,
+      "by_group": {
+        "Entrada": 46.67,
+        "Planejamento": 60,
+        "Design": 58.33,
+        "Renderização": 83.23,
+        "Multimídia": 37.5,
+        "Editor": 27.44,
+        "Distribuição": 13,
+        "Automação": 38.18,
+        "IA": 78.33,
+        "Infra": 31,
+        "Qualidade": 86.33,
+        "Maturidade": 66,
+        "Risco": 95
+      }
+    },
+    {
+      "player": "slide_deck_ai",
+      "label": "slide-deck-ai",
+      "score": 52.97,
+      "by_group": {
+        "Entrada": 66.78,
+        "Planejamento": 60.22,
+        "Design": 49,
+        "Renderização": 51.92,
+        "Multimídia": 22.5,
+        "Editor": 26.25,
+        "Distribuição": 16,
+        "Automação": 75.27,
+        "IA": 92,
+        "Infra": 54,
+        "Qualidade": 46.11,
+        "Maturidade": 61.25,
+        "Risco": 95
+      }
+    }
+  ],
+  "composite_target": {
+    "name": "slide creator skill stack",
+    "thesis": "Combinar governança narrativa SINKRA + renderer ppt-master/powerpoint-skill + API/MCP Presenton + planejamento PPTAgent/PresentAgent-2 + UX banana-slides/presentation-ai.",
+    "expected_score_if_absorbed": 92,
+    "absorption_rule": "absorver padrões e contratos; evitar cópia de código AGPL ou sem licença compatível."
+  },
+  "player_labels": {
+    "slides_creator": "slide creator skill",
+    "ppt_master": "ppt-master",
+    "presenton": "Presenton",
+    "pptagent": "PPTAgent",
+    "banana_slides": "banana-slides",
+    "presentation_ai": "presentation-ai",
+    "powerpoint_skill": "powerpoint-skill",
+    "slide_deck_ai": "slide-deck-ai",
+    "presentagent_2": "PresentAgent-2"
+  },
+  "archived_as": "macro baseline before 108-dimension micro expansion",
+  "archived_at": "2026-05-18"
+}

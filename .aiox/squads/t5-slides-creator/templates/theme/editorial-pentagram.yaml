@@ -1,0 +1,133 @@
+# Theme Template — Editorial Pentagram
+# Pilot status: MSN-2026-SLIDES-NARRATIVE-DESIGN DEV-2026-003 (1 de 1 theme pilot)
+# Note: schema for themes will be formalized em MSN-2026-SLIDES-TEMPLATES-ARCHITECTURE.
+# Por enquanto, segue padrao ThemeProperties absorvido de presentation-ai + tokens estilo ppt-master spec_lock.
+
+id: "editorial-pentagram"
+name: "Editorial Pentagram (workshop vibe, bloco de cor protagonista)"
+version: "1.0.0"
+
+description: |
+  Tema editorial inspirado em Pentagram + retrospectiva v3 do Primeiro Servico de IA.
+  Blocos de cor solida como ancora visual. Tipografia condensada protagonista.
+  Sparse decoration. Workshop vibe.
+
+mode: light
+
+motif:
+  name: "Bloco de cor solido cobrindo 30-50% do canvas"
+  rationale: "Cria ancora visual recorrente sem virar wireframe. Cada slide-chave tem cortina de cor."
+  rendered_as:
+    - "Block fundo lime/dark cobrindo 30-50% do canvas (alinhado top-left ou bottom-right)"
+    - "Tipografia black/extrabold sobre o bloco"
+    - "Espaco branco respiratorio no restante"
+    - "Bordas sem radius (squared)"
+
+colors:
+  primary: "#3DC02E"          # lime/green ancora
+  primary_deep: "#2E8F22"     # hover/active darker
+  accent: "#FFB800"           # yellow alert/scarcity
+  background: "#FFFFFF"
+  background_block: "#3DC02E" # mesma primary para blocos
+  text: "#0A0A0A"
+  text_inverse: "#FFFFFF"     # texto sobre primary
+  heading: "#0A0A0A"
+  smart_layout: "#F5F5F5"
+  card_background: "#FAFAFA"
+  divider: "#E5E5E5"
+  success: "#3DC02E"
+  warning: "#FFB800"
+  danger: "#E5392B"
+
+fonts:
+  heading: "Inter, ui-sans-serif, system-ui"
+  body: "Inter, ui-sans-serif, system-ui"
+  monospace: "JetBrains Mono, monospace"
+  heading_weight: 900  # black
+  body_weight: 400
+  heading_url: "https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+
+scale_tokens:
+  # Sizes em pt (canvas 1920x1080)
+  slide_title_xl: 96
+  slide_title_lg: 64
+  slide_title_md: 44
+  slide_title_sm: 32
+  slide_body: 22
+  slide_caption: 16
+  line_height_heading: 1.05
+  line_height_body: 1.45
+
+border_radius:
+  card: "0px"     # squared editorial
+  slide: "0px"
+  button: "4px"
+  badge: "999px"  # apenas badges sao pill
+
+transitions:
+  default: "150ms ease-out"
+
+shadows:
+  card: "none"    # editorial flat, no shadow
+  button: "none"
+  slide: "none"
+  emphasis: "0 8px 24px rgba(0,0,0,0.08)"  # raro
+
+background:
+  type: solid
+  default_color: "#FFFFFF"
+  alternates:
+    section_break: "#0A0A0A"  # dark divider
+    cta: "#3DC02E"            # primary anchored
+
+composition_defaults:
+  grid_columns: 12
+  baseline_padding_pt: 48
+  title_anchor: top_left
+  footer_present: true
+  slide_number_visible: false
+  safe_area_pct: 0.92
+
+density_defaults:
+  max_claims_governing_per_slide: 1
+  max_claims_supporting_per_slide: 3
+  max_visual_elements_per_slide: 4
+  max_text_chars_per_slide: 240
+
+variation_rules:
+  layouts_count_min: 5
+  layout_repetition_max: 2
+  quiet_slide_ratio_min: 0.2
+  accent_color_density: sparse
+  motion_policy: subtle_transitions
+
+forbidden_patterns:
+  - "5+ cards iguais em grid (wireframe-like)"
+  - "Bullet list > 5 itens"
+  - "Drop shadows pesadas (rompe editorial flatness)"
+  - "Gradients (sempre cor solida)"
+
+accessibility:
+  contrast_required: WCAG_AAA  # text-on-block precisa ser 7:1
+  text_min_pt_body: 18
+  text_min_pt_caption: 14
+
+compatible_with_deck_templates:
+  - webinar-sales-perfect-webinar
+  - executive-pitch
+  - tactical-masterclass
+  - educational-workshop
+  - board-update
+
+source_provenance:
+  inspired_by:
+    - "Pentagram editorial design system"
+    - "Y Combinator demo day visual language"
+    - "Primeiro Servico de IA v3 retrospective (case-study)"
+  bench_ref:
+    - "/Users/alan/Code/bench/presentation-ai/src/lib/presentation/themes.ts (ThemeProperties pattern)"
+    - "/Users/alan/Code/bench/ppt-master/examples/ppt169_谷歌风_google_annual_report/ (block of color anchor)"
+  author: "slides-creator squad — MSN-2026-SLIDES-NARRATIVE-DESIGN"
+  date_created: "2026-05-17"
+
+evidence_ref: "outputs/sinkra-squad/MSN-2026-SLIDES-NARRATIVE-DESIGN/case-study-primeiro-servico-ia.md"

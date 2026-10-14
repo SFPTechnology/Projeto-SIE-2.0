@@ -1,0 +1,94 @@
+/*
+ * SIE — Design System · Tokens canônicos (tema escuro g100, conforme observado
+ * no sistema em produção — SIE-REFERENCIA-COMPLETA.md, Seção 10).
+ *
+ * FONTE ÚNICA DE VERDADE de cor/tipografia/espaçamento da Camada B.
+ * Componentes NUNCA usam hex literal — sempre var(--sie-*).
+ * Os valores seguem a paleta IBM Carbon g100; onde o Carbon do projeto estiver
+ * carregado, os --cds-* prevalecem via fallback encadeado.
+ *
+ * Contraste WCAG 2.1 AA verificado programaticamente (RNF-01) — razões no
+ * comentário de cada token de texto. Evidência completa: DESIGN-SYSTEM.md §3.
+ */
+
+:root,
+[data-theme="sie-g100"] {
+  /* --- Superfícies --- */
+  --sie-fundo:            var(--cds-background, #161616);        /* fundo geral (observado) */
+  --sie-camada:           var(--cds-layer-01, #262626);          /* cards, painéis */
+  --sie-camada-hover:     var(--cds-layer-hover-01, #333333);
+  --sie-campo:            var(--cds-field-01, #262626);
+
+  /* --- Bordas --- */
+  --sie-borda-sutil:      var(--cds-border-subtle-01, #393939);  /* DECORATIVA (cards) — isenta de 3:1 */
+  --sie-borda-interativa: var(--cds-border-strong-01, #6f6f6f);  /* limites significativos — 3,60:1 ✓ */
+
+  /* --- Texto --- */
+  --sie-texto:            var(--cds-text-primary, #f4f4f4);      /* 16,45:1 no fundo ✓ */
+  --sie-texto-sec:        var(--cds-text-secondary, #c6c6c6);    /* 10,59:1 ✓ */
+  --sie-texto-inverso:    #161616;                               /* sobre fills claros de badge */
+  --sie-link:             var(--cds-link-primary, #78a9ff);      /* 7,68:1 ✓ */
+
+  /* --- Interação --- */
+  --sie-interativo:       var(--cds-button-primary, #0f62fe);    /* botão azul primário observado */
+  --sie-interativo-texto: #ffffff;                               /* 5,00:1 sobre #0f62fe ✓ */
+  --sie-foco:             var(--cds-focus, #ffffff);             /* anel de foco g100 — 18,10:1 ✓ */
+  --sie-selecao-fundo:    #001d6c;                               /* linha selecionada no unifilar */
+
+  /* --- Severidade (Seção 8 da referência: INFO azul, ATENÇÃO amarelo, ERRO vermelho) --- */
+  --sie-info:             var(--cds-support-info, #4589ff);      /* 5,41:1 como texto ✓ */
+  --sie-info-fill:        #4589ff;
+  --sie-info-fill-texto:  #001d6c;                               /* 4,51:1 ✓ */
+  --sie-atencao:          var(--cds-support-warning, #f1c21b);   /* 10,75:1 como texto ✓ */
+  --sie-atencao-fill:     #f1c21b;
+  --sie-atencao-fill-texto: #161616;                             /* 10,75:1 ✓ */
+  --sie-erro:             var(--cds-support-error, #fa4d56);     /* 5,40:1 como texto ✓ */
+  --sie-erro-fill:        #fa4d56;
+  --sie-erro-fill-texto:  #161616;                               /* 5,40:1 ✓ — NUNCA branco (3,35:1 ✗) */
+  --sie-sucesso:          var(--cds-support-success, #42be65);   /* 7,57:1 ✓ */
+
+  /* --- Marcadores de disciplina (distintos de severidade — Seção 8) --- */
+  --sie-verificar-fill:   #393939;                               /* [VERIFICAR]: cinza neutro */
+  --sie-verificar-texto:  #e0e0e0;                               /* 8,75:1 ✓ */
+  --sie-modificado-fill:  #0043ce;                               /* badge "Modificado" das tabelas EDP */
+  --sie-modificado-texto: #d0e2ff;                               /* 5,94:1 ✓ */
+  --sie-origem-auto:      var(--sie-info);                       /* badge A (Automático) */
+  --sie-origem-manual:    var(--sie-atencao);                    /* badge M (Manual) */
+
+  /* --- Diagrama (Camada B) --- */
+  --sie-diagrama-traco:   var(--cds-icon-primary, #f4f4f4);      /* condutores/símbolos — 16,45:1 ✓ */
+  --sie-diagrama-traco-pendente: var(--sie-atencao);             /* tracejado INC-04 */
+  --sie-diagrama-espessura: 1.5px;
+  --sie-diagrama-tracejado: 5 4;                                 /* dasharray padrão de pendência */
+
+  /* --- Tipografia (IBM Plex — padrão Carbon) --- */
+  --sie-fonte:            'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --sie-fonte-mono:       'IBM Plex Mono', Menlo, monospace;     /* rastreio, fórmulas, valores */
+  --sie-tam-rotulo:       0.75rem;   /* 12px — labels, eyebrows */
+  --sie-tam-corpo:        0.875rem;  /* 14px — corpo padrão Carbon */
+  --sie-tam-titulo:       1.25rem;   /* 20px — títulos de painel */
+
+  /* --- Espaçamento (escala Carbon) --- */
+  --sie-esp-03: 0.5rem;
+  --sie-esp-05: 1rem;
+  --sie-esp-06: 1.5rem;
+}
+
+/* Foco visível universal (UF-06 / RNF-01) — replica o anel duplo do Carbon */
+.sie-focavel:focus-visible,
+[data-theme="sie-g100"] :is(a, button, [role="button"], [tabindex="0"]):focus-visible {
+  outline: 2px solid var(--sie-foco);
+  outline-offset: 1px;
+}
+
+/* Impressão (RNF-08): diagramas em A4/A3 saem com traço escuro sobre branco */
+@media print {
+  :root, [data-theme="sie-g100"] {
+    --sie-fundo: #ffffff;
+    --sie-camada: #ffffff;
+    --sie-texto: #161616;
+    --sie-texto-sec: #525252;
+    --sie-diagrama-traco: #161616;
+    --sie-borda-sutil: #8d8d8d;
+  }
+}

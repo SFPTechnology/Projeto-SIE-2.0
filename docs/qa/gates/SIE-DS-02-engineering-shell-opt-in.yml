@@ -1,0 +1,84 @@
+schema: 1
+story: "SIE-DS-02"
+story_title: "Engineering Shell opt-in (nav lateral, cabeçalho global, paleta de comandos)"
+story_path: "docs/stories/story-SIE-DS-02-engineering-shell-opt-in.md"
+gate: CONCERNS
+status_reason: >-
+  AC1-AC8 PASS com evidência forte: smoke test HTTP real de nav lateral, cabeçalho global e
+  paleta de comandos rodando no dev server; AC7 verificado em dobro (git diff vazio +
+  hash de build SPA inalterado); regressão completa 1010/1010. CONCERNS mantido só pela
+  indisponibilidade recorrente do CodeRabbit (3ª story consecutiva, SIGILL/exit 132) —
+  escalado como prioridade para @devops, não bloqueia esta story.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-31T00:00:00-03:00"
+expires: "2026-08-14T00:00:00-03:00"
+quality_score: 90
+mode: "yolo (agente-a-agente: @sm → @po → @architect → @dev → @qa, sessão manual real, sem fase @devops por decisão explícita do usuário)"
+handoff_entrada: ".aiox/handoffs/SIE-DS-LOCAL-01-dev-to-qa.yaml (contexto de fundação); story SIE-DS-02 sem handoff formal dev-to-qa separado, revisão direta na mesma sessão"
+submodule_impact: "aditivo apenas — 13 arquivos novos/modificados em src/components/command-center/ e 1 teste de rota corrigido; AppShell.tsx diff vazio; build SPA de produção com hash inalterado"
+
+smoke_test:
+  url: "http://127.0.0.1:5173/sie-command-center-preview"
+  status_code: 200
+  content_checks:
+    - "sie-cc-nav-lateral"
+    - "Engineering OS"
+    - "sie-cc-command-palette"
+    - 'data-density="comfortable"'
+  legacy_regression_check:
+    url: "http://127.0.0.1:5173/"
+    status_code: 200
+    content_check: "Projetos"
+
+trace_ac:
+  - ac: AC1
+    descricao: "Navegação lateral (ModuleNavigation)"
+    resultado: PASS
+  - ac: AC2
+    descricao: "Cabeçalho global expandido"
+    resultado: PASS
+  - ac: AC3
+    descricao: "Paleta de comandos (CommandPalette)"
+    resultado: PASS
+  - ac: AC4
+    descricao: "Densidade comfortable/compact"
+    resultado: PASS
+  - ac: AC5
+    descricao: "EngineeringShell reestruturado"
+    resultado: PASS
+  - ac: AC6
+    descricao: "Acessibilidade"
+    resultado: PASS
+  - ac: AC7
+    descricao: "Zero impacto no legado"
+    resultado: PASS
+  - ac: AC8
+    descricao: "Testado localmente"
+    resultado: PASS
+
+top_issues:
+  - id: "TEST-001"
+    severity: medium
+    finding: "CodeRabbit CLI (WSL) indisponível pela 3ª story consecutiva (SIGILL/exit 132)."
+    suggested_action: "@devops reparar/reinstalar antes de qualquer story com escopo maior que este."
+    suggested_owner: devops
+  - id: "ARCH-001"
+    severity: low
+    finding: "Drawer de navegação mobile (ModuleNavigation < 992px) não tem overlay de fundo nem fechamento por clique-fora/Esc, ao contrário da CommandPalette (dialog nativo)."
+    suggested_action: "Tratar quando SIE-DS-03+ aprofundar a navegação mobile."
+    suggested_owner: dev
+  - id: "DOC-001"
+    severity: low
+    finding: "Checkboxes de Acceptance Criteria no topo da story permanecem [ ] apesar de todos PASS — mesmo padrão recorrente das stories anteriores."
+    suggested_action: "@po marca [x] durante *close-story."
+    suggested_owner: po
+
+waiver: { active: false }
+
+recommendations:
+  immediate: []
+  future:
+    - action: "Reparar binário CodeRabbit no WSL (3ª ocorrência — priorizar)"
+      refs: ["~/.local/bin/coderabbit"]
+    - action: "Overlay/Esc para o drawer de navegação mobile"
+      refs: ["src/components/command-center/ModuleNavigation.tsx"]

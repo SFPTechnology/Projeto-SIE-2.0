@@ -1,0 +1,82 @@
+{
+  "bench_id": "octadesk-vs-zendesk",
+  "bench_type": "product",
+  "pair_position": "3-of-3",
+  "pipeline": {
+    "parent_pipeline": "omnichannel-helpdesk-landscape-3-pair-bench",
+    "siblings": ["chatwoot-vs-zendesk", "intercom-vs-chatwoot"],
+    "next_step": "bench-score 3-way (Chatwoot vs Zendesk vs Intercom + add Octadesk weight per BR-fit)"
+  },
+  "subjects": [
+    {
+      "id": "octadesk",
+      "type": "product",
+      "category": "saas-helpdesk-br-pme",
+      "official_url": "https://www.octadesk.com",
+      "country_origin": "Brasil",
+      "company": "LWSA (Locaweb group)",
+      "tech_research_score": 82.0
+    },
+    {
+      "id": "zendesk",
+      "type": "product",
+      "category": "saas-helpdesk-enterprise-global",
+      "official_url": "https://www.zendesk.com",
+      "country_origin": "USA",
+      "company": "Zendesk Inc.",
+      "tech_research_score": 84.5
+    }
+  ],
+  "central_tension": "BR-native player com WhatsApp Cloud API direto + integracoes e-commerce BR vs incumbente global com feature parity, marketplace gigante e seguranca enterprise auditada",
+  "scoring_dimensions": [
+    {"id": "C1", "name": "WhatsApp Business API integration", "weight": 25, "rationale": "Tese central do mercado BR omnichannel; eliminatorio se nao for oficial"},
+    {"id": "C2", "name": "Brasil-fit operacional", "weight": 20, "rationale": "Pricing BRL transparente, integracoes nativas, suporte PT-BR, LGPD, hosting BR"},
+    {"id": "C3", "name": "Feature parity enterprise", "weight": 15, "rationale": "Onde Octadesk tem gaps reais (HIPAA, sandbox, WFM, custom roles, audit trails)"},
+    {"id": "C4", "name": "AI capability", "weight": 10, "rationale": "WOZ (ChatGPT-based) vs Zendesk AI Agents (post-Ultimate.ai)"},
+    {"id": "C5", "name": "Pricing transparency e TCO BR", "weight": 10, "rationale": "BRL nativa vs USD/BRL convertido, contract terms, AI cost real"},
+    {"id": "C6", "name": "Marketplace e ecosystem", "weight": 5, "rationale": "Octadesk grupo LWSA vs Zendesk 1500+ apps marketplace"},
+    {"id": "C7", "name": "Maturidade governance compliance", "weight": 10, "rationale": "ISO 27001, SOC 2, HIPAA, audit log, sandbox, custom roles"},
+    {"id": "C8", "name": "Comunidade reviews", "weight": 5, "rationale": "G2 e Capterra reviews count + rating"}
+  ],
+  "method": "web-research-docs-and-reviews",
+  "sources_priority": [
+    "Tier 1: octadesk.com pricing/integrations, zendesk.com.br pricing, Zendesk Trust Center",
+    "Tier 2: G2 reviews count + rating, Capterra Brasil, eesel AI deep guides",
+    "Tier 3: blog comparativos vendor-bias-aware (helpjuice, hiver, supportbench)"
+  ],
+  "data_collection_date": "2026-05-06",
+  "exchange_rate_assumption": "USD 1 = BRL 5.05 (Banco Central media maio/2026, [M] confidence)",
+  "personas_evaluated": [
+    "ecommerce-smb-br",
+    "midmarket-br-50-100-agents",
+    "enterprise-br-multinacional"
+  ],
+  "outputs": {
+    "inventories": [
+      "inventory-octadesk.json",
+      "inventory-octadesk.md",
+      "inventory-zendesk.json",
+      "inventory-zendesk.md"
+    ],
+    "comparison": [
+      "comparison-matrix.json",
+      "comparison-matrix.md"
+    ],
+    "scoring": [
+      "scorecard.json",
+      "scorecard.md"
+    ],
+    "analysis": [
+      "gap-analysis.json",
+      "gap-analysis.md",
+      "battle-card.md",
+      "executive-report.md"
+    ],
+    "deep_dives": [
+      "deep/whatsapp-integration.md",
+      "deep/brasil-fit.md",
+      "deep/feature-gap-enterprise.md"
+    ]
+  },
+  "constitutional_disclaimer": "Bench mapeia evidencias publicas; nao recomenda fornecedor para Sinkra Hub. Decisao por @pm. Coverage parcial onde pricing exige contato comercial; gaps marcados como [L] ou 'nao publico'."
+}

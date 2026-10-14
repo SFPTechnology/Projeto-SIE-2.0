@@ -1,0 +1,161 @@
+---
+titulo: 'Circuitos de motores'
+arquivo_origem: 07_circuitos_motores.pdf
+formato_origem: pdf
+autor: 'user'
+data: 'D:20020517161630-03''00'''
+idioma: pt-BR
+paginas: 7
+mapa_de_secoes:
+  - 'C I R C U I T O S D E M O T O R E S'
+  - 'Equipamentos a motor'
+  - 'Circuitos de motores'
+  - 'Cargas residenciais e comerciais de porte'
+  - 'Dimensionamento dos circuitos de motores'
+  - 'Corrente de partida e de rotor bloqueado'
+  - 'Proteção em circuito de motor'
+  - 'Proteção contra sobrecargas'
+  - 'Proteção contra curtos-circuitos'
+notas_de_extracao: 'Modo verbatim-limpo; 7 figuras/diagramas referenciados; páginas com vetores preservadas por referência visual.'
+---
+
+# Circuitos de motores
+
+<!-- pagina-origem: 1 -->
+
+### C I R C U I T O S D E M O T O R E S
+
+Equipamentos a motor...........................................................................212
+
+Circuitos de motores...............................................................................215
+
+Proteção em circuito de motor...............................................................219
+
+<!-- pagina-origem: 2 -->
+
+## Equipamentos a motor
+
+O s motores elétricos — melhor dizendo, os “equipamentos a motor” — constituem cargas que apresentam características peculiares: a corrente absorvida pelo motor, durante a partida, é bastante superior à de funcionamento normal em carga; a potência absorvida em funcionamento é determinada pela potência mecânica no eixo do motor, solicitada pela carga acionada, o que pode resultar em sobrecarga no circuito de alimentação, se não houver proteção adequada. A corrente de partida Ip dos motores trifásicos de indução tipo gaiola, os utilizados em mais de 90% das aplicações, apresenta os seguintes valores típicos: motores de dois pólos: - Ip = 4,2 a 9 In motores com mais de dois pólos: - Ip = 4,2 a 7 In sendo In a corrente nominal do motor. Seu aspecto é mostrado na figura 1. A corrente nominal In de um motor elétrico é dada pelas expressões a seguir: – monofásico
+
+(1)
+
+– trifásico
+
+(2)
+
+onde: Pn = potência nominal (no eixo) do motor, em kW. A potência é muitas vezes dada também em HP (0,746 kW) ou CV (0,736 kW). Un = tensão nominal do motor, em V. Nos motores monofásicos é a tensão entre fases ou entre fase e neutro e nos trifásicos a tensão entre fases; η = rendimento, definido pela razão entre a potência nominal, isto é, no eixo do motor, e a potência efetivamente fornecida pelo circuito ao motor Pn’; cosφ = fator de potência do motor. Assim, por exemplo, para um motor trifásico de gaiola de 7,5 kW, com η = 0,85 e cosφ = 0,83, e com Un = 220 V, virá, de (2): Procurando demarcar bem os casos aos quais é endereçada esta ou aquela prescrição, a NBR 5410, na seção dedicada especificamente a motores (6.5.3), distingue os equipamentos a motor em: aplicações normais — que a norma divide, por sua vez, em “cargas industriais e similares” e “cargas residenciais e comerciais”. Estima-se que as aplicações normais — que o documento define com clareza, como descrito mais adiante — cubram cerca de 95% dos casos de utilização de motores em instalações de baixa tensão; e aplicações especiais, nas quais são automaticamente catalogadas, por exclusão, todas as que não se enquadram na classificacão de “normais”. As cargas industriais e similares são constituídas, segundo a norma, por motores de indução de gaiola, trifásicos, de potência igual ou inferior a 200 CV (147 kW), aplicados em regime S1 (contínuo). A norma pressupõe, figurando como parte integrante dessa definição, que os motores sejam conforme a NBR 7094, onde se encontra definido, também, o que é regime S1. Já as cargas residenciais e comerciais, segundo a norma, são motores de potência nominal não superior a 2 CV (1,5 kW) constituindo parte integrante de aparelhos eletrodomésticos e eletroprofissionais. Pode-se acrescentar, tendo em vista a fixação de um limite superior de potência na definição do que sejam cargas industriais e similares normais, mas não um limite inferior, que excluem-se da categoria, naturalmente, as cargas definidas como residenciais e comerciais.
+
+![Figura vetorial da página 2](figura-vetorial-p2-1)
+
+> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.
+
+Fig. 1 – Corrente de partida de motor trifásico de gaiola
+
+De um modo geral, os circuitos que alimentam equipamentos a motor apresentam certas características não encontradas nos circuitos que alimentam outros tipos de cargas. São elas:
+
+<!-- pagina-origem: 3 -->
+
+– queda de tensão significativa durante a partida do motor; – número e freqüência de partidas geralmente elevados; – o dispositivo de proteção contra correntes de sobrecarga deve suportar, sem atuar, a corrente de partida do motor. Por essas razões, tais circuitos podem exigir, como reconhece a norma, um tratamento diferenciado – seja no tocante aos componentes utilizados (alguns dos quais são mesmo exclusiva ou majoritariamente utilizados em circuitos de motores), seja no que se refere ao dimensionamento. Na prática, as prescrições específicas de circuitos de motores apresentadas pela norma são endereçadas às cargas industriais e similares, admitindo-se então que os circuitos de motores (ou, mais uma vez, de “equipamentos a motor”) de cargas residenciais e comerciais sejam tratados como circuitos “normais”, cobertos pelas regras gerais da norma. A figura 2 indica os elementos a considerar num circuito terminal de motor, destacando as diversas funções a serem exercidas pelos dispositivos. A tabela I indica os dispositivos utilizados para as diversas funções, no caso de cargas industriais e similares. Nesses casos (cargas industriais e similares), o usual é ter-se um circuito terminal por motor, admitindo-se, no entanto, em casos excepcionais (na prática), circuitos terminais alimentando mais de um motor, em geral com potências inferiores a 1 CV, e eventualmente outras cargas. Os circuitos terminais de motores são alimentados, em geral, a partir de quadros de distribuição (por exemplo, CCMs) exclusivos — alimentados, por sua vez, por circuitos de distribuição exclusivos. Mas, principalmente em instalações não-industriais, não são raros quadros de distribuição alimentando circuitos terminais de motores e outros tipos de circuitos terminais (iluminação, tomadas, etc.). Os aparelhos eletrodomésticos e eletroprofissionais a motor (cargas residenciais e comerciais) são, via de regra, ligados a tomadas de corrente, de uso específico ou de uso geral. No primeiro caso temos, tipicamente, equipamentos fixos (por exemplo, condicionador de ar tipo janela) e estacionários de maior porte (por exemplo, geladeira doméstica e fotocopiadora); no segundo, equipamentos portáteis (por exemplo, máquina de costura doméstica, liquidificador) e manuais (por exemplo, furadeira, batedeira). Os circuitos terminais que alimentam tais aparelhos só são exclusivos no caso de aparelhos de maior potência. Vale lembrar que, em locais de habitação, a norma exige circuito individual para equipamento (de qualquer tipo, não necessariamente a motor) com corrente nominal superior a 10 A. De qualquer forma, como já salientado, a interpretação correta da seção da norma dedicada a motores (a seção 6.5.3 mencionada) é de que ela visa especificamente os casos classificados como cargas industriais e similares. Assim, como aos circuitos que alimentam as cargas a motor residenciais e comerciais aplicam-se as regras gerais da norma, as funções de seccionamento e de proteção contra correntes de curto-circuito e de sobrecarga são exercidas pelo próprio disjuntor do circuito terminal, localizado no quadro de distribuição; o comando funcional, na maioria dos casos é feito por dispositivo integrante do próprio aparelho.
+
+![Figura vetorial da página 3](figura-vetorial-p3-1)
+
+> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.
+
+Fig. 2 – Elementos a considerar num circuito terminal de motor
+
+<!-- pagina-origem: 4 -->
+
+## Circuitos de motores
+
+No artigo anterior foram apresentados os equipamentos a motor, com suas características específicas, sua classificação segundo a NBR 5410, bem como as funções e componentes envolvidos nos circuitos terminais que alimentam aqueles equipamentos. Trataremos agora dos circuitos de motores e de seu dimensionamento, também de acordo com a NBR 5410. Para a alimentação dos equipamentos a motor, consideradas as aplicações normais a que se refere a norma e, em particular, as cargas industriais e similares (já que às cargas a motor residenciais e comerciais não se aplica qualquer enfoque específico, sendo cobertas pelas regras gerais da norma), existem três configurações básicas, mostradas na figura 1. Na primeira (figura 1-a), temos circuitos terminais individuais, isto é, um para cada equipamento a motor, partindo de um quadro de distribuição (QD) que pode alimentar também circuitos terminais para outros tipos de equipamentos. É o caso típico de instalações industriais e mesmo instalações comerciais de porte. Por sinal, é o esquema aplicado também à alimentação de equipamentos eletrodomésticos e eletroprofissionais de porte (ver boxe), ligados a tomadas de uso específico, em instalações residenciais e comerciais. Na segunda configuração (figura 1-b), temos um circuito de distribuição contendo derivações em pontos determinados, com circuitos terminais individuais (um por equipamento a motor), podendo, eventualmente, existir derivações para outras cargas. Como exemplo característico temos a alimentação a partir de barramentos blindados ou de cabos unipolares fixados a paredes. A terceira configuração (figura 1-c) consiste num circuito terminal único, servindo a vários equipamentos a motor e, eventualmente, a outras cargas. É a solução adotada, por exemplo, na alimentação de cargas a motor industriais e similares de pequeno porte (potências
+
+### Cargas residenciais e comerciais de porte
+
+Na seção em que apresenta regras específicas para circuitos que alimentam motores elétricos (seção 6.5.3), a NBR 5410 define as cargas a motor residenciais e comerciais como sendo os aparelhos eletrodomésticos e eletroprofissionais equipados com motores de até 1,5 kW. Mas essa definição presta-se, no contexto, apenas ao objetivo de esclarecer que tais cargas ficam de fora das regras específicas ali apresentadas. Enfim, que tais cargas devem ser consideradas “comuns”, que o detalhe de serem equipadas com um (eventualmente, até mais) motor elétrico não justifica qualquer atenção com o que vai exposto na seção. Alguém se imagina, no projeto de uma instalação elétrica, estudando a corrente de partida de um liquidificador ou de um aspirador de pó doméstico? Bem, via de regra os aparelhos eletrodomésticos e eletroprofissionais não possuem mesmo motores com potência nominal superior a 1,5 kW. No entanto há equipamentos desse tipo com correntes nominais de 10 A ou mais (potências iguais ou maiores que 2,2 kVA). Ocorre que, além dos motores, estão presentes nesses equipamentos outros componentes de consumo, como resistores de aquecimento (caso de lavadoras de louça, de roupas, etc.). E, como exige a NBR 5410, equipamentos com corrente nominal superior a 10 A, em locais de habitação e acomodações de hotéis, motéis e similares, devem ser alimentados por circuito terminal independente, exclusivo. Mas isso — que fique claro — independentemente do equipamento conter ou não motor elétrico.
+
+nominais até 0,75 kW, em geral). Evidentemente, é também o caso de um circuito terminal de tomadas de uso geral, onde são ligados equipamentos eletrodomésticos ou eletroprofissionais com e sem motor.
+
+![Figura vetorial da página 4](figura-vetorial-p4-1)
+
+> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.
+
+Fig. 1 – Configurações de circuitos de motores: (a) circuitos terminais individuais; (b) circuito de distribuição com derivações; (c) circuito terminal com várias cargas
+
+<!-- pagina-origem: 5 -->
+
+### Dimensionamento dos circuitos de motores
+
+No dimensionamento dos condutores de um circuito que alimente carga(s) a motor, e sempre lembrando que estamos tratando de cargas a motor industriais e similares, normais, pode-se distinguir três casos: 1) circuito terminal alimentando um único motor; 2) circuito terminal alimentando dois ou mais motores; e 3) circuito de distribuição. Assim, os condutores de um circuito terminal que alimenta um único motor devem ter uma capacidade de condução de corrente (IZ) não inferior à corrente nominal do motor (IM) multiplicada pelo fator de serviço (fS), se existir, ou seja:
+
+IZ ≥fS. IM
+
+O fator de serviço é o multiplicador (fS ≥1) que, aplicado à potência nominal de um motor, indica a carga que pode ser acionada continuamente, sob tensão e freqüência nominais e com um determinado limite de elevação de temperatura do enrolamento. Embora ainda citado na norma de motores de indução (NBR 7094: Máquinas elétricas girantes - Motores de indução - Especificação), o fator de serviço não tem sido mais utilizado pelos fabricante nacionais de motores elétricos. Quando as características nominais do motor incluírem mais de uma potência e/ou velocidade, o condutor a ser escolhido deve ser o que resulte em maior seção, quando considerada individualmente cada potência e velocidade. No caso de um circuito terminal que alimente dois ou mais motores, os condutores devem possuir uma capacidade de condução de corrente não inferior à soma das capacidades de condução mínimas, determinadas separadamente para cada motor. Assim, para um circuito terminal alimentando n motores, teremos:
+
+(3)
+
+com fSi e de IMi sendo, respectivamente, o fator de serviço e a corrente nominal de um motor genérico.
+
+![Figura vetorial da página 5](figura-vetorial-p5-1)
+
+> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.
+
+Fig. 2 – Limites de queda de tensão em instalação com motores alimentada por transformador próprio No caso de um circuito de distribuição que alimenta, através de um quadro de distribuição ou através de derivações, n motores e m outras cargas, e chamando de INj a corrente nominal de uma carga genérica pertencente a m, podemos escrever, para a capacidade de condução de corrente dos condutores do circuito:
+
+(5)
+
+No caso dos circuitos de distribuição, ainda, é possível aplicar fatores de demanda, desde que seja feita uma análise criteriosa do funcionamento previsto, levando em consideração não apenas o número de motores e, se houver, de outras cargas, que podem funcionar simultaneamente, mas também as possíveis partidas simultâneas de motores. Podemos, então, escrever:
+
+(6)
+
+onde gM e gC são os fatores de demanda, respectivamente, dos motores e das outras cargas. No dimensionamento dos circuitos (terminais e de distribuição) que alimentam motores, deve-se levar em conta que as quedas de tensão entre a origem e os terminais dos motores e demais pontos de utilização, em serviço normal, não devem ultrapassar 4% em instalações alimentadas por rede pública de baixa tensão, e 7% em instalações alimentadas por transformador próprio. Por outro lado, durante a partida, a queda de tensão nos terminais do dispositivo de partida do motor não
+
+### Corrente de partida e de rotor bloqueado
+
+Corrente de rotor bloqueado é a máxima corrente absorvida pelo motor com o rotor travado (velocidade zero) sob tensão e freqüência nominais. (O termo “máxima” decorre do fato de que a corrente absorvida pode variar com a posição angular do rotor.) Corrente de partida é a corrente absorvida pelo motor durante a partida, sob tensão e freqüência nominais. O termo “partida” refere-se ao funcionamento do motor acelerando no intervalo de velocidades desde zero até aquela determinada pela condição de carga do motor. Portanto, a rigor, a corrente de partida tem, durante este intervalo, valor variável decrescente desde o valor inicial, correspondente ao rotor bloqueado, até o valor determinado pela condição de carga do motor. Na prática, o termo “corrente de partida” é empregado como sinônimo de “corrente de rotor bloqueado”.
+
+<!-- pagina-origem: 6 -->
+
+deve ultrapassar 10% da tensão nominal deste, observados os limites relativos a serviço normal para os demais pontos de utilização. A figura 2 ilustra essas prescrições da NBR 5410, para o caso de instalação com transformador próprio. O cálculo da queda de tensão durante a partida do motor deve ser efetuado considerando a corrente de rotor bloqueado do motor (veja boxe) e um fator de potência igual a 0,3. [Ver exemplo de cálculo de queda de tensão durante a partida de motor no artigo “Cálculos de queda de tensão (II)”].
+
+## Proteção em circuito de motor
+
+A o reconhecer as peculiaridades dos motores como cargas elétricas, traduzindo esse reconhecimento numa seção específica a eles dedicada (a 6.5.3), a NBR 5410 reconhece também, implicitamente, a existência de dispositivos de proteção que surgiram primordialmente para atender a essas peculiaridades. A ponto de, na prática, serem associados, pelo mercado, quase que exclusivamente ao uso em circuitos de motores. Incluem-se, nessa condição, os sobejamente conhecidos relés térmicos de sobrecarga, par constante e indissociável dos contatores, e os dispositivos de proteção especificamente (ou apenas) contra curtos-circuitos, como os disjuntores dotados apenas de disparador magnético e os fusíveis aM. Isso sem contar componentes que não pertencem propriamente ao domínio das instalações, embora a norma a eles faça referência, como os protetores térmicos que são alojados nos próprios enrolamentos do motor.
+
+### Proteção contra sobrecargas
+
+Com efeito, no artigo em que aborda a proteção contra sobrecargas em circuitos de motores (6.5.3.5), a NBR 5410 menciona a utilização de “dispositivos de proteção integrantes do motor, sensíveis à temperatura dos enrolamentos”, mas remete tal possibilidade, na prática, para o que ela chama de “aplicações especiais”. Com isso, no campo das “aplicações normais” ficam os “dispositivos de proteção independentes” (quer dizer, não integrantes do motor) e, portanto, os relés térmicos tradicionais e os disparadores térmicos de disjuntor-motor e de contator-disjuntor. Examinemos as características principais dos relés térmicos de sobrecarga. Um relé térmico de sobrecarga é constituído, em sua essência, por um conjunto de lâminas bimetálicas (um por fase) e por um mecanismo de disparo, contidos num invólucro isolante de alta resistência térmica. A atuação do relé é indicada por sua curva de disparo. Essa curva de disparo mostra o tempo de disparo (Tp) em função da corrente de ajuste (Ir) do relé e é referida a uma dada temperatura ambiente (temperatura de calibração). Geralmente, a curva de disparo fornecida pelos fabricantes é a chamada “curva a frio”, isto é, correspondente a uma situação de inexistência inicial de carga – vale dizer, partindo de um estado inicial frio; por vezes é também fornecida a curva de disparo considerando as lâminas já aquecidas com a corrente de ajuste (curva a quente). As duas curvas de um determinado relé térmico são mostrada na figura 1. Para eliminar (ou, pelo menos, atenuar fortemente) os efeitos de temperaturas ambientes superiores à de referência sobre a curva de disparo, como no caso de relés instalados em quadros de distribuição, recorre-se à compensação do relé, obtida através de alteração na conformação das lâminas bimetálicas ou pela utilização de uma lâmina bimetálica auxiliar.
+
+![Figura vetorial da página 6](figura-vetorial-p6-1)
+
+> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.
+
+Fig. 1 – Curvas a frio (a) e a quente (b) de um relé térmico típico
+
+<!-- pagina-origem: 7 -->
+
+![Figura vetorial da página 7](figura-vetorial-p7-1)
+
+> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.
+
+Fig. 2 – Classes/curvas de disparo dos relés térmicos conforme normalização IEC Os relés térmicos de sobrecarga são divididos em classes de disparo, que permitem adaptá-los às características dos motores, em especial às suas condições de partida. A figura 2 ilustra as classes de disparo previstas na IEC 60947. A faixa de corrente de ajuste é uma característica fundamental para o dimensionamento da proteção ou, o que dá no mesmo, para a especificação do dispositivo. Para uma dada aplicação, a faixa de corrente de ajuste do relé deve abranger a corrente nominal (ou esse valor multiplicado pelo fator de serviço, quando existir) do motor a proteger. As faixas de corrente de ajuste não são normalizadas, podendo variar de fabricante para fabricante. Embora possa, a princípio, parecer vantajoso para o projetista a es-
+
+![Figura vetorial da página 7](figura-vetorial-p7-2)
+
+> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.
+
+Fig. 3 – Superposição das curvas médias de fusível “g” (curva b) e relé térmico (curva a) colha de relés com ampla faixa de ajuste, recomendações práticas e de projeto limitam em 2:1 a relação entre fim e início de escala; relações maiores podem comprometer a precisão e a repetibilidade do disparo, o que se torna mais crítico em se tratando de motores de pequena potência (abaixo de 10 CV), que são mais vulneráveis aos danos decorrentes de sobrecargas.
+
+### Proteção contra curtos-circuitos
+
+A proteção contra correntes de curto-circuito deve ficar a cargo de um dispositivo específico (fusíveis tipo “g”, fusíveis tipo “a” ou disjuntor somente magnético), independente, ou do disparador de um dispositivo multifunção (disjuntor-motor ou contator-disjuntor). No primeiro caso, o dispositivo deve ser instalado a montante do contator e do relé térmico e, em ambos os casos, a capacidade de interrupção do próprio dispositivo ou do dispositivo de potência associado deve ser superior ou, pelo menos, igual à corrente de curto-circuito presumida no ponto de aplicação considerado. Deve existir uma perfeita coordenação entre a proteção contra correntes de curto-circuito e a proteção contra correntes de sobrecarga — vale dizer, entre os fusíveis ou disjuntor e o relé térmico, no caso mais comum. Assim, a corrente que provoca a atuação dos fusíveis ou do disjuntor deve ser suficientemente elevada de modo a não ocasionar uma intervenção em condições de sobrecarga (a cargo do relé térmico) e suficientemente baixa a fim de evitar danos ao contator e ao relé quando de um curto-circuito. A figura 3 mostra a superposição das curvas (médias) de disparo de um relé térmico e de um fusível “g” e a figura 4 a superposição entre as curvas de um relé térmico e de um disjuntor somente magnético; Ic é a corrente correspondente à intersecção das curvas. Na prática, para que seja válida a coordenação, é necessário que o fusível ou o disjuntor suporte repetidamente, sem atuar, 0,75 Ic.
+
+Fig. 4 – Superposição das curvas médias de disjuntor (curva b) e relé térmico (curva a). b1 = disjuntor rápido; b2 = disjuntor limitador
+
+## Relatório de extração
+
+- Páginas processadas: 7.
+- Figuras/diagramas referenciados: 7.
+- Tabelas em grade reconstruídas em Markdown: 0.
+- Páginas com elementos vetoriais complexos sinalizados pelo diagnóstico: 0.
+- Modo: verbatim-limpo; cabeçalhos, rodapés, copyright recorrente e números de página foram removidos.
+- A hierarquia foi inferida conservadoramente por tamanho/peso da fonte e posição; descrições geradas estão explicitamente marcadas.

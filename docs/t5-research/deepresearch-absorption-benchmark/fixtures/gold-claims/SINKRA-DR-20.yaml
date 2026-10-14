@@ -1,0 +1,33 @@
+schema: sinkra-gold-claims-v1
+task_id: SINKRA-DR-20
+claims:
+- id: SINKRA-DR-20-C1
+  text: Claim gold sintético 1 para synthetic_private_kb.
+  required: true
+  source_refs:
+  - SINKRA-DR-20-S1
+- id: SINKRA-DR-20-C2
+  text: Claim gold sintético 2 para synthetic_private_kb.
+  required: true
+  source_refs:
+  - SINKRA-DR-20-S2
+- id: SINKRA-DR-20-C3
+  text: Claim gold sintético 3 para synthetic_private_kb.
+  required: true
+  source_refs:
+  - SINKRA-DR-20-S3
+- id: SINKRA-DR-20-C4
+  text: Claim gold sintético 4 para synthetic_private_kb.
+  required: false
+  source_refs:
+  - SINKRA-DR-20-S4
+- id: SINKRA-DR-20-C5
+  text: Claim gold sintético 5 para synthetic_private_kb.
+  required: false
+  source_refs:
+  - SINKRA-DR-20-S5
+- id: SINKRA-DR-20-C6
+  text: Claim gold sintético 6 para synthetic_private_kb.
+  required: false
+  source_refs:
+  - SINKRA-DR-20-S6

@@ -1,0 +1,988 @@
+{
+  "bench": {
+    "id": "slides-creator-open-source-absorption",
+    "type": "open-source-absorption",
+    "variant": "9-way",
+    "created_at": "2026-05-17",
+    "analyst": "spy-bench-analyst",
+    "status": "complete-v4-micro-matrix",
+    "updated_at": "2026-05-18"
+  },
+  "subjects": [
+    {
+      "key": "slides_creator",
+      "name": "slide creator skill",
+      "category": "internal_squad"
+    },
+    {
+      "key": "ppt_master",
+      "name": "ppt-master",
+      "category": "open_source_renderer"
+    },
+    {
+      "key": "presenton",
+      "name": "Presenton",
+      "category": "open_source_app_api"
+    },
+    {
+      "key": "pptagent",
+      "name": "PPTAgent",
+      "category": "open_source_agentic_planner"
+    },
+    {
+      "key": "banana_slides",
+      "name": "banana-slides",
+      "category": "open_source_editor_ux"
+    },
+    {
+      "key": "presentation_ai",
+      "name": "presentation-ai",
+      "category": "open_source_editor_ux"
+    },
+    {
+      "key": "powerpoint_skill",
+      "name": "powerpoint-skill",
+      "category": "open_source_skill"
+    },
+    {
+      "key": "slide_deck_ai",
+      "name": "slide-deck-ai",
+      "category": "open_source_cli"
+    },
+    {
+      "key": "presentagent_2",
+      "name": "PresentAgent-2",
+      "category": "open_source_multimodal_agent"
+    }
+  ],
+  "scoring": {
+    "scale": "0-100 per microdimension; weighted total uses weights summing to 100",
+    "dimensions": [
+      {
+        "id": "input_prompt_generation__intent_capture",
+        "parent_id": "input_prompt_generation",
+        "name": "Captura intenção, público, tese e restrições antes de gerar",
+        "group": "Entrada",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de input_prompt_generation; pergunta: O player força briefing suficiente antes de escrever slides?"
+      },
+      {
+        "id": "input_prompt_generation__outline_prompting",
+        "parent_id": "input_prompt_generation",
+        "name": "Transforma prompt em outline revisável antes do deck",
+        "group": "Entrada",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de input_prompt_generation; pergunta: Existe etapa explícita de outline/estrutura antes da geração final?"
+      },
+      {
+        "id": "input_prompt_generation__full_deck_autonomy",
+        "parent_id": "input_prompt_generation",
+        "name": "Gera deck completo a partir de ideia curta",
+        "group": "Entrada",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de input_prompt_generation; pergunta: Consegue sair de prompt curto para deck inteiro com pouca intervenção?"
+      },
+      {
+        "id": "document_ingestion__file_type_coverage",
+        "parent_id": "document_ingestion",
+        "name": "Cobertura de tipos PDF/DOCX/PPTX/MD",
+        "group": "Entrada",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de document_ingestion; pergunta: Quais formatos reais são aceitos como entrada?"
+      },
+      {
+        "id": "document_ingestion__semantic_extraction",
+        "parent_id": "document_ingestion",
+        "name": "Extração semântica de claims, seções, tabelas e evidências",
+        "group": "Entrada",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de document_ingestion; pergunta: A ingestão preserva significado e não só texto bruto?"
+      },
+      {
+        "id": "document_ingestion__pptx_reverse_ingestion",
+        "parent_id": "document_ingestion",
+        "name": "Ingestão/reaproveitamento de PPTX existente",
+        "group": "Entrada",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de document_ingestion; pergunta: Consegue ler/renovar/importar PPTX como fonte ou template?"
+      },
+      {
+        "id": "url_youtube_ingestion__url_fetch",
+        "parent_id": "url_youtube_ingestion",
+        "name": "Ingestão de URL/site/documento remoto",
+        "group": "Entrada",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de url_youtube_ingestion; pergunta: Lê páginas ou documentos remotos sem copiar manualmente?"
+      },
+      {
+        "id": "url_youtube_ingestion__youtube_media",
+        "parent_id": "url_youtube_ingestion",
+        "name": "YouTube/vídeo como fonte de narrativa",
+        "group": "Entrada",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de url_youtube_ingestion; pergunta: Usa vídeo/transcrição/mídia como insumo para slides?"
+      },
+      {
+        "id": "url_youtube_ingestion__media_to_slide_mapping",
+        "parent_id": "url_youtube_ingestion",
+        "name": "Mapeia mídia para momentos/trechos do deck",
+        "group": "Entrada",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de url_youtube_ingestion; pergunta: Relaciona trechos de vídeo/áudio com slides ou Q&A?"
+      },
+      {
+        "id": "source_grounding_research__source_routing",
+        "parent_id": "source_grounding_research",
+        "name": "Roteia fonte por tipo: web, scholar, local, vídeo ou benchmark",
+        "group": "Entrada",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de source_grounding_research; pergunta: Existe política de seleção de fontes por tipo?"
+      },
+      {
+        "id": "source_grounding_research__claim_evidence_trace",
+        "parent_id": "source_grounding_research",
+        "name": "Liga claim a evidência e confiança",
+        "group": "Entrada",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de source_grounding_research; pergunta: Cada afirmação crítica pode virar ledger?"
+      },
+      {
+        "id": "source_grounding_research__freshness_verification",
+        "parent_id": "source_grounding_research",
+        "name": "Verifica frescor e risco factual",
+        "group": "Entrada",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de source_grounding_research; pergunta: Há cuidado explícito com data, fonte primária e obsolescência?"
+      },
+      {
+        "id": "outline_first_workflow__editable_outline",
+        "parent_id": "outline_first_workflow",
+        "name": "Outline editável antes da geração",
+        "group": "Planejamento",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de outline_first_workflow; pergunta: Usuário consegue revisar estrutura antes do render?"
+      },
+      {
+        "id": "outline_first_workflow__section_hierarchy",
+        "parent_id": "outline_first_workflow",
+        "name": "Hierarquia seções > slides > beats",
+        "group": "Planejamento",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de outline_first_workflow; pergunta: O outline carrega função por seção e slide?"
+      },
+      {
+        "id": "outline_first_workflow__outline_to_slide_trace",
+        "parent_id": "outline_first_workflow",
+        "name": "Rastreio outline -> slide final",
+        "group": "Planejamento",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de outline_first_workflow; pergunta: A decisão estrutural permanece auditável até o deck?"
+      },
+      {
+        "id": "consultative_narrative__belief_shift",
+        "parent_id": "consultative_narrative",
+        "name": "Define mudança de crença da audiência",
+        "group": "Planejamento",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de consultative_narrative; pergunta: A narrativa declara de onde a audiência sai e para onde vai?"
+      },
+      {
+        "id": "consultative_narrative__executive_pyramid",
+        "parent_id": "consultative_narrative",
+        "name": "Usa lógica SCQA/Pyramid/action-title",
+        "group": "Planejamento",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de consultative_narrative; pergunta: Há mecanismo consultivo para síntese executiva?"
+      },
+      {
+        "id": "consultative_narrative__cta_decision_design",
+        "parent_id": "consultative_narrative",
+        "name": "Conecta história ao CTA ou decisão final",
+        "group": "Planejamento",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de consultative_narrative; pergunta: O deck fecha com decisão, próximo passo ou venda clara?"
+      },
+      {
+        "id": "slide_structure_planning__slide_function_map",
+        "parent_id": "slide_structure_planning",
+        "name": "Mapa de função por slide",
+        "group": "Planejamento",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de slide_structure_planning; pergunta: Cada slide tem função, mensagem e razão de existir?"
+      },
+      {
+        "id": "slide_structure_planning__key_slide_critique",
+        "parent_id": "slide_structure_planning",
+        "name": "Critica slides decisivos antes da produção total",
+        "group": "Planejamento",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de slide_structure_planning; pergunta: Capa, reframe, mecanismo, prova e CTA são avaliados cedo?"
+      },
+      {
+        "id": "slide_structure_planning__speaker_flow",
+        "parent_id": "slide_structure_planning",
+        "name": "Fluxo de fala/transição entre slides",
+        "group": "Planejamento",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de slide_structure_planning; pergunta: O planejamento inclui ritmo e transições orais?"
+      },
+      {
+        "id": "visual_layout_quality__layout_variety",
+        "parent_id": "visual_layout_quality",
+        "name": "Variedade de layout sem virar colagem",
+        "group": "Design",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de visual_layout_quality; pergunta: Evita repetição de cards/bullets e mantém coerência?"
+      },
+      {
+        "id": "visual_layout_quality__visual_density_control",
+        "parent_id": "visual_layout_quality",
+        "name": "Controle de densidade e legibilidade",
+        "group": "Design",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de visual_layout_quality; pergunta: Define limites de texto, hierarquia e respiro?"
+      },
+      {
+        "id": "visual_layout_quality__rendered_visual_quality",
+        "parent_id": "visual_layout_quality",
+        "name": "Qualidade visual observada no render final",
+        "group": "Design",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de visual_layout_quality; pergunta: O output final parece polido e apresentável?"
+      },
+      {
+        "id": "template_import_replication__template_manifest",
+        "parent_id": "template_import_replication",
+        "name": "Manifesta templates importados",
+        "group": "Design",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de template_import_replication; pergunta: Extrai masters, layouts, fontes, cores e assets?"
+      },
+      {
+        "id": "template_import_replication__brand_fidelity",
+        "parent_id": "template_import_replication",
+        "name": "Replica linguagem visual de template/brand deck",
+        "group": "Design",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de template_import_replication; pergunta: Consegue seguir um deck de referência sem só copiar estética superficial?"
+      },
+      {
+        "id": "template_import_replication__template_selection_logic",
+        "parent_id": "template_import_replication",
+        "name": "Seleciona template por função do slide",
+        "group": "Design",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de template_import_replication; pergunta: Escolhe estrutura por job-to-be-done, não só aparência?"
+      },
+      {
+        "id": "theme_tokens_branding__token_schema",
+        "parent_id": "theme_tokens_branding",
+        "name": "Tokens de cor, fonte, espaçamento e grid",
+        "group": "Design",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de theme_tokens_branding; pergunta: Existe contrato explícito de design tokens?"
+      },
+      {
+        "id": "theme_tokens_branding__theme_runtime",
+        "parent_id": "theme_tokens_branding",
+        "name": "Runtime aplica tema consistentemente",
+        "group": "Design",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de theme_tokens_branding; pergunta: O tema realmente chega ao render/editor?"
+      },
+      {
+        "id": "theme_tokens_branding__brand_guardrails",
+        "parent_id": "theme_tokens_branding",
+        "name": "Guardrails de marca e anti-padrões",
+        "group": "Design",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de theme_tokens_branding; pergunta: Há regras para impedir design fora da marca?"
+      },
+      {
+        "id": "native_pptx_objects__drawingml_shapes",
+        "parent_id": "native_pptx_objects",
+        "name": "Gera shapes/textos nativos DrawingML",
+        "group": "Renderização",
+        "weight_pct": 1.6667,
+        "rationale": "Microdimensão v4 derivada de native_pptx_objects; pergunta: Texto, formas e layout são editáveis no PowerPoint?"
+      },
+      {
+        "id": "native_pptx_objects__image_vs_object_policy",
+        "parent_id": "native_pptx_objects",
+        "name": "Evita transformar tudo em imagem",
+        "group": "Renderização",
+        "weight_pct": 1.6667,
+        "rationale": "Microdimensão v4 derivada de native_pptx_objects; pergunta: Há política para quando usar imagem vs objeto editável?"
+      },
+      {
+        "id": "native_pptx_objects__powerpoint_reopen_fidelity",
+        "parent_id": "native_pptx_objects",
+        "name": "Reabre no PowerPoint sem quebrar layout",
+        "group": "Renderização",
+        "weight_pct": 1.6667,
+        "rationale": "Microdimensão v4 derivada de native_pptx_objects; pergunta: O arquivo abre em PowerPoint com fidelidade real?"
+      },
+      {
+        "id": "charts_tables_native__native_charts",
+        "parent_id": "charts_tables_native",
+        "name": "Charts nativos e editáveis",
+        "group": "Renderização",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de charts_tables_native; pergunta: Gráficos são objetos nativos, não screenshots?"
+      },
+      {
+        "id": "charts_tables_native__table_rebuild",
+        "parent_id": "charts_tables_native",
+        "name": "Reconstrói tabelas com hierarquia e destaques",
+        "group": "Renderização",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de charts_tables_native; pergunta: Tabelas são recriadas com formatação, headers e insights?"
+      },
+      {
+        "id": "charts_tables_native__data_contract",
+        "parent_id": "charts_tables_native",
+        "name": "Contrato de dados para charts/tabelas",
+        "group": "Renderização",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de charts_tables_native; pergunta: Valida shape de dados antes de renderizar?"
+      },
+      {
+        "id": "math_diagrams_technical__latex_omml",
+        "parent_id": "math_diagrams_technical",
+        "name": "LaTeX/OMML para matemática editável ou nítida",
+        "group": "Renderização",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de math_diagrams_technical; pergunta: Fórmulas têm pipeline técnico controlado?"
+      },
+      {
+        "id": "math_diagrams_technical__diagram_engines",
+        "parent_id": "math_diagrams_technical",
+        "name": "Mermaid/Graphviz/TikZ/diagram engines",
+        "group": "Renderização",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de math_diagrams_technical; pergunta: Diagramas técnicos são gerados por engine apropriado?"
+      },
+      {
+        "id": "math_diagrams_technical__technical_visual_qa",
+        "parent_id": "math_diagrams_technical",
+        "name": "QA técnico de overflow, tema e legibilidade",
+        "group": "Renderização",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de math_diagrams_technical; pergunta: Verifica clipping, cores e legibilidade de diagramas?"
+      },
+      {
+        "id": "animations_transitions_ooxml__global_animation_defaults",
+        "parent_id": "animations_transitions_ooxml",
+        "name": "Animações/transições padrão",
+        "group": "Renderização",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de animations_transitions_ooxml; pergunta: Tem padrão de animação exportável?"
+      },
+      {
+        "id": "animations_transitions_ooxml__object_animation_control",
+        "parent_id": "animations_transitions_ooxml",
+        "name": "Controle por objeto/ordem/timing",
+        "group": "Renderização",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de animations_transitions_ooxml; pergunta: Permite ajustar animação de objeto específico?"
+      },
+      {
+        "id": "animations_transitions_ooxml__animation_validation",
+        "parent_id": "animations_transitions_ooxml",
+        "name": "Valida configuração de animações",
+        "group": "Renderização",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de animations_transitions_ooxml; pergunta: Há validação para animação antes do export?"
+      },
+      {
+        "id": "narration_audio__speaker_notes",
+        "parent_id": "narration_audio",
+        "name": "Speaker notes estruturadas",
+        "group": "Multimídia",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de narration_audio; pergunta: Notas ajudam apresentação e não viram script ruim?"
+      },
+      {
+        "id": "narration_audio__tts_voiceover",
+        "parent_id": "narration_audio",
+        "name": "TTS/narração automática",
+        "group": "Multimídia",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de narration_audio; pergunta: Gera áudio narrado ou voiceover?"
+      },
+      {
+        "id": "narration_audio__audio_sync",
+        "parent_id": "narration_audio",
+        "name": "Sincroniza áudio com slide/trecho",
+        "group": "Multimídia",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de narration_audio; pergunta: Áudio se conecta ao momento visual?"
+      },
+      {
+        "id": "video_export__ppt_to_video",
+        "parent_id": "video_export",
+        "name": "Exporta deck para vídeo/MP4",
+        "group": "Multimídia",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de video_export; pergunta: Consegue produzir vídeo de apresentação?"
+      },
+      {
+        "id": "video_export__interactive_video_qa",
+        "parent_id": "video_export",
+        "name": "Q&A ou navegação sobre vídeo",
+        "group": "Multimídia",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de video_export; pergunta: Permite interação com vídeo/documento?"
+      },
+      {
+        "id": "video_export__media_asset_pipeline",
+        "parent_id": "video_export",
+        "name": "Pipeline de assets multimídia",
+        "group": "Multimídia",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de video_export; pergunta: Organiza imagens/áudio/vídeo como artefatos?"
+      },
+      {
+        "id": "live_preview_annotations__live_preview_server",
+        "parent_id": "live_preview_annotations",
+        "name": "Preview vivo local/web",
+        "group": "Editor",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de live_preview_annotations; pergunta: Renderiza preview clicável durante produção?"
+      },
+      {
+        "id": "live_preview_annotations__visual_annotation_loop",
+        "parent_id": "live_preview_annotations",
+        "name": "Anotações visuais viram correções",
+        "group": "Editor",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de live_preview_annotations; pergunta: Usuário consegue marcar e aplicar ajuste visual?"
+      },
+      {
+        "id": "live_preview_annotations__render_snapshot_review",
+        "parent_id": "live_preview_annotations",
+        "name": "Revisão por screenshot/thumbnail",
+        "group": "Editor",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de live_preview_annotations; pergunta: Gera imagem para QA antes de entregar?"
+      },
+      {
+        "id": "prompt_to_edit__natural_language_edit",
+        "parent_id": "prompt_to_edit",
+        "name": "Edição por linguagem natural",
+        "group": "Editor",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de prompt_to_edit; pergunta: Prompt altera deck/slide sem mexer no código?"
+      },
+      {
+        "id": "prompt_to_edit__diff_before_apply",
+        "parent_id": "prompt_to_edit",
+        "name": "Diff antes de aplicar edição",
+        "group": "Editor",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de prompt_to_edit; pergunta: Mostra mudança proposta antes de modificar artefato?"
+      },
+      {
+        "id": "prompt_to_edit__edit_history",
+        "parent_id": "prompt_to_edit",
+        "name": "Histórico reversível de edição",
+        "group": "Editor",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de prompt_to_edit; pergunta: Registra quem mudou o quê e por quê?"
+      },
+      {
+        "id": "regional_element_editing__slide_region_targeting",
+        "parent_id": "regional_element_editing",
+        "name": "Target por slide, região ou elemento",
+        "group": "Editor",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de regional_element_editing; pergunta: Prompt seleciona parte específica do slide?"
+      },
+      {
+        "id": "regional_element_editing__object_identity",
+        "parent_id": "regional_element_editing",
+        "name": "Identidade estável de objetos",
+        "group": "Editor",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de regional_element_editing; pergunta: Objetos têm IDs/paths para edição precisa?"
+      },
+      {
+        "id": "regional_element_editing__localized_visual_regen",
+        "parent_id": "regional_element_editing",
+        "name": "Regenera só a área necessária",
+        "group": "Editor",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de regional_element_editing; pergunta: Evita refazer o deck inteiro para uma correção pequena?"
+      },
+      {
+        "id": "web_editor_runtime__canvas_editor",
+        "parent_id": "web_editor_runtime",
+        "name": "Canvas/editor web para slides",
+        "group": "Editor",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de web_editor_runtime; pergunta: Existe editor visual real?"
+      },
+      {
+        "id": "web_editor_runtime__rich_text_blocks",
+        "parent_id": "web_editor_runtime",
+        "name": "Blocos ricos: texto, mídia, charts, componentes",
+        "group": "Editor",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de web_editor_runtime; pergunta: Editor manipula blocos além de texto?"
+      },
+      {
+        "id": "web_editor_runtime__state_management_undo",
+        "parent_id": "web_editor_runtime",
+        "name": "Estado, undo/redo e persistência",
+        "group": "Editor",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de web_editor_runtime; pergunta: Runtime tem estado robusto para edição?"
+      },
+      {
+        "id": "collaboration_realtime__review_comments",
+        "parent_id": "collaboration_realtime",
+        "name": "Comentários/revisão assíncrona",
+        "group": "Editor",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de collaboration_realtime; pergunta: Permite revisão colaborativa?"
+      },
+      {
+        "id": "collaboration_realtime__multi_user_realtime",
+        "parent_id": "collaboration_realtime",
+        "name": "Colaboração multiusuário em tempo real",
+        "group": "Editor",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de collaboration_realtime; pergunta: Suporta coedição simultânea?"
+      },
+      {
+        "id": "collaboration_realtime__approval_workflow",
+        "parent_id": "collaboration_realtime",
+        "name": "Workflow de aprovação/versões",
+        "group": "Editor",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de collaboration_realtime; pergunta: Aprovação e versionamento são explícitos?"
+      },
+      {
+        "id": "sharing_publishing__public_link",
+        "parent_id": "sharing_publishing",
+        "name": "Link público/privado para apresentar",
+        "group": "Distribuição",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de sharing_publishing; pergunta: Publica deck em URL?"
+      },
+      {
+        "id": "sharing_publishing__export_formats",
+        "parent_id": "sharing_publishing",
+        "name": "Export PDF/PPTX/imagens",
+        "group": "Distribuição",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de sharing_publishing; pergunta: Entrega formatos esperados para cliente?"
+      },
+      {
+        "id": "sharing_publishing__permission_model",
+        "parent_id": "sharing_publishing",
+        "name": "Permissões e controle de acesso",
+        "group": "Distribuição",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de sharing_publishing; pergunta: Distingue público, privado e compartilhado?"
+      },
+      {
+        "id": "deck_analytics__view_events",
+        "parent_id": "deck_analytics",
+        "name": "Eventos de visualização por deck/slide",
+        "group": "Distribuição",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de deck_analytics; pergunta: Mede views, tempo ou progressão?"
+      },
+      {
+        "id": "deck_analytics__engagement_insight",
+        "parent_id": "deck_analytics",
+        "name": "Insights de engajamento acionáveis",
+        "group": "Distribuição",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de deck_analytics; pergunta: Mostra onde audiência engaja ou abandona?"
+      },
+      {
+        "id": "deck_analytics__crm_followup_signal",
+        "parent_id": "deck_analytics",
+        "name": "Sinal para follow-up comercial",
+        "group": "Distribuição",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de deck_analytics; pergunta: Analytics alimenta próxima ação de vendas?"
+      },
+      {
+        "id": "api_generation__rest_generate_endpoint",
+        "parent_id": "api_generation",
+        "name": "Endpoint REST para gerar deck",
+        "group": "Automação",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de api_generation; pergunta: Há API documentada para geração?"
+      },
+      {
+        "id": "api_generation__job_queue_status",
+        "parent_id": "api_generation",
+        "name": "Job assíncrono com status e artefatos",
+        "group": "Automação",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de api_generation; pergunta: Geração longa tem fila/status/retry?"
+      },
+      {
+        "id": "api_generation__api_contract_schema",
+        "parent_id": "api_generation",
+        "name": "Contrato estável de input/output",
+        "group": "Automação",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de api_generation; pergunta: API tem schema/contrato claro?"
+      },
+      {
+        "id": "mcp_automation__mcp_server_tools",
+        "parent_id": "mcp_automation",
+        "name": "MCP/tools para geração e edição",
+        "group": "Automação",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de mcp_automation; pergunta: Expõe capacidades para agentes?"
+      },
+      {
+        "id": "mcp_automation__agent_orchestration",
+        "parent_id": "mcp_automation",
+        "name": "Orquestra etapas por agente/workflow",
+        "group": "Automação",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de mcp_automation; pergunta: Planeja, executa, revisa e corrige via agentes?"
+      },
+      {
+        "id": "mcp_automation__tool_safety_boundaries",
+        "parent_id": "mcp_automation",
+        "name": "Limites de ferramenta e segurança operacional",
+        "group": "Automação",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de mcp_automation; pergunta: Evita ações perigosas ou não verificadas?"
+      },
+      {
+        "id": "cli_headless__batch_generation",
+        "parent_id": "cli_headless",
+        "name": "Batch/headless para múltiplos decks",
+        "group": "Automação",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de cli_headless; pergunta: Roda sem UI e em lote?"
+      },
+      {
+        "id": "cli_headless__local_cli_commands",
+        "parent_id": "cli_headless",
+        "name": "CLI clara para gerar/exportar/revisar",
+        "group": "Automação",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de cli_headless; pergunta: Comandos são documentados e reproduzíveis?"
+      },
+      {
+        "id": "cli_headless__ci_automation_fit",
+        "parent_id": "cli_headless",
+        "name": "Cabe em CI ou pipeline automatizado",
+        "group": "Automação",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de cli_headless; pergunta: É adequado para automação testável?"
+      },
+      {
+        "id": "provider_registry__llm_provider_switching",
+        "parent_id": "provider_registry",
+        "name": "Troca de provedores LLM",
+        "group": "IA",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de provider_registry; pergunta: Suporta OpenAI/Gemini/Anthropic/local?"
+      },
+      {
+        "id": "provider_registry__image_provider_switching",
+        "parent_id": "provider_registry",
+        "name": "Troca de provedores de imagem/stock",
+        "group": "IA",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de provider_registry; pergunta: DALL-E/Gemini/Pexels/stock etc. são roteáveis?"
+      },
+      {
+        "id": "provider_registry__provider_policy",
+        "parent_id": "provider_registry",
+        "name": "Política de custo, privacidade e fallback",
+        "group": "IA",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de provider_registry; pergunta: Escolhe provedor por restrição, não só disponibilidade?"
+      },
+      {
+        "id": "local_byok_ollama__byok_config",
+        "parent_id": "local_byok_ollama",
+        "name": "BYOK explícito",
+        "group": "IA",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de local_byok_ollama; pergunta: Usuário traz chave sem lock-in?"
+      },
+      {
+        "id": "local_byok_ollama__ollama_lmstudio",
+        "parent_id": "local_byok_ollama",
+        "name": "Ollama/LM Studio/modelos locais",
+        "group": "IA",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de local_byok_ollama; pergunta: Roda com modelos locais?"
+      },
+      {
+        "id": "local_byok_ollama__privacy_mode",
+        "parent_id": "local_byok_ollama",
+        "name": "Modo privacidade sem SaaS obrigatório",
+        "group": "IA",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de local_byok_ollama; pergunta: Pode operar sem enviar dados para SaaS externo?"
+      },
+      {
+        "id": "docker_self_hosted__docker_compose",
+        "parent_id": "docker_self_hosted",
+        "name": "Docker Compose/local deploy",
+        "group": "Infra",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de docker_self_hosted; pergunta: Subir localmente é documentado?"
+      },
+      {
+        "id": "docker_self_hosted__service_topology",
+        "parent_id": "docker_self_hosted",
+        "name": "Topologia serviços app/API/storage",
+        "group": "Infra",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de docker_self_hosted; pergunta: Arquitetura self-hosted está clara?"
+      },
+      {
+        "id": "docker_self_hosted__production_ops",
+        "parent_id": "docker_self_hosted",
+        "name": "Operação: env, storage, logs, upgrade",
+        "group": "Infra",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de docker_self_hosted; pergunta: Tem sinal de produção, não só demo?"
+      },
+      {
+        "id": "desktop_app__desktop_packaging",
+        "parent_id": "desktop_app",
+        "name": "App desktop empacotado",
+        "group": "Infra",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de desktop_app; pergunta: Tem desktop para Mac/Windows/Linux?"
+      },
+      {
+        "id": "desktop_app__offline_local_use",
+        "parent_id": "desktop_app",
+        "name": "Uso local/offline prático",
+        "group": "Infra",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de desktop_app; pergunta: Funciona sem serviço remoto obrigatório?"
+      },
+      {
+        "id": "desktop_app__installer_update_path",
+        "parent_id": "desktop_app",
+        "name": "Instalador e atualização",
+        "group": "Infra",
+        "weight_pct": 0.6667,
+        "rationale": "Microdimensão v4 derivada de desktop_app; pergunta: Distribuição desktop parece sustentável?"
+      },
+      {
+        "id": "qa_evaluation_rubric__narrative_qa",
+        "parent_id": "qa_evaluation_rubric",
+        "name": "QA de narrativa, tese e CTA",
+        "group": "Qualidade",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de qa_evaluation_rubric; pergunta: Avalia se a história convence?"
+      },
+      {
+        "id": "qa_evaluation_rubric__visual_qa",
+        "parent_id": "qa_evaluation_rubric",
+        "name": "QA visual/rendered key slides",
+        "group": "Qualidade",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de qa_evaluation_rubric; pergunta: Avalia output visual, não só texto?"
+      },
+      {
+        "id": "qa_evaluation_rubric__release_killer_items",
+        "parent_id": "qa_evaluation_rubric",
+        "name": "Itens bloqueantes de release",
+        "group": "Qualidade",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de qa_evaluation_rubric; pergunta: Há critérios que impedem entrega mesmo com média alta?"
+      },
+      {
+        "id": "editability_qa__pptx_object_inspection",
+        "parent_id": "editability_qa",
+        "name": "Inspeciona objetos editáveis no PPTX",
+        "group": "Qualidade",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de editability_qa; pergunta: Valida shapes/text/charts editáveis?"
+      },
+      {
+        "id": "editability_qa__placeholder_residue_check",
+        "parent_id": "editability_qa",
+        "name": "Verifica placeholders/resíduos técnicos",
+        "group": "Qualidade",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de editability_qa; pergunta: Procura marcadores não substituídos e XML quebrado?"
+      },
+      {
+        "id": "editability_qa__roundtrip_powerpoint",
+        "parent_id": "editability_qa",
+        "name": "Roundtrip PowerPoint/LibreOffice/PDF",
+        "group": "Qualidade",
+        "weight_pct": 1.3333,
+        "rationale": "Microdimensão v4 derivada de editability_qa; pergunta: Abre/converte para provar integridade?"
+      },
+      {
+        "id": "test_fixtures_ci__unit_integration_tests",
+        "parent_id": "test_fixtures_ci",
+        "name": "Testes unitários/integração",
+        "group": "Qualidade",
+        "weight_pct": 0.3333,
+        "rationale": "Microdimensão v4 derivada de test_fixtures_ci; pergunta: Há testes reais cobrindo pipeline?"
+      },
+      {
+        "id": "test_fixtures_ci__golden_deck_fixtures",
+        "parent_id": "test_fixtures_ci",
+        "name": "Fixtures/golden decks",
+        "group": "Qualidade",
+        "weight_pct": 0.3333,
+        "rationale": "Microdimensão v4 derivada de test_fixtures_ci; pergunta: Tem decks de regressão para comparar output?"
+      },
+      {
+        "id": "test_fixtures_ci__ci_quality_gate",
+        "parent_id": "test_fixtures_ci",
+        "name": "Quality gate executável em CI",
+        "group": "Qualidade",
+        "weight_pct": 0.3333,
+        "rationale": "Microdimensão v4 derivada de test_fixtures_ci; pergunta: Validação automatizada bloqueia regressões?"
+      },
+      {
+        "id": "documentation_depth__operator_docs",
+        "parent_id": "documentation_depth",
+        "name": "Docs operacionais para usuário/agente",
+        "group": "Maturidade",
+        "weight_pct": 0.3333,
+        "rationale": "Microdimensão v4 derivada de documentation_depth; pergunta: Instruções são claras para rodar o sistema?"
+      },
+      {
+        "id": "documentation_depth__developer_docs",
+        "parent_id": "documentation_depth",
+        "name": "Docs de arquitetura/extensão",
+        "group": "Maturidade",
+        "weight_pct": 0.3333,
+        "rationale": "Microdimensão v4 derivada de documentation_depth; pergunta: Explica como contribuir e estender?"
+      },
+      {
+        "id": "documentation_depth__example_library",
+        "parent_id": "documentation_depth",
+        "name": "Exemplos e templates documentados",
+        "group": "Maturidade",
+        "weight_pct": 0.3333,
+        "rationale": "Microdimensão v4 derivada de documentation_depth; pergunta: Há biblioteca de exemplos reutilizáveis?"
+      },
+      {
+        "id": "license_absorption_safety__license_clarity",
+        "parent_id": "license_absorption_safety",
+        "name": "Licença clara no repositório",
+        "group": "Risco",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de license_absorption_safety; pergunta: A licença é explícita e compatível?"
+      },
+      {
+        "id": "license_absorption_safety__code_reuse_safety",
+        "parent_id": "license_absorption_safety",
+        "name": "Segurança para copiar/adaptar código",
+        "group": "Risco",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de license_absorption_safety; pergunta: Podemos absorver código sem risco?"
+      },
+      {
+        "id": "license_absorption_safety__behavioral_absorption_safety",
+        "parent_id": "license_absorption_safety",
+        "name": "Segurança para absorver padrão/comportamento",
+        "group": "Risco",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de license_absorption_safety; pergunta: Mesmo sem copiar código, dá para absorver padrões?"
+      },
+      {
+        "id": "ecosystem_maturity__repo_activity_size",
+        "parent_id": "ecosystem_maturity",
+        "name": "Tamanho/atividade/sinais de manutenção",
+        "group": "Maturidade",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de ecosystem_maturity; pergunta: Projeto parece mantido e com massa crítica?"
+      },
+      {
+        "id": "ecosystem_maturity__architecture_cohesion",
+        "parent_id": "ecosystem_maturity",
+        "name": "Coesão arquitetural",
+        "group": "Maturidade",
+        "weight_pct": 1,
+        "rationale": "Microdimensão v4 derivada de ecosystem_maturity; pergunta: Código e artefatos formam sistema coerente?"
+      },
+      {
+        "id": "ecosystem_maturity__absorption_cost",
+        "parent_id": "ecosystem_maturity",
+        "name": "Custo de absorção para SINKRA",
+        "group": "Maturidade",
+        "weight_pct": 0.9995,
+        "rationale": "Microdimensão v4 derivada de ecosystem_maturity; pergunta: Quanto menor esforço para absorver com segurança, maior score."
+      }
+    ],
+    "version": "v4_micro_108",
+    "players": 9,
+    "cells": 972,
+    "weights_sum": 100,
+    "leader": {
+      "player": "ppt_master",
+      "label": "ppt-master",
+      "score": 74.79,
+      "by_group": {
+        "Entrada": 75.59,
+        "Planejamento": 65.93,
+        "Design": 88.22,
+        "Renderização": 93.72,
+        "Multimídia": 91.5,
+        "Editor": 72.42,
+        "Distribuição": 29.8,
+        "Automação": 52.88,
+        "IA": 86.67,
+        "Infra": 53,
+        "Qualidade": 87.33,
+        "Maturidade": 86.67,
+        "Risco": 95
+      }
+    },
+    "segmented": {
+      "comparisons": 3,
+      "dimensions": 72,
+      "cells": 264,
+      "winners": [
+        {
+          "comparison": "apps",
+          "label": "Apps e produto final",
+          "winner": "Presenton",
+          "score": 80.77,
+          "gap_to_second": 3.86
+        },
+        {
+          "comparison": "skills_agentic",
+          "label": "Skills, agentes e workflows",
+          "winner": "slide creator skill",
+          "score": 81.15,
+          "gap_to_second": 4.14
+        },
+        {
+          "comparison": "engines_runtime",
+          "label": "Engines, renderer e runtime",
+          "winner": "ppt-master",
+          "score": 82.13,
+          "gap_to_second": 8.02
+        }
+      ]
+    },
+    "absolute_ranking_warning": "Consolidated 9-way score is an absorption map, not a fair absolute ranking across apps, skills, agents and renderers.",
+    "micro_dimensions": 108,
+    "macro_dimensions": 36
+  },
+  "context": {
+    "central_tension": "Criar uma stack própria que fique à altura do Gamma sem virar clone: slides-creator como cérebro governado, open-source como fonte de capacidades específicas.",
+    "recommended_strategy": "Absorver capacidades, não forkear um projeto único.",
+    "local_clone_root": "../bench",
+    "internal_target": "squads/slides-creator"
+  }
+}

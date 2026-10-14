@@ -1,0 +1,502 @@
+# =============================================================================
+# regression-v1-compat.yaml
+# Backward Compatibility Regression Suite — Story 5.3 (EPIC-SC-V2-001)
+#
+# Defines 6 regression tests proving v1 decks, QA reports, schemas, templates,
+# and pipeline steps continue to work identically after v2 upgrades.
+#
+# Cross-references: validate-contracts.sh (Story 4.4)
+# =============================================================================
+
+suite:
+  name: "Backward Compatibility Regression Suite"
+  id: "regression-v1-compat"
+  version: "1.0.0"
+  story: "5.3"
+  epic: "EPIC-SC-V2-001"
+  description: >-
+    Proves that all v1 functionality remains intact after the v2 upgrade.
+    Every test must PASS before any v2 feature is merged to main.
+  contract_validator: "squads/slides-creator/scripts/validate-contracts.sh"
+
+# ---------------------------------------------------------------------------
+# Feature Flags — must be OFF for v1 regression baseline
+# ---------------------------------------------------------------------------
+feature_flags_v1_baseline:
+  ENABLE_VISUAL_GENERATION: false
+  ENABLE_ANDRAGOGY: false
+  ENABLE_YOUTUBE_ENTRYPOINT: false
+
+# ---------------------------------------------------------------------------
+# Test 1: v1 Deck — All Feature Flags OFF
+# ---------------------------------------------------------------------------
+tests:
+  - id: T1
+    name: "v1 deck generates identically with all feature flags OFF"
+    acceptance_criteria: "Deck v1 (sem nenhum campo novo) gera identicamente com todas as feature flags desativadas"
+    category: backward_compat
+    priority: critical
+    feature_flags:
+      ENABLE_VISUAL_GENERATION: false
+      ENABLE_ANDRAGOGY: false
+      ENABLE_YOUTUBE_ENTRYPOINT: false
+    input:
+      briefing_fixture: "schemas/contracts/fixtures/briefing-v1-no-education.json"
+      description: >-
+        Standard v1 briefing: no education_mode, no youtube_source, no audience_profile.
+        Contains only required fields from briefing.normalized.json schema.
+    assertions:
+      - id: T1-A1
+        description: "Briefing validates against briefing.normalized.json schema"
+        method: schema_validation
+        schema: "squads/slides-creator/templates/briefing.normalized.json"
+        fixture: "schemas/contracts/fixtures/briefing-v1-no-education.json"
+        verify_with: "validate-contracts.sh --ci"
+      - id: T1-A2
+        description: "Pipeline skips youtube_ingest step (ENABLE_YOUTUBE_ENTRYPOINT=false)"
+        method: workflow_trace
+        workflow: "squads/slides-creator/workflows/generate-presentation.yaml"
+        expected_skip: ["youtube_ingest"]
+        expected_execute: ["briefing_contract", "reference_intake", "content", "template", "assets", "render", "qa", "release"]
+      - id: T1-A3
+        description: "Pipeline skips visual_strategy step (ENABLE_VISUAL_GENERATION=false)"
+        method: workflow_trace
+        expected_skip: ["visual_strategy"]
+        note: "Content step emits deck-manifest.json without visual_strategy fields — identical to v1"
+      - id: T1-A4
+        description: "No v2 optional fields appear in pipeline output"
+        method: output_inspection
+        absent_fields:
+          - "visual_strategy"
+          - "education_mode"
+          - "audience_profile"
+          - "youtube_source"
+          - "andragogy"
+    pass_criteria: "All 4 assertions pass"
+    fail_action: "HALT — v1 backward compatibility broken"
+
+  # ---------------------------------------------------------------------------
+  # Test 2: v1 Deck — Feature Flags ON (optional fields ignored)
+  # ---------------------------------------------------------------------------
+  - id: T2
+    name: "v1 deck generates correctly with feature flags ON"
+    acceptance_criteria: "Deck v1 gera corretamente com feature flags ativadas (novos campos opcionais ignorados)"
+    category: backward_compat
+    priority: critical
+    feature_flags:
+      ENABLE_VISUAL_GENERATION: true
+      ENABLE_ANDRAGOGY: true
+      ENABLE_YOUTUBE_ENTRYPOINT: true
+    input:
+      briefing_fixture: "schemas/contracts/fixtures/briefing-v1-no-education.json"
+      description: >-
+        Same v1 briefing as T1, but with all v2 feature flags enabled.
+        Pipeline must gracefully handle absence of optional v2 fields.
+    assertions:
+      - id: T2-A1
+        description: "Briefing still validates against schema (v2 fields are optional)"
+        method: schema_validation
+        schema: "squads/slides-creator/templates/briefing.normalized.json"
+        fixture: "schemas/contracts/fixtures/briefing-v1-no-education.json"
+      - id: T2-A2
+        description: "youtube_ingest skipped because input_type != 'youtube_url' (even with flag ON)"
+        method: workflow_trace
+        expected_skip: ["youtube_ingest"]
+        note: "Flag alone is not sufficient — input_type must also be youtube_url"
+      - id: T2-A3
+        description: "visual_strategy step runs but produces no-op (no visual content types to classify)"
+        method: workflow_trace
+        expected_behavior: "Step executes, detects no education_mode or visual cues, emits deck-manifest.json unchanged"
+      - id: T2-A4
+        description: "education_mode defaults to false when absent"
+        method: field_default_check
+        field: "education_mode"
+        expected_default: false
+        schema_source: "squads/slides-creator/templates/briefing.normalized.json"
+      - id: T2-A5
+        description: "Deck output is functionally equivalent to T1 (flags-OFF)"
+        method: output_comparison
+        compare_against: "T1"
+        tolerance: "byte-identical for manifest content fields"
+    pass_criteria: "All 5 assertions pass"
+    fail_action: "HALT — v2 flags break v1 payloads"
+
+  # ---------------------------------------------------------------------------
+  # Test 3: QA Report v1 — No Andragogy Dimension
+  # ---------------------------------------------------------------------------
+  - id: T3
+    name: "QA report v1 (no andragogy) has identical scores"
+    acceptance_criteria: "QA report v1 (sem andragogy dimension) tem scores identicos"
+    category: backward_compat
+    priority: critical
+    input:
+      qa_report_fixture: "schemas/contracts/fixtures/qa-report-v1.json"
+      qa_report_v2_fixture: "schemas/contracts/fixtures/qa-report-v2-education.json"
+      description: >-
+        v1 QA report with 4 dimensions (content, design, coherence, gad).
+        No andragogy dimension present.
+    assertions:
+      - id: T3-A1
+        description: "v1 QA report validates against qa-report.json schema v1.1.0"
+        method: schema_validation
+        schema: "squads/slides-creator/templates/qa-report.json"
+        fixture: "schemas/contracts/fixtures/qa-report-v1.json"
+      - id: T3-A2
+        description: "v1 weights sum to 1.00 (content=0.30 + design=0.30 + coherence=0.20 + gad=0.20)"
+        method: weight_validation
+        expected_weights:
+          content: 0.30
+          design: 0.30
+          coherence: 0.20
+          gad: 0.20
+        expected_sum: 1.00
+      - id: T3-A3
+        description: "composite_score calculated with v1 formula matches fixture value"
+        method: score_calculation
+        formula: "(content.score * 0.30) + (design.score * 0.30) + (coherence.score * 0.20) + (gad.score * 0.20)"
+        fixture: "schemas/contracts/fixtures/qa-report-v1.json"
+        expected_composite: 7.93
+        tolerance: 0.01
+      - id: T3-A4
+        description: "andragogy dimension absent or inactive in v1 report"
+        method: field_absence_check
+        field: "dimensions.andragogy"
+        accepted_states:
+          - absent
+          - "active: false"
+      - id: T3-A5
+        description: "v2 QA report (with andragogy) also validates — schema supports both"
+        method: schema_validation
+        schema: "squads/slides-creator/templates/qa-report.json"
+        fixture: "schemas/contracts/fixtures/qa-report-v2-education.json"
+    pass_criteria: "All 5 assertions pass"
+    fail_action: "HALT — QA scoring regression"
+
+  # ---------------------------------------------------------------------------
+  # Test 4: Schema Field Integrity
+  # ---------------------------------------------------------------------------
+  - id: T4
+    name: "No existing field removed or renamed in any schema"
+    acceptance_criteria: "Nenhum campo existente removido ou renomeado em qualquer schema"
+    category: schema_integrity
+    priority: critical
+    schemas_under_test:
+      - path: "squads/slides-creator/templates/briefing.normalized.json"
+        version: "1.2.0"
+        v1_required_fields:
+          - topic
+          - objective
+          - audience
+          - context
+          - duration_minutes
+          - format
+          - mode
+          - aspect_ratio
+          - induction_mode
+          - max_slides
+          - brand_config_resolved
+          - source_materials_count
+          - reference_assets_count
+          - output_targets
+          - warnings
+          - blockers
+      - path: "squads/slides-creator/templates/qa-report.json"
+        version: "1.1.0"
+        v1_required_fields:
+          - deck_id
+          - evaluated_at
+          - inputs
+          - dimensions
+          - composite_score
+          - thresholds
+          - verdict
+          - next_target
+          - killer_items
+      - path: "schemas/contracts/youtube-extraction.schema.json"
+        version: "1.0.0"
+        note: "New in v2 — no v1 baseline to regress against"
+      - path: "schemas/contracts/visual-generation-request.schema.json"
+        version: "1.0.0"
+        note: "New in v2 — no v1 baseline to regress against"
+      - path: "schemas/contracts/visual-generation-response.schema.json"
+        version: "1.0.0"
+        note: "New in v2 — no v1 baseline to regress against"
+      - path: "schemas/contracts/diagram-generation-request.schema.json"
+        version: "1.0.0"
+        note: "New in v2 — no v1 baseline to regress against"
+    assertions:
+      - id: T4-A1
+        description: "briefing.normalized.json still has all 16 v1 required fields"
+        method: required_field_check
+        schema: "squads/slides-creator/templates/briefing.normalized.json"
+        expected_required:
+          - topic
+          - objective
+          - audience
+          - context
+          - duration_minutes
+          - format
+          - mode
+          - aspect_ratio
+          - induction_mode
+          - max_slides
+          - brand_config_resolved
+          - source_materials_count
+          - reference_assets_count
+          - output_targets
+          - warnings
+          - blockers
+      - id: T4-A2
+        description: "qa-report.json still has all 9 v1 required fields"
+        method: required_field_check
+        schema: "squads/slides-creator/templates/qa-report.json"
+        expected_required:
+          - deck_id
+          - evaluated_at
+          - inputs
+          - dimensions
+          - composite_score
+          - thresholds
+          - verdict
+          - next_target
+          - killer_items
+      - id: T4-A3
+        description: "v2 additions are OPTIONAL (not in required array)"
+        method: optional_field_check
+        schema: "squads/slides-creator/templates/briefing.normalized.json"
+        must_be_optional:
+          - education_mode
+          - audience_profile
+          - source_type
+          - youtube_source
+          - brand_config_source
+      - id: T4-A4
+        description: "No field type changed (string stays string, number stays number)"
+        method: type_stability_check
+        schemas:
+          - "squads/slides-creator/templates/briefing.normalized.json"
+          - "squads/slides-creator/templates/qa-report.json"
+        baseline: "v1 field types preserved"
+      - id: T4-A5
+        description: "All v1 fixtures still validate against current schemas"
+        method: contract_validation
+        command: "./squads/slides-creator/scripts/validate-contracts.sh --ci"
+        expected_exit_code: 0
+    pass_criteria: "All 5 assertions pass"
+    fail_action: "HALT — schema breaking change detected"
+
+  # ---------------------------------------------------------------------------
+  # Test 5: Template Registry v1 Templates
+  # ---------------------------------------------------------------------------
+  - id: T5
+    name: "Template registry v1 templates work unchanged"
+    acceptance_criteria: "Template registry v1 templates funcionam sem alteracao"
+    category: backward_compat
+    priority: high
+    input:
+      registry: "squads/slides-creator/data/template-registry.yaml"
+      description: >-
+        Template registry v1.1.0 with 61 templates across 5 categories.
+        All 11 canonical slide types must remain mapped and functional.
+    assertions:
+      - id: T5-A1
+        description: "All 11 canonical slide types present in slide_type_category_map"
+        method: registry_check
+        registry: "squads/slides-creator/data/template-registry.yaml"
+        expected_slide_types:
+          - TITLE
+          - SECTION_BREAK
+          - STATEMENT
+          - CONTENT
+          - COMPARISON
+          - METRIC
+          - DATA_VIZ
+          - IMAGE
+          - BUILD
+          - CODE
+          - CLOSING
+      - id: T5-A2
+        description: "Template count >= 61 (no templates removed)"
+        method: count_check
+        registry: "squads/slides-creator/data/template-registry.yaml"
+        field: "registry.total_templates"
+        minimum: 61
+      - id: T5-A3
+        description: "5 categories preserved (ESTRUTURA, CONTEUDO, DADOS, VISUAL, BRAND)"
+        method: category_check
+        registry: "squads/slides-creator/data/template-registry.yaml"
+        expected_categories:
+          - ESTRUTURA
+          - CONTEUDO
+          - DADOS
+          - VISUAL
+          - BRAND
+      - id: T5-A4
+        description: "Alias normalization still works (SECTION-BREAK -> SECTION_BREAK, DATA-VIZ -> DATA_VIZ)"
+        method: alias_check
+        registry: "squads/slides-creator/data/template-registry.yaml"
+        expected_aliases:
+          SECTION-BREAK: SECTION_BREAK
+          DATA-VIZ: DATA_VIZ
+      - id: T5-A5
+        description: "GOV-001 governance note preserved (QUOTE is content_variant, not canonical)"
+        method: governance_check
+        registry: "squads/slides-creator/data/template-registry.yaml"
+        expected_governance_id: "GOV-001"
+    pass_criteria: "All 5 assertions pass"
+    fail_action: "HALT — template registry regression"
+
+  # ---------------------------------------------------------------------------
+  # Test 6: Pipeline YAML v1 Steps Execute Unchanged
+  # ---------------------------------------------------------------------------
+  - id: T6
+    name: "Pipeline YAML v1 steps execute unchanged"
+    acceptance_criteria: "Pipeline YAML v1 steps executam sem mudanca"
+    category: backward_compat
+    priority: critical
+    input:
+      workflow: "squads/slides-creator/workflows/generate-presentation.yaml"
+      version: "1.5.0"
+      description: >-
+        The generate-presentation.yaml workflow must preserve the v1 execution
+        path when all feature flags are OFF: briefing -> reference_intake ->
+        content -> template -> assets -> render -> qa -> release.
+    assertions:
+      - id: T6-A1
+        description: "v1 step sequence preserved in workflow"
+        method: sequence_check
+        workflow: "squads/slides-creator/workflows/generate-presentation.yaml"
+        v1_sequence:
+          - id: briefing
+            step: briefing_contract
+            phase: 1
+          - id: reference_intake
+            step: reference_intake
+            phase: 2
+          - id: content
+            step: grounded_content
+            phase: 2
+          - id: template
+            step: template_binding
+            phase: 3
+          - id: assets
+            step: asset_resolution
+            phase: 4
+          - id: render
+            step: render_to_site_aiox
+            phase: 5
+          - id: qa
+            step: qa_gate
+            phase: 6
+          - id: release
+            step: release_gate
+            phase: 7
+      - id: T6-A2
+        description: "youtube_ingest has bypass condition that skips when flag is OFF"
+        method: bypass_check
+        workflow: "squads/slides-creator/workflows/generate-presentation.yaml"
+        step_id: "youtube_ingest"
+        bypass_when: "input_type != 'youtube_url' OR ENABLE_YOUTUBE_ENTRYPOINT != true"
+      - id: T6-A3
+        description: "visual_strategy has bypass condition that skips when flag is OFF"
+        method: bypass_check
+        workflow: "squads/slides-creator/workflows/generate-presentation.yaml"
+        step_id: "visual_strategy"
+        bypass_when: "ENABLE_VISUAL_GENERATION != true"
+      - id: T6-A4
+        description: "Checkpoint policy unchanged (always_active, fail_fast=true)"
+        method: config_check
+        workflow: "squads/slides-creator/workflows/generate-presentation.yaml"
+        expected:
+          checkpoint_policy: always_active
+          fail_fast: true
+          max_refinement_loops: 2
+      - id: T6-A5
+        description: "v1 handoff prompts preserved (no renamed or removed prompts)"
+        method: handoff_check
+        workflow: "squads/slides-creator/workflows/generate-presentation.yaml"
+        v1_handoff_keys:
+          - slide-chief_to_template-curator
+          - slide-chief_to_content-architect
+          - template-curator_to_content-architect
+          - content-architect_to_template-curator
+          - template-curator_to_visual-scout
+          - visual-scout_to_design-renderer
+          - design-renderer_to_qa-inspector
+          - qa-inspector_to_content-architect
+          - qa-inspector_to_design-renderer
+          - qa-inspector_to_slide-chief
+      - id: T6-A6
+        description: "v1 transitions preserved (briefing->reference_intake->content->template->...)"
+        method: transition_check
+        workflow: "squads/slides-creator/workflows/generate-presentation.yaml"
+        v1_transitions:
+          - from: briefing
+            to: reference_intake
+          - from: reference_intake
+            to: content
+          - from: content
+            to: template
+          - from: template
+            to: assets
+          - from: assets
+            to: render
+          - from: render
+            to: qa
+          - from: qa
+            to: release
+    pass_criteria: "All 6 assertions pass"
+    fail_action: "HALT — pipeline regression"
+
+# ---------------------------------------------------------------------------
+# Regression Checklist (consolidated execution guide)
+# ---------------------------------------------------------------------------
+regression_checklist:
+  description: >-
+    Consolidated checklist for manual or CI execution. All items must pass
+    before any v2 merge to main.
+  pre_conditions:
+    - "All feature flags set to OFF for baseline tests (T1, T6)"
+    - "squads/slides-creator/scripts/validate-contracts.sh is executable"
+    - "All fixture files exist in schemas/contracts/fixtures/"
+    - "ajv-cli available (global or npx)"
+  items:
+    - id: RC-1
+      test_ref: T1
+      description: "v1 briefing + flags OFF = identical v1 output"
+      verification: "Run pipeline with v1 fixture, verify no v2 fields in output"
+    - id: RC-2
+      test_ref: T2
+      description: "v1 briefing + flags ON = optional fields gracefully ignored"
+      verification: "Run pipeline with v1 fixture + flags ON, verify no errors"
+    - id: RC-3
+      test_ref: T3
+      description: "QA report v1 scores unchanged (4 dimensions, v1 weights)"
+      verification: "Validate qa-report-v1.json against schema, verify composite = 7.93"
+    - id: RC-4
+      test_ref: T4
+      description: "Schema field integrity (no removals, no renames, v2 fields optional)"
+      verification: "Run validate-contracts.sh --ci (exit 0)"
+    - id: RC-5
+      test_ref: T5
+      description: "Template registry (11 types, 61+ templates, 5 categories, aliases)"
+      verification: "Parse template-registry.yaml, verify counts and mappings"
+    - id: RC-6
+      test_ref: T6
+      description: "Pipeline v1 steps preserved (8-step sequence, bypasses, checkpoints)"
+      verification: "Parse generate-presentation.yaml, verify v1 step IDs and transitions"
+  pass_verdict: "All 6 items PASS"
+  fail_action: "BLOCK merge. Fix regression before proceeding."
+
+# ---------------------------------------------------------------------------
+# CI Integration Notes
+# ---------------------------------------------------------------------------
+ci_integration:
+  description: >-
+    For CI pipeline integration, the regression checklist can be automated by:
+    1. Schema validation: already covered by validate-contracts.sh --ci
+    2. Registry/workflow checks: parse YAML and verify fields programmatically
+    3. Score calculations: parse JSON fixtures and verify arithmetic
+  recommended_runner: "Node.js script or shell script wrapping ajv-cli + yq"
+  validate_contracts_command: "./squads/slides-creator/scripts/validate-contracts.sh --ci"
+  exit_code_on_failure: 1

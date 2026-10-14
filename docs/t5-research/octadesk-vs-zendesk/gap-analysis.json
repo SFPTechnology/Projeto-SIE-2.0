@@ -1,0 +1,196 @@
+{
+  "bench_id": "octadesk-vs-zendesk",
+  "generated_at": "2026-05-06T00:00:00Z",
+  "framework": "bidirectional_gap_analysis",
+  "octadesk_gaps_to_close_to_compete_with_zendesk_at_enterprise": [
+    {
+      "gap_id": "GAP-OCT-01",
+      "gap": "Sem certificacoes auditadas publicas (SOC 2 Type II, ISO 27001:2022, ISO 27017/18/701)",
+      "severity": "critical",
+      "blocks_persona": ["enterprise-br-multinacional", "midmarket-br-regulated"],
+      "remediation": "Obter SOC 2 Type II e ISO 27001 via parent LWSA ou auditoria propria",
+      "estimated_timeline": "12-18 meses (auditoria completa)",
+      "evidence": "https://pt.octadesk.com/lgpd e Trust Center generico LWSA; sem listagem de SOC2/ISO27001"
+    },
+    {
+      "gap_id": "GAP-OCT-02",
+      "gap": "SSO/SAML/OIDC + SCIM provisioning nao publico",
+      "severity": "critical",
+      "blocks_persona": ["midmarket-br-regulated", "enterprise-br-multinacional"],
+      "remediation": "Listar SSO/SAML como tier feature; integrar com Azure AD/Okta/Google Workspace; SCIM 2.0",
+      "estimated_timeline": "3-6 meses dev",
+      "evidence": "Nao listado em /precos nem em pagina enterprise; G2 nao menciona"
+    },
+    {
+      "gap_id": "GAP-OCT-03",
+      "gap": "Custom agent roles, audit logs detalhados, sandbox environment",
+      "severity": "high",
+      "blocks_persona": ["midmarket-br-regulated", "enterprise-br-multinacional"],
+      "remediation": "Adicionar tier Octa Suite Enterprise com RBAC granular + immutable audit logs + sandbox/staging env",
+      "estimated_timeline": "6-12 meses",
+      "evidence": "Octa Suite menciona branch management e CSM dedicado mas nao audit/sandbox/custom roles"
+    },
+    {
+      "gap_id": "GAP-OCT-04",
+      "gap": "HIPAA via BAA, PCI-DSS com redaction tools, FedRAMP",
+      "severity": "high (segmento dependente)",
+      "blocks_persona": ["enterprise-healthcare-br", "enterprise-fintech-br"],
+      "remediation": "Implementar HIPAA BAA + PCI-DSS redaction; FedRAMP irrelevante para BR mas marca diferenciacao",
+      "estimated_timeline": "12-24 meses",
+      "evidence": "Nao oferecidos publicamente"
+    },
+    {
+      "gap_id": "GAP-OCT-05",
+      "gap": "WOZ deflection rate nao benchmarked publicamente",
+      "severity": "medium",
+      "blocks_persona": ["ai-first-buyers"],
+      "remediation": "Publicar metricas de deflection (similar a Fin Labs benchmark) + customer case studies; pricing per-resolution transparente",
+      "estimated_timeline": "3-6 meses (basta publicar dados ja coletados internamente)",
+      "evidence": "Site octadesk.com homepage diz '8 a cada 10 atendimentos automaticamente' mas sem benchmark independente"
+    },
+    {
+      "gap_id": "GAP-OCT-06",
+      "gap": "Marketplace de apps muito menor (~20-30 vs 1.500+ Zendesk)",
+      "severity": "medium",
+      "blocks_persona": ["mid-market-with-existing-stack"],
+      "remediation": "Programa de developers; SDK publico; ZAF-equivalente",
+      "estimated_timeline": "12-18 meses",
+      "evidence": "Pagina /integracoes vs Zendesk Marketplace publico"
+    },
+    {
+      "gap_id": "GAP-OCT-07",
+      "gap": "Estabilidade operacional (instabilidades reportadas em reviews Capterra BR)",
+      "severity": "medium-high",
+      "blocks_persona": ["all"],
+      "remediation": "Investir SRE; status page publica; SLA financeiro; postmortems publicos",
+      "estimated_timeline": "6-12 meses",
+      "evidence": "Capterra BR review long-term user 4+ anos: 'outages e slowness mais frequentes no ultimo ano'"
+    },
+    {
+      "gap_id": "GAP-OCT-08",
+      "gap": "Sample de reviews publicos pequeno (G2 55 / Capterra 6)",
+      "severity": "low (sintoma marketing)",
+      "blocks_persona": ["risk-averse-mid-market"],
+      "remediation": "Programa formal de coleta de reviews G2/Capterra; case studies videos",
+      "estimated_timeline": "6-12 meses",
+      "evidence": "G2 product page e Capterra BR"
+    },
+    {
+      "gap_id": "GAP-OCT-09",
+      "gap": "Multi-help-center (Zendesk 300; Octadesk presumivel 1)",
+      "severity": "low-medium",
+      "blocks_persona": ["multi-brand-companies"],
+      "remediation": "Suporte multi-portal de help center por brand/produto",
+      "estimated_timeline": "9-12 meses",
+      "evidence": "Documentacao Octa nao menciona multi-portal"
+    },
+    {
+      "gap_id": "GAP-OCT-10",
+      "gap": "Sunshine Conversations-equivalente (multi-channel BSP unificado: Apple BC, LINE, WeChat, Telegram, Viber)",
+      "severity": "low (depende mercado)",
+      "blocks_persona": ["enterprise-multinacional"],
+      "remediation": "Adicionar Apple Business Chat e LINE para enterprise multinacional asiatico/japones",
+      "estimated_timeline": "12 meses",
+      "evidence": "Octadesk lista WhatsApp + Insta + FB + email + chat; Zendesk + Apple BC, LINE, Telegram, Viber"
+    }
+  ],
+  "zendesk_gaps_to_close_to_compete_with_octadesk_in_br_pme": [
+    {
+      "gap_id": "GAP-ZEN-01",
+      "gap": "Sem time local de produto BR (suporte via canal de revenda)",
+      "severity": "high",
+      "blocks_persona": ["smb-br", "midmarket-br"],
+      "remediation": "Investir CSM BR + suporte tier nativo PT-BR (nao traducao) + presenca eventos",
+      "estimated_timeline": "12-24 meses",
+      "evidence": "Reviews G2 mencionam suporte slow; sem time produto BR comparavel a Octadesk"
+    },
+    {
+      "gap_id": "GAP-ZEN-02",
+      "gap": "Integracoes BR via PARCEIROS (BCR.CX, Aktie Now), nao first-class",
+      "severity": "high",
+      "blocks_persona": ["smb-br-ecommerce", "midmarket-br-ecommerce"],
+      "remediation": "Conectores nativos VTEX, Tray, NuvemShop, RD Station, Bling, Conta Azul mantidos por Zendesk diretamente",
+      "estimated_timeline": "6-18 meses",
+      "evidence": "Zendesk Marketplace BR: VTEX by BCR.CX, VTEX by Aktie Now (third-party); Tray, NuvemShop nao confirmados"
+    },
+    {
+      "gap_id": "GAP-ZEN-03",
+      "gap": "Add-ons em USD (FX risk para BR)",
+      "severity": "medium-high",
+      "blocks_persona": ["smb-br", "midmarket-br"],
+      "remediation": "Pricing add-ons em BRL nativo (ja existe para tiers principais); contratos BRL-locked",
+      "estimated_timeline": "3-6 meses (pricing ops)",
+      "evidence": "zendesk.com.br/pricing lista Copilot $50, QA $35, WFM $25, ADPP $50, Contact Center $50 todos em USD"
+    },
+    {
+      "gap_id": "GAP-ZEN-04",
+      "gap": "Sunshine Conversations pricing variable opaco ($0.15/notif + $495+/mo + per-MAU)",
+      "severity": "medium",
+      "blocks_persona": ["all-buyers-cost-sensitive"],
+      "remediation": "Bundle WhatsApp incluso no Suite (com cap definido); pricing transparente",
+      "estimated_timeline": "6-12 meses (pricing redesign)",
+      "evidence": "GetApp + TrustRadius reportam pricing variable; G2 cita complexidade"
+    },
+    {
+      "gap_id": "GAP-ZEN-05",
+      "gap": "Contract terms agressivos (annual only, no downgrade mid-term, 5-7% escalation, overages auto-billed)",
+      "severity": "medium-high",
+      "blocks_persona": ["smb-br", "midmarket-br-cost-sensitive"],
+      "remediation": "Termos flexiveis: monthly billing sem premium, downgrade mid-term, sem escalation automatica, grace period overages",
+      "estimated_timeline": "3-6 meses (legal/sales ops)",
+      "evidence": "supp.support/blog/zendesk-pricing-2026-full-breakdown e G2 reviews"
+    },
+    {
+      "gap_id": "GAP-ZEN-06",
+      "gap": "Setup steep learning curve (multiplas reviews G2 mencionam)",
+      "severity": "medium",
+      "blocks_persona": ["smb-br-without-ops-team"],
+      "remediation": "Onboarding guiado PT-BR + templates pre-configurados BR + Quick Start vertical (e-com)",
+      "estimated_timeline": "6-12 meses",
+      "evidence": "G2: 'configuration takes longer than expected, requires technical expertise'"
+    },
+    {
+      "gap_id": "GAP-ZEN-07",
+      "gap": "Data residency BR nao garantida (USA/EU only)",
+      "severity": "medium-high (LGPD-strict)",
+      "blocks_persona": ["lgpd-strict-operators-financeiro-saude-gov-br"],
+      "remediation": "Datacenter BR (AWS Sao Paulo) com data residency garantida contratualmente",
+      "estimated_timeline": "12-24 meses (infra)",
+      "evidence": "Zendesk Trust Center lista USA/EU; BR nao garantido"
+    },
+    {
+      "gap_id": "GAP-ZEN-08",
+      "gap": "Ecossistema BR ausente (LWSA equivalente)",
+      "severity": "low-medium",
+      "blocks_persona": ["smb-br-ecommerce-locaweb-stack"],
+      "remediation": "Parcerias com Bling/Tray/Vindi/Melhor Envio para integracoes nativas; bundle marketing",
+      "estimated_timeline": "6-12 meses",
+      "evidence": "LWSA group integration vs Zendesk standalone"
+    }
+  ],
+  "ides_recommendation": {
+    "framework": "REUSE > ADAPT > CREATE applied to comparison",
+    "reuse_existing_zendesk_for_octadesk": [
+      "Per-resolution AI pricing model ($1.50/$2.00) - copia transparency",
+      "Trust Center publico com SOC2/ISO27001 - REUSE estrutura",
+      "Sandbox/staging env como tier feature - REUSE conceito",
+      "Multi-help-center como capability - REUSE pattern"
+    ],
+    "adapt_zendesk_features_for_octadesk_br_context": [
+      "AI Agents transparency com benchmark publico - ADAPT para WOZ com case studies BR",
+      "ZAF-equivalente para developers BR - ADAPT com PT-BR docs",
+      "Audit logs em PT-BR para compliance LGPD - ADAPT (LGPD-specific)",
+      "Custom agent roles modeladas em RBAC LGPD - ADAPT com contexto regulatorio BR"
+    ],
+    "create_unique_to_octadesk": [
+      "Bundle LWSA (Octadesk + Bling + Vindi + Tray) - CREATE (vantagem grupo unica)",
+      "WOZ generativo PT-BR nativo com sotaque BR - CREATE (defesa cultural)",
+      "Pricing BRL puro sem FX risk - CREATE policy",
+      "BR data residency LWSA-hosted explicitamente garantida - CREATE compliance differentiator"
+    ]
+  },
+  "absorption_potential_for_aiox_squads": {
+    "applicable": false,
+    "rationale": "Bench e de produtos terceiros; AIOX nao absorve features comerciais. Mas insights estruturais sao uteis: (1) AI per-resolution transparency e padrao de mercado e deve influenciar pricing de squads que oferecem AI; (2) Trust Center publico pattern aplicavel para Sinkra Hub; (3) Multi-tenant data isolation com BYOK pode ser referencia para arquitetura."
+  }
+}

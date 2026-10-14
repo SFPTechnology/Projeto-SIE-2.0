@@ -1,0 +1,51 @@
+feat(mod-qt): catalogo fechado de impedancia, resolvedor de perfil e limite EDP-SP v09 [MOD-QT-2-03, MOD-QT-2-04]
+
+Resolve VER-QT-02, VER-QT-03, VER-QT-04 e VER-QT-06; VER-QT-07 parcial
+(exclusivamente para o perfil EDP_SP_PTDTPDN00068_V09_AEREA_BT).
+
+Fonte normativa: docs/research/{2026-07-28}-resolucao-ver-qt.md (parecer, revisao 2)
+sec. 6, correcoes C-01 a C-08.
+
+MOD-QT-2-03 - Catalogo fechado de impedancia e resolvedor de perfil (C-01/C-02/C-04/C-07/C-08)
+- C-01: catalogo Prysmian com 1.563 registros gerado por script versionado
+  (scripts/gerar-catalogo-impedancia-prysmian.mjs) a partir do artefato de extracao,
+  com verificacao SHA-256 da fonte. Zero valores alterados, 24 nulos preservados,
+  0 zeros de Rca/XL, chave (familia, secao, topologia) univoca em 1.563/1.563.
+- C-02: resolvedor de perfil fail-closed integrado ao motor. Sem perfil resolvido a
+  validacao e ENCERRADA antes de montar RetornoMODQT (422/PENDENTE), nunca degradada.
+- C-04: marcacao VER-QT-04 retirada sem criar enum inexistente (num_fases === 2).
+- C-07: CA-QT-19 regenerado com oracle independente do mock (le o JSON bruto e aplica
+  a formula do parecer sec. 3.3, sem importar o motor); 504 vetores coincidentes.
+- C-08: suites de completude, chave, rastreabilidade, casos negativos e funcional.
+- fonte_id e coluna discriminadora (decisao PO-03): catalogo agnostico de fabricante.
+
+MOD-QT-2-04 - Fluxo de entrada fechado e limite EDP-SP v09 (C-03/C-05/C-06)
+- C-03: fluxo de entrada FECHADO de selecao de cabo (SeletorPerfilCabo integrado a
+  rota de queda de tensao); opcoes derivadas do catalogo, sem tabela replicada.
+- C-05: perfil de limite EDP_SP_PTDTPDN00068_V09_AEREA_BT (limite total 5%). Aplicado
+  somente quando o projetista declara o escopo; fora dele a alinea 6.2.7.1 permanece
+  [VERIFICAR] e a marcacao continua obrigatoria (Artigo IV - sem invencao).
+- C-06: alturas de tomada tratadas como parametro de projeto, nunca cota normativa
+  atribuida a NBR 5410 (Arquivos_Diversos/PROMPT-QUEDA-TENSAO-v2.2.md).
+- Conduto metalico fechado ferromagnetico: REJEICAO explicita, nunca degradacao.
+
+Contrato publico INTACTO (verificado por simbolo, nao por diff de arquivo):
+RetornoMODQT, ValidarMODQTSchema, RetornoMODQTSchema e a rota
+POST /api/v1/modulos/mod-qt/validar permanecem inalterados.
+MOD-DC (src/domain/dimensionamento-condutores/) NAO foi tocado.
+
+Gates: tsc --noEmit exit 0 | vitest 132/132 arquivos, 947/947 testes, exit 0 |
+vite build exit 0 | eslint escopado exit 0 nos arquivos das duas stories.
+eslint do projeto inteiro NAO VERIFICADO (trava ambiental pre-existente, nao
+presumido PASS) - unica razao do veredito CONCERNS em ambas as stories.
+
+QA: CONCERNS (quality score 92) em MOD-QT-2-03 e MOD-QT-2-04, ambas em Done.
+Gates: docs/qa/gates/MOD-QT-2-03-gate.yaml, docs/qa/gates/MOD-QT-2-04-gate.yaml
+
+Debito tecnico conhecido: BLK-QT-TIMEOUT-FLAKY-01 (baixa, aberto) - timeout
+intermitente em tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts;
+nao reproduzido em 3 execucoes completas, causa estrutural inalterada.
+
+Pendencia cross-modulo registrada, fora de escopo: o PRD do MOD-DC sec. 13.6 ainda
+assume limite total de 7%; esta cadeia estabelece 5% para o perfil EDP-SP v09.
+Risco documental, nao de codigo - story futura de @po/@architect.

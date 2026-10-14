@@ -1,0 +1,34 @@
+{
+  "schema": "deepresearch-absorption-benchmark.evidence-strength.v1",
+  "generated_at": "2026-05-18",
+  "tiers": {
+    "ALTA": ">80% certainty — direct file/URL/paper evidence",
+    "MEDIA": "50-80% — README + paper claims sem reprodução local",
+    "BAIXA": "<50% — speculative (não usado neste bench)"
+  },
+  "distribution": {
+    "ALTA_pct": 75,
+    "MEDIA_pct": 25,
+    "BAIXA_pct": 0
+  },
+  "claims": [
+    {"claim": "AIOX squad v5.0.0 14 agents", "confidence": "ALTA", "source": "squads/research/config.yaml"},
+    {"claim": "AIOX skill 7 molecules 13 phase YAMLs", "confidence": "ALTA", "source": ".claude/skills/tech-research/SKILL.md + workflows/tech-research/"},
+    {"claim": "AIOX app Elastic v2", "confidence": "ALTA", "source": "apps/research/README.md + LICENSE"},
+    {"claim": "DeerFlow MIT 474py+138ts", "confidence": "ALTA", "source": "../bench/deer-flow clone scan"},
+    {"claim": "DeerFlow 66k+ stars #1 trending fev/2026", "confidence": "MEDIA", "source": "original research dossier"},
+    {"claim": "GPT-Researcher Apache-2.0 + MCP + PyPI", "confidence": "ALTA", "source": "clone + skills.sh"},
+    {"claim": "LangChain ODR #6 DeepResearchBench 0.4344", "confidence": "ALTA", "source": "README explicit + HF leaderboard"},
+    {"claim": "Local DR ~95% SimpleQA + SQLCipher + 2269py", "confidence": "ALTA", "source": "clone + README badges"},
+    {"claim": "Local DR Vitalik endorsement", "confidence": "MEDIA", "source": "URL verified vitalik.eth.limo/2026/04/02"},
+    {"claim": "OpenResearcher 30B BrowseComp-Plus 54.8%", "confidence": "MEDIA", "source": "arXiv 2603.20278 + HF model card"},
+    {"claim": "OpenResearcher NVIDIA Nemotron adoption", "confidence": "ALTA", "source": "README banner"},
+    {"claim": "DeepResearcher 7B +28.9pts emergent behaviors", "confidence": "MEDIA", "source": "arXiv 2504.03160 paper claim"},
+    {"claim": "Jina node-DR proprietary 57ts", "confidence": "ALTA", "source": "clone + LICENSE first line"},
+    {"claim": "AutoResearchClaw 23 stages + network-policy Docker", "confidence": "MEDIA", "source": "README claim, not stage-by-stage validated"},
+    {"claim": "Tongyi 30B + WebWalker ACL 2025 + WebDancer NeurIPS 2025", "confidence": "MEDIA", "source": "README + arXiv 2510.24701"},
+    {"claim": "Scorecard AIOX = 60.25 final score", "confidence": "ALTA", "source": "Computed via weighted aggregation of comparison-matrix.json"},
+    {"claim": "10 GAPs P0/P1/P2 identified", "confidence": "ALTA", "source": "gap-analysis.json"}
+  ],
+  "anti_fabrication_policy": "Toda métrica numérica verificada por scan local OU citação direta de README/paper. Zero claims fabricados."
+}

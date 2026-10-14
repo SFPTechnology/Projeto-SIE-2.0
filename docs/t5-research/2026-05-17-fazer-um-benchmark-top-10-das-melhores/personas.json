@@ -1,0 +1,346 @@
+{
+  "schema": "bench-personas-v1",
+  "generated_at": "2026-05-18T00:17:45.178Z",
+  "personas": [
+    {
+      "id": "founder_pitch",
+      "label": "Founder pitch rápido",
+      "sub": "Deck bonito em 2-4h, PDF/web aceitos",
+      "weights": [
+        22,
+        24,
+        8,
+        6,
+        8,
+        13,
+        8,
+        5,
+        6
+      ],
+      "winner": "gamma",
+      "verdict": "Gamma vence quando velocidade e qualidade visual inicial valem mais que PPTX perfeito.",
+      "totals": {
+        "gamma": 85.6,
+        "canva": 85.1,
+        "beautiful_ai": 78,
+        "tome": 59.5,
+        "pitch": 80.3,
+        "plus_ai": 84.5,
+        "decktopus": 73.6,
+        "slidesai": 72.7,
+        "presenton": 78.1,
+        "presentations_ai": 69.9
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "gamma",
+          "score": 85.6
+        },
+        {
+          "rank": 2,
+          "player": "canva",
+          "score": 85.1
+        },
+        {
+          "rank": 3,
+          "player": "plus_ai",
+          "score": 84.5
+        },
+        {
+          "rank": 4,
+          "player": "pitch",
+          "score": 80.3
+        },
+        {
+          "rank": 5,
+          "player": "presenton",
+          "score": 78.1
+        },
+        {
+          "rank": 6,
+          "player": "beautiful_ai",
+          "score": 78
+        },
+        {
+          "rank": 7,
+          "player": "decktopus",
+          "score": 73.6
+        },
+        {
+          "rank": 8,
+          "player": "slidesai",
+          "score": 72.7
+        },
+        {
+          "rank": 9,
+          "player": "presentations_ai",
+          "score": 69.9
+        },
+        {
+          "rank": 10,
+          "player": "tome",
+          "score": 59.5
+        }
+      ],
+      "runner": "canva",
+      "delta": 0.5,
+      "tiebreaker": "Priorize o vencedor somente se a restrição dominante do cenário for verdadeira; caso contrário use o ranking neutro."
+    },
+    {
+      "id": "growth_team",
+      "label": "Squad de growth",
+      "sub": "Campanhas, relatórios, assets e colaboração recorrente",
+      "weights": [
+        16,
+        12,
+        15,
+        16,
+        10,
+        13,
+        8,
+        8,
+        2
+      ],
+      "winner": "canva",
+      "verdict": "Canva vence pelo pacote completo de design, colaboração e reaproveitamento de marca.",
+      "totals": {
+        "gamma": 83.2,
+        "canva": 86.9,
+        "beautiful_ai": 77.8,
+        "tome": 56.8,
+        "pitch": 83.8,
+        "plus_ai": 85.8,
+        "decktopus": 72.4,
+        "slidesai": 74.8,
+        "presenton": 75,
+        "presentations_ai": 68.1
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "canva",
+          "score": 86.9
+        },
+        {
+          "rank": 2,
+          "player": "plus_ai",
+          "score": 85.8
+        },
+        {
+          "rank": 3,
+          "player": "pitch",
+          "score": 83.8
+        },
+        {
+          "rank": 4,
+          "player": "gamma",
+          "score": 83.2
+        },
+        {
+          "rank": 5,
+          "player": "beautiful_ai",
+          "score": 77.8
+        },
+        {
+          "rank": 6,
+          "player": "presenton",
+          "score": 75
+        },
+        {
+          "rank": 7,
+          "player": "slidesai",
+          "score": 74.8
+        },
+        {
+          "rank": 8,
+          "player": "decktopus",
+          "score": 72.4
+        },
+        {
+          "rank": 9,
+          "player": "presentations_ai",
+          "score": 68.1
+        },
+        {
+          "rank": 10,
+          "player": "tome",
+          "score": 56.8
+        }
+      ],
+      "runner": "plus_ai",
+      "delta": 1.1,
+      "tiebreaker": "Priorize o vencedor somente se a restrição dominante do cenário for verdadeira; caso contrário use o ranking neutro."
+    },
+    {
+      "id": "sales_enablement",
+      "label": "Sales enablement",
+      "sub": "PPT/Slides nativos, templates e editabilidade",
+      "weights": [
+        10,
+        14,
+        20,
+        12,
+        22,
+        7,
+        7,
+        6,
+        2
+      ],
+      "winner": "plus_ai",
+      "verdict": "Plus AI vence quando o arquivo final precisa permanecer editável em PowerPoint/Google Slides.",
+      "totals": {
+        "gamma": 81.5,
+        "canva": 85.6,
+        "beautiful_ai": 77.2,
+        "tome": 54.2,
+        "pitch": 83.6,
+        "plus_ai": 88.1,
+        "decktopus": 71.8,
+        "slidesai": 77.1,
+        "presenton": 77,
+        "presentations_ai": 67.9
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "plus_ai",
+          "score": 88.1
+        },
+        {
+          "rank": 2,
+          "player": "canva",
+          "score": 85.6
+        },
+        {
+          "rank": 3,
+          "player": "pitch",
+          "score": 83.6
+        },
+        {
+          "rank": 4,
+          "player": "gamma",
+          "score": 81.5
+        },
+        {
+          "rank": 5,
+          "player": "beautiful_ai",
+          "score": 77.2
+        },
+        {
+          "rank": 6,
+          "player": "slidesai",
+          "score": 77.1
+        },
+        {
+          "rank": 7,
+          "player": "presenton",
+          "score": 77
+        },
+        {
+          "rank": 8,
+          "player": "decktopus",
+          "score": 71.8
+        },
+        {
+          "rank": 9,
+          "player": "presentations_ai",
+          "score": 67.9
+        },
+        {
+          "rank": 10,
+          "player": "tome",
+          "score": 54.2
+        }
+      ],
+      "runner": "canva",
+      "delta": 2.5,
+      "tiebreaker": "Priorize o vencedor somente se a restrição dominante do cenário for verdadeira; caso contrário use o ranking neutro."
+    },
+    {
+      "id": "privacy_api",
+      "label": "Produto/API com privacidade",
+      "sub": "Self-host, geração em escala e controle de dados",
+      "weights": [
+        5,
+        5,
+        0,
+        0,
+        20,
+        10,
+        0,
+        20,
+        40
+      ],
+      "winner": "presenton",
+      "verdict": "Presenton vence quando controle, API, BYOK e self-host superam maturidade de UI.",
+      "totals": {
+        "gamma": 75.2,
+        "canva": 80.8,
+        "beautiful_ai": 75.8,
+        "tome": 43.4,
+        "pitch": 81.7,
+        "plus_ai": 85.2,
+        "decktopus": 69.3,
+        "slidesai": 70.5,
+        "presenton": 89.4,
+        "presentations_ai": 64.5
+      },
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "presenton",
+          "score": 89.4
+        },
+        {
+          "rank": 2,
+          "player": "plus_ai",
+          "score": 85.2
+        },
+        {
+          "rank": 3,
+          "player": "pitch",
+          "score": 81.7
+        },
+        {
+          "rank": 4,
+          "player": "canva",
+          "score": 80.8
+        },
+        {
+          "rank": 5,
+          "player": "beautiful_ai",
+          "score": 75.8
+        },
+        {
+          "rank": 6,
+          "player": "gamma",
+          "score": 75.2
+        },
+        {
+          "rank": 7,
+          "player": "slidesai",
+          "score": 70.5
+        },
+        {
+          "rank": 8,
+          "player": "decktopus",
+          "score": 69.3
+        },
+        {
+          "rank": 9,
+          "player": "presentations_ai",
+          "score": 64.5
+        },
+        {
+          "rank": 10,
+          "player": "tome",
+          "score": 43.4
+        }
+      ],
+      "runner": "plus_ai",
+      "delta": 4.2,
+      "tiebreaker": "Priorize o vencedor somente se a restrição dominante do cenário for verdadeira; caso contrário use o ranking neutro."
+    }
+  ]
+}

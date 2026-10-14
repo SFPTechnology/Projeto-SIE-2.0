@@ -1,0 +1,27 @@
+handoff_id: MOD-QT-3-01-qa-to-devops
+from_agent: "@qa"
+to_agent: "@devops"
+story_id: "MOD-QT-3-01"
+story_file: "docs/stories/story-MOD-QT-3-01-modulo-integral-permanente.md"
+gate_file: "docs/qa/gates/MOD-QT-3-01-gate.yaml"
+status: "QA_CONCERNS_ACCEPTED_FOR_DEVOPS_PRE_PUSH"
+last_command: "*review"
+created_at: "2026-07-30T00:00:00-03:00"
+summary:
+  decision: "CONCERNS"
+  rationale: "ACs de permanencia operacional atendidos; caveats de lint/test completos permanecem como risco operacional de pipeline, nao como falha funcional do MOD-QT."
+evidence:
+  focused_tests: "PASS - npx vitest run tests/ui/mod-qt-integral-permanente.test.ts tests/ui/projeto-detalhe-nav-links.test.ts"
+  scoped_lint: "PASS - npx eslint tests/ui/mod-qt-integral-permanente.test.ts"
+  typecheck: "PASS - npx tsc --noEmit --pretty false"
+  build: "PASS - npm run build"
+  build_spa: "PASS - npm run build:spa"
+  spa_smoke: "PASS - /, /projetos/demo, /projetos/demo/queda-tensao, JS and CSS assets returned 200"
+  caveats:
+    - "npm run lint completo excedeu timeout em execucoes anteriores sem relatorio final."
+    - "npm test completo registrou 1 timeout em teste preexistente; caso passou isolado."
+devops_focus:
+  - "Revisar staging de sistema-de-instala-es-el-tricas-sie-main/package.json por conter mudancas preexistentes docs:tutorial junto de preview:spa."
+  - "Executar pre-push/pre-PR gates possiveis no ambiente de @devops."
+  - "Confirmar decisao sobre artefatos antigos de deploy antes de publicacao real."
+next_command: "*pre-push docs/stories/story-MOD-QT-3-01-modulo-integral-permanente.md"

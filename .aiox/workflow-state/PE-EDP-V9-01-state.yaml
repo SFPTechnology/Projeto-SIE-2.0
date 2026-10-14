@@ -1,0 +1,26 @@
+workflow: "PE-EDP-V9-CORRECAO-PADRAO-COMPATIVEL"
+story_id: "PE-EDP-V9-01"
+mode: "yolo"
+human_intervention: false
+current_state: "STORY_DRAFT"
+previous_state: "PREFLIGHT_DOCUMENTAL"
+preflight_documental: "PASS"
+next_agent: "@sm"
+next_command: "*draft PE-EDP-V9-01 --mode yolo --source docs/EXECUCAO-CORRECAO-PADRAO-COMPATIVEL-EDP-V9.md"
+artifacts:
+  source_plan: "docs/PLANO-YOLO-IMPLEMENTACAO-CORRECAO-PADRAO-COMPATIVEL-EDP-V9.md"
+  execution_guide: "docs/EXECUCAO-CORRECAO-PADRAO-COMPATIVEL-EDP-V9.md"
+  analyst_handoff: ".aiox/handoffs/PE-EDP-V9-01-analyst-to-sm.yaml"
+  target_story: "docs/stories/story-PE-EDP-V9-01-modelo-catalogo-estrutural.md"
+gates:
+  package_1: "PASS"
+  packages_2_3: "HOLD"
+  packages_4_8: "BLOCK"
+  release_1_activation: "BLOCK"
+  legacy_removal: "BLOCK"
+blocked_actions:
+  - "code_implementation_without_ready_story"
+  - "package_2_to_8_implementation"
+  - "final_ui_restructure"
+  - "release_1_activation"
+  - "legacy_removal"

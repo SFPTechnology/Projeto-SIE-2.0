@@ -1,0 +1,158 @@
+{
+  "scorecard": {
+    "generated": "2026-04-04",
+    "method": "Observable structural signals. 0-100 per dimension. Weighted average with coding_weight=2x",
+    "dimensions": [
+      {
+        "name": "Coding Depth",
+        "weight": 2.0,
+        "hermes": 55,
+        "claude_code": 95,
+        "delta": -40,
+        "winner": "claude-code",
+        "evidence": "Claude Code: SWE-bench 80.8%, specialized Read/Edit/Grep tools, 200K context. Hermes: basic file_tools, no code-aware tools"
+      },
+      {
+        "name": "Codebase Reasoning",
+        "weight": 2.0,
+        "hermes": 50,
+        "claude_code": 95,
+        "delta": -45,
+        "winner": "claude-code",
+        "evidence": "Claude Code: extended thinking, sub-agent delegation, Glob/Grep specialized. Hermes: terminal grep only"
+      },
+      {
+        "name": "IDE Integration",
+        "weight": 1.5,
+        "hermes": 10,
+        "claude_code": 92,
+        "delta": -82,
+        "winner": "claude-code",
+        "evidence": "Claude Code: VS Code + JetBrains + remote dev. Hermes: terminal only"
+      },
+      {
+        "name": "Git/GitHub Workflow",
+        "weight": 1.5,
+        "hermes": 35,
+        "claude_code": 95,
+        "delta": -60,
+        "winner": "claude-code",
+        "evidence": "Claude Code: native gh CLI, PR creation, GitHub Actions, auto-fix. Hermes: shell git only"
+      },
+      {
+        "name": "Permission & Security",
+        "weight": 1.0,
+        "hermes": 65,
+        "claude_code": 88,
+        "delta": -23,
+        "winner": "claude-code",
+        "evidence": "Claude Code: 5 permission modes, sandboxing, fine-grained rules. Hermes: approval flows, Tirith security, skills_guard"
+      },
+      {
+        "name": "Multi-Platform Access",
+        "weight": 1.0,
+        "hermes": 95,
+        "claude_code": 30,
+        "delta": 65,
+        "winner": "hermes",
+        "evidence": "Hermes: 15 platform adapters. Claude Code: CLI + IDE + Web + Desktop"
+      },
+      {
+        "name": "Self-Learning",
+        "weight": 1.5,
+        "hermes": 92,
+        "claude_code": 20,
+        "delta": 72,
+        "winner": "hermes",
+        "evidence": "Hermes: autonomous SKILL.md creation, skills_guard, Skills Hub marketplace. Claude Code: manual skills, auto-memory (declarative only)"
+      },
+      {
+        "name": "Session Recall",
+        "weight": 1.0,
+        "hermes": 88,
+        "claude_code": 25,
+        "delta": 63,
+        "winner": "hermes",
+        "evidence": "Hermes: SQLite FTS5, cross-session search, Gemini summarization. Claude Code: /resume list, file-based memory"
+      },
+      {
+        "name": "Multi-Model Reasoning",
+        "weight": 1.0,
+        "hermes": 90,
+        "claude_code": 15,
+        "delta": 75,
+        "winner": "hermes",
+        "evidence": "Hermes: MoA with 4 frontier models. Claude Code: Agent Teams (same model family)"
+      },
+      {
+        "name": "Voice & Multimodal",
+        "weight": 0.5,
+        "hermes": 82,
+        "claude_code": 35,
+        "delta": 47,
+        "winner": "hermes",
+        "evidence": "Hermes: 5 TTS + STT + voice mode + image gen. Claude Code: dictation input + native vision"
+      },
+      {
+        "name": "Remote Execution",
+        "weight": 1.0,
+        "hermes": 88,
+        "claude_code": 30,
+        "delta": 58,
+        "winner": "hermes",
+        "evidence": "Hermes: 7 environments (Docker/SSH/Modal/Daytona/Singularity). Claude Code: local + cloud only"
+      },
+      {
+        "name": "Extensibility & Plugins",
+        "weight": 1.0,
+        "hermes": 85,
+        "claude_code": 65,
+        "delta": 20,
+        "winner": "hermes",
+        "evidence": "Hermes: plugin system, skills marketplace, toolset distributions. Claude Code: MCP + hooks + skills (manual)"
+      },
+      {
+        "name": "Cost Efficiency",
+        "weight": 0.5,
+        "hermes": 92,
+        "claude_code": 40,
+        "delta": 52,
+        "winner": "hermes",
+        "evidence": "Hermes: $5/mo VPS + any API. Claude Code: $20-200/mo subscription + API"
+      },
+      {
+        "name": "Deployment Flexibility",
+        "weight": 1.0,
+        "hermes": 95,
+        "claude_code": 35,
+        "delta": 60,
+        "winner": "hermes",
+        "evidence": "Hermes: VPS, GPU cluster, serverless, Nix, Docker, Homebrew. Claude Code: npm install, Anthropic cloud"
+      },
+      {
+        "name": "Documentation & Community",
+        "weight": 0.5,
+        "hermes": 75,
+        "claude_code": 90,
+        "delta": -15,
+        "winner": "claude-code",
+        "evidence": "Claude Code: comprehensive official docs, enterprise support. Hermes: good docs site, 22k stars, 242 contributors"
+      }
+    ],
+    "weighted_totals": {
+      "hermes": 68.1,
+      "claude_code": 62.4,
+      "notes": "Hermes leads on breadth (platforms, learning, flexibility). Claude Code leads on depth (coding, IDE, Git). With coding_weight=2x, near parity."
+    },
+    "coding_focused_totals": {
+      "hermes": 48.3,
+      "claude_code": 93.5,
+      "notes": "On coding-only dimensions (Coding Depth, Codebase Reasoning, IDE, Git, SWE-bench), Claude Code dominates"
+    },
+    "autonomy_focused_totals": {
+      "hermes": 90.3,
+      "claude_code": 27.5,
+      "notes": "On autonomy dimensions (Self-Learning, Session Recall, Multi-Model, Remote Exec, Multi-Platform), Hermes dominates"
+    }
+  }
+}

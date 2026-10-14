@@ -1,0 +1,83 @@
+schema: 1
+story: "SIE-DS-08"
+story_title: "Integração: rota com contexto de projeto + Overview real (métricas, circuitos, inspector)"
+story_path: "docs/stories/story-SIE-DS-08-integracao-rota-projeto-overview-real.md"
+gate: CONCERNS
+status_reason: >-
+  AC1-AC8, AC10 atendidos integralmente e verificados de forma independente
+  (não apenas reexecutando as alegações do @dev): `vite build` (SSR e SPA),
+  `tsc --noEmit`, `eslint` e `vitest` (17 arquivos/95 testes) rodados
+  novamente por @qa, todos verdes. Rota real migrada, seletor de projeto
+  funcional, MetricCardGrid/WorkflowStepper/EngineeringPanel/ContextInspector
+  conectados a dado real, badge de 3 estados (OK/ACIMA/PENDENTE). Zero
+  impacto confirmado em AppShell.tsx e src/components/unifilar/** — o diff
+  presente em src/domain/** e em 4 rotas legadas é pré-existente (trabalho
+  MOD-QT não commitado, anterior a esta story), não introduzido aqui.
+  CONCERNS mantido por: (1) CodeRabbit indisponível pela 10ª story
+  consecutiva (gate §15.4 nunca executado); (2) heurística de inferência de
+  ativo/completo do WorkflowStepper para as etapas "Levantamento"/"Entrada"
+  é indireta (não há hook dedicado), documentada e de baixo risco (é
+  navegação, não cálculo normativo).
+reviewer: "Quinn (Test Architect)"
+updated: "2026-08-01T00:00:00-03:00"
+expires: "2026-08-15T00:00:00-03:00"
+quality_score: 85
+mode: "manual real (sessão contínua) — @architect (ratificação prévia) → @dev → @qa"
+
+evidence:
+  independent_verification: "@qa reexecutou (não apenas confiou no relato do @dev): npx vite build (SSR, exit 0), npx tsc --noEmit (exit 0), npx eslint (0 erros), npx vitest run src/components/command-center (17 arquivos, 95 testes, PASS)"
+  ac1_ac2_rota_flag: "src/routes/projetos.$projetoId_.command-center.tsx — Route.useParams(), gate isCommandCenterPreviewEnabled preservado, rota antiga removida (confirmado: sie-command-center-preview.tsx/.css/.test.tsx ausentes)"
+  ac3_seletor_projeto: "EngineeringShell.tsx recebe projeto/aoTrocarProjeto reais; aria-label 'Trocar projeto (ilustrativo)' e nome hardcoded 'Residência Sabiá' removidos (EngineeringShell.test.tsx atualizado e verde)"
+  ac4_metricas_workflow: "MetricCardGrid/WorkflowStepper via props reais (quedaTensaoResumoQuery + padraoEntradaQuery — fonte de demanda corrigida pelo @dev em relação à citação original da DECISION doc, ver Dev Notes da story); 'Fluxo concluído %' removido; regra de inferência em workflow-inference.ts, testada isoladamente"
+  ac5_ac6_tabela_inspector: "EngineeringPanel/ContextInspector via circuito-real.ts (montarCircuitosReais), 3 estados de badge (OK→success/ACIMA→danger/PENDENTE→warning) verificados em EngineeringPanel.test.tsx/ContextInspector.test.tsx"
+  ac7_zero_css: "Nenhuma exceção de CSS foi necessária nesta story — badges reusam classes de severidade já existentes"
+  ac8_zero_legado: "git diff vazio para AppShell.tsx e src/components/unifilar/** confirmado por @qa; diff em src/domain/** e rotas legadas confirmado pré-existente (não desta story)"
+  ac9_coderabbit: "Confirmado indisponível por @qa de forma independente: wsl bash -c '~/.local/bin/coderabbit --prompt-only -t uncommitted' → Illegal instruction (core dumped), mesma assinatura de SIE-DS-00 a SIE-DS-07"
+
+trace_ac:
+  - { ac: AC1, descricao: "Migração de rota", resultado: PASS }
+  - { ac: AC2, descricao: "Feature flag preservada", resultado: PASS }
+  - { ac: AC3, descricao: "Seletor de projeto funcional", resultado: PASS }
+  - { ac: AC4, descricao: "MetricCardGrid + WorkflowStepper reais", resultado: PASS }
+  - { ac: AC5, descricao: "EngineeringPanel 3 estados reais", resultado: PASS }
+  - { ac: AC6, descricao: "ContextInspector dado real", resultado: PASS }
+  - { ac: AC7, descricao: "Zero alteração de design visual", resultado: PASS }
+  - { ac: AC8, descricao: "Zero impacto no legado", resultado: PASS }
+  - { ac: AC9, descricao: "Gate CodeRabbit reportado com honestidade", resultado: CONCERNS }
+  - { ac: AC10, descricao: "Zero operação remota", resultado: PASS }
+
+nfr_validation:
+  security:
+    status: PASS
+    notes: "Nenhum dado sensível novo exposto; sem input de usuário livre nesta story (apenas navegação/seleção)."
+  performance:
+    status: PASS
+    notes: "Hooks reais reusados (mesmos já usados pelas telas legadas); nenhuma chamada de rede duplicada introduzida."
+  reliability:
+    status: CONCERNS
+    notes: "Estados vazios/loading tratados via gate único de carregamento (carregando); aceitável para o escopo, mas é um gate grosso (tudo-ou-nada) em vez de skeleton granular por seção — nota de melhoria futura, não bloqueante."
+  maintainability:
+    status: PASS
+    notes: "Lógica pura extraída e testada (circuito-real.ts, workflow-inference.ts); organisms permanecem burros (dado via props), consistente com o padrão já estabelecido na cadeia."
+
+top_issues:
+  - id: "TEST-003"
+    severity: high
+    finding: "CodeRabbit CLI (WSL) indisponível pela 10ª story consecutiva — gate §15.4 nunca executado nesta cadeia inteira."
+    suggested_action: "@devops — reparar antes de qualquer decisão de rollout real do SIE Command Center. Débito acumulado desde SIE-DS-00."
+    suggested_owner: devops
+  - id: "ARCH-001"
+    severity: low
+    finding: "Regra de inferência de estado das etapas 'Levantamento'/'Entrada' do WorkflowStepper é indireta (deduzida da existência de dado de queda de tensão/demanda, não de um sinal próprio de progresso dessas etapas)."
+    suggested_action: "Aceitável para navegação (não é cálculo normativo); reavaliar se um hook de progresso dedicado for criado no futuro."
+    suggested_owner: sm
+
+waiver: { active: false }
+
+recommendations:
+  immediate:
+    - action: "Reparar binário CodeRabbit no WSL — 10ª ocorrência consecutiva."
+      refs: ["~/.local/bin/coderabbit"]
+  future:
+    - action: "Considerar loading granular por seção em vez do gate único atual, se o projeto real demonstrar latência perceptível entre queries."
+      refs: ["src/routes/projetos.$projetoId_.command-center.tsx"]

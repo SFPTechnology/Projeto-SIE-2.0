@@ -1,0 +1,71 @@
+schema: 1
+story: "SIE-DS-07"
+story_title: "Qualidade integrada e rollout"
+story_path: "docs/stories/story-SIE-DS-07-qualidade-integrada-rollout.md"
+gate: CONCERNS
+status_reason: >-
+  AC1-AC10 atendidos no sentido em que a story os define: auditar e reportar com
+  honestidade tudo que foi construído em SIE-DS-LOCAL-01 a SIE-DS-06, não atingir
+  produção-pronta. Achado real de acessibilidade (heading duplicado em ContextHeader
+  reusado) encontrado e corrigido durante a própria auditoria, com teste de
+  regressão novo. AC7 (rollback) fechado em 2026-08-01 com evidência HTTP ao vivo
+  real (a lacuna original não era instabilidade de rede, e sim processos zumbis
+  órfãos + cold-start de ~33s do vite não esperado pelas tentativas anteriores).
+  CONCERNS mantido apenas por: (1) gate de CodeRabbit indisponível pela 8ª story
+  consecutiva; (2) contraste, zoom 200%, leitor de tela real e VRT não testados
+  com ferramentas reais, só auditoria estrutural; (3) breakpoints aproximados,
+  não os valores exatos prescritos.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-08-01T00:00:00-03:00"
+expires: "2026-08-15T00:00:00-03:00"
+quality_score: 85
+mode: "manual real (sessão longa, não headless YOLO) — @architect → @dev → @qa; AC7 fechado em sessão seguinte no mesmo dia"
+
+evidence:
+  regression_checklist: "docs/qa/SIE-DS-07-AUDITORIA-QUALIDADE.md §1 — 12 itens de §15.3, mistura de PASS/⚠️NÃO-TESTADO/❌NÃO-FEITO reportados sem mascarar nenhum"
+  keyboard_focus_audit: "docs/qa/SIE-DS-07-AUDITORIA-QUALIDADE.md §2 — 8 organisms, apenas 2 com lógica customizada (CommandPalette, EngineeringPanel)"
+  reduced_motion: "docs/qa/SIE-DS-07-AUDITORIA-QUALIDADE.md §3 — dupla proteção (token + regra própria) em ModuleNavigation.css"
+  aria_semantics: "docs/qa/SIE-DS-07-AUDITORIA-QUALIDADE.md §4 — landmarks/roles auditados; bug real de heading duplicado corrigido nesta story"
+  breakpoints: "docs/qa/SIE-DS-07-AUDITORIA-QUALIDADE.md §5 — aproximados, não exatos; sem teste em viewport real"
+  rollback: "docs/qa/SIE-DS-07-AUDITORIA-QUALIDADE.md §6 — git diff vazio 8/8 stories + unit tests exaustivos + smoke test HTTP ao vivo real (2026-08-01): flag off, / e /diagnostico 200, /sie-command-center-preview só placeholder de gate"
+  pattern_library: "docs/architecture/SIE-COMMAND-CENTER-PATTERN-LIBRARY.md — 12 organisms/hooks catalogados, incluindo gaps conhecidos não escondidos"
+  deploy_manifest: "docs/qa/SIE-DS-07-AUDITORIA-QUALIDADE.md §8 — só base_branch conhecido; todas as flags de autorização remota false"
+
+trace_ac:
+  - { ac: AC1, descricao: "Checklist de regressão visual/funcional §15.3", resultado: PASS }
+  - { ac: AC2, descricao: "Auditoria de teclado e foco", resultado: PASS }
+  - { ac: AC3, descricao: "prefers-reduced-motion", resultado: PASS }
+  - { ac: AC4, descricao: "Reflow e breakpoints (limitação de teste real explícita)", resultado: PASS }
+  - { ac: AC5, descricao: "Semântica/ARIA (limitação de leitor de tela real explícita)", resultado: PASS }
+  - { ac: AC6, descricao: "Pattern library mínima", resultado: PASS }
+  - { ac: AC7, descricao: "Rollback verificado (estrutural + unit test + HTTP ao vivo real, fechado 2026-08-01)", resultado: PASS }
+  - { ac: AC8, descricao: "Manifesto de deploy preparado, não autorizado", resultado: PASS }
+  - { ac: AC9, descricao: "Gap do CodeRabbit reportado, não mascarado", resultado: PASS }
+  - { ac: AC10, descricao: "Zero impacto no legado / zero operação remota", resultado: PASS }
+
+top_issues:
+  - id: "TEST-002"
+    severity: high
+    finding: "CodeRabbit CLI (WSL) indisponível pela 8ª story consecutiva — gate §15.4 nunca executado nesta cadeia inteira."
+    suggested_action: "@devops — reparar antes de qualquer decisão de rollout real do SIE Command Center."
+    suggested_owner: devops
+  - id: "A11Y-001"
+    severity: medium
+    finding: "Contraste WCAG 2.2 AA, zoom 200%, leitor de tela real (NVDA/JAWS/VoiceOver) e regressão visual (VRT) nunca testados com ferramentas reais em toda a cadeia SIE-DS-LOCAL-01 a SIE-DS-07 — só auditoria estrutural/manual."
+    suggested_action: "Antes de decisão de rollout: rodar axe ou scanner de contraste real e, idealmente, um leitor de tela real. Sistema de dimensionamento elétrico NBR 5410 não é produto de baixo risco."
+    suggested_owner: qa
+  - id: "ENV-001"
+    severity: resolved
+    finding: "RESOLVIDO em 2026-08-01: a verificação HTTP ao vivo fresca do rollback (AC7) foi refeita com sucesso. Causa raiz não era instabilidade de rede — eram processos zumbis órfãos (14+h) segurando a porta 5173 + cold-start de ~33s do vite que as tentativas anteriores não esperaram."
+    suggested_action: "Nenhuma — fechado. Nota de processo: vite dev escuta só em [::1] (IPv6 loopback) por padrão; testes futuros via 127.0.0.1 vão falhar mesmo com servidor saudável."
+    suggested_owner: dev
+
+waiver: { active: false }
+
+recommendations:
+  immediate:
+    - action: "Reparar binário CodeRabbit no WSL — 8ª ocorrência consecutiva, bloqueia o gate formal de qualquer story futura desta cadeia."
+      refs: ["~/.local/bin/coderabbit"]
+  future:
+    - action: "Testar contraste, zoom 200%, leitor de tela real e VRT antes de qualquer decisão de rollout de produção."
+      refs: ["docs/qa/SIE-DS-07-AUDITORIA-QUALIDADE.md §9"]

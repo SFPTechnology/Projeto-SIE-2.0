@@ -1,0 +1,339 @@
+# Design Direction Schema — Slides Creator Squad
+# Mission: MSN-2026-SLIDES-NARRATIVE-DESIGN (T-003B)
+# Created: 2026-05-17
+# Version: 1.0.0
+#
+# Schema for design-direction.yaml — emitted by tasks/define-design-direction.md
+# Consumed by design-renderer, validate-visual-coherence, run-design-critique.
+# Forces explicit design DIRECTION (not just brand skin) before any HTML/DeckSpec render.
+#
+# Closes GAP-010 (case-study Primeiro Servico de IA: identidade aplicada como skin).
+
+meta:
+  schema_version: "1.0.0"
+  producer: "tasks/define-design-direction.md (T-015B)"
+  consumers:
+    - "tasks/compose-grid-layout.md"
+    - "tasks/resolve-active-palette.md"
+    - "tasks/run-design-critique.md (T-016)"
+    - "tasks/validate-visual-coherence.md (T-009)"
+  rubric_dim_ref: "data/qa-rubric.yaml#dimensions.design.sub_dimensions.visual_coherence"
+  killer_items_enforced: [KI-10]
+
+# ─────────────────────────────────────────────────────
+# SCHEMA
+# ─────────────────────────────────────────────────────
+design_direction:
+  required: [deck_id, visual_reference, dominant_motif, density_limits, variation_rules, composition_rules]
+  fields:
+
+    deck_id:
+      type: string
+
+    brand_ref:
+      type: ["string", "null"]
+      description: "Brandbook ou design-md path. Pode ser null para decks sem brand owner."
+
+    visual_reference:
+      type: object
+      required: true
+      description: >-
+        Referência visual concreta (não é só brand tokens). Define o "deck-stage real".
+      fields:
+        type:
+          type: enum
+          values:
+            - external_url           # ex: extracted via /design-md
+            - prior_deck             # path para .pptx/.html de referência aprovada
+            - mood_board             # paths de imagens (max 6)
+            - design_system          # path para apps/{ds}/ component library
+            - composite              # combinação dos acima
+        paths:
+          type: list
+          item_type: string
+          min_items: 1
+        notes:
+          type: string
+          max_length: 280
+          description: "O que especificamente extrair da referência (não 'copiar', mas 'inspirar-se em X')"
+
+    dominant_motif:
+      type: object
+      required: true
+      description: "O motif visual que se repete e dá unidade ao deck"
+      fields:
+        name:
+          type: string
+          example: "grid editorial estilo Pentagram"
+        rationale:
+          type: string
+          max_length: 280
+        rendered_as:
+          type: list
+          description: "Como o motif se manifesta (paddings, bordas, fundos, decorações)"
+          item_type: string
+
+    density_limits:
+      type: object
+      required: true
+      description: "Limites de densidade por nível (consultado por validate-density)"
+      fields:
+        max_claims_governing_per_slide:
+          type: integer
+          default: 1
+          min: 1
+          max: 1
+        max_claims_supporting_per_slide:
+          type: integer
+          default: 3
+          min: 0
+          max: 5
+        max_visual_elements_per_slide:
+          type: integer
+          default: 4
+          min: 1
+          max: 7
+        max_text_chars_per_slide:
+          type: integer
+          default: 280
+          min: 50
+          max: 600
+        forbidden_patterns:
+          type: list
+          item_type: string
+          examples:
+            - "5+ cards iguais em grid (wireframe-like)"
+            - "Bullet list > 5 itens"
+            - "2+ charts na mesma slide"
+
+    variation_rules:
+      type: object
+      required: true
+      description: "Como o deck varia visualmente entre slides (evita monotonia tipo Primeiro Servico v1)"
+      fields:
+        layouts_count_min:
+          type: integer
+          default: 4
+          description: "Mínimo de layouts distintos no deck"
+        layout_repetition_max:
+          type: integer
+          default: 3
+          description: "Mesmo layout pode aparecer no máximo X vezes consecutivas"
+        quiet_slide_ratio_min:
+          type: number
+          default: 0.15
+          description: "Pelo menos 15% dos slides devem ser quiet (1 claim minimal density)"
+        accent_color_density:
+          type: string
+          enum: [sparse, moderate, dense]
+          default: sparse
+          description: "Distribuição de cor de destaque"
+        motion_policy:
+          type: enum
+          values: [none, subtle_transitions, full_motion]
+          default: subtle_transitions
+
+    composition_rules:
+      type: object
+      required: true
+      description: "Regras de composição enforced por compose-grid-layout"
+      fields:
+        grid_columns:
+          type: integer
+          default: 12
+        baseline_padding_pt:
+          type: integer
+          default: 32
+        title_anchor:
+          type: enum
+          values: [top_left, top_center, top_full]
+          default: top_left
+        footer_present:
+          type: boolean
+          default: true
+        slide_number_visible:
+          type: boolean
+          default: true
+        safe_area_pct:
+          type: number
+          default: 0.92
+          description: "% do canvas para conteúdo (resto é margem técnica)"
+
+    palette_constraints:
+      type: object
+      required: false
+      description: "Constraints sobre active-palette resolution"
+      fields:
+        primary_anchor:
+          type: string
+          description: "Cor que ancora o deck (hex ou token ref)"
+        accent_use:
+          type: string
+          enum: [single_per_slide, dual_per_slide, free]
+          default: single_per_slide
+        dark_mode:
+          type: enum
+          values: [light, dark, auto]
+          default: light
+
+    typography_constraints:
+      type: object
+      required: false
+      fields:
+        display_font_ref:
+          type: string
+          description: "Token ref (e.g., --slide-title-xl)"
+        body_font_ref:
+          type: string
+        scale_steps:
+          type: list
+          item_type: string
+          example: ["--slide-title-xl", "--slide-title-lg", "--slide-title-md", "--slide-body", "--slide-caption"]
+        line_length_max_chars:
+          type: integer
+          default: 60
+
+    audience_context:
+      type: object
+      required: true
+      description: "Contexto da audiência que informa decisões visuais"
+      fields:
+        viewing_mode:
+          type: enum
+          values: [in_person_projection, webinar_screen, async_pdf, mobile_share]
+          default: webinar_screen
+        viewing_distance:
+          type: string
+          enum: [near, medium, far]
+          default: medium
+        audience_size:
+          type: enum
+          values: [intimate_under_20, medium_20_200, large_200_plus]
+        attention_budget_minutes:
+          type: integer
+          default: 45
+
+# ─────────────────────────────────────────────────────
+# VALIDATION RULES
+# ─────────────────────────────────────────────────────
+validation_rules:
+  - rule: "visual_reference deve ter pelo menos 1 path real (não placeholder)"
+    severity: blocking
+    killer_item: KI-10
+    rationale: "Identidade ≠ direção. Sem referência visual concreta, deck vira skin."
+
+  - rule: "dominant_motif.name deve ser declarado (não vazio, não 'modern' / 'clean' / 'minimal')"
+    severity: blocking
+    rationale: "Buzzwords visuais são ausência de direção"
+
+  - rule: "density_limits.max_claims_governing_per_slide == 1 (hard cap)"
+    severity: blocking
+
+  - rule: "variation_rules.layouts_count_min >= 4"
+    severity: high
+    rationale: "Deck monolayout = wireframe (lição Primeiro Servico v1)"
+
+  - rule: "variation_rules.layout_repetition_max <= 3"
+    severity: high
+    case_study_ref: "Primeiro Servico v1: 5+ cards iguais consecutivos"
+
+  - rule: "Se audience_context.viewing_mode = in_person_projection, contrast deve usar WCAG AAA (>=7:1)"
+    severity: high
+
+  - rule: "design_direction.yaml DEVE existir antes de qualquer render (HTML/TSX/PPTX)"
+    severity: blocking
+    killer_item: KI-10
+    enforced_by: "tasks/handoff-render-request.md pre-condition"
+
+# ─────────────────────────────────────────────────────
+# EXAMPLE (derived from Primeiro Servico de IA v3 retrospective)
+# ─────────────────────────────────────────────────────
+example:
+  deck_id: "primeiro-servico-ia-v3"
+  brand_ref: "workspace/businesses/aiox/L2-tactical/brand/"
+
+  visual_reference:
+    type: composite
+    paths:
+      - "workspace/businesses/aiox/L2-tactical/design/reference-decks/y-combinator-demo-day-2024.pdf"
+      - "outputs/webinars/primeiro-servico-ia/draft-slides-aiox-v3-key.html"
+    notes: "Editorial workshop vibe — Pentagram-esque, blocos de cor sólida, tipografia condensada protagonista. NÃO copiar layouts; adotar disciplina."
+
+  dominant_motif:
+    name: "Bloco de cor sólida como cenário do título"
+    rationale: "Cria âncora visual recorrente sem virar wireframe. Cada slide-chave tem 'cortina' de cor."
+    rendered_as:
+      - "Block fundo lime/dark cobrindo 30-50% do canvas"
+      - "Tipografia black/extrabold sobre o bloco"
+      - "Espaço branco respiratório no restante"
+
+  density_limits:
+    max_claims_governing_per_slide: 1
+    max_claims_supporting_per_slide: 3
+    max_visual_elements_per_slide: 4
+    max_text_chars_per_slide: 240
+    forbidden_patterns:
+      - "5+ cards iguais em grid"
+      - "Matriz com mais de 12 células visíveis simultaneamente"
+      - "Bullet list > 5 itens"
+
+  variation_rules:
+    layouts_count_min: 6
+    layout_repetition_max: 2
+    quiet_slide_ratio_min: 0.2
+    accent_color_density: sparse
+    motion_policy: subtle_transitions
+
+  composition_rules:
+    grid_columns: 12
+    baseline_padding_pt: 48
+    title_anchor: top_left
+    footer_present: true
+    slide_number_visible: true
+    safe_area_pct: 0.9
+
+  palette_constraints:
+    primary_anchor: "--bb-lime"
+    accent_use: single_per_slide
+    dark_mode: light
+
+  typography_constraints:
+    display_font_ref: "--slide-title-xl"
+    body_font_ref: "--slide-body"
+    scale_steps:
+      - "--slide-title-xl"
+      - "--slide-title-lg"
+      - "--slide-title-md"
+      - "--slide-body"
+      - "--slide-caption"
+    line_length_max_chars: 50
+
+  audience_context:
+    viewing_mode: webinar_screen
+    viewing_distance: medium
+    audience_size: medium_20_200
+    attention_budget_minutes: 60
+
+# ─────────────────────────────────────────────────────
+# ANTI-PATTERNS
+# ─────────────────────────────────────────────────────
+anti_patterns:
+  - name: "Brand-as-skin"
+    description: "Apenas brand tokens (cores+fonts+logo) declarados, sem visual_reference real"
+    detection: "visual_reference.paths == [] OR vazio"
+    killer_item: KI-10
+    case_study_ref: "Primeiro Servico de IA v1"
+
+  - name: "Buzzword direction"
+    description: "dominant_motif.name é 'modern', 'clean', 'minimal', 'professional'"
+    detection: "regex match"
+    severity: blocking
+
+  - name: "Monolayout"
+    description: "layouts_count_min < 4 OR 1 layout repete em >50% dos slides"
+    severity: high
+
+  - name: "No audience context"
+    description: "audience_context vazio"
+    severity: blocking
+    rationale: "Decisões visuais sem contexto de audiência são chute"

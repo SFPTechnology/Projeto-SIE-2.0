@@ -1,0 +1,178 @@
+{
+  "benchmark_id": "v0-design-pipeline-vs-synkra-hub",
+  "date": "2026-04-16",
+  "executor": "bench-analyst v3.0",
+  "subject_a": "v0 Design Pipeline (vercel/ai + vercel-agent-skills + ts-morph + repomix + awesome-claude-code)",
+  "subject_b": "synkra-hub Design Squad (aiox-design + design-system + rules)",
+  "comparison_type": "codebase",
+  "dimensions": [
+    {
+      "id": "layer-1-rag",
+      "name": "Camada 1 — Intent Detection + RAG Injection",
+      "score_a": 9,
+      "score_b": 4,
+      "paridade": "2/5",
+      "paridade_label": "Equivalente fraco",
+      "gap_owner": "v0",
+      "evidence_a": "vercel-agent-skills/skills/web-design-guidelines/SKILL.md — fetch dinâmico; react-best-practices/SKILL.md — 70 regras",
+      "evidence_b": ".claude/rules/design-system-generation.md — always-loaded estático"
+    },
+    {
+      "id": "layer-2-stream",
+      "name": "Camada 2 — Stream Interception + Real-Time Correction",
+      "score_a": 10,
+      "score_b": 0,
+      "paridade": "1/5",
+      "paridade_label": "Sem equivalente",
+      "gap_owner": "v0",
+      "evidence_a": "vercel-ai/packages/ai/src/middleware/wrap-language-model.ts — 6 middleware types",
+      "evidence_b": "Nenhum hook PostToolUse de design em .claude/hooks/"
+    },
+    {
+      "id": "layer-3-ast",
+      "name": "Camada 3 — AST AutoFix + Deterministic Validation",
+      "score_a": 9,
+      "score_b": 3,
+      "paridade": "2/5",
+      "paridade_label": "Equivalente fraco",
+      "gap_owner": "v0",
+      "evidence_a": "ts-morph/packages/ts-morph/ — AST API; vercel-autofixer-01 < 250ms",
+      "evidence_b": "design-system/scripts/design-system/ — 18 scripts (build-time only)"
+    },
+    {
+      "id": "catalog-ai-ready",
+      "name": "Catálogo AI-Ready (llms.txt, endpoints, registry)",
+      "score_a": 8,
+      "score_b": 4,
+      "paridade": "3/5",
+      "paridade_label": "Equivalente parcial",
+      "gap_owner": "v0",
+      "evidence_a": "shadcn /r/*.json live endpoint; ai-sdk.dev/llms-full.txt",
+      "evidence_b": "component-index.json (estático); MCP server spec não implementado"
+    },
+    {
+      "id": "hooks-posttooluse",
+      "name": "Hooks PostToolUse de Design",
+      "score_a": 8,
+      "score_b": 1,
+      "paridade": "1/5",
+      "paridade_label": "Sem equivalente",
+      "gap_owner": "v0",
+      "evidence_a": "awesome-claude-code/resources/workflows-knowledge-guides/Design-Review-Workflow — 7-phase Playwright agent",
+      "evidence_b": ".claude/hooks/post-session-heuristics.sh — não específico de design"
+    },
+    {
+      "id": "prompt-injection",
+      "name": "Prompt Injection Pipeline",
+      "score_a": 8,
+      "score_b": 5,
+      "paridade": "3/5",
+      "paridade_label": "Equivalente parcial",
+      "gap_owner": "v0",
+      "evidence_a": "wrapLanguageModel + transformParams middleware; SKILL.md format",
+      "evidence_b": "prompting-bible.md (9 KBs); config.yaml preload max_token_files: 5"
+    },
+    {
+      "id": "design-knowledge-depth",
+      "name": "Profundidade de Conhecimento de Design",
+      "score_a": 5,
+      "score_b": 9,
+      "paridade": "5/5",
+      "paridade_label": "synkra-hub vence",
+      "gap_owner": "synkra-hub",
+      "evidence_a": "vercel-agent-skills: web design guidelines (fetch URL)",
+      "evidence_b": "9 agentes especializados; prompting-bible.md 9 KBs; motion-primitives; W3C DTCG tokens"
+    },
+    {
+      "id": "operational-coverage",
+      "name": "Cobertura Operacional (tasks, agentes, checklists)",
+      "score_a": 3,
+      "score_b": 10,
+      "paridade": "5/5",
+      "paridade_label": "synkra-hub vence",
+      "gap_owner": "synkra-hub",
+      "evidence_a": "6 skills distribuíveis",
+      "evidence_b": "110+ tasks; 9 agentes; 20+ checklists; 18 scripts de curação"
+    }
+  ],
+  "totals": {
+    "score_a": 60,
+    "score_b": 36,
+    "max": 80
+  },
+  "absorption_roadmap": [
+    {
+      "priority": "P0",
+      "id": "posttooluse-eslint-autofix",
+      "title": "PostToolUse hook — ESLint + TypeScript autofix",
+      "effort": "BAIXO",
+      "gain": "ALTO",
+      "days_estimate": "1-2"
+    },
+    {
+      "priority": "P0",
+      "id": "posttooluse-import-validator",
+      "title": "PostToolUse hook — validação de imports @sinkra/ds-core",
+      "effort": "MÉDIO",
+      "gain": "ALTO",
+      "days_estimate": "3-5"
+    },
+    {
+      "priority": "P0",
+      "id": "posttooluse-token-validator",
+      "title": "PostToolUse hook — validação de design tokens",
+      "effort": "BAIXO",
+      "gain": "MÉDIO",
+      "days_estimate": "1-2"
+    },
+    {
+      "priority": "P1",
+      "id": "design-review-agent-playwright",
+      "title": "Design Review Agent com Playwright (7 fases)",
+      "effort": "MÉDIO",
+      "gain": "ALTO",
+      "days_estimate": "5-8"
+    },
+    {
+      "priority": "P1",
+      "id": "icon-validator",
+      "title": "Icon validator pós-geração (lucide-react)",
+      "effort": "BAIXO",
+      "gain": "MÉDIO",
+      "days_estimate": "2-3"
+    },
+    {
+      "priority": "P1",
+      "id": "skill-md-ds-core",
+      "title": "SKILL.md para catálogo @sinkra/ds-core",
+      "effort": "BAIXO",
+      "gain": "MÉDIO",
+      "days_estimate": "1-2"
+    },
+    {
+      "priority": "P2",
+      "id": "intent-detection",
+      "title": "Intent detection para injeção condicional de DS context",
+      "effort": "MÉDIO",
+      "gain": "MÉDIO",
+      "days_estimate": "3-5"
+    },
+    {
+      "priority": "P2",
+      "id": "llms-txt",
+      "title": "llms.txt para @sinkra/ds-core",
+      "effort": "BAIXO",
+      "gain": "MÉDIO",
+      "days_estimate": "1"
+    },
+    {
+      "priority": "P2",
+      "id": "mcp-server-design",
+      "title": "MCP server de design (implementar spec existente)",
+      "effort": "ALTO",
+      "gain": "ALTO",
+      "days_estimate": "10-15"
+    }
+  ],
+  "key_insight": "O gap entre synkra-hub e v0 não é de conhecimento de design — é de automação de correção pós-geração. O synkra-hub tem conhecimento superior (9 agentes especializados, 110 tasks, Prompting Bible). Falta o pipe de execução automática."
+}

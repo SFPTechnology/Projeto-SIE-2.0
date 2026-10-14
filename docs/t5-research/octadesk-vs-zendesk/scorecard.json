@@ -1,0 +1,142 @@
+{
+  "bench_id": "octadesk-vs-zendesk",
+  "generated_at": "2026-05-06T00:00:00Z",
+  "scoring_method": "weighted_8_dimensions_persona_neutral",
+  "scale": "0-100 per dimension; final = sum(score * weight) / 100",
+  "dimensions": [
+    {
+      "id": "C1",
+      "name": "WhatsApp Business API integration",
+      "weight": 25,
+      "octadesk_score": 92,
+      "octadesk_rationale": "Cloud API oficial Meta DIRETO. Sem camada Sunshine. Pricing previsivel por tier (2k-5k conv/mes incluso). Multi-agent same number. PT-BR setup. Passthrough Meta fees transparente. Pequena perda: tier bundles podem nao escalar para enterprise multi-numero.",
+      "zendesk_score": 78,
+      "zendesk_rationale": "Cloud API oficial via Sunshine Conversations (BSP layer adiciona translation + variable pricing). Sunshine $0.15/notification + $495+/mo + per-MAU/per-notification. Multichannel maior (LINE, Apple BC, Telegram, Viber alem de WA). Setup mais complexo. Penalty: opacity Sunshine pricing.",
+      "winner": "octadesk",
+      "delta": 14
+    },
+    {
+      "id": "C2",
+      "name": "Brasil-fit operacional",
+      "weight": 20,
+      "octadesk_score": 95,
+      "octadesk_rationale": "BR-native end-to-end: PT-BR nativo (UI, suporte, docs, blog), pricing BRL transparente, integracoes BR first-class (VTEX/Tray/NuvemShop/Shopify/Magento), ecossistema LWSA (Bling ERP/Vindi/Melhor Envio/Yapay/Etus), 2.500+ empresas BR, time local. Pequena perda: data residency BR nao auditada formalmente.",
+      "zendesk_score": 50,
+      "zendesk_rationale": "Localizacao BRL na pagina de pricing principal. Produto traduzido PT-BR (nao nativo). Add-ons em USD (FX risk). Integracoes BR via PARCEIROS (BCR.CX, Aktie Now), nao first-class. Sem time local de produto. Data residency BR nao garantida (USA/EU). LGPD declarada via Trust Center generico. Suporte BR via canal de revenda.",
+      "winner": "octadesk",
+      "delta": 45
+    },
+    {
+      "id": "C3",
+      "name": "Feature parity enterprise",
+      "weight": 15,
+      "octadesk_score": 35,
+      "octadesk_rationale": "Octa Suite tem branch management, ERP/CRM, CSM dedicado. Mas custom agent roles, audit logs detalhados, sandbox, multi-help-center, BYOK NAO publicos. Sem HIPAA/PCI/FedRAMP. SSO/SCIM nao listados. Critico para enterprise regulado.",
+      "zendesk_score": 95,
+      "zendesk_rationale": "Suite Enterprise standard: SSO/SAML/JWT/OIDC + SCIM + custom agent roles + audit logs + sandbox 2 inclusos + 300 help centers + BYOK via ADPP + RBAC granular. Tier Enterprise Plus adiciona SLA 99.9%. ZAF para custom apps.",
+      "winner": "zendesk",
+      "delta": 60
+    },
+    {
+      "id": "C4",
+      "name": "AI capability",
+      "weight": 10,
+      "octadesk_score": 70,
+      "octadesk_rationale": "WOZ Agent ChatGPT-based. Modos autonomous + copilot + audio transcribe. PT-BR nativo. Data isolation declarada. Mas: deflection rate NAO benchmarked publicamente, WOZ pricing NAO publico, sem comparativos Fin Labs.",
+      "zendesk_score": 85,
+      "zendesk_rationale": "Zendesk AI Agents Essential (Suite) + Advanced + Copilot $50/agent. Per-resolution $1.50 committed / $2.00 PAYG transparente. Deflection 40-50% baseline ate 80% maduro publicado + Fin Labs benchmark. Multi-language. Penalty: AI bolted-on (multiplas aquisicoes Ultimate.ai), pricing stack rapido.",
+      "winner": "zendesk",
+      "delta": 15
+    },
+    {
+      "id": "C5",
+      "name": "Pricing transparency e TCO BR",
+      "weight": 10,
+      "octadesk_score": 65,
+      "octadesk_rationale": "Site /precos publico em BRL: Conversas R$1.542, Helpdesk R$2.205. G2 mirror Sea+AI R$2.972 (30 users + 2k WA conv). Tiers diretos. Mas: WOZ pricing gated, Octa Suite gated, agentes/conversas exact por tier nao publicado granular. Discrepancia historica vs tech-research (R$79 antigo).",
+      "zendesk_score": 70,
+      "zendesk_rationale": "4 tiers BRL transparentes (R$135-R$1.105). Add-ons em USD listados granular ($25-$50). AI per-resolution publicado. Mas TCO real escalation: contract annual only, monthly +15-25%, 5-7% escalation anual, overages auto-billed sem grace, sem refund early cancel, downgrade blocked mid-term, Sunshine variable pricing. Vendr median deal $47.772/year.",
+      "winner": "zendesk_marginal",
+      "delta": 5
+    },
+    {
+      "id": "C6",
+      "name": "Marketplace e ecosystem",
+      "weight": 5,
+      "octadesk_score": 60,
+      "octadesk_rationale": "20-30 integracoes catalogadas. Ecossistema LWSA forte (Bling, Tray, Vindi, Melhor Envio, Yapay, Etus). E-com BR depth (VTEX, NuvemShop, Magento, Shopify, Tray). Sem ZAF-equivalente. Sem SDK multi-linguagem publico.",
+      "zendesk_score": 95,
+      "zendesk_rationale": "1.500+ apps marketplace. SDK em JavaScript, Python, Ruby, PHP. ZAF para custom apps. Sunshine Conversations BSP nativo. Plug-and-play Slack, Github, Jira, SF, HS, Shopify, Stripe, MS365. Mas BR-specific connectors via PARCEIROS, nao first-class.",
+      "winner": "zendesk",
+      "delta": 35
+    },
+    {
+      "id": "C7",
+      "name": "Maturidade governance compliance",
+      "weight": 10,
+      "octadesk_score": 45,
+      "octadesk_rationale": "12 anos BR, 2.500+ empresas. Parte LWSA (estabilidade financeira). LGPD declarada via Trust pagina + WOZ data isolation. GDPR para WOZ. Mas: SOC 2 nao publico, ISO 27001 nao publico, audit logs gated. Sample reviews pequeno (G2 55 / Capterra BR 6) com sinais de instabilidade recorrente.",
+      "zendesk_score": 95,
+      "zendesk_rationale": "19 anos. Lider 14,8% market share. ISO 27001:2022 + 27017 + 27018 + 27701 + 42001 + CSA STAR AI L1+L2 + GDPR BCR + HIPAA via BAA + PCI-DSS + FedRAMP LI-SaaS + SOC 2 Type II. Trust Center publico. Audit logs Enterprise. SLA 99.5-99.9%.",
+      "winner": "zendesk",
+      "delta": 50
+    },
+    {
+      "id": "C8",
+      "name": "Comunidade reviews",
+      "weight": 5,
+      "octadesk_score": 55,
+      "octadesk_rationale": "G2: 55 reviews (sample pequeno). Capterra BR: 6 reviews 4,0/5 com 80% recommendation. Sentiment: ease of use+, value+, bot intuitive+; instabilidade-, outages frequentes ultimo ano-, limited customization-.",
+      "zendesk_score": 90,
+      "zendesk_rationale": "G2: 6.000+ reviews 4,3/5. Capterra: 4,5/5 milhares. TrustRadius 8,7/10. Sentiment: features+, automation+, multi-channel+, ticket mgmt+; pricing escalation-, complexity-, slow support-, learning curve-.",
+      "winner": "zendesk",
+      "delta": 35
+    }
+  ],
+  "totals": {
+    "octadesk": {
+      "weighted_score": 71.0,
+      "calculation": "(92*25 + 95*20 + 35*15 + 70*10 + 65*10 + 60*5 + 45*10 + 55*5) / 100 = 71.0"
+    },
+    "zendesk": {
+      "weighted_score": 76.45,
+      "calculation": "(78*25 + 50*20 + 95*15 + 85*10 + 70*10 + 95*5 + 95*10 + 90*5) / 100 = 76.45"
+    },
+    "delta": 5.45,
+    "delta_classification": "tecnicamente proximos; vencedor depende da persona/contexto"
+  },
+  "persona_recalibrated_scores": {
+    "ecommerce_smb_br": {
+      "weights_override": {"C1": 30, "C2": 30, "C3": 5, "C4": 10, "C5": 15, "C6": 5, "C7": 3, "C8": 2},
+      "octadesk": 79.5,
+      "zendesk": 67.0,
+      "winner": "octadesk",
+      "delta": 12.5,
+      "rationale": "PME BR: WhatsApp + BR-fit dominam. Compliance enterprise irrelevante. Octadesk vence por TCO 2,5-4x menor + integracoes BR first-class + suporte PT-BR + ecossistema LWSA."
+    },
+    "midmarket_br_50_100_agents": {
+      "weights_override": {"C1": 25, "C2": 20, "C3": 15, "C4": 15, "C5": 10, "C6": 5, "C7": 7, "C8": 3},
+      "octadesk": 72.0,
+      "zendesk": 75.6,
+      "winner": "tie_with_zendesk_marginal",
+      "delta": 3.6,
+      "rationale": "Mid-market BR: tensao entre TCO (Octadesk vence) e enterprise features (Zendesk vence). Decisao depende de: SSO/audit obrigatorios? AI volume? Multi-canal global ou BR-only? Score Octadesk 72 vs Zendesk 75,6 indica empate tecnico."
+    },
+    "enterprise_br_multinacional": {
+      "weights_override": {"C1": 15, "C2": 10, "C3": 25, "C4": 10, "C5": 5, "C6": 10, "C7": 20, "C8": 5},
+      "octadesk": 55.5,
+      "zendesk": 86.0,
+      "winner": "zendesk",
+      "delta": 30.5,
+      "rationale": "Enterprise multinacional BR: compliance + custom roles + sandbox + audit + multi-channel global + ISO/SOC2 sao mandatorios. Octadesk nao oferece. Zendesk unico viavel apesar do TCO 4-5x maior."
+    }
+  },
+  "tiebreaker_factors": [
+    "Volume de WhatsApp esperado (Octadesk tier lock vs Zendesk Sunshine variable)",
+    "Necessidade de SSO/SAML obrigatoria por compliance BR (RH, financeiro, healthcare)",
+    "Existencia de equipes US/EU multinacional (Zendesk multi-region)",
+    "Hosting BR estrito (LGPD operador): Octadesk presumivel BR (LWSA) > Zendesk USA/EU",
+    "Disponibilidade de equipe tecnica para integrar Sunshine + Zendesk Apps Framework",
+    "Necessidade de multi-help-center (Zendesk 300 vs Octadesk 1)"
+  ]
+}

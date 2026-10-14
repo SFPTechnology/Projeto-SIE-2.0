@@ -1,0 +1,30 @@
+schema: sinkra-sources-v1
+run_id: langchain-open-deep-research__SINKRA-DR-27
+task_id: SINKRA-DR-27
+system_id: langchain-open-deep-research
+sources:
+- id: SINKRA-DR-27-S1
+  type: synthetic_fixture
+  title: Fonte sintética 1 para SINKRA-DR-27
+  path: fixtures/gold-claims/SINKRA-DR-27.yaml
+  credibility: HIGH
+- id: SINKRA-DR-27-S2
+  type: synthetic_fixture
+  title: Fonte sintética 2 para SINKRA-DR-27
+  path: fixtures/gold-claims/SINKRA-DR-27.yaml
+  credibility: HIGH
+- id: SINKRA-DR-27-S3
+  type: synthetic_fixture
+  title: Fonte sintética 3 para SINKRA-DR-27
+  path: fixtures/gold-claims/SINKRA-DR-27.yaml
+  credibility: HIGH
+- id: SINKRA-DR-27-S4
+  type: synthetic_fixture
+  title: Fonte sintética 4 para SINKRA-DR-27
+  path: fixtures/gold-claims/SINKRA-DR-27.yaml
+  credibility: HIGH
+- id: SINKRA-DR-27-S5
+  type: synthetic_fixture
+  title: Fonte sintética 5 para SINKRA-DR-27
+  path: fixtures/gold-claims/SINKRA-DR-27.yaml
+  credibility: HIGH

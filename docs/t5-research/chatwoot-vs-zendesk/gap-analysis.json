@@ -1,0 +1,238 @@
+{
+  "bench_id": "chatwoot-vs-zendesk",
+  "generated": "2026-05-06",
+  "methodology": "Bidirectional gap analysis — what each subject lacks vs the other. Priority ranks by impact severity for typical buyer decision.",
+  "chatwoot_gaps_vs_zendesk": [
+    {
+      "id": "GAP-CW-01",
+      "category": "Compliance",
+      "feature_missing": "ISO 27001 / 27018 / 27701 certifications publicly listed",
+      "zendesk_status": "All three certified",
+      "priority": "P0 for regulated industries (banking, health, gov)",
+      "impact": "Buyers em healthcare/finance/gov bloqueados por procurement gate sem cert publica. Self-host nao resolve sozinho — auditor exige cert da plataforma OU controle integral cliente-side.",
+      "absorption_complexity": "HIGH",
+      "absorption_path": "Cloud-side: process de certificacao 12-24 meses + auditor fees ~$50K-200K. Self-hosted: cliente assume burden e pode obter cert propria mais facil em sua infra.",
+      "evidence": "Chatwoot pricing page nao lista certs; Zendesk trust-center lista todas"
+    },
+    {
+      "id": "GAP-CW-02",
+      "category": "Compliance",
+      "feature_missing": "FedRAMP authorization",
+      "zendesk_status": "Authorized",
+      "priority": "P0 para US federal government accounts",
+      "impact": "US gov procurement excluded. SLED segment limited.",
+      "absorption_complexity": "VERY_HIGH",
+      "absorption_path": "FedRAMP Moderate authorization custa $500K-2M e leva 18-36 meses. Self-host = irrelevante para fed (precisam fornecedor autorizado).",
+      "evidence": "Zendesk trust-center lists FedRAMP; Chatwoot does not"
+    },
+    {
+      "id": "GAP-CW-03",
+      "category": "Compliance",
+      "feature_missing": "HIPAA BAA available publicly",
+      "zendesk_status": "Yes (Advanced Compliance addon + BAA execution)",
+      "priority": "P0 para healthcare",
+      "impact": "Health customers cannot use Chatwoot Cloud for PHI. Self-host = customer responsibility but BAA with vendor still needed para PHI flowing pelo SaaS.",
+      "absorption_complexity": "MEDIUM",
+      "absorption_path": "Chatwoot pode oferecer BAA enterprise self-hosted edition. Cloud BAA exige Advanced Compliance equivalent.",
+      "evidence": "eesel.ai/blog/zendesk-data-and-privacy"
+    },
+    {
+      "id": "GAP-CW-04",
+      "category": "Ecosystem",
+      "feature_missing": "Curated marketplace ~1.977 apps de 1.136 vendors",
+      "zendesk_status": "Largest in segment",
+      "priority": "P1 para non-technical buyers",
+      "impact": "Buyers que esperam plug-and-play apps (HRIS sync, CRM bidirectional, BI dashboards, especifica BR como RD Station, etc.) precisam build/integrate manualmente em Chatwoot.",
+      "absorption_complexity": "HIGH",
+      "absorption_path": "Marketplace exige network effects + revenue share + dedicated team. Chatwoot pode fazer plugin registry MIT-friendly mas atingir 2k apps leva 5-10 anos.",
+      "evidence": "sqmagazine.co.uk/zendesk-statistics/ + zendesk.com/blog marketplace"
+    },
+    {
+      "id": "GAP-CW-05",
+      "category": "Channels",
+      "feature_missing": "Voice/Talk first-class native (sem add-on)",
+      "zendesk_status": "Suite Team+ included",
+      "priority": "P1 para call-center hybrid teams",
+      "impact": "Operacoes que combinam phone + chat precisam stack adicional ou Chatwoot Enterprise voice add-on (preco sob consulta).",
+      "absorption_complexity": "MEDIUM",
+      "absorption_path": "Chatwoot ja tem voice opcional Enterprise; precisa promover para Business tier ou fazer first-class todas tiers",
+      "evidence": "chatwoot.com/pricing — voice mentioned as 20+ agents Enterprise add-on"
+    },
+    {
+      "id": "GAP-CW-06",
+      "category": "Channels",
+      "feature_missing": "Apple Business Chat nativo",
+      "zendesk_status": "Suite Team+ native",
+      "priority": "P2 (canal de nicho)",
+      "impact": "Brands premium que usam Apple Business Chat (Apple ecosystem retail) excluded. Mas penetracao real e baixa.",
+      "absorption_complexity": "MEDIUM",
+      "absorption_path": "Implementar canal ABC similar ao pattern WhatsApp providers",
+      "evidence": "tech-research 02-research-report.md"
+    },
+    {
+      "id": "GAP-CW-07",
+      "category": "Reviews / Validation",
+      "feature_missing": "G2 review count similar ao Zendesk (6.000+)",
+      "zendesk_status": "6.000+ reviews 4.3/5",
+      "priority": "P1 para procurement validation enterprise",
+      "impact": "Procurement teams que filtram por '500+ reviews' bloqueiam Chatwoot. Sinal de adocao perceived enterprise menor.",
+      "absorption_complexity": "LOW",
+      "absorption_path": "Drive review campaigns post-implementation. Tipicamente leva 12-24 meses para 1.000+ reviews em G2.",
+      "evidence": "G2 product pages snapshot 2026-05-06"
+    },
+    {
+      "id": "GAP-CW-08",
+      "category": "Pricing",
+      "feature_missing": "BRL pricing publicado",
+      "zendesk_status": "Yes (R$135/R$359/R$755/R$1.105)",
+      "priority": "P2 para BR procurement",
+      "impact": "BR teams que comparam pricing precisam fazer FX manual; absence sinaliza menos serious BR-fit",
+      "absorption_complexity": "LOW",
+      "absorption_path": "Listar BRL pricing site oficial + faturamento BRL via Stripe/Pagar.me",
+      "evidence": "zendesk.com.br/pricing/ vs chatwoot.com/pricing/"
+    },
+    {
+      "id": "GAP-CW-09",
+      "category": "AI",
+      "feature_missing": "Customer outcome metrics published (39-92% deflection)",
+      "zendesk_status": "Multiple customer case studies published",
+      "priority": "P1 para sales validation",
+      "impact": "Buyers comparing AI capability tem datapoints concretos do Zendesk; Chatwoot Captain ainda sem outcomes publicos.",
+      "absorption_complexity": "LOW",
+      "absorption_path": "Coletar deflection metrics de Cloud customers + publish case studies",
+      "evidence": "zendesk.com.br/service/ai/ — Freedom 66%, Next 92%, etc."
+    },
+    {
+      "id": "GAP-CW-10",
+      "category": "Enterprise features",
+      "feature_missing": "Sandbox environment dedicated",
+      "zendesk_status": "Suite Enterprise tier",
+      "priority": "P2 para teams com complex routing/automation",
+      "impact": "Test changes in production = risk. Workaround Chatwoot: spin up self-hosted sandbox instance (custo infra adicional + setup time).",
+      "absorption_complexity": "MEDIUM",
+      "absorption_path": "Chatwoot Cloud Enterprise pode oferecer sandbox sub-instance; self-host = customer-managed",
+      "evidence": "zendesk.com/pricing/ — Suite Enterprise sandbox"
+    }
+  ],
+  "zendesk_gaps_vs_chatwoot": [
+    {
+      "id": "GAP-ZD-01",
+      "category": "Flexibility",
+      "feature_missing": "Self-hosted deployment option",
+      "chatwoot_status": "MIT full source self-host with no feature gating",
+      "priority": "P0 for compliance-driven, cost-driven, or sovereignty-driven buyers",
+      "impact": "Buyers em jurisdictions com data sovereignty requirements (Russia, China, Saudi, indian gov) cannot use Zendesk. Buyers in regulated industries that require full data control similarly blocked. Cost-conscious teams cannot opt-out of SaaS markup.",
+      "absorption_complexity": "VERY_HIGH",
+      "absorption_path": "Zendesk model is fundamentally SaaS-only; pivoting to self-host would cannibalize revenue. Highly unlikely.",
+      "evidence": "zendesk.com/pricing/ — no self-host SKU"
+    },
+    {
+      "id": "GAP-ZD-02",
+      "category": "License",
+      "feature_missing": "MIT (or any OSS) license option",
+      "chatwoot_status": "MIT for entire core",
+      "priority": "P0 for OSS-mandated procurement (universities, gov, OSS-first companies)",
+      "impact": "Procurement that requires OSS option excluded. Customization requires Zendesk Apps Framework (proprietary).",
+      "absorption_complexity": "VERY_HIGH",
+      "absorption_path": "Same as GAP-ZD-01 — fundamentally counter to business model",
+      "evidence": "github.com/chatwoot/chatwoot/blob/main/LICENSE"
+    },
+    {
+      "id": "GAP-ZD-03",
+      "category": "Pricing",
+      "feature_missing": "Transparent total cost (no hidden add-ons)",
+      "chatwoot_status": "$0/$19/$39/$99 + Captain credits — sticker close to real",
+      "priority": "P0 para PME / cost-sensitive buyers",
+      "impact": "Vendr median deal $47.772/year. Real cost 2-3x sticker. Pricing imprevisibilidade documentada em G2 reviews. Forecast TCO impossible sem AI Agents per-resolution disclosure.",
+      "absorption_complexity": "MEDIUM",
+      "absorption_path": "Zendesk could publish per-resolution AI pricing + bundle add-ons more aggressively. Bundled Suite + Copilot ($155/$209) is partial step.",
+      "evidence": "costbench.com/software/help-desk/zendesk/ + Vendr data + G2 cons"
+    },
+    {
+      "id": "GAP-ZD-04",
+      "category": "Channels",
+      "feature_missing": "WhatsApp BSP flexibility (BYOC)",
+      "chatwoot_status": "3 BSP options (Meta, Twilio, 360Dialog) — provider-pattern architecture",
+      "priority": "P1 for BR or high-volume WhatsApp teams",
+      "impact": "Locked to Meta Cloud API direct. Cannot use 360Dialog (zero-markup high-volume) or Twilio multi-channel bundling. BR teams that already have Take Blip/Zenvia BSP cannot wrap.",
+      "absorption_complexity": "MEDIUM",
+      "absorption_path": "Zendesk could add BSP marketplace slot or partner integrations. Currently single-vendor architecture.",
+      "evidence": "deepwiki Chatwoot WhatsApp providers + Zendesk docs"
+    },
+    {
+      "id": "GAP-ZD-05",
+      "category": "Channels",
+      "feature_missing": "Telegram + TikTok native (sem marketplace dependency)",
+      "chatwoot_status": "Both native",
+      "priority": "P2 for emerging channel needs",
+      "impact": "Telegram/TikTok integration via marketplace = quality varies, support varies, breaks risk higher",
+      "absorption_complexity": "LOW",
+      "absorption_path": "Add as native channels (Zendesk has resources)",
+      "evidence": "tech-research 02-research-report.md"
+    },
+    {
+      "id": "GAP-ZD-06",
+      "category": "Customization",
+      "feature_missing": "Source code modifiability (forks legitimos)",
+      "chatwoot_status": "MIT — fork-and-modify allowed",
+      "priority": "P1 para teams with unique workflow requirements",
+      "impact": "Custom logic limited to apps framework guardrails. Cannot fork to add proprietary feature or pivot data model.",
+      "absorption_complexity": "VERY_HIGH",
+      "absorption_path": "Cannot — Zendesk source is closed",
+      "evidence": "github.com/chatwoot/chatwoot/blob/main/LICENSE"
+    },
+    {
+      "id": "GAP-ZD-07",
+      "category": "AI Pricing",
+      "feature_missing": "Built-in AI included in tier (vs add-on)",
+      "chatwoot_status": "Captain credits included 300/500/800 by tier",
+      "priority": "P1 for cost forecasting clarity",
+      "impact": "Zendesk AI = always extra layer. Suite Team Essential AI is basic generative; real Copilot $50/agent/mo + AI Agents per-resolution opaque",
+      "absorption_complexity": "MEDIUM",
+      "absorption_path": "Zendesk could include Copilot in Pro+ (current bundle Suite Pro+Copilot $155 partial step); AI Agents could publish per-res pricing",
+      "evidence": "chatwoot.com/pricing vs zendesk.com/pricing/"
+    },
+    {
+      "id": "GAP-ZD-08",
+      "category": "Community",
+      "feature_missing": "Public GitHub community (transparente, contributable)",
+      "chatwoot_status": "29.1k stars, 7.2k forks, 266 open PRs",
+      "priority": "P2 for OSS-mindset technical teams",
+      "impact": "Developers can't see roadmap evolution, contribute fixes, audit security. Zendesk = black box.",
+      "absorption_complexity": "VERY_HIGH",
+      "absorption_path": "Counter to proprietary model",
+      "evidence": "github.com/chatwoot/chatwoot"
+    },
+    {
+      "id": "GAP-ZD-09",
+      "category": "Pricing entry",
+      "feature_missing": "Free tier viable for 2-agent teams",
+      "chatwoot_status": "Hacker tier $0 (2 agents, 500 conv/mo, live chat only)",
+      "priority": "P1 for solo founders / 2-person startups",
+      "impact": "Zendesk minimum is Support Team $19 × 1 agent = $19/mo (technically not bad), but trial-only-then-pay sem free permanent. Brought-in Suite Team min $55.",
+      "absorption_complexity": "LOW",
+      "absorption_path": "Zendesk could add free tier; goes against enterprise-first positioning",
+      "evidence": "chatwoot.com/pricing — Hacker $0"
+    },
+    {
+      "id": "GAP-ZD-10",
+      "category": "Vendor lock-in",
+      "feature_missing": "Migration path off-platform with full data + workflow continuity",
+      "chatwoot_status": "Self-host migration trivial (move DB + assets)",
+      "priority": "P0 for risk-averse buyers",
+      "impact": "Switching cost off Zendesk historically high (data export limitations, custom apps lock-in, workflow rebuild). Causes 'switching pain' documented in Hiver/Featurebase/Helpjuice review aggregators.",
+      "absorption_complexity": "HIGH",
+      "absorption_path": "Improve data export tooling + Zendesk-to-X migration scripts",
+      "evidence": "Featurebase/Hiver review aggregations show active switching market"
+    }
+  ],
+  "summary": {
+    "chatwoot_gaps_total": 10,
+    "chatwoot_gaps_by_priority": {"P0": 3, "P1": 5, "P2": 2},
+    "zendesk_gaps_total": 10,
+    "zendesk_gaps_by_priority": {"P0": 4, "P1": 4, "P2": 2},
+    "key_observation": "Both have categorical gaps the other cannot easily absorb without changing fundamental business model. Chatwoot's compliance gaps are absorbable over 1-3 years with investment. Zendesk's flexibility/OSS gaps are NOT absorbable without cannibalizing revenue.",
+    "asymmetric_absorption": "Chatwoot absorbing Zendesk's compliance posture: 1-3 years + capex. Zendesk absorbing Chatwoot's self-host/MIT: would destroy SaaS revenue model — extremely unlikely.",
+    "implication_for_buyers": "If you need Zendesk's compliance certs, Zendesk is a one-way door (lock-in heavy). If you need Chatwoot's flexibility, you have option to migrate to/from Cloud anytime."
+  }
+}

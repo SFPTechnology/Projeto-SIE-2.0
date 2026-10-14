@@ -1,0 +1,135 @@
+{
+  "schema": "slides-creator-bench-completeness-rubric.v1",
+  "generated_at": "2026-05-17",
+  "score_semantics": {
+    "bench_intelligence_score": "Mede completude do benchmark, dashboard e apresentação como artefato de decisão.",
+    "implementation_readiness_score": "Mede quanto da stack slide creator skill stack já foi implementada; não é o score exibido no ranking de bench.",
+    "rule": "Score 100 no dash significa bench completo para decisão e apresentação, não produto final entregue."
+  },
+  "score": 100,
+  "categories": [
+    {
+      "id": "scope_inventory",
+      "label": "Escopo e inventário",
+      "weight": 10,
+      "score": 10,
+      "evidence": [
+        "inventory-open-source-stack.json",
+        "inventory-slides-creator.json",
+        "repo-metrics.json"
+      ]
+    },
+    {
+      "id": "matrix_depth",
+      "label": "Matriz comparativa profunda",
+      "weight": 15,
+      "score": 15,
+      "evidence": [
+        "comparison-matrix.json",
+        "comparison-matrix.md",
+        "deep/matrix-methodology.md"
+      ]
+    },
+    {
+      "id": "segmented_fairness",
+      "label": "Comparações justas por classe",
+      "weight": 10,
+      "score": 10,
+      "evidence": [
+        "segmented-comparisons.json",
+        "deep/segmented-methodology.md"
+      ]
+    },
+    {
+      "id": "personas_context",
+      "label": "Personas por job-to-be-done",
+      "weight": 12,
+      "score": 12,
+      "evidence": [
+        "scenario-scorecards.json",
+        "deep/persona-weight-methodology.json"
+      ]
+    },
+    {
+      "id": "evidence_traceability",
+      "label": "Rastreabilidade e fontes",
+      "weight": 10,
+      "score": 10,
+      "evidence": [
+        "evidence-ledger.json",
+        "deep/evidence-strength-map.json",
+        "bench-output-dash.json#sources"
+      ]
+    },
+    {
+      "id": "contracts_execution",
+      "label": "Contratos implementáveis",
+      "weight": 10,
+      "score": 10,
+      "evidence": [
+        "contracts/api-contract.md",
+        "contracts/mcp-contract.md",
+        "contracts/native-ir-contract.md",
+        "contracts/qa-rubric.json"
+      ]
+    },
+    {
+      "id": "risk_governance",
+      "label": "Risco, licença e ADR",
+      "weight": 8,
+      "score": 8,
+      "evidence": [
+        "risk-register.json",
+        "deep/license-risk-assessment.md",
+        "ADR-001-absorption-strategy.md"
+      ]
+    },
+    {
+      "id": "dashboard_contract",
+      "label": "Contrato de dashboard",
+      "weight": 10,
+      "score": 10,
+      "evidence": [
+        "bench-output-dash.json",
+        "dashboard-intelligence.md"
+      ]
+    },
+    {
+      "id": "presentation_storyline",
+      "label": "Storyline de apresentação",
+      "weight": 8,
+      "score": 8,
+      "evidence": [
+        "presentation-brief.json",
+        "presentation-brief.md"
+      ]
+    },
+    {
+      "id": "intelligence_graph",
+      "label": "Grafo de inteligência entre artefatos",
+      "weight": 7,
+      "score": 7,
+      "evidence": [
+        "deep/intelligence-graph.json",
+        "deep/intelligence-graph.md"
+      ]
+    }
+  ],
+  "validation": {
+    "json_valid": true,
+    "markdown_links_valid": true,
+    "dash_routes_checked": [
+      "slides",
+      "personas"
+    ],
+    "typecheck_passed": true
+  },
+  "implementation_readiness": {
+    "status": "planned_not_implemented",
+    "p0_items": 10,
+    "p1_items": 6,
+    "p2_items": 6,
+    "source": "TODO-coverage.json",
+    "interpretation": "A implementação técnica ainda precisa de epic; isso não reduz a completude do bench como inteligência de decisão."
+  }
+}

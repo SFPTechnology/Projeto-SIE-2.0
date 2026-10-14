@@ -1,0 +1,344 @@
+{
+  "bench": {
+    "id": "2026-05-16-deep-research-absorption-benchmark",
+    "type": "technology",
+    "variant": "n-way",
+    "created_at": "2026-05-16",
+    "generated_at": "2026-05-18",
+    "analyst": "tech-research -> bench transform",
+    "title": "Deep Research Absorption Benchmark",
+    "short_title": "Deep Research Absorption Benchmark",
+    "method": "Conversão da pesquisa tech-research em bench ponderado com 14 players, 8 dimensões, cenários de decisão e ledger de evidências. As notas são derivadas das fontes e do relatório em runtimes/claude.",
+    "confidence_breakdown": "8 fontes ALTA · 5 MEDIA · 2 BAIXA; ranking operacional com caveat para métricas voláteis de stars.",
+    "status": "completed",
+    "schema_variant": "oss-deep-research-2026-v1"
+  },
+  "context": {
+    "central_tension": "O campo divide-se entre frameworks scriptados fáceis de integrar, modelos treinados via RL que vencem benchmarks e soluções local-first para dados sensíveis.",
+    "upstream_research": "docs/research/2026-05-16-quais-os-melhores-projetos-de-deepresearch-opensource-atuais/runtimes/claude"
+  },
+  "subjects": [
+    {
+      "key": "gpt_researcher",
+      "name": "GPT-Researcher",
+      "category": "framework multi-agente",
+      "type": "framework",
+      "license": "MIT",
+      "language": "Python",
+      "org": "Assaf Elovic",
+      "vendor_url": "https://github.com/assafelovic/gpt-researcher",
+      "neutral_score": 83.2,
+      "rank": 1,
+      "confidence": "ALTA",
+      "stats": {
+        "verdict": "Melhor custo-benefício e melhor encaixe MCP imediato para o Sinkra Hub.",
+        "source_ids": [
+          "src-002"
+        ]
+      }
+    },
+    {
+      "key": "local_deep_research",
+      "name": "Local Deep Research",
+      "category": "local-first",
+      "type": "agent",
+      "license": "open-source",
+      "language": "Python",
+      "org": "LearningCircuit",
+      "vendor_url": "https://github.com/LearningCircuit/local-deep-research",
+      "neutral_score": 83,
+      "rank": 2,
+      "confidence": "ALTA",
+      "stats": {
+        "verdict": "Melhor opção privacy-first/air-gapped.",
+        "source_ids": [
+          "src-007"
+        ]
+      }
+    },
+    {
+      "key": "deerflow",
+      "name": "DeerFlow",
+      "category": "framework multi-agente",
+      "type": "framework",
+      "license": "MIT",
+      "language": "Python",
+      "org": "ByteDance",
+      "vendor_url": "https://github.com/bytedance/deer-flow",
+      "neutral_score": 82.3,
+      "rank": 3,
+      "confidence": "ALTA",
+      "stats": {
+        "verdict": "Melhor general-purpose quando popularidade, sandbox e memória importam.",
+        "source_ids": [
+          "src-001"
+        ]
+      }
+    },
+    {
+      "key": "deepresearcher",
+      "name": "DeepResearcher",
+      "category": "modelo RL-trained",
+      "type": "model",
+      "license": "Apache-2.0",
+      "language": "Python",
+      "org": "GAIR-NLP",
+      "vendor_url": "https://github.com/GAIR-NLP/DeepResearcher",
+      "neutral_score": 81.8,
+      "rank": 4,
+      "confidence": "ALTA",
+      "stats": {
+        "verdict": "Melhor aposta local de modelo pequeno treinado para research.",
+        "source_ids": [
+          "src-005",
+          "src-006"
+        ]
+      }
+    },
+    {
+      "key": "openresearcher",
+      "name": "OpenResearcher",
+      "category": "modelo RL-trained",
+      "type": "model+pipeline",
+      "license": "open",
+      "language": "Python",
+      "org": "TIGER-AI-Lab",
+      "vendor_url": "https://github.com/TIGER-AI-Lab/OpenResearcher",
+      "neutral_score": 80.1,
+      "rank": 5,
+      "confidence": "ALTA",
+      "stats": {
+        "verdict": "Melhor accuracy em benchmark, mas com custo de hardware e corpus offline.",
+        "source_ids": [
+          "src-003",
+          "src-004"
+        ]
+      }
+    },
+    {
+      "key": "hermes_agent",
+      "name": "Hermes Agent",
+      "category": "agente autônomo generalista",
+      "type": "general-agent",
+      "license": "MIT",
+      "language": "Python",
+      "org": "Nous Research",
+      "vendor_url": "https://github.com/NousResearch/hermes-agent",
+      "neutral_score": 79.1,
+      "rank": 6,
+      "confidence": "MEDIA",
+      "stats": {
+        "verdict": "Melhor referência de agente 24/7 com self-learning, mas não é especializado em deep research.",
+        "source_ids": [
+          "src-010",
+          "src-014"
+        ]
+      }
+    },
+    {
+      "key": "storm",
+      "name": "STORM",
+      "category": "artigo científico",
+      "type": "pipeline",
+      "license": "open-source",
+      "language": "Python",
+      "org": "Stanford OVAL",
+      "vendor_url": "https://github.com/stanford-oval/storm",
+      "neutral_score": 76.1,
+      "rank": 7,
+      "confidence": "ALTA",
+      "stats": {
+        "verdict": "Referência acadêmica para síntese multi-perspectiva em formato artigo.",
+        "source_ids": [
+          "src-009"
+        ]
+      }
+    },
+    {
+      "key": "langchain_open_dr",
+      "name": "LangChain Open Deep Research",
+      "category": "single-loop",
+      "type": "agent",
+      "license": "MIT",
+      "language": "Python",
+      "org": "LangChain",
+      "vendor_url": "https://github.com/langchain-ai/open_deep_research",
+      "neutral_score": 75.1,
+      "rank": 8,
+      "confidence": "MEDIA",
+      "stats": {
+        "verdict": "Melhor quick start benchmarkado; ótimo baseline, menos poderoso que RL-trained.",
+        "source_ids": [
+          "src-011",
+          "src-012"
+        ]
+      }
+    },
+    {
+      "key": "autorresearchclaw",
+      "name": "AutoResearchClaw",
+      "category": "paper científico",
+      "type": "pipeline",
+      "license": "open-source",
+      "language": "Python",
+      "org": "AIMING Lab",
+      "vendor_url": "https://github.com/aiming-lab/AutoResearchClaw",
+      "neutral_score": 71.9,
+      "rank": 9,
+      "confidence": "ALTA",
+      "stats": {
+        "verdict": "Melhor para ideia -> paper acadêmico, não para research generalista barato.",
+        "source_ids": [
+          "src-008"
+        ]
+      }
+    },
+    {
+      "key": "deepsearcher",
+      "name": "DeepSearcher",
+      "category": "dados privados/RAG",
+      "type": "rag-system",
+      "license": "open-source",
+      "language": "Python",
+      "org": "Zilliz",
+      "vendor_url": "https://github.com/zilliztech/deep-searcher",
+      "neutral_score": 71.4,
+      "rank": 10,
+      "confidence": "MEDIA",
+      "stats": {
+        "verdict": "Melhor para knowledge base privada, não para web deep research geral.",
+        "source_ids": [
+          "src-015"
+        ]
+      }
+    },
+    {
+      "key": "jina_node_deepresearch",
+      "name": "Jina node-DeepResearch",
+      "category": "single-loop TypeScript",
+      "type": "agent",
+      "license": "Apache-2.0",
+      "language": "TypeScript",
+      "org": "Jina AI",
+      "vendor_url": "https://github.com/jina-ai/node-DeepResearch",
+      "neutral_score": 70.3,
+      "rank": 11,
+      "confidence": "MEDIA",
+      "stats": {
+        "verdict": "Melhor protótipo rápido em TypeScript.",
+        "source_ids": [
+          "src-013"
+        ]
+      }
+    },
+    {
+      "key": "auto_deep_research",
+      "name": "Auto-Deep-Research",
+      "category": "framework multi-stage",
+      "type": "framework",
+      "license": "open-source",
+      "language": "Python",
+      "org": "HKUDS",
+      "vendor_url": "https://github.com/HKUDS/Auto-Deep-Research",
+      "neutral_score": 66.9,
+      "rank": 12,
+      "confidence": "MEDIA",
+      "stats": {
+        "verdict": "Emergente; observar antes de adotar como core.",
+        "source_ids": [
+          "src-015"
+        ]
+      }
+    },
+    {
+      "key": "firecrawl_open_dr",
+      "name": "Firecrawl Open Deep Research",
+      "category": "single-loop com extração web",
+      "type": "agent",
+      "license": "open-source",
+      "language": "Python",
+      "org": "nickscamara",
+      "vendor_url": "https://github.com/nickscamara/open-deep-research",
+      "neutral_score": 58.4,
+      "rank": 13,
+      "confidence": "BAIXA",
+      "stats": {
+        "verdict": "Útil se Firecrawl já for o motor de extração; nicho no restante.",
+        "source_ids": [
+          "src-015"
+        ]
+      }
+    },
+    {
+      "key": "kimi_researcher",
+      "name": "Kimi-Researcher",
+      "category": "modelo RL-trained parcial",
+      "type": "model",
+      "license": "parcial",
+      "language": "unknown",
+      "org": "Moonshot AI",
+      "vendor_url": "https://moonshotai.github.io/Kimi-Researcher/",
+      "neutral_score": 58,
+      "rank": 14,
+      "confidence": "MEDIA",
+      "stats": {
+        "verdict": "Forte como referência técnica, fraco como opção open-source absorvível.",
+        "source_ids": [
+          "src-015"
+        ]
+      }
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "research_quality",
+        "name": "Qualidade de pesquisa",
+        "weight_pct": 18,
+        "rationale": "Capacidade de encontrar, cruzar e sintetizar fontes com citações úteis."
+      },
+      {
+        "id": "automation_depth",
+        "name": "Profundidade de automação",
+        "weight_pct": 16,
+        "rationale": "Planejamento, decomposição, loops de busca/leitura/reflexão e redução de intervenção humana."
+      },
+      {
+        "id": "evidence_strength",
+        "name": "Evidência e benchmark",
+        "weight_pct": 15,
+        "rationale": "Força de papers, benchmarks externos, repositórios oficiais e claims verificáveis."
+      },
+      {
+        "id": "local_privacy",
+        "name": "Local-first e privacidade",
+        "weight_pct": 12,
+        "rationale": "Aderência a uso local, dados sensíveis, self-hosting e controle operacional."
+      },
+      {
+        "id": "integration_fit",
+        "name": "Integração e ecossistema",
+        "weight_pct": 12,
+        "rationale": "MCP, APIs, providers, formatos de saída e encaixe em workflows existentes."
+      },
+      {
+        "id": "cost_efficiency",
+        "name": "Custo e eficiência",
+        "weight_pct": 10,
+        "rationale": "Custo por run, necessidade de hardware e previsibilidade financeira."
+      },
+      {
+        "id": "maturity_community",
+        "name": "Maturidade e comunidade",
+        "weight_pct": 10,
+        "rationale": "Tração, documentação, releases, adoção e risco de abandono."
+      },
+      {
+        "id": "license_adoption_risk",
+        "name": "Licença e risco de adoção",
+        "weight_pct": 7,
+        "rationale": "Licença, abertura real, dependência de vendor e restrições para absorção."
+      }
+    ]
+  }
+}

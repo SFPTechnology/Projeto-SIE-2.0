@@ -1,0 +1,33 @@
+schema: sinkra-gold-claims-v1
+task_id: SINKRA-DR-34
+claims:
+- id: SINKRA-DR-34-C1
+  text: Claim gold sintético 1 para browser_realism.
+  required: true
+  source_refs:
+  - SINKRA-DR-34-S1
+- id: SINKRA-DR-34-C2
+  text: Claim gold sintético 2 para browser_realism.
+  required: true
+  source_refs:
+  - SINKRA-DR-34-S2
+- id: SINKRA-DR-34-C3
+  text: Claim gold sintético 3 para browser_realism.
+  required: true
+  source_refs:
+  - SINKRA-DR-34-S3
+- id: SINKRA-DR-34-C4
+  text: Claim gold sintético 4 para browser_realism.
+  required: false
+  source_refs:
+  - SINKRA-DR-34-S4
+- id: SINKRA-DR-34-C5
+  text: Claim gold sintético 5 para browser_realism.
+  required: false
+  source_refs:
+  - SINKRA-DR-34-S5
+- id: SINKRA-DR-34-C6
+  text: Claim gold sintético 6 para browser_realism.
+  required: false
+  source_refs:
+  - SINKRA-DR-34-S6

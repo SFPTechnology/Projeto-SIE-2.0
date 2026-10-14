@@ -1,0 +1,1340 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:09:33.856Z",
+  "source_files": [
+    "INDEX.md",
+    "full-comparison.md",
+    "gap-absorption-roadmap.md",
+    "metadata.json"
+  ],
+  "benchmark": {
+    "slug": "quality-engineering-4way",
+    "title": "Quality Engineering 4-Way Benchmark",
+    "date": "2026-04-15",
+    "type": "product",
+    "variant": "4-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "sinkra",
+      "name": "Sinkra",
+      "category": "unknown"
+    },
+    {
+      "key": "openclaw",
+      "name": "Openclaw",
+      "category": "unknown"
+    },
+    {
+      "key": "bmad",
+      "name": "Bmad",
+      "category": "unknown"
+    },
+    {
+      "key": "paperclip",
+      "name": "Paperclip",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "paperclip",
+    "coverage": "structured",
+    "sources": 0,
+    "waves": 0,
+    "dimensions": 13
+  },
+  "matrix": {
+    "players": [
+      "sinkra",
+      "openclaw",
+      "bmad",
+      "paperclip"
+    ],
+    "dimensions": [
+      {
+        "id": "D1",
+        "label": "Quality practices",
+        "weight": 0
+      },
+      {
+        "id": "D2",
+        "label": "Governance practices",
+        "weight": 0
+      },
+      {
+        "id": "D3",
+        "label": "Exclusive practices",
+        "weight": 0
+      },
+      {
+        "id": "D4",
+        "label": "Pre-commit/push checks",
+        "weight": 0
+      },
+      {
+        "id": "D5",
+        "label": "Schema validators",
+        "weight": 0
+      },
+      {
+        "id": "D6",
+        "label": "Doctor checks",
+        "weight": 0
+      },
+      {
+        "id": "D7",
+        "label": "Test files",
+        "weight": 0
+      },
+      {
+        "id": "D8",
+        "label": "E2E tests",
+        "weight": 0
+      },
+      {
+        "id": "D9",
+        "label": "Coverage",
+        "weight": 0
+      },
+      {
+        "id": "D10",
+        "label": "CI workflows",
+        "weight": 0
+      },
+      {
+        "id": "D11",
+        "label": "Linter plugins",
+        "weight": 0
+      },
+      {
+        "id": "D12",
+        "label": "Release automation",
+        "weight": 0
+      },
+      {
+        "id": "D13",
+        "label": "Code review AI",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "D1",
+        "label": "Quality practices",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 20,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 12,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 14,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 11,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "label": "Governance practices",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 16,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 2,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 2,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 1,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D3",
+        "label": "Exclusive practices",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 16,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 4,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 6,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D4",
+        "label": "Pre-commit/push checks",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 6,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 2,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 3,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D5",
+        "label": "Schema validators",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 9,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 14,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 302,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D6",
+        "label": "Doctor checks",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 10,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 3,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 9,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D7",
+        "label": "Test files",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 13,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 3,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 190,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D8",
+        "label": "E2E tests",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 1,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 37,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 2,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D9",
+        "label": "Coverage",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 14.1,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D10",
+        "label": "CI workflows",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 13,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 6,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D11",
+        "label": "Linter plugins",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 1,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 1,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D12",
+        "label": "Release automation",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D13",
+        "label": "Code review AI",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "sinkra",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "openclaw",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "bmad",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "sinkra",
+        "score": 16.24
+      },
+      {
+        "player": "openclaw",
+        "score": 19.15
+      },
+      {
+        "player": "bmad",
+        "score": 19.77
+      },
+      {
+        "player": "paperclip",
+        "score": 55.85
+      }
+    ],
+    "method": "Derived from markdown table in full-comparison.md"
+  },
+  "duels": [
+    {
+      "left": "sinkra",
+      "right": "openclaw",
+      "winner": "sinkra",
+      "left_wins": 8,
+      "right_wins": 4,
+      "ties": 1,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Quality practices",
+          "left_score": 20,
+          "right_score": 12,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D2",
+          "label": "Governance practices",
+          "left_score": 16,
+          "right_score": 2,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D3",
+          "label": "Exclusive practices",
+          "left_score": 16,
+          "right_score": 4,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D4",
+          "label": "Pre-commit/push checks",
+          "left_score": 6,
+          "right_score": 2,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D5",
+          "label": "Schema validators",
+          "left_score": 9,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D6",
+          "label": "Doctor checks",
+          "left_score": 10,
+          "right_score": 5,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D7",
+          "label": "Test files",
+          "left_score": 13,
+          "right_score": 3,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D8",
+          "label": "E2E tests",
+          "left_score": 1,
+          "right_score": 37,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D9",
+          "label": "Coverage",
+          "left_score": 14.1,
+          "right_score": 70,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D10",
+          "label": "CI workflows",
+          "left_score": 5,
+          "right_score": 13,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D11",
+          "label": "Linter plugins",
+          "left_score": 1,
+          "right_score": 1,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D12",
+          "label": "Release automation",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D13",
+          "label": "Code review AI",
+          "left_score": 100,
+          "right_score": 0,
+          "winner": "sinkra"
+        }
+      ]
+    },
+    {
+      "left": "sinkra",
+      "right": "bmad",
+      "winner": "sinkra",
+      "left_wins": 8,
+      "right_wins": 3,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Quality practices",
+          "left_score": 20,
+          "right_score": 14,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D2",
+          "label": "Governance practices",
+          "left_score": 16,
+          "right_score": 2,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D3",
+          "label": "Exclusive practices",
+          "left_score": 16,
+          "right_score": 6,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D4",
+          "label": "Pre-commit/push checks",
+          "left_score": 6,
+          "right_score": 3,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D5",
+          "label": "Schema validators",
+          "left_score": 9,
+          "right_score": 14,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D6",
+          "label": "Doctor checks",
+          "left_score": 10,
+          "right_score": 3,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D7",
+          "label": "Test files",
+          "left_score": 13,
+          "right_score": 5,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D8",
+          "label": "E2E tests",
+          "left_score": 1,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D9",
+          "label": "Coverage",
+          "left_score": 14.1,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D10",
+          "label": "CI workflows",
+          "left_score": 5,
+          "right_score": 5,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D11",
+          "label": "Linter plugins",
+          "left_score": 1,
+          "right_score": 5,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D12",
+          "label": "Release automation",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D13",
+          "label": "Code review AI",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "sinkra",
+      "right": "paperclip",
+      "winner": "sinkra",
+      "left_wins": 7,
+      "right_wins": 5,
+      "ties": 1,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Quality practices",
+          "left_score": 20,
+          "right_score": 11,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D2",
+          "label": "Governance practices",
+          "left_score": 16,
+          "right_score": 1,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D3",
+          "label": "Exclusive practices",
+          "left_score": 16,
+          "right_score": 5,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D4",
+          "label": "Pre-commit/push checks",
+          "left_score": 6,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D5",
+          "label": "Schema validators",
+          "left_score": 9,
+          "right_score": 302,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D6",
+          "label": "Doctor checks",
+          "left_score": 10,
+          "right_score": 9,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D7",
+          "label": "Test files",
+          "left_score": 13,
+          "right_score": 190,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D8",
+          "label": "E2E tests",
+          "left_score": 1,
+          "right_score": 2,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D9",
+          "label": "Coverage",
+          "left_score": 14.1,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D10",
+          "label": "CI workflows",
+          "left_score": 5,
+          "right_score": 6,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D11",
+          "label": "Linter plugins",
+          "left_score": 1,
+          "right_score": 0,
+          "winner": "sinkra"
+        },
+        {
+          "dimension": "D12",
+          "label": "Release automation",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D13",
+          "label": "Code review AI",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "openclaw",
+      "right": "bmad",
+      "winner": "bmad",
+      "left_wins": 4,
+      "right_wins": 7,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Quality practices",
+          "left_score": 12,
+          "right_score": 14,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D2",
+          "label": "Governance practices",
+          "left_score": 2,
+          "right_score": 2,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Exclusive practices",
+          "left_score": 4,
+          "right_score": 6,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D4",
+          "label": "Pre-commit/push checks",
+          "left_score": 2,
+          "right_score": 3,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D5",
+          "label": "Schema validators",
+          "left_score": 0,
+          "right_score": 14,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D6",
+          "label": "Doctor checks",
+          "left_score": 5,
+          "right_score": 3,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D7",
+          "label": "Test files",
+          "left_score": 3,
+          "right_score": 5,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D8",
+          "label": "E2E tests",
+          "left_score": 37,
+          "right_score": 0,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D9",
+          "label": "Coverage",
+          "left_score": 70,
+          "right_score": 0,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D10",
+          "label": "CI workflows",
+          "left_score": 13,
+          "right_score": 5,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D11",
+          "label": "Linter plugins",
+          "left_score": 1,
+          "right_score": 5,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D12",
+          "label": "Release automation",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "Code review AI",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "bmad"
+        }
+      ]
+    },
+    {
+      "left": "openclaw",
+      "right": "paperclip",
+      "winner": "openclaw",
+      "left_wins": 7,
+      "right_wins": 5,
+      "ties": 1,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Quality practices",
+          "left_score": 12,
+          "right_score": 11,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D2",
+          "label": "Governance practices",
+          "left_score": 2,
+          "right_score": 1,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D3",
+          "label": "Exclusive practices",
+          "left_score": 4,
+          "right_score": 5,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D4",
+          "label": "Pre-commit/push checks",
+          "left_score": 2,
+          "right_score": 0,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D5",
+          "label": "Schema validators",
+          "left_score": 0,
+          "right_score": 302,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D6",
+          "label": "Doctor checks",
+          "left_score": 5,
+          "right_score": 9,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D7",
+          "label": "Test files",
+          "left_score": 3,
+          "right_score": 190,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D8",
+          "label": "E2E tests",
+          "left_score": 37,
+          "right_score": 2,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D9",
+          "label": "Coverage",
+          "left_score": 70,
+          "right_score": 0,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D10",
+          "label": "CI workflows",
+          "left_score": 13,
+          "right_score": 6,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D11",
+          "label": "Linter plugins",
+          "left_score": 1,
+          "right_score": 0,
+          "winner": "openclaw"
+        },
+        {
+          "dimension": "D12",
+          "label": "Release automation",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "Code review AI",
+          "left_score": 0,
+          "right_score": 100,
+          "winner": "paperclip"
+        }
+      ]
+    },
+    {
+      "left": "bmad",
+      "right": "paperclip",
+      "winner": "tie",
+      "left_wins": 5,
+      "right_wins": 5,
+      "ties": 3,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Quality practices",
+          "left_score": 14,
+          "right_score": 11,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D2",
+          "label": "Governance practices",
+          "left_score": 2,
+          "right_score": 1,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D3",
+          "label": "Exclusive practices",
+          "left_score": 6,
+          "right_score": 5,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D4",
+          "label": "Pre-commit/push checks",
+          "left_score": 3,
+          "right_score": 0,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D5",
+          "label": "Schema validators",
+          "left_score": 14,
+          "right_score": 302,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D6",
+          "label": "Doctor checks",
+          "left_score": 3,
+          "right_score": 9,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D7",
+          "label": "Test files",
+          "left_score": 5,
+          "right_score": 190,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D8",
+          "label": "E2E tests",
+          "left_score": 0,
+          "right_score": 2,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D9",
+          "label": "Coverage",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "CI workflows",
+          "left_score": 5,
+          "right_score": 6,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D11",
+          "label": "Linter plugins",
+          "left_score": 5,
+          "right_score": 0,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D12",
+          "label": "Release automation",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D13",
+          "label": "Code review AI",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "paperclip",
+          "score": 55.85,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "bmad",
+          "score": 19.77,
+          "delta": ""
+        },
+        {
+          "rank": 3,
+          "player": "openclaw",
+          "score": 19.15,
+          "delta": ""
+        },
+        {
+          "rank": 4,
+          "player": "sinkra",
+          "score": 16.24,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "sinkra",
+          "score": 16.24
+        },
+        {
+          "player": "openclaw",
+          "score": 19.15
+        },
+        {
+          "player": "bmad",
+          "score": 19.77
+        },
+        {
+          "player": "paperclip",
+          "score": 55.85
+        }
+      ],
+      "verdict": "Paperclip vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-absorption-roadmap-1",
+      "title": "Priority Matrix",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-2",
+      "title": "Wave 1 — Immediate (P1, <1 day each, 8 items)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-3",
+      "title": "Wave 2 — Short-term (P2, 1-3 days each, 11 items)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-4",
+      "title": "Wave 3 — Medium-term (P2-P3, weeks, 9 items)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-5",
+      "title": "Wave 4 — Long-term (P3, months, 6 items)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-6",
+      "title": "Suggested Epic",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-7",
+      "title": "Quick Win ROI: Wave 1 Only",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [],
+  "artifacts": [
+    {
+      "file": "INDEX.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "full-comparison.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-absorption-roadmap.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "missing"
+  },
+  "inferred": {}
+}

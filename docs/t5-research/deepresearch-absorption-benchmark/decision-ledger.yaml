@@ -1,0 +1,20 @@
+schema: bench-decision-ledger.v1
+slug: deepresearch-absorption-benchmark
+generated_at: '2026-05-18'
+decisions:
+- id: DEC-001
+  timestamp: '2026-05-18T19:02:59Z'
+  title: Choose canonical players to score
+  decision: Score 0 canonical players
+  decided_by: '@aiox-pm + bench-analyst'
+  reversible: false
+- id: DEC-002
+  timestamp: '2026-05-18T19:02:59Z'
+  title: Gold absorption profile
+  decision: Use gold_absorption profile (full mirror of slides-creator structure)
+  decided_by: '@vision-strategist (auto-inferred)'
+  reversible: false
+sign_off_status:
+  ADR-001:
+    '@vision-strategist': pending
+    '@aiox-architect': pending

@@ -1,0 +1,3130 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-17T20:50:53.053Z",
+  "source_files": [
+    ".synapse/vault/ops/sessions/20260517-200734.json",
+    "INDEX.md",
+    "MANIFEST.json",
+    "README.md",
+    "battle-card.md",
+    "comparison-matrix.json",
+    "comparison-matrix.md",
+    "dashboard-intelligence.md",
+    "deep/defensibility-deep.md",
+    "deep/solo-feasibility.md",
+    "deep/ttfr-analysis.md",
+    "deep/unit-economics.md",
+    "evidence-ledger.json",
+    "evidence-ledger.md",
+    "executive-report.md",
+    "gap-analysis.json",
+    "gap-analysis.md",
+    "implementation-readiness-gate.json",
+    "implementation-readiness-gate.md",
+    "metadata.json",
+    "risk-register.json",
+    "risk-register.md",
+    "scenario-scorecards.json",
+    "scenario-scorecards.md",
+    "scorecard.json",
+    "scorecard.md"
+  ],
+  "benchmark": {
+    "slug": "servicos-ia-brasil-solo-bootstrap-2026",
+    "title": "Bench — Serviços de IA Brasil sob Lente Solo Bootstrap (2026)",
+    "date": "2026-05-17",
+    "type": "product",
+    "variant": "9-way",
+    "analyst": "bench-analyst v3.0"
+  },
+  "players": [
+    {
+      "key": "mentoria_premium",
+      "name": "Mentoria Premium",
+      "category": "unknown"
+    },
+    {
+      "key": "automacao_n8n_vertical",
+      "name": "Automacao N8n Vertical",
+      "category": "unknown"
+    },
+    {
+      "key": "whatsapp_vertical",
+      "name": "Whatsapp Vertical",
+      "category": "unknown"
+    },
+    {
+      "key": "genai_conteudo",
+      "name": "Genai Conteudo",
+      "category": "unknown"
+    },
+    {
+      "key": "sdr_ia_voice_hitl",
+      "name": "Sdr Ia Voice Hitl",
+      "category": "unknown"
+    },
+    {
+      "key": "preditivo_customizado",
+      "name": "Preditivo Customizado",
+      "category": "unknown"
+    },
+    {
+      "key": "lgpd_governanca",
+      "name": "Lgpd Governanca",
+      "category": "unknown"
+    },
+    {
+      "key": "cyber_ia",
+      "name": "Cyber Ia",
+      "category": "unknown"
+    },
+    {
+      "key": "chatbot_generico",
+      "name": "Chatbot Generico",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "mixed",
+    "coverage": "structured",
+    "sources": 0,
+    "waves": 0,
+    "dimensions": 7
+  },
+  "matrix": {
+    "players": [
+      "mentoria_premium",
+      "automacao_n8n_vertical",
+      "whatsapp_vertical",
+      "genai_conteudo",
+      "sdr_ia_voice_hitl",
+      "preditivo_customizado",
+      "lgpd_governanca",
+      "cyber_ia",
+      "chatbot_generico"
+    ],
+    "dimensions": [
+      {
+        "id": "0",
+        "label": "Dimension 1",
+        "weight": 0.25
+      },
+      {
+        "id": "1",
+        "label": "Dimension 2",
+        "weight": 0.2
+      },
+      {
+        "id": "2",
+        "label": "Dimension 3",
+        "weight": 0.2
+      },
+      {
+        "id": "3",
+        "label": "Dimension 4",
+        "weight": 0.15
+      },
+      {
+        "id": "4",
+        "label": "Dimension 5",
+        "weight": 0.1
+      },
+      {
+        "id": "5",
+        "label": "Dimension 6",
+        "weight": 0.05
+      },
+      {
+        "id": "6",
+        "label": "Dimension 7",
+        "weight": 0.05
+      }
+    ],
+    "rows": [
+      {
+        "id": "0",
+        "label": "Dimension 1",
+        "weight": 0.25,
+        "cells": [
+          {
+            "player": "mentoria_premium",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "automacao_n8n_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "whatsapp_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "genai_conteudo",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "sdr_ia_voice_hitl",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "preditivo_customizado",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "lgpd_governanca",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "cyber_ia",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "chatbot_generico",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "1",
+        "label": "Dimension 2",
+        "weight": 0.2,
+        "cells": [
+          {
+            "player": "mentoria_premium",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "automacao_n8n_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "whatsapp_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "genai_conteudo",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "sdr_ia_voice_hitl",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "preditivo_customizado",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "lgpd_governanca",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "cyber_ia",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "chatbot_generico",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "label": "Dimension 3",
+        "weight": 0.2,
+        "cells": [
+          {
+            "player": "mentoria_premium",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "automacao_n8n_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "whatsapp_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "genai_conteudo",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "sdr_ia_voice_hitl",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "preditivo_customizado",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "lgpd_governanca",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "cyber_ia",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "chatbot_generico",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "label": "Dimension 4",
+        "weight": 0.15,
+        "cells": [
+          {
+            "player": "mentoria_premium",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "automacao_n8n_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "whatsapp_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "genai_conteudo",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "sdr_ia_voice_hitl",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "preditivo_customizado",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "lgpd_governanca",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "cyber_ia",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "chatbot_generico",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "label": "Dimension 5",
+        "weight": 0.1,
+        "cells": [
+          {
+            "player": "mentoria_premium",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "automacao_n8n_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "whatsapp_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "genai_conteudo",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "sdr_ia_voice_hitl",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "preditivo_customizado",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "lgpd_governanca",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "cyber_ia",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "chatbot_generico",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "label": "Dimension 6",
+        "weight": 0.05,
+        "cells": [
+          {
+            "player": "mentoria_premium",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "automacao_n8n_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "whatsapp_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "genai_conteudo",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "sdr_ia_voice_hitl",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "preditivo_customizado",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "lgpd_governanca",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "cyber_ia",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "chatbot_generico",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "label": "Dimension 7",
+        "weight": 0.05,
+        "cells": [
+          {
+            "player": "mentoria_premium",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "automacao_n8n_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "whatsapp_vertical",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "genai_conteudo",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "sdr_ia_voice_hitl",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "preditivo_customizado",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "lgpd_governanca",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "cyber_ia",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          },
+          {
+            "player": "chatbot_generico",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": ""
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "mentoria_premium",
+        "score": 0
+      },
+      {
+        "player": "automacao_n8n_vertical",
+        "score": 0
+      },
+      {
+        "player": "whatsapp_vertical",
+        "score": 0
+      },
+      {
+        "player": "genai_conteudo",
+        "score": 0
+      },
+      {
+        "player": "sdr_ia_voice_hitl",
+        "score": 0
+      },
+      {
+        "player": "preditivo_customizado",
+        "score": 0
+      },
+      {
+        "player": "lgpd_governanca",
+        "score": 0
+      },
+      {
+        "player": "cyber_ia",
+        "score": 0
+      },
+      {
+        "player": "chatbot_generico",
+        "score": 0
+      }
+    ],
+    "method": "weighted_sum_normalized_0_100"
+  },
+  "duels": [
+    {
+      "left": "mentoria_premium",
+      "right": "automacao_n8n_vertical",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "mentoria_premium",
+      "right": "whatsapp_vertical",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "mentoria_premium",
+      "right": "genai_conteudo",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "mentoria_premium",
+      "right": "sdr_ia_voice_hitl",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "mentoria_premium",
+      "right": "preditivo_customizado",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "mentoria_premium",
+      "right": "lgpd_governanca",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "mentoria_premium",
+      "right": "cyber_ia",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "mentoria_premium",
+      "right": "chatbot_generico",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "automacao_n8n_vertical",
+      "right": "whatsapp_vertical",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "automacao_n8n_vertical",
+      "right": "genai_conteudo",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "automacao_n8n_vertical",
+      "right": "sdr_ia_voice_hitl",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "automacao_n8n_vertical",
+      "right": "preditivo_customizado",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "automacao_n8n_vertical",
+      "right": "lgpd_governanca",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "automacao_n8n_vertical",
+      "right": "cyber_ia",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "automacao_n8n_vertical",
+      "right": "chatbot_generico",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "whatsapp_vertical",
+      "right": "genai_conteudo",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "whatsapp_vertical",
+      "right": "sdr_ia_voice_hitl",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "whatsapp_vertical",
+      "right": "preditivo_customizado",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "whatsapp_vertical",
+      "right": "lgpd_governanca",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "whatsapp_vertical",
+      "right": "cyber_ia",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "whatsapp_vertical",
+      "right": "chatbot_generico",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "genai_conteudo",
+      "right": "sdr_ia_voice_hitl",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "genai_conteudo",
+      "right": "preditivo_customizado",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "genai_conteudo",
+      "right": "lgpd_governanca",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "genai_conteudo",
+      "right": "cyber_ia",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "genai_conteudo",
+      "right": "chatbot_generico",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "sdr_ia_voice_hitl",
+      "right": "preditivo_customizado",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "sdr_ia_voice_hitl",
+      "right": "lgpd_governanca",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "sdr_ia_voice_hitl",
+      "right": "cyber_ia",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "sdr_ia_voice_hitl",
+      "right": "chatbot_generico",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "preditivo_customizado",
+      "right": "lgpd_governanca",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "preditivo_customizado",
+      "right": "cyber_ia",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "preditivo_customizado",
+      "right": "chatbot_generico",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "lgpd_governanca",
+      "right": "cyber_ia",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "lgpd_governanca",
+      "right": "chatbot_generico",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "cyber_ia",
+      "right": "chatbot_generico",
+      "winner": "tie",
+      "left_wins": 0,
+      "right_wins": 0,
+      "ties": 7,
+      "rows": [
+        {
+          "dimension": "0",
+          "label": "Dimension 1",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "1",
+          "label": "Dimension 2",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "2",
+          "label": "Dimension 3",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Dimension 4",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "4",
+          "label": "Dimension 5",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "5",
+          "label": "Dimension 6",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "6",
+          "label": "Dimension 7",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "mentoria_premium",
+          "score": 0,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "automacao_n8n_vertical",
+          "score": 0,
+          "delta": ""
+        },
+        {
+          "rank": 3,
+          "player": "whatsapp_vertical",
+          "score": 0,
+          "delta": ""
+        },
+        {
+          "rank": 4,
+          "player": "genai_conteudo",
+          "score": 0,
+          "delta": ""
+        },
+        {
+          "rank": 5,
+          "player": "sdr_ia_voice_hitl",
+          "score": 0,
+          "delta": ""
+        },
+        {
+          "rank": 6,
+          "player": "preditivo_customizado",
+          "score": 0,
+          "delta": ""
+        },
+        {
+          "rank": 7,
+          "player": "lgpd_governanca",
+          "score": 0,
+          "delta": ""
+        },
+        {
+          "rank": 8,
+          "player": "cyber_ia",
+          "score": 0,
+          "delta": ""
+        },
+        {
+          "rank": 9,
+          "player": "chatbot_generico",
+          "score": 0,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "mentoria_premium",
+          "score": 0
+        },
+        {
+          "player": "automacao_n8n_vertical",
+          "score": 0
+        },
+        {
+          "player": "whatsapp_vertical",
+          "score": 0
+        },
+        {
+          "player": "genai_conteudo",
+          "score": 0
+        },
+        {
+          "player": "sdr_ia_voice_hitl",
+          "score": 0
+        },
+        {
+          "player": "preditivo_customizado",
+          "score": 0
+        },
+        {
+          "player": "lgpd_governanca",
+          "score": 0
+        },
+        {
+          "player": "cyber_ia",
+          "score": 0
+        },
+        {
+          "player": "chatbot_generico",
+          "score": 0
+        }
+      ],
+      "verdict": "Mentoria Premium vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-analysis-1",
+      "title": "Sumário executivo de gaps",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-2",
+      "title": "Mentoria Premium IA — gaps detalhados",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-3",
+      "title": "Automação n8n Vertical — gaps detalhados",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-4",
+      "title": "WhatsApp Vertical — gaps detalhados",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-5",
+      "title": "SDR IA Voz + HITL — gaps detalhados",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-6",
+      "title": "LGPD Governança — gaps detalhados",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-7",
+      "title": "Cyber IA — gaps detalhados",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-8",
+      "title": "Preditivo Customizado — gaps detalhados",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-9",
+      "title": "GenAI Conteúdo — gaps detalhados",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-10",
+      "title": "Chatbot Genérico — gaps detalhados",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-11",
+      "title": "Síntese estratégica de gap-closure",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-12",
+      "title": "Quem fecha gap mais rápido (TTFR pós-gap)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [],
+  "artifacts": [
+    {
+      "file": ".synapse/vault/ops/sessions/20260517-200734.json",
+      "role": "other",
+      "format": "json"
+    },
+    {
+      "file": "INDEX.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "MANIFEST.json",
+      "role": "other",
+      "format": "json"
+    },
+    {
+      "file": "README.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.json",
+      "role": "comparison-matrix",
+      "format": "json"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "dashboard-intelligence.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "deep/defensibility-deep.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/solo-feasibility.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/ttfr-analysis.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "deep/unit-economics.md",
+      "role": "deep",
+      "format": "md"
+    },
+    {
+      "file": "evidence-ledger.json",
+      "role": "other",
+      "format": "json"
+    },
+    {
+      "file": "evidence-ledger.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.json",
+      "role": "gap-analysis",
+      "format": "json"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "implementation-readiness-gate.json",
+      "role": "other",
+      "format": "json"
+    },
+    {
+      "file": "implementation-readiness-gate.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "risk-register.json",
+      "role": "other",
+      "format": "json"
+    },
+    {
+      "file": "risk-register.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "scenario-scorecards.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scenario-scorecards.md",
+      "role": "scorecard",
+      "format": "md"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "missing"
+  },
+  "inferred": {}
+}

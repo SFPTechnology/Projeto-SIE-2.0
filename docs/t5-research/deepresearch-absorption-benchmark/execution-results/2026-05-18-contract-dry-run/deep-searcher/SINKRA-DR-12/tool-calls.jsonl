@@ -1,0 +1,2 @@
+{"timestamp": "2026-05-18T16:30:48+00:00", "run_id": "deep-searcher__SINKRA-DR-12", "tool": "fixture_loader", "status": "ok", "input": "SINKRA-DR-12.yaml", "output": "fixtures loaded"}
+{"timestamp": "2026-05-18T16:30:48+00:00", "run_id": "deep-searcher__SINKRA-DR-12", "tool": "contract_normalizer", "status": "ok", "input": "deep-searcher", "output": ["trace.jsonl", "tool-calls.jsonl", "claims.yaml", "sources.yaml", "report.md", "rubric-results.yaml", "cost-latency.yaml", "failure-analysis.md", "replay-manifest.yaml"]}

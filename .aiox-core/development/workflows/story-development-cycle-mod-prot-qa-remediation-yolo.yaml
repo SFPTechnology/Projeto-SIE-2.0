@@ -1,0 +1,469 @@
+workflow:
+  id: story-development-cycle-mod-prot-qa-remediation-yolo
+  name: "SDC MOD-PROT - Remediação pós-gate QA (YOLO)"
+  version: "1.0.0"
+  type: brownfield
+  scope: fullstack
+  orchestrator: aiox-master
+  description: >-
+    Executa o encaminhamento do gate QA do épico MOD-PROT (2026-08-08): @dev fecha
+    DOC-001 e MNT-001, @architect e @po adjudicam REQ-002, e @devops permanece
+    bloqueado para push até MNT-001 estar fechado. Termina após o re-gate do QA.
+
+  execution:
+    mode: yolo
+    interaction_policy: never_prompt
+    continuation_policy: automatic_on_success
+    on_missing_input: block_and_log
+    on_ambiguous_scope: block_and_log
+    max_dev_iterations: 3
+    max_qa_iterations: 2
+    state_persistence: true
+    audit_logging: true
+    local_only: true
+
+  target:
+    epic_id: MOD-PROT
+    subapp: sistema-de-instala-es-el-tricas-sie-main
+    prd: docs/prd/PRD-MOD-PROT-dimensionamento-disjuntores.md
+    adr: sistema-de-instala-es-el-tricas-sie-main/docs/architecture/mod-prot-contrato-integracao.md
+    source_handoff: .aiox/handoffs/MOD-PROT-analyst-to-qa.yaml
+    stories:
+      - id: MOD-PROT-1
+        file: docs/stories/story-MOD-PROT-1-motor-normativo.md
+        gate_file: docs/qa/gates/MOD-PROT-1-motor-normativo.yml
+        gate_verdict: CONCERNS
+      - id: MOD-PROT-2
+        file: docs/stories/story-MOD-PROT-2-overrides-persistencia.md
+        gate_file: docs/qa/gates/MOD-PROT-2-overrides-persistencia.yml
+        gate_verdict: CONCERNS
+      - id: MOD-PROT-3
+        file: docs/stories/story-MOD-PROT-3-integracao-mod-dc-mod-sec.md
+        gate_file: docs/qa/gates/MOD-PROT-3-integracao-mod-dc-mod-sec.yml
+        gate_verdict: PASS
+      - id: MOD-PROT-4
+        file: docs/stories/story-MOD-PROT-4-rota-api-ui.md
+        gate_file: docs/qa/gates/MOD-PROT-4-rota-api-ui.yml
+        gate_verdict: CONCERNS
+      - id: MOD-PROT-5
+        file: docs/stories/story-MOD-PROT-5-tutorial-rastreabilidade.md
+        gate_file: docs/qa/gates/MOD-PROT-5-tutorial-rastreabilidade.yml
+        gate_verdict: FAIL
+
+  in_scope_findings:
+    - id: DOC-001
+      severity: medium
+      story: MOD-PROT-5
+      ac: 3
+      owner: dev
+      summary: >-
+        npm run docs:tutorial:check acusa DRIFT na unidade dimensionamento-disjuntores.
+        Causa: motor-selecao-protecao.ts alterado pela frente T2-SEM-MOTOR (tratamento
+        de VeredictoMODCC tipo "SEM-MOTOR") sem revisão do tutorial.
+    - id: MNT-001
+      severity: medium
+      story: MOD-PROT-1
+      owner: dev
+      summary: >-
+        motor-selecao-protecao.ts, motores/motor-selecao-protecao.test.ts e
+        overrides.test.ts têm alterações NÃO commitadas (RetornoMODCC → VeredictoMODCC).
+        O commit 9f1b9e8 referencia um tipo que não existe mais no worktree.
+    - id: REQ-002
+      severity: medium
+      story: MOD-PROT-5
+      ac: 4
+      owner: [architect, po]
+      summary: >-
+        AC4 exige campo resultado.rastreio; o ADR D3 fixa o contrato em
+        {in, i2, norma_dispositivo, capacidade_interrupcao} e proíbe campos adicionais
+        sob Constitution Art. IV. A implementação obedeceu ao ADR. Conflito de
+        requisitos, não defeito de código.
+
+  out_of_scope:
+    rationale: >-
+      Registrados no gate QA mas fora do encaminhamento solicitado. Não executar
+      neste workflow; carregar para o backlog sem perda.
+    items:
+      - id: REQ-001
+        severity: low
+        owner: po
+        summary: "AC5 da MOD-PROT-2 cita supabase/migrations/ e um arquivo-padrão inexistentes."
+      - id: REL-001
+        severity: medium
+        owner: data-engineer
+        summary: "Migration 0014 sem evidência de aplicação no Supabase."
+      - id: DOC-002
+        severity: low
+        owner: dev
+        summary: "Tabela do DimensionamentoDisjuntoresResumo sem scope=\"col\" e sem <caption>."
+      - id: TEST-002
+        severity: low
+        owner: qa
+        summary: "Sem teste de a11y/VRT na rota dimensionamento-disjuntores."
+
+  authority:
+    orchestration: aiox-master
+    code_tests_and_tutorials: dev
+    story_status_and_dev_record: dev
+    acceptance_criteria_text: po
+    architecture_contract_and_adr: architect
+    qa_results_and_gate_verdict: qa
+    local_repository_operations: devops
+    remote_operations: forbidden_until_unblocked
+
+  guardrails:
+    - "Não inventar requisitos fora das stories MOD-PROT, do PRD, do ADR e do gate QA vigente."
+    - "O worktree do submódulo tem 144 arquivos com mudança real de OUTRAS frentes: não reverter, não commitar, não stashar, não limpar."
+    - "Não reassinar o manifesto de tutorial sem revisar o conteúdo do .md — isso derrota o propósito do gate."
+    - "Não adicionar campo ao contrato do MOD-PROT antes de o ADR ser formalmente emendado (Constitution Art. IV)."
+    - "Somente @qa altera QA Results e o arquivo de gate."
+    - "Somente @po altera texto de Acceptance Criteria."
+    - "Não executar push, PR, merge, release, deploy ou migration."
+    - "Prefixar operações git legítimas com AIOX_ACTIVE_AGENT=<agente> (hook enforce-git-push-authority.cjs, Constitution Art. II). Nunca desabilitar o hook."
+
+  quality_gates:
+    working_directory: sistema-de-instala-es-el-tricas-sie-main
+    policy: all_must_pass_in_same_revision
+    commands:
+      - id: lint
+        command: npm run lint
+        expected_exit_code: 0
+      - id: typecheck
+        command: npm run typecheck
+        expected_exit_code: 0
+      - id: test
+        command: npm test
+        expected_exit_code: 0
+      - id: docs_tutorial_check
+        command: npm run docs:tutorial:check
+        expected_exit_code: 0
+        expected_output_absent: "DRIFT DETECTADO"
+      - id: build
+        command: npm run build
+        expected_exit_code: 0
+      - id: build_spa
+        command: npm run build:spa
+        expected_exit_code: 0
+    known_flake:
+      - test_file: tests/ui/queda-tensao-fluxo-entrada-fechado.test.tsx
+        test_name: "nenhum rótulo, ajuda ou memorial em src/ atribui cota de altura de tomada à NBR 5410"
+        symptom: "Test timed out in 5000ms"
+        evidence: "Passa com --testTimeout=60000; é varredura de filesystem sobre src/, não regressão."
+        policy: >-
+          Não é bloqueio deste workflow. Se reaparecer, registrar como TEST-001 no
+          backlog e seguir; não mascarar aumentando o timeout global sem justificativa.
+
+  sequence:
+    - step: preflight_and_scope_lock
+      id: preflight_and_scope_lock
+      agent: aiox-master
+      action: >-
+        Validar artefatos de entrada, registrar baseline do worktree e fixar o escopo
+        de remediação antes de qualquer mutação.
+      creates: remediation_scope_report
+      outputs:
+        - baseline_status
+        - authorized_paths
+        - foreign_dirty_files_inventory
+        - execution_audit_id
+      notes: |
+        Leia as 5 stories, os 5 gates, o PRD e o ADR indicados em target. Registre a
+        lista completa de arquivos modificados/untracked ANTES da execução e trate-os
+        como mudanças de terceiros. Confirme que os 5 arquivos de gate existem e que
+        os vereditos batem com target.stories. Delimite authorized_paths a:
+          - src/domain/dimensionamento-disjuntores/**
+          - docs/TUTORIAL-DIMENSIONAMENTO-DISJUNTORES.{md,html}
+          - docs/.tutorial-dimensionamento-disjuntores.manifest.json
+          - docs/stories/story-MOD-PROT-*.md (seções permitidas por agente)
+          - sistema-de-instala-es-el-tricas-sie-main/docs/architecture/mod-prot-contrato-integracao.md
+        Se algum artefato obrigatório faltar, encerre com status failed e log objetivo.
+        Nunca pergunte em modo YOLO.
+
+    - step: resolve_mnt_001
+      id: resolve_mnt_001
+      agent: dev
+      requires: remediation_scope_report
+      action: >-
+        Tornar coerente o estado commitado do MOD-PROT com a adaptação VeredictoMODCC
+        já presente no worktree.
+      creates: mnt_001_resolution_report
+      outputs:
+        - changed_files
+        - commit_sha
+        - typecheck_result
+        - focused_test_evidence
+      notes: |
+        Os três arquivos divergentes são:
+          - src/domain/dimensionamento-disjuntores/motores/motor-selecao-protecao.ts
+          - src/domain/dimensionamento-disjuntores/motores/motor-selecao-protecao.test.ts
+          - src/domain/dimensionamento-disjuntores/overrides.test.ts
+        A mudança substitui RetornoMODCC por VeredictoMODCC (união discriminada) e trata
+        o caso tipo "SEM-MOTOR" como ausência de Icc, com pendência PENDENTE-ICC.
+
+        Commit com PATHSPEC EXPLÍCITO — nunca git add -A, pois o índice do repositório
+        contém trabalho de outras frentes:
+          AIOX_ACTIVE_AGENT=dev git commit -m "<msg>" -- <caminhos>
+
+        Se o hook de pre-commit falhar por drift de tutorial de OUTRAS unidades (alheio
+        ao MOD-PROT), registre a justificativa no relatório antes de usar --no-verify.
+        Para a unidade dimensionamento-disjuntores, NÃO use --no-verify: ela é o objeto
+        do passo seguinte e precisa ficar verde legitimamente.
+
+        Rode npm run typecheck e os testes do módulo após o commit. Se o commit 9f1b9e8
+        isolado ainda não compilar contra o worktree, registre isso explicitamente — é
+        a condição que mantém @devops bloqueado.
+
+    - step: resolve_doc_001
+      id: resolve_doc_001
+      agent: dev
+      requires: mnt_001_resolution_report
+      action: >-
+        Revisar o conteúdo do tutorial de dimensionamento de disjuntores quanto ao caso
+        SEM-MOTOR, regenerar o .html e reassinar o manifesto.
+      creates: doc_001_resolution_report
+      outputs:
+        - tutorial_sections_revised
+        - html_regenerated
+        - manifest_updated
+        - docs_tutorial_check_result
+      notes: |
+        Ordem obrigatória — revisar ANTES de reassinar:
+          1. Ler o diff de motor-selecao-protecao.ts e identificar o comportamento
+             observável alterado: a ausência de Icc agora abrange retorno_cc == null
+             E retorno_cc.tipo === "SEM-MOTOR", ambos gerando pendência PENDENTE-ICC.
+          2. Revisar docs/TUTORIAL-DIMENSIONAMENTO-DISJUNTORES.md descrevendo esse caso
+             para o usuário final — quando o motor não está disponível, o que aparece
+             na tela e o que o projetista deve fazer.
+          3. Regenerar docs/TUTORIAL-DIMENSIONAMENTO-DISJUNTORES.html mantendo a mesma
+             estrutura visual dos demais TUTORIAL-*.html (injetado no wrapper
+             .tutorial-wrapper de TutorialModal.tsx).
+          4. Só então: npm run docs:tutorial:update
+          5. Confirmar: npm run docs:tutorial:check termina com 0 e sem "DRIFT DETECTADO"
+             para a unidade dimensionamento-disjuntores.
+
+        PROIBIDO rodar --update como primeiro passo. Reassinar sem revisar fecha o gate
+        mentindo e reintroduz exatamente a falha que o manifesto existe para pegar.
+
+        Commitar com pathspec explícito, incluindo o manifesto.
+
+    - step: run_mandatory_quality_gates
+      id: run_mandatory_quality_gates
+      agent: dev
+      requires: doc_001_resolution_report
+      action: >-
+        Executar os seis quality gates e corrigir regressões até todos terminarem com
+        código 0 na mesma revisão.
+      creates: quality_gate_report
+      outputs:
+        - lint_result
+        - typecheck_result
+        - test_result
+        - docs_tutorial_check_result
+        - build_result
+        - build_spa_result
+        - gate_revision_fingerprint
+      notes: |
+        Execute exatamente os comandos declarados em quality_gates, a partir do subapp,
+        na ordem indicada. Registre comando, código de saída e duração.
+
+        Baseline conhecido desta revisão (gate QA de 2026-08-08): typecheck 0,
+        lint 0, test 1186/1187 com a falha catalogada em known_flake. Qualquer
+        degradação além disso é regressão introduzida por este workflow e deve ser
+        corrigida dentro do escopo.
+
+        Máximo de três ciclos de remediação. Status completed apenas com os seis
+        comandos em código 0 na mesma revisão.
+
+    - step: adjudicate_req_002
+      id: adjudicate_req_002
+      agent: architect
+      requires: remediation_scope_report
+      parallel_with: resolve_mnt_001
+      action: >-
+        Decidir formalmente o conflito entre a AC4 da MOD-PROT-5 e a Decisão D3 do ADR
+        de contrato de integração do MOD-PROT.
+      creates: req_002_adjudication
+      outputs:
+        - decision
+        - rationale
+        - adr_amendment_required
+        - contract_change_required
+      notes: |
+        O conflito: a AC4 exige resultado.rastreio no padrão do critério C4 do MOD-SEC;
+        o ADR D3 fixa o contrato em {in, i2, norma_dispositivo, capacidade_interrupcao}
+        e o código declara "nao inventar contrato paralelo (Constitution Art. IV)".
+
+        Fato relevante para a decisão: os valores que a AC quer rastrear JÁ existem como
+        campos de primeira classe em ResultadoProtecaoCircuito (in_a, i2_a,
+        norma_dispositivo, capacidade_interrupcao, tempo_atuacao_s), e a justificativa do
+        override existe como justificativaOverride na camada de overrides. O que não
+        existe é o mapa rastreio agregando-os.
+
+        Escolha exatamente uma:
+          (a) EMENDAR_ADR — o contrato passa a admitir rastreio; gera trabalho de
+              implementação para @dev em story de follow-up.
+          (b) MANTER_ADR — a rastreabilidade é considerada servida pelos campos de
+              primeira classe; a AC4 precisa ser reescrita por @po.
+
+        NÃO altere código neste passo. NÃO altere o texto da AC — isso é do @po.
+        Registre a decisão no ADR mod-prot-contrato-integracao.md como nova seção de
+        decisão, preservando D3 e seu histórico.
+
+    - step: apply_req_002_decision
+      id: apply_req_002_decision
+      agent: po
+      requires: req_002_adjudication
+      action: >-
+        Aplicar a decisão do @architect ao texto da story MOD-PROT-5 e, se necessário,
+        abrir story de follow-up.
+      creates: req_002_application
+      outputs:
+        - ac4_final_text
+        - followup_story_created
+        - story_sections_changed
+      notes: |
+        Se a decisão foi MANTER_ADR: reescrever a AC4 da MOD-PROT-5 para refletir a
+        rastreabilidade efetivamente contratada (campos de primeira classe +
+        justificativaOverride), citando a decisão do ADR. A AC reescrita precisa
+        continuar testável.
+
+        Se a decisão foi EMENDAR_ADR: manter a AC4 como está e registrar que sua
+        satisfação passa para uma story de follow-up MOD-PROT-6, criada por @sm a
+        partir deste output. A MOD-PROT-5 permanece com AC4 em aberto e não pode
+        receber gate PASS.
+
+        Autoridade: apenas @po edita Acceptance Criteria. NÃO tocar em QA Results.
+        Registrar a mudança no Change Log da story.
+
+    - step: normalize_story_status
+      id: normalize_story_status
+      agent: dev
+      requires: [quality_gate_report, req_002_application]
+      action: >-
+        Normalizar o campo Status das 5 stories MOD-PROT para um estado válido do ciclo
+        de vida, habilitando o re-gate formal.
+      creates: status_normalization_report
+      outputs:
+        - status_por_story
+        - change_log_entries
+      notes: |
+        As 5 stories estão em "Ready for Review", que NÃO é estado do ciclo
+        Draft → Ready → InProgress → InReview → Done. Foi por isso que o gate QA de
+        2026-08-08 fez HALT na transição de status.
+
+        Alvo:
+          - MOD-PROT-1, -2, -3, -4 → InReview (implementação concluída, aguardando QA)
+          - MOD-PROT-5 → InReview somente se DOC-001 estiver fechado e a AC4 resolvida
+            por apply_req_002_decision; caso contrário → InProgress.
+
+        Registrar cada transição no Change Log conforme story-lifecycle.md. NÃO tocar
+        em QA Results.
+
+    - step: qa_regate
+      id: qa_regate
+      agent: qa
+      requires: status_normalization_report
+      action: >-
+        Re-emitir o gate das stories afetadas e confirmar o fechamento de DOC-001,
+        MNT-001 e REQ-002.
+      creates: qa_regate_result
+      outputs:
+        - gate_verdicts
+        - gate_files
+        - residual_findings
+        - mnt_001_closed
+      notes: |
+        Escopo do re-gate: MOD-PROT-1 (MNT-001) e MOD-PROT-5 (DOC-001, REQ-002).
+        MOD-PROT-2, -3 e -4 só são re-gateadas se o worktree as tiver tocado.
+
+        Verificações obrigatórias:
+          - npm run docs:tutorial:check sem DRIFT na unidade dimensionamento-disjuntores
+          - o commit do MOD-PROT compila isoladamente contra o worktree (fecha MNT-001)
+          - a AC4 tem texto final coerente com a decisão do ADR
+          - os seis quality gates verdes na mesma revisão
+
+        Emitir PASS, CONCERNS ou FAIL com evidência. O campo mnt_001_closed é a chave
+        que libera o passo seguinte. Somente @qa altera QA Results e arquivos de gate.
+
+    - step: devops_release_gate
+      id: devops_release_gate
+      agent: devops
+      requires: qa_regate_result
+      action: >-
+        Avaliar as condições de liberação de push. NÃO executar push neste workflow.
+      creates: release_readiness_report
+      outputs:
+        - mnt_001_closed
+        - github_auth_status
+        - commits_a_publicar
+        - push_authorized
+      notes: |
+        DUAS travas independentes, ambas precisam estar abertas:
+
+          1. MNT-001 fechado — confirmado por qa_regate_result.mnt_001_closed == true.
+             Enquanto falso, push é PROIBIDO: publicaria 9f1b9e8 referenciando
+             RetornoMODCC, tipo que não existe mais.
+
+          2. Autenticação GitHub válida. Bloqueio ativo desde 2026-08-05 (HTTP 401,
+             token do keyring inválido). Ver
+             .aiox/handoffs/TECHDEBT-ND01-devops-push-BLOCKED-auth.yaml
+             Verificar com:
+               curl -s -o /dev/null -w "%{http_code}" -H "Authorization: token $(gh auth token)" https://api.github.com/user
+             Espera 200. Só o dono do projeto resolve, com gh auth login em terminal
+             com TTY real no Windows.
+
+        Se ambas abertas: rodar git fetch PRIMEIRO (as refs remotas locais estão stale
+        desde antes do bloqueio) e, se aparecer commit inesperado no remoto, PARAR e
+        reportar — não forçar, não fazer merge automático. Depois listar os commits que
+        seriam publicados e SOLICITAR CONFIRMAÇÃO DO DONO antes de qualquer push.
+
+        Este workflow termina com o relatório. O push em si é operação separada,
+        autorizada explicitamente pelo dono.
+
+  handoff_prompts:
+    master_to_dev: >-
+      Escopo e baseline fixados. Feche MNT-001 e DOC-001 sem tocar nos 144 arquivos
+      sujos de outras frentes. Pathspec explícito em todo commit.
+    master_to_architect: >-
+      Adjudique REQ-002: AC4 exige rastreio, ADR D3 proíbe campos extras. Decida
+      EMENDAR_ADR ou MANTER_ADR e registre no ADR sem apagar D3.
+    architect_to_po: >-
+      Decisão registrada. Aplique-a ao texto da AC4 ou registre o follow-up, conforme
+      o ramo escolhido. Apenas AC e Change Log.
+    dev_to_qa: >-
+      DOC-001 e MNT-001 fechados, seis gates verdes, status normalizado. Re-gate e
+      confirme mnt_001_closed.
+    qa_to_devops: >-
+      Re-gate emitido. Avalie as duas travas de liberação e produza o relatório de
+      prontidão. Não pushe.
+
+  completion_criteria:
+    - "npm run docs:tutorial:check termina com 0 e sem DRIFT na unidade dimensionamento-disjuntores."
+    - "O tutorial teve o conteúdo revisado quanto ao caso SEM-MOTOR antes da reassinatura do manifesto."
+    - "A adaptação VeredictoMODCC está commitada; o estado commitado do MOD-PROT compila contra o worktree."
+    - "lint, typecheck, test, docs:tutorial:check, build e build:spa passam na mesma revisão."
+    - "REQ-002 tem decisão formal registrada no ADR e refletida na AC4 ou em story de follow-up."
+    - "As 5 stories estão em estado válido do ciclo de vida (InReview ou InProgress)."
+    - "QA re-emitiu os gates das stories afetadas com evidência."
+    - "O relatório de prontidão de release existe e nenhum push foi executado."
+
+  failure_policy:
+    behavior: block_and_log
+    never_claim_success_on_partial_evidence: true
+    forbid_manifest_resign_without_content_review: true
+    forbid_push_until_mnt_001_closed: true
+    preserve_foreign_worktree_changes: true
+    preserve_execution_state_for_resume: true
+
+  audit:
+    created_at: "2026-08-08T00:45:00-03:00"
+    created_by: "sm (River)"
+    requested_by: "User"
+    source_decision: "ADAPT"
+    adapted_from: story-development-cycle-t2-sem-motor-qa-remediation-yolo
+    source_gate_review: "Gate QA MOD-PROT de 2026-08-08 (Quinn) — 1 PASS, 3 CONCERNS, 1 FAIL"
+    rationale: >-
+      O workflow T2 remedia uma story única a partir de um gate FAIL. Esta variante
+      cobre um épico de 5 stories com vereditos mistos, roteia três achados para
+      agentes diferentes em paralelo e termina num portão de release explicitamente
+      bloqueado, em vez de terminar na revalidação do QA.

@@ -1,0 +1,142 @@
+handoff:
+  from_agent: "qa"
+  to_agent: "devops"
+  pipeline_id: "MOD-QT-2-05-NAV-LINK"
+  timestamp: "2026-07-29"
+  story_context:
+    story_id: "MOD-QT-2-05"
+    story_path: "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md"
+    story_status: "Done"
+    current_task: "qa-gate complete — liberado para *push"
+    branch_repo_raiz: "master"
+    branch_submodulo: "feature/nbr5410-conformidade-closeout"
+    submodule: "sistema-de-instala-es-el-tricas-sie-main/"
+    RETIFICACAO: >-
+      A v1 deste handoff registrava `branch: "master"` para o submodulo. ERRADO — herdado sem
+      verificacao do handoff MOD-QT-2-05-dev-to-qa.yaml. O submodulo esta em
+      `feature/nbr5410-conformidade-closeout`; `master` NAO EXISTE nele (o default remoto e
+      `main`). Erro do @qa, detectado e corrigido por inspecao propria antes do push. Registrado
+      em vez de silenciosamente sobrescrito, pelo mesmo criterio de integridade de evidencia
+      aplicado ao @dev em DOC-001 (gate MOD-QT-2-04).
+
+  gate:
+    verdict: "CONCERNS"
+    quality_score: 95
+    gate_file: "docs/qa/gates/MOD-QT-2-05-gate.yaml"
+    status_transition: "InReview -> Done"
+    reviewer: "Quinn (Test Architect)"
+    mode: "yolo (autonomo)"
+    motivo_do_concerns: >-
+      Ressalva unica e herdada do ciclo: `npx eslint .` sobre o projeto inteiro permanece
+      NAO VERIFICADO por trava ambiental pre-existente. Nao ha defeito. Os 4 ACs estao
+      atendidos e todos os gates foram reexecutados pelo @qa com resultado identico ao
+      declarado pelo @dev.
+    correcoes_exigidas: []
+
+  gates_reexecutados_pelo_qa:
+    - { comando: "npx tsc --noEmit", resultado: "PASS", detalhe: "exit 0" }
+    - { comando: "npx vitest run tests/ui/projeto-detalhe-nav-links.test.ts", resultado: "PASS", detalhe: "1/1 arquivo, 3/3 testes, exit 0, 897ms" }
+    - { comando: "npx vitest run", resultado: "PASS", detalhe: "133/133 arquivos, 950/950 testes, 0 falhas, exit 0, 199,36s" }
+    - { comando: "npx vite build", resultado: "PASS", detalhe: "exit 0, built in 8.22s" }
+    - { comando: "git diff --numstat src/routes/projetos.$projetoId.tsx", resultado: "PASS", detalhe: "+7 / -0 — hunk unico, zero remocoes" }
+    - { comando: "npx eslint <2 arquivos tocados>", resultado: "PASS_COM_RESSALVA", detalhe: "exit 1, 146/146 prettier/prettier 'Delete CR' — artefato CRLF ambiental PROVADO; com prettier off exit 0; arquivo de teste novo limpo sem flag" }
+    - { comando: "npx eslint .", resultado: "NAO_VERIFICADO", detalhe: "trava ambiental >20min; NAO presumido PASS" }
+
+  acceptance_criteria:
+    - { id: "AC1", status: "MET" }
+    - { id: "AC2", status: "MET" }
+    - { id: "AC3", status: "MET" }
+    - { id: "AC4", status: "N/A confirmado pelo @qa" }
+
+  arquivos_para_commit:
+    submodulo_sistema-de-instala-es-el-tricas-sie-main:
+      modificados:
+        - "src/routes/projetos.$projetoId.tsx   # +7/-0, unico hunk: <Link> 'Queda de tensao'"
+      criados:
+        - "tests/ui/projeto-detalhe-nav-links.test.ts   # 3 testes de assercao de fonte"
+    repo_raiz:
+      modificados:
+        - "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md   # Status Done + QA Results + Change Log v1.0"
+        - ".aiox/workflow-state/MOD-QT-2-05-state.yaml"
+        - ".aiox/logs/MOD-QT-2-05-yolo.log"
+      criados:
+        - "docs/qa/gates/MOD-QT-2-05-gate.yaml"
+        - ".aiox/handoffs/MOD-QT-2-05-qa-to-devops.yaml"
+
+  ALERTA_DE_WORKTREE_SUJA:
+    severidade: "ALTA — ler antes de qualquer `git add -A`"
+    fato: >-
+      A worktree do submodulo esta suja com ~57 arquivos modificados e ~25 untracked
+      pertencentes a OUTROS epicos (MOD-CC, AUTO-OTI, protecao, tutoriais MOD-DC,
+      hostinger-spa2/3). `git add -A` arrastaria trabalho nao revisado para dentro deste commit.
+    delimitacao_verificada_pelo_qa: >-
+      `find src tests -type f -newermt "2026-07-29 10:00"` retorna EXATAMENTE 2 arquivos:
+      src/routes/projetos.$projetoId.tsx e tests/ui/projeto-detalhe-nav-links.test.ts.
+      Somente esses dois pertencem a esta story.
+    instrucao: "Commitar por caminho explicito (os 2 arquivos do submodulo + os 5 do repo raiz). NUNCA `git add -A` / `git add .`."
+    nao_pertencem_a_esta_story:
+      - "package.json (M) — adiciona scripts docs:tutorial:check|update, trabalho de tutoriais MOD-DC"
+      - "tests/ui/__snapshots__/correntes-rastreabilidade.vrt.test.tsx.snap (M) — trabalho alheio, mtime fora da janela"
+      - "todos os demais arquivos de src/domain/dimensionamento-condutores, src/components/app/dimensionamento-condutores, hostinger-spa*, docs/TUTORIAL-*, docs/MANUAL-*"
+
+  estado_de_push_verificado_pelo_qa:
+    observacao: "Levantamento READ-ONLY. O @qa NAO executou commit nem push (fora de autoridade)."
+    repo_raiz:
+      remote: "https://github.com/SFPTechnology/Projeto-SIE.git"
+      branch: "master"
+      tracking: "origin/master — ahead 1, behind 0"
+      commit_ja_local_nao_pushado: "1192234 docs(mod-qt): stories, gates de QA e artefatos de controle MOD-QT-2-03/-04 + ponteiro do submodulo"
+    submodulo:
+      remote: "https://github.com/SFPTechnology/sistema-de-instala-es-el-tricas-sie.git"
+      branch: "feature/nbr5410-conformidade-closeout"
+      tracking: "origin/feature/nbr5410-conformidade-closeout — ahead 1, behind 0"
+      commit_ja_local_nao_pushado: "53feb7a feat(mod-qt): catalogo fechado de impedancia, resolvedor de perfil e limite EDP-SP v09 [MOD-QT-2-03, MOD-QT-2-04]"
+      branches_locais: "feature/nbr5410-conformidade-closeout (atual), main, story/10.1..10.4"
+      ATENCAO: "NAO existe branch `master` no submodulo. Um `git push origin master` ali FALHA."
+    implicacao_para_devops: >-
+      Cada repo ja carrega 1 commit local nao-pushado, anterior a esta story (fecho de
+      MOD-QT-2-03/-04). O push desta story levara 2 commits em cada repo, nao 1. Isso e
+      esperado e ja passou por gate proprio (docs/qa/gates/MOD-QT-2-03-gate.yaml e -04), mas
+      deve ser conferido pelo @devops antes de publicar — nao e escopo do gate -05.
+
+  commit_sugerido: |
+    feat(mod-qt): adiciona link de navegacao "Queda de tensao" no hub do projeto [MOD-QT-2-05]
+
+    Insere <Link> do TanStack Router para /projetos/$projetoId/queda-tensao no bloco
+    deps-hero-links de src/routes/projetos.$projetoId.tsx, na posicao 4 de 6 (apos
+    "Dimensionamento de condutores", antes de "Planejador de circuitos"), fechando o gap
+    de acesso a tela ja entregue pelas stories MOD-QT-2-01 a -04.
+
+    Cobertura: tests/ui/projeto-detalhe-nav-links.test.ts (3 testes de assercao de fonte).
+    Gates (@qa): tsc exit 0 | vitest 950/950 em 133 arquivos | vite build exit 0 | diff +7/-0.
+    QA gate: CONCERNS (95/100) — ressalva unica de `eslint .` nao verificado (trava ambiental).
+
+  ressalvas_para_devops:
+    - id: "MNT-005"
+      severity: low
+      finding: "`npx eslint .` completo NAO VERIFICADO — trava ambiental pre-existente (>20 min)."
+      acao: "Debito de infraestrutura de qualidade. Nao bloqueia o push."
+    - id: "MNT-006"
+      severity: low
+      finding: >-
+        Worktree do submodulo com line endings MISTOS sob core.autocrlf=true. Verificado:
+        src/routes/index.tsx (limpo em git status, zero modificacoes) tem 140 bytes CR e falha
+        no eslint com 140 erros prettier/prettier; src/routes/__root.tsx tem 0 CR e passa.
+        Isso obriga todo gate do ciclo a re-provar que a falha de lint e cosmetica.
+      acao_recomendada: >-
+        Adicionar `.gitattributes` com `* text=auto eol=lf` (ou core.autocrlf=input) e
+        normalizar a worktree em COMMIT DEDICADO, fora de qualquer story. Elimina a caveat
+        permanentemente. NAO fazer junto deste commit.
+    - id: "DBT-005"
+      severity: low
+      finding: "3 links do bloco seguem em <a href> (full-page reload) e 3 em <Link>. Drift do commit 1e18cc9."
+      acao: "Backlog de @po — story de migracao dedicada. Fora de escopo desta entrega (vetado pela AC3)."
+    - id: "OPS-001"
+      severity: low
+      finding: "BLK-QT-TIMEOUT-FLAKY-01 nao reproduzido — 4a execucao completa consecutiva sem repro; causa estrutural inalterada."
+      acao: "Blocker mantido aberto, severidade BAIXA."
+
+  blockers: []
+  next_action: >-
+    @devops executa *push: commit por caminho explicito no submodulo, commit do submodule
+    pointer + artefatos de processo no repo raiz, e push. Nenhuma correcao de codigo e exigida.

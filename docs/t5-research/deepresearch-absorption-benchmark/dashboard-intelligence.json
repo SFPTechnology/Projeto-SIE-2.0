@@ -1,0 +1,135 @@
+{
+  "schema": "sinkra-dashboard-intelligence-v2",
+  "generated_at": "2026-05-18T19:20:00-03:00",
+  "kpis": {
+    "players": 24,
+    "micro_rows": 30,
+    "macro_rows": 10,
+    "tasks_planned": 40,
+    "planned_adapters": 6,
+    "deep_artifacts": 96,
+    "graph_nodes": 70,
+    "graph_edges": 146,
+    "contract_dry_run_runs": 240,
+    "contract_dry_run_pass": 240,
+    "contract_dry_run_fail": 0,
+    "normalized_outputs_generated": 2160
+  },
+  "top_5_overall": [
+    {
+      "rank": 1,
+      "slug": "drbench",
+      "name": "DRBench",
+      "absorption_score": 77.6,
+      "confidence": "ALTA",
+      "decision": "absorb_fixture_oracle",
+      "class": "enterprise_benchmark",
+      "repo": "ServiceNow/drbench",
+      "url": "https://github.com/ServiceNow/drbench"
+    },
+    {
+      "rank": 2,
+      "slug": "deer-flow",
+      "name": "DeerFlow",
+      "absorption_score": 75.9,
+      "confidence": "ALTA",
+      "decision": "absorb_core_patterns",
+      "class": "agentic_platform",
+      "repo": "bytedance/deer-flow",
+      "url": "https://github.com/bytedance/deer-flow"
+    },
+    {
+      "rank": 3,
+      "slug": "autoresearchclaw",
+      "name": "AutoResearchClaw",
+      "absorption_score": 75.9,
+      "confidence": "ALTA",
+      "decision": "absorb_contracts_gates",
+      "class": "scientific_pipeline",
+      "repo": "aiming-lab/AutoResearchClaw",
+      "url": "https://github.com/aiming-lab/AutoResearchClaw"
+    },
+    {
+      "rank": 4,
+      "slug": "storm",
+      "name": "STORM",
+      "absorption_score": 73.0,
+      "confidence": "MEDIA",
+      "decision": "absorb_interfaces_artifacts",
+      "class": "article_research_pipeline",
+      "repo": "stanford-oval/storm",
+      "url": "https://github.com/stanford-oval/storm"
+    },
+    {
+      "rank": 5,
+      "slug": "gpt-researcher",
+      "name": "GPT-Researcher",
+      "absorption_score": 72.1,
+      "confidence": "MEDIA",
+      "decision": "absorb_facade_and_strategy",
+      "class": "research_facade",
+      "repo": "assafelovic/gpt-researcher",
+      "url": "https://github.com/assafelovic/gpt-researcher"
+    }
+  ],
+  "scenario_winners": [
+    {
+      "scenario": "platform_architect",
+      "winner": "deer-flow"
+    },
+    {
+      "scenario": "private_kb_owner",
+      "winner": "drbench"
+    },
+    {
+      "scenario": "evaluation_lead",
+      "winner": "drbench"
+    },
+    {
+      "scenario": "scientific_researcher",
+      "winner": "autoresearchclaw"
+    },
+    {
+      "scenario": "rl_methodologist",
+      "winner": "deepresearcher"
+    },
+    {
+      "scenario": "product_builder",
+      "winner": "deer-flow"
+    }
+  ],
+  "critical_gaps": [
+    {
+      "id": "canonical_trace",
+      "severity": "critical",
+      "finding": "Nenhum player entrega integralmente trace.jsonl, tool-calls.jsonl, sources.yaml, claims.yaml, report.md, cost-latency.yaml e replay-manifest.yaml.",
+      "resolution": "Criar contrato SINKRA DeepResearchRunner antes de absorver runtime."
+    },
+    {
+      "id": "claim_provenance",
+      "severity": "critical",
+      "finding": "Vários projetos produzem relatório antes de claims verificáveis.",
+      "resolution": "Obrigar claims.yaml com source_ids e checagem claim-source."
+    },
+    {
+      "id": "private_data_boundary",
+      "severity": "high",
+      "finding": "Projetos private-KB têm padrões úteis, mas não resolvem isolamento L0-L4/SINKRA por padrão.",
+      "resolution": "Adapters com classificação de fonte, redaction e fixtures sintéticas."
+    },
+    {
+      "id": "judge_drift",
+      "severity": "high",
+      "finding": "Benchmarks com LLM judge não pinam suficientemente prompt/model/raw outputs.",
+      "resolution": "Judge manifest versionado e raw judge outputs anexados."
+    }
+  ],
+  "contract_dry_run": {
+    "status": "PASS",
+    "path": "execution-results/2026-05-18-contract-dry-run/manifest.json",
+    "runs": 240,
+    "pass": 240,
+    "fail": 0,
+    "mode": "contract_only_not_real_execution"
+  }
+}

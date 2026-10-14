@@ -1,0 +1,319 @@
+{
+  "subject": "intercom",
+  "type": "product",
+  "generatedAt": "2026-05-06T00:00:00Z",
+  "method": "web-research-docs-and-reviews",
+  "identity": {
+    "name": "Intercom",
+    "company": "Intercom Inc.",
+    "category": "AI-first customer messaging, in-app support, helpdesk",
+    "launch_date": "2011",
+    "target_audience": "Mid-market a enterprise SaaS B2B; product-led companies; teams com volume alto de tickets",
+    "tagline": "The complete AI-first customer service solution",
+    "url": "https://www.intercom.com"
+  },
+  "features": {
+    "categories": [
+      {
+        "name": "AI / Automation",
+        "features": [
+          "Fin AI Agent (autonomous resolution, Fin Apex 1.0 model)",
+          "Fin Copilot (agent-side AI assistant, $29/agent/mo)",
+          "AI workflows (Advanced+)",
+          "Smart suggestions / autotranslate"
+        ],
+        "depth": "deep"
+      },
+      {
+        "name": "Channels",
+        "features": [
+          "In-app Messenger (best-in-class)",
+          "Web chat",
+          "Email shared inbox",
+          "WhatsApp Business Cloud API (oficial Meta direct)",
+          "Instagram DM",
+          "Facebook Messenger",
+          "SMS"
+        ],
+        "depth": "deep (in-app) / moderate (omnichannel)"
+      },
+      {
+        "name": "Help Center / Knowledge",
+        "features": [
+          "Help center publico",
+          "Multilingual help center (Advanced+)",
+          "Articles + collections",
+          "Fin reads from help center as RAG source"
+        ],
+        "depth": "deep"
+      },
+      {
+        "name": "Ticketing",
+        "features": [
+          "Shared inbox",
+          "Multiple inboxes (Advanced+)",
+          "SLAs (Expert)",
+          "Round-robin assignment (Advanced+)",
+          "Tickets + conversations"
+        ],
+        "depth": "moderate"
+      },
+      {
+        "name": "Proactive Support",
+        "features": [
+          "Outbound messages (banners, tooltips, in-app messages)",
+          "Product Tours (Proactive Support Plus add-on)",
+          "Surveys, Checklists",
+          "Outbound campaigns WhatsApp (requires Proactive Support Plus + WhatsApp)"
+        ],
+        "depth": "deep"
+      },
+      {
+        "name": "Reporting & Analytics",
+        "features": [
+          "Pre-built reports",
+          "Custom reports (Pro add-on $99/mo)",
+          "Conversation insights",
+          "Agent performance dashboards",
+          "SLA tracking + trend analysis"
+        ],
+        "depth": "deep"
+      },
+      {
+        "name": "Enterprise / Compliance",
+        "features": [
+          "SSO + identity management (Expert)",
+          "HIPAA support (Expert)",
+          "Multibrand (Expert)",
+          "ISO 27001/27018/27701, GDPR, CCPA"
+        ],
+        "depth": "deep (Expert tier)"
+      }
+    ],
+    "unique_capabilities": [
+      "In-app Messenger sem rival na categoria",
+      "Fin AI Agent com modelo proprietary Fin Apex 1.0 + retrieval/reranker patentes",
+      "Fin Flywheel — RAG sobre help center + procedures + policies",
+      "Fin disponivel via integration em Zendesk/Salesforce/HubSpot/Freshdesk (vende como AI standalone)"
+    ],
+    "total_feature_count": "~150 (estimado, baseado em pricing matrix completa)",
+    "source": "https://www.intercom.com/pricing + https://fin.ai/"
+  },
+  "pricing": {
+    "model": "per-seat + per-resolution AI + add-ons",
+    "currency": "USD",
+    "plans": [
+      {
+        "name": "Essential",
+        "price_monthly": 29,
+        "price_annual": 29,
+        "key_features": [
+          "Messenger + shared inbox + ticketing",
+          "Help center",
+          "Pre-built reports",
+          "Fin AI Agent included (cobrado per resolution)"
+        ],
+        "limits": "1 inbox, basic ticketing, sem multilingual"
+      },
+      {
+        "name": "Advanced",
+        "price_monthly": 85,
+        "price_annual": 85,
+        "key_features": [
+          "Multiple inboxes",
+          "Workflows automation",
+          "Round-robin assignment",
+          "Private + multilingual help center",
+          "20 lite seats free"
+        ],
+        "limits": "Sem SSO, sem HIPAA, sem SLAs"
+      },
+      {
+        "name": "Expert",
+        "price_monthly": 132,
+        "price_annual": 132,
+        "key_features": [
+          "Tudo do Advanced",
+          "SSO + identity management",
+          "HIPAA support",
+          "SLAs",
+          "Multibrand",
+          "50 lite seats free"
+        ],
+        "limits": "Sem limites; preco por seat alto"
+      }
+    ],
+    "free_tier": {
+      "available": false,
+      "features": ["14-day free trial only"],
+      "limits": "Sem free tier permanente; trial expira"
+    },
+    "ai_pricing": {
+      "fin_per_resolution_usd": 0.99,
+      "definition": "Charged when customer confirms resolution OR doesnt request further help in 24h OR Fin completes a workflow",
+      "copilot_per_agent_monthly": 29,
+      "copilot_free_tier": "10 conversations/month free"
+    },
+    "add_ons": {
+      "proactive_support_plus": {
+        "price_monthly": 99,
+        "includes": "500 in-app messages, Product Tours, Surveys, Checklists",
+        "required_for": "WhatsApp outbound campaigns"
+      },
+      "pro_analytics": {
+        "price_monthly": 99,
+        "includes": "1.000 conversations/mo conversation analytics"
+      }
+    },
+    "enterprise": "negotiable; custom quotes para 50+ seats",
+    "lite_seats": "Free com Advanced (20) e Expert (50) — read-only seats para stakeholders",
+    "minimum_seats": 1,
+    "hidden_costs_real_world": "G2 review aggregators reportam 60-80% acima do sticker — combinacao Fin per-resolution variavel + Copilot por agent + Proactive Support + WhatsApp Meta fees",
+    "source": "https://www.intercom.com/pricing",
+    "as_of_date": "2026-05-06"
+  },
+  "integrations": {
+    "api": {
+      "available": true,
+      "type": "REST + GraphQL",
+      "documentation": "https://developers.intercom.com"
+    },
+    "webhooks": true,
+    "marketplace": {
+      "available": true,
+      "app_count": "300+ (Intercom App Store)"
+    },
+    "key_integrations": [
+      "Salesforce",
+      "HubSpot",
+      "Slack",
+      "Stripe",
+      "GitHub",
+      "Jira",
+      "Zapier",
+      "Segment",
+      "Mixpanel"
+    ],
+    "sdk_languages": ["JavaScript", "iOS", "Android", "React Native", "Flutter"],
+    "plugin_system": true,
+    "in_app_sdk": "Best-in-class — Messenger SDK roda em qualquer SaaS web/mobile",
+    "source": "https://www.intercom.com/integrations"
+  },
+  "user_experience": {
+    "onboarding": "good",
+    "ui_quality": "modern (best-in-class entre helpdesks)",
+    "learning_curve": "moderate",
+    "mobile_app": true,
+    "offline_support": false,
+    "accessibility": "WCAG 2.1 partial coverage; published a11y statement",
+    "g2_praise": [
+      "Beautiful, modern interface",
+      "Fin feels human-like, not typical AI",
+      "Polished workflows"
+    ],
+    "g2_complaints": [
+      "Setup complexity vs alternatives",
+      "Pricing surprises (real bill 60-80% acima sticker)",
+      "Per-resolution model imprevisivel sem volume"
+    ],
+    "source": "G2 reviews aggregator + intercom.com"
+  },
+  "ai_capabilities": {
+    "model": "Fin Apex 1.0 (proprietary, patented architecture)",
+    "rag_pipeline": [
+      "Query refinement for LLM comprehension",
+      "Content retrieval via fin-cx-retrieval (proprietary)",
+      "Reranking via fin-cx-reranker (proprietary)",
+      "Response generation via Fin Apex 1.0",
+      "Accuracy validation against safety standards",
+      "Engine optimization across metrics"
+    ],
+    "deflection_rate_published": "51% medio (research aggregators); ate 67% maduro; testimonial Lightspeed cita 65% end-to-end + 99% das conversas com involvement",
+    "monthly_improvement": "+1% resolution rate / month claim",
+    "languages_supported": "Multiple (nao publica lista oficial; suporta multilingual help center; pt-BR vs pt-PT distincao requer tooling adicional)",
+    "training_method": "Fin Flywheel — RAG sobre help center + procedures + policies",
+    "hallucination_control": "Step 5 do pipeline (validate accuracy — verify outputs meet safety standards) — sem detalhes publicos",
+    "escalation_logic": "Hands off to agent in customer preferred inbox quando query exceeds resolution capability; honra assignment rules existentes",
+    "standalone_mode": "Fin available em Zendesk/Salesforce/HubSpot/Freshdesk via integracao — vende como AI agent isolado",
+    "setup_time": "Under 1 hour (claim oficial fin.ai)",
+    "source": "https://fin.ai/"
+  },
+  "reviews": {
+    "g2": {
+      "rating": 4.5,
+      "review_count": "5.000+",
+      "top_praise": [
+        "Fin AI Agent autonomous resolution accuracy",
+        "Modern UI",
+        "In-app messaging",
+        "Quick escalation logic"
+      ],
+      "top_complaints": [
+        "Setup complexity",
+        "Higher entry price ($29/seat)",
+        "Per-resolution AI billing imprevisivel",
+        "Hidden costs em add-ons"
+      ]
+    },
+    "capterra": {
+      "rating": 4.5,
+      "review_count": "1.000+"
+    },
+    "producthunt": {
+      "upvotes": "N/A — produto antigo nao mais ranqueado",
+      "launch_date": "2011"
+    },
+    "source": ["https://www.g2.com/products/intercom/reviews", "https://www.capterra.com/p/127044/Intercom/"]
+  },
+  "scalability": {
+    "limits": "Sem limites publicados de seats/conversations/inboxes em Expert",
+    "enterprise_features": ["SSO", "SAML", "HIPAA", "SLAs", "multibrand", "audit logs"],
+    "multi_tenant": false,
+    "data_residency": "EU + US options para Expert tier",
+    "sla": "Custom enterprise SLAs negociaveis",
+    "compliance": ["SOC2 Type II", "GDPR", "HIPAA", "ISO 27001", "ISO 27018", "ISO 27701", "CCPA"],
+    "source": "https://www.intercom.com/security"
+  },
+  "support": {
+    "docs_quality": "excellent",
+    "channels": ["email", "in-app chat", "phone (Expert)"],
+    "community": {
+      "type": "community.intercom.com forum",
+      "size": "50k+ members"
+    },
+    "knowledge_base": true,
+    "status_page": true,
+    "source": "https://www.intercom.com/help"
+  },
+  "differentiators_vs_chatwoot": [
+    "In-app Messenger SDK best-in-class (Chatwoot tem widget, mas SDK menos polido)",
+    "Fin AI Apex 1.0 com modelo proprietary publicado + RAG patentes",
+    "Deflection rate publicado (51-67%) com testimonials",
+    "Pre-built reports + Pro analytics add-on (Chatwoot reporting basico)",
+    "Multibrand support (Expert)",
+    "Marketplace 300+ apps polished",
+    "HIPAA + SOC2 + ISO certs em pacote enterprise"
+  ],
+  "weaknesses_vs_chatwoot": [
+    "Sem free tier permanente (apenas trial 14 dias)",
+    "Sem self-hosted / OSS option — total vendor lock-in",
+    "Sem licenca aberta — $0 entry impossivel",
+    "Per-resolution AI pricing imprevisivel sem forecast volume",
+    "Telegram NAO suportado nativamente",
+    "Sem comunidade open-source contribuindo features"
+  ],
+  "sources_consulted": [
+    "https://www.intercom.com/pricing (2026-05-06)",
+    "https://fin.ai/ (2026-05-06)",
+    "https://www.g2.com/compare/chatwoot-vs-fin-by-intercom",
+    "https://www.intercom.com/security",
+    "docs/research/2026-05-06-omnichannel-helpdesk-landscape/02-research-report.md secao 2.1"
+  ],
+  "data_quality": {
+    "features": "verified",
+    "pricing": "current",
+    "reviews": "recent",
+    "ai_metrics": "vendor-published only (Captain side nao tem para comparar)",
+    "confidence": "high"
+  }
+}

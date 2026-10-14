@@ -1,0 +1,58 @@
+schema: 1
+story: 'MOD-PROT-2'
+story_title: 'Overrides e Persistência'
+gate: CONCERNS
+status_reason: >-
+  5 das 6 ACs plenamente atendidas. AC5 referencia um diretório e um arquivo-padrão que
+  não existem no repositório; a implementação seguiu a convenção real (docs/supabase/00NN_*.sql).
+  Migration 0014 não verificada como aplicada ao banco.
+reviewer: 'Quinn'
+updated: '2026-08-08T00:30:00Z'
+
+traceability:
+  - ac: 1
+    status: MET
+    evidence: 'overrides.ts implementa useGlobal/customParams/justificativa, análogo a CircuitoOverride do MOD-DC-HYBRID'
+  - ac: 2
+    status: MET
+    evidence: 'overrides.ts:68-70 — justificativa vazia lança OverrideProtecaoInvalido; coberto por teste'
+  - ac: 3
+    status: MET
+    evidence: 'FonteResultadoProtecao "GLOBAL"|"CUSTOMIZADO" em overrides.ts:8; baseadoEm retornado em :65 e :85'
+  - ac: 4
+    status: MET
+    evidence: '0014 cria policy dimensionamento_disjuntores_overrides_all_anon FOR ALL TO anon'
+  - ac: 5
+    status: PARTIAL
+    evidence: >-
+      Migration existe e é coerente, mas em docs/supabase/0014_*.sql — não em supabase/migrations/
+      como a AC exige. O diretório supabase/migrations/ NÃO existe no repo, e o arquivo-padrão
+      citado (20260730_001_create_queda_tensao_config.sql) também não existe. A AC descreve uma
+      convenção inexistente; a implementação seguiu a convenção real e vigente.
+  - ac: 6
+    status: MET
+    evidence: >-
+      Único ALTER TABLE do 0014 é ENABLE ROW LEVEL SECURITY sobre a tabela NOVA.
+      Nenhum dependencia_*, parametros_edp_overrides ou queda_tensao_config alterado.
+
+top_issues:
+  - id: 'REQ-001'
+    severity: low
+    finding: >-
+      AC5 referencia supabase/migrations/ e o arquivo 20260730_001_create_queda_tensao_config.sql —
+      nenhum dos dois existe. Defeito no texto da AC, não na implementação.
+    suggested_action: >-
+      @po corrigir o texto da AC5 para a convenção real (docs/supabase/00NN_*.sql). Nenhuma
+      mudança de código necessária.
+  - id: 'REL-001'
+    severity: medium
+    finding: >-
+      Não há evidência de que 0014_dimensionamento_disjuntores_overrides.sql tenha sido
+      aplicada ao banco. Sem a tabela, a persistência de overrides falha em runtime.
+    suggested_action: >-
+      Confirmar aplicação da migration em Supabase antes do release. Mesma classe do
+      pendente ND-01 (0015 RLS produção, também não aplicada).
+
+waiver: { active: false }
+
+recommended_status: 'Aprovado com ressalvas — verificar migration antes de release'

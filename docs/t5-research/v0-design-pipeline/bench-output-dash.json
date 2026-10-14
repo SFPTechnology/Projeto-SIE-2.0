@@ -1,0 +1,392 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:09:34.109Z",
+  "source_files": [
+    "metadata.json",
+    "scorecard.json",
+    "v0-vs-synkra-design-comparacao-profunda.md"
+  ],
+  "benchmark": {
+    "slug": "v0-design-pipeline",
+    "title": "V0 Design Pipeline",
+    "date": "2026-04-19",
+    "type": "technology",
+    "variant": "2-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "subject_a",
+      "name": "Subject A",
+      "category": "unknown"
+    },
+    {
+      "key": "subject_b",
+      "name": "Subject B",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "subject_a",
+    "coverage": "structured",
+    "sources": 0,
+    "waves": 0,
+    "dimensions": 8
+  },
+  "matrix": {
+    "players": [
+      "subject_a",
+      "subject_b"
+    ],
+    "dimensions": [
+      {
+        "id": "layer-1-rag",
+        "label": "Camada 1 — Intent Detection + RAG Injection",
+        "weight": 0
+      },
+      {
+        "id": "layer-2-stream",
+        "label": "Camada 2 — Stream Interception + Real-Time Correction",
+        "weight": 0
+      },
+      {
+        "id": "layer-3-ast",
+        "label": "Camada 3 — AST AutoFix + Deterministic Validation",
+        "weight": 0
+      },
+      {
+        "id": "catalog-ai-ready",
+        "label": "Catálogo AI-Ready (llms.txt, endpoints, registry)",
+        "weight": 0
+      },
+      {
+        "id": "hooks-posttooluse",
+        "label": "Hooks PostToolUse de Design",
+        "weight": 0
+      },
+      {
+        "id": "prompt-injection",
+        "label": "Prompt Injection Pipeline",
+        "weight": 0
+      },
+      {
+        "id": "design-knowledge-depth",
+        "label": "Profundidade de Conhecimento de Design",
+        "weight": 0
+      },
+      {
+        "id": "operational-coverage",
+        "label": "Cobertura Operacional (tasks, agentes, checklists)",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "layer-1-rag",
+        "label": "Camada 1 — Intent Detection + RAG Injection",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "subject_a",
+            "score": 9,
+            "confidence": "",
+            "notes": "vercel-agent-skills/skills/web-design-guidelines/SKILL.md — fetch dinâmico; react-best-practices/SKILL.md — 70 regras",
+            "source": "scorecard.json"
+          },
+          {
+            "player": "subject_b",
+            "score": 4,
+            "confidence": "",
+            "notes": ".claude/rules/design-system-generation.md — always-loaded estático",
+            "source": "scorecard.json"
+          }
+        ]
+      },
+      {
+        "id": "layer-2-stream",
+        "label": "Camada 2 — Stream Interception + Real-Time Correction",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "subject_a",
+            "score": 10,
+            "confidence": "",
+            "notes": "vercel-ai/packages/ai/src/middleware/wrap-language-model.ts — 6 middleware types",
+            "source": "scorecard.json"
+          },
+          {
+            "player": "subject_b",
+            "score": 0,
+            "confidence": "",
+            "notes": "Nenhum hook PostToolUse de design em .claude/hooks/",
+            "source": "scorecard.json"
+          }
+        ]
+      },
+      {
+        "id": "layer-3-ast",
+        "label": "Camada 3 — AST AutoFix + Deterministic Validation",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "subject_a",
+            "score": 9,
+            "confidence": "",
+            "notes": "ts-morph/packages/ts-morph/ — AST API; vercel-autofixer-01 < 250ms",
+            "source": "scorecard.json"
+          },
+          {
+            "player": "subject_b",
+            "score": 3,
+            "confidence": "",
+            "notes": "design-system/scripts/design-system/ — 18 scripts (build-time only)",
+            "source": "scorecard.json"
+          }
+        ]
+      },
+      {
+        "id": "catalog-ai-ready",
+        "label": "Catálogo AI-Ready (llms.txt, endpoints, registry)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "subject_a",
+            "score": 8,
+            "confidence": "",
+            "notes": "shadcn /r/*.json live endpoint; ai-sdk.dev/llms-full.txt",
+            "source": "scorecard.json"
+          },
+          {
+            "player": "subject_b",
+            "score": 4,
+            "confidence": "",
+            "notes": "component-index.json (estático); MCP server spec não implementado",
+            "source": "scorecard.json"
+          }
+        ]
+      },
+      {
+        "id": "hooks-posttooluse",
+        "label": "Hooks PostToolUse de Design",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "subject_a",
+            "score": 8,
+            "confidence": "",
+            "notes": "awesome-claude-code/resources/workflows-knowledge-guides/Design-Review-Workflow — 7-phase Playwright agent",
+            "source": "scorecard.json"
+          },
+          {
+            "player": "subject_b",
+            "score": 1,
+            "confidence": "",
+            "notes": ".claude/hooks/post-session-heuristics.sh — não específico de design",
+            "source": "scorecard.json"
+          }
+        ]
+      },
+      {
+        "id": "prompt-injection",
+        "label": "Prompt Injection Pipeline",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "subject_a",
+            "score": 8,
+            "confidence": "",
+            "notes": "wrapLanguageModel + transformParams middleware; SKILL.md format",
+            "source": "scorecard.json"
+          },
+          {
+            "player": "subject_b",
+            "score": 5,
+            "confidence": "",
+            "notes": "prompting-bible.md (9 KBs); config.yaml preload max_token_files: 5",
+            "source": "scorecard.json"
+          }
+        ]
+      },
+      {
+        "id": "design-knowledge-depth",
+        "label": "Profundidade de Conhecimento de Design",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "subject_a",
+            "score": 5,
+            "confidence": "",
+            "notes": "vercel-agent-skills: web design guidelines (fetch URL)",
+            "source": "scorecard.json"
+          },
+          {
+            "player": "subject_b",
+            "score": 9,
+            "confidence": "",
+            "notes": "9 agentes especializados; prompting-bible.md 9 KBs; motion-primitives; W3C DTCG tokens",
+            "source": "scorecard.json"
+          }
+        ]
+      },
+      {
+        "id": "operational-coverage",
+        "label": "Cobertura Operacional (tasks, agentes, checklists)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "subject_a",
+            "score": 3,
+            "confidence": "",
+            "notes": "6 skills distribuíveis",
+            "source": "scorecard.json"
+          },
+          {
+            "player": "subject_b",
+            "score": 10,
+            "confidence": "",
+            "notes": "110+ tasks; 9 agentes; 20+ checklists; 18 scripts de curação",
+            "source": "scorecard.json"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "subject_a",
+        "score": 7.5
+      },
+      {
+        "player": "subject_b",
+        "score": 4.5
+      }
+    ],
+    "method": ""
+  },
+  "duels": [
+    {
+      "left": "subject_a",
+      "right": "subject_b",
+      "winner": "subject_a",
+      "left_wins": 6,
+      "right_wins": 2,
+      "ties": 0,
+      "rows": [
+        {
+          "dimension": "layer-1-rag",
+          "label": "Camada 1 — Intent Detection + RAG Injection",
+          "left_score": 9,
+          "right_score": 4,
+          "winner": "subject_a"
+        },
+        {
+          "dimension": "layer-2-stream",
+          "label": "Camada 2 — Stream Interception + Real-Time Correction",
+          "left_score": 10,
+          "right_score": 0,
+          "winner": "subject_a"
+        },
+        {
+          "dimension": "layer-3-ast",
+          "label": "Camada 3 — AST AutoFix + Deterministic Validation",
+          "left_score": 9,
+          "right_score": 3,
+          "winner": "subject_a"
+        },
+        {
+          "dimension": "catalog-ai-ready",
+          "label": "Catálogo AI-Ready (llms.txt, endpoints, registry)",
+          "left_score": 8,
+          "right_score": 4,
+          "winner": "subject_a"
+        },
+        {
+          "dimension": "hooks-posttooluse",
+          "label": "Hooks PostToolUse de Design",
+          "left_score": 8,
+          "right_score": 1,
+          "winner": "subject_a"
+        },
+        {
+          "dimension": "prompt-injection",
+          "label": "Prompt Injection Pipeline",
+          "left_score": 8,
+          "right_score": 5,
+          "winner": "subject_a"
+        },
+        {
+          "dimension": "design-knowledge-depth",
+          "label": "Profundidade de Conhecimento de Design",
+          "left_score": 5,
+          "right_score": 9,
+          "winner": "subject_b"
+        },
+        {
+          "dimension": "operational-coverage",
+          "label": "Cobertura Operacional (tasks, agentes, checklists)",
+          "left_score": 3,
+          "right_score": 10,
+          "winner": "subject_b"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "subject_a",
+          "score": 7.5,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "subject_b",
+          "score": 4.5,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "subject_a",
+          "score": 7.5
+        },
+        {
+          "player": "subject_b",
+          "score": 4.5
+        }
+      ],
+      "verdict": "Subject A vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [],
+  "sources": [],
+  "artifacts": [
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.json",
+      "role": "scorecard",
+      "format": "json"
+    },
+    {
+      "file": "v0-vs-synkra-design-comparacao-profunda.md",
+      "role": "other",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "missing",
+    "sources": "missing"
+  },
+  "inferred": {}
+}

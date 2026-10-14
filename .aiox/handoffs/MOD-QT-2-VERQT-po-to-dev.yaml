@@ -1,0 +1,259 @@
+handoff_id: MOD-QT-2-VERQT-po-to-dev
+consumed: false
+consumed_at: null
+consumed_by: null
+created_at: "2026-07-28"
+from_agent: "@po"
+to_agent: "@dev"
+last_command: "*validate-story-draft docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md --mode yolo"
+next_command: "*dev-develop-story docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md --mode yolo"
+workflow: "MOD-QT-2-RESOLUCAO-VERQT"
+mode: "yolo"
+human_intervention: false
+source_plan: "docs/PLANO-YOLO-IMPLEMENTACAO-MOD-QT-2.md"
+normative_source: "docs/research/{2026-07-28}-resolucao-ver-qt.md"
+supporting_source: "docs/research/2026-07-28-resolucao-ver-qt/RELATORIO-EXTRACAO-IMPEDANCIA.md"
+data_artifact: "docs/research/2026-07-28-resolucao-ver-qt/impedancia-prysmian.json"
+
+validation_result:
+  - story_id: "MOD-QT-2-03"
+    path: "docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md"
+    verdict: GO
+    score: "9/10"
+    score_before_fixes: "7/10"
+    status_transition: "Draft -> Ready"
+    ac_count_before: 15
+    ac_count_after: 16
+    estimate_change: "13 -> 21 story points"
+    blocked_by: null
+    start_authorized: true
+  - story_id: "MOD-QT-2-04"
+    path: "docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md"
+    verdict: GO
+    score: "9/10"
+    score_before_fixes: "8/10"
+    status_transition: "Draft -> Ready"
+    ac_count_before: 8
+    ac_count_after: 9
+    estimate_change: "8 story points (mantida)"
+    blocked_by: "MOD-QT-2-03"
+    start_authorized: false
+    start_condition: "MOD-QT-2-03 Tasks 1-2 (catalogo + resolvedor) implementadas E testadas. C-05/C-06 podem avancar em paralelo; C-03 nao."
+
+# ---------------------------------------------------------------------------
+# DECISOES DE @po — FECHADAS. @dev implementa conforme abaixo e NAO reabre.
+# ---------------------------------------------------------------------------
+decisions_closed:
+  - id: PO-01
+    question: "fonte_id: parecer §3.1 exige PRYSMIAN_BT_REV10; artefato grava PRYSMIAN_BT_GUIA nos 1.563 registros."
+    decision: "Ancoragem dupla — o hash SHA-256 e a IDENTIDADE, o rotulo e o IDENTIFICADOR."
+    rules:
+      - "fonte_id = 'PRYSMIAN_BT_REV10' (literal do parecer)."
+      - "fonte_sha256 = '82131cb4aa4b2c66c4835a8fd71bb18bfe72266e0fae1f48b3cc3f05c06ea54a' e fonte_url sao campos OBRIGATORIOS do catalogo (AC3)."
+      - "versao_fonte NAO pode afirmar 'REV10' como fato. Redacao obrigatoria: 'REV10 — rotulo declarado no nome do arquivo da URL oficial; nao repetido na capa nem nos metadados internos do PDF (criacao 2020-09-22). Identidade verificavel: SHA-256 82131cb4...'"
+      - "O remapeamento PRYSMIAN_BT_GUIA -> PRYSMIAN_BT_REV10 e renomeacao de rotulo, NAO transformacao de valor. Nenhuma celula Rca/XL e tocada. Registrar no Dev Agent Record com a contagem (1.563)."
+      - "Teste obrigatorio: falha se fonte_sha256 divergir do valor acima (parecer §5.1)."
+    rationale: >
+      O parecer e a fonte decisoria superior e o §3.2 compoe perfil_id com esse literal;
+      troca-lo divergiria da definicao de perfil_id e do formato de citacao do §6 C-01
+      (que escreve 'Rev. 10' por extenso). Mas o Relatorio §1 prova que 'Rev. 10' consta
+      APENAS no nome do arquivo da URL — afirma-lo como revisao confirmada violaria o
+      Artigo IV. As duas informacoes andam juntas; nenhuma sozinha e suficiente.
+    artigo_iv: "Respeitado — a revisao e declarada como proveniencia, nunca como fato confirmado."
+
+  - id: PO-02
+    question: "Existe familia de cabo padrao do projeto? (Relatorio §7 item 2)"
+    decision: "NAO existe padrao. Selecao obrigatoria; ausencia e rejeicao (fail-closed)."
+    rules:
+      - "Nenhuma familia e default. O formulario NAO pre-seleciona nem oferece 'padrao do projeto'."
+      - "Catalogo armazena 1.563 registros com familia_grupo_id = rotulo literal (9 grupos), fiel 1:1 as celulas publicadas."
+      - "familia_id comercial (13, parecer §3.1) e ALIAS de selecao com mapa N:1 declarado para familia_grupo_id."
+      - "perfil_id compoe-se com familia_grupo_id, NUNCA com o alias comercial (evita perfil_id duplicado para a mesma celula)."
+      - "O familia_id selecionado e gravado no rastreio, para a citacao de fonte refletir o produto escolhido."
+    fixture_ca_qt_19: >
+      Os 504 vetores legados recebem, como dado de TESTE declarado e sem efeito em producao,
+      familia_grupo_id = 'Superastic (cobre)' (tabela 28) e topologia_coluna_id =
+      '2_UNIPOLARES_JUSTAPOSTOS'. Base: Relatorio §4.3 demonstra numericamente que a tabela
+      provisoria correspondia ao Superastic Cu (2,5/4/10/16/25 mm2 identicos). Continuidade
+      baseada em evidencia, nao escolha arbitraria. Declarar em constante nomeada citando esta decisao.
+    rationale: >
+      Um default significaria o sistema escolher silenciosamente o produto de um fabricante
+      pelo engenheiro, dimensionando o projeto contra um cabo que o projetista nunca selecionou —
+      exatamente a 'resistencia generica' que o parecer abole (§3.1, §3.2, §4).
+    verificacao_po: >
+      Separar em 13 familias comerciais produziria 2.286 registros, quebrando o AC1 (1.563).
+      Verificado no artefato: 9 rotulos literais, 4 dos quais compostos, porque as familias
+      COMPARTILHAM a mesma celula publicada.
+
+  - id: PO-03
+    question: "Vincular a base de producao a um unico fabricante (Prysmian) e aceitavel? (Relatorio §7 item 3)"
+    decision: "SIM, aceitavel nesta rodada — com consequencia declarada e obrigatoria."
+    consequences_in_scope:
+      - "fonte_id e COLUNA DISCRIMINADORA do registro, NUNCA constante embutida em tipo, assinatura de funcao ou filtro do resolvedor. Um segundo fabricante deve poder ser adicionado sem alterar schema, resolvedor ou motor. Esta e a consequencia que torna a decisao REVERSIVEL."
+      - "A citacao de fonte por registro (AC4) ja expoe o fabricante no memorial/UI — nao ha vinculo oculto."
+      - "A UI nao pode exibir fabricante em rotulo fixo (sem hardcode 'Prysmian'); o fabricante vem do registro resolvido."
+      - "Nenhuma analogia entre fabricantes e permitida, nunca (parecer §8) — nem como fallback, nem como aproximacao."
+    backlog_item: "Avaliacao de segunda fonte de fabricante — registrado; NAO e bloqueio desta rodada."
+    rationale: "Rastreavel ao parecer §2 [F4] e §5.1, que adotam Prysmian Rev. 10 como fonte primaria operacional."
+
+# ---------------------------------------------------------------------------
+# CORRECOES APLICADAS POR @po (alcada de PO: escopo, AC, rastreabilidade)
+# ---------------------------------------------------------------------------
+po_corrections:
+  MOD-QT-2-03:
+    - id: FIX-A
+      severity: BLOQUEANTE_PARA_EXECUCAO
+      ac: AC8
+      finding: "Simbolo BIFASICO_FASE_FASE_SEM_NEUTRO NAO existe no codigo (grep -rn em src/ e tests/ -> 0 ocorrencias)."
+      fix: "AC reescrita para num_fases === 2 (NumeroFasesQT, contratos.ts:17). @dev NAO deve criar o enum. A mudanca material de C-04 e retirar a marcacao [VERIFICAR — VER-QT-04] (motor:250-253) e corrigir a fonte no comentario (motor:71-73) — o fator ja e 2 (motor:75-79)."
+    - id: FIX-B
+      severity: BLOQUEANTE_PARA_EXECUCAO
+      ac: "AC9 / Task 4.1"
+      finding: "NAO existe fixture de 504 vetores. Arquivo tem 152 linhas e ZERO ocorrencias do literal '504'. Os 504 sao o produto cartesiano correntes[8] x comprimentos[9] x secoes[7], declarado em DOIS blocos it() (linhas ~73-75 e ~116-118)."
+      fix: "Instrucao reescrita: extrair a grade para constante compartilhada e resolver perfil_id por vetor. Nota: as 7 secoes da grade existem todas no catalogo para a familia de fixture, logo os testes negativos do AC10 exigem vetores ADICIONAIS."
+    - id: FIX-C
+      severity: ALTA
+      ac: AC3
+      finding: "Nomes de campo do parecer §3.1 divergem do artefato real (familia_id/tabela_origem/pagina_origem/versao_fonte nao existem em registros[])."
+      fix: "Tabela de mapeamento adicionada. Renomeacao de campo e permitida; transformacao de VALOR nao. versao_fonte/fonte_url/fonte_sha256 vem do bloco 'fonte'. Campos extras do artefato (bloco_ordinal, coluna_ordinal, topologia_descricao, pagina_pdf, nota_restricao) sao PRESERVADOS."
+    - id: FIX-D
+      severity: BLOQUEANTE_PARA_EXECUCAO
+      ac: AC5
+      finding: "quantidade_de_condutores_carregados NAO e campo do catalogo. Relatorio §5.5 descartou POR EVIDENCIA a hipotese de mapear os blocos a 2-vs-3 condutores. Usa-lo como filtro retornaria 0 registros SEMPRE, disparando a rejeicao do AC6 em toda chamada."
+      fix: "Reclassificado como validacao de COERENCIA contra topologia_coluna_id (2_*/CABO_BIPOLAR -> 2; 3_*/CABO_TRIPOLAR -> 3). Chave de busca declarada: (familia_grupo_id, secao_mm2, topologia_coluna_id) — verificada univoca: 1.563/1.563."
+    - id: FIX-E
+      severity: MEDIA
+      ac: AC6
+      finding: "AC exigia 'mecanismo de erro JA EXISTENTE'; erros.ts tem 4 codigos, nenhum para perfil nao resolvido — conflito com a Task 2.2."
+      fix: "Permitido novo valor de CodigoErroQuedaTensao (uniao interna, extensivel); classe ErroQuedaTensao e sua forma permanecem inalteradas."
+    - id: FIX-F
+      severity: ALTA
+      ac: AC12
+      finding: "perfil_id composto com familia_id comercial geraria duplicidade para a mesma celula (4 familias literais sao compostas)."
+      fix: "perfil_id composto com familia_grupo_id. Ver PO-02."
+    - id: FIX-G
+      severity: CRITICA
+      ac: "AC16 (ADICIONADA)"
+      finding: >
+        LACUNA DE ESCOPO. Existem 5 pontos de chamada de producao de calcularQuedaTensao()
+        e 4 suites de teste que o exercitam com CONTEXTO_PADRAO_ENDPOINT. Nenhum constava
+        da File List. AC6 + AC7 aplicados literalmente tornariam TODO o MOD-QT-2 fail-closed
+        em producao — incluindo o criterio C5 do MOD-DC (servico-dimensionamento-condutores.ts:293
+        resolverC5Queda) — sem que nenhuma AC descrevesse ou testasse esse efeito.
+        Este e o residuo do Relatorio §7 item 1, que o @sm marcou como integralmente RESOLVIDO:
+        o parecer resolve a NORMA (§3.2) mas nao a INTEGRACAO ('muda o comportamento observavel
+        da API e afeta o MOD-DC').
+      fix: "AC16 + Task 5B + File List completada + estimativa 13->21. Escopo rastreavel a C-02 e ao §1 do parecer — consequencia necessaria, nao escopo novo."
+  MOD-QT-2-04:
+    - id: FIX-H
+      severity: CRITICA
+      ac: "AC9 (ADICIONADA)"
+      finding: >
+        LACUNA DE ESCOPO. motor-queda-tensao.ts:482-483 anexa MARCACAO_VERIFICAR_ALINEA
+        ('[VERIFICAR — alinea 6.2.7.1]') ao campo publico 'fonte' sempre que
+        limite_total_pct pertence a LIMITES_TOTAIS_SUJEITOS_A_ALINEA = [5.0, 7.0].
+        O perfil EDP-SP v09 tem limite_total_pct = 5 — logo o cadastro da AC4 faria TODA
+        saida EDP-SP v09 carregar [VERIFICAR], contradizendo o parecer §6 C-05
+        ('Status resultante: CONFIRMADO') e violando o gate do §6 C-07
+        ('nao existir [VERIFICAR] em saida aprovada'). Dois testes existentes asseguram
+        o comportamento atual e nao constavam da File List.
+      fix: >
+        AC9 + Task 2.5 + DoD 5B + File List (motor-queda-tensao.ts, motor-queda-tensao.test.ts
+        ~417-429, modulos-mod-qt-motor-real.test.ts ~82-84). A marcacao e PRESERVADA fora do
+        perfil EDP-SP v09 — o parecer §3.4 resolve a alinea APENAS para esse atendimento;
+        generalizar seria invencao (Artigo IV).
+    - id: FIX-I
+      severity: MEDIA
+      ac: AC8
+      finding: "Citava o Relatorio §7 item 4 — secao 'O que NAO esta decidido' — como fonte de requisito."
+      fix: "Reancorada no parecer §3.2 e §4. Reforcada a natureza de REJEICAO (parecer §5 item 5: 'Fora do dominio nao e resultado tecnico... Nao ha reducao de precisao, status provisorio ou retorno de aprovacao')."
+
+# ---------------------------------------------------------------------------
+# VERIFICACAO CONTRA O CODIGO REAL (nao contra a descricao das stories)
+# ---------------------------------------------------------------------------
+code_verification:
+  paths_confirmed:
+    - "src/domain/queda-tensao/{contratos,erros,index}.ts"
+    - "src/domain/queda-tensao/motores/{motor-queda-tensao,simulador-cenarios}.ts"
+    - "src/domain/queda-tensao/normativa/{limites,resistividade,tabela-impedancia}.ts"
+    - "src/domain/dimensionamento-condutores/contratos.ts :: RetornoMODQT (linha 50)"
+    - "src/api/schemas/otimizar-condutor.schema.ts :: RetornoMODQTSchema (74), ValidarMODQTSchema (86)"
+    - "src/routes/api/v1/modulos.mod-qt.validar.ts :: createFileRoute('/api/v1/modulos/mod-qt/validar'), POST"
+    - "tests/domain/queda-tensao/ca-qt-19-nao-regressao.test.ts"
+  symbols_absent:
+    - "BIFASICO_FASE_FASE_SEM_NEUTRO — NAO existe (0 ocorrencias em src/ e tests/)"
+  ca_qt_19_504_vectors:
+    confirmado: true
+    forma: "GERADOS EM RUNTIME — correntes[8] x comprimentos[9] x secoes[7] = 504. NAO e array literal."
+    arquivo_linhas: 152
+    ocorrencias_literal_504: 0
+  artefato_json:
+    registros: 1563
+    tabelas: [28, 29, 30, 31, 32, 33, 34, 35, 36]
+    topologias: 12
+    familias_literais: 9
+    familias_comerciais_parecer: 13
+    celulas_nulas: "24 (Rca e XL simultaneos)"
+    nota_restricao_preenchida: 62
+    fonte_id_gravado: "PRYSMIAN_BT_GUIA (100% dos registros)"
+    chave_unica_verificada: "(familia_literal, secao_mm2, topologia_coluna_id) -> 1.563 chaves distintas para 1.563 registros"
+  call_sites_calcularQuedaTensao:
+    - "src/domain/servicos/servico-queda-tensao.ts (~237)"
+    - "src/routes/api/v1/modulos.mod-qt.validar.ts (~111)"
+    - "src/routes/api/v1/projetos.$projetoId.alimentador.ts"
+    - "src/routes/api/v1/projetos.$projetoId.queda-tensao-lote.ts"
+    - "src/domain/queda-tensao/motores/simulador-cenarios.ts (~56)"
+  test_suites_afetadas:
+    - "tests/domain/queda-tensao/motor-queda-tensao.test.ts"
+    - "tests/domain/queda-tensao/ca-qt-19-nao-regressao.test.ts"
+    - "tests/api/queda-tensao-endpoints.test.ts"
+    - "tests/api/modulos-mod-qt-motor-real.test.ts"
+    - "tests/ui/queda-tensao.vrt.test.tsx"
+  mod_dc_c5_integration: "src/domain/dimensionamento-condutores/servico-dimensionamento-condutores.ts:293 resolverC5Queda(circuito.retorno_qt)"
+
+# ---------------------------------------------------------------------------
+# CONTRATO PUBLICO — INALTERAVEL (verificacao por SIMBOLO, nao por status M)
+# ---------------------------------------------------------------------------
+immutable_contract:
+  - "src/domain/dimensionamento-condutores/contratos.ts :: RetornoMODQT"
+  - "src/api/schemas/otimizar-condutor.schema.ts :: ValidarMODQTSchema"
+  - "src/api/schemas/otimizar-condutor.schema.ts :: RetornoMODQTSchema"
+  - "POST /api/v1/modulos/mod-qt/validar (path e schema da rota)"
+extensible_internal_contract:
+  - "src/domain/queda-tensao/contratos.ts — declarado INTERNO no proprio arquivo (linhas 4-7). ContextoQuedaTensao e RastreioQuedaTensao SAO extensiveis. E por aqui que os cinco campos controlados trafegam."
+
+# ---------------------------------------------------------------------------
+# RISCOS QUE PERMANECEM REGISTRADOS E FORA DE ESCOPO — NAO IMPLEMENTAR
+# ---------------------------------------------------------------------------
+out_of_scope_registered:
+  - id: "MOD-DC-PRD-13.6"
+    item: "PRD do MOD-DC assume limite EDP-SP de 7%; o parecer resolve 5% (VER-QT-07)."
+    status: "ABERTO — pendencia para story futura de @po/@architect (impacto no criterio C5 do MOD-DC)."
+    verificado_por_po: "Nenhum arquivo de src/domain/dimensionamento-condutores/ consta da File List de nenhuma das duas stories. Exclusao explicita em ambas."
+  - id: "CONDUTO-FERROMAGNETICO"
+    item: "Conduto metalico fechado ferromagnetico — fora do dominio calculavel (parecer §3.2)."
+    status: "RESOLVIDO — tratado como REJEICAO, nunca degradacao de calculo."
+    verificado_por_po: "MOD-QT-2-03 AC14 ('nenhuma chega ao motor'); MOD-QT-2-04 AC3 + AC8 (indisponibilidade explicita de metodo + ausencia de caminho de codigo ao motor)."
+  - id: "SEGUNDA-FONTE-FABRICANTE"
+    item: "Obter segunda fonte de fabricante alem da Prysmian."
+    status: "BACKLOG — decisao PO-03; nao e bloqueio desta rodada."
+
+blocked_for_dev:
+  - "Alterar qualquer um dos 4 simbolos do contrato publico — bloqueio automatico de QA."
+  - "Alterar o MOD-DC (src/domain/dimensionamento-condutores/**) ou seu PRD §13.6 nesta rodada."
+  - "Reabrir PO-01, PO-02 ou PO-03 — estao FECHADAS. Divergencia -> escalar a @po, nao decidir."
+  - "Promover VER-QT-02/03/04/06/07 a CONFIRMADO sem os testes/codigo implantados (parecer §1: evidencia de execucao REPROVADA ate implantacao)."
+  - "Usar TABELA_CU/TABELA_AL generica, valor padrao, arredondamento de celula, interpolacao ou geracao de linha ausente."
+  - "XL = 0 em qualquer registro ou resultado."
+  - "Fallback de 7% para o limite total fora do escopo do perfil EDP_SP_PTDTPDN00068_V09_AEREA_BT."
+  - "Reusar o perfil EDP-SP v09 em outra distribuidora, rede subterranea ou padrao tecnico."
+  - "Atribuir as alturas de tomada (0,30/1,10/2,00 m) a NBR 5410."
+  - "Silenciar teste com skip ou deletar suite para fazer a migracao da AC16 passar."
+  - "Iniciar C-03 de MOD-QT-2-04 antes de MOD-QT-2-03 Tasks 1-2 estarem testadas."
+
+notes_for_dev:
+  - "A rejeicao fail-closed do MOD-QT-2 e o comportamento CORRETO nesta fase, nao um bug (parecer §8: 'Durante esse intervalo, o MOD-QT-2 nao deve emitir calculos de queda de tensao para projetos reais'). Nao 'consertar' reintroduzindo fallback."
+  - "Se a Task 5B (AC16) exceder o previsto, PARAR e escalar a @po — nao reduzir cobertura de teste."
+  - "Task 2.5 de MOD-QT-2-04 toca motor-queda-tensao.ts, tambem tocado por MOD-QT-2-03. Preferir executa-la APOS o merge de MOD-QT-2-03."
+  - "Blocker independente .aiox/workflow-state/BLOCKER-DERIVAR-CIRCUITOS-REGRESSAO.yaml (dominio calculo/derivar-circuitos) NAO pertence a estas stories e nao deve ser confundido com regressao do MOD-QT-2."
+  - "Stories predecessoras MOD-QT-2-01 e MOD-QT-2-02 estao em gate de QA em paralelo — NAO altera-las."

@@ -1,0 +1,14 @@
+{
+  "schema": "sinkra-dr-run-matrix-v1",
+  "status": "planned",
+  "systems_under_test": [
+    "dzhng-deep-research",
+    "gpt-researcher",
+    "langchain-open-deep-research",
+    "local-deep-research",
+    "deep-searcher",
+    "drbench"
+  ],
+  "tasks": 40,
+  "expected_runs": 240
+}

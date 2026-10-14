@@ -1,0 +1,41 @@
+# Deviation Register — Copy Squad
+# Tracks deviations from expected behavior, outcomes, and process norms
+# Required by SINKRA Mandamento 7: Desvios Formalizados
+
+meta:
+  squad: copy
+  version: "1.0.0"
+  created_date: "2026-04-12"
+  created_by: "/sinkra-upgrade-squad"
+  schema: "deviation-register-v1"
+
+schema:
+  fields:
+    - id: "DEV-CP-NNN"
+    - risk_ref: "optional — reference to risk-register.yaml entry"
+    - date: "ISO-8601"
+    - workflow_ref: "workflow ID where deviation occurred"
+    - phase_ref: "phase/step within workflow"
+    - description: "what deviated from expected behavior"
+    - expected: "what should have happened"
+    - actual: "what actually happened"
+    - severity: "LOW | MEDIUM | HIGH | CRITICAL"
+    - resolution: "how it was resolved"
+    - lessons_learned: "what to improve to prevent recurrence"
+    - status: "open | resolved | accepted"
+
+deviations: []
+# Entries populated during pipeline execution when deviations occur.
+# Example:
+# - id: DEV-CP-001
+#   risk_ref: "RISK-CP-002"
+#   date: "2026-04-15"
+#   workflow_ref: "wf-1-full-launch"
+#   phase_ref: "strategy"
+#   description: "Clone selection skipped Tier 0 diagnosis"
+#   expected: "Tier 0 diagnosis mandatory before clone selection"
+#   actual: "User requested direct copy generation, bypassing diagnosis"
+#   severity: HIGH
+#   resolution: "Enforced diagnosis gate — blocked progression until Tier 0 complete"
+#   lessons_learned: "Gate enforcement must be Worker-level (automated), not Agent-level (advisory)"
+#   status: resolved

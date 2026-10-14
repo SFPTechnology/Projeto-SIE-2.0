@@ -1,0 +1,366 @@
+{
+  "schema": "3way-consolidated-scorecard-v1",
+  "bench_id": "3-way-final-omnichannel",
+  "phase": "A",
+  "generated_at": "2026-05-06",
+  "analyst": "spy/bench-analyst v3.0",
+  "method": "Reconciliacao de 3 paired benches (Chatwoot/Zendesk, Intercom/Chatwoot, Octadesk/Zendesk) em matriz unica 4 players x 9 dimensoes consolidadas. Score 0-100 por celula. Pesos neutros do metadata.json. 4 personas com pesos recalibrados.",
+  "weights_neutral": {
+    "D1": 12,
+    "D2": 18,
+    "D3": 15,
+    "D4": 12,
+    "D5": 8,
+    "D6": 8,
+    "D7": 10,
+    "D8": 12,
+    "D9": 5
+  },
+  "dimension_labels": {
+    "D1": "Canais nativos (incluindo WhatsApp depth)",
+    "D2": "AI capability + transparencia + deflection publicado",
+    "D3": "Pricing transparency + TCO real",
+    "D4": "Governance / Compliance",
+    "D5": "Ecosystem / Marketplace / integracoes",
+    "D6": "Comunidade / Maturidade / reviews",
+    "D7": "Flexibilidade (self-hosted, customizacao, sovereignty)",
+    "D8": "Brasil-fit (BSP local, BRL pricing, suporte PT-BR, integracoes BR)",
+    "D9": "In-app messaging strength"
+  },
+  "matrix": {
+    "chatwoot": {
+      "D1": {
+        "score": 93,
+        "source": "bench-1 chatwoot-vs-zendesk scorecard.md C1=92 + bench-2 intercom-vs-chatwoot scorecard.md C3=95",
+        "confidence": "H",
+        "notes": "10 canais nativos + 3 BSP options WhatsApp (Meta/Twilio/360Dialog) BYOC. Telegram + TikTok + Line nativos."
+      },
+      "D2": {
+        "score": 65,
+        "source": "bench-1 C2=75 + bench-2 C1=50 (deflection performance)",
+        "confidence": "M",
+        "notes": "RECONCILIACAO: bench-1 deu 75 (built-in nature + Captain existe); bench-2 deu 50 porque cobrou deflection rate publicado e Fin Apex parity. Score consolidado 65 reflete: Captain existe e funciona, mas SEM deflection publicado, SEM custom actions, SEM simulation. Gap P0 vs Intercom Fin."
+      },
+      "D3": {
+        "score": 92,
+        "source": "bench-1 C3=95 + bench-2 C5=90",
+        "confidence": "H",
+        "notes": "Tiers publicos. Self-host $0. Sticker-to-real ratio 1.0-1.2x. Captain credits flat 300/500/800 + extras $20/1k previsivel."
+      },
+      "D4": {
+        "score": 55,
+        "source": "bench-1 C4=55",
+        "confidence": "H",
+        "notes": "GDPR DPA + SOC2 Cloud implicito. ISO/HIPAA/FedRAMP NAO listadas. EU residency Cloud nao user-selectable. Self-host = escape valve compliance customer-controlled."
+      },
+      "D5": {
+        "score": 65,
+        "source": "bench-1 C5=60 + bench-2 C6=75",
+        "confidence": "H",
+        "notes": "Tens of integrations + API + DB access self-host. Sem marketplace curado tipo Zendesk 1977 apps."
+      },
+      "D6": {
+        "score": 78,
+        "source": "bench-1 C6=78 + bench-2 C6=75",
+        "confidence": "H",
+        "notes": "GitHub 29.1k stars + 7.2k forks. G2 4.4. 9 anos. Monthly minor releases. Comunidade transparente."
+      },
+      "D7": {
+        "score": 100,
+        "source": "bench-1 C7=100 + bench-2 C7=100",
+        "confidence": "H",
+        "notes": "MIT full source self-host. 4 deployment options. WhatsApp BYOC. Vendor lock-in minimo. Categorical winner."
+      },
+      "D8": {
+        "score": 60,
+        "source": "bench-1 C8=65 (vs Zendesk) + inferencia vs Octadesk bench-3",
+        "confidence": "M",
+        "notes": "BYOC permite BR BSP. PT-BR UI. Shopify nativa. Sem BRL pricing oficial, sem VTEX/RD/Bling/Pix nativos, sem time BR de produto. Inferior a Octadesk turnkey."
+      },
+      "D9": {
+        "score": 50,
+        "source": "bench-2 C4=50",
+        "confidence": "H",
+        "notes": "Widget funcional mas nao no nivel Intercom Messenger. Sem Product Tours, sem Checklists, sem in-app polish premium. Suficiente para B2C/e-commerce; insuficiente para SaaS B2B in-app heavy."
+      }
+    },
+    "zendesk": {
+      "D1": {
+        "score": 88,
+        "source": "bench-1 C1=95 + bench-3 octadesk-vs-zendesk C1=78 (WhatsApp specifico)",
+        "confidence": "H",
+        "notes": "10 canais nativos + Voice/Talk + Apple Business Chat. WhatsApp via Sunshine Conversations com pricing variable opaco. Penaliza WA vs bench-3."
+      },
+      "D2": {
+        "score": 87,
+        "source": "bench-1 C2=88 + bench-3 C4=85",
+        "confidence": "H",
+        "notes": "Zendesk AI Agents (Ultimate.ai) + Copilot + QA AI + WFM. Customer outcomes publicados (Freedom 66%, Next 92%, UrbanStems 39%). AI Agents per-resolution opaco."
+      },
+      "D3": {
+        "score": 55,
+        "source": "bench-1 C3=50 + bench-3 C5=70",
+        "confidence": "H",
+        "notes": "RECONCILIACAO: bench-1 foi mais severo (50) por TCO 2-3x sticker + add-ons multiplos + Vendr median $47.772/year. Bench-3 mais generoso (70) porque comparou em USD apenas. Score 55 favorece bench-1 que tem decomposicao detalhada (Copilot $50 + QA $35 + WFM $25 + ADPP $50 + Sunshine variavel)."
+      },
+      "D4": {
+        "score": 95,
+        "source": "bench-1 C4=95 + bench-3 C7=95",
+        "confidence": "H",
+        "notes": "SOC2 Type II + ISO 27001/27018/27701 + FedRAMP + GDPR BCR + HIPAA BAA + multi-region (US/EU/AU/JP). Categorical winner."
+      },
+      "D5": {
+        "score": 95,
+        "source": "bench-1 C5=95 + bench-3 C6=95",
+        "confidence": "H",
+        "notes": "1.977 apps de 1.136 vendors. 75% ARR marketplace-impacted. AI 21.54%. Sandbox Enterprise. Categorical winner."
+      },
+      "D6": {
+        "score": 91,
+        "source": "bench-1 C6=92 + bench-3 C8=90",
+        "confidence": "H",
+        "notes": "G2 4.3 com 6.000+ reviews. 14.8% market share. 19 anos. Time BR de revenda."
+      },
+      "D7": {
+        "score": 35,
+        "source": "bench-1 C7=35",
+        "confidence": "H",
+        "notes": "Cloud-only proprietary. Self-host impossivel. Sandbox + Apps Framework + API existem mas dentro de guardrails Zendesk."
+      },
+      "D8": {
+        "score": 60,
+        "source": "bench-1 C8=80 + bench-3 C2=50",
+        "confidence": "M",
+        "notes": "RECONCILIACAO: bench-1 deu 80 (BRL pricing + suporte BR + sales BR + RD via marketplace). Bench-3 deu 50 (sem time BR de produto + integracoes BR via parceiros + add-ons em USD + sem BR data residency + Sunshine variable opaco). Score consolidado 60 favorece bench-3 que cobriu mais profundamente o eixo BR-fit."
+      },
+      "D9": {
+        "score": 70,
+        "source": "untested em ambos os benches diretos; inferencia",
+        "confidence": "M",
+        "notes": "INFERIDO: Zendesk Web Widget + Mobile SDK existem mas nao sao first-class in-app polish (sem Product Tours equivalente, sem in-app messaging engine premium tipo Intercom Messenger). Estimativa M."
+      }
+    },
+    "intercom": {
+      "D1": {
+        "score": 60,
+        "source": "bench-2 C3=60",
+        "confidence": "H",
+        "notes": "WhatsApp + Insta + FB + SMS + Email + In-app. Sem Telegram + TikTok + Line nativos. WA Cloud-Direct."
+      },
+      "D2": {
+        "score": 80,
+        "source": "bench-2 C1=85 (deflection performance) + C2=75 (pricing honesty)",
+        "confidence": "H",
+        "notes": "Fin Apex 1.0 com 51-67% deflection publicado + 6-step RAG + custom actions + simulation mode + patents. Pricing per-resolution $0.99/res — transparente mas premium."
+      },
+      "D3": {
+        "score": 50,
+        "source": "bench-2 C5=50",
+        "confidence": "H",
+        "notes": "$29-$139/seat + Fin $0.99/res + Copilot $29/seat + add-ons (Pro Analytics, Proactive). Cenario mid-market 20 agents = $4.300+/mo. Cenario scale 50 agents = $20k+/mo."
+      },
+      "D4": {
+        "score": 80,
+        "source": "untested em paired benches; inferencia from public Trust Center",
+        "confidence": "M",
+        "notes": "INFERIDO: SOC 2 Type II + GDPR + HIPAA via Premier + ISO 27001. Trust Center Intercom listado. Sem FedRAMP. Sem multi-region escolhivel pelo cliente."
+      },
+      "D5": {
+        "score": 85,
+        "source": "bench-2 C6=85",
+        "confidence": "H",
+        "notes": "App Store 300+ apps polished. Workspace integrations bem mantidas. Smaller que Zendesk mas qualidade alta."
+      },
+      "D6": {
+        "score": 85,
+        "source": "bench-2 C6=85",
+        "confidence": "H",
+        "notes": "G2 4.5 + 12.77% market share. 15 anos. Brand premium SaaS B2B."
+      },
+      "D7": {
+        "score": 0,
+        "source": "bench-2 C7=0",
+        "confidence": "H",
+        "notes": "Zero self-host. Zero source code access. Zero vendor lock-in escape. Categorical loser."
+      },
+      "D8": {
+        "score": 35,
+        "source": "untested; inferencia from public docs + paired benches",
+        "confidence": "L",
+        "notes": "INFERIDO: Sem BRL pricing nativo. Sem time BR de produto. Sem BSP local BR. Localizacao PT-BR parcial. Pricing premium em USD = inviavel para PME BR. Estimativa L confidence."
+      },
+      "D9": {
+        "score": 95,
+        "source": "bench-2 C4=95",
+        "confidence": "H",
+        "notes": "Best-in-class. Messenger SDK iOS/Android/Web/RN/Flutter. Product Tours, Checklists, Tooltips, Carousels. Categorical winner para SaaS B2B in-app heavy."
+      }
+    },
+    "octadesk": {
+      "D1": {
+        "score": 92,
+        "source": "bench-3 C1=92",
+        "confidence": "H",
+        "notes": "WhatsApp Cloud-Direct oficial confirmado + Insta + FB + email + chat. Sem Telegram/TikTok/Line/Apple BC. Forte em WA depth."
+      },
+      "D2": {
+        "score": 70,
+        "source": "bench-3 C4=70",
+        "confidence": "M",
+        "notes": "WOZ AI generativa PT-BR nativa. Marketing claim '8 a cada 10 atendimentos automaticos' SEM benchmark independente. Inferior a Fin Labs publicacao."
+      },
+      "D3": {
+        "score": 65,
+        "source": "bench-3 C5=65",
+        "confidence": "H",
+        "notes": "R$79/mes entry. Pricing BR transparente em BRL. Sem FX risk. Tier Octa Suite enterprise gated/sob consulta."
+      },
+      "D4": {
+        "score": 45,
+        "source": "bench-3 C7=45",
+        "confidence": "H",
+        "notes": "LGPD declarada mas SEM SOC 2 Type II / ISO 27001 publicas auditadas. Sem SSO/SAML/SCIM publicos. Sem custom roles + audit logs detalhados publicos. Sem HIPAA BAA. Bloqueia enterprise regulado."
+      },
+      "D5": {
+        "score": 60,
+        "source": "bench-3 C6=60",
+        "confidence": "H",
+        "notes": "20-30 conectores. Bundle LWSA (Bling, Tray, Vindi, Melhor Envio, Yapay) e diferencial unico. Sem ZAF-equivalente, sem SDK publico multi-linguagem."
+      },
+      "D6": {
+        "score": 55,
+        "source": "bench-3 C8=55",
+        "confidence": "H",
+        "notes": "G2 ~55 reviews + Capterra BR 6 reviews. Capterra long-term user reporta outages/slowness no ultimo ano. 12 anos de mercado BR."
+      },
+      "D7": {
+        "score": 25,
+        "source": "untested em bench-3; inferencia",
+        "confidence": "M",
+        "notes": "INFERIDO: Sem self-host. Sem source code. Cloud-only. Pequeno bonus por BR data residency LWSA garantida (algum sovereignty BR-specific)."
+      },
+      "D8": {
+        "score": 95,
+        "source": "bench-3 C2=95",
+        "confidence": "H",
+        "notes": "BR-native. PT-BR nativo (sotaque). VTEX/Tray/NuvemShop first-class. Bling/Vindi/Melhor Envio bundle LWSA. Pix integrado. BRL pricing puro. Time BR de produto + suporte. Categorical BR winner."
+      },
+      "D9": {
+        "score": 40,
+        "source": "untested; inferencia",
+        "confidence": "L",
+        "notes": "INFERIDO: Chat widget existe mas focado em B2C e-commerce, nao in-app SaaS B2B premium. Estimativa L confidence."
+      }
+    }
+  },
+  "totals_neutral": {
+    "chatwoot": 74.40,
+    "zendesk": 74.95,
+    "intercom": 61.25,
+    "octadesk": 63.89
+  },
+  "ranking_neutral": [
+    {"rank": 1, "player": "zendesk", "score": 74.95},
+    {"rank": 2, "player": "chatwoot", "score": 74.40, "delta_to_leader": -0.55},
+    {"rank": 3, "player": "octadesk", "score": 63.89, "delta_to_leader": -11.06},
+    {"rank": 4, "player": "intercom", "score": 61.25, "delta_to_leader": -13.70}
+  ],
+  "ranking_neutral_verdict": "Empate tecnico Zendesk/Chatwoot (delta 0.55). Octadesk e Intercom claramente abaixo no eixo neutro mas SAO competitivos em personas especificas (Octadesk em SMB BR, Intercom em SaaS B2B). Persona-recalibration e mandatorio para decisao real.",
+  "personas": {
+    "smb_br_ecommerce": {
+      "label": "SMB BR e-commerce (5-10 agents, <=1k conv/mes)",
+      "weights": {"D1": 14, "D2": 8, "D3": 20, "D4": 4, "D5": 8, "D6": 4, "D7": 10, "D8": 27, "D9": 5},
+      "rationale_pesos": "WA depth + BR-fit + TCO dominam. Compliance enterprise quase irrelevante. AI moderado, in-app irrelevante (e-commerce). Self-host opcional para reducao TCO.",
+      "totals": {
+        "chatwoot": 75.84,
+        "zendesk": 68.52,
+        "intercom": 52.40,
+        "octadesk": 70.43
+      },
+      "ranking": [
+        {"rank": 1, "player": "chatwoot", "score": 75.84},
+        {"rank": 2, "player": "octadesk", "score": 70.43, "delta_to_leader": -5.41},
+        {"rank": 3, "player": "zendesk", "score": 68.52, "delta_to_leader": -7.32},
+        {"rank": 4, "player": "intercom", "score": 52.40, "delta_to_leader": -23.44}
+      ],
+      "verdict": "Chatwoot vence (75.84). Octadesk e 2o (70.43, delta -5.41) e e a alternativa pragmatica zero-DevOps com BR-fit superior. Zendesk e Intercom inviaveis para esta persona por TCO BRL e ausencia BR-fit.",
+      "tiebreaker": "Se equipe tem DevOps interno -> Chatwoot self-host ($0). Se NAO tem DevOps + bundle Locaweb (Bling/Tray/Vindi) -> Octadesk."
+    },
+    "midmarket_br": {
+      "label": "Mid-market BR (50-100 agents, ~10k conv/mes)",
+      "weights": {"D1": 15, "D2": 15, "D3": 12, "D4": 10, "D5": 10, "D6": 8, "D7": 10, "D8": 15, "D9": 5},
+      "rationale_pesos": "Equilibrio. AI moderado (15%), compliance moderado (10%), BR-fit ainda dominante (15%), TCO menos critico que SMB.",
+      "totals": {
+        "chatwoot": 74.48,
+        "zendesk": 75.13,
+        "intercom": 60.30,
+        "octadesk": 65.75
+      },
+      "ranking": [
+        {"rank": 1, "player": "zendesk", "score": 75.13},
+        {"rank": 2, "player": "chatwoot", "score": 74.48, "delta_to_leader": -0.65},
+        {"rank": 3, "player": "octadesk", "score": 65.75, "delta_to_leader": -9.38},
+        {"rank": 4, "player": "intercom", "score": 60.30, "delta_to_leader": -14.83}
+      ],
+      "verdict": "EMPATE TECNICO Zendesk vs Chatwoot (delta 0.65). Octadesk competitivo em terceiro mas atras em D2/D4/D5. Decisao depende de tiebreakers compliance + DevOps + WhatsApp volume.",
+      "tiebreaker": "Se SSO/SAML obrigatorio + sem DevOps -> Zendesk. Se DevOps maduro + cost-conscious -> Chatwoot self-host. Se BR-only operacao + bundle LWSA -> Octadesk competitivo."
+    },
+    "enterprise_br_multinacional": {
+      "label": "Enterprise BR multinacional (100+ agents, regulado, multi-region)",
+      "weights": {"D1": 10, "D2": 12, "D3": 8, "D4": 22, "D5": 12, "D6": 10, "D7": 8, "D8": 10, "D9": 8},
+      "rationale_pesos": "Compliance e ecosystem dominam (D4=22, D5=12, D6=10). TCO baixo peso (8) — orcamento existe. BR-fit baixo (10) — multinacional aceita USA/EU. AI moderado (12). In-app moderado (8) por SaaS verticais.",
+      "totals": {
+        "chatwoot": 70.16,
+        "zendesk": 79.44,
+        "intercom": 67.00,
+        "octadesk": 60.10
+      },
+      "ranking": [
+        {"rank": 1, "player": "zendesk", "score": 79.44},
+        {"rank": 2, "player": "chatwoot", "score": 70.16, "delta_to_leader": -9.28},
+        {"rank": 3, "player": "intercom", "score": 67.00, "delta_to_leader": -12.44},
+        {"rank": 4, "player": "octadesk", "score": 60.10, "delta_to_leader": -19.34}
+      ],
+      "verdict": "Zendesk vence (79.44, delta +9.28 vs Chatwoot). Compliance posture (SOC2 + ISO + FedRAMP + HIPAA + BCR + multi-region) e categorical para enterprise regulado. Chatwoot self-host EU customer-controlled e backstop viavel mas exige DevOps maduro. Octadesk fora do segmento.",
+      "tiebreaker": "Healthcare BR / fintech BR regulado / governo -> Zendesk mandatory. Se buyer aceita Chatwoot self-host EU + customer-controlled compliance -> Chatwoot self-host (TCO 3-5x menor)."
+    },
+    "global_saas_b2b": {
+      "label": "Global SaaS B2B (20-30 agents, EU+US, GDPR strict, in-app heavy)",
+      "weights": {"D1": 10, "D2": 20, "D3": 10, "D4": 15, "D5": 10, "D6": 8, "D7": 10, "D8": 2, "D9": 15},
+      "rationale_pesos": "AI sofisticada (20) + in-app messenger (15) + compliance (15) dominam. BR-fit quase zero (2). Self-host relevante (10) por GDPR data residency.",
+      "totals": {
+        "chatwoot": 71.19,
+        "zendesk": 77.93,
+        "intercom": 69.25,
+        "octadesk": 57.25
+      },
+      "ranking": [
+        {"rank": 1, "player": "zendesk", "score": 77.93},
+        {"rank": 2, "player": "chatwoot", "score": 71.19, "delta_to_leader": -6.74},
+        {"rank": 3, "player": "intercom", "score": 69.25, "delta_to_leader": -8.68},
+        {"rank": 4, "player": "octadesk", "score": 57.25, "delta_to_leader": -20.68}
+      ],
+      "verdict": "Zendesk vence (77.93). Surpresa: Intercom 3o (69.25) apesar de in-app strength D9=95 e AI D2=80, porque self-host=0 + compliance moderado = penalidade composta. Chatwoot 2o (71.19) por self-host EU + AI razoavel + canais nativos. Para SaaS B2B in-app HEAVY E AI heavy: Intercom ainda compete pelo polish; para SaaS B2B com sovereignty + cost-conscious: Chatwoot.",
+      "tiebreaker": "Se in-app messaging + AI sao decisivos + budget enterprise -> Intercom (apesar do score mais baixo, polish e categorical em D9). Se compliance + scale + ecosystem -> Zendesk. Se GDPR strict EU residency + cost-conscious -> Chatwoot self-host EU."
+    }
+  },
+  "global_observations": [
+    "Persona-neutrality nao existe neste mercado. Os 4 players ocupam 4 segmentos diferentes. Score neutro e diagnostico (mostra empate Chatwoot/Zendesk com Octadesk e Intercom como terceiros) mas decisao real e persona-driven.",
+    "Octadesk vence em SMB BR e e competitivo em mid-market BR, mas perde categorical em enterprise multinacional (delta -19) e global SaaS B2B (delta -20).",
+    "Intercom vence em D9 (in-app messaging) e D2 (AI deflection) mas perde categorical em D7 (self-host=0) e D8 (BR-fit). Atende SaaS B2B in-app heavy ocidental, NAO BR.",
+    "Chatwoot mantem D7=100 categorical e D3=92 (TCO) competitivo em todas personas — e a unica opcao que aparece em top-2 das 4 personas.",
+    "Zendesk vence em 3 das 4 personas pela combinacao D4+D5+D6 (compliance+ecosystem+maturidade) mas fica atras em SMB BR pelo TCO BRL inviavel."
+  ],
+  "confidence_summary": {
+    "high_confidence_dimensions": ["D1", "D3", "D5", "D6", "D7"],
+    "medium_confidence_dimensions": ["D2 (Captain deflection nao publicado, WOZ idem)", "D4 (Intercom Trust Center inferido)", "D8 (Zendesk reconciliacao bench-1 vs bench-3)", "D9 (Zendesk e Octadesk untested)"],
+    "low_confidence_dimensions": ["D8 Intercom (untested)", "D9 Octadesk (untested)"],
+    "untested_cells": [
+      "intercom D4 — Trust Center existe publicamente mas nao foi avaliado em benches paired",
+      "intercom D8 — sem comparacao paired vs Octadesk/Zendesk no eixo BR-fit",
+      "zendesk D9 — sem comparacao paired vs Intercom no eixo in-app",
+      "octadesk D7 — sem comparacao paired vs Chatwoot no eixo self-host/sovereignty",
+      "octadesk D9 — sem comparacao paired no eixo in-app messaging"
+    ]
+  }
+}

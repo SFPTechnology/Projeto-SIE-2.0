@@ -1,0 +1,268 @@
+[
+  {
+    "chunk_id": 0,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Dimensionamento do quadro de distribuição",
+      "Quantidade de circuitos"
+    ],
+    "content": "# Quadros de distribuição – Tomadas\n\n<!-- pagina-origem: 1 -->\n\n### Q U A D R O S D E D I S T R I B U I Ç Ã O – T O M A D A S\n\nDimensionamento do quadro de distribuição........................................250\n\nOs quadros de distribuição segundo a NBR 6808....................................257\n\nLocalização dos quadros de distribuição................................................261\n\nA padronização brasileira de tomadas prediais.....................................265\n\nPlugues e tomadas industriais................................................................269\n\n<!-- pagina-origem: 2 -->\n\n## Dimensionamento do quadro de distribuição\n\nDe acordo com a NBR IEC 60050 (826), quadro de distribuição é o “equipamento elétrico destinado a receber energia elétrica através de uma ou mais alimentações, e distribuí-la a um ou mais circuitos, podendo também desempenhar funções de proteção, seccionamento, controle e/ou medição.” Um quadro de distribuição pode ser entendido como o “coração” de uma instalação elétrica, já que distribui energia elétrica por toda a edificação e acomoda os dispositivos de proteção dos diversos circuitos elétricos.\n\n### Quantidade de circuitos\n\nAntes da especificação técnica, propriamente dita, de um quadro de distribuição, é preciso dimensioná-lo, começando pela quantidade de circuitos que ele deverá acomodar — e obtendo-se, com essa informação, uma primeira idéia das dimensões e do tipo de quadro. A quantidade de circuitos de uma instalação elétrica depende, entre outros fatores, de sua potência instalada, da potência unitária das cargas a serem alimentadas, dos critérios adotados na distribuição dos pontos, do maior ou menor “conforto elétrico” previsto, do grau de flexibilidade que se pretende e da reserva assumida visando futuras necessidades. A NBR 5410 oferece um bom ponto de partida para essa definição. É verdade que o posicionamento da norma, sobre quantidade de circuitos, se afigura bem mais explícito no campo das instalações elétricas residenciais. Aliás, ela oferece aí várias regras que podem ser encaradas como o receituário mínimo da instalação. Mas a utilidade desses critérios, sobretudo pela lição conceitual que encerram, se estende muito além do domínio residencial. E é assim que deve ser apreendido o exemplo em cima do qual discorreremos acerca do dimensionamento de um quadro de distribuição. O exemplo é aquele mostrado na\n\n![Figura vetorial da página 2](figura-vetorial-p2-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nfigura 1: um apartamento de dois dormitórios, com cerca de 50 m2de área útil.",
+    "paginas_origem": [
+      1,
+      2
+    ],
+    "tokens_estimados": 663,
+    "contem_tabela": false,
+    "sobrepoe_anterior": false
+  },
+  {
+    "chunk_id": 1,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Dimensionamento do quadro de distribuição",
+      "Divisão da instalação"
+    ],
+    "content": "### Divisão da instalação\n\nComecemos pelas regras da NBR 5410 que tratam da divisão da instalação em circuitos. Na seção 4.2.4 (“Divisão das instalações”), mais exatamente, em 4.2.4.5, a norma diz que “devem ser previstos circuitos terminais distintos para iluminação e tomadas de corrente.” Ou seja, não se deve misturar em um mesmo circuito pontos de iluminação com pontos de tomada. Portanto, já teríamos aqui, para começo de história, no mínimo dois circuitos: um para iluminação e o outro para tomadas. No artigo seguinte, 4.2.4.6, a norma acrescenta outra regra balizadora da definição do número de circuitos: a de que em unidades residenciais e acomodações (quartos ou apartamentos) de hotéis, motéis e similares, devem ser previstos circuitos independentes para cada equipamento com corrente nominal superior a 10 A. Logo, não se pode “pendurar”, em um mesmo circuito, mais de um equipa-\n\n![Figura vetorial da página 2](figura-vetorial-p2-2)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – O apartamento-exemplo\n\n<!-- pagina-origem: 3 -->\n\nmento com corrente nominal superior a 10 A — como é o caso, por exemplo, de chuveiros, torneiras elétricas, aparelhos de microondas, máquinas de lavar louça e máquinas de secar roupa. Cada equipamento deverá ter o seu próprio circuito. No nosso apartamento-exemplo (figura 1) entendemos que o mínimo a ser previsto, de cargas com essa característica, que exigiriam circuito individual, são: um chuveiro elétrico, no banheiro; uma torneira elétrica, na cozinha; e uma máquina de lavar louça, também na cozinha. Todos esses equipamentos domésticos têm potências que resultam em corrente superior a 10 A (no caso da máquina de lavar louça, em particular, assumiu-se alimentação em 127 V). Logo, somado isso ao nosso ponto de partida de pelo menos dois circuitos, um de iluminação e outro de tomada, já passamos para cinco circuitos: – o do chuveiro, – o da torneira elétrica, – o da máquina de lavar louça, – o de iluminação e – o de tomadas (ou de outras tomadas, já que a conexão da máquina de lavar louça à instalação também se dá via tomada, diferentemente do chuveiro e da torneira elétrica, que são ligados diretamente à caixa de derivação). Mas será que um só circuito para todas as tomadas do apartamento (exceto a da máquina de lavar louça, claro) é algo razoável? Evidentemente, não. Como se verá, teremos não apenas um, mas quatro circuitos de tomadas. E por razões muito sólidas. Entre elas, a necessidade de atender à previsão de carga — mínima! — ditada pela NBR 5410; a necessidade prática ou conveniência de evitar o uso de condutores de “grande” seção nominal em circuitos de tomadas de uso geral; e a obrigação de proporcionar um mínimo de conforto ao usuário, garantindo uma certa flexibili-",
+    "paginas_origem": [
+      3
+    ],
+    "tokens_estimados": 708,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 2,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Dimensionamento do quadro de distribuição",
+      "Divisão da instalação"
+    ],
+    "content": "Em seu artigo 6.5.9.2, a NBR 5410 estipula que todo quadro de distribuição, não importa se geral ou de um setor da instalação, deve ser especificado com capacidade de reserva (espaço), que permita ampliações futuras, compatível com a quantidade e tipo de circuitos efetivamente previstos inicialmente. Esta previsão de reserva deve obedecer os seguintes critérios: a) quadros com até 6 circuitos: prever espaço reserva para no mínimo 2 circuitos; dade para a instalação. E tudo isso constitui, na verdade, o mínimo que se pode esperar de uma instalação elétrica. Pois bem, o que nos diz a NBR 5410 sobre previsão de carga, particularmente no que se refere a circuitos de tomadas? O assunto é tratado em 4.2.1.2.3 (“Tomadas de uso geral”). Aí a norma diz, por exemplo, que em cozinhas, copas, copas-cozinhas, áreas de serviço, lavanderias, e locais análogos, deve-se instalar, no mínimo, uma tomada para cada 3,5 m, ou fração, de perímetro. E que devem ser atribuídas a essas tomadas potência de 600 VA por tomada, até três tomadas, e de 100 VA por tomada para as excedentes, considerando cada um desses ambientes separadamente. Ora, aplicado o critério do número mínimo de tomadas à cozinha e à área de serviço do apartamento-exemplo, resultam três tomadas para a cozinha (além da destinada especificamente à máquina de lavar louça) e duas para a área de serviço. Com que potências? Seguindo-se os critérios dados pela norma, vem:\n\n- na cozinha, como são três tomadas, teremos, necessariamente, 3 × 600 VA;\n\n- na área de serviço, com suas duas tomadas, o mesmo\n\nraciocínio: 2 × 600 VA. Se as tomadas desses dois ambientes (o que dá cinco tomadas) fossem atendidas por um único circuito, considerando tensão nominal de 127 V e as potências a elas atribuídas, o dimensionamento do circuito certamente nos conduziria a um condutor de 4 mm2. No entanto, razões de ordem prática aconselham evitar o uso de condutores de seção superior a 2,5 mm2em circuitos de tomadas de uso geral. Pelo menos, esse é um critério adotado “nas boas casas do ramo” de projetos. Adotado esse critério, como faremos aqui, cozinha e área de serviço constituirão então\n\nb) quadros de 7 a 12 circuitos: prever espaço reserva para no mínimo 3 circuitos; c) quadros de 13 a 30 circuitos: prever espaço reserva para no mínimo 4 circuitos; d) quadros acima de 30 circuitos: prever espaço reserva para no mínimo 15% dos circuitos. A norma frisa que a capacidade de reserva por ela indicada deverá ser considerada no cálculo do circuito de distribuição que alimenta o quadro em questão. Capacidade de reserva dos quadros\n\n<!-- pagina-origem: 4 -->\n\ndois circuitos de tomadas (ou tomadas de uso geral, como qualifica a norma). Com isso, a quantidade de circuitos passa agora de cinco para sete. Recapitulando: – o do chuveiro, – o da torneira elétrica, – o da máquina de lavar louça, – o de iluminação, – o das tomadas da cozinha, – o das tomadas da área de serviço e – o das demais tomadas. Mas o que a norma fala a respeito de tomadas nos ambientes ainda não analisados no nosso exemplo — o banheiro, o corredor, os dormitórios e a sala? No mesmo item 4.2.1.2.3, já citado, a NBR 5410 dispõe que",
+    "paginas_origem": [
+      4
+    ],
+    "tokens_estimados": 791,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 3,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Dimensionamento do quadro de distribuição",
+      "Divisão da instalação"
+    ],
+    "content": "- em banheiros deve-se instalar, no mínimo, uma tomada junto ao lavatório (observadas as restrições do capítulo 9 da norma, que fixa os requisitos para instalações ou locais especiais), com potência mínima de 600 VA; e que\n\n- no caso de dormitórios e salas (incluindo o corredor do\n\nnosso exemplo) deve-se instalar no mínimo uma tomada, se a área for igual ou inferior a 6 m2; e no mínimo uma tomada para cada 5 m, ou fração, de perímetro se a área for superior a 6 m2, espaçadas o mais uniformemente possível. A potência a ser atribuída é de 100 VA por tomada. Isso posto, e seguindo basicamente os critérios mínimos fornecidos pela norma, teríamos\n\n- uma tomada no banheiro, com 600 VA;\n\n- uma tomada no corredor, com 100 VA;\n\n- três tomadas em cada dormitório, com 100 VA cada; e\n\n![Figura vetorial da página 4](figura-vetorial-p4-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 2 – Os circuitos definidos para o apartamento-exemplo\n\n- quatro tomadas na sala, com 100 VA cada.\n\nNo entanto, destinar quatro tomadas para a sala, ainda que atendendo o mínimo exigido pela norma, seria “lavar as mãos” de forma censurável. Por quê? Imaginemos o seguinte enredo, que reproduz situações comuns na vida real. Na nossa historieta o projetista recebe, junto com a documentação passada pelo arquiteto ou construtora, material promocional do imóvel, onde consta o layout sugerido para a mobília. E há lá, na sala, a sugestão de uma “estante” com TV, aparelho de som, vídeo... Como o nosso personagem não é praticante do me-engana-que-eu-gosto, nem mais realista do que o rei (daqueles que fazem da atividade de projeto sabujice), ele não tem dúvidas em passar do mínimo exigido pela norma ao mínimo necessário. E acrescenta duas outras tomadas às quatro da conta inicial, posicionando essas duas ao lado daquela locada no ponto onde se sugere a estante. Assim, raciocina ele, atenderemos uma necessidade real do futuro morador, evitando o uso de benjamins. Com isso, a conta das nossas tomadas passa então das 12 pré-historieta para 14, isto é, (1 × 600) + (13 × 100), totalizando 1900 VA. De qualquer forma, sendo esses os números, pouco importando duas tomadas a mais ou a menos, nenhum dos critérios até aqui mencionados — seja os da norma, seja o de evitar condutores de seção superior a 2,5 mm2em circuitos de tomadas de uso geral — impede a inclusão de todas elas num só circuito. Mas aí entra o bom senso e um mínimo de preocupação com a comodidade do usuário, o que pede uma insta-\n\n<!-- pagina-origem: 5 -->",
+    "paginas_origem": [
+      5
+    ],
+    "tokens_estimados": 646,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 4,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Dimensionamento do quadro de distribuição",
+      "Divisão da instalação"
+    ],
+    "content": "lação com certa flexibilidade. Assim, entre outros exemplos, supondo que o morador venha a usar, embora não de forma permanente, aquecedores de ambiente — o que é algo absolutamente comum em algumas regiões do país — é aconselhável então dividir as 14 tomadas relacionadas para o conjunto (banheiro, corredor, dormitórios e salas), em dois circuitos: um reunindo as tomadas do banheiro, do corredor e dos dormitórios; e outro ficando só com as tomadas da sala. Assim, e finalmente, chegamos ao número de circuitos que o nosso apartamento-exemplo, sem luxo algum (seja do apartamento, seja da instalação elétrica), deveria ter. Ou seja, oito circuitos, assim discriminados: – o do chuveiro, – o da torneira elétrica, – o da máquina de lavar louça, – o de iluminação, – o das tomadas da cozinha, – o das tomadas da área de serviço, – o das tomadas do banheiro, corredor e dormitórios e – o das tomadas da sala. O resultado final está ilustrado e computado na figura 2. No caso do circuito de iluminação, as potências consideradas seguiram as recomendações mínimas da norma, dadas em 4.2.1.2.2: 1) em cada cômodo ou dependência com área igual ou inferior a 6 m2deve ser prevista uma carga de iluminação mínima de 100 VA; e 2) em cada cômodo ou dependência com área superior a 6 m2deve ser prevista uma carga de iluminação mínima de 100 VA para os primeiros 6 m2, acrescida de 60 VA para cada aumento de 4 m2inteiros. Por outro lado, a única exigência da norma diretamente associada ao número de pontos de luz é que “em cada cômodo ou dependência deve ser previsto no mínimo um ponto de luz fixo no teto, com potência mínima de 100 VA, comandado por interruptor de parede.” Como há os que preferem interpretar o mínimo como sendo o máximo, é importante ressaltar que não basta colocar apenas um “bico de luz” em cada local. Mesmo porque a NBR 5410 faz referência a normas de iluminação a serem atendidas. E frisa que as potências por ela indicadas, para iluminação, são para efeito de dimensionamento dos circuitos, não havendo assim, necessariamente, vinculação entre potência e ponto. De qualquer forma, voltando ao nosso exemplo, o circuito de iluminação nele incluído prevê então: um ponto de luz, com 100 VA, na cozinha, na área de serviço, no corredor, na varanda e em cada dormitório;\n\n- um ponto de luz com 100 VA e uma arandela com\n\n60 VA no banheiro; e\n\n- dois pontos de luz com 160 VA cada (atendendo a exigência 2 acima) na sala. Logo, são ao todo 10 pontos de luz, totalizando 1080 VA.",
+    "paginas_origem": [],
+    "tokens_estimados": 624,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 5,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Dimensionamento do quadro de distribuição",
+      "O quadro de distribuição"
+    ],
+    "content": "### O quadro de distribuição\n\nNa figura 2, com os resultados do exemplo, a tabela inclusa funciona também como um levantamento das necessidades mínimas que o quadro de distribuição deverá prover. Até porque os circuitos estão aí indicados em termos de número de pólos, que é a unidade básica para dimensionamento do quadro. Foram previstos ainda nesse quadro, seguindo o que a norma dispõe:\n\n- um dispositivo de proteção a corrente diferencial-residual (dispositivo DR), tetrapolar, funcionando como chave geral (presume-se aqui que na origem do circuito de distribuição que alimenta o quadro deverá haver um dispositivo de proteção contra sobrecorrentes, devidamente coordenado. Poder-se-ia, alternativamente, prever um disjuntor imediatamente a montante do dispositivo DR. Tudo isso são opções de projeto);\n\n- espaço reserva (ver boxe) para três disjuntores, sendo\n\ndois monopolares e um bipolar. Ao dimensionamento do quadro de distribuição, como aqui feito, segue-se sua especificação técnica. A especificação técnica de um quadro de distribuição é a identificação minuciosa das diversas características que ele deve apresentar, em função das características do projeto e do local de instalação. É nesse momento que se “qualifica” o tipo de quadro de distribuição mais adequado para a instalação sendo projetada. Nada a ver, portanto, com as “especificações” equivocadas que comumente se vêem — preguiçosas, incompletas e denotando ausência total de profissionalismo, A correta especificação técnica de um quadro exige, além do atendimento ao mínimo que se espera de uma instalação elétrica — como aqui exposto, no exemplo de dimensionamento —, o exame de todos os demais parâmetros pertinentes à sua seleção e instalação. Aí, é função da norma de instalações (a NBR 5410) ditar as condições a serem preenchidas no exame desses parâmetros — por sua vez, fixados e disciplinados pela norma do produto. O conhecimento desses parâmetros, ou características, é assim fundamental para que a seleção seja bem-sucedida. É do que trata o artigo seguinte.\n\n<!-- pagina-origem: 6 -->",
+    "paginas_origem": [
+      6
+    ],
+    "tokens_estimados": 520,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 6,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Os quadros de distribuição segundo a NBR 6808",
+      "Tensão nominal"
+    ],
+    "content": "## Os quadros de distribuição segundo a NBR 6808\n\nA norma NBR 6808: Conjuntos de Manobra e Controle de Baixa Tensão Montados em Fábrica - Especificação, apresenta as requisitos técnicos mínimos que um quadro elétrico deve satisfazer, bem como os ensaios correspondentes. Como sugere a própria denominação utilizada (“conjuntos de manobra e controle”), a norma cobre um amplo universo de conjuntos BT, desde os menores quadros de distribuição até painéis de grande porte. O que se segue é uma exposição dos requisitos da NBR 6808 — mas centrada, em particular, nos aspectos mais relacionados com os quadros de distribuição prediais.\n\n### Tensão nominal\n\nÉ o valor máximo de tensão que pode ser aplicado entre as barras (fases) do quadro, sem que ocorra arco ou fuga de corrente. Essa característica é verificada através do ensaio de tensão suportável a freqüência industrial. Para um quadro com tensão nominal de 300 V a 660 V, por exemplo, a tensão aplicada é de 2500 V, durante um minuto. Durante este tempo não deve ocorrer arco ou fuga de corrente excessiva. Além disso, são verificadas as distâncias de isolamento e de escoamento. Em quadros de distribuição que não tenham sido submetidos a esse tipo de ensaio ou, pior, que falhem nesse requisito, poderá ocorrer fuga de corrente entre as barras, gerando perdas de energia, ou mesmo arco elétrico entre elas — com sérios riscos, devido ao elevado calor gerado, de danificação dos componentes conectados às barras e de outras partes no interior do quadro.",
+    "paginas_origem": [],
+    "tokens_estimados": 378,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 7,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Os quadros de distribuição segundo a NBR 6808",
+      "Corrente nominal"
+    ],
+    "content": "### Corrente nominal\n\nÉ o valor máximo de corrente que pode circular pelas barras (principais e secundárias) do quadro sem provocar aquecimento excessivo — nelas, nos componentes a elas conectados e no ar interno. Mais freqüentemente, associa-se a corrente nominal de um quadro de distribuição ao valor máximo admissível nas barras principais. Portanto, ao especificar um quadro, o projetista deve indicar uma corrente nominal superior ou, no mínimo, igual à corrente de projeto (valor calculado) do circuito de distribuição que irá alimentar o quadro. Caso as barras principais e secundárias do quadro possuam seções transversais diferentes, deve ser mencionada a corrente nominal de cada uma delas. A corrente nominal de um quadro é verificada através do ensaio de elevação de temperatura. O ensaio consiste em verificar a temperatura máxima atingida no interior do quadro e, em particular, nas barras, tendo a temperatura ambiente como referência. A norma estabelece os valores de elevação de temperatura máximos admissíveis. Dois detalhes construtivos importantes, associados à característica corrente nominal, são o tipo de cobre utilizado na fabricação das barras e o seu dimensionamento (seção transversal). Reside aí, aliás, uma das maiores causas de acidentes envolvendo quadros de distribuição — devido ao uso de cobre reprocessado, contendo impurezas, e/ou ao subdimensionamento das barras. O material exigido na fabricação das barras é o cobre eletrolítico com elevado grau de pureza (99,9% de cobre). Em quadros de distribuição que utilizam barras de material inadequado ou subdimensionadas, elas fatalmente sofrerão aquecimento excessivo, alterando o funcionamento dos componentes a elas conectados (via de regra dispositivos de proteção) — isso sem falar no risco de incêndios.",
+    "paginas_origem": [],
+    "tokens_estimados": 448,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 8,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Os quadros de distribuição segundo a NBR 6808",
+      "Capacidade de curto-circuito"
+    ],
+    "content": "### Capacidade de curto-circuito\n\nÉ o valor máximo de corrente de curto-circuito suportável pelas barras e suas conexões, até a atuação do dispositivo de proteção. Representa, enfim, a suportabilidade do barramento aos esforços eletrodinâmicos a que será submetido quando de um curto-circuito. Tais esforços devem ser\n\n<!-- pagina-origem: 7 -->\n\nsuportados pelo barramento, sem danos, até a atuação do dispositivo de proteção — dependendo do caso, o próprio disjuntor geral do quadro ou então o dispositivo de proteção associado ao circuito de distribuição que alimenta o quadro. Os procedimentos e critérios de ensaio são especificados na norma, devendo o fabricante de quadros informar então, com base nos relatórios de ensaio, a suportabilidade do barramento fornecido. Identificada, na terminologia mais formal, como corrente suportável nominal de curta duração — dada em valor eficaz, referida a uma tensão e acompanhada do tempo de suportabilidade —, a capacidade de curto-circuito de um quadro deve, naturalmente, ser superior à corrente de curto-circuito presumida no ponto onde será instalado. Ou, em outras palavras, o projetista deve indicar, na especificação do quadro, uma corrente suportável nominal de curta duração maior que a corrente de curto–circuito presumida. A não-observância dessa regra tem sido outra causa de grandes estragos envolvendo quadros de distribuição. Não sendo a suportabilidade do quadro a curtos–circuitos compatível com a intensidade das faltas a que estará sujeito, nas condições reais da instalação, as conseqüências poderão ir desde uma “simples” deformação do barramento até a perda total do quadro, com o “estouro” do barramento e de outros componentes.",
+    "paginas_origem": [
+      7
+    ],
+    "tokens_estimados": 425,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 9,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Os quadros de distribuição segundo a NBR 6808",
+      "Grau de proteção"
+    ],
+    "content": "### Grau de proteção\n\nTodo invólucro utilizado para abrigar equipamentos, componentes, montagens ou ligações elétricas — e o quadro de distribuição aí se inclui, claro — é classificado segundo o grau de proteção que oferece ao ingresso de corpos sólidos estranhos e água, e contra o risco de contato com partes vivas em seu interior. Portanto, a proteção proporcionada pelo invólucro pode ser vista de dois ângulos: proteção dos componentes no seu interior, contra os efeitos nocivos da penetração de pós e líquidos; e proteção das pessoas contra choques elétricos, impedindo o contato acidental com partes vivas. O grau de proteção de um invólucro é identificado por um código composto das letras IP seguidas de dois algarismos — que indicam o nível de proteção por ele assegurado contra penetração de corpos sólidos e contato direto (primeiro algarismo), e contra penetração de água (segundo algarismo). Há ainda uma classificação similar à IP, também normalizada, que retrata a suportabilidade do invólucro a impactos — os graus IK. [ver seção “Influências externas”, que traz detalhes sobre os graus de proteção IP e IK] A informação sobre o grau de proteção característico de um determinado quadro de distribuição é fundamental no processo de especificação e seleção do componente porque só assim o projetista tem condições de saber se o modelo cogitado é compatível com as condições de influências externas a que estará sujeito. Isso significa que também é necessário, antes, identificar as próprias condições de influências externas presentes na instalação. Nesse particular, a NBR 5410 oferece tabelas que, além de sua função normalizadora, funcionam como uma checklist de grande utilidade. Elas relacionam as diferentes influências externas, classificando e caracterizando-as, fornecem exemplos orientativos e indicam as características que se deve exigir dos componentes a elas sujeitos. Na verdade, essas tabelas aparecem em duas partes distintas da norma, cobrindo assim o papel descrito em duas etapas. Consideradas conjuntamente, o resultado é efetivamente aquele apontado.",
+    "paginas_origem": [],
+    "tokens_estimados": 522,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 10,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Os quadros de distribuição segundo a NBR 6808",
+      "Identificação"
+    ],
+    "content": "### Proteção contra choques elétricos\n\nNo tocante à proteção contra contatos diretos (choques elétricos), a NBR 6808 menciona que todas as superfícies externas do quadro de distribuição devem ter grau de proteção no mínimo IP2X. Assim, são inconcebíveis quadros em que o usuário, ao simplesmente abrir a porta, dê de cara, por exemplo, com uma chave-faca. Decididamente, nenhum quadro de distribuição pode ter partes vivas acessíveis. Toda e qualquer parte viva deve ser tornada inacessível — confinada no interior de invólucros ou atrás de barreira que garanta, conforme mencionado, grau de proteção no mínino IP2X. Se por qualquer motivo for necessária a remoção de barreiras, a abertura do invólucro ou a retirada de parte do invólucro (portas, tampas, etc.), isso só poderá ser feito com o uso de ferramenta ou chave; ou então o quadro deve incluir uma barreira (uma segunda barreira, dependendo do caso) que impeça o contato acidental com todas as partes energizadas quando a porta estiver aberta e que seja impossível retirar sem o uso de ferramenta ou chave.\n\n### Identificação\n\nDe acordo com a NBR 6808, todo quadro de distribuição deve ser fornecido com placa de identificação marcada de maneira legível e durável, localizada de forma facilmente visível e contendo, no mínimo, as seguintes informações (são relacionadas, em particular, aquelas pertinentes a quadros de distribuição para minidisjuntores em caixa moldada destinados a instalações prediais): – nome do fabricante ou marca; – tipo ou número de identificação; – ano de fabricação;\n\n<!-- pagina-origem: 8 -->\n\n– tensão nominal; – corrente nominal; – freqüência nominal; – capacidade de curto-circuito; – grau de proteção; e – massa.",
+    "paginas_origem": [
+      8
+    ],
+    "tokens_estimados": 426,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 11,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Localização dos quadros de distribuição"
+    ],
+    "content": "### Ensaios\n\nOs ensaios de tipo previstos na NBR 6808 incluem (mais uma vez considerando, em particular, os quadros de distribuição prediais): – ensaio de elevação de temperatura; – ensaio de tensão suportável; – ensaio de curto-circuito; – verificação da eficácia do circuito de proteção (aterramento); – verificação das distâncias de isolamento e escoamento; – verificação da operação mecânica (das partes móveis); e – verificação do grau de proteção.\n\n## Localização dos quadros de distribuição\n\nA definição do ponto em que um quadro de distribuição deve ser instalado não é tratada diretamente em nenhuma norma técnica, mas tem impacto no projeto e, sobretudo, nos custos e na qualidade de energia da instalação. Quando se coloca o quadro em um lugar “eletricamente” errado, das duas uma: ou valores elevados de quedas de tensão, quiçá violando os limites máximos admitidos pela NBR 5410 (ver artigos sobre quedas de tensão na seção “Dimensionamento de circuitos”), o que prejudica o funcionamento das cargas; ou a necessidade de aumentar a seção dos condutores, para adequar a queda de tensão aos limites estabelecidos, com isso onerando os custos da obra. Uma tarefa incontornável, no início de qualquer projeto, é a previsão de carga da instalação, conforme prescrito no artigo 4.2.1.2 da NBR 5410. O artigo em questão expõe os critérios para a atribuição das cargas de iluminação, tomadas de uso geral e específico e equipamentos em geral. O resultado concreto da aplicação desses critérios é visualizado em uma planta de arquitetura, com a marcação dos pontos correspondentes às cargas assim atribuídas (figura 1). Para definir a localização ideal, partindo da planta indicada na figura 1, o próximo passo é definir aleatoriamente dois eixos (x, y), perpendiculares entre si, que servirão pa-\n\n![Figura vetorial da página 8](figura-vetorial-p8-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Planta com distribuição de cargas\n\nra obter as coordenadas das diversas cargas da instalação (figura 2). Assim, por exemplo, o motor M1 possui as coordenadas (x = 7 m, y = 5 m). Quando um determinado setor da instalação possui muitas cargas de pequena monta espalhadas por uma certa área, o que é bastante comum, é razoável, sem incorrer em grandes erros, considerar todas essas cargas somadas e concentradas em um único ponto (figura 3). Essa medida diminui a quantidade de cálculos e dinamiza o trabalho. Uma vez obtidas todas as coordenadas (x, y) das cargas\n\n![Figura vetorial da página 8](figura-vetorial-p8-2)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 2 – Coordenadas de cada carga\n\n<!-- pagina-origem: 9 -->\n\n![Figura vetorial da página 9](figura-vetorial-p9-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 3 – Concentração de cargas de pequeno valor em único ponto, para efeito de cálculo",
+    "paginas_origem": [
+      9
+    ],
+    "tokens_estimados": 758,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 12,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Localização dos quadros de distribuição"
+    ],
+    "content": "individuais ou de grupos de cargas concentradas, é necessário calcular o centro de carga (CC) — de toda a instalação ou apenas de um setor. Assim, temos: Centro de carga na direção do eixo x (CCx):\n\n+ + + S.1 x 1 S 2. x 2 Sn. xn K = CCx + + + S 1 S 2 Sn K\n\nonde S1, S2... e Sn são as potências aparentes (em kVA ou VA) de cada carga ou grupo de cargas e x1, x2... e xn as suas respectivas coordenadas em relação ao eixo x. Analogamente, temos: Centro de carga na direção do eixo y (CCy):\n\n+ + + S.1 y 1 S 2. y 2 Sn. yn K = CCy + + + S 1 S 2 Sn K\n\nonde S1, S2... e Sn são as potências aparentes (em kVA ou VA) de cada carga ou grupo de cargas e y1, y2...e yn as suas respectivas coordenadas em relação ao eixo y.\n\n![Figura vetorial da página 9](figura-vetorial-p9-3)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 5 – Distâncias das cargas ao quadro de distribuição\n\nFig. 5 – Distâncias das cargas ao quadro de distribuição Fig. 4 – Localização ótima do quadro no caso-exemplo No caso do nosso exemplo (figuras 1 e 2), temos:\n\nCCx = (10 × 7 + 20 × 17 + 0,3 × 7 + 0,3 × 12 +... + 0,1 × 20) ÷ (10 + 20 + 0,3 + 0,3 +... + 0,1) = 14 m\n\nCCy = (10 × 5 + 20 × 11 + 0,3 × 14 + 0,3 × 14 +... + 0,1 × 6) ÷ (10 + 20 + 0,3 + 0,3 +... + 0,1) = 8,5 m\n\nOs resultados das equações revelam que a posição ideal do quadro está na coordenada (14; 8,5) m, conforme indicado na figura 4. No caso particular de instalações elétricas de edificações com pé-direito elevado e cargas elétricas situadas muito acima do piso acabado — situação típica de galpões industriais — pode ser necessário considerar um terceiro eixo z, que forneça a coordenada da carga em relação à altura do local. Uma vez localizado tecnicamente o ponto ideal de instalação do quadro, e reconhecendo que essa instalação, no ponto exato, pode ser impraticável, ele deve ser então instalado o mais próximo possível desse ponto. De qualquer forma, um quadro muito fora do lugar ideal fatalmente representará acréscimo no custo da obra. É o que mostra a figura 5. Na figura 5a, temos o quadro loca-\n\n<!-- pagina-origem: 10 -->",
+    "paginas_origem": [
+      10
+    ],
+    "tokens_estimados": 536,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 13,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Localização dos quadros de distribuição"
+    ],
+    "content": "lizado no ponto ideal, conforme calculado; e, na 5b, o quadro em um ponto qualquer. Um simples dado é revelador, aí: somando-se as distâncias (diretas, radiais) entre o quadro e cada uma das cargas, essa somatória é 110% maior no caso do quadro fora do centro de carga. Isso significa maiores gastos com a linha elétrica (condutos + condutores), sendo praticamente certo que as seções dos cabos, no caso do quadro fora do CC, serão maiores do que com o quadro no CC, tendo em vista o atendimento ao critério de dimensionamento por queda de tensão. Como mencionado, o conceito de centro de carga pode ser aplicado a toda a instalação ou a setores. No primeiro caso, ele é útil, por exemplo, para definir a localização ideal do quadro geral de BT de uma instalação alimentada diretamente por rede pública em BT; ou da subestação, nos casos de alimentação em MT e AT; ou, ainda, de um grupo gerador, seja qual for a tensão de atendimento da unidade consumidora. O segundo caso refere-se a instalações extensas, verticais ou horizontais, em que o melhor critério de alimentação elétrica é a divisão de cargas por setores, subsetores e assim por diante, criando vários quadros. Hoje, com os recursos computacionais disponíveis, é relativamente simples calcular o centro de carga — seja usando uma planilha eletrônica, seja diretamente nos programas de CAD. Mesmo sem computador, e usando discernimento para não tornar a tarefa penosa (como o agrupamento de cargas próximas sugerido), pode-se determinar o centro de carga rapidamente e com boa precisão.",
+    "paginas_origem": [],
+    "tokens_estimados": 387,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 14,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "A padronização brasileira de tomadas prediais"
+    ],
+    "content": "## A padronização brasileira de tomadas prediais\n\nEm julho de 2001, com a aprovação da versão revisada da NBR 14136: Plugues e tomadas para uso doméstico e análogo até 20 A, 250 VCA — Padronização, foi dado grande passo para que o Brasil tenha, finalmente, uma padronização de tomadas prediais. Por muitos anos convivendo com padrões de plugues e tomadas de diversas origens — alemão, norte-americano, italiano e variações Frankensteinianas para todos os gostos —, o Brasil se ressentia mesmo de uma referên-\n\n![Figura vetorial da página 10](figura-vetorial-p10-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Plugue com pino “terra” definido na padronização brasileira. O pino “terra” fica ligeiramente deslocado em relação ao plano formado pelos pinos vivos\n\ncia para a qual a salada de produtos aqui fabricados (e usados!) pudesse migrar. Essa transição já tem prazos definidos, constando inclusive da Portaria Inmetro nº 136, de 4 de outubro de 2001, que trata da certificação compulsória de “plugues e tomadas para uso doméstico e análogo, para tensões de até 250 V e corrente até 20 A.” A certificação compulsória dos plugues e tomadas “domésticos” aplica-se a diversas versões desses produtos, inclusive montagens com eles confeccionadas, como cordões conectores, cordões prolongadores e tomadas múltiplas móveis (barras de tomadas). Ela abrange plugues e tomadas não desmontáveis (por não desmontáveis entendam-se, tipicamente, os produtos injetados); as tomadas desmontáveis, em que se enquadram as tomadas prediais típicas (as de embutir, mais conhecidas e usadas, mas também as de sobrepor e as semi-embutidas); e os plugues desmontáveis, companheiro das tomadas prediais nas prateleiras de encartelados do comércio. A portaria do Inmetro estipula que a partir de 1º de janeiro de 2002 não mais poderão ser comercializados, por fabricantes e importadores, plugues e tomadas desmontáveis (as tomadas prediais) que não tenham sido certificados — certificação esta baseada na NBR 6147: Plugues e tomadas para uso doméstico e análogo até 20 A, 250 VCA — Especificação. Para o comércio, o prazo se estende até 1º de janeiro de 2003. Para os demais produtos abrangidos pela medida, o prazo é 1º de julho de 2002, para os fabricantes e importadores, e 1º de janeiro de 2004 para o comércio. Todos os prazos até aqui citados, convém destacar, referem-se à conformidade do produto à norma de especificação. Já o prazo para que não mais existam tomadas e plugues em desacordo com a padronização aprovada (NBR\n\n<!-- pagina-origem: 11 -->",
+    "paginas_origem": [
+      11
+    ],
+    "tokens_estimados": 655,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 15,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "A padronização brasileira de tomadas prediais",
+      "A padronização brasileira de tomadas e plugues"
+    ],
+    "content": "Onde preciso usar realmente a tomada 2P + T? Ou: onde preciso usar realmente o condutor de proteção (condutor PE, ou fio terra)? Essas são perguntas freqüentes em cursos, seminários ou painéis envolvendo a NBR 5410. Têm a ver com as regras de proteção contra choques da NBR 5410. E demonstram a resistência particular que essas regras sempre enfrentaram na sua adoção — seja por incompreensão, vista grossa ou simples recusa. Se a pergunta é freqüente, a resposta também.Assim, provavelmente o professor ou conferencista diria: “Pela enésima vez, vamos repetir: o uso da tomada com contato de aterramento (tomada 2P + T, 3P + T ou, ainda, 4P + T) e do condutor de proteção é regra, e não exceção. Exceção é o uso da tomada apenas 2P.” Tomada, sim. Sobretudo a fixa, a que vai na parede, embutida ou sobreposta. Pois o fato de que ela deve ser, como regra, 2P +T, não significa que o plugue do aparelho a ser a ela conectado deva necessariamente ser 2P + T. O plugue de um equipamento classe II (dupla isolação) não tem e nem deve ter contato PE. E todos os padrões de plugues e tomadas prediais que se prezam, em muitos\n\n14136) é 1º de janeiro de 2005, para fabricantes e importadores, e um ano após para o comércio.\n\n### A padronização brasileira de tomadas e plugues\n\nComo toda norma de padronização, a NBR 14136 é composta essencialmente de folhas de desenho, com a indicação de dimensões. São ao todo 14 desenhos. Fazendo as contas: dois modelos de plugues e cinco de tomadas, totalizando sete; mas como eles serão disponíveis em duas versões de corrente nominal, 10 e 20 A, o número dobra, resultando então nos 14 desenhos. Os dois modelos de plugues (ou quatro, consideradas as variantes 10 e 20 A) são: 1) 2P + T, para aparelhos classe I; e 2) 2P, para aparelhos classe II. Sempre lembrando a existência das duas versões de corrente nominal, a padro-",
+    "paginas_origem": [],
+    "tokens_estimados": 465,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 16,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "A padronização brasileira de tomadas prediais",
+      "A regra: tomada 2P + T"
+    ],
+    "content": "### A regra: tomada 2P + T\n\npaíses, são concebidos de forma que a tomada fixa — que é, pela enésima primeira vez, com contato de aterramento — aceite a inserção do plugue 2P de um equipamento classe II sem problemas. Em termos práticos, pode-se dizer que, das regras de proteção contra choques previstas na NBR 5410, a de caráter mais geral, aplicável a toda instalação, é a chamada proteção por seccionamento automático da alimentação. Isso está muito bem explicado na seção “Proteção contra choques” deste Guia EM da NBR 5410. Essa medida exige que todo circuito — repita-se, todo circuito — inclua condutor de proteção. Em circuitos de distribuição, ele pode até não ser um condutor independente, porque incorporado ao neutro, compondo o condutor PEN. De qualquer forma, o PEN é um condutor PE. E nos circuitos terminais, particularmente nos circuitos terminais de tomadas — e são as tomadas o tema desta seção —, o indispensável condutor PE é independente. Isso significa, por outro lado, que como regra geral só devem ser utilizados, numa instalação elétrica, equipamentos ou aparelhos que sejam classe I ou classe II [ver seção “Proteção contra choques”].\n\n![Figura vetorial da página 11](figura-vetorial-p11-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 2 – Visando proteção contra contatos acidentais e contra o risco de inserção monopolar, a NBR 14136 prevê: 1) Para as tomadas de embutir: face rebaixada e superfície protetora; 2) Para as tomadas semi-embutidas e de sobrepor: colarinho (dispensa superfície protetora) ou combinação de rebaixo e colarinho (com superfície protetora); 3) Para as tomadas móveis: colarinho (dispensa superfície protetora), rebaixo (com superfície protetora) ou combinação de rebaixo e colarinho (com superfície protetora). Todas devem apresentar contatos recuados em relação à face de contato com o corpo do plugue\n\n<!-- pagina-origem: 12 -->\n\nnização prevê dois modelos de tomadas fixas e três modelos de tomadas móveis. As tomadas fixas: 1) de embutir e 2) de semi-embutir ou de sobrepor, ambas 2P + T. As móveis: 1) 2P + T; 2) 2P, para equipamentos classe II; e 3) 2P, com superfície protetora, para equipamentos classe II. A NBR 14136 esclarece que “as tomadas de 20 A devem permitir a inserção de plugues de 10 A e de 20 A”, mas que “as tomadas de 10 A não devem permitir a inserção de plugues de 20 A.”",
+    "paginas_origem": [
+      12
+    ],
+    "tokens_estimados": 607,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 17,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Plugues e tomadas industriais"
+    ],
+    "content": "## Plugues e tomadas industriais\n\nA s tomadas de corrente industriais se distinguem das tomadas de uso doméstico em vários aspectos. Mas as diferenças mais marcantes residem nas correntes veiculadas, geralmente bem superiores, com todas as implicações que isso acarreta, e na necessidade de preencher requisitos mais amplos e rigorosos em matéria de influências externas, já que os ambientes industriais podem ser muito agressivos, chegando mesmo ao caso de atmosferas potencialmente explosivas. Freqüentemente se recorre à noção de “macho” e “fêmea” na descrição dos componentes de uma linha de tomadas industriais. De uma maneira geral, as tomadas, propriamente ditas, são sinônimo de contatos fêmeas; e os plugues, de contatos machos. A noção é útil, sobretudo, para memorizar as funções: os produtos fêmeas, dotados de alvéolos, fornecem corrente; e os componentes machos, dotados de pinos, recebem a corrente(1). Assim, têm-se, basicamente: – tomadas fixas, geralmente para montagem de sobrepor ou semi-embutida, em paredes, canaletas, caixas ou painéis; – plugues; – tomadas móveis; – e, finalmente, o que alguns chamam de plugues fixos, outros de tomadas machos ou, ainda, de tomadas negativas. Trata-se da peça que se monta ou se fixa no equipamento a ser alimentado — e à qual é acoplada, naturalmente, a tomada móvel de alimentação. As tomadas de corrente industriais são objeto de três normas internacionais, que compõem a série IEC 60309: a publicação IEC 60309-1, que fixa as regras gerais; a IEC 60309-2, que padroniza as dimensões, visando intercambiabilidade; e a IEC 60309-3, que trata de tomadas para atmosferas explosivas. Como existem versões de tomadas que incorporam interruptor ou acumulam a função de interruptor (graças ao próprio princípio de funcionamento), a elas se aplica também a norma IEC 60947-3 Switches, disconnectors, switch-disconnectors and fuse combination units (“Interruptores, seccionadores, interruptores-seccionadores e suas combinações com fusíveis”). As regras gerais apresentadas na Parte 1 da IEC\n\n![Figura vetorial da página 12](figura-vetorial-p12-1)\n\n> [descrição gerada] Elemento visual presente no original; consulte a página indicada para interpretação gráfica.\n\nFig. 1 – Configuração dos alvéolos padronizada pela IEC 60309-2\n\n<!-- pagina-origem: 13 -->",
+    "paginas_origem": [
+      13
+    ],
+    "tokens_estimados": 577,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  },
+  {
+    "chunk_id": 18,
+    "heading_path": [
+      "Quadros de distribuição – Tomadas",
+      "Plugues e tomadas industriais"
+    ],
+    "content": "60309 referem-se essencialmente à segurança. Ou, como diz a própria norma, “destinam-se a garantir um funcionamento seguro em uso normal e a ausência de perigo para o usuário e o ambiente”. Elas cobrem tomadas de corrente para uso industrial, com correntes nominais até 250 A, inclusive, e com tensões nominais de até 690 V. As especificações e os respectivos ensaios contidos na IEC 60309-1 tratam desde proteção contra choques até capacidade de interrupção, passando por aspectos como segurança da conexão condutores–tomada, elevação de temperatura admissível, endurância elétrica e mecânica, etc. Assim, por exemplo, no campo da proteção contra choques, ela estabelece que não deve ser possível o contato acidental com partes vivas das tomadas. Isso nas três situações imagináveis: plugue e tomada separados, acoplados e no decorrer do acoplamento. O ensaio respectivo é feito com o conhecido dedo de prova (diâmetro de 12 mm, correspondente ao índice de proteção IP 2X). Para evitar que os condutores venham a se soltar, em conseqüência do afrouxamento das conexões com os contatos da tomada — risco sempre presente devido ao vício dos usuários de desacoplar plugue e tomada puxando um dos dois, ou ambos, pelo cabo de ligação —, a IEC 60309-1 impõe a existência de prensa-cabos em todas as tomadas móveis e plugues. A suportabilidade dos plugues e tomadas às sobrecargas e ao aquecimento é verificada, segundo a IEC 60309-1, em ensaio que admite uma elevação de temperatura máxima, nos terminais da tomada, de 50K. Quanto à adequação das tomadas ao ambiente em que deverão ser utilizadas, em particular o seu grau de proteção contra o ingresso de corpos sólidos (desde corpos com dimensão de até 12 mm, como é o caso do dedo de prova, até proteção total contra a entrada de poeira) e de água, o documento remete aos conhecidos índices de proteção IP consagrados pela norma IEC 60529 (ver seção Influências externas deste Guia EM da NBR 5410). Aqui, vale mencionar, como um dado prático, que no mercado de tomadas industriais os graus de proteção mais comuns são, nessa ordem, o IP 44, o IP 55 e o IP 67. Por fim, a IEC 60309-2, que fixa requisitos de intercambiabilidade dimensional para tomadas, plugues e acessórios com sistema de contatos baseado em pinos e alvéolos, propõe uma configuração padronizada dos alvéolos, como ilustra a figura 1.\n\nNotas\n\n(1) A consideração é válida, mais precisamente, para tomadas cujo sistema de contatos é baseado em pinos e alvéolos, já que existem outras tecnologias de contato, como a de contatos sob pressão: em ambos, “plugue” e “tomada”, os contatos são na forma de pinos, sendo os de um deles dotado de mola sob pressão. O contato é estabelecido entre as extremidades dos pinos, providas de pastilhas de contato em metal nobre. O mecanismo é similar ao empregado em dispositivos de manobra sob carga e isso significa, portanto, que tais tomadas são, ao mesmo tempo, interruptores.",
+    "paginas_origem": [],
+    "tokens_estimados": 732,
+    "contem_tabela": false,
+    "sobrepoe_anterior": true
+  }
+]

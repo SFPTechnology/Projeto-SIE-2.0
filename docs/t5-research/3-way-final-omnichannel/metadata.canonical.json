@@ -1,0 +1,105 @@
+{
+  "bench": {
+    "id": "3-way-final-omnichannel",
+    "type": "other",
+    "variant": "n-way",
+    "created_at": "2026-05-07",
+    "analyst": "spy/bench-analyst v3.0"
+  },
+  "subjects": [
+    {
+      "key": "chatwoot",
+      "name": "Chatwoot",
+      "category": "unknown"
+    },
+    {
+      "key": "zendesk",
+      "name": "Zendesk",
+      "category": "unknown"
+    },
+    {
+      "key": "intercom",
+      "name": "Intercom",
+      "category": "unknown"
+    },
+    {
+      "key": "octadesk",
+      "name": "Octadesk",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "D1",
+        "name": "Canais nativos (incluindo WhatsApp depth)",
+        "weight_pct": 12,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D2",
+        "name": "AI capability + transparencia + deflection publicado",
+        "weight_pct": 18,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D3",
+        "name": "Pricing transparency + TCO real",
+        "weight_pct": 15,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D4",
+        "name": "Governance / Compliance",
+        "weight_pct": 12,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D5",
+        "name": "Ecosystem / Marketplace / integracoes",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D6",
+        "name": "Comunidade / Maturidade / reviews",
+        "weight_pct": 8,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D7",
+        "name": "Flexibilidade (self-hosted, customizacao, sovereignty)",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D8",
+        "name": "Brasil-fit (BSP local, BRL pricing, suporte PT-BR, integracoes BR)",
+        "weight_pct": 12,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D9",
+        "name": "In-app messaging strength",
+        "weight_pct": 5,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:10:51.911Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Legacy metadata.json preserved alongside; canonical version at metadata.canonical.json.",
+      "bench.type normalized from \"consolidated_synthesis\" to canonical \"other\".",
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

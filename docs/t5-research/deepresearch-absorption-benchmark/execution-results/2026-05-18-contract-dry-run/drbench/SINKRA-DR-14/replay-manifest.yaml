@@ -1,0 +1,22 @@
+schema: sinkra-replay-manifest-v1
+run_id: drbench__SINKRA-DR-14
+task_file: tasks/SINKRA-DR-14.yaml
+adapter:
+  id: drbench
+  role: enterprise_oracle
+  mode: contract_stub
+  capabilities:
+  - task_eval_env
+  - report_insights
+  - sandbox_fixture
+outputs:
+- trace.jsonl
+- tool-calls.jsonl
+- claims.yaml
+- sources.yaml
+- report.md
+- rubric-results.yaml
+- cost-latency.yaml
+- failure-analysis.md
+- replay-manifest.yaml
+mode: contract_dry_run

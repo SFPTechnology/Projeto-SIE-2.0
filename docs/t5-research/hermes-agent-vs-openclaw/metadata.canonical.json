@@ -1,0 +1,106 @@
+{
+  "bench": {
+    "id": "hermes-agent-vs-openclaw",
+    "type": "codebase",
+    "variant": "2-way",
+    "created_at": "2026-04-04",
+    "analyst": "spy/bench-analyst (backfilled)"
+  },
+  "subjects": [
+    {
+      "key": "hermes",
+      "name": "Hermes",
+      "category": "unknown"
+    },
+    {
+      "key": "openclaw",
+      "name": "Openclaw",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "1",
+        "name": "Architecture & Extensibility",
+        "weight_pct": 9,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "2",
+        "name": "Agent Loop & Intelligence",
+        "weight_pct": 9,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "3",
+        "name": "Messaging & Channels",
+        "weight_pct": 9,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "4",
+        "name": "Tools & Capabilities",
+        "weight_pct": 9,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "5",
+        "name": "Memory & Learning",
+        "weight_pct": 9,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "6",
+        "name": "Security & Safety",
+        "weight_pct": 9,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "7",
+        "name": "Developer Experience",
+        "weight_pct": 9,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "8",
+        "name": "Testing & Quality",
+        "weight_pct": 9,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "9",
+        "name": "Native & Multi-Platform",
+        "weight_pct": 9,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "10",
+        "name": "Community & Ecosystem",
+        "weight_pct": 9,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D11",
+        "name": "AVERAGE",
+        "weight_pct": 9,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:10:52.300Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Legacy metadata.json preserved alongside; canonical version at metadata.canonical.json.",
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

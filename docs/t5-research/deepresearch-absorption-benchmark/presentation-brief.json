@@ -1,0 +1,13 @@
+{
+  "schema": "bench-presentation-brief-v1",
+  "title": "DeepResearch Absorption Benchmark",
+  "thesis": "Compor SINKRA Deep Research Stack por padrões absorvíveis.",
+  "slides": [
+    "tese",
+    "landscape 24 players",
+    "vencedores por cenário",
+    "matriz micro",
+    "roadmap SINKRA-DR-40",
+    "riscos e gates"
+  ]
+}

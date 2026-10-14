@@ -1,0 +1,754 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-16T14:15:06.529Z",
+  "source_files": [
+    "90-day-launch-plan.md",
+    "README.md",
+    "anti-incumbent-attack-playbook.md",
+    "categorical-gap-map.md",
+    "distribution-blueprint.md",
+    "icp-and-segmentation.md",
+    "messaging-matrix.md",
+    "positioning-thesis.md",
+    "pricing-strategy.md",
+    "product-differentiation-roadmap.md"
+  ],
+  "benchmark": {
+    "slug": "competitive-gtm-synthesis",
+    "title": "Competitive GTM Synthesis — Submagic × Eddie AI × Descript",
+    "date": "undated",
+    "type": "product",
+    "variant": "2-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "hook",
+      "name": "Hook",
+      "category": "unknown"
+    },
+    {
+      "key": "cta",
+      "name": "Cta",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "hook",
+    "coverage": "structured",
+    "sources": 0,
+    "waves": 0,
+    "dimensions": 15
+  },
+  "matrix": {
+    "players": [
+      "hook",
+      "cta"
+    ],
+    "dimensions": [
+      {
+        "id": "1",
+        "label": "Creator solo",
+        "weight": 0
+      },
+      {
+        "id": "2",
+        "label": "Creator solo",
+        "weight": 0
+      },
+      {
+        "id": "3",
+        "label": "Creator solo",
+        "weight": 0
+      },
+      {
+        "id": "4",
+        "label": "Creator solo",
+        "weight": 0
+      },
+      {
+        "id": "5",
+        "label": "Creator solo",
+        "weight": 0
+      },
+      {
+        "id": "6",
+        "label": "Creator solo",
+        "weight": 0
+      },
+      {
+        "id": "7",
+        "label": "Agência",
+        "weight": 0
+      },
+      {
+        "id": "8",
+        "label": "Agência",
+        "weight": 0
+      },
+      {
+        "id": "9",
+        "label": "Agência",
+        "weight": 0
+      },
+      {
+        "id": "10",
+        "label": "Agência",
+        "weight": 0
+      },
+      {
+        "id": "11",
+        "label": "Educator",
+        "weight": 0
+      },
+      {
+        "id": "12",
+        "label": "Educator",
+        "weight": 0
+      },
+      {
+        "id": "13",
+        "label": "Educator",
+        "weight": 0
+      },
+      {
+        "id": "14",
+        "label": "Empresa BR",
+        "weight": 0
+      },
+      {
+        "id": "15",
+        "label": "Empresa BR",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "1",
+        "label": "Creator solo",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 8,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "label": "Creator solo",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "3",
+        "label": "Creator solo",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 7,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 1,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "4",
+        "label": "Creator solo",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "label": "Creator solo",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 2026,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "6",
+        "label": "Creator solo",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 3,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 30,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "7",
+        "label": "Agência",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 15,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "8",
+        "label": "Agência",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 149,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "9",
+        "label": "Agência",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 30,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 3,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "10",
+        "label": "Agência",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 2026,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 30,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "11",
+        "label": "Educator",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 4,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 30,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "12",
+        "label": "Educator",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 2.7,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "13",
+        "label": "Educator",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "14",
+        "label": "Empresa BR",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      },
+      {
+        "id": "15",
+        "label": "Empresa BR",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "hook",
+            "score": 500,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          },
+          {
+            "player": "cta",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "messaging-matrix.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "hook",
+        "score": 317.71
+      },
+      {
+        "player": "cta",
+        "score": 13.6
+      }
+    ],
+    "method": "Derived from markdown table in messaging-matrix.md"
+  },
+  "duels": [
+    {
+      "left": "hook",
+      "right": "cta",
+      "winner": "hook",
+      "left_wins": 9,
+      "right_wins": 3,
+      "ties": 3,
+      "rows": [
+        {
+          "dimension": "1",
+          "label": "Creator solo",
+          "left_score": 8,
+          "right_score": 5,
+          "winner": "hook"
+        },
+        {
+          "dimension": "2",
+          "label": "Creator solo",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "3",
+          "label": "Creator solo",
+          "left_score": 7,
+          "right_score": 1,
+          "winner": "hook"
+        },
+        {
+          "dimension": "4",
+          "label": "Creator solo",
+          "left_score": 5,
+          "right_score": 0,
+          "winner": "hook"
+        },
+        {
+          "dimension": "5",
+          "label": "Creator solo",
+          "left_score": 2026,
+          "right_score": 90,
+          "winner": "hook"
+        },
+        {
+          "dimension": "6",
+          "label": "Creator solo",
+          "left_score": 3,
+          "right_score": 30,
+          "winner": "cta"
+        },
+        {
+          "dimension": "7",
+          "label": "Agência",
+          "left_score": 5,
+          "right_score": 15,
+          "winner": "cta"
+        },
+        {
+          "dimension": "8",
+          "label": "Agência",
+          "left_score": 149,
+          "right_score": 0,
+          "winner": "hook"
+        },
+        {
+          "dimension": "9",
+          "label": "Agência",
+          "left_score": 30,
+          "right_score": 3,
+          "winner": "hook"
+        },
+        {
+          "dimension": "10",
+          "label": "Agência",
+          "left_score": 2026,
+          "right_score": 30,
+          "winner": "hook"
+        },
+        {
+          "dimension": "11",
+          "label": "Educator",
+          "left_score": 4,
+          "right_score": 30,
+          "winner": "cta"
+        },
+        {
+          "dimension": "12",
+          "label": "Educator",
+          "left_score": 2.7,
+          "right_score": 0,
+          "winner": "hook"
+        },
+        {
+          "dimension": "13",
+          "label": "Educator",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "14",
+          "label": "Empresa BR",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "15",
+          "label": "Empresa BR",
+          "left_score": 500,
+          "right_score": 0,
+          "winner": "hook"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "hook",
+          "score": 317.71,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "cta",
+          "score": 13.6,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "hook",
+          "score": 317.71
+        },
+        {
+          "player": "cta",
+          "score": 13.6
+        }
+      ],
+      "verdict": "Hook vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "categorical-gap-map-1",
+      "title": "GAP CATEGÓRICO #1 — LATAM/PT-BR como zero",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "categorical-gap-map-2",
+      "title": "Severidade: 95",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "categorical-gap-map-3",
+      "title": "Defensibilidade: 90",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "categorical-gap-map-4",
+      "title": "GAP CATEGÓRICO #2 — Pricing como armadilha psicológica",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "categorical-gap-map-5",
+      "title": "Severidade: 90",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "categorical-gap-map-6",
+      "title": "Defensibilidade: 85",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "categorical-gap-map-7",
+      "title": "GAP CATEGÓRICO #3 — Mobile-first é deserto",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "categorical-gap-map-8",
+      "title": "Severidade: 80",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "categorical-gap-map-9",
+      "title": "Defensibilidade: 70",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "categorical-gap-map-10",
+      "title": "GAP CATEGÓRICO #4 — Comunidade aberta + Discord PT-BR",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "categorical-gap-map-11",
+      "title": "Severidade: 75",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "categorical-gap-map-12",
+      "title": "Defensibilidade: 80",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [],
+  "artifacts": [
+    {
+      "file": "90-day-launch-plan.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "README.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "anti-incumbent-attack-playbook.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "categorical-gap-map.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "distribution-blueprint.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "icp-and-segmentation.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "messaging-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "positioning-thesis.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "pricing-strategy.md",
+      "role": "other",
+      "format": "md"
+    },
+    {
+      "file": "product-differentiation-roadmap.md",
+      "role": "other",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "missing"
+  },
+  "inferred": {
+    "date": true,
+    "players": true,
+    "metadata": true
+  }
+}

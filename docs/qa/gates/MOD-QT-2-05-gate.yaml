@@ -1,0 +1,318 @@
+schema: 1
+story: "MOD-QT-2-05"
+story_title: "Link de Navegação para Queda de Tensão na Página de Detalhe do Projeto"
+story_path: "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md"
+gate: CONCERNS
+gate_history:
+  - { rodada: 1, veredito: CONCERNS, score: 95, data: "2026-07-29T11:25:00-03:00", motivo: "4/4 ACs atendidos e verificados independentemente; ressalva única: `eslint .` completo NÃO VERIFICADO (trava ambiental pré-existente) e lint escopado exit 1 exclusivamente por artefato CRLF ambiental — PROVADO ambiental, não alegado" }
+status_reason: >-
+  Story XS (1 elemento JSX + 1 arquivo de teste). Os 4 ACs estão atendidos e foram verificados
+  por leitura do código real, `git diff` reexecutado pelo @qa e execução independente de todos
+  os gates — nenhum número foi aceito por alegação do @dev. Todos os números declarados pelo
+  @dev conferem exatamente. O veredito é CONCERNS (não PASS) por uma única ressalva, idêntica
+  à das stories MOD-QT-2-01/-02/-04 do mesmo ciclo: o lint escopado ao arquivo tocado fecha em
+  exit 1, e `npx eslint .` sobre o projeto inteiro permanece NÃO VERIFICADO por trava ambiental.
+  A causa do exit 1 foi PROVADA ambiental (ver V-LINT-CAUSA), não presumida: não é regressão
+  desta story e não bloqueia. Nenhuma correção é exigida.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-29T11:25:00-03:00"
+expires: "2026-08-12T11:25:00-03:00"
+quality_score: 95
+mode: "yolo (autônomo, sem intervenção humana)"
+depends_on: "MOD-QT-2-01 a -04 (todas Done) — a tela de destino já existia e está fora de escopo"
+submodule: "sistema-de-instala-es-el-tricas-sie-main"
+escopo_do_gate: >-
+  Gate PONTUAL de escopo XS. O ciclo MOD-QT-2 (-01 a -04) já está fechado e Done; as
+  verificações de domínio, motor, catálogo de impedância, limites EDP-SP e contratos públicos
+  NÃO foram reabertas — esta story não toca nenhuma delas (comprovado por atribuição de mtime
+  e por `git status`). Verificado apenas o que esta entrega altera.
+
+# ---------------------------------------------------------------------------
+# VERIFICAÇÕES OBRIGATÓRIAS E INDEPENDENTES (7 pontos)
+# ---------------------------------------------------------------------------
+verificacoes_independentes:
+  - id: V1
+    item: "Leitura do arquivo real — ordem final, texto, `to`/`params` e integridade dos 5 links pré-existentes"
+    resultado: PASS
+    metodo: "Read integral de src/routes/projetos.$projetoId.tsx (146 linhas)"
+    evidencia: >-
+      Bloco `<div className="deps-hero-links">` nas linhas 81-112. Ordem final dos 6 links
+      confere byte a byte com a exigida pela AC3:
+      (1) L82-88 `<Link to="/projetos/$projetoId/padrao-entrada" params={{ projetoId }}
+      className="deps-hero-link">` → "Padrão de entrada";
+      (2) L89-95 `<Link to="/projetos/$projetoId/correntes" ...>` → "Correntes (IB)";
+      (3) L96-98 `<a href={`/projetos/${projetoId}/dimensionamento-condutores`}
+      className="deps-hero-link">` → "Dimensionamento de condutores";
+      (4) L99-105 **NOVO** `<Link to="/projetos/$projetoId/queda-tensao"
+      params={{ projetoId }} className="deps-hero-link">` → "Queda de tensão";
+      (5) L106-108 `<a href={`/projetos/${projetoId}/circuitos`} ...>` → "Planejador de circuitos";
+      (6) L109-111 `<a href={`/projetos/${projetoId}/unifilar`} ...>` → "Unifilar".
+      O novo link é estruturalmente idêntico ao padrão de referência da Dev Note (mesma
+      indentação, mesma ordem de props `to`/`params`/`className`, mesmo rótulo com acentuação
+      correta "Queda de tensão"). Os 5 pré-existentes conferem com o "antes" documentado pela
+      story (§ "Evidência", linhas 20-26) e pelo registro de validação do @po.
+
+  - id: V2
+    item: "git diff reexecutado pelo @qa — delimitação real do diff"
+    resultado: PASS
+    metodo: "`git diff --numstat` e `git diff` sobre o arquivo, executados pelo @qa"
+    evidencia: >-
+      `git diff --numstat -- 'src/routes/projetos.$projetoId.tsx'` → `7  0  <arquivo>`.
+      **+7 / -0 CONFIRMADO** — o número do @dev está correto. O hunk único é
+      `@@ -96,6 +96,13 @@`, contendo exclusivamente as 7 linhas do novo `<Link>`, ancorado
+      entre o `</a>` de "Dimensionamento de condutores" e o `<a>` de "Planejador de circuitos".
+      Zero linhas de remoção ⇒ nenhum dos 5 links pré-existentes foi editado, movido ou
+      removido. R2 (migrar `<a href>` vizinhos "de brinde") comprovadamente NÃO ocorreu.
+
+  - id: V3
+    item: "Teste novo — leitura crítica + execução isolada"
+    resultado: PASS
+    metodo: "Read de tests/ui/projeto-detalhe-nav-links.test.ts + `npx vitest run <arquivo>`"
+    evidencia: >-
+      Execução isolada: **Test Files 1 passed (1) | Tests 3 passed (3) | exit 0 | 897ms**.
+      Leitura crítica: o teste NÃO é um "arquivo existe". Ele extrai o bloco entre
+      `<div className="deps-hero-links">` e o `</div>` correspondente e assere:
+      (AC1) `toContain("Queda de tensão")` + `className="deps-hero-link"` no trecho da tag;
+      (AC2) localiza a tag de abertura via `lastIndexOf("<Link", indiceRotulo)` e assere
+      `to="/projetos/$projetoId/queda-tensao"` **e** `params={{ projetoId }}` — ou seja, prova
+      que o rótulo está dentro de um `<Link>` do TanStack Router, não de um `<a>`;
+      (AC3) mapeia os 6 rótulos a posições e exige que o vetor de posições seja **estritamente
+      crescente** na ordem canônica, mais a presença literal dos 5 destinos pré-existentes
+      (2 `to="..."` + 3 `href={`...`}`). Cobre texto, destino, tipo de elemento e ordem — que
+      é exatamente o que as ACs pedem. Conformidade com a proibição do @po: usa apenas
+      `readFileSync` + `vitest`; nenhum import de Testing Library, jsdom ou happy-dom.
+
+  - id: V-LINT-CAUSA
+    item: "Reprodução independente do caveat de lint E verificação da causa alegada"
+    resultado: PASS_COM_RESSALVA
+    metodo: "3 execuções de eslint pelo @qa + contagem de bytes CR worktree × blob HEAD"
+    evidencia: >-
+      (a) `npx eslint 'src/routes/projetos.$projetoId.tsx' tests/ui/projeto-detalhe-nav-links.test.ts`
+      → **exit 1, ✖ 146 problems (146 errors, 0 warnings)**. Contagem do @dev CONFIRMADA.
+      100% das 146 são `prettier/prettier — Delete ␍`; nenhuma outra regra aparece. O arquivo
+      de teste novo NÃO é listado (0 erros, limpo mesmo com prettier ligado).
+      (b) Distribuição verificada linha a linha: 146 linhas distintas reportadas, de `1:34` a
+      `146:2`, ou seja **uma por linha do arquivo inteiro** (o arquivo tem 146 linhas).
+      **139 das 146 estão FORA do intervalo 99-105 das linhas novas.** A alegação "não são das
+      7 linhas novas" está correta.
+      (c) `npx eslint --rule '{"prettier/prettier":"off"}'` sobre os 2 arquivos → **exit 0**,
+      sem saída. Confirma: zero violação de regra real.
+      (d) **VERIFICAÇÃO DA CAUSA — não aceita por alegação.** `git config core.autocrlf` = `true`.
+      Blob no HEAD: **0 bytes CR** (LF puro). Worktree: **146 bytes CR** para 146 linhas.
+      A prova decisiva, que o @dev não apresentou: executei o mesmo eslint sobre
+      **`src/routes/index.tsx`, arquivo LIMPO em `git status` (zero modificações, nenhuma
+      relação com esta nem com qualquer story pendente)** → **exit 1, ✖ 140 problems, 140/140
+      `prettier/prettier`**, com 140 bytes CR na worktree. O mesmo modo de falha existe em
+      arquivo que ninguém tocou ⇒ é condição da worktree, **não** artefato introduzido por
+      esta story. Contraprova complementar: `src/routes/__root.tsx` (também limpo) tem 0 CR e
+      passa em exit 0 — a worktree tem line endings mistos, o que descarta qualquer atribuição
+      da condição à edição desta entrega.
+      VEREDITO SOBRE A ALEGAÇÃO DO @dev: **sustentada.** Não é FAIL. Impacto funcional nulo:
+      `git diff` (que normaliza sob autocrlf) já mostra +7/-0 sem ruído de fim de linha, logo
+      o conteúdo que será commitado é LF puro.
+    ressalva: "`npx eslint .` (projeto inteiro) permanece NÃO VERIFICADO — trava ambiental pré-existente. NÃO presumido PASS. Única razão do CONCERNS."
+
+  - id: V5
+    item: "Suíte completa — baseline preservado"
+    resultado: PASS
+    metodo: "`npx vitest run` executado integralmente pelo @qa (sem --reporter=basic)"
+    evidencia: >-
+      **Test Files 133 passed (133) | Tests 950 passed (950) | 0 falhas | exit 0 | 199,36s.**
+      Número do @dev CONFIRMADO. Baseline anterior do ciclo era 947/947 em 132 arquivos
+      (gate MOD-QT-2-04, 3 execuções); agora 950 em 133 = +3 testes e +1 arquivo, exatamente
+      os do teste novo. Nenhum teste desapareceu, nenhum passou a falhar. R5 não ocorreu.
+      BLK-QT-TIMEOUT-FLAKY-01 não reproduzido nesta execução (4ª consecutiva sem repro).
+
+  - id: V6
+    item: "tsc --noEmit e vite build"
+    resultado: PASS
+    metodo: "Ambos executados pelo @qa"
+    evidencia: >-
+      `npx tsc --noEmit` → **exit 0**, sem saída. Isto é a prova de tipo da AC2: o `to` do
+      `<Link>` do TanStack Router é type-checked contra a route tree gerada; o literal
+      `/projetos/$projetoId/queda-tensao` compila, logo existe e está grafado corretamente
+      (R3 mitigado — um `$projetoId_` ou typo quebraria aqui).
+      `npx vite build` → **exit 0, ✓ built in 8.22s**. R4 (divergência SSR × SPA) coberto.
+
+  - id: V7
+    item: "Nenhum arquivo fora de escopo tocado"
+    resultado: PASS
+    metodo: "Atribuição por mtime (worktree suja com trabalho de outros épicos) + `git status` por caminho"
+    evidencia: >-
+      `git diff --stat` isolado não é conclusivo aqui: a worktree do submódulo está suja com
+      ~57 arquivos de MOD-CC/AUTO-OTI/tutoriais. A delimitação foi feita por mtime na janela
+      desta story: `find src tests -type f -newermt "2026-07-29 10:00"` retorna
+      **EXATAMENTE 2 arquivos**: `src/routes/projetos.$projetoId.tsx` e
+      `tests/ui/projeto-detalhe-nav-links.test.ts`. Nada mais.
+      Confirmações por caminho (`git status --short`): `src/domain/queda-tensao/` → limpo;
+      `src/routes/projetos.$projetoId_.queda-tensao.tsx` → limpo; `src/routeTree.gen.ts` →
+      limpo; `src/routeTree.spa.ts` → limpo. `vitest.config.*` → **não existe** (nenhum foi
+      criado). `tests/ui/__snapshots__/` → 5 snapshots, nenhum do hub; o único modificado
+      (`correntes-rastreabilidade`) tem mtime fora da janela desta story (trabalho alheio) —
+      nenhum snapshot foi criado ou regenerado por esta entrega.
+      **package.json**: aparece como `M` em `git status`, mas o `git diff` mostra que a
+      alteração é a adição de 2 scripts `docs:tutorial:check|update` (trabalho de tutoriais
+      MOD-DC, alheio a esta story); o bloco `dependencies` está **intocado**. Varredura por
+      `testing-library|jsdom|happy-dom` em package.json → **NENHUMA ocorrência**. R1
+      comprovadamente não ocorreu.
+      Registro em ambas as route trees confirmado por grep: `routeTree.gen.ts` 25 ocorrências,
+      `routeTree.spa.ts` 5 — nenhuma das duas foi editada por esta story.
+
+# ---------------------------------------------------------------------------
+# ACCEPTANCE CRITERIA
+# ---------------------------------------------------------------------------
+acceptance_criteria:
+  AC1:
+    status: MET
+    evidencia: "V1 (leitura direta, L99-105) + V3 (teste AC1 PASS na execução isolada do @qa). Rótulo visível 'Queda de tensão' e `className=\"deps-hero-link\"` dentro do bloco `deps-hero-links`."
+  AC2:
+    status: MET
+    evidencia: "V1 + V3 (teste AC2 PASS) no nível de literal; V6 (`tsc --noEmit` exit 0) no nível de tipo. É `<Link>` do TanStack Router com `to=\"/projetos/$projetoId/queda-tensao\"` e `params={{ projetoId }}` — não `<a href>`."
+  AC3:
+    status: MET
+    evidencia: "V2 (+7/-0, hunk único, zero remoções) + V1 (ordem final dos 6 conferida na fonte) + V3 (teste AC3 exige posições estritamente crescentes e presença literal dos 5 destinos). Os 5 links pré-existentes estão bit-a-bit como antes."
+  AC4:
+    status: "N/A CONFIRMADO"
+    evidencia: "V7 — `tests/ui/__snapshots__/` contém 5 snapshots (correntes-rastreabilidade, edp-sp-isolacao, queda-tensao, unifilar-canvas, unifilar-workspace); nenhum do hub `projetos.$projetoId.tsx`. Cláusula de contingência não acionada; nada regenerado. Verificado pelo @qa, não aceito por alegação."
+
+# ---------------------------------------------------------------------------
+# 7 CHECKS DE QUALIDADE (.claude/rules/story-lifecycle.md Fase 4)
+# ---------------------------------------------------------------------------
+quality_checks:
+  code_review: PASS
+  # Reuso literal do padrão <Link to/params/className> dos 2 primeiros links do mesmo bloco
+  # (IDS: ADAPT, zero infraestrutura nova). Indentação, ordem de props e acessibilidade
+  # idênticas aos vizinhos — mesma classe, texto visível, nenhum aria-* destoante.
+  unit_tests: PASS
+  # 1 arquivo novo, 3 testes, 0 testes removidos ou alterados. Asserções materiais
+  # (texto + destino + tipo de elemento + ordem), não tautológicas.
+  acceptance_criteria: PASS   # 3/3 MET + 1 N/A confirmado por verificação própria
+  no_regressions: PASS        # 947→950, 132→133 arquivos, 0 falhas; +7/-0 no diff
+  performance: NAO_APLICAVEL  # 1 elemento JSX estático; nenhuma query, efeito ou cálculo
+  security: NAO_APLICAVEL     # navegação interna; sem input de usuário, sem dado sensível, sem rota de API
+  documentation: PASS
+  # Story, Debug Log, File List e Change Log fiéis ao observado. Diferente de MOD-QT-2-04
+  # (DOC-001), nenhum gate foi declarado PASS sem estar: todos os números do @dev
+  # (+7/-0, 950/950, 133 arquivos, 146 erros de lint, 5 snapshots) conferiram na reexecução.
+
+# ---------------------------------------------------------------------------
+gates_tecnicos:
+  typecheck:
+    comando: "npx tsc --noEmit"
+    executor: "@qa"
+    resultado: PASS
+    detalhe: "exit 0, sem saída"
+  test_isolado:
+    comando: "npx vitest run tests/ui/projeto-detalhe-nav-links.test.ts"
+    executor: "@qa"
+    resultado: PASS
+    detalhe: "1/1 arquivo | 3/3 testes | exit 0 | 897ms"
+  test_run_full:
+    comando: "npx vitest run"
+    executor: "@qa"
+    resultado: PASS
+    detalhe: "133/133 arquivos | 950/950 testes | 0 falhas | exit 0 | 199,36 s"
+  build:
+    comando: "npx vite build"
+    executor: "@qa"
+    resultado: PASS
+    detalhe: "exit 0 — built in 8.22s"
+  lint_escopado:
+    comando: "npx eslint 'src/routes/projetos.$projetoId.tsx' tests/ui/projeto-detalhe-nav-links.test.ts"
+    executor: "@qa"
+    resultado: PASS_COM_RESSALVA
+    detalhe: >-
+      exit 1, 146 erros — 146/146 `prettier/prettier Delete ␍`, uma por linha do arquivo
+      inteiro (139 fora das linhas novas). Zero violação de regra real: com
+      `--rule '{"prettier/prettier":"off"}'` → exit 0. Causa PROVADA ambiental (ver V-LINT-CAUSA):
+      o mesmo modo de falha ocorre em `src/routes/index.tsx`, arquivo limpo em git status
+      (140/140 erros idênticos). O arquivo de teste novo passa limpo sem nenhuma flag.
+  lint_projeto_inteiro:
+    comando: "npx eslint ."
+    resultado: NAO_VERIFICADO
+    detalhe: "trava ambiental pré-existente (>20 min, documentada nas stories MOD-QT-2-03/-04); NÃO presumido PASS — é a razão do CONCERNS"
+
+# ---------------------------------------------------------------------------
+riscos_da_story:
+  R1_instalar_jsdom_testing_library:
+    ocorreu: false
+    evidencia: "package.json sem testing-library/jsdom/happy-dom; bloco dependencies intocado; nenhum vitest.config.* existe no repositório"
+  R2_migrar_a_href_vizinhos:
+    ocorreu: false
+    evidencia: "git diff -0 remoções; os 3 <a href> permanecem literalmente iguais"
+  R3_literal_de_rota_errado:
+    ocorreu: false
+    evidencia: "tsc --noEmit exit 0 — o `to` é type-checked contra a route tree"
+  R4_divergencia_ssr_spa:
+    ocorreu: false
+    evidencia: "rota presente em routeTree.gen.ts e routeTree.spa.ts (ambas intocadas); vite build exit 0"
+  R5_regressao_de_suite:
+    ocorreu: false
+    evidencia: "950/950, acima do baseline de 947"
+
+# ---------------------------------------------------------------------------
+top_issues:
+  - id: "MNT-005"
+    severity: low
+    finding: >-
+      `npx eslint .` (projeto inteiro) permanece NÃO VERIFICADO por trava ambiental
+      pré-existente, independente desta story. Herdado de MOD-QT-2-03/-04 (MNT-003).
+    suggested_action: >-
+      Débito de infraestrutura de qualidade para @devops. Nenhum arquivo desta story está
+      sem cobertura de lint — ambos foram verificados individualmente.
+
+  - id: "MNT-006"
+    severity: low
+    finding: >-
+      Worktree do submódulo com line endings mistos sob `core.autocrlf=true`: parte dos
+      arquivos carrega CRLF (ex.: `src/routes/index.tsx`, 140 CR, sem nenhuma modificação
+      pendente) e parte carrega LF (`src/routes/__root.tsx`, 0 CR). Isso faz o `eslint`
+      escopado falhar em exit 1 com ruído puramente cosmético e obriga cada gate do ciclo a
+      re-provar que a falha é ambiental. Não é defeito desta story.
+    suggested_action: >-
+      @devops: adicionar `.gitattributes` com `* text=auto eol=lf` (ou `core.autocrlf=input`)
+      e normalizar a worktree em um commit dedicado, fora de qualquer story. Elimina a caveat
+      de forma permanente para todo o repositório.
+
+  - id: "DBT-005"
+    severity: low
+    finding: >-
+      Inconsistência de navegação pré-existente: no mesmo bloco, 3 links continuam usando
+      `<a href>` (full-page reload) enquanto 3 usam `<Link>` (client-side). O novo link fica
+      entre dois `<a href>`. Drift do commit `1e18cc9`, confirmado pelo @po; deliberadamente
+      fora de escopo desta story (AC3 veta tocar nos 5 pré-existentes).
+    suggested_action: "Backlog de @po: story dedicada de migração dos 3 `<a href>` para `<Link>`."
+
+  - id: "OPS-001"
+    severity: low
+    finding: "BLK-QT-TIMEOUT-FLAKY-01 não reproduzido — 4ª execução completa consecutiva sem repro. Causa estrutural inalterada."
+    suggested_action: "Blocker mantido aberto, severidade BAIXA. Ver docs/qa/gates/MOD-QT-2-03-gate.yaml."
+
+waiver: { active: false }
+
+# ---------------------------------------------------------------------------
+definition_of_done:
+  1_acs_por_assercao_de_fonte_mais_tsc: PASS   # 3 testes executados pelo @qa, 3/3
+  2_sem_dependencia_nova_sem_vitest_config: PASS
+  3_ac4_vrt_na_ou_regenerado: PASS             # N/A confirmado por inspeção do @qa
+  4_tsc_noemit: PASS                            # exit 0
+  5_vitest_947_ou_mais: PASS                    # 950/950
+  6_vite_build: PASS                            # exit 0, 8.22s
+  7_eslint_escopado: PASS_COM_RESSALVA          # 0 violação de regra real; ruído CRLF ambiental provado; `eslint .` NÃO VERIFICADO
+  8_file_list_atualizado: PASS                  # fiel: 1 modificado + 1 criado, confere com mtime e git diff
+  9_nada_fora_de_escopo: PASS                   # exatamente 2 arquivos na janela desta story
+
+recommended_status: "Done"
+status_transition: "InReview → Done"
+next_agent: "@devops"
+next_command: "*push (via handoff .aiox/handoffs/MOD-QT-2-05-qa-to-devops.yaml)"
+correcoes_exigidas: []
+ressalvas_aceitas:
+  - { id: "MNT-005", severity: low, acao: "Débito de infraestrutura para @devops; não bloqueia" }
+  - { id: "MNT-006", severity: low, acao: "Normalização de line endings via .gitattributes, fora de story" }
+  - { id: "DBT-005", severity: low, acao: "Backlog de @po" }
+  - { id: "OPS-001", severity: low, acao: "Blocker mantido aberto, severidade BAIXA" }
+nao_exigido:
+  - "Nenhuma alteração de código, teste, AC ou contrato. Os 4 ACs estão atendidos."
+  - "Nenhuma normalização de CRLF nesta story — corrigir aqui reescreveria as 139 linhas fora de escopo e violaria a AC3. A decisão do @dev de não normalizar está CORRETA."
+  - "Nenhuma reabertura das verificações de MOD-QT-2-01 a -04 — fora do escopo deste gate."

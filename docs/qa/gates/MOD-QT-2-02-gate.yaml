@@ -1,0 +1,339 @@
+schema: 1
+story: "MOD-QT-2-02"
+story_title: "Simulador de Cenários — Endpoints Auxiliares e UI Carbon (fatia UI do Pacote 1)"
+story_path: "docs/stories/story-MOD-QT-2-02-simulador-endpoints-ui.md"
+gate: CONCERNS
+status_reason: >-
+  Os 4 ACs herdados de MOD-QT-2-01 (AC8/AC9/AC12/AC14 → AC1–AC4) estão cobertos por testes
+  nomeados passando, os 6 endpoints delegam ao motor sem duplicar cálculo (RSK-9) e o contrato
+  público está intacto por símbolo. Ressalvas: `npm test` sai com exit 1 por regressão de épico
+  alheio, lint de projeto inteiro não conclui neste ambiente, e há um cast de entrada não
+  validada em aplicar-cenario (QT202-002). Desvio D-02 (SVG em vez de @carbon/charts-react)
+  ACEITO com justificativa técnica.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-28T19:30:00-03:00"
+expires: "2026-08-11T19:30:00-03:00"
+quality_score: 80
+mode: "yolo (autônomo, sem intervenção humana)"
+normative_source: "Arquivos_Diversos/PROMPT-QUEDA-TENSAO-v2.2.md (MOD-QT-v2.2) §21, §23.2, §24–§25"
+review_criteria_source: "docs/PLANO-YOLO-IMPLEMENTACAO-MOD-QT-2.md §6.4"
+submodule_branch: "feature/nbr5410-conformidade-closeout"
+
+# ---------------------------------------------------------------------------
+criterios_plano_6_4:
+  - id: 1
+    criterio: "Rastreabilidade documento-fonte → story → código → teste"
+    resultado: PASS
+    evidencia: >-
+      4 ACs, 4 cadeias de teste nomeadas com o ID CA-QT: "AC1 / CA-QT-10: grava seção e
+      comprimento, recalcula o MOD-DC com a seção como piso e audita antes/depois (R-11)";
+      "AC2 / CA-QT-11: a árvore exibe a queda acumulada que confere com a soma calculada pelo
+      motor"; "AC3 / CA-QT-14: o gráfico de barras renderiza as duas linhas de limite (4% do
+      circuito e limite total)" + variante 7%→5%; "test_ds04 — AC4 / CA-QT-16: nenhum texto
+      branco sobre #fa4d56; todo estado atinge WCAG AA (4,5:1)". Todos passando.
+
+  - id: 2
+    criterio: "Contrato público byte-a-byte inalterado (CA-QT-18)"
+    resultado: PASS
+    evidencia: >-
+      `src/api/schemas/otimizar-condutor.schema.ts` ausente de git status (diff vazio) — os
+      schemas novos vivem em `src/api/schemas/queda-tensao.ts` e NÃO importam, estendem ou
+      reexportam ValidarMODQTSchema/RetornoMODQTSchema (verificado por leitura do arquivo).
+      `RetornoMODQT` idêntico ao HEAD. `modulos.mod-qt.validar.ts` alterado apenas por
+      MOD-QT-2-01, não por esta story.
+
+  - id: 3
+    criterio: "Marcação [VERIFICAR] propagada e não ocultada pela UI (CA-QT-12 / RSK-10)"
+    resultado: PASS
+    evidencia: >-
+      Task 3.4 entregue: a tabela de resultados exibe o campo `fonte` do motor sem filtrar as
+      marcações. `GET /api/v1/tabelas/impedancia` devolve TABELA_IMPEDANCIA com
+      status_verificacao "[VERIFICAR]" intacto. Nenhum arquivo de src/domain/queda-tensao/**
+      foi alterado por esta story (confirmado em git status: diretório inteiro é `??`,
+      criado por -01).
+
+  - id: 4
+    criterio: "CA-QT-19 / CA-QT-21 / CA-QT-22"
+    resultado: NAO_APLICAVEL_HERDADO
+    evidencia: >-
+      Critérios do motor, validados no gate de MOD-QT-2-01. Esta story consome o motor sem
+      reimplementá-lo. D-03 confirma que `origem = "MOD-QT-SIMULADOR"` NÃO aciona o ramo de 1%
+      do ramal EDP, que permanece exclusivo de origem contendo RAMAL-ENTRADA-EDP — verificado
+      em limites.ts (`ehRamalEntradaEdp`).
+
+  - id: 5
+    criterio: "Nenhum item da lista NÃO TOCAR (§31) alterado"
+    resultado: PASS
+    evidencia: >-
+      routeTree.gen.ts regenerado pelo build e routeTree.spa.ts atualizado à mão — ambos
+      PREVISTOS na File List planejada e exigidos por RSK-8, não pertencem à lista NÃO TOCAR.
+      Build PASS confirma consistência do par (RSK-8 mitigado).
+
+  - id: 6
+    criterio: "Gates técnicos (lint, typecheck, test, build)"
+    resultado: CONCERNS
+    detalhe: "ver bloco gates_tecnicos_observados"
+
+  - id: 7
+    criterio: "Checklist de segurança básica (OWASP) sobre o código novo"
+    resultado: CONCERNS
+    detalhe: "ver bloco security_review — QT202-002"
+
+# ---------------------------------------------------------------------------
+gates_tecnicos_observados:
+  executados_em: "sistema-de-instala-es-el-tricas-sie-main/"
+  executados_por: "@qa (Quinn) — re-execução independente, 2026-07-28"
+
+  typecheck:
+    resultado: PASS
+    comando: "npx tsc --noEmit"
+    exit_code: 0
+    saida: "vazia"
+
+  build:
+    resultado: PASS
+    comando: "npm run build"
+    exit_code: 0
+    saida: "✓ built in 8.50s"
+    evidencia_da_story: >-
+      Chunk `dist/server/assets/projetos._projetoId_.queda-tensao---RUior3.js` (37.06 kB)
+      presente no bundle — confirma que a rota UI desta story entrou no build SSR e que
+      routeTree.gen.ts/routeTree.spa.ts estão consistentes (RSK-8 não materializou).
+
+  lint:
+    resultado: PARCIAL
+    projeto_inteiro:
+      resultado: NAO_VERIFICADO
+      comando: "npx eslint ."
+      observado: "Sem saída após ~20 min. NÃO assumido como PASS (fail-closed)."
+    escopo_da_story:
+      resultado: PASS
+      exit_code: 0
+      arquivos: >-
+        src/api/schemas/queda-tensao.ts, src/domain/servicos/servico-queda-tensao.ts,
+        src/components/app/queda-tensao/ (7 arquivos), os 6 endpoints auxiliares,
+        src/routes/projetos.$projetoId_.queda-tensao.tsx, os 2 repositórios,
+        tests/api/queda-tensao-endpoints.test.ts, tests/ui/queda-tensao.vrt.test.tsx
+      saida: "vazia — 0 erros, 0 warnings (confirma o efeito da extração D-08)"
+
+  test:
+    resultado: FAIL_NAO_ATRIBUIVEL
+    comando: "npx vitest run"
+    exit_code: 1
+    numeros_reais:
+      test_files: "1 failed | 125 passed (126)"
+      tests: "1 failed | 832 passed (833)"
+      duracao: "357.02s"
+    teste_que_falha: "tests/domain/calculo/derivar-circuitos.test.ts > derivarCircuitos > dependência sem resultado é ignorada"
+    atribuicao: >-
+      NÃO ATRIBUÍVEL a MOD-QT-2-02. Ver QT201-001 no gate de MOD-QT-2-01 para a causa raiz.
+      Observação: o registro do @dev nesta story ("815 testes PASS; 1 suíte falha por arquivo
+      com 0 bytes") está DESATUALIZADO — o arquivo foi restaurado (281 linhas) e a falha hoje
+      é de assertiva, não de coleta.
+    subsuite_da_story:
+      resultado: PASS
+      numeros: "tests/api/queda-tensao-endpoints.test.ts + tests/ui/queda-tensao.vrt.test.tsx passando dentro dos 76/76 da subsuíte MOD-QT"
+      exit_code: 0
+
+  coderabbit:
+    resultado: NAO_VERIFICADO
+    motivo: >-
+      Binário presente em WSL, mas `coderabbit auth status` sem retorno. Não executado sobre
+      worktree de 116 arquivos multi-épico. PT-09 permanece aberta com @devops.
+      Substitutos declarados pelo @dev foram VERIFICADOS por @qa: RSK-9 tem teste comparando
+      endpoint vs motor campo a campo; AC4 tem test_ds04 em três camadas.
+
+# ---------------------------------------------------------------------------
+# Decisão sobre PT-11 / D-02 — delegada explicitamente a @qa pelo @dev
+# ---------------------------------------------------------------------------
+decisao_d02_grafico:
+  pendencia: PT-11
+  questao: "Gráfico em SVG puro com tokens Carbon em vez de @carbon/charts-react (Task 4.1)"
+  decisao: ACEITO_COMO_IMPLEMENTACAO_EQUIVALENTE
+  justificativa: >-
+    (a) O requisito funcional da AC3/CA-QT-14 é "linhas de limite aparecem em 4% (circuito) e no
+    limite total". Ele está atendido e testado — dois `data-testid` distintos, dois rótulos, e a
+    variante que troca 7%→5% e verifica que o gráfico acompanha.
+    (b) O argumento de testabilidade é tecnicamente correto e decisivo: @carbon/charts-react é
+    baseado em d3 e monta no DOM via useEffect; sob `renderToStaticMarkup` — único mecanismo de
+    evidência visual existente neste repositório, sem jsdom nem playwright — o SSR produziria
+    contêiner vazio, tornando a evidência exigida pela AC3 IMPOSSÍVEL de produzir. A biblioteca
+    literal comprometeria o próprio critério que ela deveria satisfazer.
+    (c) @carbon/charts-react não é dependência do projeto; adicionar d3 ao bundle SPA estático
+    perto de RSK-8 é risco de build sem contrapartida.
+    (d) O teste assere `resultado.limite_circuito_pct === 4`, provando que o 4,0% exibido vem do
+    motor (§13.1) e não de um literal da UI — exatamente a garantia que importa em AC3.
+  ressalva: >-
+    A decisão vale para o escopo atual. Se o projeto adotar @carbon/charts-react e
+    infraestrutura de browser (jsdom/playwright) no futuro, o componente deve ser reavaliado
+    para alinhamento com o design system — registrado em recommendations.future.
+  desvio_de_texto_literal_da_task: "Reconhecido e aceito. Não é violação do Artigo IV: nenhum valor normativo foi inventado."
+
+# ---------------------------------------------------------------------------
+# Definition of Done — item a item
+# ---------------------------------------------------------------------------
+definition_of_done:
+  - item: 1
+    descricao: "AC1–AC4 cobertos com a evidência exigida"
+    resultado: PASS
+    nota: >-
+      AC1 e AC4 por teste automatizado nomeado. AC2 e AC3 eram "inspeção documentada": o @dev
+      entregou descrição do render MAIS asserções executáveis (conferência numérica com
+      tolerância 0,0002 em AC2; presença estrutural das duas linhas em AC3), com snapshot
+      versionado. @qa considera evidência SUPERIOR ao print exigido, não inferior — o
+      repositório não possui infraestrutura de screenshot, e print não seria reexecutável.
+  - item: 2
+    descricao: "Nenhum dos endpoints duplica lógica de cálculo (RSK-9)"
+    resultado: PASS
+    evidencia: >-
+      `servico-queda-tensao.ts` declarado como orquestração pura; nenhum arquivo de
+      src/domain/queda-tensao/** alterado; teste compara o resultado do endpoint com
+      `calcularQuedaTensao` chamado diretamente, campo a campo.
+  - item: 3
+    descricao: "Contrato público intacto (critério por símbolo)"
+    resultado: PASS
+  - item: 4
+    descricao: "lint, typecheck, test, build passando"
+    resultado: PARCIAL
+    nota: "typecheck PASS, build PASS, lint PASS no escopo da story, test FAIL não atribuível (QT201-001)."
+  - item: 5
+    descricao: "Acessibilidade Carbon/WCAG AA verificada (R-05, test_ds04)"
+    resultado: PASS
+    evidencia: >-
+      test_ds04 em três camadas: contraste calculado ≥4,5:1 para todos os estados
+      (#fa4d56+#161616 = 5,40:1); guarda contra adulteração da função de contraste
+      (branco sobre #fa4d56 = 3,35:1 deve reprovar); varredura do markup exigindo que todo
+      estilo com #fa4d56 contenha color:#161616 e nunca branco, com assertiva anti-vacuidade.
+      Tokens reusados de tokens_sie.css — nenhuma cor inventada.
+  - item: 6
+    descricao: "File List fiel ao diff real"
+    resultado: PASS
+    evidencia: "18 novos + 3 de teste + 8 modificados conferidos em disco e em git status."
+  - item: 7
+    descricao: "Change Log de MOD-QT-2-01 referenciando esta story (ação de @qa)"
+    resultado: PASS
+    nota: "Executado por @qa neste gate — entrada v0.7 no Change Log de MOD-QT-2-01. Fecha a Task 6.4."
+
+# ---------------------------------------------------------------------------
+top_issues:
+  - id: QT202-001
+    severity: high
+    category: tests
+    finding: "Mesmo QT201-001 — `npm test` exit 1 por regressão em src/domain/calculo/derivar-circuitos.ts."
+    atribuivel_a_esta_story: false
+    suggested_owner: po
+    bloqueia_story: false
+    bloqueia_commit_push: true
+
+  - id: QT202-002
+    severity: medium
+    category: security
+    finding: >-
+      Em `projetos.$projetoId.circuitos.$circuitoId.aplicar-cenario.ts:37`, `parametros` é
+      declarado no schema como `z.record(z.string(), z.unknown())` e depois forçado com
+      `as unknown as ParametrosDimensionamento` antes de alimentar `dimensionarCircuito`.
+      Entrada controlada pelo cliente atravessa a fronteira de validação sem schema real
+      (OWASP A03 — Injection/Improper Input Validation, variante de mass assignment).
+      É o ÚNICO ponto do projeto com esse cast (`grep` em src/routes/api/v1/ retorna 1 ocorrência).
+    atribuivel_a_esta_story: true
+    suggested_owner: dev
+    impacto_avaliado: >-
+      Contido: `parametros` alimenta cálculo determinístico, não query nem filesystem nem
+      shell. Pior caso realista é resultado de dimensionamento inválido ou exceção — capturada
+      por `mapearErro`. Não é escalada de privilégio nem vazamento. Por isso MEDIUM e não HIGH.
+    recomendacao: >-
+      Substituir por um schema Zod explícito de ParametrosDimensionamento (ou reusar o já
+      existente no domínio de dimensionamento-condutores) e remover o cast duplo.
+
+  - id: QT202-003
+    severity: low
+    category: docs
+    finding: >-
+      A seção "Gates técnicos" da story declara "815 testes PASS, 124 arquivos" e atribui a
+      falha a "arquivo com 0 bytes". Ambos desatualizados: hoje são 833 testes / 126 arquivos e
+      a falha é de assertiva, com o arquivo restaurado em 281 linhas.
+    atribuivel_a_esta_story: true
+    suggested_owner: dev
+    recomendacao: "Reexecutar e registrar exit code + linha-resumo literal ao fechar a story."
+
+  - id: QT202-004
+    severity: low
+    category: code
+    finding: >-
+      PT-08: a tabela `queda_tensao_config` não existe no Supabase. A configuração do
+      alimentador/comprimentos não persiste entre sessões.
+    atribuivel_a_esta_story: true
+    suggested_owner: dev
+    impacto_avaliado: >-
+      Baixo e consciente: o repo degrada graciosamente (mesmo padrão de
+      dimensionamento_condutores_overrides) e a tela não quebra. Decisão D-01 alinhada com o
+      escopo declarado da story ("PT-07 cobre apenas leitura/gravação exigida pelos 5
+      endpoints, não uma migração de schema mais ampla").
+    recomendacao: "Criar a tabela + policy anon — @data-engineer (PT-08)."
+
+waiver: { active: false }
+
+evidence:
+  tests_reviewed: 22
+  tests_novos_da_story: 22
+  risks_identified: 4
+  trace:
+    ac_covered: [1, 2, 3, 4]
+    ac_gaps: []
+  acs_de_mod_qt_2_01_fechados_aqui: [8, 9, 12, 14]
+
+nfr_validation:
+  security:
+    status: CONCERNS
+    notes: >-
+      Todos os 6 endpoints validam entrada com Zod via `withZod` antes de qualquer uso; sem SQL
+      dinâmico, sem eval, sem segredo hardcoded. `secao_mm2` restrita à série IEC 60228 no
+      schema (D-05) impede gravação de seção fora de norma — boa prática de validação positiva.
+      Uma ressalva nova: QT202-002 (cast de `parametros` sem schema).
+      Duas características PRÉ-EXISTENTES do projeto, não introduzidas por esta story e por
+      isso não penalizadas: (1) nenhuma rota de /api/v1 tem authn/authz — verificado, 0
+      ocorrências de authorization/getUser/session em todo o diretório; (2) `autor` é fornecido
+      pelo cliente e cai em "sistema" quando ausente, padrão presente em 13 rotas anteriores.
+      Consequência a registrar: sem authn, a trilha de auditoria R-11 é atribuível apenas por
+      convenção, não por identidade verificada.
+  performance:
+    status: PASS
+    notes: >-
+      Endpoints delegam a motor stateless. `SimularQuedaSchema` limita cenários a `.max(20)`,
+      impedindo amplificação de custo por request — mitigação de DoS simples, bem posta.
+      Build 8.50s; chunk da rota UI em 37 kB (gzip 7,86 kB), proporcional.
+  reliability:
+    status: PASS
+    notes: >-
+      D-04 fail-closed verificado: sem comprimento ou sem seção → PENDENTE sem cálculo (R-08);
+      tensão ausente → padrão 220 V COM alerta explícito exibido na UI (R-03), degradação
+      sinalizada e nunca silenciosa. Repositório Supabase degrada graciosamente sem a tabela.
+      `mapearErro` cobre os três erros de domínio novos (404/422/400).
+  maintainability:
+    status: PASS
+    notes: >-
+      RSK-9 respeitado com rigor: zero linha de fórmula na story; `SERIE_IEC_60228` e
+      `LIMITES_TOTAIS_SUJEITOS_A_ALINEA` importados do domínio em vez de redigitados nos
+      schemas — exatamente o padrão que evita divergência normativa entre camadas.
+      D-08 (extração de helpers para .ts) eliminou os avisos react-refresh, confirmado pelo
+      lint escopado limpo.
+
+recommendations:
+  immediate:
+    - action: "Resolver QT201-001/QT202-001 antes de qualquer commit/push da worktree"
+      refs: ["src/domain/calculo/derivar-circuitos.ts"]
+      owner: "@po / dono do épico MOD-CC-AUTO-OTI-DUC"
+  future:
+    - action: "Validar `parametros` com schema Zod explícito e remover o cast duplo (QT202-002)"
+      refs: ["src/routes/api/v1/projetos.$projetoId.circuitos.$circuitoId.aplicar-cenario.ts:37", "src/api/schemas/queda-tensao.ts"]
+      owner: "@dev"
+    - action: "Criar tabela `queda_tensao_config` + policy anon no Supabase (PT-08)"
+      owner: "@data-engineer"
+    - action: "Executar CodeRabbit após consolidação do worktree (PT-09)"
+      owner: "@devops"
+    - action: "Reavaliar GraficoBarrasQueda vs @carbon/charts-react se o projeto adotar jsdom/playwright"
+      refs: ["src/components/app/queda-tensao/GraficoBarrasQueda.tsx"]
+      owner: "@ux-design-expert / @dev"
+
+recommended_status: "Done (com as ressalvas QT202-001 e QT202-002 registradas)"
+handoff: ".aiox/handoffs/MOD-QT-2-01-qa-to-devops.yaml"

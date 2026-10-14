@@ -1,0 +1,174 @@
+handoff_id: DERIVAR-CIRCUITOS-1-po-to-dev
+story_id: DERIVAR-CIRCUITOS-1
+consumed: true
+consumed_at: "2026-07-28"
+consumed_by: "@dev (Dex) — *develop DERIVAR-CIRCUITOS-1 --mode yolo; handoff de saida: .aiox/handoffs/DERIVAR-CIRCUITOS-1-dev-to-qa.yaml"
+created_at: "2026-07-28"
+from_agent: "@po"
+to_agent: "@dev"
+last_command: "*validate-story-draft docs/stories/story-DERIVAR-CIRCUITOS-1-dependencia-sem-resultado.md --mode yolo"
+next_command: "*develop DERIVAR-CIRCUITOS-1 --mode yolo"
+workflow: "BLK-DERIVAR-CIRCUITOS-01-REGULARIZACAO"
+state: "READY_FOR_DEV"
+mode: "yolo"
+human_intervention: false
+blocker_ref: "BLK-DERIVAR-CIRCUITOS-01 (.aiox/workflow-state/BLOCKER-DERIVAR-CIRCUITOS-REGRESSAO.yaml)"
+po_diversao_ref: "PO-DIV-02 (.aiox/handoffs/MOD-QT-2-01-po-addendum-to-qa.yaml)"
+handoff_anterior: ".aiox/handoffs/DERIVAR-CIRCUITOS-1-sm-to-po.yaml (consumido)"
+
+verdict: GO
+checklist_score: "9/10"
+checklist_reference: ".claude/rules/story-lifecycle.md (Fase 2 — 10-Point Validation Checklist)"
+no_go_cycles: 0
+checklist_breakdown: >-
+  6 dos 10 pontos aprovados diretamente na entrega do @sm; 3 completados por correcao do @po
+  dentro da autoridade de PO sobre titulo/descricao/AC/escopo (valor de negocio, complexidade,
+  rastreabilidade de requisito); 1 ressalva residual documentada na propria story
+  (ausencia de cobertura de integracao para o cenario RASCUNHO nas telas de
+  Correntes/Divisor de Circuitos — registrada como debito conhecido, nao como AC).
+
+story:
+  path: "docs/stories/story-DERIVAR-CIRCUITOS-1-dependencia-sem-resultado.md"
+  status_before: "Draft"
+  status_after: "Ready"
+  version: "0.2"
+  epico: "NENHUM — story standalone de regularizacao"
+  modulo: "src/domain/calculo/derivar-circuitos.ts (submodulo sistema-de-instala-es-el-tricas-sie-main)"
+  acceptance_criteria_count: 4
+  estimate: "XS / 1 ponto"
+
+principio_de_produto:
+  id: PP-1
+  declaracao: >-
+    Uma dependencia que ainda nao teve o calculo NBR executado (sem `resultado`, tipicamente em
+    estado RASCUNHO) NAO perde as cargas adicionais ja cadastradas pelo projetista: essas cargas
+    continuam derivando circuitos ADD-* normalmente. Apenas os circuitos que dependem do motor NBR
+    — ILUM-* e TUG-*, calculados a partir de area/perimetro — deixam de ser emitidos, por nao
+    terem base de calculo.
+  natureza: >-
+    Declaracao de requisito PROSPECTIVA, feita agora pelo dono do produto sobre um comportamento
+    observado. NAO e reconstrucao retroativa de intencao: a motivacao historica do autor da
+    mudanca nao commitada permanece desconhecida e nenhuma investigacao a localizou.
+  justificativa_artigo_iv: >-
+    O Artigo IV proibe INVENTAR motivacao ou fatos sem fonte; nao proibe o dono do produto de
+    DECLARAR um requisito. A fonte primaria de PP-1 e a autorizacao explicita do usuario em
+    2026-07-28, registrada em dois artefatos versionados (BLK-DERIVAR-CIRCUITOS-01 ->
+    resolucoes_possiveis.R2 + decisao; DERIVAR-CIRCUITOS-1-sm-to-po.yaml -> decisao_do_usuario).
+  fontes:
+    - tipo: "Fonte primaria (o requisito)"
+      referencia: "Decisao explicita do dono do produto (usuario), 2026-07-28"
+    - tipo: "Observacao verificada"
+      referencia: >-
+        npx vitest run tests/domain/calculo/derivar-circuitos.test.ts (2026-07-28):
+        2 circuitos ADD-*, nenhum ILUM-*/TUG-*
+    - tipo: "Corroboracao arquitetural"
+      referencia: "src/domain/calculo/cargas-adicionais.ts — VA de carga adicional sempre derivou de entrada, nunca de resultado"
+    - tipo: "Corroboracao de produto"
+      referencia: >-
+        HANDOFF-CORRECAO-CIRCUITOS-TENSAO-INCOMPATIVEL-to-DEV.md (8o criterio) e
+        ANALISE-PLANEJADOR-DE-CIRCUITOS.md §4.3 — escopos vizinhos, nao sobrepostos
+  efeito_no_processo: >-
+    Os 4 ACs da story rastreiam para PP-1 (requisito da propria story), e nao mais para uma
+    motivacao a ser descoberta pelo @dev. A Task 5 foi REBAIXADA de mecanismo de conformidade
+    para registro complementar.
+
+po_corrections_applied:
+  - "Secao 'PP-1 — Principio de produto declarado por esta story' adicionada, com tabela de rastreabilidade e limite anti-invencao explicito."
+  - "Secao 'Decisao do @po sobre rastreabilidade' adicionada: a declaracao do requisito nao pode ficar delegada ao Dev Agent Record (autoridade de @po sobre AC/escopo)."
+  - "Secao 'Valor de negocio' adicionada (beneficiario x valor + custo de nao fazer) — item 7 do checklist."
+  - "Complexidade explicitada como XS / 1 ponto — item 6 do checklist."
+  - "Correcao de precisao factual: HANDOFF-CORRECAO-CIRCUITOS-TENSAO-INCOMPATIVEL-to-DEV.md esta 'Ready for Dev' (linha 6), nao 'Done'; e a rotulagem 'AC8' foi trocada por '8o item da lista de Criterios de aceite' (o documento nao numera seus criterios)."
+  - "Campo evidencia.teste_falhando.observado de BLK-DERIVAR-CIRCUITOS-01 corrigido de '1 circuito' para os 2 circuitos reais, com observado_valor_anterior preservado e evidencia de reexecucao anexada."
+  - "Handoffs renomeados do prefixo incorreto MOD-CC-DERIVAR-CIRCUITOS para o story-id canonico DERIVAR-CIRCUITOS-1."
+
+po_corrections_scope_note: >-
+  Nenhuma correcao alterou o comportamento a ser preservado, os 4 ACs funcionais ou as tasks.
+  Todas ficaram dentro da autoridade de @po sobre Title/Description/AC/Scope
+  (.claude/rules/story-lifecycle.md, 'Story File Update Rules').
+
+escopo_para_dev:
+  arquivo_unico_editavel: "tests/domain/calculo/derivar-circuitos.test.ts (dentro de sistema-de-instala-es-el-tricas-sie-main/)"
+  arquivo_de_producao: "src/domain/calculo/derivar-circuitos.ts — NAO EDITAR (Task 6, guarda de escopo)"
+  tasks:
+    - id: "Task 1"
+      ac: "AC1, AC3"
+      acao: >-
+        Substituir a assercao de it('dependencia sem resultado e ignorada') (linhas 84-86) pelo
+        comportamento verificado: ADD-Sala-Chuveiro (tue, 5600 VA, tensao_V 220) e
+        ADD-Sala-Lampada (iluminacao, 200 VA, tensao_V 127), sem ILUM-Sala nem TUG-Sala.
+        Renomear o it para descrever o comportamento real.
+    - id: "Task 2"
+      ac: "AC2"
+      acao: "Novo it com dependencia sem resultado e cargasAdicionais: [] — asserir toEqual([])."
+    - id: "Task 3"
+      ac: "AC4"
+      acao: >-
+        Novo it com PadraoFornecimento sistema 'tri' sem tensao_fase_neutro (vIlumTug undefined),
+        com resultado presente e cargas adicionais validas — asserir toEqual([]).
+    - id: "Task 4"
+      ac: "DoD"
+      acao: "npm run lint, npx tsc --noEmit, npm test (0 arquivos falhando) e npm run build, todos de dentro do submodulo."
+    - id: "Task 5"
+      ac: "Artigo IV (complementar)"
+      acao: >-
+        Registrar no Dev Agent Record se ha motivacao funcional adicional nao documentada.
+        Se nao houver, registrar explicitamente a ausencia. A conformidade da story NAO depende
+        deste registro — ela ja e garantida por PP-1.
+    - id: "Task 6"
+      ac: "Guarda de escopo"
+      acao: >-
+        Nao modificar src/domain/calculo/derivar-circuitos.ts. Se durante a implementacao for
+        identificado um DEFEITO REAL (nao apenas ausencia de story), PARAR e escalar antes de
+        reverter ou alterar o arquivo de producao.
+
+dev_must_know:
+  - id: "DEV-01"
+    topic: "Valor verificado, nao o valor do blocker antigo"
+    note: >-
+      Os ACs usam 2 circuitos ADD-* (Chuveiro + Lampada), confirmados por reexecucao real do teste.
+      A versao antiga do blocker dizia '1 circuito ADD-Sala-Lampada' — ja corrigida por @po, com o
+      valor anterior preservado em observado_valor_anterior. Nao usar o valor antigo como referencia.
+  - id: "DEV-02"
+    topic: "O teste vermelho e o alvo, o src nao"
+    note: >-
+      O caminho errado obvio aqui e 'consertar o teste vermelho' revertendo o guard `!r` no src/.
+      Isso viola PP-1 e a decisao explicita do usuario. O comportamento do codigo esta CORRETO;
+      o que esta desatualizado e a assercao do teste.
+  - id: "DEV-03"
+    topic: "Fixtures ja existem"
+    note: >-
+      padraoBi, entradaSala, resultadoSala e ref() ja existem no proprio arquivo de teste.
+      Para AC4, src/domain/modelo/padrao-fornecimento.ts declara tensao_fase_neutro como opcional
+      (Tensao | undefined) — e o que torna vIlumTug undefined no fixture 'tri'.
+  - id: "DEV-04"
+    topic: "AC3 e nao-regressao pura"
+    note: >-
+      Os 11 testes hoje verdes do arquivo devem continuar passando SEM alteracao de assercao.
+      Alterar qualquer um deles para acomodar a mudanca e sinal de que algo saiu do escopo.
+  - id: "DEV-05"
+    topic: "Por que isto e urgente"
+    note: >-
+      Este teste vermelho e o unico bloqueio do gate tecnico do ciclo inteiro
+      (Test Files 1 failed | 125 passed). Ele retem inclusive o push das stories MOD-QT-2-*,
+      que sao de outro dominio. Fechar esta story libera o gate_devops de BLK-DERIVAR-CIRCUITOS-01.
+  - id: "DEV-06"
+    topic: "Debito conhecido, nao AC"
+    note: >-
+      Nao existe cobertura de integracao para o cenario RASCUNHO nas telas de Correntes/Divisor
+      de Circuitos, em nenhuma direcao. Isso esta registrado como debito conhecido e esta
+      explicitamente FORA DE ESCOPO desta story — nao criar testes de integracao/E2E aqui.
+
+blocked_for_dev:
+  - "Alterar ou reverter src/domain/calculo/derivar-circuitos.ts (salvo defeito real identificado e ESCALADO antes, conforme Task 6)."
+  - "Tocar em src/domain/queda-tensao/ — outro agente trabalha nesse dominio em paralelo."
+  - "Tocar nas stories MOD-QT-2-01, MOD-QT-2-02, MOD-QT-2-03, MOD-QT-2-04 ou nos artefatos do workflow MOD-QT-2-VERQT."
+  - "Alterar as telas/servicos de Correntes ou Divisor de Circuitos (servico-corrente.ts, servico-divisao-circuitos.ts, componentes de UI)."
+  - "Criar testes de integracao/E2E para o cenario RASCUNHO (fora de escopo, debito conhecido)."
+  - "Alterar assercoes dos 11 testes hoje verdes do arquivo (AC3)."
+  - "git commit, git push, gh pr create/merge ou deploy (commit/push sao exclusivos de @devops e sujeitos a autorizacao explicita do usuario)."
+  - "Afirmar que a motivacao historica do comportamento esta 'confirmada' sem fonte documental nova (Artigo IV)."
+
+dev_exit_criteria: >-
+  Definition of Done da story (lint, typecheck, npm test com 0 arquivos falhando, build,
+  File List + Change Log + Dev Agent Record preenchidos) + status InReview +
+  handoff .aiox/handoffs/DERIVAR-CIRCUITOS-1-dev-to-qa.yaml

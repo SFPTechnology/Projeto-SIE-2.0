@@ -1,0 +1,801 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:10:52.613Z",
+  "source_files": [
+    "README.md",
+    "battle-card.md",
+    "comparison-matrix.md",
+    "executive-report.md",
+    "gap-analysis.md",
+    "inventory-captacity.md",
+    "inventory-moneyprinterturbo.md",
+    "inventory-openshorts.md",
+    "metadata.canonical.json",
+    "metadata.json",
+    "scorecard.md"
+  ],
+  "benchmark": {
+    "slug": "oss-shortform-pipelines",
+    "title": "Bench — OSS Shortform Pipelines (Submagic Lens)",
+    "date": "2026-05-06",
+    "type": "technology",
+    "variant": "6-way",
+    "analyst": "universal-bench-analyst"
+  },
+  "players": [
+    {
+      "key": "openshorts",
+      "name": "Openshorts",
+      "category": "unknown"
+    },
+    {
+      "key": "moneyprinterturbo",
+      "name": "Moneyprinterturbo",
+      "category": "unknown"
+    },
+    {
+      "key": "captacity",
+      "name": "Captacity",
+      "category": "unknown"
+    },
+    {
+      "key": "a",
+      "name": "OpenShorts",
+      "category": "unknown"
+    },
+    {
+      "key": "b",
+      "name": "MoneyPrinterTurbo",
+      "category": "unknown"
+    },
+    {
+      "key": "c",
+      "name": "Captacity",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "openshorts",
+    "coverage": "structured",
+    "sources": 24,
+    "waves": 0,
+    "dimensions": 7
+  },
+  "matrix": {
+    "players": [
+      "openshorts",
+      "moneyprinterturbo",
+      "captacity"
+    ],
+    "dimensions": [
+      {
+        "id": "D1",
+        "label": "Features (proximidade Submagic)",
+        "weight": 0
+      },
+      {
+        "id": "D2",
+        "label": "Maintenance & Activity (90d)",
+        "weight": 0
+      },
+      {
+        "id": "D3",
+        "label": "DX & Setup Effort",
+        "weight": 0
+      },
+      {
+        "id": "D4",
+        "label": "Output Quality (Submagic-like)",
+        "weight": 0
+      },
+      {
+        "id": "D5",
+        "label": "Customization (extensibilidade do código)",
+        "weight": 0
+      },
+      {
+        "id": "D6",
+        "label": "Documentation",
+        "weight": 0
+      },
+      {
+        "id": "D7",
+        "label": "License Permissiveness",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "D1",
+        "label": "Features (proximidade Submagic)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "openshorts",
+            "score": 88,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "moneyprinterturbo",
+            "score": 52,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "captacity",
+            "score": 18,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "label": "Maintenance & Activity (90d)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "openshorts",
+            "score": 90,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "moneyprinterturbo",
+            "score": 82,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "captacity",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D3",
+        "label": "DX & Setup Effort",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "openshorts",
+            "score": 78,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "moneyprinterturbo",
+            "score": 58,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "captacity",
+            "score": 92,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D4",
+        "label": "Output Quality (Submagic-like)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "openshorts",
+            "score": 82,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "moneyprinterturbo",
+            "score": 60,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "captacity",
+            "score": 70,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D5",
+        "label": "Customization (extensibilidade do código)",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "openshorts",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "moneyprinterturbo",
+            "score": 80,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "captacity",
+            "score": 65,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D6",
+        "label": "Documentation",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "openshorts",
+            "score": 85,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "moneyprinterturbo",
+            "score": 78,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "captacity",
+            "score": 60,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      },
+      {
+        "id": "D7",
+        "label": "License Permissiveness",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "openshorts",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "moneyprinterturbo",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          },
+          {
+            "player": "captacity",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "scorecard.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "openshorts",
+        "score": 86.14
+      },
+      {
+        "player": "moneyprinterturbo",
+        "score": 72.86
+      },
+      {
+        "player": "captacity",
+        "score": 58.57
+      }
+    ],
+    "method": "Derived from markdown table in scorecard.md"
+  },
+  "duels": [
+    {
+      "left": "openshorts",
+      "right": "moneyprinterturbo",
+      "winner": "openshorts",
+      "left_wins": 5,
+      "right_wins": 0,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Features (proximidade Submagic)",
+          "left_score": 88,
+          "right_score": 52,
+          "winner": "openshorts"
+        },
+        {
+          "dimension": "D2",
+          "label": "Maintenance & Activity (90d)",
+          "left_score": 90,
+          "right_score": 82,
+          "winner": "openshorts"
+        },
+        {
+          "dimension": "D3",
+          "label": "DX & Setup Effort",
+          "left_score": 78,
+          "right_score": 58,
+          "winner": "openshorts"
+        },
+        {
+          "dimension": "D4",
+          "label": "Output Quality (Submagic-like)",
+          "left_score": 82,
+          "right_score": 60,
+          "winner": "openshorts"
+        },
+        {
+          "dimension": "D5",
+          "label": "Customization (extensibilidade do código)",
+          "left_score": 80,
+          "right_score": 80,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Documentation",
+          "left_score": 85,
+          "right_score": 78,
+          "winner": "openshorts"
+        },
+        {
+          "dimension": "D7",
+          "label": "License Permissiveness",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "openshorts",
+      "right": "captacity",
+      "winner": "openshorts",
+      "left_wins": 5,
+      "right_wins": 1,
+      "ties": 1,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Features (proximidade Submagic)",
+          "left_score": 88,
+          "right_score": 18,
+          "winner": "openshorts"
+        },
+        {
+          "dimension": "D2",
+          "label": "Maintenance & Activity (90d)",
+          "left_score": 90,
+          "right_score": 5,
+          "winner": "openshorts"
+        },
+        {
+          "dimension": "D3",
+          "label": "DX & Setup Effort",
+          "left_score": 78,
+          "right_score": 92,
+          "winner": "captacity"
+        },
+        {
+          "dimension": "D4",
+          "label": "Output Quality (Submagic-like)",
+          "left_score": 82,
+          "right_score": 70,
+          "winner": "openshorts"
+        },
+        {
+          "dimension": "D5",
+          "label": "Customization (extensibilidade do código)",
+          "left_score": 80,
+          "right_score": 65,
+          "winner": "openshorts"
+        },
+        {
+          "dimension": "D6",
+          "label": "Documentation",
+          "left_score": 85,
+          "right_score": 60,
+          "winner": "openshorts"
+        },
+        {
+          "dimension": "D7",
+          "label": "License Permissiveness",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "moneyprinterturbo",
+      "right": "captacity",
+      "winner": "moneyprinterturbo",
+      "left_wins": 4,
+      "right_wins": 2,
+      "ties": 1,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Features (proximidade Submagic)",
+          "left_score": 52,
+          "right_score": 18,
+          "winner": "moneyprinterturbo"
+        },
+        {
+          "dimension": "D2",
+          "label": "Maintenance & Activity (90d)",
+          "left_score": 82,
+          "right_score": 5,
+          "winner": "moneyprinterturbo"
+        },
+        {
+          "dimension": "D3",
+          "label": "DX & Setup Effort",
+          "left_score": 58,
+          "right_score": 92,
+          "winner": "captacity"
+        },
+        {
+          "dimension": "D4",
+          "label": "Output Quality (Submagic-like)",
+          "left_score": 60,
+          "right_score": 70,
+          "winner": "captacity"
+        },
+        {
+          "dimension": "D5",
+          "label": "Customization (extensibilidade do código)",
+          "left_score": 80,
+          "right_score": 65,
+          "winner": "moneyprinterturbo"
+        },
+        {
+          "dimension": "D6",
+          "label": "Documentation",
+          "left_score": 78,
+          "right_score": 60,
+          "winner": "moneyprinterturbo"
+        },
+        {
+          "dimension": "D7",
+          "label": "License Permissiveness",
+          "left_score": 100,
+          "right_score": 100,
+          "winner": "tie"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "openshorts",
+          "score": 86.14,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "moneyprinterturbo",
+          "score": 72.86,
+          "delta": ""
+        },
+        {
+          "rank": 3,
+          "player": "captacity",
+          "score": 58.57,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "openshorts",
+          "score": 86.14
+        },
+        {
+          "player": "moneyprinterturbo",
+          "score": 72.86
+        },
+        {
+          "player": "captacity",
+          "score": 58.57
+        }
+      ],
+      "verdict": "Openshorts vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-analysis-1",
+      "title": "OpenShorts — Gaps vs Submagic Pro",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-2",
+      "title": "O que JÁ tem paridade ou supera Submagic",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-3",
+      "title": "Gaps reais",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-4",
+      "title": "MoneyPrinterTurbo — Gaps vs Submagic Pro",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-5",
+      "title": "O que JÁ tem",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-6",
+      "title": "Gaps fundamentais",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-7",
+      "title": "Captacity — Gaps vs Submagic Pro",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-8",
+      "title": "O que tem",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-9",
+      "title": "Gaps",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-analysis-10",
+      "title": "Resumo Cross-Repo",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://github.com/mutonby/openshorts",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/unconv/captacity",
+      "file": "README.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://api.github.com/repos/mutonby/openshorts",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://api.github.com/repos/harry0703/MoneyPrinterTurbo",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://api.github.com/repos/unconv/captacity",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo/blob/main/docs/MoneyPrinterTurbo.ipynb",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://aistudio.google.com/app/apikey",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/unconv/captacity/commits/master",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/unconv/captacity/blob/master/setup.py",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/unconv/captacity/blob/master/requirements.txt",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/unconv/captacity/blob/master/README.md",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/unconv/captacity/issues",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo/commits/main",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo/releases",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo/blob/main/requirements.txt",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo/blob/main/README.md",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo.git",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "http://localhost:8501",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "http://localhost:8080/docs",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/mutonby/openshorts/commits/main",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/mutonby/openshorts/blob/main/requirements.txt",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://github.com/mutonby/openshorts/blob/main/README.md",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    },
+    {
+      "url": "http://localhost:5175",
+      "file": "bench-output-dash.json",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "README.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "battle-card.md",
+      "role": "battle-card",
+      "format": "md"
+    },
+    {
+      "file": "comparison-matrix.md",
+      "role": "comparison-matrix",
+      "format": "md"
+    },
+    {
+      "file": "executive-report.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-analysis.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "inventory-captacity.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventory-moneyprinterturbo.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "inventory-openshorts.md",
+      "role": "inventory",
+      "format": "md"
+    },
+    {
+      "file": "metadata.canonical.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "scorecard.md",
+      "role": "scorecard",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {}
+}

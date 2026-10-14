@@ -1,0 +1,164 @@
+{
+  "bench_id": "servicos-ia-brasil-solo-bootstrap-2026",
+  "bench_type": "product",
+  "subtype": "service_offering_comparison",
+  "created": "2026-05-17",
+  "operator": "@oalanicolas",
+  "analyst": "bench-analyst v3.0",
+  "decision_lens": "solo_founder_first_service_brazil_2026",
+  "lens_constraints": {
+    "team_size": "solo_founder_no_team",
+    "horizon_days": 90,
+    "primary_goal": "cash_positive_fast",
+    "secondary_goal": "build_defensible_asset_for_compounding"
+  },
+  "weight_pack": {
+    "TTFR": 0.25,
+    "operating_margin": 0.2,
+    "defensibility": 0.2,
+    "solo_feasibility": 0.15,
+    "recurrence": 0.1,
+    "anti_commoditization": 0.05,
+    "low_regulatory_risk": 0.05
+  },
+  "subjects": [
+    {
+      "id": "mentoria-premium",
+      "label": "Mentoria/Formação Premium IA",
+      "icp_target": "ICP-A — Empresário-Dono ≥ R$ 100k/mês",
+      "ticket_range_brl": [
+        5000,
+        300000
+      ],
+      "research_composite": 5
+    },
+    {
+      "id": "automacao-n8n-vertical",
+      "label": "Automação n8n+Make+RPA+LLM Verticalizada",
+      "icp_target": "ICP-B — PME/Mid R$ 1-50M/ano",
+      "ticket_range_brl": [
+        5000,
+        80000
+      ],
+      "research_composite": 4.7
+    },
+    {
+      "id": "whatsapp-vertical",
+      "label": "Bot WhatsApp Vertical Específico",
+      "icp_target": "ICP-B — PME (restaurante/clínica/imob)",
+      "ticket_range_brl": [
+        187,
+        5000
+      ],
+      "research_composite": 4.3
+    },
+    {
+      "id": "sdr-ia-voice-hitl",
+      "label": "SDR IA com Voz + Human-in-the-Loop",
+      "icp_target": "ICP-B — B2B mid-market",
+      "ticket_range_brl": [
+        2000,
+        150000
+      ],
+      "research_composite": 4.3
+    },
+    {
+      "id": "lgpd-governanca",
+      "label": "Governança LGPD + Marco IA",
+      "icp_target": "ICP-C — Enterprise Regulado",
+      "ticket_range_brl": [
+        50000,
+        2000000
+      ],
+      "research_composite": 4.3
+    },
+    {
+      "id": "cyber-ia",
+      "label": "Cybersecurity com IA (SOC/SIEM)",
+      "icp_target": "ICP-C — Enterprise",
+      "ticket_range_brl": [
+        100000,
+        1000000
+      ],
+      "research_composite": 4.7
+    },
+    {
+      "id": "preditivo-customizado",
+      "label": "Análise Preditiva / Data Science Custom",
+      "icp_target": "ICP-C — Enterprise com dado estruturado",
+      "ticket_range_brl": [
+        200000,
+        3000000
+      ],
+      "research_composite": 4
+    },
+    {
+      "id": "genai-conteudo",
+      "label": "GenAI Conteúdo/Copy (SaaS revenda)",
+      "icp_target": "ICP-D — Solo/Micro",
+      "ticket_range_brl": [
+        100,
+        3000
+      ],
+      "research_composite": 3.7
+    },
+    {
+      "id": "chatbot-generico",
+      "label": "Chatbot Web Genérico",
+      "icp_target": "ICP-D — Solo/Micro",
+      "ticket_range_brl": [
+        100,
+        500
+      ],
+      "research_composite": 2.7
+    }
+  ],
+  "data_sources": [
+    "docs/research/2026-05-11-servicos-ia-brasil-aceitacao-pagamento/02-research-report.md",
+    "docs/research/2026-05-11-servicos-ia-brasil-aceitacao-pagamento/04-icps-deep-dive.md",
+    "docs/research/2026-05-11-servicos-ia-brasil-aceitacao-pagamento/05-comparative-matrix.md",
+    "docs/research/2026-05-11-servicos-ia-brasil-aceitacao-pagamento/quick-wins.md"
+  ],
+  "confidence": "ALTA",
+  "confidence_rationale": "Source research has 88% coverage with 15+ institutional sources. Bench applies a deterministic decision lens on top.",
+  "epistemic_standards_disclosure": {
+    "claims_with_ALTA_confidence": "Ticket ranges, regulatory mappings, ICP fits — sourced from cited research",
+    "claims_with_MEDIA_confidence": "TTFR estimates for solo founder, unit economics under solo constraint — derived heuristics from research benchmarks",
+    "claims_with_BAIXA_confidence": "Defensibility 24-36 month projections — directional, market may shift",
+    "what_was_NOT_validated": "No primary interviews with BR decision-makers; no live A/B of offers; benchmarks LTV:CAC are global B2B SaaS adjusted by 1.2-1.5x for BR slowness"
+  },
+  "deliverables": [
+    "INDEX.md",
+    "MANIFEST.json",
+    "README.md",
+    "battle-card.md",
+    "bench-output-dash.json",
+    "comparison-matrix.json",
+    "comparison-matrix.md",
+    "dashboard-intelligence.md",
+    "deep/defensibility-deep.md",
+    "deep/solo-feasibility.md",
+    "deep/ttfr-analysis.md",
+    "deep/unit-economics.md",
+    "evidence-ledger.json",
+    "evidence-ledger.md",
+    "executive-report.md",
+    "gap-analysis.json",
+    "gap-analysis.md",
+    "implementation-readiness-gate.json",
+    "implementation-readiness-gate.md",
+    "metadata.json",
+    "risk-register.json",
+    "risk-register.md",
+    "scenario-scorecards.json",
+    "scenario-scorecards.md",
+    "scorecard.json",
+    "scorecard.md"
+  ],
+  "benchmark_id": "servicos-ia-brasil-solo-bootstrap-2026",
+  "date": "2026-05-17",
+  "type": "product",
+  "variant": "9-way solo-bootstrap",
+  "verdict": "Mentoria é a aposta principal; n8n vertical é a segunda perna; WhatsApp vertical é entrada rápida. LGPD, Cyber, Preditivo e Chatbot genérico não devem ser iniciados no MVP solo.",
+  "primary_recommendation": "Executar Mentoria Premium como negócio principal, Automação n8n como cross-sell e WhatsApp Vertical como caixa tático."
+}

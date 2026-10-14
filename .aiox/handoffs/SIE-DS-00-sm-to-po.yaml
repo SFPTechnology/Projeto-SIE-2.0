@@ -1,0 +1,33 @@
+handoff:
+  from_agent: "@sm"
+  to_agent: "@po"
+  story_context:
+    story_id: "SIE-DS-00"
+    story_path: "docs/stories/story-SIE-DS-00-readiness-namespace-canonico.md"
+    story_status: "Draft"
+    current_task: "*draft concluído; aguardando *validate-story-draft"
+    branch: "master"
+  decisions:
+    - "SIE-DS-00 escopada como story de decisão/documentação, sem código de produção — condição de entrada obrigatória para SIE-DS-01 a SIE-DS-07 (docs/workflows/WORKFLOW-SDC-SIE-COMMAND-CENTER-YOLO.md §8)."
+    - "AC4 documenta o gap ARCHITECT_PHASE_UNSUPPORTED sem propor bypass; resolução declarada fora do escopo desta story (framework core, L1 never-modify)."
+    - "Entregável único: docs/architecture/DECISION-SIE-DS-00-readiness-namespace-canonico.md (a ser criado por @dev conforme veredito ratificado por @architect)."
+  files_modified:
+    - "docs/stories/story-SIE-DS-00-readiness-namespace-canonico.md"
+  blockers: []
+  next_action: "@po executa *validate-story-draft SIE-DS-00 (10-point checklist); se GO, handoff automático para @architect conforme §11-12 do workflow-fonte."
+
+story_draft_checklist_self_assessment:
+  performed_by: "@sm"
+  reference: ".aiox-core/product/checklists/story-draft-checklist.md"
+  result:
+    goal_and_context_clarity: "PASS"
+    technical_implementation_guidance: "PASS"
+    reference_effectiveness: "PASS — todas as citações apontam seção/arquivo específico com trecho resumido inline"
+    self_containment: "PASS"
+    testing_guidance: "PASS (adaptado) — story não gera código executável; validação = review @po + ratificação @architect, não testes automatizados"
+    coderabbit_integration: "PASS — seção presente e populada; complexidade Low justificada por escopo de decisão sem código"
+  final_assessment: "READY"
+  clarity_score: 9
+  notes: >
+    Nenhum requisito, aprovação ou autorização foi inventado. Todas as referências
+    técnicas foram verificadas nos arquivos-fonte reais listados em Dev Notes da story.

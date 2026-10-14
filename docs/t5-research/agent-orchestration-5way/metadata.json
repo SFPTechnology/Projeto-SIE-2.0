@@ -1,0 +1,119 @@
+{
+  "bench": {
+    "id": "agent-orchestration-5way",
+    "type": "technology",
+    "variant": "n-way",
+    "created_at": "2026-04-15",
+    "analyst": "spy/bench-analyst (backfilled)"
+  },
+  "subjects": [
+    {
+      "key": "bmad",
+      "name": "Bmad",
+      "category": "unknown"
+    },
+    {
+      "key": "paperclip",
+      "name": "Paperclip",
+      "category": "unknown"
+    },
+    {
+      "key": "gsd_2",
+      "name": "Gsd 2",
+      "category": "unknown"
+    },
+    {
+      "key": "crewai",
+      "name": "Crewai",
+      "category": "unknown"
+    },
+    {
+      "key": "gsd_1",
+      "name": "Gsd 1",
+      "category": "unknown"
+    },
+    {
+      "key": "sinkra_hub",
+      "name": "Sinkra Hub",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "D1",
+        "name": "Orchestration practices",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D2",
+        "name": "Quality gates",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D3",
+        "name": "Extracted business rules",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D4",
+        "name": "Exclusive practices",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D5",
+        "name": "SINKRA Score",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D6",
+        "name": "Compliance Score",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D7",
+        "name": "Runtime adapters",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D8",
+        "name": "Memory/persistence",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D9",
+        "name": "Security practices",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D10",
+        "name": "Parallelism support",
+        "weight_pct": 10,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:09:33.693Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

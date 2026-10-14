@@ -1,0 +1,162 @@
+{
+  "bench": {
+    "id": "skill-frontmatter-6way",
+    "type": "product",
+    "variant": "n-way",
+    "created_at": "2026-04-06",
+    "analyst": "spy/bench-analyst (backfilled)"
+  },
+  "subjects": [
+    {
+      "key": "sinkra",
+      "name": "Sinkra",
+      "category": "unknown"
+    },
+    {
+      "key": "openclaw",
+      "name": "Openclaw",
+      "category": "unknown"
+    },
+    {
+      "key": "bmad",
+      "name": "Bmad",
+      "category": "unknown"
+    },
+    {
+      "key": "gsd_2",
+      "name": "Gsd 2",
+      "category": "unknown"
+    },
+    {
+      "key": "hermes",
+      "name": "Hermes",
+      "category": "unknown"
+    }
+  ],
+  "scoring": {
+    "dimensions": [
+      {
+        "id": "D1",
+        "name": "`name`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D2",
+        "name": "`description`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D3",
+        "name": "`version`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D4",
+        "name": "`user-invocable`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D5",
+        "name": "`allowed-tools`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D6",
+        "name": "`model`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D7",
+        "name": "`effort`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D8",
+        "name": "`context`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D9",
+        "name": "`agent`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D10",
+        "name": "`paths`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D11",
+        "name": "`shell`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D12",
+        "name": "`hooks`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D13",
+        "name": "`arguments`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D14",
+        "name": "`argument-hint`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D15",
+        "name": "`when_to_use`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D16",
+        "name": "`disable-model-invocation`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D17",
+        "name": "`maxTurns`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      },
+      {
+        "id": "D18",
+        "name": "`memory`",
+        "weight_pct": 6,
+        "rationale": "backfilled — recover original rationale from source materials"
+      }
+    ]
+  },
+  "context": {
+    "central_tension": "Backfilled from bench-output-dash.json — populate from source materials."
+  },
+  "backfill": {
+    "generated_at": "2026-05-11T22:09:33.941Z",
+    "generator": "scripts/bench-backfill-metadata.cjs",
+    "date_source": "git:folder",
+    "caveats": [
+      "Subject categories are 'unknown' — review against actual repos/products.",
+      "Dimension weight_pct redistributed proportionally — verify against original scorecard if available.",
+      "Dimension rationale is placeholder — recover from executive-report.md or INDEX.md.",
+      "central_tension is placeholder — fill from the bench's narrative artifact."
+    ]
+  }
+}

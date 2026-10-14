@@ -1,0 +1,90 @@
+# Handoff — @qa (Quinn) → @devops (Gage)
+# Relatório de prontidão de release do épico MOD-PROT.
+# Gerado pelo workflow story-development-cycle-mod-prot-qa-remediation-yolo, passo 9/9.
+# Criado: 2026-08-08
+
+handoff:
+  from_agent: qa
+  to_agent: devops
+  last_command: qa-regate
+  status: BLOCKED
+  blocker: github_auth_invalid
+  consumed: false
+
+next_action: >-
+  NÃO EXECUTAR PUSH. Aguardar o dono do projeto resolver a autenticação GitHub.
+  Quando resolvida, seguir a sequência em sequencia_apos_auth_ok.
+
+travas_de_liberacao:
+  - id: mnt_001
+    status: ABERTA
+    evidencia: >-
+      Gate MOD-PROT-1 re-emitido como PASS; MNT-001 marcado RESOLVED. A adaptação ao
+      VeredictoMODCC está commitada em 2ecd1ca. git status limpo em
+      src/domain/dimensionamento-disjuntores/. tsc --noEmit exit 0.
+  - id: github_auth
+    status: FECHADA
+    evidencia: 'curl api.github.com com $(gh auth token) → HTTP 401 (verificado 2026-08-08)'
+    detalhe: >-
+      Bloqueio ativo desde 2026-08-05. Token do keyring inválido. Sem SSH e sem
+      credencial no Git Credential Manager como alternativa. Só o dono resolve,
+      interativamente. Ver .aiox/handoffs/TECHDEBT-ND01-devops-push-BLOCKED-auth.yaml
+    comando_do_dono: 'gh auth login -h github.com -p https -w  (PowerShell nativo, TTY real)'
+
+estado_do_epico:
+  stories:
+    - { id: MOD-PROT-1, status: Done, gate: PASS }
+    - { id: MOD-PROT-2, status: Done, gate: CONCERNS }
+    - { id: MOD-PROT-3, status: Done, gate: PASS }
+    - { id: MOD-PROT-4, status: Done, gate: CONCERNS }
+    - { id: MOD-PROT-5, status: Done, gate: PASS }
+
+quality_gates_na_revisao_2ec54cd:
+  lint: 'exit 0'
+  typecheck: 'exit 0'
+  build: 'exit 0'
+  build_spa: 'exit 0'
+  test: '1214/1215 — falha única é flake de timeout de 5s, passa com --testTimeout=60000'
+  docs_tutorial_check:
+    unidade_mod_prot: 'OK'
+    global: 'exit 1 — drift preexistente em 4 unidades de OUTRAS frentes (DOC-003)'
+
+commits_locais_nao_publicados_submodulo:
+  branch: feature/nbr5410-conformidade-closeout
+  aviso_refs_stale: >-
+    As refs origin/* locais nunca foram atualizadas porque o git fetch jamais teve
+    sucesso. A lista abaixo é o melhor conhecimento local e NÃO é confiável.
+    Rodar git fetch antes de qualquer decisão de escopo.
+  lista:
+    - { sha: 2ec54cd, msg: 'docs(mod-prot): adjudica REQ-002 no ADR (D7)' }
+    - { sha: 2ecd1ca, msg: 'fix(mod-prot): adapta motor ao VeredictoMODCC e revisa tutorial' }
+    - { sha: f3f05a1, msg: 'docs(mod-prot): adiciona ADR de contrato de integracao' }
+    - { sha: 9f1b9e8, msg: 'feat(mod-prot): implementa modulo de dimensionamento de disjuntores' }
+    - { sha: e08214a, msg: 'docs(technical-debt): refresh do assessment + resposta ao ND-01' }
+
+ponteiro_do_submodulo_no_pai:
+  aviso: >-
+    O ponteiro commitado em fc9a025 aponta para f3f05a1. Com 2ecd1ca e 2ec54cd por cima,
+    o ponteiro está DEFASADO. NÃO commitar ponteiro novo antes de o push do submódulo
+    ter sido feito — registrar SHA local-only cria referência pendente para quem clonar.
+
+sequencia_apos_auth_ok:
+  - passo: 1
+    cmd: 'cd sistema-de-instala-es-el-tricas-sie-main && git fetch origin feature/nbr5410-conformidade-closeout'
+    criterio: 'Se houver commit novo/inesperado no remoto: PARAR e reportar. Não forçar, não fazer merge.'
+  - passo: 2
+    cmd: 'git log --oneline origin/feature/nbr5410-conformidade-closeout..HEAD'
+    criterio: 'CONFIRMAR COM O DONO o escopo — o push publica 5 commits, incluindo e08214a (technical-debt) de outra frente.'
+  - passo: 3
+    cmd: 'AIOX_ACTIVE_AGENT=devops git push origin feature/nbr5410-conformidade-closeout'
+    nota: 'Prefixo obrigatório — hook enforce-git-push-authority.cjs. Nunca desabilitar.'
+  - passo: 4
+    cmd: '(repo pai) commitar ponteiro atualizado do submódulo — SOMENTE após o passo 3 concluir'
+
+ressalvas_abertas_nao_bloqueantes:
+  - { id: REQ-001, severity: low, owner: po, resumo: 'AC5 da MOD-PROT-2 cita supabase/migrations/ inexistente' }
+  - { id: REL-001, severity: medium, owner: data-engineer, resumo: 'Migration 0014 sem evidência de aplicação no Supabase' }
+  - { id: DOC-002, severity: low, owner: dev, resumo: 'Tabela sem scope="col" e sem <caption>' }
+  - { id: TEST-002, severity: low, owner: qa, resumo: 'Sem teste a11y/VRT na rota dimensionamento-disjuntores' }
+  - { id: DOC-003, severity: low, owner: multiplas_frentes, resumo: 'docs:tutorial:check global vermelho por 4 unidades alheias' }
+  - { id: MOD-PROT-BL-01, severity: low, owner: sm, resumo: 'Rastreio de I2, Icc e justificativa do override — story de follow-up' }

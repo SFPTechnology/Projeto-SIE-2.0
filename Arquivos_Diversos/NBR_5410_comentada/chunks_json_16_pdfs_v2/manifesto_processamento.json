@@ -1,0 +1,171 @@
+{
+  "configuracao": {
+    "fidelidade": "verbatim-limpo",
+    "idioma": "pt-BR",
+    "tamanho_alvo_tokens": "400-800",
+    "descricao_figuras": true
+  },
+  "resultados": [
+    {
+      "arquivo": "00a_apresentacao.pdf",
+      "paginas": 3,
+      "chunks": 3,
+      "tokens": 1987,
+      "figuras": 0,
+      "tabelas": 0,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/00a_apresentacao/00a_apresentacao_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/00a_apresentacao/chunks.json"
+    },
+    {
+      "arquivo": "00b_introducao.pdf",
+      "paginas": 2,
+      "chunks": 2,
+      "tokens": 1549,
+      "figuras": 0,
+      "tabelas": 1,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/00b_introducao/00b_introducao_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/00b_introducao/chunks.json"
+    },
+    {
+      "arquivo": "00c_sumario.pdf",
+      "paginas": 1,
+      "chunks": 1,
+      "tokens": 467,
+      "figuras": 0,
+      "tabelas": 1,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/00c_sumario/00c_sumario_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/00c_sumario/chunks.json"
+    },
+    {
+      "arquivo": "01_definicoes.pdf",
+      "paginas": 8,
+      "chunks": 13,
+      "tokens": 7493,
+      "figuras": 3,
+      "tabelas": 1,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/01_definicoes/01_definicoes_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/01_definicoes/chunks.json"
+    },
+    {
+      "arquivo": "02_influencias.pdf",
+      "paginas": 8,
+      "chunks": 11,
+      "tokens": 5733,
+      "figuras": 1,
+      "tabelas": 2,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/02_influencias/02_influencias_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/02_influencias/chunks.json"
+    },
+    {
+      "arquivo": "03_choques.pdf",
+      "paginas": 36,
+      "chunks": 59,
+      "tokens": 34339,
+      "figuras": 18,
+      "tabelas": 2,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/03_choques/03_choques_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/03_choques/chunks.json"
+    },
+    {
+      "arquivo": "04_condutores.pdf",
+      "paginas": 22,
+      "chunks": 33,
+      "tokens": 18214,
+      "figuras": 12,
+      "tabelas": 0,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/04_condutores/04_condutores_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/04_condutores/chunks.json"
+    },
+    {
+      "arquivo": "05_sobrecorrentes(1).pdf",
+      "paginas": 28,
+      "chunks": 42,
+      "tokens": 24016,
+      "figuras": 17,
+      "tabelas": 3,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/05_sobrecorrentes(1)/05_sobrecorrentes(1)_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/05_sobrecorrentes(1)/chunks.json"
+    },
+    {
+      "arquivo": "06_dimensionamento.pdf",
+      "paginas": 14,
+      "chunks": 18,
+      "tokens": 10188,
+      "figuras": 7,
+      "tabelas": 1,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/06_dimensionamento/06_dimensionamento_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/06_dimensionamento/chunks.json"
+    },
+    {
+      "arquivo": "07_circuitos_motores.pdf",
+      "paginas": 7,
+      "chunks": 10,
+      "tokens": 5593,
+      "figuras": 7,
+      "tabelas": 0,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/07_circuitos_motores/07_circuitos_motores_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/07_circuitos_motores/chunks.json"
+    },
+    {
+      "arquivo": "08_sobretensoes.pdf",
+      "paginas": 4,
+      "chunks": 3,
+      "tokens": 2183,
+      "figuras": 5,
+      "tabelas": 0,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/08_sobretensoes/08_sobretensoes_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/08_sobretensoes/chunks.json"
+    },
+    {
+      "arquivo": "09_compatibilidade.pdf",
+      "paginas": 6,
+      "chunks": 10,
+      "tokens": 5302,
+      "figuras": 3,
+      "tabelas": 0,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/09_compatibilidade/09_compatibilidade_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/09_compatibilidade/chunks.json"
+    },
+    {
+      "arquivo": "10_harmonicas.pdf",
+      "paginas": 6,
+      "chunks": 8,
+      "tokens": 4923,
+      "figuras": 3,
+      "tabelas": 3,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/10_harmonicas/10_harmonicas_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/10_harmonicas/chunks.json"
+    },
+    {
+      "arquivo": "11_quadros_e_tomadas.pdf",
+      "paginas": 13,
+      "chunks": 19,
+      "tokens": 10868,
+      "figuras": 10,
+      "tabelas": 0,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/11_quadros_e_tomadas/11_quadros_e_tomadas_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/11_quadros_e_tomadas/chunks.json"
+    },
+    {
+      "arquivo": "12_iluminacao.pdf",
+      "paginas": 6,
+      "chunks": 7,
+      "tokens": 4897,
+      "figuras": 4,
+      "tabelas": 0,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/12_iluminacao/12_iluminacao_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/12_iluminacao/chunks.json"
+    },
+    {
+      "arquivo": "13_verificacao_final.pdf",
+      "paginas": 6,
+      "chunks": 6,
+      "tokens": 3569,
+      "figuras": 3,
+      "tabelas": 0,
+      "markdown": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/13_verificacao_final/13_verificacao_final_markdown_limpo.md",
+      "json": "/workspace/scratch/54eb5c53c9f2/output/chunks_por_pdf/13_verificacao_final/chunks.json"
+    }
+  ],
+  "erros_validacao": []
+}

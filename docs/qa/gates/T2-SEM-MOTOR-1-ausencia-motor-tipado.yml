@@ -1,0 +1,156 @@
+schema: 1
+story: "T2-SEM-MOTOR-1"
+story_title: "Ausência de motor como tipo em MOD-CC e MOD-SEC"
+story_path: "docs/stories/story-T2-SEM-MOTOR-1-ausencia-motor-tipado.md"
+gate: FAIL
+status_reason: >-
+  O núcleo funcional de SEM-MOTOR está tipado e passa em 68/68 testes focados, porém
+  AC10 e as pré-condições do workflow falham: story/Task 6 ainda InProgress, suíte global
+  vermelha, lint integral sem conclusão, CodeRabbit indisponível e entrega não commitada/isolada.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-08-05T22:40:39-03:00"
+expires: "2026-08-19T22:40:39-03:00"
+quality_score: 50
+
+top_issues:
+  - id: "QA-T2-001"
+    severity: high
+    category: governance
+    finding: >-
+      A story está InProgress, Task 6 incompleta e os arquivos T2 estão misturados a um
+      worktree amplo não commitado; a story em si também está untracked no repositório raiz.
+      Isso viola as pré-condições do workflow QA e impede atribuir/revisar um diff isolado.
+    suggested_owner: dev
+    suggested_action: >-
+      Isolar a entrega, concluir os checkboxes reais da Task 6 e apresentar a story em
+      Review/InReview com diff ou commit identificável antes da nova revisão.
+    refs:
+      - "docs/stories/story-T2-SEM-MOTOR-1-ausencia-motor-tipado.md:5"
+      - "docs/stories/story-T2-SEM-MOTOR-1-ausencia-motor-tipado.md:163"
+
+  - id: "QA-T2-002"
+    severity: high
+    category: quality-gates
+    finding: >-
+      Os MUSTs de Quality First não foram satisfeitos: npm test global registra 11 falhas,
+      npm run lint integral expira sem resultado e o CodeRabbit WSL encerra com código 1
+      por incompatibilidade do binário, sem relatório de severidades.
+    suggested_owner: dev
+    suggested_action: >-
+      Obter exit code 0 para lint e suíte global e restaurar o CodeRabbit; falhas alheias
+      devem ser corrigidas ou isoladas por baseline/commit reproduzível, não presumidas como PASS.
+    refs:
+      - "docs/stories/story-T2-SEM-MOTOR-1-ausencia-motor-tipado.md:164"
+      - "docs/stories/story-T2-SEM-MOTOR-1-ausencia-motor-tipado.md:254"
+
+  - id: "QA-T2-003"
+    severity: medium
+    category: test-coverage
+    finding: >-
+      A subtask declara cobertura de clientes injetados aprovados e reprovados, mas os testes
+      dos handlers exercitam somente veredito injetado aprovado; os reprovados aparecem apenas
+      em testes de domínio/otimizador, sem validar persistência e processamento pela rota.
+    suggested_owner: dev
+    suggested_action: >-
+      Adicionar um cenário injetado reprovado em tests/api/modulos-mod-cc.test.ts e outro em
+      tests/api/modulos-mod-sec.test.ts, verificando resposta, persistência e resultado C3/C4.
+    refs:
+      - "sistema-de-instala-es-el-tricas-sie-main/tests/api/modulos-mod-cc.test.ts:164"
+      - "sistema-de-instala-es-el-tricas-sie-main/tests/api/modulos-mod-sec.test.ts:214"
+
+  - id: "QA-T2-004"
+    severity: low
+    category: framework
+    finding: >-
+      Dependências declaradas pelo workflow QA não existem nos caminhos configurados:
+      qa-gate-tmpl.yaml, qa-master-checklist.md e technical-preferences.md.
+    suggested_owner: dev
+    suggested_action: "Restaurar ou corrigir os caminhos das dependências do framework AIOX."
+    refs:
+      - ".aiox-core/development/tasks/qa-review-story.md"
+
+waiver:
+  active: false
+
+risk_summary:
+  totals:
+    critical: 0
+    high: 2
+    medium: 1
+    low: 1
+  highest:
+    id: "QA-T2-002"
+    probability: 3
+    impact: 3
+    score: 9
+
+evidence:
+  tests_reviewed:
+    count: 68
+    result: "PASS"
+    focused_files: 6
+  global_suite:
+    result: "FAIL"
+    tests: "11 failed | 1162 passed (1173)"
+    files: "8 failed | 157 passed (165)"
+  spa_vrt_isolated:
+    result: "FAIL_UNRELATED_ASSERTION"
+    tests: "1 failed | 3 passed (4)"
+    note: "Falha espera SUGESTAO; HTML atual mostra MOD-PROT e confirma C3/C4 pendentes."
+  typecheck:
+    result: "PASS"
+  lint_scoped:
+    result: "PASS"
+  build:
+    result: "PASS"
+  build_spa:
+    result: "PASS"
+  coderabbit:
+    result: "UNAVAILABLE"
+    note: "CLI WSL encerra com código 1; diagnóstico anterior: Illegal instruction."
+  risks_identified:
+    count: 4
+  trace:
+    ac_covered: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    ac_gaps: [10]
+
+nfr_validation:
+  security:
+    status: PASS
+    notes: >-
+      Zod valida entrada/saída; sem auth, SQL dinâmico, credenciais, dependencies ou migrations novas.
+  performance:
+    status: PASS
+    notes: >-
+      Atrasos artificiais removidos; mocks respondem imediatamente e timeout downstream preservado.
+  reliability:
+    status: FAIL
+    notes: >-
+      Suíte global e gate automatizado CodeRabbit não estão verdes/reproduzíveis, embora o núcleo T2 passe.
+  maintainability:
+    status: CONCERNS
+    notes: >-
+      Uniões/adaptadores são claros, mas o worktree misto e a cobertura injetada reprovada ausente reduzem auditabilidade.
+
+recommendations:
+  immediate:
+    - action: "Isolar/commit-ar a entrega T2 e reapresentar a story em Review/InReview."
+      refs:
+        - "docs/stories/story-T2-SEM-MOTOR-1-ausencia-motor-tipado.md"
+      owner: "@dev"
+    - action: "Obter lint e npm test globais verdes e restaurar a execução CodeRabbit."
+      refs:
+        - "sistema-de-instala-es-el-tricas-sie-main/package.json"
+      owner: "@dev"
+    - action: "Adicionar testes de veredito injetado reprovado para MOD-CC e MOD-SEC."
+      refs:
+        - "sistema-de-instala-es-el-tricas-sie-main/tests/api/modulos-mod-cc.test.ts"
+        - "sistema-de-instala-es-el-tricas-sie-main/tests/api/modulos-mod-sec.test.ts"
+      owner: "@dev"
+  future:
+    - action: "Restaurar as dependências ausentes do workflow QA no framework AIOX."
+      refs:
+        - ".aiox-core/development/tasks/qa-review-story.md"
+      owner: "@dev"
+
+recommended_status: "InProgress — Changes Required"

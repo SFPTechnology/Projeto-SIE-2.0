@@ -1,0 +1,215 @@
+{
+  "bench_id": "chatwoot-vs-zendesk",
+  "generated": "2026-05-06",
+  "scoring_method": "Each dimension scored 0-100. Weighted sum = total. Confidence levels disclosed per dimension.",
+  "dimensions": [
+    {
+      "id": "C1",
+      "name": "Canais nativos (15%)",
+      "weight": 0.15,
+      "chatwoot": {
+        "score": 92,
+        "rationale": "10 canais nativos incluindo Telegram + TikTok + 3 BSP options WhatsApp; voice e add-on Enterprise; X removido. WhatsApp BYOC (Meta/Twilio/360Dialog) e diferencial real para BR.",
+        "evidence": ["chatwoot.com/pricing", "deepwiki Whatsapp channel doc"],
+        "confidence": "H"
+      },
+      "zendesk": {
+        "score": 95,
+        "rationale": "10 canais nativos incluindo Apple Business Chat (raro) + voice Talk first-class; Telegram/TikTok via marketplace. Voice integrado (vs Chatwoot add-on) e o principal advantage.",
+        "evidence": ["zendesk.com.br/pricing", "tech-research 02-research-report.md"],
+        "confidence": "H"
+      },
+      "delta": -3,
+      "winner_in_dim": "Zendesk (margem pequena por Voice + ABC + breadth marketplace)"
+    },
+    {
+      "id": "C2",
+      "name": "AI capability (20%)",
+      "weight": 0.20,
+      "chatwoot": {
+        "score": 75,
+        "rationale": "Captain AI nativo (auto-resolve, copilot, smart FAQs, memories, multilingual). Built-in (nao add-on). Trade-off: deflection rate nao publicada, credit consumption rules opacas, maturidade <2 anos vs ecosystem peers.",
+        "evidence": ["chatwoot.com/captain", "chatwoot.com/pricing"],
+        "confidence": "M"
+      },
+      "zendesk": {
+        "score": 88,
+        "rationale": "AI Agents (post-Ultimate.ai) + Copilot + QA AI + WFM. Customer outcomes publicados (Freedom 66%, Next 92%, UrbanStems 39% + $100K, Lush 60% + $434K). Productivity 20% via Copilot. Trade-off: AI Agents per-resolution pricing nao publico; fragmentation pos-aquisicao.",
+        "evidence": ["zendesk.com.br/service/ai/", "zendesk customer case studies"],
+        "confidence": "H (outcomes published) / M (per-resolution price opaque)"
+      },
+      "delta": -13,
+      "winner_in_dim": "Zendesk (clear — outcomes publicados + breadth de produtos AI especializados)"
+    },
+    {
+      "id": "C3",
+      "name": "Pricing transparency e TCO real (15%)",
+      "weight": 0.15,
+      "chatwoot": {
+        "score": 95,
+        "rationale": "Tiers publicos $0/$19/$39/$99 sem add-ons necessarios. Self-host = $0 license. Sticker-to-real ratio ~1.0-1.2x (Captain credits overage minor). BYOC reduz Meta markup. Predictable.",
+        "evidence": ["chatwoot.com/pricing", "tech-research 02-research-report.md"],
+        "confidence": "H"
+      },
+      "zendesk": {
+        "score": 50,
+        "rationale": "Pricing $19-$169/agent base + add-ons necessarios (Copilot $50, QA $35, WFM $25, ADPP $50). Real-world multiplier 2-3x. Vendr median deal $47.772/year. Per-tier jumps Team→Growth +62%. AI Agents per-resolution nao publico = forecasting impossible. Pricing BRL publicado e advantage parcial.",
+        "evidence": ["costbench.com/software/help-desk/zendesk/", "eesel.ai pricing 2026", "Vendr marketplace data"],
+        "confidence": "H"
+      },
+      "delta": 45,
+      "winner_in_dim": "Chatwoot (clear, ratio 1.0-1.2x vs 2.0-3.0x)"
+    },
+    {
+      "id": "C4",
+      "name": "Governance/Compliance (10%)",
+      "weight": 0.10,
+      "chatwoot": {
+        "score": 55,
+        "rationale": "GDPR DPA. SOC2 Cloud implicit nao explicit publica. ISO 27001/27018/27701 NAO listados. FedRAMP NAO. HIPAA BAA NAO oferecido. EU residency Cloud nao user-selectable. Audit logs e SSO so Enterprise tier. Self-host e o escape valve real para regulated industries.",
+        "evidence": ["chatwoot.com/pricing", "Public website inspection"],
+        "confidence": "M (absence of public certs is signal but cloud edition may have unpublished posture)"
+      },
+      "zendesk": {
+        "score": 95,
+        "rationale": "SOC 2 Type II + ISO 27001 + ISO 27018 + ISO 27701 + FedRAMP + GDPR Binding Corporate Rules (segunda empresa Irish DPC, 2017) + HIPAA BAA disponivel + Multi-region (US/EU/AU/JP). Caveat: Data Center Location addon Pro/Enterprise REQUER ativacao manual via support (default = data movel sem aviso).",
+        "evidence": ["zendesk.com/trust-center/", "eesel.ai/blog/zendesk-data-residency", "eesel.ai/blog/zendesk-security-and-compliance"],
+        "confidence": "H"
+      },
+      "delta": -40,
+      "winner_in_dim": "Zendesk (clear, gap substancial para regulated industries)"
+    },
+    {
+      "id": "C5",
+      "name": "Ecosystem/Marketplace/integrations (10%)",
+      "weight": 0.10,
+      "chatwoot": {
+        "score": 60,
+        "rationale": "Tens of named integrations (Slack, Shopify, Dialogflow, MS Teams, WordPress, migration tools, custom). API REST + webhooks aberto. Self-hosted = arbitrary DB integration. Sem marketplace curado pra non-technical buyers. Compensa em flexibilidade tecnica.",
+        "evidence": ["github.com/chatwoot README", "chatwoot.com/integrations docs"],
+        "confidence": "H"
+      },
+      "zendesk": {
+        "score": 95,
+        "rationale": "1.977 apps de 1.136 vendors. 75% ARR impacted by marketplace. 58% customers tem 1+ app. AI 21.54% (~425 apps). Categories productivity/analytics/marketing/CRMs/IT/AI. Sandbox environment Enterprise. Maior ecosystem do segmento.",
+        "evidence": ["zendesk.com/blog marketplace", "sqmagazine.co.uk/zendesk-statistics/", "eesel.ai 2026"],
+        "confidence": "H"
+      },
+      "delta": -35,
+      "winner_in_dim": "Zendesk (clear, network effects do marketplace sao um moat real)"
+    },
+    {
+      "id": "C6",
+      "name": "Comunidade/Suporte/Maturidade (10%)",
+      "weight": 0.10,
+      "chatwoot": {
+        "score": 78,
+        "rationale": "GitHub 29.1k stars + 7.2k forks (transparente). G2 rating 4.4/5 (review count modesto ~200-400). 9 anos. Monthly minor releases. Community ethos. Trade-off: review universe menor para validation enterprise.",
+        "evidence": ["github.com/chatwoot/chatwoot", "G2 review snapshots"],
+        "confidence": "H (GitHub) / M (G2 count)"
+      },
+      "zendesk": {
+        "score": 92,
+        "rationale": "G2 4.3/5 com 6.000+ reviews. Market share 14.80% categoria customer experience (lider). 19 anos. 88% reviewers cite ease of use. 76% adoption long-term. 17 meses estimated payback. BR sales/support team. Enterprise scale proven.",
+        "evidence": ["learn.g2.com/zendesk-review (6k+)", "6sense market share data", "G2 statistics 2026"],
+        "confidence": "H"
+      },
+      "delta": -14,
+      "winner_in_dim": "Zendesk (clear em escala, mas Chatwoot tem vantagem de transparencia GitHub)"
+    },
+    {
+      "id": "C7",
+      "name": "Flexibilidade (10%)",
+      "weight": 0.10,
+      "chatwoot": {
+        "score": 100,
+        "rationale": "MIT self-hosted full source no feature gating. Deploy options: Docker Compose, K8s, Heroku, Cloud SaaS. WhatsApp BYOC 3 BSP options. API REST + webhooks + DB access self-host. Forks legitimos (MIT). Vendor lock-in MINIMAL — pode migrar self-host a qualquer momento. Zero equivalente no Zendesk.",
+        "evidence": ["github.com/chatwoot/chatwoot LICENSE", "deepwiki Whatsapp providers"],
+        "confidence": "H"
+      },
+      "zendesk": {
+        "score": 35,
+        "rationale": "SaaS proprietary cloud-only. Self-host IMPOSSIBLE. Sandbox environment Enterprise tier (positivo). Apps via Zendesk Apps Framework custom. Vendor lock-in MAXIMUM. Customization ceiling alto via apps mas sempre dentro do guardrails Zendesk.",
+        "evidence": ["zendesk.com/pricing/ — no self-host SKU"],
+        "confidence": "H"
+      },
+      "delta": 65,
+      "winner_in_dim": "Chatwoot (sem equivalente — gap categorical)"
+    },
+    {
+      "id": "C8",
+      "name": "Brasil-fit (10%)",
+      "weight": 0.10,
+      "chatwoot": {
+        "score": 65,
+        "rationale": "BYOC permite wrap BR BSP (Take Blip, Zenvia) via Cloud API. PT-BR UI mature. Shopify nativa. Sem BRL pricing publicado. Sem VTEX nativa. Sem RD Station nativa. Sem Pix. Sem local support BR team. Sem BR sales team. Self-host BR = $0 e advantage real para PMEs.",
+        "evidence": ["tech-research 02-research-report.md section 2.4", "deepwiki Whatsapp providers"],
+        "confidence": "H"
+      },
+      "zendesk": {
+        "score": 80,
+        "rationale": "Pricing BRL publicado (R$135/R$359/R$755/R$1.105). Suporte PT-BR oficial. Sales BR oficial. Marketplace BR community-built apps (RD Station integration). Caveats: pricing BRL absoluto e proibitivo para PME (R$359 = 5x Octadesk R$79). Sem VTEX nativa, sem Pix nativa.",
+        "evidence": ["zendesk.com.br/pricing/", "marketplace BR community apps"],
+        "confidence": "H"
+      },
+      "delta": -15,
+      "winner_in_dim": "Zendesk (turnkey BR; Chatwoot mais flexivel mas menos turnkey)"
+    }
+  ],
+  "totals": {
+    "chatwoot_weighted": {
+      "C1": 13.80,
+      "C2": 15.00,
+      "C3": 14.25,
+      "C4": 5.50,
+      "C5": 6.00,
+      "C6": 7.80,
+      "C7": 10.00,
+      "C8": 6.50,
+      "total": 78.85
+    },
+    "zendesk_weighted": {
+      "C1": 14.25,
+      "C2": 17.60,
+      "C3": 7.50,
+      "C4": 9.50,
+      "C5": 9.50,
+      "C6": 9.20,
+      "C7": 3.50,
+      "C8": 8.00,
+      "total": 79.05
+    },
+    "delta": -0.20,
+    "interpretation": "Empate tecnico (delta 0.2 pts em escala 100). Confirma 'no-clear-winner' — escolha depende de contexto especifico do consumidor."
+  },
+  "scenario_adjusted_scores": {
+    "scenario_smb_5_agents_no_compliance_burden": {
+      "chatwoot": 89,
+      "zendesk": 65,
+      "winner": "Chatwoot (TCO + flexibility dominam para PME)"
+    },
+    "scenario_mid_market_20_agents_with_some_compliance": {
+      "chatwoot": 80,
+      "zendesk": 82,
+      "winner": "Empate (depends on internal DevOps capacity vs procurement preference SaaS)"
+    },
+    "scenario_enterprise_50_agents_regulated_industry": {
+      "chatwoot": 65,
+      "zendesk": 92,
+      "winner": "Zendesk (compliance + ecosystem + scale)",
+      "note": "EXCETO se cliente self-host Chatwoot Enterprise edition com paid support; ai equipara em flexibilidade"
+    },
+    "scenario_br_pme_e_commerce": {
+      "chatwoot": 75,
+      "zendesk": 60,
+      "winner": "Chatwoot (Octadesk/Take Blip/Zenvia podem ser superiores ainda — ver pares 2/3)"
+    },
+    "scenario_global_saas_with_eu_gdpr_strict": {
+      "chatwoot_self_hosted_eu": 88,
+      "chatwoot_cloud": 60,
+      "zendesk_with_data_center_location_addon": 95,
+      "winner": "Zendesk (cloud) ou Chatwoot self-host EU"
+    }
+  },
+  "confidence_summary": "H (high) for 5/8 dimensions; M (medium) for C2 (AI per-resolution opacity), C4 (compliance absence inferred), C6 (Chatwoot G2 count estimated). No L (low) confidence dimensions."
+}

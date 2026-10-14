@@ -1,0 +1,100 @@
+:root {
+  color-scheme: light;
+
+  --sie-brand-primary: #0b3367;
+  --sie-brand-secondary: #061e3d;
+  --sie-brand-highlight: #3ec7d3;
+  --sie-brand-highlight-soft: #dff7f8;
+
+  --sie-surface-canvas: #f3f6fa;
+  --sie-surface-base: #ffffff;
+  --sie-surface-subtle: #e9eff6;
+  --sie-surface-muted: #dde6f0;
+  --sie-surface-inverse: #061e3d;
+  --sie-surface-inverse-raised: #0b3367;
+  --sie-surface-inverse-hover: #12427c;
+
+  --sie-text-primary: #10243f;
+  --sie-text-secondary: #52667f;
+  --sie-text-tertiary: #71829a;
+  --sie-text-inverse: #f8fbff;
+  --sie-text-inverse-muted: #b9c9dc;
+
+  --sie-border-subtle: #d6dfe9;
+  --sie-border-strong: #9aabbe;
+  --sie-border-inverse: #27496f;
+
+  --sie-status-success: #087a5b;
+  --sie-status-success-subtle: #ddf4ec;
+  --sie-status-warning: #915600;
+  --sie-status-warning-subtle: #fff0d2;
+  --sie-status-danger: #b4233a;
+  --sie-status-danger-subtle: #fbe7ea;
+  --sie-status-info: #0b5cad;
+  --sie-status-info-subtle: #e1eefc;
+  --sie-focus: #1b70d4;
+
+  --sie-chart-1: #0b3367;
+  --sie-chart-2: #137a87;
+  --sie-chart-3: #486f9f;
+  --sie-chart-4: #9a6715;
+  --sie-chart-grid: #d6dfe9;
+
+  --sie-font-sans: Inter, "Segoe UI", Arial, sans-serif;
+  --sie-font-mono: "IBM Plex Mono", "Cascadia Code", Consolas, monospace;
+
+  --sie-text-11: 0.6875rem;
+  --sie-text-12: 0.75rem;
+  --sie-text-13: 0.8125rem;
+  --sie-text-14: 0.875rem;
+  --sie-text-16: 1rem;
+  --sie-text-20: 1.25rem;
+  --sie-text-24: 1.5rem;
+  --sie-text-32: 2rem;
+
+  --sie-leading-tight: 1.2;
+  --sie-leading-body: 1.5;
+
+  --sie-space-0: 0;
+  --sie-space-1: 0.25rem;
+  --sie-space-2: 0.5rem;
+  --sie-space-3: 0.75rem;
+  --sie-space-4: 1rem;
+  --sie-space-5: 1.25rem;
+  --sie-space-6: 1.5rem;
+  --sie-space-8: 2rem;
+  --sie-space-10: 2.5rem;
+  --sie-space-12: 3rem;
+
+  --sie-radius-control: 0.375rem;
+  --sie-radius-panel: 0.625rem;
+  --sie-radius-pill: 999px;
+
+  --sie-shadow-whisper: 0 0.25rem 1.25rem rgb(6 30 61 / 8%);
+  --sie-shadow-floating: 0 1rem 3rem rgb(6 30 61 / 24%);
+
+  --sie-duration-instant: 80ms;
+  --sie-duration-fast: 140ms;
+  --sie-duration-standard: 220ms;
+  --sie-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+[data-density="compact"] {
+  --sie-control-height: 2rem;
+  --sie-row-height: 2.5rem;
+  --sie-panel-gap: var(--sie-space-3);
+}
+
+[data-density="comfortable"] {
+  --sie-control-height: 2.5rem;
+  --sie-row-height: 3rem;
+  --sie-panel-gap: var(--sie-space-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sie-duration-instant: 0ms;
+    --sie-duration-fast: 0ms;
+    --sie-duration-standard: 0ms;
+  }
+}

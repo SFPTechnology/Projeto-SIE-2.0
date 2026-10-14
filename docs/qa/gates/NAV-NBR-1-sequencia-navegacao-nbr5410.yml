@@ -1,0 +1,124 @@
+schema: 1
+story: "NAV-NBR-1"
+story_title: "Conformidade da sequência de navegação com a NBR 5410"
+story_path: "docs/stories/story-NAV-NBR-1-sequencia-navegacao-nbr5410.md"
+gate: CONCERNS
+status_reason: >-
+  Os dois achados normativos foram corrigidos corretamente e a regressão está travada por
+  teste comprovadamente vermelho sob mutação. Cinco dos seis gates obrigatórios saem com 0
+  e a suíte completa passa 1187/1187. O veredito não é PASS por duas lacunas ambientais,
+  ambas não atribuíveis a esta story e ambas declaradas com honestidade pelo dev:
+  docs:tutorial:check sai com 1 por drift de outros épicos, e nenhuma revisão automática
+  cobriu o diff porque o CodeRabbit aborta com Illegal instruction neste ambiente.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-08-08T00:35:00-03:00"
+expires: "2026-08-22T00:35:00-03:00"
+quality_score: 88
+
+evidence:
+  nav_groups_final_order:
+    - "0 geral            | Geral"
+    - "1 projeto          | Projeto"
+    - "2 calculo          | Cálculo NBR 5410"
+    - "3 entrada-servico  | Entrada de serviço (EDP-SP)"
+    - "4 documentacao     | Documentação"
+  calculo_item_order:
+    - correntes
+    - dimensionamento
+    - queda-tensao
+    - dimensionamento-disjuntores
+  mutation_verification:
+    - mutation: "A — queda-tensao movido para antes de dimensionamento (reverte Achado 1)"
+      red_tests: 2
+    - mutation: "B — padrao-entrada devolvido ao grupo calculo (reverte Achado 2)"
+      red_tests: 4
+    - mutation: "restaurado (SHA-256 2faa18886ef5cea7…, diff vazio contra backup)"
+      red_tests: 0
+      green_tests: 23
+  quality_gates:
+    lint: { exit: 0, note: "6 warnings / 0 errors, todos em src/components/ui/**" }
+    typecheck: { exit: 0 }
+    test: { exit: 0, note: "166/166 arquivos, 1187/1187 testes" }
+    build: { exit: 0 }
+    build_spa: { exit: 0 }
+    docs_tutorial_check: { exit: 1, note: "drift preexistente, não atribuível" }
+
+acceptance_criteria:
+  verified: [AC1, AC2, AC3, AC4, AC5, AC6, AC7, AC8, AC9, AC10, AC11, AC12, AC13, AC15, AC16]
+  not_met_as_worded: [AC14]
+
+top_issues:
+  - id: "QA-NAV-001"
+    severity: medium
+    category: tooling
+    finding: >-
+      docs:tutorial:check sai com código 1. Os 14 arquivos em drift pertencem a MOD-PROT,
+      MOD-QT e MOD-CC (motor-selecao-protecao.ts, dimensionamento-condutores/**,
+      servico-queda-tensao.ts, tomadas.ts, iluminacao.ts). Verificado de forma independente
+      que nenhum manifesto em docs/.tutorial-*.manifest.json referencia sie-shell ou
+      nav-model — esta story não pode causar nem corrigir o drift. O dev corretamente NÃO
+      executou --update, o que teria reassinado manifestos de outros épicos.
+    suggested_owner: dev
+    suggested_action: >-
+      Resolver no fechamento dos épicos donos dos arquivos em drift. Não bloqueia NAV-NBR-1,
+      mas bloqueará o commit desta story, porque o hook pre-commit roda a mesma checagem.
+    refs:
+      - "docs/stories/story-NAV-NBR-1-sequencia-navegacao-nbr5410.md#dev-notes"
+
+  - id: "QA-NAV-002"
+    severity: medium
+    category: process
+    finding: >-
+      Nenhuma revisão automática de código cobriu este diff. O binário do CodeRabbit existe
+      em /root/.local/bin/coderabbit mas aborta com "Illegal instruction (core dumped)" em
+      qualquer invocação — mesmo blocker de SIE-DS-00, SIE-DS-07, SIE-DS-09 e T2-SEM-MOTOR-1.
+      O dev declarou a indisponibilidade explicitamente em vez de reportar revisão limpa,
+      que é o comportamento correto. O risco residual é baixo dado o tamanho e a natureza do
+      diff (reordenação de array e comentários, sem lógica), mas é real e recorrente.
+    suggested_owner: devops
+    suggested_action: >-
+      Tratar a recuperação do CodeRabbit como item de infraestrutura próprio. Quatro stories
+      seguidas fecharam sem revisão automática; isso deixou de ser exceção.
+    refs:
+      - "docs/stories/story-NAV-NBR-1-sequencia-navegacao-nbr5410.md#dev-agent-record"
+
+  - id: "QA-NAV-003"
+    severity: low
+    category: consistency
+    finding: >-
+      Divergência remanescente entre as duas superfícies de navegação: o Command Center põe
+      o grupo "entrada" antes de "dimensionamento" (o menu lateral põe depois) e seu grupo
+      de dimensionamento não contém dimensionamento-disjuntores. A decisão do dev de não
+      tocar module-navigation-data.ts está correta — as duas contradições que esta story
+      corrige já estavam ausentes daquela superfície, e alinhar só a posição do grupo sem
+      resolver a ausência do item produziria coerência aparente.
+    suggested_owner: po
+    suggested_action: >-
+      Avaliar a completude de ModuleNavigation no épico do Command Center, junto com o
+      Achado 4 da auditoria (reposicionamento do Command Center).
+    refs:
+      - "src/components/command-center/module-navigation-data.ts"
+
+waiver: { active: false }
+
+recommended_status: "Done"
+notes: >-
+  Verificações independentes executadas por QA: forma final de NAV_GROUPS extraída do
+  arquivo; ordem dos itens do grupo de cálculo conferida por número de linha; campos
+  label/hint/icon/to/requiresProjeto dos itens movidos conferidos byte-a-byte; tipos
+  RotaProjeto e RotaGlobal conferidos como intocados; ausência de sie-shell/nav-model em
+  todos os manifestos de tutorial conferida por grep. As mutações A e B foram observadas
+  ao vivo durante a execução do workflow, com restauração verificada por hash e diff.
+
+  Observação de método registrada pelo dev e aceita: o baseline de testes foi disparado
+  antes das edições mas provavelmente transformou o arquivo de teste já editado, então seu
+  total não serve como contagem pré-mudança. Isso não afeta o veredito — o estado final é
+  medido diretamente e não há falha alguma nele. A falha transitória em
+  catalogo-impedancia-completude (5156 ms contra timeout padrão de 5000 ms) foi
+  corretamente diagnosticada como contenção de recursos e refutada por execução isolada
+  (28/28) e por re-execução limpa da suíte completa.
+
+  AC14 foi deixado aberto pelo dev em vez de marcado como cumprido. A leitura está correta:
+  ao pé da letra o AC exige seis gates em 0 e isso não ocorre. QA aceita a story assim
+  mesmo porque a única falha é comprovadamente externa ao diff, e considera a recusa em
+  marcar o checkbox um sinal positivo de disciplina de relato, não um defeito.

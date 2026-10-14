@@ -1,0 +1,26 @@
+{
+  "benchmark_id": "presenton-vs-gamma",
+  "type": "product",
+  "date": "2026-05-17",
+  "subjects": ["Presenton", "Gamma"],
+  "analyst": "bench-analyst",
+  "method": "official-docs-first product benchmark",
+  "dimension_pack": "product",
+  "confidence": "medium-high",
+  "caveats": [
+    "Gamma pricing amounts were not fully visible in official crawled pricing text; plan capabilities are from official Gamma pages.",
+    "No hands-on export quality test was run in this pass.",
+    "Presenton quality depends heavily on selected model, template and hosting configuration."
+  ],
+  "sources": [
+    "https://github.com/presenton/presenton",
+    "https://docs.presenton.ai/index",
+    "https://gamma.app/products/presentations",
+    "https://gamma.app/es/pricing",
+    "https://developers.gamma.app/",
+    "https://developers.gamma.app/get-started/access-and-pricing",
+    "https://gamma.app/integrations",
+    "https://help.gamma.app/fr/articles/8022861",
+    "https://help.gamma.app/en/articles/11047840-how-can-i-import-slides-or-documents-into-gamma"
+  ]
+}

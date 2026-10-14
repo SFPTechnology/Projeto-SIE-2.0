@@ -1,0 +1,541 @@
+# =============================================================================
+# E2E Test Specification: Visual + Andragogic Integration
+# Story 5.1 — EPIC-SC-V2-001, Sprint 5
+#
+# PURPOSE: Defines WHAT to verify when running the full slides-creator v2
+# pipeline with ENABLE_VISUAL_GENERATION=true and education_mode=true.
+# This is a TEST SPECIFICATION, not runtime code.
+#
+# DEPENDENCIES:
+#   - andragogic-rules.yaml (9 rules in education mode)
+#   - visual-engines.yaml (6 engines, routing table, budget caps)
+#   - cost-tracking.yaml (budget guardrails, cost log)
+#   - semantic-classification.yaml (12 content types, engine auto-selection)
+#   - generate-presentation.yaml (7-phase pipeline workflow)
+# =============================================================================
+
+e2e_test:
+  id: e2e-visual-andragogic-001
+  name: "E2E Integration Test — Visual + Andragogic"
+  story: "5.1"
+  epic: EPIC-SC-V2-001
+  sprint: 5
+  version: "1.0.0"
+  created_at: "2026-03-20"
+
+  # ---------------------------------------------------------------------------
+  # TEST SCENARIO
+  # ---------------------------------------------------------------------------
+  scenario:
+    description: >
+      Gerar um deck educacional de 20 slides sobre "Arquitetura de
+      Microsservicos" com todas as feature flags v2 ativas. O deck deve
+      exercitar o pipeline completo: briefing -> content -> visual strategy ->
+      template binding -> asset resolution -> render -> QA gate -> release.
+      Deve ativar tanto o motor visual (diagramas + AI images) quanto o
+      motor andragogico (Kolb + DPC + Mayer + Scaffolding).
+    slide_count: 20
+    feature_flags:
+      ENABLE_VISUAL_GENERATION: true
+      ENABLE_ANDRAGOGIC_VALIDATION: true
+    pipeline_entry: "*create-presentation"
+    pipeline_workflow: "generate-presentation.yaml"
+    expected_phases:
+      - youtube_ingest (bypassed — input_type != youtube_url)
+      - briefing_contract
+      - reference_intake
+      - grounded_content
+      - visual_strategy
+      - template_binding
+      - asset_resolution
+      - render_to_site_aiox
+      - qa_gate
+      - release_gate
+
+  # ---------------------------------------------------------------------------
+  # SAMPLE BRIEFING
+  # ---------------------------------------------------------------------------
+  sample_briefing:
+    description: >
+      Briefing de entrada para o teste. Simula um pedido real de deck
+      educacional sobre arquitetura de microsservicos para equipe de
+      desenvolvedores intermediarios.
+
+    briefing:
+      title: "Arquitetura de Microsservicos: Do Monolito ao Cloud-Native"
+      objective: >
+        Capacitar desenvolvedores a entender quando e como decompor
+        aplicacoes monoliticas em microsservicos, incluindo trade-offs,
+        padroes de comunicacao, e estrategias de deploy.
+      audience:
+        role: "Desenvolvedores Backend"
+        company_size: "50-200 funcionarios"
+        dreyfus_level: "advanced_beginner"
+        prior_knowledge: >
+          Familiaridade com REST APIs, Docker basico, e pelo menos
+          uma linguagem de programacao server-side.
+      education_mode: true
+      delivery_mode: "async"
+      aspect_ratio: "16:9"
+      slide_count: 20
+      language: "pt-BR"
+      brand:
+        name: "TechEdu Academy"
+        palette: ["#2563EB", "#1E40AF", "#DBEAFE", "#1F2937", "#F9FAFB"]
+        typography:
+          heading_font: "Inter"
+          body_font: "Inter"
+        style_preference: "flat"
+        background: "white"
+      modules:
+        - name: "Fundamentos"
+          description: "O que sao microsservicos, contexto historico, monolito vs microsservicos"
+          estimated_slides: 5
+        - name: "Padroes de Comunicacao"
+          description: "REST, gRPC, mensageria assincrona, event-driven"
+          estimated_slides: 5
+        - name: "Estrategias de Decomposicao"
+          description: "Domain-driven design, strangler fig, bounded contexts"
+          estimated_slides: 5
+        - name: "Deploy e Observabilidade"
+          description: "Containers, orquestracao, CI/CD, logging, tracing"
+          estimated_slides: 5
+      reference_assets: []
+      source_materials: []
+
+    expected_content_types_distribution:
+      process: 3-5
+      hierarchy: 1-2
+      comparison: 2-3
+      system: 2-3
+      concept: 2-3
+      data: 1-2
+      cycle: 1-2
+      definition: 1-2
+      timeline: 0-1
+
+  # ---------------------------------------------------------------------------
+  # VALIDATION CHECKLIST
+  # ---------------------------------------------------------------------------
+  validation_checklist:
+
+    # --- AC1: Deck educacional de 20 slides gerado --------------------------
+    - id: VC-01
+      acceptance_criteria: "AC1"
+      name: "Deck Generation Completeness"
+      description: >
+        Deck educacional de 20 slides gerado com education_mode=true e
+        ENABLE_VISUAL_GENERATION=true. Pipeline completa sem erros.
+      validation_type: structural
+      check:
+        - "deck-manifest.json exists and is valid JSON"
+        - "deck-manifest.json.slides.length == 20"
+        - "deck-manifest.json.briefing.education_mode == true"
+        - "ENABLE_VISUAL_GENERATION was true during pipeline execution"
+        - "Pipeline completed all 7 phases without BLOCK errors"
+        - "release-summary.md exists"
+      pass_criteria:
+        slides_count: 20
+        education_mode: true
+        visual_generation: true
+        pipeline_complete: true
+      fail_if:
+        - "slides.length != 20"
+        - "pipeline halted at any phase with unresolved BLOCK"
+        - "education_mode is false or absent in manifest"
+
+    # --- AC2: >= 60% visual coverage -----------------------------------------
+    - id: VC-02
+      acceptance_criteria: "AC2"
+      name: "Visual Coverage"
+      description: >
+        Pelo menos 60% dos slides de conteudo (excluindo TITLE e CLOSING)
+        devem ter um visual gerado — diagrama (d2/mermaid) ou imagem AI
+        (gpt_image/ideogram/recraft) ou data viz (plotly).
+      validation_type: quantitative
+      check:
+        - "Count slides where slide_type == 'CONTENT'"
+        - "Count CONTENT slides where visual_strategy.engine != 'none' AND visual_output exists"
+        - "Calculate: (visual_slides / content_slides) * 100"
+      pass_criteria:
+        metric: visual_coverage_pct
+        threshold: ">= 60%"
+        formula: "(content_slides_with_visual / total_content_slides) * 100"
+      expected_outcome: >
+        Com 20 slides (estimando ~2 TITLE + 1 CLOSING = 17 CONTENT slides),
+        pelo menos 11 slides devem ter visual gerado. Esperado: 12-14 visuais
+        (3-4 concept sem visual: definition, quote, statement).
+      fail_if:
+        - "visual_coverage_pct < 60%"
+
+    # --- AC3: Brand compliance >= 95% ----------------------------------------
+    - id: VC-03
+      acceptance_criteria: "AC3"
+      name: "Brand Compliance"
+      description: >
+        >= 95% dos visuais gerados devem passar validateBrandCompliance.
+        Cores usadas devem estar dentro da palette do briefing. Nenhum visual
+        com forbidden_colors.
+      validation_type: quantitative
+      check:
+        - "For each VisualOutput: check metadata.brand_compliance.compliant"
+        - "Count compliant visuals vs total visuals"
+        - "Calculate: (compliant / total) * 100"
+      pass_criteria:
+        metric: brand_compliance_pct
+        threshold: ">= 95%"
+        formula: "(compliant_visuals / total_visuals) * 100"
+      expected_outcome: >
+        Com palette ["#2563EB", "#1E40AF", "#DBEAFE", "#1F2937", "#F9FAFB"],
+        diagramas D2/Mermaid devem usar theme injection para cores da marca.
+        AI images devem receber brand injection via prompt suffix.
+        Esperado: 100% compliance em diagramas, >= 90% em AI images.
+      fail_if:
+        - "brand_compliance_pct < 95%"
+        - "any visual uses forbidden_colors"
+
+    # --- AC4: Mayer compliance >= 8/12 principios ----------------------------
+    - id: VC-04
+      acceptance_criteria: "AC4"
+      name: "Mayer CTML Compliance"
+      description: >
+        Pelo menos 8 dos 12 principios de Mayer devem estar satisfeitos
+        no deck. Os 3 always-on (MAYER-01, MAYER-06, K9) sao obrigatorios.
+        MAYER-05 (contiguidade espacial) e verificado em education mode.
+      validation_type: quantitative
+      check:
+        - "Run andragogic validation engine against deck-manifest.json"
+        - "Count Mayer principles satisfied (no violations per principle)"
+        - "MAYER-01 (multimedia): zero violations"
+        - "MAYER-06 (segmentation): zero HIGH violations"
+        - "MAYER-05 (spatial contiguity): zero MEDIUM violations"
+        - "K9 (killer — overload): zero CRITICAL violations"
+      pass_criteria:
+        metric: mayer_principles_satisfied
+        threshold: ">= 8/12"
+        mandatory_principles: ["MAYER-01", "MAYER-06", "K9"]
+      mayer_principles_checklist:
+        - id: "MAYER-01"
+          name: "Multimedia"
+          validation: "andragogic_rules.always_on_rules[MAYER-01]"
+          mandatory: true
+        - id: "MAYER-02"
+          name: "Spatial Contiguity (basic)"
+          validation: "visual + text on same slide"
+          mandatory: false
+        - id: "MAYER-03"
+          name: "Temporal Contiguity"
+          validation: "animation/build order respects narrative"
+          mandatory: false
+        - id: "MAYER-04"
+          name: "Coherence"
+          validation: "no extraneous content per slide"
+          mandatory: false
+        - id: "MAYER-05"
+          name: "Spatial Contiguity (strict)"
+          validation: "andragogic_rules.education_mode_only_rules[MAYER-05]"
+          mandatory: false
+        - id: "MAYER-06"
+          name: "Segmentation"
+          validation: "andragogic_rules.always_on_rules[MAYER-06]"
+          mandatory: true
+        - id: "MAYER-07"
+          name: "Pre-training"
+          validation: "K8 — jargon pre-trained before use"
+          mandatory: false
+        - id: "MAYER-08"
+          name: "Modality"
+          validation: "audio narration (async mode — speaker notes exist)"
+          mandatory: false
+        - id: "MAYER-09"
+          name: "Redundancy"
+          validation: "no redundant on-screen text for narrated content"
+          mandatory: false
+        - id: "MAYER-10"
+          name: "Signaling"
+          validation: "visual cues highlight key points"
+          mandatory: false
+        - id: "MAYER-11"
+          name: "Voice"
+          validation: "conversational tone in speaker notes"
+          mandatory: false
+        - id: "MAYER-12"
+          name: "Image"
+          validation: "consistent visual style across deck"
+          mandatory: false
+      expected_outcome: >
+        Mandatory principles (MAYER-01, MAYER-06, K9) devem ter zero violacoes.
+        Com education_mode, MAYER-05 e MAYER-07 (via K8) tambem sao validados.
+        Esperado: 8-10/12 principios satisfeitos.
+      fail_if:
+        - "mayer_principles_satisfied < 8"
+        - "any mandatory principle has violations"
+
+    # --- AC5: Kolb cycle completo --------------------------------------------
+    - id: VC-05
+      acceptance_criteria: "AC5"
+      name: "Kolb Experiential Cycle Completeness"
+      description: >
+        Cada modulo do deck deve conter as 4 fases do ciclo Kolb:
+        EC (Experiencia Concreta), OR (Observacao Reflexiva),
+        CA (Conceitualizacao Abstrata), EA (Experimentacao Ativa).
+      validation_type: structural
+      check:
+        - "Run KOLB-01 validation per module"
+        - "For each module: verify EC, OR, CA, EA all present"
+        - "Verify no module starts with CA (must start with EC)"
+        - "Verify proportion: EC 15-20%, OR 15-20%, CA 30-40%, EA 20-30%"
+      pass_criteria:
+        all_phases_present: true
+        phases_required: ["EC", "OR", "CA", "EA"]
+        per_module: true
+        first_phase_must_be: "EC"
+        first_phase_must_not_be: "CA"
+      expected_outcome: >
+        Com 4 modulos de ~5 slides cada:
+        - Modulo 1 (Fundamentos): EC(cenario real) -> OR(reflexao) -> CA(teoria) -> EA(exercicio)
+        - Modulo 2 (Comunicacao): EC(problema) -> OR(analise) -> CA(padroes) -> EA(design)
+        - Modulo 3 (Decomposicao): EC(case study) -> OR(discussao) -> CA(DDD) -> EA(pratica)
+        - Modulo 4 (Deploy): EC(incidente) -> OR(post-mortem) -> CA(estrategias) -> EA(hands-on)
+      fail_if:
+        - "any module missing EC, OR, CA, or EA phase"
+        - "any module starts with CA"
+
+    # --- AC6: DPC order correto -----------------------------------------------
+    - id: VC-06
+      acceptance_criteria: "AC6"
+      name: "DPC Ordering Compliance"
+      description: >
+        Dentro de cada conceito ensinado, a sequencia deve seguir:
+        D (Declarativo — "o que e") antes de P (Procedural — "como fazer")
+        antes de C (Condicional — "quando/por que usar").
+      validation_type: structural
+      check:
+        - "Run DPC-01 validation per module per concept"
+        - "For each concept: verify first D index < first P index < first C index"
+      pass_criteria:
+        ordering: "D before P before C"
+        scope: "per concept within each module"
+        zero_violations: true
+      expected_outcome: >
+        Cada conceito segue D->P->C:
+        - "Microsservicos": D(definicao) -> P(como decompor) -> C(quando usar vs monolito)
+        - "gRPC": D(o que e) -> P(como implementar) -> C(quando preferir sobre REST)
+        - "DDD": D(bounded context) -> P(como mapear) -> C(quando aplicar)
+      fail_if:
+        - "any concept has P before D"
+        - "any concept has C before P"
+
+    # --- AC7: Custo total < $2.00 --------------------------------------------
+    - id: VC-07
+      acceptance_criteria: "AC7"
+      name: "Budget Compliance"
+      description: >
+        Custo total de geracao visual do deck deve ser menor que $2.00 USD.
+        Conforme budget_caps.per_deck em cost-tracking.yaml.
+      validation_type: quantitative
+      check:
+        - "Read cost-log.json entries for this deck_id"
+        - "SUM(cost_usd) WHERE deck_id = test_deck_id"
+        - "Verify total < 2.00"
+      pass_criteria:
+        metric: total_cost_usd
+        threshold: "< 2.00"
+        source: "cost-log.json aggregation per deck"
+      cost_estimation:
+        description: >
+          Estimativa de custo para 20 slides com mix tipico de engines.
+        breakdown:
+          diagram_engines: "~8 slides x d2/mermaid x $0.00 = $0.00"
+          plotly_charts: "~2 slides x plotly x $0.00 = $0.00"
+          ai_images: "~4 slides x gpt_image x $0.04 = $0.16"
+          ai_images_fallback: "~1 slide x ideogram x $0.04 = $0.04 (if gpt_image fails)"
+          total_estimated: "$0.16 - $0.60"
+          headroom: "Amplo — $1.40+ de headroom no budget"
+      expected_outcome: >
+        Custo total entre $0.16 e $0.60. Muito abaixo do cap de $2.00.
+        Apenas slides de content_type=concept usam engines pagas.
+        Diagramas e data viz sao free (d2, mermaid, plotly).
+      fail_if:
+        - "total_cost_usd >= 2.00"
+        - "any single engine call cost > $0.08 (max known: recraft)"
+
+    # --- AC8: Tempo total < 5 minutos ----------------------------------------
+    - id: VC-08
+      acceptance_criteria: "AC8"
+      name: "Pipeline Execution Time"
+      description: >
+        Tempo total de execucao do pipeline (briefing ate release gate)
+        deve ser menor que 5 minutos (300.000 ms).
+      validation_type: quantitative
+      check:
+        - "Record pipeline_start_time at briefing_contract"
+        - "Record pipeline_end_time at release_gate"
+        - "Calculate: pipeline_end_time - pipeline_start_time"
+      pass_criteria:
+        metric: total_execution_time_ms
+        threshold: "< 300000"
+        unit: "milliseconds"
+      time_budget:
+        briefing_contract: "~5s"
+        reference_intake: "~3s"
+        grounded_content: "~30s (LLM call for content generation)"
+        visual_strategy: "~10s (LLM call for batch classification)"
+        template_binding: "~5s"
+        asset_resolution: "~60-120s (diagram rendering + AI image generation)"
+        render_to_site_aiox: "~15s"
+        qa_gate: "~10s (andragogic validation + QA scoring)"
+        release_gate: "~2s"
+        total_estimated: "~140-200s"
+        headroom: "100-160s de headroom"
+      expected_outcome: >
+        Pipeline completa em 2-3.5 minutos. Gargalo principal:
+        asset_resolution (AI image API calls). Mitigado por:
+        concurrency_limit=3, diagram engines < 1s cada.
+      fail_if:
+        - "total_execution_time_ms >= 300000"
+
+    # --- AC9: Deck renderiza no ds presenter ---------------------------
+    - id: VC-09
+      acceptance_criteria: "AC9"
+      name: "Site-AIOX Presenter Rendering"
+      description: >
+        Deck renderizado deve abrir e funcionar corretamente no ds
+        presenter. Slides navegaveis, visuais exibidos, thumbnails presentes.
+      validation_type: functional
+      check:
+        - "slides/*.tsx files exist for all 20 slides"
+        - "thumbnails/*.png files exist for all 20 slides"
+        - "render-summary.md exists"
+        - "ds-integration-plan.md exists"
+        - "No broken image references in TSX files"
+        - "No TypeScript compilation errors in slides/*.tsx"
+        - "Presenter opens deck without runtime errors"
+      pass_criteria:
+        tsx_files_count: 20
+        thumbnails_count: 20
+        render_summary_exists: true
+        integration_plan_exists: true
+        zero_broken_references: true
+        zero_ts_errors: true
+      expected_outcome: >
+        Todos os 20 slides renderizam como componentes TSX validos.
+        Thumbnails PNG gerados para cada slide. Visuais (SVG/PNG)
+        corretamente referenciados nos componentes.
+      fail_if:
+        - "any slide missing TSX file"
+        - "any slide missing thumbnail"
+        - "TypeScript compilation errors in slides/"
+        - "broken image/visual references"
+
+    # --- AC10: Zero killer items no QA report ---------------------------------
+    - id: VC-10
+      acceptance_criteria: "AC10"
+      name: "Zero Killer Items"
+      description: >
+        QA report (qa/report.json) nao deve conter nenhum killer item.
+        Killer items sao violacoes CRITICAL que bloqueiam a emissao do deck:
+        K8 (jargao sem pre-treino) e K9 (sobrecarga textual absoluta).
+      validation_type: structural
+      check:
+        - "Read qa/report.json"
+        - "Check andragogic_validation.summary.killer_items_triggered == []"
+        - "Check andragogic_validation.blocked == false"
+        - "Check andragogic_validation.summary.critical_count == 0"
+        - "Verify K8 not triggered: no undefined technical terms"
+        - "Verify K9 not triggered: no slide exceeds absolute word limit"
+      pass_criteria:
+        killer_items_count: 0
+        blocked: false
+        critical_violations: 0
+        killer_item_ids_must_be_absent: ["K8", "K9"]
+      expected_outcome: >
+        Zero killer items. K8 evitado porque content-architect define
+        termos tecnicos antes de usa-los (pre-training). K9 evitado
+        porque MAYER-06 segmentation ja limita palavras por slide.
+      fail_if:
+        - "killer_items_triggered is not empty"
+        - "blocked == true"
+        - "critical_count > 0"
+
+  # ---------------------------------------------------------------------------
+  # PASS/FAIL CRITERIA (SUMMARY)
+  # ---------------------------------------------------------------------------
+  pass_fail_summary:
+    description: >
+      O teste E2E passa SOMENTE se TODOS os 10 validation checks passarem.
+      Qualquer falha individual falha o teste inteiro.
+    overall_pass: "ALL 10 validation checks pass"
+    overall_fail: "ANY validation check fails"
+    blocking_checks:
+      description: "Checks que, se falharem, impedem qualquer analise adicional."
+      checks: ["VC-01", "VC-10"]
+      rationale: >
+        VC-01 (deck gerado) e pre-requisito para todos os outros checks.
+        VC-10 (zero killer items) e um gate bloqueante por definicao
+        (killer items impedem emissao do deck).
+    quantitative_checks:
+      description: "Checks com thresholds numericos."
+      checks:
+        - { id: "VC-02", metric: "visual_coverage_pct", threshold: ">= 60%" }
+        - { id: "VC-03", metric: "brand_compliance_pct", threshold: ">= 95%" }
+        - { id: "VC-04", metric: "mayer_principles_satisfied", threshold: ">= 8/12" }
+        - { id: "VC-07", metric: "total_cost_usd", threshold: "< $2.00" }
+        - { id: "VC-08", metric: "total_execution_time_ms", threshold: "< 300000" }
+    structural_checks:
+      description: "Checks boolean/estruturais."
+      checks:
+        - { id: "VC-05", check: "Kolb cycle complete per module" }
+        - { id: "VC-06", check: "DPC ordering correct per concept" }
+        - { id: "VC-09", check: "Site-AIOX presenter renders correctly" }
+
+  # ---------------------------------------------------------------------------
+  # EXECUTION INSTRUCTIONS
+  # ---------------------------------------------------------------------------
+  execution:
+    description: >
+      Instrucoes para executar este teste E2E quando a pipeline v2
+      estiver implementada (pos Sprints 1-4).
+    prerequisites:
+      - "Sprints 1-4 completos e merged"
+      - "Feature flags ENABLE_VISUAL_GENERATION e ENABLE_ANDRAGOGIC_VALIDATION disponiveis"
+      - "Kroki self-hosted rodando em localhost:8000 (D2 + Mermaid)"
+      - "API keys configuradas: OPENAI_API_KEY (gpt_image)"
+      - "Plotly + Kaleido instalados (Python)"
+      - "ds presenter funcional"
+    steps:
+      - step: 1
+        action: "Configurar environment"
+        commands:
+          - "export ENABLE_VISUAL_GENERATION=true"
+          - "export ENABLE_ANDRAGOGIC_VALIDATION=true"
+          - "Verificar Kroki: curl http://localhost:8000/health"
+      - step: 2
+        action: "Executar pipeline com sample briefing"
+        command: "*create-presentation"
+        input: "sample_briefing deste arquivo"
+        expected_duration: "2-4 minutos"
+      - step: 3
+        action: "Coletar resultados"
+        artifacts:
+          - "deck-manifest.json"
+          - "qa/report.json"
+          - "cost-log.json (filtrado por deck_id)"
+          - "slides/*.tsx"
+          - "thumbnails/*.png"
+          - "render-summary.md"
+          - "release-summary.md"
+      - step: 4
+        action: "Executar validation checklist"
+        checks: "VC-01 a VC-10 em ordem"
+        tool: "Manual review ou script de validacao automatizado"
+      - step: 5
+        action: "Gerar test report"
+        output: "e2e-test-report.json"
+        format:
+          test_id: "e2e-visual-andragogic-001"
+          executed_at: "ISO 8601 timestamp"
+          duration_ms: "pipeline execution time"
+          results: "array of VC-XX results with pass/fail + details"
+          overall_verdict: "PASS | FAIL"
+          notes: "free text observations"

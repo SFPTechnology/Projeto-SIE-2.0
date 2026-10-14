@@ -1,0 +1,803 @@
+{
+  "bench_id": "url-design-extraction",
+  "date_initial": "2026-04-26",
+  "date_last_update": "2026-04-29",
+  "subject": "Sinkra Hub extract-from-url pipeline",
+  "category": "url-to-design-md",
+  "method": "WebSearch + WebFetch + repo inspection + verified test runs",
+  "competitors": [
+    {
+      "name": "Dembrandt",
+      "tier": 1,
+      "repo": "github.com/dembrandt/dembrandt",
+      "license": "MIT",
+      "stack": [
+        "Playwright",
+        "DOM analysis",
+        "Anthropic API"
+      ],
+      "outputs": [
+        "DTCG",
+        "DESIGN.md",
+        "JSON"
+      ],
+      "differentiators": [
+        "multi-page sitemap crawl",
+        "stealth + firefox bypass",
+        "confidence-scored tokens",
+        "--design-md flag",
+        "--mobile viewport"
+      ]
+    },
+    {
+      "name": "designlang / design-extract",
+      "tier": 1,
+      "repo": "github.com/Manavarya09/design-extract",
+      "license": "MIT",
+      "stack": [
+        "Playwright",
+        "Node 20+"
+      ],
+      "outputs": [
+        "DTCG",
+        "Tailwind",
+        "Figma vars",
+        "iOS SwiftUI",
+        "Android Compose",
+        "Flutter",
+        "WordPress",
+        "MCP server",
+        "shadcn/ui",
+        "design-language.md",
+        "preview.html",
+        "drift report",
+        "visual-diff"
+      ],
+      "differentiators": [
+        "drift mode",
+        "visual-diff",
+        "MCP server",
+        "16+ output files",
+        "apply command",
+        "clone command",
+        "watch mode",
+        "brands matrix",
+        "auth/cookie support",
+        "16 subcommands",
+        "VS Code/Raycast/Figma/Chrome extensions",
+        "GitHub Action"
+      ]
+    },
+    {
+      "name": "HyperDesign",
+      "tier": 1,
+      "repo": "github.com/hyperbrowserai/hyperbrowser-app-examples/hyperdesign",
+      "license": "MIT",
+      "stack": [
+        "Hyperbrowser SDK",
+        "Playwright",
+        "Anthropic SDK",
+        "Next.js"
+      ],
+      "outputs": [
+        "DESIGN.md",
+        "viewport screenshot",
+        "full-page screenshot"
+      ],
+      "differentiators": [
+        "NDJSON streaming UI",
+        "viewport screenshot embedded",
+        "stealth via Hyperbrowser"
+      ]
+    },
+    {
+      "name": "Project Wallace css-design-tokens",
+      "tier": 2,
+      "repo": "github.com/projectwallace/css-design-tokens",
+      "license": "MIT",
+      "stack": [
+        "JavaScript library"
+      ],
+      "outputs": [
+        "DTCG"
+      ],
+      "differentiators": [
+        "stable token IDs via hash",
+        "removed/added tokens detection across runs",
+        "usage-count extension"
+      ]
+    },
+    {
+      "name": "Superposition",
+      "tier": 2,
+      "url": "superposition.design",
+      "license": "Free desktop app",
+      "stack": [
+        "Mac/Win/Linux desktop"
+      ],
+      "outputs": [
+        "CSS",
+        "SCSS",
+        "JS",
+        "Figma",
+        "Adobe XD",
+        "Sketch"
+      ],
+      "differentiators": [
+        "GUI",
+        "multi-format export"
+      ]
+    },
+    {
+      "name": "Design Token Extractor",
+      "tier": 2,
+      "url": "chromewebstore — iibemocnockckccgcihcmjkciicfoclh",
+      "license": "Free Chrome extension",
+      "stack": [
+        "Chrome extension"
+      ],
+      "outputs": [
+        "CSS",
+        "SCSS",
+        "Tailwind"
+      ],
+      "differentiators": [
+        "element-level inspection in browser"
+      ]
+    },
+    {
+      "name": "VoltAgent/awesome-design-md",
+      "tier": 3,
+      "repo": "github.com/VoltAgent/awesome-design-md",
+      "license": "MIT",
+      "stack": [
+        "curated catalog"
+      ],
+      "outputs": [
+        "DESIGN.md (static)"
+      ],
+      "differentiators": [
+        "templates from Claude/Cohere/Linear/Notion/Figma/Framer/Mistral/Replicate/RunwayML"
+      ]
+    },
+    {
+      "name": "google-labs-code/design.md (official)",
+      "tier": 4,
+      "repo": "github.com/google-labs-code/design.md",
+      "license": "Apache 2.0",
+      "stack": [
+        "CLI",
+        "linter"
+      ],
+      "outputs": [
+        "DESIGN.md spec validation"
+      ],
+      "differentiators": [
+        "official spec",
+        "agent-first JSON output",
+        "lint with deterministic findings"
+      ]
+    }
+  ],
+  "sinkra_capabilities_2026_04_27": {
+    "extraction_core": {
+      "no_headless_browser": true,
+      "screenshot": false,
+      "external_stylesheet_fetch": true,
+      "preload_stylesheet_fetch": true,
+      "import_recursive_resolution": true,
+      "inline_style_blocks": true,
+      "inline_style_attrs": true,
+      "real_dom_computed_styles": false,
+      "stealth_captcha_solver": false,
+      "auth_cookie_support": false,
+      "multi_page_crawling": false
+    },
+    "token_analysis": {
+      "dtcg_export": true,
+      "native_css_var_detection": true,
+      "font_face_exhaustive_parsing": true,
+      "token_usage_graph": true,
+      "stable_token_ids": false,
+      "component_property_override_detection": true,
+      "breakpoints_detection": true,
+      "dark_mode_detection": true,
+      "shadow_extraction": true,
+      "motion_tokens_extraction": true
+    },
+    "output_validation": {
+      "design_md_output": true,
+      "lint_enforcement": true,
+      "lint_workaround_v010_bug": true,
+      "provenance_machine_readable": true,
+      "confidence_scoring_per_token": true,
+      "quality_score_a_to_f_7_dimensions": true,
+      "drift_mode": true,
+      "visual_diff_two_urls": false,
+      "normalize_layer": true
+    },
+    "preview_output": {
+      "single_file_standalone_html": true,
+      "live_component_preview": true,
+      "wcag_contrast_matrix": true,
+      "component_variant_matrix": true,
+      "logo_extraction_priority_hierarchy": true,
+      "self_hosted_font_embedding_data_url": true,
+      "live_motion_demo_animated_balls": true,
+      "hero_zone_brand_identity": true,
+      "token_export_buttons": true,
+      "dark_light_toggle": true,
+      "favicon_in_header_and_browser_tab": true,
+      "title_with_brand_name": true,
+      "usage_count_badges_swatches": true
+    },
+    "integration_ecosystem": {
+      "claude_code_subprocess": true,
+      "mcp_server": false,
+      "multi_platform_exporters_ios_android_flutter": false,
+      "github_action_ci_gate": false,
+      "vscode_extension": false,
+      "raycast_extension": false,
+      "figma_plugin": false,
+      "chrome_extension": false,
+      "apply_direct_write": false,
+      "clone_starter_app": false,
+      "watch_mode": false,
+      "brands_matrix": false,
+      "history_dir": false
+    }
+  },
+  "unique_capabilities_no_competitor_advertises": [
+    "Component-property override detection (.btn { border-radius: 0 } detected even when --radius-md: 8px is declared)",
+    "Lint workaround for @google/design.md v0.1.0 bug",
+    "extraction-log.yaml provenance schema with confidence per token",
+    "Single-file standalone preview.html (offline, no server)",
+    "Runs via Claude Code subprocess (no Anthropic API key required)",
+    "Live motion demo (animated bouncing balls with real durations from source)",
+    "Component variant matrix (6 states × 3 sizes = 18 buttons rendered live)",
+    "Self-hosted font embedding (data: URLs cross-origin)",
+    "Hero zone with brand identity (eyebrow + display heading using extracted heading font)",
+    "Usage count badges on color swatches (Project Wallace pattern, applied + sorted)",
+    "Logo extraction priority hierarchy (9 tiers: anchor home links → class signals → manifest icons → favicon fallback)",
+    "Title and favicon embedded in browser tab"
+  ],
+  "gap_capabilities": [
+    "Screenshot capture",
+    "Multi-page crawling (sitemap or link-following)",
+    "MCP server",
+    "Multi-platform exporters (iOS / Android / Flutter)",
+    "Stable token IDs across runs",
+    "Stealth/captcha solver",
+    "Real DOM computed styles",
+    "Auth/cookie support",
+    "Visual diff between two URLs",
+    "GitHub Action CI gate",
+    "VS Code / Raycast / Figma / Chrome extensions",
+    "apply direct write to project",
+    "watch mode + history dir",
+    "brands matrix"
+  ],
+  "test_runs_verified_2026_04_27": [
+    {
+      "url": "https://www.anthropic.com/",
+      "css_external": 1,
+      "css_vars": 1547,
+      "font_faces": 8,
+      "unique_tokens": 267,
+      "shadows": 11,
+      "motion_total": 14,
+      "lint": "0E 0W",
+      "quality_score": "A 90/100",
+      "confidence_high": 84,
+      "confidence_medium": 0,
+      "confidence_low": 2,
+      "logo": "svg-inline (Anthropic logomark)",
+      "fonts_embedded": 6,
+      "button_radius_detected": "4px (component-properties)",
+      "card_radius_detected": "16px (component-properties)"
+    },
+    {
+      "url": "https://www.apple.com/",
+      "css_vars": 2051,
+      "font_faces": 18,
+      "unique_tokens": 377,
+      "shadows": 1,
+      "motion_total": 47,
+      "lint": "0E 0W",
+      "quality_score": "B 85/100",
+      "confidence_high": 13,
+      "confidence_medium": 35,
+      "confidence_low": 23,
+      "logo": "og:image PNG",
+      "fonts_embedded": 0,
+      "button_radius_detected": "9999px (pill)",
+      "note": "Apple uses system fonts (no @font-face), so embed count is 0. SF Pro renders only on macOS hosts."
+    },
+    {
+      "url": "https://brand.aioxsquad.ai/brandbook/guidelines",
+      "css_vars": 1547,
+      "font_faces": 17,
+      "unique_tokens": 427,
+      "lint": "0E 0W",
+      "quality_score": "A 91/100",
+      "confidence_high": 75,
+      "confidence_medium": 0,
+      "confidence_low": 10,
+      "logo": "favicon (fallback — Next.js SPA renders logo client-side)",
+      "fonts_embedded": 2,
+      "button_radius_detected": "0px (square cockpit)",
+      "card_radius_detected": "12px"
+    }
+  ],
+  "absorbed_features_2026_04_26_to_27": [
+    {
+      "feature": "Drift mode --compare",
+      "source": "designlang drift",
+      "effort_hours_actual": 3,
+      "shipped": true
+    },
+    {
+      "feature": "Quality score A-F 7-dim",
+      "source": "designlang score",
+      "effort_hours_actual": 2,
+      "shipped": true
+    },
+    {
+      "feature": "Token usage count on swatches",
+      "source": "Project Wallace usage-count",
+      "effort_hours_actual": 0.5,
+      "shipped": true
+    },
+    {
+      "feature": "Breakpoints + dark mode auto-detect",
+      "source": "designlang --dark",
+      "effort_hours_actual": 1.5,
+      "shipped": true
+    },
+    {
+      "feature": "Logo extraction priority hierarchy",
+      "source": "designlang",
+      "effort_hours_actual": 2,
+      "shipped": true
+    },
+    {
+      "feature": "Shadow ladder",
+      "source": "designlang",
+      "effort_hours_actual": 0.75,
+      "shipped": true
+    },
+    {
+      "feature": "Motion / animation tokens",
+      "source": "designlang",
+      "effort_hours_actual": 1,
+      "shipped": true
+    },
+    {
+      "feature": "Component variant matrix 6x3",
+      "source": "own (D6)",
+      "effort_hours_actual": 2,
+      "shipped": true
+    },
+    {
+      "feature": "Self-hosted font embedding data: URL",
+      "source": "own (CORS solution)",
+      "effort_hours_actual": 1.5,
+      "shipped": true
+    },
+    {
+      "feature": "Lint workaround @google/design.md v0.1.0 bug",
+      "source": "own (bug capture)",
+      "effort_hours_actual": 1,
+      "shipped": true
+    },
+    {
+      "feature": "Hero zone with brand identity",
+      "source": "own (preview redesign)",
+      "effort_hours_actual": 1,
+      "shipped": true
+    },
+    {
+      "feature": "Live motion demo animated balls",
+      "source": "own (visualization)",
+      "effort_hours_actual": 0.5,
+      "shipped": true
+    }
+  ],
+  "roadmap": {
+    "wave_1_quick_wins": [
+      {
+        "rank": 1,
+        "feature": "Stable token IDs (hash determinístico)",
+        "source": "Project Wallace",
+        "effort_hours": 1,
+        "rationale": "Drift mode 10× mais útil. Determinismo across runs."
+      },
+      {
+        "rank": 2,
+        "feature": "Auth/cookie support",
+        "source": "designlang",
+        "effort_hours": 1,
+        "rationale": "Páginas internas autenticadas (brand.aioxsquad.ai privado)"
+      },
+      {
+        "rank": 3,
+        "feature": "brands matrix (compare N URLs)",
+        "source": "designlang",
+        "effort_hours": 1.5,
+        "rationale": "Use case AIOX (4 businesses lado-a-lado)"
+      },
+      {
+        "rank": 4,
+        "feature": "Mobile viewport hints (media query parsing)",
+        "source": "Dembrandt",
+        "effort_hours": 0.5,
+        "rationale": "Sinaliza tokens mobile-specific"
+      },
+      {
+        "rank": 5,
+        "feature": "Stack fingerprint detection",
+        "source": "designlang",
+        "effort_hours": 1.5,
+        "rationale": "Detectar Webflow/Next.js/Tailwind do source"
+      },
+      {
+        "rank": 6,
+        "feature": "Z-index map",
+        "source": "designlang",
+        "effort_hours": 0.5,
+        "rationale": "Tabela de layers do source"
+      },
+      {
+        "rank": 7,
+        "feature": "Gradient extraction",
+        "source": "designlang",
+        "effort_hours": 0.5,
+        "rationale": "linear/radial gradients agrupados"
+      }
+    ],
+    "wave_2_strategic": [
+      {
+        "rank": 8,
+        "feature": "MCP server (resources + tools)",
+        "source": "designlang",
+        "effort_hours": 4,
+        "rationale": "Diferencial de produto. Aliada com aiox-stage MCP strategy"
+      },
+      {
+        "rank": 9,
+        "feature": "Watch mode + history dir",
+        "source": "designlang",
+        "effort_hours": 2,
+        "rationale": "Re-roda diariamente, salva history. Combina com drift = monitor"
+      },
+      {
+        "rank": 10,
+        "feature": "GitHub Action workflow",
+        "source": "(gap mercado)",
+        "effort_hours": 3,
+        "rationale": "CI gate. Roda extração+drift no PR, posta verdict."
+      },
+      {
+        "rank": 11,
+        "feature": "apply direct write",
+        "source": "designlang",
+        "effort_hours": 6,
+        "rationale": "Adoção em 1 comando. Detecta framework, escreve direto"
+      },
+      {
+        "rank": 12,
+        "feature": "Visual diff (token-level)",
+        "source": "designlang",
+        "effort_hours": 3,
+        "rationale": "Compara 2 URLs lado-a-lado sem screenshot"
+      },
+      {
+        "rank": 13,
+        "feature": "Multi-page crawl static link discovery",
+        "source": "Dembrandt",
+        "effort_hours": 2,
+        "rationale": "Sem browser: lê <a> no header/footer, segue até depth N"
+      }
+    ],
+    "wave_3_unique_differentiators": [
+      {
+        "rank": 14,
+        "feature": "Brand DNA fingerprint (radar 5D)",
+        "source": "own",
+        "effort_hours": 2,
+        "rationale": "Saturação · Densidade · Modernidade · Formalidade · Contraste. Único"
+      },
+      {
+        "rank": 15,
+        "feature": "Theme remix sliders",
+        "source": "own",
+        "effort_hours": 1.5,
+        "rationale": "Sliders no preview. Visualiza elasticidade DS"
+      },
+      {
+        "rank": 16,
+        "feature": "AI prompt-ready output",
+        "source": "own",
+        "effort_hours": 1,
+        "rationale": "agent-prompt.txt pra colar em v0/Lovable/Cursor"
+      },
+      {
+        "rank": 17,
+        "feature": "Color blindness simulator",
+        "source": "(gap)",
+        "effort_hours": 1,
+        "rationale": "Filter CSS protanopia/deuteranopia/tritanopia"
+      },
+      {
+        "rank": 18,
+        "feature": "Component anatomy spec (Material-style)",
+        "source": "own",
+        "effort_hours": 2,
+        "rationale": "Diagrama anatômico tipo Figma annotations"
+      },
+      {
+        "rank": 19,
+        "feature": "Story/slide view mode",
+        "source": "own",
+        "effort_hours": 1.5,
+        "rationale": "Apresentação slide-by-slide do DS"
+      }
+    ],
+    "wave_4_ecosystem": [
+      {
+        "rank": 20,
+        "feature": "iOS SwiftUI exporter",
+        "source": "designlang",
+        "effort_hours": 2,
+        "rationale": "Cobre platform mobile. Mecânico via Style Dictionary"
+      },
+      {
+        "rank": 21,
+        "feature": "Android Compose exporter",
+        "source": "designlang",
+        "effort_hours": 2,
+        "rationale": "Idem"
+      },
+      {
+        "rank": 22,
+        "feature": "VS Code extension",
+        "source": "designlang",
+        "effort_hours": 24,
+        "rationale": "Extract from URL command. IDE-native"
+      },
+      {
+        "rank": 23,
+        "feature": "Web playground brand.aioxsquad.ai/extract",
+        "source": "(own — marketing)",
+        "effort_hours": 8,
+        "rationale": "Wrappa preview.html em Next.js route"
+      }
+    ]
+  },
+  "recommended_sprints": {
+    "sprint_quick_4h": {
+      "features": [
+        "Stable token IDs (rank 1)",
+        "brands matrix (rank 3)",
+        "Brand DNA fingerprint (rank 14)"
+      ],
+      "total_hours": 4,
+      "rationale": "1 melhoria estrutural + 1 use case AIOX + 1 diferencial inédito"
+    },
+    "sprint_strategic_7h": {
+      "features": [
+        "MCP server (rank 8)",
+        "GitHub Action (rank 10)"
+      ],
+      "total_hours": 7,
+      "rationale": "Muda categoria do produto: CLI → ecosystem-aware tool com governança via CI"
+    }
+  },
+  "positioning_recommendation": [
+    "Claude Code-native (no API key required)",
+    "Lint-clean by construction (Google spec + workaround)",
+    "Single-file portable preview (offline, no server)",
+    "Component-aware (detects per-selector overrides)",
+    "Provenance-first (extraction-log + confidence per token)"
+  ],
+  "do_not_compete_on": [
+    "Multi-platform exporters across all platforms (designlang covers exhaustively)",
+    "Visual diff with screenshots (requires headless browser)",
+    "Stealth bypass (handle via opt-in flag if needed)",
+    "Real DOM computed styles (architectural constraint)"
+  ],
+  "cross_reference_other_benches": {
+    "agent_orchestration_5way": {
+      "focus": "Agent patterns, security, parallelism",
+      "gaps": 30,
+      "overlap_with_this": 0
+    },
+    "quality_engineering_4way": {
+      "focus": "CI/CD, testing, linting",
+      "gaps": 34,
+      "overlap_with_this": 1,
+      "shared_pattern": "lint enforcement"
+    },
+    "v0_design_pipeline": {
+      "focus": "Design generation (synthesis)",
+      "overlap_with_this": 0,
+      "note": "v0 generates UI; we extract DS"
+    },
+    "skill_frontmatter_6way": {
+      "focus": "Frontmatter conventions",
+      "overlap_with_this": 0
+    },
+    "url_design_extraction_this": {
+      "focus": "URL → DESIGN.md",
+      "gaps_total": 22,
+      "gaps_done": 12,
+      "gaps_backlog": 10
+    }
+  },
+  "absorbed_features_2026_04_28_to_29": [
+    {
+      "feature": "lib/sanitize.cjs — value sanitization layer",
+      "source": "own (visual regression triage from React DS Detail consumer)",
+      "rejects": [
+        "unset / initial / revert / revert-layer (global reset keywords)",
+        "inherit / currentColor in color fields (host-context leak)",
+        "outline shorthand ending in vivid named color (red/blue/green/lime/etc — debug rules)",
+        "transform: scale(0|0.0|0,0) (hidden-state transforms)",
+        "rotate(180deg) / rotateX(180deg) (Swiper/Slick prev-arrow flip)",
+        "values containing --nav-- / --hamburger / --menu- / --header- / --drawer- / --popover- (foreign-component vars)",
+        "values containing --swiper- / --carousel- / --slider- / --slick- / --owl- / --splide- / --gallery- (third-party widget vars)",
+        "padding/radius/border-width values 0 / 0 0 / 0 0 0 0 (broad CSS resets)",
+        "opacity = 0 in base contract (hidden-by-default state)",
+        "opacity = NaN after Number() (numeric guard)",
+        "CSS-module hash variant names (module__VSkE6q__buttonActions → buttonActions, with duplicate merge)"
+      ],
+      "tests": 10,
+      "shipped": true
+    },
+    {
+      "feature": "lib/var-resolver.cjs — var() chain resolution + fallback injection",
+      "source": "own (renderer needs portable contracts)",
+      "capabilities": [
+        "Parses :root / :host (light), .dark / [data-theme=dark] / [data-color-mode=dark] / [data-dark-theme=dark] / @media(prefers-color-scheme:dark) (dark)",
+        "Recognises proprietary DS scopes (.brandbook-root, .theme-*) as preferred over generic :root",
+        "Captures global scope from any other selector with vars (most-frequent-value wins)",
+        "resolveTerminal() walks alias chains (var(--a) → var(--b) → #fff) cycle-safely",
+        "injectFallbacks() rewrites var(--x) → var(--x, hex) using terminal resolution",
+        "buildThemedVars() emits flat { light, dark, preferred } maps for downstream renderers"
+      ],
+      "tests": 18,
+      "shipped": true
+    },
+    {
+      "feature": "lib/render-contract.cjs — single source of truth for themed render",
+      "source": "own (consolidate enrich.cjs + UI duplication)",
+      "emits": "render-contract.json sibling artefact",
+      "fields": [
+        "theme.{default, default_mode, supports_dark, supports_dark_reason, declared_default, confidence, surface, surface_alt, text, muted, border, accent}",
+        "components.{button,card,input,badge,link,nav,tab,alert,table,tooltip,modal,avatar,label} contracts",
+        "native_vars.{supports_dark, has_explicit_dark_scope, preferred_selector, preferred_count, light, dark, preferred}",
+        "warnings[] (e.g. border_too_strong_for_dark_surface)"
+      ],
+      "tests": 4,
+      "shipped": true
+    },
+    {
+      "feature": "detectDefaultTheme signal #5 — CSS background luminance",
+      "source": "own (OpenAI/shadcn dark-first pattern)",
+      "detail": "Walks :root/:host/html/body blocks, classifies as default-applying vs explicit-state, averages luminance of --background/--bg/--color-background/--surface/background-color declarations. Recognises shadcn :root:not(:where(.light)) as default-applying-when-no-light. Emits low-confidence pick when explicit signals absent.",
+      "tests": "covered via extractors.test.cjs",
+      "shipped": true
+    },
+    {
+      "feature": "themed.{light, dark, preferred, defaultMode, supportsDark} in tokens-extended.json",
+      "source": "own (renderer dual-mode requirement)",
+      "detail": "Light/dark/preferred maps with terminal-resolved values. defaultMode = what the site renders by default. supportsDark = true only when light-default + has dark vars. Renderer can inline-declare theme vars on a wrapper without parsing CSS.",
+      "shipped": true
+    },
+    {
+      "feature": "Schema hardening — nullish() across optional fields",
+      "source": "own (extractor sometimes emits null vs undefined)",
+      "detail": "DSExtendedTokensSchema, focus_ring/motion/opacity/coverage.missing.reason all nullish-aware. Unblocks Apple load (focus_ring.box_shadow was null).",
+      "shipped": true
+    },
+    {
+      "feature": "Component schema enrichment — line_height, letter_spacing, outline_color, outline_offset, transition, transform",
+      "source": "own (richer fidelity for renderer)",
+      "detail": "DSComponentTokensSchema now accepts the full set of properties the extractor emits, with nullish coercion.",
+      "shipped": true
+    }
+  ],
+  "test_runs_verified_2026_04_29": [
+    {
+      "host": "apple",
+      "default_mode": "light",
+      "toggle": false,
+      "signal": "no-signal-fallback",
+      "confidence": "low"
+    },
+    {
+      "host": "anthropic",
+      "default_mode": "light",
+      "toggle": false,
+      "signal": "no-signal-fallback",
+      "confidence": "low"
+    },
+    {
+      "host": "shopify",
+      "default_mode": "light",
+      "toggle": false,
+      "signal": "no-signal-fallback",
+      "confidence": "low"
+    },
+    {
+      "host": "stripe",
+      "default_mode": "light",
+      "toggle": false,
+      "signal": "no-signal-fallback",
+      "confidence": "low"
+    },
+    {
+      "host": "mercadolivre",
+      "default_mode": "light",
+      "toggle": false,
+      "signal": "no-signal-fallback",
+      "confidence": "low"
+    },
+    {
+      "host": "nubank",
+      "default_mode": "light",
+      "toggle": true,
+      "signal": "surface luminance + dark vars present",
+      "confidence": "low"
+    },
+    {
+      "host": "redpine",
+      "default_mode": "light",
+      "toggle": true,
+      "signal": "theme-color=\"#FFFFFF\" → light",
+      "confidence": "medium"
+    },
+    {
+      "host": "github",
+      "default_mode": "light",
+      "toggle": true,
+      "signal": "meta color-scheme=\"light dark\" → light",
+      "confidence": "high"
+    },
+    {
+      "host": "linear",
+      "default_mode": "dark",
+      "toggle": false,
+      "signal": "<html data-theme=\"dark\">",
+      "confidence": "high"
+    },
+    {
+      "host": "vercel",
+      "default_mode": "dark",
+      "toggle": false,
+      "signal": "meta color-scheme=\"dark light\" → dark",
+      "confidence": "high"
+    },
+    {
+      "host": "openai",
+      "default_mode": "dark",
+      "toggle": false,
+      "signal": "css-bg vars luminance avg=0.00 → dark (NEW signal #5)",
+      "confidence": "low"
+    },
+    {
+      "host": "aioxsquad",
+      "default_mode": "dark",
+      "toggle": false,
+      "signal": "<html class*=\"dark*\">",
+      "confidence": "medium"
+    }
+  ],
+  "unique_capabilities_no_competitor_advertises_2026_04_29": [
+    "Renderer-grade contract artefact (render-contract.json) with theme + components + warnings, separate from raw tokens",
+    "Themed dual-mode emit (themed.light/dark/preferred) with defaultMode + supportsDark classification",
+    "Sanitisation layer that recognises Swiper/Slick/Slider widget pollution by var-name prefix",
+    "Recognition of shadcn-style :root:not(:where(.light)) as default-applying scope (signal #5)",
+    "Most-frequent-value resolution for ambiguous custom properties across heterogeneous selectors"
+  ]
+}

@@ -1,0 +1,473 @@
+# E2E Integration Test: YouTube Pipeline
+# Story 5.2 — EPIC-SC-V2-001
+# Validates the complete YouTube-to-Deck pipeline end-to-end
+#
+# Orchestration: slide-chief agent via *create-from-youtube command
+# Contract validation: ./squads/slides-creator/scripts/validate-contracts.sh --ci
+
+test_name: "E2E YouTube Pipeline — 30min Video to Deck"
+version: "1.0.0"
+story_id: "5.2"
+epic_id: "EPIC-SC-V2-001"
+feature_flag: "ENABLE_YOUTUBE_ENTRYPOINT"
+
+# ---------------------------------------------------------------------------
+# Test Scenario
+# ---------------------------------------------------------------------------
+
+scenario:
+  description: >
+    Convert a 30-minute YouTube video (with available subtitles) into a
+    presentation deck of 15-25 slides. Validates every stage of the YouTube
+    pipeline: ingestao, transcricao, extracao visual, analise multimodal,
+    Q&A de adaptacao, briefing generation, and deck rendering.
+
+  # Sample video: Google I/O 2024 keynote segment (~30 min, English, subtitles available)
+  # This video has: diagrams, code snippets, text slides, and speaker moments
+  # making it ideal for visual moment classification testing.
+  #
+  # PLACEHOLDER: Replace with a stable, publicly available ~30min video URL
+  # that has subtitles and visual diversity (diagrams, code, slides).
+  # Requirements for the sample video:
+  #   - Duration: 25-35 minutes
+  #   - Subtitles: available in English or Portuguese
+  #   - Visual content: mix of diagrams, code, text slides, speaker
+  #   - Publicly accessible (no age restriction, no region lock)
+  sample_video:
+    url: "https://www.youtube.com/watch?v=vMDJHyrBbiU"
+    description: "Google Cloud Next '24 — Developer Keynote (~30 min, EN subtitles)"
+    expected_duration_range: [1500, 2100]  # 25-35 minutes in seconds
+    expected_language: "en"
+    has_subtitles: true
+
+  # Test-default answers for the Q&A stage (Stage 5)
+  # These simulate a user who keeps the original content structure
+  qa_defaults:
+    target_product: "keep_original"
+    target_audience: "software developers and tech leads"
+    tone: "tecnico"
+    structure_decision: "keep_all"
+    visual_selections: "all"
+
+# ---------------------------------------------------------------------------
+# Pipeline Stages — Validation Checkpoints
+# ---------------------------------------------------------------------------
+
+stages:
+
+  # ---- Stage 1: Ingestao ----
+  stage_1_ingestao:
+    description: "yt-dlp metadata extraction and availability check"
+    timeout_seconds: 30
+    cost_expected_usd: 0.00
+
+    validations:
+      - id: "S1.1"
+        check: "video_metadata object is populated"
+        field: "video_metadata"
+        condition: "all required fields present (title, video_id, duration_seconds, channel, url)"
+        pass_criteria: "video_metadata is not null and contains all 5 required fields"
+
+      - id: "S1.2"
+        check: "duration within expected range"
+        field: "video_metadata.duration_seconds"
+        condition: "value >= 1500 AND value <= 2100"
+        pass_criteria: "Video is between 25 and 35 minutes"
+
+      - id: "S1.3"
+        check: "video is not a live stream"
+        field: "video_metadata.is_live"
+        condition: "value != true"
+        pass_criteria: "Video is a recorded video, not a live stream"
+
+      - id: "S1.4"
+        check: "video_id is 11 characters"
+        field: "video_metadata.video_id"
+        condition: "length == 11"
+        pass_criteria: "Standard YouTube video ID format"
+
+  # ---- Stage 2: Transcricao ----
+  stage_2_transcricao:
+    description: "Transcript extraction via youtube-transcript-api (fast path)"
+    timeout_seconds: 90
+    cost_expected_usd: 0.00
+    expected_source: "youtube_captions"
+
+    validations:
+      - id: "S2.1"
+        check: "transcript extracted via fast path"
+        field: "extraction_status.transcript_source"
+        condition: "value == 'youtube_captions'"
+        pass_criteria: "Free caption extraction succeeded (no paid API needed)"
+
+      - id: "S2.2"
+        check: "transcript segments populated"
+        field: "transcript_segments"
+        condition: "array length > 100"
+        pass_criteria: "30-min video should have 100+ transcript segments"
+
+      - id: "S2.3"
+        check: "timestamps are float seconds"
+        field: "transcript_segments[*].start"
+        condition: "type == number AND value >= 0"
+        pass_criteria: "All start timestamps are non-negative floats, NOT MM:SS strings"
+
+      - id: "S2.4"
+        check: "end timestamps are after start"
+        field: "transcript_segments[*]"
+        condition: "end > start for every segment"
+        pass_criteria: "Every segment has end > start"
+
+      - id: "S2.5"
+        check: "text is non-empty"
+        field: "transcript_segments[*].text"
+        condition: "each text is a non-empty string"
+        pass_criteria: "No empty transcript segments"
+
+  # ---- Stage 3: Extracao Visual ----
+  stage_3_extracao_visual:
+    description: "PySceneDetect + ffmpeg keyframe extraction"
+    timeout_seconds: 60
+    cost_expected_usd: 0.00
+
+    validations:
+      - id: "S3.1"
+        check: "keyframes extracted"
+        field: "keyframes_manifest"
+        condition: "array length >= 20 AND array length <= 80"
+        pass_criteria: "PySceneDetect produces 20-80 keyframes for a 30-min video"
+
+      - id: "S3.2"
+        check: "keyframes saved to correct path"
+        field: "keyframes_manifest[*].path"
+        condition: "each path starts with 'cache/slides-v2/videos/'"
+        pass_criteria: "Frames stored in expected cache directory"
+
+      - id: "S3.3"
+        check: "keyframes have timestamps"
+        field: "keyframes_manifest[*].timestamp_seconds"
+        condition: "type == number AND value >= 0"
+        pass_criteria: "Each keyframe has a valid float timestamp"
+
+      - id: "S3.4"
+        check: "keyframes are chronologically ordered"
+        field: "keyframes_manifest"
+        condition: "timestamps are monotonically increasing"
+        pass_criteria: "Frames are in chronological order"
+
+  # ---- Stage 4: Analise Multimodal ----
+  stage_4_analise_multimodal:
+    description: "Gemini Flash visual analysis and classification"
+    timeout_seconds: 120
+    cost_expected_usd_range: [0.30, 1.50]
+
+    validations:
+      - id: "S4.1"
+        check: "visual moments detected"
+        field: "visual_moments"
+        condition: "array length >= 3"
+        pass_criteria: "At least 3 visual moments detected in a 30-min tech talk"
+
+      - id: "S4.2"
+        check: "visual moments have valid types"
+        field: "visual_moments[*].type"
+        condition: "value in ['diagram', 'code', 'text_slide', 'whiteboard', 'screen_demo', 'infographic', 'other']"
+        pass_criteria: "All types are from the allowed enum (speaker_only filtered out)"
+
+      - id: "S4.3"
+        check: "confidence threshold met"
+        field: "visual_moments[*].confidence"
+        condition: "value >= 0.7"
+        pass_criteria: "All retained visual moments have confidence >= 0.7 (epic AC requirement)"
+        note: "Moments with confidence < 0.7 should be filtered during analysis"
+
+      - id: "S4.4"
+        check: "visual analysis source recorded"
+        field: "extraction_status.visual_analysis_source"
+        condition: "value == 'gemini_flash'"
+        pass_criteria: "Gemini Flash was used for visual analysis"
+
+      - id: "S4.5"
+        check: "chapters detected"
+        field: "chapters"
+        condition: "array length >= 2"
+        pass_criteria: "At least 2 chapters detected in a 30-min video"
+
+      - id: "S4.6"
+        check: "chapter timestamps are float seconds"
+        field: "chapters[*].timestamp_seconds"
+        condition: "type == number AND value >= 0"
+        pass_criteria: "Chapter timestamps are non-negative floats"
+
+  # ---- Stage 5: Adaptacao Q&A ----
+  stage_5_adaptacao_qa:
+    description: "User interaction: 3-5 adaptation questions"
+    timeout_seconds: null  # User-interactive, no timeout
+    cost_expected_usd: 0.00
+    elicit: true
+
+    validations:
+      - id: "S5.1"
+        check: "3-5 questions presented"
+        field: "qa_questions_count"
+        condition: "value >= 3 AND value <= 5"
+        pass_criteria: "Between 3 and 5 adaptation questions were asked"
+
+      - id: "S5.2"
+        check: "adaptation preferences recorded"
+        field: "adaptation"
+        condition: "object is not null and contains target_product, target_audience, tone"
+        pass_criteria: "Core adaptation fields are populated"
+
+      - id: "S5.3"
+        check: "structure decisions captured"
+        field: "adaptation.structure_decisions"
+        condition: "object or array is present"
+        pass_criteria: "User's keep/adapt/remove decisions for chapters are recorded"
+
+    test_inputs:
+      note: "Use qa_defaults from scenario section for automated test execution"
+      target_product: "keep_original"
+      target_audience: "software developers and tech leads"
+      tone: "tecnico"
+      structure_decision: "keep_all"
+
+  # ---- Stage 6: Briefing Generation ----
+  stage_6_briefing_generation:
+    description: "youtube-extraction.json to briefing.normalized.json conversion"
+    timeout_seconds: 10
+    cost_expected_usd: 0.00
+
+    validations:
+      - id: "S6.1"
+        check: "youtube-extraction.json validates against schema"
+        field: "youtube_extraction"
+        condition: "validates against schemas/contracts/youtube-extraction.schema.json"
+        pass_criteria: "Producer-side schema validation passes"
+
+      - id: "S6.2"
+        check: "briefing.normalized.json has source_type=youtube"
+        field: "briefing_normalized.source_type"
+        condition: "value == 'youtube'"
+        pass_criteria: "Source type correctly set to 'youtube'"
+
+      - id: "S6.3"
+        check: "briefing has no blockers"
+        field: "briefing_normalized.blockers"
+        condition: "array length == 0"
+        pass_criteria: "No blocking issues in the normalized briefing"
+
+      - id: "S6.4"
+        check: "briefing validates against normalized schema"
+        field: "briefing_normalized"
+        condition: "validates against squads/slides-creator/templates/briefing.normalized.json"
+        pass_criteria: "Consumer-side schema validation passes (dual validation)"
+
+      - id: "S6.5"
+        check: "youtube_source metadata present"
+        field: "briefing_normalized.youtube_source"
+        condition: "object contains url, video_id, extraction_profile, chapters, visual_moments"
+        pass_criteria: "YouTube-specific metadata carried through to briefing"
+
+      - id: "S6.6"
+        check: "max_slides in expected range"
+        field: "briefing_normalized.max_slides"
+        condition: "value >= 15 AND value <= 25"
+        pass_criteria: "Slide count derived from chapters (clamped 15-25 for this test)"
+
+      - id: "S6.7"
+        check: "output targets include ds"
+        field: "briefing_normalized.output_targets"
+        condition: "array contains 'ds'"
+        pass_criteria: "Deck will render for ds"
+
+  # ---- Deck Generation (post-briefing) ----
+  deck_generation:
+    description: "generate-presentation.yaml pipeline produces final deck"
+    timeout_seconds: 120
+    cost_expected_usd_range: [0.50, 1.50]
+
+    validations:
+      - id: "D1"
+        check: "deck-manifest.json generated"
+        field: "deck_manifest"
+        condition: "file exists and is valid JSON"
+        pass_criteria: "Deck manifest was produced by the pipeline"
+
+      - id: "D2"
+        check: "slide count in range"
+        field: "deck_manifest.slides"
+        condition: "array length >= 15 AND array length <= 25"
+        pass_criteria: "Deck has 15-25 slides (epic AC)"
+
+      - id: "D3"
+        check: "deck renders in ds format"
+        field: "deck_manifest.output_target"
+        condition: "value == 'ds' OR output_targets contains 'ds'"
+        pass_criteria: "Deck is compatible with ds renderer"
+
+      - id: "D4"
+        check: "each slide has required fields"
+        field: "deck_manifest.slides[*]"
+        condition: "each slide has: type, content (title or body), layout"
+        pass_criteria: "No empty or malformed slides in the deck"
+
+# ---------------------------------------------------------------------------
+# Global Constraints
+# ---------------------------------------------------------------------------
+
+global_constraints:
+
+  budget:
+    max_total_usd: 2.50
+    breakdown_estimate:
+      ingestao: 0.00
+      transcricao_fast_path: 0.00
+      extracao_visual: 0.00
+      analise_multimodal: 0.50  # to 1.50
+      qa: 0.00
+      briefing_generation: 0.00
+      deck_generation: 0.50  # to 1.50 (content-architect + visual-scout LLM calls)
+    validation:
+      - id: "B1"
+        check: "total cost under budget"
+        field: "extraction_status.cost_usd + deck_generation_cost"
+        condition: "value < 2.50"
+        pass_criteria: "Total pipeline cost stays under $2.50"
+
+  timing:
+    max_total_seconds: 300
+    per_stage_budgets:
+      stage_1: 30
+      stage_2: 90
+      stage_3: 60
+      stage_4: 120
+      stage_5: null  # user-interactive
+      stage_6: 10
+      deck_generation: 120
+    validation:
+      - id: "T1"
+        check: "total time under 5 minutes"
+        field: "total_processing_time_seconds"
+        condition: "value < 300"
+        note: "Excludes Stage 5 (user-interactive Q&A wait time)"
+        pass_criteria: "Pipeline completes within 5 minutes (excluding user interaction)"
+
+  schema_compliance:
+    validations:
+      - id: "SC1"
+        check: "youtube-extraction.json conforms to contract"
+        schema: "schemas/contracts/youtube-extraction.schema.json"
+        pass_criteria: "Output matches cross-squad contract"
+
+      - id: "SC2"
+        check: "briefing.normalized.json conforms to contract"
+        schema: "squads/slides-creator/templates/briefing.normalized.json"
+        pass_criteria: "Briefing matches consumer contract"
+
+# ---------------------------------------------------------------------------
+# Expected Outcomes & Pass/Fail Criteria
+# ---------------------------------------------------------------------------
+
+expected_outcomes:
+  youtube_extraction:
+    video_metadata:
+      video_id: "11-character string"
+      duration_seconds: "1500-2100 range"
+      channel: "non-empty string"
+    transcript_segments: ">= 100 segments with float timestamps"
+    visual_moments: ">= 3 moments with confidence >= 0.7"
+    chapters: ">= 2 chapters with float timestamps"
+    extraction_status:
+      transcript_source: "youtube_captions"
+      visual_analysis_source: "gemini_flash"
+      cost_usd: "< 1.50"
+      processing_time_seconds: "< 180"
+
+  briefing_normalized:
+    source_type: "youtube"
+    youtube_source: "present with url, video_id, chapters, visual_moments, adaptation"
+    max_slides: "15-25"
+    blockers: "empty array"
+    output_targets: "includes 'ds'"
+
+  deck_manifest:
+    slides: "15-25 slides"
+    render_target: "ds"
+    all_slides_valid: "each has type, content, layout"
+
+pass_fail_criteria:
+  pass:
+    description: "All validations pass"
+    conditions:
+      - "All S1.x, S2.x, S3.x, S4.x, S5.x, S6.x, D1-D4 validations PASS"
+      - "B1 (budget < $2.50) PASS"
+      - "T1 (time < 5 min) PASS"
+      - "SC1, SC2 (schema compliance) PASS"
+
+  fail:
+    description: "Any critical validation fails"
+    critical_failures:
+      - "Transcript extraction fails entirely (no segments)"
+      - "No visual moments with confidence >= 0.7"
+      - "Briefing has blockers (blockers array non-empty)"
+      - "Deck has fewer than 15 or more than 25 slides"
+      - "Total cost exceeds $2.50"
+      - "Total time exceeds 5 minutes (excluding Q&A)"
+      - "Schema validation fails for youtube-extraction or briefing"
+
+    acceptable_degradation:
+      - "Fewer than 20 keyframes extracted (min 5 acceptable with warning)"
+      - "Visual analysis falls back to 'none' (budget or API issue) — test WARNS but does not FAIL"
+      - "Q&A has fewer than 5 questions (minimum 3 required)"
+
+# ---------------------------------------------------------------------------
+# Execution Instructions
+# ---------------------------------------------------------------------------
+
+execution:
+  method: "agent-orchestrated"
+  agent: "slide-chief"
+  command: "*create-from-youtube"
+  steps:
+    - step: 1
+      action: "Activate slide-chief agent"
+      instruction: "Ensure ENABLE_YOUTUBE_ENTRYPOINT feature flag is enabled"
+
+    - step: 2
+      action: "Run *create-from-youtube with sample video URL"
+      instruction: "Execute: *create-from-youtube {sample_video.url}"
+
+    - step: 3
+      action: "Answer Q&A with test defaults"
+      instruction: >
+        When prompted with adaptation questions, use the qa_defaults from the
+        scenario section. For structure: keep all chapters. For tone: tecnico.
+
+    - step: 4
+      action: "Validate youtube-extraction.json"
+      instruction: >
+        After Stage 6 completes, validate the youtube-extraction.json output
+        against all S1-S6 validations in this file.
+
+    - step: 5
+      action: "Validate deck output"
+      instruction: >
+        After deck generation completes, validate the deck-manifest.json
+        against D1-D4 validations.
+
+    - step: 6
+      action: "Validate global constraints"
+      instruction: >
+        Check B1 (budget), T1 (timing), SC1, SC2 (schema compliance).
+
+    - step: 7
+      action: "Record results"
+      instruction: >
+        Document PASS/FAIL per validation ID. If any critical failure occurs,
+        document the failure details and root cause.
+
+  contract_validation:
+    pre_test: "./squads/slides-creator/scripts/validate-contracts.sh --ci"
+    post_test: "./squads/slides-creator/scripts/validate-contracts.sh --ci"
+    note: "Run contract validation before AND after the E2E test to detect any schema drift caused by the pipeline"

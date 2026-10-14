@@ -1,0 +1,195 @@
+schema: 1
+handoff_id: "MOD-QT-2-VERQT-qa-to-devops"
+pipeline_id: "MOD-QT-2-RESOLUCAO-VERQT"
+from_agent: "@qa (Quinn)"
+to_agent: "@devops (Gage)"
+created: "2026-07-29T06:55:00-03:00"
+mode: "yolo (autônomo, sem intervenção humana)"
+submodule: "sistema-de-instala-es-el-tricas-sie-main"
+normative_source: "docs/research/{2026-07-28}-resolucao-ver-qt.md §6 (C-01 a C-08)"
+
+# ---------------------------------------------------------------------------
+# VEREDITO CONSOLIDADO — AS DUAS STORIES DA CADEIA ESTÃO FECHADAS
+# ---------------------------------------------------------------------------
+resumo: >-
+  As duas stories do workflow MOD-QT-2 (resolução VER-QT) passaram pelo gate de QA com
+  veredito CONCERNS e estão em `Done`. Ambas compartilham a MESMA ressalva, de severidade
+  baixa e natureza ambiental: `npx eslint .` sobre o projeto inteiro não pôde ser executado
+  (trava pré-existente neste repositório) e NÃO foi presumido PASS. Todos os arquivos de
+  produção de ambas as stories passaram por lint escopado com exit 0. Nenhuma ressalva
+  aponta defeito funcional. Liberadas para preparação de push.
+
+stories:
+  - story_id: "MOD-QT-2-03"
+    titulo: "Catálogo Fechado de Impedância e Resolvedor de Perfil (VER-QT-02/03/04)"
+    story_path: "docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md"
+    gate_file: "docs/qa/gates/MOD-QT-2-03-gate.yaml"
+    gate: CONCERNS
+    quality_score: 92
+    status: "Done"
+    rodadas_de_gate: 1
+    acs: "16/16 com evidência automatizada"
+    escopo: "C-01, C-02, C-04, C-07, C-08"
+    ressalvas:
+      - { id: TEST-001, sev: low, item: "Guarda de [VERIFICAR] por substring literal no gate C-07." }
+      - { id: TEST-002, sev: low, item: "Assert sobre a razão motor/mock convertido em diagnóstico." }
+      - { id: OPS-001,  sev: low, item: "BLK-QT-TIMEOUT-FLAKY-01 — causa estrutural em catalogo-impedancia-completude.test.ts:156." }
+
+  - story_id: "MOD-QT-2-04"
+    titulo: "Fluxo de Entrada Fechado, Limite EDP-SP v09 e Alturas de Tomada (VER-QT-06/07)"
+    story_path: "docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md"
+    gate_file: "docs/qa/gates/MOD-QT-2-04-gate.yaml"
+    gate: CONCERNS
+    quality_score: 92
+    status: "Done"
+    rodadas_de_gate: 2
+    historico_de_gate: >-
+      Rodada 1 (FAIL, score 78): os 9 ACs já estavam corretos; a reprovação foi de
+      INTEGRIDADE DE EVIDÊNCIA — o Debug Log declarava `eslint` escopado PASS e a
+      reexecução independente do @qa encontrava 6 violações `prettier/prettier` ainda no
+      disco. Rodada 2 (CONCERNS, score 92): o @dev corrigiu apenas a formatação e retificou
+      o registro preservando o rastro do erro; o @qa reexecutou os 3 gates de forma
+      independente e todos fecharam.
+    acs: "9/9 com evidência automatizada"
+    escopo: "C-03, C-05, C-06"
+    depends_on: "MOD-QT-2-03"
+    ressalvas:
+      - { id: MNT-003, sev: low, item: "`npx eslint .` completo NÃO VERIFICADO — trava ambiental. Não bloqueia." }
+      - { id: OPS-001, sev: low, item: "BLK-QT-TIMEOUT-FLAKY-01 não reproduzido em 3 execuções; mantido aberto, severidade BAIXA." }
+      - { id: MNT-002, sev: low, item: "DT-04-01 (metal/temperatura/seção do perfil de cabo não persistidos) e DT-04-02 (vocabulários material Cu/Al × metal CU/AL não cruzados) — backlog de @po." }
+
+# ---------------------------------------------------------------------------
+# GATES TÉCNICOS — ESTADO FINAL DA ÁRVORE (executados pelo @qa)
+# ---------------------------------------------------------------------------
+gates_finais:
+  typecheck:
+    comando: "npx tsc --noEmit"
+    resultado: PASS
+    detalhe: "exit 0, sem saída"
+  testes:
+    comando: "npx vitest run"
+    resultado: PASS
+    detalhe: "Test Files 132 passed (132) | Tests 947 passed (947) | exit 0 | 261,49 s"
+    execucoes_totais_na_cadeia: 3
+    observacao: >-
+      NÃO usar `--reporter=basic` neste projeto: no Vitest 4 ele mascara falha de startup
+      com exit 0. Caveat descoberto em gate anterior e reconfirmado.
+  build:
+    comando: "npx vite build"
+    resultado: PASS
+    detalhe: "built in 12.18s (executado sobre a mesma árvore lógica; a rodada 2 alterou apenas formatação)"
+  lint_escopado:
+    comando: "npx eslint <arquivos de cada story>"
+    resultado: PASS
+    detalhe: "exit 0 nas duas stories — 22 arquivos de MOD-QT-2-03 e os 2 de MOD-QT-2-04"
+  lint_projeto_inteiro:
+    comando: "npx eslint ."
+    resultado: NAO_VERIFICADO
+    detalhe: >-
+      Trava ambiental pré-existente (>25 min sem retorno), independente destas stories e já
+      registrada por múltiplos agentes. NÃO presumido PASS. É a razão de CONCERNS em ambas.
+
+# ---------------------------------------------------------------------------
+# GARANTIAS DE ESCOPO VERIFICADAS PELO @qa
+# ---------------------------------------------------------------------------
+garantias:
+  contrato_publico_intacto:
+    metodo: "verificação POR SÍMBOLO (a worktree do submódulo está suja com trabalho alheio; `git diff` de arquivo inteiro não é conclusivo)"
+    simbolos:
+      - "src/domain/dimensionamento-condutores/contratos.ts :: RetornoMODQT — fora do diff"
+      - "src/api/schemas/otimizar-condutor.schema.ts :: ValidarMODQTSchema / RetornoMODQTSchema — arquivo ausente de git status, intocado"
+      - 'POST /api/v1/modulos/mod-qt/validar — createFileRoute byte a byte idêntico'
+    resultado: PASS
+  mod_dc_intocado:
+    resultado: PASS
+    evidencia: "0 ocorrências de queda|perfil_cabo|impedanc|prysmian|retorno_qt|limite_total no diff de src/domain/dimensionamento-condutores/"
+  regressao: { resultado: PASS, detalhe: "CA-QT-19 e CA-QT-22 preservados; 947/947" }
+
+# ---------------------------------------------------------------------------
+# ATENÇÃO DO @devops AO PREPARAR O COMMIT
+# ---------------------------------------------------------------------------
+atencao_devops:
+  worktree_suja: >-
+    CRÍTICO. A worktree do submódulo `sistema-de-instala-es-el-tricas-sie-main` contém
+    trabalho ALHEIO a esta cadeia, não commitado (MOD-CC, AUTO-OTI, proteção,
+    dimensionamento-condutores). NÃO usar `git add -A` / `git commit -a`. O commit desta
+    cadeia deve ser montado por PATH EXPLÍCITO a partir das File Lists das duas stories.
+  arquivos_desta_cadeia:
+    mod_qt_2_03:
+      novos:
+        - "scripts/gerar-catalogo-impedancia-prysmian.mjs"
+        - "src/domain/queda-tensao/normativa/impedancias-prysmian-rev10.json"
+        - "src/domain/queda-tensao/normativa/impedancias-prysmian-rev10.ts"
+        - "src/domain/queda-tensao/normativa/resolver-perfil-impedancia.ts"
+        - "tests/domain/queda-tensao/fixtures/perfil-impedancia-fixture.ts"
+        - "tests/domain/queda-tensao/catalogo-impedancia-completude.test.ts"
+        - "tests/domain/queda-tensao/resolver-perfil-impedancia.test.ts"
+        - "tests/domain/queda-tensao/integracao-mod-dc-c5-fail-closed.test.ts"
+      modificados:
+        - "src/domain/queda-tensao/contratos.ts"
+        - "src/domain/queda-tensao/erros.ts"
+        - "src/domain/queda-tensao/index.ts"
+        - "src/domain/queda-tensao/motores/motor-queda-tensao.ts"
+        - "src/domain/queda-tensao/motores/simulador-cenarios.ts"
+        - "src/domain/servicos/servico-queda-tensao.ts"
+        - "src/infra/repositorios/repositorio-queda-tensao-config.ts"
+        - "src/api/schemas/queda-tensao.ts"
+        - "src/routes/api/v1/modulos.mod-qt.validar.ts   # APENAS o corpo do handler; a rota é contrato público"
+        - "src/routes/api/v1/projetos.$projetoId.alimentador.ts"
+        - "src/routes/api/v1/projetos.$projetoId.queda-tensao-lote.ts"
+        - "tests/domain/queda-tensao/ca-qt-19-nao-regressao.test.ts"
+        - "tests/domain/queda-tensao/motor-queda-tensao.test.ts"
+        - "tests/api/queda-tensao-endpoints.test.ts"
+    mod_qt_2_04:
+      novos:
+        - "src/domain/queda-tensao/normativa/opcoes-perfil-cabo.ts"
+        - "src/components/app/queda-tensao/SeletorPerfilCabo.tsx"
+        - "tests/domain/queda-tensao/limites-edp-sp-v09.test.ts"
+        - "tests/domain/queda-tensao/opcoes-perfil-cabo.test.ts"
+        - "tests/ui/queda-tensao-fluxo-entrada-fechado.test.tsx"
+      modificados:
+        - "src/domain/queda-tensao/normativa/limites.ts"
+        - "src/domain/queda-tensao/index.ts"
+        - "src/domain/queda-tensao/motores/motor-queda-tensao.ts"
+        - "src/domain/queda-tensao/contratos.ts"
+        - "src/domain/servicos/servico-queda-tensao.ts"
+        - "src/infra/repositorios/repositorio-queda-tensao-config.ts"
+        - "src/api/schemas/queda-tensao.ts"
+        - "src/components/app/queda-tensao/PainelAlimentador.tsx"
+        - "src/routes/projetos.$projetoId_.queda-tensao.tsx"
+        - "src/lib/api-client.ts"
+        - "tests/domain/queda-tensao/motor-queda-tensao.test.ts"
+        - "tests/api/modulos-mod-qt-motor-real.test.ts"
+        - "tests/ui/queda-tensao.vrt.test.tsx"
+        - "tests/ui/__snapshots__/queda-tensao.vrt.test.tsx.snap"
+    repositorio_raiz:
+      - "Arquivos_Diversos/PROMPT-QUEDA-TENSAO-v2.2.md   # C-06"
+      - "docs/stories/story-MOD-QT-2-03-catalogo-impedancia-resolvedor-perfil.md"
+      - "docs/stories/story-MOD-QT-2-04-fluxo-entrada-fechado-limites-edp.md"
+      - "docs/qa/gates/MOD-QT-2-03-gate.yaml"
+      - "docs/qa/gates/MOD-QT-2-04-gate.yaml"
+      - ".aiox/workflow-state/MOD-QT-2-VERQT-state.yaml"
+      - ".aiox/handoffs/MOD-QT-2-VERQT-qa-to-devops.yaml"
+  nao_commitar:
+    - "hostinger-spa.zip (artefato de build presente como modificado na worktree)"
+    - "Qualquer arquivo de src/domain/dimensionamento-condutores/** — é MOD-DC, trabalho alheio"
+    - "Qualquer arquivo de MOD-CC / AUTO-OTI / proteção / derivar-circuitos"
+  blocker_alheio:
+    ref: ".aiox/workflow-state/BLOCKER-DERIVAR-CIRCUITOS-REGRESSAO.yaml"
+    nota: "Já Done, de outra cadeia. Não pertence a este handoff."
+  autorizacao_de_push: >-
+    REQUER AUTORIZAÇÃO EXPLÍCITA DO USUÁRIO (`scope_locks.push_authorization` no
+    workflow-state). @devops apenas PREPARA commit/branch/PR — não faz push sem o usuário.
+
+commit_sugerido: >-
+  feat(mod-qt): catálogo fechado de impedância, resolvedor de perfil e limite EDP-SP v09
+  [MOD-QT-2-03, MOD-QT-2-04] — resolve VER-QT-02/03/04/06 e VER-QT-07 (parcial)
+
+risco_de_release:
+  - id: "MOD-DC-PRD-13.6"
+    item: "O PRD do MOD-DC assume limite total de 7%; esta cadeia estabelece 5% para o perfil EDP-SP v09."
+    status: "ABERTO — story futura de @po/@architect. NENHUM arquivo do MOD-DC foi alterado nesta cadeia; o risco é documental, não de código."
+    bloqueia_push: false
+
+next_agent: "@devops"
+next_command: "*prepare-push (commit por path explícito; push somente após autorização do usuário)"

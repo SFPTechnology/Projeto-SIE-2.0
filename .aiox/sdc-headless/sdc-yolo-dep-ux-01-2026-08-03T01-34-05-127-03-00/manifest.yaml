@@ -1,0 +1,49 @@
+sdc_execution:
+  run_id: "sdc-yolo-dep-ux-01-2026-08-03T01-34-05-127-03-00"
+  execution_id: "sdc-yolo-dep-ux-01-execution"
+  workflow_file: "docs/workflows/WORKFLOW-SDC-YOLO-DEP-UX-01-CARDS-DEPENDENCIAS.md"
+  execution_file: "docs/workflows/EXECUCAO-SDC-YOLO-DEP-UX-01-CARDS-DEPENDENCIAS.md"
+  story_file: "docs/stories/story-DEP-UX-01-reestruturacao-cards-dependencias.md"
+  briefing_file: "docs/ux/ANALISE-REESTRUTURACAO-CARDS-DEPENDENCIAS.md"
+  base_engine_workflow: ".aiox-core/development/workflows/story-development-cycle-headless-yolo.yaml"
+  mode: "yolo"
+  interaction_policy: "never_prompt"
+  checkpoint_root: ".aiox/sdc-headless/sdc-yolo-dep-ux-01-2026-08-03T01-34-05-127-03-00"
+  max_qa_remediation_cycles: 2
+  authorization:
+    local_implementation: true
+    remote_operations: false
+    pull_request: false
+    merge: false
+    release: false
+    deploy: false
+    rollback: false
+  failure_policy:
+    missing_input: "block_and_log"
+    missing_contract: "block_and_log"
+    worktree_overlap: "integrate_preserving_preexisting_changes"
+    quality_gate_failure: "remediate_within_limit"
+    qa_failure: "remediate_within_limit"
+  reconciliation:
+    authorized_by_user: true
+    baseline:
+      - "src/components/app/TabelaDependencias.tsx: +62/-8"
+      - "src/components/app/VisaoGeralDependenciasModal.tsx: +8/-1"
+      - "src/styles.css: +470/-15"
+    prohibited_operations:
+      - "git reset"
+      - "git checkout"
+      - "git stash"
+      - "overwriting or removing preexisting changes"
+  protected_contracts:
+    - "Detalhe"
+    - "Calcular"
+    - "Historico"
+    - "Duplicar"
+    - "DependenciaAgregado"
+    - "EstadoDependencia"
+  required_quality_gates:
+    - "npm run lint"
+    - "npm run typecheck"
+    - "npm test"
+    - "WCAG AA review"

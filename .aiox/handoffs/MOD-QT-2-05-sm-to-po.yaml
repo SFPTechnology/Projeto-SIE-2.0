@@ -1,0 +1,29 @@
+handoff:
+  from_agent: "sm"
+  to_agent: "po"
+  pipeline_id: "MOD-QT-2-05-NAV-LINK"
+  story_context:
+    story_id: "MOD-QT-2-05"
+    story_path: "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md"
+    story_status: "Draft"
+    current_task: "create-next-story (draft) complete, awaiting *validate-story-draft"
+    branch: "master"
+  decisions:
+    - "Posição do link: logo após 'Dimensionamento de condutores', antes de 'Planejador de circuitos' — segue ordem de dependência de dados do domínio (MOD-QT-2 consome saída do dimensionamento de condutores)"
+    - "Padrão de link: <Link> do TanStack Router (não <a href> cru) — nenhum motivo técnico documentado para o <a href> nos 3 links vizinhos mais recentes; seguir o padrão mais novo/correto já presente no mesmo arquivo"
+    - "AC4 (VRT) marcada N/A — investigação confirmou que não existe snapshot VRT baseline para src/routes/projetos.$projetoId.tsx"
+    - "Escopo mantido estritamente em 1 arquivo de rota + 1 teste de render leve; nenhuma migração dos 3 links <a href> pré-existentes (dívida técnica separada, fora de escopo)"
+  files_modified: []
+  files_created:
+    - "docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md"
+  blockers: []
+  next_action: "@po executa *validate-story-draft (checklist de 10 pontos) sobre docs/stories/story-MOD-QT-2-05-nav-link-queda-tensao.md; se GO, transicionar Status Draft -> Ready"
+  self_check_story_draft_checklist:
+    result: "READY (autoavaliação do @sm, não substitui validação formal do @po)"
+    notes:
+      - "1. Goal & Context Clarity: PASS — gap concreto, evidência de código citada, ACs claros"
+      - "2. Technical Implementation Guidance: PASS — arquivo exato, trecho de código de referência, padrão <Link> especificado"
+      - "3. Reference Effectiveness: PASS — referências apontam a linhas/arquivos específicos, sem parecer formal externo pois o gap é auto-evidente no código"
+      - "4. Self-Containment: PASS — story inclui o snippet de código needed, decisão de posição e de padrão com justificativa embutida"
+      - "5. Testing Guidance: PASS — indica tests/ui/ como local, aponta ausência de teste dedicado ao hub, orienta REUSE > CREATE"
+      - "6. CodeRabbit Integration: PASS — seção completa presente (coderabbit_integration.enabled=true)"

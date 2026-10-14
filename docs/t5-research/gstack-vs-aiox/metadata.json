@@ -1,0 +1,31 @@
+{
+  "benchmark": {
+    "id": "bench-gstack-vs-aiox-2026-04-13",
+    "type": "codebase",
+    "profile": "full",
+    "created": "2026-04-13",
+    "analyst": "bench-analyst",
+    "pipeline": "bench-comparison-pipeline v2.0.0"
+  },
+  "subject_a": {
+    "name": "gstack",
+    "version": "0.16.2.0",
+    "source": "/Users/oalanicolas/Code/gstack",
+    "repo": "https://github.com/garrytan/gstack",
+    "license": "MIT",
+    "stars": 71516,
+    "creator": "Garry Tan (YC President/CEO)"
+  },
+  "subject_b": {
+    "name": "aiox-core (Sinkra Hub)",
+    "version": "SINKRA v3.2",
+    "source": "/Users/oalanicolas/Code/sinkra-hub",
+    "repo": "private (GitHub Package Registry)",
+    "license": "Private",
+    "stars": null,
+    "creator": "Alan Nicolas + Pedro Valerio + Founders"
+  },
+  "dimensions": ["Architecture", "Testing & QA", "Documentation", "Automation", "Extensibility", "Code Quality"],
+  "artifacts_generated": 13,
+  "confidence": "HIGH (both repos cloned locally)"
+}

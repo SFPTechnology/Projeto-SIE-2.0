@@ -1,0 +1,243 @@
+{
+  "matrix": {
+    "generated": "2026-04-04",
+    "dimensions": 25,
+    "categories": [
+      {
+        "name": "Core Architecture",
+        "items": [
+          {
+            "dimension": "Primary Language",
+            "hermes": "Python 3.11+",
+            "claude_code": "TypeScript (Node.js)",
+            "parity": "N/A",
+            "notes": "Different stacks, different ecosystems"
+          },
+          {
+            "dimension": "LOC (non-test)",
+            "hermes": 169185,
+            "claude_code": "~100K (estimated from npm bundle)",
+            "parity": "N/A"
+          },
+          {
+            "dimension": "License",
+            "hermes": "MIT (open source)",
+            "claude_code": "Proprietary",
+            "parity": 1,
+            "notes": "Hermes fully open; Claude Code source visible via npm sourcemap but proprietary"
+          },
+          {
+            "dimension": "Agent Loop",
+            "hermes": "run_agent.py → AIAgent class with OpenAI-compatible tool calling loop",
+            "claude_code": "Internal agentic loop with extended thinking + tool use",
+            "parity": 5,
+            "notes": "Both implement tool-calling agent loops. Claude Code has extended thinking advantage"
+          },
+          {
+            "dimension": "Model Lock-in",
+            "hermes": "None — 200+ models via OpenRouter, Nous Portal, OpenAI, custom endpoints",
+            "claude_code": "Claude models only (Opus, Sonnet, Haiku) via Anthropic/Bedrock/Vertex",
+            "parity": 1,
+            "notes": "Fundamental architectural difference. Hermes model-agnostic by design"
+          }
+        ]
+      },
+      {
+        "name": "Tools & Capabilities",
+        "items": [
+          {
+            "dimension": "Core Tools Count",
+            "hermes": 49,
+            "claude_code": 15,
+            "parity": 2,
+            "notes": "Hermes has 3x more tools but many are domain-specific (HA, TTS, image gen)"
+          },
+          {
+            "dimension": "File Operations",
+            "hermes": "file_tools.py, file_operations.py, patch_parser.py",
+            "claude_code": "Read, Write, Edit (surgical diff-based)",
+            "parity": 5,
+            "notes": "Both capable. Claude Code Edit is more precise (diff-based vs full rewrite)"
+          },
+          {
+            "dimension": "Terminal/Bash",
+            "hermes": "terminal_tool.py with persistent shell, 7 execution backends",
+            "claude_code": "Bash tool with sandboxing, timeout, background execution",
+            "parity": 4,
+            "notes": "Hermes wins on execution backends (Docker/SSH/Modal). Claude Code wins on sandboxing"
+          },
+          {
+            "dimension": "Web Search",
+            "hermes": "web_tools.py (Exa, Firecrawl, parallel-web)",
+            "claude_code": "WebSearch + WebFetch",
+            "parity": 4,
+            "notes": "Hermes has more search providers. Claude Code integrated natively"
+          },
+          {
+            "dimension": "Browser Automation",
+            "hermes": "browser_tool.py + browser_camofox.py (anti-detection)",
+            "claude_code": "Chrome extension + Playwright MCP",
+            "parity": 4,
+            "notes": "Hermes: Camoufox anti-detection. Claude Code: Chrome native integration"
+          },
+          {
+            "dimension": "MCP Support",
+            "hermes": "mcp_tool.py + mcp_oauth.py (client)",
+            "claude_code": "Full MCP client (stdio, HTTP, SSE) + server capabilities",
+            "parity": 4,
+            "notes": "Both support MCP. Claude Code has broader transport support"
+          },
+          {
+            "dimension": "Code Execution",
+            "hermes": "code_execution_tool.py (sandboxed Python/JS execution)",
+            "claude_code": "Bash tool (any language via shell)",
+            "parity": 5
+          },
+          {
+            "dimension": "Todo/Task Tracking",
+            "hermes": "todo_tool.py",
+            "claude_code": "TaskCreate/TaskUpdate/TaskList tools",
+            "parity": 5
+          }
+        ]
+      },
+      {
+        "name": "Memory & Learning",
+        "items": [
+          {
+            "dimension": "Persistent Memory",
+            "hermes": "MEMORY.md + USER.md (§-delimited, char-bounded) + pluggable backends (Honcho, vector+BM25)",
+            "claude_code": "CLAUDE.md (project) + auto-memory (~/.claude/projects/) + .claude/rules/",
+            "parity": 4,
+            "notes": "Both have persistent memory. Hermes has pluggable backends. Claude Code has rules system"
+          },
+          {
+            "dimension": "Session Search/Recall",
+            "hermes": "SQLite FTS5 + Gemini Flash summarization across ALL past sessions",
+            "claude_code": "/resume lists sessions. No full-text search. File-based memory only",
+            "parity": 1,
+            "notes": "Major Hermes advantage. Can answer 'what did we discuss last week about X?'"
+          },
+          {
+            "dimension": "Self-Learning Skills",
+            "hermes": "skill_manager_tool creates/edits/deletes SKILL.md autonomously + skills_guard security scan",
+            "claude_code": "Skills are manually authored. No auto-generation mechanism",
+            "parity": 1,
+            "notes": "Hermes creates reusable procedural knowledge from experience. Claude Code cannot"
+          },
+          {
+            "dimension": "Skills Library",
+            "hermes": "73 built-in + 14 optional packs + Skills Hub marketplace + agentskills.io standard",
+            "claude_code": "Custom skills only (.claude/skills/). No marketplace. No sharing protocol",
+            "parity": 2,
+            "notes": "Hermes has rich ecosystem. Claude Code skills are project-local"
+          }
+        ]
+      },
+      {
+        "name": "Coding & Development",
+        "items": [
+          {
+            "dimension": "Codebase Reasoning",
+            "hermes": "Basic file reading + terminal grep. No specialized code tools",
+            "claude_code": "Specialized Read/Edit/Grep/Glob + 200K context + extended thinking + sub-agents",
+            "parity": 1,
+            "notes": "Major Claude Code advantage. Purpose-built for code understanding"
+          },
+          {
+            "dimension": "Git/GitHub Integration",
+            "hermes": "Terminal-based git. No native GitHub integration",
+            "claude_code": "Native git operations + gh CLI + PR creation + GitHub Actions + auto-fix PRs",
+            "parity": 1,
+            "notes": "Claude Code is deeply integrated with Git/GitHub workflows"
+          },
+          {
+            "dimension": "IDE Integration",
+            "hermes": "None (terminal-only)",
+            "claude_code": "VS Code extension + JetBrains plugins + remote development",
+            "parity": 1,
+            "notes": "Claude Code major advantage for developer workflow"
+          },
+          {
+            "dimension": "SWE-bench Performance",
+            "hermes": "Not benchmarked (uses OpenHands delegation, Issue #477)",
+            "claude_code": "80.8% (state of the art)",
+            "parity": 1,
+            "notes": "Claude Code is top-tier for code generation benchmarks"
+          }
+        ]
+      },
+      {
+        "name": "Platform & Deployment",
+        "items": [
+          {
+            "dimension": "Access Platforms",
+            "hermes": "CLI + 15 messaging platforms (Telegram, Discord, Slack, WhatsApp, Signal, Email, SMS, Matrix, Mattermost, Feishu, WeCom, DingTalk, HomeAssistant, Webhook, API)",
+            "claude_code": "CLI + IDE (VS Code, JetBrains) + Web app + Desktop app",
+            "parity": 2,
+            "notes": "Different focus: Hermes=messaging everywhere, Claude Code=development everywhere"
+          },
+          {
+            "dimension": "Execution Environments",
+            "hermes": "Local, Docker, SSH, Modal, Managed Modal, Daytona, Singularity",
+            "claude_code": "Local + Anthropic Cloud (scheduled tasks)",
+            "parity": 2,
+            "notes": "Hermes much more flexible for infrastructure"
+          },
+          {
+            "dimension": "Deployment Cost",
+            "hermes": "$5/mo VPS + LLM API costs only",
+            "claude_code": "$20/mo Claude Pro or API costs (Max $100-200/mo)",
+            "parity": 2,
+            "notes": "Hermes dramatically cheaper for high-volume use"
+          },
+          {
+            "dimension": "Scheduling/Cron",
+            "hermes": "cronjob_tools.py with threat scanning + platform delivery",
+            "claude_code": "/loop (session) + /schedule (durable cloud/desktop) + CronCreate",
+            "parity": 4,
+            "notes": "Both capable. Hermes delivers to any platform. Claude Code cloud-managed"
+          }
+        ]
+      },
+      {
+        "name": "Multimodal & Advanced",
+        "items": [
+          {
+            "dimension": "Voice (TTS/STT)",
+            "hermes": "5 TTS providers + local STT + push-to-talk voice mode",
+            "claude_code": "Voice dictation (input only). No TTS",
+            "parity": 2,
+            "notes": "Hermes bidirectional voice. Claude Code input-only"
+          },
+          {
+            "dimension": "Image Generation",
+            "hermes": "FLUX 2 Pro + auto 2x upscaling via FAL.ai",
+            "claude_code": "None native (MCP possible)",
+            "parity": 1
+          },
+          {
+            "dimension": "Vision/Image Analysis",
+            "hermes": "vision_tools.py via OpenRouter auxiliary models",
+            "claude_code": "Native (Claude is multimodal — images in prompts, PDF processing)",
+            "parity": 4,
+            "notes": "Claude Code has better native vision. Hermes routes to auxiliary models"
+          },
+          {
+            "dimension": "Mixture of Agents (Multi-Model)",
+            "hermes": "4 frontier models parallel + aggregator (Opus+Gemini+GPT5+DeepSeek)",
+            "claude_code": "Agent Teams (same model family). No multi-model reasoning",
+            "parity": 1,
+            "notes": "Hermes true multi-model consensus. Claude Code single-model parallelism"
+          },
+          {
+            "dimension": "RL Self-Improvement",
+            "hermes": "Tinker-Atropos RL training, environment discovery, LoRA config, WandB monitoring",
+            "claude_code": "None",
+            "parity": 1
+          }
+        ]
+      }
+    ]
+  }
+}

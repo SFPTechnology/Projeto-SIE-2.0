@@ -1,0 +1,98 @@
+{
+  "schema": "bench-output-dash",
+  "version": "1.0.0",
+  "benchmark": {
+    "id": "ai-presentation-tools-top10-2026",
+    "title": "Top 10 AI Presentation Tools for Growth Teams & Founders — 2026",
+    "type": "product",
+    "profile": "standard",
+    "generated_at": "2026-05-17T00:00:00Z",
+    "pipeline_version": "3.0.0",
+    "agent": "bench-analyst",
+    "confidence": "medium-high"
+  },
+  "subjects": [
+    { "slug": "gamma", "name": "Gamma", "rank": 1, "score": 86.7 },
+    { "slug": "canva", "name": "Canva", "rank": 2, "score": 85.1 },
+    { "slug": "pitch", "name": "Pitch", "rank": 3, "score": 77.8 },
+    { "slug": "beautiful-ai", "name": "Beautiful.ai", "rank": 4, "score": 76.4 },
+    { "slug": "plus-ai", "name": "Plus AI", "rank": 5, "score": 74.5 },
+    { "slug": "presentations-ai", "name": "Presentations.AI", "rank": 6, "score": 69.5 },
+    { "slug": "slidesai", "name": "SlidesAI", "rank": 7, "score": 67.2 },
+    { "slug": "decktopus", "name": "Decktopus", "rank": 8, "score": 65.6 },
+    { "slug": "presenton", "name": "Presenton", "rank": 9, "score": 65.5 },
+    { "slug": "slidebean", "name": "Slidebean", "rank": 10, "score": 61.9 }
+  ],
+  "dimensions": [
+    { "id": "features", "name": "Core Features", "weight": 0.25 },
+    { "id": "ux", "name": "User Experience", "weight": 0.20 },
+    { "id": "pricing", "name": "Pricing & Value", "weight": 0.15 },
+    { "id": "integrations", "name": "Integrations & Export", "weight": 0.15 },
+    { "id": "support", "name": "Support & Community", "weight": 0.10 },
+    { "id": "scalability", "name": "Scalability & Enterprise", "weight": 0.15 }
+  ],
+  "scores_matrix": {
+    "gamma":            [92, 90, 88, 80, 82, 82],
+    "canva":            [78, 88, 90, 82, 90, 88],
+    "pitch":            [75, 80, 82, 78, 73, 78],
+    "beautiful-ai":     [82, 83, 62, 72, 72, 80],
+    "plus-ai":          [73, 76, 70, 85, 70, 72],
+    "presentations-ai": [70, 74, 68, 75, 60, 65],
+    "slidesai":         [65, 70, 85, 68, 68, 48],
+    "decktopus":        [68, 72, 72, 58, 65, 55],
+    "presenton":        [62, 60, 92, 70, 50, 58],
+    "slidebean":        [64, 71, 65, 55, 62, 50]
+  },
+  "dimension_leaders": {
+    "features": { "leader": "gamma", "score": 92 },
+    "ux": { "leader": "gamma", "score": 90 },
+    "pricing": { "leader": "presenton", "score": 92 },
+    "integrations": { "leader": "plus-ai", "score": 85 },
+    "support": { "leader": "canva", "score": 90 },
+    "scalability": { "leader": "canva", "score": 88 }
+  },
+  "key_findings": [
+    "Gamma lidera em AI generation (92/100) e UX (90/100) com 70M usuários e $100M ARR, mas export PPT quebra layouts",
+    "Canva é a plataforma mais completa e segura (200M+ usuários, $26B valuation) mas AI de texto é genérico",
+    "Tome descontinuado em abril 2025 — cautionary tale de viralidade sem monetização (20M users, <$4M ARR)",
+    "Plus AI é a melhor opção para quem quer ficar no Google Slides/PowerPoint nativamente (SOC2 Type II)",
+    "Presenton é o único open-source — custo zero mas requer setup técnico e comunidade nascente",
+    "Nenhuma ferramenta resolve PPT export perfeitamente exceto Plus AI (nativo) e PowerPoint+Copilot",
+    "Microsoft Copilot+PowerPoint ($30/user/mo) é o disruptor silencioso para enterprise"
+  ],
+  "recommendations": {
+    "founder_solo": "Gamma Free → Gamma Plus ($8/mo)",
+    "growth_team_5_15": "Pitch Pro ($8/user/mo) ou Canva Teams ($10/user/mo)",
+    "agency": "Beautiful.ai Pro ($12/mo) + Plus AI Pro ($10/mo)",
+    "enterprise_50_plus": "Canva Enterprise ou PowerPoint + Copilot",
+    "budget_zero_technical": "Presenton (open-source, self-host)",
+    "budget_zero_non_technical": "Canva Free",
+    "pitch_deck_investors": "Slidebean Starter ($8/mo) + Gamma Free",
+    "pptx_mandatory": "Plus AI ($10/mo) ou PowerPoint + Copilot"
+  },
+  "risks": [
+    { "risk": "Vendor lock-in em formato proprietário", "probability": "high", "affected": ["gamma", "beautiful-ai"] },
+    { "risk": "Descontinuação (Tome precedente)", "probability": "medium", "affected": ["presenton", "presentations-ai", "decktopus"] },
+    { "risk": "AI credit throttling", "probability": "medium", "affected": ["gamma", "canva", "slidesai", "decktopus"] },
+    { "risk": "Copilot commoditiza mercado", "probability": "high", "affected": ["all standalone tools"] }
+  ],
+  "readiness": {
+    "metadata": true,
+    "inventories": true,
+    "matrix": true,
+    "scorecard": true,
+    "gap_analysis": true,
+    "executive_report": true,
+    "battle_card": true
+  },
+  "artifacts": [
+    "docs/bench/ai-presentation-tools-top10-2026/metadata.json",
+    "docs/bench/ai-presentation-tools-top10-2026/scorecard.json",
+    "docs/bench/ai-presentation-tools-top10-2026/comparison-matrix.md",
+    "docs/bench/ai-presentation-tools-top10-2026/gap-analysis.md",
+    "docs/bench/ai-presentation-tools-top10-2026/executive-report.md",
+    "docs/bench/ai-presentation-tools-top10-2026/battle-card.md",
+    "docs/bench/ai-presentation-tools-top10-2026/bench-output-dash.json"
+  ],
+  "inferred": {}
+}

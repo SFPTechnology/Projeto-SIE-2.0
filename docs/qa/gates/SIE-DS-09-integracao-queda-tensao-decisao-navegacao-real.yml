@@ -1,0 +1,109 @@
+schema: 1
+story: "SIE-DS-09"
+story_title: "Integração: queda de tensão completa (parâmetros, resultado, decisão) + navegação real"
+story_path: "docs/stories/story-SIE-DS-09-integracao-queda-tensao-decisao-navegacao-real.md"
+gate: CONCERNS
+status_reason: >-
+  AC1-AC12, AC14 atendidos e verificados de forma independente por @qa
+  (build SSR+SPA, typecheck, lint, testes — todos rerodados, não apenas
+  aceitos do relato do @dev). Durante a revisão de código, @qa encontrou um
+  bug real (não cosmético) em DecisionPanel: o estado das mutations
+  simular/aplicar não era resetado ao trocar de circuito selecionado,
+  permitindo exibir cenários simulados de um circuito como se fossem de
+  outro e, ao confirmar, aplicar a seção simulada do circuito ERRADO ao
+  `circuito_id` do circuito atual — risco de dado incorreto em um sistema de
+  dimensionamento NBR 5410. Corrigido por @qa nesta revisão (useEffect de
+  reset por circuito_id), com typecheck/lint/testes reverificados verdes
+  após a correção. CONCERNS mantido por: (1) CodeRabbit indisponível (11ª
+  story consecutiva); (2) fluxo completo simular→escolher→justificar→aplicar
+  não pode ser testado automaticamente neste projeto (sem jsdom/Testing
+  Library, só renderToStaticMarkup) — limitação de toolchain, declarada, não
+  mascarada; (3) routeTree.spa.ts precisou de edição manual (normalmente
+  gerado) para a tipagem de useNavigate() funcionar — funcionalmente
+  verificado (build SPA passa), mas é uma fragilidade de manutenção a
+  observar se o projeto ganhar um gerador de rotas dedicado.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-08-01T00:00:00-03:00"
+expires: "2026-08-15T00:00:00-03:00"
+quality_score: 70
+mode: "manual real (sessão contínua) — @architect (ratificação prévia) → @po (item Diagnóstico) → @dev → @qa (achou e corrigiu bug real)"
+
+evidence:
+  independent_verification: "@qa reexecutou: npx vite build (SSR, exit 0) + npx vite build --config vite.spa.config.ts (SPA, exit 0) + npx tsc --noEmit (exit 0) + npx eslint (0 erros) + npx vitest run src/components/command-center (17 arquivos, 95 testes, PASS) — antes E depois da correção do bug de reset de estado"
+  bug_encontrado_e_corrigido: "src/components/command-center/DecisionPanel.tsx — useEffect adicionado para resetar simular/aplicar (mutation.reset()), opcaoSelecionadaId e justificativa quando circuito?.circuito_id muda. Sem isso, trocar de circuito no EngineeringPanel mantinha a UI do DecisionPanel mostrando cenários do circuito anterior."
+  ac1_ac3_parametros_resultado: "ParameterPanel/ResultSummary via props reais (rastreio.V_nominal/familia_id/topologia_coluna_id, ResultadoInternoQuedaTensao); vocabulário 'B1' confirmado ausente em ParameterPanel.test.tsx"
+  ac4_ac7_simulacao_decisao: "DecisionPanel usa cenariosSugeridos()/PARAMETROS_MOD_DC_PADRAO reais (mesmo helper da tela de produção projetos.$projetoId_.queda-tensao.tsx); aplicarCenarioQuedaTensao real grava QUEDA_TENSAO_CENARIO_APLICADO por construção (mesma função de serviço da tela legada, confirmado em código — servico-queda-tensao.ts linha ~515)"
+  ac6_excecao_ui: "Campo de justificativa é a única exceção de CSS/UI de toda a implantação — confirmado: apenas DecisionPanel.css recebeu regras novas, documentadas como exceção explícita no próprio arquivo"
+  ac8_ac9_navegacao: "module-navigation-data.ts com 'to' por item, item Diagnóstico removido (decisão @po confirmada: ModuleNavigation.test.tsx assevera ausência); navegação via callback aoNavegar (não useNavigate() dentro do organism — decisão correta de @dev para não quebrar renderToStaticMarkup sem RouterProvider, verificada por leitura de código)"
+  ac10_unifilar: "UnifilarPreviewSection recebe correntes/dependencias/capacidadesExport via props; unifilar-preview-fixture.ts confirmado removido (arquivo ausente)"
+  ac12_zero_legado: "git diff vazio para AppShell.tsx e src/components/unifilar/**; diff em src/domain/** e rotas legadas confirmado pré-existente (mesmo achado de SIE-DS-08)"
+  ac13_coderabbit: "Confirmado indisponível por @qa: wsl bash -c '~/.local/bin/coderabbit --prompt-only -t uncommitted' → Illegal instruction (core dumped)"
+
+trace_ac:
+  - { ac: AC1, descricao: "ParameterPanel dado real", resultado: PASS }
+  - { ac: AC2, descricao: "Vocabulário do catálogo real", resultado: PASS }
+  - { ac: AC3, descricao: "ResultSummary dado real", resultado: PASS }
+  - { ac: AC4, descricao: "DecisionPanel simulação real", resultado: PASS }
+  - { ac: AC5, descricao: "DecisionPanel aplica cenário real", resultado: "PASS (após correção de bug de estado por @qa)" }
+  - { ac: AC6, descricao: "Campo de justificativa (exceção ratificada)", resultado: PASS }
+  - { ac: AC7, descricao: "Auditoria real preservada", resultado: PASS }
+  - { ac: AC8, descricao: "ModuleNavigation navegação real", resultado: PASS }
+  - { ac: AC9, descricao: "Item Diagnóstico adaptado", resultado: PASS }
+  - { ac: AC10, descricao: "UnifilarPreviewSection sem fixture", resultado: PASS }
+  - { ac: AC11, descricao: "Zero alteração de design além da exceção", resultado: PASS }
+  - { ac: AC12, descricao: "Zero impacto no legado", resultado: PASS }
+  - { ac: AC13, descricao: "Gate CodeRabbit reportado com honestidade", resultado: CONCERNS }
+  - { ac: AC14, descricao: "Zero operação remota", resultado: PASS }
+
+nfr_validation:
+  security:
+    status: PASS
+    notes: "justificativa validada client-side (não habilita Confirmar vazio) e server-side (AplicacaoCenarioInvalida real, não contornável); nenhum dado sensível novo exposto."
+  performance:
+    status: PASS
+    notes: "Reuso de hooks/serviços reais já existentes; nenhuma duplicação de chamada de rede introduzida."
+  reliability:
+    status: CONCERNS
+    notes: "Bug real de estado stale entre circuitos encontrado e corrigido nesta revisão (ver status_reason) — evidência de que a superfície de risco desta story (mutations com estado local) é maior que a de SIE-DS-08 (só leitura). Fluxo interativo completo não tem cobertura de teste automatizada (limitação de toolchain, não desta story especificamente)."
+  maintainability:
+    status: CONCERNS
+    notes: "routeTree.spa.ts editado manualmente (normalmente arquivo gerado) — funcional, mas frágil a longo prazo se o projeto não adotar um gerador dedicado para essa árvore de rotas SPA."
+
+top_issues:
+  - id: "REL-001"
+    severity: high
+    finding: "(RESOLVIDO nesta revisão) DecisionPanel não resetava estado de simular/aplicar ao trocar de circuito selecionado — permitia aplicar seção simulada de um circuito ao circuito_id de outro."
+    suggested_action: "Corrigido por @qa (useEffect de reset por circuito_id). Nenhuma ação adicional — reverificado com typecheck/lint/testes verdes após a correção."
+    suggested_owner: qa
+  - id: "TEST-004"
+    severity: high
+    finding: "CodeRabbit CLI (WSL) indisponível pela 11ª story consecutiva."
+    suggested_action: "@devops — reparar. Débito acumulado desde SIE-DS-00, agora atravessando 2 stories que envolvem mutação real de dado (aplicar cenário), não só leitura."
+    suggested_owner: devops
+  - id: "TEST-005"
+    severity: medium
+    finding: "Fluxo interativo completo do DecisionPanel (simular → escolher → justificar → aplicar) e o clique real de navegação do ModuleNavigation não têm cobertura de teste automatizada — o projeto não tem jsdom/Testing Library, só renderToStaticMarkup (sem DOM real, sem simulação de evento)."
+    suggested_action: "Avaliar introdução de jsdom + Testing Library no projeto para cobrir interação real, especialmente para telas com mutação de dado real como esta."
+    suggested_owner: architect
+  - id: "MNT-001"
+    severity: medium
+    finding: "src/routeTree.spa.ts precisou de edição manual para registrar a rota do Command Center — arquivo normalmente semi-gerado, sem ferramenta de regeneração automática neste projeto."
+    suggested_action: "Nenhuma ação imediata (build SPA verificado e passando); considerar automação se o projeto passar a adicionar rotas com frequência."
+    suggested_owner: architect
+  - id: "REQ-001"
+    severity: low
+    finding: "DecisionPanel perdeu o botão 'Cancelar' que existia no mock (Confirmar/Cancelar) — agora só 'Confirmar' está presente; não há caminho explícito para descartar uma simulação em andamento sem trocar de circuito."
+    suggested_action: "Avaliar se vale reintroduzir um botão de reset explícito, ou se trocar de circuito (que já reseta o estado) é suficiente para o fluxo real."
+    suggested_owner: po
+
+waiver: { active: false }
+
+recommendations:
+  immediate:
+    - action: "Reparar binário CodeRabbit no WSL — 11ª ocorrência consecutiva, agora bloqueando o gate formal de stories com mutação real de dado."
+      refs: ["~/.local/bin/coderabbit"]
+  future:
+    - action: "Avaliar jsdom/Testing Library para cobrir interação real (clique, mutation assíncrona) nas próximas stories de UI com ação real."
+      refs: ["src/components/command-center/DecisionPanel.tsx", "src/components/command-center/ModuleNavigation.tsx"]
+    - action: "Considerar automatizar a regeneração de routeTree.spa.ts (hoje mantido manualmente) se a frequência de novas rotas aumentar."
+      refs: ["src/routeTree.spa.ts"]

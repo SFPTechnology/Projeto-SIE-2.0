@@ -1,0 +1,125 @@
+{
+  "schema": "slide-creator-skill-blueprint.v1",
+  "generated_at": "2026-05-17",
+  "source_bench": "docs/bench/slides-creator-open-source-absorption",
+  "thesis": "A slide-creator deve ser uma composição de padrões vencedores do bench, não uma skill que inventa roteiro, estrutura, export ou runtime do zero.",
+  "project_absorption": [
+    {
+      "project": "slide creator skill",
+      "absorb": ["narrativa consultiva", "briefing", "Pyramid/SCQA", "action titles", "QA governado"],
+      "when_to_use": ["deck estratégico", "deck comercial", "deck executivo"],
+      "required_artifacts": ["story-arc.yaml", "slide-function-map.yaml", "qa-report.yaml"],
+      "do_not_copy": ["acoplamento a paths privados em skill compartilhável"]
+    },
+    {
+      "project": "Presenton",
+      "absorb": ["self-hosting", "API", "MCP", "BYOK/Ollama", "workspace por deck"],
+      "when_to_use": ["runtime local", "API/MCP", "automação por agentes"],
+      "required_artifacts": ["provider-registry.yaml", "workspace", "api-mcp-contract.yaml"],
+      "do_not_copy": ["UI completa antes do core headless"]
+    },
+    {
+      "project": "Gamma",
+      "absorb": ["UX de baixa fricção", "importação", "edição", "share", "analytics"],
+      "when_to_use": ["experiência comercial", "distribuição", "produto SaaS-like"],
+      "required_artifacts": ["publication-plan.yaml", "import-sources.yaml", "analytics-event-map.yaml"],
+      "do_not_copy": ["lock-in SaaS", "dependência de plataforma fechada"]
+    },
+    {
+      "project": "ppt-master",
+      "absorb": ["PPTX nativo editável", "template import", "Native IR", "editability QA"],
+      "when_to_use": ["PowerPoint editável", "template corporativo", "entrega B2B"],
+      "required_artifacts": ["native-slide-ir.yaml", "editability-report.yaml", "template-import-report.yaml"],
+      "do_not_copy": ["LLM gerando PPTX direto", "SVG livre sem schema"]
+    },
+    {
+      "project": "PPTAgent",
+      "absorb": ["planner", "reflection", "critique", "revision", "PPTEval-like QA"],
+      "when_to_use": ["melhorar deck ruim", "qualidade acima de velocidade", "crítica slide-a-slide"],
+      "required_artifacts": ["planning-reflection.jsonl", "critique-report.yaml", "revision-notes.md"],
+      "do_not_copy": ["framework pesado inteiro sem adaptação"]
+    },
+    {
+      "project": "presentation-ai",
+      "absorb": ["outline-first", "theme picker", "editor/present/share", "modelos locais"],
+      "when_to_use": ["edição diária", "usuário não técnico", "branding iterativo"],
+      "required_artifacts": ["outline-review.yaml", "theme-selection.yaml", "editor-state.yaml"],
+      "do_not_copy": ["editor visual sem DeckSpec versionável"]
+    },
+    {
+      "project": "banana-slides",
+      "absorb": ["prompt-to-edit", "edição por slide/bloco/região", "preview", "diff"],
+      "when_to_use": ["edição iterativa por linguagem natural"],
+      "required_artifacts": ["edit-operation.yaml", "diff-preview.yaml"],
+      "do_not_copy": ["código AGPL ou estrutura derivada sem revisão jurídica"]
+    },
+    {
+      "project": "powerpoint-skill",
+      "absorb": ["OMML", "Mermaid/Graphviz/TikZ", "QA técnico", "fallback de renderer"],
+      "when_to_use": ["deck técnico", "acadêmico", "financeiro", "engenharia"],
+      "required_artifacts": ["diagram-source", "technical-qa.yaml", "math-render-report.yaml"],
+      "do_not_copy": ["fórmula rasterizada quando editabilidade for requisito"]
+    },
+    {
+      "project": "slide-deck-ai",
+      "absorb": ["CLI simples", "provider abstraction", "Ollama/offline smoke test"],
+      "when_to_use": ["baseline local", "CI", "smoke test"],
+      "required_artifacts": ["cli-run-report.yaml", "provider-selection.yaml"],
+      "do_not_copy": ["renderer final", "qualidade visual como core"]
+    },
+    {
+      "project": "PresentAgent-2",
+      "absorb": ["query to research to source to deck", "multimodal", "Q&A futuro"],
+      "when_to_use": ["deck nasce de pergunta aberta", "research grounding", "vídeo/Q&A futuro"],
+      "required_artifacts": ["source-ledger.yaml", "refined-doc.md", "research-plan.yaml"],
+      "do_not_copy": ["vídeo/Q&A como requisito de MVP"]
+    }
+  ],
+  "canonical_flow": [
+    "P00 Intake",
+    "P01 Source/Research Plan",
+    "P02 Belief Shift",
+    "P03 Roteiro Template Selection",
+    "P04 Story Arc",
+    "P05 Slide Function Map",
+    "P06 Slide Structure Selection",
+    "P07 Design Direction",
+    "P08 DeckSpec",
+    "P09 Critique + Reflection",
+    "P10 Revision",
+    "P11 QA",
+    "P12 Export/Runtime Plan"
+  ],
+  "required_skill_libraries": [
+    "narrative-patterns.md",
+    "roteiro-template-library.md",
+    "slide-structure-library.md",
+    "bench-absorption-map.md",
+    "design-system.md",
+    "output-contracts.md",
+    "rubrics.md",
+    "anti-patterns.md"
+  ],
+  "killer_items": [
+    "deck nasce de outline direto sem slide-function-map",
+    "slide sem função ou sem estrutura selecionada",
+    "roteiro não escolhido",
+    "PPTX solicitado sem plano de Native IR/editability QA",
+    "prompt-to-edit sem diff",
+    "claim crítico sem fonte/assumption",
+    "benchmark pattern ignorado para capability conhecida",
+    "cópia direta de padrão/código AGPL sem alerta",
+    "deck final com card wall ou brand skinning superficial"
+  ],
+  "scorecard": {
+    "narrativa_e_tese": 20,
+    "roteiro_template_fit": 15,
+    "estrutura_slide_a_slide": 15,
+    "design_editorial": 15,
+    "prova_e_fontes": 10,
+    "reflection_qa": 10,
+    "export_runtime": 10,
+    "seguranca_licenca": 5
+  },
+  "release_threshold": 90
+}

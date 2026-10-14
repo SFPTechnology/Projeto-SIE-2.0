@@ -1,0 +1,32 @@
+{
+  "schema": "servicos-ia-brasil-solo-bootstrap-2026.readiness-gate.v1",
+  "generated_at": "2026-05-17",
+  "gate": "ready_for_90_day_execution_plan",
+  "readiness_score": 86,
+  "blockers": [
+    {
+      "id": "B01",
+      "status": "open",
+      "owner": "operator",
+      "item": "Escolher vertical inicial de WhatsApp ou nicho de mentoria."
+    },
+    {
+      "id": "B02",
+      "status": "open",
+      "owner": "copy-chief",
+      "item": "Transformar M-G02 em oferta premium com promessa, garantia e stack de entregáveis."
+    },
+    {
+      "id": "B03",
+      "status": "open",
+      "owner": "bench-analyst",
+      "item": "Validar top-3 com 10-15 conversas de mercado antes de comprometer 90 dias."
+    }
+  ],
+  "pass_conditions": [
+    "Oferta Mentoria com ticket mínimo R$ 5k documentada.",
+    "Template n8n demonstrável com Loom de 10 min.",
+    "Vertical WhatsApp escolhido e WBA/BSP provisionado.",
+    "Discovery pago definido como gate de automação."
+  ]
+}

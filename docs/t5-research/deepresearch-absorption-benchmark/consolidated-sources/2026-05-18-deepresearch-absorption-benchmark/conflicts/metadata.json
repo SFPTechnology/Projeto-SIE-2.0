@@ -1,0 +1,97 @@
+{
+  "schema": "deepresearch-absorption-benchmark.metadata.v1",
+  "slug": "deepresearch-absorption-benchmark",
+  "title": "Deepresearch Absorption Benchmark — AIOX Research Ecosystem vs Open-Source Stack 2026",
+  "generated_at": "2026-05-18",
+  "generator": "bench-analyst (research-bench skill)",
+  "operator": "alan_nicolas (@oalanicolas)",
+  "comparison_type": "codebase+ecosystem",
+  "subject_a": {
+    "id": "aiox_research_ecosystem",
+    "label": "AIOX Research Ecosystem",
+    "components": [
+      {
+        "kind": "squad",
+        "id": "research",
+        "path": "squads/research",
+        "version": "5.0.0",
+        "role": "Cognitive brain — 14 agents, 6 workflows, ~70 tasks, absorbed tech-research v2.0.0 and deep-research v1.0.0"
+      },
+      {
+        "kind": "skill",
+        "id": "tech-research",
+        "path": ".claude/skills/tech-research",
+        "version": "2.0.0",
+        "role": "Execution pipeline — 7 molecules, 17 atoms, multi-wave search, COVERAGE_GATE + CITATION_GATE"
+      },
+      {
+        "kind": "app",
+        "id": "apps-research",
+        "path": "apps/research",
+        "version": "0.1.0",
+        "role": "Research Observatory — Next.js 16 local-first console for browsing research/bench/SINKRA artifacts"
+      }
+    ]
+  },
+  "subject_b": {
+    "id": "opensource_deepresearch_stack",
+    "label": "Open-Source Deep Research Stack 2026",
+    "players_count": 9,
+    "players": [
+      "deerflow",
+      "gpt-researcher",
+      "langchain-open-deep-research",
+      "local-deep-research",
+      "openresearcher",
+      "deepresearcher",
+      "jina-node-deepresearch",
+      "autoresearchclaw",
+      "tongyi-deepresearch"
+    ],
+    "reference_players_not_scored": [
+      {
+        "id": "kimi-researcher",
+        "reason": "Modelo base não totalmente open-source — usado como referência de teto agentic-RL"
+      },
+      {
+        "id": "deepsearcher",
+        "reason": "Mais RAG-over-private-data do que deep web research — fora do escopo"
+      },
+      {
+        "id": "auto-deep-research",
+        "reason": "Documentação imatura — features cobertas por DeerFlow/Tongyi"
+      },
+      {
+        "id": "deepagent",
+        "reason": "General-purpose reasoning + 16k tools — fora do escopo deep research específico"
+      }
+    ]
+  },
+  "sources": {
+    "primary_research": [
+      "docs/research/2026-05-16-quais-os-melhores-projetos-de-deepresearch-opensource-atuais/02-research-report.md",
+      "docs/research/2026-05-16-quais-os-melhores-projetos-de-deepresearch/01-deep-research-prompt.md"
+    ],
+    "secondary_research": [
+      "docs/research/2026-05-16-validar-aiox-market-research-panel/02-research-report.md"
+    ],
+    "secondary_role": "Market context (WTP signals, ICP, blue ocean PT-BR/LatAm) — NOT used to derive open-source players"
+  },
+  "template_reference": "docs/bench/slides-creator-open-source-absorption",
+  "depth": "full",
+  "expected_artifact_count": 60,
+  "rules_applied": [
+    ".claude/rules/extraction-no-fallbacks.md",
+    ".claude/rules/kiss-no-overengineering.md",
+    ".claude/rules/prior-art-search.md",
+    ".claude/rules/epistemic-standards.md",
+    ".claude/rules/incremental-learning-log.md"
+  ],
+  "confidence_calibration": {
+    "subject_a_inventory": "ALTA — direct codebase scan",
+    "subject_b_inventory": "ALTA — pesquisa fonte com 302 linhas + URLs verificadas",
+    "scoring": "MEDIA — pondera baseline público dos players (docs/repos) com profundidade variável",
+    "absorption_recommendations": "MEDIA — depende de validação técnica em PoC"
+  },
+  "no_invention_policy": "Toda claim cita fonte. Sem fabricação de stars/métricas. Quando inferido, marcar com [MEDIA] ou [BAIXA]."
+}

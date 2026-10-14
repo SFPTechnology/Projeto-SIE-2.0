@@ -1,0 +1,179 @@
+{
+  "subject": "Zendesk",
+  "snapshot_date": "2026-05-06",
+  "version_evaluated": "Zendesk Suite 2026 (Team / Growth / Professional / Enterprise)",
+  "category": "SaaS Enterprise omnichannel customer service",
+  "vendor": {
+    "name": "Zendesk Inc.",
+    "country": "USA (HQ San Francisco)",
+    "founded": 2007,
+    "maturity_years": 19,
+    "license_core": "Proprietary",
+    "business_model": "SaaS pure (no self-hosted option)"
+  },
+  "channels_native": {
+    "live_chat_web": {"supported": true, "tier": "Suite Team+", "confidence": "H"},
+    "email": {"supported": true, "tier": "Support Team+", "confidence": "H"},
+    "whatsapp": {"supported": true, "tier": "Suite Team+ (mensagens cobradas via WABA cliente)", "via": "Meta Cloud API direct", "confidence": "H"},
+    "facebook_messenger": {"supported": true, "tier": "Suite Team+", "confidence": "H"},
+    "instagram_dm": {"supported": true, "tier": "Suite Team+", "confidence": "H"},
+    "twitter_x": {"supported": true, "tier": "Suite Team+", "confidence": "H"},
+    "apple_business_chat": {"supported": true, "tier": "Suite Team+", "confidence": "H"},
+    "line": {"supported": true, "tier": "Suite Team+", "confidence": "H"},
+    "sms": {"supported": true, "tier": "Suite Team+", "confidence": "H"},
+    "voice_phone": {"supported": true, "tier": "Suite Team+ via Talk", "voice_minutes_extra_cost": true, "confidence": "H"},
+    "telegram": {"supported": "via marketplace app/integration", "confidence": "M"},
+    "tiktok": {"supported": "via marketplace app/integration", "confidence": "M"}
+  },
+  "ai_capabilities": {
+    "products": ["Zendesk AI Agents (post-Ultimate.ai acquisition)", "Copilot", "Advanced AI"],
+    "features": [
+      "Autonomous AI Agents (agentic, cross-channel)",
+      "Copilot for agents (response suggestions, customer context, action execution)",
+      "Generative responses (Suite Team includes 'Agentes de IA Essential')",
+      "Quality Assurance AI",
+      "Workforce Management"
+    ],
+    "pricing_model": "Hybrid: per-seat add-ons (Copilot $50, QA $35, WFM $25, ADP $50, Contact Center $50) + AI Agents likely per-resolution (not publicly priced)",
+    "deflection_rate_published_by_customers": [
+      "Freedom Furniture: 66% first-contact resolution",
+      "Next: 92% reduction email handling time",
+      "UrbanStems: 39% automated resolution + $100K savings 3mo",
+      "Lush: 60% first-contact resolution + $434K annual savings"
+    ],
+    "deflection_claim": "Up to 80% of customer/employee interactions can be resolved automatically (claimed capability)",
+    "productivity_improvement": "~20% via Copilot",
+    "transparency": "Per-resolution pricing for AI Agents not publicly disclosed; Copilot per-seat is transparent",
+    "source": "https://www.zendesk.com/service/ai/ (BR redirect 2026-05-06)"
+  },
+  "pricing_suite": {
+    "currency": "USD",
+    "billing": "annual (mensal +20-25%)",
+    "tiers": [
+      {"name": "Support Team", "price_per_agent_month": 19, "scope": "Email, ticketing, Facebook, X support; macros, automations, basic analytics", "limited": true},
+      {"name": "Suite Team", "price_per_agent_month": 55, "channels": "all (chat, social messaging, voice, WhatsApp, etc)", "ai_basic": "AI Agents Essential (generative responses)", "help_centers": 1},
+      {"name": "Suite Growth", "price_per_agent_month": 89, "adds": ["self-service", "SLAs", "multilingual support"]},
+      {"name": "Suite Professional", "price_per_agent_month": 115, "adds": ["HIPAA compliance (with add-on)", "advanced analytics", "skills-based routing", "IVR", "custom forms", "up to 5 help centers"]},
+      {"name": "Suite Enterprise", "price_per_agent_month": 169, "adds": ["custom roles", "sandbox", "300 help centers", "audit logs", "advanced AI options"]}
+    ],
+    "add_ons_usd_per_agent_month": {
+      "Copilot": 50,
+      "Quality_Assurance": 35,
+      "Workforce_Management": 25,
+      "Workforce_Engagement_bundle_QA_plus_WFM": 50,
+      "Advanced_Data_Privacy_Protection": 50,
+      "Contact_Center": 50,
+      "Data_Center_Location_addon_for_EU_residency": "included with Pro/Enterprise but requires manual activation"
+    },
+    "bundles_with_copilot": {
+      "Suite_Professional_plus_Copilot": 155,
+      "Suite_Enterprise_plus_Copilot": 209
+    },
+    "real_world_multiplier": "2-3x base price after necessary extensions per buyer reports",
+    "vendr_median_deal": "$47.772/year per customer (15% negotiated discount typical)",
+    "monthly_billing_premium": "~$69 vs $55 annual (+25%) for Team tier",
+    "source": "https://www.zendesk.com/pricing/ + costbench.com/software/help-desk/zendesk/ + eesel.ai 2026"
+  },
+  "stack": {
+    "primary_languages": "Proprietary (not disclosed publicly)",
+    "framework": "Proprietary cloud platform",
+    "database": "Proprietary",
+    "deployment": "AWS multi-region (US, EU/Dublin, Australia, Japan)",
+    "telemetry": "Internal Zendesk Explore",
+    "confidence": "M (proprietary, only inferred from public docs and AWS hosting disclosure)"
+  },
+  "community": {
+    "g2_reviews_count": "6.000+",
+    "g2_rating": 4.3,
+    "ease_of_use_pct": 88,
+    "ticketing_strength_mention_pct": 41,
+    "adoption_pct": 76,
+    "estimated_payback_months": 17,
+    "g2_top_pros": ["Ease of use day-to-day", "Ticketing system robusto (41% reviewers cite)", "Marketplace gigante", "Maturidade enterprise", "Long-term adoption"],
+    "g2_top_cons": ["Pricing escalation steep tier-to-tier", "Cost real 2-3x base after add-ons", "AI features bolted-on", "Setup complexity", "Hidden fees"],
+    "market_share_customer_experience_category": 14.8,
+    "competitors_in_category": 252,
+    "confidence": "H"
+  },
+  "governance_compliance": {
+    "soc2_type_ii": true,
+    "iso_27001": true,
+    "iso_27018": true,
+    "iso_27701": true,
+    "fedramp_authorized": true,
+    "gdpr_compliance": "Yes (Binding Corporate Rules approved 2017 by Irish DPC, second company ever)",
+    "hipaa_baa": "Yes (Advanced Compliance add-on required + BAA execution)",
+    "data_residency_eu_dublin": true,
+    "data_residency_us": true,
+    "data_residency_australia": true,
+    "data_residency_japan": true,
+    "data_center_location_addon": "Pro/Enterprise included BUT requires MANUAL activation via support",
+    "audit_logs": "Enterprise tier",
+    "sso_saml": "Suite Team+ (varies by tier)",
+    "encryption_at_rest": "AES-256 via AWS",
+    "encryption_in_transit": "TLS 1.2+",
+    "two_factor_auth": "All plans",
+    "advanced_data_privacy_protection_addon": "$50/agent/mo",
+    "confidence": "H (compliance posture comprehensive)"
+  },
+  "marketplace_integrations": {
+    "official_apps_count": 1977,
+    "vendors_count": 1136,
+    "ai_powered_apps_pct": 21.54,
+    "free_apps_count": 1176,
+    "category_position": "second-largest cloud marketplace in SaaS (per Zendesk marketing)",
+    "customer_install_rate": "58% of Zendesk customers have at least 1 marketplace app",
+    "marketplace_arr_impact": "75% of Zendesk's annual recurring revenue affected by marketplace apps",
+    "named_categories": ["productivity", "analytics", "marketing", "CRMs", "IT", "AI"],
+    "api_openness": "Open REST API + webhooks; sandbox environment Enterprise",
+    "confidence": "H (numbers triangulated from multiple sources)"
+  },
+  "support_sla": {
+    "all_tiers": "Email/web support",
+    "professional_plus": "Priority support",
+    "enterprise": "24/7 priority support + dedicated CSM",
+    "advanced_ai_addon": "Specialized support for AI deployment",
+    "professional_services": "Dedicated implementation services available (custom pricing)",
+    "confidence": "H"
+  },
+  "brasil_fit": {
+    "whatsapp_via": "Meta Cloud API direct (no Zendesk markup on Meta msg fees, BUT via WABA cliente)",
+    "pt_br_ui": "Yes (mature)",
+    "pricing_brl_published": "Yes (Zendesk.com.br shows R$ pricing)",
+    "brl_pricing_examples": {
+      "Support_Team": "R$135/agent/mo",
+      "Suite_Team": "R$359/agent/mo",
+      "Suite_Professional": "R$755/agent/mo",
+      "Suite_Enterprise": "R$1.105/agent/mo"
+    },
+    "vtex_native": false,
+    "shopify_native": "Yes via marketplace app",
+    "rd_station_native": "Yes via marketplace app (community-built)",
+    "pix_native": false,
+    "local_support_pt_br": "Yes (BR support team available)",
+    "br_sales_team": "Yes (presence local)",
+    "confidence": "H (BRL prices) / M (BR support team responsiveness)"
+  },
+  "differentiators_unique": [
+    "Lider de market share (14.8% categoria customer experience)",
+    "Marketplace 1.977 apps de 1.136 vendors — o maior do segmento",
+    "Compliance posture extensa: SOC2, ISO 27001/27018/27701, FedRAMP, HIPAA BAA, GDPR BCR",
+    "EU/US/Australia/Japan data residency com Dublin DC dedicado",
+    "G2 reviews 6.000+ — maior universo de feedback validado",
+    "AI Agents post-Ultimate.ai com customers reportando 60-92% improvements",
+    "Voice/Talk first-class (nao add-on)",
+    "Sandbox environment Enterprise tier",
+    "BR-fit: pricing BRL publico + suporte PT-BR + sales BR"
+  ],
+  "weaknesses_known": [
+    "TCO real 2-3x base price apos add-ons necessarios",
+    "Sticker shock $169 Enterprise vs $99 Chatwoot Enterprise (1.7x)",
+    "AI fragmentado: pos-acquisition Ultimate.ai, Copilot, AI Agents — semantica complexa",
+    "AI Agents per-resolution pricing nao publico",
+    "Data Center Location addon Pro/Enterprise REQUER ativacao manual via support (default = data movel sem aviso)",
+    "Per-tier jumps: Team $55 → Growth $89 (+62%); Growth → Pro $115 (+29%); Pro → Enterprise $169 (+47%)",
+    "Vendr median deal $47.772/year — sinal de cost escalation",
+    "Self-hosted impossivel (vendor lock-in)",
+    "Switching pain documentado em Hiver/Featurebase/Helpjuice review aggregators"
+  ]
+}

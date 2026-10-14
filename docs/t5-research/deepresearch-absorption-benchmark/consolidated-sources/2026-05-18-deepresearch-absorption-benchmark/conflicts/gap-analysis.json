@@ -1,0 +1,213 @@
+{
+  "schema": "deepresearch-absorption-benchmark.gap-analysis.v1",
+  "generated_at": "2026-05-18",
+  "direction": "bidirectional",
+  "aiox_gaps_vs_opensource": [
+    {
+      "id": "GAP-01",
+      "priority": "P0",
+      "feature": "Docker code-execution sandbox",
+      "score_delta": -100,
+      "current_aiox": "Zero. Não executa código durante research.",
+      "best_in_class": "AutoResearchClaw (network-policy-aware hardened) — score 100",
+      "secondary": ["DeerFlow (persistent Docker)", "Local DR (Docker GPU/Unraid)"],
+      "absorption_complexity": "HIGH",
+      "license_compat": "MIT (AutoResearchClaw, DeerFlow, LDR) — REUSE friendly",
+      "rationale": "Permitir code execution durante research (run benchmark scripts, calc, verify claims) é diferencial big. Apps/research já tem /api/research/runs SSE streaming — adicionar Docker sandbox abaixo.",
+      "absorption_target": "apps/research /api/research/sandbox + tech-research skill phase-3-sandbox-exec",
+      "estimated_effort_pts": 13,
+      "roi": "Unlocks academic paper scenario (+24.5 pts) + competitive vs AutoResearchClaw"
+    },
+    {
+      "id": "GAP-02",
+      "priority": "P0",
+      "feature": "Distribution via PyPI + Docker Hub",
+      "score_delta": -87,
+      "current_aiox": "Git clone only. Hub-dependent.",
+      "best_in_class": "GPT-Researcher (PyPI + Docker Hub + Claude Skill marketplace)",
+      "secondary": ["Local DR (PyPI + Docker GPU)", "DeerFlow (Docker)"],
+      "absorption_complexity": "MEDIUM",
+      "license_compat": "Apache-2.0 (GPT-Researcher) — full REUSE",
+      "rationale": "Sinkra Hub clone obrigatório afasta usuários casuais. PyPI package `@sinkra/research-cli` standalone seria onboarding 10x mais leve. Docker Hub `sinkra/research:latest` resolve enterprise.",
+      "absorption_target": "packages/@sinkra/research-cli (novo) + infrastructure/docker/research.Dockerfile",
+      "estimated_effort_pts": 8,
+      "roi": "Adoção community + posicionamento marketplace"
+    },
+    {
+      "id": "GAP-03",
+      "priority": "P0",
+      "feature": "MCP Server nativo expondo /tech-research",
+      "score_delta": -100,
+      "current_aiox": "Skill apenas — só via Claude Code session local",
+      "best_in_class": "GPT-Researcher (MCP Server) + LangChain ODR (MCP-native)",
+      "absorption_complexity": "MEDIUM",
+      "license_compat": "MIT (LangChain) + Apache-2.0 (GPT-Researcher)",
+      "rationale": "MCP é o padrão Anthropic. Expor /tech-research via MCP permite outras Claude sessions consumirem como tool (ex: Cursor, Cline, outros agents).",
+      "absorption_target": "packages/@sinkra/research-mcp (novo MCP server)",
+      "estimated_effort_pts": 5,
+      "roi": "Composability cross-IDE + cross-agent"
+    },
+    {
+      "id": "GAP-04",
+      "priority": "P1",
+      "feature": "Purpose-trained model backend (opcional)",
+      "score_delta": -36,
+      "current_aiox": "Generic LLMs (Claude, GPT, Gemini via API)",
+      "best_in_class": "OpenResearcher 30B (54.8% BrowseComp-Plus) + DeepResearcher 7B (+28.9pts) + Tongyi 30B",
+      "absorption_complexity": "MEDIUM",
+      "license_compat": "Apache-2.0 (todos os 3)",
+      "rationale": "Não precisa REIMPLEMENTAR — apenas adicionar como BACKEND OPCIONAL. User com GPU 24GB+ usa DeepResearcher-7B; user com cluster usa OpenResearcher/Tongyi 30B. Reduz custo variável drasticamente.",
+      "absorption_target": "squads/research/data/model-backends.yaml + apps/research /api/research/clis detection",
+      "estimated_effort_pts": 5,
+      "roi": "Cost reduction + air-gapped capable + posicionamento academic"
+    },
+    {
+      "id": "GAP-05",
+      "priority": "P1",
+      "feature": "Cross-session memory with confidence scores",
+      "score_delta": -40,
+      "current_aiox": "Learning logs per-run, sem persistence cross-session",
+      "best_in_class": "DeerFlow TIAMAT (cross-device sync + confidence scores)",
+      "secondary": ["Local DR SQLCipher encrypted DB"],
+      "absorption_complexity": "HIGH",
+      "license_compat": "MIT (DeerFlow + LDR)",
+      "rationale": "Learning logs hoje são read-only. TIAMAT-like memory permitiria research-chief lembrar contexto de pesquisas prévias e construir conhecimento incremental.",
+      "absorption_target": "packages/@sinkra/research-memory + squads/research/data/memory-schema.yaml",
+      "estimated_effort_pts": 13,
+      "roi": "Continuous learning + cross-run quality compounding"
+    },
+    {
+      "id": "GAP-06",
+      "priority": "P1",
+      "feature": "Scholarly DB integration (arXiv, PubMed, Semantic Scholar)",
+      "score_delta": -70,
+      "current_aiox": "WebSearch + WebFetch genéricos. Sem APIs scholarly nativas.",
+      "best_in_class": "Local DR (10+ search engines incl. arXiv/PubMed/Semantic Scholar/SearXNG)",
+      "absorption_complexity": "LOW",
+      "license_compat": "MIT (LDR)",
+      "rationale": "CITATION_GATE seria significativamente mais forte com fontes scholarly nativas. ADAPT do código LDR + adapter pattern.",
+      "absorption_target": "squads/research/tasks/scholarly-search.md + adapters/arxiv.py + adapters/pubmed.py + adapters/semantic-scholar.py",
+      "estimated_effort_pts": 5,
+      "roi": "Academic paper scenario +20pts + credibility de citações"
+    },
+    {
+      "id": "GAP-07",
+      "priority": "P1",
+      "feature": "Public benchmark score (DeepResearchBench / BrowseComp-Plus / SimpleQA)",
+      "score_delta": -50,
+      "current_aiox": "Sem score público em benchmark padronizado",
+      "best_in_class": "OpenResearcher (BrowseComp-Plus 54.8%), Local DR (SimpleQA ~95%), LangChain ODR (DeepResearchBench #6)",
+      "absorption_complexity": "LOW",
+      "license_compat": "Benchmarks são open (HF Spaces)",
+      "rationale": "Marketing comprometido sem score. Rodar `/tech-research` contra Deep Research Bench standardizado e publicar resultado.",
+      "absorption_target": "docs/research/_eval-logs/ + apps/research benchmark dashboard",
+      "estimated_effort_pts": 3,
+      "roi": "Credibility + posicionamento + marketing leverage"
+    },
+    {
+      "id": "GAP-08",
+      "priority": "P2",
+      "feature": "True parallel subagent spawn (vs inline persona-fidelity)",
+      "score_delta": -33,
+      "current_aiox": "Inline persona-fidelity em main context (research phases)",
+      "best_in_class": "DeerFlow (max 3 sub-agents per turn, true parallel) + GPT-Researcher (LangGraph Chief/Researcher/Editor/Reviewer/Publisher paralelos)",
+      "absorption_complexity": "HIGH",
+      "license_compat": "MIT + Apache-2.0",
+      "rationale": "Inline é mais econômico em tokens, mas perde paralelismo real. Considerar opt-in via flag `--parallel-subagents` para queries grandes.",
+      "absorption_target": "squads/research/workflows/tech-research/phase-3-execute-research.yaml (modo parallel)",
+      "estimated_effort_pts": 8,
+      "roi": "Performance em research grandes + paridade com DeerFlow"
+    },
+    {
+      "id": "GAP-09",
+      "priority": "P2",
+      "feature": "FigureAgent / Visual Generation Agent",
+      "score_delta": -90,
+      "current_aiox": "Sem capability de gerar visuals (charts, diagrams) durante research",
+      "best_in_class": "AutoResearchClaw (FigureAgent dedicado para paper-grade figures)",
+      "absorption_complexity": "MEDIUM",
+      "license_compat": "MIT",
+      "rationale": "Para academic paper scenario + executive reports, FigureAgent muda o output dramaticamente. Pode usar matplotlib/plotly via Docker sandbox (depende de GAP-01).",
+      "absorption_target": "squads/research/agents/figure-agent.md + tech-research phase-4-5-visualize.yaml",
+      "estimated_effort_pts": 8,
+      "roi": "Academic paper scenario + executive report quality",
+      "blocked_by": ["GAP-01"]
+    },
+    {
+      "id": "GAP-10",
+      "priority": "P2",
+      "feature": "License re-evaluation: dual-license (Elastic v2 + AGPLv3)",
+      "score_delta": -46,
+      "current_aiox": "Apps/research = Elastic License v2 (não OSI)",
+      "best_in_class": "8/9 competidores OSI (MIT/Apache-2.0)",
+      "absorption_complexity": "LOW",
+      "license_compat": "N/A",
+      "rationale": "Manter Elastic v2 para proteção comercial mas oferecer AGPLv3 community edition (sem features enterprise) abre adoção e contribuição community.",
+      "absorption_target": "apps/research/LICENSE (dual) + apps/research-community fork",
+      "estimated_effort_pts": 2,
+      "roi": "Community contribution + adoption + marketing leverage"
+    }
+  ],
+  "opensource_gaps_vs_aiox": [
+    {
+      "id": "INV-GAP-01",
+      "category": "Governance",
+      "feature": "Quality gates with VETO halt (COVERAGE_GATE + CITATION_GATE)",
+      "aiox_score": 100,
+      "opensource_avg": 59,
+      "rationale": "Nenhum open-source implementa quality gates ao nível de Sinkra Hub. AIOX é referência nesta dimensão.",
+      "monetization_potential": "Vendable as 'Research Governance Layer' offering on top of any open-source backend"
+    },
+    {
+      "id": "INV-GAP-02",
+      "category": "Planejamento",
+      "feature": "Product Discovery framework (JTBD + Mom Test + Villain + WTP)",
+      "aiox_score": 96.5,
+      "opensource_avg": 56,
+      "rationale": "Único com product-validation pipeline integrada. Especialmente PT-BR vertical para operadores/founders/agências.",
+      "monetization_potential": "Vertical workflow PT-BR é blue ocean (confirmado pela research panel)"
+    },
+    {
+      "id": "INV-GAP-03",
+      "category": "Multi-Domain Squad",
+      "feature": "14 specialist personas com lineage acadêmico (Booth/Creswell/Forsgren/Gilad/Klein/Sackett)",
+      "aiox_score": "qualitative",
+      "rationale": "Open-source tem 1-3 agent roles (Researcher/Editor/Reviewer). AIOX tem 14 personas com methodology DNA distinto.",
+      "monetization_potential": "Specialized methodology workflows (PICO/OSINT/DORA/competitive intel) sem competidor direto"
+    },
+    {
+      "id": "INV-GAP-04",
+      "category": "PT-BR Vertical",
+      "feature": "PT-BR/LatAm-first positioning + 4 negócios dogfood",
+      "aiox_score": 92,
+      "opensource_avg": 35,
+      "rationale": "Todos os 9 open-source são EN-first. AIOX é único PT-BR-native com vertical workflow.",
+      "monetization_potential": "Sebrae 4.6M small businesses + Academia Lendária distribution = SMB tier defensável"
+    },
+    {
+      "id": "INV-GAP-05",
+      "category": "Multi-Mode Unified",
+      "feature": "1 squad para 5+ modos (tech-research, competitive intel, product discovery, benchmarking, marketing deep-dive)",
+      "aiox_score": "qualitative",
+      "rationale": "Cada open-source faz UM modo. AIOX tem squad unificado com 5 modos via workflows distintos. Reduz cognitive load + switching cost.",
+      "monetization_potential": "All-in-one positioning vs single-purpose tools"
+    },
+    {
+      "id": "INV-GAP-06",
+      "category": "Tri-layer Architecture",
+      "feature": "Squad (brain) + Skill (execution) + App (observability) integrados",
+      "aiox_score": "qualitative",
+      "rationale": "Open-source típico: 1 tool standalone. AIOX: brain + execution + obs separados mas integrados — escala melhor.",
+      "monetization_potential": "Enterprise procurement narrative (clean architecture)"
+    }
+  ],
+  "priority_summary": {
+    "P0_critical": ["GAP-01 (Sandbox)", "GAP-02 (Distribution)", "GAP-03 (MCP)"],
+    "P1_high": ["GAP-04 (Model backend)", "GAP-05 (Memory)", "GAP-06 (Scholarly DB)", "GAP-07 (Public benchmark)"],
+    "P2_medium": ["GAP-08 (Parallel)", "GAP-09 (FigureAgent)", "GAP-10 (License)"],
+    "total_effort_pts": 70,
+    "expected_score_after_p0_p1": "78 (current 60.25 + ~18 from absorption)",
+    "expected_score_after_all": "88 (composition target)"
+  },
+  "absorption_strategy_summary": "REUSE > ADAPT > CREATE. Priorizar P0 (Sandbox + Distribution + MCP) primeiro — desbloqueia 3 scenarios + community adoption. P1 dobra o score qualitativo. P2 polimento competitivo."
+}

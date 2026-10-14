@@ -1,0 +1,10 @@
+schema: frozen-public-source-v1
+id: PUB-10
+title: Fonte pública sintética 10
+url: https://example.org/sinkra-dr/source-10
+snapshot_date: '2026-05-18'
+allowed_for_tasks:
+- public_web_ptbr
+- public_web_en
+- browser_realism
+- strategic_decision

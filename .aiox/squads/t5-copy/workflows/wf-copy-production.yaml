@@ -1,0 +1,172 @@
+# --- document metadata ---
+version: "1.0"
+date: "2026-03-09"
+author:
+  agent: "squad-chief"
+  squad: "copy"
+aiox: true
+project: "opb-corp"
+
+# Workflow: Copy Production Pipeline
+# Main workflow — used for ALL copy production in CopywriterOS.
+
+workflow:
+  name: wf-copy-production
+  display: "Copy Production Pipeline"
+  description: >
+    7-phase workflow from briefing to delivery. Follows the CopywriterOS
+    execution flow: Briefing → Diagnostic → Routing → Creation → Review → QA → Delivery.
+  entry_agent: copy-chief
+  version: "1.0"
+  quality_gate_refs: [QG-CP-1.1, QG-CP-2.1, QG-CP-3.1, QG-CP-4.1, QG-CP-5.1]
+
+phases:
+
+  - id: briefing
+    name: "Phase 1: Briefing"
+    agent: copy-chief
+    task: briefing.md
+    elicit: true
+    mandatory: true
+    output: "Structured briefing YAML"
+    checkpoint:
+      gate: "Briefing has product, ICP, channel, objective"
+      veto: "Missing product OR ICP OR channel → BLOCK"
+
+  - id: diagnostic
+    name: "Phase 2: Tier 0 Diagnostic"
+    agent: [claude-hopkins, eugene-schwartz, robert-collier]
+    task: diagnose.md
+    parallel: true
+    mandatory: true
+    output: "Diagnostic Report (awareness, sophistication, conversation entry)"
+    checkpoint:
+      gate: "3 diagnostics produced and consolidated"
+      veto: "Less than 3 diagnostics → BLOCK"
+    depends_on: [briefing]
+
+  - id: routing
+    name: "Phase 3: Routing Decision"
+    agent: copy-chief
+    task: null  # Inline — Copy Chief selects agents based on diagnostic + routing-matrix
+    mandatory: true
+    output: "Selected 1-3 agents + rationale"
+    checkpoint:
+      gate: "Agent selection justified by diagnostic data"
+      veto: "Selection without diagnostic rationale → BLOCK"
+    depends_on: [diagnostic]
+
+  - id: creation
+    name: "Phase 4: Copy Creation"
+    agent: "{selected from routing}"
+    task: write-copy.md
+    mandatory: true
+    output: "Draft copy in channel format"
+    checkpoint:
+      gate: "Copy reflects agent methodology + considers diagnostic"
+      veto: "Generic copy without agent DNA → BLOCK"
+    depends_on: [routing]
+
+  - id: review
+    name: "Phase 5: Cross-Review"
+    agent: "{second agent — selected by Copy Chief}"
+    task: review-copy.md
+    mandatory: false
+    condition: "stakes = high OR stakes = critical"
+    output: "Review notes + improvement suggestions"
+    checkpoint:
+      gate: "Reviewer provides specific framework-based suggestions"
+      veto: "Rewriting instead of reviewing → BLOCK"
+    depends_on: [creation]
+
+  # RT-FIX-6 2026-05-19 (@copy-chief): Sugarman vem ANTES do anti-slop.
+  # Rationale: Sugarman 30 Triggers = check de completude psicológica.
+  # Anti-slop = sanitização de cliché. Garantir que a copy TEM os 30 triggers
+  # primeiro, depois remover slop. Inverter ordem produz falso block — copy
+  # incompleta sendo bloqueada por slop antes de ter chance de ter substância.
+
+  - id: qa_gate
+    name: "Phase 6: QA Gate — Sugarman 30 Triggers"
+    agent: joe-sugarman
+    task: qa-gate.md
+    mandatory: true
+    skip_condition: "NEVER — always runs"
+    output: "Score X/30, verdict (PASS/REVISE/FAIL)"
+    checkpoint:
+      gate: "Score >= 20 for PASS"
+      veto: "Score < 20 without revision cycle → BLOCK delivery"
+    depends_on: [creation, review]
+    on_revise:
+      action: "Return to creation phase with QA feedback"
+      max_iterations: 3
+    on_fail:
+      action: "Re-route to different agent via routing phase"
+
+  - id: anti_slop_gate
+    name: "Phase 6.5: Anti-Slop Gate — Jane Doe Effect Scan"
+    agent: copy-ops-worker
+    task: |
+      Run squads/copy/checklists/copy-anti-slop-checklist.md against the deliverable.
+      Consume canonical bans from squads/copy/data/copy-anti-slop-bans.yaml.
+      Apply register-aware voice rules from squads/copy/data/register-aware-copy.yaml.
+      Consult allowlist (outputs/copy/{business}/real-entities-allowlist.yaml) before flagging.
+    mandatory: true
+    skip_condition: "NEVER — always runs (cross-fit bench absorption 2026-05-19)"
+    authority: ".claude/rules/design-absolute-bans.md §5"
+    output: "qa/copy-anti-slop-report.yaml with ai_slop_score 0-100 + hits + replacement suggestions"
+    consumes:
+      - data/copy-anti-slop-bans.yaml
+      - data/register-aware-copy.yaml
+      - checklists/copy-anti-slop-checklist.md
+      - "outputs/copy/{business}/real-entities-allowlist.yaml (RT-FIX-6 override)"
+    detection_categories:
+      - filler_words (Elevate/Unleash/Seamless/Powerful/Effortless/Smart/Robust/Scalable/etc — 39 termos)
+      - generic_names (John Doe/Sarah Chen/...)
+      - startup_slop_names (Acme/Nexus/SmartFlow/...)
+      - fake_numbers (99.99%, 50%, 10x, $1,000,000)
+      - filler_phrases ("In today's fast-paced world", "Are you tired of")
+      - em_dashes (— or --, severity by language — RT-FIX-6 PT-BR=P2)
+      - lorem_ipsum
+    checkpoint:
+      gate: "ai_slop_score <= 60 AND zero P0 hits (after allowlist override)"
+      veto: "ai_slop_score > 60 OR any P0 hit → BLOCK and return to creation"
+    threshold_actions:
+      "0-20": pass — proceed to delivery
+      "21-40": warn — proceed but log in handoff
+      "41-60": review — copy-chief manual gate
+      "61-80": block — rebrief required
+      "81-100": hard-block — full rebrief
+    depends_on: [creation, review, qa_gate]   # Sugarman PASS antes do anti-slop
+    on_block:
+      action: "Return to creation phase with copy-anti-slop-bans.yaml#replacement_strategy suggestions"
+      max_iterations: 3
+
+  - id: delivery
+    name: "Phase 7: Delivery"
+    agent: copy-chief
+    task: deliver.md
+    mandatory: true
+    output: "Delivery package (copy + metadata + diagnostic + QA score + anti-slop report)"
+    checkpoint:
+      gate: "Complete delivery package with all metadata + anti-slop report"
+      veto: "Delivery without QA PASS OR anti_slop_gate block → BLOCK"
+    depends_on: [qa_gate, anti_slop_gate]   # RT-FIX-6 2026-05-19: ordem corrigida
+
+# Flow Control
+flow_control:
+  direction: unidirectional
+  exceptions:
+    - from: qa_gate
+      to: creation
+      condition: "verdict = REVISE"
+      max_loops: 3
+    - from: qa_gate
+      to: routing
+      condition: "verdict = FAIL"
+      max_loops: 1
+
+# Activation
+activation:
+  command: "*copy"
+  alias_ptbr: "*escrever"
+  description: "Start a copy production project"

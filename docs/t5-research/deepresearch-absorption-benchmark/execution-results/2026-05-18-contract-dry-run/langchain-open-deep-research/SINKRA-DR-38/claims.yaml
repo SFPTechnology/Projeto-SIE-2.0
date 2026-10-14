@@ -1,0 +1,36 @@
+schema: sinkra-claims-v1
+run_id: langchain-open-deep-research__SINKRA-DR-38
+task_id: SINKRA-DR-38
+system_id: langchain-open-deep-research
+mode: contract_dry_run
+claims:
+- id: SINKRA-DR-38-C1
+  text: Claim gold sintético 1 para strategic_decision.
+  source_ids:
+  - SINKRA-DR-38-S1
+  support: synthetic_gold_fixture
+  required: true
+- id: SINKRA-DR-38-C2
+  text: Claim gold sintético 2 para strategic_decision.
+  source_ids:
+  - SINKRA-DR-38-S2
+  support: synthetic_gold_fixture
+  required: true
+- id: SINKRA-DR-38-C3
+  text: Claim gold sintético 3 para strategic_decision.
+  source_ids:
+  - SINKRA-DR-38-S3
+  support: synthetic_gold_fixture
+  required: true
+- id: SINKRA-DR-38-C4
+  text: Claim gold sintético 4 para strategic_decision.
+  source_ids:
+  - SINKRA-DR-38-S4
+  support: synthetic_gold_fixture
+  required: false
+- id: SINKRA-DR-38-C5
+  text: Claim gold sintético 5 para strategic_decision.
+  source_ids:
+  - SINKRA-DR-38-S5
+  support: synthetic_gold_fixture
+  required: false

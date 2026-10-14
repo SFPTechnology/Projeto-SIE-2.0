@@ -1,0 +1,31 @@
+%%{ init: { 'theme': 'dark' } }%%
+
+graph TB
+    subgraph HUMAN["🔵 HUMAN (#3B82F6)"]
+        H1["Approval callbacks\n(Hermes)"]
+        H2["PR review / Release\n(OpenClaw)"]
+        H3["Story approval\nBusiness decisions\n(Sinkra)"]
+    end
+
+    subgraph AGENT["🟢 AGENT (#10B981)"]
+        A1["AIAgent core\nSkill judge\nContent gen\n(Hermes)"]
+        A2["Inference\nDoctor diagnose\nSkill execute\n(OpenClaw)"]
+        A3["process-discoverer\narchitect-designer\nquality-gatekeeper\n473 agents\n(Sinkra)"]
+    end
+
+    subgraph WORKER["🟠 WORKER (#F59E0B)"]
+        W1["Tool registry\nFile I/O\nAPI calls\nCron jobs\n(Hermes)"]
+        W2["CLI entry\nConfig load\nPlugin discovery\nGateway routing\nBuild/test\n(OpenClaw)"]
+        W3["validate:yaml\nvalidate:squads\npre-push hooks\nCI workflows\nrunner-lib\n(Sinkra)"]
+    end
+
+    subgraph CLONE["🟣 CLONE (#8B5CF6)"]
+        C1["N/A\n(Hermes)"]
+        C2["N/A\n(OpenClaw)"]
+        C3["PV mind clone\nevaluates checkpoints\nMethodology replication\n(Sinkra only)"]
+    end
+
+    style HUMAN fill:#1e3a5f,stroke:#3B82F6,color:#e2e8f0
+    style AGENT fill:#1a3a2a,stroke:#10B981,color:#e2e8f0
+    style WORKER fill:#3b2a0a,stroke:#F59E0B,color:#e2e8f0
+    style CLONE fill:#2d1b4e,stroke:#8B5CF6,color:#e2e8f0

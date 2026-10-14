@@ -1,0 +1,116 @@
+version: 1.0.0
+run_id: sdc-headless-2026-08-02T17-48-37-006Z
+status: failed
+terminal_status: PUSH_AUTHORIZATION_MISSING
+current_phase: devops_push
+manifest_snapshot:
+  source_artifact: docs/PLANO-REESTRUTURACAO-AUTO-OTIMIZACAO-S-QUEDA-TENSAO.md
+  orchestration_workflow: docs/workflows/WORKFLOW-SDC-AUTO-OTIMIZACAO-S-QUEDA-TENSAO-YOLO.md
+  story_scope: single_successor_story
+  provisional_story_id: AUTO-OTI-1.3
+  story_id: AUTO-OTI-1.3
+  story_file: docs/stories/story-AUTO-OTI-1.3-aplicar-secao-auto-otimizada-no-mod-qt.md
+  execution_mode: yolo
+  permissions_mode: auto
+  interaction_policy: never_prompt
+  on_missing_input: block_and_log
+  max_po_iterations: 3
+  max_qa_iterations: 5
+  base_branch: master
+  target_branch: master
+  remote_repository: https://github.com/SFPTechnology/Projeto-SIE.git
+  deploy_environment: local-dry-run
+  deploy_runbook: docs/workflows/PLANO-DEPLOY-COMPLETO-2026-07-18.md
+  remote_operations_authorized: false
+  pull_request_authorized: false
+  merge_authorized: false
+  release_authorized: false
+  deploy_authorized: false
+  rollback_authorized: true
+  migrations_authorized: false
+  destructive_migrations_authorized: false
+  required_decisions:
+    persistence_and_concurrency: approved
+    batch_confirmation_semantics: approved
+    cli_api_entrypoint_and_schemas: approved
+  protected_contracts:
+    - RetornoMODQT
+    - ValidarMODQTSchema
+    - RetornoMODQTSchema
+    - POST /api/v1/modulos/mod-qt/validar
+  safety_profile: local_only_until_devops_authorization
+  required_quality_gates:
+    - npm run lint
+    - npm run typecheck
+    - npm test
+    - npm run build
+manifest_fingerprint: 77ea09dc1fa771c1943d44d9d576305eaf4f23ba69b7ed5aa2944180125d3d34
+counters:
+  po_iterations: 1
+  qa_iterations: 1
+gates:
+  manifest:
+    valid: true
+    errors: []
+  technical:
+    lint: PASS
+    typecheck: PASS
+    tests: PASS
+    build: PASS
+    coderabbit: PASS
+    security: PASS
+effects:
+  migrations:
+    status: skipped
+    at: '2026-08-02T17:48:37.331Z'
+    reason: migrations_authorized is false
+transitions:
+  - at: '2026-08-02T17:48:37.110Z'
+    from: manifest_validation
+    to: sm_story_creation
+    status: manifest_validated
+  - at: '2026-08-02T17:48:37.134Z'
+    from: sm_story_creation
+    to: po_story_validation
+    status: story_drafted
+  - at: '2026-08-02T17:48:37.158Z'
+    from: po_story_validation
+    to: dev_implementation
+    status: po_go
+  - at: '2026-08-02T17:48:37.213Z'
+    from: dev_implementation
+    to: qa_review
+    status: dev_complete
+  - at: '2026-08-02T17:48:37.305Z'
+    from: qa_review
+    to: quality_gates
+    status: qa_pass
+  - at: '2026-08-02T17:48:37.324Z'
+    from: quality_gates
+    to: migration_validation
+    status: quality_gates_passed
+  - at: '2026-08-02T17:48:37.331Z'
+    from: migration_validation
+    to: devops_push
+    status: migrations_skipped
+  - at: '2026-08-02T17:48:37.336Z'
+    from: devops_push
+    to: failed
+    code: PUSH_AUTHORIZATION_MISSING
+blocks:
+  - at: '2026-08-02T17:48:37.336Z'
+    code: PUSH_AUTHORIZATION_MISSING
+    reason: remote_operations_authorized is not true
+started_at: '2026-08-02T17:48:37.006Z'
+updated_at: '2026-08-02T17:48:37.402Z'
+sm_result:
+  status: completed
+  story_status: Draft
+po_result:
+  status: GO
+  story_status: Approved
+dev_result:
+  status: completed
+qa_result:
+  verdict: PASS
+execution_log: docs/workflows/logs/SDC-PLANO-REESTRUTURACAO-AUTO-OTIMIZACAO-S-QUEDA-TENSAO.md-2026-08-02T17-48-37-006Z.md

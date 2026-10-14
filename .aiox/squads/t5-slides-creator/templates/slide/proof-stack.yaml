@@ -1,0 +1,120 @@
+# Slide Template — Proof Stack
+# Schema ref: templates/schemas/slide-template.schema.yaml
+# Pilot status: MSN-2026-SLIDES-NARRATIVE-DESIGN DEV-2026-003 (2 de 3 pilots)
+
+id: "proof-stack"
+name: "Proof Stack (2-4 evidencias verticais com source)"
+version: "1.0.0"
+
+function: proof
+alternative_functions: [mechanism_step, contrast, synthesis]
+
+summary:
+  pick_for: >-
+    Quando ha 2-4 evidencias quantitativas/estudos que sustentam mesma tese. Pesquisas, estatisticas,
+    estudos de caso, dados de adocao, benchmarks. Cada evidencia carrega numero + fonte + interpretacao.
+  skip_if: >-
+    Quando evidencia eh QUALITATIVA (use quote-card slide template). Quando ha 5+ evidencias
+    (split em 2 slides OR use matrix-framework). Quando evidencia eh visual unica como chart
+    grande (use chart-hero). Quando comparacao binaria (use contrast-2col).
+
+slots:
+  - name: action_title
+    type: text
+    role: primary
+    required: true
+    max_chars: 90
+    token_ref: "--slide-title-md"
+    position_hint: top-left
+  - name: proof_items
+    type: list
+    role: primary
+    required: true
+    max_items: 4
+    position_hint: center-stacked-vertical
+  - name: synthesis_line
+    type: text
+    role: supporting
+    required: false
+    max_chars: 90
+    token_ref: "--slide-body"
+    position_hint: bottom-center
+  - name: source_footer
+    type: citation
+    role: footer
+    required: true
+    position_hint: bottom-left
+
+constraints:
+  density_target: medium
+  max_visual_elements: 4
+  max_text_chars_total: 320
+  grid_columns_required: 12
+  viewing_distance_min: medium
+  accessibility_min: WCAG_AA
+
+visual_pattern:
+  layout_family: stacked
+  motif_hints:
+    - "Numero ou icone grande a esquerda de cada proof item"
+    - "Divisor horizontal sutil entre proofs (ou padding generoso)"
+    - "Source citation em rodape com tipografia menor"
+    - "Optional: synthesis line em italico abaixo dos proofs"
+
+qa_gates_emphasis:
+  - {dimension: fontes_apa, emphasis: critical}            # cada proof tem source
+  - {dimension: enumeration_universal, emphasis: critical} # cada proof numerado
+  - {dimension: hierarchy, emphasis: critical}              # numero/icone > titulo proof > corpo
+  - {dimension: density, emphasis: high}                    # max 4 proofs
+  - {dimension: action_title_rhetoric, emphasis: high}      # title carrega tese sintetica
+
+failure_modes:
+  - mode: "Proofs sem source"
+    symptom: "Number/percentage sem citation"
+    prevention: "source_footer obrigatorio + KI-03 (claim sem fonte)"
+  - mode: "Hierarquia plana"
+    symptom: "Number e body proof items com mesmo peso visual"
+    prevention: "Number sempre maior (--slide-title-lg) que body (--slide-body)"
+  - mode: "Proof overflow"
+    symptom: ">4 proofs amontoados, perdendo legibilidade"
+    prevention: "max_items: 4 enforced. Split em 2 slides se necessario."
+  - mode: "Title descritivo"
+    symptom: "Title = 'Tres evidencias sobre X'"
+    prevention: "Title carrega TESE sintetica: 'Adoção dobra quando UX precede tecnologia (3 evidencias)'"
+
+selected_template_reason_schema:
+  function_match: "proof (canonical) OR mechanism_step/contrast/synthesis"
+  density_fit: "medium density (3-4 itens) — se 1 item, use kpi-block; se 5+, split"
+  alternative_considered: "ex: matrix-framework rejected porque proofs nao tem 2 eixos"
+
+sample_content:
+  slots_filled:
+    action_title: "Adoção de IA dobra quando empresas começam por UX e nao por tecnologia"
+    proof_items:
+      - number: "2.3x"
+        body: "Adopcao IA em 12 meses quando piloto comeca por journey mapping antes de stack"
+        source_inline: "(McKinsey, 2025)"
+      - number: "67%"
+        body: "Reducao em rework de implementacao em projetos UX-first vs tech-first"
+        source_inline: "(Forrester State of AI Adoption, 2025)"
+      - number: "R$ 200K"
+        body: "Economia media por projeto evitando re-arquitetura pos-MVP"
+        source_inline: "(Gartner, 2025)"
+    synthesis_line: "Quando UX precede stack, time aceita IA como ferramenta, nao como ameaca."
+    source_footer: "Fontes: McKinsey State of AI 2025; Forrester The Total Economic Impact of AI Adoption 2025; Gartner CIO Agenda 2025. Acesso 2026-05-17."
+  notes: "Exemplo synthetic. 3 proofs (cabe em max 4) com sources APA-complete. Synthesis line opcional."
+
+compatible_with:
+  deck_templates: [executive-pitch, webinar-sales-perfect-webinar, board-update, tactical-masterclass, benchmark-research]
+  themes: [editorial-pentagram, consulting-mckinsey, financial-bloomberg, demo-day-yc]
+
+source_provenance:
+  inspired_by:
+    - "McKinsey 3-pillar evidence presentation pattern"
+    - "Barbara Minto — Pyramid Principle (MECE proof groupings)"
+    - "Y Combinator traction slide conventions"
+  bench_ref:
+    - "/Users/alan/Code/bench/ppt-master/skills/ppt-master/templates/layouts/google_style/03_content.svg"
+    - "/Users/alan/Code/bench/presenton/servers/nextjs/app/presentation-templates/neo-modern/TitleKpiSnapshotGrid.tsx (KPI grid inspiration)"
+  author: "slides-creator squad — MSN-2026-SLIDES-NARRATIVE-DESIGN"
+  date_created: "2026-05-17"

@@ -1,0 +1,111 @@
+{
+  "schema": "2026-05-16-deep-research-absorption-benchmark.sources.v1",
+  "generated_at": "2026-05-18",
+  "sources": [
+    {
+      "id": "src-001",
+      "title": "DeerFlow — ByteDance",
+      "url": "https://github.com/bytedance/deer-flow",
+      "type": "github_repo",
+      "credibility": "ALTA"
+    },
+    {
+      "id": "src-002",
+      "title": "GPT-Researcher — Autonomous Research Agent",
+      "url": "https://github.com/assafelovic/gpt-researcher",
+      "type": "github_repo",
+      "credibility": "ALTA"
+    },
+    {
+      "id": "src-003",
+      "title": "OpenResearcher — TIGER-AI-Lab",
+      "url": "https://github.com/TIGER-AI-Lab/OpenResearcher",
+      "type": "github_repo",
+      "credibility": "ALTA"
+    },
+    {
+      "id": "src-004",
+      "title": "OpenResearcher paper arXiv:2603.20278",
+      "url": "https://arxiv.org/html/2603.20278v1",
+      "type": "paper",
+      "credibility": "ALTA"
+    },
+    {
+      "id": "src-005",
+      "title": "DeepResearcher — GAIR-NLP",
+      "url": "https://github.com/GAIR-NLP/DeepResearcher",
+      "type": "github_repo",
+      "credibility": "ALTA"
+    },
+    {
+      "id": "src-006",
+      "title": "DeepResearcher EMNLP 2025",
+      "url": "https://aclanthology.org/2025.emnlp-main.22/",
+      "type": "paper",
+      "credibility": "ALTA"
+    },
+    {
+      "id": "src-007",
+      "title": "Local Deep Research",
+      "url": "https://github.com/LearningCircuit/local-deep-research",
+      "type": "github_repo",
+      "credibility": "ALTA"
+    },
+    {
+      "id": "src-008",
+      "title": "AutoResearchClaw — AIMING Lab",
+      "url": "https://github.com/aiming-lab/AutoResearchClaw",
+      "type": "github_repo",
+      "credibility": "ALTA"
+    },
+    {
+      "id": "src-009",
+      "title": "STORM — Stanford OVAL",
+      "url": "https://github.com/stanford-oval/storm",
+      "type": "github_repo",
+      "credibility": "ALTA"
+    },
+    {
+      "id": "src-010",
+      "title": "Hermes Agent — Nous Research",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "type": "github_repo",
+      "credibility": "MEDIA"
+    },
+    {
+      "id": "src-011",
+      "title": "Deep Research Bench Leaderboard",
+      "url": "https://futuresearch.ai/deep-research-bench/",
+      "type": "benchmark",
+      "credibility": "ALTA"
+    },
+    {
+      "id": "src-012",
+      "title": "LangChain Open Deep Research",
+      "url": "https://github.com/langchain-ai/open_deep_research",
+      "type": "github_repo",
+      "credibility": "MEDIA"
+    },
+    {
+      "id": "src-013",
+      "title": "Jina AI node-DeepResearch",
+      "url": "https://github.com/jina-ai/node-DeepResearch",
+      "type": "github_repo",
+      "credibility": "MEDIA"
+    },
+    {
+      "id": "src-014",
+      "title": "TechTimes sobre Hermes Agent",
+      "url": "https://www.techtimes.com/articles/316694/20260515/nous-researchs-hermes-agent-dethrones-openclaw-worlds-most-used-open-source-ai-agent.htm",
+      "type": "blog",
+      "credibility": "MEDIA"
+    },
+    {
+      "id": "src-015",
+      "title": "Awesome Deep Research — curated list",
+      "url": "https://github.com/DavidZWZ/Awesome-Deep-Research",
+      "type": "curated_list",
+      "credibility": "BAIXA"
+    }
+  ]
+}

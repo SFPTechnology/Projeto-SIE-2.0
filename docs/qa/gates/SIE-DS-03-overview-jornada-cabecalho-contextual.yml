@@ -1,0 +1,62 @@
+schema: 1
+story: "SIE-DS-03"
+story_title: "Overview, jornada e cabeçalho contextual"
+story_path: "docs/stories/story-SIE-DS-03-overview-jornada-cabecalho-contextual.md"
+gate: CONCERNS
+status_reason: >-
+  AC1-AC8 PASS com evidência forte: smoke test HTTP real de ContextHeader, métricas,
+  WorkflowStepper e EngineeringPanel (tabela + segmented control) rodando no dev server;
+  AC7 confirmado (git diff vazio); regressão completa 1023/1023. CONCERNS mantido só pela
+  indisponibilidade do CodeRabbit — 4ª story consecutiva, escalado com urgência máxima.
+reviewer: "Quinn (Test Architect)"
+updated: "2026-07-31T00:00:00-03:00"
+expires: "2026-08-14T00:00:00-03:00"
+quality_score: 90
+mode: "yolo (agente-a-agente: @sm → @po → @architect → @dev → @qa, sem fase @devops por decisão do usuário)"
+submodule_impact: "aditivo apenas — 16 arquivos novos/modificados em src/components/command-center/ e src/routes/; AppShell.tsx diff vazio"
+
+smoke_test:
+  url: "http://127.0.0.1:5173/sie-command-center-preview"
+  status_code: 200
+  content_checks:
+    - "Visão geral do projeto"
+    - "Em dimensionamento"
+    - "Jornada do projeto"
+    - "Fluxo concluído"
+    - "Circuitos críticos"
+    - "sie-cc-segmented-control"
+    - "C14"
+  legacy_regression_check:
+    url: "http://127.0.0.1:5173/"
+    status_code: 200
+    content_check: "Projetos"
+
+trace_ac:
+  - { ac: AC1, descricao: "ContextHeader", resultado: PASS }
+  - { ac: AC2, descricao: "WorkflowStepper", resultado: PASS }
+  - { ac: AC3, descricao: "MetricCard", resultado: PASS }
+  - { ac: AC4, descricao: "EngineeringPanel (tabela + diagrama)", resultado: PASS }
+  - { ac: AC5, descricao: "Integração na rota", resultado: PASS }
+  - { ac: AC6, descricao: "Acessibilidade", resultado: PASS }
+  - { ac: AC7, descricao: "Zero impacto no legado", resultado: PASS }
+  - { ac: AC8, descricao: "Testado localmente", resultado: PASS }
+
+top_issues:
+  - id: "TEST-001"
+    severity: medium
+    finding: "CodeRabbit CLI (WSL) indisponível pela 4ª story consecutiva (SIGILL/exit 132)."
+    suggested_action: "@devops — prioridade máxima antes de qualquer story futura de escopo maior."
+    suggested_owner: devops
+  - id: "DOC-001"
+    severity: low
+    finding: "Checkboxes de Acceptance Criteria permanecem [ ] apesar de todos PASS — padrão recorrente."
+    suggested_action: "@po marca [x] durante *close-story."
+    suggested_owner: po
+
+waiver: { active: false }
+
+recommendations:
+  immediate:
+    - action: "Reparar binário CodeRabbit no WSL — 4ª ocorrência, escalar prioridade"
+      refs: ["~/.local/bin/coderabbit"]
+  future: []

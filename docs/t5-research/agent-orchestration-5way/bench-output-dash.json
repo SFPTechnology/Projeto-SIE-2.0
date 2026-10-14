@@ -1,0 +1,2046 @@
+{
+  "schema": "bench-output-dash.v1",
+  "generated_at": "2026-05-11T22:09:33.694Z",
+  "source_files": [
+    "INDEX.md",
+    "full-comparison.md",
+    "gap-absorption-roadmap.md",
+    "metadata.json",
+    "openclaw-vs-hermes-vs-gateway.md"
+  ],
+  "benchmark": {
+    "slug": "agent-orchestration-5way",
+    "title": "Agent Orchestration 5-Way Benchmark",
+    "date": "2026-04-15",
+    "type": "technology",
+    "variant": "6-way",
+    "analyst": "unknown"
+  },
+  "players": [
+    {
+      "key": "bmad",
+      "name": "Bmad",
+      "category": "unknown"
+    },
+    {
+      "key": "paperclip",
+      "name": "Paperclip",
+      "category": "unknown"
+    },
+    {
+      "key": "gsd_2",
+      "name": "Gsd 2",
+      "category": "unknown"
+    },
+    {
+      "key": "crewai",
+      "name": "Crewai",
+      "category": "unknown"
+    },
+    {
+      "key": "gsd_1",
+      "name": "Gsd 1",
+      "category": "unknown"
+    },
+    {
+      "key": "sinkra_hub",
+      "name": "Sinkra Hub",
+      "category": "unknown"
+    }
+  ],
+  "summary": {
+    "winner": "mixed",
+    "coverage": "structured",
+    "sources": 2,
+    "waves": 0,
+    "dimensions": 10
+  },
+  "matrix": {
+    "players": [
+      "bmad",
+      "paperclip",
+      "gsd_2",
+      "crewai",
+      "gsd_1",
+      "sinkra_hub"
+    ],
+    "dimensions": [
+      {
+        "id": "D1",
+        "label": "Orchestration practices",
+        "weight": 0
+      },
+      {
+        "id": "D2",
+        "label": "Quality gates",
+        "weight": 0
+      },
+      {
+        "id": "D3",
+        "label": "Extracted business rules",
+        "weight": 0
+      },
+      {
+        "id": "D4",
+        "label": "Exclusive practices",
+        "weight": 0
+      },
+      {
+        "id": "D5",
+        "label": "SINKRA Score",
+        "weight": 0
+      },
+      {
+        "id": "D6",
+        "label": "Compliance Score",
+        "weight": 0
+      },
+      {
+        "id": "D7",
+        "label": "Runtime adapters",
+        "weight": 0
+      },
+      {
+        "id": "D8",
+        "label": "Memory/persistence",
+        "weight": 0
+      },
+      {
+        "id": "D9",
+        "label": "Security practices",
+        "weight": 0
+      },
+      {
+        "id": "D10",
+        "label": "Parallelism support",
+        "weight": 0
+      }
+    ],
+    "rows": [
+      {
+        "id": "D1",
+        "label": "Orchestration practices",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "bmad",
+            "score": 18,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 21,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 22,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "crewai",
+            "score": 19,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_1",
+            "score": 17,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "sinkra_hub",
+            "score": 28,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D2",
+        "label": "Quality gates",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "bmad",
+            "score": 15,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 14,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 9,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "crewai",
+            "score": 11,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_1",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "sinkra_hub",
+            "score": 15,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D3",
+        "label": "Extracted business rules",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "bmad",
+            "score": 35,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 25,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 36,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "crewai",
+            "score": 24,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_1",
+            "score": 25,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "sinkra_hub",
+            "score": 100,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D4",
+        "label": "Exclusive practices",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "bmad",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 6,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 6,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "crewai",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_1",
+            "score": 4,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "sinkra_hub",
+            "score": 16,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D5",
+        "label": "SINKRA Score",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "bmad",
+            "score": 82,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 82,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 74,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "crewai",
+            "score": 81,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_1",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "sinkra_hub",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D6",
+        "label": "Compliance Score",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "bmad",
+            "score": 78.3,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 71.8,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 80.5,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "crewai",
+            "score": 79.2,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_1",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "sinkra_hub",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D7",
+        "label": "Runtime adapters",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "bmad",
+            "score": 2,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 6,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 1,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "crewai",
+            "score": 1,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_1",
+            "score": 14,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "sinkra_hub",
+            "score": 1,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D8",
+        "label": "Memory/persistence",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "crewai",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_1",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "sinkra_hub",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D9",
+        "label": "Security practices",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "bmad",
+            "score": 1,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 3,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 2,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "crewai",
+            "score": 2,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_1",
+            "score": 5,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "sinkra_hub",
+            "score": 3,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      },
+      {
+        "id": "D10",
+        "label": "Parallelism support",
+        "weight": 0,
+        "cells": [
+          {
+            "player": "bmad",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "paperclip",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_2",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "crewai",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "gsd_1",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          },
+          {
+            "player": "sinkra_hub",
+            "score": 0,
+            "confidence": "",
+            "notes": "",
+            "source": "full-comparison.md"
+          }
+        ]
+      }
+    ],
+    "totals": [
+      {
+        "player": "bmad",
+        "score": 23.63
+      },
+      {
+        "player": "paperclip",
+        "score": 22.88
+      },
+      {
+        "player": "gsd_2",
+        "score": 23.05
+      },
+      {
+        "player": "crewai",
+        "score": 22.22
+      },
+      {
+        "player": "gsd_1",
+        "score": 7
+      },
+      {
+        "player": "sinkra_hub",
+        "score": 16.3
+      }
+    ],
+    "method": "Derived from markdown table in full-comparison.md"
+  },
+  "duels": [
+    {
+      "left": "bmad",
+      "right": "paperclip",
+      "winner": "paperclip",
+      "left_wins": 3,
+      "right_wins": 4,
+      "ties": 3,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 18,
+          "right_score": 21,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 15,
+          "right_score": 14,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 35,
+          "right_score": 25,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 5,
+          "right_score": 6,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 82,
+          "right_score": 82,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 78.3,
+          "right_score": 71.8,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 2,
+          "right_score": 6,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 1,
+          "right_score": 3,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "bmad",
+      "right": "gsd_2",
+      "winner": "gsd_2",
+      "left_wins": 3,
+      "right_wins": 5,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 18,
+          "right_score": 22,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 15,
+          "right_score": 9,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 35,
+          "right_score": 36,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 5,
+          "right_score": 6,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 82,
+          "right_score": 74,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 78.3,
+          "right_score": 80.5,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 2,
+          "right_score": 1,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 1,
+          "right_score": 2,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "bmad",
+      "right": "crewai",
+      "winner": "bmad",
+      "left_wins": 4,
+      "right_wins": 3,
+      "ties": 3,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 18,
+          "right_score": 19,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 15,
+          "right_score": 11,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 35,
+          "right_score": 24,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 5,
+          "right_score": 5,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 82,
+          "right_score": 81,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 78.3,
+          "right_score": 79.2,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 2,
+          "right_score": 1,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 1,
+          "right_score": 2,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "bmad",
+      "right": "gsd_1",
+      "winner": "bmad",
+      "left_wins": 6,
+      "right_wins": 2,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 18,
+          "right_score": 17,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 15,
+          "right_score": 5,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 35,
+          "right_score": 25,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 5,
+          "right_score": 4,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 82,
+          "right_score": 0,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 78.3,
+          "right_score": 0,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 2,
+          "right_score": 14,
+          "winner": "gsd_1"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 1,
+          "right_score": 5,
+          "winner": "gsd_1"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "bmad",
+      "right": "sinkra_hub",
+      "winner": "sinkra_hub",
+      "left_wins": 3,
+      "right_wins": 4,
+      "ties": 3,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 18,
+          "right_score": 28,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 15,
+          "right_score": 15,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 35,
+          "right_score": 100,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 5,
+          "right_score": 16,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 82,
+          "right_score": 0,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 78.3,
+          "right_score": 0,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 2,
+          "right_score": 1,
+          "winner": "bmad"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 1,
+          "right_score": 3,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "paperclip",
+      "right": "gsd_2",
+      "winner": "paperclip",
+      "left_wins": 4,
+      "right_wins": 3,
+      "ties": 3,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 21,
+          "right_score": 22,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 14,
+          "right_score": 9,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 25,
+          "right_score": 36,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 6,
+          "right_score": 6,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 82,
+          "right_score": 74,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 71.8,
+          "right_score": 80.5,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 6,
+          "right_score": 1,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 3,
+          "right_score": 2,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "paperclip",
+      "right": "crewai",
+      "winner": "paperclip",
+      "left_wins": 7,
+      "right_wins": 1,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 21,
+          "right_score": 19,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 14,
+          "right_score": 11,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 25,
+          "right_score": 24,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 6,
+          "right_score": 5,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 82,
+          "right_score": 81,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 71.8,
+          "right_score": 79.2,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 6,
+          "right_score": 1,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 3,
+          "right_score": 2,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "paperclip",
+      "right": "gsd_1",
+      "winner": "paperclip",
+      "left_wins": 5,
+      "right_wins": 2,
+      "ties": 3,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 21,
+          "right_score": 17,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 14,
+          "right_score": 5,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 25,
+          "right_score": 25,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 6,
+          "right_score": 4,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 82,
+          "right_score": 0,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 71.8,
+          "right_score": 0,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 6,
+          "right_score": 14,
+          "winner": "gsd_1"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 3,
+          "right_score": 5,
+          "winner": "gsd_1"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "paperclip",
+      "right": "sinkra_hub",
+      "winner": "sinkra_hub",
+      "left_wins": 3,
+      "right_wins": 4,
+      "ties": 3,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 21,
+          "right_score": 28,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 14,
+          "right_score": 15,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 25,
+          "right_score": 100,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 6,
+          "right_score": 16,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 82,
+          "right_score": 0,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 71.8,
+          "right_score": 0,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 6,
+          "right_score": 1,
+          "winner": "paperclip"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 3,
+          "right_score": 3,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "gsd_2",
+      "right": "crewai",
+      "winner": "gsd_2",
+      "left_wins": 4,
+      "right_wins": 2,
+      "ties": 4,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 22,
+          "right_score": 19,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 9,
+          "right_score": 11,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 36,
+          "right_score": 24,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 6,
+          "right_score": 5,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 74,
+          "right_score": 81,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 80.5,
+          "right_score": 79.2,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 1,
+          "right_score": 1,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 2,
+          "right_score": 2,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "gsd_2",
+      "right": "gsd_1",
+      "winner": "gsd_2",
+      "left_wins": 6,
+      "right_wins": 2,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 22,
+          "right_score": 17,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 9,
+          "right_score": 5,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 36,
+          "right_score": 25,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 6,
+          "right_score": 4,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 74,
+          "right_score": 0,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 80.5,
+          "right_score": 0,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 1,
+          "right_score": 14,
+          "winner": "gsd_1"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 2,
+          "right_score": 5,
+          "winner": "gsd_1"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "gsd_2",
+      "right": "sinkra_hub",
+      "winner": "sinkra_hub",
+      "left_wins": 2,
+      "right_wins": 5,
+      "ties": 3,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 22,
+          "right_score": 28,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 9,
+          "right_score": 15,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 36,
+          "right_score": 100,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 6,
+          "right_score": 16,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 74,
+          "right_score": 0,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 80.5,
+          "right_score": 0,
+          "winner": "gsd_2"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 1,
+          "right_score": 1,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 2,
+          "right_score": 3,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "crewai",
+      "right": "gsd_1",
+      "winner": "crewai",
+      "left_wins": 5,
+      "right_wins": 3,
+      "ties": 2,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 19,
+          "right_score": 17,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 11,
+          "right_score": 5,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 24,
+          "right_score": 25,
+          "winner": "gsd_1"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 5,
+          "right_score": 4,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 81,
+          "right_score": 0,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 79.2,
+          "right_score": 0,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 1,
+          "right_score": 14,
+          "winner": "gsd_1"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 2,
+          "right_score": 5,
+          "winner": "gsd_1"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "crewai",
+      "right": "sinkra_hub",
+      "winner": "sinkra_hub",
+      "left_wins": 2,
+      "right_wins": 5,
+      "ties": 3,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 19,
+          "right_score": 28,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 11,
+          "right_score": 15,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 24,
+          "right_score": 100,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 5,
+          "right_score": 16,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 81,
+          "right_score": 0,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 79.2,
+          "right_score": 0,
+          "winner": "crewai"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 1,
+          "right_score": 1,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 2,
+          "right_score": 3,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "left": "gsd_1",
+      "right": "sinkra_hub",
+      "winner": "sinkra_hub",
+      "left_wins": 2,
+      "right_wins": 4,
+      "ties": 4,
+      "rows": [
+        {
+          "dimension": "D1",
+          "label": "Orchestration practices",
+          "left_score": 17,
+          "right_score": 28,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D2",
+          "label": "Quality gates",
+          "left_score": 5,
+          "right_score": 15,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D3",
+          "label": "Extracted business rules",
+          "left_score": 25,
+          "right_score": 100,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D4",
+          "label": "Exclusive practices",
+          "left_score": 4,
+          "right_score": 16,
+          "winner": "sinkra_hub"
+        },
+        {
+          "dimension": "D5",
+          "label": "SINKRA Score",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D6",
+          "label": "Compliance Score",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D7",
+          "label": "Runtime adapters",
+          "left_score": 14,
+          "right_score": 1,
+          "winner": "gsd_1"
+        },
+        {
+          "dimension": "D8",
+          "label": "Memory/persistence",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        },
+        {
+          "dimension": "D9",
+          "label": "Security practices",
+          "left_score": 5,
+          "right_score": 3,
+          "winner": "gsd_1"
+        },
+        {
+          "dimension": "D10",
+          "label": "Parallelism support",
+          "left_score": 0,
+          "right_score": 0,
+          "winner": "tie"
+        }
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "id": "neutral",
+      "label": "Neutral",
+      "ranking": [
+        {
+          "rank": 1,
+          "player": "bmad",
+          "score": 23.63,
+          "delta": ""
+        },
+        {
+          "rank": 2,
+          "player": "gsd_2",
+          "score": 23.05,
+          "delta": ""
+        },
+        {
+          "rank": 3,
+          "player": "paperclip",
+          "score": 22.88,
+          "delta": ""
+        },
+        {
+          "rank": 4,
+          "player": "crewai",
+          "score": 22.22,
+          "delta": ""
+        },
+        {
+          "rank": 5,
+          "player": "sinkra_hub",
+          "score": 16.3,
+          "delta": ""
+        },
+        {
+          "rank": 6,
+          "player": "gsd_1",
+          "score": 7,
+          "delta": ""
+        }
+      ],
+      "totals": [
+        {
+          "player": "bmad",
+          "score": 23.63
+        },
+        {
+          "player": "paperclip",
+          "score": 22.88
+        },
+        {
+          "player": "gsd_2",
+          "score": 23.05
+        },
+        {
+          "player": "crewai",
+          "score": 22.22
+        },
+        {
+          "player": "gsd_1",
+          "score": 7
+        },
+        {
+          "player": "sinkra_hub",
+          "score": 16.3
+        }
+      ],
+      "verdict": "Bmad vence no cenário neutro.",
+      "tiebreaker": ""
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-absorption-roadmap-1",
+      "title": "Priority Matrix",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-2",
+      "title": "Wave 1 -- Immediate (P1, <1 day each, 8 items)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-3",
+      "title": "Wave 2 -- Short-term (P2, 1-2 weeks each, 11 items)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-4",
+      "title": "Wave 3 -- Medium-term (P2-P3, weeks to months, 7 items)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-5",
+      "title": "Wave 4 -- Long-term (P3, months, 4 items)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-6",
+      "title": "Absorption by Category",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-7",
+      "title": "Security (4 items -- Wave 1-3)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-8",
+      "title": "Execution Resilience (4 items -- Wave 1-2)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-9",
+      "title": "Cost & Observability (3 items -- Wave 1-2)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-10",
+      "title": "Agent Intelligence (6 items -- Wave 2-3)",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-11",
+      "title": "Suggested Epic",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    },
+    {
+      "id": "gap-absorption-roadmap-12",
+      "title": "Quick Win ROI: Wave 1 Only",
+      "priority": "derived",
+      "complexity": "",
+      "rationale": ""
+    }
+  ],
+  "sources": [
+    {
+      "url": "http://",
+      "file": "openclaw-vs-hermes-vs-gateway.md",
+      "credibility": "unknown"
+    },
+    {
+      "url": "https://",
+      "file": "openclaw-vs-hermes-vs-gateway.md",
+      "credibility": "unknown"
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "INDEX.md",
+      "role": "overview",
+      "format": "md"
+    },
+    {
+      "file": "full-comparison.md",
+      "role": "executive-report",
+      "format": "md"
+    },
+    {
+      "file": "gap-absorption-roadmap.md",
+      "role": "gap-analysis",
+      "format": "md"
+    },
+    {
+      "file": "metadata.json",
+      "role": "metadata",
+      "format": "json"
+    },
+    {
+      "file": "openclaw-vs-hermes-vs-gateway.md",
+      "role": "other",
+      "format": "md"
+    }
+  ],
+  "readiness": {
+    "matrix": "complete",
+    "duels": "derived",
+    "personas": "derived",
+    "gaps": "complete",
+    "sources": "derived"
+  },
+  "inferred": {}
+}

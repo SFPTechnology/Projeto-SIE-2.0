@@ -1,0 +1,326 @@
+{
+  "synergy_analysis": {
+    "generated": "2026-04-04",
+    "subject_a": "Hermes Agent",
+    "subject_b": "Claude Code",
+    "slug": "hermes-agent-vs-claude-code",
+    "prerequisite_benchmark": "docs/bench/hermes-agent-vs-claude-code/",
+    "template": "bench-synergy-tmpl.md v1.0.0",
+
+    "verdict": {
+      "synergy_class": "Complementary",
+      "synergy_score": 82,
+      "integration_complexity": "MEDIUM",
+      "combined_coverage_pct": 94,
+      "coverage_a_pct": 65,
+      "coverage_b_pct": 62,
+      "overlap_pct": 22,
+      "net_new_pct": 32,
+      "estimated_effort": "2-3 sprints (4-6 weeks)"
+    },
+
+    "classification": {
+      "method": "dimension_delta_analysis",
+      "complementary_dims": 9,
+      "overlap_dims": 2,
+      "total_dims": 15,
+      "complementarity_rate": 0.60,
+      "overlap_rate": 0.13,
+      "result": "COMPLEMENTARY (60% dims with |delta| > 30, only 13% overlap)"
+    },
+
+    "complementarity_index": [
+      {"dim": "Coding Depth", "hermes": 55, "cc": 95, "best_of": 95, "overlap": false, "complementary": true, "primary": "claude-code"},
+      {"dim": "Codebase Reasoning", "hermes": 50, "cc": 95, "best_of": 95, "overlap": false, "complementary": true, "primary": "claude-code"},
+      {"dim": "IDE Integration", "hermes": 10, "cc": 92, "best_of": 92, "overlap": false, "complementary": true, "primary": "claude-code"},
+      {"dim": "Git/GitHub", "hermes": 35, "cc": 95, "best_of": 95, "overlap": false, "complementary": true, "primary": "claude-code"},
+      {"dim": "Permission & Security", "hermes": 65, "cc": 88, "best_of": 88, "overlap": true, "complementary": false, "primary": "claude-code"},
+      {"dim": "Multi-Platform", "hermes": 95, "cc": 30, "best_of": 95, "overlap": false, "complementary": true, "primary": "hermes"},
+      {"dim": "Self-Learning", "hermes": 92, "cc": 20, "best_of": 92, "overlap": false, "complementary": true, "primary": "hermes"},
+      {"dim": "Session Recall", "hermes": 88, "cc": 25, "best_of": 88, "overlap": false, "complementary": true, "primary": "hermes"},
+      {"dim": "Multi-Model Reasoning", "hermes": 90, "cc": 15, "best_of": 90, "overlap": false, "complementary": true, "primary": "hermes"},
+      {"dim": "Voice & Multimodal", "hermes": 82, "cc": 35, "best_of": 82, "overlap": false, "complementary": true, "primary": "hermes"},
+      {"dim": "Remote Execution", "hermes": 88, "cc": 30, "best_of": 88, "overlap": false, "complementary": true, "primary": "hermes"},
+      {"dim": "Extensibility", "hermes": 85, "cc": 65, "best_of": 85, "overlap": true, "complementary": false, "primary": "hermes"},
+      {"dim": "Cost Efficiency", "hermes": 92, "cc": 40, "best_of": 92, "overlap": false, "complementary": true, "primary": "hermes"},
+      {"dim": "Deploy Flexibility", "hermes": 95, "cc": 35, "best_of": 95, "overlap": false, "complementary": true, "primary": "hermes"},
+      {"dim": "Docs & Community", "hermes": 75, "cc": 90, "best_of": 90, "overlap": true, "complementary": false, "primary": "claude-code"}
+    ],
+
+    "synergy_categories_9": [
+      {
+        "id": "S1",
+        "category": "Capability Synergy",
+        "type": "Capability",
+        "potential": "HIGH",
+        "tier": 1,
+        "evidence": "Combined 49+15=64 tools. Hermes provides voice/image/MoA/skills, CC provides code-aware Read/Edit/Grep/Glob + extended thinking. Zero duplication in core tools.",
+        "effort": "LOW",
+        "roi": "Immediate — combined tool surface exceeds any single agent"
+      },
+      {
+        "id": "S2",
+        "category": "Workflow Synergy",
+        "type": "Workflow",
+        "potential": "HIGH",
+        "tier": 1,
+        "evidence": "Natural pipeline: Hermes receives task via Telegram → delegates coding to CC → CC returns result → Hermes persists as skill + sends result back to user. Output→input chain is clean.",
+        "effort": "MEDIUM",
+        "roi": "High — unlocks non-developer access to CC coding power"
+      },
+      {
+        "id": "S3",
+        "category": "Platform Synergy",
+        "type": "Platform",
+        "potential": "HIGH",
+        "tier": 1,
+        "evidence": "Hermes provides 15 platform adapters (access layer), CC provides IDE integration + 200K context (depth layer). Together: accessible from anywhere AND deep when needed.",
+        "effort": "MEDIUM",
+        "roi": "High — solves CC's biggest gap (platform reach) and Hermes's biggest gap (coding depth)"
+      },
+      {
+        "id": "S4",
+        "category": "Knowledge Synergy",
+        "type": "Knowledge",
+        "potential": "HIGH",
+        "tier": 2,
+        "evidence": "Hermes has session FTS5 search + auto skill creation. CC has CLAUDE.md + auto-memory + rules. Combined: Hermes learns from CC coding sessions, CC benefits from Hermes's cross-session recall. Mastery analysis confirms CC loses ~50% artifacts — Hermes persistence layer fixes this.",
+        "effort": "HIGH",
+        "roi": "Strategic — self-improving coding agent"
+      },
+      {
+        "id": "S5",
+        "category": "Cost Synergy",
+        "type": "Cost",
+        "potential": "MEDIUM",
+        "tier": 2,
+        "evidence": "Hermes routes simple tasks to cheap models (Haiku, DeepSeek), reserves CC Opus for complex coding. Estimated 40-60% token cost reduction for mixed workloads.",
+        "effort": "MEDIUM",
+        "roi": "Medium — significant for high-volume usage"
+      },
+      {
+        "id": "S6",
+        "category": "Data Synergy",
+        "type": "Data",
+        "potential": "MEDIUM",
+        "tier": 2,
+        "evidence": "Hermes SQLite sessions + CC CLAUDE.md memory. Shared context about user preferences, project state, and past decisions. Hermes USER.md feeds CC auto-memory and vice versa.",
+        "effort": "MEDIUM",
+        "roi": "Medium — reduces context rebuild overhead"
+      },
+      {
+        "id": "S7",
+        "category": "Security Synergy",
+        "type": "Security",
+        "potential": "LOW",
+        "tier": 3,
+        "evidence": "CC permission sandboxing (5 modes) + Hermes approval flows + Tirith security + skills_guard. Combined posture stronger but requires reconciling two different security models.",
+        "effort": "HIGH",
+        "roi": "Low — security models are architecturally different"
+      },
+      {
+        "id": "S8",
+        "category": "Brand Synergy",
+        "type": "Brand",
+        "potential": "LOW",
+        "tier": 3,
+        "evidence": "Hermes (open source, community-driven) + CC (enterprise, Anthropic-backed). Positioning as 'best of both worlds' is compelling but requires careful messaging.",
+        "effort": "LOW",
+        "roi": "Low — brand benefits are indirect"
+      },
+      {
+        "id": "S9",
+        "category": "Ecosystem Synergy",
+        "type": "Ecosystem",
+        "potential": "MEDIUM",
+        "tier": 2,
+        "evidence": "Both support MCP protocol. Hermes skills could be exposed as MCP tools to CC. CC hooks could trigger Hermes actions. Shared MCP bridge is the natural integration point.",
+        "effort": "LOW",
+        "roi": "High — MCP is the common protocol"
+      }
+    ],
+
+    "hybrid_architecture": {
+      "topology": "GATEWAY_DELEGATION",
+      "primary_pattern": "Hermes as Gateway + Orchestrator, Claude Code as Coding Engine",
+      "interfaces": [
+        {
+          "name": "Task Delegation",
+          "from": "Hermes Agent",
+          "to": "Claude Code",
+          "protocol": "CLI (claude -p)",
+          "data_flow": "Task prompt + context → CC headless → structured result",
+          "latency": "seconds-minutes"
+        },
+        {
+          "name": "MCP Bridge",
+          "from": "Hermes Agent",
+          "to": "Claude Code MCP Server",
+          "protocol": "MCP (stdio/HTTP)",
+          "data_flow": "Tool calls bidirectional — Hermes tools exposed to CC and vice versa",
+          "latency": "sub-second"
+        },
+        {
+          "name": "Memory Sync",
+          "from": "Both",
+          "to": "Both",
+          "protocol": "File (MEMORY.md ↔ CLAUDE.md) + SQLite",
+          "data_flow": "User preferences, project context, learned skills",
+          "latency": "session boundary"
+        },
+        {
+          "name": "Skill Transfer",
+          "from": "Hermes Agent",
+          "to": "Claude Code",
+          "protocol": "File (.claude/skills/ ← Hermes SKILL.md)",
+          "data_flow": "Hermes auto-generated skills → CC skill directory",
+          "latency": "async (post-session)"
+        },
+        {
+          "name": "Platform Routing",
+          "from": "User (Telegram/Discord/Slack/...)",
+          "to": "Hermes Gateway → Claude Code",
+          "protocol": "Hermes Gateway API",
+          "data_flow": "User message → intent classification → route to CC if coding task",
+          "latency": "sub-second routing"
+        }
+      ]
+    },
+
+    "integration_patterns": [
+      {
+        "id": "P1",
+        "name": "Gateway Delegation",
+        "type": "GATEWAY",
+        "description": "Hermes receives requests from any platform, classifies intent, delegates coding tasks to CC via `claude -p`, returns results to user",
+        "when_to_use": "Default pattern for most interactions",
+        "pros": ["Clean separation", "Each tool does what it's best at", "No modification needed to either tool"],
+        "cons": ["Context passing overhead", "Latency for delegation", "Two systems to maintain"]
+      },
+      {
+        "id": "P2",
+        "name": "MCP Tool Bridge",
+        "type": "SIDECAR",
+        "description": "Hermes exposes its unique tools (voice, image gen, session search, skills) as MCP server. CC calls them as needed",
+        "when_to_use": "When working inside CC but needing Hermes capabilities",
+        "pros": ["Transparent to CC user", "Incremental adoption", "MCP is native to both"],
+        "cons": ["Hermes must run as daemon", "MCP tool discovery latency"]
+      },
+      {
+        "id": "P3",
+        "name": "Skill Pipeline",
+        "type": "PIPELINE",
+        "description": "CC solves coding task → Hermes skill_manager extracts solution as SKILL.md → syncs to CC .claude/skills/ → next session CC has the skill",
+        "when_to_use": "For self-improving coding workflows",
+        "pros": ["Learning loop realized", "Skills portable", "Both benefit"],
+        "cons": ["Skill quality varies", "Needs guard/validation", "Async only"]
+      },
+      {
+        "id": "P4",
+        "name": "MoA Coding Consensus",
+        "type": "ORCHESTRATION",
+        "description": "Hermes MoA tool sends coding problem to CC (Opus) + Gemini + GPT-5 + DeepSeek, aggregates best solution",
+        "when_to_use": "Critical coding decisions, architecture reviews, complex debugging",
+        "pros": ["Multi-model diversity for coding", "CC Opus as aggregator", "Higher quality for hard problems"],
+        "cons": ["Expensive (4x model calls)", "Slow", "Only for high-stakes tasks"]
+      },
+      {
+        "id": "P5",
+        "name": "Session Recall Augmentation",
+        "type": "SIDECAR",
+        "description": "CC hooks into Hermes session search before starting work: 'What have I done before on this codebase?' Hermes FTS5 provides context from past sessions",
+        "when_to_use": "Resuming work on a codebase after days/weeks",
+        "pros": ["Solves CC's amnesia problem", "No CC modification needed (MCP tool)", "Cheap (Gemini Flash summarization)"],
+        "cons": ["Requires Hermes running as daemon", "Session data privacy considerations"]
+      }
+    ],
+
+    "friction_points": [
+      {"id": "F1", "description": "Language mismatch (Python vs TypeScript)", "type": "Technical", "severity": "LOW", "mitigation": "MCP + CLI bridge — no shared runtime needed"},
+      {"id": "F2", "description": "Different auth models (OpenRouter API keys vs Anthropic API)", "type": "Technical", "severity": "LOW", "mitigation": "Each manages own auth. No shared credentials needed"},
+      {"id": "F3", "description": "State management gap (SQLite vs file-based)", "type": "Technical", "severity": "MEDIUM", "mitigation": "Memory sync at session boundary via file export/import"},
+      {"id": "F4", "description": "Different security models (approval flow vs permission modes)", "type": "Architectural", "severity": "MEDIUM", "mitigation": "Accept both models coexist. Hermes gates platform access, CC gates code execution"},
+      {"id": "F5", "description": "Context window mismatch (varies vs 200K fixed)", "type": "Technical", "severity": "LOW", "mitigation": "Hermes handles context compression; CC operates in its native 200K window"},
+      {"id": "F6", "description": "Deployment model mismatch (VPS daemon vs local CLI)", "type": "Operational", "severity": "MEDIUM", "mitigation": "Hermes runs on VPS as daemon; CC runs locally or cloud-scheduled. Communicate via MCP/CLI"},
+      {"id": "F7", "description": "Commercial model difference (MIT vs proprietary)", "type": "Commercial", "severity": "LOW", "mitigation": "No licensing conflict — Hermes is MIT, CC is pay-per-use. Integration is just API/CLI calls"}
+    ],
+
+    "value_equation": {
+      "value_a_standalone": 68.1,
+      "value_b_standalone": 62.4,
+      "synergy_value": 26.5,
+      "integration_cost": -8.0,
+      "friction_cost": -4.5,
+      "value_combined": 82.1,
+      "net_synergy": 14.0,
+      "net_synergy_pct": 20.5,
+      "interpretation": "Combined value 20.5% higher than best standalone (Hermes 68.1). Integration cost moderate, friction low. Strong positive ROI."
+    },
+
+    "use_cases": [
+      {"use_case": "Fix bug in large codebase", "hermes_alone": 2, "cc_alone": 5, "combined": 5, "recommended": "Claude Code"},
+      {"use_case": "Create PR from Telegram message", "hermes_alone": 4, "cc_alone": 1, "combined": 5, "recommended": "Combined"},
+      {"use_case": "Multi-model architecture review", "hermes_alone": 4, "cc_alone": 2, "combined": 5, "recommended": "Combined"},
+      {"use_case": "Daily automated code review + Slack report", "hermes_alone": 3, "cc_alone": 3, "combined": 5, "recommended": "Combined"},
+      {"use_case": "Learn from past coding sessions", "hermes_alone": 4, "cc_alone": 1, "combined": 5, "recommended": "Combined"},
+      {"use_case": "Interactive pair programming in IDE", "hermes_alone": 1, "cc_alone": 5, "combined": 5, "recommended": "Claude Code"},
+      {"use_case": "Deploy and monitor on remote server", "hermes_alone": 5, "cc_alone": 2, "combined": 5, "recommended": "Hermes"},
+      {"use_case": "Generate images for documentation", "hermes_alone": 4, "cc_alone": 1, "combined": 4, "recommended": "Hermes"},
+      {"use_case": "Full-stack feature development", "hermes_alone": 2, "cc_alone": 5, "combined": 5, "recommended": "Claude Code"},
+      {"use_case": "Cross-platform team notifications", "hermes_alone": 5, "cc_alone": 1, "combined": 5, "recommended": "Hermes"}
+    ],
+
+    "implementation_roadmap": {
+      "phase_0": {
+        "name": "PoC: CLI Delegation",
+        "duration": "1 week",
+        "deliverables": [
+          "Hermes calls `claude -p` for coding tasks",
+          "Result parsed and returned to Telegram",
+          "2 use cases working end-to-end"
+        ],
+        "success_criteria": "User sends coding task via Telegram, receives CC-quality code back"
+      },
+      "phase_1": {
+        "name": "MCP Bridge",
+        "duration": "2 weeks",
+        "deliverables": [
+          "Hermes session-search exposed as MCP tool to CC",
+          "Hermes skill_manager exposed as MCP tool to CC",
+          "CC can search past sessions and create skills"
+        ],
+        "success_criteria": "CC invokes Hermes tools transparently via MCP"
+      },
+      "phase_2": {
+        "name": "Knowledge Loop",
+        "duration": "3 weeks",
+        "deliverables": [
+          "Skill Pipeline active (CC → Hermes SKILL.md → CC .claude/skills/)",
+          "Memory sync (USER.md ↔ auto-memory)",
+          "MoA routing for complex tasks"
+        ],
+        "success_criteria": "Skills created in session N are available in session N+1 across both tools"
+      },
+      "phase_3": {
+        "name": "Full Hybrid",
+        "duration": "4 weeks",
+        "deliverables": [
+          "Intent classification for automatic routing",
+          "Cost optimization (cheap model for simple tasks)",
+          "Full platform coverage (all 15 Hermes platforms → CC)",
+          "Metrics dashboard (synergy KPIs)"
+        ],
+        "success_criteria": "Autonomous hybrid agent handles mixed workloads with <5% manual intervention"
+      }
+    },
+
+    "kpis": [
+      {"name": "Task Completion Rate", "baseline": "75% (CC alone)", "target": "92% (combined)", "measurement": "Tasks completed without human re-intervention"},
+      {"name": "Platform Coverage", "baseline": "3 (CC)", "target": "18 (combined)", "measurement": "Platforms from which tasks can be submitted"},
+      {"name": "Skill Reuse Rate", "baseline": "0% (CC has no auto-skills)", "target": "30%+ tasks use auto-generated skills", "measurement": "Skill invocation count / total tasks"},
+      {"name": "Cross-Session Recall", "baseline": "0% (CC has no FTS)", "target": "80%+ queries answered from past sessions", "measurement": "Session search hit rate"},
+      {"name": "Token Cost per Task", "baseline": "$0.50 avg (CC Opus for all)", "target": "$0.25 avg (routed to appropriate model)", "measurement": "Total API cost / tasks completed"},
+      {"name": "Time to First Response", "baseline": "N/A (Telegram)", "target": "<30s from message to acknowledgment", "measurement": "Gateway latency"}
+    ]
+  }
+}

@@ -1,0 +1,135 @@
+# Deck Template — Perfect Webinar (Russell Brunson)
+# Schema ref: templates/schemas/deck-template.schema.yaml
+# Inspired by: Russell Brunson "The Perfect Webinar" (DotCom Secrets methodology)
+# Pilot status: MSN-2026-SLIDES-NARRATIVE-DESIGN DEV-2026-003 (1 de 2 pilots)
+
+id: "webinar-sales-perfect-webinar"
+name: "Perfect Webinar (Russell Brunson — vendas longas)"
+version: "1.0.0"
+family: webinar
+
+summary:
+  pick_for: >-
+    Webinar de vendas de 60-90min, audiencia frio-morno, oferta de R$ 500-5000,
+    objetivo conversao direta para checkout. Funciona quando ha tempo para construir
+    valor (mecanismo + 3 secrets + stack + close).
+  skip_if: >-
+    Tempo < 45min (use executive-pitch). Audiencia ja quente convertendo (use sales-call-live-close).
+    Ticket > R$ 5000 com ciclo de venda longo (use proposal-sow). Audiencia tecnica precisando
+    de prova densa (use tactical-masterclass).
+
+audience_fit:
+  primary: cold_lead
+  size_range: 200_to_2000
+  delivery_modes: [webinar_live, webinar_replay]
+  attention_budget_min: 90
+
+arc:
+  arc_type: sales_narrative
+  beats:
+    - beat_type: hook
+      narrative_function: "Promete o big domino: a UMA crenca que precisa cair para o resto fazer sentido"
+      slides_estimated: 2
+      optional: false
+    - beat_type: tension
+      narrative_function: "Origem story: como o apresentador descobriu o problema na pratica"
+      slides_estimated: 2
+      optional: false
+    - beat_type: reframe
+      narrative_function: "Apresenta o new opportunity (vehicle): nem old way nem improved old way"
+      slides_estimated: 1
+      optional: false
+    - beat_type: proof
+      narrative_function: "Secret 1: quebra crenca sobre VEHICLE (esta coisa funciona)"
+      slides_estimated: 2
+      optional: false
+    - beat_type: proof
+      narrative_function: "Secret 2: quebra crenca sobre INTERNAL (eu consigo aplicar)"
+      slides_estimated: 2
+      optional: false
+    - beat_type: proof
+      narrative_function: "Secret 3: quebra crenca sobre EXTERNAL (mesmo com obstaculos)"
+      slides_estimated: 2
+      optional: false
+    - beat_type: artifact_reveal
+      narrative_function: "Stack: empilha valor componente por componente"
+      slides_estimated: 3
+      optional: false
+    - beat_type: cta
+      narrative_function: "Close: scarcity, bonus, CTA concreto com 3 razoes para agir agora"
+      slides_estimated: 2
+      optional: false
+
+slide_functions_recommended:
+  - {sequence: 1, beat_ref: B-01, function: cover, suggested_slide_template: "hook-opening", density_target: minimal}
+  - {sequence: 2, beat_ref: B-01, function: tension_amplify, suggested_slide_template: "hook-opening", density_target: low}
+  - {sequence: 3, beat_ref: B-02, function: emotional_anchor, suggested_slide_template: "quiet-pause", density_target: minimal}
+  - {sequence: 4, beat_ref: B-02, function: tension_amplify, suggested_slide_template: "proof-stack", density_target: low}
+  - {sequence: 5, beat_ref: B-03, function: reframe, suggested_slide_template: "quiet-pause", density_target: minimal}
+  - {sequence: 6, beat_ref: B-04, function: proof, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 7, beat_ref: B-04, function: contrast, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 8, beat_ref: B-05, function: proof, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 9, beat_ref: B-05, function: mechanism_step, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 10, beat_ref: B-06, function: proof, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 11, beat_ref: B-06, function: objection_neutralize, suggested_slide_template: "proof-stack", density_target: medium}
+  - {sequence: 12, beat_ref: B-07, function: artifact_reveal, suggested_slide_template: "cta-concrete", density_target: low}
+  - {sequence: 13, beat_ref: B-07, function: artifact_reveal, suggested_slide_template: "cta-concrete", density_target: low}
+  - {sequence: 14, beat_ref: B-07, function: synthesis, suggested_slide_template: "cta-concrete", density_target: medium}
+  - {sequence: 15, beat_ref: B-08, function: cta_concrete, suggested_slide_template: "cta-concrete", density_target: minimal}
+  - {sequence: 16, beat_ref: B-08, function: close, suggested_slide_template: "cta-concrete", density_target: minimal}
+
+slide_count_range:
+  min: 14
+  max: 22
+  target: 16
+  rationale: "Perfect Webinar de 60-90min comporta 14-22 slides. Target 16 com 4-5min por slide em media. 8 beats × 1-3 slides por beat."
+
+default_theme: "editorial-pentagram"
+
+composition_overrides:
+  grid_columns: 12
+  baseline_padding_pt: 48
+  title_anchor: top_left
+  footer_present: true
+  slide_number_visible: false  # webinar live: numero distrai
+
+density_limits_overrides:
+  max_text_chars_per_slide: 220  # webinar live precisa de menos texto que pdf
+
+qa_emphasis:
+  narrativa_weight_boost: 0.3
+  design_weight_boost: 0.0
+  acuracia_weight_boost: 0.5  # claims de venda precisam de fonte rigorosa (compliance)
+  rationale: "Perfect Webinar é vendas com narrativa forte. Narrativa + Acuracia (sources) acima do default. Design importante mas nao protagonista."
+
+visual_density_default: moderate
+
+failure_modes:
+  - mode: "Pular o big domino"
+    symptom: "Cover slide sem 1 promessa central clara"
+    prevention: "Slide 1-2 DEVEM ter 1 promessa de transformacao (big domino) que organiza tudo"
+  - mode: "3 secrets desconectados"
+    symptom: "Secrets que nao quebram as 3 crenças (vehicle/internal/external)"
+    prevention: "Validar que cada Secret quebra UMA crenca explicita; selecting wrong axis = sale fails"
+  - mode: "Stack sem ancoragem de valor"
+    symptom: "Slides de stack listam componentes sem precificar individualmente"
+    prevention: "Stack DEVE atribuir valor em R$ a cada componente. Total empilhado >= 5x preco da oferta"
+  - mode: "CTA generico"
+    symptom: "CTA = 'comece agora' sem urgencia / scarcity / 3 razoes"
+    prevention: "CTA com scarcity (vagas/tempo) + bonus extra + 3 razoes para agir agora"
+
+speaker_role: solo_presenter
+
+compatible_outputs: [tsx_consumer_app, html_standalone, pdf]
+
+source_provenance:
+  inspired_by:
+    - "Russell Brunson — The Perfect Webinar (DotCom Secrets)"
+    - "Russell Brunson — Expert Secrets"
+    - "Frank Kern — Mass Control patterns (para origin story)"
+  bench_ref:
+    - "/Users/alan/Code/bench/ppt-master/examples/ppt169_kimsoong_loyalty_programme/ (estrutura consultiva similar, adaptada para arco de vendas)"
+  author: "slides-creator squad — MSN-2026-SLIDES-NARRATIVE-DESIGN"
+  date_created: "2026-05-17"
+
+evidence_ref: null  # extended rationale lives in this file

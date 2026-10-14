@@ -1,0 +1,294 @@
+# Slide Function Map Schema — Slides Creator Squad
+# Mission: MSN-2026-SLIDES-NARRATIVE-DESIGN (T-003B)
+# Created: 2026-05-17
+# Version: 1.0.0
+#
+# Schema for slide-function-map.yaml — emitted by tasks/compress-outline-to-slide-functions.md
+# Consumed by tasks/validate-slide-function-map.md, design-renderer, emit-deck-spec.
+# Forces declaration of WHAT EACH SLIDE DOES TO THE AUDIENCE (not WHAT IT EXPLAINS).
+
+meta:
+  schema_version: "1.0.0"
+  producer: "tasks/compress-outline-to-slide-functions.md (T-015A)"
+  consumers:
+    - "tasks/validate-slide-function-map.md (T-013B)"
+    - "tasks/classify-slide-type.md"
+    - "tasks/compose-grid-layout.md"
+    - "tasks/emit-deck-spec.md"
+  rubric_dim_ref: "data/qa-rubric.yaml#dimensions.narrativa.sub_dimensions.slide_function_map"
+  killer_items_enforced: [KI-08, KI-09]
+
+# ─────────────────────────────────────────────────────
+# SCHEMA
+# ─────────────────────────────────────────────────────
+slide_function_map:
+  required: [deck_id, story_arc_ref, entries]
+  fields:
+
+    deck_id:
+      type: string
+      description: "Deck slug"
+
+    story_arc_ref:
+      type: string
+      description: "Path to story-arc.yaml"
+      example: "outputs/slides-creator/{deck-slug}/story-arc.yaml"
+
+    entries:
+      type: list
+      min_items: 4
+      max_items: 30
+      description: "Ordered list of slide functions. len(entries) == final slide count."
+      item_schema:
+        required: [slide_id, beat_ref, function, audience_movement]
+        fields:
+
+          slide_id:
+            type: string
+            pattern: "^s[0-9]{2}$"
+            example: "s03"
+
+          beat_ref:
+            type: string
+            pattern: "^B-[0-9]{2}$"
+            description: "Reference to story_arc.beats[].beat_id"
+
+          function:
+            type: enum
+            values:
+              - reframe                # vira chave conceitual
+              - proof                  # apresenta evidência/dado
+              - contrast               # antes/depois, nós/eles, com/sem
+              - mechanism_step         # passo de um mecanismo
+              - demo_setup             # prepara contexto para demo
+              - demo_payoff            # entrega resultado do demo
+              - artifact_reveal        # entrega tangível (template, prompt, fórmula)
+              - objection_neutralize   # neutraliza objeção específica
+              - synthesis              # consolida insight do bloco
+              - tension_amplify        # aumenta a pressão narrativa
+              - emotional_anchor       # ancora emocionalmente
+              - quiet_pause            # respiro visual, transição
+              - cta_concrete           # ação específica que quero
+              - cover                  # capa
+              - section_divider        # divisor de seção (visual breath)
+              - close                  # fechamento
+            description: "FUNÇÃO narrativa do slide. NÃO é tipo de layout."
+
+          audience_movement:
+            type: string
+            max_length: 140
+            description: >-
+              Em 1 frase: que MOVIMENTO emocional/cognitivo o slide produz na audiência?
+              Frase obrigatória. NÃO PODE ser 'explicar X' ou 'apresentar X' (killer item KI-08).
+            anti_examples:
+              - "Explicar o que é IA"  # explanatório, killer
+              - "Apresentar os cases"  # apresentacional, killer
+              - "Falar sobre o produto"  # killer
+            good_examples:
+              - "Audiência percebe que IA é mais barata que cafezinho mensal"
+              - "Audiência sente urgência ao ver concorrência já operando"
+              - "Audiência fica com template pronto na mão (presente tangível)"
+
+          slide_type:
+            type: enum
+            description: "Tipo de slide (consumido por classify-slide-type.md)"
+            values:
+              - title
+              - executive_summary
+              - framework
+              - data
+              - timeline_roadmap
+              - financial
+              - quote
+              - process
+              - kpi
+              - chart
+              - demo_screenshot
+              - artifact_card
+              - cta
+              - appendix
+
+          density_target:
+            type: enum
+            values: [minimal, low, medium, high]
+            description: "Limite de claims por slide (validate-density consulta)"
+            mapping:
+              minimal: "1 claim, sem decorações"
+              low: "1 governing + 1 supporting"
+              medium: "1 governing + 2-3 supporting (default)"
+              high: "1 governing + 4-5 supporting (cap absoluto)"
+
+          merged_from_topics:
+            type: list
+            description: "Tópicos do outline original que viraram este slide (compression trace)"
+            item_type: string
+
+          could_be_cut_if:
+            type: ["string", "null"]
+            description: >-
+              Critério para corte se appetite estourar. NULL = essencial.
+              Forçar o autor a pensar 'sem este slide o deck ainda funciona?'
+
+# ─────────────────────────────────────────────────────
+# VALIDATION RULES (enforced by validate-slide-function-map.md)
+# ─────────────────────────────────────────────────────
+validation_rules:
+  - rule: "Toda entry deve ter function não-vazia E enum válido"
+    severity: blocking
+    killer_item: KI-08
+  - rule: "audience_movement não pode começar com 'explicar', 'apresentar', 'falar', 'mostrar X'"
+    severity: blocking
+    killer_item: KI-08
+    case_study_ref: "outputs/webinars/primeiro-servico-ia/draft-slides-aiox.html"
+  - rule: "len(entries) <= 1.2 * (sum of beats[].slides_estimated)"
+    severity: blocking
+    killer_item: KI-09
+    rationale: "Outline-to-deck literalism — slides não podem inflar 2x o plano narrativo"
+  - rule: "Toda entry.beat_ref deve existir em story-arc.beats[].beat_id"
+    severity: blocking
+  - rule: "Pelo menos 1 entry deve ter function in {demo_payoff, artifact_reveal}"
+    severity: high
+    rationale: "Deck sem payoff = deck sem retorno emocional"
+  - rule: "Pelo menos 1 entry deve ter function = cta_concrete"
+    severity: high
+    rationale: "Deck sem CTA concreto = monólogo"
+  - rule: "Cards consecutivos com mesma function devem ser justificados (could_be_cut_if preenchido)"
+    severity: medium
+    rationale: "Repetição funcional vira wireframe (lição Primeiro Servico de IA)"
+
+# ─────────────────────────────────────────────────────
+# EXAMPLE (compressed from Primeiro Servico de IA outline)
+# ─────────────────────────────────────────────────────
+example:
+  deck_id: "primeiro-servico-ia-v3"
+  story_arc_ref: "outputs/slides-creator/primeiro-servico-ia-v3/story-arc.yaml"
+  entries:
+    - slide_id: s01
+      beat_ref: B-01
+      function: cover
+      audience_movement: "Audiência reconhece tema e identifica-se com o paradoxo IA-está-em-todo-lugar-menos-aqui"
+      slide_type: title
+      density_target: minimal
+      merged_from_topics: ["Abertura"]
+      could_be_cut_if: null
+
+    - slide_id: s02
+      beat_ref: B-02
+      function: tension_amplify
+      audience_movement: "Audiência percebe que 78% NUNCA tentaram — gera FOMO"
+      slide_type: data
+      density_target: low
+      merged_from_topics: ["Estatísticas de adoção", "Pesquisa de mercado"]
+      could_be_cut_if: null
+
+    - slide_id: s03
+      beat_ref: B-02
+      function: contrast
+      audience_movement: "Audiência vê barreiras percebidas (caro/complexo) vs custo real (R$ 100)"
+      slide_type: chart
+      density_target: medium
+      merged_from_topics: ["Barreiras", "Custo real de ferramentas IA"]
+      could_be_cut_if: null
+
+    - slide_id: s04
+      beat_ref: B-03
+      function: reframe
+      audience_movement: "Audiência aceita: IA não é grande software, é ferramenta de R$ 100"
+      slide_type: quote
+      density_target: minimal
+      merged_from_topics: ["Reframe central"]
+      could_be_cut_if: null
+
+    - slide_id: s05
+      beat_ref: B-04
+      function: mechanism_step
+      audience_movement: "Audiência mapeia próprio nicho na matriz 4×3"
+      slide_type: framework
+      density_target: high
+      merged_from_topics: ["Matriz de nichos × serviços"]
+      could_be_cut_if: null
+
+    - slide_id: s06
+      beat_ref: B-04
+      function: mechanism_step
+      audience_movement: "Audiência identifica seu primeiro serviço viável"
+      slide_type: framework
+      density_target: medium
+      merged_from_topics: ["Matriz de nichos × serviços (detalhe)"]
+      could_be_cut_if: "Audiência já mapeou no slide anterior — pode virar handout"
+
+    - slide_id: s07
+      beat_ref: B-05
+      function: demo_setup
+      audience_movement: "Audiência se prepara visualmente para ver demo"
+      slide_type: demo_screenshot
+      density_target: minimal
+      merged_from_topics: ["Demo ao vivo"]
+      could_be_cut_if: null
+
+    - slide_id: s08
+      beat_ref: B-05
+      function: demo_payoff
+      audience_movement: "Audiência vê resultado funcionando — sensação 'é possível'"
+      slide_type: demo_screenshot
+      density_target: low
+      merged_from_topics: ["Demo ao vivo"]
+      could_be_cut_if: null
+
+    - slide_id: s09
+      beat_ref: B-06
+      function: artifact_reveal
+      audience_movement: "Audiência sai com template/prompt-mestre na mão"
+      slide_type: artifact_card
+      density_target: low
+      merged_from_topics: ["Entrega do template"]
+      could_be_cut_if: null
+
+    - slide_id: s10
+      beat_ref: B-07
+      function: objection_neutralize
+      audience_movement: "Audiência neutraliza objeção 'não sei programar'"
+      slide_type: quote
+      density_target: low
+      merged_from_topics: ["FAQ", "Objeção técnica"]
+      could_be_cut_if: null
+
+    - slide_id: s11
+      beat_ref: B-07
+      function: objection_neutralize
+      audience_movement: "Audiência neutraliza objeção 'não tenho tempo/dinheiro'"
+      slide_type: quote
+      density_target: low
+      merged_from_topics: ["FAQ", "Objeção tempo/custo"]
+      could_be_cut_if: "Se demo for forte o suficiente"
+
+    - slide_id: s12
+      beat_ref: B-08
+      function: cta_concrete
+      audience_movement: "Audiência sabe exatamente próximo passo (link/QR)"
+      slide_type: cta
+      density_target: minimal
+      merged_from_topics: ["CTA final", "Próximos passos"]
+      could_be_cut_if: null
+
+# ─────────────────────────────────────────────────────
+# ANTI-PATTERNS
+# ─────────────────────────────────────────────────────
+anti_patterns:
+  - name: "Topic-translation"
+    description: "Cada tópico do outline vira 1 slide sem compressão"
+    detection: "len(entries) == len(outline_topics)"
+    case_study_ref: "Primeiro Servico de IA v1 (27 tópicos → 27 slides)"
+
+  - name: "Explanatory function"
+    description: "audience_movement começa com explicar/apresentar/falar/mostrar"
+    detection: "regex match"
+    killer_item: KI-08
+
+  - name: "Function chain monotonia"
+    description: "5+ slides consecutivos com mesma function"
+    detection: "rolling window"
+
+  - name: "Missing CTA"
+    description: "Nenhum slide com function=cta_concrete"
+    severity: blocking

@@ -1,0 +1,94 @@
+{
+  "type": "external_stack_inventory",
+  "generated_at": "2026-05-17",
+  "repositories": [
+    {
+      "key": "ppt_master",
+      "repo": "hugohe3/ppt-master",
+      "local_path": "../bench/ppt-master",
+      "stars": 17537,
+      "forks": 1685,
+      "license": "MIT",
+      "absorption_priority": "P0",
+      "primary_capability": "SVG-to-DrawingML/native editable PPTX, template replication, animation/narration patterns",
+      "absorption_rule": "Study architecture and interface contracts; adapt concepts into SINKRA renderer."
+    },
+    {
+      "key": "banana_slides",
+      "repo": "Anionex/banana-slides",
+      "local_path": "../bench/banana-slides",
+      "stars": 14569,
+      "forks": 1713,
+      "license": "AGPL-3.0",
+      "absorption_priority": "P1",
+      "primary_capability": "Prompt-to-edit UX, local region optimization, style references, video/narration",
+      "absorption_rule": "Use as UX benchmark only unless legal approves AGPL strategy."
+    },
+    {
+      "key": "presenton",
+      "repo": "presenton/presenton",
+      "local_path": "../bench/presenton",
+      "stars": 5020,
+      "forks": 977,
+      "license": "Apache-2.0",
+      "absorption_priority": "P0",
+      "primary_capability": "Self-hosted app/API/MCP, BYOK, Ollama/local providers, templates/themes",
+      "absorption_rule": "High-fit reference for service boundaries and API surface."
+    },
+    {
+      "key": "pptagent",
+      "repo": "icip-cas/PPTAgent",
+      "local_path": "../bench/PPTAgent",
+      "stars": 4371,
+      "forks": 530,
+      "license": "MIT",
+      "absorption_priority": "P0",
+      "primary_capability": "Planner, research/design agents, reflection, PPTEval-style evaluation",
+      "absorption_rule": "Absorb planning/evaluation patterns into existing SINKRA workflow."
+    },
+    {
+      "key": "presentation_ai",
+      "repo": "allweonedev/presentation-ai",
+      "local_path": "../bench/presentation-ai",
+      "stars": 2806,
+      "forks": 491,
+      "license": "MIT",
+      "absorption_priority": "P1",
+      "primary_capability": "Next.js editor, themes, outline-first workflow, sharing",
+      "absorption_rule": "Reference for editor IA and theme runtime."
+    },
+    {
+      "key": "slide_deck_ai",
+      "repo": "barun-saha/slide-deck-ai",
+      "local_path": "../bench/slide-deck-ai",
+      "stars": 355,
+      "forks": 57,
+      "license": "MIT",
+      "absorption_priority": "P2",
+      "primary_capability": "Python CLI/API baseline, LiteLLM providers, python-pptx",
+      "absorption_rule": "Use for smoke-test CLI ideas and provider abstraction."
+    },
+    {
+      "key": "powerpoint_skill",
+      "repo": "Noi1r/powerpoint-skill",
+      "local_path": "../bench/powerpoint-skill",
+      "stars": 83,
+      "forks": 7,
+      "license": "MIT",
+      "absorption_priority": "P1",
+      "primary_capability": "Compact skill rules, native math, Mermaid/Graphviz/TikZ, visual QA discipline",
+      "absorption_rule": "Absorb as rulebook for technical/academic deck generation."
+    },
+    {
+      "key": "presentagent_2",
+      "repo": "AIGeeksGroup/PresentAgent-2",
+      "local_path": "../bench/PresentAgent-2",
+      "stars": 12,
+      "forks": 0,
+      "license": "unknown",
+      "absorption_priority": "P2/Future",
+      "primary_capability": "Query-to-research-to-slides-to-video multimodal flow",
+      "absorption_rule": "Track as future multimodal reference; do not base MVP on it."
+    }
+  ]
+}

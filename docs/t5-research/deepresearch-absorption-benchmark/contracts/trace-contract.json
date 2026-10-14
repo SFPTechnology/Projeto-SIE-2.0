@@ -1,0 +1,24 @@
+{
+  "schema": "sinkra-trace-contract-v1",
+  "required_fields": [
+    "timestamp",
+    "run_id",
+    "system_id",
+    "task_id",
+    "event_type",
+    "payload"
+  ],
+  "event_types": [
+    "plan_created",
+    "search_query",
+    "page_opened",
+    "source_extracted",
+    "claim_created",
+    "claim_verified",
+    "contradiction_found",
+    "private_kb_read",
+    "tool_error",
+    "report_section_written",
+    "final_answer"
+  ]
+}
