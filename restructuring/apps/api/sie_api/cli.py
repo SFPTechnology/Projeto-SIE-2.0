@@ -12,7 +12,7 @@ import json
 import os
 import sys
 from pathlib import Path
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 from .storage import ConflitoRevisao, RepositorioProjetos
 
@@ -27,7 +27,7 @@ def _read_json_object(path: str) -> dict:
     file = Path(path)
     if file.stat().st_size > MAX_INPUT_BYTES:
         raise ValueError("Arquivo JSON excede tamanho permitido (1 MiB)")
-    content = json.loads(file.read_text(encoding="utf-8"), parse_constant=_strict_constant)
+    content = json.loads(file.read_text(encoding="utf-8-sig"), parse_constant=_strict_constant)
     if not isinstance(content, dict):
         raise ValueError("O arquivo deve conter objeto JSON")
     return content
@@ -64,7 +64,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         repo = RepositorioProjetos(args.database)
         if args.action == "salvar":
-            project_id = args.id or str(uuid4())
+            project_id = str(UUID(args.id)) if args.id else str(uuid4())
             data = _read_json_object(args.arquivo)
             revision = repo.salvar(project_id, args.nome, data, args.revisao_esperada)
             output = {"id": project_id, "revisao": revision, "estado": "armazenado_localmente"}
