@@ -15,3 +15,6 @@ apps/api/*.egg-info/
 *.sqlite3-wal
 .env
 .env.*
+
+# Scheduler state scratch copies (tracked canonical JSON is under docs/)
+apps/api/sie-state-local.json
