@@ -27,7 +27,7 @@ Siga o procedimento de execução descrito no README. Ao abrir a página, o indi
 4. **Resistência (Ω/km):** informe a resistência apropriada para o condutor e condição estudada, extraída de fonte técnica aplicável.
 5. **Fator de correção:** informe um fator entre 0 e 1. Ele reduz a capacidade-base da tabela quando a condição de instalação exige correção.
 6. **Fonte, edição e referência:** registre o documento e a localização precisa do dado usado.
-7. **Controles de validação:** marque somente após a conferência efetiva da fonte e dos testes independentes.
+7. **Liberação normativa:** não existe botão de autoaprovação. O sistema permanece PENDENTE até que exista fluxo independente de auditoria no backend.
 8. Clique em **Executar análise**.
 
 ## 5. Leitura do resultado
@@ -36,7 +36,7 @@ Siga o procedimento de execução descrito no README. Ao abrir a página, o indi
 - **Disjuntor comercial:** menor valor de catálogo que satisfaz `Ib ≤ In ≤ Iz`.
 - **Queda de tensão:** queda em volts e percentual, acompanhada da fórmula usada.
 - **Evidência:** metadados que permitem reproduzir a análise.
-- **Gate normativo:** aparece como `BLOQUEADO`, `PENDENTE` ou `APROVADO`. O sistema não deve ser usado para afirmar conformidade quando esse status não estiver aprovado.
+- **Gate normativo:** aparece como `BLOQUEADO`, `PENDENTE` ou `APROVADO`. Nesta fase, o status permanece PENDENTE ou BLOQUEADO, independentemente dos dados autodeclarados pelo usuário.
 
 ## 6. Avisos comuns
 
@@ -49,11 +49,11 @@ Siga o procedimento de execução descrito no README. Ao abrir a página, o indi
 
 ## 7. Limites e responsabilidade
 
-O aplicativo não substitui projeto, norma aplicável, concessionária, ART ou responsável técnico. A liberação exibida é somente o resultado do gate de evidências fornecidas para este módulo; não equivale a aprovação integral da instalação.
+O aplicativo não substitui projeto, norma aplicável, concessionária, ART ou responsável técnico. As declarações fornecidas no formulário não autorizam uso normativo. Não existe aprovação normativa automatizada nesta versão.
 
 ## 8. Padrão de entrada EDP
 
-O endpoint `POST /api/v1/edp/enquadrar` incorpora o catálogo conferido das Tabelas 001/002 do padrão **EDP São Paulo PT.DT.PDN.00068 v09**, com vigência indicada no repositório em 14/04/2026. Ele retorna categoria, disjuntor, medição e condutores de entrada, preservando a fonte e seu status **VERIFICADO**. A sugestão por corrente permanece identificada como regra de automação e não substitui a análise final da concessionária.
+O endpoint `POST /api/v1/edp/enquadrar` incorpora o catálogo conferido das Tabelas 001/002 do padrão **EDP São Paulo PT.DT.PDN.00068 v09**, com vigência indicada no repositório em 14/04/2026. Ele retorna categoria, disjuntor, medição e condutores de entrada, preservando a fonte e seu status **VERIFICADO**. A sugestão por corrente é apenas candidato para estudo. O campo liberado_para_padrao_entrada é sempre false nesta versão e não substitui a análise final da distribuidora.
 
 ## 9. Testes locais
 
