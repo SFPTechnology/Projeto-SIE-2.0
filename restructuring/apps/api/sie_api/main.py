@@ -7,7 +7,12 @@ from .application import analisar_circuito
 from .domain.edp import enquadrar_edp
 
 app = FastAPI(title="SIE 2.0 - API modular", version="0.1.0")
-app.add_middleware(\n    CORSMiddleware,\n    allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"],\n    allow_methods=["GET", "POST"],\n    allow_headers=["Content-Type"],\n)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
+)
 
 
 class Circuito(BaseModel):
