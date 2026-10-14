@@ -24,3 +24,21 @@
 12. Criada story SIE-AUTO-011, implementados `scheduler.py` e `scheduler_cli.py` (grafo dirigido, dez estados, fila e persistência local), `test_scheduler.py`, `ORCHESTRATOR_STATE.json` e guia operacional.
 13. Runs 38574851595 e 38574851619 aprovadas: 67 testes Python, JS check, lint, typecheck, test e build AIOX. Story 011 marcada DONE apenas em seu escopo.
 14. Após validar 011, tarefas SIE-AUTO-004 e SIE-AUTO-005 promovidas de PENDING para READY no estado JSON com eventos de trilha.
+
+## 2026-10-14: contratos e E2E reais — SIE-AUTO-004/005
+
+15. CI `38605924113` apontou falha real no teste de comprimento zero trifásico (85 passed / 1 failed). A causa foi validada em `engines.py` e corrigida, sem alterar o resultado esperado.
+16. Ampliados contratos de entrada do domínio: validação integral de catálogos, seções duplicadas, NaN/infinito e comprimento zero; API e UI passaram a aceitar comprimento zero de modo consistente.
+17. Story 004 testada no SHA `f2642e3041b16ec0ddbf43e59b8e482f345d39d0`: run `38612351333` 90 pytest e JS check; `38612351441` AIOX lint/typecheck/test/build success.
+18. Criada story 005 antes dos testes E2E; implementado Chromium via Playwright, servidores temporários localhost, SQLite temporário e token efêmero.
+19. Run `38612230388` falhou por assert de apresentação decimal `4.0 mm²` versus `4 mm²`; verificação corrigida para representar formatação real do navegador sem alterar cálculo.
+20. Run `38612351246` aprovou 3 testes reais em Chromium; 004/005 foram marcadas DONE em seus escopos, com critérios e evidências persistidos no JSON do orquestrador.
+
+## 2026-10-14: recuperação parcial de fontes normativas
+
+21. Constatados seis artefatos de EDP/NBR e registros derivados no repositório, sem afirmar equivalência entre presença do arquivo e veracidade da tabela.
+22. Criada story SIE-AUTO-003, subescopo de inventário de integridade; implementados `sie_api/normative_inventory.py`, testes para hashes, ausência de arquivos e segurança de caminhos.
+23. Workflow passou a executar o comando CLI, gerar manifesto SHA256 e enviá-lo como artifact. Run `38613344311`: 99 pytest passed, todos os seis artefatos encontrados, `normative_conformity_verified=false`, artifact 11917953248.
+24. Reconciliadas tarefas 003/010 faltantes no JSON; **NOR-01/SIE-AUTO-003 permanecem BLOCKED**, SIE-AUTO-006 HUMAN_REQUIRED. Nenhuma norma foi presumida nem deploy/merge realizado.
+
+**Referências:** `docs/sie-orchestrator/NORMATIVE-SOURCES-RECOVERY.md`, `restructuring/docs/CONTRATOS-ENGENHARIA.md`, `restructuring/docs/TESTE-E2E-NAVEGADOR.md` e logs GitHub Actions supracitados.
