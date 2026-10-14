@@ -1,24 +1,30 @@
-# Story SIE-AUTO-003 — Inventário de proveniência dos artefatos normativos
+# Story SIE-AUTO-003 — Evidências normativas e proveniência
 
-**Estado inicial:** BLOCKED (documentado na fila). **Recorte para recuperação:** inventariar hashes, origem e presença dos arquivos existentes, **sem** afirmar validação de células normativas. **Prioridade:** P1.
+**Estado:** BLOCKED para validação normativa; subescopo de inventário técnico concluído. **Prioridade:** P1.
+**Fontes:** `EXECUTION_QUEUE.md`, NOR-01, `NORMATIVE-SOURCES-RECOVERY.md`.
 
-## Requisito existente
-`docs/sie-orchestrator/EXECUTION_QUEUE.md` contém SIE-AUTO-003; `NOR-01` bloqueia motores normativos por faltar comprovação integral de fonte, edição, regra e valores.
+## Objetivo
+Normalizar evidências de tabelas e fontes do SIE sem confundir hash de arquivo, cópia digital, transcrição e conformidade ABNT/EDP.
 
-## Critérios de aceite do SUBESCOPO de inventário
-- [ ] AC-01: CLI lista referências de EDP e NBR já presentes no repositório sem copiar conteúdo protegido.
-- [ ] AC-02: gera SHA256, tamanho e caminho relativo, com arquivos ausentes explicitamente registrados.
-- [ ] AC-03: rejeita raiz inválida e caminhos que escapem do repositório; não faz downloads externos.
-- [ ] AC-04: teste reproduzível compara hash e ausência/alteração de arquivos sem aprovar normas.
-- [ ] AC-05: CI executa o inventário e publica manifesto como artefato auditável; testes Python e gates AIOX passam.
-- [ ] AC-06: documenta distinção `arquivo identificado` versus `conteúdo normativo validado`.
+## Critérios de aceite
 
-## File List planejada
-- `restructuring/apps/api/sie_api/normative_inventory.py`
-- `restructuring/apps/api/tests/test_normative_inventory.py`
-- `.github/workflows/sie-restructuring-api.yml`
-- `docs/sie-orchestrator/NORMATIVE-SOURCES-RECOVERY.md`
-- `docs/sie-orchestrator/ORCHESTRATOR_STATE.json`
+- [x] AC-01: CLI inventaria referências existentes da EDP e da NBR sem copiar conteúdo.
+- [x] AC-02: SHA-256, tamanho, caminho e ausência identificados.
+- [x] AC-03: caminhos fora da raiz e links simbólicos externos rejeitados, sem downloads.
+- [x] AC-04: testes de integridade e da condição `normative_conformity_verified=false`.
+- [x] AC-05: CI gera manifesto e upload; run **38613344311** success, **99 pytest passed**, 6/6 presentes, artifact **11917953248**. Gates AIOX run **38613344624** e Chromium run **38613344320** com sucesso na revisão `e9fecb6aabd89a95912332573b5998fcb9f858d6`.
+- [x] AC-06: distinção entre integridade de arquivo e validação normativa descrita em `NORMATIVE-SOURCES-RECOVERY.md`.
+- [ ] AC-07: confirmar versão e aplicabilidade de cada fonte primária; comparar células e regras consumidas pelos motores; validar resultados de referência independentes.
 
-## Bloqueio que permanecerá
-**NOR-01** não será marcado como DONE somente porque houve hash de PDF/markdown. É indispensável validar edição, aplicabilidade e células de dados contra fontes autorizadas e casos de referência independentes. Arquivos podem existir e ainda serem de edição errada, extração inexata ou cópia não primária.
+## File List
+
+- [x] `restructuring/apps/api/sie_api/normative_inventory.py`
+- [x] `restructuring/apps/api/tests/test_normative_inventory.py`
+- [x] `.github/workflows/sie-restructuring-api.yml`
+- [x] `docs/sie-orchestrator/NORMATIVE-SOURCES-RECOVERY.md`
+- [x] `docs/sie-orchestrator/ORCHESTRATOR_STATE.json`
+- [x] Esta story.
+
+## Decisão
+
+A story permanece BLOCKED: o material ABNT presente em Markdown/chunks pode ser uma extração secundária e o registro de conferência EDP não substitui validação independente do novo software. O inventário é uma evidência técnica real, não o encerramento de NOR-01.
