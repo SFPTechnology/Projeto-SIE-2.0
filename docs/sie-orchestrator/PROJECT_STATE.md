@@ -11,7 +11,7 @@ Atualização verificada: 2026-10-14. Repositório `SFPTechnology/Projeto-SIE-2.
 | Gate de liberação | Evidência auditável | Sempre PENDENTE ou BLOQUEADO, sem aprovação por cliente | Regressão contra autoaprovação | DONE no bloqueio preventivo |
 | Padrão EDP | Elegibilidade técnica completa | Sugestão por corrente, sem liberação normativa | Testes de catálogo/alertas | IMPLEMENTED |
 | Projetos | SQLite, histórico, API e UI locais | Implementados e integrados | Testes API/armazenamento; E2E real pendente | VALIDATING |
-| CLI First | Operação sem UI | Falta CLI de projetos | Não há testes de CLI | RUNNING: SIE-AUTO-001 |
+| CLI First | Operação sem UI | CLI de projetos locais | 51 testes Python no conjunto + regressões CLI | DONE: SIE-AUTO-001 |
 | Normas e tabelas | Banco versionado rastreável | Catálogo EDP e documentos legados; tabelas genéricas recebidas pela API | Conformidade independente insuficiente | BLOCKED: NOR-01 |
 | Diagramas / memoriais / quantitativos | Projeto elétrico integral | Não identificado no novo protótipo | Sem testes | PENDING |
 | Autenticação de produção | Perfis e auditoria por identidade | Apenas token local opcional | Sem homologação de produção | PENDING |
@@ -26,3 +26,6 @@ Automação controlada somente na branch; seguir `AGENTS.md`, `.aiox-core/consti
 - CI: https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38562529663
 - Código: `restructuring/apps/api/sie_api/`; `restructuring/apps/web/`
 - Story ativa: `docs/stories/story-SIE-AUTO-001-CLI-LOCAL-PROJECTS.md`
+
+## Novo marco observado
+Story SIE-AUTO-001 concluída com run 38572009186 (51 testes Python, JS check). Story SIE-AUTO-002 concluída com run 38572622950 (lint, typecheck, test e build root). Módulos elétricos normativos permanecem incompletos.

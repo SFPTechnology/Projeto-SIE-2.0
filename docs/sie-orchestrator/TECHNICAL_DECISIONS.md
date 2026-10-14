@@ -17,3 +17,6 @@
 
 ## ADR-SIE-006 — Autoridade e autonomia
 **Decisão:** ações rotineiras autorizadas na branch são executadas via conector GitHub; sem merge ou alteração de produção. Os papéis AIOX são critérios de governança, não comprovação de que agentes independentes efetivamente revisaram a tarefa.
+
+## ADR-SIE-007 — Gates AIOX executados na CI
+**Decisão:** workflow GitHub Actions separado executa os quatro comandos exigidos na raiz, após instalar dependências da `.aiox-core` pelo lockfile. **Justificativa:** o pipeline FastAPI não comprova os gates do AIOX. **Evidência:** run 38572622950; sem `continue-on-error`.

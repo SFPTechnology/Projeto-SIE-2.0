@@ -12,3 +12,9 @@
 - Registrar commits reais e resultados obtidos; não repetir como fato eventos declarados apenas na documentação.
 - Falha em CI ou bloqueio não pode ser classificada como DONE.
 - Atualização dos próximos ciclos deve acrescentar linhas com data, SHA, testes, correções e limite observado.
+
+## 2026-10-14: execução das primeiras stories
+7. Criada CLI `restructuring/apps/api/sie_api/cli.py` com salvar/carregar/historico, conflito de revisões, UUID canonizado, leitura BOM Windows e JSON restrito.
+8. Implementados testes subprocess em `tests/test_cli.py`; run 38572009186 validou 51 testes Python e sintaxe JS (success). Story SIE-AUTO-001 atualizada para DONE.
+9. Criada story SIE-AUTO-002 para preencher gap de quatro gates AIOX; workflow `.github/workflows/sie-orchestrator-quality.yml` passou em run 38572622950 (lint, typecheck, test e build success).
+10. Nenhum merge na main ou aprovação normativa foi executado.

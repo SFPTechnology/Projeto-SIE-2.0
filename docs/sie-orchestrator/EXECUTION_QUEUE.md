@@ -4,8 +4,8 @@ Regra: READY somente com dependências comprovadas; DONE somente quando todos os
 
 | Ordem | ID | Atividade | Depende de | Prioridade | Estado | Critério de saída |
 |---|---|---|---|---|---|---|
-| 1 | SIE-AUTO-001 | Implementar CLI de projetos locais | SQLite e testes existentes | P1 | RUNNING | CLI + testes + documentação + CI |
-| 2 | SIE-AUTO-002 | Adicionar verificações de conformidade às stories/CI | Story e estrutura AIOX | P1 | READY | Detectar violações de qualidade sem suprimir erros |
+| 1 | SIE-AUTO-001 | Implementar CLI de projetos locais | SQLite e testes existentes | P1 | DONE | CLI + testes + documentação + CI |
+| 2 | SIE-AUTO-002 | Adicionar verificações de conformidade às stories/CI | Story e estrutura AIOX | P1 | DONE | Detectar violações de qualidade sem suprimir erros |
 | 3 | SIE-AUTO-003 | Normalizar evidências de tabelas e revisar origem do catálogo EDP | Pesquisa e documentos fonte | P1 | BLOCKED | Fonte primária, revisão e casos independentes |
 | 4 | SIE-AUTO-004 | Reforçar contratos do núcleo elétrico e limites dos modelos | Motor atual, requisitos | P1 | READY | Testes de borda e falha segura |
 | 5 | SIE-AUTO-005 | Teste E2E de API, UI, SQLite e recuperação | API/CLI/UI | P2 | PENDING | Fluxo reproduzido por navegador real |
@@ -16,3 +16,5 @@ Regra: READY somente com dependências comprovadas; DONE somente quando todos os
 | 10 | SIE-AUTO-010 | Liberação controlada e PR para revisão | Gates anteriores | P1 | PENDING | Evidências completas, análise independente, decisão de merge |
 
 As linhas representam apenas tarefas fundamentadas no repositório e nas instruções do usuário. Cada execução deve validar a árvore real e os checks antes de alterar estado.
+
+Nova atividade candidata SIE-AUTO-011: motor determinístico de estados e grafo no CLI, para tornar EXECUTION_QUEUE executável e verificável (em elaboração de story, sem prova de código nesta revisão).
