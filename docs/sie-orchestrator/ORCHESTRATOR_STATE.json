@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 4,
+  "revision": 5,
   "description": "Estado declarativo da fila do SIE; CI verifica integridade, nao comprova automaticidade nem normas.",
   "history": [
     {
@@ -107,6 +107,13 @@
       "to": "PENDING",
       "reason": "Reconciled existing release task from EXECUTION_QUEUE; prereqs not fulfilled",
       "at": "2026-10-14T18:15:30.168Z"
+    },
+    {
+      "activity": "NOR-01",
+      "from": "BLOCKED",
+      "to": "BLOCKED",
+      "reason": "Dependency graph reconciled: source evidence normalization SIE-AUTO-003 must close before normative catalog can be validated; no approval granted",
+      "at": "2026-10-14T18:19:12.261Z"
     }
   ],
   "tasks": [
@@ -314,7 +321,9 @@
       "id": "NOR-01",
       "title": "Fonte normativa e catalogos confiaveis",
       "state": "BLOCKED",
-      "dependencies": [],
+      "dependencies": [
+        "SIE-AUTO-003"
+      ],
       "priority": 100,
       "impact": 10,
       "risk": 8,
