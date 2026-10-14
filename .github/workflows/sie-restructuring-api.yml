@@ -22,3 +22,5 @@ jobs:
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api
+      - name: Check frontend JavaScript syntax
+        run: node --check restructuring/apps/web/app.js
