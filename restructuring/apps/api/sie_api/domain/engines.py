@@ -117,7 +117,7 @@ def calcular_queda_tensao_trifasica_resistiva(
     NAO realiza verificacao de conformidade normativa.
     """
     _positive(corrente_a, "corrente")
-    _positive(comprimento_m, "comprimento")
+    _nonnegative(comprimento_m, "comprimento")
     _positive(resistencia_ohm_km, "resistencia")
     _positive(tensao_linha_v, "tensao de linha")
     queda = Decimal("3").sqrt() * (comprimento_m / Decimal("1000")) * corrente_a * resistencia_ohm_km
