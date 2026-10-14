@@ -48,7 +48,7 @@ class LinhaCondutor(BaseModel):
 class AnaliseCircuito(BaseModel):
     model_config = ConfigDict(extra="forbid")
     corrente_a: float = Field(gt=0)
-    comprimento_m: float = Field(gt=0)
+    comprimento_m: float = Field(ge=0)
     tensao_v: float = Field(gt=0)
     resistencia_ohm_km: float = Field(gt=0)
     fator_correcao: float = Field(gt=0, le=1)
