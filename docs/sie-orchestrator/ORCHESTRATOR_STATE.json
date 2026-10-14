@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "revision": 2,
+  "revision": 3,
   "description": "Estado declarativo da fila do SIE; CI verifica integridade, nao comprova automaticidade nem normas.",
   "history": [
     {
@@ -58,6 +58,41 @@
       "to": "VALIDATING",
       "reason": "GitHub Actions acionado; evidências de conclusão ainda pendentes",
       "at": "2026-10-14T17:22:00Z"
+    },
+    {
+      "activity": "SIE-AUTO-004",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "All 6 acceptance criteria verified: 90 pytest, AIOX quality; contract doc",
+      "at": "2026-10-14T18:10:10.915Z"
+    },
+    {
+      "activity": "SIE-AUTO-005",
+      "from": "READY",
+      "to": "RUNNING",
+      "reason": "Story and execution contract established",
+      "at": "2026-10-14T18:10:10.915Z"
+    },
+    {
+      "activity": "SIE-AUTO-005",
+      "from": "RUNNING",
+      "to": "IMPLEMENTED",
+      "reason": "Chromium tests and CI workflow published",
+      "at": "2026-10-14T18:10:10.915Z"
+    },
+    {
+      "activity": "SIE-AUTO-005",
+      "from": "IMPLEMENTED",
+      "to": "VALIDATING",
+      "reason": "Real browser E2E workflows executed",
+      "at": "2026-10-14T18:10:10.915Z"
+    },
+    {
+      "activity": "SIE-AUTO-005",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "3 Chromium E2E, 90 pytest, AIOX gates verified in GitHub Actions",
+      "at": "2026-10-14T18:10:10.915Z"
     }
   ],
   "tasks": [
@@ -134,7 +169,7 @@
     {
       "id": "SIE-AUTO-004",
       "title": "Contratos de engenharia e limites",
-      "state": "VALIDATING",
+      "state": "DONE",
       "dependencies": [
         "SIE-AUTO-011"
       ],
@@ -145,41 +180,50 @@
       "criteria": [
         {
           "id": "AC-01",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "Commit 9c3d4d9e0af8; testes em 14bd4d3953b2, CI pendente"
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "restructuring/apps/api/tests/test_engines.py: invalid/non-finite and missing inputs"
           ]
         },
         {
           "id": "AC-02",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "Validação integral do catálogo em engines.py"
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "restructuring/apps/api/sie_api/domain/engines.py: complete breaker catalog validation"
           ]
         },
         {
           "id": "AC-03",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "Modelo resistivo com comprimento não negativo"
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "restructuring/apps/api/tests/test_engines.py: zero length 1- and 3-phase; negative length blocked"
           ]
         },
         {
           "id": "AC-04",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "test_engines.py com casos de borda"
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "restructuring/apps/api/tests/test_api.py: HTTP zero-length contract"
           ]
         },
         {
           "id": "AC-05",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "restructuring/docs/CONTRATOS-ENGENHARIA.md: assumptions, units, limitations and interfaces"
+          ]
         },
         {
           "id": "AC-06",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "GitHub Actions 38612351441 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: lint/typecheck/test/build success"
+          ]
         }
       ],
       "source_refs": [
@@ -189,7 +233,7 @@
     {
       "id": "SIE-AUTO-005",
       "title": "Fluxo E2E real em navegador",
-      "state": "READY",
+      "state": "DONE",
       "dependencies": [
         "SIE-AUTO-011"
       ],
@@ -199,9 +243,53 @@
       "requirements_verified": true,
       "criteria": [
         {
-          "id": "AC-BASE",
-          "passed": false,
-          "evidence": []
+          "id": "AC-01",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed"
+          ]
+        },
+        {
+          "id": "AC-02",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed",
+            "restructuring/e2e/test_browser_flow.py: calculation and blocked normative gate"
+          ]
+        },
+        {
+          "id": "AC-03",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed",
+            "restructuring/e2e/test_browser_flow.py: SQLite save/reopen with ephemeral token"
+          ]
+        },
+        {
+          "id": "AC-04",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed",
+            "restructuring/apps/web/app.js: invalid-token and stale-revision messages"
+          ]
+        },
+        {
+          "id": "AC-05",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed",
+            "restructuring/e2e/test_browser_flow.py: recomputation after reload"
+          ]
+        },
+        {
+          "id": "AC-06",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed",
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "GitHub Actions 38612351441 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: lint/typecheck/test/build success",
+            "restructuring/docs/TESTE-E2E-NAVEGADOR.md"
+          ]
         }
       ],
       "source_refs": [
