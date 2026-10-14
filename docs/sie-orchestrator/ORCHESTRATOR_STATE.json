@@ -1,0 +1,492 @@
+{
+  "schema_version": 1,
+  "revision": 6,
+  "description": "Estado declarativo da fila do SIE; CI verifica integridade, nao comprova automaticidade nem normas. NOR-01 exige SIE-AUTO-003 concluida; dependencia documental reconciliada no grafo.",
+  "history": [
+    {
+      "activity": "SIE-AUTO-011",
+      "from": "RUNNING",
+      "to": "IMPLEMENTED",
+      "reason": "Codigo e testes do escalonador publicados",
+      "at": "2026-10-14T13:50:46.247Z"
+    },
+    {
+      "activity": "SIE-AUTO-011",
+      "from": "IMPLEMENTED",
+      "to": "VALIDATING",
+      "reason": "Validacao externa via GitHub Actions",
+      "at": "2026-10-14T13:50:46.247Z"
+    },
+    {
+      "activity": "SIE-AUTO-011",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "Criterios de aceite conferidos com logs CI e guias publicados",
+      "at": "2026-10-14T13:50:46.247Z"
+    },
+    {
+      "activity": "SIE-AUTO-004",
+      "from": "PENDING",
+      "to": "READY",
+      "reason": "Story SIE-AUTO-011 DONE, requisitos e dependencias conferidos",
+      "at": "2026-10-14T13:50:46.247Z"
+    },
+    {
+      "activity": "SIE-AUTO-005",
+      "from": "PENDING",
+      "to": "READY",
+      "reason": "Story SIE-AUTO-011 DONE, requisitos e dependencias conferidos",
+      "at": "2026-10-14T13:50:46.247Z"
+    },
+    {
+      "activity": "SIE-AUTO-004",
+      "from": "READY",
+      "to": "RUNNING",
+      "reason": "Story criada antes de editar motores",
+      "at": "2026-10-14T17:20:00Z"
+    },
+    {
+      "activity": "SIE-AUTO-004",
+      "from": "RUNNING",
+      "to": "IMPLEMENTED",
+      "reason": "Contratos e testes publicados em branch isolada",
+      "at": "2026-10-14T17:21:00Z"
+    },
+    {
+      "activity": "SIE-AUTO-004",
+      "from": "IMPLEMENTED",
+      "to": "VALIDATING",
+      "reason": "GitHub Actions acionado; evidências de conclusão ainda pendentes",
+      "at": "2026-10-14T17:22:00Z"
+    },
+    {
+      "activity": "SIE-AUTO-004",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "All 6 acceptance criteria verified: 90 pytest, AIOX quality; contract doc",
+      "at": "2026-10-14T18:10:10.915Z"
+    },
+    {
+      "activity": "SIE-AUTO-005",
+      "from": "READY",
+      "to": "RUNNING",
+      "reason": "Story and execution contract established",
+      "at": "2026-10-14T18:10:10.915Z"
+    },
+    {
+      "activity": "SIE-AUTO-005",
+      "from": "RUNNING",
+      "to": "IMPLEMENTED",
+      "reason": "Chromium tests and CI workflow published",
+      "at": "2026-10-14T18:10:10.915Z"
+    },
+    {
+      "activity": "SIE-AUTO-005",
+      "from": "IMPLEMENTED",
+      "to": "VALIDATING",
+      "reason": "Real browser E2E workflows executed",
+      "at": "2026-10-14T18:10:10.915Z"
+    },
+    {
+      "activity": "SIE-AUTO-005",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "3 Chromium E2E, 90 pytest, AIOX gates verified in GitHub Actions",
+      "at": "2026-10-14T18:10:10.915Z"
+    },
+    {
+      "activity": "SIE-AUTO-003",
+      "from": "UNREGISTERED",
+      "to": "BLOCKED",
+      "reason": "Queue had planned task missing from JSON; integrity inventory implemented but official normative verification remains incomplete; Run 38613344311 @ e9fecb6aabd89a95912332573b5998fcb9f858d6: 99 pytest passed; 6/6 repository artifacts hashed; SHA256 manifest uploaded as artifact 11917953248; normative_conformity_verified=false",
+      "at": "2026-10-14T18:15:30.168Z"
+    },
+    {
+      "activity": "SIE-AUTO-010",
+      "from": "UNREGISTERED",
+      "to": "PENDING",
+      "reason": "Reconciled existing release task from EXECUTION_QUEUE; prereqs not fulfilled",
+      "at": "2026-10-14T18:15:30.168Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "SIE-AUTO-001",
+      "title": "CLI local de projetos",
+      "state": "DONE",
+      "dependencies": [],
+      "priority": 95,
+      "impact": 6,
+      "risk": 2,
+      "requirements_verified": true,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions run 38572009186: 51 passed; docs/stories/story-SIE-AUTO-001-CLI-LOCAL-PROJECTS.md"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-002",
+      "title": "Gates AIOX na CI",
+      "state": "DONE",
+      "dependencies": [],
+      "priority": 95,
+      "impact": 8,
+      "risk": 1,
+      "requirements_verified": true,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions run 38572622950: lint/typecheck/test/build success"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-011",
+      "title": "Escalonador de atividades e estado",
+      "state": "DONE",
+      "dependencies": [
+        "SIE-AUTO-001",
+        "SIE-AUTO-002"
+      ],
+      "priority": 90,
+      "impact": 9,
+      "risk": 3,
+      "requirements_verified": true,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions run 38574851595: 67 passed and JS check; run 38574851619: all four root AIOX gates success",
+            "docs/stories/story-SIE-AUTO-011-DEPENDENCY-SCHEDULER.md"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-004",
+      "title": "Contratos de engenharia e limites",
+      "state": "DONE",
+      "dependencies": [
+        "SIE-AUTO-011"
+      ],
+      "priority": 90,
+      "impact": 9,
+      "risk": 4,
+      "requirements_verified": true,
+      "criteria": [
+        {
+          "id": "AC-01",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "restructuring/apps/api/tests/test_engines.py: invalid/non-finite and missing inputs"
+          ]
+        },
+        {
+          "id": "AC-02",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "restructuring/apps/api/sie_api/domain/engines.py: complete breaker catalog validation"
+          ]
+        },
+        {
+          "id": "AC-03",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "restructuring/apps/api/tests/test_engines.py: zero length 1- and 3-phase; negative length blocked"
+          ]
+        },
+        {
+          "id": "AC-04",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "restructuring/apps/api/tests/test_api.py: HTTP zero-length contract"
+          ]
+        },
+        {
+          "id": "AC-05",
+          "passed": true,
+          "evidence": [
+            "restructuring/docs/CONTRATOS-ENGENHARIA.md: assumptions, units, limitations and interfaces"
+          ]
+        },
+        {
+          "id": "AC-06",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "GitHub Actions 38612351441 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: lint/typecheck/test/build success"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-005",
+      "title": "Fluxo E2E real em navegador",
+      "state": "DONE",
+      "dependencies": [
+        "SIE-AUTO-011"
+      ],
+      "priority": 70,
+      "impact": 8,
+      "risk": 3,
+      "requirements_verified": true,
+      "criteria": [
+        {
+          "id": "AC-01",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed"
+          ]
+        },
+        {
+          "id": "AC-02",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed",
+            "restructuring/e2e/test_browser_flow.py: calculation and blocked normative gate"
+          ]
+        },
+        {
+          "id": "AC-03",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed",
+            "restructuring/e2e/test_browser_flow.py: SQLite save/reopen with ephemeral token"
+          ]
+        },
+        {
+          "id": "AC-04",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed",
+            "restructuring/apps/web/app.js: invalid-token and stale-revision messages"
+          ]
+        },
+        {
+          "id": "AC-05",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed",
+            "restructuring/e2e/test_browser_flow.py: recomputation after reload"
+          ]
+        },
+        {
+          "id": "AC-06",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions 38612351246 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 3 real Chromium E2E tests passed",
+            "GitHub Actions 38612351333 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: 90 pytest passed, 1 warning; JS check success",
+            "GitHub Actions 38612351441 @ f2642e3041b16ec0ddbf43e59b8e482f345d39d0: lint/typecheck/test/build success",
+            "restructuring/docs/TESTE-E2E-NAVEGADOR.md"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "NOR-01",
+      "title": "Fonte normativa e catalogos confiaveis",
+      "state": "BLOCKED",
+      "dependencies": [
+        "SIE-AUTO-003"
+      ],
+      "priority": 100,
+      "impact": 10,
+      "risk": 8,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-INVENTORY",
+          "passed": true,
+          "evidence": [
+            "Run 38613344311 @ e9fecb6aabd89a95912332573b5998fcb9f858d6: 99 pytest passed; 6/6 repository artifacts hashed; SHA256 manifest uploaded as artifact 11917953248; normative_conformity_verified=false"
+          ]
+        },
+        {
+          "id": "AC-PRIMARY-SOURCES",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-TECHNICAL-CASES",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-007",
+      "title": "Motores eletricos normativos completos",
+      "state": "PENDING",
+      "dependencies": [
+        "NOR-01",
+        "SIE-AUTO-004"
+      ],
+      "priority": 100,
+      "impact": 10,
+      "risk": 8,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-006",
+      "title": "Identidade de producao e migracao de dados",
+      "state": "HUMAN_REQUIRED",
+      "dependencies": [],
+      "priority": 95,
+      "impact": 9,
+      "risk": 8,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-008",
+      "title": "Memoriais, quantitativos e diagramas",
+      "state": "PENDING",
+      "dependencies": [
+        "SIE-AUTO-007",
+        "SIE-AUTO-006"
+      ],
+      "priority": 65,
+      "impact": 7,
+      "risk": 7,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-009",
+      "title": "QA final e documentacao completa",
+      "state": "PENDING",
+      "dependencies": [
+        "SIE-AUTO-005",
+        "SIE-AUTO-008"
+      ],
+      "priority": 75,
+      "impact": 8,
+      "risk": 6,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-003",
+      "title": "Normalização de evidências de tabelas / proveniência",
+      "state": "BLOCKED",
+      "dependencies": [],
+      "priority": 98,
+      "impact": 10,
+      "risk": 8,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-INVENTORY",
+          "passed": true,
+          "evidence": [
+            "Run 38613344311 @ e9fecb6aabd89a95912332573b5998fcb9f858d6: 99 pytest passed; 6/6 repository artifacts hashed; SHA256 manifest uploaded as artifact 11917953248; normative_conformity_verified=false",
+            "docs/sie-orchestrator/NORMATIVE-SOURCES-RECOVERY.md"
+          ]
+        },
+        {
+          "id": "AC-NORMATIVE",
+          "passed": false,
+          "evidence": [
+            "Falta revisão de edição aplicável, validação independente de células e casos de engenharia; não afirmar conformidade"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md",
+        "docs/stories/story-SIE-AUTO-003-SOURCE-PROVENANCE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-010",
+      "title": "Liberação controlada e revisão de integração",
+      "state": "PENDING",
+      "dependencies": [
+        "SIE-AUTO-009",
+        "SIE-AUTO-006",
+        "NOR-01"
+      ],
+      "priority": 95,
+      "impact": 10,
+      "risk": 9,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    }
+  ]
+}
