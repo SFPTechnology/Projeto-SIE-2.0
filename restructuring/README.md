@@ -41,12 +41,12 @@ py -3.11 -m http.server 5173
 2. Informe a fonte, edição e referência que sustentam a tabela usada.
 3. Clique em **Executar análise**.
 4. Leia a seção selecionada, o disjuntor, a queda de tensão e as fórmulas/critério exibidos.
-5. Só marque a evidência como validada quando a fonte e os testes independentes tiverem sido efetivamente conferidos.
+5. Verifique os avisos de pendência: nenhum botão ou dado preenchido pelo usuário libera o cálculo normativamente.
 
 ## Limites deliberados de segurança
 
 - O cálculo é determinístico e rastreável, mas não declara conformidade automática com ABNT NBR 5410 ou qualquer concessionária.
-- A liberação para uso normativo exige, simultaneamente, identificação da fonte, dados validados e testes independentes aprovados.
+- A liberação normativa está desabilitada nesta versão. Uma futura aprovação exigirá evidência conferida pelo servidor, controle de acesso e trilha de auditoria, não checkboxes do navegador.
 - O modelo de queda de tensão atual é monofásico e resistivo; impedância, reatância, curto-circuito, seletividade, DR, EDP e topologias multifásicas continuam como extensões normativas condicionadas à matriz de evidências auditadas.
 
 Consulte [MANUAL-OPERACIONAL.md](./docs/MANUAL-OPERACIONAL.md) para o guia completo e [ARQUITETURA-INTEGRADA.md](./docs/ARQUITETURA-INTEGRADA.md) para o desenho técnico.
