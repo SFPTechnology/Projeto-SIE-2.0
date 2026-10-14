@@ -7,7 +7,7 @@ client = TestClient(app)
 def test_health_reports_normative_block():
     res = client.get('/api/v1/health')
     assert res.status_code == 200
-    assert res.json()['engineering_engine'] == 'blocked_pending_validation'
+    assert res.json()['engineering_engine'] == 'calculation_available_with_release_gate'
 
 
 def test_valid_project_is_only_structurally_validated():
@@ -30,3 +30,14 @@ def test_reject_duplicate_circuits():
 def test_reject_unknown_field():
     res = client.post('/api/v1/projetos/validar', json={'nome':'Casa','extra':'invalid'})
     assert res.status_code == 422
+
+
+def test_analysis_returns_result_but_preserves_release_gate():
+    res = client.post('/api/v1/circuitos/analisar', json={
+        'corrente_a': 20, 'comprimento_m': 30, 'tensao_v': 220, 'resistencia_ohm_km': 7.41,
+        'fator_correcao': .8, 'tabela_condutores': [{'secao_mm2':2.5,'capacidade_a':24},{'secao_mm2':4,'capacidade_a':32}],
+        'evidencia': {'documento':'NBR 5410','edicao':'2004','referencia':'A validar','dados_validados':False,'testes_independentes':False}
+    })
+    assert res.status_code == 200
+    assert res.json()['status_engenharia'] == 'PENDENTE'
+    assert res.json()['disjuntor']['corrente_a'] == 20
