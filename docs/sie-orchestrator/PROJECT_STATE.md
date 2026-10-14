@@ -1,34 +1,39 @@
-# PROJECT_STATE — SIE-AUTO-ORCHESTRATOR v2.0
+# PROJECT_STATE — SIE Autonomous Development Orchestrator
 
-Atualização verificada: 2026-10-14. Repositório `SFPTechnology/Projeto-SIE-2.0`, branch `refactor/sie-2-foundation-2026-10-14`; `main` preservada; PR #1 aberto como draft.
+**Data da reconciliação:** 2026-10-14.
+**Repositório:** `SFPTechnology/Projeto-SIE-2.0`, branch `refactor/sie-2-foundation-2026-10-14`, PR #1 (draft). `main` preservada.
 
-## Reconciliação (PLANEJADO / IMPLEMENTADO / VALIDADO)
-| Módulo | Planejado | Implementado observado | Validado observado | Estado |
-|---|---|---|---|---|
-| API local | Análise e persistência | FastAPI, endpoints /circuitos, /edp, /local/projetos | Testes Python da branch | DONE no escopo de protótipo |
-| Motor condutor/disjuntor | Dimensionamento completo | Regras preliminares Ib/Iz e catálogo demonstrativo | Testes de fórmulas, não normativos | IMPLEMENTED |
-| Queda tensão | Mono/trifásica e impedância | Mono e trifásica **resistiva simplificada** | Casos matemáticos, não casos normativos independentes | IMPLEMENTED |
-| Gate de liberação | Evidência auditável | Sempre PENDENTE ou BLOQUEADO, sem aprovação por cliente | Regressão contra autoaprovação | DONE no bloqueio preventivo |
-| Padrão EDP | Elegibilidade técnica completa | Sugestão por corrente, sem liberação normativa | Testes de catálogo/alertas | IMPLEMENTED |
-| Projetos | SQLite, histórico, API e UI locais | Implementados e integrados | Testes API/armazenamento; E2E real pendente | VALIDATING |
-| CLI First | Operação sem UI | CLI de projetos locais | 51 testes Python no conjunto + regressões CLI | DONE: SIE-AUTO-001 |
-| Normas e tabelas | Banco versionado rastreável | Catálogo EDP e documentos legados; tabelas genéricas recebidas pela API | Conformidade independente insuficiente | BLOCKED: NOR-01 |
-| Diagramas / memoriais / quantitativos | Projeto elétrico integral | Não identificado no novo protótipo | Sem testes | PENDING |
-| Autenticação de produção | Perfis e auditoria por identidade | Apenas token local opcional | Sem homologação de produção | PENDING |
+## Estado planejado × implementado × validado
 
-**Evidência objetiva:** GitHub Actions na revisão `05c1681e9d560e2ad755cc1e1258e3993a003031`: duas execuções concluídas com sucesso, incluindo 42 testes pytest e checagem `node --check` (run 38562529663). Documentação ou êxito de testes unitários não significa conformidade ABNT/EDP ou E2E aprovado.
+| Componente | Implementado no protótipo | Evidência de validação | Situação |
+|---|---|---|---|
+| API FastAPI | Endpoint de análise, catálogo candidato EDP, saúde e persistência opt-in | 99 pytest em 38613344311 | Validado no escopo automatizado |
+| CLI local | Criar/consultar/atualizar projetos, revisões e histórico | Stories 001/002, CI anterior | DONE do escopo CLI |
+| Domínio elétrico | Seleção simples Ib/In/Iz; queda mono/trifásica resistiva | 90 pytest em 38612351333; contratos de borda | DONE apenas story de limites, não de norma |
+| Interface local | Analisar, exibir bloqueios, salvar/reabrir com token temporário | Chromium real 3 passed em 38612351246 | DONE para E2E local |
+| Governança normativa | Gate impede liberação automática pelo cliente | Testes de regressão; `PENDENTE/BLOQUEADO` | DONE para contenção preventiva |
+| EDP São Paulo | Catálogo v09 e indicação de categoria candidata | Testes de catálogo/alertas; fonte documental interna | Sem homologação completa |
+| Inventário documental | SHA256 de seis artefatos e manifesto versionado por execução | 38613344311: 6/6, artifact 11917953248 | Parcial: integridade, não conteúdo |
+| Escalonador | DAG, dez estados, fila e JSON persistido | Story 011 e quality gates | DONE como planejador, não agente executor |
+| Catálogos normativos | PDFs/extratos presentes, sem validação integral da transcrição/casos | Fontes identificadas, sem aprovação de dados | BLOCKED: NOR-01 |
+| Proteção completa | Curto-circuito, seletividade, seccionamento, DR, aterramento | Não integrada de maneira normativamente validada | PENDING: SIE-AUTO-007 |
+| Identidade de produção | Token local de desenvolvimento apenas | Nenhum teste de multiusuário em produção | HUMAN_REQUIRED |
+| Projeto gráfico/memoriais | Não integrado no novo protótipo | Sem evidência E2E | PENDING: 008 |
+| QA final de uso profissional | QA parcial de API/CLI/UI | Ainda não contém validação integral de engenharia | PENDING: 009/010 |
 
-## Política de execução
-Automação controlada somente na branch; seguir `AGENTS.md`, `.aiox-core/constitution.md`, stories e gates de qualidade. Sem merge, alteração de produção, custos externos, falsa liberação normativa ou declaração de execução fora da sessão.
+## Execuções verificáveis
 
-## Referências
-- PR: https://github.com/SFPTechnology/Projeto-SIE-2.0/pull/1
-- CI: https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38562529663
-- Código: `restructuring/apps/api/sie_api/`; `restructuring/apps/web/`
-- Story ativa: `docs/stories/story-SIE-AUTO-001-CLI-LOCAL-PROJECTS.md`
+- `f2642e3041b16ec0ddbf43e59b8e482f345d39d0`: run 38612351333 (90 pytest e JS check), run 38612351246 (3 Chromium reais), run 38612351441 (AIOX lint/typecheck/test/build), todos success.
+- `e9fecb6aabd89a95912332573b5998fcb9f858d6`: run 38613344311 (99 pytest, artefatos SHA256 produzidos), 38613344320 (browser pass), 38613344624 (AIOX pass).
+- Histórico e critérios por tarefa: `ORCHESTRATOR_STATE.json`. O arquivo não substitui logs oficiais de CI.
 
-## Novo marco observado
-Story SIE-AUTO-001 concluída com run 38572009186 (51 testes Python, JS check). Story SIE-AUTO-002 concluída com run 38572622950 (lint, typecheck, test e build root). Módulos elétricos normativos permanecem incompletos.
+## Políticas vigentes
 
-## Ciclo SIE-AUTO-011 validado
-O escalonador determinístico e o JSON de tarefas foram implementados. GitHub Actions run 38574851595: 67 testes passando, 1 aviso e verificação JS; run 38574851619: quatro gates AIOX passing. **Estado da story: DONE no escopo de planejamento**, não execução automática de agentes nem validação normativa. SIE-AUTO-004 e SIE-AUTO-005 tornam-se READY pelo DAG.
+- Nenhum cálculo pode apresentar status de conformidade normativa sem evidência verificável independente.
+- Nenhum merge em `main`, deploy ou alteração destrutiva de dados de produção foi realizado.
+- Progresso de infraestrutura deve ser distinguido de validação normativa de tabelas e projeto.
+- O orquestrador não funciona em background apenas por este documento; exige uma sessão de execução ou mecanismo agendado real.
+
+## Próxima atividade
+
+**NOR-01/SIE-AUTO-003**: validar fontes normativas primárias e casos técnicos; documento inicial `NORMATIVE-SOURCES-RECOVERY.md`. Sem fontes confirmadas e auditoria, bloqueios permanecem. A SIE-AUTO-006 necessita decisão/autorização sobre ambiente e identidade de produção; demais tarefas dependem desses gates.
