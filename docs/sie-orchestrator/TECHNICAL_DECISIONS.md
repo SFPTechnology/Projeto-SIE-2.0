@@ -23,3 +23,12 @@
 
 ## ADR-SIE-008 — Complementar AIOX sem executor duplicado
 **Decisão:** `sie_api/scheduler.py` realiza DAG/estado/fila e `scheduler_cli.py` opera JSON local; os existentes `MasterOrchestrator`, `RecoveryHandler` e `SessionState` conservam a responsabilidade de execução e retomada dos agentes. **Risco residual:** ainda não existe bridge de execução automática entre fila e agentes. **Evidência:** run 38574851595.
+
+## ADR-SIE-009 — Chromium E2E como gate independente
+**Decisão:** manter suite Playwright em `restructuring/e2e/` fora da coleta padrão de testes unitários. GitHub Actions instala Chromium, inicia FastAPI, servidor web e SQLite temporário e executa testes ponta a ponta. **Razão:** testes estáticos e TestClient não comprovam comportamento real do navegador. **Evidência:** 38612351246, 3 passed; regressão API 38612351333, 90 passed. **Limites:** local, não equivale à homologação profissional ou produção.
+
+## ADR-SIE-010 — Inventário de fontes não implica conformidade normativa
+**Decisão:** usar CLI offline para SHA256 de artefatos referenciados e emitir somente metadados com `normative_conformity_verified=false`. Nenhum documento é copiado para o artefato. **Razão:** auditoria de integridade não substitui comparação de células, cláusulas e casos de referência independentes. **Evidência:** run 38613344311 (99 pytest, 6/6 artefatos, artifact 11917953248). **Limite:** NOR-01 e SIE-AUTO-003 continuam BLOCKED.
+
+## ADR-SIE-011 — Fonte canônica de tarefas e reconciliação de dependências
+**Decisão:** o estado JSON governa as transições; os arquivos de fila/grafo são documentação derivada. Atividades 003/010 existentes na fila foram reconciliadas no JSON; NOR-01 depende da normalização 003. Alteração de dependência não é transição de estado e não deve ser registrada como tal. **Razão:** evita sucesso simulado e preserva um grafo acíclico consistente.
