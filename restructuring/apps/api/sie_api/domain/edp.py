@@ -49,7 +49,7 @@ CATALOGO_EDP = (
 def enquadrar_edp(modalidade: str, corrente_demanda_a: Decimal, carga_instalada_kw: Decimal, tem_carga_trifasica: bool) -> dict:
     if modalidade not in {"U", "D", "T"}:
         raise ValueError("Modalidade EDP deve ser U, D ou T")
-    if corrente_demanda_a <= 0 or carga_instalada_kw <= 0:
+    if not corrente_demanda_a.is_finite() or not carga_instalada_kw.is_finite() or corrente_demanda_a <= 0 or carga_instalada_kw <= 0:
         raise ValueError("Corrente de demanda e carga instalada devem ser positivas")
     alertas = []
     if carga_instalada_kw > Decimal("75"):
@@ -62,4 +62,4 @@ def enquadrar_edp(modalidade: str, corrente_demanda_a: Decimal, carga_instalada_
         categoria = None
     else:
         categoria = candidatos[0]
-    return {"catalogo": FONTE_EDP, "regra_selecao": {"descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.", "status": StatusFonte.DOCUMENTADO_SEM_FONTE_PRIMARIA.value, "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP."}, "categoria": None if categoria is None else {"codigo": categoria.categoria, "modalidade": categoria.modalidade, "disjuntor_entrada_a": float(categoria.disjuntor_a), "medicao": categoria.medicao, "condutor_entrada_pvc": categoria.condutor_pvc, "condutor_entrada_epr_xlpe": categoria.condutor_epr_xlpe, "aterramento_pvc": categoria.aterramento_pvc, "aterramento_epr_xlpe": categoria.aterramento_epr_xlpe}, "alertas": alertas, "liberado_para_padrao_entrada": not alertas and categoria is not None}
+    return {"catalogo": FONTE_EDP, "regra_selecao": {"descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.", "status": StatusFonte.DOCUMENTADO_SEM_FONTE_PRIMARIA.value, "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP."}, "categoria": None if categoria is None else {"codigo": categoria.categoria, "modalidade": categoria.modalidade, "disjuntor_entrada_a": float(categoria.disjuntor_a), "medicao": categoria.medicao, "condutor_entrada_pvc": categoria.condutor_pvc, "condutor_entrada_epr_xlpe": categoria.condutor_epr_xlpe, "aterramento_pvc": categoria.aterramento_pvc, "aterramento_epr_xlpe": categoria.aterramento_epr_xlpe}, "alertas": alertas, "candidato_para_estudo": not alertas and categoria is not None, "status_engenharia": "PENDENTE" if not alertas else "BLOQUEADO", "liberado_para_padrao_entrada": False}
