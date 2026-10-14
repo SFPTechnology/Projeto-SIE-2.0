@@ -50,3 +50,11 @@ py -3.11 -m http.server 5173
 - O modelo de queda de tensão atual é monofásico e resistivo; impedância, reatância, curto-circuito, seletividade, DR, EDP e topologias multifásicas continuam como extensões normativas condicionadas à matriz de evidências auditadas.
 
 Consulte [MANUAL-OPERACIONAL.md](./docs/MANUAL-OPERACIONAL.md) para o guia completo e [ARQUITETURA-INTEGRADA.md](./docs/ARQUITETURA-INTEGRADA.md) para o desenho técnico.
+
+## Documentação e segurança do Marco 002
+
+- [Manual operacional HTML](docs/MANUAL-OPERACIONAL.html) — leitura pelo navegador.
+- [Manual Markdown](docs/MANUAL-OPERACIONAL.md) — versão textual.
+- [Relatório do Marco 002](docs/MARCO-002-RELATORIO.md) — código, testes, limitações e próximos gates.
+
+A infraestrutura SQLite em `apps/api/sie_api/storage.py` é local e ainda não exposta na API. O motor trifásico resistivo em `domain/engines.py` é uma função de cálculo ilustrativa, sem integração normativa, com `cos(phi)=1` e reatância desconsiderada.
