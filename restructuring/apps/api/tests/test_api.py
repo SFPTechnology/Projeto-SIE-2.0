@@ -41,3 +41,13 @@ def test_analysis_returns_result_but_preserves_release_gate():
     assert res.status_code == 200
     assert res.json()['status_engenharia'] == 'PENDENTE'
     assert res.json()['disjuntor']['corrente_a'] == 20
+
+
+def test_edp_endpoint_exposes_verified_catalog_provenance():
+    res = client.post('/api/v1/edp/enquadrar', json={
+        'modalidade': 'T', 'corrente_demanda_a': 58.3,
+        'carga_instalada_kw': 22.215, 'tem_carga_trifasica': True,
+    })
+    assert res.status_code == 200
+    assert res.json()['categoria']['codigo'] == 'T2'
+    assert res.json()['catalogo']['status'] == 'VERIFICADO'
