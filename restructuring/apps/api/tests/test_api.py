@@ -7,7 +7,7 @@ client = TestClient(app)
 def test_health_reports_normative_block():
     res = client.get('/api/v1/health')
     assert res.status_code == 200
-    assert res.json()['engineering_engine'] == 'calculation_available_with_release_gate'
+    assert res.json()['engineering_engine'] == 'calculation_available_normative_release_disabled'
 
 
 def test_valid_project_is_only_structurally_validated():
