@@ -2,48 +2,48 @@
 
 ## O que foi implementado
 
-O SIE agora disponibiliza **CLI direta e API opcional** sobre o mesmo armazenamento SQLite para **testes locais**. As operações disponíveis são criar/atualizar projeto, buscar projeto e consultar histórico de revisões. O acesso é bloqueado por padrão e exige um token local configurado no servidor. Não é serviço de produção, não integra Supabase/PostgreSQL e não é autenticação por usuário final.
+O SIE agora disponibiliza **CLI direta e API opcional** sobre o mesmo armazenamento SQLite para **testes locais**. As operações disponíveis são criar/atualizar projeto, buscar projeto e consultar histórico de revisões. A **API HTTP** é bloqueada por padrão e exige um token local configurado no servidor. A CLI acessa diretamente o SQLite no computador, sem token HTTP. Não é serviço de produção, não integra Supabase/PostgreSQL e não é autenticação por usuário final.
 
 ## Modo recomendado: CLI sem servidor nem token
 
-Siga a regra do projeto **CLI First**. Abra o PowerShell dentro de \`restructuring\apps\api\` com Python instalado e ambiente virtual ativo. A CLI usa somente o arquivo SQLite informado; não se conecta à internet, não inicia a API e não concede aprovação normativa.
+Siga a regra do projeto **CLI First**. Abra o PowerShell dentro de `restructuring\apps\api` com Python instalado e ambiente virtual ativo. A CLI usa somente o arquivo SQLite informado; não se conecta à internet, não inicia a API e não concede aprovação normativa.
 
 **1. Testar que a CLI responde:**
 
-\`\`\`powershell
+```powershell
 python -m sie_api.cli --help
-\`\`\`
+```
 
-**2. Criar um arquivo de dados de exemplo** (\`dados.json\`), usando PowerShell:
+**2. Criar um arquivo de dados de exemplo** (`dados.json`), usando PowerShell:
 
-\`\`\`powershell
+```powershell
 '{"circuitos":[{"nome":"TUG 01"}]}' | Set-Content -Encoding utf8 dados.json
-\`\`\`
+```
 
 **3. Salvar um novo projeto:**
 
-\`\`\`powershell
+```powershell
 python -m sie_api.cli --database sie-local.sqlite3 salvar --nome "Casa de teste" --arquivo dados.json
-\`\`\`
+```
 
-O retorno contém \`id\` (UUID) e \`revisao: 1\`. Copie o identificador retornado.
+O retorno contém `id` (UUID) e `revisao: 1`. Copie o identificador retornado.
 
-**4. Consultar o projeto e as revisões**, substituindo \`UUID_COPIADO\` pelo valor recebido:
+**4. Consultar o projeto e as revisões**, substituindo `UUID_COPIADO` pelo valor recebido:
 
-\`\`\`powershell
+```powershell
 python -m sie_api.cli --database sie-local.sqlite3 carregar --id UUID_COPIADO
 python -m sie_api.cli --database sie-local.sqlite3 historico --id UUID_COPIADO
-\`\`\`
+```
 
-**5. Atualizar o projeto:** edite \`dados.json\`, utilize o mesmo ID e forneça \`--revisao-esperada 1\`. Uma nova gravação bem-sucedida gerará a revisão 2.
+**5. Atualizar o projeto:** edite `dados.json`, utilize o mesmo ID e forneça `--revisao-esperada 1`. Uma nova gravação bem-sucedida gerará a revisão 2.
 
-\`\`\`powershell
+```powershell
 python -m sie_api.cli --database sie-local.sqlite3 salvar --id UUID_COPIADO --nome "Casa atualizada" --arquivo dados.json --revisao-esperada 1
-\`\`\`
+```
 
 Erros: código 2 = entrada/arquivo inválido; código 3 = projeto inexistente; código 4 = conflito de revisão. O banco tem limite de 1 MiB de JSON por projeto. O arquivo deve ser um **objeto** JSON. UTF-8 com ou sem BOM é aceito para compatibilidade com PowerShell.
 
-A CLI e a API podem usar o mesmo arquivo de banco, mas não modifique arquivos SQLite manualmente enquanto houver gravações em andamento. O token \`SIE_LOCAL_API_TOKEN\` se aplica somente à API HTTP e não é exigido para a CLI que trabalha com seu próprio acesso local.
+A CLI e a API podem usar o mesmo arquivo de banco, mas não modifique arquivos SQLite manualmente enquanto houver gravações em andamento. O token `SIE_LOCAL_API_TOKEN` se aplica somente à API HTTP e não é exigido para a CLI que trabalha com seu próprio acesso local.
 
 ---
 
