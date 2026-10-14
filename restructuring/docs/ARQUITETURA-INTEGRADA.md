@@ -23,7 +23,7 @@ flowchart TD
 | `domain/engines.py` | cálculo puro e testável | implementado no escopo declarado |
 | `domain/gates.py` | impede alegação normativa prematura | implementado |
 | `domain/edp.py` | catálogo EDP v09 e enquadramento controlado | implementado |
-| persistência | projetos, catálogo versionado, auditoria | próxima etapa |
+| persistência local | SQLite, revisões e trilha de eventos, API opt-in com token | implementada para testes locais |
 | importação/desenho | planta, cargas, unifilar e relatórios | próxima etapa |
 
 ## Contrato de análise
