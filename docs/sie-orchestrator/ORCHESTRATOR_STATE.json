@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "revision": 0,
+  "description": "Estado declarativo da fila do SIE; CI verifica integridade, nao comprova automaticidade nem normas.",
+  "history": [],
+  "tasks": [
+    {
+      "id": "SIE-AUTO-001",
+      "title": "CLI local de projetos",
+      "state": "DONE",
+      "dependencies": [],
+      "priority": 95,
+      "impact": 6,
+      "risk": 2,
+      "requirements_verified": true,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions run 38572009186: 51 passed; docs/stories/story-SIE-AUTO-001-CLI-LOCAL-PROJECTS.md"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-002",
+      "title": "Gates AIOX na CI",
+      "state": "DONE",
+      "dependencies": [],
+      "priority": 95,
+      "impact": 8,
+      "risk": 1,
+      "requirements_verified": true,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": true,
+          "evidence": [
+            "GitHub Actions run 38572622950: lint/typecheck/test/build success"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-011",
+      "title": "Escalonador de atividades e estado",
+      "state": "RUNNING",
+      "dependencies": [
+        "SIE-AUTO-001",
+        "SIE-AUTO-002"
+      ],
+      "priority": 90,
+      "impact": 9,
+      "risk": 3,
+      "requirements_verified": true,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-004",
+      "title": "Contratos de engenharia e limites",
+      "state": "PENDING",
+      "dependencies": [
+        "SIE-AUTO-011"
+      ],
+      "priority": 90,
+      "impact": 9,
+      "risk": 4,
+      "requirements_verified": true,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-005",
+      "title": "Fluxo E2E real em navegador",
+      "state": "PENDING",
+      "dependencies": [
+        "SIE-AUTO-011"
+      ],
+      "priority": 70,
+      "impact": 8,
+      "risk": 3,
+      "requirements_verified": true,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "NOR-01",
+      "title": "Fonte normativa e catalogos confiaveis",
+      "state": "BLOCKED",
+      "dependencies": [],
+      "priority": 100,
+      "impact": 10,
+      "risk": 8,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-007",
+      "title": "Motores eletricos normativos completos",
+      "state": "PENDING",
+      "dependencies": [
+        "NOR-01",
+        "SIE-AUTO-004"
+      ],
+      "priority": 100,
+      "impact": 10,
+      "risk": 8,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-006",
+      "title": "Identidade de producao e migracao de dados",
+      "state": "HUMAN_REQUIRED",
+      "dependencies": [],
+      "priority": 95,
+      "impact": 9,
+      "risk": 8,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-008",
+      "title": "Memoriais, quantitativos e diagramas",
+      "state": "PENDING",
+      "dependencies": [
+        "SIE-AUTO-007",
+        "SIE-AUTO-006"
+      ],
+      "priority": 65,
+      "impact": 7,
+      "risk": 7,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    },
+    {
+      "id": "SIE-AUTO-009",
+      "title": "QA final e documentacao completa",
+      "state": "PENDING",
+      "dependencies": [
+        "SIE-AUTO-005",
+        "SIE-AUTO-008"
+      ],
+      "priority": 75,
+      "impact": 8,
+      "risk": 6,
+      "requirements_verified": false,
+      "criteria": [
+        {
+          "id": "AC-BASE",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "source_refs": [
+        "docs/sie-orchestrator/EXECUTION_QUEUE.md"
+      ]
+    }
+  ]
+}
