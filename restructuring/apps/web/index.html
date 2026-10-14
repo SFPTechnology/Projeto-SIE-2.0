@@ -15,6 +15,7 @@
         <nav aria-label="Navegação principal">
           <a class="active" href="#visao-geral">Visão geral</a>
           <a href="#circuito">Analisar circuito</a>
+          <a href="#projetos">Projetos locais</a>
           <a href="#rastreabilidade">Rastreabilidade</a>
           <a href="#guia">Guia de uso</a>
         </nav>
@@ -55,11 +56,28 @@
             <div class="empty-state">Preencha as entradas e execute a análise.<small>O sistema explicará a seção, a proteção, a queda de tensão e o status de liberação.</small></div>
           </section>
         </section>
+        <section id="projetos" class="panel guide" aria-labelledby="projetos-titulo">
+          <p class="eyebrow">03 · PERSISTÊNCIA LOCAL</p>
+          <h2 id="projetos-titulo">Salvar e reabrir análises</h2>
+          <p>Recurso experimental, somente para ambiente local. A API exige token de desenvolvimento e mantém a aprovação normativa desabilitada.</p>
+          <div class="form-grid">
+            <label>Nome do projeto<input id="project-name" type="text" maxlength="160" value="Projeto de teste" /></label>
+            <label>Token local de acesso<input id="project-token" type="password" autocomplete="off" placeholder="Não salve em arquivos públicos" /></label>
+            <label>ID do projeto (copie para reabrir)<input id="project-id" type="text" placeholder="Gerado no primeiro salvamento" /></label>
+            <label>Revisão local<input id="project-revision" type="text" value="0" readonly /></label>
+          </div>
+          <div class="form-actions">
+            <p>Salva a última análise executada com sucesso. Ao reabrir, confira os campos e execute novamente o cálculo.</p>
+            <button class="primary" id="project-save" type="button">Salvar análise</button>
+            <button class="primary" id="project-load" type="button">Reabrir projeto</button>
+          </div>
+          <p id="project-status" role="status" aria-live="polite">Armazenamento desabilitado até configurar a API local e o token.</p>
+        </section>
         <section id="rastreabilidade" class="panel trace-panel">
-          <div class="section-heading"><div><p class="eyebrow">03 · GOVERNANÇA</p><h2>Rastreabilidade e segurança</h2></div></div>
+          <div class="section-heading"><div><p class="eyebrow">04 · GOVERNANÇA</p><h2>Rastreabilidade e segurança</h2></div></div>
           <div class="timeline"><div><b>Entrada</b><span>Dados informados pelo projetista</span></div><div><b>Motor</b><span>Fórmulas e critérios exibidos</span></div><div><b>Gate</b><span>Fontes e testes independentes auditados</span></div><div><b>Saída</b><span>Resultado e pendências explícitos</span></div></div>
         </section>
-        <section id="guia" class="guide panel"><p class="eyebrow">04 · PRÓXIMO PASSO</p><h2>Antes de liberar um projeto</h2><ol><li>Confirme a topologia e os dados do circuito.</li><li>Utilize tabelas e fatores pertencentes à norma aplicável e à instalação.</li><li>Valide tecnicamente os resultados com responsável habilitado.</li></ol></section>
+        <section id="guia" class="guide panel"><p class="eyebrow">05 · PRÓXIMO PASSO</p><h2>Antes de liberar um projeto</h2><ol><li>Confirme a topologia e os dados do circuito.</li><li>Utilize tabelas e fatores pertencentes à norma aplicável e à instalação.</li><li>Valide tecnicamente os resultados com responsável habilitado.</li></ol></section>
       </main>
     </div>
     <script src="./app.js"></script>
