@@ -1,8 +1,8 @@
 """Deterministic electrical calculation primitives.
 
 These formulas are engineering calculations, not a substitute for a normative
-design review.  Each result carries its assumptions and is released only when
-the normative evidence gate is explicitly approved by the caller.
+design review.  Each result carries its assumptions. No calculation here grants normative
+approval; server-side approval remains disabled in this prototype.
 """
 from dataclasses import dataclass
 from decimal import Decimal, ROUND_HALF_UP
@@ -13,6 +13,11 @@ Q = Decimal("0.01")
 def _positive(value: Decimal, name: str) -> None:
     if not value.is_finite() or value <= 0:
         raise ValueError(f"{name} deve ser positivo e finito")
+
+
+def _nonnegative(value: Decimal, name: str) -> None:
+    if not value.is_finite() or value < 0:
+        raise ValueError(f"{name} deve ser nao negativo e finito")
 
 
 def _round(value: Decimal) -> Decimal:
@@ -31,7 +36,7 @@ def calcular_queda_tensao_monofasica(
 ) -> QuedaTensaoResultado:
     """ΔV = 2 · L(km) · I · R, for a purely resistive single-phase model."""
     _positive(corrente_a, "corrente")
-    _positive(comprimento_m, "comprimento")
+    _nonnegative(comprimento_m, "comprimento")
     _positive(resistencia_ohm_km, "resistencia")
     _positive(tensao_v, "tensao")
     queda = Decimal("2") * (comprimento_m / Decimal("1000")) * corrente_a * resistencia_ohm_km
@@ -54,6 +59,10 @@ def selecionar_disjuntor(
     _positive(corrente_condutor_corrigida_a, "corrente do condutor")
     if corrente_projeto_a > corrente_condutor_corrigida_a:
         raise ValueError("Ib excede Iz; aumente o condutor ou reduza a carga")
+    if not catalogo_a:
+        raise ValueError("Catalogo de disjuntores vazio")
+    for corrente_nominal in catalogo_a:
+        _positive(corrente_nominal, "corrente nominal do catalogo")
     validos = sorted({x for x in catalogo_a if x >= corrente_projeto_a and x <= corrente_condutor_corrigida_a})
     if not validos:
         raise ValueError("Nenhum disjuntor comercial atende Ib ≤ In ≤ Iz")
@@ -76,10 +85,16 @@ def selecionar_condutor(
     _positive(fator_correcao, "fator de correcao")
     if fator_correcao > Decimal("1"):
         raise ValueError("Fator de correcao não pode exceder 1 neste motor")
+    if not tabela:
+        raise ValueError("Tabela de condutores vazia")
     candidatos = []
+    secoes = set()
     for secao, capacidade in tabela:
         _positive(secao, "secao")
         _positive(capacidade, "capacidade")
+        if secao in secoes:
+            raise ValueError("Secao duplicada na tabela de condutores")
+        secoes.add(secao)
         corrigida = capacidade * fator_correcao
         if corrigida >= corrente_projeto_a:
             candidatos.append((secao, corrigida))
