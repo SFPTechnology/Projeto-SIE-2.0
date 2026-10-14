@@ -113,3 +113,20 @@ def test_cli_requires_database_file(tmp_path):
     )
     assert run.returncode == 2
     assert "SQLite local persistente" in run.stderr
+
+
+def test_cli_accepts_windows_utf8_bom_and_normalizes_uuid(tmp_path):
+    db = tmp_path / "db.sqlite3"
+    source = tmp_path / "windows.json"
+    source.write_text('{"ambiente":"Copa"}', encoding="utf-8-sig")
+    created = invoke(db, "salvar", "--nome", "Windows", "--arquivo", str(source))
+    assert created.returncode == 0, created.stderr
+    identifier = json.loads(created.stdout)["id"]
+    upper = identifier.upper()
+    source.write_text('{"ambiente":"Copa revisada"}', encoding="utf-8-sig")
+    updated = invoke(
+        db, "salvar", "--id", upper, "--nome", "Windows",
+        "--arquivo", str(source), "--revisao-esperada", "1",
+    )
+    assert updated.returncode == 0, updated.stderr
+    assert json.loads(updated.stdout)["id"] == identifier
