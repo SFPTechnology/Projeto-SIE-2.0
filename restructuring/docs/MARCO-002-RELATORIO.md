@@ -22,7 +22,7 @@ Incremento de desenvolvimento na branch de reestruturação, isolado da main. **
 - A função de seleção de condutores usa tabela informada pelo cliente; portanto o resultado é preliminar e não representa tabela normativa aprovada.
 - O catálogo EDP já possui trilha documental interna em `Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md`, mas o enquadramento automático por corrente não verifica todas as condições e não autoriza a execução.
 - `EvidenciaNormativa.dados_validados` e `testes_independentes` continuam no modelo por compatibilidade com testes e clientes legados, mas são ignorados como autoridade de liberação.
-- A persistência SQLite **não está exposta na API**. Isso evita disponibilizar operações de escrita sem autenticação, permissões e trilha de identidade.
+- A persistência SQLite está exposta **somente em API local opcional**, bloqueada por padrão e exigindo `SIE_LOCAL_API_TOKEN` e `SIE_LOCAL_DB_PATH`. Essa proteção não substitui autenticação por usuário em produção.
 - CORS limita a origem de páginas no navegador, mas não autentica requisições e não protege uma API publicada na internet.
 
 ## Próximos gates e bloqueios
