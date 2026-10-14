@@ -51,3 +51,35 @@ def test_edp_endpoint_exposes_verified_catalog_provenance():
     assert res.status_code == 200
     assert res.json()['categoria']['codigo'] == 'T2'
     assert res.json()['catalogo']['status'] == 'VERIFICADO'
+
+
+def test_claimed_validation_cannot_approve_normative_use():
+    res = client.post('/api/v1/circuitos/analisar', json={
+        'corrente_a': 20, 'comprimento_m': 30, 'tensao_v': 220,
+        'resistencia_ohm_km': 7.41, 'fator_correcao': .8,
+        'tabela_condutores': [{'secao_mm2': 4, 'capacidade_a': 32}],
+        'evidencia': {'documento': 'Fonte informada pelo usuario',
+                     'edicao': '2026', 'referencia': 'Tabela declarada',
+                     'dados_validados': True, 'testes_independentes': True}
+    })
+    assert res.status_code == 200
+    assert res.json()['status_engenharia'] == 'PENDENTE'
+    assert res.json()['liberado_para_uso_normativo'] is False
+
+
+def test_cors_rejects_untrusted_browser_origin():
+    res = client.options('/api/v1/circuitos/analisar', headers={
+        'Origin': 'https://external.example',
+        'Access-Control-Request-Method': 'POST',
+    })
+    assert res.status_code == 400
+    assert res.headers.get('access-control-allow-origin') is None
+
+
+def test_cors_accepts_local_ui_origin():
+    res = client.options('/api/v1/circuitos/analisar', headers={
+        'Origin': 'http://localhost:5173',
+        'Access-Control-Request-Method': 'POST',
+    })
+    assert res.status_code == 200
+    assert res.headers.get('access-control-allow-origin') == 'http://localhost:5173'
