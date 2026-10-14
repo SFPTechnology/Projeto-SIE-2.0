@@ -11,12 +11,12 @@ Q = Decimal("0.01")
 
 
 def _positive(value: Decimal, name: str) -> None:
-    if not value.is_finite() or value <= 0:
+    if not isinstance(value, Decimal) or not value.is_finite() or value <= 0:
         raise ValueError(f"{name} deve ser positivo e finito")
 
 
 def _nonnegative(value: Decimal, name: str) -> None:
-    if not value.is_finite() or value < 0:
+    if not isinstance(value, Decimal) or not value.is_finite() or value < 0:
         raise ValueError(f"{name} deve ser nao negativo e finito")
 
 
