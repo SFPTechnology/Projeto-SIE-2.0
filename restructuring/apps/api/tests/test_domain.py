@@ -19,6 +19,11 @@ def test_gate_partial_evidence_pending():
     e = EvidenciaNormativa("Fonte", "v1", "Tabela 1", True, False)
     assert status_liberacao(e) == StatusEngenharia.PENDENTE
 
-def test_gate_complete_evidence_passes_metadata_gate_only():
+def test_client_claims_do_not_approve_normative_gate():
     e = EvidenciaNormativa("Fonte", "v1", "Tabela 1", True, True)
-    assert status_liberacao(e) == StatusEngenharia.APROVADO
+    assert status_liberacao(e) == StatusEngenharia.PENDENTE
+
+
+def test_missing_reference_blocks_even_if_flags_claim_success():
+    e = EvidenciaNormativa("Fonte", "v1", " ", True, True)
+    assert status_liberacao(e) == StatusEngenharia.BLOQUEADO
