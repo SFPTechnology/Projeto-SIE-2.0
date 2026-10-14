@@ -51,7 +51,11 @@ Siga o procedimento de execução descrito no README. Ao abrir a página, o indi
 
 O aplicativo não substitui projeto, norma aplicável, concessionária, ART ou responsável técnico. A liberação exibida é somente o resultado do gate de evidências fornecidas para este módulo; não equivale a aprovação integral da instalação.
 
-## 8. Testes locais
+## 8. Padrão de entrada EDP
+
+O endpoint `POST /api/v1/edp/enquadrar` incorpora o catálogo conferido das Tabelas 001/002 do padrão **EDP São Paulo PT.DT.PDN.00068 v09**, com vigência indicada no repositório em 14/04/2026. Ele retorna categoria, disjuntor, medição e condutores de entrada, preservando a fonte e seu status **VERIFICADO**. A sugestão por corrente permanece identificada como regra de automação e não substitui a análise final da concessionária.
+
+## 9. Testes locais
 
 Com o ambiente virtual ativo, execute:
 
