@@ -91,7 +91,7 @@ def test_full_browser_calculate_save_reload_recalculate(page, servers):
 
     expect(page.locator("#resultado")).to_contain_text("Gate normativo não aprovado")
     expect(page.locator("#resultado")).to_contain_text("PENDENTE")
-    expect(page.locator("#resultado")).to_contain_text("4.0 mm²")
+    expect(page.locator("#resultado")).to_contain_text("4 mm²")
     page.locator("#project-save").click()
 
     expect(page.locator("#project-status")).to_contain_text("revisao 1")
