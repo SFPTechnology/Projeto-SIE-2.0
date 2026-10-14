@@ -1,22 +1,20 @@
-# EXECUTION_QUEUE — fila dinâmica
+# EXECUTION_QUEUE — fila reconciliada
 
-Regra: READY somente com dependências comprovadas; DONE somente quando todos os ACs possuírem evidência.
+Critério: `READY` só com dependências DONE e requisitos definidos; `DONE` exige todos os critérios documentados e evidência verificada. A fonte canônica dos estados é `ORCHESTRATOR_STATE.json`.
 
-| Ordem | ID | Atividade | Depende de | Prioridade | Estado | Critério de saída |
-|---|---|---|---|---|---|---|
-| 1 | SIE-AUTO-001 | Implementar CLI de projetos locais | SQLite e testes existentes | P1 | DONE | CLI + testes + documentação + CI |
-| 2 | SIE-AUTO-002 | Adicionar verificações de conformidade às stories/CI | Story e estrutura AIOX | P1 | DONE | Detectar violações de qualidade sem suprimir erros |
-| 3 | SIE-AUTO-003 | Normalizar evidências de tabelas e revisar origem do catálogo EDP | Pesquisa e documentos fonte | P1 | BLOCKED | Fonte primária, revisão e casos independentes |
-| 4 | SIE-AUTO-004 | Reforçar contratos do núcleo elétrico e limites dos modelos | Motor atual, requisitos e SIE-AUTO-011 | P1 | READY | Testes de borda e falha segura |
-| 5 | SIE-AUTO-005 | Teste E2E de API, UI, SQLite e recuperação | API/CLI/UI e SIE-AUTO-011 | P2 | READY | Fluxo reproduzido por navegador real |
-| 6 | SIE-AUTO-006 | Projeto de identidade, permissões e migração para PostgreSQL | Modelos e credenciais de ambiente autorizado | P1 | PENDING | Isolamento de usuários e rollback |
-| 7 | SIE-AUTO-007 | Expandir motor conforme NBR 5410 (proteção, impedância, etc.) | NOR-01 e testes independentes | P1 | BLOCKED | Casos de referência auditados |
-| 8 | SIE-AUTO-008 | Integrar memoriais, diagrama e quantitativos | Domínio e cálculos aprovados | P2 | PENDING | Rastreabilidade total e regressão |
-| 9 | SIE-AUTO-009 | Manuais finais, pacote local e revisão de UX/E2E | Funcionalidades consolidadas | P2 | PENDING | Documentos correspondem ao software testado |
-| 10 | SIE-AUTO-010 | Liberação controlada e PR para revisão | Gates anteriores | P1 | PENDING | Evidências completas, análise independente, decisão de merge |
+| ID | Atividade | Dependências | Estado | Evidência / próxima ação |
+|---|---|---|---|---|
+| SIE-AUTO-001 | CLI de projetos | Nenhuma | DONE | Testes CLI e documentação anteriores |
+| SIE-AUTO-002 | Gates AIOX | Nenhuma | DONE | lint/typecheck/test/build na CI |
+| SIE-AUTO-011 | Escalonador determinístico | 001, 002 | DONE | 67 testes e qualidade AIOX anteriores |
+| SIE-AUTO-004 | Contratos de engenharia | 011 | DONE | 90 pytest, 38612351333; AIOX 38612351441 |
+| SIE-AUTO-005 | E2E real de navegador | 011 | DONE | 3 Chromium, 38612351246 |
+| SIE-AUTO-003 | Evidência normativa e rastreabilidade de tabelas | Documentos fonte | BLOCKED | Inventário SHA256 6/6 (38613344311), conteúdo normativo ainda não validado |
+| NOR-01 | Fontes/catálogos normativos confiáveis | Fonte primária e casos | BLOCKED | Matrizes e versões independentes pendentes |
+| SIE-AUTO-006 | Identidade de produção / migração DB | Ambiente autorizado | HUMAN_REQUIRED | Sem credenciais nem escopo de produção autorizados |
+| SIE-AUTO-007 | Motores normativos completos | NOR-01, 004 | PENDING | Bloqueado pelos dados normativos |
+| SIE-AUTO-008 | Diagramas e memoriais | 007, 006 | PENDING | Aguardar domínio validado e isolamento |
+| SIE-AUTO-009 | QA final/UX/documentação | 005, 008 | PENDING | Aguardar sistema completo |
+| SIE-AUTO-010 | Liberação controlada | 009, 006, NOR-01 | PENDING | Testes independentes e aprovação técnica |
 
-As linhas representam apenas tarefas fundamentadas no repositório e nas instruções do usuário. Cada execução deve validar a árvore real e os checks antes de alterar estado.
-
-| 11 | SIE-AUTO-011 | Escalonador de estados e grafo | Stories 001, 002 | P1 | DONE | 67 pytest + gates AIOX, runs 38574851595 / 38574851619 |
-
-Após validar 011: **SIE-AUTO-004 e SIE-AUTO-005 estão READY**; NOR-01 segue BLOCKED. O orquestrador de tarefas não substitui o executor AIOX.
+A referência histórica de SIE-AUTO-003 foi reconciliada no JSON, mas **não** foi marcada DONE pela simples criação do manifesto. Não há atividade READY nesta revisão. Um bloqueio de norma não deve fazer o orquestrador inventar valores de tabelas.
