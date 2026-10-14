@@ -26,3 +26,12 @@ jobs:
         working-directory: restructuring/apps/api
       - name: Check frontend JavaScript syntax
         run: node --check restructuring/apps/web/app.js
+      - name: Inventory checked-out source artifacts without approving normative values
+        run: python -m sie_api.normative_inventory --root . --output run-artifacts/sie-normative-integrity.json --require-all
+      - name: Upload source integrity manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: sie-normative-integrity
+          path: run-artifacts/sie-normative-integrity.json
+          if-no-files-found: error
+          retention-days: 7
