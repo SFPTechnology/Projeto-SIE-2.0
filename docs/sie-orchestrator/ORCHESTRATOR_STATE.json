@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 5,
-  "description": "Estado declarativo da fila do SIE; CI verifica integridade, nao comprova automaticidade nem normas.",
+  "revision": 6,
+  "description": "Estado declarativo da fila do SIE; CI verifica integridade, nao comprova automaticidade nem normas. NOR-01 exige SIE-AUTO-003 concluida; dependencia documental reconciliada no grafo.",
   "history": [
     {
       "activity": "SIE-AUTO-011",
@@ -107,13 +107,6 @@
       "to": "PENDING",
       "reason": "Reconciled existing release task from EXECUTION_QUEUE; prereqs not fulfilled",
       "at": "2026-10-14T18:15:30.168Z"
-    },
-    {
-      "activity": "NOR-01",
-      "from": "BLOCKED",
-      "to": "BLOCKED",
-      "reason": "Dependency graph reconciled: source evidence normalization SIE-AUTO-003 must close before normative catalog can be validated; no approval granted",
-      "at": "2026-10-14T18:19:12.261Z"
     }
   ],
   "tasks": [
