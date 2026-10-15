@@ -32,3 +32,7 @@
 
 ## ADR-SIE-011 — Fonte canônica de tarefas e reconciliação de dependências
 **Decisão:** o estado JSON governa as transições; os arquivos de fila/grafo são documentação derivada. Atividades 003/010 existentes na fila foram reconciliadas no JSON; NOR-01 depende da normalização 003. Alteração de dependência não é transição de estado e não deve ser registrada como tal. **Razão:** evita sucesso simulado e preserva um grafo acíclico consistente.
+
+## ADR-SIE-012 — Baseline imutável e exceções de caracterização F00
+
+**Decisão:** fixar o SHA `8d86db26f5e8675eaced4638af14bd84019e15e7`, capturar34 cenários em subprocesso com fonte extraída desse commit e impedir sobrescrita/regravação implícita das expectativas. Preservação da mesma implementação, equivalência futura e lacuna formal são estados distintos na matriz de 37 IDs. **Razão:** testes golden descrevem comportamento, inclusive defeitos; não são fonte normativa ou autorização de produção. **Evidência:** `docs/implantacao-sie-2-0/F00/BASELINE_CI.md`, três QA e `PARECER_ARQUITETURA.md`. **Limite:** ENG-001/002, RLS e demais riscos permanecem abertos; futura correção cria teste técnico separado e desvio versionado sem apagar a referência antiga.

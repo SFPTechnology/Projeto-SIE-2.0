@@ -1,0 +1,6 @@
+$ /workspace/scratch/34018a10e5db/f00-venv/bin/python scripts/f00_golden.py --verify
+CWD: .
+
+PASS: 34 cases replayed from 8d86db26f5e8675eaced4638af14bd84019e15e7; fixture unchanged
+
+EXIT: 0

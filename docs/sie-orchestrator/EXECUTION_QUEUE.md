@@ -4,6 +4,7 @@ Critério: `READY` só com dependências DONE e requisitos definidos; `DONE` exi
 
 | ID | Atividade | Dependências | Estado | Evidência / próxima ação |
 |---|---|---|---|---|
+| F00 | Diagnóstico e preservação da baseline | Nenhuma; fase inicial | VALIDATING | 37 IDs, replay 34, 134 pytest, 3 Chromium, 18 AIOX, QA3; falta concluir versionamento |
 | SIE-AUTO-001 | CLI de projetos | Nenhuma | DONE | Testes CLI e documentação anteriores |
 | SIE-AUTO-002 | Gates AIOX | Nenhuma | DONE | lint/typecheck/test/build na CI |
 | SIE-AUTO-011 | Escalonador determinístico | 001, 002 | DONE | 67 testes e qualidade AIOX anteriores |

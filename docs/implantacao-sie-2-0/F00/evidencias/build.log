@@ -1,0 +1,13 @@
+$ npm run build
+CWD: .
+
+
+> projeto-sie-quality-gates@0.0.0 build
+> node scripts/validate-sdc-auto-1.js build
+
+.aiox-core/development/workflows/story-development-cycle.yaml: valid=true errors=0 warnings=0
+.aiox-core/development/workflows/story-development-cycle-headless-yolo.yaml: valid=true errors=0 warnings=0
+[TerminalSpawner] Cleanup triggered by exit
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+EXIT: 0

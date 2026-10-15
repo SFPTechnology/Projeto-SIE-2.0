@@ -30,7 +30,7 @@ python -m uvicorn sie_api.main:app --reload
 
 ```powershell
 cd restructuring\apps\web
-py -3.11 -m http.server 5173
+py -3.11 -m http.server 5173 --bind 127.0.0.1
 ```
 
 4. Abra `http://127.0.0.1:5173`. A documentação da API fica em `http://127.0.0.1:8000/docs`.

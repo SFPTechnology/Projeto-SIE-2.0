@@ -1,0 +1,5 @@
+$ node --check restructuring/apps/web/app.js
+CWD: .
+
+
+EXIT: 0

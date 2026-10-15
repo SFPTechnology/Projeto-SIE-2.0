@@ -32,3 +32,7 @@ flowchart TD
 ## Política de transições
 
 `ORCHESTRATOR_STATE.json` é fonte canônica de estados. `scheduler.py` verifica dependências, ciclos, condições de DONE e evidência registrada; a veracidade das evidências exige conferência externa. As transições registram o motivo, mas não executam agentes em segundo plano.
+
+## Auditoria F00 — registro separado
+
+F00 é uma fase inicial sem dependência de fase anterior. Seu estado está no mesmo JSON canônico; o fechamento do inventário não altera as dependências técnicas do grafo acima. A sequência de fases será consumida por artefatos próprios, sem inferir aprovação de motores ou produção pela F00.

@@ -1,0 +1,200 @@
+[
+  {
+    "id": "baseline-api",
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "--ignore=tests/test_legacy_golden.py"
+    ],
+    "cwd": "restructuring/apps/api",
+    "exit_code": 0,
+    "duration_seconds": 1.456,
+    "log": "baseline-api.log"
+  },
+  {
+    "id": "golden-replay",
+    "command": [
+      "python",
+      "scripts/f00_golden.py",
+      "--verify"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "duration_seconds": 0.129,
+    "log": "golden-replay.log"
+  },
+  {
+    "id": "golden-tests",
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_legacy_golden.py"
+    ],
+    "cwd": "restructuring/apps/api",
+    "exit_code": 0,
+    "duration_seconds": 0.288,
+    "log": "golden-tests.log"
+  },
+  {
+    "id": "api-regression",
+    "command": [
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "cwd": "restructuring/apps/api",
+    "exit_code": 0,
+    "duration_seconds": 1.449,
+    "log": "api-regression.log"
+  },
+  {
+    "id": "lint",
+    "command": [
+      "npm",
+      "run",
+      "lint"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "duration_seconds": 0.466,
+    "log": "lint.log"
+  },
+  {
+    "id": "typecheck",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "duration_seconds": 0.425,
+    "log": "typecheck.log"
+  },
+  {
+    "id": "aiox-tests",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "duration_seconds": 0.398,
+    "log": "aiox-tests.log"
+  },
+  {
+    "id": "build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "duration_seconds": 0.588,
+    "log": "build.log"
+  },
+  {
+    "id": "web-syntax",
+    "command": [
+      "node",
+      "--check",
+      "restructuring/apps/web/app.js"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "duration_seconds": 0.095,
+    "log": "web-syntax.log"
+  },
+  {
+    "id": "scheduler-state",
+    "command": [
+      "python",
+      "-m",
+      "sie_api.scheduler_cli",
+      "--state",
+      "docs/sie-orchestrator/ORCHESTRATOR_STATE.json",
+      "inspect"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "duration_seconds": 0.039,
+    "log": "scheduler-state.log"
+  },
+  {
+    "id": "source-inventory-help",
+    "command": [
+      "python",
+      "-m",
+      "sie_api.normative_inventory",
+      "--help"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "duration_seconds": 0.037,
+    "log": "source-inventory-help.log"
+  },
+  {
+    "id": "clean-api-regression",
+    "command": [
+      "/workspace/scratch/34018a10e5db/f00-venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider"
+    ],
+    "cwd": "restructuring/apps/api",
+    "exit_code": 0,
+    "log": "clean-api-regression.log"
+  },
+  {
+    "id": "clean-golden-replay",
+    "command": [
+      "/workspace/scratch/34018a10e5db/f00-venv/bin/python",
+      "scripts/f00_golden.py",
+      "--verify"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "log": "clean-golden-replay.log"
+  },
+  {
+    "id": "clean-dependency-check",
+    "command": [
+      "/workspace/scratch/34018a10e5db/f00-venv/bin/python",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "log": "clean-dependency-check.log"
+  },
+  {
+    "id": "browser-e2e",
+    "command": [
+      "/workspace/scratch/34018a10e5db/f00-venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "restructuring/e2e"
+    ],
+    "cwd": ".",
+    "exit_code": 0,
+    "log": "browser-e2e.log"
+  }
+]
