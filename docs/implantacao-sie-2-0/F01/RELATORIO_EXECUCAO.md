@@ -82,3 +82,13 @@ Três papéis de LLM não equivalem a três revisores humanos independentes. Nã
 - Quality gates AIOX: **success** — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38726712882
 
 Comparação com a baseline: os testes de regressão F00 permanecem representados na suíte integrada, sem alterar os resultados congelados do SHA original. A classificação normativa permanece **BLOCKED** apesar da CI verde; testes de software não substituem dupla conferência de células ou homologação de cálculos. Este adendo de documentação não modifica runtime, testes, fontes normativas ou banco.
+
+## Adendo — Programa QA3 end-to-end configurado (15/10/2026)
+
+Foram criados três perfis custom agents GitHub Copilot `.github/agents/f01-qa-*.agent.md`, seis skills em `.github/skills/f01-*/SKILL.md`, manifesto `QA3_MANIFEST.json`, plano `QA3_MULTIAGENTES_PLANO_EXECUCAO.md`, três branches de isolamento e issues #4, #5 e #6. Cada perfil tem responsabilidade **integral** por cinco etapas de correção e seis critérios de aceite, com perspectiva primária distinta e revisão cruzada apenas após parecer inicial isolado. O comando `scripts/f01_release_gate.py` verifica estruturas e recusa liberação de F02 sem as evidências exigidas; *não* certifica normas e não muda o estado sozinho.
+
+**Importante:** esses três perfis estão **CONFIGURADOS**, porém NÃO foram efetivamente executados como três instâncias independentes. O projeto continua com **0 células de tabela homologadas, 0 casos quantitativos normativos independentes aprovados**, sem atestação profissional. Nenhum gate da F01 passa apenas por ter sido configurado. O programa não elimina os riscos QA-01, QA-02 e QA-03 anteriores.
+
+Evidência computacional da configuração antes do fechamento documental: CI GitHub Actions API **168 testes aprovados** https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38740090384 ; navegador e AIOX no mesmo SHA conforme GitHub Actions. O número de testes mede software, não homologação de engenharia.
+
+**F01 = BLOCKED; F02 = NÃO LIBERADA; PR #3 segue draft.**
