@@ -9,6 +9,7 @@ on:
       - '.github/agents/f01-qa-*.agent.md'
       - '.github/skills/f01-*/SKILL.md'
       - 'scripts/f01_release_gate.py'
+      - 'scripts/f01_yolo_runner.py'
       - 'docs/stories/story-SIE-AUTO-011-DEPENDENCY-SCHEDULER.md'
       - '.github/workflows/sie-restructuring-api.yml'
   pull_request:
@@ -34,6 +35,10 @@ jobs:
         working-directory: restructuring/apps/api
       - name: Verify independent QA3 manifests cannot bypass F01 gate
         run: python scripts/f01_release_gate.py --verify-invariants
+      - name: Check F01 YOLO planner dry-run and syntax (do not start agents)
+        run: |
+          python -m py_compile scripts/f01_yolo_runner.py
+          python scripts/f01_yolo_runner.py
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api
