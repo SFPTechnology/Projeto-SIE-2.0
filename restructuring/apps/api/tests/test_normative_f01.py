@@ -1,12 +1,9 @@
 """F01: triagem normativa, fronteira HTTP e prevenção de aprovação falsa."""
 from datetime import date
-from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from sie_api.domain.normative import RECORDS, Context, inspect_record
-from sie_api.normative_api import router
+from sie_api.main import app
 
-app = FastAPI()
-app.include_router(router)
 client = TestClient(app)
 BASE = {"typology": "residencial", "uf": "SP", "voltage_v": 220,
         "reference_date": "2026-10-15", "distributor": "EDP_SP"}
@@ -70,10 +67,7 @@ def test_stateless_immutable_registry():
     assert inspect_record(original, Context("residencial", "SP", 220.0, date(2026,10,15)))["normative_approved"] is False
 
 def test_main_application_mounts_routes():
-    # Isolar inspeção porque outros testes podem manipular módulos FastAPI em sys.modules.
-    import importlib
-    import sie_api.main as main_module
-    integrated_app = importlib.reload(main_module).app
-    routes = {getattr(route, "path", "") for route in integrated_app.routes}
-    assert "/api/v1/normas/aplicabilidade" in routes, f"INTEGRATED_ROUTES={sorted(routes)!r}, MODULE={main_module.__file__}, DECLARED_ROUTES={[r.path for r in router.routes]!r}"
+    # As rotas devem existir na mesma aplicação que serve os cálculos legados.
+    routes = {getattr(route, "path", "") for route in app.routes}
+    assert "/api/v1/normas/aplicabilidade" in routes, sorted(routes)
     assert "/api/v1/circuitos/analisar" in routes
