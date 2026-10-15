@@ -33,6 +33,10 @@ def test_trace_proves_algorithm_used_not_normative_rule(tmp_path):
                        "tensao_v": 220, "comprimento_m": 30}]}, 0)
     saved = repo.registrar_ensaio(pid, rev, "Iluminacao", example())
     assert len(saved["algorithm_ids_executed"]) == 3
+    assert set(saved["algorithm_function_source_sha256"]) == {
+        "selecionar_condutor", "selecionar_disjuntor",
+        "calcular_queda_tensao_monofasica"}
+    assert all(len(h) == 64 for h in saved["algorithm_function_source_sha256"].values())
     assert saved["resultado"]["status_engenharia"] == "PENDENTE"
     assert saved["resultado"]["liberado_para_uso_normativo"] is False
     assert saved["normative_rule_ids_used_verified"] == []
