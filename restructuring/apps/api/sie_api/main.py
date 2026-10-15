@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field, ConfigDict
 from .application import analisar_circuito
 from .domain.edp import enquadrar_edp
 from .storage_api import router as storage_router
+from .normative_api import router as normative_router
 
 app = FastAPI(title="SIE 2.0 - API modular", version="0.1.0")
 app.add_middleware(
@@ -15,6 +16,7 @@ app.add_middleware(
     allow_headers=["Content-Type", "Authorization"],
 )
 app.include_router(storage_router)
+app.include_router(normative_router)
 
 
 class Circuito(BaseModel):
