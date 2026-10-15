@@ -149,7 +149,7 @@
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 12,
+  "revision": 13,
   "schema_version": 1,
   "tasks": [
     {
@@ -771,6 +771,24 @@
         "qa02": "BLOQUEADO",
         "qa03": "PENDENTE",
         "f02_allowed": false
+      },
+      "autonomous_yolo_execution": {
+        "plan": "docs/implantacao-sie-2-0/F01/PLANO_EXECUCAO_AUTONOMA_YOLO.md",
+        "runner": "scripts/f01_yolo_runner.py",
+        "run_mode": "SANDBOXED_NONINTERACTIVE_COPILOT_CLI_YOLO",
+        "launch_command": "python scripts/f01_yolo_runner.py --execute --sandbox-confirmed",
+        "status": "CONFIGURED_NOT_EXECUTED",
+        "number_of_confirmed_runs": 0,
+        "preserves_f00": "REGRESSION_ONLY",
+        "max_agent_fix_rounds": 3,
+        "max_integration_fix_rounds": 2,
+        "qa_agents": 3,
+        "cross_review_required": true,
+        "external_normative_verification_required": true,
+        "auto_f02_start": false,
+        "accepted_gates_at_configuration": 0,
+        "deployment_permitted": false,
+        "main_merge_permitted": false
       }
     }
   ]
