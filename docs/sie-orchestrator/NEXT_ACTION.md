@@ -22,3 +22,10 @@ Sem merge, deploy, edição de SQL remoto ou execução em background.
 ## Plano QA3 ampliado — 15/10/2026
 
 Agentes F01 QA-01 (arquiteto), QA-02 (engenharia elétrica), QA-03 (dados/UX/LLM) foram definidos com seis skills em `.github/agents/f01-*.agent.md` e `.github/skills/f01-*/SKILL.md`, e têm três branches separadas e issues #4, #5, #6. **Ainda não foram executados como sessões independentes**. Leia `docs/implantacao-sie-2-0/F01/LEIA_PRIMEIRO_QA3.md` e `QA3_MULTIAGENTES_PLANO_EXECUCAO.md`. O objetivo é 6/6 gates mediante fontes/evidências, mas as verificações externas ainda são impeditivas. `QA3_MANIFEST.json` registra os seis gates NÃO APROVADOS; `python scripts/f01_release_gate.py --verify-invariants` deve confirmar o bloqueio correto, não forçar DONE.
+
+## Plano mestre YOLO da F01 — configurado, ainda NÃO executado
+- Plano operacional: `docs/implantacao-sie-2-0/F01/PLANO_EXECUCAO_AUTONOMA_YOLO.md`.
+- Executor não interativo com 3 QA, congelamento de commits, revisões cruzadas e até 3 ciclos de correção por agente: `scripts/f01_yolo_runner.py`. Plano sem efeitos: `python scripts/f01_yolo_runner.py`. Execução **somente em sandbox descartável com GitHub Copilot CLI autenticado e permissões restritas de GitHub**: `python scripts/f01_yolo_runner.py --execute --sandbox-confirmed`.
+- O launcher executa `copilot -p --agent --yolo --no-ask-user`. Atualiza por push somente `qa/f01-*` e `feat/f01-governanca-normativa` após testes locais, não `main`, nem produção. O próprio prompt não garante controle do filesystem ou rede: isolamento VM/container é externo.
+- Primeiro passe QA deve gerar dossiê; depois revisão cruzada, integração na F01 e mais testes. O executor não autodeclara G01..G06, não verifica CI remoto como prova, nem inicia F02; relatórios devem registrar `BLOCKED_EVIDENCE`/status correspondente quando não houver fontes independentes/licenças/signoff.
+- **0 sessões QA executadas por esta atualização; F00 DONE; F01 BLOCKED; F02 não liberada.**
