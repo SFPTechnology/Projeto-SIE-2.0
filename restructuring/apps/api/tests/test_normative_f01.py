@@ -86,3 +86,18 @@ def test_versioned_registry_is_independent_from_code_and_unapproved():
     assert len(set(r.id for r in records)) == len(records)
     assert all(r.revision >= 1 and r.verified_data is False for r in records)
     assert all("revision" in r for r in _rules().values())
+
+def test_edp_edition_published_after_reference_date_requires_review():
+    earlier = _rules({**BASE, "reference_date": "2026-03-01"})
+    item = earlier["EDP-SP-PTDT00068-V09"]
+    assert item["status"] == "PENDENTE"
+    assert "EDICAO_PUBLICADA_APOS_DATA_REFERENCIA" in item["reasons"]
+    assert item["normative_approved"] is False
+
+def test_edp_official_publication_metadata_not_equivalent_to_approval():
+    registry = {r.id: r for r in RECORDS}
+    edp = registry["EDP-SP-PTDT00068-V09"]
+    assert edp.revision == 2
+    assert edp.official_publication_date == date(2026, 4, 15)
+    assert edp.official_url == "https://www.edp.com.br/normas-e-padroes-tecnicos/"
+    assert edp.verified_data is False
