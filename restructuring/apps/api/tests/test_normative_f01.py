@@ -71,3 +71,18 @@ def test_main_application_mounts_routes():
     assert client.get("/api/v1/normas/catalogo").status_code == 200
     assert client.get("/api/v1/health").status_code == 200
     assert client.post("/api/v1/normas/aplicabilidade", json=BASE).status_code == 200
+
+
+def test_versioned_registry_is_independent_from_code_and_unapproved():
+    from importlib.resources import files
+    import json
+    from sie_api.domain.normative import load_registry
+    source = files("sie_api").joinpath("data", "normative_registry.json")
+    manifest = json.loads(source.read_text(encoding="utf-8"))
+    records = load_registry()
+    assert manifest["schema_version"] == 1
+    assert manifest["registry_state"] == "NAO_HOMOLOGADO"
+    assert len(records) == len(manifest["records"]) == 8
+    assert len(set(r.id for r in records)) == len(records)
+    assert all(r.revision >= 1 and r.verified_data is False for r in records)
+    assert all("revision" in r for r in _rules().values())
