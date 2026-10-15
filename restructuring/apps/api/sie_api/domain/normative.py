@@ -67,6 +67,10 @@ def inspect_record(record: NormativeRecord, ctx: Context) -> dict:
         return _decision(record, "NAO_APLICAVEL", ["TIPOLOGIA_FORA_DO_RECORTE"])
     if record.uf is not None and ctx.uf != record.uf:
         return _decision(record, "NAO_APLICAVEL", ["UF_FORA_DO_RECORTE"])
+    # Data de publicação identifica edição, mas não prova início de vigência.
+    # Se o projeto é anterior, bloquear seleção automática da edição encontrada.
+    if record.official_publication_date and ctx.reference_date < record.official_publication_date:
+        return _decision(record, "PENDENTE", ["EDICAO_PUBLICADA_APOS_DATA_REFERENCIA"])
     if record.effective_from and ctx.reference_date < record.effective_from:
         return _decision(record, "NAO_APLICAVEL", ["ANTES_DA_VIGENCIA"])
     if record.effective_until and ctx.reference_date > record.effective_until:
