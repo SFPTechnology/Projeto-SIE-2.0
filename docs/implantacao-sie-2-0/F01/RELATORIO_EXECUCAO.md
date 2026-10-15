@@ -107,3 +107,12 @@ Os arquivos `QA-01.md`, `QA-02.md` e `QA-03.md` receberam novas revisões de per
 A CI computacional é exigida no SHA final; a execução do código elevou a suíte para pelo menos **200 testes** aprovados antes dos commits finais documentais, além de 4 Chromium e AIOX nos commits verificados. Não afirmar conformidade ABNT/EDP com base em CI.
 
 **Status deliberado e preservado:** F00 DONE; F01 BLOCKED; G01..G06 0 aceitos no manifesto; F02 não liberada. Prioridade subsequente: provas documentais e dupla conferência, vínculo a regras homologadas, UX/segurança multiusuário, agentes QA3 de fato independentes e parecer final em CI mesmo commit.
+
+## Verificação integrada encerrada — commit `516ade10731664148bdd60e2cf468dbcfe3494d6`
+- **API + testes históricos/cálculo/regressão:** 200 testes aprovados, 1 warning — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38802503246
+- **Navegador Chromium:** 4 testes aprovados — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38802503369
+- **AIOX quality gates:** success — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38802503251
+- Replay F00 e inventário executados pela workflow API; não altera golden nem normativa.
+- **Essas três CI são do MESMO commit**, comprovam qualidade de software no recorte ensaiado, não aprovação de fonte ABNT/EDP.
+- Não ocorreu execução de três Copilot agents realmente independentes; o CLI não está presente na infraestrutura disponível desta conversa. QA-01 PENDENTE, QA-02 BLOQUEADO e QA-03 PENDENTE, sem signoff profissional.
+- `QA3_MANIFEST.json`: G01–G06 **0/6 aprovados**; F01 BLOCKED; F02 não liberada; PR #3 permanece draft e `main` intocada.
