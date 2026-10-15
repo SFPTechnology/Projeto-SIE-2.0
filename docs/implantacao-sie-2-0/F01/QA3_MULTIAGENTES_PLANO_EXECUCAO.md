@@ -55,3 +55,11 @@ Em ambiente compatível com os custom agents de GitHub Copilot, abra o repositó
 
 ## Aceite e decisão da próxima fase
 Use `scripts/f01_release_gate.py --verify-invariants` na CI. Ele verifica integridade do checklist e impede declaração inconsistentes; **não valida autenticidade humana ou técnica das fontes**, que exige revisão documental independente. Só depois de provas de G01..G06 aceitas + revisão humana pertinente o coordenador poderá aprovar F01 DONE; jamais liberar F02 antecipadamente.
+
+## Checklist de ativação — recursos criados, execuções ainda pendentes
+
+- Três branches distintas, mesma baseline `8aec14ac0817ba75ea5e5cee90240368807f1bf7`: `qa/f01-arquiteto`, `qa/f01-engenheiro-eletrico`, `qa/f01-dados-ux-llm`.
+- Issues independentes: https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/4, https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/5, https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/6.
+- Manual iniciante: `LEIA_PRIMEIRO_QA3.md`. Ativador opcional Windows: `scripts/INICIAR_F01_QA3.ps1` (modo simulação por padrão; requer `-Executar` e Copilot CLI autenticado).
+- `scripts/f01_release_gate.py` é guardião estrutural fail-closed: sem revisão documental independente e assinaturas reais, nenhuma porcentagem ou JSON autoriza F01 DONE.
+- **Status atual dos 3 agentes:** CONFIGURADOS; **0/3 EXECUTADOS**. Não afirmar paralelismo, revisão independente concluída ou status 6/6 aprovado.
