@@ -59,3 +59,17 @@ Três papéis de LLM não equivalem a três revisores humanos independentes. Nã
 - Aprovação QA-01/02/03 integral: **NÃO ATENDIDO**
 
 **DECISÃO: F01 BLOCKED. NÃO AVANÇAR À F02.** Retomar a F01 na mesma branch após conferência das fontes primárias e implementação rastreável dos históricos; produção/main/SQL não alterados.
+
+## ADENDO DE RETOMADA — 15/10/2026 (prevalece sobre os estados históricos anteriores)
+
+**Implementado agora:** `normative_snapshots.py`, `storage.py`, `storage_api.py` e `test_normative_snapshots_f01.py`. O SQLite **local** captura, na mesma transação da gravação de um projeto, um snapshot versionado do **catálogo de fontes** e um evento de revisão; SHA-256 e triggers impedem alteração inadvertida. GETs de histórico/impacto exigem token local. Bancos legados não recebem backfill inventado. A alteração de edição gera diff e exigência de análise sem recálculo automático.
+
+**Limite decisivo:** snapshot do catálogo **não demonstra quais regras/células foram aplicadas a cada cálculo**; não representa histórico integral recuperável do projeto. Por isso a task 01.06 avança, mas continua PARCIAL, assim como 01.09. Nenhuma migração Postgres/Supabase foi executada.
+
+**Fontes:** EDP PT.DT.PDN.00068 v09, edição publicada em 15/04/2026, identificada oficialmente; NBR 5410, NBR 5419 e NR-10 identificadas por catálogo/página oficiais, conforme `EVIDENCIA_FONTES_OFICIAIS.md`. O registro EDP recebeu revisão editorial 2; `verified_data=false`. Para projeto anterior à publicação da v09, a API retorna `PENDENTE`, sem presumir vigência.
+
+**Testes:** CI após a implementação de snapshots: API **158 passed, 1 warning**, https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38725502538 ; Chromium **4 passed**, https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38725502550 ; AIOX success https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38725502574 . O teste de cronologia EDP foi incluído depois; observar a CI do último commit de código para contagem final. Esses testes são computacionais, não avaliam conformidade de valores normativos.
+
+**QA-01 PENDENTE** (vínculo regra aplicada e recuperação integral); **QA-02 BLOQUEADO** (zero células e zero casos normativos independentes com dupla conferência); **QA-03 PENDENTE** (controle multiusuário, produção, histórico). Pareceres atualizados em `QA-01.md`, `QA-02.md`, `QA-03.md`. As afirmações do relatório inicial de que "não existe snapshot" permanecem apenas como histórico de execução anterior, corrigido por este adendo.
+
+**ESTADO FINAL DA RETOMADA: F01 BLOCKED; F02 NÃO LIBERADA; MAIN/PRODUÇÃO PRESERVADAS.** Não alterar essa decisão sem resolver os gates normativos e aprovações exigidos.
