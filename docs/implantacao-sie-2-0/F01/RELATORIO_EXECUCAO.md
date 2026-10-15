@@ -73,3 +73,12 @@ Três papéis de LLM não equivalem a três revisores humanos independentes. Nã
 **QA-01 PENDENTE** (vínculo regra aplicada e recuperação integral); **QA-02 BLOQUEADO** (zero células e zero casos normativos independentes com dupla conferência); **QA-03 PENDENTE** (controle multiusuário, produção, histórico). Pareceres atualizados em `QA-01.md`, `QA-02.md`, `QA-03.md`. As afirmações do relatório inicial de que "não existe snapshot" permanecem apenas como histórico de execução anterior, corrigido por este adendo.
 
 **ESTADO FINAL DA RETOMADA: F01 BLOCKED; F02 NÃO LIBERADA; MAIN/PRODUÇÃO PRESERVADAS.** Não alterar essa decisão sem resolver os gates normativos e aprovações exigidos.
+
+## Conferência final da CI após checkpoint de orquestração
+
+Último commit conferido antes deste adendo: `61805b07db9e70963e3e868da098331cd19f4244`:
+- API e persistência: **160 testes aprovados**, 1 aviso — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38726713101
+- Navegador Chromium: **4 testes aprovados** — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38726712894
+- Quality gates AIOX: **success** — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38726712882
+
+Comparação com a baseline: os testes de regressão F00 permanecem representados na suíte integrada, sem alterar os resultados congelados do SHA original. A classificação normativa permanece **BLOCKED** apesar da CI verde; testes de software não substituem dupla conferência de células ou homologação de cálculos. Este adendo de documentação não modifica runtime, testes, fontes normativas ou banco.
