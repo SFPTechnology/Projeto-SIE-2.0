@@ -46,7 +46,7 @@ def test_f01_normative_governance_panel_is_explicitly_unverified():
     parser = IdCollector()
     parser.feed(html)
     assert {"normas", "normas-status", "normas-lista"}.issubset(parser.ids)
-    assert "nenhuma" in html.lower()
+    assert "Nenhum item concede conformidade" in html
     js = (WEB / "app.js").read_text(encoding="utf-8")
     assert "/api/v1/normas/catalogo" in js
     assert "release_allowed !== false" in js
