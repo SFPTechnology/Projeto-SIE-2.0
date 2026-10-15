@@ -147,3 +147,13 @@ def test_untrusted_evidence_is_rendered_as_text_not_markup(page):
     expect(page.locator("#resultado")).to_contain_text(payload)
     assert page.locator("#resultado img").count() == 0
     assert page.evaluate("window.sieInjected === true") is False
+
+
+def test_f01_normative_catalog_ui_is_explicitly_unverified(page):
+    """Catálogo F01 legível no Chromium; nenhuma linha implica aprovação."""
+    expect(page.locator("#normas-status")).to_contain_text("8 fontes cadastradas")
+    expect(page.locator("#normas-lista li")).to_have_count(8)
+    labels = page.locator("#normas-lista li").all_inner_texts()
+    assert all("NÃO VERIFICADA" in item for item in labels)
+    assert "concede conformidade" in page.locator("#normas").inner_text().lower()
+    assert page.locator("#normas button").count() == 0
