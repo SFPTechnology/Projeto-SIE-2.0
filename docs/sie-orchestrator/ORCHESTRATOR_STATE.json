@@ -149,7 +149,7 @@
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 13,
+  "revision": 14,
   "schema_version": 1,
   "tasks": [
     {
@@ -722,9 +722,9 @@
       },
       "checkpoint": {
         "at": "2026-10-15",
-        "summary": "Local SQLite catalog-only immutable snapshots implemented; official EDP V9 metadata verified but normative content unverified; 160 pytest, 4 Chromium, AIOX success; QA3 not approved.",
+        "summary": "Real GitHub F01 changes: transactional immutable complete local project revisions, server-executed circuit algorithm traces with source code sha256 and declared/unverified source labels; tests expanded to 200+; numeric reference examples synthetic only; normative cells unverified and independent Copilot QA3 unavailable.",
         "catalogue_snapshot_metadata": "IMPLEMENTED_LOCAL_ONLY",
-        "applied_rule_snapshots": "PENDING",
+        "applied_rule_snapshots": "PENDING_NORMATIVE_CELL_PROOF",
         "approved_numeric_cases": 0,
         "verified_normative_cells": 0,
         "qa_01": "PENDENTE",
@@ -734,13 +734,19 @@
         "source_refs": [
           "docs/implantacao-sie-2-0/F01/EVIDENCIA_FONTES_OFICIAIS.md",
           "docs/implantacao-sie-2-0/F01/EVIDENCIA_SNAPSHOTS_LOCAL.md",
-          "docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md"
+          "docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md",
+          "docs/implantacao-sie-2-0/F01/EVIDENCIA_REPRODUTIBILIDADE_E_ENSAIOS_LOCAL.md",
+          "restructuring/apps/api/tests/test_project_revisions_f01.py",
+          "restructuring/apps/api/tests/test_calculation_traces_f01.py",
+          "restructuring/apps/api/tests/test_f01_independent_math_examples.py"
         ],
         "ci_runs": [
           38725806925,
           38725806964,
           38725806937
-        ]
+        ],
+        "historical_project_revisions": "IMPLEMENTED_NEW_REVISIONS_ONLY",
+        "server_calculation_traces": "IMPLEMENTED_LOCAL_UNVERIFIED"
       },
       "qa3_program": {
         "configured": true,
@@ -777,7 +783,7 @@
         "runner": "scripts/f01_yolo_runner.py",
         "run_mode": "SANDBOXED_NONINTERACTIVE_COPILOT_CLI_YOLO",
         "launch_command": "python scripts/f01_yolo_runner.py --execute --sandbox-confirmed",
-        "status": "CONFIGURED_NOT_EXECUTED",
+        "status": "PARTIAL_GITHUB_EXECUTION_NOT_COPILOT_QA3",
         "number_of_confirmed_runs": 0,
         "preserves_f00": "REGRESSION_ONLY",
         "max_agent_fix_rounds": 3,
@@ -788,7 +794,9 @@
         "auto_f02_start": false,
         "accepted_gates_at_configuration": 0,
         "deployment_permitted": false,
-        "main_merge_permitted": false
+        "main_merge_permitted": false,
+        "manual_code_changes_committed": true,
+        "github_ci_checks_executed": true
       }
     }
   ]
