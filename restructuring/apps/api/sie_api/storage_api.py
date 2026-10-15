@@ -58,3 +58,42 @@ def carregar_projeto(projeto_id: UUID, authorization: str | None = Header(defaul
 def historico_projeto(projeto_id: UUID, authorization: str | None = Header(default=None)):
     repo = _storage(authorization)
     return {"id": str(projeto_id), "eventos": repo.historico(str(projeto_id))}
+
+
+# Consultas locais somente leitura; token da mesma fronteira do armazenamento.
+# Não concedem aprovação normativa, nem reconstroem snapshots legados ausentes.
+@router.get("/{projeto_id}/snapshots-normativos/{revisao}")
+def consultar_snapshot_normativo(
+    projeto_id: UUID, revisao: int, authorization: str | None = Header(default=None)
+):
+    repo = _storage(authorization)
+    try:
+        snapshot = repo.snapshot_normativo(str(projeto_id), revisao)
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    if snapshot is None:
+        raise HTTPException(status_code=404, detail="Snapshot inexistente; revisao legada nao reconstruida")
+    return snapshot
+
+
+@router.get("/{projeto_id}/impacto-normativo/{revisao}")
+def consultar_impacto_normativo(
+    projeto_id: UUID, revisao: int, authorization: str | None = Header(default=None)
+):
+    repo = _storage(authorization)
+    try:
+        impacto = repo.impacto_normativo(str(projeto_id), revisao)
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    if impacto is None:
+        raise HTTPException(status_code=404, detail="Snapshot inexistente; sem comparacao historica segura")
+    return impacto
+
+
+@router.get("/{projeto_id}/historico-normativo")
+def consultar_historico_normativo(
+    projeto_id: UUID, authorization: str | None = Header(default=None)
+):
+    repo = _storage(authorization)
+    return {"id": str(projeto_id), "eventos": repo.historico_snapshot_normativo(str(projeto_id)),
+            "normative_conformity_verified": False}
