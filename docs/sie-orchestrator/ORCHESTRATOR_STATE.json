@@ -149,7 +149,7 @@
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 11,
+  "revision": 12,
   "schema_version": 1,
   "tasks": [
     {
@@ -741,6 +741,36 @@
           38725806964,
           38725806937
         ]
+      },
+      "qa3_program": {
+        "configured": true,
+        "executed_agent_instances": 0,
+        "independent_external_signoffs": 0,
+        "goal_accepted_gates": "6/6",
+        "actual_accepted_gates": 0,
+        "profiles": [
+          ".github/agents/f01-qa-arquiteto.agent.md",
+          ".github/agents/f01-qa-engenheiro-eletrico.agent.md",
+          ".github/agents/f01-qa-dados-ux-llm.agent.md"
+        ],
+        "skills_count": 6,
+        "issues": [
+          4,
+          5,
+          6
+        ],
+        "branches": [
+          "qa/f01-arquiteto",
+          "qa/f01-engenheiro-eletrico",
+          "qa/f01-dados-ux-llm"
+        ],
+        "manifest": "docs/implantacao-sie-2-0/F01/QA3_MANIFEST.json",
+        "validator": "scripts/f01_release_gate.py",
+        "guide": "docs/implantacao-sie-2-0/F01/LEIA_PRIMEIRO_QA3.md",
+        "qa01": "PENDENTE",
+        "qa02": "BLOQUEADO",
+        "qa03": "PENDENTE",
+        "f02_allowed": false
       }
     }
   ]
