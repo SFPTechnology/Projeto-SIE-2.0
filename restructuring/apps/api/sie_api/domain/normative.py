@@ -12,6 +12,9 @@ class NormativeRecord:
     edition: str
     subject: str
     revision: int = 1
+    official_url: Optional[str] = None
+    official_publication_date: Optional[date] = None
+    license_status: str = "NAO_CONFERIDA"
     typologies: tuple[str, ...] = ("residencial", "comercial", "predial")
     uf: Optional[str] = None
     distributor: Optional[str] = None
@@ -38,7 +41,7 @@ def load_registry() -> tuple[NormativeRecord, ...]:
             raise ValueError("Fonte não homologada não pode ser importada como verificada")
         item = dict(raw)
         item["typologies"] = tuple(item["typologies"])
-        for key in ("effective_from", "effective_until"):
+        for key in ("effective_from", "effective_until", "official_publication_date"):
             if item.get(key):
                 item[key] = date.fromisoformat(item[key])
         records.append(NormativeRecord(**item))
