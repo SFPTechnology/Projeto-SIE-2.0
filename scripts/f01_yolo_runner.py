@@ -190,9 +190,10 @@ def run_agent(worktree: Path, profile: str, prompt: str,
               logdir: Path, label: str) -> tuple[int, str]:
     if shutil.which("copilot") is None:
         raise Blocked("BLOCKED_ENVIRONMENT", "GitHub Copilot CLI não instalado")
-    # --no-ask-user impede perguntas. --yolo só é permitido em ambiente isolado.
+    # --autopilot continua a tarefa; --no-ask-user suprime perguntas;\n    # --yolo so permitido em VM isolada. Limite evita creditos/loops sem fim.
     cmd = ["copilot", f"--agent={profile}", "-p", prompt,
-           "--yolo", "--no-ask-user",
+           "--autopilot", "--yolo", "--no-ask-user",
+           "--max-autopilot-continues=10",
            "--secret-env-vars=GH_TOKEN,GITHUB_TOKEN,COPILOT_GITHUB_TOKEN"]
     status, out = exec_command(cmd, worktree, timeout=TIMEOUT_SECONDS,
                                environment=copy_env())
