@@ -39,7 +39,7 @@ python -m pip install -e ".[test]"
 python -m pytest -q
 python -m uvicorn sie_api.main:app --reload</code></pre>
 <h3>Terminal 2 — interface</h3><pre><code>cd restructuring\apps\web
-py -3.11 -m http.server 5173</code></pre>
+py -3.11 -m http.server 5173 --bind 127.0.0.1</code></pre>
 <p>Abra <code>http://127.0.0.1:5173</code>. A documentação da API estará em <code>http://127.0.0.1:8000/docs</code>.</p></section>
 <section id="tela"><h2>02 · Entendendo a tela</h2>
 <table><thead><tr><th>Área</th><th>Função</th><th>O que fazer</th></tr></thead><tbody>

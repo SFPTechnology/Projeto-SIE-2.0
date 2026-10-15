@@ -1,0 +1,297 @@
+{
+  "queried_commit_sha": "8d86db26f5e8675eaced4638af14bd84019e15e7",
+  "repository": "SFPTechnology/Projeto-SIE-2.0",
+  "runs": {
+    "workflow_runs": [
+      {
+        "id": 38614258229,
+        "name": "SIE Browser E2E (Chromium)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 29,
+        "jobs_url": "https://api.github.com/repos/SFPTechnology/Projeto-SIE-2.0/actions/runs/38614258229/jobs",
+        "logs_url": "https://api.github.com/repos/SFPTechnology/Projeto-SIE-2.0/actions/runs/38614258229/logs",
+        "workflow_id": 384640044
+      },
+      {
+        "id": 38614258541,
+        "name": "SIE modular API",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 205,
+        "jobs_url": "https://api.github.com/repos/SFPTechnology/Projeto-SIE-2.0/actions/runs/38614258541/jobs",
+        "logs_url": "https://api.github.com/repos/SFPTechnology/Projeto-SIE-2.0/actions/runs/38614258541/logs",
+        "workflow_id": 383921247
+      },
+      {
+        "id": 38614258449,
+        "name": "SIE Orchestrator AIOX Quality Gates",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 97,
+        "jobs_url": "https://api.github.com/repos/SFPTechnology/Projeto-SIE-2.0/actions/runs/38614258449/jobs",
+        "logs_url": "https://api.github.com/repos/SFPTechnology/Projeto-SIE-2.0/actions/runs/38614258449/logs",
+        "workflow_id": 384365178
+      }
+    ]
+  },
+  "jobs": [
+    {
+      "jobs": [
+        {
+          "id": 116025157702,
+          "name": "browser-e2e",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38614258229,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout isolated branch",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Setup Python",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Install API and isolated E2E test tools",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Install Chromium for browser testing",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Exercise real browser against localhost API, UI and SQLite",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Post Setup Python",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Post Checkout isolated branch",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "jobs": [
+        {
+          "id": 116025158079,
+          "name": "api-tests",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38614258541,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Install test dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run unit and API tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Check frontend JavaScript syntax",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Inventory checked-out source artifacts without approving normative values",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Upload source integrity manifest",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Post Run actions/setup-python@v5",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            },
+            {
+              "name": "Post Run actions/checkout@v4",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "jobs": [
+        {
+          "id": 116025158291,
+          "name": "root-quality",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38614258449,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Checkout",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Node.js",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Install AIOX runtime dependencies from lockfile",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Lint",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Typecheck",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Post Node.js",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15
+            },
+            {
+              "name": "Post Checkout",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "combined_status": {
+    "statuses": []
+  },
+  "log_summaries": [
+    {
+      "job_id": 116025157702,
+      "lines": [
+        "2026-10-14T18:20:12.3719632Z Successfully set up CPython (3.12.15)",
+        "2026-10-14T18:20:21.5245401Z Successfully installed annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 certifi-2026.7.22 click-8.5.0 fastapi-0.143.1 greenlet-3.5.6 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.20 iniconfig-2.3.1 opentelemetry-api-1.45.1 packaging-26.3 playwright-1.64.0 pluggy-1.6.0 pydantic-2.14.1 pydantic-core-2.50.1 pyee-14.0.0 pygments-2.21.0 pytest-9.1.1 sie-api-0.1.0 starlette-1.8.0 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.54.0",
+        "2026-10-14T18:22:01.0030464Z 3 passed in 7.40s"
+      ]
+    },
+    {
+      "job_id": 116025158079,
+      "lines": [
+        "2026-10-14T18:20:14.4521754Z Successfully set up CPython (3.12.15)",
+        "2026-10-14T18:20:21.8149248Z Successfully installed annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 certifi-2026.7.22 click-8.5.0 fastapi-0.143.1 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.20 iniconfig-2.3.1 opentelemetry-api-1.45.1 packaging-26.3 pluggy-1.6.0 pydantic-2.14.1 pydantic-core-2.50.1 pygments-2.21.0 pytest-9.1.1 sie-api-0.1.0 starlette-1.8.0 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.54.0",
+        "2026-10-14T18:20:24.0285146Z 99 passed, 1 warning in 1.48s",
+        "2026-10-14T18:20:24.4093795Z {\"scope\": \"SOURCE_INTEGRITY_INVENTORY_ONLY\", \"present\": 6, \"missing\": 0, \"normative_conformity_verified\": false, \"output\": \"run-artifacts/sie-normative-integrity.json\"}"
+      ]
+    }
+  ],
+  "limits": "workflow wrapper filters PR events/first page; empty combined-status list is not check success; logs summarized without credentials",
+  "legacy_upstream": {
+    "repository": "SFPTechnology/sistema-de-instala-es-el-tricas-sie",
+    "get_repo_result": "404 NOT_FOUND",
+    "branch_query_result": "repository not found",
+    "interpretation": "not accessible through connector in this session; reason unknown"
+  }
+}

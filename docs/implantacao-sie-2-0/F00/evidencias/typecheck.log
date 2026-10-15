@@ -1,0 +1,11 @@
+$ npm run typecheck
+CWD: .
+
+
+> projeto-sie-quality-gates@0.0.0 typecheck
+> node scripts/validate-sdc-auto-1.js typecheck
+
+[TerminalSpawner] Cleanup triggered by exit
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+EXIT: 0

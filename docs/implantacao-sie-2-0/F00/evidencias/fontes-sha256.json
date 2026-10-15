@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "scope": "SOURCE_INTEGRITY_INVENTORY_ONLY",
+  "repository_approval": false,
+  "normative_conformity_verified": false,
+  "sources_present": 6,
+  "sources_missing": 0,
+  "entries": [
+    {
+      "id": "EDP-SP-V09-PDF",
+      "role": "PDF_CANDIDATO_FONTE_PRIMARIA",
+      "path": "Arquivos_Diversos/Norma_EDP/PT.DT.PDN.00068_V9.pdf",
+      "state": "PRESENT_UNVERIFIED",
+      "sha256": "b14f414001d9831f91bbef84f022c5164f367431cc6a209e5fb34b4e48f20810",
+      "size_bytes": 2678187,
+      "normative_validation": "NOT_PERFORMED"
+    },
+    {
+      "id": "EDP-SP-V09-EXTRACAO",
+      "role": "EXTRACAO_DERIVADA",
+      "path": "Arquivos_Diversos/Norma_EDP/PT.DT.PDN.00068_V9_chunks.json",
+      "state": "PRESENT_UNVERIFIED",
+      "sha256": "f9133f5d9599f6c6f6b104e5f9a028acefdf232f12aec99381dfee06bfdcc6cd",
+      "size_bytes": 228046,
+      "normative_validation": "NOT_PERFORMED"
+    },
+    {
+      "id": "EDP-SP-V09-CONFERENCIA",
+      "role": "REGISTRO_DE_CONFERENCIA",
+      "path": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+      "state": "PRESENT_UNVERIFIED",
+      "sha256": "f32cedd687823bf49a64cd8edccbacf1c733263c7cb75a348b42df4662b51b08",
+      "size_bytes": 7177,
+      "normative_validation": "NOT_PERFORMED"
+    },
+    {
+      "id": "NBR-5410-TEXTO",
+      "role": "TRANSCRICAO_DERIVADA",
+      "path": "Arquivos_Diversos/NBR_5410_original/NBR-5410.md",
+      "state": "PRESENT_UNVERIFIED",
+      "sha256": "c0a6b2aa1925ead4c3aa10c50f21958f8916c9e29f6871e30fc6eb8e14758fbe",
+      "size_bytes": 647088,
+      "normative_validation": "NOT_PERFORMED"
+    },
+    {
+      "id": "NBR-5410-CHUNKS",
+      "role": "EXTRACAO_DERIVADA",
+      "path": "Arquivos_Diversos/NBR_5410_original/NBR_5410_chunks.json",
+      "state": "PRESENT_UNVERIFIED",
+      "sha256": "7c95cd03fcf24475ce2f65b28a471873e30274ef66d0548aff64d772208d3d92",
+      "size_bytes": 774261,
+      "normative_validation": "NOT_PERFORMED"
+    },
+    {
+      "id": "NBR-5410-COMENTADA-MANIFESTO",
+      "role": "MANIFESTO_DE_EXTRACAO",
+      "path": "Arquivos_Diversos/NBR_5410_comentada/chunks_json_16_pdfs_v2/manifesto_processamento.json",
+      "state": "PRESENT_UNVERIFIED",
+      "sha256": "f255c262d9354e59a3552107a04684bd8bceaecb998cd63018b7469eba19eab5",
+      "size_bytes": 6288,
+      "normative_validation": "NOT_PERFORMED"
+    }
+  ]
+}

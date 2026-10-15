@@ -42,3 +42,15 @@
 24. Reconciliadas tarefas 003/010 faltantes no JSON; **NOR-01/SIE-AUTO-003 permanecem BLOCKED**, SIE-AUTO-006 HUMAN_REQUIRED. Nenhuma norma foi presumida nem deploy/merge realizado.
 
 **Referências:** `docs/sie-orchestrator/NORMATIVE-SOURCES-RECOVERY.md`, `restructuring/docs/CONTRATOS-ENGENHARIA.md`, `restructuring/docs/TESTE-E2E-NAVEGADOR.md` e logs GitHub Actions supracitados.
+
+## 2026-10-15: execução F00 autorizada por anexo
+
+25. Baseline remota `8d86db26f5e8675eaced4638af14bd84019e15e7` fixada em worktree/branch `audit/f00-baseline-2026-10-15`; main `2eee08d126d7bab0a0fe7b7d96b25004ac545447` preservada. CI desse SHA consultada por workflows/jobs/logs: runs 38614258541/38614258229/38614258449.
+26. Inventário de 37 LEGACY-IDs, árvore de 12.127 entradas,55 hashes operacionais e14 hashes de módulos no pacote golden;34 cenários capturados por execução extraída do SHA original e reproduzidos sem alterar expectativas.
+27. Executados99 testes preexistentes; novo pacote de 35 testes; suíte 134 passed + 1 warning, repetida em venv limpa; pip check exit 0;3 Chromium locais passed;18 SDC passed e quatro gates raiz0. Logs em `docs/implantacao-sie-2-0/F00/evidencias/`.
+28. Achados ENG-001/002, tabela personalizada no roundtrip, TS incompleto e SQL/RLS classificados. Corrigidos somente comandos loopback nos manuais e rastreabilidade documental; CI adiciona replay com histórico Git completo. Código de produto/UI e SQL sem diff.
+29. QA-01/02/03 e parecer de arquitetura APROVADO no escopo diagnóstico/roteiro; registros completos na pasta F00. F00 permanece VALIDATING até o fechamento versionado. Nenhum gate normativo/produto/produção foi encerrado por esses testes.
+
+30. Pacote F00 versionado no commit local `8797f616f07c3866833db4eb463e050ece76420d` (50 arquivos, 16 logs). Após conferir os três QA, contratos, anexo e riscos, atividade F00 promovida VALIDATING→DONE; JSON revisão 8. As 12 tarefas preexistentes permanecem semanticamente inalteradas. Próximo arquivo F01_EXECUTAR.md; sua execução e seus gates não foram presumidos.
+
+31. Push HTTPS do terminal falhou por transporte sem credenciais, sem modificar refs remotas. Conector GitHub autorizado criou checkpoint remoto `ab129046716b5bcff62bd5ca2f0cb470b7c0f077`, parent baseline8d86db2, com árvore exata `904e4a84de7d772a8915c4d79b5e27aa130959c1` igual à do commit local8797f61. O mapeamento é evidência de publicação, sem nova transição de tarefa; JSON revisão 9 conserva F00 DONE e todas as tarefas anteriores. Fechamento remoto referencia esse checkpoint como pai; sem force push/main/deploy.

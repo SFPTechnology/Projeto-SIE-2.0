@@ -1,0 +1,15 @@
+$ python -m sie_api.normative_inventory --help
+CWD: .
+
+usage: normative_inventory.py [-h] [--root ROOT] [--output OUTPUT]
+                              [--require-all]
+
+Inventario SHA256 de fontes normativas sem validacao normativa.
+
+options:
+  -h, --help       show this help message and exit
+  --root ROOT
+  --output OUTPUT  Destino JSON opcional para auditoria
+  --require-all    Falhar se artefatos conhecidos estiverem ausentes
+
+EXIT: 0
