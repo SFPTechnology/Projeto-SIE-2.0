@@ -1,0 +1,18 @@
+{
+  "repository": "SFPTechnology/Projeto-SIE-2.0",
+  "publication_branch": "audit/f00-baseline-2026-10-15",
+  "initial_checkpoint": {
+    "local_commit_sha": "8797f616f07c3866833db4eb463e050ece76420d",
+    "remote_commit_sha": "ab129046716b5bcff62bd5ca2f0cb470b7c0f077",
+    "remote_url": "https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/ab129046716b5bcff62bd5ca2f0cb470b7c0f077",
+    "shared_tree_sha": "904e4a84de7d772a8915c4d79b5e27aa130959c1",
+    "identical_file_tree": true
+  },
+  "transport": {
+    "git_push_https": "failed: terminal Git transport has no configured credentials; no remote ref changed",
+    "fallback": "authorized GitHub connector: Git Trees + commit objects + isolated branch ref",
+    "metadata": "GitHub author/time metadata yields different commit IDs; source file trees verified identical"
+  },
+  "final_head": "read the isolated branch/PR head; closing documentation follows the initial remote checkpoint",
+  "main_unchanged_sha": "2eee08d126d7bab0a0fe7b7d96b25004ac545447"
+}

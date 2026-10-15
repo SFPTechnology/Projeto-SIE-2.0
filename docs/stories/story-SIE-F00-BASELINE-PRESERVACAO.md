@@ -2,7 +2,7 @@
 
 ## Status
 
-**Ready for Review** — auditoria, instrumentos e QA3 concluídos; fechamento do commit/estado em andamento.
+**Done — escopo de diagnóstico e preservação F00 concluído.** O pacote foi versionado, QA3 e roteiro aprovados, estado/gates reconciliados.
 
 | Campo | Valor |
 |---|---|
@@ -14,7 +14,7 @@
 | Repositório | `SFPTechnology/Projeto-SIE-2.0` |
 | Branch de trabalho observada | `audit/f00-baseline-2026-10-15` |
 | Commit original observado | `8d86db26f5e8675eaced4638af14bd84019e15e7` |
-| Estado da fase | VALIDATING; QA3 aprovados, versionamento final em fechamento |
+| Estado da fase | DONE; passagem sequencial liberada, sem execução da fase seguinte |
 
 O anexo é a especificação operacional desta story. Seu nome de origem é `F00_EXECUTAR.md`; a cópia enviada nesta sessão é `/workspace/scratch/34018a10e5db/upload/F00_EXECUTAR(1).md`. Esta referência identifica a entrada, sem presumir que esse caminho transitório existirá em outra sessão. A implementação deve registrar o hash do anexo junto às evidências da fase.
 
@@ -55,7 +55,7 @@ Como responsável pela reestruturação do SIE 2.0, quero congelar a baseline ob
 - [x] **AC-05 — Riscos evidenciados:** análise de segredos sem divulgar valores, CORS, bibliotecas, permissões, licenças, rotas, migrações e código descontinuado; cada risco tem prioridade, localização/prova, alcance, estado e ação. Limitações de auditoria de dependências são documentadas. (RF-F00-05)
 - [x] **AC-06 — Preservação sem equivalência falsa:** CSV relaciona LEGACY-ID, origem, entrada, saída, destino, decisão, teste, evidência, exceção e status. Destinos futuros permanecem planejados/não implementados. Nenhum módulo é chamado preservado sem prova de equivalência ou exceção formal registrada. (RF-F00-06)
 - [x] **AC-07 — Migração reversível:** estratégia classifica módulos nas cinco decisões previstas, explicita ordem/dependências, critérios, rollback e aprovação técnica dentro do escopo; sem executar migração de produto nesta fase. (RF-F00-07)
-- [ ] **AC-08 — Relatório e estado reais:** entregáveis obrigatórios versionáveis, cobertura, gaps, falhas, riscos, testes/comandos/resultados, alterações e próximos passos registrados; estado canônico reconciliado. F00 só é DONE se tasks essenciais e QA aplicáveis estiverem aprovados; senão BLOCKED/PENDENTE/HUMAN_REQUIRED conforme causa. (RF-F00-08, CON-F00-02)
+- [x] **AC-08 — Relatório e estado reais:** entregáveis obrigatórios versionáveis, cobertura, gaps, falhas, riscos, testes/comandos/resultados, alterações e próximos passos registrados; estado canônico reconciliado. F00 só é DONE se tasks essenciais e QA aplicáveis estiverem aprovados; senão BLOCKED/PENDENTE/HUMAN_REQUIRED conforme causa. (RF-F00-08, CON-F00-02)
 - [x] **AC-09 — QA3 concluído:** três pareceres separados QA-01/02/03 com requisito, severidade, evidência, reprodução, correção, revalidação e veredito; achados impeditivos resolvidos ou fase retida. Nenhuma aprovação computacional é apresentada como homologação normativa. (Anexo §§6/9)
 
 ## Tasks / Subtasks
@@ -88,7 +88,7 @@ Como responsável pela reestruturação do SIE 2.0, quero congelar a baseline ob
   - [x] Classificar manter/encapsular/refatorar/substituir/aposentar com justificativa e dependências.
   - [x] Definir alterações reversíveis, critério de parada e procedimento de rollback.
   - [x] Obter parecer técnico da autoridade @architect, sem executar mudanças de produto nesta fase.
-- [ ] **00.08 — Publicar relatório de baseline** (AC-08, AC-09)
+- [x] **00.08 — Publicar relatório de baseline** (AC-08, AC-09)
   - [x] Produzir `BASELINE_CI.md` e `RELATORIO_EXECUCAO.md` com comandos, resultados e limitações reais.
   - [x] Executar QA-01, QA-02 e QA-03; corrigir inconformidades permitidas e revalidar o que foi afetado.
   - [x] Reconciliar estado em `docs/sie-orchestrator/`, checklist e File List desta story.
@@ -164,62 +164,66 @@ Logs em `docs/implantacao-sie-2-0/F00/evidencias/`:134 pytest, 35 golden incluí
 
 ### Completion Notes
 
-Execução do anexo concluída no escopo de auditoria/testes/documentação, com 37 IDs e exceções formais; QA-01/02/03 e roteiro de arquitetura aprovados. Estado canônico VALIDATING até o fechamento versionado; as 12 atividades anteriores foram preservadas. Produto/main/produção sem alteração.
+Execução do anexo concluída no escopo de auditoria/testes/documentação, com 37 IDs e exceções formais; QA-01/02/03 e roteiro de arquitetura aprovados. Estado canônico DONE, revisão 9, após pacote versionado em `8797f616f07c3866833db4eb463e050ece76420d`; as 12 atividades anteriores foram preservadas. Produto/main/produção sem alteração.
 
 ### File List
 
 | Arquivo | Ação | Estado |
 |---|---|---|
-| `.github/workflows/sie-restructuring-api.yml` | Modificado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/BASELINE_CI.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/ESTRATEGIA_MIGRACAO.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/F00_EXECUTAR.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/INVENTARIO_LEGADO.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/MAPA_DEPENDENCIAS.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/MATRIZ_MOTORES_FONTES.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/MATRIZ_PRESERVACAO_FUNCIONAL.csv` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/PARECER_ARQUITETURA.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/QA-01.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/QA-02.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/QA-03.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/REGISTRO_RISCOS_INICIAIS.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/RELATORIO_EXECUCAO.md` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/aiox-tests.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/api-regression.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/arvore-baseline.txt` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/baseline-api.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/baseline.json` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/browser-e2e.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/build.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/clean-api-regression.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/clean-dependency-check.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/clean-golden-replay.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/fontes-sha256.json` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/github-ci-baseline.json` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/golden-replay.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/golden-tests.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/lint.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/python-installed.txt` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/runtime.json` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/scheduler-state.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/source-inventory-help.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/test-results.json` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/typecheck.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/web-syntax.log` | Criado | Validado; fechamento versionado pendente |
-| `docs/sie-orchestrator/DEPENDENCY_GRAPH.md` | Modificado | Validado; fechamento versionado pendente |
-| `docs/sie-orchestrator/EXECUTION_HISTORY.md` | Modificado | Validado; fechamento versionado pendente |
-| `docs/sie-orchestrator/EXECUTION_QUEUE.md` | Modificado | Validado; fechamento versionado pendente |
-| `docs/sie-orchestrator/NEXT_ACTION.md` | Modificado | Validado; fechamento versionado pendente |
-| `docs/sie-orchestrator/ORCHESTRATOR_STATE.json` | Modificado | Validado; fechamento versionado pendente |
-| `docs/sie-orchestrator/PROJECT_STATE.md` | Modificado | Validado; fechamento versionado pendente |
-| `docs/sie-orchestrator/TECHNICAL_DECISIONS.md` | Modificado | Validado; fechamento versionado pendente |
-| `docs/stories/story-SIE-F00-BASELINE-PRESERVACAO.md` | Criado | Validado; fechamento versionado pendente |
-| `restructuring/README.md` | Modificado | Validado; fechamento versionado pendente |
-| `restructuring/apps/api/tests/fixtures/f00_legacy_golden.json` | Criado | Validado; fechamento versionado pendente |
-| `restructuring/apps/api/tests/test_legacy_golden.py` | Criado | Validado; fechamento versionado pendente |
-| `restructuring/docs/MANUAL-OPERACIONAL.html` | Modificado | Validado; fechamento versionado pendente |
-| `scripts/f00_golden.py` | Criado | Validado; fechamento versionado pendente |
-| `docs/implantacao-sie-2-0/F00/evidencias/precommit-consistency.log` | Criado | Validação de coerência exit 0 |
+| `.github/workflows/sie-restructuring-api.yml` | Modificado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/BASELINE_CI.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/ESTRATEGIA_MIGRACAO.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/F00_EXECUTAR.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/INVENTARIO_LEGADO.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/MAPA_DEPENDENCIAS.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/MATRIZ_MOTORES_FONTES.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/MATRIZ_PRESERVACAO_FUNCIONAL.csv` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/PARECER_ARQUITETURA.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/QA-01.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/QA-02.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/QA-03.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/REGISTRO_RISCOS_INICIAIS.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/RELATORIO_EXECUCAO.md` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/aiox-tests.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/api-regression.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/arvore-baseline.txt` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/baseline-api.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/baseline.json` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/browser-e2e.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/build.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/clean-api-regression.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/clean-dependency-check.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/clean-golden-replay.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/closure-consistency.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/fontes-sha256.json` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/github-ci-baseline.json` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/golden-replay.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/golden-tests.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/lint.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/precommit-consistency.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/publication-consistency.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/publication-map.json` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/python-installed.txt` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/runtime.json` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/scheduler-state.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/source-inventory-help.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/test-results.json` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/typecheck.log` | Criado | Registrado na entrega F00 |
+| `docs/implantacao-sie-2-0/F00/evidencias/web-syntax.log` | Criado | Registrado na entrega F00 |
+| `docs/sie-orchestrator/DEPENDENCY_GRAPH.md` | Modificado | Registrado na entrega F00 |
+| `docs/sie-orchestrator/EXECUTION_HISTORY.md` | Modificado | Registrado na entrega F00 |
+| `docs/sie-orchestrator/EXECUTION_QUEUE.md` | Modificado | Registrado na entrega F00 |
+| `docs/sie-orchestrator/NEXT_ACTION.md` | Modificado | Registrado na entrega F00 |
+| `docs/sie-orchestrator/ORCHESTRATOR_STATE.json` | Modificado | Registrado na entrega F00 |
+| `docs/sie-orchestrator/PROJECT_STATE.md` | Modificado | Registrado na entrega F00 |
+| `docs/sie-orchestrator/TECHNICAL_DECISIONS.md` | Modificado | Registrado na entrega F00 |
+| `docs/sie-orchestrator/VALIDATION_MATRIX.md` | Modificado | Registrado na entrega F00 |
+| `docs/stories/story-SIE-F00-BASELINE-PRESERVACAO.md` | Criado | Registrado na entrega F00 |
+| `restructuring/README.md` | Modificado | Registrado na entrega F00 |
+| `restructuring/apps/api/tests/fixtures/f00_legacy_golden.json` | Criado | Registrado na entrega F00 |
+| `restructuring/apps/api/tests/test_legacy_golden.py` | Criado | Registrado na entrega F00 |
+| `restructuring/docs/MANUAL-OPERACIONAL.html` | Modificado | Registrado na entrega F00 |
+| `scripts/f00_golden.py` | Criado | Registrado na entrega F00 |
 
 ## Change Log
 
@@ -227,4 +231,8 @@ Execução do anexo concluída no escopo de auditoria/testes/documentação, com
 |---|---|---|---|
 | 2026-10-15 | 1.0 | Story de auditoria F00, requisitos rastreáveis, AC e tarefas pendentes; execução integral autorizada pelo usuário. | @sm — River |
 
-| 2026-10-15 | 1.1 | Execução F00, instrumentos, evidências, riscos e QA3 concluídos; versionamento em fechamento. | @dev/coordenador |
+| 2026-10-15 | 1.1 | Execução F00, instrumentos, evidências, riscos e QA3 concluídos; fechamento versionado registrado. | @dev/coordenador |
+
+| 2026-10-15 | 1.2 | Commit real 8797f61; QA3 e gates aprovados; F00 DONE e passagem para ativação de F01 liberada. | @dev/coordenador |
+
+| 2026-10-15 | 1.3 | Checkpoint remoto ab12904 com árvore idêntica ao local 8797f61; mapeamento explícito e estado revisão 9. | @dev/coordenador |

@@ -1,6 +1,6 @@
 # F00 — Diagnóstico e preservação do legado
 
-**FASE: F00. ESTADO: VALIDATING.** Data: 2026-10-15. Os pareceres e o registro canônico são conferidos antes da decisão final de passagem.
+**FASE: F00. ESTADO: DONE — diagnóstico e preservação da baseline concluídos.** Data: 2026-10-15. As oito tasks e os três QA aplicáveis foram conferidos; a passagem sequencial está liberada no escopo desta fase.
 
 | Identificação | Registro observado |
 |---|---|
@@ -8,6 +8,7 @@
 | Branch da entrega | `audit/f00-baseline-2026-10-15` |
 | Branch de origem | `refactor/sie-2-foundation-2026-10-14` |
 | COMMIT da baseline | `8d86db26f5e8675eaced4638af14bd84019e15e7` |
+| Primeiro commit publicado F00 | [`ab129046716b5bcff62bd5ca2f0cb470b7c0f077`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/ab129046716b5bcff62bd5ca2f0cb470b7c0f077) — árvore idêntica ao checkpoint local `8797f616f07c3866833db4eb463e050ece76420d` |
 | Main observada | `2eee08d126d7bab0a0fe7b7d96b25004ac545447` |
 | Fonte de estado | `docs/sie-orchestrator/ORCHESTRATOR_STATE.json` |
 | Especificação executada | `F00_EXECUTAR.md` nesta pasta, cópia integral do anexo; SHA256 em `evidencias/baseline.json` |
@@ -32,7 +33,7 @@ O pacote golden contém **34 entradas/saídas executadas do SHA original**, com 
 | 00.05 — Auditar segurança/dependências | CONCLUÍDA no escopo explicitado | `REGISTRO_RISCOS_INICIAIS.md`; 14 riscos, segredos sem divulgação, licenças, CORS, RLS, SQLite e limites CVE/ambiente remoto |
 | 00.06 — Matriz de preservação | CONCLUÍDA | `MATRIZ_PRESERVACAO_FUNCIONAL.csv`; 37 linhas, contratos/testes/destinos/exceções; vínculos golden conferidos |
 | 00.07 — Estratégia de migração | CONCLUÍDA | `ESTRATEGIA_MIGRACAO.md`; `PARECER_ARQUITETURA.md` APROVADO para roteiro: 15 manter, 13 encapsular, 9 substituir, nenhum aposentar/refatorar nesta fase |
-| 00.08 — Relatório e fechamento | EM VALIDAÇÃO | Este relatório, três QA e sincronização do estado; fechamento condicionado à conferência final |
+| 00.08 — Relatório e fechamento | CONCLUÍDA | Este relatório, três QA APROVADO, commit versionado e estado canônico DONE, revisão 9 |
 
 ## Alterações efetivas
 
@@ -41,7 +42,7 @@ O pacote golden contém **34 entradas/saídas executadas do SHA original**, com 
 - CI da API passa a obter o histórico completo, verificar o replay do SHA original e reagir à alteração do script golden.
 - Corrigidos os comandos do servidor estático no README e manual HTML para `--bind 127.0.0.1`.
 - Corrigidas referências documentais que ainda tratavam como futura a caracterização já executada; risco EDP harmonizado como ENG-002.
-- Estado/story reconciliados para VALIDATING; transição final aguarda o commit versionado. Código de produto Python/UI e migrations SQL permanecem idênticos à baseline; a comparação Git é parte do gate de regressão.
+- Estado/story reconciliados para DONE após os três pareceres aprovados e o primeiro commit versionado. Código de produto Python/UI e migrations SQL permanecem idênticos à baseline; a comparação Git é parte do gate de regressão.
 
 Todos os arquivos efetivos constam da File List da story e do diff da branch. A publicação versionada é feita em branch isolada e PR em rascunho para a branch de origem; isso não implica merge ou deploy. O commit exato de entrega é o head do PR F00 e o histórico Git associado, consultável sem alterar a baseline original.
 
@@ -94,6 +95,16 @@ Os bloqueios acima não são omitidos nem encerrados pela caracterização. O ga
 | Golden originado no SHA, regressão e riscos/falhas classificados | ATENDIDO |
 | Estratégia reversível aprovada no escopo técnico | ATENDIDO |
 | Três QA aplicáveis aprovados | ATENDIDO |
-| Documentação/estado versionados e main/produção preservadas | EM VALIDAÇÃO DE FECHAMENTO |
+| Documentação versionada e main/produção preservadas | ATENDIDO: pacote remoto ab12904; fechamento e mapeamento nos registros da branch |
 
-**Próxima ação atual:** registrar o commit versionado, finalizar o JSON canônico/checklist e publicar a branch/PR F00. A passagem só será declarada na revisão final se todos os gates essenciais estiverem atendidos. Nenhuma fase posterior foi executada nesta sessão.
+**Próximo arquivo: `F01_EXECUTAR.md`.** A passagem está liberada para ativação da F01 e conferência de seus próprios pré-requisitos. Nenhuma atividade da F01 foi executada. Para continuar, anexar esse arquivo e solicitar a execução da fase; os registros persistentes dispensam copiar prompts ou preencher controle manual.
+
+## Registro do fechamento
+
+O primeiro commit local real `8797f616f07c3866833db4eb463e050ece76420d` versionou 50 arquivos, incluindo 16 logs. O commit local de fechamento foi `dc0468c0c183240778e7c905e072bd9369140639`; a publicação remota acrescenta o mapeamento de identidade dos commits. A referência de entrega é a branch `audit/f00-baseline-2026-10-15`; o SHA exato do fechamento acompanha o PR/resultado da execução. Operações remotas são delegadas ao @devops e não promovem main nem produção.
+
+A checagem staged padrão apontou whitespace da cópia literal do anexo (hard breaks Markdown) e finais CRLF do CSV para Excel. O anexo permanece byte a byte igual ao recebido e o CSV foi parseado com 37 linhas/19 colunas. A conferência com `cr-at-eol`, excluindo somente o anexo verbatim, passou. São exceções de formato registradas; nenhuma falha de teste foi convertida em aprovação.
+
+### Identidade local e remota dos commits
+
+O push Git HTTPS falhou por ausência de autenticação do transporte no terminal. O conector GitHub autorizado publicou o checkpoint remoto [`ab12904`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/ab129046716b5bcff62bd5ca2f0cb470b7c0f077), cuja árvore `904e4a84de7d772a8915c4d79b5e27aa130959c1` é idêntica à do commit local `8797f616f07c3866833db4eb463e050ece76420d`. A identidade do commit difere por metadados de autoria/data do conector. O fechamento usa esse checkpoint remoto como pai e registra a revisão 9 do estado. `evidencias/publication-map.json` preserva o vínculo; SHAs locais não são apresentados como URLs GitHub. Nenhum arquivo de produto ou main foi alterado para contornar a autenticação.

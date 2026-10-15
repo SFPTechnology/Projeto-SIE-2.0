@@ -1,0 +1,5 @@
+PASS local checkpoint 8797f616f07c3866833db4eb463e050ece76420d
+PASS remote checkpoint ab129046716b5bcff62bd5ca2f0cb470b7c0f077 fetched through public Git
+PASS both tree SHA 904e4a84de7d772a8915c4d79b5e27aa130959c1
+PASS canonical revision 9; F00 DONE; publication evidence appended, no state transition fabricated
+EXIT: 0

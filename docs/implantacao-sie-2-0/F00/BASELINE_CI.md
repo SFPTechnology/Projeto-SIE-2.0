@@ -88,3 +88,13 @@ Os casos `ANALISE-IZ-ARREDONDADO` (ENG-001) e `EDP-U-CARGA-TRIFASICA` (ENG-002) 
 - Catálogos normativos, identidade de produção e módulos completos mantêm os bloqueios anteriores. Nenhum resultado de teste concede aprovação ABNT/EDP/NR-10.
 - A auditoria estática de SQL não comprova estado de um banco instalado. Auditoria CVE online abrangente e CodeRabbit não foram executados; disponibilidade/limites estão no registro de riscos.
 - O commit de entrega e a decisão dos gates são registrados no relatório e no PR da F00. A baseline original permanece imutável.
+
+## Versionamento e formato das evidências
+
+O pacote foi versionado no commit local real `8797f616f07c3866833db4eb463e050ece76420d` (50 arquivos, incluindo 16 logs adicionados explicitamente). O fechamento DONE e os registros derivados pertencem ao commit seguinte da mesma branch. A checagem staged padrão sinalizou hard breaks da cópia imutável do anexo e finais CRLF do CSV; ambas preservam os formatos intencionais. A conferência configurada com `cr-at-eol` e exclusão somente desse anexo passou. O CSV foi lido como 37 linhas/19 colunas e o anexo conferido por SHA256; não houve alteração da entrada do usuário para silenciar o check.
+
+A primeira instalação do navegador falhou durante download/descompactação e atualização do lock local. A recuperação mudou para o host de download alternativo e instalação `--only-shell` em diretório novo; então Chromium1187/FFmpeg foram instalados e os 3 E2E executados com sucesso. Isso foi falha de preparação do runtime, sem alteração de teste esperado ou aplicação.
+
+### Publicação do checkpoint
+
+O checkpoint local `8797f616f07c3866833db4eb463e050ece76420d` tem equivalente remoto [`ab12904`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/ab129046716b5bcff62bd5ca2f0cb470b7c0f077), com a mesma árvore `904e4a84de7d772a8915c4d79b5e27aa130959c1`. O push HTTPS pelo terminal falhou por autenticação ausente; a publicação usa o conector GitHub já autorizado. Autoria/data do commit geram SHA diferente e o mapeamento é explícito em `evidencias/publication-map.json`. O snapshot de arquivos, fixture e testes não mudou.

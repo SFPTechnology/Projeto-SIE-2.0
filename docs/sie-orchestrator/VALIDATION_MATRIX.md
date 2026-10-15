@@ -2,6 +2,7 @@
 
 | Critério | Status | Evidência reproduzível | Limites |
 |---|---|---|---|
+| F00 — diagnóstico e preservação | DONE | `docs/implantacao-sie-2-0/F00/RELATORIO_EXECUCAO.md`; commit remoto ab12904; 134 pytest/34 replay/3 Chromium/18 SDC e QA3 | Aprova somente diagnóstico; exceções e bloqueios futuros preservados |
 | BASE-01 — isolamento do desenvolvimento | DONE | PR #1 aberto/draft, base main | Nenhum merge; branch de reestruturação separada |
 | SIE-AUTO-001 — CLI de projetos | DONE | 38572009186, testes CLI | SQLite local, sem auth de produção |
 | SIE-AUTO-002 — quality gates AIOX | DONE | 38572622950, lint/typecheck/test/build | Regras do repositório, não critérios normativos |

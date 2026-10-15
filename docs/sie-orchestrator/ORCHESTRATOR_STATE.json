@@ -133,9 +133,16 @@
       "from": "IMPLEMENTED",
       "reason": "134pytest,3Chromium,18tooling e QA01/02/03APROVADO; falta fechar versionamento da evidencia",
       "to": "VALIDATING"
+    },
+    {
+      "activity": "F00",
+      "at": "2026-10-15T09:59:09.435178+00:00",
+      "from": "VALIDATING",
+      "reason": "Gates F00 conferidos: 37 IDs, golden34 original,134pytest/3Chromium/18AIOX, QA01/02/03 APROVADO e pacote versionado em 8797f616f07c3866833db4eb463e050ece76420d; riscos normativos e producao permanecem abertos",
+      "to": "DONE"
     }
   ],
-  "revision": 7,
+  "revision": 9,
   "schema_version": 1,
   "tasks": [
     {
@@ -520,7 +527,8 @@
       "criteria": [
         {
           "evidence": [
-            "docs/implantacao-sie-2-0/F00/evidencias/baseline.json; BASELINE_CI.md"
+            "docs/implantacao-sie-2-0/F00/BASELINE_CI.md",
+            "docs/implantacao-sie-2-0/F00/evidencias/baseline.json"
           ],
           "id": "AC-01",
           "passed": true
@@ -534,49 +542,59 @@
         },
         {
           "evidence": [
-            "docs/implantacao-sie-2-0/F00/MATRIZ_MOTORES_FONTES.md; QA-02.md"
+            "docs/implantacao-sie-2-0/F00/MATRIZ_MOTORES_FONTES.md",
+            "docs/implantacao-sie-2-0/F00/QA-02.md"
           ],
           "id": "AC-03",
           "passed": true
         },
         {
           "evidence": [
-            "docs/implantacao-sie-2-0/F00/evidencias/clean-golden-replay.log; evidencias/clean-api-regression.log"
+            "docs/implantacao-sie-2-0/F00/evidencias/clean-golden-replay.log",
+            "docs/implantacao-sie-2-0/F00/evidencias/clean-api-regression.log"
           ],
           "id": "AC-04",
           "passed": true
         },
         {
           "evidence": [
-            "docs/implantacao-sie-2-0/F00/REGISTRO_RISCOS_INICIAIS.md; QA-03.md"
+            "docs/implantacao-sie-2-0/F00/REGISTRO_RISCOS_INICIAIS.md",
+            "docs/implantacao-sie-2-0/F00/QA-03.md"
           ],
           "id": "AC-05",
           "passed": true
         },
         {
           "evidence": [
-            "docs/implantacao-sie-2-0/F00/MATRIZ_PRESERVACAO_FUNCIONAL.csv; QA-01.md"
+            "docs/implantacao-sie-2-0/F00/MATRIZ_PRESERVACAO_FUNCIONAL.csv",
+            "docs/implantacao-sie-2-0/F00/QA-01.md"
           ],
           "id": "AC-06",
           "passed": true
         },
         {
           "evidence": [
-            "docs/implantacao-sie-2-0/F00/ESTRATEGIA_MIGRACAO.md; PARECER_ARQUITETURA.md"
+            "docs/implantacao-sie-2-0/F00/ESTRATEGIA_MIGRACAO.md",
+            "docs/implantacao-sie-2-0/F00/PARECER_ARQUITETURA.md"
           ],
           "id": "AC-07",
           "passed": true
         },
         {
           "evidence": [
-            "docs/implantacao-sie-2-0/F00/RELATORIO_EXECUCAO.md; publicacao versionada ainda em fechamento"
+            "docs/implantacao-sie-2-0/F00/RELATORIO_EXECUCAO.md",
+            "Commit local versionado 8797f616f07c3866833db4eb463e050ece76420d: pacote completo F00 com QA3, testes, logs e fonte preservada",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/ab129046716b5bcff62bd5ca2f0cb470b7c0f077",
+            "docs/implantacao-sie-2-0/F00/evidencias/publication-map.json"
           ],
           "id": "AC-08",
-          "passed": false
+          "passed": true
         },
         {
           "evidence": [
-            "docs/implantacao-sie-2-0/F00/QA-01.md; QA-02.md; QA-03.md"
+            "docs/implantacao-sie-2-0/F00/QA-01.md",
+            "docs/implantacao-sie-2-0/F00/QA-02.md",
+            "docs/implantacao-sie-2-0/F00/QA-03.md"
           ],
           "id": "AC-09",
           "passed": true
@@ -586,13 +604,20 @@
       "id": "F00",
       "impact": 10,
       "priority": 100,
+      "publication": {
+        "branch": "audit/f00-baseline-2026-10-15",
+        "initial_local_commit": "8797f616f07c3866833db4eb463e050ece76420d",
+        "initial_remote_commit": "ab129046716b5bcff62bd5ca2f0cb470b7c0f077",
+        "mapping_file": "docs/implantacao-sie-2-0/F00/evidencias/publication-map.json",
+        "shared_tree_sha": "904e4a84de7d772a8915c4d79b5e27aa130959c1"
+      },
       "requirements_verified": true,
       "risk": 2,
       "source_refs": [
         "docs/implantacao-sie-2-0/F00/F00_EXECUTAR.md",
         "docs/stories/story-SIE-F00-BASELINE-PRESERVACAO.md"
       ],
-      "state": "VALIDATING",
+      "state": "DONE",
       "title": "Diagnostico e preservacao da baseline SIE 2.0"
     }
   ]

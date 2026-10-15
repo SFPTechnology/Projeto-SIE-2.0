@@ -1,0 +1,26 @@
+PASS canonical revision8, F00DONE, all9criteria evidenced
+PASS 12 previous tasks unchanged
+PASS AC01 file docs/implantacao-sie-2-0/F00/BASELINE_CI.md
+PASS AC01 file docs/implantacao-sie-2-0/F00/evidencias/baseline.json
+PASS AC02 file docs/implantacao-sie-2-0/F00/INVENTARIO_LEGADO.md
+PASS AC03 file docs/implantacao-sie-2-0/F00/MATRIZ_MOTORES_FONTES.md
+PASS AC03 file docs/implantacao-sie-2-0/F00/QA-02.md
+PASS AC04 file docs/implantacao-sie-2-0/F00/evidencias/clean-golden-replay.log
+PASS AC04 file docs/implantacao-sie-2-0/F00/evidencias/clean-api-regression.log
+PASS AC05 file docs/implantacao-sie-2-0/F00/REGISTRO_RISCOS_INICIAIS.md
+PASS AC05 file docs/implantacao-sie-2-0/F00/QA-03.md
+PASS AC06 file docs/implantacao-sie-2-0/F00/MATRIZ_PRESERVACAO_FUNCIONAL.csv
+PASS AC06 file docs/implantacao-sie-2-0/F00/QA-01.md
+PASS AC07 file docs/implantacao-sie-2-0/F00/ESTRATEGIA_MIGRACAO.md
+PASS AC07 file docs/implantacao-sie-2-0/F00/PARECER_ARQUITETURA.md
+PASS AC08 file docs/implantacao-sie-2-0/F00/RELATORIO_EXECUCAO.md
+PASS AC09 file docs/implantacao-sie-2-0/F00/QA-01.md
+PASS AC09 file docs/implantacao-sie-2-0/F00/QA-02.md
+PASS AC09 file docs/implantacao-sie-2-0/F00/QA-03.md
+PASS QA3 explicit approval
+PASS original fixture unchanged
+PASS source runtime/UI/TS/SQL unchanged
+PASS report and handoff agree F00DONE/F01
+PASS first real commit contains evidence package
+PASS whitespace with documented verbatim/CRLF exceptions
+EXIT: 0

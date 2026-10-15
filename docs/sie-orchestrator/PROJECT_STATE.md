@@ -2,7 +2,9 @@
 
 ## Reconciliação F00 — 2026-10-15
 
-**F00 VALIDATING** na branch `audit/f00-baseline-2026-10-15`, baseline remota `8d86db26f5e8675eaced4638af14bd84019e15e7`. Inventário de 37 IDs, replay de 34 cenários originais,134 pytest (inclui 35 golden),3 Chromium locais e18 AIOX aprovados; QA-01/02/03 e roteiro de arquitetura APROVADO apenas para diagnóstico/preservação. O versionamento final ainda está em fechamento. Relatório: `docs/implantacao-sie-2-0/F00/RELATORIO_EXECUCAO.md`.
+**F00 DONE — diagnóstico/preservação** na branch `audit/f00-baseline-2026-10-15`, baseline remota `8d86db26f5e8675eaced4638af14bd84019e15e7`. Inventário de 37 IDs, replay de 34 cenários originais, 134 pytest (inclui 35 golden), 3 Chromium locais e 18 AIOX aprovados; QA-01/02/03 e roteiro de arquitetura APROVADO apenas para diagnóstico/preservação. Pacote de evidências publicado no commit `ab129046716b5bcff62bd5ca2f0cb470b7c0f077` (árvore idêntica ao checkpoint local `8797f616f07c3866833db4eb463e050ece76420d`); decisão final de passagem registrada após QA3. Relatório: `docs/implantacao-sie-2-0/F00/RELATORIO_EXECUCAO.md`.
+
+Próximo artefato de execução: `F01_EXECUTAR.md`, sujeito aos seus pré-requisitos.
 
 O JSON canônico recebeu apenas a atividade F00; as 12 tarefas anteriores e seus bloqueios foram preservados. Normas, motores completos e produção continuam com seus gates próprios.
 
