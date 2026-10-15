@@ -40,3 +40,16 @@ Todos os três ramos foram iniciados a partir do SHA `8aec14ac0817ba75ea5e5cee90
 - Se G01–G06 estiverem realmente comprovados e aprovados pelos revisores e houver revisão independente das normas, registrar evidências verificáveis, auditar e só então considerar F01 DONE.
 - Se faltar original autorizado, dupla conferência, resultado esperado independente, vínculo real de regra aplicada ou QA3 aprovado, **F01 continua BLOCKED**, F02 não começa.
 - Não carregar segredos API no chat, worktree, repositório nem relatório. Nenhuma alteração em produção/Supabase é executada por esses scripts.
+
+## Alternativa: executor mestre YOLO sem novas confirmações durante a execução
+Foi criado o `PLANO_EXECUCAO_AUTONOMA_YOLO.md` e um executor Python `scripts/f01_yolo_runner.py` que realiza primeira passagem de três agentes, até três ciclos de correção automática por agente, revisão cruzada, integração na F01 e verificação local, encerrando em bloqueio quando necessário. Leia primeiro o plano completo e **execute somente em VM/container descartável, sem segredos de produção e com proteção da main no GitHub**. O comando `--yolo` concede acesso amplo aos comandos e caminhos, então uma pasta de worktrees sozinha NÃO é confinamento de segurança.
+
+Na raiz do clone Git na branch `feat/f01-governanca-normativa` e com Copilot CLI autenticado, primeiro visualize:
+```powershell
+python scripts/f01_yolo_runner.py
+```
+Se tiver sandbox/VM separado e configurado, execução autônoma:
+```powershell
+python scripts/f01_yolo_runner.py --execute --sandbox-confirmed
+```
+Após início, não pede confirmações rotineiras, trabalha em ciclos finitos, envia commits apenas às branches QA/F01, produz logs fora do clone e não passa para a F02. Exige GitHub Copilot CLI autenticado e Python/Node/dependências de testes no ambiente; se algo faltar, encerra com estado de bloqueio e relatório. O script não é serviço em background nem permanece ativo após encerrar. Os três processos não foram iniciados neste chat.
