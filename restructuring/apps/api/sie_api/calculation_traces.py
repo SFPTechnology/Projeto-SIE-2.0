@@ -26,6 +26,7 @@ def preparar_registro(projeto_id, revisao, circuito_nome, entrada, resultado):
         "normative_rule_ids_used_verified": [],
         "normative_cells_used_verified": [],
         "source_values_verified": False,
+        "reported_normative_source_origin": "CLIENT_DECLARATION_NOT_VERIFIED",
         "calculation_trace_kind": TYPE,
         "normative_conformity_verified": False,
         "release_allowed": False,
@@ -42,6 +43,7 @@ def validar_registro(serialized, digest):
         item.get("release_allowed") is not False or
         item.get("normative_conformity_verified") is not False or
         item.get("source_values_verified") is not False or
+        item.get("reported_normative_source_origin") != "CLIENT_DECLARATION_NOT_VERIFIED" or
         item.get("normative_rule_ids_used_verified") != [] or
         item.get("normative_cells_used_verified") != []):
         raise ValueError("Registro de ensaio invalido ou alegacao de homologacao")
