@@ -75,5 +75,5 @@ def test_main_application_mounts_routes():
     import sie_api.main as main_module
     integrated_app = importlib.reload(main_module).app
     routes = {getattr(route, "path", "") for route in integrated_app.routes}
-    assert "/api/v1/normas/aplicabilidade" in routes, sorted(routes)
+    assert "/api/v1/normas/aplicabilidade" in routes, f"INTEGRATED_ROUTES={sorted(routes)!r}, MODULE={main_module.__file__}, DECLARED_ROUTES={[r.path for r in router.routes]!r}"
     assert "/api/v1/circuitos/analisar" in routes
