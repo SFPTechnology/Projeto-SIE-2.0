@@ -4,6 +4,7 @@ Nao armazena decisao de conformidade normativa.
 """
 import json
 import sqlite3
+from hashlib import sha256
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
@@ -52,6 +53,21 @@ class RepositorioProjetos:
                     alteracoes_json TEXT NOT NULL,
                     criado_em TEXT NOT NULL
                 );
+                CREATE TABLE IF NOT EXISTS versoes_projeto(
+                    projeto_id TEXT NOT NULL REFERENCES projetos(id),
+                    revisao INTEGER NOT NULL CHECK(revisao >= 1),
+                    nome TEXT NOT NULL,
+                    dados_json TEXT NOT NULL,
+                    hash_sha256 TEXT NOT NULL CHECK(length(hash_sha256)=64),
+                    criado_em TEXT NOT NULL,
+                    PRIMARY KEY(projeto_id, revisao)
+                );
+                CREATE TRIGGER IF NOT EXISTS f01_versao_sem_update
+                    BEFORE UPDATE ON versoes_projeto
+                    BEGIN SELECT RAISE(ABORT, 'versao de projeto imutavel'); END;
+                CREATE TRIGGER IF NOT EXISTS f01_versao_sem_delete
+                    BEFORE DELETE ON versoes_projeto
+                    BEGIN SELECT RAISE(ABORT, 'versao de projeto imutavel'); END;
                 CREATE TRIGGER IF NOT EXISTS f01_snapshot_sem_update
                     BEFORE UPDATE ON snapshots_normativos
                     BEGIN SELECT RAISE(ABORT, 'snapshot normativo imutavel'); END;
@@ -116,6 +132,19 @@ class RepositorioProjetos:
                     "INSERT INTO projetos(id,nome,dados_json,revisao,atualizado_em) VALUES(?,?,?,?,?)",
                     (projeto_id, nome, conteudo, nova_revisao, agora),
                 )
+            # Histórico completo: somete versões criadas APÓS habilitar este recurso.
+            # Registrar nome e dados efetivamente gravados na mesma transação.
+            registro_versao = json.dumps(
+                {"projeto_id": projeto_id, "revisao": nova_revisao,
+                 "nome": nome, "dados": json.loads(conteudo)},
+                ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False,
+            )
+            hash_versao = sha256(registro_versao.encode("utf-8")).hexdigest()
+            db.execute(
+                "INSERT INTO versoes_projeto(projeto_id,revisao,nome,dados_json,"
+                "hash_sha256,criado_em) VALUES(?,?,?,?,?,?)",
+                (projeto_id, nova_revisao, nome, conteudo, hash_versao, agora),
+            )
             db.execute(
                 "INSERT INTO eventos_auditoria(projeto_id,acao,revisao,criado_em) VALUES(?,?,?,?)",
                 (projeto_id, "CRIAR" if anterior is None else "ATUALIZAR", nova_revisao, agora),
@@ -208,3 +237,44 @@ class RepositorioProjetos:
                  "hash_sha256": r["hash_sha256"],
                  "impacto_no_salvamento": json.loads(r["alteracoes_json"]),
                  "criado_em": r["criado_em"]} for r in rows]
+
+
+    def carregar_revisao(self, projeto_id: str, revisao: int) -> dict | None:
+        """Recupera só a versão salva desde a criação do histórico, com digest."""
+        projeto_id = str(UUID(projeto_id))
+        if type(revisao) is not int or revisao < 1:
+            raise ValueError("Revisao historica invalida")
+        with self._conectar() as db:
+            row = db.execute(
+                "SELECT revisao,nome,dados_json,hash_sha256,criado_em FROM versoes_projeto "
+                "WHERE projeto_id=? AND revisao=?", (projeto_id, revisao),
+            ).fetchone()
+        if row is None:
+            return None  # Sem backfill fictício para projetos legados.
+        dados = json.loads(row["dados_json"])
+        encoded = json.dumps(
+            {"projeto_id": projeto_id, "revisao": row["revisao"],
+             "nome": row["nome"], "dados": dados},
+            ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False,
+        ).encode("utf-8")
+        if sha256(encoded).hexdigest() != row["hash_sha256"]:
+            raise ValueError("Integridade da revisao historica comprometida")
+        return {
+            "id": projeto_id, "revisao": row["revisao"],
+            "nome": row["nome"], "dados": dados, "criado_em": row["criado_em"],
+            "hash_sha256": row["hash_sha256"],
+            "historico_recuperavel": True, "normative_conformity_verified": False,
+            "regras_efetivamente_usadas_comprovadas": False,
+        }
+
+    def listar_revisoes(self, projeto_id: str) -> list[dict]:
+        """Somente metadados de revisões realmente preservadas."""
+        projeto_id = str(UUID(projeto_id))
+        with self._conectar() as db:
+            rows = db.execute(
+                "SELECT revisao,nome,hash_sha256,criado_em FROM versoes_projeto "
+                "WHERE projeto_id=? ORDER BY revisao", (projeto_id,),
+            ).fetchall()
+        return [{"revisao": row["revisao"], "nome": row["nome"],
+                 "hash_sha256": row["hash_sha256"], "criado_em": row["criado_em"]}
+                for row in rows]
