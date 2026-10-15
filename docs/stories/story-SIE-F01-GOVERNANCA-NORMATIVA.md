@@ -11,12 +11,14 @@ Branch: `feat/f01-governanca-normativa`, PR draft #3.
 - [ ] Cada regra tem fonte primária verificada, cláusula/tabela/unidade e dupla conferência.
 - [ ] Normas por localidade/vigência e resolução de conflito completamente confirmadas.
 - [ ] Casos quantitativos independentes com valores esperados e fórmula auditada.
-- [ ] Snapshot histórico por projeto preservado com trilha de alterações de edição.
+- [x] Snapshot de **metadados do catálogo** por revisão de projeto no SQLite local, com hash/diff/auditoria e sem backfill fictício.
+- [ ] Snapshot das **regras/células efetivamente usadas no cálculo**, histórico de resultados e identidade/revalidação profissionais.
 - [ ] Gate QA-01, QA-02, QA-03 aplicáveis aprovados com evidências.
 - [ ] Encerramento F01 = DONE e passagem F02 permitida.
 
 ## File list de alterações/novidades F01
 - `restructuring/apps/api/sie_api/domain/normative.py`, `normative_api.py`, `data/normative_registry.json`, `main.py`.
+- `restructuring/apps/api/sie_api/normative_snapshots.py`, `storage.py`, `storage_api.py`, `tests/test_normative_snapshots_f01.py`.
 - `restructuring/apps/api/tests/test_normative_f01.py`, `test_web_contract.py`, `restructuring/e2e/test_browser_flow.py`.
 - `restructuring/apps/web/index.html`, `app.js`, `styles.css`.
 - `restructuring/apps/api/pyproject.toml` (package data) e `.github/workflows/sie-restructuring-api.yml`.
