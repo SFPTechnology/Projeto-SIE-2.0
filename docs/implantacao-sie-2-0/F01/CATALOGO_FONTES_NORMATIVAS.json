@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "policy": "FAIL_CLOSED",
+  "status": "PRELIMINAR_SEM_HOMOLOGACAO",
+  "sources": [
+    {
+      "id": "ABNT-NBR-5410",
+      "issuer": "ABNT",
+      "scope": "instalações elétricas de baixa tensão",
+      "edition": null,
+      "corrections": null,
+      "effective_from": null,
+      "effective_until": null,
+      "license": "A_VERIFICAR",
+      "url": null,
+      "copy_sha256": null,
+      "status": "NAO_VERIFICADA"
+    },
+    {
+      "id": "ABNT-NBR-5419",
+      "issuer": "ABNT",
+      "scope": "proteção contra descargas atmosféricas, quando aplicável",
+      "edition": null,
+      "corrections": null,
+      "effective_from": null,
+      "effective_until": null,
+      "license": "A_VERIFICAR",
+      "url": null,
+      "copy_sha256": null,
+      "status": "NAO_VERIFICADA"
+    },
+    {
+      "id": "NR-10",
+      "issuer": "MTE",
+      "scope": "segurança em instalações e serviços de eletricidade",
+      "edition": null,
+      "corrections": null,
+      "effective_from": null,
+      "effective_until": null,
+      "license": "A_VERIFICAR",
+      "url": null,
+      "copy_sha256": null,
+      "status": "NAO_VERIFICADA"
+    },
+    {
+      "id": "EDP-PT.DT.PDN.00068",
+      "issuer": "EDP",
+      "scope": "apenas concessão e período pertinentes",
+      "edition": null,
+      "corrections": null,
+      "effective_from": null,
+      "effective_until": null,
+      "license": "A_VERIFICAR",
+      "url": null,
+      "copy_sha256": null,
+      "status": "NAO_VERIFICADA"
+    }
+  ]
+}
