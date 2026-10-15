@@ -21,7 +21,7 @@ def serializar_catalogo() -> tuple[str, str]:
         if record.verified_data is not False:
             raise ValueError("Registro técnico não homologado não pode receber status aprovado")
         meta = asdict(record)
-        for key in ("effective_from", "effective_until"):
+        for key in ("effective_from", "effective_until", "official_publication_date"):
             if isinstance(meta.get(key), date):
                 meta[key] = meta[key].isoformat()
         meta["typologies"] = list(meta["typologies"])
