@@ -43,3 +43,9 @@
 ## Implementação estrutural atual
 
 Fonte canônica operacional dos metadados versionados: `restructuring/apps/api/sie_api/data/normative_registry.json` (revisão por registro, lida por `domain/normative.py`). Interface `GET /api/v1/normas/catalogo` publica apenas status `NAO_VERIFICADA` e edição; `POST /api/v1/normas/aplicabilidade` compara metadados contextuais e retorna `release_allowed=false`. A alteração controlada desse arquivo é auditável pelo Git, porém **não substitui snapshot de dados normativos por projeto**, inexistente nesta fase.
+
+## Registro de retomada — proveniência e histórico
+
+Fonte editorial oficial EDP SP: https://www.edp.com.br/normas-e-padroes-tecnicos/ confirma código `PT.DT.PDN.00068`, versão 9, data de publicação 15/04/2026. O catálogo operacional passa a usar revisão 2 para **metadados da fonte**, mantendo `verified_data=false`. Para datas anteriores à publicação, a regra retorna PENDENTE. Publicação não define automaticamente início de vigência.
+
+`EVIDENCIA_SNAPSHOTS_LOCAL.md` documenta snapshots versionados do **catálogo** por revisão do projeto no SQLite, não das regras efetivamente empregadas. Registros anteriores sem captura permanecem sem prova, e nenhuma reanálise ocorre silenciosamente. **Zero células de tabela homologadas.**
