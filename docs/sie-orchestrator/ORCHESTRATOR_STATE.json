@@ -149,7 +149,7 @@
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 10,
+  "revision": 11,
   "schema_version": 1,
   "tasks": [
     {
@@ -719,6 +719,28 @@
         "pr": "https://github.com/SFPTechnology/Projeto-SIE-2.0/pull/3",
         "merged_to_main": false,
         "normative_approval": false
+      },
+      "checkpoint": {
+        "at": "2026-10-15",
+        "summary": "Local SQLite catalog-only immutable snapshots implemented; official EDP V9 metadata verified but normative content unverified; 160 pytest, 4 Chromium, AIOX success; QA3 not approved.",
+        "catalogue_snapshot_metadata": "IMPLEMENTED_LOCAL_ONLY",
+        "applied_rule_snapshots": "PENDING",
+        "approved_numeric_cases": 0,
+        "verified_normative_cells": 0,
+        "qa_01": "PENDENTE",
+        "qa_02": "BLOQUEADO",
+        "qa_03": "PENDENTE",
+        "f02_release": false,
+        "source_refs": [
+          "docs/implantacao-sie-2-0/F01/EVIDENCIA_FONTES_OFICIAIS.md",
+          "docs/implantacao-sie-2-0/F01/EVIDENCIA_SNAPSHOTS_LOCAL.md",
+          "docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md"
+        ],
+        "ci_runs": [
+          38725806925,
+          38725806964,
+          38725806937
+        ]
       }
     }
   ]
