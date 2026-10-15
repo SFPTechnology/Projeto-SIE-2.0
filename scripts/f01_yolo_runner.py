@@ -160,6 +160,19 @@ def safe_git_commit(worktree: Path, message: str) -> str:
     return need(["git", "rev-parse", "HEAD"], worktree)
 
 
+def push_whitelisted(worktree: Path, branch: str):
+    """Publica apenas branches de trabalho explícitas; nunca main/force-push."""
+    allowed = {PHASE} | {item[2] for item in QA}
+    if branch not in allowed:
+        raise Blocked("BLOCKED_SECURITY", f"Push fora do escopo F01: {branch}")
+    actual = need(["git", "branch", "--show-current"], worktree)
+    if actual != branch:
+        raise Blocked("BLOCKED_SECURITY", f"Push: checkout {actual} difere de {branch}")
+    # Nunca usar --force; rejeição non-fast-forward encerra a operação.
+    need(["git", "push", "origin", f"HEAD:refs/heads/{branch}"],
+         worktree, code="FAILED_TECHNICAL", timeout=300)
+
+
 def copy_env() -> dict:
     """Reduz vazamento acidental de vars de serviço; isolamento real é externo."""
     env = os.environ.copy()
@@ -319,6 +332,10 @@ def run(root: Path, args) -> dict:
     if not all(x.tests_passed and x.report_complete for x in by_id.values()):
         raise Blocked("FAILED_TECHNICAL",
                       "Primeira rodada QA inconclusa; não fazer revisão cruzada fictícia")
+    # Cada branch independente recebe apenas commits que passaram testes e relatório.
+    for qa, profile, branch, _ in QA:
+        push_whitelisted(workdir / qa, branch)
+    history.append({"stage": "E04", "qa_branches_pushed": True})
     for qa, profile, branch, target_id in QA:
         reviewer_wt = workdir / qa
         source_wt = workdir / target_id
@@ -341,7 +358,13 @@ def run(root: Path, args) -> dict:
                           f"Revisão cruzada {qa}->{target_id} rc={rc}: {output[-750:]}")
         if not (reviewer_wt / f"docs/implantacao-sie-2-0/F01/qa3-runs/{qa}/REVISAO_CRUZADA.md").is_file():
             raise Blocked("FAILED_TECHNICAL", f"Revisão cruzada não produzida por {qa}")
+        verified, cross_log = local_tests(reviewer_wt, logdir,
+                                          f"{qa}-revisao-cruzada")
+        if not verified:
+            raise Blocked("FAILED_TECHNICAL",
+                          f"Revisor {qa} alterou projeto sem regressão verde: {cross_log[-800:]}")
         sha = safe_git_commit(reviewer_wt, f"docs(f01): independent cross-review {qa} audits {target_id}")
+        push_whitelisted(reviewer_wt, branch)
         history.append({"stage": "E05", "reviewer": qa, "target": target_id,
                         "first_pass_target_sha": source_sha, "review_commit": sha})
     # Integração é feita com outro contexto CLI; não mesclar branches cegamente.
@@ -370,6 +393,7 @@ def run(root: Path, args) -> dict:
         verify_no_fake_done(root)
         if good:
             final_sha = safe_git_commit(root, "feat(f01): integrate independent QA3 verified changes")
+            push_whitelisted(root, PHASE)
             history.append({"stage": "E06-E07", "commit": final_sha,
                             "local_tests_passed": True})
             break
@@ -387,8 +411,8 @@ def run(root: Path, args) -> dict:
     return {"outcome": outcome, "branch": PHASE, "commit": final_sha,
             "logs": str(logdir), "agent_results": [vars(x) for x in by_id.values()],
             "history": history, "f00_reopened": False, "f02_started": False,
-            "push_performed": False, "merge_performed": False,
-            "note": "Não publicar alterações automaticamente; revisar CI final e evidências externas."}
+            "push_performed": True, "merge_performed": False,
+            "note": "Somente branches QA/F01 atualizadas; CI no SHA final e evidências normativas externas ainda devem ser verificadas."}
 
 
 def main(argv=None) -> int:
