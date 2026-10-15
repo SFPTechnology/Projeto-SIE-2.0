@@ -21,3 +21,16 @@ Disponibilizar catálogo **de metadados**, API de consulta contextual, teste de 
 ## Condição de conclusão
 
 F01 somente DONE quando as tasks essenciais, conferências necessárias à seleção de regras, snapshots históricos, testes integrados e QA-01/02/03 aplicáveis estejam aprovados. Caso contrário, manter `BLOCKED` com evidências de implementação parcial. **F02 não liberada.**
+
+## Revisão dos bloqueios — 15/10/2026
+
+| ID | Situação da retomada | Próxima prova exigida |
+|---|---|---|
+| F01-DAT-01 | **MITIGADO PARCIALMENTE:** snapshot transacional do catálogo e diffs/auditoria locais implantados; sem retroatividade | Associar regra/célula efetivamente aplicada + memória de cálculo por circuito/edição; ensaiar backup/restore e identidade antes de produção |
+| F01-NOR-01 | **ABERTO:** EDP v09 tem publicação oficial confirmada em 15/04/2026, sem igualdade de conteúdo com PDF local nem dupla conferência das tabelas | Fonte primária autorizada, licença, vigência, notas e duas leituras de cada célula |
+| F01-NOR-02 | **ABERTO:** marcador temporal da EDP v09 e transição NR-10 estão conservadores, sem interpretação final | Resolver aplicabilidade concreta/territorial e exceções da NR-10 |
+| F01-ENG-01 | **BLOQUEADO:** zero casos quantitativos normativos aprovados | Cálculo de referência independente, unidades e edição comprovadas |
+| F01-SEG-01 | **ABERTO:** endpoints de histórico protegidos por token local, não por autenticação/ACL multiusuário | Testes de negação usuário A/B e identidade de produção em banco de ensaio |
+| F01-UX-01 | **PARCIAL:** catálogo legível na UI; histórico de snapshots só na API | Interface e testes E2E de consulta histórica, quando seguro |
+
+O parágrafo anterior de que "o código novo não altera banco" descrevia a etapa antes da retomada. **A rotina de abertura do SQLite local agora cria tabelas/triggers F01**, sem migração em ambiente remoto. Não executar com dados profissionais sem backup e ensaio de restauração. F01 continua BLOCKED.
