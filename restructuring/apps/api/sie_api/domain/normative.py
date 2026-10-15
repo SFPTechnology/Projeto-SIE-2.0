@@ -1,10 +1,8 @@
-"""Catálogo de candidatos normativos; nenhum valor de tabela é aprovado aqui.
-
-Um match de contexto não atesta conformidade nem autoriza cálculo normativo.
-Apenas dados publicados e validados por processo confiável poderiam mudar este gate.
-"""
+"""Governança normativa consultiva: metadados versionados, liberação sempre bloqueada."""
 from dataclasses import dataclass
 from datetime import date
+from importlib.resources import files
+import json
 from typing import Optional
 
 @dataclass(frozen=True)
@@ -13,6 +11,7 @@ class NormativeRecord:
     document: str
     edition: str
     subject: str
+    revision: int = 1
     typologies: tuple[str, ...] = ("residencial", "comercial", "predial")
     uf: Optional[str] = None
     distributor: Optional[str] = None
@@ -20,24 +19,32 @@ class NormativeRecord:
     effective_until: Optional[date] = None
     verified_data: bool = False
 
-# Metadados editoriais identificados, não transcrições ou tabelas certificadas.
-# NR-10: transição da Portaria MTE 737/2026; conferir exceções de instalações existentes.
-RECORDS = (
-    NormativeRecord("ABNT-NBR-5410", "ABNT NBR 5410", "2004 corrigida 2008",
-                    "Instalações de baixa tensão; escopo técnico a conferir"),
-    *(NormativeRecord(f"ABNT-NBR-5419-{i}", f"ABNT NBR 5419-{i}",
-                      "2026 corrigida 2026", "SPDA; depende de análise técnica de risco")
-      for i in range(1, 5)),
-    NormativeRecord("NR-10-ATE-2027", "NR-10", "Redação anterior à Portaria MTE 737/2026",
-                    "Segurança de serviços e instalações",
-                    effective_until=date(2027, 5, 31)),
-    NormativeRecord("NR-10-A-PARTIR-2027", "NR-10", "Portaria MTE 737/2026",
-                    "Segurança de serviços e instalações",
-                    effective_from=date(2027, 6, 1)),
-    NormativeRecord("EDP-SP-PTDT00068-V09", "EDP PT.DT.PDN.00068", "v09 candidata",
-                    "Padrão de entrada; concessão exata por confirmar",
-                    uf="SP", distributor="EDP_SP"),
-)
+def load_registry() -> tuple[NormativeRecord, ...]:
+    """Importar metadados revisados no Git; nenhum campo confere homologação."""
+    path = files("sie_api").joinpath("data", "normative_registry.json")
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if data.get("schema_version") != 1 or data.get("registry_state") != "NAO_HOMOLOGADO":
+        raise ValueError("Registro normativo incompatível ou estado inválido")
+    items = data.get("records")
+    if not isinstance(items, list) or not items:
+        raise ValueError("Registro normativo vazio")
+    ids = set()
+    records = []
+    for raw in items:
+        if raw["id"] in ids:
+            raise ValueError("ID normativo duplicado")
+        ids.add(raw["id"])
+        if raw.get("verified_data") is not False or raw.get("revision", 0) < 1:
+            raise ValueError("Fonte não homologada não pode ser importada como verificada")
+        item = dict(raw)
+        item["typologies"] = tuple(item["typologies"])
+        for key in ("effective_from", "effective_until"):
+            if item.get(key):
+                item[key] = date.fromisoformat(item[key])
+        records.append(NormativeRecord(**item))
+    return tuple(records)
+
+RECORDS = load_registry()
 
 @dataclass(frozen=True)
 class Context:
@@ -80,6 +87,6 @@ def inspect_record(record: NormativeRecord, ctx: Context) -> dict:
     return _decision(record, "BLOQUEADO", reasons)
 
 def _decision(record: NormativeRecord, status: str, reasons: list[str]) -> dict:
-    return {"rule_id": record.id, "document": record.document, "edition": record.edition,
+    return {"rule_id": record.id, "revision": record.revision, "document": record.document, "edition": record.edition,
             "status": status, "reasons": reasons,
             "normative_approved": False, "verified_data": False}
