@@ -146,7 +146,7 @@
     {
       "revision": 1,
       "updated_at": "2026-10-15",
-      "metadata_status": "IDENTIFICADA_NAO_HOMOLOGADA",
+      "metadata_status": "EDICAO_OFICIAL_CONFIRMADA_COPIA_E_TABELAS_NAO_CONFERIDAS",
       "rule_validation_status": "NAO_VERIFICADA",
       "source_license": "NAO_CONFERIDA",
       "double_check_completed": false,
@@ -156,15 +156,19 @@
       "issuer": "EDP",
       "document": "PT.DT.PDN.00068",
       "edition": "v09 (cópia local candidata)",
-      "metadata_basis": "Inventário de integridade F00 (não prova vigência)",
-      "official_url": null,
+      "metadata_basis": "Página oficial EDP Normas e padrões técnicos: PT.DT.PDN.00068 v09, publicado em 15/04/2026",
+      "official_url": "https://www.edp.com.br/normas-e-padroes-tecnicos/",
       "content_source_path": "Arquivos_Diversos/Norma_EDP/PT.DT.PDN.00068_V9.pdf",
       "content_source_role": "PDF_CANDIDATO_PRIMARIO",
       "content_sha256": "b14f414001d9831f91bbef84f022c5164f367431cc6a209e5fb34b4e48f20810",
       "uf": "SP",
       "distributor": "EDP_SP",
-      "jurisdiction": "concessão exata a confirmar"
+      "jurisdiction": "concessão exata a confirmar",
+      "official_publication_date": "2026-04-15",
+      "official_edition_checked_on": "2026-10-15",
+      "candidate_copy_matching_official": false
     }
   ],
-  "artifacts_f00_manifest": "docs/implantacao-sie-2-0/F00/evidencias/fontes-sha256.json"
+  "artifacts_f00_manifest": "docs/implantacao-sie-2-0/F00/evidencias/fontes-sha256.json",
+  "edition_reference_verified_from_official_page": "2026-10-15"
 }
