@@ -1,6 +1,9 @@
 """Ensaio de cálculo com proveniência REAL dos algoritmos, sem afirmar norma."""
 from hashlib import sha256
+from inspect import getsource
 import json
+from .domain.engines import (selecionar_condutor, selecionar_disjuntor,
+                             calcular_queda_tensao_monofasica)
 from uuid import uuid4
 
 ALGOS = (
@@ -23,6 +26,11 @@ def preparar_registro(projeto_id, revisao, circuito_nome, entrada, resultado):
         "revisao_projeto": revisao, "circuito_nome": circuito_nome,
         "entrada": entrada, "resultado": resultado,
         "algorithm_ids_executed": list(ALGOS),
+        "algorithm_function_source_sha256": {
+            "selecionar_condutor": sha256(getsource(selecionar_condutor).encode("utf-8")).hexdigest(),
+            "selecionar_disjuntor": sha256(getsource(selecionar_disjuntor).encode("utf-8")).hexdigest(),
+            "calcular_queda_tensao_monofasica": sha256(getsource(calcular_queda_tensao_monofasica).encode("utf-8")).hexdigest(),
+        },
         "normative_rule_ids_used_verified": [],
         "normative_cells_used_verified": [],
         "source_values_verified": False,
@@ -40,6 +48,10 @@ def validar_registro(serialized, digest):
         raise ValueError("Integridade de ensaio de calculo comprometida")
     item = json.loads(serialized)
     if (item.get("calculation_trace_kind") != TYPE or
+        set(item.get("algorithm_function_source_sha256", {})) != {
+            "selecionar_condutor", "selecionar_disjuntor",
+            "calcular_queda_tensao_monofasica"} or
+        any(len(v) != 64 for v in item.get("algorithm_function_source_sha256", {}).values()) or
         item.get("release_allowed") is not False or
         item.get("normative_conformity_verified") is not False or
         item.get("source_values_verified") is not False or
