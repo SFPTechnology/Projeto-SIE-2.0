@@ -116,3 +116,33 @@ document.querySelector('#project-load').addEventListener('click', async () => {
     button.disabled = false;
   }
 });
+
+
+// F01: painel consultivo de fontes. Usar apenas texto (sem HTML de dados externos).
+// Ausência do endpoint jamais altera o gate da análise de circuitos.
+async function loadNormativeCatalog() {
+  const status = document.querySelector('#normas-status');
+  const list = document.querySelector('#normas-lista');
+  if (!status || !list) return;
+  try {
+    const response = await fetch(`${apiBase}/api/v1/normas/catalogo`);
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    const data = await response.json();
+    if (data.release_allowed !== false || data.normative_conformity_verified !== false ||
+        !Array.isArray(data.sources)) throw new Error('Resposta de governança inesperada');
+    list.replaceChildren();
+    data.sources.forEach((source) => {
+      const item = document.createElement('li');
+      item.textContent = String(source.document || source.id || 'Fonte desconhecida') +
+        ' — ' + String(source.edition || 'edição pendente') +
+        ' — NÃO VERIFICADA';
+      list.appendChild(item);
+    });
+    status.textContent = data.sources.length +
+      ' fontes cadastradas. Validação de conteúdo pendente; nenhuma fonte liberada.';
+  } catch {
+    list.replaceChildren();
+    status.textContent = 'Catálogo indisponível. Verificação e liberação normativa não realizadas.';
+  }
+}
+loadNormativeCatalog();
