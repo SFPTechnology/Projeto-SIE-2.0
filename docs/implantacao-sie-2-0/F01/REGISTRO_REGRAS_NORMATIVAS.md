@@ -39,3 +39,7 @@
 - Catálogo oficial de normas ABNT: https://www.abntcatalogo.com.br/default.aspx?O=1
 - NR-10 oficial (MTE, situação/transição 2026): https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10
 - F00: `docs/implantacao-sie-2-0/F00/evidencias/fontes-sha256.json`.
+
+## Implementação estrutural atual
+
+Fonte canônica operacional dos metadados versionados: `restructuring/apps/api/sie_api/data/normative_registry.json` (revisão por registro, lida por `domain/normative.py`). Interface `GET /api/v1/normas/catalogo` publica apenas status `NAO_VERIFICADA` e edição; `POST /api/v1/normas/aplicabilidade` compara metadados contextuais e retorna `release_allowed=false`. A alteração controlada desse arquivo é auditável pelo Git, porém **não substitui snapshot de dados normativos por projeto**, inexistente nesta fase.

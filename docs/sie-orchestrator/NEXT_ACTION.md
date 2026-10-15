@@ -1,11 +1,17 @@
-# NEXT_ACTION — F00 concluída
+# NEXT_ACTION — F01 BLOQUEADA (continuar F01, não F02)
 
-**Fonte canônica:** `ORCHESTRATOR_STATE.json`, atividade F00 **DONE**, revisão 9.
+**Fonte canônica:** `ORCHESTRATOR_STATE.json`, revisão 10, `F00=DONE`, `F01=BLOCKED`, `NOR-01=BLOCKED`. Branch F01: `feat/f01-governanca-normativa`; PR #3 em rascunho, apontado para branch F00. Main/produção intocadas.
 
-**Próximo arquivo: `F01_EXECUTAR.md`.** A passagem sequencial foi liberada pela verificação das oito tasks, dos três QA e do pacote versionado. Na próxima ativação, ler o artefato F01, conferir branch/head/estado e seus próprios pré-requisitos antes de executar. Não há autorização implícita para produção, merge ou homologação normativa.
+## Prova computacional F01
+- GitHub Actions `SIE modular API`: 149 pytest, 1 warning, success na revisão `fa6002d`: https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38722630175 .
+- `SIE Browser E2E (Chromium)`: 4 testes reais success (inclusive painel normativo), https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38722630269 .
+- Gates AIOX root: success, https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38722630211 .
+- Esses testes não validam conteúdo nem vigência de tabela normativa.
 
-Baseline auditada: `8d86db26f5e8675eaced4638af14bd84019e15e7`. Pacote inicial F00 publicado: [`ab12904`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/ab129046716b5bcff62bd5ca2f0cb470b7c0f077); checkpoint local equivalente `8797f616f07c3866833db4eb463e050ece76420d`. Relatório: `docs/implantacao-sie-2-0/F00/RELATORIO_EXECUCAO.md`.
+## Ordem de retomada, sem copiar prompt nem editar CSV manualmente
+1. Prosseguir a própria F01: obter fonte primária autorizada/licença e conferir linha, coluna, edição, vigência, unidade e notas de **cada célula realmente usada**, com dupla conferência; não inventar Rca/XL/Iz/EDP.
+2. Documentar conflitos territoriais e exceções transitórias NR-10, com fundamentação, e preparar casos numéricos de referência independentes antes da liberação.
+3. Implementar snapshots imutáveis por projeto, diffs entre edições e trilha de impacto, com banco de ensaio local/descartável, sem produção.
+4. Reexecutar regressão, integração, segurança, UX e três pareceres QA. Só alterar F01 para DONE com gates exigidos satisfeitos.
 
-Evidências: 134 pytest (inclui 35 golden), replay de 34 casos do SHA original, 3 Chromium locais e 18 SDC; QA-01/02/03 e roteiro de arquitetura APROVADO no escopo de diagnóstico/preservação. CodeRabbit não executado por indisponibilidade, com degradação prevista.
-
-NOR-01/SIE-AUTO-003 continuam BLOCKED; SIE-AUTO-006 continua HUMAN_REQUIRED; dados normativos, engenharia completa e produção mantêm gates próprios. ENG-001/002, tabela personalizada, imports TS e SQL/RLS constam da matriz/registro de riscos. Nenhuma tarefa anterior foi promovida por conta da F00 e nenhuma atividade F01 foi executada.
+**Próxima fase F02: BLOQUEADA.** A fase F01 deve ser retomada; não há background automático ou autorização de deploy.
