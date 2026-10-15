@@ -5,6 +5,9 @@ Nao armazena decisao de conformidade normativa.
 import json
 import sqlite3
 from hashlib import sha256
+from .analysis_contracts import AnaliseCircuito
+from .application import analisar_circuito
+from .calculation_traces import preparar_registro, validar_registro
 from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
@@ -62,6 +65,25 @@ class RepositorioProjetos:
                     criado_em TEXT NOT NULL,
                     PRIMARY KEY(projeto_id, revisao)
                 );
+                CREATE TABLE IF NOT EXISTS ensaios_calculo(
+                    id TEXT PRIMARY KEY,
+                    projeto_id TEXT NOT NULL,
+                    revisao_projeto INTEGER NOT NULL,
+                    circuito_nome TEXT NOT NULL,
+                    registro_json TEXT NOT NULL,
+                    hash_sha256 TEXT NOT NULL CHECK(length(hash_sha256)=64),
+                    criado_em TEXT NOT NULL,
+                    FOREIGN KEY(projeto_id,revisao_projeto)
+                        REFERENCES versoes_projeto(projeto_id,revisao)
+                );
+                CREATE INDEX IF NOT EXISTS f01_ensaio_por_circuito
+                    ON ensaios_calculo(projeto_id,revisao_projeto,circuito_nome);
+                CREATE TRIGGER IF NOT EXISTS f01_ensaio_sem_update
+                    BEFORE UPDATE ON ensaios_calculo
+                    BEGIN SELECT RAISE(ABORT, 'ensaio de calculo imutavel'); END;
+                CREATE TRIGGER IF NOT EXISTS f01_ensaio_sem_delete
+                    BEFORE DELETE ON ensaios_calculo
+                    BEGIN SELECT RAISE(ABORT, 'ensaio de calculo imutavel'); END;
                 CREATE TRIGGER IF NOT EXISTS f01_versao_sem_update
                     BEFORE UPDATE ON versoes_projeto
                     BEGIN SELECT RAISE(ABORT, 'versao de projeto imutavel'); END;
@@ -278,3 +300,106 @@ class RepositorioProjetos:
         return [{"revisao": row["revisao"], "nome": row["nome"],
                  "hash_sha256": row["hash_sha256"], "criado_em": row["criado_em"]}
                 for row in rows]
+
+
+    def registrar_ensaio(self, projeto_id: str, revisao: int,
+                         circuito_nome: str, parametros: dict) -> dict:
+        """Executa motor no servidor e persiste a trilha do ensaio, NAO conformidade."""
+        projeto_id = str(UUID(projeto_id))
+        if type(revisao) is not int or revisao < 1:
+            raise ValueError("Revisao de projeto invalida")
+        if not isinstance(circuito_nome, str) or not 1 <= len(circuito_nome.strip()) <= 120:
+            raise ValueError("Identificacao de circuito invalida")
+        circuito_nome = circuito_nome.strip()
+        if not isinstance(parametros, dict):
+            raise ValueError("Parametros de ensaio invalidos")
+        entrada = AnaliseCircuito.model_validate(parametros).model_dump(mode="json")
+        with self._conectar() as db:
+            db.execute("BEGIN IMMEDIATE")
+            atual = db.execute(
+                "SELECT revisao,dados_json FROM projetos WHERE id=?",
+                (projeto_id,),
+            ).fetchone()
+            if atual is None:
+                raise ValueError("Projeto inexistente")
+            if atual["revisao"] != revisao:
+                raise ConflitoRevisao("Ensaio exige revisao atual e imutavel do projeto")
+            historico = db.execute(
+                "SELECT 1 FROM versoes_projeto WHERE projeto_id=? AND revisao=?",
+                (projeto_id, revisao),
+            ).fetchone()
+            if historico is None:
+                raise ValueError("Revisao sem historico recuperavel; salvar antes do ensaio")
+            circuitos = json.loads(atual["dados_json"]).get("circuitos", [])
+            if not isinstance(circuitos, list):
+                raise ValueError("Lista de circuitos invalida")
+            coincidentes = [
+                c for c in circuitos if isinstance(c, dict)
+                and isinstance(c.get("nome"), str)
+                and c["nome"].strip().casefold() == circuito_nome.casefold()
+            ]
+            if len(coincidentes) != 1:
+                raise ValueError("Circuito ausente ou identificado ambiguamente na revisao")
+            armazenado = coincidentes[0]
+            for campo in ("corrente_a", "tensao_v", "comprimento_m"):
+                if campo in armazenado:
+                    try:
+                        from decimal import Decimal
+                        if Decimal(str(armazenado[campo])) != Decimal(str(entrada[campo])):
+                            raise ValueError(
+                                f"Ensaio incompatível com campo salvo do circuito: {campo}")
+                    except (ArithmeticError, TypeError):
+                        raise ValueError(f"Campo de circuito invalido: {campo}") from None
+            # Retorno da funcao real, nao "expected" produzido pelo cliente.
+            resultado = analisar_circuito(entrada)
+            if (resultado["liberado_para_uso_normativo"] is not False or
+                resultado["status_engenharia"] != "PENDENTE"):
+                raise ValueError("Motor nao possui estado seguro para ensaio nao homologado")
+            _, serializado, digest = preparar_registro(
+                projeto_id, revisao, armazenado["nome"].strip(), entrada, resultado,
+            )
+            if len(serializado.encode("utf-8")) > 1_048_576:
+                raise ValueError("Registro de calculo excede 1 MiB")
+            registro = validar_registro(serializado, digest)
+            db.execute(
+                "INSERT INTO ensaios_calculo(id,projeto_id,revisao_projeto,"
+                "circuito_nome,registro_json,hash_sha256,criado_em) VALUES(?,?,?,?,?,?,?)",
+                (registro["id"], projeto_id, revisao, registro["circuito_nome"],
+                 serializado, digest, datetime.now(timezone.utc).isoformat()),
+            )
+        return {**registro, "hash_sha256": digest}
+
+    def consultar_ensaio(self, projeto_id: str, ensaio_id: str) -> dict | None:
+        projeto_id, ensaio_id = str(UUID(projeto_id)), str(UUID(ensaio_id))
+        with self._conectar() as db:
+            row = db.execute(
+                "SELECT registro_json,hash_sha256 FROM ensaios_calculo "
+                "WHERE projeto_id=? AND id=?", (projeto_id, ensaio_id),
+            ).fetchone()
+        if row is None:
+            return None
+        item = validar_registro(row["registro_json"], row["hash_sha256"])
+        if item["projeto_id"] != projeto_id or item["id"] != ensaio_id:
+            raise ValueError("Vinculo do ensaio ao projeto inconsistente")
+        return {**item, "hash_sha256": row["hash_sha256"]}
+
+    def listar_ensaios(self, projeto_id: str, revisao: int) -> list[dict]:
+        projeto_id = str(UUID(projeto_id))
+        if type(revisao) is not int or revisao < 1:
+            raise ValueError("Revisao de projeto invalida")
+        with self._conectar() as db:
+            rows = db.execute(
+                "SELECT id,registro_json,hash_sha256,criado_em FROM ensaios_calculo "
+                "WHERE projeto_id=? AND revisao_projeto=? ORDER BY criado_em,id",
+                (projeto_id, revisao),
+            ).fetchall()
+        result = []
+        for row in rows:
+            item = validar_registro(row["registro_json"], row["hash_sha256"])
+            if item["id"] != row["id"] or item["projeto_id"] != projeto_id or item["revisao_projeto"] != revisao:
+                raise ValueError("Vinculo de ensaio inconsistente")
+            result.append({"id": row["id"], "circuito_nome": item["circuito_nome"],
+                           "hash_sha256": row["hash_sha256"],
+                           "criado_em": row["criado_em"],
+                           "normative_conformity_verified": False})
+        return result
