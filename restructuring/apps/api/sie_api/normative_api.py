@@ -21,7 +21,7 @@ class ApplicabilityRequest(BaseModel):
 @router.get("/catalogo")
 def get_normative_catalog():
     return {"normative_conformity_verified": False, "release_allowed": False,
-            "sources": [{"id": r.id, "document": r.document, "edition": r.edition,
+            "sources": [{"id": r.id, "revision": r.revision, "document": r.document, "edition": r.edition,
                          "data_status": "NAO_VERIFICADA"} for r in RECORDS]}
 
 @router.post("/aplicabilidade")
