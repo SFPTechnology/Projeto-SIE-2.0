@@ -11,7 +11,7 @@ class ApplicabilityRequest(BaseModel):
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
     typology: Literal["residencial", "comercial", "predial"]
     uf: str = Field(pattern=r"^[A-Z]{2}$")
-    voltage_v: float = Field(gt=0, le=100000)
+    voltage_v: float = Field(gt=0, le=100000, allow_inf_nan=False)
     reference_date: date
     distributor: str | None = Field(default=None, max_length=40)
     material: str | None = Field(default=None, max_length=40)
