@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "phase": "F01",
+  "as_of": "2026-10-15",
+  "branch": "feat/f01-governanca-normativa",
+  "state": "BLOCKED",
+  "f02_release_allowed": false,
+  "goal": "SIX_OF_SIX_EVIDENCE_BASED",
+  "evidence_requirements": "primary_source_and_independent_verification_required",
+  "gates": [
+    {
+      "id": "G01",
+      "name": "Fontes normativas",
+      "status": "PARTIAL",
+      "accepted": false,
+      "evidence": [],
+      "independent_external_verification": false
+    },
+    {
+      "id": "G02",
+      "name": "Células normativas",
+      "status": "BLOCKED",
+      "accepted": false,
+      "evidence": [],
+      "independent_external_verification": false
+    },
+    {
+      "id": "G03",
+      "name": "Casos numéricos independentes",
+      "status": "BLOCKED",
+      "accepted": false,
+      "evidence": [],
+      "independent_external_verification": false
+    },
+    {
+      "id": "G04",
+      "name": "Regras aplicadas e histórico",
+      "status": "PARTIAL",
+      "accepted": false,
+      "evidence": [],
+      "independent_external_verification": false
+    },
+    {
+      "id": "G05",
+      "name": "CI segurança UX",
+      "status": "PARTIAL",
+      "accepted": false,
+      "evidence": [],
+      "independent_external_verification": false
+    },
+    {
+      "id": "G06",
+      "name": "QA3 independente",
+      "status": "BLOCKED",
+      "accepted": false,
+      "evidence": [],
+      "independent_external_verification": false
+    }
+  ],
+  "agents": [
+    {
+      "id": "QA-01",
+      "profile": "f01-qa-arquiteto",
+      "status": "NOT_EXECUTED",
+      "branch": "qa/f01-arquiteto",
+      "independent_first_pass_commit": null,
+      "review_package": null
+    },
+    {
+      "id": "QA-02",
+      "profile": "f01-qa-engenheiro-eletrico",
+      "status": "NOT_EXECUTED",
+      "branch": "qa/f01-engenheiro-eletrico",
+      "independent_first_pass_commit": null,
+      "review_package": null
+    },
+    {
+      "id": "QA-03",
+      "profile": "f01-qa-dados-ux-llm",
+      "status": "NOT_EXECUTED",
+      "branch": "qa/f01-dados-ux-llm",
+      "independent_first_pass_commit": null,
+      "review_package": null
+    }
+  ],
+  "cross_reviews": [
+    {
+      "author": "QA-01",
+      "reviewer": "QA-02",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "author": "QA-02",
+      "reviewer": "QA-03",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "author": "QA-03",
+      "reviewer": "QA-01",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "external_normative_signoff": {
+    "status": "MISSING",
+    "signed_evidence": []
+  },
+  "notes": [
+    "Creating agent profiles does not execute them or establish independent professional approval.",
+    "0 verified normative cells and 0 normative numeric reference cases as documented in F01."
+  ]
+}
