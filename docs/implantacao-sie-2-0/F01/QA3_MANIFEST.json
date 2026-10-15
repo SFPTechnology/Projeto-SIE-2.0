@@ -64,7 +64,9 @@
       "status": "NOT_EXECUTED",
       "branch": "qa/f01-arquiteto",
       "independent_first_pass_commit": null,
-      "review_package": null
+      "review_package": null,
+      "issue": 4,
+      "profile_path": ".github/agents/f01-qa-arquiteto.agent.md"
     },
     {
       "id": "QA-02",
@@ -72,7 +74,9 @@
       "status": "NOT_EXECUTED",
       "branch": "qa/f01-engenheiro-eletrico",
       "independent_first_pass_commit": null,
-      "review_package": null
+      "review_package": null,
+      "issue": 5,
+      "profile_path": ".github/agents/f01-qa-engenheiro-eletrico.agent.md"
     },
     {
       "id": "QA-03",
@@ -80,7 +84,9 @@
       "status": "NOT_EXECUTED",
       "branch": "qa/f01-dados-ux-llm",
       "independent_first_pass_commit": null,
-      "review_package": null
+      "review_package": null,
+      "issue": 6,
+      "profile_path": ".github/agents/f01-qa-dados-ux-llm.agent.md"
     }
   ],
   "cross_reviews": [
@@ -107,5 +113,9 @@
   "notes": [
     "Creating agent profiles does not execute them or establish independent professional approval.",
     "0 verified normative cells and 0 normative numeric reference cases as documented in F01."
-  ]
+  ],
+  "agent_baseline_sha": "8aec14ac0817ba75ea5e5cee90240368807f1bf7",
+  "activation": "PROFILES_AND_SKILLS_CONFIGURED_NOT_EXECUTED",
+  "agent_executions_verified": 0,
+  "independent_qa_personas_are_not_professional_signoffs": true
 }
