@@ -8,6 +8,7 @@ from fastapi import APIRouter, Header, HTTPException
 from pydantic import BaseModel, ConfigDict, Field
 
 from .storage import ConflitoRevisao, RepositorioProjetos
+from .analysis_contracts import AnaliseCircuito
 
 router = APIRouter(prefix="/api/v1/local/projetos", tags=["Local project store"])
 
@@ -122,3 +123,46 @@ def consultar_revisao_historica(
         raise HTTPException(status_code=404,
                             detail="Revisao anterior nao armazenada; sem reconstrução artificial")
     return item
+
+
+@router.post("/{projeto_id}/revisoes/{revisao}/circuitos/{circuito_nome}/ensaios")
+def executar_ensaio_circuito(
+    projeto_id: UUID, revisao: int, circuito_nome: str, payload: AnaliseCircuito,
+    authorization: str | None = Header(default=None),
+):
+    """Motor executado no servidor; formula rastreavel, SEM homologacao normativa."""
+    repo = _storage(authorization)
+    try:
+        return repo.registrar_ensaio(str(projeto_id), revisao,
+                                     circuito_nome, payload.model_dump(mode="json"))
+    except ConflitoRevisao as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    except (ValueError, TypeError, KeyError, ArithmeticError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+@router.get("/{projeto_id}/revisoes/{revisao}/ensaios")
+def listar_ensaios_circuitos(
+    projeto_id: UUID, revisao: int, authorization: str | None = Header(default=None),
+):
+    repo = _storage(authorization)
+    try:
+        return {"id": str(projeto_id), "revisao": revisao,
+                "ensaios": repo.listar_ensaios(str(projeto_id), revisao),
+                "normative_conformity_verified": False}
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+
+
+@router.get("/{projeto_id}/ensaios/{ensaio_id}")
+def consultar_ensaio_circuito(
+    projeto_id: UUID, ensaio_id: UUID, authorization: str | None = Header(default=None),
+):
+    repo = _storage(authorization)
+    try:
+        ensaio = repo.consultar_ensaio(str(projeto_id), str(ensaio_id))
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    if ensaio is None:
+        raise HTTPException(status_code=404, detail="Ensaio inexistente")
+    return ensaio
