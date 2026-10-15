@@ -1,8 +1,14 @@
-id,categoria,moscow,aplicabilidade,criterio_aceite,teste,status
-RF-001,RF,Must,residencial/comercial/predial,tipologia incompatível rejeitada,test_wrong_typology,ESTRUTURAL
-NOR-001,NOR,Must,condicional,fonte sem verificação bloqueia,test_source_unverified_blocks,ESTRUTURAL
-ENG-001,ENG,Must,condicional,distribuidora incompatível rejeitada,test_wrong_distributor,ESTRUTURAL
-SEG-001,SEG,Must,todas,aprovação ausente bloqueia,test_unapproved_blocks,ESTRUTURAL
-RNF-001,RNF,Must,todas,snapshot contém revisão e hash,test_revision_snapshot,ESTRUTURAL
-UX-001,UX,Should,todas,mostrar bloqueio na interface,PENDENTE_UI,PENDENTE
-NOR-002,NOR,Must,condicional,dupla conferência de valores,PENDENTE_FONTE,BLOQUEADO
+id,categoria,moscow,area,criterio,status
+RF-001,RF,Must,tipologia,422 para opção fora do recorte,IMPLEMENTADO
+RF-002,RF,Must,catálogo,dados não homologados,IMPLEMENTADO
+ENG-001,ENG,Must,condições,EDP UF/distribuidora e NR10 data,PARCIAL
+NOR-001,NOR,Must,metadados,fonte origem edição licença e hash,PARCIAL
+NOR-002,NOR,Must,células,dupla verificação e referência,BLOQUEADO
+NOR-003,NOR,Must,vigência,transição NR10,PARCIAL
+SEG-001,SEG,Must,API,rejeitar flags cliente,IMPLEMENTADO
+SEG-002,SEG,Must,API,rejeitar fora do escopo,IMPLEMENTADO
+RNF-001,RNF,Must,versionamento,snapshot no projeto,PENDENTE
+RNF-002,RNF,Must,auditoria,registro de transições,PENDENTE
+UX-001,UX,Should,interface,pendência exibida,PENDENTE
+ENG-002,ENG,Must,cálculo,cases independentes conferidos,BLOQUEADO
+NOR-004,NOR,Must,governança,conflitos sem aprovação automática,PENDENTE
