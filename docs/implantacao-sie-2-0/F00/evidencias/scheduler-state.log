@@ -1,0 +1,6 @@
+$ python -m sie_api.scheduler_cli --state docs/sie-orchestrator/ORCHESTRATOR_STATE.json inspect
+CWD: .
+
+{"revision": 6, "states": {"BLOCKED": 2, "DONE": 5, "HUMAN_REQUIRED": 1, "PENDING": 4}, "total_tasks": 12}
+
+EXIT: 0

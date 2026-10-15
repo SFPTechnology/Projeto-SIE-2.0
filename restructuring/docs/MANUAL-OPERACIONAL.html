@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SIE 2.0 | Manual operacional</title>
+<style>
+:root{color-scheme:dark;--bg:#081323;--panel:#10243b;--line:#294563;--ink:#f0f6ff;--muted:#afc1d5;--brand:#38d6a0;--alert:#ffd18a;font:16px/1.7 system-ui,Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,#163654,#0c1c31);border-bottom:1px solid var(--line);padding:4rem max(5vw,1rem)}
+header h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin:.5rem 0}
+header p{max-width:750px;color:var(--muted)}.eyebrow{color:var(--brand);letter-spacing:.13em;text-transform:uppercase;font-weight:700;font-size:.8rem}
+.layout{display:grid;grid-template-columns:240px minmax(0,850px);justify-content:center;gap:2rem;padding:2rem}
+nav{position:sticky;top:1.5rem;align-self:start;border:1px solid var(--line);border-radius:1rem;padding:1rem;background:var(--panel)}
+nav a{display:block;color:var(--muted);padding:.4rem;text-decoration:none}nav a:hover,nav a:focus{color:var(--brand);text-decoration:underline}
+article section{margin-bottom:1.5rem;background:var(--panel);border:1px solid var(--line);border-radius:1rem;padding:1.5rem;scroll-margin-top:1rem}
+h2{margin-top:0;font-size:1.5rem}h3{font-size:1.05rem}p,li{color:var(--muted)}strong{color:var(--ink)}a{color:var(--brand)}
+table{width:100%;border-collapse:collapse;font-size:.93rem}th,td{padding:.8rem;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--brand)}
+code{background:#071523;color:#d8eee6;padding:.15rem .3rem;border-radius:.25rem}pre{overflow:auto;background:#071523;padding:1rem;border-radius:.5rem}
+.warning{border-left:4px solid var(--alert);background:#322a20;color:#fff4da;padding:1rem;border-radius:.5rem}
+footer{padding:2rem;color:var(--muted);text-align:center}
+@media(max-width:760px){.layout{display:block;padding:1rem}nav{position:static;margin-bottom:1rem}header{padding:2rem 1rem}article section{padding:1rem}}
+@media print{body{background:#fff;color:#111}nav{display:none}.layout{display:block}article section{break-inside:avoid;background:#fff;border-color:#bbb}p,li{color:#222}}
+</style>
+</head><body>
+<header><div class="eyebrow">SIE 2.0 · documentação de uso controlado</div>
+<h1>Manual operacional</h1>
+<p>Guia passo a passo para executar a versão local, preencher os dados e interpretar resultados com segurança. Os cálculos desta etapa são preliminares e <strong>não constituem certificação de conformidade normativa.</strong></p></header>
+<div class="layout"><nav aria-label="Sumário">
+<strong>Navegação</strong>
+<a href="#inicio">01 · Primeira execução</a><a href="#tela">02 · Elementos da tela</a>
+<a href="#campos">03 · Preenchimento</a><a href="#resultados">04 · Resultados</a>
+<a href="#edp">05 · Enquadramento EDP</a><a href="#testes">06 · Testes e erros</a><a href="#projetos">07 · Projetos locais</a><a href="#seguranca">08 · Limites técnicos</a>
+</nav><article>
+<section id="inicio"><h2>01 · Primeira execução</h2><p>São necessários Python 3.11 ou superior e dois terminais PowerShell, dentro da cópia local do repositório.</p>
+<h3>Terminal 1 — API</h3><pre><code>cd restructuring\apps\api
+py -3.11 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e ".[test]"
+python -m pytest -q
+python -m uvicorn sie_api.main:app --reload</code></pre>
+<h3>Terminal 2 — interface</h3><pre><code>cd restructuring\apps\web
+py -3.11 -m http.server 5173 --bind 127.0.0.1</code></pre>
+<p>Abra <code>http://127.0.0.1:5173</code>. A documentação da API estará em <code>http://127.0.0.1:8000/docs</code>.</p></section>
+<section id="tela"><h2>02 · Entendendo a tela</h2>
+<table><thead><tr><th>Área</th><th>Função</th><th>O que fazer</th></tr></thead><tbody>
+<tr><td>Barra lateral</td><td>Navegação</td><td>Escolher análise, rastreabilidade ou guia.</td></tr>
+<tr><td>Centro de comando</td><td>Resumo</td><td>Clicar em Nova análise.</td></tr>
+<tr><td>API online</td><td>Conexão</td><td>Se estiver offline, confira o primeiro terminal.</td></tr>
+<tr><td>Analisar circuito</td><td>Entrada</td><td>Preencher unidades e proveniência.</td></tr>
+<tr><td>Decisão técnica</td><td>Saída</td><td>Ler cada fórmula e aviso de pendência.</td></tr>
+<tr><td>Governança</td><td>Rastreabilidade</td><td>Verificar origem e limitações.</td></tr>
+</tbody></table></section>
+<section id="campos"><h2>03 · Preenchimento passo a passo</h2>
+<table><thead><tr><th>Campo</th><th>Significado</th></tr></thead><tbody>
+<tr><td>Corrente (A)</td><td>Ib: corrente de projeto do circuito.</td></tr>
+<tr><td>Comprimento (m)</td><td>Distância elétrica de ida. O cálculo monofásico resistivo considera ida e retorno.</td></tr>
+<tr><td>Tensão (V)</td><td>Tensão nominal do circuito.</td></tr>
+<tr><td>Resistência (Ω/km)</td><td>Resistência aplicável à seção e à condição térmica estudada.</td></tr>
+<tr><td>Fator de correção</td><td>Valor entre 0 e 1, informado para estudo da capacidade corrigida.</td></tr>
+<tr><td>Fonte, edição e referência</td><td>Identificação do documento e da tabela/trecho utilizados.</td></tr>
+</tbody></table>
+<div class="warning">A tabela de condutores da interface contém valores demonstrativos embutidos no JavaScript. Não a interprete como tabela normativa automaticamente verificada.</div>
+<p>Após preencher, selecione <strong>Executar análise</strong>. Nenhum checkbox pode autorizar uso profissional: a aprovação normativa é bloqueada até existir uma revisão independente no servidor.</p></section>
+<section id="resultados"><h2>04 · Entendendo os resultados</h2>
+<p><strong>Condutor:</strong> menor seção demonstrativa cuja capacidade corrigida alcança Ib. <strong>Disjuntor:</strong> menor valor comercial do catálogo embutido que atende ao critério preliminar Ib ≤ In ≤ Iz. Isso não encerra a verificação de sobrecarga/curto-circuito.</p>
+<p><strong>Queda de tensão:</strong> modelo resistivo monofásico ΔV = 2 × L(km) × I × R; a aplicação não incorpora reatância, fator de potência nem topologia trifásica nesse cálculo.</p>
+<p><strong>Gate:</strong> status PENDENTE indica que há cálculo demonstrativo, mas não autorização normativa; BLOQUEADO indica ausência/inconsistência grave.</p></section>
+<section id="edp"><h2>05 · Padrão de entrada EDP</h2>
+<p>O endpoint <code>POST /api/v1/edp/enquadrar</code> oferece categoria candidata por modalidade e corrente, a partir de um catálogo documentado EDP São Paulo v09. Requisitos de carga, modalidade, medição e condições adicionais precisam de análise própria.</p>
+<div class="warning">O retorno <code>candidato_para_estudo=true</code> não é aprovação. O campo <code>liberado_para_padrao_entrada</code> permanece <code>false</code> nesta versão.</div></section>
+<section id="testes"><h2>06 · Testes e problemas comuns</h2>
+<p>Execute <code>python -m pytest -q</code> no terminal da API. Para conferir o funcionamento da interface, abra a página local e realize um circuito de demonstração.</p>
+<table><thead><tr><th>Situação</th><th>Verificação</th></tr></thead><tbody>
+<tr><td>API local não conectada</td><td>Confira porta 8000, logs e se Uvicorn continua ativo.</td></tr>
+<tr><td>422 — dados inválidos</td><td>Corrija corrente, comprimento, tensão e tabela informada.</td></tr>
+<tr><td>Condutor insuficiente</td><td>Confira capacidade corrigida e seção candidata.</td></tr>
+<tr><td>Disjuntor indisponível</td><td>Revise o catálogo e a relação Ib/Iz.</td></tr>
+<tr><td>Status PENDENTE</td><td>Comportamento esperado: auditoria normativa independente ainda não implementada.</td></tr>
+</tbody></table></section>
+<section id="projetos"><h2>07 · Salvar e reabrir projetos</h2>
+<p>Abra o painel <strong>Projetos locais</strong> depois de realizar uma análise. Configure antes as duas variáveis de ambiente da API, conforme o guia <a href="./PERSISTENCIA-LOCAL.md">Persistência local</a>. A gravação fica bloqueada enquanto não houver token e caminho do SQLite no servidor.</p>
+<ol><li>Execute uma análise do circuito.</li><li>Informe nome e token local de acesso.</li><li>Clique em <strong>Salvar análise</strong> e anote o ID e a revisão.</li><li>Para reabrir, informe o ID e token e clique em <strong>Reabrir projeto</strong>.</li><li>Confira os parâmetros carregados e execute novamente a análise.</li></ol>
+<div class="warning">Os resultados anteriores não são considerados automaticamente revalidados. O token é de desenvolvimento e não é armazenado pelo navegador; o banco não é sincronizado com o Supabase.</div></section>
+<section id="seguranca"><h2>08 · Escopo, segurança e próximos módulos</h2>
+<p>Este incremento destina-se a teste local controlado. A API não possui autenticação de produção ou aprovação normativa certificada. A persistência SQLite está integrada ao painel local por token opt-in; não deve ser publicada na internet, nem confundida com autorização por usuário.</p>
+<p>Faltam motores normativos completos, quadros de carga, diagramas, planta, memoriais, relatórios finais e QA independente. Antes de uso profissional, exija fonte técnica primária, edição, tabelas reproduzíveis, cálculos de referência e revisão por responsável habilitado.</p></section>
+</article></div><footer>SIE 2.0 — documentação do protótipo técnico. Versão de estudo local controlado.</footer>
+</body></html>

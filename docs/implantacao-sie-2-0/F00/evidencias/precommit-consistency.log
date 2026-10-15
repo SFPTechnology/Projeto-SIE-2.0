@@ -1,0 +1,65 @@
+PASS baseline SHA and tree manifest
+PASS attachment preserved byte for byte
+PASS 37 IDs and 19 columns
+PASS LEGACY-003 golden CONDUTOR
+PASS LEGACY-003 golden CONDUTOR-LIMIAR
+PASS LEGACY-003 golden CONDUTOR-DUPLICADO
+PASS LEGACY-003 golden ANALISE-IZ-ARREDONDADO
+PASS LEGACY-004 golden DISJUNTOR
+PASS LEGACY-004 golden DISJUNTOR-SEM-CANDIDATO
+PASS LEGACY-004 golden ANALISE-IZ-ARREDONDADO
+PASS LEGACY-005 golden QT-MONO
+PASS LEGACY-005 golden QT-MONO-ZERO
+PASS LEGACY-005 golden QT-MONO-ROUND
+PASS LEGACY-005 golden QT-MONO-INVALID
+PASS LEGACY-006 golden QT-TRI
+PASS LEGACY-006 golden QT-TRI-ZERO
+PASS LEGACY-007 golden GATE-SEM-FONTE
+PASS LEGACY-007 golden GATE-CLIENTE
+PASS LEGACY-007 golden GATE-VAZIO
+PASS LEGACY-008 golden ANALISE
+PASS LEGACY-008 golden ANALISE-IZ-ARREDONDADO
+PASS LEGACY-009 golden EDP-U-70
+PASS LEGACY-009 golden EDP-D-63
+PASS LEGACY-009 golden EDP-D-100
+PASS LEGACY-009 golden EDP-D-150
+PASS LEGACY-009 golden EDP-D-200
+PASS LEGACY-009 golden EDP-D-300
+PASS LEGACY-009 golden EDP-D-350
+PASS LEGACY-009 golden EDP-T-63
+PASS LEGACY-009 golden EDP-T-100
+PASS LEGACY-009 golden EDP-T-150
+PASS LEGACY-009 golden EDP-T-200
+PASS LEGACY-009 golden EDP-T-300
+PASS LEGACY-009 golden EDP-T-350
+PASS LEGACY-009 golden EDP-T-SEM-TRIFASICA
+PASS LEGACY-009 golden EDP-75KW
+PASS LEGACY-009 golden EDP-SEM-CATEGORIA
+PASS LEGACY-009 golden EDP-U-CARGA-TRIFASICA
+PASS LEGACY-010 golden STORAGE-REVISOES
+PASS LEGACY-011 golden STORAGE-REVISOES
+PASS LEGACY-012 golden STORAGE-REVISOES
+PASS QA-01.md verdict
+PASS QA-02.md verdict
+PASS QA-03.md verdict
+PASS architecture verdict
+PASS 12 previous task objects unchanged
+PASS F00 valid and awaiting versioned closure
+PASS product API/UI, TS and SQL unchanged
+PASS git diff --check
+PASS test baseline-api exit0 and log present
+PASS test golden-replay exit0 and log present
+PASS test golden-tests exit0 and log present
+PASS test api-regression exit0 and log present
+PASS test lint exit0 and log present
+PASS test typecheck exit0 and log present
+PASS test aiox-tests exit0 and log present
+PASS test build exit0 and log present
+PASS test web-syntax exit0 and log present
+PASS test scheduler-state exit0 and log present
+PASS test source-inventory-help exit0 and log present
+PASS test clean-api-regression exit0 and log present
+PASS test clean-golden-replay exit0 and log present
+PASS test clean-dependency-check exit0 and log present
+PASS test browser-e2e exit0 and log present
+EXIT: 0

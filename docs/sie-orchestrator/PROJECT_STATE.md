@@ -1,0 +1,49 @@
+# PROJECT_STATE — SIE Autonomous Development Orchestrator
+
+## Reconciliação F00 — 2026-10-15
+
+**F00 DONE — diagnóstico/preservação** na branch `audit/f00-baseline-2026-10-15`, baseline remota `8d86db26f5e8675eaced4638af14bd84019e15e7`. Inventário de 37 IDs, replay de 34 cenários originais, 134 pytest (inclui 35 golden), 3 Chromium locais e 18 AIOX aprovados; QA-01/02/03 e roteiro de arquitetura APROVADO apenas para diagnóstico/preservação. Pacote de evidências publicado no commit `ab129046716b5bcff62bd5ca2f0cb470b7c0f077` (árvore idêntica ao checkpoint local `8797f616f07c3866833db4eb463e050ece76420d`); decisão final de passagem registrada após QA3. Relatório: `docs/implantacao-sie-2-0/F00/RELATORIO_EXECUCAO.md`.
+
+Próximo artefato de execução: `F01_EXECUTAR.md`, sujeito aos seus pré-requisitos.
+
+O JSON canônico recebeu apenas a atividade F00; as 12 tarefas anteriores e seus bloqueios foram preservados. Normas, motores completos e produção continuam com seus gates próprios.
+
+## Estado histórico anterior — 2026-10-14
+
+**Data da reconciliação:** 2026-10-14.
+**Repositório:** `SFPTechnology/Projeto-SIE-2.0`, branch `refactor/sie-2-foundation-2026-10-14`, PR #1 (draft). `main` preservada.
+
+## Estado planejado × implementado × validado
+
+| Componente | Implementado no protótipo | Evidência de validação | Situação |
+|---|---|---|---|
+| API FastAPI | Endpoint de análise, catálogo candidato EDP, saúde e persistência opt-in | 99 pytest em 38613344311 | Validado no escopo automatizado |
+| CLI local | Criar/consultar/atualizar projetos, revisões e histórico | Stories 001/002, CI anterior | DONE do escopo CLI |
+| Domínio elétrico | Seleção simples Ib/In/Iz; queda mono/trifásica resistiva | 90 pytest em 38612351333; contratos de borda | DONE apenas story de limites, não de norma |
+| Interface local | Analisar, exibir bloqueios, salvar/reabrir com token temporário | Chromium real 3 passed em 38612351246 | DONE para E2E local |
+| Governança normativa | Gate impede liberação automática pelo cliente | Testes de regressão; `PENDENTE/BLOQUEADO` | DONE para contenção preventiva |
+| EDP São Paulo | Catálogo v09 e indicação de categoria candidata | Testes de catálogo/alertas; fonte documental interna | Sem homologação completa |
+| Inventário documental | SHA256 de seis artefatos e manifesto versionado por execução | 38613344311: 6/6, artifact 11917953248 | Parcial: integridade, não conteúdo |
+| Escalonador | DAG, dez estados, fila e JSON persistido | Story 011 e quality gates | DONE como planejador, não agente executor |
+| Catálogos normativos | PDFs/extratos presentes, sem validação integral da transcrição/casos | Fontes identificadas, sem aprovação de dados | BLOCKED: NOR-01 |
+| Proteção completa | Curto-circuito, seletividade, seccionamento, DR, aterramento | Não integrada de maneira normativamente validada | PENDING: SIE-AUTO-007 |
+| Identidade de produção | Token local de desenvolvimento apenas | Nenhum teste de multiusuário em produção | HUMAN_REQUIRED |
+| Projeto gráfico/memoriais | Não integrado no novo protótipo | Sem evidência E2E | PENDING: 008 |
+| QA final de uso profissional | QA parcial de API/CLI/UI | Ainda não contém validação integral de engenharia | PENDING: 009/010 |
+
+## Execuções verificáveis
+
+- `f2642e3041b16ec0ddbf43e59b8e482f345d39d0`: run 38612351333 (90 pytest e JS check), run 38612351246 (3 Chromium reais), run 38612351441 (AIOX lint/typecheck/test/build), todos success.
+- `e9fecb6aabd89a95912332573b5998fcb9f858d6`: run 38613344311 (99 pytest, artefatos SHA256 produzidos), 38613344320 (browser pass), 38613344624 (AIOX pass).
+- Histórico e critérios por tarefa: `ORCHESTRATOR_STATE.json`. O arquivo não substitui logs oficiais de CI.
+
+## Políticas vigentes
+
+- Nenhum cálculo pode apresentar status de conformidade normativa sem evidência verificável independente.
+- Nenhum merge em `main`, deploy ou alteração destrutiva de dados de produção foi realizado.
+- Progresso de infraestrutura deve ser distinguido de validação normativa de tabelas e projeto.
+- O orquestrador não funciona em background apenas por este documento; exige uma sessão de execução ou mecanismo agendado real.
+
+## Próxima atividade
+
+**NOR-01/SIE-AUTO-003**: validar fontes normativas primárias e casos técnicos; documento inicial `NORMATIVE-SOURCES-RECOVERY.md`. Sem fontes confirmadas e auditoria, bloqueios permanecem. A SIE-AUTO-006 necessita decisão/autorização sobre ambiente e identidade de produção; demais tarefas dependem desses gates.

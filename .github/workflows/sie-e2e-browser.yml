@@ -1,0 +1,32 @@
+name: SIE Browser E2E (Chromium)
+
+on:
+  push:
+    paths:
+      - 'restructuring/**'
+      - '.github/workflows/sie-e2e-browser.yml'
+  pull_request:
+    paths:
+      - 'restructuring/**'
+      - '.github/workflows/sie-e2e-browser.yml'
+
+jobs:
+  browser-e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout isolated branch
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install API and isolated E2E test tools
+        working-directory: restructuring/apps/api
+        run: python -m pip install -e ".[test,e2e]"
+      - name: Install Chromium for browser testing
+        run: python -m playwright install --with-deps chromium
+      - name: Exercise real browser against localhost API, UI and SQLite
+        env:
+          CI: 'true'
+        run: python -m pytest -q restructuring/e2e

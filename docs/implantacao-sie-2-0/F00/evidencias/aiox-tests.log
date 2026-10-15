@@ -1,0 +1,28 @@
+$ npm test
+CWD: .
+
+
+> projeto-sie-quality-gates@0.0.0 test
+> node scripts/validate-sdc-auto-1.js test
+
+PASS testHappyPath
+PASS testInvalidManifestBlocksWithoutPrompt
+PASS testPoNoGoRoutesToSm
+PASS testQaRetryLimit
+PASS testTechnicalGateFailureBlocks
+PASS testDeployRunbookMissingBlocks
+PASS testSmokeFailureRollsBack
+PASS testMigrationsRequireRollbackReapplyProof
+PASS testDestructiveMigrationsRequireSpecificAuthorization
+PASS testResumeSkipsCompletedRemoteEffects
+PASS testResumeRejectsChangedManifest
+PASS testResumeSkipsAllCompletedRemoteEffects
+PASS testRemoteAuthorizationFlagsBlockIndependently
+PASS testCanonicalGuidedInteractiveMetadataIsPreserved
+PASS testRedaction
+PASS testCliRequiresDryRunOrAdapterModule
+PASS testCliDryRunUsesSimulatedDevopsAdapter
+PASS testCliAdapterModuleRequiresDevopsFunction
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+EXIT: 0

@@ -1,0 +1,10 @@
+$ /workspace/scratch/34018a10e5db/f00-venv/bin/python -m pytest -q -p no:cacheprovider restructuring/e2e
+CWD: .
+PORTS 8000/5173 confirmed available before launch
+PYTHONPATH: current API + isolated Playwright1.55.0
+PLAYWRIGHT_BROWSERS_PATH: local Chromium1187 headless shell
+
+...                                                                      [100%]
+3 passed in 8.24s
+
+EXIT: 0

@@ -1,0 +1,1264 @@
+{
+  "baseline_sha": "8d86db26f5e8675eaced4638af14bd84019e15e7",
+  "cases": [
+    {
+      "expected": {
+        "result": {
+          "formula": "2 × L(km) × I × R",
+          "queda_percentual": "4.04",
+          "queda_v": "8.89"
+        }
+      },
+      "id": "QT-MONO",
+      "input": [
+        "20",
+        "30",
+        "7.41",
+        "220"
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-005"
+      ],
+      "operation": "mono"
+    },
+    {
+      "expected": {
+        "result": {
+          "formula": "2 × L(km) × I × R",
+          "queda_percentual": "0.00",
+          "queda_v": "0.00"
+        }
+      },
+      "id": "QT-MONO-ZERO",
+      "input": [
+        "20",
+        "0",
+        "7.41",
+        "220"
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-005"
+      ],
+      "operation": "mono"
+    },
+    {
+      "expected": {
+        "result": {
+          "formula": "2 × L(km) × I × R",
+          "queda_percentual": "0.01",
+          "queda_v": "0.01"
+        }
+      },
+      "id": "QT-MONO-ROUND",
+      "input": [
+        "1",
+        "1",
+        "2.5",
+        "100"
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-005"
+      ],
+      "operation": "mono"
+    },
+    {
+      "expected": {
+        "error_message": "comprimento deve ser nao negativo e finito",
+        "error_type": "ValueError"
+      },
+      "id": "QT-MONO-INVALID",
+      "input": [
+        "20",
+        "-1",
+        "7.41",
+        "220"
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-005"
+      ],
+      "operation": "mono"
+    },
+    {
+      "expected": {
+        "result": {
+          "formula": "sqrt(3) × L(km) × I × R (trifasico resistivo, cos(phi)=1)",
+          "queda_percentual": "2.03",
+          "queda_v": "7.70"
+        }
+      },
+      "id": "QT-TRI",
+      "input": [
+        "20",
+        "30",
+        "7.41",
+        "380"
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-006"
+      ],
+      "operation": "tri"
+    },
+    {
+      "expected": {
+        "result": {
+          "formula": "sqrt(3) × L(km) × I × R (trifasico resistivo, cos(phi)=1)",
+          "queda_percentual": "0.00",
+          "queda_v": "0.00"
+        }
+      },
+      "id": "QT-TRI-ZERO",
+      "input": [
+        "20",
+        "0",
+        "7.41",
+        "380"
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-006"
+      ],
+      "operation": "tri"
+    },
+    {
+      "expected": {
+        "result": {
+          "capacidade_corrigida_a": "25.60",
+          "criterio": "Iz_base × fatores ≥ Ib",
+          "fator_correcao": "0.80",
+          "secao_mm2": "4.00"
+        }
+      },
+      "id": "CONDUTOR",
+      "input": {
+        "factor": "0.8",
+        "ib": "20",
+        "table": [
+          [
+            "2.5",
+            "24"
+          ],
+          [
+            "4",
+            "32"
+          ]
+        ]
+      },
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-003"
+      ],
+      "operation": "conductor"
+    },
+    {
+      "expected": {
+        "result": {
+          "capacidade_corrigida_a": "19.20",
+          "criterio": "Iz_base × fatores ≥ Ib",
+          "fator_correcao": "0.80",
+          "secao_mm2": "2.50"
+        }
+      },
+      "id": "CONDUTOR-LIMIAR",
+      "input": {
+        "factor": "0.8",
+        "ib": "19.2",
+        "table": [
+          [
+            "2.5",
+            "24"
+          ],
+          [
+            "4",
+            "32"
+          ]
+        ]
+      },
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-003"
+      ],
+      "operation": "conductor"
+    },
+    {
+      "expected": {
+        "error_message": "Secao duplicada na tabela de condutores",
+        "error_type": "ValueError"
+      },
+      "id": "CONDUTOR-DUPLICADO",
+      "input": {
+        "factor": "1",
+        "ib": "10",
+        "table": [
+          [
+            "4",
+            "32"
+          ],
+          [
+            "4",
+            "40"
+          ]
+        ]
+      },
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-003"
+      ],
+      "operation": "conductor"
+    },
+    {
+      "expected": {
+        "result": {
+          "corrente_disjuntor_comercial_a": "20.00",
+          "corrente_disjuntor_minima_a": "20.00",
+          "corrente_projeto_a": "20.00",
+          "criterio": "Ib ≤ In ≤ Iz"
+        }
+      },
+      "id": "DISJUNTOR",
+      "input": {
+        "catalog": [
+          "32",
+          "25",
+          "16",
+          "20",
+          "20"
+        ],
+        "ib": "20",
+        "iz": "25"
+      },
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-004"
+      ],
+      "operation": "breaker"
+    },
+    {
+      "expected": {
+        "error_message": "Nenhum disjuntor comercial atende Ib ≤ In ≤ Iz",
+        "error_type": "ValueError"
+      },
+      "id": "DISJUNTOR-SEM-CANDIDATO",
+      "input": {
+        "catalog": [
+          "20",
+          "25"
+        ],
+        "ib": "21",
+        "iz": "24"
+      },
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-004"
+      ],
+      "operation": "breaker"
+    },
+    {
+      "expected": {
+        "result": "BLOQUEADO"
+      },
+      "id": "GATE-SEM-FONTE",
+      "input": null,
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-007"
+      ],
+      "operation": "gate"
+    },
+    {
+      "expected": {
+        "result": "PENDENTE"
+      },
+      "id": "GATE-CLIENTE",
+      "input": {
+        "dados_validados": true,
+        "documento": "Fixture sintética",
+        "edicao": "teste",
+        "referencia": "caso F00",
+        "testes_independentes": true
+      },
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-007"
+      ],
+      "operation": "gate"
+    },
+    {
+      "expected": {
+        "result": "BLOQUEADO"
+      },
+      "id": "GATE-VAZIO",
+      "input": {
+        "documento": " ",
+        "edicao": "teste",
+        "referencia": "caso F00"
+      },
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-007"
+      ],
+      "operation": "gate"
+    },
+    {
+      "expected": {
+        "result": {
+          "aviso": "Resultado técnico calculado; uso normativo bloqueado até validação de fonte e testes independentes.",
+          "condutor": {
+            "capacidade_corrigida_a": 25.6,
+            "criterio": "Iz_base × fatores ≥ Ib",
+            "secao_mm2": 4.0
+          },
+          "disjuntor": {
+            "corrente_a": 20.0,
+            "criterio": "Ib ≤ In ≤ Iz"
+          },
+          "liberado_para_uso_normativo": false,
+          "queda_tensao": {
+            "formula": "2 × L(km) × I × R",
+            "queda_percentual": 4.04,
+            "queda_v": 8.89
+          },
+          "rastreabilidade": {
+            "edicao": "teste não normativo",
+            "fonte": "Fixture sintética F00",
+            "referencia": "dados ilustrativos"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "ANALISE",
+      "input": {
+        "comprimento_m": 30,
+        "corrente_a": 20,
+        "evidencia": {
+          "documento": "Fixture sintética F00",
+          "edicao": "teste não normativo",
+          "referencia": "dados ilustrativos"
+        },
+        "fator_correcao": 0.8,
+        "resistencia_ohm_km": 7.41,
+        "tabela_condutores": [
+          {
+            "capacidade_a": 24,
+            "secao_mm2": 2.5
+          },
+          {
+            "capacidade_a": 32,
+            "secao_mm2": 4
+          }
+        ],
+        "tensao_v": 220
+      },
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-003",
+        "LEGACY-004",
+        "LEGACY-005",
+        "LEGACY-007",
+        "LEGACY-008"
+      ],
+      "operation": "analysis"
+    },
+    {
+      "expected": {
+        "result": {
+          "aviso": "Resultado técnico calculado; uso normativo bloqueado até validação de fonte e testes independentes.",
+          "condutor": {
+            "capacidade_corrigida_a": 20.0,
+            "criterio": "Iz_base × fatores ≥ Ib",
+            "secao_mm2": 2.5
+          },
+          "disjuntor": {
+            "corrente_a": 20.0,
+            "criterio": "Ib ≤ In ≤ Iz"
+          },
+          "liberado_para_uso_normativo": false,
+          "queda_tensao": {
+            "formula": "2 × L(km) × I × R",
+            "queda_percentual": 4.04,
+            "queda_v": 8.89
+          },
+          "rastreabilidade": {
+            "edicao": "teste não normativo",
+            "fonte": "Fixture sintética F00",
+            "referencia": "dados ilustrativos"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "ANALISE-IZ-ARREDONDADO",
+      "input": {
+        "comprimento_m": 30,
+        "corrente_a": 19.99,
+        "evidencia": {
+          "documento": "Fixture sintética F00",
+          "edicao": "teste não normativo",
+          "referencia": "dados ilustrativos"
+        },
+        "fator_correcao": 0.99975,
+        "resistencia_ohm_km": 7.41,
+        "tabela_condutores": [
+          {
+            "capacidade_a": 20,
+            "secao_mm2": 2.5
+          }
+        ],
+        "tensao_v": 220
+      },
+      "known_anomaly": "ENG-001: In=20 exceeds unrounded Iz=19.995; preserve observation, NOT design approval",
+      "legacy_ids": [
+        "LEGACY-003",
+        "LEGACY-004",
+        "LEGACY-008"
+      ],
+      "operation": "analysis"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "16 mm²",
+            "aterramento_pvc": "16 mm²",
+            "codigo": "U2",
+            "condutor_entrada_epr_xlpe": "responsabilidade_distribuidora",
+            "condutor_entrada_pvc": "responsabilidade_distribuidora",
+            "disjuntor_entrada_a": 70.0,
+            "medicao": "direta",
+            "modalidade": "U"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-U-70",
+      "input": [
+        "U",
+        "70",
+        "20",
+        false
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "16 mm²",
+            "aterramento_pvc": "16 mm²",
+            "codigo": "D2",
+            "condutor_entrada_epr_xlpe": "responsabilidade_distribuidora",
+            "condutor_entrada_pvc": "responsabilidade_distribuidora",
+            "disjuntor_entrada_a": 63.0,
+            "medicao": "direta",
+            "modalidade": "D"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-D-63",
+      "input": [
+        "D",
+        "63",
+        "20",
+        false
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "16 mm²",
+            "aterramento_pvc": "16 mm²",
+            "codigo": "D4",
+            "condutor_entrada_epr_xlpe": "25 mm²",
+            "condutor_entrada_pvc": "35 mm²",
+            "disjuntor_entrada_a": 100.0,
+            "medicao": "direta",
+            "modalidade": "D"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-D-100",
+      "input": [
+        "D",
+        "100",
+        "20",
+        false
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "25 mm²",
+            "aterramento_pvc": "35 mm²",
+            "codigo": "D6",
+            "condutor_entrada_epr_xlpe": "50 mm²",
+            "condutor_entrada_pvc": "70 mm²",
+            "disjuntor_entrada_a": 150.0,
+            "medicao": "direta",
+            "modalidade": "D"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-D-150",
+      "input": [
+        "D",
+        "150",
+        "20",
+        false
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "35 mm²",
+            "aterramento_pvc": "50 mm²",
+            "codigo": "D7",
+            "condutor_entrada_epr_xlpe": "70 mm²",
+            "condutor_entrada_pvc": "95 mm²",
+            "disjuntor_entrada_a": 200.0,
+            "medicao": "indireta",
+            "modalidade": "D"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-D-200",
+      "input": [
+        "D",
+        "200",
+        "20",
+        false
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "70 mm²",
+            "aterramento_pvc": "95 mm²",
+            "codigo": "D9",
+            "condutor_entrada_epr_xlpe": "120 mm²",
+            "condutor_entrada_pvc": "185 mm²",
+            "disjuntor_entrada_a": 300.0,
+            "medicao": "indireta",
+            "modalidade": "D"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-D-300",
+      "input": [
+        "D",
+        "300",
+        "20",
+        false
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "95 mm²",
+            "aterramento_pvc": "120 mm²",
+            "codigo": "D10",
+            "condutor_entrada_epr_xlpe": "185 mm²",
+            "condutor_entrada_pvc": "240 mm²",
+            "disjuntor_entrada_a": 350.0,
+            "medicao": "indireta",
+            "modalidade": "D"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-D-350",
+      "input": [
+        "D",
+        "350",
+        "20",
+        false
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "16 mm²",
+            "aterramento_pvc": "16 mm²",
+            "codigo": "T2",
+            "condutor_entrada_epr_xlpe": "responsabilidade_distribuidora",
+            "condutor_entrada_pvc": "responsabilidade_distribuidora",
+            "disjuntor_entrada_a": 63.0,
+            "medicao": "direta",
+            "modalidade": "T"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-T-63",
+      "input": [
+        "T",
+        "63",
+        "20",
+        true
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "16 mm²",
+            "aterramento_pvc": "16 mm²",
+            "codigo": "T4",
+            "condutor_entrada_epr_xlpe": "25 mm²",
+            "condutor_entrada_pvc": "35 mm²",
+            "disjuntor_entrada_a": 100.0,
+            "medicao": "direta",
+            "modalidade": "T"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-T-100",
+      "input": [
+        "T",
+        "100",
+        "20",
+        true
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "25 mm²",
+            "aterramento_pvc": "35 mm²",
+            "codigo": "T6",
+            "condutor_entrada_epr_xlpe": "50 mm²",
+            "condutor_entrada_pvc": "70 mm²",
+            "disjuntor_entrada_a": 150.0,
+            "medicao": "direta",
+            "modalidade": "T"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-T-150",
+      "input": [
+        "T",
+        "150",
+        "20",
+        true
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "35 mm²",
+            "aterramento_pvc": "50 mm²",
+            "codigo": "T7",
+            "condutor_entrada_epr_xlpe": "70 mm²",
+            "condutor_entrada_pvc": "95 mm²",
+            "disjuntor_entrada_a": 200.0,
+            "medicao": "indireta",
+            "modalidade": "T"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-T-200",
+      "input": [
+        "T",
+        "200",
+        "20",
+        true
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "70 mm²",
+            "aterramento_pvc": "95 mm²",
+            "codigo": "T9",
+            "condutor_entrada_epr_xlpe": "120 mm²",
+            "condutor_entrada_pvc": "185 mm²",
+            "disjuntor_entrada_a": 300.0,
+            "medicao": "indireta",
+            "modalidade": "T"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-T-300",
+      "input": [
+        "T",
+        "300",
+        "20",
+        true
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "95 mm²",
+            "aterramento_pvc": "120 mm²",
+            "codigo": "T10",
+            "condutor_entrada_epr_xlpe": "185 mm²",
+            "condutor_entrada_pvc": "240 mm²",
+            "disjuntor_entrada_a": 350.0,
+            "medicao": "indireta",
+            "modalidade": "T"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-T-350",
+      "input": [
+        "T",
+        "350",
+        "20",
+        true
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [
+            {
+              "codigo": "EDP-002",
+              "mensagem": "Modalidade T requer carga trifásica declarada.",
+              "nivel": "BLOQUEANTE"
+            }
+          ],
+          "candidato_para_estudo": false,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "16 mm²",
+            "aterramento_pvc": "16 mm²",
+            "codigo": "T2",
+            "condutor_entrada_epr_xlpe": "responsabilidade_distribuidora",
+            "condutor_entrada_pvc": "responsabilidade_distribuidora",
+            "disjuntor_entrada_a": 63.0,
+            "medicao": "direta",
+            "modalidade": "T"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "BLOQUEADO"
+        }
+      },
+      "id": "EDP-T-SEM-TRIFASICA",
+      "input": [
+        "T",
+        "58.3",
+        "22.215",
+        false
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [
+            {
+              "codigo": "EDP-001",
+              "mensagem": "Carga instalada acima de 75 kW: consultar a distribuidora para viabilidade em tensão secundária.",
+              "nivel": "BLOQUEANTE"
+            }
+          ],
+          "candidato_para_estudo": false,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "16 mm²",
+            "aterramento_pvc": "16 mm²",
+            "codigo": "D4",
+            "condutor_entrada_epr_xlpe": "25 mm²",
+            "condutor_entrada_pvc": "35 mm²",
+            "disjuntor_entrada_a": 100.0,
+            "medicao": "direta",
+            "modalidade": "D"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "BLOQUEADO"
+        }
+      },
+      "id": "EDP-75KW",
+      "input": [
+        "D",
+        "80",
+        "75.01",
+        false
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [
+            {
+              "codigo": "EDP-004",
+              "mensagem": "Não há categoria do catálogo para a corrente informada.",
+              "nivel": "BLOQUEANTE"
+            }
+          ],
+          "candidato_para_estudo": false,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": null,
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "BLOQUEADO"
+        }
+      },
+      "id": "EDP-SEM-CATEGORIA",
+      "input": [
+        "T",
+        "351",
+        "30",
+        true
+      ],
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "alertas": [],
+          "candidato_para_estudo": true,
+          "catalogo": {
+            "documento": "PT.DT.PDN.00068",
+            "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md",
+            "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32",
+            "status": "VERIFICADO",
+            "versao": "09",
+            "vigencia": "2026-04-14"
+          },
+          "categoria": {
+            "aterramento_epr_xlpe": "16 mm²",
+            "aterramento_pvc": "16 mm²",
+            "codigo": "U2",
+            "condutor_entrada_epr_xlpe": "responsabilidade_distribuidora",
+            "condutor_entrada_pvc": "responsabilidade_distribuidora",
+            "disjuntor_entrada_a": 70.0,
+            "medicao": "direta",
+            "modalidade": "U"
+          },
+          "liberado_para_padrao_entrada": false,
+          "regra_selecao": {
+            "descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.",
+            "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP.",
+            "status": "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+          },
+          "status_engenharia": "PENDENTE"
+        }
+      },
+      "id": "EDP-U-CARGA-TRIFASICA",
+      "input": [
+        "U",
+        "20",
+        "4.4",
+        true
+      ],
+      "known_anomaly": "ENG-002: U/T load incompatibility is not rejected; candidate is NOT approval",
+      "legacy_ids": [
+        "LEGACY-009"
+      ],
+      "operation": "edp"
+    },
+    {
+      "expected": {
+        "result": {
+          "conflict": "Revisao esperada 0, atual 1",
+          "history": [
+            {
+              "acao": "CRIAR",
+              "revisao": 1
+            },
+            {
+              "acao": "ATUALIZAR",
+              "revisao": 2
+            }
+          ],
+          "loaded": {
+            "dados": {
+              "circuitos": []
+            },
+            "id": "00000000-0000-4000-8000-000000000001",
+            "nome": "Golden F00",
+            "revisao": 2
+          },
+          "omitted_fields": [
+            "atualizado_em",
+            "criado_em"
+          ],
+          "revisions": [
+            1,
+            2
+          ]
+        }
+      },
+      "id": "STORAGE-REVISOES",
+      "input": {
+        "dados": {
+          "circuitos": [
+            {
+              "nome": "TUG-1"
+            }
+          ]
+        },
+        "id": "00000000-0000-4000-8000-000000000001",
+        "nome": "Golden F00"
+      },
+      "known_anomaly": null,
+      "legacy_ids": [
+        "LEGACY-010",
+        "LEGACY-011",
+        "LEGACY-012"
+      ],
+      "operation": "storage"
+    }
+  ],
+  "output_class": "characterization_only_not_normative_validation",
+  "source_sha256": {
+    "restructuring/apps/api/sie_api/__init__.py": "bc8ed779f63b3a1026cf7c3a1c59b7a5b95164158f7b3cc7a246ede6ed7bf047",
+    "restructuring/apps/api/sie_api/application.py": "ab5622f83bf0666ee4cdc8c25b4f430c57815711132c9641cf8be84d4cde75df",
+    "restructuring/apps/api/sie_api/cli.py": "0f44b9b1fe9a79d535cb0185112c4054be2875383d5f3e4378a4a58a0a1644c2",
+    "restructuring/apps/api/sie_api/domain/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "restructuring/apps/api/sie_api/domain/edp.py": "65b626f3cb7c2c7ddb457880f3727e6275ac8966051164397b48f6259a796982",
+    "restructuring/apps/api/sie_api/domain/engines.py": "b8c2f3ac5ee2f653a7fc91c12848a7505399e5ff6a624d66a98d5d7e4d20a127",
+    "restructuring/apps/api/sie_api/domain/gates.py": "eebff6fe586aab76c4b990327bc491f8fb13f915a1e4e4f1fd8d3f7f8294745d",
+    "restructuring/apps/api/sie_api/domain/models.py": "275605eb384088b7d957944a6c0152bfa14c87d96ea0daa1260c82461afd2068",
+    "restructuring/apps/api/sie_api/main.py": "6b9b25fc0a2fcc9b7cee3791f1892282d1b16f3c2dd5ec42ed92a8a6206a6f92",
+    "restructuring/apps/api/sie_api/normative_inventory.py": "a961587c9952a8119310597a81dc213cb0df320df1e83d8539ca4a5e88af7ffb",
+    "restructuring/apps/api/sie_api/scheduler.py": "f42d162ced4a45876694c411510159438db30786cb33543acd21a9657aa52983",
+    "restructuring/apps/api/sie_api/scheduler_cli.py": "4b147a9ad84f3df7d41ffa68d708291716d36807f0cb32af8202736d6e62479c",
+    "restructuring/apps/api/sie_api/storage.py": "4f0ccc409720e2d5ad323ea17474f507975fa2dd709589636cd4d1d9803358c0",
+    "restructuring/apps/api/sie_api/storage_api.py": "71ba2377e14b0ce9a0c09676de6636824087fac9308fcfdd34ae4c5ad5676ecc"
+  }
+}
