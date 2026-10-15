@@ -18,3 +18,7 @@ Data: 2026-10-15. Branch: `feat/f01-governanca-normativa`; PR #3 em rascunho sob
 Dossiê: `docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md`, `EVIDENCIA_FONTES_OFICIAIS.md`, `EVIDENCIA_SNAPSHOTS_LOCAL.md`, `QA-01.md`, `QA-02.md`, `QA-03.md`.
 
 Sem merge, deploy, edição de SQL remoto ou execução em background.
+
+## Plano QA3 ampliado — 15/10/2026
+
+Agentes F01 QA-01 (arquiteto), QA-02 (engenharia elétrica), QA-03 (dados/UX/LLM) foram definidos com seis skills em `.github/agents/f01-*.agent.md` e `.github/skills/f01-*/SKILL.md`, e têm três branches separadas e issues #4, #5, #6. **Ainda não foram executados como sessões independentes**. Leia `docs/implantacao-sie-2-0/F01/LEIA_PRIMEIRO_QA3.md` e `QA3_MULTIAGENTES_PLANO_EXECUCAO.md`. O objetivo é 6/6 gates mediante fontes/evidências, mas as verificações externas ainda são impeditivas. `QA3_MANIFEST.json` registra os seis gates NÃO APROVADOS; `python scripts/f01_release_gate.py --verify-invariants` deve confirmar o bloqueio correto, não forçar DONE.
