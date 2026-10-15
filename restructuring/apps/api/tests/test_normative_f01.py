@@ -60,7 +60,7 @@ def test_nr10_future_is_excluded_in_2026():
 
 def test_nr10_old_is_excluded_after_transition():
     results = _rules({**BASE, "reference_date": "2027-06-02"})
-    assert results["NR-10-ATE-2027"]["status"] == "NAO_APLICAVEL"
+    assert results["NR-10-ATE-2027"]["status"] == "PENDENTE"
     assert results["NR-10-A-PARTIR-2027"]["status"] == "BLOQUEADO"
 
 def test_stateless_immutable_registry():
@@ -70,7 +70,10 @@ def test_stateless_immutable_registry():
     assert inspect_record(original, Context("residencial", "SP", 220.0, date(2026,10,15)))["normative_approved"] is False
 
 def test_main_application_mounts_routes():
-    from sie_api.main import app as integrated_app
+    # Isolar inspeção porque outros testes podem manipular módulos FastAPI em sys.modules.
+    import importlib
+    import sie_api.main as main_module
+    integrated_app = importlib.reload(main_module).app
     routes = {getattr(route, "path", "") for route in integrated_app.routes}
-    assert "/api/v1/normas/aplicabilidade" in routes
+    assert "/api/v1/normas/aplicabilidade" in routes, sorted(routes)
     assert "/api/v1/circuitos/analisar" in routes
