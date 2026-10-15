@@ -1,17 +1,20 @@
-# NEXT_ACTION — F01 BLOQUEADA (continuar F01, não F02)
+# NEXT_ACTION — F01 BLOCKED, prosseguir na F01; F02 não liberada
+Data: 2026-10-15. Branch: `feat/f01-governanca-normativa`; PR #3 em rascunho sobre F00.
 
-**Fonte canônica:** `ORCHESTRATOR_STATE.json`, revisão 10, `F00=DONE`, `F01=BLOCKED`, `NOR-01=BLOCKED`. Branch F01: `feat/f01-governanca-normativa`; PR #3 em rascunho, apontado para branch F00. Main/produção intocadas.
+**F00 DONE; F01 BLOCKED; NOR-01 BLOCKED; F02 NÃO LIBERADA.** Fonte canônica `ORCHESTRATOR_STATE.json`.
 
-## Prova computacional F01
-- GitHub Actions `SIE modular API`: 149 pytest, 1 warning, success na revisão `fa6002d`: https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38722630175 .
-- `SIE Browser E2E (Chromium)`: 4 testes reais success (inclusive painel normativo), https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38722630269 .
-- Gates AIOX root: success, https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38722630211 .
-- Esses testes não validam conteúdo nem vigência de tabela normativa.
+## Implementado nesta retomada
+- Fontes editoriais ABNT NBR 5410, NBR 5419 (1–4), NR-10 e EDP PT.DT.PDN.00068 V9 confirmadas nas páginas oficiais, com *tabelas não homologadas*. EDP v09 publicada em 15/04/2026, registro versão 2; triagem de referência anterior à publicação = PENDENTE.
+- `normative_snapshots.py`, `storage.py`, `storage_api.py`: snapshot **do catálogo** por revisão de projeto no SQLite local, com hash, diff, histórico imutável via triggers e consultas sob token. Não há snapshot comprovado das **regras aplicadas ao cálculo**, recuperação do JSON histórico ou identidade multiusuário.
+- Últimos testes comprovados no commit `a5b4cce`: **160 pytest, 1 warning** https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38725806925 ; **4 Chromium** https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38725806964 ; **AIOX success** https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38725806937 . Novos commits documentais exigem verificar CI separadamente.
 
-## Ordem de retomada, sem copiar prompt nem editar CSV manualmente
-1. Prosseguir a própria F01: obter fonte primária autorizada/licença e conferir linha, coluna, edição, vigência, unidade e notas de **cada célula realmente usada**, com dupla conferência; não inventar Rca/XL/Iz/EDP.
-2. Documentar conflitos territoriais e exceções transitórias NR-10, com fundamentação, e preparar casos numéricos de referência independentes antes da liberação.
-3. Implementar snapshots imutáveis por projeto, diffs entre edições e trilha de impacto, com banco de ensaio local/descartável, sem produção.
-4. Reexecutar regressão, integração, segurança, UX e três pareceres QA. Só alterar F01 para DONE com gates exigidos satisfeitos.
+## Ordem de desbloqueio, mantendo FAIL_CLOSED
+1. Fonte primária e direitos: validar edição/vigência/jurisdição da cópia e conferir tabela, linha, coluna, unidade, observações de cada célula Rca/XL/Iz/EDP, com dupla leitura independente. Não inventar valores.
+2. Criar casos numéricos de referência independentes e assinados no escopo técnico, com fontes autorizadas, para cada regra real.
+3. Associar por circuito e revisão as regras **usadas no cálculo** e memória/entradas/saídas, ensaiando integridade/histórico/restauração e segurança em banco descartável antes de uma migração de produção.
+4. Resolver conflitos normativos, ressalvas da transição NR-10 e a aplicabilidade territorial/temporal e por tipologia/tensão.
+5. Reexecutar regression/e2e/QA-01, QA-02, QA-03. Só marcar DONE com gates exigidos e evidências suficientes; F02 não pode começar antes.
 
-**Próxima fase F02: BLOQUEADA.** A fase F01 deve ser retomada; não há background automático ou autorização de deploy.
+Dossiê: `docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md`, `EVIDENCIA_FONTES_OFICIAIS.md`, `EVIDENCIA_SNAPSHOTS_LOCAL.md`, `QA-01.md`, `QA-02.md`, `QA-03.md`.
+
+Sem merge, deploy, edição de SQL remoto ou execução em background.
