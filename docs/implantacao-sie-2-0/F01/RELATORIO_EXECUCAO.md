@@ -92,3 +92,7 @@ Foram criados três perfis custom agents GitHub Copilot `.github/agents/f01-qa-*
 Evidência computacional da configuração antes do fechamento documental: CI GitHub Actions API **168 testes aprovados** https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38740090384 ; navegador e AIOX no mesmo SHA conforme GitHub Actions. O número de testes mede software, não homologação de engenharia.
 
 **F01 = BLOCKED; F02 = NÃO LIBERADA; PR #3 segue draft.**
+
+## Adendo — Plano de execução autônoma YOLO entregue
+Adicionado plano `PLANO_EXECUCAO_AUTONOMA_YOLO.md`, orquestrador `scripts/f01_yolo_runner.py`, testes determinísticos em `restructuring/apps/api/tests/test_f01_yolo_runner.py` e check de prévia no GitHub Actions. Execução: tripla primeira passagem em sessões Copilot distintas com worktrees independentes, retries limitados, primeira revisão congelada em SHA, três revisões cruzadas, integração controlada em F01 e novo replay F00 **somente como regressão**. O script requer autenticação GitHub Copilot CLI e VM/container previamente isolado, não autentica normas/linhas/células ou pareceres humanos. Publica somente branches QA/F01, sem force e sem merge na main; CI final e validação normativa seguem exigidos.
+Esta entrega registra um **plano + executor configurado** e seus testes; NÃO executou as três sessões QA, NÃO homologou nenhuma célula normativa, NÃO aprovou nenhum dos seis gates e NÃO encerrou a F01.
