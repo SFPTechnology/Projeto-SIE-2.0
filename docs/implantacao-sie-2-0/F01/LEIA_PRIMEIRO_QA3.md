@@ -12,6 +12,8 @@ Data 15/10/2026. **Os agentes foram definidos; não foram executados.** Criar um
 ## Iniciar pelo Windows PowerShell (opcional)
 Pré-requisitos: clone Git local, Git instalado, **GitHub Copilot CLI instalado e autenticado com direito de uso dos perfis** e três branches criadas (já existem remotamente). O ChatGPT não instalou nem autenticou essas ferramentas na sua máquina.
 
+Antes do passo 1, abra a pasta do clone no terminal e confirme que não há mudanças locais pendentes. Execute `git fetch origin` e `git switch feat/f01-governanca-normativa` (ou `git switch -c feat/f01-governanca-normativa --track origin/feat/f01-governanca-normativa` se a branch ainda não existir localmente). Isso não faz merge na `main`.
+
 1. Abra o terminal **PowerShell**, na pasta local do projeto que contém `.git`. O comando de pré-visualização:
    `powershell -File scripts/INICIAR_F01_QA3.ps1`
    Apenas lista o plano, sem iniciar agentes.
