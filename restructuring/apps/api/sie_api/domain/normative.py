@@ -60,6 +60,10 @@ def inspect_record(record: NormativeRecord, ctx: Context) -> dict:
     if record.effective_from and ctx.reference_date < record.effective_from:
         return _decision(record, "NAO_APLICAVEL", ["ANTES_DA_VIGENCIA"])
     if record.effective_until and ctx.reference_date > record.effective_until:
+        # NR-10 2026 prevê regra transitória para instalações existentes.
+        # Não presumir que o regime anterior deixou de importar para todos os casos.
+        if record.id == "NR-10-ATE-2027":
+            return _decision(record, "PENDENTE", ["TRANSICAO_INSTALACOES_EXISTENTES_A_CONFERIR"])
         return _decision(record, "NAO_APLICAVEL", ["APOS_A_VIGENCIA"])
     if record.distributor is not None and ctx.distributor is None:
         return _decision(record, "PENDENTE", ["DISTRIBUIDORA_NAO_INFORMADA"])
