@@ -41,7 +41,7 @@ foreach ($command in @('git', 'copilot')) {
   }
 }
 # Não modifica os arquivos do checkout principal; só atualiza refs remotas.
-& git -C $Repo fetch origin 'feat/f01-governanca-normativa' 'qa/f01-arquiteto' 'qa/f01-engenheiro-eletrico' 'qa/f01-dados-ux-llm'
+& git -C $Repo fetch origin
 if ($LASTEXITCODE -ne 0) { throw 'Falha no git fetch; sem execucao dos agentes' }
 New-Item -ItemType Directory -Force -Path $Root, $Logs | Out-Null
 
