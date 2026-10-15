@@ -97,3 +97,28 @@ def consultar_historico_normativo(
     repo = _storage(authorization)
     return {"id": str(projeto_id), "eventos": repo.historico_snapshot_normativo(str(projeto_id)),
             "normative_conformity_verified": False}
+
+
+@router.get("/{projeto_id}/revisoes")
+def consultar_revisoes(projeto_id: UUID, authorization: str | None = Header(default=None)):
+    repo = _storage(authorization)
+    if repo.carregar(str(projeto_id)) is None:
+        raise HTTPException(status_code=404, detail="Projeto nao encontrado")
+    return {"id": str(projeto_id), "revisoes": repo.listar_revisoes(str(projeto_id)),
+            "versoes_legadas_sem_backfill": True,
+            "normative_conformity_verified": False}
+
+
+@router.get("/{projeto_id}/revisoes/{revisao}")
+def consultar_revisao_historica(
+    projeto_id: UUID, revisao: int, authorization: str | None = Header(default=None)
+):
+    repo = _storage(authorization)
+    try:
+        item = repo.carregar_revisao(str(projeto_id), revisao)
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    if item is None:
+        raise HTTPException(status_code=404,
+                            detail="Revisao anterior nao armazenada; sem reconstrução artificial")
+    return item
