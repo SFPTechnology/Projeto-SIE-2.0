@@ -149,7 +149,7 @@
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 14,
+  "revision": 15,
   "schema_version": 1,
   "tasks": [
     {
@@ -783,7 +783,7 @@
         "runner": "scripts/f01_yolo_runner.py",
         "run_mode": "SANDBOXED_NONINTERACTIVE_COPILOT_CLI_YOLO",
         "launch_command": "python scripts/f01_yolo_runner.py --execute --sandbox-confirmed",
-        "status": "PARTIAL_GITHUB_EXECUTION_NOT_COPILOT_QA3",
+        "status": "YOLO_V2_CONFIGURED_NOT_EXECUTED",
         "number_of_confirmed_runs": 0,
         "preserves_f00": "REGRESSION_ONLY",
         "max_agent_fix_rounds": 3,
@@ -797,6 +797,29 @@
         "main_merge_permitted": false,
         "manual_code_changes_committed": true,
         "github_ci_checks_executed": true
+      },
+      "unblock_yolo_v2": {
+        "status": "CONFIGURED_NOT_EXECUTED",
+        "plan": "docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md",
+        "cell_matrix": "docs/implantacao-sie-2-0/F01/MATRIZ_CELULAS_NORMATIVAS_F01.json",
+        "validator": "scripts/f01_cell_evidence_gate.py",
+        "execution_command": "python scripts/f01_yolo_runner.py --execute --sandbox-confirmed",
+        "source_groups_required": [
+          "RCA",
+          "XL",
+          "IZ",
+          "FATORES_CORRECAO",
+          "EDP_DEMANDA",
+          "EDP_MODALIDADE"
+        ],
+        "source_groups_verified": 0,
+        "source_cell_coverage_certified": false,
+        "agents_executed_independently": 0,
+        "external_professional_signoff": false,
+        "accepted_gates": 0,
+        "qa_branches_require_fastforward_from_latest_f01": true,
+        "f00_locked": true,
+        "f02_release": false
       }
     }
   ]
