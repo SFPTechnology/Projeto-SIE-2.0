@@ -75,3 +75,46 @@ def test_runner_never_commits_when_forbidden_changed(monkeypatch, tmp_path):
     with pytest.raises(mod.Blocked):
         mod.safe_git_commit(tmp_path, "attempt")
     assert not any("commit" in a for a in called)
+
+
+def test_qa_branch_synchronization_fast_forward_only(monkeypatch, tmp_path):
+    old = "a" * 40
+    new = "b" * 40
+    commands = []
+    def fake_need(cmd, cwd, **kwargs):
+        commands.append(cmd)
+        if cmd[:3] == ["git", "branch", "--show-current"]:
+            return "qa/f01-arquiteto"
+        if cmd == ["git", "status", "--porcelain"]:
+            return ""
+        if cmd == ["git", "rev-parse", "HEAD"]:
+            return new if any(c[:3] == ["git", "merge", "--ff-only"] for c in commands) else old
+        return ""
+    monkeypatch.setattr(mod, "need", fake_need)
+    monkeypatch.setattr(mod, "exec_command", lambda *a, **kw: (0, ""))
+    published = []
+    monkeypatch.setattr(mod, "push_whitelisted",
+                        lambda wt, br: published.append((wt, br)))
+    assert mod.synchronize_qa_branch(
+        tmp_path, tmp_path, "qa/f01-arquiteto", new
+    ) == new
+    assert ["git", "merge", "--ff-only", new] in commands
+    assert len(published) == 1
+
+
+def test_qa_branch_divergence_blocks_instead_of_force_push(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        mod, "need", lambda cmd, cwd, **kw:
+        "qa/f01-arquiteto" if cmd[:3] == ["git", "branch", "--show-current"]
+        else "a" * 40 if cmd == ["git", "rev-parse", "HEAD"]
+        else "")
+    monkeypatch.setattr(mod, "exec_command", lambda *a, **kw: (1, ""))
+    monkeypatch.setattr(mod, "push_whitelisted",
+                        lambda *a, **kw: pytest.fail("must not publish divergent branch"))
+    with pytest.raises(mod.Blocked, match="ancestral"):
+        mod.synchronize_qa_branch(tmp_path, tmp_path, "qa/f01-arquiteto", "b" * 40)
+
+
+def test_synchronization_rejects_main_even_when_head_equal(monkeypatch, tmp_path):
+    with pytest.raises(mod.Blocked, match="whitelist"):
+        mod.synchronize_qa_branch(tmp_path, tmp_path, "main", "b" * 40)
