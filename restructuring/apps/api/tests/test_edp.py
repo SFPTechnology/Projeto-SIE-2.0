@@ -49,3 +49,14 @@ def test_edp_non_homologated_values_can_never_be_released():
     assert result["regra_selecao"]["status"] == "DOCUMENTADO_SEM_FONTE_PRIMARIA"
     assert result["status_engenharia"] == "PENDENTE"
     assert result["liberado_para_padrao_entrada"] is False
+
+
+def test_official_edp_document_location_is_not_cell_homologation():
+    result = enquadrar_edp("T", Decimal("58.3"), Decimal("22.215"), True)
+    record = result["catalogo"]
+    assert record["url_fonte_edp"] == "https://www.edp.com.br/Ginp/Download/PT.DT.PDN.00068_V9.pdf"
+    assert record["publicacao_portal"] == "2026-04-15"
+    assert record["confirmacao_binaria_pdf"] is False
+    assert record["normative_conformity_verified"] is False
+    assert record["status"] == "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+    assert result["liberado_para_padrao_entrada"] is False
