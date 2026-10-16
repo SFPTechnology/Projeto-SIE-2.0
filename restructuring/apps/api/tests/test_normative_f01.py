@@ -101,3 +101,52 @@ def test_edp_official_publication_metadata_not_equivalent_to_approval():
     assert edp.official_publication_date == date(2026, 4, 15)
     assert edp.official_url == "https://www.edp.com.br/normas-e-padroes-tecnicos/"
     assert edp.verified_data is False
+
+
+def test_nr10_portaria_737_2026_only_has_narrow_10_6_4_e_transition():
+    # Fonte: Portaria MTE 737/2026, arts. 3 e 5 (publicacao 01/06/2026).
+    # A nova redacao geral entra em vigor em 01/06/2027; instalacoes
+    # existentes nessa data recebem 1 ano a mais somente para 10.6.4(e).
+    base = {**BASE, "reference_date": "2027-06-02"}
+    existing = _rules({**base, "existing_installation_on_2027_06_01": True})
+    assert existing["NR-10-ATE-2027"]["status"] == "PENDENTE"
+    new_rule = existing["NR-10-A-PARTIR-2027"]
+    assert new_rule["status"] == "BLOQUEADO"
+    assert "10_6_4_E_PRAZO_ESPECIFICO_INSTALACAO_EXISTENTE_ATE_2028_05_31" in new_rule["reasons"]
+    assert new_rule["normative_approved"] is False
+
+    new_install = _rules({**base, "existing_installation_on_2027_06_01": False})
+    assert new_install["NR-10-ATE-2027"]["status"] == "NAO_APLICAVEL"
+    assert "10_6_4_E_PRAZO_ESPECIFICO_INSTALACAO_EXISTENTE_ATE_2028_05_31" not in new_install["NR-10-A-PARTIR-2027"]["reasons"]
+
+    unknown = _rules(base)
+    assert "10_6_4_E_EXISTENCIA_EM_2027_A_CONFERIR" in unknown["NR-10-A-PARTIR-2027"]["reasons"]
+
+
+def test_nr10_transition_specific_deadline_expired_after_2028_06_01():
+    for reference in ("2028-06-01", "2029-01-01"):
+        x = _rules({**BASE, "reference_date": reference,
+                    "existing_installation_on_2027_06_01": True})
+        assert x["NR-10-ATE-2027"]["status"] == "NAO_APLICAVEL"
+        assert x["NR-10-A-PARTIR-2027"]["status"] == "BLOQUEADO"
+        assert "10_6_4_E_PRAZO_ESPECIFICO_INSTALACAO_EXISTENTE_ATE_2028_05_31" not in x["NR-10-A-PARTIR-2027"]["reasons"]
+
+
+def test_nr10_effective_date_boundary_is_exact():
+    previous = _rules({**BASE, "reference_date": "2027-05-31"})
+    assert previous["NR-10-ATE-2027"]["status"] == "BLOQUEADO"
+    assert previous["NR-10-A-PARTIR-2027"]["status"] == "NAO_APLICAVEL"
+    starts = _rules({**BASE, "reference_date": "2027-06-01",
+                     "existing_installation_on_2027_06_01": True})
+    assert starts["NR-10-A-PARTIR-2027"]["status"] == "BLOQUEADO"
+    assert starts["NR-10-ATE-2027"]["status"] == "PENDENTE"
+
+
+def test_nr10_installation_existing_field_rejects_string_and_flag_injection():
+    bad = _rules({**BASE, "existing_installation_on_2027_06_01": True})
+    assert bad["NR-10-A-PARTIR-2027"]["normative_approved"] is False
+    payload = {**BASE, "existing_installation_on_2027_06_01": "false"}
+    # Pydantic bool coercion is permitted, but must never approve any rule.
+    x = client.post("/api/v1/normas/aplicabilidade", json=payload)
+    assert x.status_code == 200
+    assert x.json()["release_allowed"] is False
