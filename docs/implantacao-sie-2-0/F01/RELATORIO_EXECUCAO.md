@@ -158,3 +158,33 @@ Verificar também os workflows do último SHA final; a reprodução F00 permanec
 6. **AC-01.01–04 e AC-01.06–10:** ainda não aprovados formalmente no orquestrador. AC-01.05 permanece único formalmente aprovado.
 
 **Resultado honesto:** PF-01 inventário executado, PF-02 impedido por evidência, PF-03 correções reais, PF-04 aguardando ambiente independente, PF-05 CI parcialmente comprovada, **F01 BLOCKED, 0/6 gates, 1/10 AC; F00 DONE, F02 não liberada**.
+
+## Auditoria adicional — execução solicitada de Copilot e fontes oficiais em 16/10/2026
+
+**Escopo factual:** tentativa de ativar Copilot, verificação dos documentos oficiais externos, correção de aplicabilidade NR-10, testes e checagem de bloqueios remanescentes. F00 permanece `DONE`, F02 não iniciada.
+
+### Copilot: bloqueio operacional efetivamente investigado
+- No ambiente desta conversa `command -v copilot` não encontrou binário, `gh` também não está instalado e não há variáveis de autenticação `GH_TOKEN/GITHUB_TOKEN/COPILOT_*`. O shell local não resolve `github.com` para Git.
+- O conector ChatGPT GitHub disponível **edita código e CI**, mas **não expõe** o parâmetro obrigatório `agent_assignment.base_branch` para atribuição correta a um Copilot Cloud Agent via REST; assim, usar `assignees=[copilot-swe-agent[bot]]` sem campo de branch poderia abrir trabalho contra `main`, contrariando a decisão do projeto. Nenhum issue foi atribuída ao Copilot com base insegura.
+- Os três agentes **NÃO foram iniciados**; `QA3_MANIFEST.json` preserva `agent_executions_verified=0` e G06 `BLOCKED`. As 3 branches QA existem, mas seus commits não são pareceres independentes. Nenhum agente foi simulado.
+
+### Verificação de fonte primária efetivamente realizada
+- Documento oficial MTE `Portaria MTE nº 737/2026` inspecionado no PDF https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2026-1/portaria-mte-no-737-nova-nr-10.pdf, incluindo **art. 3º** (prazo específico somente 10.6.4(e) para instalações existentes) e **art. 5º** (vigência geral em 01/06/2027). Fonte primária oficial; não prova 6/6 gates.
+- Código `sie_api/domain/normative.py` e API `normative_api.py`: triagem agora diferencia instalações existentes em 01/06/2027, início geral de 01/06/2027 e exceção específica em 01/06/2028; `test_normative_f01.py` testa os limites e conserva `normative_approved=false`.
+- Fonte EDP V09 oficial encontrada em https://www.edp.com.br/Ginp/Download/PT.DT.PDN.00068_V9.pdf (domínio oficial). O resultado indexado declara início de vigência **14/04/2026** e 91 páginas; o catálogo público lista publicação em **15/04/2026**. O PDF é servido de forma incompatível com o leitor PDF web (`application/octet-stream`); não se obteve inspeção visual direta das Tabelas 001/002, nem comparação de bytes com cópia do GitHub. `edp.py` recebeu a URL oficial, mas campo `confirmacao_binaria_pdf=false` e status `DOCUMENTADO_SEM_FONTE_PRIMARIA` se mantêm.
+- O catálogo ABNT oficial lista `NBR 5410:2004 Versão Corrigida:2008` e partes 1–4 da `NBR 5419:2026 Versão Corrigida:2026`. Identificação editorial comprovada; conteúdo de células ABNT, licença e direito de uso não foram demonstrados. **Nenhum valor foi importado do web para o motor.**
+- Documento rastreável: `AUDITORIA_FONTES_OFICIAIS_2026-10-16.md`.
+
+### Comprovação de CI
+Commit `a4c41553aecff0c479867e27f56cb0cb8c9cf612` aprovado com **219 pytest**, **5 Chromium** e **AIOX**:
+- https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38956570954
+- https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38956570839
+- https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38956570882
+
+Houve commits posteriores com documentação da auditoria e testes de metadados EDP; consultar o último SHA/CI antes de qualquer aceite. **0/6 gates aceitos, 1/10 AC formalmente aprovado; F01 BLOCKED**, sem reabrir F00.
+
+### Correções verificadas, achados restantes
+- **Corrigido:** ambiguidade de vigência NR-10, antes tratada como transição global da norma; novo motivo específico `10_6_4_E_PRAZO_ESPECIFICO_INSTALACAO_EXISTENTE_ATE_2028_05_31`, sem concessão de conformidade.
+- **Corrigido:** fonte EDP com URL oficial legível e campo explícito `confirmacao_binaria_pdf=false`; teste impede classificação como homologada.
+- **Bloqueios ainda externos:** original ABNT autorizado e conferência física das tabelas Iz/fatores/Rca/XL, PDF EDP oficial verificado visualmente/byte a byte e todas as células usadas por motor com segunda leitura independente, expected normativos externos, profissional homologador independente, 3 sessões Copilot QA, revisões cruzadas e critérios de G04/G05 ainda incompletos.
+- **Próxima ação sem duplicação:** executar o `scripts/f01_yolo_runner.py` em ambiente já isolado com Copilot CLI autenticado, conferir PDF EDP/ABNT por dois revisores separados e associar evidence hashes por célula. Não repetir F00 nem iniciar F02 enquanto as provas faltarem.
