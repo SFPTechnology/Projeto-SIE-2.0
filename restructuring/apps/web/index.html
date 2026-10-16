@@ -73,6 +73,12 @@
             <button class="primary" id="project-load" type="button">Reabrir projeto</button>
           </div>
           <p id="project-status" role="status" aria-live="polite">Armazenamento desabilitado até configurar a API local e o token.</p>
+          <div class="section-heading"><div><p class="eyebrow">HISTÓRICO IMUTÁVEL</p><h3>Revisões gravadas</h3></div></div>
+          <p>Exibe apenas revisões novas efetivamente preservadas. Valores e fontes declarados pelo usuário não são homologados.</p>
+          <button class="primary" type="button" id="project-history-refresh">Consultar revisões</button>
+          <p id="project-history-status" role="status" aria-live="polite">Informe o ID e o token local para consultar.</p>
+          <ul id="project-history-list" aria-label="Revisões locais do projeto"></ul>
+          <p id="project-history-summary" role="status" aria-live="polite"></p>
         </section>
         <section id="rastreabilidade" class="panel trace-panel">
           <div class="section-heading"><div><p class="eyebrow">04 · GOVERNANÇA</p><h2>Rastreabilidade e segurança</h2></div></div>
