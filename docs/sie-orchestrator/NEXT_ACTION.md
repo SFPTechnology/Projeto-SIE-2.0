@@ -67,3 +67,12 @@ Criado `docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md` com BL-00
 **Informação relevante recuperada do GitHub:** já existe `Arquivos_Diversos/Norma_EDP/PT.DT.PDN.00068_V9.pdf` (2.678.187 bytes), além de extrações derivadas; em NBR 5410, `NBR-5410.md` é derivado e `NBR 5410 Comentada.pdf` é comentário, não prova de exemplar ABNT oficial licenciado. Priorizar comparação das fontes **já presentes** antes de solicitar novamente arquivos.
 
 **Impedimentos reais inalterados:** 0 células normativas homologadas, 0 casos normativos independentes aprovados, 0 execuções QA3 independentes, G01..G06 0/6 e somente AC-01.05 aceito (1/10). `F00=DONE`, `F01=BLOCKED`, `F02=NOT_RELEASED`. Nenhuma mudança no plano concede aceite, assinatura profissional ou autorização para migrar produção.
+
+## EXECUÇÃO PF-01..PF-05 — 16/10/2026: próxima ação única
+**Começar por evidência**, sem novo plano: já existem `INVENTARIO_CELULAS_E_REGRAS_USADAS.csv` (24 entradas técnicas, 13 categorias EDP), `PF01_AUDITORIA_FONTES_2026-10-16.md` e correções ENG-001/ENG-002 de F01 no código e na UX. A CI executou 215 pytest + 5 Chromium + AIOX verde no commit `e1faaa61`, e deve ser conferida novamente na ponta da branch.
+
+**Condição que agora depende de fora da automação:** confrontar versão oficial **autorizada** ABNT NBR 5410 com as tabelas e notas indicadas na matriz (não somente o Markdown), documento EDP V09 oficial com arquivo do repo, obter duas leituras realmente independentes das células e expected normativos, além de profissional responsável onde exigido. **Não escrever 100% se faltar.**
+
+**Workstream de software:** rastreamento da linha de input usada, Iz exato, categoria U/D trifásica bloqueada, status EDP rebaixado ao efetivo, revisão local consultável na UI. QA3 CLI ainda precisa rodar em contexto autônomo isolado e autenticado; não chamar escrita GitHub de execução de três agentes.
+
+**Fechamento:** executar PF-05 com 6/6 G e 10/10 AC comprovados; sem isso `F01=BLOCKED` e F02 não liberada. O golden F00 original permanece imutável.
