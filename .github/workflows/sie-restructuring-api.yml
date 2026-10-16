@@ -9,6 +9,9 @@ on:
       - '.github/agents/f01-qa-*.agent.md'
       - '.github/skills/f01-*/SKILL.md'
       - 'scripts/f01_release_gate.py'
+      - 'scripts/f01_cell_evidence_gate.py'
+      - 'docs/implantacao-sie-2-0/F01/MATRIZ_CELULAS_NORMATIVAS_F01.json'
+      - 'docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md'
       - 'scripts/f01_yolo_runner.py'
       - 'docs/stories/story-SIE-AUTO-011-DEPENDENCY-SCHEDULER.md'
       - '.github/workflows/sie-restructuring-api.yml'
@@ -39,6 +42,8 @@ jobs:
         run: |
           python -m py_compile scripts/f01_yolo_runner.py
           python scripts/f01_yolo_runner.py
+      - name: Validate normative cell registry schema without granting approval
+        run: python scripts/f01_cell_evidence_gate.py
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api
