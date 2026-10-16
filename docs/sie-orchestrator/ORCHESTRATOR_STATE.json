@@ -149,7 +149,7 @@
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 15,
+  "revision": 16,
   "schema_version": 1,
   "tasks": [
     {
@@ -721,8 +721,8 @@
         "normative_approval": false
       },
       "checkpoint": {
-        "at": "2026-10-15",
-        "summary": "Real GitHub F01 changes: transactional immutable complete local project revisions, server-executed circuit algorithm traces with source code sha256 and declared/unverified source labels; tests expanded to 200+; numeric reference examples synthetic only; normative cells unverified and independent Copilot QA3 unavailable.",
+        "at": "2026-10-16",
+        "summary": "PF01 real source inventory 24 dependencies (13 EDP categories, 11 unresolved data/rule groups); PF03 safe-engine ENG-001 Iz precision and ENG-002 tri-phase U/D block, downgrade unverified EDP claim, actual selected input-row provenance and local revision UX; PF02 still has 0 normatively reviewed cells, PF04 independent QA not run. F00 golden original replay remains unchanged.",
         "catalogue_snapshot_metadata": "IMPLEMENTED_LOCAL_ONLY",
         "applied_rule_snapshots": "PENDING_NORMATIVE_CELL_PROOF",
         "approved_numeric_cases": 0,
@@ -746,7 +746,22 @@
           38725806937
         ],
         "historical_project_revisions": "IMPLEMENTED_NEW_REVISIONS_ONLY",
-        "server_calculation_traces": "IMPLEMENTED_LOCAL_UNVERIFIED"
+        "server_calculation_traces": "IMPLEMENTED_LOCAL_UNVERIFIED",
+        "inventory_file": "docs/implantacao-sie-2-0/F01/INVENTARIO_CELULAS_E_REGRAS_USADAS.csv",
+        "source_audit_file": "docs/implantacao-sie-2-0/F01/PF01_AUDITORIA_FONTES_2026-10-16.md",
+        "candidate_edp_categories": 13,
+        "technical_inventory_rows_not_certified_cells": 24,
+        "pf01": "PARTIAL_SOURCE_PRIMARY_VERIFICATION_PENDING",
+        "pf02": "BLOCKED_EXTERNAL_PRIMARY_PROOFS",
+        "pf03": "PARTIAL_EXECUTED_REAL_CODE_AND_TESTS",
+        "pf04": "CONFIGURED_NOT_EXECUTED",
+        "pf05": "SOFTWARE_CI_PASSED_NO_NORMATIVE_RELEASE",
+        "last_proven_ci_commit": "e1faaa61d568a1f35eec73de850126024d6e74f1",
+        "last_proven_ci_runs": [
+          38941702211,
+          38941702181,
+          38941702206
+        ]
       },
       "qa3_program": {
         "configured": true,
@@ -799,7 +814,7 @@
         "github_ci_checks_executed": true
       },
       "unblock_yolo_v2": {
-        "status": "CONFIGURED_NOT_EXECUTED",
+        "status": "PF01_AND_PF03_PARTIAL_CODE_EXECUTED_IN_GITHUB_QA3_NOT_RUN",
         "plan": "docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md",
         "cell_matrix": "docs/implantacao-sie-2-0/F01/MATRIZ_CELULAS_NORMATIVAS_F01.json",
         "validator": "scripts/f01_cell_evidence_gate.py",
