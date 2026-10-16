@@ -320,6 +320,10 @@ def run(root: Path, args) -> dict:
     # Baseline F01 atual, nunca o SHA antigo do primeiro pacote QA3.
     base_sha = need(["git", "rev-parse", "HEAD"], root)
     need(["git", "fetch", "origin"], root, timeout=300)
+    upstream = need(["git", "rev-parse", f"refs/remotes/origin/{PHASE}"], root)
+    if upstream != base_sha:
+        raise Blocked("BLOCKED_BRANCH_DIVERGENCE",
+                      "Checkout F01 desatualizado após fetch: atualizar sem rebase destrutivo")
     for qa, profile, branch, _ in QA:
         create_worktree(root, workdir / qa, branch)
         synchronize_qa_branch(root, workdir / qa, branch, base_sha)
@@ -446,12 +450,19 @@ def run(root: Path, args) -> dict:
             break
     else:
         raise Blocked("FAILED_TECHNICAL", "Integração ou regressão sem aprovação local")
+    cell_rc, cell_report = exec_command(
+        [sys.executable, "scripts/f01_cell_evidence_gate.py", "--strict"], root)
     rc, chk = exec_command([sys.executable, "scripts/f01_release_gate.py",
                             "--check-release"], root)
-    outcome = ("READY_FOR_EXTERNAL_VERIFICATION" if rc != 0
-               else "PENDING_FORMAL_CI_AND_PROFESSIONAL_SIGNOFF")
-    history.append({"stage": "E08", "guard_exit": rc,
-                    "guard_result": chk[-3000:],
+    if cell_rc != 0:
+        outcome = "BLOCKED_EVIDENCE"
+    elif rc != 0:
+        outcome = "AWAITING_EXTERNAL_SIGNOFF"
+    else:
+        outcome = "READY_FOR_FORMAL_AUDIT_NOT_YET_RELEASED"
+    history.append({"stage": "E08", "normative_cells_gate_exit": cell_rc,
+                    "normative_cells_report": cell_report[-3000:],
+                    "guard_exit": rc, "guard_result": chk[-3000:],
                     "ci_same_sha_verified": False,
                     "normative_external_signoff_verified": False,
                     "f02_started": False})
