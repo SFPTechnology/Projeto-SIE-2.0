@@ -85,7 +85,11 @@ def frozen_state(root: Path = ROOT) -> dict:
 def planned_tasks(root: Path = ROOT) -> dict:
     result = frozen_state(root)
     missing = [p for p in (PLAN, MANIFEST, STATE,
-                           "scripts/f01_release_gate.py") if not (root / p).is_file()]
+                           "scripts/f01_release_gate.py",
+                           "scripts/f01_cell_evidence_gate.py",
+                           "docs/implantacao-sie-2-0/F01/MATRIZ_CELULAS_NORMATIVAS_F01.json",
+                           "docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md")
+               if not (root / p).is_file()]
     missing += [f".github/agents/{a}.agent.md" for _, a, _, _ in QA
                 if not (root / ".github/agents" / f"{a}.agent.md").is_file()]
     if missing:
@@ -205,6 +209,7 @@ def run_agent(worktree: Path, profile: str, prompt: str,
 def local_tests(worktree: Path, logdir: Path, prefix: str) -> tuple[bool, str]:
     tests = [
         ([sys.executable, "scripts/f01_release_gate.py", "--verify-invariants"], worktree, 80),
+        ([sys.executable, "scripts/f01_cell_evidence_gate.py"], worktree, 80),
         ([sys.executable, "scripts/f00_golden.py", "--verify"], worktree, 240),
         ([sys.executable, "-m", "pytest", "-q"], worktree / "restructuring/apps/api", 900),
     ]
@@ -254,6 +259,37 @@ def create_worktree(root: Path, target: Path, branch: str):
     check_clean(target)
 
 
+def synchronize_qa_branch(root: Path, worktree: Path, branch: str, base_sha: str) -> str:
+    """Avança cada QA apenas por fast-forward para a MESMA F01 atual.
+
+    Detecta branches com trabalho não integrado; jamais reescreve histórico.
+    """
+    allowed = {a[2] for a in QA}
+    if branch not in allowed:
+        raise Blocked("BLOCKED_SECURITY", "Branch QA fora da whitelist")
+    if need(["git", "branch", "--show-current"], worktree) != branch:
+        raise Blocked("BLOCKED_SECURITY", "A branch do worktree não confere")
+    check_clean(worktree)
+    previous = need(["git", "rev-parse", "HEAD"], worktree)
+    if previous != base_sha:
+        ancestor, _ = exec_command(
+            ["git", "merge-base", "--is-ancestor", previous, base_sha], worktree)
+        if ancestor != 0:
+            raise Blocked(
+                "BLOCKED_BRANCH_DIVERGENCE",
+                f"{branch} não é ancestral da F01 {base_sha[:12]}; "
+                "não sobrescrever commits independentes existentes",
+            )
+        need(["git", "merge", "--ff-only", base_sha], worktree,
+             code="BLOCKED_BRANCH_DIVERGENCE", timeout=120)
+        check_clean(worktree)
+        push_whitelisted(worktree, branch)
+    final = need(["git", "rev-parse", "HEAD"], worktree)
+    if final != base_sha:
+        raise Blocked("BLOCKED_BRANCH_DIVERGENCE", "QA não alcançou baseline comum")
+    return final
+
+
 def preflight(root: Path):
     planned_tasks(root)
     if not Path(root / ".git").exists():
@@ -262,6 +298,8 @@ def preflight(root: Path):
     if branch != PHASE:
         raise Blocked("BLOCKED_SECURITY", f"Esperado branch F01, encontrado: {branch}")
     check_clean(root)
+    need([sys.executable, "scripts/f01_cell_evidence_gate.py"], root,
+         code="BLOCKED_EVIDENCE_SCHEMA")
     for item in ["git", "copilot", "node"]:
         if not shutil.which(item):
             raise Blocked("BLOCKED_ENVIRONMENT", f"Pré-requisito ausente: {item}")
@@ -279,11 +317,14 @@ def run(root: Path, args) -> dict:
     logdir = root.parent / "SIE_F01_YOLO_LOGS" / runid
     logdir.mkdir(parents=True, exist_ok=False)
     history = [{"stage": "E00", "state": start}]
-    # Fetch remoto sem merge/rebase nem tocar na main.
+    # Baseline F01 atual, nunca o SHA antigo do primeiro pacote QA3.
+    base_sha = need(["git", "rev-parse", "HEAD"], root)
     need(["git", "fetch", "origin"], root, timeout=300)
     for qa, profile, branch, _ in QA:
         create_worktree(root, workdir / qa, branch)
-    history.append({"stage": "E01", "branches": [br for _, _, br, _ in QA]})
+        synchronize_qa_branch(root, workdir / qa, branch, base_sha)
+    history.append({"stage": "E01", "branches": [br for _, _, br, _ in QA],
+                    "common_f01_baseline": base_sha, "sync_mode": "FAST_FORWARD_ONLY"})
     by_id = {}
     for qa, profile, branch, reviewer_target in QA:
         wt = workdir / qa
@@ -298,7 +339,12 @@ def run(root: Path, args) -> dict:
             prompt = (
                 f"Você é {qa}, executando SOLO na branch {branch} (sem ler branches QA de outros). "
                 f"Leia .github/agents/{profile}.agent.md e suas skills; "
-                f"leia docs/implantacao-sie-2-0/F01/QA3_MULTIAGENTES_PLANO_EXECUCAO.md. "
+                f"leia docs/implantacao-sie-2-0/F01/QA3_MULTIAGENTES_PLANO_EXECUCAO.md "
+                "e PLANO_YOLO_DESBLOQUEIO_F01_V2.md. "
+                "Trabalhe sobre a F01 atual sem reimplementar versões anteriores. "
+                "Leia MATRIZ_CELULAS_NORMATIVAS_F01.json: trate Iz, Rca, XL, "
+                "fatores e EDP com fontes primárias e dupla conferência factual; "
+                "se faltar documento, registrar BLOCKED_EVIDENCE. "
                 "Implemente todas as cinco etapas E01-E05 da F01, com testes e revisão dos seis "
                 "gates G01..G06. Fontes normativas não verificadas devem continuar NÃO HOMOLOGADAS; "
                 "faça mudanças de engenharia e documentação seguras, sem falsa aprovação, sem "
