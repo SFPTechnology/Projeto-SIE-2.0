@@ -33,6 +33,14 @@ def test_trace_proves_algorithm_used_not_normative_rule(tmp_path):
                        "tensao_v": 220, "comprimento_m": 30}]}, 0)
     saved = repo.registrar_ensaio(pid, rev, "Iluminacao", example())
     assert len(saved["algorithm_ids_executed"]) == 3
+    row = saved["values_actually_used_by_algorithm"]
+    assert row["selected_input_row"]["indice_entrada"] == 1
+    assert row["selected_input_row"]["secao_mm2"] == 4
+    assert row["selected_input_row"]["capacidade_a"] == 32
+    assert row["capacity_for_breaker_decision_a"] == 25.6
+    assert row["source_classification"] == "CLIENT_SUPPLIED_UNVERIFIED_NOT_NORMATIVE_CELL"
+    assert saved["normative_cells_used_verified"] == []
+
     assert set(saved["algorithm_function_source_sha256"]) == {
         "selecionar_condutor", "selecionar_disjuntor",
         "calcular_queda_tensao_monofasica"}
