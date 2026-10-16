@@ -48,3 +48,14 @@ Agentes F01 QA-01 (arquiteto), QA-02 (engenharia elétrica), QA-03 (dados/UX/LLM
 3. Executar 3 agentes Copilot em worktrees isoladas num runtime autenticado, registrar primeiros SHAs, testes e revisão cruzada.
 4. Completar UX histórico, RBAC/tenant/migração segura e CI integradas; reavaliar 10 AC e 6 gates.
 **F01 BLOCKED, NOR-01 BLOCKED, F02 NÃO LIBERADA.**
+
+## Plano de desbloqueio F01 v2 — 15/10/2026
+Criado `docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md` com BL-00..BL-09. Nova matriz `MATRIZ_CELULAS_NORMATIVAS_F01.json` registra **Rca, XL, Iz, fatores, demanda e modalidade EDP** como famílias pendentes, não como todas as células verificadas. `python scripts/f01_cell_evidence_gate.py` confere **estrutura**, mantendo blockers; `--strict` reprova falta de evidências. O runner `scripts/f01_yolo_runner.py` agora:
+- confere schema das células antes de iniciar;
+- atualiza 3 branches QA por **fast-forward somente** até a mesma F01 atual, sem reescrever diferenças;
+- exige origem remota F01 igual ao checkout no preflight;
+- utiliza `--autopilot --yolo --no-ask-user` com limite de continuações;
+- retorna `BLOCKED_EVIDENCE` se normas/dupla leitura/cobertura falharem, ou `AWAITING_EXTERNAL_SIGNOFF` quando aplicável;
+- preserva `main`, F00 DONE e F02 não liberada.
+
+**Estado desta entrega:** somente plano, matriz, validações e atualização do executor foram criados; **as 3 sessões Copilot YOLO não foram iniciadas nesta conversa**. 0/6 gates aceitos até comprovação externa. O modo `--execute --sandbox-confirmed` requer ambiente isolado e Copilot CLI autenticado, sem segredos de produção.
