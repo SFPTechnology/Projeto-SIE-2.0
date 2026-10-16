@@ -59,6 +59,7 @@ class Context:
     material: Optional[str] = None
     installation_method: Optional[str] = None
     use: Optional[str] = None
+    existing_installation_on_2027_06_01: Optional[bool] = None
 
 def inspect_record(record: NormativeRecord, ctx: Context) -> dict:
     """Somente metadados confiáveis do servidor; nunca flags de aprovação do cliente."""
@@ -74,10 +75,16 @@ def inspect_record(record: NormativeRecord, ctx: Context) -> dict:
     if record.effective_from and ctx.reference_date < record.effective_from:
         return _decision(record, "NAO_APLICAVEL", ["ANTES_DA_VIGENCIA"])
     if record.effective_until and ctx.reference_date > record.effective_until:
-        # NR-10 2026 prevê regra transitória para instalações existentes.
-        # Não presumir que o regime anterior deixou de importar para todos os casos.
+        # Portaria MTE 737/2026, arts. 3 e 5: nova NR-10 em 01/06/2027.
+        # O prazo ADICIONAL ate 01/06/2028 so diz respeito a 10.6.4(e)
+        # para instalacoes existentes em 01/06/2027; nao prorroga a NR toda.
         if record.id == "NR-10-ATE-2027":
-            return _decision(record, "PENDENTE", ["TRANSICAO_INSTALACOES_EXISTENTES_A_CONFERIR"])
+            if (date(2027, 6, 1) <= ctx.reference_date < date(2028, 6, 1)
+                    and ctx.existing_installation_on_2027_06_01 is not False):
+                return _decision(record, "PENDENTE",
+                    ["TRANSICAO_APENAS_ALINEA_10_6_4_E",
+                     "SITUACAO_INSTALACAO_EXISTENTE_A_CONFERIR"])
+            return _decision(record, "NAO_APLICAVEL", ["REGIME_ANTERIOR_ENCERRADO"])
         return _decision(record, "NAO_APLICAVEL", ["APOS_A_VIGENCIA"])
     if record.distributor is not None and ctx.distributor is None:
         return _decision(record, "PENDENTE", ["DISTRIBUIDORA_NAO_INFORMADA"])
@@ -90,6 +97,12 @@ def inspect_record(record: NormativeRecord, ctx: Context) -> dict:
     if record.document.startswith("ABNT NBR 5419"):
         reasons.append("AVALIACAO_SPDA_PENDENTE")
     if record.document == "NR-10":
+        if record.id == "NR-10-A-PARTIR-2027":
+            if date(2027, 6, 1) <= ctx.reference_date < date(2028, 6, 1):
+                if ctx.existing_installation_on_2027_06_01 is True:
+                    reasons.append("10_6_4_E_PRAZO_ESPECIFICO_INSTALACAO_EXISTENTE_ATE_2028_05_31")
+                elif ctx.existing_installation_on_2027_06_01 is None:
+                    reasons.append("10_6_4_E_EXISTENCIA_EM_2027_A_CONFERIR")
         reasons.append("TRANSICAO_E_EXCECOES_A_VERIFICAR")
     return _decision(record, "BLOQUEADO", reasons)
 
