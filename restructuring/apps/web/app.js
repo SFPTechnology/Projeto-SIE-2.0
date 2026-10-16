@@ -118,6 +118,63 @@ document.querySelector('#project-load').addEventListener('click', async () => {
 });
 
 
+
+function clearHistory() {
+  const list = document.querySelector('#project-history-list');
+  list.replaceChildren();
+  document.querySelector('#project-history-summary').textContent = '';
+}
+document.querySelector('#project-history-refresh').addEventListener('click', async () => {
+  clearHistory();
+  const status = document.querySelector('#project-history-status');
+  const id = projectId.value.trim();
+  if (!id) { status.textContent = 'Informe o ID do projeto para consultar as revisões.'; return; }
+  const btn = document.querySelector('#project-history-refresh');
+  btn.disabled = true;
+  try {
+    const headers = authHeaders();
+    const response = await fetch(localProjectApi + '/' + encodeURIComponent(id) + '/revisoes', {headers});
+    const data = await projectResponse(response);
+    if (!Array.isArray(data.revisoes) || data.normative_conformity_verified !== false) {
+      throw new Error('Resposta histórica inválida ou não segura');
+    }
+    const list = document.querySelector('#project-history-list');
+    data.revisoes.forEach((rev) => {
+      const item = document.createElement('li');
+      const select = document.createElement('button');
+      select.type = 'button';
+      select.textContent = 'Revisão ' + String(rev.revisao) + ' — ' + String(rev.nome) + ' — detalhes';
+      select.addEventListener('click', async () => {
+        try {
+          const result = await projectResponse(await fetch(
+            localProjectApi + '/' + encodeURIComponent(id) + '/revisoes/' + encodeURIComponent(rev.revisao),
+            {headers: authHeaders()}));
+          if (result.normative_conformity_verified !== false || result.historico_recuperavel !== true) {
+            throw new Error('Revisão histórica sem verificação de integridade');
+          }
+          const circuitos = Array.isArray(result.dados?.circuitos) ? result.dados.circuitos.length : 'não informado';
+          document.querySelector('#project-history-summary').textContent =
+            'Revisão ' + result.revisao + ' recuperada integralmente; circuitos: ' + circuitos +
+            '; SHA-256: ' + String(result.hash_sha256 || 'indisponível') +
+            '. Fonte normativa não homologada. Nenhum recálculo automático foi realizado.';
+        } catch (error) {
+          document.querySelector('#project-history-summary').textContent =
+            'Falha ao consultar revisão: ' + error.message;
+        }
+      });
+      item.appendChild(select);
+      list.appendChild(item);
+    });
+    status.textContent = data.revisoes.length +
+      ' revisões locais efetivamente gravadas; versões legadas sem registro não são reconstruídas.';
+  } catch (error) {
+    clearHistory();
+    status.textContent = 'Não foi possível consultar revisões: ' + error.message;
+  } finally {
+    btn.disabled = false;
+  }
+});
+
 // F01: painel consultivo de fontes. Usar apenas texto (sem HTML de dados externos).
 // Ausência do endpoint jamais altera o gate da análise de circuitos.
 async function loadNormativeCatalog() {
