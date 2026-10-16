@@ -17,6 +17,7 @@ class ApplicabilityRequest(BaseModel):
     material: str | None = Field(default=None, max_length=40)
     installation_method: str | None = Field(default=None, max_length=40)
     use: str | None = Field(default=None, max_length=80)
+    existing_installation_on_2027_06_01: bool | None = None
 
 @router.get("/catalogo")
 def get_normative_catalog():
