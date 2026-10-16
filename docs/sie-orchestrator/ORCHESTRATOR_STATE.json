@@ -149,7 +149,7 @@
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 16,
+  "revision": 17,
   "schema_version": 1,
   "tasks": [
     {
@@ -756,12 +756,25 @@
         "pf03": "PARTIAL_EXECUTED_REAL_CODE_AND_TESTS",
         "pf04": "CONFIGURED_NOT_EXECUTED",
         "pf05": "SOFTWARE_CI_PASSED_NO_NORMATIVE_RELEASE",
-        "last_proven_ci_commit": "e1faaa61d568a1f35eec73de850126024d6e74f1",
+        "last_proven_ci_commit": "a4c41553aecff0c479867e27f56cb0cb8c9cf612",
         "last_proven_ci_runs": [
-          38941702211,
-          38941702181,
-          38941702206
-        ]
+          38956570954,
+          38956570839,
+          38956570882
+        ],
+        "official_primary_sources_audit": "docs/implantacao-sie-2-0/F01/AUDITORIA_FONTES_OFICIAIS_2026-10-16.md",
+        "nr10_737_primary_pdf_read": true,
+        "nr10_737_articles_verified": [
+          "3",
+          "5"
+        ],
+        "nr10_narrow_transition_2028_tested": true,
+        "edp_v09_official_pdf_located": true,
+        "edp_v09_pdf_binary_or_cells_rechecked": false,
+        "abnt_5410_edition_publication_confirmed": true,
+        "abnt_5410_primary_license_and_cells_verified": false,
+        "qa3_independent_executions": 0,
+        "qa3_cross_reviews": 0
       },
       "qa3_program": {
         "configured": true,
@@ -814,7 +827,7 @@
         "github_ci_checks_executed": true
       },
       "unblock_yolo_v2": {
-        "status": "PF01_AND_PF03_PARTIAL_CODE_EXECUTED_IN_GITHUB_QA3_NOT_RUN",
+        "status": "BLOCKED_COPILOT_CLI_NOT_AVAILABLE_WITHOUT_AUTH_CLOUD_AGENT_BASE_REF_UNSUPPORTED",
         "plan": "docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md",
         "cell_matrix": "docs/implantacao-sie-2-0/F01/MATRIZ_CELULAS_NORMATIVAS_F01.json",
         "validator": "scripts/f01_cell_evidence_gate.py",
@@ -834,7 +847,9 @@
         "accepted_gates": 0,
         "qa_branches_require_fastforward_from_latest_f01": true,
         "f00_locked": true,
-        "f02_release": false
+        "f02_release": false,
+        "external_normative_originals_verified": 1,
+        "external_electrical_cell_reviews": 0
       }
     }
   ]
