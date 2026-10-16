@@ -116,3 +116,30 @@ def test_non_decimal_input_fails_safely(invalid):
         calcular_queda_tensao_monofasica(
             invalid, Decimal("30"), Decimal("7.41"), Decimal("220")
         )
+
+
+def test_never_round_up_iz_before_breaker_decision():
+    # Iz = 20 A * 0.9998 = 19.996 A; apparent 20.00 A is NOT available.
+    corrente_projeto = Decimal("19.99")
+    condutor = selecionar_condutor(
+        corrente_projeto, Decimal("0.9998"),
+        ((Decimal("4"), Decimal("20")),),
+    )
+    assert condutor.capacidade_corrigida_a == Decimal("19.9960")
+    with pytest.raises(ValueError, match="Nenhum disjuntor"):
+        selecionar_disjuntor(
+            corrente_projeto, condutor.capacidade_corrigida_a,
+            (Decimal("16"), Decimal("20")),
+        )
+
+
+def test_do_not_round_up_iz_even_when_decision_is_far_from_threshold():
+    condutor = selecionar_condutor(
+        Decimal("15"), Decimal("0.9998"),
+        ((Decimal("4"), Decimal("20")),),
+    )
+    disjuntor = selecionar_disjuntor(
+        Decimal("15"), condutor.capacidade_corrigida_a,
+        (Decimal("16"), Decimal("20")),
+    )
+    assert disjuntor.corrente_disjuntor_comercial_a == Decimal("16.00")
