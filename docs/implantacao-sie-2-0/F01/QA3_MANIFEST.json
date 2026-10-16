@@ -115,7 +115,17 @@
     "0 verified normative cells and 0 normative numeric reference cases as documented in F01."
   ],
   "agent_baseline_sha": "8aec14ac0817ba75ea5e5cee90240368807f1bf7",
-  "activation": "PROFILES_AND_SKILLS_CONFIGURED_NOT_EXECUTED",
+  "activation": "YOLO_V2_CONFIGURED_NOT_EXECUTED",
   "agent_executions_verified": 0,
-  "independent_qa_personas_are_not_professional_signoffs": true
+  "independent_qa_personas_are_not_professional_signoffs": true,
+  "cell_evidence_matrix": {
+    "path": "docs/implantacao-sie-2-0/F01/MATRIZ_CELULAS_NORMATIVAS_F01.json",
+    "validator": "scripts/f01_cell_evidence_gate.py",
+    "verification_status": "BLOCKED_SOURCE",
+    "coverage_complete": false,
+    "independent_reviews_completed": 0,
+    "verified_cells": 0,
+    "formal_external_signoff": false
+  },
+  "unblock_plan": "docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md"
 }
