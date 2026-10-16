@@ -19,7 +19,7 @@ def analisar_circuito(payload: dict) -> dict:
         "status_engenharia": status.value,
         "liberado_para_uso_normativo": status == StatusEngenharia.APROVADO,
         "aviso": None if status == StatusEngenharia.APROVADO else "Resultado técnico calculado; uso normativo bloqueado até validação de fonte e testes independentes.",
-        "condutor": {"secao_mm2": float(condutor.secao_mm2), "capacidade_corrigida_a": float(condutor.capacidade_corrigida_a), "criterio": condutor.criterio},
+        "condutor": {"secao_mm2": float(condutor.secao_mm2), "capacidade_corrigida_a": float(condutor.capacidade_corrigida_a.quantize(Decimal("0.01"))), "capacidade_decisao_a": float(condutor.capacidade_corrigida_a), "criterio": condutor.criterio},
         "disjuntor": {"corrente_a": float(disjuntor.corrente_disjuntor_comercial_a), "criterio": disjuntor.criterio},
         "queda_tensao": {"queda_v": float(queda.queda_v), "queda_percentual": float(queda.queda_percentual), "formula": queda.formula},
         "rastreabilidade": {"fonte": evidencia.documento, "edicao": evidencia.edicao, "referencia": evidencia.referencia},
