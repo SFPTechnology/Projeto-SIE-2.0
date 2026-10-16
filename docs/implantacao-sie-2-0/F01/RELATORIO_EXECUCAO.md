@@ -116,3 +116,45 @@ A CI computacional é exigida no SHA final; a execução do código elevou a su�
 - **Essas três CI são do MESMO commit**, comprovam qualidade de software no recorte ensaiado, não aprovação de fonte ABNT/EDP.
 - Não ocorreu execução de três Copilot agents realmente independentes; o CLI não está presente na infraestrutura disponível desta conversa. QA-01 PENDENTE, QA-02 BLOQUEADO e QA-03 PENDENTE, sem signoff profissional.
 - `QA3_MANIFEST.json`: G01–G06 **0/6 aprovados**; F01 BLOCKED; F02 não liberada; PR #3 permanece draft e `main` intocada.
+
+## EXECUÇÃO DIRETA DOS PACOTES PF-01 A PF-05 — 16/10/2026
+
+**Autoridade e fonte:** `PLANO_UNICO_FECHAMENTO_F01.md`, material de execução `F01_EXECUTAR.md`, `ORCHESTRATOR_STATE.json`, `QA3_MANIFEST.json`. Implementação direta via plugin GitHub no escopo F01. **F00 original intocada, main intocada, sem deploy ou Supabase.**
+
+### PF-01 — Inventário e triagem REALIZADOS, homologação ainda bloqueada
+- Repositório inspecionado: PDF `Arquivos_Diversos/Norma_EDP/PT.DT.PDN.00068_V9.pdf`, extração Markdown V09, texto derivado `NBR_5410_original/NBR-5410.md`, F00 `fontes-sha256.json`, `edp.py`, `engines.py`, `application.py`.
+- Inventariado `INVENTARIO_CELULAS_E_REGRAS_USADAS.csv`: **24 entradas** (13 categorias EDP codificadas + 11 necessidades de dados/regras; **não** 24 células primárias homologadas).
+- `PF01_AUDITORIA_FONTES_2026-10-16.md` documenta extrações NBR 5410 (capacidade em tabelas 36–39, temperatura em 40–41, agrupamento 42–45), candidatos EDP de tabela 001/002 e transição NR-10; original ABNT autorizado e dupla conferência faltantes.
+- Fonte editorial oficial EDP declara versão 09 publicada 15/04/2026; o frontmatter da extração local apresenta 14/04/2026. Não converter essa diferença em data de vigência automática.
+
+### PF-02 — Parcial no software, **BLOCKED_EVIDENCE** normativo
+- Ensaios de matemática independentes anteriores permanecem `DEMO_SYNTHETIC`; **nenhuma fixture com valor primário homologado** foi inserida artificialmente.
+- **0** células primárias duas vezes conferidas; **0** casos numéricos normativos homologados; segunda leitura realmente independente/profissional faltante.
+- É inseguro importar Rca, XL, Iz, demanda EDP ou limite territorial apenas do texto derivado/chunks. Não reclassificar G02/G03.
+
+### PF-03 — Correções reais integradas
+- `engines.py` preserva **Iz não arredondada** na seleção de proteção; `application.py` disponibiliza `capacidade_decisao_a` para auditoria, arredondando somente a visualização. Corrige o comportamento inseguro ENG-001, mantendo condicional normativo fechado.
+- `edp.py` remove alegação indevida `status: VERIFICADO`; agora `DOCUMENTADO_SEM_FONTE_PRIMARIA`. Adiciona alerta `EDP-003` que bloqueia seleção automática U/D com carga trifásica. Corrige uma via insegura do ENG-002 sem assumir critérios normativos completos de modalidade.
+- `test_legacy_golden.py` preserva replay integral do **F00 original** e documenta explicitamente divergências F01 de segurança, em vez de exigir que defeitos caracterizados permaneçam no software novo. **Fixture F00 não foi modificada.**
+- `calculation_traces.py` grava a **linha de entrada realmente consumida**, fator, resistência e Iz de decisão como `CLIENT_SUPPLIED_UNVERIFIED_NOT_NORMATIVE_CELL`; nenhuma falsa célula ABNT é atribuída.
+- A interface `restructuring/apps/web/index.html` / `app.js` exibe revisões locais imutáveis sob token, SHA-256, mensagens de ausência de homologação e sem recálculo implícito; `test_browser_flow.py` acrescenta ensaio Chromium histórico e token incorreto.
+
+### PF-04 — NÃO EXECUTADO como QA independente
+Três perfis e branches já existiam, mas esta infraestrutura não dispõe de GitHub Copilot CLI autenticado. Revisões próprias de QA técnica podem detectar falhas e orientar correções, porém **não contam** para as três sessões independentes e três revisões cruzadas exigidas pelo G06. Os pareceres existentes permanecem PENDENTE/BLOQUEADO/PENDENTE.
+
+### PF-05 — Verificação de software, fechamento normativo BLOQUEADO
+Suíte CI de referência do commit `e1faaa61` (antes da inclusão de rastreabilidade detalhada):
+- API: **215 pytest aprovados**, 1 warning — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38941702211 .
+- Chromium: **5 testes aprovados** — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38941702181 .
+- AIOX: **success** — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/38941702206 .
+Verificar também os workflows do último SHA final; a reprodução F00 permanece separada.
+
+### Pendências críticas precisas
+1. **G01/G02:** original ABNT autorizado com direito de uso, conciliação EDP com publicação vigente e **todas** as células necessárias por motor sob leituras independentes A/B; resolver jurisdição, edição e vigência.
+2. **G03:** fixtures com resultado normativo independente do motor, fonte original e revisores.
+3. **G04:** vínculo completo ao ID da **célula homologada realmente carregada no servidor**, não apenas input do cliente; controle profissional/tenant e portabilidade ainda pendentes.
+4. **G05:** controles RBAC/UX e CI integrada de último commit; não homologar em produção.
+5. **G06:** três QA efetivamente independentes, três pareceres iniciais congelados, revisões cruzadas e aprovações externas exigidas.
+6. **AC-01.01–04 e AC-01.06–10:** ainda não aprovados formalmente no orquestrador. AC-01.05 permanece único formalmente aprovado.
+
+**Resultado honesto:** PF-01 inventário executado, PF-02 impedido por evidência, PF-03 correções reais, PF-04 aguardando ambiente independente, PF-05 CI parcialmente comprovada, **F01 BLOCKED, 0/6 gates, 1/10 AC; F00 DONE, F02 não liberada**.
