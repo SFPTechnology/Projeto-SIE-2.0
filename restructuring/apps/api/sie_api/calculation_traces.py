@@ -21,7 +21,25 @@ def _canonical(obj):
 
 def preparar_registro(projeto_id, revisao, circuito_nome, entrada, resultado):
     """Apenas dados efetivamente recebidos/calculados pelo servidor, não regras ABNT."""
+    # Captura a linha do input REALMENTE usada no calculo; nao uma celula ABNT.
+    secao = str(resultado["condutor"]["secao_mm2"])
+    linhas_efetivas = [
+        {"indice_entrada": n, "secao_mm2": row["secao_mm2"],
+         "capacidade_a": row["capacidade_a"]}
+        for n, row in enumerate(entrada["tabela_condutores"])
+        if str(row["secao_mm2"]) == secao
+    ]
+    if len(linhas_efetivas) != 1:
+        raise ValueError("Linha efetiva de condutor nao identificada de modo unico")
+    applied_values = {
+        "selected_input_row": linhas_efetivas[0],
+        "correction_factor": entrada["fator_correcao"],
+        "resistance_ohm_km": entrada["resistencia_ohm_km"],
+        "capacity_for_breaker_decision_a": resultado["condutor"]["capacidade_decisao_a"],
+        "source_classification": "CLIENT_SUPPLIED_UNVERIFIED_NOT_NORMATIVE_CELL",
+    }
     item = {
+        "values_actually_used_by_algorithm": applied_values,
         "id": str(uuid4()), "projeto_id": projeto_id,
         "revisao_projeto": revisao, "circuito_nome": circuito_nome,
         "entrada": entrada, "resultado": resultado,
@@ -48,6 +66,9 @@ def validar_registro(serialized, digest):
         raise ValueError("Integridade de ensaio de calculo comprometida")
     item = json.loads(serialized)
     if (item.get("calculation_trace_kind") != TYPE or
+        not isinstance(item.get("values_actually_used_by_algorithm"), dict) or
+        item["values_actually_used_by_algorithm"].get("source_classification") !=
+        "CLIENT_SUPPLIED_UNVERIFIED_NOT_NORMATIVE_CELL" or
         set(item.get("algorithm_function_source_sha256", {})) != {
             "selecionar_condutor", "selecionar_disjuntor",
             "calcular_queda_tensao_monofasica"} or
