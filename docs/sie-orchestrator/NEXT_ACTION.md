@@ -59,3 +59,11 @@ Criado `docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md` com BL-00
 - preserva `main`, F00 DONE e F02 não liberada.
 
 **Estado desta entrega:** somente plano, matriz, validações e atualização do executor foram criados; **as 3 sessões Copilot YOLO não foram iniciadas nesta conversa**. 0/6 gates aceitos até comprovação externa. O modo `--execute --sandbox-confirmed` requer ambiente isolado e Copilot CLI autenticado, sem segredos de produção.
+
+## PLANO PRIORITÁRIO DE FECHAMENTO F01 — 16/10/2026 (substitui a fragmentação anterior)
+
+**Roteiro operacional único:** `docs/implantacao-sie-2-0/F01/PLANO_UNICO_FECHAMENTO_F01.md`. Adotar **PF-01→PF-02** como caminho crítico (fontes originais/células → dupla conferência/fixtures), **PF-03** em paralelo (rastreabilidade real de regra consumida, dados, segurança/UX), **PF-04** com 3 QA independentes e revisões cruzadas, **PF-05** como fechamento com 6 G, 10 AC, CI e signoff. Planos YOLO v1/v2 anteriores tornam-se referência histórica, não mais pontos alternativos de partida.
+
+**Informação relevante recuperada do GitHub:** já existe `Arquivos_Diversos/Norma_EDP/PT.DT.PDN.00068_V9.pdf` (2.678.187 bytes), além de extrações derivadas; em NBR 5410, `NBR-5410.md` é derivado e `NBR 5410 Comentada.pdf` é comentário, não prova de exemplar ABNT oficial licenciado. Priorizar comparação das fontes **já presentes** antes de solicitar novamente arquivos.
+
+**Impedimentos reais inalterados:** 0 células normativas homologadas, 0 casos normativos independentes aprovados, 0 execuções QA3 independentes, G01..G06 0/6 e somente AC-01.05 aceito (1/10). `F00=DONE`, `F01=BLOCKED`, `F02=NOT_RELEASED`. Nenhuma mudança no plano concede aceite, assinatura profissional ou autorização para migrar produção.
