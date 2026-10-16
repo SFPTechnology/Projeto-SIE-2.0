@@ -53,3 +53,17 @@ Se tiver sandbox/VM separado e configurado, execução autônoma:
 python scripts/f01_yolo_runner.py --execute --sandbox-confirmed
 ```
 Após início, não pede confirmações rotineiras, trabalha em ciclos finitos, envia commits apenas às branches QA/F01, produz logs fora do clone e não passa para a F02. Exige GitHub Copilot CLI autenticado e Python/Node/dependências de testes no ambiente; se algo faltar, encerra com estado de bloqueio e relatório. O script não é serviço em background nem permanece ativo após encerrar. Os três processos não foram iniciados neste chat.
+
+## Atualização: plano YOLO de desbloqueio v2.0
+O plano mais recente para concluir os bloqueios normativos é `PLANO_YOLO_DESBLOQUEIO_F01_V2.md`. Antes de ativar, use na raiz do projeto:
+```powershell
+python scripts/f01_cell_evidence_gate.py
+python scripts/f01_yolo_runner.py
+```
+A primeira chamada apresenta lacunas Rca/XL/Iz/EDP e de dupla conferência, **sem aprovar valores**; a segunda apresenta as 3 QA workstreams. As branches QA desatualizadas serão sincronizadas por fast-forward com a F01 atual quando o executor for realmente iniciado.
+
+Somente em VM/container isolado com Copilot CLI autenticado, executar:
+```powershell
+python scripts/f01_yolo_runner.py --execute --sandbox-confirmed
+```
+Após a execução, `python scripts/f01_cell_evidence_gate.py --strict` e `python scripts/f01_release_gate.py --check-release` precisam de evidências originais, leituras genuinamente independentes e atestação externa para cumprir gates. O executor **não** cria uma sandbox, não inicia F02 e não garante 6/6 automaticamente.
