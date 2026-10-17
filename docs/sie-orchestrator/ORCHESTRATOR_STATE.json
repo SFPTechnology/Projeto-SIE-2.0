@@ -149,7 +149,7 @@
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 17,
+  "revision": 18,
   "schema_version": 1,
   "tasks": [
     {
@@ -850,6 +850,26 @@
         "f02_release": false,
         "external_normative_originals_verified": 1,
         "external_electrical_cell_reviews": 0
+      },
+      "copilot_qa3_environment": {
+        "status": "CONFIGURED_GITHUB_ACTIONS_AWAITING_SECRET",
+        "branch": "feat/f01-governanca-normativa",
+        "workflow": ".github/workflows/f01-copilot-qa-isolated.yml",
+        "trigger": "docs/implantacao-sie-2-0/F01/COPILOT_RUN_REQUEST.md",
+        "runbook": "docs/implantacao-sie-2-0/F01/ATIVAR_COPILOT_QA3_GITHUB_ACTIONS.md",
+        "credential_secret_name": "F01_COPILOT_PAT",
+        "credential_present_verified": false,
+        "requires_user_secret_action": true,
+        "first_pass_independent_jobs": 3,
+        "cross_review_jobs": 3,
+        "actual_successful_first_passes": 0,
+        "actual_successful_cross_reviews": 0,
+        "qa_report_validator": "scripts/f01_copilot_reports_gate.py",
+        "permissions": "contents:read; no pushes",
+        "source_attestation_not_automated": true,
+        "main_unchanged": true,
+        "f00_frozen": true,
+        "f02_release": false
       }
     }
   ]
