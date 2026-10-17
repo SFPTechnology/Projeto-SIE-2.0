@@ -159,6 +159,9 @@ jobs:
         with:
           name: f01-firstpass-${{ matrix.author }}-${{ github.run_id }}
           path: evidence/peer
+      - name: Freeze original hashes of peer documents
+        run: |
+          sha256sum evidence/peer/PARECER_QA.md evidence/peer/MATRIZ_6_GATES.json > "$RUNNER_TEMP/peer_frozen.sha256"
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -187,6 +190,8 @@ jobs:
             --max-ai-credits=6 --no-auto-update --disable-builtin-mcps \
             --available-tools='view,grep,glob,edit' --allow-tool=write \
             --deny-tool=shell -s > "$RUNNER_TEMP/cross-${{ matrix.reviewer }}.stdout"
+      - name: Check cross-review did not rewrite frozen peer report
+        run: sha256sum --check "$RUNNER_TEMP/peer_frozen.sha256"
       - name: Validate cross-review and workspace limits
         env:
           REVIEWER: ${{ matrix.reviewer }}
