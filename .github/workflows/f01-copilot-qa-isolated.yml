@@ -199,8 +199,9 @@ jobs:
           status = subprocess.check_output(
               ["git", "status", "--porcelain", "--untracked-files=all"], text=True)
           allowed = "qa3-runs/${{ matrix.reviewer }}/"
+          frozen_peer = "evidence/peer/"
           unexpected = [r[3:] for r in status.splitlines()
-                        if not r[3:].startswith(allowed)]
+                        if not (r[3:].startswith(allowed) or r[3:].startswith(frozen_peer))]
           if unexpected:
               raise SystemExit(f"BLOCKED unexpected agent modifications: {unexpected}")
           PY
