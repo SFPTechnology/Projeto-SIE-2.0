@@ -5,6 +5,7 @@ Critério: `READY` só com dependências DONE e requisitos definidos; `DONE` exi
 | ID | Atividade | Dependências | Estado | Evidência / próxima ação |
 |---|---|---|---|---|
 | F00 | Diagnóstico e preservação da baseline | Nenhuma; fase inicial | DONE | 37 IDs, replay 34, 134 pytest, 3 Chromium, 18 AIOX, QA3; pacote remoto ab12904, passagem sequencial liberada |
+| F01 | Engenharia de requisitos e governança normativa | F00 DONE + fontes primárias verificáveis | BLOCKED | PR #3 (draft): API **160 pytest**, 4 Chromium e AIOX success; snapshot de catálogo local versionado/diffs com hash implementado, regras aplicadas e histórico completo PENDENTES; 0 células e 0 casos normativos homologados; QA3 não aprovado; **F02 não liberada** |
 | SIE-AUTO-001 | CLI de projetos | Nenhuma | DONE | Testes CLI e documentação anteriores |
 | SIE-AUTO-002 | Gates AIOX | Nenhuma | DONE | lint/typecheck/test/build na CI |
 | SIE-AUTO-011 | Escalonador determinístico | 001, 002 | DONE | 67 testes e qualidade AIOX anteriores |

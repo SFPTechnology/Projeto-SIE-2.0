@@ -147,3 +147,39 @@ def test_untrusted_evidence_is_rendered_as_text_not_markup(page):
     expect(page.locator("#resultado")).to_contain_text(payload)
     assert page.locator("#resultado img").count() == 0
     assert page.evaluate("window.sieInjected === true") is False
+
+
+def test_f01_normative_catalog_ui_is_explicitly_unverified(page):
+    """Catálogo F01 legível no Chromium; nenhuma linha implica aprovação."""
+    expect(page.locator("#normas-status")).to_contain_text("8 fontes cadastradas")
+    expect(page.locator("#normas-lista li")).to_have_count(8)
+    labels = page.locator("#normas-lista li").all_inner_texts()
+    assert all("NÃO VERIFICADA" in item for item in labels)
+    assert "concede conformidade" in page.locator("#normas").inner_text().lower()
+    assert page.locator("#normas button").count() == 0
+
+
+def test_local_immutable_revision_history_visible_without_normative_approval(page, servers):
+    page.locator("#project-token").fill(servers)
+    page.locator("#project-name").fill("Histórico E2E com duas revisões")
+    page.locator('#analysis-form button[type="submit"]').click()
+    page.locator("#project-save").click()
+    expect(page.locator("#project-status")).to_contain_text("revisao 1")
+    page.locator('input[name="corrente_a"]').fill("21")
+    page.locator('#analysis-form button[type="submit"]').click()
+    page.locator("#project-save").click()
+    expect(page.locator("#project-status")).to_contain_text("revisao 2")
+
+    page.locator("#project-history-refresh").click()
+    expect(page.locator("#project-history-status")).to_contain_text("2 revisões locais")
+    expect(page.locator("#project-history-list button")).to_have_count(2)
+    page.locator("#project-history-list button").first.click()
+    expect(page.locator("#project-history-summary")).to_contain_text("Revisão 1 recuperada integralmente")
+    expect(page.locator("#project-history-summary")).to_contain_text("Fonte normativa não homologada")
+    assert "recálculo automático" in page.locator("#project-history-summary").inner_text()
+
+    page.locator("#project-token").fill("invalid-but-long-enough-development-token")
+    page.locator("#project-history-refresh").click()
+    expect(page.locator("#project-history-status")).to_contain_text("Credencial")
+    expect(page.locator("#project-history-list button")).to_have_count(0)
+    assert page.evaluate("localStorage.getItem('sie.localToken')") is None

@@ -8,6 +8,7 @@ from fastapi import APIRouter, Header, HTTPException
 from pydantic import BaseModel, ConfigDict, Field
 
 from .storage import ConflitoRevisao, RepositorioProjetos
+from .analysis_contracts import AnaliseCircuito
 
 router = APIRouter(prefix="/api/v1/local/projetos", tags=["Local project store"])
 
@@ -58,3 +59,110 @@ def carregar_projeto(projeto_id: UUID, authorization: str | None = Header(defaul
 def historico_projeto(projeto_id: UUID, authorization: str | None = Header(default=None)):
     repo = _storage(authorization)
     return {"id": str(projeto_id), "eventos": repo.historico(str(projeto_id))}
+
+
+# Consultas locais somente leitura; token da mesma fronteira do armazenamento.
+# Não concedem aprovação normativa, nem reconstroem snapshots legados ausentes.
+@router.get("/{projeto_id}/snapshots-normativos/{revisao}")
+def consultar_snapshot_normativo(
+    projeto_id: UUID, revisao: int, authorization: str | None = Header(default=None)
+):
+    repo = _storage(authorization)
+    try:
+        snapshot = repo.snapshot_normativo(str(projeto_id), revisao)
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    if snapshot is None:
+        raise HTTPException(status_code=404, detail="Snapshot inexistente; revisao legada nao reconstruida")
+    return snapshot
+
+
+@router.get("/{projeto_id}/impacto-normativo/{revisao}")
+def consultar_impacto_normativo(
+    projeto_id: UUID, revisao: int, authorization: str | None = Header(default=None)
+):
+    repo = _storage(authorization)
+    try:
+        impacto = repo.impacto_normativo(str(projeto_id), revisao)
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    if impacto is None:
+        raise HTTPException(status_code=404, detail="Snapshot inexistente; sem comparacao historica segura")
+    return impacto
+
+
+@router.get("/{projeto_id}/historico-normativo")
+def consultar_historico_normativo(
+    projeto_id: UUID, authorization: str | None = Header(default=None)
+):
+    repo = _storage(authorization)
+    return {"id": str(projeto_id), "eventos": repo.historico_snapshot_normativo(str(projeto_id)),
+            "normative_conformity_verified": False}
+
+
+@router.get("/{projeto_id}/revisoes")
+def consultar_revisoes(projeto_id: UUID, authorization: str | None = Header(default=None)):
+    repo = _storage(authorization)
+    if repo.carregar(str(projeto_id)) is None:
+        raise HTTPException(status_code=404, detail="Projeto nao encontrado")
+    return {"id": str(projeto_id), "revisoes": repo.listar_revisoes(str(projeto_id)),
+            "versoes_legadas_sem_backfill": True,
+            "normative_conformity_verified": False}
+
+
+@router.get("/{projeto_id}/revisoes/{revisao}")
+def consultar_revisao_historica(
+    projeto_id: UUID, revisao: int, authorization: str | None = Header(default=None)
+):
+    repo = _storage(authorization)
+    try:
+        item = repo.carregar_revisao(str(projeto_id), revisao)
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    if item is None:
+        raise HTTPException(status_code=404,
+                            detail="Revisao anterior nao armazenada; sem reconstrução artificial")
+    return item
+
+
+@router.post("/{projeto_id}/revisoes/{revisao}/circuitos/{circuito_nome}/ensaios")
+def executar_ensaio_circuito(
+    projeto_id: UUID, revisao: int, circuito_nome: str, payload: AnaliseCircuito,
+    authorization: str | None = Header(default=None),
+):
+    """Motor executado no servidor; formula rastreavel, SEM homologacao normativa."""
+    repo = _storage(authorization)
+    try:
+        return repo.registrar_ensaio(str(projeto_id), revisao,
+                                     circuito_nome, payload.model_dump(mode="json"))
+    except ConflitoRevisao as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    except (ValueError, TypeError, KeyError, ArithmeticError) as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+@router.get("/{projeto_id}/revisoes/{revisao}/ensaios")
+def listar_ensaios_circuitos(
+    projeto_id: UUID, revisao: int, authorization: str | None = Header(default=None),
+):
+    repo = _storage(authorization)
+    try:
+        return {"id": str(projeto_id), "revisao": revisao,
+                "ensaios": repo.listar_ensaios(str(projeto_id), revisao),
+                "normative_conformity_verified": False}
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+
+
+@router.get("/{projeto_id}/ensaios/{ensaio_id}")
+def consultar_ensaio_circuito(
+    projeto_id: UUID, ensaio_id: UUID, authorization: str | None = Header(default=None),
+):
+    repo = _storage(authorization)
+    try:
+        ensaio = repo.consultar_ensaio(str(projeto_id), str(ensaio_id))
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
+    if ensaio is None:
+        raise HTTPException(status_code=404, detail="Ensaio inexistente")
+    return ensaio

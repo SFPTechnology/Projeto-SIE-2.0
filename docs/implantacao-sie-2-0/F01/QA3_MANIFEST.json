@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "phase": "F01",
+  "as_of": "2026-10-16",
+  "branch": "feat/f01-governanca-normativa",
+  "state": "BLOCKED",
+  "f02_release_allowed": false,
+  "goal": "SIX_OF_SIX_EVIDENCE_BASED",
+  "evidence_requirements": "primary_source_and_independent_verification_required",
+  "gates": [
+    {
+      "id": "G01",
+      "name": "Fontes normativas",
+      "status": "PARTIAL",
+      "accepted": false,
+      "evidence": [
+        "docs/implantacao-sie-2-0/F01/AUDITORIA_FONTES_OFICIAIS_2026-10-16.md",
+        "https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/seguranca-e-saude-no-trabalho/sst-portarias/2026-1/portaria-mte-no-737-nova-nr-10.pdf",
+        "https://www.edp.com.br/Ginp/Download/PT.DT.PDN.00068_V9.pdf",
+        "https://www.abntcatalogo.com.br/default.aspx?O=1"
+      ],
+      "independent_external_verification": false
+    },
+    {
+      "id": "G02",
+      "name": "Células normativas",
+      "status": "BLOCKED",
+      "accepted": false,
+      "evidence": [],
+      "independent_external_verification": false
+    },
+    {
+      "id": "G03",
+      "name": "Casos numéricos independentes",
+      "status": "BLOCKED",
+      "accepted": false,
+      "evidence": [],
+      "independent_external_verification": false
+    },
+    {
+      "id": "G04",
+      "name": "Regras aplicadas e histórico",
+      "status": "PARTIAL",
+      "accepted": false,
+      "evidence": [],
+      "independent_external_verification": false
+    },
+    {
+      "id": "G05",
+      "name": "CI segurança UX",
+      "status": "PARTIAL",
+      "accepted": false,
+      "evidence": [],
+      "independent_external_verification": false
+    },
+    {
+      "id": "G06",
+      "name": "QA3 independente",
+      "status": "BLOCKED",
+      "accepted": false,
+      "evidence": [],
+      "independent_external_verification": false
+    }
+  ],
+  "agents": [
+    {
+      "id": "QA-01",
+      "profile": "f01-qa-arquiteto",
+      "status": "NOT_EXECUTED",
+      "branch": "qa/f01-arquiteto",
+      "independent_first_pass_commit": null,
+      "review_package": null,
+      "issue": 4,
+      "profile_path": ".github/agents/f01-qa-arquiteto.agent.md"
+    },
+    {
+      "id": "QA-02",
+      "profile": "f01-qa-engenheiro-eletrico",
+      "status": "NOT_EXECUTED",
+      "branch": "qa/f01-engenheiro-eletrico",
+      "independent_first_pass_commit": null,
+      "review_package": null,
+      "issue": 5,
+      "profile_path": ".github/agents/f01-qa-engenheiro-eletrico.agent.md"
+    },
+    {
+      "id": "QA-03",
+      "profile": "f01-qa-dados-ux-llm",
+      "status": "NOT_EXECUTED",
+      "branch": "qa/f01-dados-ux-llm",
+      "independent_first_pass_commit": null,
+      "review_package": null,
+      "issue": 6,
+      "profile_path": ".github/agents/f01-qa-dados-ux-llm.agent.md"
+    }
+  ],
+  "cross_reviews": [
+    {
+      "author": "QA-01",
+      "reviewer": "QA-02",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "author": "QA-02",
+      "reviewer": "QA-03",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "author": "QA-03",
+      "reviewer": "QA-01",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "external_normative_signoff": {
+    "status": "MISSING",
+    "signed_evidence": []
+  },
+  "notes": [
+    "Creating agent profiles does not execute them or establish independent professional approval.",
+    "0 verified normative cells and 0 normative numeric reference cases as documented in F01.",
+    "NR-10 Portaria MTE 737/2026 official PDF read for art.3/art.5; does not certify ABNT/EDP numerical cells or G06."
+  ],
+  "agent_baseline_sha": "8aec14ac0817ba75ea5e5cee90240368807f1bf7",
+  "activation": "YOLO_V2_CONFIGURED_NOT_EXECUTED",
+  "agent_executions_verified": 0,
+  "independent_qa_personas_are_not_professional_signoffs": true,
+  "cell_evidence_matrix": {
+    "path": "docs/implantacao-sie-2-0/F01/MATRIZ_CELULAS_NORMATIVAS_F01.json",
+    "validator": "scripts/f01_cell_evidence_gate.py",
+    "verification_status": "BLOCKED_SOURCE",
+    "coverage_complete": false,
+    "independent_reviews_completed": 0,
+    "verified_cells": 0,
+    "formal_external_signoff": false
+  },
+  "unblock_plan": "docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md",
+  "source_external_review_2026_10_16": {
+    "mte_737_original_read": true,
+    "mte_737_articles_verified": [
+      "3",
+      "5"
+    ],
+    "edp_v09_official_pdf_url_found": true,
+    "edp_v09_pdf_bytes_compared": false,
+    "abnt_5410_edition_editorial_confirmed": true,
+    "abnt_5410_authorized_original_checked": false,
+    "independent_second_reader": false,
+    "professional_signoff": false
+  },
+  "latest_code_tested_commit": "a4c41553aecff0c479867e27f56cb0cb8c9cf612"
+}

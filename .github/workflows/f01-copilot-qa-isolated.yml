@@ -1,0 +1,242 @@
+name: "SIE F01 - Copilot QA3 Isolated"
+on:
+  push:
+    branches:
+      - feat/f01-governanca-normativa
+    paths:
+      - ".github/workflows/f01-copilot-qa-isolated.yml"
+      - "docs/implantacao-sie-2-0/F01/COPILOT_RUN_REQUEST.md"
+  workflow_dispatch:
+
+# Never grant repository writes to an LLM. The 3 runners and 3 cross-reviews
+# can produce artifacts, but cannot push commits or release F01/F02.
+permissions:
+  contents: read
+
+concurrency:
+  group: f01-copilot-qa3-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    if: github.ref == 'refs/heads/feat/f01-governanca-normativa'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact F01 SHA
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Validate F01 frozen baseline and evidence blockers
+        run: |
+          python scripts/f01_release_gate.py --verify-invariants
+          python scripts/f01_cell_evidence_gate.py
+          echo "F01 must remain BLOCKED until independent evidence and signoff."
+      - name: Ensure authorized personal Copilot credential is configured
+        env:
+          AUTHENTICATION_ONLY: ${{ secrets.F01_COPILOT_PAT }}
+        run: |
+          if [ -z "$AUTHENTICATION_ONLY" ]; then
+            echo "::error title=Copilot authentication required::Set GitHub Actions secret F01_COPILOT_PAT using a fine-grained user-owned token with Copilot Requests permission. Then re-run all jobs on this same workflow run."
+            exit 1
+          fi
+          echo "Copilot credential is present (secret value not printed)."
+
+  first-pass:
+    name: "Independent first-pass ${{ matrix.id }}"
+    needs: [preflight]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - id: QA-01
+            agent: f01-qa-arquiteto
+          - id: QA-02
+            agent: f01-qa-engenheiro-eletrico
+          - id: QA-03
+            agent: f01-qa-dados-ux-llm
+    steps:
+      - name: Checkout exact SHA; isolate each agent
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install supported Copilot CLI
+        run: |
+          npm install -g @github/copilot
+          copilot --version
+      - name: Run independent agent with bounded autonomy
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.F01_COPILOT_PAT }}
+          COPILOT_HOME: ${{ runner.temp }}/copilot-${{ matrix.id }}
+          QA_ROLE: ${{ matrix.id }}
+          COPILOT_AGENT: ${{ matrix.agent }}
+          BASELINE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p "qa3-runs/$QA_ROLE" "$COPILOT_HOME"
+          PROMPT=$(cat <<EOF
+          F01 SIE 2.0. You are $QA_ROLE, separate GitHub-hosted process with baseline $BASELINE_SHA and agent profile $COPILOT_AGENT.
+          Read your .github/agents profile and related .github/skills. Also read docs/implantacao-sie-2-0/F01/PLANO_UNICO_FECHAMENTO_F01.md, QA3_MANIFEST.json and the latest F01 source audit.
+          This is your INDEPENDENT FIRST PASS. Do not read any other QA agents' reports or artifacts. Perform deep code, normative-provenance, test, security and UX review of ALL G01-G06, prioritizing your specialty. Locate concrete code defects and document file/line/fix and tests. No external proprietary text or fake normative values.
+          Output EXACTLY these files under qa3-runs/$QA_ROLE/ only:
+          (1) PARECER_QA.md: detailed independent review, at least 300 characters, identify $QA_ROLE and baseline $BASELINE_SHA, evidence-backed findings, corrective recommendations, blocked primary sources and pending independent signoff. Do not report Copilot as a professional engineering signatory.
+          (2) MATRIZ_6_GATES.json: JSON object EXACTLY with schema_version=1, phase="F01", agent="$QA_ROLE", baseline_sha="$BASELINE_SHA", independent_first_pass=true, source_values_approved=false, f02_release_allowed=false, blockers=[one or more concrete strings], and gates=[six objects, each with id "G01" through "G06", status "PARTIAL" or "BLOCKED", accepted=false, finding=<substantive concrete string>].
+          Do not edit source code, other reports, F00 files, state/manifest, CI workflows or Git refs. Do not claim ABNT/EDP cells approved. Any missing source must be recorded as BLOCKED, never invented. Complete the two reports.
+          EOF
+          )
+          # No --yolo or shell tooling: only local read/search/edit of reports.
+          # Actions runner grants no git push permission. An agent cannot
+          # publish modifications and no secret is printed to stdout.
+          copilot --agent="$COPILOT_AGENT" -p "$PROMPT" \
+            --no-ask-user --autopilot --max-autopilot-continues=5 \
+            --max-ai-credits=6 --no-auto-update --disable-builtin-mcps \
+            --available-tools='view,grep,glob,edit' --allow-tool=write \
+            --deny-tool=shell -s > "$RUNNER_TEMP/qa-${{ matrix.id }}.stdout"
+      - name: Validate exact report and refuse unrelated workspace edits
+        env:
+          QA_ROLE: ${{ matrix.id }}
+          BASELINE_SHA: ${{ github.sha }}
+        run: |
+          python scripts/f01_copilot_reports_gate.py \
+            --root qa3-runs --stage first-pass --role "$QA_ROLE" --baseline "$BASELINE_SHA"
+          python - <<'PY'
+          import subprocess
+          status = subprocess.check_output(
+              ["git", "status", "--porcelain", "--untracked-files=all"], text=True)
+          allowed = "qa3-runs/${{ matrix.id }}/"
+          unexpected = [r[3:] for r in status.splitlines()
+                        if not r[3:].startswith(allowed)]
+          if unexpected:
+              raise SystemExit(f"BLOCKED unexpected agent modifications: {unexpected}")
+          PY
+      - name: Archive immutable first pass, including failures for diagnosis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: f01-firstpass-${{ matrix.id }}-${{ github.run_id }}
+          path: qa3-runs/${{ matrix.id }}/
+          if-no-files-found: warn
+          retention-days: 14
+
+  cross-review:
+    name: "Cross-review ${{ matrix.reviewer }} of ${{ matrix.author }}"
+    needs: [preflight, first-pass]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        include:
+          - reviewer: QA-02
+            agent: f01-qa-engenheiro-eletrico
+            author: QA-01
+          - reviewer: QA-03
+            agent: f01-qa-dados-ux-llm
+            author: QA-02
+          - reviewer: QA-01
+            agent: f01-qa-arquiteto
+            author: QA-03
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Obtain frozen first-pass report for peer
+        uses: actions/download-artifact@v4
+        with:
+          name: f01-firstpass-${{ matrix.author }}-${{ github.run_id }}
+          path: evidence/peer
+      - name: Freeze original hashes of peer documents
+        run: |
+          sha256sum evidence/peer/PARECER_QA.md evidence/peer/MATRIZ_6_GATES.json > "$RUNNER_TEMP/peer_frozen.sha256"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: |
+          npm install -g @github/copilot
+          copilot --version
+      - name: Cross-review frozen peer findings in separate runner
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.F01_COPILOT_PAT }}
+          COPILOT_HOME: ${{ runner.temp }}/copilot-cross-${{ matrix.reviewer }}
+          REVIEWER: ${{ matrix.reviewer }}
+          AUTHOR: ${{ matrix.author }}
+          AGENT: ${{ matrix.agent }}
+          BASELINE_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p "qa3-runs/$REVIEWER" "$COPILOT_HOME"
+          PROMPT=$(cat <<EOF
+          F01 SIE 2.0 independent CROSS-REVIEW. You are $REVIEWER using agent profile $AGENT. Your peer is $AUTHOR, same baseline $BASELINE_SHA.
+          Your own first-pass was already frozen in a DIFFERENT isolated workflow runner. Review evidence/peer/PARECER_QA.md and evidence/peer/MATRIZ_6_GATES.json; confront them with the repository code and docs. Do not trust peer statements without proof. No external proprietary ABNT table publication, no false signatures or homologation.
+          Write ONLY qa3-runs/$REVIEWER/CROSS_REVIEW_$AUTHOR.md, at least 300 characters: names $REVIEWER and $AUTHOR, exact baseline $BASELINE_SHA, peer claims verified/refuted, file-level findings, fixes, severity and remaining normative/security blockers. A Copilot session is not an independent professional certification.
+          EOF
+          )
+          copilot --agent="$AGENT" -p "$PROMPT" \
+            --no-ask-user --autopilot --max-autopilot-continues=5 \
+            --max-ai-credits=6 --no-auto-update --disable-builtin-mcps \
+            --available-tools='view,grep,glob,edit' --allow-tool=write \
+            --deny-tool=shell -s > "$RUNNER_TEMP/cross-${{ matrix.reviewer }}.stdout"
+      - name: Check cross-review did not rewrite frozen peer report
+        run: sha256sum --check "$RUNNER_TEMP/peer_frozen.sha256"
+      - name: Validate cross-review and workspace limits
+        env:
+          REVIEWER: ${{ matrix.reviewer }}
+          BASELINE_SHA: ${{ github.sha }}
+        run: |
+          python scripts/f01_copilot_reports_gate.py \
+            --root qa3-runs --stage cross-review --role "$REVIEWER" --baseline "$BASELINE_SHA"
+          python - <<'PY'
+          import subprocess
+          status = subprocess.check_output(
+              ["git", "status", "--porcelain", "--untracked-files=all"], text=True)
+          allowed = "qa3-runs/${{ matrix.reviewer }}/"
+          frozen_peer = "evidence/peer/"
+          unexpected = [r[3:] for r in status.splitlines()
+                        if not (r[3:].startswith(allowed) or r[3:].startswith(frozen_peer))]
+          if unexpected:
+              raise SystemExit(f"BLOCKED unexpected agent modifications: {unexpected}")
+          PY
+      - name: Archive cross-review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: f01-crossreview-${{ matrix.reviewer }}-${{ matrix.author }}-${{ github.run_id }}
+          path: qa3-runs/${{ matrix.reviewer }}/
+          if-no-files-found: warn
+          retention-days: 14
+
+  status:
+    needs: [preflight, first-pass, cross-review]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report without changing gates
+        env:
+          PREFLIGHT: ${{ needs.preflight.result }}
+          FIRST: ${{ needs.first-pass.result }}
+          CROSS: ${{ needs.cross-review.result }}
+        run: |
+          {
+            echo "## F01 Copilot QA3 — ${{ github.sha }}"
+            echo ""
+            echo "- Authentication / preflight: $PREFLIGHT"
+            echo "- Three independent first passes: $FIRST"
+            echo "- Three cross-reviews: $CROSS"
+            echo "- F00: DONE; F01: BLOCKED; F02: NOT RELEASED"
+            echo "- Artifacts are machine-checked agent reports, **not** ABNT/EDP or engineer signoffs."
+            echo "- No code was pushed by agents. Reviewer output must be integrated only after separate inspection."
+          } >> "$GITHUB_STEP_SUMMARY"

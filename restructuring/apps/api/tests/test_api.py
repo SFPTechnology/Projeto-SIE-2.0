@@ -43,14 +43,15 @@ def test_analysis_returns_result_but_preserves_release_gate():
     assert res.json()['disjuntor']['corrente_a'] == 20
 
 
-def test_edp_endpoint_exposes_verified_catalog_provenance():
+def test_edp_endpoint_discloses_not_yet_homologated_catalog_provenance():
     res = client.post('/api/v1/edp/enquadrar', json={
         'modalidade': 'T', 'corrente_demanda_a': 58.3,
         'carga_instalada_kw': 22.215, 'tem_carga_trifasica': True,
     })
     assert res.status_code == 200
     assert res.json()['categoria']['codigo'] == 'T2'
-    assert res.json()['catalogo']['status'] == 'VERIFICADO'
+    assert res.json()['catalogo']['status'] == 'DOCUMENTADO_SEM_FONTE_PRIMARIA'
+    assert res.json()['catalogo']['normative_conformity_verified'] is False
 
 
 def test_claimed_validation_cannot_approve_normative_use():

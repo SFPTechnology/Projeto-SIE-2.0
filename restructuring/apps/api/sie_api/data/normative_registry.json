@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "registry_state": "NAO_HOMOLOGADO",
+  "approval_controlled_by_server": true,
+  "history_policy": "Snapshot local transacional do catálogo por revisão de projeto; regra efetivamente usada em cálculo NÃO vinculado; sem homologação.",
+  "records": [
+    {
+      "revision": 1,
+      "typologies": [
+        "residencial",
+        "comercial",
+        "predial"
+      ],
+      "verified_data": false,
+      "id": "ABNT-NBR-5410",
+      "document": "ABNT NBR 5410",
+      "edition": "2004 corrigida 2008",
+      "subject": "Instalações BT - escopo a conferir",
+      "official_url": "https://www.abntcatalogo.com.br/default.aspx?O=1",
+      "license_status": "NAO_CONFERIDA"
+    },
+    {
+      "revision": 1,
+      "typologies": [
+        "residencial",
+        "comercial",
+        "predial"
+      ],
+      "verified_data": false,
+      "id": "ABNT-NBR-5419-1",
+      "document": "ABNT NBR 5419-1",
+      "edition": "2026 corrigida 2026",
+      "subject": "SPDA; análise técnica de risco a conferir",
+      "official_url": "https://www.abntcatalogo.com.br/default.aspx?O=1",
+      "license_status": "NAO_CONFERIDA"
+    },
+    {
+      "revision": 1,
+      "typologies": [
+        "residencial",
+        "comercial",
+        "predial"
+      ],
+      "verified_data": false,
+      "id": "ABNT-NBR-5419-2",
+      "document": "ABNT NBR 5419-2",
+      "edition": "2026 corrigida 2026",
+      "subject": "SPDA; análise técnica de risco a conferir",
+      "official_url": "https://www.abntcatalogo.com.br/default.aspx?O=1",
+      "license_status": "NAO_CONFERIDA"
+    },
+    {
+      "revision": 1,
+      "typologies": [
+        "residencial",
+        "comercial",
+        "predial"
+      ],
+      "verified_data": false,
+      "id": "ABNT-NBR-5419-3",
+      "document": "ABNT NBR 5419-3",
+      "edition": "2026 corrigida 2026",
+      "subject": "SPDA; análise técnica de risco a conferir",
+      "official_url": "https://www.abntcatalogo.com.br/default.aspx?O=1",
+      "license_status": "NAO_CONFERIDA"
+    },
+    {
+      "revision": 1,
+      "typologies": [
+        "residencial",
+        "comercial",
+        "predial"
+      ],
+      "verified_data": false,
+      "id": "ABNT-NBR-5419-4",
+      "document": "ABNT NBR 5419-4",
+      "edition": "2026 corrigida 2026",
+      "subject": "SPDA; análise técnica de risco a conferir",
+      "official_url": "https://www.abntcatalogo.com.br/default.aspx?O=1",
+      "license_status": "NAO_CONFERIDA"
+    },
+    {
+      "revision": 1,
+      "typologies": [
+        "residencial",
+        "comercial",
+        "predial"
+      ],
+      "verified_data": false,
+      "id": "NR-10-ATE-2027",
+      "document": "NR-10",
+      "edition": "Redação anterior à Portaria MTE 737/2026",
+      "subject": "Segurança das instalações/serviços",
+      "effective_until": "2027-05-31",
+      "official_url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10",
+      "license_status": "NAO_CONFERIDA"
+    },
+    {
+      "revision": 1,
+      "typologies": [
+        "residencial",
+        "comercial",
+        "predial"
+      ],
+      "verified_data": false,
+      "id": "NR-10-A-PARTIR-2027",
+      "document": "NR-10",
+      "edition": "Portaria MTE 737/2026",
+      "subject": "Segurança das instalações/serviços",
+      "effective_from": "2027-06-01",
+      "official_url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10",
+      "license_status": "NAO_CONFERIDA"
+    },
+    {
+      "revision": 2,
+      "typologies": [
+        "residencial",
+        "comercial",
+        "predial"
+      ],
+      "verified_data": false,
+      "id": "EDP-SP-PTDT00068-V09",
+      "document": "EDP PT.DT.PDN.00068",
+      "edition": "v09 (publicação oficial 15/04/2026; tabelas não homologadas)",
+      "subject": "Padrão de entrada; concessão exata não homologada",
+      "uf": "SP",
+      "distributor": "EDP_SP",
+      "official_url": "https://www.edp.com.br/normas-e-padroes-tecnicos/",
+      "official_publication_date": "2026-04-15",
+      "license_status": "NAO_CONFERIDA"
+    }
+  ]
+}

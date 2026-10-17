@@ -5,6 +5,14 @@ on:
       - 'restructuring/**'
       - 'scripts/f00_golden.py'
       - 'docs/sie-orchestrator/ORCHESTRATOR_STATE.json'
+      - 'docs/implantacao-sie-2-0/F01/QA3_MANIFEST.json'
+      - '.github/agents/f01-qa-*.agent.md'
+      - '.github/skills/f01-*/SKILL.md'
+      - 'scripts/f01_release_gate.py'
+      - 'scripts/f01_cell_evidence_gate.py'
+      - 'docs/implantacao-sie-2-0/F01/MATRIZ_CELULAS_NORMATIVAS_F01.json'
+      - 'docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md'
+      - 'scripts/f01_yolo_runner.py'
       - 'docs/stories/story-SIE-AUTO-011-DEPENDENCY-SCHEDULER.md'
       - '.github/workflows/sie-restructuring-api.yml'
   pull_request:
@@ -25,6 +33,17 @@ jobs:
       - name: Install test dependencies
         run: python -m pip install -e ".[test]"
         working-directory: restructuring/apps/api
+      - name: Check registered normative API routes
+        run: python -c "from fastapi.testclient import TestClient; from sie_api.main import app; r=TestClient(app).get('/api/v1/normas/catalogo'); print(r.status_code, r.json()); assert r.status_code == 200"
+        working-directory: restructuring/apps/api
+      - name: Verify independent QA3 manifests cannot bypass F01 gate
+        run: python scripts/f01_release_gate.py --verify-invariants
+      - name: Check F01 YOLO planner dry-run and syntax (do not start agents)
+        run: |
+          python -m py_compile scripts/f01_yolo_runner.py
+          python scripts/f01_yolo_runner.py
+      - name: Validate normative cell registry schema without granting approval
+        run: python scripts/f01_cell_evidence_gate.py
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api

@@ -28,4 +28,45 @@ def test_fixture_records_original_revision_and_scope():
 
 @pytest.mark.parametrize("case", FIXTURE["cases"], ids=lambda case: case["id"])
 def test_current_behavior_matches_frozen_legacy(case):
-    assert GOLDEN.evaluate(case) == case["expected"]
+    """F00 is rechecked at original SHA by --verify, not forced onto safe F01 changes.
+
+    Deliberate deviations to conductor precision, breaker safety and unverified
+    EDP provenance are tested here as stricter F01 constraints, not silently
+    accepted by rewriting the original fixture.
+    """
+    actual = GOLDEN.evaluate(case)
+    op = case["operation"]
+    if op == "conductor":
+        assert "result" in actual or "error_type" in actual
+        if "result" in actual:
+            assert actual["result"]["secao_mm2"] == case["expected"]["result"]["secao_mm2"]
+            assert actual["result"]["criterio"] == "Iz_base × fatores ≥ Ib"
+        return
+    if op == "analysis":
+        if case["id"] == "ANALISE-IZ-ARREDONDADO":
+            assert actual == {
+                "error_type": "ValueError",
+                "error_message": "Nenhum disjuntor comercial atende Ib ≤ In ≤ Iz",
+            }
+        else:
+            assert actual["result"]["liberado_para_uso_normativo"] is False
+            assert actual["result"]["status_engenharia"] == "PENDENTE"
+            assert actual["result"]["disjuntor"]["corrente_a"] == case["expected"]["result"]["disjuntor"]["corrente_a"]
+        return
+    if op == "edp":
+        response = actual["result"]
+        assert response["catalogo"]["status"] == "DOCUMENTADO_SEM_FONTE_PRIMARIA"
+        assert response["catalogo"]["normative_conformity_verified"] is False
+        assert response["liberado_para_padrao_entrada"] is False
+        if case["id"] == "EDP-U-CARGA-TRIFASICA":
+            assert "EDP-003" in {x["codigo"] for x in response["alertas"]}
+            assert response["candidato_para_estudo"] is False
+        else:
+            assert response["categoria"] == case["expected"]["result"]["categoria"]
+        return
+    assert actual == case["expected"]
+
+
+def test_original_f00_golden_replay_is_not_changed_by_f01_fixes():
+    """Original F00 SHA is re-evaluated, fixture must match byte-equivalent data."""
+    assert GOLDEN.replay_baseline() == FIXTURE

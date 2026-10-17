@@ -140,9 +140,16 @@
       "from": "VALIDATING",
       "reason": "Gates F00 conferidos: 37 IDs, golden34 original,134pytest/3Chromium/18AIOX, QA01/02/03 APROVADO e pacote versionado em 8797f616f07c3866833db4eb463e050ece76420d; riscos normativos e producao permanecem abertos",
       "to": "DONE"
+    },
+    {
+      "activity": "F01",
+      "at": "2026-10-15T10:49:09.079Z",
+      "from": "UNREGISTERED",
+      "to": "BLOCKED",
+      "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 9,
+  "revision": 18,
   "schema_version": 1,
   "tasks": [
     {
@@ -619,6 +626,251 @@
       ],
       "state": "DONE",
       "title": "Diagnostico e preservacao da baseline SIE 2.0"
+    },
+    {
+      "id": "F01",
+      "title": "Engenharia de requisitos e governança normativa",
+      "dependencies": [
+        "F00"
+      ],
+      "priority": 95,
+      "impact": 10,
+      "risk": 7,
+      "requirements_verified": false,
+      "state": "BLOCKED",
+      "criteria": [
+        {
+          "id": "AC-01.01",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/MATRIZ_REQUISITOS_APLICABILIDADE.md"
+          ]
+        },
+        {
+          "id": "AC-01.02",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/MATRIZ_REQUISITOS_APLICABILIDADE.csv"
+          ]
+        },
+        {
+          "id": "AC-01.03",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/CATALOGO_FONTES_NORMATIVAS.json"
+          ]
+        },
+        {
+          "id": "AC-01.04",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/REGISTRO_REGRAS_NORMATIVAS.md"
+          ]
+        },
+        {
+          "id": "AC-01.05",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/tests/test_normative_f01.py"
+          ]
+        },
+        {
+          "id": "AC-01.06",
+          "passed": false,
+          "evidence": [
+            "restructuring/apps/api/sie_api/data/normative_registry.json"
+          ]
+        },
+        {
+          "id": "AC-01.07",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/REGISTRO_REGRAS_NORMATIVAS.md"
+          ]
+        },
+        {
+          "id": "AC-01.08",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/CASES_REFERENCIA_ENGENHARIA/README.md"
+          ]
+        },
+        {
+          "id": "AC-01.09",
+          "passed": false,
+          "evidence": [
+            "restructuring/apps/api/sie_api/normative_api.py"
+          ]
+        },
+        {
+          "id": "AC-01.10",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md",
+        "docs/stories/story-SIE-F01-GOVERNANCA-NORMATIVA.md"
+      ],
+      "publication": {
+        "branch": "feat/f01-governanca-normativa",
+        "pr": "https://github.com/SFPTechnology/Projeto-SIE-2.0/pull/3",
+        "merged_to_main": false,
+        "normative_approval": false
+      },
+      "checkpoint": {
+        "at": "2026-10-16",
+        "summary": "PF01 real source inventory 24 dependencies (13 EDP categories, 11 unresolved data/rule groups); PF03 safe-engine ENG-001 Iz precision and ENG-002 tri-phase U/D block, downgrade unverified EDP claim, actual selected input-row provenance and local revision UX; PF02 still has 0 normatively reviewed cells, PF04 independent QA not run. F00 golden original replay remains unchanged.",
+        "catalogue_snapshot_metadata": "IMPLEMENTED_LOCAL_ONLY",
+        "applied_rule_snapshots": "PENDING_NORMATIVE_CELL_PROOF",
+        "approved_numeric_cases": 0,
+        "verified_normative_cells": 0,
+        "qa_01": "PENDENTE",
+        "qa_02": "BLOQUEADO",
+        "qa_03": "PENDENTE",
+        "f02_release": false,
+        "source_refs": [
+          "docs/implantacao-sie-2-0/F01/EVIDENCIA_FONTES_OFICIAIS.md",
+          "docs/implantacao-sie-2-0/F01/EVIDENCIA_SNAPSHOTS_LOCAL.md",
+          "docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md",
+          "docs/implantacao-sie-2-0/F01/EVIDENCIA_REPRODUTIBILIDADE_E_ENSAIOS_LOCAL.md",
+          "restructuring/apps/api/tests/test_project_revisions_f01.py",
+          "restructuring/apps/api/tests/test_calculation_traces_f01.py",
+          "restructuring/apps/api/tests/test_f01_independent_math_examples.py"
+        ],
+        "ci_runs": [
+          38725806925,
+          38725806964,
+          38725806937
+        ],
+        "historical_project_revisions": "IMPLEMENTED_NEW_REVISIONS_ONLY",
+        "server_calculation_traces": "IMPLEMENTED_LOCAL_UNVERIFIED",
+        "inventory_file": "docs/implantacao-sie-2-0/F01/INVENTARIO_CELULAS_E_REGRAS_USADAS.csv",
+        "source_audit_file": "docs/implantacao-sie-2-0/F01/PF01_AUDITORIA_FONTES_2026-10-16.md",
+        "candidate_edp_categories": 13,
+        "technical_inventory_rows_not_certified_cells": 24,
+        "pf01": "PARTIAL_SOURCE_PRIMARY_VERIFICATION_PENDING",
+        "pf02": "BLOCKED_EXTERNAL_PRIMARY_PROOFS",
+        "pf03": "PARTIAL_EXECUTED_REAL_CODE_AND_TESTS",
+        "pf04": "CONFIGURED_NOT_EXECUTED",
+        "pf05": "SOFTWARE_CI_PASSED_NO_NORMATIVE_RELEASE",
+        "last_proven_ci_commit": "a4c41553aecff0c479867e27f56cb0cb8c9cf612",
+        "last_proven_ci_runs": [
+          38956570954,
+          38956570839,
+          38956570882
+        ],
+        "official_primary_sources_audit": "docs/implantacao-sie-2-0/F01/AUDITORIA_FONTES_OFICIAIS_2026-10-16.md",
+        "nr10_737_primary_pdf_read": true,
+        "nr10_737_articles_verified": [
+          "3",
+          "5"
+        ],
+        "nr10_narrow_transition_2028_tested": true,
+        "edp_v09_official_pdf_located": true,
+        "edp_v09_pdf_binary_or_cells_rechecked": false,
+        "abnt_5410_edition_publication_confirmed": true,
+        "abnt_5410_primary_license_and_cells_verified": false,
+        "qa3_independent_executions": 0,
+        "qa3_cross_reviews": 0
+      },
+      "qa3_program": {
+        "configured": true,
+        "executed_agent_instances": 0,
+        "independent_external_signoffs": 0,
+        "goal_accepted_gates": "6/6",
+        "actual_accepted_gates": 0,
+        "profiles": [
+          ".github/agents/f01-qa-arquiteto.agent.md",
+          ".github/agents/f01-qa-engenheiro-eletrico.agent.md",
+          ".github/agents/f01-qa-dados-ux-llm.agent.md"
+        ],
+        "skills_count": 6,
+        "issues": [
+          4,
+          5,
+          6
+        ],
+        "branches": [
+          "qa/f01-arquiteto",
+          "qa/f01-engenheiro-eletrico",
+          "qa/f01-dados-ux-llm"
+        ],
+        "manifest": "docs/implantacao-sie-2-0/F01/QA3_MANIFEST.json",
+        "validator": "scripts/f01_release_gate.py",
+        "guide": "docs/implantacao-sie-2-0/F01/LEIA_PRIMEIRO_QA3.md",
+        "qa01": "PENDENTE",
+        "qa02": "BLOQUEADO",
+        "qa03": "PENDENTE",
+        "f02_allowed": false
+      },
+      "autonomous_yolo_execution": {
+        "plan": "docs/implantacao-sie-2-0/F01/PLANO_EXECUCAO_AUTONOMA_YOLO.md",
+        "runner": "scripts/f01_yolo_runner.py",
+        "run_mode": "SANDBOXED_NONINTERACTIVE_COPILOT_CLI_YOLO",
+        "launch_command": "python scripts/f01_yolo_runner.py --execute --sandbox-confirmed",
+        "status": "YOLO_V2_CONFIGURED_NOT_EXECUTED",
+        "number_of_confirmed_runs": 0,
+        "preserves_f00": "REGRESSION_ONLY",
+        "max_agent_fix_rounds": 3,
+        "max_integration_fix_rounds": 2,
+        "qa_agents": 3,
+        "cross_review_required": true,
+        "external_normative_verification_required": true,
+        "auto_f02_start": false,
+        "accepted_gates_at_configuration": 0,
+        "deployment_permitted": false,
+        "main_merge_permitted": false,
+        "manual_code_changes_committed": true,
+        "github_ci_checks_executed": true
+      },
+      "unblock_yolo_v2": {
+        "status": "BLOCKED_COPILOT_CLI_NOT_AVAILABLE_WITHOUT_AUTH_CLOUD_AGENT_BASE_REF_UNSUPPORTED",
+        "plan": "docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md",
+        "cell_matrix": "docs/implantacao-sie-2-0/F01/MATRIZ_CELULAS_NORMATIVAS_F01.json",
+        "validator": "scripts/f01_cell_evidence_gate.py",
+        "execution_command": "python scripts/f01_yolo_runner.py --execute --sandbox-confirmed",
+        "source_groups_required": [
+          "RCA",
+          "XL",
+          "IZ",
+          "FATORES_CORRECAO",
+          "EDP_DEMANDA",
+          "EDP_MODALIDADE"
+        ],
+        "source_groups_verified": 0,
+        "source_cell_coverage_certified": false,
+        "agents_executed_independently": 0,
+        "external_professional_signoff": false,
+        "accepted_gates": 0,
+        "qa_branches_require_fastforward_from_latest_f01": true,
+        "f00_locked": true,
+        "f02_release": false,
+        "external_normative_originals_verified": 1,
+        "external_electrical_cell_reviews": 0
+      },
+      "copilot_qa3_environment": {
+        "status": "CONFIGURED_GITHUB_ACTIONS_AWAITING_SECRET",
+        "branch": "feat/f01-governanca-normativa",
+        "workflow": ".github/workflows/f01-copilot-qa-isolated.yml",
+        "trigger": "docs/implantacao-sie-2-0/F01/COPILOT_RUN_REQUEST.md",
+        "runbook": "docs/implantacao-sie-2-0/F01/ATIVAR_COPILOT_QA3_GITHUB_ACTIONS.md",
+        "credential_secret_name": "F01_COPILOT_PAT",
+        "credential_present_verified": false,
+        "requires_user_secret_action": true,
+        "first_pass_independent_jobs": 3,
+        "cross_review_jobs": 3,
+        "actual_successful_first_passes": 0,
+        "actual_successful_cross_reviews": 0,
+        "qa_report_validator": "scripts/f01_copilot_reports_gate.py",
+        "permissions": "contents:read; no pushes",
+        "source_attestation_not_automated": true,
+        "main_unchanged": true,
+        "f00_frozen": true,
+        "f02_release": false
+      }
     }
   ]
 }
