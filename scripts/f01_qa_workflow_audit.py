@@ -40,6 +40,9 @@ def check(source: str) -> dict:
         errors.append("Copilot CLI must be tested in no-token runner before model execution")
     if "  file-smoke:" not in source or "F01_FILE_WRITE_OK" not in source:
         errors.append("Real file emission must pass before three paid reviews")
+    smoke = source.split("  file-smoke:", 1)[-1].split("  first-pass:", 1)[0]
+    if "--available-tools='view,create,edit,apply_patch'" not in smoke:
+        errors.append("Smoke must permit model-specific create/edit/apply_patch writers")
     if source.count("scripts/f01_copilot_diagnostics.py") != 3:
         errors.append("Smoke and both QA stages must sanitize bounded diagnostics")
     if source.count("f01-diagnostics-") != 3:
@@ -78,12 +81,25 @@ def check(source: str) -> dict:
             "normative_gates_approved_by_preflight": 0,
             "f02_release_allowed": False}
 
+def check_profiles(profiles):
+    errors = []
+    for agent in AGENTS:
+        content = profiles.get(agent, "")
+        if "tools: ['view', 'grep', 'glob', 'edit', 'create', 'apply_patch', 'skill']" not in content:
+            errors.append(f"Audit profile must expose literal read/write tools including apply_patch, without execute: {agent}")
+    return errors
+
 def main(argv=None):
     p = argparse.ArgumentParser()
     p.add_argument("--root", type=Path, default=ROOT)
     opts = p.parse_args(argv)
     try:
         result = check((opts.root / WORKFLOW).read_text(encoding="utf-8"))
+        result['errors'].extend(check_profiles({
+            agent: (opts.root / '.github/agents' / f'{agent}.agent.md').read_text(encoding='utf-8')
+            for agent in AGENTS
+        }))
+        result['safe_static_configuration'] = not result['errors']
     except OSError as exc:
         result = {"safe_static_configuration": False, "errors": [str(exc)]}
     print(json.dumps(result, ensure_ascii=False, indent=2))
