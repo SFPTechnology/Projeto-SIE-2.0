@@ -50,3 +50,14 @@ File list desta correção: `.github/workflows/f01-copilot-qa-isolated.yml`; `.g
 - [ ] Rever e corrigir achados técnicos dos pareceres; validar fontes/células e obter signoff independente exigido para G06.
 
 O bloqueio operacional de arquivos QA3 foi resolvido; F01 segue BLOCKED, sem homologação e sem liberação F02. Checkboxes pendentes anteriores de novo run estão atendidas somente quanto à execução operacional neste baseline, não aos gates normativos.
+
+
+## Correção QA01-F01 / QA03-F02 — vínculo estrito da revisão
+- [x] Derivar entrada de ensaio da versão imutável com digest validado dentro da mesma transação.
+- [x] Exigir/comparar sete campos do contrato tipado, com tabela e evidência aninhadas; rejeitar divergência antes do motor/gravação.
+- [x] Preservar leitura de revisão/ensaio legado sem backfill; bloquear somente novos ensaios incompletos com orientação precisa.
+- [x] Corrigir comentário EDP para candidato legado não homologado, sem alterar valores/status.
+- [x] Testes adversariais de campos, tipos, hash, cópia mutável, histórico e API incluídos.
+- [ ] Integrar somente após CI do novo commit e revisar os demais achados; G04/G06 permanecem pendentes.
+
+File list: `restructuring/apps/api/sie_api/storage.py`, `analysis_contracts.py`, `domain/edp.py`; `restructuring/apps/api/tests/test_calculation_traces_f01.py`; `docs/sie-orchestrator/NEXT_ACTION.md`; relatório canônico de correção e esta story. Nenhuma alteração de UI necessária: não existe ainda consumidor de ensaios na tela; API HTTP recebe a orientação de revisão incompleta. Dados sintéticos e entrada cliente continuam sem aprovação normativa.
