@@ -46,9 +46,11 @@ def check(source: str) -> dict:
         errors.append("Both stages must validate report schemas")
     if "actions/upload-artifact@" not in source or "actions/download-artifact@" not in source:
         errors.append("Frozen artifact hand-off missing")
+    active_source = "\n".join(line for line in source.splitlines()
+                              if not line.lstrip().startswith("#"))
     for dangerous in ("--allow-all", "--yolo", "--allow-tool='shell",
                       "force: true", "contents: write", "pull-requests: write"):
-        if dangerous in source:
+        if dangerous in active_source:
             errors.append(f"Unsafe workflow option detected: {dangerous}")
     return {"phase": "F01", "safe_static_configuration": not errors,
             "errors": errors, "actual_copilot_sessions_executed": 0,
