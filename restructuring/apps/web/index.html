@@ -37,17 +37,18 @@
           <article class="metric panel"><span>Saída</span><strong>Parcial</strong><small>rastreabilidade em evolução</small></article>
         </section>
         <section id="circuito" class="workspace">
-          <form id="analysis-form" class="panel form-panel">
+          <form id="analysis-form" class="panel form-panel" aria-describedby="demo-input-notice">
             <div class="section-heading"><div><p class="eyebrow">01 · ENTRADAS</p><h2>Analisar circuito</h2></div><span class="tag">modelo monofásico resistivo</span></div>
+            <p id="demo-input-notice" class="demo-notice">Demonstração sintética não homologada: os valores iniciais e a tabela interna de condutores são fictícios, para teste do fluxo. Não representam células verificadas da NBR 5410 nem devem orientar projeto ou execução.</p>
             <div class="form-grid">
               <label>Corrente de projeto (A)<input id="corrente" name="corrente_a" type="number" min="0.01" value="20" step="0.01" required /></label>
               <label>Comprimento do circuito (m)<input name="comprimento_m" type="number" min="0" value="30" step="0.01" required /></label>
               <label>Tensão nominal (V)<input name="tensao_v" type="number" min="0.01" value="220" step="0.01" required /></label>
               <label>Resistência do condutor (Ω/km)<input name="resistencia_ohm_km" type="number" min="0.01" value="7.41" step="0.01" required /></label>
               <label>Fator de correção<input name="fator_correcao" type="number" min="0.01" max="1" value="0.80" step="0.01" required /></label>
-              <label>Fonte / documento<input name="documento" value="NBR 5410" required /></label>
-              <label>Edição<input name="edicao" value="2004" required /></label>
-              <label>Referência verificável<input name="referencia" value="Tabela a validar" required /></label>
+              <label>Fonte / documento<input name="documento" value="Demonstração sintética não homologada" required /></label>
+              <label>Edição<input name="edicao" value="EXEMPLO" required /></label>
+              <label>Referência verificável<input name="referencia" value="Tabela fictícia de demonstração" required /></label>
             </div>
             <div class="check-row" role="status">Este protótipo não permite aprovar normas pelo formulário. As evidências serão verificadas por processo independente e auditado.</div>
             <div class="form-actions"><p>Resultado preliminar para análise técnica; não representa aprovação normativa ou autorização da distribuidora.</p><button class="primary" type="submit">Executar análise <span>→</span></button></div>
