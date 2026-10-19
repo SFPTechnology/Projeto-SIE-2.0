@@ -28,3 +28,13 @@ Branch: `feat/f01-governanca-normativa`, PR draft #3.
 
 ## Limites e recuperação
 Sem aprovação normativa, merge, deploy, Supabase real, uso de credenciais/custos ou referência numérica inventada. Retomar F01 após prova primária e solução segura de snapshots/QA.
+
+
+## Correção de execução Copilot — 2026-10-19
+- [x] Registrar run 39285814051: CLI exit 0, três relatórios ausentes, nenhuma revisão cruzada, G06 não aprovado.
+- [x] Corrigir contrato audit-only dos perfis para output na raiz qa3-runs e preservar bloqueios normativos.
+- [x] Capturar stdout/stderr, versão e exit code com sanitização limitada e artefato separado sempre.
+- [x] Exigir emissão real de arquivo pequeno antes da matriz, sem shell LLM, sem ampliação de permissões.
+- [ ] Confirmar novo run com relatórios válidos e revisões cruzadas; nenhuma aprovação normativa antecipada.
+
+File list desta correção: `.github/workflows/f01-copilot-qa-isolated.yml`; `.github/agents/f01-qa-{arquiteto,engenheiro-eletrico,dados-ux-llm}.agent.md`; `scripts/f01_copilot_diagnostics.py`; `scripts/f01_qa_workflow_audit.py`; `tests/test_f01_copilot_diagnostics.py`; `docs/implantacao-sie-2-0/F01/RELATORIO_CORRECAO_EMISSAO_QA_2026-10-19.md`; esta story.
