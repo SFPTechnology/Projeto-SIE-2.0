@@ -30,7 +30,7 @@ class CategoriaEDP:
 # manter dados como candidatos legados, sem sinalizar valores verificados.
 FONTE_EDP = {"documento": "PT.DT.PDN.00068", "versao": "09", "vigencia": "A_CONFIRMAR", "referencia": "Anexo A, Tabelas 001 e 002, páginas a conferir na fonte primária autorizada", "url_fonte_edp": "https://www.edp.com.br/Ginp/Download/PT.DT.PDN.00068_V9.pdf", "publicacao_portal": "2026-04-15", "confirmacao_binaria_pdf": False, "status": StatusFonte.DOCUMENTADO_SEM_FONTE_PRIMARIA.value, "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md", "normative_conformity_verified": False, "release_allowed": False}
 
-# Values transcribed from verified source-data. No fallback values are allowed.
+# Values transcribed from legacy candidate data, not homologated. No fallback values are allowed.
 CATALOGO_EDP = (
     CategoriaEDP("U2", "U", Decimal("70"), "direta", "responsabilidade_distribuidora", "responsabilidade_distribuidora", "16 mm²", "16 mm²"),
     CategoriaEDP("D2", "D", Decimal("63"), "direta", "responsabilidade_distribuidora", "responsabilidade_distribuidora", "16 mm²", "16 mm²"),
