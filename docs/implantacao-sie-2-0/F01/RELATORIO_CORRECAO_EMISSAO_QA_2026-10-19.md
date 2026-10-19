@@ -41,3 +41,12 @@ Os nove arquivos foram baixados e revalidados localmente pelos scripts originais
 Os pareceres existem e são substantivos; identificam limites como vínculo entre parâmetros do cálculo e revisão de circuito, fronteira single-user do token, proveniência EDP, fontes/células ausentes e baseline histórico desatualizado do manifesto. Achados são recomendações a conferir e implementar separadamente, não correções já efetuadas por estes jobs. Testes não executados pelo modelo foram corretamente descritos como não executados.
 
 **Limite do resultado:** independência de processos GitHub Actions foi verificada; não equivale a independência profissional nem homologação normativa. O bundle registra `independent_professional_signoff=false`, `accepted_normative_gates=0`, `normative_cells_verified_by_bundle=0`, `f01_released=false`, `f02_release_allowed=false`. Portanto F00 DONE; F01 BLOCKED; aprovação G06 e passagem F02 não concedidas. Nenhuma nova tentativa cega ou afrouxamento de gate foi necessário após o smoke corrigido.
+
+
+## Implementação dos achados QA01-F01 e QA03-F02
+
+Antes: somente corrente/tensão/comprimento eram comparados quando presentes; fator, tabela/Iz, resistência e evidência podiam divergir, e circuito somente nome aceitava ensaio. Reprodução local com testes de mutação demonstrou execução indevida do motor nos casos fator/resistência antes da correção.
+
+Depois: a transação lê `versoes_projeto`, valida o digest histórico e deriva a entrada completa de `AnaliseCircuito` dessa versão. A cópia mutável de `projetos.dados_json` não alimenta o motor. Os sete campos e aninhamentos são comparados com validação estrita de tipos/números finitos; bool/string não substituem números. Só após igualdade o motor executa a entrada salva. Incompletude histórica produz HTTP422 com orientação de salvar nova revisão; nenhuma revisão ou trilha preexistente é reconstruída ou alterada.
+
+Cobertura adicionada: mutações individuais dos sete campos, seção/Iz e proveniência/flags; ausência de cada campo salvo; tipos inválidos/não finitos; adulteração da cópia atual; hash histórico corrompido antes motor; fluxo HTTP legado→revisão completa; consulta de ensaio v1 legado mantida. Fixtures válidas de ensaio agora salvam entradas completas. Comentário EDP corrigido sem alterar dados normativos. CI final do commit deve ser conferida separadamente; nenhuma aprovação G04/G06 ou liberação F01/F02 decorre desta correção.
