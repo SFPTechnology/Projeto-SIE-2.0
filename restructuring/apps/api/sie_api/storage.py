@@ -20,6 +20,19 @@ class ConflitoRevisao(ValueError):
     pass
 
 
+def _dados_revisao_validada(projeto_id: str, row) -> dict:
+    """Validate the immutable saved version inside the caller's transaction."""
+    dados = json.loads(row["dados_json"])
+    encoded = json.dumps(
+        {"projeto_id": projeto_id, "revisao": row["revisao"],
+         "nome": row["nome"], "dados": dados},
+        ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False,
+    ).encode("utf-8")
+    if sha256(encoded).hexdigest() != row["hash_sha256"]:
+        raise ValueError("Integridade da revisao historica comprometida")
+    return dados
+
+
 class RepositorioProjetos:
     def __init__(self, caminho: str | Path):
         self.caminho = str(caminho)
@@ -273,14 +286,7 @@ class RepositorioProjetos:
             ).fetchone()
         if row is None:
             return None  # Sem backfill fictício para projetos legados.
-        dados = json.loads(row["dados_json"])
-        encoded = json.dumps(
-            {"projeto_id": projeto_id, "revisao": row["revisao"],
-             "nome": row["nome"], "dados": dados},
-            ensure_ascii=False, sort_keys=True, separators=(",", ":"), allow_nan=False,
-        ).encode("utf-8")
-        if sha256(encoded).hexdigest() != row["hash_sha256"]:
-            raise ValueError("Integridade da revisao historica comprometida")
+        dados = _dados_revisao_validada(projeto_id, row)
         return {
             "id": projeto_id, "revisao": row["revisao"],
             "nome": row["nome"], "dados": dados, "criado_em": row["criado_em"],
@@ -313,11 +319,11 @@ class RepositorioProjetos:
         circuito_nome = circuito_nome.strip()
         if not isinstance(parametros, dict):
             raise ValueError("Parametros de ensaio invalidos")
-        entrada = AnaliseCircuito.model_validate(parametros).model_dump(mode="json")
+        solicitada = AnaliseCircuito.model_validate(parametros).model_dump(mode="json")
         with self._conectar() as db:
             db.execute("BEGIN IMMEDIATE")
             atual = db.execute(
-                "SELECT revisao,dados_json FROM projetos WHERE id=?",
+                "SELECT revisao FROM projetos WHERE id=?",
                 (projeto_id,),
             ).fetchone()
             if atual is None:
@@ -325,12 +331,14 @@ class RepositorioProjetos:
             if atual["revisao"] != revisao:
                 raise ConflitoRevisao("Ensaio exige revisao atual e imutavel do projeto")
             historico = db.execute(
-                "SELECT 1 FROM versoes_projeto WHERE projeto_id=? AND revisao=?",
+                "SELECT revisao,nome,dados_json,hash_sha256 FROM versoes_projeto "
+                "WHERE projeto_id=? AND revisao=?",
                 (projeto_id, revisao),
             ).fetchone()
             if historico is None:
                 raise ValueError("Revisao sem historico recuperavel; salvar antes do ensaio")
-            circuitos = json.loads(atual["dados_json"]).get("circuitos", [])
+            dados_historicos = _dados_revisao_validada(projeto_id, historico)
+            circuitos = dados_historicos.get("circuitos", [])
             if not isinstance(circuitos, list):
                 raise ValueError("Lista de circuitos invalida")
             coincidentes = [
@@ -341,15 +349,23 @@ class RepositorioProjetos:
             if len(coincidentes) != 1:
                 raise ValueError("Circuito ausente ou identificado ambiguamente na revisao")
             armazenado = coincidentes[0]
-            for campo in ("corrente_a", "tensao_v", "comprimento_m"):
-                if campo in armazenado:
-                    try:
-                        from decimal import Decimal
-                        if Decimal(str(armazenado[campo])) != Decimal(str(entrada[campo])):
-                            raise ValueError(
-                                f"Ensaio incompatível com campo salvo do circuito: {campo}")
-                    except (ArithmeticError, TypeError):
-                        raise ValueError(f"Campo de circuito invalido: {campo}") from None
+            # Project metadata (name/type/etc.) is separate from the complete
+            # typed analysis input. Missing/invalid legacy values cannot be
+            # filled from a new request or the mutable current project copy.
+            campos = AnaliseCircuito.model_fields
+            try:
+                entrada = AnaliseCircuito.model_validate({
+                    campo: armazenado[campo] for campo in campos if campo in armazenado
+                }).model_dump(mode="json")
+            except ValueError as exc:
+                raise ValueError(
+                    "Circuito salvo incompleto ou inválido para ensaio; "
+                    "salve uma nova revisão com todos os parâmetros de análise") from exc
+            for campo in campos:
+                if entrada[campo] != solicitada[campo]:
+                    raise ValueError(
+                        f"Ensaio incompatível com campo salvo do circuito: {campo}")
+            # Always execute the immutable server-saved input after comparison.
             # Retorno da funcao real, nao "expected" produzido pelo cliente.
             resultado = analisar_circuito(entrada)
             if (resultado["liberado_para_uso_normativo"] is not False or
