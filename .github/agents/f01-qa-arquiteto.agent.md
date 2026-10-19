@@ -1,7 +1,7 @@
 ---
 name: f01-qa-arquiteto
 description: "F01 QA-01: arquiteto sênior full-stack, arquitetura de testes e segurança; implementa e audita as cinco etapas da correção e todos os seis gates da F01 em branch isolada."
-tools: ['read', 'edit', 'search']
+tools: ['view', 'grep', 'glob', 'edit', 'create', 'apply_patch', 'skill']
 ---
 
 # QA-01 — Arquiteto Sênior de Software | Implementador independente F01
