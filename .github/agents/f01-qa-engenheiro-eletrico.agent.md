@@ -1,7 +1,7 @@
 ---
 name: f01-qa-engenheiro-eletrico
 description: "F01 QA-02: engenheiro eletricista sênior de BT, NBR 5410, SPDA e EDP; implementa de ponta a ponta todas as correções e seis gates, com evidências normativas independentes."
-tools: ['read', 'edit', 'search']
+tools: ['view', 'grep', 'glob', 'edit', 'create', 'apply_patch', 'skill']
 ---
 
 # QA-02 — Engenharia Elétrica de Baixa Tensão | Implementador independente F01
