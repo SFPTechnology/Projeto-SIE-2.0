@@ -259,3 +259,25 @@ Esta rodada **executou código e testes**, não reabriu F00 e não iniciou F02; 
 **Próxima execução:** **NÃO acionar retries automáticos enquanto o usuário não confirmar licença Copilot CLI habilitada e permissão correta**. Depois, novo run na branch F01 por `COPILOT_RUN_REQUEST.md`, com checagem real do primeiro agente antes de disparar consumo múltiplo. Caso a política continue negando, registrar exceção externa com request ID para suporte GitHub, sem tentar contornar política ou atribuir revisão profissional fictícia.
 
 **Estado:** F00 DONE; F01 BLOCKED; F02 NOT_RELEASED; 0/3 sessões independentes finalizadas, 0/3 revisões cruzadas, 0/6 gates aceitos. `main` preservada.
+
+
+## Adendo documental prevalecente — PDF privado recebido em 2026-10-19
+
+Recebido para inspeção privada um PDF de 217 páginas cuja capa identifica NBR 5410:2004, versão corrigida em 17/03/2008. SHA-256 do arquivo recebido: `45f246e3e33db1bf18dd60743ac93b6ac1ec0796742e169a8014682bfb19aa3d`. Esta identificação não comprova autenticidade, origem oficial, licença, direitos de reprodução ou aplicabilidade. PDF, imagens e valores das células não são publicados no repositório.
+
+Mapa documental informado pela leitura visual do coordenador, um único leitor, páginas PDF 109–118 inspecionadas:
+
+| Referência | Página PDF | Página impressa |
+|---|---|---|
+| Tabela 36 | 109 | 101 |
+| Tabela 37 | 110 | 102 |
+| Tabela 38 | 111–112 | 103–104 |
+| Tabela 39 | 112–113 | 104–105 |
+| Tabela 40 | 114 | 106 |
+| Tabela 41 — resistividade térmica do solo; não resistência elétrica | 115 | 107 |
+| Tabela 42 | 116 | 108 |
+| Tabelas 43 e 44 | 117 | 109 |
+| Tabela 45 | 118 | 110 |
+| Notas de agrupamento, leitura ainda pendente | 119–120 | 111–112 |
+
+Estado da fonte: RECEBIDA / INSPEÇÃO DOCUMENTAL PARCIAL. Este mapa não é extração numérica de células, não é dupla leitura A/B e não concede homologação: zero células aprovadas por este adendo. Continuam pendentes contexto/método/notas, leituras independentes, direitos/origem e casos quantitativos. Valores sintéticos da UI não foram substituídos pelo PDF. F01 BLOCKED; F02 não liberada.
