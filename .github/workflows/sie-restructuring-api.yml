@@ -10,6 +10,12 @@ on:
       - '.github/skills/f01-*/SKILL.md'
       - 'scripts/f01_release_gate.py'
       - 'scripts/f01_cell_evidence_gate.py'
+      - 'scripts/f01_qa_workflow_audit.py'
+      - 'scripts/f01_inventory_audit.py'
+      - 'scripts/f01_gate_dashboard.py'
+      - 'scripts/f01_copilot_reports_gate.py'
+      - '.github/workflows/f01-copilot-qa-isolated.yml'
+      - 'docs/implantacao-sie-2-0/F01/INVENTARIO_CELULAS_E_REGRAS_USADAS.csv'
       - 'docs/implantacao-sie-2-0/F01/MATRIZ_CELULAS_NORMATIVAS_F01.json'
       - 'docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md'
       - 'scripts/f01_yolo_runner.py'
@@ -44,6 +50,22 @@ jobs:
           python scripts/f01_yolo_runner.py
       - name: Validate normative cell registry schema without granting approval
         run: python scripts/f01_cell_evidence_gate.py
+      - name: Audit QA3 Copilot options, report creation, workspace isolation (no token used)
+        run: python scripts/f01_qa_workflow_audit.py
+      - name: Audit every legacy EDP category against the F01 inventory
+        run: python scripts/f01_inventory_audit.py
+      - name: Publish machine-readable six-gate and ten-criteria status (no approval)
+        run: |
+          mkdir -p run-artifacts
+          python scripts/f01_gate_dashboard.py > run-artifacts/f01-evidence-status.json
+          cat run-artifacts/f01-evidence-status.json
+      - name: Archive F01 evidence-status dashboard
+        uses: actions/upload-artifact@v4
+        with:
+          name: f01-evidence-status
+          path: run-artifacts/f01-evidence-status.json
+          if-no-files-found: error
+          retention-days: 14
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api
