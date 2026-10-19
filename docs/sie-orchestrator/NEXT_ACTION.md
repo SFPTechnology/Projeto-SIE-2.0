@@ -1,3 +1,13 @@
+## Atualização prevalecente — 2026-10-19, correção do vínculo de ensaios
+
+QA3 operacional concluído: run `39289599183` SUCCESS no baseline `29c506cbd4f0045c4d54e4f50098d989d7260194`, 3 primeiras passagens, 3 cruzadas e nove hashes revalidados. Instruções antigas abaixo sobre falta de autenticação/parecer não descrevem mais esse bloqueio.
+
+Implementação QA01-F01/QA03-F02: novos ensaios usam dados da versão imutável validada por hash na mesma transação; exigem todos os sete campos tipados de AnaliseCircuito, inclusive tabela/fator/resistência/evidência. Divergência ou circuito legado incompleto rejeita antes do motor/gravação e orienta salvar nova revisão completa; consultas históricas continuam sem backfill. Comentário EDP alinhado a candidato legado não homologado. Testes de mutação e API cobrem a correção; CI do commit publicado deve ser consultada antes de integrar.
+
+Próximos bloqueios: conferir achados restantes de UX/RBAC single-user, fontes/células ABNT/EDP e casos quantitativos independentes; revalidar profissionalmente os gates. F00 DONE; F01 BLOCKED; G04/G06 não aprovados; F02 não liberada. A revisão Copilot executada não certifica o código posterior.
+
+---
+
 # NEXT_ACTION — F01 BLOCKED, prosseguir na F01; F02 não liberada
 Data: 2026-10-15. Branch: `feat/f01-governanca-normativa`; PR #3 em rascunho sobre F00.
 
