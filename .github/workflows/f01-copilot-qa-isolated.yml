@@ -97,9 +97,9 @@ jobs:
           copilot --version > "$RUNNER_TEMP/copilot-diagnostics/version.txt" 2>&1
           cd "$RUNNER_TEMP/file-smoke"
           set +e
-          copilot -p 'Use create to write SMOKE.txt containing exactly F01_FILE_WRITE_OK followed by one newline. Do not read any other files, do not use shell, do not give prose instead of creating the file.' \
+          copilot -p 'Write SMOKE.txt using an available file-writing tool containing exactly F01_FILE_WRITE_OK followed by one newline. Do not read any other files, do not use shell, do not give prose instead of creating the file.' \
             --no-ask-user --no-auto-update --disable-builtin-mcps \
-            --max-ai-credits=30 --available-tools='view,create' --allow-tool=write \
+            --max-ai-credits=30 --available-tools='view,create,edit,apply_patch' --allow-tool=write \
             --deny-tool=shell -s > "$RUNNER_TEMP/copilot-diagnostics/raw.stdout" 2> "$RUNNER_TEMP/copilot-diagnostics/raw.stderr"
           code=$?
           printf '%s\n' "$code" > "$RUNNER_TEMP/copilot-diagnostics/exit-code.txt"
