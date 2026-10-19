@@ -1,4 +1,5 @@
 """Ensaio de cálculo com proveniência REAL dos algoritmos, sem afirmar norma."""
+from decimal import Decimal
 from hashlib import sha256
 from inspect import getsource
 import json
@@ -22,23 +23,34 @@ def _canonical(obj):
 def preparar_registro(projeto_id, revisao, circuito_nome, entrada, resultado):
     """Apenas dados efetivamente recebidos/calculados pelo servidor, não regras ABNT."""
     # Captura a linha do input REALMENTE usada no calculo; nao uma celula ABNT.
-    secao = str(resultado["condutor"]["secao_mm2"])
+    secao = Decimal(str(resultado["condutor"]["secao_mm2"]))
     linhas_efetivas = [
         {"indice_entrada": n, "secao_mm2": row["secao_mm2"],
          "capacidade_a": row["capacidade_a"]}
         for n, row in enumerate(entrada["tabela_condutores"])
-        if str(row["secao_mm2"]) == secao
+        if Decimal(str(row["secao_mm2"])) == secao
     ]
     if len(linhas_efetivas) != 1:
         raise ValueError("Linha efetiva de condutor nao identificada de modo unico")
+    expected_capacity = Decimal(str(linhas_efetivas[0]["capacidade_a"])) * Decimal(
+        str(entrada["fator_correcao"]))
+    if Decimal(str(resultado["condutor"]["capacidade_decisao_a"])) != expected_capacity:
+        raise ValueError("Iz efetivamente utilizada diverge da linha e fator recebidos")
     applied_values = {
         "selected_input_row": linhas_efetivas[0],
+        "input_row_sha256": sha256(_canonical(linhas_efetivas[0]).encode("utf-8")).hexdigest(),
+        "source_parameter_kinds": {
+            "conductor_base_iz": "CLIENT_DECLARED",
+            "correction_factor": "CLIENT_DECLARED",
+            "resistance_ohm_km": "CLIENT_DECLARED",
+        },
         "correction_factor": entrada["fator_correcao"],
         "resistance_ohm_km": entrada["resistencia_ohm_km"],
         "capacity_for_breaker_decision_a": resultado["condutor"]["capacidade_decisao_a"],
         "source_classification": "CLIENT_SUPPLIED_UNVERIFIED_NOT_NORMATIVE_CELL",
     }
     item = {
+        "trace_schema_version": 2,
         "values_actually_used_by_algorithm": applied_values,
         "id": str(uuid4()), "projeto_id": projeto_id,
         "revisao_projeto": revisao, "circuito_nome": circuito_nome,
@@ -80,4 +92,34 @@ def validar_registro(serialized, digest):
         item.get("normative_rule_ids_used_verified") != [] or
         item.get("normative_cells_used_verified") != []):
         raise ValueError("Registro de ensaio invalido ou alegacao de homologacao")
+    # Version 1 remains readable for historical local traces. Stronger v2
+    # rejects internal inconsistencies even if someone recalculates the digest.
+    version = item.get("trace_schema_version", 1)
+    if version not in (1, 2):
+        raise ValueError("Versao do formato de ensaio nao suportada")
+    if version == 2:
+        used = item["values_actually_used_by_algorithm"]
+        line = used.get("selected_input_row")
+        if not isinstance(line, dict):
+            raise ValueError("Linha de entrada realmente consumida ausente")
+        expected_hash = sha256(_canonical(line).encode("utf-8")).hexdigest()
+        if used.get("input_row_sha256") != expected_hash:
+            raise ValueError("Hash da linha realmente consumida nao confere")
+        origins = used.get("source_parameter_kinds")
+        if origins != {
+            "conductor_base_iz": "CLIENT_DECLARED",
+            "correction_factor": "CLIENT_DECLARED",
+            "resistance_ohm_km": "CLIENT_DECLARED",
+        }:
+            raise ValueError("Fonte de parametros alterada sem homologacao")
+        try:
+            raw_row = item["entrada"]["tabela_condutores"][line["indice_entrada"]]
+            matching = (Decimal(str(raw_row["secao_mm2"])) == Decimal(str(line["secao_mm2"]))
+                        and Decimal(str(raw_row["capacidade_a"])) == Decimal(str(line["capacidade_a"])))
+            expected_iz = Decimal(str(raw_row["capacidade_a"])) * Decimal(str(item["entrada"]["fator_correcao"]))
+            actual_iz = Decimal(str(item["resultado"]["condutor"]["capacidade_decisao_a"]))
+        except (KeyError, IndexError, TypeError, ValueError) as exc:
+            raise ValueError("Linha/fator de entrada invalido no historico") from exc
+        if not matching or expected_iz != actual_iz:
+            raise ValueError("Trilha de parametros nao corresponde ao calculo efetivo")
     return item
