@@ -35,10 +35,18 @@ Sem aprovação normativa, merge, deploy, Supabase real, uso de credenciais/cust
 - [x] Corrigir contrato audit-only dos perfis para output na raiz qa3-runs e preservar bloqueios normativos.
 - [x] Capturar stdout/stderr, versão e exit code com sanitização limitada e artefato separado sempre.
 - [x] Exigir emissão real de arquivo pequeno antes da matriz, sem shell LLM, sem ampliação de permissões.
-- [ ] Confirmar novo run com relatórios válidos e revisões cruzadas; nenhuma aprovação normativa antecipada.
+- [x] Confirmar novo run com relatórios válidos e revisões cruzadas; nenhuma aprovação normativa antecipada (run 39289599183).
 
 File list desta correção: `.github/workflows/f01-copilot-qa-isolated.yml`; `.github/agents/f01-qa-{arquiteto,engenheiro-eletrico,dados-ux-llm}.agent.md`; `scripts/f01_copilot_diagnostics.py`; `scripts/f01_qa_workflow_audit.py`; `tests/test_f01_copilot_diagnostics.py`; `docs/implantacao-sie-2-0/F01/RELATORIO_CORRECAO_EMISSAO_QA_2026-10-19.md`; esta story.
 
 - [x] Diagnóstico real do smoke 39288590946 arquivado: CLI exit 0 sem ferramenta de criação disponível; matriz não executada.
 - [x] Smoke admite create/edit/apply_patch; perfis audit-only usam nomes literais sem execute; auditor recusa remoção de apply_patch.
-- [ ] Validar novo smoke e depois entregas QA; F01 BLOCKED e G06 pendente.
+- [x] Validar novo smoke e depois entregas QA (run 39289599183); F01 BLOCKED e G06 pendente.
+
+## Evidência final do desbloqueio operacional QA3
+- [x] Run `39289599183` SUCCESS no baseline `29c506cbd4f0045c4d54e4f50098d989d7260194`: smoke + 3 primeiras passagens + 3 cruzadas + bundle.
+- [x] Nove arquivos baixados e validados localmente; JSON recalculado idêntico ao bundle remoto (9 hashes).
+- [x] Registro persistido em `docs/implantacao-sie-2-0/F01/QA3_EXECUTION_EVIDENCE_39289599183.json`; relatório canônico atualizado com jobs/artefatos.
+- [ ] Rever e corrigir achados técnicos dos pareceres; validar fontes/células e obter signoff independente exigido para G06.
+
+O bloqueio operacional de arquivos QA3 foi resolvido; F01 segue BLOCKED, sem homologação e sem liberação F02. Checkboxes pendentes anteriores de novo run estão atendidas somente quanto à execução operacional neste baseline, não aos gates normativos.
