@@ -42,6 +42,15 @@ def check(source: str) -> dict:
         errors.append("Cross reviews cannot proceed before all first passes")
     if "sha256sum --check" not in source:
         errors.append("Frozen peer artifacts must remain unchanged")
+    if "needs: [preflight, first-pass, cross-review]" not in source or "  evidence-bundle:" not in source:
+        errors.append("QA3 evidence consolidation must require all six jobs")
+    if "scripts/f01_qa3_evidence_bundle.py" not in source:
+        errors.append("Nine source reports must be bundled and hashed")
+    if source.count("actions/download-artifact@v4") < 7:
+        errors.append("All 3 original and 3 cross-review reports must be downloaded")
+    if "f01-qa3-evidence-" not in source:
+        errors.append("No immutable QA3 execution bundle archived")
+
     if source.count("scripts/f01_copilot_reports_gate.py") < 2:
         errors.append("Both stages must validate report schemas")
     if "actions/upload-artifact@" not in source or "actions/download-artifact@" not in source:
