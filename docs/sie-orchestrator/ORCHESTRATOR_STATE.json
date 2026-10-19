@@ -149,7 +149,7 @@
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 18,
+  "revision": 19,
   "schema_version": 1,
   "tasks": [
     {
@@ -721,7 +721,7 @@
         "normative_approval": false
       },
       "checkpoint": {
-        "at": "2026-10-16",
+        "at": "2026-10-19",
         "summary": "PF01 real source inventory 24 dependencies (13 EDP categories, 11 unresolved data/rule groups); PF03 safe-engine ENG-001 Iz precision and ENG-002 tri-phase U/D block, downgrade unverified EDP claim, actual selected input-row provenance and local revision UX; PF02 still has 0 normatively reviewed cells, PF04 independent QA not run. F00 golden original replay remains unchanged.",
         "catalogue_snapshot_metadata": "IMPLEMENTED_LOCAL_ONLY",
         "applied_rule_snapshots": "PENDING_NORMATIVE_CELL_PROOF",
@@ -774,7 +774,32 @@
         "abnt_5410_edition_publication_confirmed": true,
         "abnt_5410_primary_license_and_cells_verified": false,
         "qa3_independent_executions": 0,
-        "qa3_cross_reviews": 0
+        "qa3_cross_reviews": 0,
+        "implementation_round": "PREFLIGHT_QA3_TRACE_V2_CELL_WORKLIST",
+        "scripts_added": [
+          "scripts/f01_qa_workflow_audit.py",
+          "scripts/f01_inventory_audit.py",
+          "scripts/f01_gate_dashboard.py"
+        ],
+        "automation_artifacts": [
+          "f01-cells-to-review",
+          "f01-evidence-status"
+        ],
+        "trace_schema_version": 2,
+        "trace_legacy_version_supported": true,
+        "copilot_report_creation_issue_fixed": true,
+        "copilot_source_tree_write_restriction": true,
+        "normative_candidate_groups": 24,
+        "edp_legacy_categories_checked": 13,
+        "source_cell_inventory_certified_complete": false,
+        "passed_acceptance_criteria": 1,
+        "accepted_gates": 0,
+        "last_ci_confirmed_commit": "3d581d69f885e5d1202be4249e0fdae09e81694c",
+        "last_ci_runs": {
+          "api": 39207007457,
+          "chromium": 39207007462,
+          "aiox": 39207007434
+        }
       },
       "qa3_program": {
         "configured": true,
@@ -852,7 +877,7 @@
         "external_electrical_cell_reviews": 0
       },
       "copilot_qa3_environment": {
-        "status": "CONFIGURED_GITHUB_ACTIONS_AWAITING_SECRET",
+        "status": "HARDENED_AND_STATIC_TESTED_AWAITING_SECRET",
         "branch": "feat/f01-governanca-normativa",
         "workflow": ".github/workflows/f01-copilot-qa-isolated.yml",
         "trigger": "docs/implantacao-sie-2-0/F01/COPILOT_RUN_REQUEST.md",
@@ -869,7 +894,12 @@
         "source_attestation_not_automated": true,
         "main_unchanged": true,
         "f00_frozen": true,
-        "f02_release": false
+        "f02_release": false,
+        "protected_write_scope": "qa3-runs/QA-XX only",
+        "revisions_documented": [
+          ".github/workflows/f01-copilot-qa-isolated.yml",
+          "scripts/f01_qa_workflow_audit.py"
+        ]
       }
     }
   ]
