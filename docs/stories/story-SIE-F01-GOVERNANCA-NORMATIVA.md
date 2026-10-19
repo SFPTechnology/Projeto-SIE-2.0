@@ -38,3 +38,7 @@ Sem aprovação normativa, merge, deploy, Supabase real, uso de credenciais/cust
 - [ ] Confirmar novo run com relatórios válidos e revisões cruzadas; nenhuma aprovação normativa antecipada.
 
 File list desta correção: `.github/workflows/f01-copilot-qa-isolated.yml`; `.github/agents/f01-qa-{arquiteto,engenheiro-eletrico,dados-ux-llm}.agent.md`; `scripts/f01_copilot_diagnostics.py`; `scripts/f01_qa_workflow_audit.py`; `tests/test_f01_copilot_diagnostics.py`; `docs/implantacao-sie-2-0/F01/RELATORIO_CORRECAO_EMISSAO_QA_2026-10-19.md`; esta story.
+
+- [x] Diagnóstico real do smoke 39288590946 arquivado: CLI exit 0 sem ferramenta de criação disponível; matriz não executada.
+- [x] Smoke admite create/edit/apply_patch; perfis audit-only usam nomes literais sem execute; auditor recusa remoção de apply_patch.
+- [ ] Validar novo smoke e depois entregas QA; F01 BLOCKED e G06 pendente.
