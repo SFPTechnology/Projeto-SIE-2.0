@@ -34,6 +34,13 @@ def test_trace_proves_algorithm_used_not_normative_rule(tmp_path):
     saved = repo.registrar_ensaio(pid, rev, "Iluminacao", example())
     assert len(saved["algorithm_ids_executed"]) == 3
     row = saved["values_actually_used_by_algorithm"]
+    assert saved["trace_schema_version"] == 2
+    assert len(row["input_row_sha256"]) == 64
+    assert row["source_parameter_kinds"] == {
+        "conductor_base_iz": "CLIENT_DECLARED",
+        "correction_factor": "CLIENT_DECLARED",
+        "resistance_ohm_km": "CLIENT_DECLARED",
+    }
     assert row["selected_input_row"]["indice_entrada"] == 1
     assert row["selected_input_row"]["secao_mm2"] == 4
     assert row["selected_input_row"]["capacidade_a"] == 32
@@ -140,3 +147,45 @@ def test_unverified_algorithms_are_not_accepted_as_normative_fixtures(tmp_path):
     assert trace["calculation_trace_kind"].endswith("NOT_NORMATIVE_ATTESTATION")
     assert trace["normative_cells_used_verified"] == []
     assert trace["source_values_verified"] is False
+
+def test_exact_decimal_section_matching_and_hash_protects_parameter_origin():
+    from copy import deepcopy
+    from hashlib import sha256
+    from sie_api.application import analisar_circuito
+    from sie_api.calculation_traces import _canonical, preparar_registro, validar_registro
+
+    payload = example()
+    payload["tabela_condutores"][1]["secao_mm2"] = 4.0000
+    item, serial, digest = preparar_registro(
+        str(uuid4()), 1, "C1", payload, analisar_circuito(payload))
+    assert validar_registro(serial, digest) == item
+    assert item["values_actually_used_by_algorithm"]["selected_input_row"]["indice_entrada"] == 1
+
+    modified = deepcopy(item)
+    modified["values_actually_used_by_algorithm"]["selected_input_row"]["capacidade_a"] = 40
+    forged_serial = _canonical(modified)
+    forged_digest = sha256(forged_serial.encode("utf-8")).hexdigest()
+    with pytest.raises(ValueError, match="Hash da linha"):
+        validar_registro(forged_serial, forged_digest)
+
+    modified = deepcopy(item)
+    modified["values_actually_used_by_algorithm"]["source_parameter_kinds"]["correction_factor"] = "PRIMARY_SOURCE_VERIFIED"
+    forged_serial = _canonical(modified)
+    with pytest.raises(ValueError, match="Fonte de parametros"):
+        validar_registro(forged_serial, sha256(forged_serial.encode("utf-8")).hexdigest())
+
+
+def test_versioned_trace_keeps_legacy_v1_readable():
+    from copy import deepcopy
+    from hashlib import sha256
+    from sie_api.application import analisar_circuito
+    from sie_api.calculation_traces import _canonical, preparar_registro, validar_registro
+
+    payload = example()
+    current, _, _ = preparar_registro(str(uuid4()), 1, "C1", payload, analisar_circuito(payload))
+    legacy = deepcopy(current)
+    legacy.pop("trace_schema_version")
+    legacy["values_actually_used_by_algorithm"].pop("input_row_sha256")
+    legacy["values_actually_used_by_algorithm"].pop("source_parameter_kinds")
+    body = _canonical(legacy)
+    assert validar_registro(body, sha256(body.encode("utf-8")).hexdigest()) == legacy
