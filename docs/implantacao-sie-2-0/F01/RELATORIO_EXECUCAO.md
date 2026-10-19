@@ -188,3 +188,35 @@ Houve commits posteriores com documentação da auditoria e testes de metadados 
 - **Corrigido:** fonte EDP com URL oficial legível e campo explícito `confirmacao_binaria_pdf=false`; teste impede classificação como homologada.
 - **Bloqueios ainda externos:** original ABNT autorizado e conferência física das tabelas Iz/fatores/Rca/XL, PDF EDP oficial verificado visualmente/byte a byte e todas as células usadas por motor com segunda leitura independente, expected normativos externos, profissional homologador independente, 3 sessões Copilot QA, revisões cruzadas e critérios de G04/G05 ainda incompletos.
 - **Próxima ação sem duplicação:** executar o `scripts/f01_yolo_runner.py` em ambiente já isolado com Copilot CLI autenticado, conferir PDF EDP/ABNT por dois revisores separados e associar evidence hashes por célula. Não repetir F00 nem iniciar F02 enquanto as provas faltarem.
+
+## Implementações adicionais de qualidade e rastreabilidade — 19/10/2026
+
+Esta rodada **executou código e testes**, não reabriu F00 e não iniciou F02; o plano de referência continua `PLANO_UNICO_FECHAMENTO_F01.md`.
+
+**1. Copilot QA3, sem uso de credencial:**
+- Corrigido `.github/workflows/f01-copilot-qa-isolated.yml`: antes o Copilot tinha `edit` mas **não tinha `create`**, inviabilizando a emissão dos dois relatórios. Agora usa lista restrita `view,grep,glob,edit,create,apply_patch,skill` e proíbe shell/MCP.
+- Bloqueio físico de escrita de arquivos e diretórios do checkout via `chmod a-w`; somente a pasta `qa3-runs/QA-XX` fica gravável no job correspondente. Continua sem permissão de push da Actions; peer é congelado com SHA-256 antes da revisão cruzada.
+- Novo `scripts/f01_qa_workflow_audit.py` verifica configuração, branches, isolamento, criação dos relatórios, SHA compartilhado, permissões de checkout e guardrails. Testes adversariais com permissões inseguras detectam alterações sem consumir Copilot.
+- **Nenhuma sessão Copilot foi efetivamente executada**; `F01_COPILOT_PAT` precisa ser cadastrado pelo titular na área GitHub Actions Secrets. Não contar jobs mockados como QA3 independente.
+
+**2. Proveniência técnica dos cálculos:**
+- `sie_api/calculation_traces.py` gera `trace_schema_version=2`, hash SHA-256 da **linha de condutor efetivamente selecionada**, registra origem declarada dos três parâmetros (Iz base, fator, resistência) e valida novamente a capacidade corrigida usada no disjuntor com `Decimal`.
+- `validar_registro` detecta a linha ou origem adulteradas **mesmo quando o digest geral for recalculado**; traços históricos sem `trace_schema_version` continuam legíveis como v1. Isso prova consistência de inputs, **não a autenticidade de célula ABNT/EDP**.
+- Testes de falsificação e compatibilidade em `test_calculation_traces_f01.py`.
+
+**3. Verificação automática de 6 gates e 10 AC:**
+- `scripts/f01_gate_dashboard.py` cruza `QA3_MANIFEST.json` com `ORCHESTRATOR_STATE.json`, exige unicidade de G01–G06, AC-01.01–10 e QA-01–03, acusa falsos `accepted=true`, signoff ausente ou `F01=DONE` prematuro. Modo comum imprime status com exit 0 quando coerente; `--strict` retorna exit 1 enquanto faltam evidências.
+- A CI grava `run-artifacts/f01-evidence-status.json` e publica o artefato `f01-evidence-status`. **Não atualiza/aprova automaticamente** nenhum status do orquestrador.
+
+**4. Preparação de inventário normativo sem dados fictícios:**
+- `scripts/f01_inventory_audit.py` compara todas as 13 categorias codificadas EDP ao inventário de 24 dependências de código, detecta omissão e proíbe status numérico de homologação.
+- `--write-pending run-artifacts/f01-cells-to-review.json` produz fila estruturada de **24 grupos candidatos**, com `cell_instances=[]`, sem valores normativos preenchidos nem segunda conferência inventada. O artefato `f01-cells-to-review` é disponibilizado pelo GitHub Actions.
+- Esses 24 itens **não** representam 24 células originais verificadas ou o universo exaustivo de células aplicadas: ainda é preciso desdobrar cada condição do motor e inspecionar a fonte primária.
+
+**5. Comprovação de CI:**
+- Commit `3d581d69f885e5d1202be4249e0fdae09e81694c`: **247 testes Python aprovados**, 1 warning, auditorias de workflow/inventário/gates e replay original F00; workflow https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39207007457 .
+- Workflow AIOX aprovado no mesmo commit: https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39207007434 .
+- Chromium: https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39207007462 (verificar sua conclusão antes de citar como PASS).
+- Mudanças no relatório/estado exigem **nova verificação do SHA final da branch**, não extrapolar testes de commit intermediário.
+
+**Bloqueios após esta implementação:** `F00=DONE`, `F01=BLOCKED`, `F02=NOT_RELEASED`; **0/6 gates aceitos**, **1/10 AC formalmente aprovado**, **0/3 agentes QA independentes**, **0 células primárias homologadas**. Evidência externa ABNT/EDP + dois leitores reais e secret Copilot continuam indispensáveis.
