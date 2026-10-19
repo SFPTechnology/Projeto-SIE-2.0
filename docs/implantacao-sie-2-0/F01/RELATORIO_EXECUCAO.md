@@ -220,3 +220,18 @@ Esta rodada **executou código e testes**, não reabriu F00 e não iniciou F02; 
 - Mudanças no relatório/estado exigem **nova verificação do SHA final da branch**, não extrapolar testes de commit intermediário.
 
 **Bloqueios após esta implementação:** `F00=DONE`, `F01=BLOCKED`, `F02=NOT_RELEASED`; **0/6 gates aceitos**, **1/10 AC formalmente aprovado**, **0/3 agentes QA independentes**, **0 células primárias homologadas**. Evidência externa ABNT/EDP + dois leitores reais e secret Copilot continuam indispensáveis.
+
+## Rodada adicional — 19/10/2026: G06 comprovabilidade e pré-teste Copilot CLI sem credenciais
+
+**Implementações efetivas (não nova fase/novo plano):**
+1. `scripts/f01_qa3_evidence_bundle.py`: agrega **três primeiros pareceres e três revisões cruzadas reais** (nove arquivos: três JSON, seis MD), confere SHA de baseline e run ID, revalida bloqueios/não aprovação e calcula SHA-256 de cada artefato. O arquivo `QA3_EVIDENCE.json` documenta execução de jobs, **não confere fontes normativas nem cria parecer profissional**.
+2. `f01-copilot-qa-isolated.yml`: novo job `evidence-bundle` condicionado a todos os seis jobs anteriores, baixa os seis artefatos do mesmo workflow, verifica e arquiva `f01-qa3-evidence-<run_id>`. O relatório de resumo distingue trabalho dos agentes, agregação e signoff externo.
+3. `f01-copilot-qa-isolated.yml`: novo job `cli-smoke` que instala **@github/copilot em Node 22** e confere `copilot --help` para opções usadas no workflow sem fornecer token à CLI e sem invocar nenhum modelo. Os três agentes **dependem** do sucesso desse preflight.
+4. `scripts/f01_qa_workflow_audit.py`: verificações estruturais agora cobrem `cli-smoke`, agregação das seis execuções, artefatos baixados, hashes e permissões de checkout.
+5. `test_f01_qa3_evidence_bundle.py` e `test_f01_integrated_preflight.py`: casos adversariais de arquivo ausente, SHA trocado, tentativa de passar gate sem prova, credenciais em parecer e supressão das salvaguardas. Os arquivos sintéticos **NÃO** são contados como QA executado.
+
+**Execução real de infraestrutura:** GitHub Actions [run 39243775881](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39243775881) confirmou o job `Validate real Copilot CLI flags without token or AI inference` = **SUCCESS**. O `preflight` falhou **exatamente** em `F01_COPILOT_PAT` ausente. Os agentes e `evidence-bundle` foram corretamente SKIPPED; 0 sessões independentes executadas. Isto prova instalação e suporte de opções CLI **na versão instalada nesse run**, não prova modelo autenticado ou execução de agentes.
+
+**Próximo desbloqueio estritamente externo:** titular da conta cadastra `F01_COPILOT_PAT` nas Actions Secrets e reexecuta o último run da F01 com workflow; então QA-01/02/03 e cruzadas devem gerar o bundle `QA3_EVIDENCE.json`. Ainda são necessárias fontes normativas ABNT/EDP, reconciliação real de cada célula e atestação profissional, sem alteração arbitrária dos gates.
+
+**Invariantes:** F00 DONE intocada, F01 BLOCKED, F02 não liberada, 0/6 gates aceitos, 1/10 AC formalmente aprovado, 0 células normativas homologadas, 0/3 agentes executados até evidência real.
