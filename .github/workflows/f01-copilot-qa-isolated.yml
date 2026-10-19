@@ -227,8 +227,67 @@ jobs:
           if-no-files-found: warn
           retention-days: 14
 
-  status:
+  evidence-bundle:
+    name: "Consolidate 3 independent + 3 crossed QA reports"
     needs: [preflight, first-pass, cross-review]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact common source SHA
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Download frozen first-pass QA-01
+        uses: actions/download-artifact@v4
+        with:
+          name: f01-firstpass-QA-01-${{ github.run_id }}
+          path: qa3-collected/first/QA-01
+      - name: Download frozen first-pass QA-02
+        uses: actions/download-artifact@v4
+        with:
+          name: f01-firstpass-QA-02-${{ github.run_id }}
+          path: qa3-collected/first/QA-02
+      - name: Download frozen first-pass QA-03
+        uses: actions/download-artifact@v4
+        with:
+          name: f01-firstpass-QA-03-${{ github.run_id }}
+          path: qa3-collected/first/QA-03
+      - name: Download frozen cross-review QA-02 of QA-01
+        uses: actions/download-artifact@v4
+        with:
+          name: f01-crossreview-QA-02-QA-01-${{ github.run_id }}
+          path: qa3-collected/cross/QA-02
+      - name: Download frozen cross-review QA-03 of QA-02
+        uses: actions/download-artifact@v4
+        with:
+          name: f01-crossreview-QA-03-QA-02-${{ github.run_id }}
+          path: qa3-collected/cross/QA-03
+      - name: Download frozen cross-review QA-01 of QA-03
+        uses: actions/download-artifact@v4
+        with:
+          name: f01-crossreview-QA-01-QA-03-${{ github.run_id }}
+          path: qa3-collected/cross/QA-01
+      - name: Validate each report and bundle its actual content digests
+        env:
+          REVIEW_BASELINE: ${{ github.sha }}
+          REVIEW_RUN: ${{ github.run_id }}
+        run: |
+          python scripts/f01_qa3_evidence_bundle.py \
+            --first-root qa3-collected/first \
+            --cross-root qa3-collected/cross \
+            --baseline "$REVIEW_BASELINE" --run-id "$REVIEW_RUN" \
+            --output qa3-collected/QA3_EVIDENCE.json
+      - name: Archive hashed six-job execution record (not technical signoff)
+        uses: actions/upload-artifact@v4
+        with:
+          name: f01-qa3-evidence-${{ github.run_id }}
+          path: qa3-collected/QA3_EVIDENCE.json
+          if-no-files-found: error
+          retention-days: 30
+
+  status:
+    needs: [preflight, first-pass, cross-review, evidence-bundle]
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -237,6 +296,7 @@ jobs:
           PREFLIGHT: ${{ needs.preflight.result }}
           FIRST: ${{ needs.first-pass.result }}
           CROSS: ${{ needs.cross-review.result }}
+          BUNDLE: ${{ needs.evidence-bundle.result }}
         run: |
           {
             echo "## F01 Copilot QA3 — ${{ github.sha }}"
@@ -244,6 +304,7 @@ jobs:
             echo "- Authentication / preflight: $PREFLIGHT"
             echo "- Three independent first passes: $FIRST"
             echo "- Three cross-reviews: $CROSS"
+            echo "- Verified nine-file SHA bundle: $BUNDLE"
             echo "- F00: DONE; F01: BLOCKED; F02: NOT RELEASED"
             echo "- Artifacts are machine-checked agent reports, **not** ABNT/EDP or engineer signoffs."
             echo "- No code was pushed by agents. Reviewer output must be integrated only after separate inspection."
