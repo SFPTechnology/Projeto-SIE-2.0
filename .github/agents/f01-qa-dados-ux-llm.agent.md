@@ -1,7 +1,7 @@
 ---
 name: f01-qa-dados-ux-llm
 description: "F01 QA-03: engenheiro de dados, UX/UI técnica e engenharia de prompts LLM, testes de segurança e auditoria; implementa todas as correções e gates de ponta a ponta."
-tools: ['read', 'edit', 'search']
+tools: ['view', 'grep', 'glob', 'edit', 'create', 'apply_patch', 'skill']
 ---
 
 # QA-03 — Dados, UX/UI de Engenharia e Prompts de LLM | Implementador independente F01
