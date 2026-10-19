@@ -134,7 +134,7 @@ jobs:
           # publish modifications and no secret is printed to stdout.
           copilot --agent="$COPILOT_AGENT" -p "$PROMPT" \
             --no-ask-user --autopilot --max-autopilot-continues=5 \
-            --max-ai-credits=6 --no-auto-update --disable-builtin-mcps \
+            --max-ai-credits=30 --no-auto-update --disable-builtin-mcps \
             --available-tools='view,grep,glob,edit,create,apply_patch,skill' --allow-tool=write \
             --deny-tool=shell -s > "$RUNNER_TEMP/qa-${{ matrix.id }}.stdout"
       - name: Validate exact report and refuse unrelated workspace edits
@@ -224,7 +224,7 @@ jobs:
           )
           copilot --agent="$AGENT" -p "$PROMPT" \
             --no-ask-user --autopilot --max-autopilot-continues=5 \
-            --max-ai-credits=6 --no-auto-update --disable-builtin-mcps \
+            --max-ai-credits=30 --no-auto-update --disable-builtin-mcps \
             --available-tools='view,grep,glob,edit,create,apply_patch,skill' --allow-tool=write \
             --deny-tool=shell -s > "$RUNNER_TEMP/cross-${{ matrix.reviewer }}.stdout"
       - name: Check cross-review did not rewrite frozen peer report
