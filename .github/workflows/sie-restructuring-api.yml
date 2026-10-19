@@ -13,6 +13,7 @@ on:
       - 'scripts/f01_qa_workflow_audit.py'
       - 'scripts/f01_inventory_audit.py'
       - 'scripts/f01_gate_dashboard.py'
+      - 'scripts/f01_qa3_evidence_bundle.py'
       - 'scripts/f01_copilot_reports_gate.py'
       - '.github/workflows/f01-copilot-qa-isolated.yml'
       - 'docs/implantacao-sie-2-0/F01/INVENTARIO_CELULAS_E_REGRAS_USADAS.csv'
@@ -50,6 +51,8 @@ jobs:
           python scripts/f01_yolo_runner.py
       - name: Validate normative cell registry schema without granting approval
         run: python scripts/f01_cell_evidence_gate.py
+      - name: Verify QA3 evidence bundler syntax without any real agent
+        run: python -m py_compile scripts/f01_qa3_evidence_bundle.py
       - name: Audit QA3 Copilot options, report creation, workspace isolation (no token used)
         run: python scripts/f01_qa_workflow_audit.py
       - name: Audit every legacy EDP category and generate pending source-cell work items
