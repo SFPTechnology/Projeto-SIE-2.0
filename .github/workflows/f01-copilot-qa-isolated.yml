@@ -85,6 +85,11 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "qa3-runs/$QA_ROLE" "$COPILOT_HOME"
+          # The CLI may only create QA reports. Source tree and .git are
+          # read-only even if a malicious file tries to override its prompt.
+          find . -path './qa3-runs' -prune -o -type f -exec chmod a-w {} +
+          find . -path './qa3-runs' -prune -o -type d -exec chmod a-w {} +
+          chmod u+rwx qa3-runs "qa3-runs/$QA_ROLE"
           PROMPT=$(cat <<EOF
           F01 SIE 2.0. You are $QA_ROLE, separate GitHub-hosted process with baseline $BASELINE_SHA and agent profile $COPILOT_AGENT.
           Read your .github/agents profile and related .github/skills. Also read docs/implantacao-sie-2-0/F01/PLANO_UNICO_FECHAMENTO_F01.md, QA3_MANIFEST.json and the latest F01 source audit.
@@ -95,13 +100,13 @@ jobs:
           Do not edit source code, other reports, F00 files, state/manifest, CI workflows or Git refs. Do not claim ABNT/EDP cells approved. Any missing source must be recorded as BLOCKED, never invented. Complete the two reports.
           EOF
           )
-          # No --yolo or shell tooling: only local read/search/edit of reports.
+          # No --yolo or shell tooling: file reads plus create/edit confined to output directory.
           # Actions runner grants no git push permission. An agent cannot
           # publish modifications and no secret is printed to stdout.
           copilot --agent="$COPILOT_AGENT" -p "$PROMPT" \
             --no-ask-user --autopilot --max-autopilot-continues=5 \
             --max-ai-credits=6 --no-auto-update --disable-builtin-mcps \
-            --available-tools='view,grep,glob,edit' --allow-tool=write \
+            --available-tools='view,grep,glob,edit,create,apply_patch,skill' --allow-tool=write \
             --deny-tool=shell -s > "$RUNNER_TEMP/qa-${{ matrix.id }}.stdout"
       - name: Validate exact report and refuse unrelated workspace edits
         env:
@@ -179,6 +184,9 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "qa3-runs/$REVIEWER" "$COPILOT_HOME"
+          find . -path './qa3-runs' -prune -o -type f -exec chmod a-w {} +
+          find . -path './qa3-runs' -prune -o -type d -exec chmod a-w {} +
+          chmod u+rwx qa3-runs "qa3-runs/$REVIEWER"
           PROMPT=$(cat <<EOF
           F01 SIE 2.0 independent CROSS-REVIEW. You are $REVIEWER using agent profile $AGENT. Your peer is $AUTHOR, same baseline $BASELINE_SHA.
           Your own first-pass was already frozen in a DIFFERENT isolated workflow runner. Review evidence/peer/PARECER_QA.md and evidence/peer/MATRIZ_6_GATES.json; confront them with the repository code and docs. Do not trust peer statements without proof. No external proprietary ABNT table publication, no false signatures or homologation.
@@ -188,7 +196,7 @@ jobs:
           copilot --agent="$AGENT" -p "$PROMPT" \
             --no-ask-user --autopilot --max-autopilot-continues=5 \
             --max-ai-credits=6 --no-auto-update --disable-builtin-mcps \
-            --available-tools='view,grep,glob,edit' --allow-tool=write \
+            --available-tools='view,grep,glob,edit,create,apply_patch,skill' --allow-tool=write \
             --deny-tool=shell -s > "$RUNNER_TEMP/cross-${{ matrix.reviewer }}.stdout"
       - name: Check cross-review did not rewrite frozen peer report
         run: sha256sum --check "$RUNNER_TEMP/peer_frozen.sha256"
