@@ -149,7 +149,7 @@
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 19,
+  "revision": 20,
   "schema_version": 1,
   "tasks": [
     {
@@ -799,7 +799,14 @@
           "api": 39207007457,
           "chromium": 39207007462,
           "aiox": 39207007434
-        }
+        },
+        "qa3_nine_file_bundle": "scripts/f01_qa3_evidence_bundle.py",
+        "qa3_all_six_jobs_aggregate_requires_all": true,
+        "qa3_immutable_artifact": "f01-qa3-evidence-<github.run_id>",
+        "qa3_real_cli_installed_test_no_auth": true,
+        "qa3_cli_smoke_test_run": 39243775881,
+        "qa3_cli_smoke_status": "PASS",
+        "qa3_credential_present_verified": false
       },
       "qa3_program": {
         "configured": true,
@@ -877,7 +884,7 @@
         "external_electrical_cell_reviews": 0
       },
       "copilot_qa3_environment": {
-        "status": "HARDENED_AND_STATIC_TESTED_AWAITING_SECRET",
+        "status": "CLI_SMOKE_SUCCEEDED_BUT_PAT_MISSING_QA3_NOT_EXECUTED",
         "branch": "feat/f01-governanca-normativa",
         "workflow": ".github/workflows/f01-copilot-qa-isolated.yml",
         "trigger": "docs/implantacao-sie-2-0/F01/COPILOT_RUN_REQUEST.md",
@@ -899,7 +906,10 @@
         "revisions_documented": [
           ".github/workflows/f01-copilot-qa-isolated.yml",
           "scripts/f01_qa_workflow_audit.py"
-        ]
+        ],
+        "no_token_copilot_cli_smoke_proved": true,
+        "no_token_copilot_cli_smoke_run": 39243775881,
+        "qa_evidence_sha_bundle_enabled": true
       }
     }
   ]
