@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+"""Preflight that catches unsafe Copilot QA3 workflow before any paid invocation.
+
+This is a static structural check, NOT a Copilot run or normative signoff.
+"""
+from __future__ import annotations
+import argparse
+import json
+from pathlib import Path
+import re
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+WORKFLOW = Path(".github/workflows/f01-copilot-qa-isolated.yml")
+AGENTS = ("f01-qa-arquiteto", "f01-qa-engenheiro-eletrico", "f01-qa-dados-ux-llm")
+
+def check(source: str) -> dict:
+    errors = []
+    if not re.search(r"(?m)^permissions:\s*\n\s+contents:\s*read\s*$", source):
+        errors.append("Workflow must use contents: read only")
+    if "refs/heads/feat/f01-governanca-normativa" not in source:
+        errors.append("Protected F01 ref missing")
+    if source.count("persist-credentials: false") < 3:
+        errors.append("All agent checkouts must omit persisted credentials")
+    if source.count("ref: " + chr(36) + "{{ github.sha }}") < 3:
+        errors.append("Every job must check out the same SHA")
+    if source.count("copilot --agent=") != 2:
+        errors.append("Exactly two matrix-driven Copilot commands required")
+    for agent in AGENTS:
+        if source.count(f"agent: {agent}") != 2:
+            errors.append(f"Missing matrix entry in QA or cross-review: {agent}")
+    for flag in ("--no-ask-user", "--autopilot", "--max-autopilot-continues=5",
+                 "--disable-builtin-mcps", "--deny-tool=shell",
+                 "--available-tools='view,grep,glob,edit,create,apply_patch,skill'"):
+        if source.count(flag) < 2:
+            errors.append(f"Missing CLI safeguard in both stages: {flag}")
+    if source.count("chmod a-w {} +") != 4:
+        errors.append("Read-only source-tree barriers missing")
+    if "F01_COPILOT_PAT" not in source or "secrets.F01_COPILOT_PAT" not in source:
+        errors.append("Protected personal token secret missing")
+    if "needs: [preflight, first-pass]" not in source:
+        errors.append("Cross reviews cannot proceed before all first passes")
+    if "sha256sum --check" not in source:
+        errors.append("Frozen peer artifacts must remain unchanged")
+    if source.count("scripts/f01_copilot_reports_gate.py") < 2:
+        errors.append("Both stages must validate report schemas")
+    if "actions/upload-artifact@" not in source or "actions/download-artifact@" not in source:
+        errors.append("Frozen artifact hand-off missing")
+    for dangerous in ("--allow-all", "--yolo", "--allow-tool='shell",
+                      "force: true", "contents: write", "pull-requests: write"):
+        if dangerous in source:
+            errors.append(f"Unsafe workflow option detected: {dangerous}")
+    return {"phase": "F01", "safe_static_configuration": not errors,
+            "errors": errors, "actual_copilot_sessions_executed": 0,
+            "normative_gates_approved_by_preflight": 0,
+            "f02_release_allowed": False}
+
+def main(argv=None):
+    p = argparse.ArgumentParser()
+    p.add_argument("--root", type=Path, default=ROOT)
+    opts = p.parse_args(argv)
+    try:
+        result = check((opts.root / WORKFLOW).read_text(encoding="utf-8"))
+    except OSError as exc:
+        result = {"safe_static_configuration": False, "errors": [str(exc)]}
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    return 0 if result["safe_static_configuration"] else 2
+
+if __name__ == "__main__":
+    sys.exit(main())
