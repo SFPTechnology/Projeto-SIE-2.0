@@ -61,6 +61,19 @@ def test_inventory_matches_all_edp_candidates_without_homologation():
     assert not result["eligible_for_release"]
 
 
+def test_cell_work_items_cannot_claim_checked_values_or_double_reading():
+    rows, engine = read_inventory()
+    items = inventory.build_pending_cell_work_items(rows)
+    assert len(items["items"]) == len(rows) == 24
+    assert items["enumeration_complete"] is False
+    assert items["normative_conformity_verified"] is False
+    assert items["f02_release_allowed"] is False
+    assert all(item["cell_instances"] == [] and
+               item["state"] == "BLOCKED_SOURCE" and
+               item["second_independent_reader_confirmed"] is False
+               for item in items["items"])
+
+
 def test_inventory_cannot_omit_edp_category():
     rows, engine = read_inventory()
     rows = [r for r in rows if r["id"] != "EDP-CAT-T2"]
