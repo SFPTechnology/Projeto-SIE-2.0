@@ -36,6 +36,10 @@ def check(source: str) -> dict:
             errors.append(f"Missing CLI safeguard in both stages: {flag}")
     if source.count("chmod a-w {} +") != 4:
         errors.append("Read-only source-tree barriers missing")
+    if "  cli-smoke:" not in source or "needs: [preflight, cli-smoke]" not in source:
+        errors.append("Copilot CLI must be tested in no-token runner before model execution")
+    if "copilot --help" not in source or "npm install -g @github/copilot" not in source:
+        errors.append("Copilot CLI must install and validate its real command surface")
     if "F01_COPILOT_PAT" not in source or "secrets.F01_COPILOT_PAT" not in source:
         errors.append("Protected personal token secret missing")
     if "needs: [preflight, first-pass]" not in source:
