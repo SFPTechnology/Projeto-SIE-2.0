@@ -52,13 +52,22 @@ jobs:
         run: python scripts/f01_cell_evidence_gate.py
       - name: Audit QA3 Copilot options, report creation, workspace isolation (no token used)
         run: python scripts/f01_qa_workflow_audit.py
-      - name: Audit every legacy EDP category against the F01 inventory
-        run: python scripts/f01_inventory_audit.py
+      - name: Audit every legacy EDP category and generate pending source-cell work items
+        run: |
+          mkdir -p run-artifacts
+          python scripts/f01_inventory_audit.py --write-pending run-artifacts/f01-cells-to-review.json
       - name: Publish machine-readable six-gate and ten-criteria status (no approval)
         run: |
           mkdir -p run-artifacts
           python scripts/f01_gate_dashboard.py > run-artifacts/f01-evidence-status.json
           cat run-artifacts/f01-evidence-status.json
+      - name: Archive pending-source-cell candidates (not normative evidence)
+        uses: actions/upload-artifact@v4
+        with:
+          name: f01-cells-to-review
+          path: run-artifacts/f01-cells-to-review.json
+          if-no-files-found: error
+          retention-days: 14
       - name: Archive F01 evidence-status dashboard
         uses: actions/upload-artifact@v4
         with:
