@@ -18,3 +18,26 @@ F00 DONE; F01 BLOCKED; G06 não aprovado; F02 não liberada. Aprovação normati
 Smoke recusado pelo gate de arquivo real, antes da matriz. Diagnóstico sanitizado arquivado confirmou CLI 1.0.98, exit code 0, stderr vazio e stdout: “I can’t create SMOKE.txt because no file-creation tool is available in this session.” Logo, exit 0 novamente não comprovava emissão. A allowlist do smoke só incluía view/create, excluindo apply_patch usado por alguns modelos segundo a referência oficial: https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference .
 
 Correção incremental: smoke permite view/create/edit/apply_patch e prompt não impõe ferramenta específica. Perfis usam os mesmos nomes literais da allowlist QA, sem execute/shell. Auditor verifica ferramenta alternativa do smoke e superfícies dos três perfis. Mutantes sem apply_patch devem ser rejeitados. Esta evidência identifica deficiência concreta da allowlist do smoke; não comprova ainda causa completa da ausência de pareceres no run anterior. Gates e isolamento físico inalterados.
+
+## Resultado operacional verificado — run 39289599183
+
+**Bloqueio operacional de emissão/validação QA3 resolvido neste run.** Workflow completou SUCCESS: https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39289599183 . Baseline imutável dos seis pareceres: `29c506cbd4f0045c4d54e4f50098d989d7260194`. Edições documentais posteriores não mudam esse baseline nem representam nova execução de QA.
+
+| Etapa | Job ID | Resultado |
+|---|---:|---|
+| Smoke emissão real | 118186602547 | SUCCESS |
+| Primeira passagem QA-01 | 118186790399 | SUCCESS |
+| Primeira passagem QA-02 | 118186790829 | SUCCESS |
+| Primeira passagem QA-03 | 118186790417 | SUCCESS |
+| Cruzada QA-01 sobre QA-03 | 118188934519 | SUCCESS |
+| Cruzada QA-02 sobre QA-01 | 118188934628 | SUCCESS |
+| Cruzada QA-03 sobre QA-02 | 118188934458 | SUCCESS |
+| Bundle | 118190197343 | SUCCESS |
+
+Artefatos reais: primeiras passagens QA-01 `12203619071`, QA-02 `12203454687`, QA-03 `12203834361`; cruzadas QA-01/QA-03 `12205311913`, QA-02/QA-01 `12205696039`, QA-03/QA-02 `12205890518`; bundle `12204368415`. Todos pertencem ao mesmo run e baseline. SHA-256 do ZIP bundle informado pelo GitHub: `25aa79df297e235306f57f1f85ce28b384695811d366ea850f199be06908715e`.
+
+Os nove arquivos foram baixados e revalidados localmente pelos scripts originais `f01_copilot_reports_gate.py`/`f01_qa3_evidence_bundle.py` do baseline. A comparação integral do JSON recalculado com o bundle remoto foi idêntica: três primeiras passagens, três revisões cruzadas, nove hashes. O registro exato foi preservado em `QA3_EXECUTION_EVIDENCE_39289599183.json`. Diagnósticos continuam separados e não foram contados como parecer.
+
+Os pareceres existem e são substantivos; identificam limites como vínculo entre parâmetros do cálculo e revisão de circuito, fronteira single-user do token, proveniência EDP, fontes/células ausentes e baseline histórico desatualizado do manifesto. Achados são recomendações a conferir e implementar separadamente, não correções já efetuadas por estes jobs. Testes não executados pelo modelo foram corretamente descritos como não executados.
+
+**Limite do resultado:** independência de processos GitHub Actions foi verificada; não equivale a independência profissional nem homologação normativa. O bundle registra `independent_professional_signoff=false`, `accepted_normative_gates=0`, `normative_cells_verified_by_bundle=0`, `f01_released=false`, `f02_release_allowed=false`. Portanto F00 DONE; F01 BLOCKED; aprovação G06 e passagem F02 não concedidas. Nenhuma nova tentativa cega ou afrouxamento de gate foi necessário após o smoke corrigido.
