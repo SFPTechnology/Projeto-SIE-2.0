@@ -235,3 +235,27 @@ Esta rodada **executou código e testes**, não reabriu F00 e não iniciou F02; 
 **Próximo desbloqueio estritamente externo:** titular da conta cadastra `F01_COPILOT_PAT` nas Actions Secrets e reexecuta o último run da F01 com workflow; então QA-01/02/03 e cruzadas devem gerar o bundle `QA3_EVIDENCE.json`. Ainda são necessárias fontes normativas ABNT/EDP, reconciliação real de cada célula e atestação profissional, sem alteração arbitrária dos gates.
 
 **Invariantes:** F00 DONE intocada, F01 BLOCKED, F02 não liberada, 0/6 gates aceitos, 1/10 AC formalmente aprovado, 0 células normativas homologadas, 0/3 agentes executados até evidência real.
+
+## Execução real QA3 — 19/10/2026: bloqueio de política GitHub Copilot
+
+**Solicitação do usuário:** secret `F01_COPILOT_PAT` cadastrado; iniciar 3 agentes independentemente na branch F01 sem reabrir F00.
+
+**Tentativa A — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39258820804**
+- Commit `fcc9b37a709701e3ae10cb90951e5832756ddf0b` com gatilho de execução.
+- `cli-smoke=SUCCESS`; `preflight=SUCCESS` (isso comprova a presença de texto no secret, **não** autorização real do serviço Copilot).
+- Os 3 jobs `first-pass=FAILURE` pela CLI GitHub Copilot 1.0.98: `Invalid value for --max-ai-credits: "6". Use at least 30 AI credits.`
+- `cross-review=SKIPPED` e `evidence-bundle=SKIPPED`. **Nenhum parecer gerado.**
+
+**Correção aplicada — commit `98ef1706de4776b27309c379f2dcfa5b44e6c0a1`:** elevar `--max-ai-credits` de 6 para **30** em primeira leitura e revisão cruzada, menor valor aceito pela CLI 1.0.98. Limite flexível por sessão, sem representar autorização de cobrança irrestrita.
+
+**Tentativa B — https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39259071550**
+- Mesmo commit `98ef1706de4776b27309c379f2dcfa5b44e6c0a1`. `cli-smoke=SUCCESS`; `preflight=SUCCESS`.
+- Os três jobs QA-01/QA-02/QA-03 `FAILURE` na execução real de `copilot -p` com mensagem idêntica `Error: Access denied by policy settings`.
+- A CLI recebeu a variável de ambiente `COPILOT_GITHUB_TOKEN` mascarada (`***`), mas a presença do token não garante licença/política ou direito à inferência.
+- Não houve resultados QA suficientes para `PARECER_QA.md`, `MATRIZ_6_GATES.json` ou revisões cruzadas; seis jobs independentes não concluídos. **Não declarar G06 concluído.**
+
+**Causa raiz de bloqueio verificável:** o serviço remoto GitHub Copilot recusou inferência por *policy settings*; conforme https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/troubleshoot-copilot-cli-auth, verificar licença Copilot da conta pessoal e políticas Copilot CLI da organização, quando aplicável. Verificar também que o fine-grained PAT tem **Account → Copilot requests: write**; `Copilot agent settings: read` não substitui essa permissão. A documentação oficial https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens lista `copilot_requests` somente com nível `write`.
+
+**Próxima execução:** **NÃO acionar retries automáticos enquanto o usuário não confirmar licença Copilot CLI habilitada e permissão correta**. Depois, novo run na branch F01 por `COPILOT_RUN_REQUEST.md`, com checagem real do primeiro agente antes de disparar consumo múltiplo. Caso a política continue negando, registrar exceção externa com request ID para suporte GitHub, sem tentar contornar política ou atribuir revisão profissional fictícia.
+
+**Estado:** F00 DONE; F01 BLOCKED; F02 NOT_RELEASED; 0/3 sessões independentes finalizadas, 0/3 revisões cruzadas, 0/6 gates aceitos. `main` preservada.
