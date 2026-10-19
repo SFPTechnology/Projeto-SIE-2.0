@@ -50,3 +50,11 @@ Antes: somente corrente/tensão/comprimento eram comparados quando presentes; fa
 Depois: a transação lê `versoes_projeto`, valida o digest histórico e deriva a entrada completa de `AnaliseCircuito` dessa versão. A cópia mutável de `projetos.dados_json` não alimenta o motor. Os sete campos e aninhamentos são comparados com validação estrita de tipos/números finitos; bool/string não substituem números. Só após igualdade o motor executa a entrada salva. Incompletude histórica produz HTTP422 com orientação de salvar nova revisão; nenhuma revisão ou trilha preexistente é reconstruída ou alterada.
 
 Cobertura adicionada: mutações individuais dos sete campos, seção/Iz e proveniência/flags; ausência de cada campo salvo; tipos inválidos/não finitos; adulteração da cópia atual; hash histórico corrompido antes motor; fluxo HTTP legado→revisão completa; consulta de ensaio v1 legado mantida. Fixtures válidas de ensaio agora salvam entradas completas. Comentário EDP corrigido sem alterar dados normativos. CI final do commit deve ser conferida separadamente; nenhuma aprovação G04/G06 ou liberação F01/F02 decorre desta correção.
+
+## Correções da interface — QA03-F01/F04/F06
+
+Dados iniciais e tabela interna agora são identificados em aviso visível como fictícios e de demonstração sintética não homologada. Defaults de fonte/edição não atribuem esses valores à NBR 5410. A versão atual não implementa liberação normativa: resultado e estilo permanecem PENDENTE; flags isoladas ou respostas contraditórias produzem aviso de inconsistência, sem aprovação verde. Em até 850px, a navegação principal continua visível com seis links e foco de teclado destacado, sem novo menu ou dependência de clique.
+
+Regressões Chromium cobrem defaults, resposta adulterada com liberação=true e status PENDENTE/APROVADO, navegação via Tab/Enter em 390 e 850px. Não houve redesenho amplo ou nova integração. Homologação F01/G04/G06 e liberação F02 continuam pendentes.
+
+Validação local da UI: 4 testes de contrato passaram; JavaScript passou node --check. Chromium não instalou neste runtime (download ZIP truncado/0 MiB); teste E2E e revisão das capturas390px dependem do CI. Capturas são geradas por página limpa, sem preencher token, e arquivadas por7dias em artefato separado.
