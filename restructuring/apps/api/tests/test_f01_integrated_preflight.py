@@ -34,6 +34,9 @@ def test_copilot_safe_workflow_static_checks_pass_without_credentials():
     lambda s: s.replace("--deny-tool=shell", "--allow-all", 1),
     lambda s: s.replace("sha256sum --check", "true"),
     lambda s: s.replace("chmod a-w {} +", "true", 1),
+    lambda s: s.replace("  cli-smoke:", "  cli-smoke-disabled:", 1),
+    lambda s: s.replace("  evidence-bundle:", "  evidence-bundle-disabled:", 1),
+    lambda s: s.replace("scripts/f01_qa3_evidence_bundle.py", "true", 1),
 ])
 def test_copilot_rejects_security_regressions_without_spending_tokens(unsafe_change):
     original = (ROOT / qa.WORKFLOW).read_text(encoding="utf-8")
