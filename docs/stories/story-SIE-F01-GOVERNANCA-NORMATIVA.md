@@ -61,3 +61,13 @@ O bloqueio operacional de arquivos QA3 foi resolvido; F01 segue BLOCKED, sem hom
 - [ ] Integrar somente após CI do novo commit e revisar os demais achados; G04/G06 permanecem pendentes.
 
 File list: `restructuring/apps/api/sie_api/storage.py`, `analysis_contracts.py`, `domain/edp.py`; `restructuring/apps/api/tests/test_calculation_traces_f01.py`; `docs/sie-orchestrator/NEXT_ACTION.md`; relatório canônico de correção e esta story. Nenhuma alteração de UI necessária: não existe ainda consumidor de ensaios na tela; API HTTP recebe a orientação de revisão incompleta. Dados sintéticos e entrada cliente continuam sem aprovação normativa.
+
+## Correções QA03-F01 / F04 / F06 — demonstração e navegação
+- [x] Rotular os valores iniciais e tabela interna como demonstração sintética não homologada; remover NBR/edição normativa dos defaults fictícios.
+- [x] Resultado desta versão permanece PENDENTE; booleano ou resposta contraditória não concede estilo/texto verde de aprovação.
+- [x] Navegação principal preservada em telas móveis, com seis links e foco de teclado visível.
+- [x] Incluir regressões Chromium para defaults, respostas contraditórias e teclado em 390/850px.
+
+File list: `restructuring/apps/web/{app.js,index.html,styles.css}`; `restructuring/e2e/test_browser_flow.py`; relatório canônico, `RELATORIO_EXECUCAO.md` e esta story. Não altera números normativos, motores ou aprovação dos gates. PDF privado recebido não é publicado.
+
+Validação desta UI: contratos HTML/JS 4 testes locais passaram e node --check passou. Instalação Chromium local bloqueada por ZIP remoto truncado (0 MiB); E2E e inspeção visual serão conferidos no CI, sem alegação de execução local. `.github/workflows/sie-e2e-browser.yml` arquiva screenshots móveis do teste com formulário sem token.
