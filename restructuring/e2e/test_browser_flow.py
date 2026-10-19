@@ -121,6 +121,57 @@ def test_full_browser_calculate_save_reload_recalculate(page, servers):
     assert page.evaluate("sessionStorage.length") == 0
 
 
+def test_demo_defaults_are_explicit_and_do_not_claim_nbr_source(page):
+    expect(page.locator('#demo-input-notice')).to_be_visible()
+    expect(page.locator('#demo-input-notice')).to_contain_text('tabela interna de condutores são fictícios')
+    assert page.locator('input[name="documento"]').input_value() == 'Demonstração sintética não homologada'
+    assert page.locator('input[name="edicao"]').input_value() == 'EXEMPLO'
+    page.locator('#analysis-form button[type="submit"]').click()
+    expect(page.locator('#resultado')).to_contain_text('Demonstração sintética não homologada')
+    expect(page.locator('#resultado .result-status.pending')).to_be_visible()
+
+
+@pytest.mark.parametrize('server_status', ['PENDENTE', 'APROVADO'])
+def test_isolated_true_flag_or_unexpected_approval_cannot_turn_ui_green(page, server_status):
+    def fake_response(route):
+        response = route.fetch()
+        data = response.json()
+        data.update(liberado_para_uso_normativo=True, status_engenharia=server_status,
+                    aviso='Gate normativo aprovado por um booleano')
+        route.fulfill(response=response, json=data)
+    page.route('**/api/v1/circuitos/analisar', fake_response)
+    page.locator('#analysis-form button[type="submit"]').click()
+    expect(page.locator('#resultado .result-status.pending')).to_be_visible()
+    expect(page.locator('#resultado')).to_contain_text('Liberação bloqueada')
+    expect(page.locator('#resultado .tag')).to_have_text('PENDENTE')
+    assert page.locator('#resultado .approved').count() == 0
+    assert 'Gate normativo aprovado' not in page.locator('#resultado').inner_text()
+
+
+@pytest.mark.parametrize('width', [390, 850])
+def test_mobile_navigation_is_visible_and_keyboard_reachable(page, width):
+    page.set_viewport_size({'width': width, 'height': 844})
+    page.goto(WEB_URL, wait_until='networkidle')
+    links = page.get_by_role('navigation', name='Navegação principal').get_by_role('link')
+    assert links.count() == 6
+    if width == 390:
+        Path('run-artifacts').mkdir(exist_ok=True)
+        page.screenshot(path='run-artifacts/f01-mobile-navigation-390.png')
+    page.keyboard.press('Tab')
+    for index in range(links.count()):
+        link = links.nth(index)
+        expect(link).to_be_visible()
+        expect(link).to_be_focused()
+        assert link.evaluate("e => getComputedStyle(e).outlineStyle") != 'none'
+        if index < links.count() - 1:
+            page.keyboard.press('Tab')
+    page.keyboard.press('Enter')
+    expect(page).to_have_url(WEB_URL + '/#guia')
+    if width == 390:
+        page.locator('#circuito').scroll_into_view_if_needed()
+        page.screenshot(path='run-artifacts/f01-mobile-demo-390.png')
+
+
 def test_wrong_token_and_stale_revision_are_visible(page, servers):
     page.locator("#project-token").fill(servers)
     page.locator('#analysis-form button[type="submit"]').click()
