@@ -18,6 +18,35 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  cli-smoke:
+    name: "Validate real Copilot CLI flags without token or AI inference"
+    if: github.ref == 'refs/heads/feat/f01-governanca-normativa'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install official CLI without authenticating or invoking any model
+        run: |
+          npm install -g @github/copilot
+          copilot --version
+      - name: Ensure the pinned workflow flags exist in the installed CLI
+        run: |
+          set -euo pipefail
+          copilot --help > "$RUNNER_TEMP/copilot-cli-help.txt"
+          for flag in --agent --no-ask-user --autopilot \
+                      --max-autopilot-continues --max-ai-credits \
+                      --no-auto-update --disable-builtin-mcps \
+                      --available-tools --allow-tool --deny-tool; do
+            if ! grep -Fq -- "$flag" "$RUNNER_TEMP/copilot-cli-help.txt"; then
+              echo "::error title=Unsupported Copilot CLI option::$flag missing from installed Copilot CLI"
+              exit 2
+            fi
+          done
+          echo "Copilot CLI programmatic flags verified without PAT or model credits."
   preflight:
     if: github.ref == 'refs/heads/feat/f01-governanca-normativa'
     runs-on: ubuntu-latest
@@ -46,7 +75,7 @@ jobs:
 
   first-pass:
     name: "Independent first-pass ${{ matrix.id }}"
-    needs: [preflight]
+    needs: [preflight, cli-smoke]
     runs-on: ubuntu-latest
     timeout-minutes: 40
     strategy:
@@ -287,13 +316,14 @@ jobs:
           retention-days: 30
 
   status:
-    needs: [preflight, first-pass, cross-review, evidence-bundle]
+    needs: [preflight, cli-smoke, first-pass, cross-review, evidence-bundle]
     if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Report without changing gates
         env:
           PREFLIGHT: ${{ needs.preflight.result }}
+          CLI: ${{ needs.cli-smoke.result }}
           FIRST: ${{ needs.first-pass.result }}
           CROSS: ${{ needs.cross-review.result }}
           BUNDLE: ${{ needs.evidence-bundle.result }}
@@ -302,6 +332,7 @@ jobs:
             echo "## F01 Copilot QA3 — ${{ github.sha }}"
             echo ""
             echo "- Authentication / preflight: $PREFLIGHT"
+            echo "- No-token Copilot CLI flag test: $CLI"
             echo "- Three independent first passes: $FIRST"
             echo "- Three cross-reviews: $CROSS"
             echo "- Verified nine-file SHA bundle: $BUNDLE"
