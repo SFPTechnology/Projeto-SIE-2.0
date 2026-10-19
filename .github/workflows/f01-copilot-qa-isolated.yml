@@ -73,9 +73,61 @@ jobs:
           fi
           echo "Copilot credential is present (secret value not printed)."
 
+  file-smoke:
+    name: "Restricted file emission smoke before QA3"
+    needs: [preflight, cli-smoke]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm install -g @github/copilot
+      - name: Emit a tiny file with the same bounded write policy
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.F01_COPILOT_PAT }}
+          COPILOT_HOME: ${{ runner.temp }}/copilot-file-smoke
+        run: |
+          set -euo pipefail
+          mkdir -p "$COPILOT_HOME" "$RUNNER_TEMP/copilot-diagnostics" "$RUNNER_TEMP/file-smoke"
+          copilot --version > "$RUNNER_TEMP/copilot-diagnostics/version.txt" 2>&1
+          cd "$RUNNER_TEMP/file-smoke"
+          set +e
+          copilot -p 'Use create to write SMOKE.txt containing exactly F01_FILE_WRITE_OK followed by one newline. Do not read any other files, do not use shell, do not give prose instead of creating the file.' \
+            --no-ask-user --no-auto-update --disable-builtin-mcps \
+            --max-ai-credits=30 --available-tools='view,create' --allow-tool=write \
+            --deny-tool=shell -s > "$RUNNER_TEMP/copilot-diagnostics/raw.stdout" 2> "$RUNNER_TEMP/copilot-diagnostics/raw.stderr"
+          code=$?
+          printf '%s\n' "$code" > "$RUNNER_TEMP/copilot-diagnostics/exit-code.txt"
+          [ "$code" -eq 0 ] || exit "$code"
+          python - <<'PYSMOKE'
+          import os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP']) / 'file-smoke'
+          assert (root / 'SMOKE.txt').read_bytes() == b'F01_FILE_WRITE_OK\n', 'File emission failed'
+          assert sorted(p.name for p in root.iterdir()) == ['SMOKE.txt'], 'Unexpected smoke output'
+          PYSMOKE
+      - name: Sanitize bounded smoke diagnostics
+        if: always()
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.F01_COPILOT_PAT }}
+        run: python scripts/f01_copilot_diagnostics.py --root "$RUNNER_TEMP/copilot-diagnostics"
+      - name: Archive sanitized smoke diagnostics only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: f01-diagnostics-file-smoke-${{ github.run_id }}
+          path: ${{ runner.temp }}/copilot-diagnostics/sanitized/
+          if-no-files-found: error
+          retention-days: 7
+
   first-pass:
     name: "Independent first-pass ${{ matrix.id }}"
-    needs: [preflight, cli-smoke]
+    needs: [preflight, cli-smoke, file-smoke]
     runs-on: ubuntu-latest
     timeout-minutes: 40
     strategy:
@@ -132,11 +184,30 @@ jobs:
           # No --yolo or shell tooling: file reads plus create/edit confined to output directory.
           # Actions runner grants no git push permission. An agent cannot
           # publish modifications and no secret is printed to stdout.
+          mkdir -p "$RUNNER_TEMP/copilot-diagnostics"
+          copilot --version > "$RUNNER_TEMP/copilot-diagnostics/version.txt" 2>&1
+          set +e
           copilot --agent="$COPILOT_AGENT" -p "$PROMPT" \
             --no-ask-user --autopilot --max-autopilot-continues=5 \
             --max-ai-credits=30 --no-auto-update --disable-builtin-mcps \
             --available-tools='view,grep,glob,edit,create,apply_patch,skill' --allow-tool=write \
-            --deny-tool=shell -s > "$RUNNER_TEMP/qa-${{ matrix.id }}.stdout"
+            --deny-tool=shell -s > "$RUNNER_TEMP/copilot-diagnostics/raw.stdout" 2> "$RUNNER_TEMP/copilot-diagnostics/raw.stderr"
+          code=$?
+          printf '%s\n' "$code" > "$RUNNER_TEMP/copilot-diagnostics/exit-code.txt"
+          exit "$code"
+      - name: Sanitize bounded CLI diagnostics (never a QA report)
+        if: always()
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.F01_COPILOT_PAT }}
+        run: python scripts/f01_copilot_diagnostics.py --root "$RUNNER_TEMP/copilot-diagnostics"
+      - name: Archive sanitized diagnostics separately
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: f01-diagnostics-first-${{ matrix.id }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/copilot-diagnostics/sanitized/
+          if-no-files-found: error
+          retention-days: 7
       - name: Validate exact report and refuse unrelated workspace edits
         env:
           QA_ROLE: ${{ matrix.id }}
@@ -222,11 +293,30 @@ jobs:
           Write ONLY qa3-runs/$REVIEWER/CROSS_REVIEW_$AUTHOR.md, at least 300 characters: names $REVIEWER and $AUTHOR, exact baseline $BASELINE_SHA, peer claims verified/refuted, file-level findings, fixes, severity and remaining normative/security blockers. A Copilot session is not an independent professional certification.
           EOF
           )
+          mkdir -p "$RUNNER_TEMP/copilot-diagnostics"
+          copilot --version > "$RUNNER_TEMP/copilot-diagnostics/version.txt" 2>&1
+          set +e
           copilot --agent="$AGENT" -p "$PROMPT" \
             --no-ask-user --autopilot --max-autopilot-continues=5 \
             --max-ai-credits=30 --no-auto-update --disable-builtin-mcps \
             --available-tools='view,grep,glob,edit,create,apply_patch,skill' --allow-tool=write \
-            --deny-tool=shell -s > "$RUNNER_TEMP/cross-${{ matrix.reviewer }}.stdout"
+            --deny-tool=shell -s > "$RUNNER_TEMP/copilot-diagnostics/raw.stdout" 2> "$RUNNER_TEMP/copilot-diagnostics/raw.stderr"
+          code=$?
+          printf '%s\n' "$code" > "$RUNNER_TEMP/copilot-diagnostics/exit-code.txt"
+          exit "$code"
+      - name: Sanitize bounded CLI diagnostics (never a QA report)
+        if: always()
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.F01_COPILOT_PAT }}
+        run: python scripts/f01_copilot_diagnostics.py --root "$RUNNER_TEMP/copilot-diagnostics"
+      - name: Archive sanitized diagnostics separately
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: f01-diagnostics-cross-${{ matrix.reviewer }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/copilot-diagnostics/sanitized/
+          if-no-files-found: error
+          retention-days: 7
       - name: Check cross-review did not rewrite frozen peer report
         run: sha256sum --check "$RUNNER_TEMP/peer_frozen.sha256"
       - name: Validate cross-review and workspace limits
@@ -316,7 +406,7 @@ jobs:
           retention-days: 30
 
   status:
-    needs: [preflight, cli-smoke, first-pass, cross-review, evidence-bundle]
+    needs: [preflight, cli-smoke, file-smoke, first-pass, cross-review, evidence-bundle]
     if: always()
     runs-on: ubuntu-latest
     steps:
