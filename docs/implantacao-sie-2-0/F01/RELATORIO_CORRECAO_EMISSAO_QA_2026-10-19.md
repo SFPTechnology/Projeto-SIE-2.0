@@ -13,3 +13,8 @@ Um smoke em processo separado deve criar arquivo de conteúdo exato antes de lib
 Validação local: 4 testes de sanitização/coleta passaram; auditor estático seguro; 6 mutações inseguras recusadas; YAML parseado; 19 blocos shell passaram bash -n. Nenhuma inferência local simulada ou alegação de execução profissional. Próximo run deve provar entrega real e revisões cruzadas.
 
 F00 DONE; F01 BLOCKED; G06 não aprovado; F02 não liberada. Aprovação normativa, fontes/células e signoff profissional continuam pendentes.
+
+## Evidência posterior — run 39288590946
+Smoke recusado pelo gate de arquivo real, antes da matriz. Diagnóstico sanitizado arquivado confirmou CLI 1.0.98, exit code 0, stderr vazio e stdout: “I can’t create SMOKE.txt because no file-creation tool is available in this session.” Logo, exit 0 novamente não comprovava emissão. A allowlist do smoke só incluía view/create, excluindo apply_patch usado por alguns modelos segundo a referência oficial: https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference .
+
+Correção incremental: smoke permite view/create/edit/apply_patch e prompt não impõe ferramenta específica. Perfis usam os mesmos nomes literais da allowlist QA, sem execute/shell. Auditor verifica ferramenta alternativa do smoke e superfícies dos três perfis. Mutantes sem apply_patch devem ser rejeitados. Esta evidência identifica deficiência concreta da allowlist do smoke; não comprova ainda causa completa da ausência de pareceres no run anterior. Gates e isolamento físico inalterados.
