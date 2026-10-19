@@ -149,7 +149,7 @@
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
     }
   ],
-  "revision": 20,
+  "revision": 21,
   "schema_version": 1,
   "tasks": [
     {
@@ -806,7 +806,10 @@
         "qa3_real_cli_installed_test_no_auth": true,
         "qa3_cli_smoke_test_run": 39243775881,
         "qa3_cli_smoke_status": "PASS",
-        "qa3_credential_present_verified": false
+        "qa3_credential_present_verified": false,
+        "blocker_current": "GITHUB_COPILOT_POLICY_DENIES_INFERENCE",
+        "qa3_latest_run_id": 39259071550,
+        "qa3_latest_run_status": "FAILURE"
       },
       "qa3_program": {
         "configured": true,
@@ -884,13 +887,13 @@
         "external_electrical_cell_reviews": 0
       },
       "copilot_qa3_environment": {
-        "status": "CLI_SMOKE_SUCCEEDED_BUT_PAT_MISSING_QA3_NOT_EXECUTED",
+        "status": "BLOCKED_REMOTE_COPILOT_POLICY",
         "branch": "feat/f01-governanca-normativa",
         "workflow": ".github/workflows/f01-copilot-qa-isolated.yml",
         "trigger": "docs/implantacao-sie-2-0/F01/COPILOT_RUN_REQUEST.md",
         "runbook": "docs/implantacao-sie-2-0/F01/ATIVAR_COPILOT_QA3_GITHUB_ACTIONS.md",
         "credential_secret_name": "F01_COPILOT_PAT",
-        "credential_present_verified": false,
+        "credential_present_verified": true,
         "requires_user_secret_action": true,
         "first_pass_independent_jobs": 3,
         "cross_review_jobs": 3,
@@ -909,7 +912,20 @@
         ],
         "no_token_copilot_cli_smoke_proved": true,
         "no_token_copilot_cli_smoke_run": 39243775881,
-        "qa_evidence_sha_bundle_enabled": true
+        "qa_evidence_sha_bundle_enabled": true,
+        "secret_present_in_actions_preflight": true,
+        "model_inference_authorized": false,
+        "first_attempt": {
+          "run_id": 39258820804,
+          "sha": "fcc9b37a709701e3ae10cb90951e5832756ddf0b",
+          "reason": "CLI_AI_CREDIT_MINIMUM_30_REQUIRED"
+        },
+        "second_attempt": {
+          "run_id": 39259071550,
+          "sha": "98ef1706de4776b27309c379f2dcfa5b44e6c0a1",
+          "reason": "GITHUB_COPILOT_ACCESS_DENIED_BY_POLICY_SETTINGS"
+        },
+        "next_action": "Check account Copilot license and Copilot CLI policy; fine-grained personal PAT Account: Copilot Requests write; then re-run on current F01 SHA"
       }
     }
   ]
