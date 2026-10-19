@@ -30,3 +30,12 @@ jobs:
         env:
           CI: 'true'
         run: python -m pytest -q restructuring/e2e
+
+      - name: Archive F01 mobile visual checks without credentials
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: f01-mobile-visual-${{ github.run_id }}
+          path: run-artifacts/f01-mobile-*.png
+          if-no-files-found: warn
+          retention-days: 7
