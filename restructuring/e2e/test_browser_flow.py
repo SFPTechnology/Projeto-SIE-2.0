@@ -184,6 +184,10 @@ def test_wrong_token_and_stale_revision_are_visible(page, servers):
     expect(page.locator("#project-status")).to_contain_text("Credencial")
     page.locator("#project-token").fill(servers)
 
+    # A load attempt invalidates prior analysis even when authentication fails.
+    page.locator('#analysis-form button[type="submit"]').click()
+    expect(page.locator('#analysis-form button[type="submit"]')).to_be_enabled()
+    expect(page.locator("#resultado")).to_contain_text("PENDENTE")
     # Simulate stale state and check explicit HTTP 409 handling in browser.
     page.locator("#project-revision").evaluate("(field) => { field.value = '0'; }")
     page.locator("#project-save").click()
@@ -267,7 +271,7 @@ def test_import_conditional_case_trace_save_reload_and_stale_result_block(page,s
     expect(page.locator('#resultado')).to_contain_text('Queda com Rca e XL')
     page.locator('input[name="corrente_a"]').fill('20.5')
     page.locator('#analysis-form button[type="submit"]').click()
-    expect(page.locator('#resultado')).to_contain_text('não correspondem à seção selecionada')
+    expect(page.locator('#resultado')).to_contain_text('Dispositivo declarado não corresponde ao In selecionado')
     page.locator('#project-save').click()
     expect(page.locator('#project-status')).to_contain_text('Execute uma analise antes de salvar')
 

@@ -388,3 +388,8 @@ Revisão @qa dos candidatos identificou dois defeitos e ambos foram corrigidos: 
 Aceite do lote 01 e registro de oito células/seis casos preservados sem modificação. F00, main e produção preservadas. Este incremento de software não resolve P01–P08 integralmente: fontes/cobertura, parâmetros de fabricante, vigência EDP, reconciliação dos exemplares e revisão final continuam necessários. **F01 BLOCKED; F02 NÃO LIBERADA.** Evidência de CI do novo SHA será registrada separadamente, sem extrapolar a baseline.
 
 Publicação do candidato nesta retomada: revisão @qa efetiva e checks AIOX locais executados. CodeRabbit CLI indisponível no ambiente, portanto sem resultado CodeRabbit atribuído. A publicação na branch de trabalho atende à retomada autorizada do incremento; não constitui gate de merge, conclusão da story global ou homologação normativa.
+
+
+### Primeira CI do incremento recuperado
+
+Código publicado em `fe72f81e6bb36f3a92382b8e08d6cb55d27e62f1`: [API](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505482934) e [AIOX](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505482882) aprovados, incluindo 440 testes API e replay F00 de 34 casos. [Chromium](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505482900): 15 passaram e 2 falharam. As quatro regressões de resposta obsoleta passaram. Foram corrigidas as duas expectativas: tentativa de reabrir invalida análise e exige recalcular antes do teste de conflito; cenário alterado é recusado pela identidade do dispositivo/In antes da queda de tensão. O ajuste não altera runtime nem regras e exige confirmação de novo CI.
