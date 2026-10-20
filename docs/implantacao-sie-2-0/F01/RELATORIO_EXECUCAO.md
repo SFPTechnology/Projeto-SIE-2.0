@@ -393,3 +393,18 @@ Publicação do candidato nesta retomada: revisão @qa efetiva e checks AIOX loc
 ### Primeira CI do incremento recuperado
 
 Código publicado em `fe72f81e6bb36f3a92382b8e08d6cb55d27e62f1`: [API](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505482934) e [AIOX](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505482882) aprovados, incluindo 440 testes API e replay F00 de 34 casos. [Chromium](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505482900): 15 passaram e 2 falharam. As quatro regressões de resposta obsoleta passaram. Foram corrigidas as duas expectativas: tentativa de reabrir invalida análise e exige recalcular antes do teste de conflito; cenário alterado é recusado pela identidade do dispositivo/In antes da queda de tensão. O ajuste não altera runtime nem regras e exige confirmação de novo CI.
+
+
+### CI final do incremento recuperado — 2026-10-20
+
+SHA efetivamente executado: `2ee1260244ae0f0ef1bf225d6390adf4642cbce5`, sucessor de `fe72f81e6bb36f3a92382b8e08d6cb55d27e62f1` apenas por ajuste de testes/documentação, sem alteração de runtime.
+
+| Workflow no mesmo SHA | Resultado conferido | Evidência |
+|---|---|---|
+| API e regressão F00 | SUCCESS — 440 testes API, 1 aviso; replay 34 casos, fixture intacta | https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505791712 |
+| AIOX lint/typecheck/test/build | SUCCESS — todos os passos concluídos | https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505791748 |
+| Chromium real contra API/UI/SQLite | SUCCESS — 17 testes, incluindo quatro cenários de resposta atrasada | https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505791783 |
+
+Os três workflows de pull request do mesmo SHA também concluíram SUCCESS. O log Chromium confirma `17 passed in 33.46s`. Esta é a comprovação que faltava ao checkpoint; não se declara execução local do navegador. CodeRabbit continua **não executado**, CLI indisponível. Não houve nova execução Copilot QA3, merge ou deploy.
+
+O commit que acrescenta este registro é exclusivamente documental; as contagens acima pertencem ao SHA de testes identificado, sem atribuição antecipada ao novo SHA documental. Aceites do lote 01, F00 e produção permanecem preservados. **F01 BLOCKED; F02 NÃO LIBERADA**: a CI confirma funcionamento de software no recorte, não homologa fontes, células fora do lote, dispositivos, estudos ou instalação.
