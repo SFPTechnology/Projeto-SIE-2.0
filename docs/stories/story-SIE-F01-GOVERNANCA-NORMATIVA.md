@@ -83,3 +83,15 @@ Validação desta UI: contratos HTML/JS 4 testes locais passaram e node --check 
 File list: `restructuring/apps/api/sie_api/application.py`, `calculation_traces.py`, `restructuring/apps/api/tests/test_coordinated_selection_f01.py`; relatórios canônicos e esta story. Parecer integral e tabelas/valores protegidos não foram publicados.
 
 - [x] Regressão CI inicial identificou mensagem distinta no caso congelado ANALISE-IZ-ARREDONDADO; correção preserva diagnóstico sempar versus insuficiênciaIb, sem modificar fixtureF00.92 testes locais passam, incluindo12novos; hashfunção coordenadora atual `0021874e4bb77675bca71c36c167f359d61b36cf1bb45ba31616f04946756c7d`.
+
+## Incremento limitado P06/P03 — lote 01
+- [x] Registrar aceite profissional declarado no JSON privado por hash, sem divulgar identidade/registro; 14 aceitos no escopo e 8 pendências mantidas.
+- [x] Implementar vínculo server-side versionado de células, condições e valores, com rejeição de combinações incompatíveis e proveniência em trilha.
+- [x] Implementar verificação parcial I2 e condições de duração, sem presumir I2 a partir de In ou homologar dados do dispositivo.
+- [x] Expor contratos opcionais/API/CLI e exemplo limitado, mantendo entrada legada e leitura histórica sem backfill.
+- [x] Testes locais e QA independente do incremento limitado concluídos; aguardar CI do SHA publicado.
+- [ ] P06 integral: ampliar cobertura, fontes/condições e integração de regras fora do lote.
+- [ ] P03 integral: fechar curto-circuito, seletividade/coordenação e fonte verificável do dispositivo.
+- [ ] Reconciliar fontes, concluir gates F01 e revisão final; F01 BLOCKED e F02 não liberada.
+
+File list: `restructuring/apps/api/sie_api/{analysis_contracts.py,application.py,cell_bindings.py,protection_checks.py,calculation_traces.py,storage.py,cli.py}`; `restructuring/apps/api/tests/test_cell_binding_protection_f01.py`; `restructuring/examples/f01_lote01_ensaio_parcial.json`; `docs/implantacao-sie-2-0/F01/{IMPLEMENTACAO_P06_P03_LOTE01.md,ACEITE_PROFISSIONAL_LOTE01_RECEBIDO_2026-10-20.json,RELATORIO_EXECUCAO.md}`; `docs/sie-orchestrator/{NEXT_ACTION.md,ORCHESTRATOR_STATE.json}` e esta story.
