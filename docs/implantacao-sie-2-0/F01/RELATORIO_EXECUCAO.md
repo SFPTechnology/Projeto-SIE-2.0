@@ -281,3 +281,19 @@ Mapa documental informado pela leitura visual do coordenador, um único leitor, 
 | Notas de agrupamento, leitura ainda pendente | 119–120 | 111–112 |
 
 Estado da fonte: RECEBIDA / INSPEÇÃO DOCUMENTAL PARCIAL. Este mapa não é extração numérica de células, não é dupla leitura A/B e não concede homologação: zero células aprovadas por este adendo. Continuam pendentes contexto/método/notas, leituras independentes, direitos/origem e casos quantitativos. Valores sintéticos da UI não foram substituídos pelo PDF. F01 BLOCKED; F02 não liberada.
+
+## Parecer recebido em 2026-10-20 — aceite condicionado do lote 01
+
+O documento recebido declara aceite no escopo de 8 células e 6 casos, condicionado integralmente ao Anexo A. Os checkboxes desse anexo continuam vazios e há campos de identificação profissional/registro/data/assinatura por preencher. Registrar **ACEITE_CONDICIONADO**, não homologação nem signoff concluído. P01–P08 permanecem pendentes; nenhuma flag de liberação é alterada. O parecer integral e seus dados pessoais não são publicados.
+
+R3: o parecer informa exemplar de PDF com SHA-256 `e1c02de1e1b5ed070ad7b642e60e0491a0c899e83fe8f2ad5699a743842bbda6`, diferente do exemplar privado anteriormente recebido `45f246e3e33db1bf18dd60743ac93b6ac1ec0796742e169a8014682bfb19aa3d`. São fontes distintas para fins de proveniência. Não substituir hashes, presumir equivalência ou atribuir dupla leitura ao mesmo arquivo sem resolver a divergência.
+
+R1/P03 continua risco alto: I2 exige identificação/fonte do dispositivo e contexto; não presumir universalmente I2=1,45In. A NOTA da proteção é condicional ao regime/tempo de sobrecarga, não requisito universal. Proteção completa, curto-circuito, coordenação e aplicação real continuam pendentes. R6 permanece pendente no pacote de entrega original preservado; este incremento não modifica esse pacote.
+
+### R4 — coordenação funcional corrigida
+
+Antes, uma seção que suportava Ib podia ser escolhida mesmo sem disjuntor comercial admissível, causando rejeição quando seção maior permitiria par. A aplicação agora encontra o menor In comercial ≥ Ib, seleciona a menor seção com Iz ≥ esse In e revalida Ib ≤ In ≤ Iz. Para catálogo fixo independente da seção, isso equivale a percorrer seções até existir par. O primitivo selecionar_condutor e sua semântica/F00 não foram alterados. Cenário sintético de regressão Ib=20,5 e fator=0,87 passa a selecionar seção 4 e In=25; ausência de catálogo/par continua rejeitada. Critério e aviso declaram I2 não verificado.
+
+Trilhas novas registram `orchestration_source` com ID e SHA-256 da função coordenadora; versões v1/v2 anteriores continuam legíveis sem backfill. Hash do arquivo application.py: `78ff6a6032f2657a9f7b86fca22e5c165b20670bb82042ff97e9dbbca2089e73`; hash da função: `1b553bff8823f066da876cc79d335cbfd0cac95d5a9d4bcfcef0a3f53d7bd090`.
+
+Validação focada local: 91 testes passaram, incluindo 11 casos novos de coordenação/proveniência, fronteiras exatas sem arredondamento para decisão, catálogo ausente/insuficiente, nenhum par, HTTP e gate false. Revisão independente do coordenador confirmou os casos novos e regressões API/traces. CI do SHA publicado deve ser conferida; não equivale a nova homologação por três revisores. F01 BLOCKED; G04/G06 não aprovados; F02 não liberada.
