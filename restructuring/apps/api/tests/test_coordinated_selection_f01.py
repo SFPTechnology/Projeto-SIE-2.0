@@ -59,6 +59,15 @@ def test_no_catalog_or_no_admissible_section_fails_closed(monkeypatch, catalog, 
         application.analisar_circuito(scenario(ib, .87, rows))
 
 
+def test_no_pair_preserves_f00_error_distinct_from_no_ib_capacity():
+    # Rounding 19.996 to 20 for presentation must never allow In=20.
+    rows = [{'secao_mm2': 2.5, 'capacidade_a': 19.996}]
+    with pytest.raises(ValueError, match='Nenhum disjuntor comercial atende Ib ≤ In ≤ Iz'):
+        application.analisar_circuito(scenario(19.99, 1, rows))
+    with pytest.raises(ValueError, match='Tabela informada não possui seção suficiente'):
+        application.analisar_circuito(scenario(20, 1, rows))
+
+
 def test_http_r4_upsize_keeps_pending_and_table_without_pair_is_rejected():
     client = TestClient(app)
     response = client.post('/api/v1/circuitos/analisar', json=scenario())
