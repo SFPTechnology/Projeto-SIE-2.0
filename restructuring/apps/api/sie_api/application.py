@@ -12,14 +12,25 @@ def analisar_circuito(payload: dict) -> dict:
     corrente = Decimal(str(payload["corrente_a"]))
     tensao = Decimal(str(payload["tensao_v"]))
     comprimento = Decimal(str(payload["comprimento_m"]))
-    condutor = selecionar_condutor(corrente, Decimal(str(payload["fator_correcao"])), tuple((Decimal(str(i["secao_mm2"])), Decimal(str(i["capacidade_a"]))) for i in payload["tabela_condutores"]))
+    # Coordinate section and commercial breaker together. The smallest In >= Ib
+    # is the minimum Iz any admissible pair needs. Selecting a section against
+    # that threshold is equivalent to scanning sections until a pair exists,
+    # including the case where the first Ib-sized section has no catalog In.
+    nominal_minimo = selecionar_disjuntor(
+        corrente, max((corrente, *CATALOGO_DISJUNTORES)), CATALOGO_DISJUNTORES,
+    ).corrente_disjuntor_comercial_a
+    condutor = selecionar_condutor(
+        nominal_minimo, Decimal(str(payload["fator_correcao"])),
+        tuple((Decimal(str(i["secao_mm2"])), Decimal(str(i["capacidade_a"])))
+              for i in payload["tabela_condutores"]),
+    )
     queda = calcular_queda_tensao_monofasica(corrente, comprimento, Decimal(str(payload["resistencia_ohm_km"])), tensao)
     disjuntor = selecionar_disjuntor(corrente, condutor.capacidade_corrigida_a, CATALOGO_DISJUNTORES)
     return {
         "status_engenharia": status.value,
         "liberado_para_uso_normativo": status == StatusEngenharia.APROVADO,
-        "aviso": None if status == StatusEngenharia.APROVADO else "Resultado técnico calculado; uso normativo bloqueado até validação de fonte e testes independentes.",
-        "condutor": {"secao_mm2": float(condutor.secao_mm2), "capacidade_corrigida_a": float(condutor.capacidade_corrigida_a.quantize(Decimal("0.01"))), "capacidade_decisao_a": float(condutor.capacidade_corrigida_a), "criterio": condutor.criterio},
+        "aviso": None if status == StatusEngenharia.APROVADO else "Coordenação parcial Ib ≤ In ≤ Iz calculada; I2 e proteção completa não verificados. Uso normativo bloqueado até validação de fonte e testes independentes.",
+        "condutor": {"secao_mm2": float(condutor.secao_mm2), "capacidade_corrigida_a": float(condutor.capacidade_corrigida_a.quantize(Decimal("0.01"))), "capacidade_decisao_a": float(condutor.capacidade_corrigida_a), "criterio": "Seção coordenada com In comercial: Ib ≤ In ≤ Iz; I2 não verificado"},
         "disjuntor": {"corrente_a": float(disjuntor.corrente_disjuntor_comercial_a), "criterio": disjuntor.criterio},
         "queda_tensao": {"queda_v": float(queda.queda_v), "queda_percentual": float(queda.queda_percentual), "formula": queda.formula},
         "rastreabilidade": {"fonte": evidencia.documento, "edicao": evidencia.edicao, "referencia": evidencia.referencia},
