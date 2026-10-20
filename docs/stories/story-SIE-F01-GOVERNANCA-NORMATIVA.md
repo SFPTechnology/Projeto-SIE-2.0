@@ -97,3 +97,16 @@ File list: `restructuring/apps/api/sie_api/application.py`, `calculation_traces.
 File list: `restructuring/apps/api/sie_api/{analysis_contracts.py,application.py,cell_bindings.py,protection_checks.py,calculation_traces.py,storage.py,cli.py}`; `restructuring/apps/api/tests/test_cell_binding_protection_f01.py`; `restructuring/examples/f01_lote01_ensaio_parcial.json`; `docs/implantacao-sie-2-0/F01/{IMPLEMENTACAO_P06_P03_LOTE01.md,ACEITE_PROFISSIONAL_LOTE01_RECEBIDO_2026-10-20.json,RELATORIO_EXECUCAO.md}`; `docs/sie-orchestrator/{NEXT_ACTION.md,ORCHESTRATOR_STATE.json}` e esta story.
 
 - [x] Separar registro versionado do lote em `restructuring/apps/api/sie_api/data/f01_lote01_cells_v1.json`, incluído na file list; resolvedor Python conserva revisão, valores e hash semântico das células. Testes relacionados e de leitura JSON aprovados pelo implementador; CI final permanece obrigatória. P03/P06 integrais seguem pendentes.
+
+
+## Recuperação e integração após checkpoint 4b1cb54 — 2026-10-20
+- [x] Recuperar candidatos locais sem reset/descarte; incorporar checkpoint remoto por fast-forward.
+- [x] Integrar verificações condicionais P03/P04 e trilhas v4, mantendo bloqueio normativo e leitura histórica.
+- [x] Integrar triagem EDP contextual versionada, sem homologar conciliação candidata.
+- [x] Acrescentar testes P07 de restauração e isolamento por projeto; separar métricas do lote limitado e QA histórico.
+- [x] Corrigir achados QA de CLI não finita e resposta obsoleta na UI; incluir regressões.
+- [x] Validar 440 testes API, 6 testes raiz, replay F00 34 e gates AIOX locais.
+- [ ] Confirmar Chromium/CI no SHA publicado; download local truncado impede execução local.
+- [ ] Resolver fontes/conflitos e demais condições P01–P08; F01 BLOCKED e F02 não liberada.
+
+File list desta retomada: `sie_api/{analysis_contracts,application,calculation_traces,cli,main,complementary_checks,protection_extended,voltage_checks,edp_context}.py`, `sie_api/domain/edp.py`, `sie_api/data/edp_context_v1.json` (sob restructuring/apps/api); `restructuring/apps/api/tests/test_{complementary_integration,edp_context,f01_progress_scope_metrics,p07_restore_isolation,protection_extended,voltage_impedance}_f01.py` (o nome de métricas é `test_f01_progress_scope_metrics.py`); `restructuring/apps/web/{app.js,index.html,styles.css}`; `restructuring/e2e/test_browser_flow.py`; `scripts/f01_{inventory_audit,gate_dashboard}.py`; `docs/implantacao-sie-2-0/F01/{EDP_CONCILIACAO_LOTE02.json,P04_MODELO_QUEDA_IMPEDANCIA.md,RELATORIO_EXECUCAO.md}` e esta story.

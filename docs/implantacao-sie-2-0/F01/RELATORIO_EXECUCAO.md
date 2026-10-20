@@ -357,3 +357,34 @@ Três hashes/exemplares NBR foram tratados como distintos. O exemplar declarado 
 5. Publicar somente incremento revisado pela autoridade @devops, conferir CI no mesmo SHA e atualizar os registros com os resultados reais. Não repetir QA3 caro antes de existir um novo marco verificável.
 
 Este checkpoint é preservação de estado e limitações, **não encerramento da F01**, homologação de novos dados, validação dos candidatos locais ou liberação da F02.
+
+
+## Retomada efetiva do checkpoint 4b1cb54 — 2026-10-20
+
+Ambiente disponível: Python 3.12.14 e Node 24.19.0. Checkout anterior recuperado em `sie-full`, baseline local 188220d; fetch e fast-forward para 4b1cb54 preservaram integralmente as alterações não publicadas. Não houve reset, nova fase ou reabertura de F00. O arquivo temporário não relacionado encontrado no checkout foi excluído do escopo de versionamento, sem apagá-lo.
+
+### Candidatos recuperados e integração
+
+- P03: `protection_extended.py` compara interrupção/energia com dados explícitos e verifica identidade/abrangência do estudo declarado; curvas, Ik mínimo, seletividade e autenticação dos parâmetros continuam pendentes.
+- P04: `voltage_checks.py` calcula aproximação longitudinal com Rca/XL, seção, temperatura, arranjo, fator de potência e fonte declarados. Limite e queda a montante exigem declaração explícita; não escolhe limite normativo.
+- Contratos/API/CLI integram verificações opcionais por `complementary_checks.py`; trilha v4 registra versão e hashes dos módulos, rejeitando ausência/adulteração e preservando formatos históricos sem backfill.
+- EDP: contexto versionado de território, rede, tensão, data, modalidade, motores e MMGD. Registro candidato e conciliação de 13 categorias/78 campos permanecem sem aceite profissional; conflitos T7/T9 e identidade/vigência da fonte não resolvidos. Nenhuma homologação adicionada.
+- UI: importação de cenário JSON, detalhes das verificações, salvamento de circuito/recarregamento; inventário/dashboard distinguem lote limitado aceito, universo F01 desconhecido e QA3 histórico.
+- P07: testes de backup/restauração SQLite, integridade e isolamento por projeto. Token local compartilhado não é RBAC multiusuário.
+
+### Revisão e correções desta retomada
+
+Revisão @qa dos candidatos identificou dois defeitos e ambos foram corrigidos: CLI EDP chamava endpoint e deixava exceção HTTP escapar em números não finitos; UI aceitava resposta de análise anterior após troca/edição/restauração do cenário. CLI agora chama domínio, contrato recusa não finitos e a resposta HTTP de validação não repete valores brutos não serializáveis. Geração de entrada invalida respostas atrasadas na UI. Regressão CLI/HTTP e quatro cenários Chromium de resposta atrasada foram acrescentados.
+
+### Resultados locais efetivamente observados
+
+- API: **440 passed**, 1 aviso de depreciação Starlette/TestClient; testes da raiz: **6 passed**, conjunto separado.
+- Replay F00: **34 casos PASS**, fixture original inalterada.
+- AIOX: lint, typecheck, test (**18 casos**) e build passaram após `npm ci --prefix .aiox-core --ignore-scripts --no-audit --no-fund`.
+- Auditorias de inventário, fontes, manifesto e workflow: sem erros de integridade; **F01 BLOCKED / F02 false**.
+- Inventário de arquivos-fonte: 6 presentes, zero ausentes. Sintaxe JavaScript válida.
+- Download Chromium local falhou nas tentativas automáticas do Playwright por ZIP remoto truncado. Nenhum PASS E2E local é atribuído ao candidato; conferir CI no SHA publicado.
+
+Aceite do lote 01 e registro de oito células/seis casos preservados sem modificação. F00, main e produção preservadas. Este incremento de software não resolve P01–P08 integralmente: fontes/cobertura, parâmetros de fabricante, vigência EDP, reconciliação dos exemplares e revisão final continuam necessários. **F01 BLOCKED; F02 NÃO LIBERADA.** Evidência de CI do novo SHA será registrada separadamente, sem extrapolar a baseline.
+
+Publicação do candidato nesta retomada: revisão @qa efetiva e checks AIOX locais executados. CodeRabbit CLI indisponível no ambiente, portanto sem resultado CodeRabbit atribuído. A publicação na branch de trabalho atende à retomada autorizada do incremento; não constitui gate de merge, conclusão da story global ou homologação normativa.

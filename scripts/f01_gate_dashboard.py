@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,6 +17,43 @@ STATE = Path("docs/sie-orchestrator/ORCHESTRATOR_STATE.json")
 REQUIRED_G = {f"G{i:02d}" for i in range(1, 7)}
 REQUIRED_AC = {f"AC-01.{i:02d}" for i in range(1, 11)}
 REQUIRED_QA = {"QA-01", "QA-02", "QA-03"}
+
+def historical_execution_metrics(evidence: dict) -> dict:
+    """Distinguish documented prior executions from current gate acceptance."""
+    agents = evidence.get("agents", [])
+    cross = evidence.get("cross_reviews", [])
+    hashes = evidence.get("files_sha256", {})
+    expected_paths = {
+        *(f"firstpass/{qa}/{file}" for qa in REQUIRED_QA
+          for file in ("MATRIZ_6_GATES.json", "PARECER_QA.md")),
+        "crossreview/QA-01/CROSS_REVIEW_QA-03.md",
+        "crossreview/QA-02/CROSS_REVIEW_QA-01.md",
+        "crossreview/QA-03/CROSS_REVIEW_QA-02.md",
+    }
+    valid = (
+        evidence.get("kind") == "COPILOT_QA3_EXECUTION_ARTIFACT_CHECK_NOT_PROFESSIONAL_ATTESTATION" and
+        bool(re.fullmatch(r"[0-9a-f]{40}", str(evidence.get("source_sha", "")))) and
+        evidence.get("f01_released") is False and evidence.get("f02_release_allowed") is False and
+        evidence.get("accepted_normative_gates") == 0 and
+        isinstance(agents, list) and len(agents) == 3 and
+        {a.get("id") for a in agents if isinstance(a, dict)} == REQUIRED_QA and
+        all(a.get("artifact_integrity_checked") is True and a.get("first_pass_frozen") is True for a in agents) and
+        isinstance(cross, list) and len(cross) == 3 and
+        {(c.get("reviewer"), c.get("author")) for c in cross if isinstance(c, dict)} ==
+            {("QA-01", "QA-03"), ("QA-02", "QA-01"), ("QA-03", "QA-02")} and
+        all(c.get("artifact_integrity_checked") is True for c in cross) and
+        isinstance(hashes, dict) and set(hashes) == expected_paths and
+        all(re.fullmatch(r"[0-9a-f]{64}", str(value)) for value in hashes.values())
+    )
+    return {"scope": "DOCUMENTED_PRIOR_RUN_NOT_CURRENT_SHA_GATE_ACCEPTANCE",
+            "document_structure_consistent": bool(valid),
+            "documented_first_passes": 3 if valid else 0,
+            "documented_cross_reviews": 3 if valid else 0,
+            "source_sha": evidence.get("source_sha"),
+            "run_id": evidence.get("github_actions_run_id"),
+            "artifacts_retrieved_and_reverified_this_invocation": False,
+            "professional_normative_signoff_granted": False,
+            "current_gate_acceptance_granted": False}
 
 def inspect(manifest: dict, state: dict) -> dict:
     errors, blockers = [], []
@@ -91,6 +129,11 @@ def main(argv=None):
         state = json.loads((args.root / STATE).read_text(encoding="utf-8"))
         manifest = json.loads((args.root / MANIFEST).read_text(encoding="utf-8"))
         result = inspect(manifest, state)
+        historical = args.root / "docs/implantacao-sie-2-0/F01/QA3_EXECUTION_EVIDENCE_39289599183.json"
+        if historical.exists():
+            evidence = json.loads(historical.read_text(encoding="utf-8"))
+            result["historical_qa_execution"] = historical_execution_metrics(evidence)
+            result["current_manifest_qa_counts_scope"] = "FORMAL_CURRENT_MANIFEST_NOT_ALL_HISTORICAL_RUNS"
     except (OSError, ValueError, TypeError) as exc:
         result = {"integrity_errors": [str(exc)], "eligible_for_external_release_review": False}
     print(json.dumps(result, ensure_ascii=False, indent=2))

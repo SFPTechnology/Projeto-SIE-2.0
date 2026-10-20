@@ -1,4 +1,7 @@
 """Contratos comuns para analise de circuito, usados pela API e auditoria local."""
+from .protection_extended import ProtecaoCurtoCircuito, EstudoCoordenacao
+from .voltage_checks import QuedaImpedancia
+
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
@@ -81,3 +84,6 @@ class AnaliseCircuito(BaseModel):
 
     vinculo_celulas: VinculoCelulas | None = None
     protecao_sobrecarga: ProtecaoSobrecarga | None = None
+    protecao_curto_circuito: ProtecaoCurtoCircuito | None = None
+    estudo_coordenacao: EstudoCoordenacao | None = None
+    queda_impedancia: QuedaImpedancia | None = None

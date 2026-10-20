@@ -1,0 +1,148 @@
+{
+  "corrente_a": 20.0,
+  "comprimento_m": 30.0,
+  "tensao_v": 220.0,
+  "resistencia_ohm_km": 7.41,
+  "fator_correcao": 0.87,
+  "tabela_condutores": [
+    {
+      "secao_mm2": 2.5,
+      "capacidade_a": 24
+    },
+    {
+      "secao_mm2": 4,
+      "capacidade_a": 32
+    },
+    {
+      "secao_mm2": 6,
+      "capacidade_a": 41
+    },
+    {
+      "secao_mm2": 10,
+      "capacidade_a": 57
+    }
+  ],
+  "evidencia": {
+    "documento": "metadados declarados",
+    "edicao": "teste",
+    "referencia": "teste"
+  },
+  "vinculo_celulas": {
+    "registro_revisao": "F01-LOTE01-RT-2026-10-20-v1",
+    "celulas_ids": [
+      "CEL-01",
+      "CEL-02",
+      "CEL-03",
+      "CEL-04",
+      "CEL-05"
+    ],
+    "condicoes": {
+      "material": "Cu",
+      "isolacao": "PVC",
+      "temperatura_condutor_c": 70,
+      "metodo_referencia": "B1",
+      "metodo_instalacao": 3,
+      "descricao_instalacao": "Caso de ensaio: eletroduto aparente sobre parede",
+      "condutores_carregados": 2,
+      "meio": "AR",
+      "temperatura_ambiente_c": 40,
+      "radiacao_solar": false,
+      "radiacao_infravermelha": false,
+      "circuitos_agrupados": 1,
+      "agrupamento": "ISOLADO",
+      "grupo_homogeneo": true,
+      "carga_uniforme": true
+    }
+  },
+  "protecao_sobrecarga": {
+    "corrente_nominal_a": 20.0,
+    "corrente_atuacao_i2_a": 29.0,
+    "fonte": {
+      "documento": "SYNTHETIC TEST DEVICE, not a manufacturer",
+      "revisao": "test",
+      "referencia": "fixture",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "dispositivo_id": "SYNTHETIC-20"
+    },
+    "duracao_sobrecarga_h_12_meses": 100,
+    "duracao_sobrecarga_h_vida": 500
+  },
+  "protecao_curto_circuito": {
+    "dispositivo_id": "SYNTHETIC-20",
+    "corrente_nominal_a": 20,
+    "corrente_curto_max_a": 6000,
+    "capacidade_interrupcao_a": 6000,
+    "grandeza_capacidade": "Icn",
+    "tempo_eliminacao_s": 1,
+    "metodo_energia": "I_EFICAZ_QUADRADO_TEMPO",
+    "corrente_eficaz_atuacao_a": 100,
+    "assimetria_significativa": true,
+    "k_a_raiz_s_mm2": 100,
+    "material": "Cu",
+    "isolacao": "PVC",
+    "temperatura_inicial_c": 70,
+    "temperatura_final_c": 160,
+    "fonte_dispositivo": {
+      "documento": "SYNTHETIC software-test source, not manufacturer data",
+      "revisao": "fixture-v1",
+      "referencia": "synthetic independent arithmetic",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    "fonte_curto": {
+      "documento": "SYNTHETIC software-test source, not manufacturer data",
+      "revisao": "fixture-v1",
+      "referencia": "synthetic independent arithmetic",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    },
+    "fonte_k": {
+      "documento": "SYNTHETIC software-test source, not manufacturer data",
+      "revisao": "fixture-v1",
+      "referencia": "synthetic independent arithmetic",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  },
+  "estudo_coordenacao": {
+    "estudo_id": "SYNTHETIC-STUDY",
+    "dispositivo_sobrecarga_id": "SYNTHETIC-20",
+    "dispositivo_curto_id": "SYNTHETIC-20",
+    "corrente_curto_max_estudada_a": 6000,
+    "conclusao_declarada": "COMPATIVEL",
+    "seletividade_necessaria": true,
+    "seletividade_demonstrada": true,
+    "abrange_dr": false,
+    "escopo_estudo": "Synthetic study; no real curves or manufacturer statement",
+    "fonte": {
+      "documento": "SYNTHETIC software-test source, not manufacturer data",
+      "revisao": "fixture-v1",
+      "referencia": "synthetic independent arithmetic",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  },
+  "queda_impedancia": {
+    "tipo_circuito": "MONOFASICO_FASE_NEUTRO",
+    "regime": "SENOIDAL_PERMANENTE",
+    "harmonicas_relevantes": false,
+    "secao_mm2": 2.5,
+    "material": "Cu",
+    "isolacao": "PVC",
+    "temperatura_condutor_c": 70.0,
+    "frequencia_hz": 60.0,
+    "arranjo": "synthetic two equivalent conductors",
+    "rca_ohm_km": 2.0,
+    "xl_ohm_km": 0.1,
+    "fator_potencia": 0.8,
+    "natureza_carga": "INDUTIVA",
+    "fonte_rca": {
+      "documento": "SYNTHETIC TEST CABLE; NOT MANUFACTURER DATA",
+      "revisao": "test-v1",
+      "referencia": "synthetic arithmetic fixture",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    "fonte_xl": {
+      "documento": "SYNTHETIC TEST CABLE; NOT MANUFACTURER DATA",
+      "revisao": "test-v1",
+      "referencia": "synthetic arithmetic fixture",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    }
+  }
+}

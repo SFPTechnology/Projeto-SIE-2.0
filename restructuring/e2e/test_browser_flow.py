@@ -234,3 +234,111 @@ def test_local_immutable_revision_history_visible_without_normative_approval(pag
     expect(page.locator("#project-history-status")).to_contain_text("Credencial")
     expect(page.locator("#project-history-list button")).to_have_count(0)
     assert page.evaluate("localStorage.getItem('sie.localToken')") is None
+
+
+def test_import_conditional_case_trace_save_reload_and_stale_result_block(page,servers):
+    import json
+    fixture=ROOT/'examples'/'f01_verificacoes_complementares_demo.json'
+    page.locator('#analysis-case-file').set_input_files(str(fixture))
+    expect(page.locator('#analysis-case-status')).to_contain_text('Caso carregado')
+    page.locator('#analysis-form button[type="submit"]').click()
+    expect(page.locator('#resultado')).to_contain_text('CEL-01')
+    expect(page.locator('#resultado')).to_contain_text('I2=29 A')
+    expect(page.locator('#resultado')).to_contain_text('Queda com Rca e XL')
+    expect(page.locator('#resultado')).to_contain_text('coordenação completa permanecem pendentes')
+    page.locator('#project-token').fill(servers)
+    page.locator('#project-save').click()
+    expect(page.locator('#project-status')).to_contain_text('revisao 1')
+    pid=page.locator('#project-id').input_value()
+    saved=page.request.get(API_URL+'/api/v1/local/projetos/'+pid,
+                           headers={'Authorization':'Bearer '+servers}).json()
+    case=saved['dados']['circuitos'][0]
+    assert case['nome']=='Circuito 01'
+    assert case['queda_impedancia']['secao_mm2']==2.5
+    response=page.request.post(API_URL+'/api/v1/local/projetos/'+pid+'/revisoes/1/circuitos/Circuito%2001/ensaios',
+                               data=json.loads(fixture.read_text()),headers={'Authorization':'Bearer '+servers})
+    assert response.status==200
+    assert response.json()['trace_schema_version']==4
+    page.reload(wait_until='networkidle')
+    page.locator('#project-token').fill(servers);page.locator('#project-id').fill(pid)
+    page.locator('#project-load').click()
+    expect(page.locator('#project-status')).to_contain_text('revisao 1')
+    page.locator('#analysis-form button[type="submit"]').click()
+    expect(page.locator('#resultado')).to_contain_text('Queda com Rca e XL')
+    page.locator('input[name="corrente_a"]').fill('20.5')
+    page.locator('#analysis-form button[type="submit"]').click()
+    expect(page.locator('#resultado')).to_contain_text('não correspondem à seção selecionada')
+    page.locator('#project-save').click()
+    expect(page.locator('#project-status')).to_contain_text('Execute uma analise antes de salvar')
+
+
+def test_import_negative_i2_and_incompatible_context_never_claim_approval(page):
+    import json
+    fixture=json.loads((ROOT/'examples'/'f01_verificacoes_complementares_demo.json').read_text())
+    fixture['protecao_sobrecarga']['corrente_atuacao_i2_a']=100
+    page.locator('#analysis-case-file').set_input_files({'name':'negative.json','mimeType':'application/json',
+                                                      'buffer':json.dumps(fixture).encode()})
+    expect(page.locator('#analysis-case-status')).to_contain_text('Caso carregado')
+    page.locator('#analysis-form button[type="submit"]').click()
+    expect(page.locator('#resultado')).to_contain_text('Verificação não atendida')
+    expect(page.locator('#resultado')).to_contain_text('NAO_ATENDE')
+    expect(page.locator('#resultado .result-status.pending')).to_be_visible()
+    fixture['vinculo_celulas']['condicoes']['isolacao']='EPR_XLPE'
+    page.locator('#analysis-case-file').set_input_files({'name':'bad-context.json','mimeType':'application/json',
+                                                      'buffer':json.dumps(fixture).encode()})
+    page.locator('#analysis-form button[type="submit"]').click()
+    expect(page.locator('#resultado')).to_contain_text('fora do escopo')
+    assert 'Gate normativo aprovado.' not in page.locator('#resultado').inner_text()
+
+
+def test_invalid_import_discards_previous_case_and_mobile_keyboard_remains_usable(page):
+    page.set_viewport_size({'width':390,'height':844})
+    page.locator('#analysis-case-file').set_input_files({'name':'bad.json','mimeType':'application/json','buffer':b'[]'})
+    expect(page.locator('#analysis-case-status')).to_contain_text('Caso descartado')
+    page.locator('#analysis-case-file').locator('xpath=ancestor::details').locator('summary').click()
+    page.locator('#analysis-case-reset').focus()
+    assert page.locator('#analysis-case-reset').evaluate('(node)=>node===document.activeElement')
+    page.locator('#analysis-case-reset').click()
+    expect(page.locator('#analysis-case-status')).to_contain_text('Tabela sintética')
+    assert page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
+
+
+@pytest.mark.parametrize('action', ['reset', 'edit', 'import', 'load_empty'])
+def test_delayed_analysis_cannot_restore_stale_input(page, servers, action):
+    page.evaluate("""() => {
+      const original = window.fetch.bind(window);
+      window.fetch = async (...args) => {
+        const response = await original(...args);
+        if (String(args[0]).endsWith('/circuitos/analisar')) {
+          await new Promise(resolve => { window.releaseAnalysis = resolve; });
+        }
+        return response;
+      };
+    }""")
+    page.locator('#analysis-form button[type="submit"]').click()
+    page.wait_for_function('typeof window.releaseAnalysis === "function"')
+    if action == 'reset':
+        page.locator('#analysis-case-reset').locator('xpath=ancestor::details').evaluate('(node) => node.open = true')
+        page.locator('#analysis-case-reset').click()
+    elif action == 'edit':
+        page.locator('input[name="corrente_a"]').fill('21')
+    elif action == 'load_empty':
+        from uuid import uuid4
+        pid = str(uuid4())
+        response = page.request.put(API_URL + '/api/v1/local/projetos',
+            data={'id': pid, 'nome': 'Empty', 'dados': {'circuitos': []}, 'revisao_esperada': 0},
+            headers={'Authorization': 'Bearer ' + servers})
+        assert response.status == 200
+        page.locator('#project-token').fill(servers)
+        page.locator('#project-id').fill(pid)
+        page.locator('#project-load').click()
+        expect(page.locator('#project-status')).to_contain_text('Projeto recuperado')
+    else:
+        page.locator('#analysis-case-file').set_input_files(
+            str(ROOT / 'examples' / 'f01_verificacoes_complementares_demo.json'))
+        expect(page.locator('#analysis-case-status')).to_contain_text('Caso carregado')
+    page.evaluate('window.releaseAnalysis()')
+    expect(page.locator('#analysis-form button[type="submit"]')).to_be_enabled()
+    page.locator('#project-save').click()
+    expect(page.locator('#project-status')).to_contain_text('Execute uma analise antes de salvar')
+    assert 'Condutor selecionado' not in page.locator('#resultado').inner_text()

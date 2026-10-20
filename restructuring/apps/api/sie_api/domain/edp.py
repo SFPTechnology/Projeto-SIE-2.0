@@ -1,7 +1,7 @@
 """EDP São Paulo PT.DT.PDN.00068 v09 catalog, with provenance kept in code.
 
-The category entries below are transcribed from the repository's verified
-Tables 001/002 consolidation. Selecting a category by current is an explicit
+The category entries below are legacy candidates. Later source readings
+are documented separately and do not constitute professional homologation. Selecting a category by current is an explicit
 automation aid only: final EDP eligibility still depends on the distributor.
 """
 from dataclasses import dataclass

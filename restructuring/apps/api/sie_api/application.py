@@ -1,5 +1,6 @@
 """Use cases joining structural validation, calculations and release gates."""
 from decimal import Decimal
+from .complementary_checks import verificar_complementos
 from .cell_bindings import resolver_vinculo
 from .protection_checks import verificar_sobrecarga
 from .domain.engines import calcular_queda_tensao_monofasica, selecionar_condutor, selecionar_disjuntor
@@ -35,7 +36,10 @@ def analisar_circuito(payload: dict) -> dict:
     disjuntor = selecionar_disjuntor(corrente, condutor.capacidade_corrigida_a, CATALOGO_DISJUNTORES)
     protecao = verificar_sobrecarga(corrente, disjuntor.corrente_disjuntor_comercial_a,
                                     condutor.capacidade_corrigida_a, payload.get("protecao_sobrecarga"))
+    complementos = verificar_complementos(payload, condutor.secao_mm2,
+                                         disjuntor.corrente_disjuntor_comercial_a, vinculo)
     return {
+        **({"verificacoes_complementares": complementos} if complementos is not None else {}),
         "status_engenharia": status.value,
         "liberado_para_uso_normativo": status == StatusEngenharia.APROVADO,
         "aviso": None if status == StatusEngenharia.APROVADO else "Coordenação Ib ≤ In ≤ Iz calculada; consulte a verificação parcial de sobrecarga. Curto-circuito e coordenação completa pendentes. Uso normativo bloqueado até validação de fonte e testes independentes.",

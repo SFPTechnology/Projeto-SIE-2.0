@@ -2,10 +2,13 @@
 from decimal import Decimal
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field, ConfigDict
 from .application import analisar_circuito
 from .analysis_contracts import AnaliseCircuito, Evidencia, LinhaCondutor
 from .domain.edp import enquadrar_edp
+from .edp_context import ContextoEDP, enquadrar_com_contexto
 from .storage_api import router as storage_router
 from .normative_api import router as normative_router
 
@@ -16,6 +19,15 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT"],
     allow_headers=["Content-Type", "Authorization"],
 )
+@app.exception_handler(RequestValidationError)
+async def erro_validacao_seguro(request, exc):
+    # Do not echo raw input/context: nonfinite floats cannot be serialized as JSON.
+    return JSONResponse(status_code=422, content={"detail": [
+        {"loc": error["loc"], "msg": error["msg"], "type": error["type"]}
+        for error in exc.errors()
+    ]})
+
+
 app.include_router(storage_router)
 app.include_router(normative_router)
 
@@ -36,11 +48,12 @@ class Projeto(BaseModel):
 
 
 class EnquadramentoEDP(BaseModel):
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
     modalidade: str = Field(pattern="^[UDT]$")
     corrente_demanda_a: float = Field(gt=0)
     carga_instalada_kw: float = Field(gt=0)
     tem_carga_trifasica: bool = False
+    contexto: ContextoEDP | None = None
 
 
 @app.get("/api/v1/health")
@@ -68,6 +81,11 @@ def analisar(payload: AnaliseCircuito):
 @app.post("/api/v1/edp/enquadrar")
 def enquadrar_edp_endpoint(payload: EnquadramentoEDP):
     try:
+        if payload.contexto is not None:
+            return enquadrar_com_contexto(
+                payload.modalidade, Decimal(str(payload.corrente_demanda_a)),
+                Decimal(str(payload.carga_instalada_kw)), payload.tem_carga_trifasica,
+                payload.contexto.model_dump(mode="json"))
         return enquadrar_edp(
             payload.modalidade,
             Decimal(str(payload.corrente_demanda_a)),

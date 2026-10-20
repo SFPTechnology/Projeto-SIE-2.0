@@ -45,11 +45,18 @@
               <label>Comprimento do circuito (m)<input name="comprimento_m" type="number" min="0" value="30" step="0.01" required /></label>
               <label>Tensão nominal (V)<input name="tensao_v" type="number" min="0.01" value="220" step="0.01" required /></label>
               <label>Resistência do condutor (Ω/km)<input name="resistencia_ohm_km" type="number" min="0.01" value="7.41" step="0.01" required /></label>
-              <label>Fator de correção<input name="fator_correcao" type="number" min="0.01" max="1" value="0.80" step="0.01" required /></label>
+              <label>Fator de correção<input name="fator_correcao" type="number" min="0.01" max="1" value="0.80" step="any" required /></label>
               <label>Fonte / documento<input name="documento" value="Demonstração sintética não homologada" required /></label>
               <label>Edição<input name="edicao" value="EXEMPLO" required /></label>
               <label>Referência verificável<input name="referencia" value="Tabela fictícia de demonstração" required /></label>
             </div>
+            <details class="case-import">
+              <summary>Carregar caso técnico com fontes e condições</summary>
+              <p>Importe um arquivo JSON de análise preparado pelo projetista. Os dados serão conferidos pela API; a importação não concede aprovação normativa.</p>
+              <label>Arquivo do caso técnico<input id="analysis-case-file" type="file" accept=".json,application/json" /></label>
+              <button id="analysis-case-reset" type="button">Voltar à demonstração</button>
+              <p id="analysis-case-status" role="status" aria-live="polite">Nenhum caso importado. Tabela sintética de demonstração ativa.</p>
+            </details>
             <div class="check-row" role="status">Este protótipo não permite aprovar normas pelo formulário. As evidências serão verificadas por processo independente e auditado.</div>
             <div class="form-actions"><p>Resultado preliminar para análise técnica; não representa aprovação normativa ou autorização da distribuidora.</p><button class="primary" type="submit">Executar análise <span>→</span></button></div>
           </form>

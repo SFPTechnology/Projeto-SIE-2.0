@@ -2,6 +2,11 @@ const apiBase = localStorage.getItem('sie.apiBase') || 'http://127.0.0.1:8000';
 const health = document.querySelector('#health');
 const result = document.querySelector('#resultado');
 let ultimaAnalise = null;
+let entradaImportada = null;
+let geracaoAnalise = 0;
+function invalidarAnalise() { geracaoAnalise += 1; ultimaAnalise = null; }
+document.querySelector('#analysis-form').addEventListener('input', invalidarAnalise);
+document.querySelector('#analysis-form').addEventListener('reset', invalidarAnalise);
 
 async function checkHealth() {
   try { const r = await fetch(`${apiBase}/api/v1/health`); const data = await r.json(); health.textContent = `API online · ${data.version}`; health.style.color = 'var(--accent)'; }
@@ -12,13 +17,78 @@ function number(form, name) { return Number(value(form, name)); }
 function escapeHTML(value) { const node = document.createElement('span'); node.textContent = String(value ?? ''); return node.innerHTML; }
 function card(label, main, note) { return `<div class="result-card"><span>${escapeHTML(label)}</span><strong>${escapeHTML(main)}</strong><small>${escapeHTML(note)}</small></div>`; }
 
+function preencherCaso(entrada) {
+  invalidarAnalise();
+  if (!entrada || typeof entrada !== 'object' || Array.isArray(entrada)) throw new Error('O caso deve ser um objeto JSON.');
+  const form = document.querySelector('#analysis-form');
+  for (const field of ['corrente_a', 'comprimento_m', 'tensao_v', 'resistencia_ohm_km', 'fator_correcao']) {
+    if (typeof entrada[field] !== 'number' || !Number.isFinite(entrada[field])) throw new Error('Parâmetro numérico ausente ou inválido: ' + field);
+  }
+  if (!Array.isArray(entrada.tabela_condutores) || !entrada.evidencia || typeof entrada.evidencia !== 'object') throw new Error('O caso exige tabela e evidência declarada.');
+  for (const field of ['documento', 'edicao', 'referencia']) {
+    if (typeof entrada.evidencia[field] !== 'string') throw new Error('Evidência declarada incompleta.');
+  }
+  entradaImportada = structuredClone(entrada);
+  for (const field of ['corrente_a', 'comprimento_m', 'tensao_v', 'resistencia_ohm_km', 'fator_correcao']) {
+    form.elements[field].value = entrada[field]; form.elements[field].step = 'any';
+  }
+  for (const field of ['documento', 'edicao', 'referencia']) form.elements[field].value = entrada.evidencia[field];
+  ultimaAnalise = null;
+  document.querySelector('#analysis-case-status').textContent = 'Caso carregado; tabela, condições e fontes serão conferidas na análise. Nenhuma aprovação foi concedida.';
+}
+document.querySelector('#analysis-case-file').addEventListener('change', async (event) => {
+  try {
+    const file = event.target.files[0]; if (!file) return;
+    invalidarAnalise();
+    if (file.size > 1048576) throw new Error('O arquivo do caso excede 1 MiB.');
+    preencherCaso(JSON.parse(await file.text()));
+    result.textContent = 'Caso carregado. Execute a análise para conferir os dados.';
+  } catch (error) {
+    ultimaAnalise = null; entradaImportada = null; document.querySelector('#analysis-form').reset();
+    document.querySelector('#analysis-case-status').textContent = 'Caso descartado. Não foi possível importar: ' + error.message;
+  }
+});
+document.querySelector('#analysis-case-reset').addEventListener('click', () => {
+  entradaImportada = null; ultimaAnalise = null;
+  document.querySelector('#analysis-form').reset();
+  document.querySelector('#analysis-case-status').textContent = 'Tabela sintética de demonstração ativa.';
+  result.textContent = 'Demonstração restaurada. Execute uma nova análise.';
+});
+function erroApi(detail) {
+  if (typeof detail === 'string') return detail;
+  if (Array.isArray(detail)) return detail.map(e => (e.loc || []).join('.') + ': ' + e.msg).join('; ');
+  return 'Verifique os parâmetros informados.';
+}
+function detalhesTecnicos(data) {
+  const binding = data.vinculo_celulas;
+  let html = '<div class="technical-details"><h3>Fontes aplicadas e verificações</h3><div class="result-cards">';
+  if (binding) {
+    html += card('Células com aceite limitado', (binding.celulas || []).map(c => c.id).join(', '), binding.registro_revisao + ' · fonte declarada pelo responsável: ' + binding.fonte_sha256_declarada_rt);
+    const selected = (binding.celulas || []).find(c => c.tabela === '36' && Number(c.linha) === Number(data.condutor.secao_mm2));
+    html += card('Célula de capacidade selecionada', selected?.id || 'não identificada', binding.snapshot_sha256);
+    html += card('Condições de aplicação', binding.condicoes.material + ' / ' + binding.condicoes.isolacao + ' / ' + binding.condicoes.metodo_referencia, binding.condicoes.temperatura_ambiente_c + ' °C ambiente · ' + binding.condicoes.condutores_carregados + ' carregados · ' + binding.condicoes.circuitos_agrupados + ' circuito(s) agrupado(s)');
+  } else html += card('Fonte da capacidade', 'Tabela declarada', 'Sem vínculo de células aceitas no servidor.');
+  const overload = data.protecao_sobrecarga;
+  const additional = data.verificacoes_complementares;
+  if (overload?.status === 'NAO_ATENDE' || [additional?.curto_circuito, additional?.coordenacao_protecoes, additional?.queda_impedancia].some(c => c?.status?.startsWith('NAO_ATENDE'))) html += card('Verificação não atendida', 'Revisar os dados e o dimensionamento', 'Há resultado negativo em um dos critérios calculados.');
+  if (overload) html += card('Sobrecarga — cálculo parcial', overload.status, overload.i2_a ? ('I2=' + overload.i2_a + ' A · ' + overload.criterio_i2 + ' · limite=' + overload.limite_i2_a + ' A · duração ' + (overload.condicao_duracao_determinada ? 'determinada' : 'pendente') + ' · fonte do dispositivo não verificada') : overload.motivo);
+  const checks = data.verificacoes_complementares;
+  if (checks) {
+    html += card('Curto-circuito — cálculo parcial', checks.curto_circuito.status, 'Curvas/Ik mínimo e coordenação completa permanecem pendentes.');
+    html += card('Estudo de coordenação', checks.coordenacao_protecoes.status, checks.coordenacao_protecoes.motivo);
+    const drop = checks.queda_impedancia;
+    html += card('Queda com Rca e XL — cálculo parcial', drop.queda_percentual == null ? drop.status : drop.queda_percentual.toFixed(4) + '%', drop.formula || drop.motivo);
+  }
+  return html + '</div><p>Aceite limitado de células e cálculos parciais não constituem liberação normativa do circuito.</p></div>';
+}
+
 document.querySelector('[data-focus]').addEventListener('click', () => document.querySelector('#corrente').focus());
 // F01 has no normative approval capability. Even contradictory API flags stay pending.
 document.querySelector('#analysis-form').addEventListener('submit', async (event) => {
-  event.preventDefault(); const form = event.currentTarget; const submit = form.querySelector('[type=submit]'); submit.disabled = true; submit.textContent = 'Calculando…';
-  const payload = { corrente_a:number(form,'corrente_a'), comprimento_m:number(form,'comprimento_m'), tensao_v:number(form,'tensao_v'), resistencia_ohm_km:number(form,'resistencia_ohm_km'), fator_correcao:number(form,'fator_correcao'), tabela_condutores:[{secao_mm2:2.5,capacidade_a:24},{secao_mm2:4,capacidade_a:32},{secao_mm2:6,capacidade_a:41},{secao_mm2:10,capacidade_a:57}], evidencia:{documento:value(form,'documento'),edicao:value(form,'edicao'),referencia:value(form,'referencia')} };
-  try { const response = await fetch(`${apiBase}/api/v1/circuitos/analisar`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); const data = await response.json(); if(!response.ok) throw new Error(data.detail || 'Falha ao analisar'); ultimaAnalise = payload; const safeNotice = data.liberado_para_uso_normativo === false && data.status_engenharia === 'PENDENTE' ? data.aviso : 'Resposta normativa inconsistente com esta versão. Liberação bloqueada.'; result.innerHTML=`<div class="section-heading"><div><p class="eyebrow">02 · RESULTADO</p><h2>Decisão técnica</h2></div><span class="tag muted">PENDENTE</span></div><div class="result-status pending">Gate normativo não aprovado. ${escapeHTML(safeNotice||'')}</div><div class="result-cards">${card('Condutor selecionado',`${data.condutor.secao_mm2} mm²`,`${data.condutor.capacidade_corrigida_a} A · ${data.condutor.criterio}`)}${card('Disjuntor comercial',`${data.disjuntor.corrente_a} A`,data.disjuntor.criterio)}${card('Queda de tensão',`${data.queda_tensao.queda_percentual}%`,`${data.queda_tensao.queda_v} V · ${data.queda_tensao.formula}`)}${card('Evidência',data.rastreabilidade.fonte,`${data.rastreabilidade.edicao} · ${data.rastreabilidade.referencia}`)}</div>`; }
-  catch (error) { result.innerHTML=`<div class="section-heading"><div><p class="eyebrow">02 · RESULTADO</p><h2>Decisão técnica</h2></div></div><div class="result-status pending">Não foi possível concluir: ${escapeHTML(error.message)}</div>`; }
+  event.preventDefault(); invalidarAnalise(); const geracaoRequisicao = geracaoAnalise; const form = event.currentTarget; const submit = form.querySelector('[type=submit]'); submit.disabled = true; submit.textContent = 'Calculando…';
+  const payload = { ...(entradaImportada || {}), corrente_a:number(form,'corrente_a'), comprimento_m:number(form,'comprimento_m'), tensao_v:number(form,'tensao_v'), resistencia_ohm_km:number(form,'resistencia_ohm_km'), fator_correcao:number(form,'fator_correcao'), tabela_condutores:entradaImportada?.tabela_condutores || [{secao_mm2:2.5,capacidade_a:24},{secao_mm2:4,capacidade_a:32},{secao_mm2:6,capacidade_a:41},{secao_mm2:10,capacidade_a:57}], evidencia:{documento:value(form,'documento'),edicao:value(form,'edicao'),referencia:value(form,'referencia')} };
+  try { const response = await fetch(`${apiBase}/api/v1/circuitos/analisar`, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); const data = await response.json(); if (geracaoRequisicao !== geracaoAnalise) return; if(!response.ok) throw new Error(erroApi(data.detail)); ultimaAnalise = payload; const safeNotice = data.liberado_para_uso_normativo === false && data.status_engenharia === 'PENDENTE' ? data.aviso : 'Resposta normativa inconsistente com esta versão. Liberação bloqueada.'; result.innerHTML=`<div class="section-heading"><div><p class="eyebrow">02 · RESULTADO</p><h2>Decisão técnica</h2></div><span class="tag muted">PENDENTE</span></div><div class="result-status pending">Gate normativo não aprovado. ${escapeHTML(safeNotice||'')}</div><div class="result-cards">${card('Condutor selecionado',`${data.condutor.secao_mm2} mm²`,`${data.condutor.capacidade_corrigida_a} A · ${data.condutor.criterio}`)}${card('Disjuntor comercial',`${data.disjuntor.corrente_a} A`,data.disjuntor.criterio)}${card('Queda resistiva (legada)',`${data.queda_tensao.queda_percentual}%`,`${data.queda_tensao.queda_v} V · ${data.queda_tensao.formula}`)}${card('Evidência informada',data.rastreabilidade.fonte,`${data.rastreabilidade.edicao} · ${data.rastreabilidade.referencia}`)}</div>${detalhesTecnicos(data)}`; }
+  catch (error) { if (geracaoRequisicao !== geracaoAnalise) return; result.innerHTML=`<div class="section-heading"><div><p class="eyebrow">02 · RESULTADO</p><h2>Decisão técnica</h2></div></div><div class="result-status pending">Não foi possível concluir: ${escapeHTML(error.message)}</div>`; }
   finally { submit.disabled=false; submit.innerHTML='Executar análise <span>→</span>'; }
 });
 checkHealth();
@@ -60,7 +130,7 @@ document.querySelector('#project-save').addEventListener('click', async () => {
     const payload = {
       id,
       nome: projectName.value.trim(),
-      dados: { analise: ultimaAnalise },
+      dados: { analise: ultimaAnalise, circuitos: [{nome: 'Circuito 01', ...ultimaAnalise}] },
       revisao_esperada: Number(projectRevision.value),
     };
     const response = await fetch(localProjectApi, {
@@ -83,6 +153,7 @@ document.querySelector('#project-load').addEventListener('click', async () => {
     projectStatus.textContent = 'Informe o ID do projeto que deseja reabrir.';
     return;
   }
+  invalidarAnalise();
   const button = document.querySelector('#project-load');
   button.disabled = true;
   try {
@@ -95,6 +166,7 @@ document.querySelector('#project-load').addEventListener('click', async () => {
     projectRevision.value = String(saved.revisao);
     const entrada = saved.dados && saved.dados.analise;
     if (entrada && typeof entrada === 'object') {
+      preencherCaso(entrada);
       const form = document.querySelector('#analysis-form');
       for (const field of ['corrente_a', 'comprimento_m', 'tensao_v',
         'resistencia_ohm_km', 'fator_correcao']) {

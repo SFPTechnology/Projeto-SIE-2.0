@@ -7,7 +7,7 @@ from .domain.engines import (selecionar_condutor, selecionar_disjuntor,
                              calcular_queda_tensao_monofasica)
 from uuid import uuid4
 from .application import analisar_circuito
-from . import cell_bindings, protection_checks
+from . import cell_bindings, protection_checks, complementary_checks, protection_extended, voltage_checks
 
 ALGOS = (
     "sie_api.domain.engines.selecionar_condutor:v1",
@@ -90,6 +90,17 @@ def preparar_registro(projeto_id, revisao, circuito_nome, entrada, resultado):
         "normative_conformity_verified": False,
         "release_allowed": False,
     }
+    if resultado.get("verificacoes_complementares") is not None:
+        item["trace_schema_version"] = 4
+        item["complementary_provenance"] = {
+            "model_version": complementary_checks.VERSION,
+            "module_source_sha256": {
+                module.__name__.rsplit('.', 1)[-1]: sha256(getsource(module).encode()).hexdigest()
+                for module in (complementary_checks, protection_extended, voltage_checks)
+            },
+            "executed_checks": ["verificar_curto_circuito:v1", "verificar_coordenacao:v1",
+                                "calcular_queda_impedancia:v1"],
+        }
     serialized = _canonical(item)
     return item, serialized, sha256(serialized.encode("utf-8")).hexdigest()
 
@@ -98,7 +109,8 @@ def validar_registro(serialized, digest):
     if sha256(serialized.encode("utf-8")).hexdigest() != digest:
         raise ValueError("Integridade de ensaio de calculo comprometida")
     item = json.loads(serialized)
-    bound = item.get("trace_schema_version") == 3
+    bound = (item.get("trace_schema_version") == 3 or
+             (item.get("trace_schema_version") == 4 and item.get("limited_cell_binding") is not None))
     classification = ("SERVER_REGISTERED_LIMITED_ACCEPTANCE_NOT_MOTOR_APPROVAL" if bound
                       else "CLIENT_SUPPLIED_UNVERIFIED_NOT_NORMATIVE_CELL")
     if (item.get("calculation_trace_kind") != TYPE or
@@ -129,9 +141,9 @@ def validar_registro(serialized, digest):
     # Version 1 remains readable for historical local traces. Stronger v2
     # rejects internal inconsistencies even if someone recalculates the digest.
     version = item.get("trace_schema_version", 1)
-    if version not in (1, 2, 3):
+    if version not in (1, 2, 3, 4):
         raise ValueError("Versao do formato de ensaio nao suportada")
-    if version in (2, 3):
+    if version in (2, 3, 4):
         used = item["values_actually_used_by_algorithm"]
         line = used.get("selected_input_row")
         if not isinstance(line, dict):
@@ -189,4 +201,27 @@ def validar_registro(serialized, digest):
             bound or item.get("entrada", {}).get("protecao_sobrecarga") is not None or
             "protecao_sobrecarga" in item.get("resultado", {})):
         raise ValueError("Ensaio com células/proteção exige proveniência dos verificadores")
+    has_complementary = (
+        item.get("complementary_provenance") is not None or
+        item.get("resultado", {}).get("verificacoes_complementares") is not None or
+        any(item.get("entrada", {}).get(k) is not None for k in complementary_checks.FIELDS))
+    if version == 4 or has_complementary:
+        provenance = item.get("complementary_provenance")
+        if (version != 4 or implementations is None or not isinstance(provenance, dict) or
+                provenance.get("model_version") != complementary_checks.VERSION or
+                provenance.get("executed_checks") != ["verificar_curto_circuito:v1", "verificar_coordenacao:v1",
+                                                      "calcular_queda_impedancia:v1"]):
+            raise ValueError("Proveniência complementar ausente ou inválida")
+        hashes = provenance.get("module_source_sha256")
+        if (not isinstance(hashes, dict) or set(hashes) != {
+                "complementary_checks", "protection_extended", "voltage_checks"} or
+                any(not isinstance(h, str) or len(h) != 64 or any(c not in "0123456789abcdef" for c in h)
+                    for h in hashes.values())):
+            raise ValueError("Hashes de verificadores complementares inválidos")
+        result = item["resultado"]
+        expected = complementary_checks.verificar_complementos(
+            item["entrada"], Decimal(str(result["condutor"]["secao_mm2"])),
+            Decimal(str(result["disjuntor"]["corrente_a"])), item.get("limited_cell_binding"))
+        if expected is None or result.get("verificacoes_complementares") != expected:
+            raise ValueError("Verificações complementares inconsistentes com entrada/revisão")
     return item
