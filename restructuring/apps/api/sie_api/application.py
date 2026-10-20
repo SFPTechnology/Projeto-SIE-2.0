@@ -12,18 +12,22 @@ def analisar_circuito(payload: dict) -> dict:
     corrente = Decimal(str(payload["corrente_a"]))
     tensao = Decimal(str(payload["tensao_v"]))
     comprimento = Decimal(str(payload["comprimento_m"]))
-    # Coordinate section and commercial breaker together. The smallest In >= Ib
-    # is the minimum Iz any admissible pair needs. Selecting a section against
-    # that threshold is equivalent to scanning sections until a pair exists,
-    # including the case where the first Ib-sized section has no catalog In.
+    # Validate the complete table and preserve the original no-capacity error.
+    fator = Decimal(str(payload["fator_correcao"]))
+    tabela = tuple((Decimal(str(i["secao_mm2"])), Decimal(str(i["capacidade_a"])))
+                   for i in payload["tabela_condutores"])
+    condutor = selecionar_condutor(corrente, fator, tabela)
+    # For a section-independent catalog, the smallest In >= Ib is the minimum
+    # Iz any admissible pair needs. Scan all table candidates against that limit.
     nominal_minimo = selecionar_disjuntor(
         corrente, max((corrente, *CATALOGO_DISJUNTORES)), CATALOGO_DISJUNTORES,
     ).corrente_disjuntor_comercial_a
-    condutor = selecionar_condutor(
-        nominal_minimo, Decimal(str(payload["fator_correcao"])),
-        tuple((Decimal(str(i["secao_mm2"])), Decimal(str(i["capacidade_a"])))
-              for i in payload["tabela_condutores"]),
-    )
+    if condutor.capacidade_corrigida_a < nominal_minimo:
+        if not any(capacidade * fator >= nominal_minimo for _, capacidade in tabela):
+            # A section supports Ib, but none can also accommodate commercial In.
+            # Keep the F00 diagnostic contract instead of calling this lack of Ib capacity.
+            raise ValueError("Nenhum disjuntor comercial atende Ib ≤ In ≤ Iz")
+        condutor = selecionar_condutor(nominal_minimo, fator, tabela)
     queda = calcular_queda_tensao_monofasica(corrente, comprimento, Decimal(str(payload["resistencia_ohm_km"])), tensao)
     disjuntor = selecionar_disjuntor(corrente, condutor.capacidade_corrigida_a, CATALOGO_DISJUNTORES)
     return {
