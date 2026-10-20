@@ -71,3 +71,13 @@ File list: `restructuring/apps/api/sie_api/storage.py`, `analysis_contracts.py`,
 File list: `restructuring/apps/web/{app.js,index.html,styles.css}`; `restructuring/e2e/test_browser_flow.py`; relatório canônico, `RELATORIO_EXECUCAO.md` e esta story. Não altera números normativos, motores ou aprovação dos gates. PDF privado recebido não é publicado.
 
 Validação desta UI: contratos HTML/JS 4 testes locais passaram e node --check passou. Instalação Chromium local bloqueada por ZIP remoto truncado (0 MiB); E2E e inspeção visual serão conferidos no CI, sem alegação de execução local. `.github/workflows/sie-e2e-browser.yml` arquiva screenshots móveis do teste com formulário sem token.
+
+## Parecer lote 01 e correção R4 — 2026-10-20
+- [x] Registrar ACEITE_CONDICIONADO das 8 células/6 casos; Anexo A vazio, identificação/registro/data/assinatura incompletos; não é homologação.
+- [x] Manter P01–P08 abertas e registrar divergência R3 dos dois hashes de PDF sem substituição de fonte.
+- [x] Corrigir coordenação seção/disjuntor na aplicação, preservando primitivos/F00 e rejeição quando nenhum par existe.
+- [x] Registrar hash da orquestração em trilhas novas, mantendo leitura v1/v2 legada sem backfill.
+- [x] Adicionar 11 casos de regressão e validar 91 testes focados locais.
+- [ ] Resolver I2/contexto/fontes e demais pendências; R6 pacote original permanece pendente. G04/G06 e F02 não liberados.
+
+File list: `restructuring/apps/api/sie_api/application.py`, `calculation_traces.py`, `restructuring/apps/api/tests/test_coordinated_selection_f01.py`; relatórios canônicos e esta story. Parecer integral e tabelas/valores protegidos não foram publicados.
