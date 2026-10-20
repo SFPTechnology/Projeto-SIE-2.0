@@ -81,3 +81,5 @@ Validação desta UI: contratos HTML/JS 4 testes locais passaram e node --check 
 - [ ] Resolver I2/contexto/fontes e demais pendências; R6 pacote original permanece pendente. G04/G06 e F02 não liberados.
 
 File list: `restructuring/apps/api/sie_api/application.py`, `calculation_traces.py`, `restructuring/apps/api/tests/test_coordinated_selection_f01.py`; relatórios canônicos e esta story. Parecer integral e tabelas/valores protegidos não foram publicados.
+
+- [x] Regressão CI inicial identificou mensagem distinta no caso congelado ANALISE-IZ-ARREDONDADO; correção preserva diagnóstico sempar versus insuficiênciaIb, sem modificar fixtureF00.92 testes locais passam, incluindo12novos; hashfunção coordenadora atual `0021874e4bb77675bca71c36c167f359d61b36cf1bb45ba31616f04946756c7d`.
