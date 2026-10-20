@@ -319,7 +319,7 @@ class RepositorioProjetos:
         circuito_nome = circuito_nome.strip()
         if not isinstance(parametros, dict):
             raise ValueError("Parametros de ensaio invalidos")
-        solicitada = AnaliseCircuito.model_validate(parametros).model_dump(mode="json")
+        solicitada = AnaliseCircuito.model_validate(parametros).model_dump(mode="json", exclude_none=True)
         with self._conectar() as db:
             db.execute("BEGIN IMMEDIATE")
             atual = db.execute(
@@ -356,13 +356,13 @@ class RepositorioProjetos:
             try:
                 entrada = AnaliseCircuito.model_validate({
                     campo: armazenado[campo] for campo in campos if campo in armazenado
-                }).model_dump(mode="json")
+                }).model_dump(mode="json", exclude_none=True)
             except ValueError as exc:
                 raise ValueError(
                     "Circuito salvo incompleto ou inválido para ensaio; "
                     "salve uma nova revisão com todos os parâmetros de análise") from exc
             for campo in campos:
-                if entrada[campo] != solicitada[campo]:
+                if entrada.get(campo) != solicitada.get(campo):
                     raise ValueError(
                         f"Ensaio incompatível com campo salvo do circuito: {campo}")
             # Always execute the immutable server-saved input after comparison.
