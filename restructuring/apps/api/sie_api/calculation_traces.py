@@ -6,6 +6,7 @@ import json
 from .domain.engines import (selecionar_condutor, selecionar_disjuntor,
                              calcular_queda_tensao_monofasica)
 from uuid import uuid4
+from .application import analisar_circuito
 
 ALGOS = (
     "sie_api.domain.engines.selecionar_condutor:v1",
@@ -51,6 +52,10 @@ def preparar_registro(projeto_id, revisao, circuito_nome, entrada, resultado):
     }
     item = {
         "trace_schema_version": 2,
+        "orchestration_source": {
+            "id": "sie_api.application.analisar_circuito:v2",
+            "function_source_sha256": sha256(getsource(analisar_circuito).encode("utf-8")).hexdigest(),
+        },
         "values_actually_used_by_algorithm": applied_values,
         "id": str(uuid4()), "projeto_id": projeto_id,
         "revisao_projeto": revisao, "circuito_nome": circuito_nome,
@@ -92,6 +97,16 @@ def validar_registro(serialized, digest):
         item.get("normative_rule_ids_used_verified") != [] or
         item.get("normative_cells_used_verified") != []):
         raise ValueError("Registro de ensaio invalido ou alegacao de homologacao")
+    # Optional provenance preserves pre-existing v1/v2 traces without backfill.
+    orchestration = item.get("orchestration_source")
+    if orchestration is not None and (
+        not isinstance(orchestration, dict) or
+        orchestration.get("id") != "sie_api.application.analisar_circuito:v2" or
+        not isinstance(orchestration.get("function_source_sha256"), str) or
+        len(orchestration["function_source_sha256"]) != 64 or
+        any(c not in "0123456789abcdef" for c in orchestration["function_source_sha256"])
+    ):
+        raise ValueError("Proveniencia da orquestracao de calculo invalida")
     # Version 1 remains readable for historical local traces. Stronger v2
     # rejects internal inconsistencies even if someone recalculates the digest.
     version = item.get("trace_schema_version", 1)
