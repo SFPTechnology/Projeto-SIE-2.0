@@ -3,20 +3,17 @@ from decimal import Decimal
 from hashlib import sha256
 import json
 
-REVISION = 'F01-LOTE01-RT-2026-10-20-v1'
-SOURCE = 'e1c02de1e1b5ed070ad7b642e60e0491a0c899e83fe8f2ad5699a743842bbda6'
-ACCEPTANCE = '2ffbed5b4cb89a10eed13a42acac1fad4daa3873b90c30b5a9439af8846fdd6c'
-# Stable tuples: callers receive fresh JSON snapshots, never mutable globals.
-CELLS = (
-    ('CEL-01', '36', '2.5', '24', 'PVC'),
-    ('CEL-02', '36', '4', '32', 'PVC'),
-    ('CEL-03', '36', '6', '41', 'PVC'),
-    ('CEL-04', '36', '10', '57', 'PVC'),
-    ('CEL-05', '40', '40', '0.87', 'PVC'),
-    ('CEL-06', '40', '40', '0.91', 'EPR_XLPE'),
-    ('CEL-07', '42', '2', '0.80', 'PVC'),
-    ('CEL-08', '42', '3', '0.70', 'PVC'),
-)
+# Versioned data is packaged separately from the calculation implementation.
+# Keep this v1 resource/resolver when adding later revisions; never replace it.
+from importlib.resources import files
+
+_registry = json.loads(files('sie_api').joinpath('data/f01_lote01_cells_v1.json').read_text(encoding='utf-8'))
+REVISION = _registry['registro_revisao']
+SOURCE = _registry['fonte_sha256_declarada_rt']
+ACCEPTANCE = _registry['aceite_sha256']
+CELLS = tuple((c['id'], c['tabela'], c['linha'], c['valor'], c['isolacao'])
+              for c in _registry['celulas'])
+del _registry
 
 
 def _canonical(value):
