@@ -4,7 +4,7 @@ Story: `story-SIE-F01-GOVERNANCA-NORMATIVA.md`. Base: `d0b10bf2670db24886beff70a
 
 ## Resultado e limites
 
-O servidor dispõe de registro versionado das oito células aceitas no lote 01 e valida o vínculo de condições, IDs, capacidades e fatores antes de calcular. O aceite recebido tem SHA-256 `2ffbed5b4cb89a10eed13a42acac1fad4daa3873b90c30b5a9439af8846fdd6c`. Não se publica a identidade profissional ou o documento integral. A fonte de referência declarada pelo responsável é o exemplar `e1c02de1e1b5ed070ad7b642e60e0491a0c899e83fe8f2ad5699a743842bbda6`; não há declaração de equivalência byte a byte ou página a página com o exemplar anterior `45f246e3…aa3d`.
+O servidor dispõe de registro versionado separado do Python (`sie_api/data/f01_lote01_cells_v1.json`) das oito células aceitas no lote 01 e valida o vínculo de condições, IDs, capacidades e fatores antes de calcular. O aceite recebido tem SHA-256 `2ffbed5b4cb89a10eed13a42acac1fad4daa3873b90c30b5a9439af8846fdd6c`. Não se publica a identidade profissional ou o documento integral. A fonte de referência declarada pelo responsável é o exemplar `e1c02de1e1b5ed070ad7b642e60e0491a0c899e83fe8f2ad5699a743842bbda6`; não há declaração de equivalência byte a byte ou página a página com o exemplar anterior `45f246e3…aa3d`.
 
 O verificador de sobrecarga calcula `Ib ≤ In ≤ Iz` e `I2 ≤ 1,45 Iz`; aplica `I2 ≤ Iz` quando a duração excede 100 h em 12 meses OU 500 h na vida útil. Não deduz I2 de In. Dados e hash do dispositivo são declarações de entrada, não fontes verificadas pelo servidor.
 
