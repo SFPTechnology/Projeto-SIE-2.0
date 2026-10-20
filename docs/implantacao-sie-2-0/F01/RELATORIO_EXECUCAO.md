@@ -310,3 +310,50 @@ Incremento limitado implementado: registro server-side versionado e vínculo de 
 Validação informada pelo implementador: 200 testes locais passaram após ajuste de radiação infravermelha; revisão independente QA aprovou o incremento restrito com testes e combinações adversariais. CI do SHA publicado deve confirmar regressões completas/F00, AIOX e Chromium. Não se executa nova rodada QA3 cara neste marco parcial. QA3 operacional anterior foi 3+3 SUCCESS no run `39289599183` e baseline `29c506cbd4f0045c4d54e4f50098d989d7260194`, não revisão do código posterior.
 
 **P03 e P06 não concluídas integralmente. F01 BLOCKED; F02 não liberada.** Próximos bloqueios: proteção contra curto-circuito, seletividade/coordenação completa, proveniência verificada de dispositivos, cobertura de células e condições fora do lote, EDP, reconciliação dos exemplares/fontes e revisão final do SHA. O aceite limitado 14/8 não libera o motor, a instalação nem produção.
+
+## Checkpoint de interrupção do ambiente — 2026-10-20
+
+**Estado preservado: F01 BLOCKED; F02 não liberada.** O ambiente de execução tornou-se indisponível antes da conclusão das verificações integradas. Esta atualização publica somente este registro documental. Os novos candidatos locais descritos abaixo **não foram publicados no repositório** e não são apresentados como implementação integrada validada. Não há garantia de persistência ou recuperabilidade dos arquivos locais após a interrupção.
+
+### Baseline remota e evidências já concluídas
+
+A última baseline de código publicada e validada permanece `188220d278816548fadcb79473455f1c8e51269a`. Nela foram comprovados 332 testes de API, replay de 34 casos F00 com fixture intacta, AIOX lint/typecheck/test/build e 10 testes Chromium. Referências: [API](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39464072289), [AIOX](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39464072351), [Chromium](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39464072310). A publicação deste adendo não constitui CI de um novo candidato de código.
+
+O aceite profissional dos 14 itens do lote 01 é preservado no escopo recebido: oito células e seis casos, com P01–P08 pendentes. Nenhuma aprovação global ou autorização normativa foi acrescentada. Não houve nova execução QA3 nesta rodada; o QA3 anterior continua restrito ao seu próprio SHA.
+
+### Trabalho local relatado, pendente de recuperação e integração
+
+O coordenador informou candidatos locais para `protection_extended`, `voltage_checks`, `complementary_checks`, `edp_context` e respectivo registro JSON; integração em contratos de análise, aplicação, API principal, CLI e rastreabilidade v4; interface com importação de cenários, detalhes e salvamento do circuito; três novos testes E2E. A revisão QA acrescentou inventário/dashboard e verificações P07 de recuperação/restauração.
+
+Esses nomes identificam o trabalho a procurar e confrontar quando o ambiente retornar. Não comprovam que os arquivos ainda estão acessíveis, completos, versionados ou prontos para publicação. O novo código não foi transferido para o GitHub nesta interrupção.
+
+### Resultados parciais obtidos e resultados não obtidos
+
+Resultados locais comunicados pelo coordenador, limitados aos conjuntos executados e sem somar contagens potencialmente sobrepostas:
+
+| Conjunto | Resultado informado |
+|---|---|
+| P03/P04 | 61 testes passaram, em conjuntos de 35 e 26 |
+| Integração pontual | 11 testes passaram |
+| Contexto EDP, incluindo comportamento legado | 37 testes passaram |
+| Contrato web | 4 testes passaram |
+| Seleção/API e módulos relacionados, execução anterior desta rodada | 131 testes passaram |
+| Revisão QA de preflight/P07 no checkout completo | 22 testes passaram |
+
+**A suíte completa não tem resultado confirmado:** a sessão `20519` não pôde ser retomada após a indisponibilidade. A instalação Chromium na sessão `66433` também ficou sem resultado confirmado; isso não prova execução ou aprovação E2E. @devops não obteve resultados de `npm ci`, lint, typecheck, test ou build nesta rodada. Não declarar esses checks concluídos nem inferir seu sucesso a partir da CI da baseline anterior.
+
+### Fontes e conferências documentais em andamento
+
+A dupla leitura técnica EDP relatou conciliação de 13 categorias, com 78 de 78 campos conferidos entre as leituras. Esse resultado permanece pendente de aceite profissional e não homologa o catálogo ou a implementação. Persistem ressalvas sobre T7/T9, referência de tabela EPR e diferenças de termos no exemplo; devem ser resolvidas no documento original e no contexto de aplicação, sem escolher valores apenas por coincidirem com o legado.
+
+Três hashes/exemplares NBR foram tratados como distintos. O exemplar declarado no aceite com prefixo `e1c02de1` não foi localizado entre as cópias acessíveis nesta execução. Não equiparar exemplares, substituir o hash declarado, atribuir leituras a arquivo diferente ou ampliar o aceite dos 14 itens. Não se publica PDF, imagens normativas, documento pessoal integral ou dados profissionais neste checkpoint.
+
+### Próxima ação objetiva de retomada
+
+1. Restabelecido o ambiente, comparar a HEAD remota com a baseline de código acima e este commit documental, sem reset ou descarte.
+2. Procurar o checkout completo anteriormente provisionado e os candidatos locais; conferir arquivos efetivamente recuperados e seus diffs. Se faltarem, reconstruir a partir das evidências disponíveis, sem afirmar recuperação automática.
+3. Reconciliar inventário, contexto EDP e proveniência das fontes; preservar o lote aceito e os bloqueios que continuam sem evidência.
+4. Executar os testes locais faltantes, suíte completa, replay F00, npm e Chromium; resolver falhas antes de publicar o candidato integrado.
+5. Publicar somente incremento revisado pela autoridade @devops, conferir CI no mesmo SHA e atualizar os registros com os resultados reais. Não repetir QA3 caro antes de existir um novo marco verificável.
+
+Este checkpoint é preservação de estado e limitações, **não encerramento da F01**, homologação de novos dados, validação dos candidatos locais ou liberação da F02.
