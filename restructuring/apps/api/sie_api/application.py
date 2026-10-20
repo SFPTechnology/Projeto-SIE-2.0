@@ -1,5 +1,7 @@
 """Use cases joining structural validation, calculations and release gates."""
 from decimal import Decimal
+from .cell_bindings import resolver_vinculo
+from .protection_checks import verificar_sobrecarga
 from .domain.engines import calcular_queda_tensao_monofasica, selecionar_condutor, selecionar_disjuntor
 from .domain.gates import EvidenciaNormativa, StatusEngenharia, status_liberacao
 
@@ -7,6 +9,7 @@ CATALOGO_DISJUNTORES = tuple(Decimal(str(v)) for v in (6, 10, 16, 20, 25, 32, 40
 
 
 def analisar_circuito(payload: dict) -> dict:
+    payload, vinculo = resolver_vinculo(payload)
     evidencia = EvidenciaNormativa(**payload["evidencia"])
     status = status_liberacao(evidencia)
     corrente = Decimal(str(payload["corrente_a"]))
@@ -30,12 +33,16 @@ def analisar_circuito(payload: dict) -> dict:
         condutor = selecionar_condutor(nominal_minimo, fator, tabela)
     queda = calcular_queda_tensao_monofasica(corrente, comprimento, Decimal(str(payload["resistencia_ohm_km"])), tensao)
     disjuntor = selecionar_disjuntor(corrente, condutor.capacidade_corrigida_a, CATALOGO_DISJUNTORES)
+    protecao = verificar_sobrecarga(corrente, disjuntor.corrente_disjuntor_comercial_a,
+                                    condutor.capacidade_corrigida_a, payload.get("protecao_sobrecarga"))
     return {
         "status_engenharia": status.value,
         "liberado_para_uso_normativo": status == StatusEngenharia.APROVADO,
-        "aviso": None if status == StatusEngenharia.APROVADO else "Coordenação parcial Ib ≤ In ≤ Iz calculada; I2 e proteção completa não verificados. Uso normativo bloqueado até validação de fonte e testes independentes.",
-        "condutor": {"secao_mm2": float(condutor.secao_mm2), "capacidade_corrigida_a": float(condutor.capacidade_corrigida_a.quantize(Decimal("0.01"))), "capacidade_decisao_a": float(condutor.capacidade_corrigida_a), "criterio": "Seção coordenada com In comercial: Ib ≤ In ≤ Iz; I2 não verificado"},
+        "aviso": None if status == StatusEngenharia.APROVADO else "Coordenação Ib ≤ In ≤ Iz calculada; consulte a verificação parcial de sobrecarga. Curto-circuito e coordenação completa pendentes. Uso normativo bloqueado até validação de fonte e testes independentes.",
+        "condutor": {"secao_mm2": float(condutor.secao_mm2), "capacidade_corrigida_a": float(condutor.capacidade_corrigida_a.quantize(Decimal("0.01"))), "capacidade_decisao_a": float(condutor.capacidade_corrigida_a), "criterio": "Seção coordenada com In comercial: Ib ≤ In ≤ Iz; verificação de I2 no relatório de sobrecarga"},
         "disjuntor": {"corrente_a": float(disjuntor.corrente_disjuntor_comercial_a), "criterio": disjuntor.criterio},
         "queda_tensao": {"queda_v": float(queda.queda_v), "queda_percentual": float(queda.queda_percentual), "formula": queda.formula},
+        "vinculo_celulas": vinculo,
+        "protecao_sobrecarga": protecao,
         "rastreabilidade": {"fonte": evidencia.documento, "edicao": evidencia.edicao, "referencia": evidencia.referencia},
     }
