@@ -1,3 +1,15 @@
+
+## Atualização P06/P03 — lote 01, 2026-10-20
+
+Recebido aceite profissional declarado e confirmado no JSON privado, SHA-256 `2ffbed5b4cb89a10eed13a42acac1fad4daa3873b90c30b5a9439af8846fdd6c`: 8 células e 6 casos aceitos apenas no escopo do lote, P01–P08 pendentes. Nome, registro profissional e documento integral não são publicados; o registro sanitizado é `ACEITE_PROFISSIONAL_LOTE01_RECEBIDO_2026-10-20.json`. A referência declarada pelo responsável é o PDF `e1c02de1e1b5ed070ad7b642e60e0491a0c899e83fe8f2ad5699a743842bbda6`, distinto do exemplar anteriormente recebido `45f246e3e33db1bf18dd60743ac93b6ac1ec0796742e169a8014682bfb19aa3d`. Não se presume equivalência nem autenticação independente da credencial/assinatura.
+
+Incremento limitado implementado: registro server-side versionado e vínculo de IDs/condições/capacidades/fatores antes do cálculo; isolamento PVC/EPR, método e condições de agrupamento/temperatura/radiação. Verificação parcial de sobrecarga usa I2 declarado com proveniência do dispositivo, sem deduzir I2 de In; trata o limite ordinário e a NOTA conforme duração informada. Proveniência e condições integram a trilha, com rejeição de remoção/adulteração e compatibilidade histórica sem backfill. Exemplo CLI/API e limites constam em `IMPLEMENTACAO_P06_P03_LOTE01.md`.
+
+Validação informada pelo implementador: 200 testes locais passaram após ajuste de radiação infravermelha; revisão independente QA aprovou o incremento restrito com testes e combinações adversariais. CI do SHA publicado deve confirmar regressões completas/F00, AIOX e Chromium. Não se executa nova rodada QA3 cara neste marco parcial. QA3 operacional anterior foi 3+3 SUCCESS no run `39289599183` e baseline `29c506cbd4f0045c4d54e4f50098d989d7260194`, não revisão do código posterior.
+
+**P03 e P06 não concluídas integralmente. F01 BLOCKED; F02 não liberada.** Próximos bloqueios: proteção contra curto-circuito, seletividade/coordenação completa, proveniência verificada de dispositivos, cobertura de células e condições fora do lote, EDP, reconciliação dos exemplares/fontes e revisão final do SHA. O aceite limitado 14/8 não libera o motor, a instalação nem produção.
+
+---
 ## Atualização prevalecente — 2026-10-19, correção do vínculo de ensaios
 
 QA3 operacional concluído: run `39289599183` SUCCESS no baseline `29c506cbd4f0045c4d54e4f50098d989d7260194`, 3 primeiras passagens, 3 cruzadas e nove hashes revalidados. Instruções antigas abaixo sobre falta de autenticação/parecer não descrevem mais esse bloqueio.
