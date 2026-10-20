@@ -147,9 +147,16 @@
       "from": "UNREGISTERED",
       "to": "BLOCKED",
       "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
+    },
+    {
+      "activity": "F01",
+      "at": "2026-10-20",
+      "from": "BLOCKED",
+      "to": "BLOCKED",
+      "reason": "Incremento limitado P06/P03 e aceite profissional declarado do lote 01 (14 itens no escopo, oito pendências); curto-circuito, coordenação, cobertura e proveniência ainda impedem encerramento."
     }
   ],
-  "revision": 21,
+  "revision": 22,
   "schema_version": 1,
   "tasks": [
     {
@@ -721,8 +728,8 @@
         "normative_approval": false
       },
       "checkpoint": {
-        "at": "2026-10-19",
-        "summary": "PF01 real source inventory 24 dependencies (13 EDP categories, 11 unresolved data/rule groups); PF03 safe-engine ENG-001 Iz precision and ENG-002 tri-phase U/D block, downgrade unverified EDP claim, actual selected input-row provenance and local revision UX; PF02 still has 0 normatively reviewed cells, PF04 independent QA not run. F00 golden original replay remains unchanged.",
+        "at": "2026-10-20",
+        "summary": "QA3 operacional 3+3 e nove hashes comprovados no run39289599183/SHA29c506c; aceite profissional declarado do lote01 com 8 células e6 casos no escopo, oito pendências; vínculo server-side P06 e sobrecarga parcial P03 implementados. F01 BLOCKED; cobertura integral, curto-circuito, coordenação e proveniência pendentes.",
         "catalogue_snapshot_metadata": "IMPLEMENTED_LOCAL_ONLY",
         "applied_rule_snapshots": "PENDING_NORMATIVE_CELL_PROOF",
         "approved_numeric_cases": 0,
@@ -754,7 +761,7 @@
         "pf01": "PARTIAL_SOURCE_PRIMARY_VERIFICATION_PENDING",
         "pf02": "BLOCKED_EXTERNAL_PRIMARY_PROOFS",
         "pf03": "PARTIAL_EXECUTED_REAL_CODE_AND_TESTS",
-        "pf04": "CONFIGURED_NOT_EXECUTED",
+        "pf04": "EXECUTED_MACHINE_QA3_NOT_COMPLETE_NORMATIVE_SIGNOFF",
         "pf05": "SOFTWARE_CI_PASSED_NO_NORMATIVE_RELEASE",
         "last_proven_ci_commit": "a4c41553aecff0c479867e27f56cb0cb8c9cf612",
         "last_proven_ci_runs": [
@@ -773,9 +780,9 @@
         "edp_v09_pdf_binary_or_cells_rechecked": false,
         "abnt_5410_edition_publication_confirmed": true,
         "abnt_5410_primary_license_and_cells_verified": false,
-        "qa3_independent_executions": 0,
-        "qa3_cross_reviews": 0,
-        "implementation_round": "PREFLIGHT_QA3_TRACE_V2_CELL_WORKLIST",
+        "qa3_independent_executions": 3,
+        "qa3_cross_reviews": 3,
+        "implementation_round": "P06_P03_LOTE01_LIMITED_INCREMENT_PENDING_FINAL_CI",
         "scripts_added": [
           "scripts/f01_qa_workflow_audit.py",
           "scripts/f01_inventory_audit.py",
@@ -794,11 +801,11 @@
         "source_cell_inventory_certified_complete": false,
         "passed_acceptance_criteria": 1,
         "accepted_gates": 0,
-        "last_ci_confirmed_commit": "3d581d69f885e5d1202be4249e0fdae09e81694c",
+        "last_ci_confirmed_commit": "d0b10bf2670db24886beff70ab67ecf3ec8441e4",
         "last_ci_runs": {
-          "api": 39207007457,
-          "chromium": 39207007462,
-          "aiox": 39207007434
+          "api": 39365306956,
+          "chromium": 39365306920,
+          "aiox": 39365306802
         },
         "qa3_nine_file_bundle": "scripts/f01_qa3_evidence_bundle.py",
         "qa3_all_six_jobs_aggregate_requires_all": true,
@@ -806,14 +813,20 @@
         "qa3_real_cli_installed_test_no_auth": true,
         "qa3_cli_smoke_test_run": 39243775881,
         "qa3_cli_smoke_status": "PASS",
-        "qa3_credential_present_verified": false,
-        "blocker_current": "GITHUB_COPILOT_POLICY_DENIES_INFERENCE",
-        "qa3_latest_run_id": 39259071550,
-        "qa3_latest_run_status": "FAILURE"
+        "qa3_credential_present_verified": true,
+        "blocker_current": "NORMATIVE_COVERAGE_PROTECTION_AND_PROVENANCE_PENDING",
+        "qa3_latest_run_id": 39289599183,
+        "qa3_latest_run_status": "SUCCESS",
+        "scoped_lot_cells_accepted": 8,
+        "scoped_lot_cases_accepted": 6,
+        "scoped_lot_pending_items": 8,
+        "scoped_lot_receipt": "docs/implantacao-sie-2-0/F01/ACEITE_PROFISSIONAL_LOTE01_RECEBIDO_2026-10-20.json",
+        "p03_completion": "PARTIAL_NOT_COMPLETE",
+        "p06_completion": "PARTIAL_NOT_COMPLETE"
       },
       "qa3_program": {
         "configured": true,
-        "executed_agent_instances": 0,
+        "executed_agent_instances": 3,
         "independent_external_signoffs": 0,
         "goal_accepted_gates": "6/6",
         "actual_accepted_gates": 0,
@@ -836,9 +849,9 @@
         "manifest": "docs/implantacao-sie-2-0/F01/QA3_MANIFEST.json",
         "validator": "scripts/f01_release_gate.py",
         "guide": "docs/implantacao-sie-2-0/F01/LEIA_PRIMEIRO_QA3.md",
-        "qa01": "PENDENTE",
-        "qa02": "BLOQUEADO",
-        "qa03": "PENDENTE",
+        "qa01": "EXECUTED_NOT_NORMATIVE_SIGNOFF",
+        "qa02": "EXECUTED_NOT_NORMATIVE_SIGNOFF",
+        "qa03": "EXECUTED_NOT_NORMATIVE_SIGNOFF",
         "f02_allowed": false
       },
       "autonomous_yolo_execution": {
@@ -887,18 +900,18 @@
         "external_electrical_cell_reviews": 0
       },
       "copilot_qa3_environment": {
-        "status": "BLOCKED_REMOTE_COPILOT_POLICY",
+        "status": "OPERATIONAL_QA3_EXECUTED_SUCCESS_NOT_NORMATIVE_RELEASE",
         "branch": "feat/f01-governanca-normativa",
         "workflow": ".github/workflows/f01-copilot-qa-isolated.yml",
         "trigger": "docs/implantacao-sie-2-0/F01/COPILOT_RUN_REQUEST.md",
         "runbook": "docs/implantacao-sie-2-0/F01/ATIVAR_COPILOT_QA3_GITHUB_ACTIONS.md",
         "credential_secret_name": "F01_COPILOT_PAT",
         "credential_present_verified": true,
-        "requires_user_secret_action": true,
+        "requires_user_secret_action": false,
         "first_pass_independent_jobs": 3,
         "cross_review_jobs": 3,
-        "actual_successful_first_passes": 0,
-        "actual_successful_cross_reviews": 0,
+        "actual_successful_first_passes": 3,
+        "actual_successful_cross_reviews": 3,
         "qa_report_validator": "scripts/f01_copilot_reports_gate.py",
         "permissions": "contents:read; no pushes",
         "source_attestation_not_automated": true,
@@ -914,7 +927,7 @@
         "no_token_copilot_cli_smoke_run": 39243775881,
         "qa_evidence_sha_bundle_enabled": true,
         "secret_present_in_actions_preflight": true,
-        "model_inference_authorized": false,
+        "model_inference_authorized": true,
         "first_attempt": {
           "run_id": 39258820804,
           "sha": "fcc9b37a709701e3ae10cb90951e5832756ddf0b",
@@ -925,7 +938,9 @@
           "sha": "98ef1706de4776b27309c379f2dcfa5b44e6c0a1",
           "reason": "GITHUB_COPILOT_ACCESS_DENIED_BY_POLICY_SETTINGS"
         },
-        "next_action": "Check account Copilot license and Copilot CLI policy; fine-grained personal PAT Account: Copilot Requests write; then re-run on current F01 SHA"
+        "next_action": "Review P06/P03 limited increment CI on final SHA; complete outstanding protection, coverage and provenance before a new QA3 milestone.",
+        "last_successful_run_id": 39289599183,
+        "last_successful_baseline": "29c506cbd4f0045c4d54e4f50098d989d7260194"
       }
     }
   ]
