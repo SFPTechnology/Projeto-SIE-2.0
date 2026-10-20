@@ -14,11 +14,12 @@ sys.modules[spec.name] = mod
 spec.loader.exec_module(mod)
 
 
-def test_planner_is_dry_run_and_keeps_f00_done_f01_blocked():
+def test_planner_is_dry_run_and_respects_owner_closed_f01():
     preview = mod.planned_tasks(ROOT)
     assert preview["mode"] == "DRY_RUN"
     assert preview["f00"] == "DONE"
-    assert preview["f01"] == "BLOCKED"
+    assert preview["f01"] == "DONE"
+    assert preview["f02_development_allowed"] is True
     assert preview["f02"] is False
     assert preview["agent_sessions_started"] == 0
     assert preview["gates_accepted"] == 0

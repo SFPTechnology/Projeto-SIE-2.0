@@ -118,7 +118,8 @@
   "notes": [
     "Creating agent profiles does not execute them or establish independent professional approval.",
     "0 verified normative cells and 0 normative numeric reference cases as documented in F01.",
-    "NR-10 Portaria MTE 737/2026 official PDF read for art.3/art.5; does not certify ABNT/EDP numerical cells or G06."
+    "NR-10 Portaria MTE 737/2026 official PDF read for art.3/art.5; does not certify ABNT/EDP numerical cells or G06.",
+    "Decisão prevalecente 2026-10-20: encerramento de projeto por aceite do titular; state/gates neste manifesto permanecem resultado técnico, não impedem desenvolvimento autorizado."
   ],
   "agent_baseline_sha": "8aec14ac0817ba75ea5e5cee90240368807f1bf7",
   "activation": "YOLO_V2_CONFIGURED_NOT_EXECUTED",
@@ -147,5 +148,11 @@
     "independent_second_reader": false,
     "professional_signoff": false
   },
-  "latest_code_tested_commit": "a4c41553aecff0c479867e27f56cb0cb8c9cf612"
+  "latest_code_tested_commit": "a4c41553aecff0c479867e27f56cb0cb8c9cf612",
+  "project_acceptance": {
+    "path": "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json",
+    "sha256": "5c526a2fa62328c4e6e3a1e2763b1f4a64f0be54dd9e4048d603a401c4646ca0"
+  },
+  "project_completion_state": "DONE",
+  "f02_development_allowed": true
 }

@@ -112,3 +112,15 @@ File list: `restructuring/apps/api/sie_api/{analysis_contracts.py,application.py
 File list desta retomada: `sie_api/{analysis_contracts,application,calculation_traces,cli,main,complementary_checks,protection_extended,voltage_checks,edp_context}.py`, `sie_api/domain/edp.py`, `sie_api/data/edp_context_v1.json` (sob restructuring/apps/api); `restructuring/apps/api/tests/test_complementary_integration_f01.py`, `test_edp_context_f01.py`, `test_f01_progress_scope_metrics.py`, `test_p07_restore_isolation_f01.py`, `test_protection_extended_f01.py`, `test_voltage_impedance_f01.py` (os seis sob o mesmo diretório de testes); `restructuring/apps/web/{app.js,index.html,styles.css}`; `restructuring/e2e/test_browser_flow.py`; `scripts/f01_{inventory_audit,gate_dashboard}.py`; `docs/implantacao-sie-2-0/F01/{EDP_CONCILIACAO_LOTE02.json,P04_MODELO_QUEDA_IMPEDANCIA.md,RELATORIO_EXECUCAO.md}` e esta story.
 
 CI final do incremento: API https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505791712 ; AIOX https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505791748 ; Chromium https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39505791783 . CodeRabbit não executado por CLI indisponível; story global e gates normativos seguem BLOCKED.
+
+
+## Encerramento por aceite do titular — 2026-10-20
+
+Instrução expressa do usuário: considerar todas as exigências validadas e finalizar o sistema. Critério de aceite desta alteração: registrar o aceite real, encerrar F01 no fluxo de projeto e permitir desenvolvimento F02 sem fabricar verificação normativa ou modificar os aceites anteriores/F00. Status desta alteração: Ready for Review; validação local concluída, publicação/CI pendente.
+
+- [x] Registrar decisão literal e hash, com distinção entre aceite de projeto e comprovação técnica.
+- [x] Encerrar requisitos de projeto F01 por aceite do titular, mantendo valores técnicos anteriores auditáveis.
+- [x] Validar guardião/dashboard/orquestrador:449 testes API,34 F00 e AIOX aprovados localmente.
+- [ ] Publicar decisão e confirmar CI no SHA correspondente.
+
+File list: `ACEITE_TITULAR_ENCERRAMENTO_F01.json`, `QA3_MANIFEST.json`, `RELATORIO_EXECUCAO.md` na F01; `docs/sie-orchestrator/{ORCHESTRATOR_STATE.json,NEXT_ACTION.md,PROJECT_STATE.md,EXECUTION_QUEUE.md}`; `scripts/f01_{release_gate,gate_dashboard,yolo_runner}.py`; testes de governança F01 afetados em `restructuring/apps/api/tests/`; esta story.

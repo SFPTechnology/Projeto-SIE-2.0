@@ -1,3 +1,7 @@
+## Decisão vigente — 20/10/2026
+
+**F01 DONE por aceite expresso do titular. F02 liberada para desenvolvimento.** A decisão está em `docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json`, vinculada por SHA-256 ao manifesto e orquestrador. As pendências técnicas anteriores permanecem registradas como limites de uso, sem bloquear o avanço autorizado do desenvolvimento. Aceites do lote 01 e F00 preservados; nenhuma nova homologação normativa ou liberação de produção é atribuída. Os registros abaixo são históricos quando conflitarem com esta decisão.
+
 # PROJECT_STATE — SIE Autonomous Development Orchestrator
 
 ## Checkpoint F01 — retomada de 15/10/2026

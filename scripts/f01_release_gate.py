@@ -42,6 +42,42 @@ def evidence_ok(root: Path, obj: object) -> bool:
         return False
 
 
+
+DECISION_PATH = "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+
+
+def project_acceptance(root: Path, manifest: dict, phase: dict) -> tuple[bool, list[str]]:
+    """Recognize a recorded owner decision, never technical or production approval.
+
+    Hashes establish checkout integrity, not an independently authenticated signature.
+    The statement remains the owner's recorded instruction, not a QA attestation.
+    """
+    manifest_ref = manifest.get("project_acceptance")
+    phase_ref = phase.get("project_acceptance")
+    if manifest_ref is None and phase_ref is None:
+        return False, []
+    if (not isinstance(manifest_ref, dict) or manifest_ref != phase_ref or
+            set(manifest_ref) != {"path", "sha256"} or
+            manifest_ref.get("path") != DECISION_PATH or not evidence_ok(root, manifest_ref)):
+        return False, ["Aceite do titular ausente, divergente ou com integridade inválida"]
+    try:
+        decision = load_json(root / DECISION_PATH)
+    except (OSError, ValueError):
+        return False, ["Documento de aceite do titular inválido"]
+    required = {"schema_version": 1, "phase": "F01",
+                "kind": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT", "status": "ACCEPTED",
+                "development_release_allowed": True,
+                "normative_conformity_verified": False, "production_release_allowed": False,
+                "date": "2026-10-20"}
+    if (not isinstance(decision, dict) or
+            any(type(decision.get(k)) is not type(v) or decision.get(k) != v
+                for k, v in required.items()) or
+            not isinstance(decision.get("statement"), str) or
+            not decision["statement"].startswith("CONSIDERE TODAS AS EXIGÊNCIAS VALIDADAS.")):
+        return False, ["Aceite deve autorizar somente desenvolvimento, sem atestação normativa/produção"]
+    return True, []
+
+
 def inspect(root: Path, manifest: dict, state: dict) -> dict:
     faults = []
     if manifest.get("schema_version") != 1 or manifest.get("phase") != "F01":
@@ -109,6 +145,10 @@ def inspect(root: Path, manifest: dict, state: dict) -> dict:
             faults.append("Revisão cruzada com estado inválido")
     phase = next((t for t in state.get("tasks", []) if t.get("id") == "F01"), {})
     precursor = next((t for t in state.get("tasks", []) if t.get("id") == "F00"), {})
+    owner_accepted, decision_errors = project_acceptance(root, manifest, phase)
+    faults.extend(decision_errors)
+    if owner_accepted and manifest.get("state") == "DONE":
+        faults.append("Aceite de desenvolvimento não encerra manifesto técnico normativo")
     if precursor.get("state") != "DONE":
         faults.append("F00 precisa estar DONE")
     if not phase:
@@ -117,7 +157,7 @@ def inspect(root: Path, manifest: dict, state: dict) -> dict:
         faults.append("Estado F01 desconhecido no manifesto")
     if manifest.get("state") == "DONE" and phase.get("state") != "DONE":
         faults.append("Manifesto diz DONE mas orquestrador não")
-    if phase.get("state") == "DONE" and manifest.get("state") != "DONE":
+    if phase.get("state") == "DONE" and manifest.get("state") != "DONE" and not owner_accepted:
         faults.append("Orquestrador diz DONE mas manifesto não")
     if phase.get("state") != "DONE" and manifest.get("f02_release_allowed") is not False:
         faults.append("F02 não pode ser liberada com F01 bloqueada")
@@ -127,13 +167,18 @@ def inspect(root: Path, manifest: dict, state: dict) -> dict:
     evidence_ready = (len(pass_gates) == 6 and reviews_all and
                       signoff.get("status") == "VERIFIED" and
                       bool(signoff.get("signed_evidence")))
-    if phase.get("state") == "DONE" and not evidence_ready:
+    if phase.get("state") == "DONE" and not evidence_ready and not owner_accepted:
         faults.append("F01 DONE sem 6 gates, três pareceres independentes e atestação externa")
     if manifest.get("f02_release_allowed") is True and not evidence_ready:
         faults.append("F02 liberada sem pré-requisitos")
     return {"phase": "F01", "passed_gates": sorted(pass_gates),
             "total_gates": 6, "evidence_ready_for_external_decision": evidence_ready,
             "f01_state": phase.get("state"), "f02_release_allowed": manifest.get("f02_release_allowed"),
+            "project_f01_closed": phase.get("state") == "DONE" and owner_accepted and not faults,
+            "f02_development_allowed": phase.get("state") == "DONE" and owner_accepted and not faults,
+            "closure_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT" if owner_accepted else None,
+            "normative_conformity_verified": False,
+            "production_release_allowed": False,
             "integrity_errors": faults,
             "note": "Conferência estrutural e de hash NÃO certifica normas ou revisão humana."}
 
@@ -161,7 +206,9 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--verify-invariants", action="store_true")
-    parser.add_argument("--check-release", action="store_true")
+    checks = parser.add_mutually_exclusive_group()
+    checks.add_argument("--check-release", action="store_true")
+    checks.add_argument("--check-development", action="store_true")
     args = parser.parse_args(argv)
     root = args.root.resolve()
     manifest = load_json(root / "docs/implantacao-sie-2-0/F01/QA3_MANIFEST.json")
@@ -171,6 +218,8 @@ def main(argv=None):
     print(json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2))
     if result["integrity_errors"]:
         return 2
+    if args.check_development:
+        return 0 if result["f02_development_allowed"] else 1
     if args.check_release:
         # Revisão humana e homologação documental continuam sendo etapas externas.
         return 0 if result["evidence_ready_for_external_decision"] else 1

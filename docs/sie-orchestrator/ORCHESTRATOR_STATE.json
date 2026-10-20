@@ -154,9 +154,16 @@
       "from": "BLOCKED",
       "to": "BLOCKED",
       "reason": "Incremento limitado P06/P03 e aceite profissional declarado do lote 01 (14 itens no escopo, oito pendências); curto-circuito, coordenação, cobertura e proveniência ainda impedem encerramento."
+    },
+    {
+      "activity": "F01",
+      "at": "2026-10-20",
+      "from": "BLOCKED",
+      "to": "DONE",
+      "reason": "Aceite expresso do titular registrado em docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json; encerramento de projeto para desenvolvimento, sem inventar homologação normativa."
     }
   ],
-  "revision": 22,
+  "revision": 23,
   "schema_version": 1,
   "tasks": [
     {
@@ -643,78 +650,108 @@
       "priority": 95,
       "impact": 10,
       "risk": 7,
-      "requirements_verified": false,
-      "state": "BLOCKED",
+      "requirements_verified": true,
+      "state": "DONE",
       "criteria": [
         {
           "id": "AC-01.01",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/implantacao-sie-2-0/F01/MATRIZ_REQUISITOS_APLICABILIDADE.md"
-          ]
+            "docs/implantacao-sie-2-0/F01/MATRIZ_REQUISITOS_APLICABILIDADE.md",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
         },
         {
           "id": "AC-01.02",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/implantacao-sie-2-0/F01/MATRIZ_REQUISITOS_APLICABILIDADE.csv"
-          ]
+            "docs/implantacao-sie-2-0/F01/MATRIZ_REQUISITOS_APLICABILIDADE.csv",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
         },
         {
           "id": "AC-01.03",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/implantacao-sie-2-0/F01/CATALOGO_FONTES_NORMATIVAS.json"
-          ]
+            "docs/implantacao-sie-2-0/F01/CATALOGO_FONTES_NORMATIVAS.json",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
         },
         {
           "id": "AC-01.04",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/implantacao-sie-2-0/F01/REGISTRO_REGRAS_NORMATIVAS.md"
-          ]
+            "docs/implantacao-sie-2-0/F01/REGISTRO_REGRAS_NORMATIVAS.md",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
         },
         {
           "id": "AC-01.05",
           "passed": true,
           "evidence": [
-            "restructuring/apps/api/tests/test_normative_f01.py"
-          ]
+            "restructuring/apps/api/tests/test_normative_f01.py",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": true,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
         },
         {
           "id": "AC-01.06",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "restructuring/apps/api/sie_api/data/normative_registry.json"
-          ]
+            "restructuring/apps/api/sie_api/data/normative_registry.json",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
         },
         {
           "id": "AC-01.07",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/implantacao-sie-2-0/F01/REGISTRO_REGRAS_NORMATIVAS.md"
-          ]
+            "docs/implantacao-sie-2-0/F01/REGISTRO_REGRAS_NORMATIVAS.md",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
         },
         {
           "id": "AC-01.08",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/implantacao-sie-2-0/F01/CASES_REFERENCIA_ENGENHARIA/README.md"
-          ]
+            "docs/implantacao-sie-2-0/F01/CASES_REFERENCIA_ENGENHARIA/README.md",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
         },
         {
           "id": "AC-01.09",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "restructuring/apps/api/sie_api/normative_api.py"
-          ]
+            "restructuring/apps/api/sie_api/normative_api.py",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
         },
         {
           "id": "AC-01.10",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md"
-          ]
+            "docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
         }
       ],
       "source_refs": [
@@ -729,7 +766,7 @@
       },
       "checkpoint": {
         "at": "2026-10-20",
-        "summary": "QA3 operacional 3+3 e nove hashes comprovados no run39289599183/SHA29c506c; aceite profissional declarado do lote01 com 8 células e6 casos no escopo, oito pendências; vínculo server-side P06 e sobrecarga parcial P03 implementados. F01 BLOCKED; cobertura integral, curto-circuito, coordenação e proveniência pendentes.",
+        "summary": "F01 encerrada no projeto por aceite expresso do titular; F02 liberada para desenvolvimento. Resultado técnico normativo preservado, sem homologação global ou publicação em produção.",
         "catalogue_snapshot_metadata": "IMPLEMENTED_LOCAL_ONLY",
         "applied_rule_snapshots": "PENDING_NORMATIVE_CELL_PROOF",
         "approved_numeric_cases": 0,
@@ -814,7 +851,7 @@
         "qa3_cli_smoke_test_run": 39243775881,
         "qa3_cli_smoke_status": "PASS",
         "qa3_credential_present_verified": true,
-        "blocker_current": "NORMATIVE_COVERAGE_PROTECTION_AND_PROVENANCE_PENDING",
+        "blocker_current": null,
         "qa3_latest_run_id": 39289599183,
         "qa3_latest_run_status": "SUCCESS",
         "scoped_lot_cells_accepted": 8,
@@ -822,7 +859,8 @@
         "scoped_lot_pending_items": 8,
         "scoped_lot_receipt": "docs/implantacao-sie-2-0/F01/ACEITE_PROFISSIONAL_LOTE01_RECEBIDO_2026-10-20.json",
         "p03_completion": "PARTIAL_NOT_COMPLETE",
-        "p06_completion": "PARTIAL_NOT_COMPLETE"
+        "p06_completion": "PARTIAL_NOT_COMPLETE",
+        "f02_development_allowed": true
       },
       "qa3_program": {
         "configured": true,
@@ -941,6 +979,11 @@
         "next_action": "Review P06/P03 limited increment CI on final SHA; complete outstanding protection, coverage and provenance before a new QA3 milestone.",
         "last_successful_run_id": 39289599183,
         "last_successful_baseline": "29c506cbd4f0045c4d54e4f50098d989d7260194"
+      },
+      "completion_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT",
+      "project_acceptance": {
+        "path": "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json",
+        "sha256": "5c526a2fa62328c4e6e3a1e2763b1f4a64f0be54dd9e4048d603a401c4646ca0"
       }
     }
   ]

@@ -22,11 +22,13 @@ def test_github_agent_skills_declared_and_independent_paths_exist():
     assert guard.verify_profiles(ROOT) == []
 
 
-def test_f01_current_state_is_blocked_not_fake_100_percent():
+def test_f01_current_project_closed_without_fake_normative_100_percent():
     m, state = _docs()
     out = guard.inspect(ROOT, m, state)
     assert out["integrity_errors"] == []
-    assert out["f01_state"] == "BLOCKED"
+    assert out["f01_state"] == "DONE"
+    assert out["project_f01_closed"] is True
+    assert out["f02_development_allowed"] is True
     assert out["passed_gates"] == []
     assert out["evidence_ready_for_external_decision"] is False
     assert out["f02_release_allowed"] is False
@@ -59,8 +61,10 @@ def test_agent_sessions_must_not_share_same_first_pass_commit():
     assert any("mesmo commit" in error for error in err)
 
 
-def test_f01_done_without_external_evidence_is_rejected():
+def test_f01_done_without_external_evidence_or_owner_decision_is_rejected():
     m, state = _docs()
+    m.pop("project_acceptance", None)
+    next(t for t in state["tasks"] if t["id"] == "F01").pop("project_acceptance", None)
     m["state"] = "DONE"
     for task in state["tasks"]:
         if task["id"] == "F01":
@@ -82,3 +86,4 @@ def test_f01_gate_main_verifies_without_changing_source(tmp_path):
     # Verify stdout/exit semantics against committed source; no edits or side effects.
     assert guard.main(["--root", str(ROOT), "--verify-invariants"]) == 0
     assert guard.main(["--root", str(ROOT), "--check-release"]) == 1
+    assert guard.main(["--root", str(ROOT), "--check-development"]) == 0

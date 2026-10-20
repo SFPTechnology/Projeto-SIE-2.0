@@ -107,7 +107,10 @@ def test_six_gates_and_ten_criteria_report_only_actual_accepted():
     assert result["verified_cross_reviews"] == 0
     assert not result["eligible_for_external_release_review"]
     assert result["f00_state"] == "DONE"
-    assert result["f01_state"] == "BLOCKED"
+    assert result["f01_state"] == "DONE"
+    assert result["f02_development_allowed"] is True
+    assert result["owner_accepted_acceptance_criteria"] == 10
+    assert result["technical_open_items"]
 
 
 def test_gates_reject_premature_approval_and_f02_release():
@@ -127,5 +130,7 @@ def test_gates_reject_missing_ac_or_false_phase_done():
     assert dashboard.inspect(manifest, tampered)["integrity_errors"]
     tampered = deepcopy(state)
     next(t for t in tampered["tasks"] if t["id"] == "F01")["state"] = "DONE"
+    next(t for t in tampered["tasks"] if t["id"] == "F01").pop("project_acceptance", None)
+    manifest.pop("project_acceptance", None)
     result = dashboard.inspect(manifest, tampered)
     assert any("falsely claimed" in s for s in result["integrity_errors"])

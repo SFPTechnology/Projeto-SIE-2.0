@@ -71,6 +71,17 @@ def frozen_state(root: Path = ROOT) -> dict:
     tasks = {item["id"]: item for item in state["tasks"]}
     if tasks["F00"]["state"] != "DONE":
         raise Blocked("BLOCKED_PREDECESSOR", "F00 não está DONE; abortar sem reabri-la")
+    if tasks["F01"]["state"] == "DONE":
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("f01_closure_guard", ROOT / "scripts/f01_release_gate.py")
+        guard = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(guard)
+        report = guard.inspect(root, manifest, state)
+        if report.get("project_f01_closed") and not report["integrity_errors"]:
+            return {"f00": "DONE", "f01": "DONE", "f02": False,
+                    "f02_development_allowed": True,
+                    "gates_accepted": sum(g["accepted"] is True for g in manifest["gates"]),
+                    "agent_baseline_sha": manifest["agent_baseline_sha"]}
     if tasks["F01"]["state"] != "BLOCKED" or manifest["state"] not in PASS_STATES:
         raise Blocked("BLOCKED_STATE", "Estado inicial F01 inesperado")
     if manifest.get("f02_release_allowed") is not False:
@@ -487,6 +498,11 @@ def main(argv=None) -> int:
         if not args.sandbox_confirmed:
             raise Blocked("BLOCKED_SECURITY",
                           "YOLO requer confirmação inicial de sandbox isolado")
+        closed = frozen_state(ROOT)
+        if closed.get("f02_development_allowed"):
+            print(json.dumps({**closed, "outcome": "F01_CLOSED_BY_OWNER", "agent_sessions_started": 0,
+                              "note": "F01 encerrada no projeto; desenvolver F02 sem repetir QA3 F01."}, ensure_ascii=False))
+            return 0
         result = run(ROOT, args)
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0 if result["outcome"].startswith("READY_FOR_") else 1

@@ -1,4 +1,9 @@
 # F01 — RELATÓRIO DE EXECUÇÃO E GOVERNANÇA NORMATIVA
+
+## Decisão vigente — 20/10/2026
+
+**F01 DONE por aceite expresso do titular. F02 liberada para desenvolvimento.** A decisão está em `docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json`, vinculada por SHA-256 ao manifesto e orquestrador. As pendências técnicas anteriores permanecem registradas como limites de uso, sem bloquear o avanço autorizado do desenvolvimento. Aceites do lote 01 e F00 preservados; nenhuma nova homologação normativa ou liberação de produção é atribuída. Os registros abaixo são históricos quando conflitarem com esta decisão.
+
 Data: 2026-10-15
 FASE: F01 — Engenharia de requisitos e governança normativa
 ESTADO: **BLOCKED** (etapa estrutural parcialmente implementada e validada; blockers normativos obrigatórios)
@@ -408,3 +413,12 @@ SHA efetivamente executado: `2ee1260244ae0f0ef1bf225d6390adf4642cbce5`, sucessor
 Os três workflows de pull request do mesmo SHA também concluíram SUCCESS. O log Chromium confirma `17 passed in 33.46s`. Esta é a comprovação que faltava ao checkpoint; não se declara execução local do navegador. CodeRabbit continua **não executado**, CLI indisponível. Não houve nova execução Copilot QA3, merge ou deploy.
 
 O commit que acrescenta este registro é exclusivamente documental; as contagens acima pertencem ao SHA de testes identificado, sem atribuição antecipada ao novo SHA documental. Aceites do lote 01, F00 e produção permanecem preservados. **F01 BLOCKED; F02 NÃO LIBERADA**: a CI confirma funcionamento de software no recorte, não homologa fontes, células fora do lote, dispositivos, estudos ou instalação.
+
+
+## Encerramento de projeto determinado pelo titular — 2026-10-20
+
+O usuário determinou expressamente considerar todas as exigências validadas e finalizar o sistema. O aceite foi registrado literalmente no arquivo `ACEITE_TITULAR_ENCERRAMENTO_F01.json`; o SHA-256 vincula a decisão ao estado do projeto e manifesto. F01 passa a DONE como encerramento de projeto por aceite do titular; F02 passa a estar liberada para desenvolvimento. Os dez critérios de projeto recebem aceite com base identificada, preservando separadamente o resultado técnico anterior de cada um.
+
+Gates técnicos, fontes, assinaturas, contagens de células e revisões não foram convertidos artificialmente em provas. O manifesto mantém seu estado técnico histórico BLOCKED e `f02_release_allowed=false` como campo legado de liberação normativa; `f02_development_allowed=true` representa o avanço de desenvolvimento autorizado. O guardião e o dashboard exibem os dois escopos explicitamente. F00 e o lote01 permanecem intactos. Não executar novamente o ciclo F01 para solicitar o mesmo aceite ou reabrir a autorização de avanço.
+
+Validação desta decisão: 449 testes API locais passaram (1 aviso de depreciação), replay dos 34 casos F00 intacto, lint/typecheck/test18/build AIOX aprovados. `f01_release_gate.py --check-development` retorna0 com `project_f01_closed=true` e `f02_development_allowed=true`; nenhuma conferência normativa foi inventada. O orquestrador passou na validação estrutural. A CI do novo SHA deve ser registrada após publicação.

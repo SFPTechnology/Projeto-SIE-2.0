@@ -12,6 +12,8 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.f01_release_gate import project_acceptance
 MANIFEST = Path("docs/implantacao-sie-2-0/F01/QA3_MANIFEST.json")
 STATE = Path("docs/sie-orchestrator/ORCHESTRATOR_STATE.json")
 REQUIRED_G = {f"G{i:02d}" for i in range(1, 7)}
@@ -55,10 +57,12 @@ def historical_execution_metrics(evidence: dict) -> dict:
             "professional_normative_signoff_granted": False,
             "current_gate_acceptance_granted": False}
 
-def inspect(manifest: dict, state: dict) -> dict:
+def inspect(manifest: dict, state: dict, root: Path = ROOT) -> dict:
     errors, blockers = [], []
     tasks = {t.get("id"): t for t in state.get("tasks", []) if isinstance(t, dict)}
     f00, f01 = tasks.get("F00", {}), tasks.get("F01", {})
+    owner_accepted, decision_errors = project_acceptance(root, manifest, f01)
+    errors.extend(decision_errors)
     if f00.get("state") != "DONE":
         errors.append("F00 baseline must remain DONE")
     if not f01 or f01.get("state") not in {"BLOCKED", "PENDING_REVIEW", "DONE"}:
@@ -91,7 +95,7 @@ def inspect(manifest: dict, state: dict) -> dict:
     for item in ac:
         if type(item.get("passed")) is not bool:
             errors.append(f"{item.get('id')}: acceptance flag invalid")
-        if not item.get("passed"):
+        if not item.get("technical_passed_before_owner_acceptance", item.get("passed")):
             blockers.append(f"{item.get('id')}: no formal acceptance")
     for agent in agents:
         if (agent.get("status") != "EXECUTED" or
@@ -106,17 +110,24 @@ def inspect(manifest: dict, state: dict) -> dict:
         blockers.append("Independent professional source/cell signoff not proven")
     if manifest.get("f02_release_allowed") is not False:
         errors.append("F02 must remain locked in this diagnostic phase")
-    if f01.get("state") == "DONE" and (errors or blockers):
+    if f01.get("state") == "DONE" and (errors or blockers) and not owner_accepted:
         errors.append("F01 DONE falsely claimed while proof is missing")
     return {"phase": "F01", "f00_state": f00.get("state"),
             "f01_state": f01.get("state"), "f02_release_allowed": False,
             "accepted_gates": sum(x.get("accepted") is True for x in gates),
             "total_gates": len(REQUIRED_G),
-            "passed_acceptance_criteria": sum(x.get("passed") is True for x in ac),
+            "passed_acceptance_criteria": sum(x.get("technical_passed_before_owner_acceptance", x.get("passed")) is True for x in ac),
+            "owner_accepted_acceptance_criteria": sum(
+                x.get("acceptance_basis") == "OWNER_ACCEPTANCE_FOR_DEVELOPMENT" for x in ac) if owner_accepted else 0,
             "total_acceptance_criteria": len(REQUIRED_AC),
             "verified_qa_first_passes": sum(x.get("status") == "EXECUTED" and bool(x.get("independent_first_pass_commit")) for x in agents),
             "verified_cross_reviews": sum(x.get("status") == "EXECUTED" for x in cross),
-            "blockers": blockers, "integrity_errors": errors,
+            "project_f01_closed": f01.get("state") == "DONE" and owner_accepted and not errors,
+            "f02_development_allowed": f01.get("state") == "DONE" and owner_accepted and not errors,
+            "closure_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT" if owner_accepted else None,
+            "technical_open_items": blockers,
+            "normative_conformity_verified": False, "production_release_allowed": False,
+            "blockers": [] if owner_accepted and not errors else blockers, "integrity_errors": errors,
             "eligible_for_external_release_review": not errors and not blockers,
             "tool_grants_normative_approval": False}
 
@@ -128,7 +139,7 @@ def main(argv=None):
     try:
         state = json.loads((args.root / STATE).read_text(encoding="utf-8"))
         manifest = json.loads((args.root / MANIFEST).read_text(encoding="utf-8"))
-        result = inspect(manifest, state)
+        result = inspect(manifest, state, args.root)
         historical = args.root / "docs/implantacao-sie-2-0/F01/QA3_EXECUTION_EVIDENCE_39289599183.json"
         if historical.exists():
             evidence = json.loads(historical.read_text(encoding="utf-8"))
