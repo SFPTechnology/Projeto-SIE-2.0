@@ -95,3 +95,5 @@ File list: `restructuring/apps/api/sie_api/application.py`, `calculation_traces.
 - [ ] Reconciliar fontes, concluir gates F01 e revisão final; F01 BLOCKED e F02 não liberada.
 
 File list: `restructuring/apps/api/sie_api/{analysis_contracts.py,application.py,cell_bindings.py,protection_checks.py,calculation_traces.py,storage.py,cli.py}`; `restructuring/apps/api/tests/test_cell_binding_protection_f01.py`; `restructuring/examples/f01_lote01_ensaio_parcial.json`; `docs/implantacao-sie-2-0/F01/{IMPLEMENTACAO_P06_P03_LOTE01.md,ACEITE_PROFISSIONAL_LOTE01_RECEBIDO_2026-10-20.json,RELATORIO_EXECUCAO.md}`; `docs/sie-orchestrator/{NEXT_ACTION.md,ORCHESTRATOR_STATE.json}` e esta story.
+
+- [x] Separar registro versionado do lote em `restructuring/apps/api/sie_api/data/f01_lote01_cells_v1.json`, incluído na file list; resolvedor Python conserva revisão, valores e hash semântico das células. Testes relacionados e de leitura JSON aprovados pelo implementador; CI final permanece obrigatória. P03/P06 integrais seguem pendentes.
