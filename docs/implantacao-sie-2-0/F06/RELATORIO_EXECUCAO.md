@@ -18,7 +18,7 @@ Fonte de estado: `docs/sie-orchestrator/ORCHESTRATOR_STATE.json`. Código em `re
 
 ## Testes observados
 
-- `PYTHONPATH=restructuring/apps/api python -m pytest -q restructuring/apps/api/tests`: **637 passed**, 12,07 s; um aviso de depreciação Starlette/httpx.
+- `PYTHONPATH=restructuring/apps/api python -m pytest -q restructuring/apps/api/tests`: **637 passed**, 12,36 s; um aviso de depreciação Starlette/httpx.
 - `... pytest -q restructuring/apps/api/tests/test_demand_f06.py`: **33 passed**, 0,50 s.
 - `SIE_E2E_BROWSER_PATH=/tmp/f06-chrome/run PYTHONPATH=restructuring/apps/api python -m pytest -xq restructuring/e2e`: **26 passed**, 45,18 s; inclui 25 anteriores e um fluxo F06 com cálculo, edição, stale, exportação bloqueada, VERIFIED recusado e tela de 390 px.
 - Chromium 153 temporário. Download padrão Playwright truncado; primeira inicialização falhou por GPU/GL. Execução passou com wrapper temporário desativando GPU/rasterizador/composição/GL; nenhuma alteração no navegador pessoal.
@@ -49,4 +49,15 @@ Próxima ação nesta mesma F06: conferir células/notas/condições das fontes 
 
 ## Versionamento e publicação
 
-Este relatório e a lista completa de arquivos integram o commit do incremento. Registro de SHA remoto/CI será acrescentado após publicação, sem afirmar CI antes de observá-lo. Main e ambiente publicado preservados.
+Código e registros publicados em [`b7f782d1c9d274c6e7c5fe9c00460edca74b02fc`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/b7f782d1c9d274c6e7c5fe9c00460edca74b02fc). Árvore remota `36b5ffbb8b51ba654bee562bbf7d8b8bd6b6ea47` exatamente igual ao commit local `206f1a97ad4feb308dd97d8f65e14681430a3148`. Publicação sem rejeição; sem PR, merge ou deploy. Os três workflows de CI foram conferidos como completed/success no mesmo head_sha publicado. Main e ambiente publicado preservados.
+
+
+CI do mesmo SHA de código publicado:
+
+|Workflow|Run|Resultado observado|
+|---|---|---|
+|API/F00|[39666801001](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39666801001)|completed/success; 637 testes, 1 aviso, 11,75 s; 34 golden intactos|
+|AIOX|[39666800987](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39666800987)|completed/success; 18 testes, lint, typecheck e build|
+|Chromium|[39666801008](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39666801008)|completed/success; 26 testes, 45,53 s; todas as etapas do job aprovadas|
+
+O checkpoint posterior atualiza somente documentação e estado, sem alterar o código validado. CI verde não encerra o gate normativo: F06 permanece BLOCKED.

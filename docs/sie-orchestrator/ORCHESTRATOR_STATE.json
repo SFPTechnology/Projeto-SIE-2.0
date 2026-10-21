@@ -231,9 +231,16 @@
       "from": "UNREGISTERED",
       "to": "BLOCKED",
       "reason": "Incremento de estudo implementado;637 API,33 F06,26 Chromium,34 golden e18 AIOX; gate de coeficientes/fixtures normativas não atendido. Aceites anteriores preservados."
+    },
+    {
+      "activity": "F06",
+      "at": "2026-10-21",
+      "from": "BLOCKED",
+      "to": "BLOCKED",
+      "reason": "Checkpoint b7f782d1 publicado com árvore local idêntica; CI API637/F00golden34,AIOX18 eChromium26 completed/success no mesmo SHA. Gate normativo permanece bloqueado; sem merge/deploy."
     }
   ],
-  "revision": 29,
+  "revision": 30,
   "schema_version": 1,
   "tasks": [
     {
@@ -1648,15 +1655,22 @@
         "browser_tests_passed": 26,
         "f00_golden_passed": 34,
         "aiox_passed": true,
-        "ci_current_sha_verified": false,
+        "ci_current_sha_verified": true,
         "normative_conformity_verified": false,
-        "next_phase_development_allowed": false
+        "next_phase_development_allowed": false,
+        "ci_code_sha": "b7f782d1c9d274c6e7c5fe9c00460edca74b02fc",
+        "ci_api_run": 39666801001,
+        "ci_aiox_run": 39666800987,
+        "ci_chromium_run": 39666801008
       },
       "publication": {
         "branch": "feat/f06-demanda-alimentacao",
         "merged_to_main": false,
         "production_release_allowed": false,
-        "published": false
+        "published": true,
+        "code_sha": "b7f782d1c9d274c6e7c5fe9c00460edca74b02fc",
+        "local_code_sha": "206f1a97ad4feb308dd97d8f65e14681430a3148",
+        "tree_sha": "36b5ffbb8b51ba654bee562bbf7d8b8bd6b6ea47"
       }
     }
   ]
