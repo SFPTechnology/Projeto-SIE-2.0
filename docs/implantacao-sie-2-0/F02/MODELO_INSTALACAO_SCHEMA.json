@@ -1,0 +1,1180 @@
+{
+  "$defs": {
+    "ActivePower": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "unit": {
+          "const": "W",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "ActivePower",
+      "type": "object"
+    },
+    "ApparentPower": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "unit": {
+          "const": "VA",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "ApparentPower",
+      "type": "object"
+    },
+    "Board": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "room_id": {
+          "format": "uuid",
+          "title": "Room Id",
+          "type": "string"
+        },
+        "supply_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Supply Id"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "room_id"
+      ],
+      "title": "Board",
+      "type": "object"
+    },
+    "Building": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id"
+      ],
+      "title": "Building",
+      "type": "object"
+    },
+    "CableRun": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "circuit_id": {
+          "format": "uuid",
+          "title": "Circuit Id",
+          "type": "string"
+        },
+        "segment_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Segment Ids",
+          "type": "array"
+        },
+        "section": {
+          "$ref": "#/$defs/CrossSection"
+        },
+        "material": {
+          "enum": [
+            "Cu",
+            "Al",
+            "OTHER_DECLARED"
+          ],
+          "title": "Material",
+          "type": "string"
+        },
+        "insulation": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Insulation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "circuit_id",
+        "segment_ids",
+        "section",
+        "material",
+        "insulation"
+      ],
+      "title": "CableRun",
+      "type": "object"
+    },
+    "CalculationRun": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "revision_id": {
+          "format": "uuid",
+          "title": "Revision Id",
+          "type": "string"
+        },
+        "project_revision": {
+          "minimum": 1,
+          "title": "Project Revision",
+          "type": "integer"
+        },
+        "circuit_id": {
+          "format": "uuid",
+          "title": "Circuit Id",
+          "type": "string"
+        },
+        "input_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Input Sha256",
+          "type": "string"
+        },
+        "output_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Output Sha256"
+        },
+        "algorithm_version": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Algorithm Version",
+          "type": "string"
+        },
+        "rule_version": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Rule Version",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "VALID",
+            "PENDING",
+            "INVALID",
+            "STALE"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "normative_conformity_verified": {
+          "const": false,
+          "default": false,
+          "title": "Normative Conformity Verified",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "revision_id",
+        "project_revision",
+        "circuit_id",
+        "input_sha256",
+        "algorithm_version",
+        "rule_version",
+        "state"
+      ],
+      "title": "CalculationRun",
+      "type": "object"
+    },
+    "Circuit": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "design_current": {
+          "$ref": "#/$defs/Current"
+        },
+        "voltage": {
+          "$ref": "#/$defs/Voltage"
+        },
+        "phases": {
+          "default": 1,
+          "enum": [
+            1,
+            3
+          ],
+          "title": "Phases",
+          "type": "integer"
+        },
+        "board_id": {
+          "format": "uuid",
+          "title": "Board Id",
+          "type": "string"
+        },
+        "device_id": {
+          "format": "uuid",
+          "title": "Device Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "TERMINAL",
+            "FEEDER"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "load_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "title": "Load Ids",
+          "type": "array"
+        },
+        "downstream_board_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Downstream Board Id"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "design_current",
+        "voltage",
+        "board_id",
+        "device_id",
+        "kind"
+      ],
+      "title": "Circuit",
+      "type": "object"
+    },
+    "CrossSection": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "unit": {
+          "const": "mm2",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "CrossSection",
+      "type": "object"
+    },
+    "Current": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "unit": {
+          "const": "A",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "Current",
+      "type": "object"
+    },
+    "Device": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "board_id": {
+          "format": "uuid",
+          "title": "Board Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "PROTECTION",
+            "SWITCHING",
+            "PROTECTION_AND_SWITCHING"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "nominal_current": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Current"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source_reference": {
+          "anyOf": [
+            {
+              "maxLength": 500,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Reference"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "board_id",
+        "kind"
+      ],
+      "title": "Device",
+      "type": "object"
+    },
+    "Floor": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "building_id": {
+          "format": "uuid",
+          "title": "Building Id",
+          "type": "string"
+        },
+        "level": {
+          "title": "Level",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "building_id",
+        "level"
+      ],
+      "title": "Floor",
+      "type": "object"
+    },
+    "ImpedancePerLength": {
+      "additionalProperties": false,
+      "properties": {
+        "resistance": {
+          "title": "Resistance",
+          "type": "string"
+        },
+        "reactance": {
+          "title": "Reactance",
+          "type": "string"
+        },
+        "unit": {
+          "const": "ohm/km",
+          "title": "Unit",
+          "type": "string"
+        },
+        "frequency_hz": {
+          "title": "Frequency Hz",
+          "type": "string"
+        },
+        "conductor_temperature": {
+          "$ref": "#/$defs/Temperature"
+        },
+        "source_reference": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Source Reference",
+          "type": "string"
+        }
+      },
+      "required": [
+        "resistance",
+        "reactance",
+        "unit",
+        "frequency_hz",
+        "conductor_temperature",
+        "source_reference"
+      ],
+      "title": "ImpedancePerLength",
+      "type": "object"
+    },
+    "InstallationConditions": {
+      "additionalProperties": false,
+      "properties": {
+        "installation_method": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Installation Method",
+          "type": "string"
+        },
+        "medium": {
+          "enum": [
+            "AIR",
+            "GROUND",
+            "OTHER_DECLARED"
+          ],
+          "title": "Medium",
+          "type": "string"
+        },
+        "ambient_temperature": {
+          "$ref": "#/$defs/Temperature"
+        },
+        "conductor_temperature": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Temperature"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "grouped_circuits": {
+          "exclusiveMinimum": 0,
+          "title": "Grouped Circuits",
+          "type": "integer"
+        },
+        "solar_exposure": {
+          "title": "Solar Exposure",
+          "type": "boolean"
+        },
+        "additional_conditions": {
+          "anyOf": [
+            {
+              "maxLength": 1000,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Additional Conditions"
+        }
+      },
+      "required": [
+        "installation_method",
+        "medium",
+        "ambient_temperature",
+        "grouped_circuits",
+        "solar_exposure"
+      ],
+      "title": "InstallationConditions",
+      "type": "object"
+    },
+    "Length": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "unit": {
+          "const": "m",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "Length",
+      "type": "object"
+    },
+    "Load": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "load_point_id": {
+          "format": "uuid",
+          "title": "Load Point Id",
+          "type": "string"
+        },
+        "connection": {
+          "enum": [
+            "SINGLE_PHASE_FN",
+            "SINGLE_PHASE_FF",
+            "THREE_PHASE"
+          ],
+          "title": "Connection",
+          "type": "string"
+        },
+        "active_power": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ActivePower"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "reactive_power": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ReactivePower"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "apparent_power": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ApparentPower"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "design_current": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Current"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "load_point_id",
+        "connection"
+      ],
+      "title": "Load",
+      "type": "object"
+    },
+    "LoadPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "room_id": {
+          "format": "uuid",
+          "title": "Room Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "room_id"
+      ],
+      "title": "LoadPoint",
+      "type": "object"
+    },
+    "Project": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "revision": {
+          "minimum": 1,
+          "title": "Revision",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "revision"
+      ],
+      "title": "Project",
+      "type": "object"
+    },
+    "ReactivePower": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "unit": {
+          "const": "var",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "ReactivePower",
+      "type": "object"
+    },
+    "Revision": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "sequence": {
+          "exclusiveMinimum": 0,
+          "title": "Sequence",
+          "type": "integer"
+        },
+        "parent_revision_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parent Revision Id"
+        },
+        "input_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Input Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "sequence",
+        "input_sha256"
+      ],
+      "title": "Revision",
+      "type": "object"
+    },
+    "Room": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "floor_id": {
+          "format": "uuid",
+          "title": "Floor Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "floor_id"
+      ],
+      "title": "Room",
+      "type": "object"
+    },
+    "Segment": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "cable_run_id": {
+          "format": "uuid",
+          "title": "Cable Run Id",
+          "type": "string"
+        },
+        "length": {
+          "$ref": "#/$defs/Length"
+        },
+        "conditions": {
+          "$ref": "#/$defs/InstallationConditions"
+        },
+        "impedance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ImpedancePerLength"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "cable_run_id",
+        "length",
+        "conditions"
+      ],
+      "title": "Segment",
+      "type": "object"
+    },
+    "Supply": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "project_id": {
+          "format": "uuid",
+          "title": "Project Id",
+          "type": "string"
+        },
+        "phases": {
+          "enum": [
+            1,
+            3
+          ],
+          "title": "Phases",
+          "type": "integer"
+        },
+        "voltage_fn": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Voltage"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "voltage_ff": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Voltage"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "frequency_hz": {
+          "title": "Frequency Hz",
+          "type": "string"
+        },
+        "earthing_system": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Earthing System",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "project_id",
+        "phases",
+        "frequency_hz",
+        "earthing_system"
+      ],
+      "title": "Supply",
+      "type": "object"
+    },
+    "Temperature": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "unit": {
+          "const": "degC",
+          "title": "Unit",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "title": "Temperature",
+      "type": "object"
+    },
+    "Voltage": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "unit": {
+          "const": "V",
+          "title": "Unit",
+          "type": "string"
+        },
+        "basis": {
+          "enum": [
+            "FN",
+            "FF"
+          ],
+          "title": "Basis",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value",
+        "unit",
+        "basis"
+      ],
+      "title": "Voltage",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "SIE_INSTALLATION_V1",
+      "default": "SIE_INSTALLATION_V1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project": {
+      "$ref": "#/$defs/Project"
+    },
+    "buildings": {
+      "items": {
+        "$ref": "#/$defs/Building"
+      },
+      "title": "Buildings",
+      "type": "array"
+    },
+    "floors": {
+      "items": {
+        "$ref": "#/$defs/Floor"
+      },
+      "title": "Floors",
+      "type": "array"
+    },
+    "rooms": {
+      "items": {
+        "$ref": "#/$defs/Room"
+      },
+      "title": "Rooms",
+      "type": "array"
+    },
+    "supplies": {
+      "items": {
+        "$ref": "#/$defs/Supply"
+      },
+      "title": "Supplies",
+      "type": "array"
+    },
+    "boards": {
+      "items": {
+        "$ref": "#/$defs/Board"
+      },
+      "title": "Boards",
+      "type": "array"
+    },
+    "load_points": {
+      "items": {
+        "$ref": "#/$defs/LoadPoint"
+      },
+      "title": "Load Points",
+      "type": "array"
+    },
+    "loads": {
+      "items": {
+        "$ref": "#/$defs/Load"
+      },
+      "title": "Loads",
+      "type": "array"
+    },
+    "devices": {
+      "items": {
+        "$ref": "#/$defs/Device"
+      },
+      "title": "Devices",
+      "type": "array"
+    },
+    "circuits": {
+      "items": {
+        "$ref": "#/$defs/Circuit"
+      },
+      "title": "Circuits",
+      "type": "array"
+    },
+    "cable_runs": {
+      "items": {
+        "$ref": "#/$defs/CableRun"
+      },
+      "title": "Cable Runs",
+      "type": "array"
+    },
+    "segments": {
+      "items": {
+        "$ref": "#/$defs/Segment"
+      },
+      "title": "Segments",
+      "type": "array"
+    },
+    "revisions": {
+      "items": {
+        "$ref": "#/$defs/Revision"
+      },
+      "title": "Revisions",
+      "type": "array"
+    },
+    "calculation_runs": {
+      "items": {
+        "$ref": "#/$defs/CalculationRun"
+      },
+      "title": "Calculation Runs",
+      "type": "array"
+    }
+  },
+  "required": [
+    "project"
+  ],
+  "title": "Installation",
+  "type": "object"
+}

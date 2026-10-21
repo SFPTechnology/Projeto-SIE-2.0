@@ -11,6 +11,8 @@ from .domain.edp import enquadrar_edp
 from .edp_context import ContextoEDP, enquadrar_com_contexto
 from .storage_api import router as storage_router
 from .normative_api import router as normative_router
+from .installation_api import router as installation_router
+from .installation_storage_api import router as installation_storage_router
 
 app = FastAPI(title="SIE 2.0 - API modular", version="0.1.0")
 app.add_middleware(
@@ -30,6 +32,8 @@ async def erro_validacao_seguro(request, exc):
 
 app.include_router(storage_router)
 app.include_router(normative_router)
+app.include_router(installation_router)
+app.include_router(installation_storage_router)
 
 
 class Circuito(BaseModel):

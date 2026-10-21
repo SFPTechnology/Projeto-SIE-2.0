@@ -24,3 +24,5 @@ Critério: `READY` só com dependências DONE e requisitos definidos; `DONE` exi
 | SIE-AUTO-010 | Liberação controlada | 009, 006, NOR-01 | PENDING | Testes independentes e aprovação técnica |
 
 A referência histórica de SIE-AUTO-003 foi reconciliada no JSON, mas **não** foi marcada DONE pela simples criação do manifesto. Não há atividade READY nesta revisão. Um bloqueio de norma não deve fazer o orquestrador inventar valores de tabelas.
+
+| F02 | Arquitetura e modelagem do domínio elétrico | F01 DONE por aceite titular | VALIDATING |539API/F0034/AIOX,QA3 aprovado; conferir CI de publicação |

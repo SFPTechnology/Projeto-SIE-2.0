@@ -1,0 +1,68 @@
+{
+  "schema_version": "SIE_TOPOLOGY_VIEW_V1",
+  "installation_schema": "MODELO_INSTALACAO_SCHEMA.json",
+  "instance": "restructuring/examples/f02_instalacao_demo.json",
+  "rules": [
+    "UUIDs globais únicos no agregado",
+    "Fronteira de projeto única",
+    "Quadro alimentado por uma fonte ou um alimentador",
+    "Grafo elétrico acíclico; disponibilidade de fases e tensão ancestral coerentes",
+    "Conexões de carga coerentes com circuito",
+    "Dispositivos, cargas e trechos sem referências órfãs",
+    "Hierarquia espacial separada do grafo elétrico",
+    "Condições por segmento preservadas; frequência declarada coerente com fonte"
+  ],
+  "edges": [
+    {
+      "from": "00000000-0000-0000-0000-000000000006",
+      "to": "00000000-0000-0000-0000-000000000007",
+      "kind": "SUPPLY_BOARD"
+    },
+    {
+      "from": "00000000-0000-0000-0000-000000000007",
+      "to": "00000000-0000-0000-0000-00000000000d",
+      "kind": "BOARD_DEVICE"
+    },
+    {
+      "from": "00000000-0000-0000-0000-00000000000d",
+      "to": "00000000-0000-0000-0000-00000000000f",
+      "kind": "DEVICE_CIRCUIT"
+    },
+    {
+      "from": "00000000-0000-0000-0000-00000000000f",
+      "to": "00000000-0000-0000-0000-000000000008",
+      "kind": "FEEDER_BOARD"
+    },
+    {
+      "from": "00000000-0000-0000-0000-000000000008",
+      "to": "00000000-0000-0000-0000-00000000000e",
+      "kind": "BOARD_DEVICE"
+    },
+    {
+      "from": "00000000-0000-0000-0000-00000000000e",
+      "to": "00000000-0000-0000-0000-000000000010",
+      "kind": "DEVICE_CIRCUIT"
+    },
+    {
+      "from": "00000000-0000-0000-0000-000000000010",
+      "to": "00000000-0000-0000-0000-00000000000b",
+      "kind": "CIRCUIT_LOAD"
+    },
+    {
+      "from": "00000000-0000-0000-0000-000000000008",
+      "to": "00000000-0000-0000-0000-000000000018",
+      "kind": "BOARD_DEVICE"
+    },
+    {
+      "from": "00000000-0000-0000-0000-000000000018",
+      "to": "00000000-0000-0000-0000-000000000019",
+      "kind": "DEVICE_CIRCUIT"
+    },
+    {
+      "from": "00000000-0000-0000-0000-000000000019",
+      "to": "00000000-0000-0000-0000-00000000000c",
+      "kind": "CIRCUIT_LOAD"
+    }
+  ],
+  "normative_conformity_verified": false
+}

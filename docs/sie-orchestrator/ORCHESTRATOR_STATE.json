@@ -161,9 +161,16 @@
       "from": "BLOCKED",
       "to": "DONE",
       "reason": "Aceite expresso do titular registrado em docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json; encerramento de projeto para desenvolvimento, sem inventar homologação normativa."
+    },
+    {
+      "activity": "F02",
+      "at": "2026-10-20",
+      "from": "UNREGISTERED",
+      "to": "VALIDATING",
+      "reason": "Artefato original recuperado e idêntico ao anexo; implementação02.01–09,539testesAPI/F0034/AIOX e trêsQA aprovados localmente; CI de publicação pendente."
     }
   ],
-  "revision": 23,
+  "revision": 24,
   "schema_version": 1,
   "tasks": [
     {
@@ -984,6 +991,120 @@
       "project_acceptance": {
         "path": "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json",
         "sha256": "5c526a2fa62328c4e6e3a1e2763b1f4a64f0be54dd9e4048d603a401c4646ca0"
+      }
+    },
+    {
+      "id": "F02",
+      "title": "Arquitetura e modelagem do domínio elétrico",
+      "dependencies": [
+        "F01"
+      ],
+      "priority": 94,
+      "impact": 10,
+      "risk": 5,
+      "requirements_verified": true,
+      "state": "VALIDATING",
+      "criteria": [
+        {
+          "id": "AC-02.01",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/domain/installation.py",
+            "restructuring/apps/api/tests/test_installation_f02.py",
+            "docs/implantacao-sie-2-0/F02/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-02.02",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/domain/installation.py",
+            "restructuring/apps/api/tests/test_installation_f02.py",
+            "docs/implantacao-sie-2-0/F02/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-02.03",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/domain/installation.py",
+            "restructuring/apps/api/tests/test_installation_f02.py",
+            "docs/implantacao-sie-2-0/F02/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-02.04",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/domain/installation.py",
+            "restructuring/apps/api/tests/test_installation_f02.py",
+            "docs/implantacao-sie-2-0/F02/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-02.05",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/domain/installation.py",
+            "restructuring/apps/api/tests/test_installation_f02.py",
+            "docs/implantacao-sie-2-0/F02/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-02.06",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/installation_service.py",
+            "restructuring/apps/api/tests/test_installation_integration_f02.py",
+            "docs/implantacao-sie-2-0/F02/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-02.07",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/installation_service.py",
+            "restructuring/apps/api/tests/test_installation_integration_f02.py",
+            "docs/implantacao-sie-2-0/F02/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-02.08",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/installation_service.py",
+            "restructuring/apps/api/tests/test_installation_integration_f02.py",
+            "docs/implantacao-sie-2-0/F02/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-02.09",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/installation_service.py",
+            "restructuring/apps/api/tests/test_installation_integration_f02.py",
+            "docs/implantacao-sie-2-0/F02/RELATORIO_EXECUCAO.md"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/implantacao-sie-2-0/F02/F02_EXECUTAR.md",
+        "docs/stories/story-SIE-F02-DOMINIO-ELETRICO.md"
+      ],
+      "publication": {
+        "branch": "feat/f02-dominio-eletrico",
+        "merged_to_main": false,
+        "production_release_allowed": false
+      },
+      "checkpoint": {
+        "local_api_tests_passed": 539,
+        "f00_golden_passed": 34,
+        "aiox_passed": true,
+        "qa_01": "APROVADO",
+        "qa_02": "APROVADO",
+        "qa_03": "APROVADO",
+        "ci_current_sha_verified": false,
+        "next_phase": "F03"
       }
     }
   ]

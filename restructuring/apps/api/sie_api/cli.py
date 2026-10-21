@@ -44,6 +44,9 @@ def _parser() -> argparse.ArgumentParser:
         help="Caminho do SQLite local (ou SIE_LOCAL_DB_PATH).",
     )
     actions = parser.add_subparsers(dest="action", required=True)
+    model = actions.add_parser("modelo", help="Validar modelo canônico ou criar snapshot imutável F02.")
+    model.add_argument("--arquivo", required=True)
+    model.add_argument("--operacao", choices=("validar", "snapshot", "ensaiar-legado", "invalidacao", "referencia"), default="validar")
     edp = actions.add_parser("enquadrar-edp", help="Triagem EDP com contexto declarado, sem aprovação.")
     edp.add_argument("--arquivo", required=True)
     analyze = actions.add_parser("analisar", help="Ensaio de circuito com células e proteção parcial.")
@@ -63,9 +66,38 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     parser = _parser()
     args = parser.parse_args(argv)
-    if args.action not in ("analisar", "enquadrar-edp") and (not args.database or args.database == ":memory:"):
+    if args.action not in ("analisar", "enquadrar-edp", "modelo") and (not args.database or args.database == ":memory:"):
         parser.error("Informe --database com caminho SQLite local persistente.")
     try:
+        if args.action == "modelo":
+            from .domain.installation import Installation
+            from .installation_service import create_snapshot
+            raw = _read_json_object(args.arquivo)
+            if args.operacao in ("validar", "snapshot"):
+                installation = Installation.model_validate(raw)
+                output = (create_snapshot(installation).model_dump(mode="json") if args.operacao == "snapshot"
+                          else {"valid": True, "project_id": str(installation.project.id),
+                                "revision": installation.project.revision, "normative_conformity_verified": False})
+            elif args.operacao == "ensaiar-legado":
+                from .installation_contracts import LegacyAnalysisRequest
+                from .installation_service import analyze_legacy
+                request = LegacyAnalysisRequest.model_validate(raw)
+                output = analyze_legacy(request.snapshot, request.circuit_id, request.parameters,
+                                        request.rule_version).model_dump(mode="json")
+            elif args.operacao == "invalidacao":
+                from .installation_contracts import InvalidationRequest
+                from .installation_service import calculation_status, algorithm_identity
+                request = InvalidationRequest.model_validate(raw)
+                output = calculation_status(request.record, request.snapshot, algorithm_identity(),
+                                            request.rule_version, request.input_sha256)
+            else:
+                from .installation_contracts import ReferenceRequest
+                from .installation_service import require_same_revision
+                request = ReferenceRequest.model_validate(raw)
+                require_same_revision(request.snapshot, request.reference)
+                output = {"valid": True, "normative_conformity_verified": False}
+            print(json.dumps(output, ensure_ascii=False, allow_nan=False, sort_keys=True))
+            return 0
         if args.action == "enquadrar-edp":
             from decimal import Decimal
             from .main import EnquadramentoEDP
