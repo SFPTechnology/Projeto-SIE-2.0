@@ -422,3 +422,16 @@ O usuário determinou expressamente considerar todas as exigências validadas e 
 Gates técnicos, fontes, assinaturas, contagens de células e revisões não foram convertidos artificialmente em provas. O manifesto mantém seu estado técnico histórico BLOCKED e `f02_release_allowed=false` como campo legado de liberação normativa; `f02_development_allowed=true` representa o avanço de desenvolvimento autorizado. O guardião e o dashboard exibem os dois escopos explicitamente. F00 e o lote01 permanecem intactos. Não executar novamente o ciclo F01 para solicitar o mesmo aceite ou reabrir a autorização de avanço.
 
 Validação desta decisão: 449 testes API locais passaram (1 aviso de depreciação), replay dos 34 casos F00 intacto, lint/typecheck/test18/build AIOX aprovados. `f01_release_gate.py --check-development` retorna0 com `project_f01_closed=true` e `f02_development_allowed=true`; nenhuma conferência normativa foi inventada. O orquestrador passou na validação estrutural. A CI do novo SHA deve ser registrada após publicação.
+
+
+### Evidência publicada do encerramento por aceite do titular
+
+Decisão e guardas publicadas no SHA `65a220311b6ba182475c2dbf7c8720e4826e03df`. Conferência dos três workflows no mesmo SHA:
+
+| Workflow | Resultado | Evidência |
+|---|---|---|
+| API e replay F00 | SUCCESS — 449 testes API, 1 aviso; 34 casos F00, fixture intacta | https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39515589279 |
+| AIOX | SUCCESS — lint/typecheck/test/build | https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39515589144 |
+| Chromium | SUCCESS — 17 testes, 34,25 s | https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39515589239 |
+
+Os três runs de PR do mesmo SHA também concluíram SUCCESS. Esta atualização é documental e não atribui esses resultados ao seu próprio SHA. CodeRabbit não executado por CLI indisponível. F01 **DONE por aceite do titular**, F02 **liberada para desenvolvimento**; comprovação normativa e liberação de produção continuam separadas e não são concedidas por este registro. F00, aceites do lote01, main e produção preservados. Não repetir o ciclo de aceite F01.

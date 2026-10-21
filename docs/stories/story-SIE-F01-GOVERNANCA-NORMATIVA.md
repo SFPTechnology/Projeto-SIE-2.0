@@ -116,11 +116,13 @@ CI final do incremento: API https://github.com/SFPTechnology/Projeto-SIE-2.0/act
 
 ## Encerramento por aceite do titular — 2026-10-20
 
-Instrução expressa do usuário: considerar todas as exigências validadas e finalizar o sistema. Critério de aceite desta alteração: registrar o aceite real, encerrar F01 no fluxo de projeto e permitir desenvolvimento F02 sem fabricar verificação normativa ou modificar os aceites anteriores/F00. Status desta alteração: Ready for Review; validação local concluída, publicação/CI pendente.
+Instrução expressa do usuário: considerar todas as exigências validadas e finalizar o sistema. Critério de aceite desta alteração: registrar o aceite real, encerrar F01 no fluxo de projeto e permitir desenvolvimento F02 sem fabricar verificação normativa ou modificar os aceites anteriores/F00. Status desta alteração: Done por aceite do titular; publicação e CI conferidas no SHA65a2203.
 
 - [x] Registrar decisão literal e hash, com distinção entre aceite de projeto e comprovação técnica.
 - [x] Encerrar requisitos de projeto F01 por aceite do titular, mantendo valores técnicos anteriores auditáveis.
 - [x] Validar guardião/dashboard/orquestrador:449 testes API,34 F00 e AIOX aprovados localmente.
-- [ ] Publicar decisão e confirmar CI no SHA correspondente.
+- [x] Publicar decisão em `65a220311b6ba182475c2dbf7c8720e4826e03df` e confirmar API449/F0034/AIOX/Chromium17 no mesmo SHA.
 
 File list: `ACEITE_TITULAR_ENCERRAMENTO_F01.json`, `QA3_MANIFEST.json`, `RELATORIO_EXECUCAO.md` na F01; `docs/sie-orchestrator/{ORCHESTRATOR_STATE.json,NEXT_ACTION.md,PROJECT_STATE.md,EXECUTION_QUEUE.md}`; `scripts/f01_{release_gate,gate_dashboard,yolo_runner}.py`; testes de governança F01 afetados em `restructuring/apps/api/tests/`; esta story.
+
+Evidências do encerramento: API https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39515589279 ; AIOX https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39515589144 ; Chromium https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39515589239 . Encerramento de projeto F01 DONE; desenvolvimento F02 liberado, sem atestação normativa ou produção inventadas.
