@@ -1,4 +1,5 @@
 """API foundation. Engineering design decisions require validated reference data."""
+import sqlite3
 from decimal import Decimal
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -21,6 +22,29 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT"],
     allow_headers=["Content-Type", "Authorization"],
 )
+@app.middleware("http")
+async def local_storage_boundary(request, call_next):
+    if request.url.path.startswith("/api/v1/local/"):
+        import os
+        import ipaddress
+        if os.environ.get("SIE_ENV", "dev") not in {"dev", "test"}:
+            return JSONResponse(status_code=503, content={"detail": "Persistencia local desabilitada neste ambiente"})
+        peer = request.client.host if request.client else ""
+        try:
+            local = ipaddress.ip_address(peer).is_loopback
+        except ValueError:
+            local = peer == "testclient"
+        if not local:
+            return JSONResponse(status_code=403, content={"detail": "Acesso somente local"})
+    return await call_next(request)
+
+
+@app.exception_handler(sqlite3.DatabaseError)
+async def erro_armazenamento_seguro(request, exc):
+    return JSONResponse(status_code=503, content={
+        "detail": "Armazenamento indisponivel; nenhuma operacao confirmada"})
+
+
 @app.exception_handler(RequestValidationError)
 async def erro_validacao_seguro(request, exc):
     # Do not echo raw input/context: nonfinite floats cannot be serialized as JSON.

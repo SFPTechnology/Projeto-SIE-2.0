@@ -28,3 +28,5 @@ A referência histórica de SIE-AUTO-003 foi reconciliada no JSON, mas **não** 
 | F02 | Arquitetura e modelagem do domínio elétrico | F01 DONE por aceite titular | DONE |539API/F0034/AIOX/17Chromium no SHA d05f25e; trêsQA aprovados; F03 liberada para desenvolvimento |
 
 Passagem sequencial vigente: F02 DONE; próximo artefato `F03_EXECUTAR.md`, liberado para desenvolvimento, ainda sem implementação registrada. Não reabrirF01/F02.
+
+| F03 | Persistência, segurança e infraestrutura de dados | F02 DONE | VALIDATING | implementação local e QA3 aprovados; publicação/CI em conferência |

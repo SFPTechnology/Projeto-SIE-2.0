@@ -2,7 +2,9 @@
 SQLite com revisoes otimistas e trilha transacional de alteracoes.
 Nao armazena decisao de conformidade normativa.
 """
+from .data_lifecycle import migrate
 import json
+import os
 import sqlite3
 from hashlib import sha256
 from .analysis_contracts import AnaliseCircuito
@@ -117,8 +119,19 @@ class RepositorioProjetos:
                     BEGIN SELECT RAISE(ABORT, 'evento normativo imutavel'); END;
             """)
 
+            migrate(db)
+
     @contextmanager
     def _conectar(self):
+        # Restrict newly created local databases before SQLite writes any data.
+        # Existing databases keep their permissions; use a private parent directory.
+        if self.caminho != ":memory:":
+            try:
+                descriptor = os.open(self.caminho, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+            except FileExistsError:
+                pass
+            else:
+                os.close(descriptor)
         db = sqlite3.connect(self.caminho, timeout=5)
         try:
             db.execute("PRAGMA foreign_keys = ON")
@@ -147,7 +160,9 @@ class RepositorioProjetos:
         agora = datetime.now(timezone.utc).isoformat()
         with self._conectar() as db:
             db.execute("BEGIN IMMEDIATE")
-            anterior = db.execute("SELECT revisao FROM projetos WHERE id = ?", (projeto_id,)).fetchone()
+            anterior = db.execute("SELECT revisao,excluido_em FROM projetos WHERE id = ?", (projeto_id,)).fetchone()
+            if anterior and anterior["excluido_em"] is not None:
+                raise ConflitoRevisao("Projeto arquivado")
             revisao_atual = anterior["revisao"] if anterior else 0
             if revisao_atual != revisao_esperada:
                 raise ConflitoRevisao(f"Revisao esperada {revisao_esperada}, atual {revisao_atual}")
@@ -167,6 +182,7 @@ class RepositorioProjetos:
                     "INSERT INTO projetos(id,nome,dados_json,revisao,atualizado_em) VALUES(?,?,?,?,?)",
                     (projeto_id, nome, conteudo, nova_revisao, agora),
                 )
+            db.execute("UPDATE projetos SET criado_em=coalesce(criado_em,?) WHERE id=?", (agora, projeto_id))
             # Histórico completo: somete versões criadas APÓS habilitar este recurso.
             # Registrar nome e dados efetivamente gravados na mesma transação.
             registro_versao = json.dumps(
@@ -181,7 +197,7 @@ class RepositorioProjetos:
                 (projeto_id, nova_revisao, nome, conteudo, hash_versao, agora),
             )
             db.execute(
-                "INSERT INTO eventos_auditoria(projeto_id,acao,revisao,criado_em) VALUES(?,?,?,?)",
+                "INSERT INTO eventos_auditoria(projeto_id,acao,revisao,criado_em,autor) VALUES(?,?,?,?,'LOCAL_OWNER')",
                 (projeto_id, "CRIAR" if anterior is None else "ATUALIZAR", nova_revisao, agora),
             )
             db.execute(
@@ -213,7 +229,7 @@ class RepositorioProjetos:
         projeto_id = str(UUID(projeto_id))
         with self._conectar() as db:
             row = db.execute("SELECT * FROM projetos WHERE id=?", (projeto_id,)).fetchone()
-        if row is None:
+        if row is None or row["excluido_em"] is not None:
             return None
         return {
             "id": row["id"], "nome": row["nome"], "dados": json.loads(row["dados_json"]),
@@ -419,3 +435,20 @@ class RepositorioProjetos:
                            "criado_em": row["criado_em"],
                            "normative_conformity_verified": False})
         return result
+
+    def arquivar(self, projeto_id: str, revisao_esperada: int):
+        """Tombstone administrative revision; immutable content history retained."""
+        projeto_id = str(UUID(projeto_id))
+        if type(revisao_esperada) is not int or revisao_esperada < 1:
+            raise ValueError('Revisao invalida')
+        agora = datetime.now(timezone.utc).isoformat()
+        with self._conectar() as db:
+            db.execute('BEGIN IMMEDIATE')
+            cursor = db.execute(
+                'UPDATE projetos SET excluido_em=?, atualizado_em=?, revisao=revisao+1 '
+                'WHERE id=? AND revisao=? AND excluido_em IS NULL',
+                (agora, agora, projeto_id, revisao_esperada))
+            if cursor.rowcount != 1:
+                raise ConflitoRevisao('Projeto ausente, arquivado ou revisao divergente')
+            db.execute("INSERT INTO eventos_auditoria(projeto_id,acao,revisao,criado_em,autor) VALUES(?,?,?,?,'LOCAL_OWNER')",
+                       (projeto_id, 'ARQUIVAR', revisao_esperada+1, agora))

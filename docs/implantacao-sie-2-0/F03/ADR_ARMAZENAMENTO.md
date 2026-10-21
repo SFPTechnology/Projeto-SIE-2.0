@@ -1,0 +1,5 @@
+# ADR F03 — armazenamento por ambiente
+Decisão: SQLite stdlib, repositório existente, transações IMMEDIATE, FK ativadas por conexão. JSON canônico preserva Decimal como texto do contrato F02. Sem ORM novo e sem conversão automática de tipos elétricos.
+DEV/TEST local de proprietário único. SIE_ENV ausente equivale dev para compatibilidade; valores fora dev/test desabilitam persistência HTTP. Token e caminho devem ser explícitos. API deve iniciar em 127.0.0.1, sem proxy público.
+PostgreSQL é destino de produção projetado, não implementado: requer identidade, organização, autorização em cada consulta, políticas SQL, migração de JSON/Decimal e ensaio de restauração. Não reutilizar token local como identidade. Nenhum rollout de produção liberado nesta fase.
+Rollback: parar aplicação, preservar cópia, aplicar downgrade isoladamente e validar. Downgrade recusa tombstones para não perder semântica. Recuperação de produção não autorizada. Identidade multiusuário e RLS só poderão ser aprovadas quando implementadas e testadas; não são simuladas com cabeçalho tenant.

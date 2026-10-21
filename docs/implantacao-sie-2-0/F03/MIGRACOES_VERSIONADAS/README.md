@@ -1,0 +1,4 @@
+# Migração local 001
+Fonte executável única: restructuring/apps/api/sie_api/data_lifecycle.py (UP/DOWN); integração pelo construtor RepositorioProjetos após bootstrap legado.
+0 → 1 adiciona timestamps, tombstone, índice e campo autor (legado desconhecido; novas operações LOCAL_OWNER); 1 → 0 remove somente metadados novos, preservando tabelas e revisões legadas; recusa downgrade se houver arquivados. Nenhum DROP de tabela de negócio. Aplicação transacional; falha por esquema parcialmente alterado desfaz todos os passos desta tentativa. Não tentar reparar SQL desconhecido silenciosamente: restaurar cópia e investigar divergência.
+Teste test_upgrade_downgrade_and_restore com dados representativos; test_atomic_incomplete_migration verifica rollback por colisão de coluna. Sem alegação de compatibilidade com SQL PostgreSQL/Supabase histórico.
