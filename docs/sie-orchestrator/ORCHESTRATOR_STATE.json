@@ -203,9 +203,16 @@
       "from": "RUNNING",
       "to": "VALIDATING",
       "reason": "604 API/28 F05,34 F00,25 Chromium,AIOX e QA3 locais aprovados; CI pendente"
+    },
+    {
+      "activity": "F05",
+      "at": "2026-10-21",
+      "from": "VALIDATING",
+      "to": "HUMAN_REQUIRED",
+      "reason": "Auto-review rejeitou publicação por falta de autorização explícita do payload F05; commit local fb5e3e3 pronto; CI não executado"
     }
   ],
-  "revision": 26,
+  "revision": 27,
   "schema_version": 1,
   "tasks": [
     {
@@ -1404,7 +1411,7 @@
       "impact": 10,
       "risk": 5,
       "requirements_verified": true,
-      "state": "VALIDATING",
+      "state": "HUMAN_REQUIRED",
       "criteria": [
         {
           "id": "AC-05.01",
@@ -1495,7 +1502,9 @@
       "publication": {
         "branch": "feat/f05-topologia-eletrica",
         "merged_to_main": false,
-        "production_release_allowed": false
+        "production_release_allowed": false,
+        "local_code_sha": "fb5e3e382db973a989fb499a07a62404d83d80eb",
+        "published": false
       },
       "checkpoint": {
         "qa_01": "APROVADO",
@@ -1507,7 +1516,9 @@
         "f00_golden_passed": 34,
         "browser_tests_passed": 25,
         "aiox_passed": true,
-        "next_phase_development_allowed": false
+        "next_phase_development_allowed": false,
+        "ci_executed": false,
+        "blocker": "Auto-review rejeitou push; requer autorização explícita da publicação F05 neste destino"
       }
     }
   ]

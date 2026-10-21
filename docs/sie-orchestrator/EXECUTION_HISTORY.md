@@ -61,3 +61,7 @@ Branch feat/f03-persistencia-seguranca; código61e65e980960ecbf23cc846a9ac4d7645
 
 ## Atualização sequencial — 21/10/2026 — F05
 F05 implementada: envelope de metadados sobre grafo F02, percursos por trecho, API/CLI/editor, concorrência e invalidação; QA3 e testes locais aprovados. CI pendente.
+
+
+### Checkpoint final F05 — 21/10/2026
+HUMAN_REQUIRED somente para publicação: auto-review rejeitou git push sem autorização explícita do payload F05 neste destino. Código fb5e3e382db973a989fb499a07a62404d83d80eb e QA3/testes locais aprovados; branch remota inexistente,CI não executado. Retomar publicação e CI após autorização específica, sem repetir implementação nem reabrir aceites anteriores.

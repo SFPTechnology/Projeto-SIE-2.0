@@ -14,3 +14,7 @@
 ## Progresso sem aprovação normativa
 
 O run 38613344311 registrou 99 testes Python passando, presença dos seis artefatos e manifesto SHA256 como artifact 11917953248. O próprio manifesto conserva `normative_conformity_verified=false`. Não é permitido considerar NOR-01 ou SIE-AUTO-003 resolvidos com base apenas neste inventário.
+
+
+### Checkpoint final F05 — 21/10/2026
+HUMAN_REQUIRED somente para publicação: auto-review rejeitou git push sem autorização explícita do payload F05 neste destino. Código fb5e3e382db973a989fb499a07a62404d83d80eb e QA3/testes locais aprovados; branch remota inexistente,CI não executado. Retomar publicação e CI após autorização específica, sem repetir implementação nem reabrir aceites anteriores.

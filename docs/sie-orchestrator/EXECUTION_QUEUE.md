@@ -36,3 +36,7 @@ Passagem vigente: F03 DONE; próximo F04_EXECUTAR.md. A indicação anterior de 
 
 ## Atualização sequencial — 21/10/2026 — F05
 F05 | VALIDATING | depende F02/F04 DONE | próximo: publicação e conferência CI; main/produção preservadas
+
+
+### Checkpoint final F05 — 21/10/2026
+HUMAN_REQUIRED somente para publicação: auto-review rejeitou git push sem autorização explícita do payload F05 neste destino. Código fb5e3e382db973a989fb499a07a62404d83d80eb e QA3/testes locais aprovados; branch remota inexistente,CI não executado. Retomar publicação e CI após autorização específica, sem repetir implementação nem reabrir aceites anteriores.

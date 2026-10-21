@@ -36,3 +36,7 @@ Preservar contratos/snapshots F02: documento de transporte F05 associa metadados
 - docs/sie-orchestrator/EXECUTION_HISTORY.md
 - docs/sie-orchestrator/EXECUTION_QUEUE.md
 - docs/sie-orchestrator/VALIDATION_MATRIX.md
+
+## Checkpoint
+Código local fb5e3e382db973a989fb499a07a62404d83d80eb pronto e validado. Publicação rejeitada por auto-review; CI remoto não executado; aprovação explícita da publicação F05 necessária. Story permanece Ready for Review, fase HUMAN_REQUIRED para esta operação.
+- docs/sie-orchestrator/BLOCKER_REGISTRY.md
