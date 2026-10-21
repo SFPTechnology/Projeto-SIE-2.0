@@ -210,9 +210,23 @@
       "from": "VALIDATING",
       "to": "HUMAN_REQUIRED",
       "reason": "Auto-review rejeitou publicação por falta de autorização explícita do payload F05; commit local fb5e3e3 pronto; CI não executado"
+    },
+    {
+      "activity": "F05",
+      "at": "2026-10-21",
+      "from": "HUMAN_REQUIRED",
+      "to": "VALIDATING",
+      "reason": "Autorização explícita de publicação recebida; branch publicada via conector,árvores locais/remotas idênticas"
+    },
+    {
+      "activity": "F05",
+      "at": "2026-10-21",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "604 API/34 F00,25 Chromium,18 AIOX e QA3 aprovados;3 workflows completed/success no SHA7c5547af06e6b569f493473ceb61cd6d224603da;F06 liberada para desenvolvimento,sem deploy/homologação"
     }
   ],
-  "revision": 27,
+  "revision": 28,
   "schema_version": 1,
   "tasks": [
     {
@@ -1411,7 +1425,7 @@
       "impact": 10,
       "risk": 5,
       "requirements_verified": true,
-      "state": "HUMAN_REQUIRED",
+      "state": "DONE",
       "criteria": [
         {
           "id": "AC-05.01",
@@ -1504,21 +1518,28 @@
         "merged_to_main": false,
         "production_release_allowed": false,
         "local_code_sha": "fb5e3e382db973a989fb499a07a62404d83d80eb",
-        "published": false
+        "published": true,
+        "code_sha": "78c54c07e2660974dcca3ffb4bdfbdf6474edc43",
+        "validated_checkpoint_sha": "7c5547af06e6b569f493473ceb61cd6d224603da",
+        "explicit_user_authorization_received": true
       },
       "checkpoint": {
         "qa_01": "APROVADO",
         "qa_02": "APROVADO",
         "qa_03": "APROVADO",
-        "ci_current_sha_verified": false,
+        "ci_current_sha_verified": true,
         "local_api_tests_passed": 604,
         "f05_tests_passed": 28,
         "f00_golden_passed": 34,
         "browser_tests_passed": 25,
         "aiox_passed": true,
-        "next_phase_development_allowed": false,
-        "ci_executed": false,
-        "blocker": "Auto-review rejeitou push; requer autorização explícita da publicação F05 neste destino"
+        "next_phase_development_allowed": true,
+        "ci_executed": true,
+        "ci_code_sha": "7c5547af06e6b569f493473ceb61cd6d224603da",
+        "ci_api_run": 39662901530,
+        "ci_aiox_run": 39662901277,
+        "ci_chromium_run": 39662901273,
+        "next_phase": "F06"
       }
     }
   ]

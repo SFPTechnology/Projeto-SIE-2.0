@@ -1,5 +1,5 @@
 # F05 — Topologia elétrica e condições de instalação
-Data:21/10/2026. **ESTADO: HUMAN_REQUIRED — publicação bloqueada**. Implementação, regressão e QA3 locais aprovados. Falta autorização explícita para publicação da F05 e posterior conferência do CI.
+Data:21/10/2026. **ESTADO: DONE — implementação, QA3, publicação e CI aprovados**. Autorização explícita de publicação recebida em21/10/2026; bloqueio anterior resolvido. Passagem liberada para F06.
 Branch:`feat/f05-topologia-eletrica`. Base observada local e no GitHub:`f388dde204fd4e9870796ff6cdcf77f9606aebe8` (F04 DONE). F02/F04 e aceites F01 preservados. Fonte canônica de estado:`docs/sie-orchestrator/ORCHESTRATOR_STATE.json`.
 
 |Task|Implementação e evidência|
@@ -33,10 +33,21 @@ Os três pareceres são perspectivas do mesmo assistente; não auditorias humana
 
 ## Gates e limites
 Gates locais demonstrados: QDG→QD1→circuitos; ciclos e órfãos recusados; comprimento/agrupamento/influências invalidam resultados dependentes. Snapshot F02 histórico sem alteração de schema. Persistência mantém uma única conectividade e preserva levantamento F04/histórico F03.
-Ainda não conferido: CI do commit publicado F05. Não declarar passagem enquanto essa conferência estiver pendente.
+CI conferido: API, AIOX e Chromium completed/success no mesmo SHA publicado7c5547af06e6b569f493473ceb61cd6d224603da. Todos os gates aplicáveis à F05 demonstrados; passagem liberada para F06.
 Sem cálculo normativo novo, aprovação ABNT, geometria inventada, curto-circuito definitivo, paralelismo de fontes, migração real, merge ou deploy. Cadastro completo de entidades e metadados ocorre por JSON técnico validado; não é editor gráfico de desenho. Regras normativas futuras permanecem explicitamente pendentes conforme o escopo.
 
-## Checkpoint de publicação
-Commit local de código e validação:`fb5e3e382db973a989fb499a07a62404d83d80eb`,24 arquivos. Parent/base:`f388dde204fd4e9870796ff6cdcf77f9606aebe8`.
-A revisão automática de aprovação rejeitou `git push` da branch F05: considerou que o pedido de executar a fase não autorizava explicitamente a publicação deste conteúdo no destino. A autorização anterior de F04 cobre outro payload/fase. Nenhuma tentativa por conector foi feita após a rejeição. Branch F05 remota não existe; CI F05 NÃO EXECUTADO. Não há commit F05 publicado nem link de CI a anunciar.
-Condição de desbloqueio: autorização explícita do usuário para publicar os commits F05 em SFPTechnology/Projeto-SIE-2.0, somente branch feat/f05-topologia-eletrica, e executar/conferir CI. O trabalho local já está concreto e revisável. Não é necessário repetir implementação nem aceites F01–F04. Somente após publicação/CI e fechamento do estado poderá ser declarada passagem.
+## Publicação e encerramento
+A rejeição inicial por falta de autorização explícita foi resolvida pelo usuário nesta conversa: **“Está autorizado!”**. A tentativa autorizada por Git não encontrou credencial de terminal; publicação concluída pelo conector GitHub, com igualdade exata das árvores locais/remotas.
+
+|Registro|SHA / evidência|
+|---|---|
+|Código publicado|`78c54c07e2660974dcca3ffb4bdfbdf6474edc43`; árvore00cdc6e2870b3730073dd888be34a328a28363c8 idêntica ao código local fb5e3e382db973a989fb499a07a62404d83d80eb|
+|Checkpoint publicado e validado no CI|`7c5547af06e6b569f493473ceb61cd6d224603da`; árvore5fd07e89d09e3e449b577d8906b44ae25bea31c4 idêntica ao local a5c6974acc533e4b687702c23023381b16bd4842|
+|API / F00|[39662901530](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39662901530):completed/success;604 testes,1 aviso,11,85s;34 golden,fixture intacta|
+|AIOX|[39662901277](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39662901277):completed/success;lint,typecheck,18 testes e build|
+|Chromium|[39662901273](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39662901273):completed/success;25 cenários,44,49s|
+
+Os três runs e seus jobs/logs foram conferidos no mesmo head_sha. Não houve falha de CI nem correção adicional de código. Avisos de depreciação de Starlette/httpx e ações Node não impediram os gates.
+O commit de encerramento posterior altera somente documentação e estado; o código permanece exatamente o validado pelo CI. Branch local alinhada ao remoto sem perda dos commits locais, preservados também na ref checkpoint/f05-local-before-publication. run-artifacts não integra os commits.
+
+**Próximo arquivo: F06_EXECUTAR.md.** A fase F06 não foi executada nesta entrega. Sem merge em main, deploy, alteração de banco real ou aprovação normativa; permanecem os limites técnicos descritos no contrato.

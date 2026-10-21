@@ -1,3 +1,5 @@
-# Próxima ação — F05
+# Próxima ação — F06
 
-F05 HUMAN_REQUIRED apenas para publicação. Código local fb5e3e382db973a989fb499a07a62404d83d80eb implementado,604 API/28 F05,34 F00,25 Chromium,18 AIOX e QA3 aprovados. Revisão automática rejeitou git push por exigir autorização explícita do payload F05 para SFPTechnology/Projeto-SIE-2.0, branch feat/f05-topologia-eletrica. Nenhuma publicação ocorreu; CI não executado. Com autorização, publicar esta mesma árvore, executar/conferir3 workflows, fechar relatório e estado. Sem reabrir F01–F04, sem main/merge/deploy. Passagem ainda não declarada.
+F05 DONE. Código publicado na branch feat/f05-topologia-eletrica; API39662901530,AIOX39662901277,Chromium39662901273 completed/success no SHA7c5547af06e6b569f493473ceb61cd6d224603da.604 API,34 F00,25 Chromium,18 AIOX e QA3 aprovados.
+
+Próximo artefato:F06_EXECUTAR.md. A F06 está liberada para desenvolvimento; não foi iniciada nesta entrega. Preservar F00–F05 e aceites F01; sem merge/deploy ou homologação normativa por teste computacional. Fonte canônica:ORCHESTRATOR_STATE.json.

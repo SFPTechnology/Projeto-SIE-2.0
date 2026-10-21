@@ -65,3 +65,7 @@ F05 implementada: envelope de metadados sobre grafo F02, percursos por trecho, A
 
 ### Checkpoint final F05 — 21/10/2026
 HUMAN_REQUIRED somente para publicação: auto-review rejeitou git push sem autorização explícita do payload F05 neste destino. Código fb5e3e382db973a989fb499a07a62404d83d80eb e QA3/testes locais aprovados; branch remota inexistente,CI não executado. Retomar publicação e CI após autorização específica, sem repetir implementação nem reabrir aceites anteriores.
+
+
+### Encerramento F05 — 21/10/2026 — estado vigente
+F05 DONE. Bloqueio de publicação RESOLVIDO por autorização explícita do usuário. Branch publicada com árvores idênticas às locais. API39662901530,AIOX39662901277,Chromium39662901273 completed/success no SHA7c5547af06e6b569f493473ceb61cd6d224603da;604 API,34 F00,25 Chromium,18 AIOX e QA3 aprovados. Passagem F06 liberada,próximo arquivo F06_EXECUTAR.md;sem merge/deploy. O checkpoint HUMAN_REQUIRED acima é histórico e não representa impedimento atual.

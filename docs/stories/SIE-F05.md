@@ -1,5 +1,5 @@
 # SIE-F05 — Topologia elétrica e condições por trecho
-Status: Ready for Review. Fonte: F05_EXECUTAR.md, tasks 05.01–05.09.
+Status: Done. Fonte: F05_EXECUTAR.md, tasks 05.01–05.09.
 
 - [x] Fonte declarada, confirmação e impedância sem inferência.
 - [x] Quadros/barras e vínculos únicos sobre grafo F02, sem fonte paralela.
@@ -40,3 +40,6 @@ Preservar contratos/snapshots F02: documento de transporte F05 associa metadados
 ## Checkpoint
 Código local fb5e3e382db973a989fb499a07a62404d83d80eb pronto e validado. Publicação rejeitada por auto-review; CI remoto não executado; aprovação explícita da publicação F05 necessária. Story permanece Ready for Review, fase HUMAN_REQUIRED para esta operação.
 - docs/sie-orchestrator/BLOCKER_REGISTRY.md
+
+## Encerramento publicado e verificado
+Autorização explícita recebida;bloqueio anterior resolvido. Código remoto78c54c07e2660974dcca3ffb4bdfbdf6474edc43,checkpoint7c5547af06e6b569f493473ceb61cd6d224603da. API39662901530,AIOX39662901277,Chromium39662901273 SUCCESS no mesmo SHA;604 API,34 F00,25 Chromium e18 AIOX. F05 DONE;F06 liberada para desenvolvimento. Encerramento altera somente documentação/estado.
