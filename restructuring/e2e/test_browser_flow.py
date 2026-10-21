@@ -71,7 +71,7 @@ def servers():
 @pytest.fixture
 def page(servers):
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=True)
+        browser = playwright.chromium.launch(headless=True, **({'executable_path': os.environ['SIE_E2E_BROWSER_PATH'], 'args': ['--no-zygote', '--single-process', '--disable-dev-shm-usage']} if os.environ.get('SIE_E2E_BROWSER_PATH') else {}))
         context = browser.new_context()
         browser_page = context.new_page()
         errors = []
@@ -346,3 +346,94 @@ def test_delayed_analysis_cannot_restore_stale_input(page, servers, action):
     page.locator('#project-save').click()
     expect(page.locator('#project-status')).to_contain_text('Execute uma analise antes de salvar')
     assert 'Condutor selecionado' not in page.locator('#resultado').inner_text()
+
+
+def test_f04_demo_save_reload_and_distinct_units(page, servers):
+    page.goto(WEB_URL+'/levantamento.html')
+    page.locator('#demo').click()
+    expect(page.locator('#status')).to_contain_text('Demonstração sintética carregada')
+    page.locator('#token').fill(servers)
+    page.locator('#save').click()
+    expect(page.locator('#status')).to_contain_text('Salvo · revisão 1')
+    project_id=page.locator('#project-id').input_value()
+    page.reload()
+    page.locator('#token').fill(servers)
+    page.locator('#project-id').fill(project_id)
+    page.locator('#reopen').click()
+    expect(page.locator('#status')).to_contain_text('Reaberto · revisão 1')
+    expect(page.locator('#records')).to_contain_text('Tomadas sala')
+    expect(page.locator('#summary')).to_contain_text('3100')
+    expect(page.locator('#summary')).to_contain_text('PENDENTE_FONTE_VALIDADA')
+
+
+def test_f04_editor_invalid_values_preserved_and_undo(page):
+    page.goto(WEB_URL+'/levantamento.html')
+    page.locator('#demo').click()
+    expect(page.locator('#status')).to_contain_text('Demonstração sintética carregada')
+    page.get_by_role('button',name='Editar Luz sala',exact=True).click()
+    page.locator('#field-quantidade').fill('1.5')
+    page.get_by_role('button',name='Aplicar registro',exact=True).click()
+    expect(page.locator('#status')).to_contain_text('Registro não aplicado')
+    expect(page.locator('#field-quantidade')).to_have_value('1.5')
+    page.locator('#field-quantidade').fill('2')
+    page.get_by_role('button',name='Aplicar registro',exact=True).click()
+    expect(page.locator('#status')).to_contain_text('Alteração local aplicada')
+    expect(page.locator('#summary')).to_contain_text('3200')
+    page.locator('#undo').click()
+    expect(page.locator('#summary')).to_contain_text('3100')
+
+
+def test_f04_protect_unsaved_and_wrong_token(page):
+    page.goto(WEB_URL+'/levantamento.html')
+    page.locator('#nome').fill('Edição protegida')
+    page.once('dialog',lambda dialog:dialog.dismiss())
+    page.locator('#reopen').click()
+    expect(page.locator('#nome')).to_have_value('Edição protegida')
+    page.locator('#token').fill('wrong')
+    page.locator('#save').click()
+    expect(page.locator('#status')).to_contain_text('Não salvo; dados locais preservados')
+    expect(page.locator('#nome')).to_have_value('Edição protegida')
+
+
+def test_f04_create_hierarchy_and_three_classes_from_empty(page, servers):
+    page.goto(WEB_URL+'/levantamento.html')
+    def apply(kind, name, **values):
+        page.locator('#kind').select_option(kind)
+        page.locator('#field-nome').fill(name)
+        for key,value in values.items():
+            node=page.locator('#field-'+key)
+            if node.evaluate('(e)=>e.tagName')=='SELECT':node.select_option(value)
+            else:node.fill(value)
+        page.get_by_role('button',name='Aplicar registro',exact=True).click()
+        expect(page.locator('#status')).to_contain_text('Alteração local aplicada')
+    apply('edificacoes','Casa')
+    apply('pavimentos','Térreo')
+    apply('ambientes','Sala',tipo='sala',area_m2='20')
+    apply('ambientes','Banheiro',tipo='banheiro',condicao='molhado')
+    apply('cargas','Luz',classe='ILUMINACAO',p_w='100',tensao_v='127',fases='1')
+    apply('cargas','Tomada',classe='TUG',s_va='100')
+    apply('cargas','Equipamento',classe='TUE',p_w='1000',tensao_v='220',fases='1',regime='intermitente',dedicado='sim')
+    page.locator('#token').fill(servers)
+    page.locator('#save').click()
+    expect(page.locator('#status')).to_contain_text('Salvo · revisão 1')
+    page.locator('#reopen').click()
+    expect(page.locator('#status')).to_contain_text('Reaberto · revisão 1')
+    expect(page.locator('#records')).to_contain_text('Equipamento')
+
+
+def test_f04_edit_defaulted_load_and_keep_form_draft(page):
+    page.goto(WEB_URL+'/levantamento.html')
+    page.locator('#demo').click()
+    expect(page.locator('#status')).to_contain_text('Demonstração sintética carregada')
+    page.get_by_role('button',name='Editar Equipamento trifásico de teste',exact=True).click()
+    expect(page.locator('#field-quantidade')).to_have_value('1')
+    page.get_by_role('button',name='Aplicar registro',exact=True).click()
+    expect(page.locator('#status')).to_contain_text('Alteração local aplicada')
+    page.locator('#field-nome').fill('Rascunho')
+    page.once('dialog',lambda dialog:dialog.dismiss())
+    page.locator('#kind').select_option('ambientes')
+    expect(page.locator('#kind')).to_have_value('cargas')
+    expect(page.locator('#field-nome')).to_have_value('Rascunho')
+    page.locator('#archive').click()
+    expect(page.locator('#status')).to_contain_text('Aplique ou cancele')
+    expect(page.locator('#field-nome')).to_have_value('Rascunho')

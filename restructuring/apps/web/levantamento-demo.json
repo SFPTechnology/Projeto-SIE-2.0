@@ -1,0 +1,70 @@
+{
+  "schema_version": "F04-1",
+  "projeto_id": "00000000-0000-0000-0000-000000000001",
+  "nome": "Apartamento demonstrativo — sintético",
+  "tipologia": "Residencial",
+  "edificacoes": [
+    {
+      "id": "00000000-0000-0000-0000-000000000002",
+      "nome": "Bloco A"
+    }
+  ],
+  "pavimentos": [
+    {
+      "id": "00000000-0000-0000-0000-000000000003",
+      "nome": "Térreo",
+      "edificacao_id": "00000000-0000-0000-0000-000000000002"
+    }
+  ],
+  "ambientes": [
+    {
+      "id": "00000000-0000-0000-0000-000000000004",
+      "nome": "Sala",
+      "tipo": "sala",
+      "pavimento_id": "00000000-0000-0000-0000-000000000003",
+      "area_m2": "20",
+      "condicao": "seco"
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000000005",
+      "nome": "Cozinha",
+      "tipo": "cozinha",
+      "pavimento_id": "00000000-0000-0000-0000-000000000003",
+      "condicao": "molhado"
+    }
+  ],
+  "cargas": [
+    {
+      "id": "00000000-0000-0000-0000-000000000006",
+      "nome": "Luz sala",
+      "ambiente_id": "00000000-0000-0000-0000-000000000004",
+      "classe": "ILUMINACAO",
+      "p_w": "100",
+      "q_var": "0",
+      "s_va": "100",
+      "tensao_v": "127",
+      "fases": 1,
+      "origem": "estimado"
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000000007",
+      "nome": "Tomadas sala",
+      "ambiente_id": "00000000-0000-0000-0000-000000000004",
+      "classe": "TUG",
+      "quantidade": 2,
+      "s_va": "100",
+      "origem": "estimado"
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000000008",
+      "nome": "Equipamento trifásico de teste",
+      "ambiente_id": "00000000-0000-0000-0000-000000000005",
+      "classe": "TUE",
+      "p_w": "3000",
+      "tensao_v": "220",
+      "fases": 3,
+      "dedicado": true,
+      "regime": "intermitente"
+    }
+  ]
+}
