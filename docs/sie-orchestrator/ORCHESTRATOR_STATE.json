@@ -168,9 +168,16 @@
       "from": "UNREGISTERED",
       "to": "VALIDATING",
       "reason": "Artefato original recuperado e idêntico ao anexo; implementação02.01–09,539testesAPI/F0034/AIOX e trêsQA aprovados localmente; CI de publicação pendente."
+    },
+    {
+      "activity": "F02",
+      "at": "2026-10-20T23:38:03-03:00",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "CI no SHA d05f25e0a7f0ec17fce8e031fd0cf54507f65b93 confirmou539testesAPI,34replayF00,AIOX e17Chromium; trêsQA F02 aprovados; desenvolvimentoF03 liberado,sem merge/deploy."
     }
   ],
-  "revision": 24,
+  "revision": 25,
   "schema_version": 1,
   "tasks": [
     {
@@ -1003,7 +1010,7 @@
       "impact": 10,
       "risk": 5,
       "requirements_verified": true,
-      "state": "VALIDATING",
+      "state": "DONE",
       "criteria": [
         {
           "id": "AC-02.01",
@@ -1094,7 +1101,8 @@
       "publication": {
         "branch": "feat/f02-dominio-eletrico",
         "merged_to_main": false,
-        "production_release_allowed": false
+        "production_release_allowed": false,
+        "code_sha": "d05f25e0a7f0ec17fce8e031fd0cf54507f65b93"
       },
       "checkpoint": {
         "local_api_tests_passed": 539,
@@ -1103,8 +1111,14 @@
         "qa_01": "APROVADO",
         "qa_02": "APROVADO",
         "qa_03": "APROVADO",
-        "ci_current_sha_verified": false,
-        "next_phase": "F03"
+        "ci_current_sha_verified": true,
+        "next_phase": "F03",
+        "ci_code_sha": "d05f25e0a7f0ec17fce8e031fd0cf54507f65b93",
+        "ci_api_run": 39533988039,
+        "ci_aiox_run": 39533987841,
+        "ci_chromium_run": 39533987785,
+        "browser_tests_passed": 17,
+        "next_phase_development_allowed": true
       }
     }
   ]

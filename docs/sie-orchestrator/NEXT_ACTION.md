@@ -1,6 +1,6 @@
-## F02 — marco atual em20/10/2026
+## F02 — encerramento confirmado em20/10/2026
 
-F01 DONE por aceite do titular, preservada. F02 implementada e em VALIDATING na branch `feat/f02-dominio-eletrico`: modelo canônico,topologia,unidades,snapshots,contratos,invalidação e adaptador legado.539testesAPI/F0034/AIOX e trêsQA aprovados localmente. Próxima ação: conferir CI no SHA publicado e registrar passagemF03 se verde, sem repetir F01.
+**F02 DONE. F03 liberada para desenvolvimento.** Código validado em `d05f25e0a7f0ec17fce8e031fd0cf54507f65b93`:539testesAPI,34replayF00,AIOX lint/typecheck/test/build e17Chromium aprovados no mesmo SHA. TrêsQA F02 aprovados no escopo. Próxima ação: aplicar o artefato `F03_EXECUTAR.md` na sequência, sem reiniciarF01/F02. Nenhum trabalhoF03 é declarado implementado por este registro. F00,lote01 e aceite de projetoF01 preservados; sem merge/main/deploy ou liberação de produção.
 
 ## Decisão vigente — 20/10/2026
 

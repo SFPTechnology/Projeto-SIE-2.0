@@ -1,5 +1,5 @@
 # F02 — Arquitetura e modelagem do domínio elétrico
-Data:20/10/2026. Estado: **VALIDATING — implementação e QA locais aprovados; CI de publicação pendente**.
+Data:20/10/2026. Estado: **DONE — implementação, três QA e CI do mesmo SHA aprovados**.
 Branch: `feat/f02-dominio-eletrico`. F01 encerrada por aceite do titular, sem reabertura. F00 e lote01 preservados.
 
 A especificação utilizada foi recuperada do kit original e depois confrontada com o anexo F02_EXECUTAR.md: ambos SHA-256 `eb4f127c6ff53d3b2a9f0c9064b08e020b1c5fcdf684aac924ab06e25ad0f1ae`.
@@ -54,3 +54,18 @@ O modelo representa cenários mais amplos que o motor monofásico legado. O adap
 VALID indica apenas integridade e correspondência computacional; o registro recebido pela rota stateless não tem origem autenticada por assinatura. Persistência é local e opt-in,semRBACmultiusuário ou migração de produção. Não há geração de desenhos ou novos motores nesta fase de arquitetura.
 
 Os três gates funcionais do artefato estão demonstrados localmente. A passagem será consolidada após CI no mesmo SHA. Próximo marco após confirmação: **F03_EXECUTAR.md**. Nenhum merge ou deploy realizado.
+
+
+## CI de publicação e encerramento F02
+
+SHA executado: `d05f25e0a7f0ec17fce8e031fd0cf54507f65b93`.
+
+|Workflow|Resultado conferido|Evidência|
+|---|---|---|
+|API e regressão F00|SUCCESS —539testesAPI,1aviso;34casosF00,fixture intacta|https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39533988039|
+|AIOX|SUCCESS —lint/typecheck/test/build|https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39533987841|
+|Chromium real|SUCCESS —17testes,34,21s|https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39533987785|
+
+**Decisão: F02 DONE; F03 liberada para desenvolvimento**, conforme sequência do artefato F02. Não se iniciou nem se declara implementada a F03 neste marco. Estado do orquestrador atualizado com histórico e referência ao SHA validado. O commit deste encerramento é documental; resultados acima pertencem ao SHA de código indicado, sem extrapolar para outro runtime.
+
+CodeRabbit não executado por CLI indisponível; revisãoQA3 destaF02 e testes efetivos estão registrados sem equivalência a assinatura profissional. F00,lote01 e encerramento de projetoF01 preservados. Nenhum merge emmain,deploy,migração ativa ou novo consumoCopilot foi executado.

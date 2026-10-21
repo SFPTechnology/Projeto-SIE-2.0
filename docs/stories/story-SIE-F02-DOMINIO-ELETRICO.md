@@ -1,6 +1,6 @@
 # Story SIE-F02 — Modelo de domínio elétrico e contratos de cálculo
 
-Estado: **Ready for Review / VALIDATING**. Início: 20/10/2026. Branch de trabalho: `feat/f02-dominio-eletrico`, sem merge na principal.
+Estado: **Done**. Início: 20/10/2026. Branch de trabalho: `feat/f02-dominio-eletrico`, sem merge na principal.
 
 Origem: tasks 02.01–02.09 do kit sequencial F02. Predecessora: F01 encerrada como projeto por aceite expresso do titular, registrado em `docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json`. Esse encerramento permite desenvolvimento; não acrescenta homologação normativa. F00 e os oito valores/seis casos aceitos do lote 01 permanecem preservados.
 
@@ -27,7 +27,7 @@ Representar a instalação como agregado versionado com identidade, unidades, re
 
 - `docs/implantacao-sie-2-0/F02/CONTRATOS_MOTORES.md`: responsabilidades e contratos implementados.
 - `docs/implantacao-sie-2-0/F02/MAPA_DEPENDENCIAS_CALCULO.md`: dependências e invalidação implementadas.
-- Resultados observados:539 testes API,34 replay F00 e AIOX aprovados;90 testes F02 integrados nessa contagem. QA-01/02/03 aprovados no escopo. CI do SHA publicado será conferida antes de encerrar a passagem.
+- Resultados observados:539 testes API,34 replay F00 e AIOX aprovados;90 testes F02 integrados nessa contagem. QA-01/02/03 aprovados no escopo. CI confirmada no SHA d05f25e:539API,F0034,AIOX e17Chromium; passagemF03 liberada.
 
 ## File list inicial
 
@@ -37,7 +37,7 @@ Criados nesta preparação:
 - `docs/implantacao-sie-2-0/F02/CONTRATOS_MOTORES.md`
 - `docs/implantacao-sie-2-0/F02/MAPA_DEPENDENCIAS_CALCULO.md`
 
-Arquivos de runtime, testes e integração serão acrescentados pelo implementador conforme efetivamente alterados. Implementação validada localmente; aguarda CI do SHA publicado.
+Arquivos de runtime, testes e integração serão acrescentados pelo implementador conforme efetivamente alterados. Implementação validada localmente e pela CI do SHA d05f25e; encerramentoF02 confirmado.
 
 
 ## File list final e validação
@@ -51,3 +51,12 @@ Arquivos de runtime, testes e integração serão acrescentados pelo implementad
 - `docs/sie-orchestrator/{ORCHESTRATOR_STATE.json,PROJECT_STATE.md,NEXT_ACTION.md,EXECUTION_QUEUE.md}` e esta story.
 
 O domínio representa cenários que o adaptador legado não calcula; a recusa explícita é comportamento validado, preservando o motor F01. Não houve migração/descarte de dados ou alteração de interface legada. A persistência F02 é explícita, local e testada; não confundir a emissão stateless de snapshot com uma gravação automática.
+
+
+## Encerramento e passagem
+
+- [x] Publicar candidato em `d05f25e0a7f0ec17fce8e031fd0cf54507f65b93` na branchF02.
+- [x] Confirmar539API/F0034/AIOX/17Chromium no mesmo SHA: runs39533988039,39533987841,39533987785.
+- [x] Registrar F02DONE e liberar desenvolvimentoF03, sem afirmar execuçãoF03, merge ou produção.
+
+Esta atualização é documental; as contagens referem-se ao SHA de código acima. F00,aceite do lote01 e decisãoF01 preservados. CodeRabbit não executado; três pareceresQA F02 delimitam a revisão computacional realizada.

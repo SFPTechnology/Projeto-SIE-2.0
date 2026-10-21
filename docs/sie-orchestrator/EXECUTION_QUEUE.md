@@ -25,4 +25,6 @@ Critério: `READY` só com dependências DONE e requisitos definidos; `DONE` exi
 
 A referência histórica de SIE-AUTO-003 foi reconciliada no JSON, mas **não** foi marcada DONE pela simples criação do manifesto. Não há atividade READY nesta revisão. Um bloqueio de norma não deve fazer o orquestrador inventar valores de tabelas.
 
-| F02 | Arquitetura e modelagem do domínio elétrico | F01 DONE por aceite titular | VALIDATING |539API/F0034/AIOX,QA3 aprovado; conferir CI de publicação |
+| F02 | Arquitetura e modelagem do domínio elétrico | F01 DONE por aceite titular | DONE |539API/F0034/AIOX/17Chromium no SHA d05f25e; trêsQA aprovados; F03 liberada para desenvolvimento |
+
+Passagem sequencial vigente: F02 DONE; próximo artefato `F03_EXECUTAR.md`, liberado para desenvolvimento, ainda sem implementação registrada. Não reabrirF01/F02.
