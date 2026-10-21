@@ -92,6 +92,7 @@ class Assignment(Bounded):
         return value.strip() if value is not None else None
 
 class SupplyContext(DomainModel):
+    consumer_unit: Literal['INDIVIDUAL','COLLECTIVE'] | None = None
     reference_date: date | None = None
     activity: str | None = Field(default=None,max_length=100)
     utility: str = Field(min_length=1)

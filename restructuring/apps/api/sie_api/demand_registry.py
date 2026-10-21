@@ -26,6 +26,7 @@ def rule_document(rule_id):
 def scope_error(spec, context, supply):
     if context is None or (context.utility,context.locality,context.edition) != ('EDP_SP','SP_EDP_CONCESSION','09') or not context.concession_confirmed:
         return 'UTILITY_SCOPE_MISMATCH'
+    if context.consumer_unit != 'INDIVIDUAL': return 'CONSUMER_UNIT_SCOPE_MISMATCH'
     if context.reference_date is None or context.reference_date < date.fromisoformat(_CATALOG['source']['valid_from']) or context.reference_date > date.fromisoformat(_CATALOG['source']['checked_at']):
         return 'EDITION_DATE_NOT_VERIFIED'
     if context.typology not in spec.get('typologies',['RESIDENTIAL','COMMERCIAL']): return 'TYPOLOGY_MISMATCH'
@@ -70,7 +71,7 @@ def factors(spec, ids, assignments, powers):
     count=sum(assignments[k].quantity for k in normal)
     basis=active if mode in ('ACTIVE_W','PROGRESSIVE_ACTIVE_W') else Decimal(count)
     if mode=='MAXIMUM_PLUS_REST':
-        if any(not assignments[k].coincident_start_confirmed for k in normal): raise ValueError('COINCIDENT_STARTS_PENDING')
+        if spec['table']=='013' and any(not assignments[k].coincident_start_confirmed for k in normal): raise ValueError('COINCIDENT_STARTS_PENDING')
         # Explicitly sized/ranked input; never guess CV/HP-to-VA or mechanical efficiency.
         if any(assignments[k].ranking_power_w is None for k in normal): raise ValueError('RANKING_POWER_PENDING')
         terms={}

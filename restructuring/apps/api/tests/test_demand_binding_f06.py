@@ -34,7 +34,7 @@ def scenario(rows,typology='RESIDENTIAL',activity=None):
     template=inst['loads'][0];inst['load_points']=[x for x in inst['load_points'] if x['id']==template['load_point_id']];inst['loads']=[];raw['assignments']={};raw['rules']=[]
     source=inst['supplies'][0]['id'];raw['purpose']='ENTRANCE'
     raw['contexts']={source:dict(utility='EDP_SP',locality='SP_EDP_CONCESSION',edition='09',typology=typology,
-                               concession_confirmed=True,reference_date='2026-10-21',activity=activity)}
+                               concession_confirmed=True,consumer_unit='INDIVIDUAL',reference_date='2026-10-21',activity=activity)}
     raw['source_connections']={source:'SINGLE_PHASE_FF'}
     category={'T005':'EDP_A','T007':'EDP_B','T008':'EDP_C','T009':'EDP_D','T010':'EDP_E','T012':'EDP_F','AC-RES':'EDP_F','T013':'EDP_G','T014':'EDP_H','T015':'EDP_I'}
     for row in rows:
@@ -107,11 +107,12 @@ def test_exceptions_and_maximum_ties():
         assert Decimal(r['total']['demand']['s_va']['value'])==expected
 
 @pytest.mark.parametrize('change,code',[
- ('purpose','PURPOSE_MISMATCH'),('date','EDITION_DATE_NOT_VERIFIED'),('territory','UTILITY_SCOPE_MISMATCH'),
+ ('unit','CONSUMER_UNIT_SCOPE_MISMATCH'),('purpose','PURPOSE_MISMATCH'),('date','EDITION_DATE_NOT_VERIFIED'),('territory','UTILITY_SCOPE_MISMATCH'),
  ('typology','TYPOLOGY_MISMATCH'),('kind','EQUIPMENT_KIND_MISMATCH'),('count','EQUIPMENT_COUNT_PENDING'),
  ('conditions','APPLICATION_CONDITIONS_PENDING')])
 def test_bound_scope_failures(change,code):
     raw=scenario([('T005','LIGHTING',1000,1,1)]);a=next(iter(raw['assignments'].values()));context=next(iter(raw['contexts'].values()))
+    if change=='unit':context['consumer_unit']='COLLECTIVE'
     if change=='purpose':raw['purpose']='FEEDER'
     if change=='date':context['reference_date']='2026-01-01'
     if change=='territory':context['locality']='OTHER'
@@ -141,7 +142,7 @@ def test_simultaneous_starts_and_special_equipment_maximum():
                   ('T013','MOTOR',1500,1,1,{'ranking_power_w':'1500','coincident_start_confirmed':True})])
     r=calculate(Scenario.model_validate(raw))
     assert Decimal(r['total']['demand']['s_va']['value'])==2750
-    special={'ranking_power_w':'1000','coincident_start_confirmed':True,'equipment_subtype':'X'}
+    special={'ranking_power_w':'1000','equipment_subtype':'X'}
     raw=scenario([('T014','SPECIAL_EQUIPMENT',2000,1,2,special)])
     r=calculate(Scenario.model_validate(raw))
     assert Decimal(r['total']['demand']['s_va']['value'])==1600

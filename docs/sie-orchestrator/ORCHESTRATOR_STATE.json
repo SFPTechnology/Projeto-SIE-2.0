@@ -1675,8 +1675,8 @@
         "qa_01": "APROVADO",
         "qa_02": "APROVADO_VINCULACAO_COMPUTACIONAL",
         "qa_03": "APROVADO",
-        "local_api_tests_passed": 721,
-        "f06_tests_passed": 117,
+        "local_api_tests_passed": 722,
+        "f06_tests_passed": 118,
         "browser_tests_passed": 27,
         "f00_golden_passed": 34,
         "aiox_passed": true,
@@ -1687,7 +1687,7 @@
         "ci_api_run": 39666801001,
         "ci_aiox_run": 39666800987,
         "ci_chromium_run": 39666801008,
-        "binding_tests_passed": 84,
+        "binding_tests_passed": 85,
         "source_binding_implemented": true
       },
       "publication": {
@@ -1695,10 +1695,10 @@
         "merged_to_main": false,
         "production_release_allowed": false,
         "published": true,
-        "code_sha": "b7f782d1c9d274c6e7c5fe9c00460edca74b02fc",
-        "local_code_sha": "206f1a97ad4feb308dd97d8f65e14681430a3148",
-        "tree_sha": "36b5ffbb8b51ba654bee562bbf7d8b8bd6b6ea47",
-        "binding_increment_published": false
+        "code_sha": "20e067bc1b1cfa01234810ec5fee67de47e58ae0",
+        "local_code_sha": "e6502459c74adef9a13d64b7443300a9c1e24997",
+        "tree_sha": "834e6de8056a1cd087eaa15d67b4ef12f77bb29f",
+        "binding_increment_published": true
       }
     }
   ]

@@ -617,7 +617,8 @@
       "typology": "RESIDENTIAL",
       "concession_confirmed": true,
       "reference_date": "2026-10-21",
-      "activity": null
+      "activity": null,
+      "consumer_unit": "INDIVIDUAL"
     }
   },
   "source_connections": {

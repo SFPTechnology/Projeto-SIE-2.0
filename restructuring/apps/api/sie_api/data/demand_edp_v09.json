@@ -1,5 +1,5 @@
 {
-  "version": "EDP_DEMAND_V09_BINDINGS_1",
+  "version": "EDP_DEMAND_V09_BINDINGS_2",
   "status": "SOURCE_LINKED_COMPUTATIONAL_VERIFICATION",
   "source": {
     "document": "PT.DT.PDN.00068",
@@ -732,6 +732,7 @@
     "T006_notes": "Conferir tipo de lâmpada/catálogo, carga de vitrine quando aplicável e cozinha separada; página 35.",
     "motor_ranking": "Potência unitária de classificação explícita com origem; partidas obrigatoriamente simultâneas agrupadas. Em empate, um só máximo; entre empates usa-se a maior potência aparente para conservar o resultado.",
     "scope": "Somente demanda da entrada individual EDP SP na edição e território declarados; não vale para dimensionamento automático de circuito final.",
-    "approval": "Vínculo e conferência computacional não são homologação profissional ou aprovação da distribuidora."
+    "approval": "Vínculo e conferência computacional não são homologação profissional ou aprovação da distribuidora.",
+    "consumer_unit": "O contexto deve declarar INDIVIDUAL; unidade coletiva ou campo ausente bloqueiam o uso deste documento de unidade consumidora individual."
   }
 }

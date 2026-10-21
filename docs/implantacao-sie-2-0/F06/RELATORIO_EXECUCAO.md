@@ -23,10 +23,10 @@ Fonte oficial consultada/download realizado em 21/10/2026. PDF oficial e PDF do 
 
 ## Testes locais observados
 
-- API completa: **721 passed**, um aviso Starlette/httpx; resultado mais recente registrado no commit/CI.
-- Vinculação: **84 testes novos**, incluindo referência documental, cada limiar/faixa, exceções, máximos/empates/partidas, escopo incompatível, adulteração recusada e invalidação por catálogo.
-- F06 total: **117 testes** (33 anteriores + 84 novos).
-- Chromium: **27 passed**, 47,33 s; novo fluxo consulta catálogo de 22 regras e calcula referência `CALCULATED_SOURCE_LINKED`.
+- API completa: **722 passed**, um aviso Starlette/httpx; resultado mais recente registrado no commit/CI.
+- Vinculação: **85 testes novos**, incluindo referência documental, cada limiar/faixa, exceções, máximos/empates/partidas, escopo incompatível, adulteração recusada e invalidação por catálogo.
+- F06 total: **118 testes** (33 anteriores + 85 novos).
+- Chromium: **27 passed**, 47,59 s; novo fluxo consulta catálogo de 22 regras e calcula referência `CALCULATED_SOURCE_LINKED`.
 - F00: **34 golden**, fixture intacta.
 - AIOX: `npm run lint`, `npm run typecheck`, `npm test` (**18 testes**) e `npm run build`: PASS.
 - CLI calculou exemplo documental e consultou catálogo real. Sintaxe JS e `git diff --check`: PASS.
@@ -47,4 +47,4 @@ Correções críticas: seleção de T005 pela potência ativa, e não VA; limite
 
 `CALCULATED_SOURCE_LINKED` significa cálculo vinculado à fonte conferida. `normative_conformity_verified=false`, `utility_approval=false` e `authoritative_for_sizing=false` continuam explícitos. Dados de placa, mínimos aplicáveis, tipos, quantidade, partidas e condições precisam ser declarados/conferidos na instalação. Não há conversão automática de CV/HP ou levantamento de área/vitrine; não se aplicam estas regras a outra edição/concessionária. Casos fora do recorte recebem diagnóstico por instalação, sem fator inventado.
 
-Código/estado anteriores preservados no histórico Git. Sem merge em main, deploy ou banco real. CI e SHA do incremento serão registrados após publicação e observação dos três workflows.
+Código/estado anteriores preservados no histórico Git. Sem merge em main, deploy ou banco real. Incremento publicado em [`20e067bc1b1cfa01234810ec5fee67de47e58ae0`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/20e067bc1b1cfa01234810ec5fee67de47e58ae0). Árvore remota `834e6de8056a1cd087eaa15d67b4ef12f77bb29f` idêntica à local `e6502459c74adef9a13d64b7443300a9c1e24997`. Atualização com lease sobre o head esperado; sem PR, merge ou deploy. CI será registrado após observação dos três workflows.
