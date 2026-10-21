@@ -63,3 +63,9 @@ def projection(payload: SurveyProjection):
         return project_survey(payload.survey, payload.topology, payload.links)
     except ValueError as exc:
         raise HTTPException(422, str(exc)) from exc
+
+
+@router.get('/api/v1/demanda/catalogo')
+def demand_catalog():
+    from .demand_registry import catalog, CATALOG_HASH
+    return {**catalog(), 'catalog_sha256':CATALOG_HASH}

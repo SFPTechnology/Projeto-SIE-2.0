@@ -238,9 +238,16 @@
       "from": "BLOCKED",
       "to": "BLOCKED",
       "reason": "Checkpoint b7f782d1 publicado com árvore local idêntica; CI API637/F00golden34,AIOX18 eChromium26 completed/success no mesmo SHA. Gate normativo permanece bloqueado; sem merge/deploy."
+    },
+    {
+      "activity": "F06",
+      "at": "2026-10-21",
+      "from": "BLOCKED",
+      "to": "VALIDATING",
+      "reason": "Vinculação autorizada:22regras EDP V09 no servidor,fonte oficial conferida,84referências novas,721API/27Chromium/34golden/18AIOX locais aprovados;aguardaCI incremento. Sem homologação profissional."
     }
   ],
-  "revision": 30,
+  "revision": 31,
   "schema_version": 1,
   "tasks": [
     {
@@ -1567,14 +1574,16 @@
       "impact": 10,
       "risk": 7,
       "requirements_verified": true,
-      "state": "BLOCKED",
+      "state": "VALIDATING",
       "criteria": [
         {
           "id": "AC-06.01",
           "passed": true,
           "evidence": [
             "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
-            "restructuring/apps/api/tests/test_demand_f06.py"
+            "restructuring/apps/api/tests/test_demand_f06.py",
+            "docs/implantacao-sie-2-0/F06/VINCULACAO_FONTES.md",
+            "restructuring/apps/api/tests/test_demand_binding_f06.py"
           ]
         },
         {
@@ -1582,15 +1591,19 @@
           "passed": true,
           "evidence": [
             "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
-            "restructuring/apps/api/tests/test_demand_f06.py"
+            "restructuring/apps/api/tests/test_demand_f06.py",
+            "docs/implantacao-sie-2-0/F06/VINCULACAO_FONTES.md",
+            "restructuring/apps/api/tests/test_demand_binding_f06.py"
           ]
         },
         {
           "id": "AC-06.03",
-          "passed": false,
+          "passed": true,
           "evidence": [
             "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
-            "restructuring/apps/api/tests/test_demand_f06.py"
+            "restructuring/apps/api/tests/test_demand_f06.py",
+            "docs/implantacao-sie-2-0/F06/VINCULACAO_FONTES.md",
+            "restructuring/apps/api/tests/test_demand_binding_f06.py"
           ]
         },
         {
@@ -1598,15 +1611,19 @@
           "passed": true,
           "evidence": [
             "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
-            "restructuring/apps/api/tests/test_demand_f06.py"
+            "restructuring/apps/api/tests/test_demand_f06.py",
+            "docs/implantacao-sie-2-0/F06/VINCULACAO_FONTES.md",
+            "restructuring/apps/api/tests/test_demand_binding_f06.py"
           ]
         },
         {
           "id": "AC-06.05",
-          "passed": false,
+          "passed": true,
           "evidence": [
             "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
-            "restructuring/apps/api/tests/test_demand_f06.py"
+            "restructuring/apps/api/tests/test_demand_f06.py",
+            "docs/implantacao-sie-2-0/F06/VINCULACAO_FONTES.md",
+            "restructuring/apps/api/tests/test_demand_binding_f06.py"
           ]
         },
         {
@@ -1614,7 +1631,9 @@
           "passed": true,
           "evidence": [
             "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
-            "restructuring/apps/api/tests/test_demand_f06.py"
+            "restructuring/apps/api/tests/test_demand_f06.py",
+            "docs/implantacao-sie-2-0/F06/VINCULACAO_FONTES.md",
+            "restructuring/apps/api/tests/test_demand_binding_f06.py"
           ]
         },
         {
@@ -1622,7 +1641,9 @@
           "passed": true,
           "evidence": [
             "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
-            "restructuring/apps/api/tests/test_demand_f06.py"
+            "restructuring/apps/api/tests/test_demand_f06.py",
+            "docs/implantacao-sie-2-0/F06/VINCULACAO_FONTES.md",
+            "restructuring/apps/api/tests/test_demand_binding_f06.py"
           ]
         },
         {
@@ -1630,15 +1651,19 @@
           "passed": true,
           "evidence": [
             "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
-            "restructuring/apps/api/tests/test_demand_f06.py"
+            "restructuring/apps/api/tests/test_demand_f06.py",
+            "docs/implantacao-sie-2-0/F06/VINCULACAO_FONTES.md",
+            "restructuring/apps/api/tests/test_demand_binding_f06.py"
           ]
         },
         {
           "id": "AC-06.09",
-          "passed": false,
+          "passed": true,
           "evidence": [
             "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
-            "restructuring/apps/api/tests/test_demand_f06.py"
+            "restructuring/apps/api/tests/test_demand_f06.py",
+            "docs/implantacao-sie-2-0/F06/VINCULACAO_FONTES.md",
+            "restructuring/apps/api/tests/test_demand_binding_f06.py"
           ]
         }
       ],
@@ -1647,21 +1672,23 @@
         "docs/stories/SIE-F06.md"
       ],
       "checkpoint": {
-        "qa_01": "APROVADO_ESTUDO",
-        "qa_02": "BLOQUEADO",
-        "qa_03": "APROVADO_ESTUDO",
-        "local_api_tests_passed": 637,
-        "f06_tests_passed": 33,
-        "browser_tests_passed": 26,
+        "qa_01": "APROVADO",
+        "qa_02": "APROVADO_VINCULACAO_COMPUTACIONAL",
+        "qa_03": "APROVADO",
+        "local_api_tests_passed": 721,
+        "f06_tests_passed": 117,
+        "browser_tests_passed": 27,
         "f00_golden_passed": 34,
         "aiox_passed": true,
-        "ci_current_sha_verified": true,
+        "ci_current_sha_verified": false,
         "normative_conformity_verified": false,
         "next_phase_development_allowed": false,
         "ci_code_sha": "b7f782d1c9d274c6e7c5fe9c00460edca74b02fc",
         "ci_api_run": 39666801001,
         "ci_aiox_run": 39666800987,
-        "ci_chromium_run": 39666801008
+        "ci_chromium_run": 39666801008,
+        "binding_tests_passed": 84,
+        "source_binding_implemented": true
       },
       "publication": {
         "branch": "feat/f06-demanda-alimentacao",
@@ -1670,7 +1697,8 @@
         "published": true,
         "code_sha": "b7f782d1c9d274c6e7c5fe9c00460edca74b02fc",
         "local_code_sha": "206f1a97ad4feb308dd97d8f65e14681430a3148",
-        "tree_sha": "36b5ffbb8b51ba654bee562bbf7d8b8bd6b6ea47"
+        "tree_sha": "36b5ffbb8b51ba654bee562bbf7d8b8bd6b6ea47",
+        "binding_increment_published": false
       }
     }
   ]

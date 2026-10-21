@@ -1,0 +1,737 @@
+{
+  "version": "EDP_DEMAND_V09_BINDINGS_1",
+  "status": "SOURCE_LINKED_COMPUTATIONAL_VERIFICATION",
+  "source": {
+    "document": "PT.DT.PDN.00068",
+    "edition": "09",
+    "url": "https://www.edp.com.br/Ginp/Download/PT.DT.PDN.00068_V9.pdf",
+    "valid_from": "2026-04-14",
+    "valid_until": "CONDITIONED",
+    "official_pdf_sha256": "2c2bcad13fb44d042bdfd2d8473b035d863bf654b71e64d2e3f929d21a287690",
+    "repository_pdf_sha256": "b14f414001d9831f91bbef84f022c5164f367431cc6a209e5fb34b4e48f20810",
+    "pdftotext_layout_sha256": "f4fda196cb5335179bd9dfd2a1083eac32bda01b55ae877bd6c2235f852b9ca8",
+    "comparison": "Both PDF text extractions identical; binary PDF hashes differ. Tables 005-010/012-015 visually checked.",
+    "checked_at": "2026-10-21"
+  },
+  "rules": {
+    "EDP-SP-V09-T005": {
+      "table": "005",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "ACTIVE_W",
+      "rows": [
+        [
+          1000,
+          "0.86"
+        ],
+        [
+          2000,
+          "0.75"
+        ],
+        [
+          3000,
+          "0.66"
+        ],
+        [
+          4000,
+          "0.59"
+        ],
+        [
+          5000,
+          "0.52"
+        ],
+        [
+          6000,
+          "0.45"
+        ],
+        [
+          7000,
+          "0.40"
+        ],
+        [
+          8000,
+          "0.35"
+        ],
+        [
+          9000,
+          "0.31"
+        ],
+        [
+          10000,
+          "0.27"
+        ],
+        [
+          null,
+          "0.24"
+        ]
+      ],
+      "typologies": [
+        "RESIDENTIAL"
+      ]
+    },
+    "EDP-SP-V09-T006-AUDITORIUM": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          null,
+          "1"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "AUDITORIUM",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T006-BANK_SHOP": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          null,
+          "1"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "BANK_SHOP",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T006-BARBER": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          null,
+          "1"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "BARBER",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T006-CLUB": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          null,
+          "1"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "CLUB",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T006-SCHOOL": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          12000,
+          "1"
+        ],
+        [
+          null,
+          "0.5"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "SCHOOL",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T006-OFFICE": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          20000,
+          "1"
+        ],
+        [
+          null,
+          "0.7"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "OFFICE",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T006-GARAGE": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          null,
+          "1"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "GARAGE",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T006-HOSPITAL": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          50000,
+          "0.4"
+        ],
+        [
+          null,
+          "0.2"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "HOSPITAL",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T006-HOTEL": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          20000,
+          "0.5"
+        ],
+        [
+          null,
+          "0.4"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "HOTEL",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T006-CHURCH": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          null,
+          "1"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "CHURCH",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T006-INDUSTRY": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          null,
+          "1"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "INDUSTRY",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T006-RESTAURANT": {
+      "table": "006",
+      "page": 34,
+      "section": "5.5.2",
+      "category": "EDP_A",
+      "equipment_kinds": [
+        "LIGHTING",
+        "SOCKET"
+      ],
+      "mode": "PROGRESSIVE_ACTIVE_W",
+      "rows": [
+        [
+          null,
+          "1"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "activity": "RESTAURANT",
+      "notes_page": 35,
+      "exceptions": [
+        "KITCHEN_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T007": {
+      "table": "007",
+      "page": 35,
+      "section": "5.5.2",
+      "category": "EDP_B",
+      "equipment_kinds": [
+        "SHOWER",
+        "TAP_HEATER",
+        "FLOW_HEATER",
+        "IRON"
+      ],
+      "mode": "COUNT",
+      "rows": [
+        [
+          1,
+          "1"
+        ],
+        [
+          2,
+          "0.9"
+        ],
+        [
+          3,
+          "0.84"
+        ],
+        [
+          4,
+          "0.76"
+        ],
+        [
+          5,
+          "0.68"
+        ],
+        [
+          6,
+          "0.61"
+        ],
+        [
+          7,
+          "0.55"
+        ],
+        [
+          8,
+          "0.49"
+        ],
+        [
+          9,
+          "0.44"
+        ],
+        [
+          10,
+          "0.4"
+        ],
+        [
+          11,
+          "0.36"
+        ],
+        [
+          12,
+          "0.32"
+        ],
+        [
+          13,
+          "0.3"
+        ],
+        [
+          15,
+          "0.29"
+        ],
+        [
+          20,
+          "0.28"
+        ],
+        [
+          25,
+          "0.27"
+        ],
+        [
+          null,
+          "0.26"
+        ]
+      ],
+      "exceptions": [
+        "LOCKER_WATER_HEATING_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-T008": {
+      "table": "008",
+      "page": 35,
+      "section": "5.5.2",
+      "category": "EDP_C",
+      "equipment_kinds": [
+        "BOILER",
+        "SAUNA"
+      ],
+      "mode": "COUNT",
+      "rows": [
+        [
+          1,
+          "1"
+        ],
+        [
+          2,
+          "0.76"
+        ],
+        [
+          3,
+          "0.62"
+        ],
+        [
+          null,
+          "0.62"
+        ]
+      ]
+    },
+    "EDP-SP-V09-T009": {
+      "table": "009",
+      "page": 36,
+      "section": "5.5.2",
+      "category": "EDP_D",
+      "equipment_kinds": [
+        "DRYER",
+        "OVEN",
+        "DISHWASHER",
+        "WASHER",
+        "MICROWAVE"
+      ],
+      "mode": "COUNT",
+      "rows": [
+        [
+          1,
+          "1"
+        ],
+        [
+          4,
+          "0.7"
+        ],
+        [
+          6,
+          "0.6"
+        ],
+        [
+          8,
+          "0.5"
+        ],
+        [
+          null,
+          "0.5"
+        ]
+      ]
+    },
+    "EDP-SP-V09-T010": {
+      "table": "010",
+      "page": 36,
+      "section": "5.5.2",
+      "category": "EDP_E",
+      "equipment_kinds": [
+        "ELECTRIC_STOVE"
+      ],
+      "mode": "COUNT",
+      "rows": [
+        [
+          1,
+          "1"
+        ],
+        [
+          2,
+          "0.6"
+        ],
+        [
+          3,
+          "0.48"
+        ],
+        [
+          4,
+          "0.4"
+        ],
+        [
+          5,
+          "0.37"
+        ],
+        [
+          6,
+          "0.35"
+        ],
+        [
+          7,
+          "0.33"
+        ],
+        [
+          8,
+          "0.32"
+        ],
+        [
+          9,
+          "0.31"
+        ],
+        [
+          11,
+          "0.30"
+        ],
+        [
+          15,
+          "0.28"
+        ],
+        [
+          null,
+          "0.26"
+        ]
+      ]
+    },
+    "EDP-SP-V09-T012": {
+      "table": "012",
+      "page": 37,
+      "section": "5.5.2",
+      "category": "EDP_F",
+      "equipment_kinds": [
+        "AIR_CONDITIONER"
+      ],
+      "mode": "COUNT",
+      "rows": [
+        [
+          10,
+          "1"
+        ],
+        [
+          20,
+          "0.9"
+        ],
+        [
+          30,
+          "0.82"
+        ],
+        [
+          40,
+          "0.8"
+        ],
+        [
+          50,
+          "0.77"
+        ],
+        [
+          null,
+          "0.75"
+        ]
+      ],
+      "typologies": [
+        "COMMERCIAL"
+      ],
+      "exceptions": [
+        "CENTRAL_100_PERCENT"
+      ]
+    },
+    "EDP-SP-V09-AC-RES": {
+      "table": "5.5.2.f",
+      "page": 25,
+      "section": "5.5.2",
+      "category": "EDP_F",
+      "equipment_kinds": [
+        "AIR_CONDITIONER"
+      ],
+      "mode": "CONSTANT",
+      "rows": [
+        [
+          null,
+          "1"
+        ]
+      ],
+      "typologies": [
+        "RESIDENTIAL"
+      ]
+    },
+    "EDP-SP-V09-T013": {
+      "table": "013",
+      "page": 37,
+      "section": "5.5.2",
+      "category": "EDP_G",
+      "equipment_kinds": [
+        "MOTOR",
+        "MOTOR_WELDER"
+      ],
+      "mode": "MAXIMUM_PLUS_REST",
+      "rows": [],
+      "rest_factor": "0.5",
+      "exceptions": [
+        "COMBINE_COINCIDENT_STARTS",
+        "ONE_MAXIMUM_ON_TIES"
+      ]
+    },
+    "EDP-SP-V09-T014": {
+      "table": "014",
+      "page": 37,
+      "section": "5.5.2",
+      "category": "EDP_H",
+      "equipment_kinds": [
+        "SPECIAL_EQUIPMENT"
+      ],
+      "mode": "MAXIMUM_PLUS_REST",
+      "rows": [],
+      "rest_factor": "0.6",
+      "exceptions": [
+        "PER_EQUIPMENT_TYPE",
+        "ONE_MAXIMUM_ON_TIES"
+      ]
+    },
+    "EDP-SP-V09-T015": {
+      "table": "015",
+      "page": 37,
+      "section": "5.5.2",
+      "category": "EDP_I",
+      "equipment_kinds": [
+        "HYDROMASSAGE"
+      ],
+      "mode": "COUNT",
+      "rows": [
+        [
+          1,
+          "1"
+        ],
+        [
+          2,
+          "0.56"
+        ],
+        [
+          3,
+          "0.47"
+        ],
+        [
+          null,
+          "0.39"
+        ]
+      ]
+    }
+  },
+  "engineering_approval": false,
+  "application_requirements": {
+    "minimum_load_confirmed": "Confirmação explícita da conferência de cargas mínimas e notas aplicáveis (inclusive tabelas 003/004/011/016/017 quando pertinentes); não é cálculo automático dessas tabelas.",
+    "power_factor_confirmed": "P/FP/S deve estar documentado por carga conforme fabricante e item 5.5.2; valores médios do documento não são inseridos automaticamente.",
+    "quantity": "Quantidade declarada de equipamentos já representados pela potência total da carga F02; não multiplicar a potência novamente.",
+    "T006_notes": "Conferir tipo de lâmpada/catálogo, carga de vitrine quando aplicável e cozinha separada; página 35.",
+    "motor_ranking": "Potência unitária de classificação explícita com origem; partidas obrigatoriamente simultâneas agrupadas. Em empate, um só máximo; entre empates usa-se a maior potência aparente para conservar o resultado.",
+    "scope": "Somente demanda da entrada individual EDP SP na edição e território declarados; não vale para dimensionamento automático de circuito final.",
+    "approval": "Vínculo e conferência computacional não são homologação profissional ou aprovação da distribuidora."
+  }
+}

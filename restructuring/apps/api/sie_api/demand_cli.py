@@ -9,7 +9,8 @@ from .storage import RepositorioProjetos
 
 def main():
     parser = argparse.ArgumentParser(description='Memória F06 de estudo; não homologa norma')
-    parser.add_argument('file', type=Path)
+    parser.add_argument('file', type=Path,nargs='?')
+    parser.add_argument('--catalog',action='store_true')
     actions = parser.add_mutually_exclusive_group()
     actions.add_argument('--compare', type=Path)
     actions.add_argument('--survey', type=Path)
@@ -17,6 +18,11 @@ def main():
     parser.add_argument('--links', type=Path)
     parser.add_argument('--expected-revision', type=int, default=0)
     args = parser.parse_args()
+    if args.catalog:
+        from .demand_registry import catalog,CATALOG_HASH
+        print(json.dumps({**catalog(),'catalog_sha256':CATALOG_HASH},ensure_ascii=False,indent=2))
+        return 0
+    if args.file is None: parser.error('Informe cenário JSON ou --catalog')
     scenario = Scenario.model_validate_json(args.file.read_text(encoding='utf-8'))
     if args.survey:
         if args.links is None: parser.error('--survey exige --links (mapa UUID F04 para UUID F02)')

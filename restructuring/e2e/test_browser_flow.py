@@ -529,3 +529,17 @@ def test_demand_study_and_invalidation(page, servers):
     expect(page.locator('#memory')).to_contain_text('TRUSTED_NORMATIVE_REGISTRY_PENDING')
     page.set_viewport_size({'width':390,'height':844})
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+
+
+def test_demand_edp_source_binding_and_catalog(page,servers):
+    page.goto(WEB_URL+'/demanda.html',wait_until='networkidle')
+    page.locator('#source-demo').click()
+    expect(page.locator('#status')).to_contain_text('Referência EDP V09 carregada')
+    page.locator('#calculate').click()
+    expect(page.locator('#summary')).to_contain_text('CALCULATED_SOURCE_LINKED')
+    expect(page.locator('#memory')).to_contain_text('catalog_sha256')
+    expect(page.locator('#parcels')).to_contain_text('0.59')
+    expect(page.locator('#parcels')).not_to_contain_text('Pendente')
+    page.locator('#catalog').click()
+    expect(page.locator('#status')).to_contain_text('22 regras')
+    expect(page.locator('#memory')).to_contain_text('official_pdf_sha256')

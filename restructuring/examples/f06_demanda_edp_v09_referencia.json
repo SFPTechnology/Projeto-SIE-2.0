@@ -1,0 +1,626 @@
+{
+  "id": "a5fa7c79-1b7c-4a89-868c-fce4be767227",
+  "name": "Referência EDP V09 pp42–44; dados de exemplo, sem aprovação profissional",
+  "purpose": "ENTRANCE",
+  "topology": {
+    "schema_version": "SIE_TOPOLOGY_V1",
+    "installation": {
+      "schema_version": "SIE_INSTALLATION_V1",
+      "project": {
+        "id": "00000000-0000-0000-0000-000000000001",
+        "name": "Synthetic model",
+        "revision": 1
+      },
+      "buildings": [
+        {
+          "id": "00000000-0000-0000-0000-000000000002",
+          "name": "building",
+          "project_id": "00000000-0000-0000-0000-000000000001"
+        }
+      ],
+      "floors": [
+        {
+          "id": "00000000-0000-0000-0000-000000000003",
+          "name": "floor",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "building_id": "00000000-0000-0000-0000-000000000002",
+          "level": 0
+        }
+      ],
+      "rooms": [
+        {
+          "id": "00000000-0000-0000-0000-000000000004",
+          "name": "room1",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "floor_id": "00000000-0000-0000-0000-000000000003"
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000005",
+          "name": "room2",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "floor_id": "00000000-0000-0000-0000-000000000003"
+        }
+      ],
+      "supplies": [
+        {
+          "id": "00000000-0000-0000-0000-000000000006",
+          "name": "supply",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "phases": 3,
+          "voltage_fn": null,
+          "voltage_ff": {
+            "value": "220",
+            "unit": "V",
+            "basis": "FF"
+          },
+          "frequency_hz": "60",
+          "earthing_system": "DECLARED_TEST"
+        }
+      ],
+      "boards": [
+        {
+          "id": "00000000-0000-0000-0000-000000000007",
+          "name": "QDG",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "room_id": "00000000-0000-0000-0000-000000000004",
+          "supply_id": "00000000-0000-0000-0000-000000000006"
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000008",
+          "name": "QD1",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "room_id": "00000000-0000-0000-0000-000000000005",
+          "supply_id": null
+        }
+      ],
+      "load_points": [
+        {
+          "id": "00000000-0000-0000-0000-000000000009",
+          "name": "point1",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "room_id": "00000000-0000-0000-0000-000000000004"
+        }
+      ],
+      "loads": [
+        {
+          "id": "d8ab5cba-0d5b-46c4-9f1b-ee102b55d0f4",
+          "name": "LIGHTING",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "load_point_id": "00000000-0000-0000-0000-000000000009",
+          "connection": "SINGLE_PHASE_FF",
+          "active_power": {
+            "value": "200",
+            "unit": "W"
+          },
+          "reactive_power": null,
+          "apparent_power": null,
+          "design_current": null
+        },
+        {
+          "id": "cb232fdd-9a27-469a-bafd-a4d551c19680",
+          "name": "LIGHTING",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "load_point_id": "00000000-0000-0000-0000-000000000009",
+          "connection": "SINGLE_PHASE_FF",
+          "active_power": {
+            "value": "600",
+            "unit": "W"
+          },
+          "reactive_power": null,
+          "apparent_power": null,
+          "design_current": null
+        },
+        {
+          "id": "cbe056a1-05d0-4bfa-ae6f-b9588229630e",
+          "name": "SOCKET",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "load_point_id": "00000000-0000-0000-0000-000000000009",
+          "connection": "SINGLE_PHASE_FF",
+          "active_power": {
+            "value": "2800",
+            "unit": "W"
+          },
+          "reactive_power": null,
+          "apparent_power": null,
+          "design_current": null
+        },
+        {
+          "id": "0f22447d-0aa4-4e36-aa0a-b9c9c49575ec",
+          "name": "SHOWER",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "load_point_id": "00000000-0000-0000-0000-000000000009",
+          "connection": "SINGLE_PHASE_FF",
+          "active_power": {
+            "value": "10800",
+            "unit": "W"
+          },
+          "reactive_power": null,
+          "apparent_power": null,
+          "design_current": null
+        },
+        {
+          "id": "2c03add5-48be-4d36-a5f5-12ea1bf2193d",
+          "name": "TAP_HEATER",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "load_point_id": "00000000-0000-0000-0000-000000000009",
+          "connection": "SINGLE_PHASE_FF",
+          "active_power": {
+            "value": "3000",
+            "unit": "W"
+          },
+          "reactive_power": null,
+          "apparent_power": null,
+          "design_current": null
+        },
+        {
+          "id": "e78b0aa9-ec3b-40c1-be31-297000bb5fb8",
+          "name": "IRON",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "load_point_id": "00000000-0000-0000-0000-000000000009",
+          "connection": "SINGLE_PHASE_FF",
+          "active_power": {
+            "value": "1000",
+            "unit": "W"
+          },
+          "reactive_power": null,
+          "apparent_power": null,
+          "design_current": null
+        },
+        {
+          "id": "5869f579-df46-4329-b0b7-ee15b07b1718",
+          "name": "DRYER",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "load_point_id": "00000000-0000-0000-0000-000000000009",
+          "connection": "SINGLE_PHASE_FF",
+          "active_power": {
+            "value": "2500",
+            "unit": "W"
+          },
+          "reactive_power": null,
+          "apparent_power": null,
+          "design_current": null
+        },
+        {
+          "id": "732f527d-04cf-46fc-8fe3-ecd8921ef800",
+          "name": "MICROWAVE",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "load_point_id": "00000000-0000-0000-0000-000000000009",
+          "connection": "SINGLE_PHASE_FF",
+          "active_power": {
+            "value": "1500",
+            "unit": "W"
+          },
+          "reactive_power": null,
+          "apparent_power": null,
+          "design_current": null
+        }
+      ],
+      "devices": [
+        {
+          "id": "00000000-0000-0000-0000-00000000000d",
+          "name": "device1",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "board_id": "00000000-0000-0000-0000-000000000007",
+          "kind": "PROTECTION",
+          "nominal_current": null,
+          "source_reference": null
+        },
+        {
+          "id": "00000000-0000-0000-0000-00000000000e",
+          "name": "device2",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "board_id": "00000000-0000-0000-0000-000000000008",
+          "kind": "PROTECTION_AND_SWITCHING",
+          "nominal_current": null,
+          "source_reference": null
+        }
+      ],
+      "circuits": [
+        {
+          "id": "00000000-0000-0000-0000-00000000000f",
+          "name": "feeder",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "design_current": {
+            "value": "20",
+            "unit": "A"
+          },
+          "voltage": {
+            "value": "220",
+            "unit": "V",
+            "basis": "FF"
+          },
+          "phases": 1,
+          "board_id": "00000000-0000-0000-0000-000000000007",
+          "device_id": "00000000-0000-0000-0000-00000000000d",
+          "kind": "FEEDER",
+          "load_ids": [],
+          "downstream_board_id": "00000000-0000-0000-0000-000000000008"
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000010",
+          "name": "terminal",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "design_current": {
+            "value": "10",
+            "unit": "A"
+          },
+          "voltage": {
+            "value": "220",
+            "unit": "V",
+            "basis": "FF"
+          },
+          "phases": 1,
+          "board_id": "00000000-0000-0000-0000-000000000008",
+          "device_id": "00000000-0000-0000-0000-00000000000e",
+          "kind": "TERMINAL",
+          "load_ids": [
+            "d8ab5cba-0d5b-46c4-9f1b-ee102b55d0f4",
+            "cb232fdd-9a27-469a-bafd-a4d551c19680",
+            "cbe056a1-05d0-4bfa-ae6f-b9588229630e",
+            "0f22447d-0aa4-4e36-aa0a-b9c9c49575ec",
+            "2c03add5-48be-4d36-a5f5-12ea1bf2193d",
+            "e78b0aa9-ec3b-40c1-be31-297000bb5fb8",
+            "5869f579-df46-4329-b0b7-ee15b07b1718",
+            "732f527d-04cf-46fc-8fe3-ecd8921ef800"
+          ],
+          "downstream_board_id": null
+        }
+      ],
+      "cable_runs": [
+        {
+          "id": "00000000-0000-0000-0000-000000000011",
+          "name": "run1",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "circuit_id": "00000000-0000-0000-0000-00000000000f",
+          "segment_ids": [
+            "00000000-0000-0000-0000-000000000013"
+          ],
+          "section": {
+            "value": "6",
+            "unit": "mm2"
+          },
+          "material": "Cu",
+          "insulation": "DECLARED_TEST"
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000012",
+          "name": "run2",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "circuit_id": "00000000-0000-0000-0000-000000000010",
+          "segment_ids": [
+            "00000000-0000-0000-0000-000000000014",
+            "00000000-0000-0000-0000-000000000015"
+          ],
+          "section": {
+            "value": "4",
+            "unit": "mm2"
+          },
+          "material": "Cu",
+          "insulation": "DECLARED_TEST"
+        }
+      ],
+      "segments": [
+        {
+          "id": "00000000-0000-0000-0000-000000000013",
+          "name": "segment1",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "cable_run_id": "00000000-0000-0000-0000-000000000011",
+          "length": {
+            "value": "10",
+            "unit": "m"
+          },
+          "conditions": {
+            "installation_method": "DECLARED_A",
+            "medium": "AIR",
+            "ambient_temperature": {
+              "value": "30",
+              "unit": "degC"
+            },
+            "conductor_temperature": null,
+            "grouped_circuits": 1,
+            "solar_exposure": false,
+            "additional_conditions": null
+          },
+          "impedance": null
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000014",
+          "name": "segment2",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "cable_run_id": "00000000-0000-0000-0000-000000000012",
+          "length": {
+            "value": "5",
+            "unit": "m"
+          },
+          "conditions": {
+            "installation_method": "DECLARED_A",
+            "medium": "AIR",
+            "ambient_temperature": {
+              "value": "30",
+              "unit": "degC"
+            },
+            "conductor_temperature": null,
+            "grouped_circuits": 1,
+            "solar_exposure": false,
+            "additional_conditions": null
+          },
+          "impedance": null
+        },
+        {
+          "id": "00000000-0000-0000-0000-000000000015",
+          "name": "segment3",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "cable_run_id": "00000000-0000-0000-0000-000000000012",
+          "length": {
+            "value": "7.5",
+            "unit": "m"
+          },
+          "conditions": {
+            "installation_method": "DECLARED_B",
+            "medium": "AIR",
+            "ambient_temperature": {
+              "value": "40",
+              "unit": "degC"
+            },
+            "conductor_temperature": null,
+            "grouped_circuits": 1,
+            "solar_exposure": false,
+            "additional_conditions": null
+          },
+          "impedance": null
+        }
+      ],
+      "revisions": [
+        {
+          "id": "00000000-0000-0000-0000-000000000016",
+          "name": "revision",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "sequence": 1,
+          "parent_revision_id": null,
+          "input_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
+      ],
+      "calculation_runs": [
+        {
+          "id": "00000000-0000-0000-0000-000000000017",
+          "name": "calculation",
+          "project_id": "00000000-0000-0000-0000-000000000001",
+          "revision_id": "00000000-0000-0000-0000-000000000016",
+          "project_revision": 1,
+          "circuit_id": "00000000-0000-0000-0000-000000000010",
+          "input_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "output_sha256": null,
+          "algorithm_version": "synthetic-v1",
+          "rule_version": "unverified-v1",
+          "state": "PENDING",
+          "normative_conformity_verified": false
+        }
+      ]
+    },
+    "source_details": {
+      "00000000-0000-0000-0000-000000000006": {
+        "status": "PENDING",
+        "origin": {
+          "reference": "Fixture sintética F05; não utilizar em projeto real",
+          "method": "DECLARED"
+        },
+        "utility": null,
+        "transformer": null,
+        "impedance": null
+      }
+    },
+    "board_details": {
+      "00000000-0000-0000-0000-000000000007": {
+        "origin": {
+          "reference": "Fixture sintética F05; não utilizar em projeto real",
+          "method": "DECLARED"
+        },
+        "buses": [
+          {
+            "id": "10000000-0000-0000-0000-000000000001",
+            "name": "Barra declarada",
+            "role": "DECLARED",
+            "circuit_ids": [
+              "00000000-0000-0000-0000-00000000000f"
+            ]
+          }
+        ]
+      },
+      "00000000-0000-0000-0000-000000000008": {
+        "origin": {
+          "reference": "Fixture sintética F05; não utilizar em projeto real",
+          "method": "DECLARED"
+        },
+        "buses": [
+          {
+            "id": "10000000-0000-0000-0000-000000000002",
+            "name": "Barra declarada",
+            "role": "DECLARED",
+            "circuit_ids": [
+              "00000000-0000-0000-0000-000000000010"
+            ]
+          }
+        ]
+      }
+    },
+    "segment_details": {
+      "00000000-0000-0000-0000-000000000013": {
+        "origin": {
+          "reference": "Fixture sintética F05; não utilizar em projeto real",
+          "method": "DECLARED"
+        },
+        "route_from": "run1/P0",
+        "route_to": "run1/P1",
+        "route_status": "DECLARED",
+        "conductor_count": 2,
+        "containment_material": "Material sintético declarado",
+        "environment": "Sala técnica sintética",
+        "soil": null,
+        "external_influences": {
+          "classificacao": "PENDENTE_FONTE_VALIDADA"
+        }
+      },
+      "00000000-0000-0000-0000-000000000014": {
+        "origin": {
+          "reference": "Fixture sintética F05; não utilizar em projeto real",
+          "method": "DECLARED"
+        },
+        "route_from": "run2/P0",
+        "route_to": "run2/P1",
+        "route_status": "DECLARED",
+        "conductor_count": 2,
+        "containment_material": "Material sintético declarado",
+        "environment": "Sala técnica sintética",
+        "soil": null,
+        "external_influences": {
+          "classificacao": "PENDENTE_FONTE_VALIDADA"
+        }
+      },
+      "00000000-0000-0000-0000-000000000015": {
+        "origin": {
+          "reference": "Fixture sintética F05; não utilizar em projeto real",
+          "method": "DECLARED"
+        },
+        "route_from": "run2/P1",
+        "route_to": "run2/P2",
+        "route_status": "DECLARED",
+        "conductor_count": 2,
+        "containment_material": "Material sintético declarado",
+        "environment": "Sala técnica sintética",
+        "soil": null,
+        "external_influences": {
+          "classificacao": "PENDENTE_FONTE_VALIDADA"
+        }
+      }
+    }
+  },
+  "assignments": {
+    "d8ab5cba-0d5b-46c4-9f1b-ee102b55d0f4": {
+      "category": "EDP_A",
+      "criterion": "Classificação explícita da referência",
+      "group": "user-label",
+      "rule_id": "EDP-SP-V09-T005",
+      "target_id": "00000000-0000-0000-0000-000000000006",
+      "condition_evidence": "Referência da fonte; condições de uso declaradas",
+      "power_factor": ".55",
+      "quantity": 8,
+      "equipment_kind": "LIGHTING",
+      "zone": "NORMAL",
+      "minimum_load_confirmed": true,
+      "power_factor_confirmed": true
+    },
+    "cb232fdd-9a27-469a-bafd-a4d551c19680": {
+      "category": "EDP_A",
+      "criterion": "Classificação explícita da referência",
+      "group": "user-label",
+      "rule_id": "EDP-SP-V09-T005",
+      "target_id": "00000000-0000-0000-0000-000000000006",
+      "condition_evidence": "Referência da fonte; condições de uso declaradas",
+      "power_factor": "1",
+      "quantity": 6,
+      "equipment_kind": "LIGHTING",
+      "zone": "NORMAL",
+      "minimum_load_confirmed": true,
+      "power_factor_confirmed": true
+    },
+    "cbe056a1-05d0-4bfa-ae6f-b9588229630e": {
+      "category": "EDP_A",
+      "criterion": "Classificação explícita da referência",
+      "group": "user-label",
+      "rule_id": "EDP-SP-V09-T005",
+      "target_id": "00000000-0000-0000-0000-000000000006",
+      "condition_evidence": "Referência da fonte; condições de uso declaradas",
+      "power_factor": "1",
+      "quantity": 13,
+      "equipment_kind": "SOCKET",
+      "zone": "NORMAL",
+      "minimum_load_confirmed": true,
+      "power_factor_confirmed": true
+    },
+    "0f22447d-0aa4-4e36-aa0a-b9c9c49575ec": {
+      "category": "EDP_B",
+      "criterion": "Classificação explícita da referência",
+      "group": "user-label",
+      "rule_id": "EDP-SP-V09-T007",
+      "target_id": "00000000-0000-0000-0000-000000000006",
+      "condition_evidence": "Referência da fonte; condições de uso declaradas",
+      "power_factor": "1",
+      "quantity": 2,
+      "equipment_kind": "SHOWER",
+      "zone": "NORMAL",
+      "minimum_load_confirmed": true,
+      "power_factor_confirmed": true
+    },
+    "2c03add5-48be-4d36-a5f5-12ea1bf2193d": {
+      "category": "EDP_B",
+      "criterion": "Classificação explícita da referência",
+      "group": "user-label",
+      "rule_id": "EDP-SP-V09-T007",
+      "target_id": "00000000-0000-0000-0000-000000000006",
+      "condition_evidence": "Referência da fonte; condições de uso declaradas",
+      "power_factor": "1",
+      "quantity": 1,
+      "equipment_kind": "TAP_HEATER",
+      "zone": "NORMAL",
+      "minimum_load_confirmed": true,
+      "power_factor_confirmed": true
+    },
+    "e78b0aa9-ec3b-40c1-be31-297000bb5fb8": {
+      "category": "EDP_B",
+      "criterion": "Classificação explícita da referência",
+      "group": "user-label",
+      "rule_id": "EDP-SP-V09-T007",
+      "target_id": "00000000-0000-0000-0000-000000000006",
+      "condition_evidence": "Referência da fonte; condições de uso declaradas",
+      "power_factor": "1",
+      "quantity": 1,
+      "equipment_kind": "IRON",
+      "zone": "NORMAL",
+      "minimum_load_confirmed": true,
+      "power_factor_confirmed": true
+    },
+    "5869f579-df46-4329-b0b7-ee15b07b1718": {
+      "category": "EDP_D",
+      "criterion": "Classificação explícita da referência",
+      "group": "user-label",
+      "rule_id": "EDP-SP-V09-T009",
+      "target_id": "00000000-0000-0000-0000-000000000006",
+      "condition_evidence": "Referência da fonte; condições de uso declaradas",
+      "power_factor": "1",
+      "quantity": 1,
+      "equipment_kind": "DRYER",
+      "zone": "NORMAL",
+      "minimum_load_confirmed": true,
+      "power_factor_confirmed": true
+    },
+    "732f527d-04cf-46fc-8fe3-ecd8921ef800": {
+      "category": "EDP_D",
+      "criterion": "Classificação explícita da referência",
+      "group": "user-label",
+      "rule_id": "EDP-SP-V09-T009",
+      "target_id": "00000000-0000-0000-0000-000000000006",
+      "condition_evidence": "Referência da fonte; condições de uso declaradas",
+      "power_factor": ".8",
+      "quantity": 1,
+      "equipment_kind": "MICROWAVE",
+      "zone": "NORMAL",
+      "minimum_load_confirmed": true,
+      "power_factor_confirmed": true
+    }
+  },
+  "rules": [],
+  "contexts": {
+    "00000000-0000-0000-0000-000000000006": {
+      "utility": "EDP_SP",
+      "locality": "SP_EDP_CONCESSION",
+      "edition": "09",
+      "typology": "RESIDENTIAL",
+      "concession_confirmed": true,
+      "reference_date": "2026-10-21",
+      "activity": null
+    }
+  },
+  "source_connections": {
+    "00000000-0000-0000-0000-000000000006": "SINGLE_PHASE_FF"
+  }
+}

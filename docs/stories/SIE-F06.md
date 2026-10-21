@@ -1,5 +1,5 @@
 # SIE-F06 — Demanda e alimentação
-Estado: BLOCKED (gate normativo). Requisitos: F06_EXECUTAR.md, tasks 06.01–06.09.
+Estado: VALIDATING (vinculação implementada; CI pendente). Requisitos: F06_EXECUTAR.md, tasks 06.01–06.09.
 
 - [x] Classificação explícita, distinta da regra; escopo e faixas verificáveis.
 - [x] Totalização P/Q/S e agregação pela conectividade F05, sem dupla contagem.
@@ -7,7 +7,7 @@ Estado: BLOCKED (gate normativo). Requisitos: F06_EXECUTAR.md, tasks 06.01–06.
 - [x] Cenários históricos, memória e invalidação por alteração de entrada.
 - [x] Compatibilidade de distribuidora sem aprovação normativa automática.
 - [x] Testes, regressão e QA3 registrados.
-- [ ] Coeficientes/condições normativas no registro confiável e fixtures independentes; consumo definitivo de Ib.
+- [x] Coeficientes/condições do recorte EDP V09 no registro confiável e fixtures independentes. Consumo definitivo de Ib não é homologado automaticamente.
 
 Arquivos: ver lista abaixo. Normas/fatores não confirmados bloqueiam o cálculo correspondente.
 
@@ -33,3 +33,13 @@ Arquivos: ver lista abaixo. Normas/fatores não confirmados bloqueiam o cálculo
 - `restructuring/apps/web/index.html`
 - `restructuring/examples/f06_demanda_demo.json`
 - `restructuring/e2e/test_browser_flow.py`
+
+## Incremento de vinculação autorizado
+
+- [x] Registrar fonte oficial, hashes, páginas/tabelas/células e condições.
+- [x] Resolver IDs de regras no servidor; recusar coeficientes enviados como substituição.
+- [x] Aplicar base kW/quantidade e exceções do documento sem extrapolar finalidade.
+- [x] Conferir exemplos da própria fonte por valores esperados independentes.
+- [ ] Regressão e QA3 da vinculação; publicar checkpoint e verificar CI.
+
+Arquivos adicionais: `demand_registry.py`, `data/demand_edp_v09.json`, `test_demand_binding_f06.py`, `f06_demanda_edp_v09_referencia.json`, `demanda-edp-demo.json`, `VINCULACAO_FONTES.md`; API/CLI/interface/testes E2E e registros anteriores atualizados.

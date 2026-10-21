@@ -4,6 +4,8 @@ The authoritative connectivity and load powers are F05/F02. Classification and
 rule selection are independent, explicit inputs. Synthetic rules remain studies.
 """
 from decimal import Decimal, localcontext
+from datetime import date
+from . import demand_registry
 from typing import Literal
 from uuid import UUID
 from pydantic import Field, model_validator, field_validator
@@ -70,9 +72,19 @@ class Assignment(Bounded):
     rule_id: str | None = None
     target_id: UUID | None = None
     condition_evidence: str | None = Field(default=None, min_length=1, max_length=500)
+    equipment_kind: str | None = Field(default=None,max_length=100)
+    equipment_subtype: str | None = Field(default=None,max_length=100)
+    quantity: int | None = Field(default=None,ge=1,le=100000,strict=True)
+    zone: Literal['NORMAL','KITCHEN','LOCKER_ROOM'] | None = None
+    minimum_load_confirmed: bool = Field(default=False,strict=True)
+    power_factor_confirmed: bool = Field(default=False,strict=True)
+    coincident_start_confirmed: bool = Field(default=False,strict=True)
+    ranking_power_w: Number | None = Field(default=None,gt=0)
+    simultaneous_start_group: str | None = Field(default=None,min_length=1,max_length=100)
+    central_air_conditioning: bool | None = Field(default=None,strict=True)
     power_factor: Number | None = Field(default=None, gt=0, le=1)
 
-    @field_validator('category', 'criterion', 'group', 'rule_id', 'condition_evidence')
+    @field_validator('category', 'criterion', 'group', 'rule_id', 'condition_evidence','equipment_kind','equipment_subtype')
     @classmethod
     def nonblank(cls, value):
         if value is not None and not value.strip():
@@ -80,6 +92,8 @@ class Assignment(Bounded):
         return value.strip() if value is not None else None
 
 class SupplyContext(DomainModel):
+    reference_date: date | None = None
+    activity: str | None = Field(default=None,max_length=100)
     utility: str = Field(min_length=1)
     locality: str = Field(min_length=1)
     typology: str = Field(min_length=1)
@@ -111,6 +125,10 @@ class Scenario(DomainModel):
             raise ValueError('Conexão de fonte inexistente')
         if not set(self.contexts).issubset({x.id for x in inst.supplies}):
             raise ValueError('Contexto de fonte inexistente')
+        if sum(a.quantity or 0 for a in self.assignments.values()) > 100000:
+            raise ValueError('Quantidade total de aparelhos excede 100000')
+        if any(demand_registry.specification(x.id) for x in self.rules):
+            raise ValueError('IDs do catálogo são controlados pelo servidor; não enviar coeficientes substitutos')
         if len({x.id for x in self.rules}) != len(self.rules):
             raise ValueError('Regra duplicada')
         return self
@@ -119,6 +137,8 @@ class Scenario(DomainModel):
 def fingerprint(scenario):
     raw = scenario.model_dump(mode='json')
     raw['topology'] = topology_hash(scenario.topology)
+    if any(demand_registry.specification(a.rule_id) for a in scenario.assignments.values()):
+        raw['demand_catalog_sha256'] = demand_registry.CATALOG_HASH
     raw.pop('id'); raw.pop('name')
     return digest(raw)
 
@@ -178,6 +198,9 @@ def _calculate(sc):
         for key in c.load_ids:
             paths[key] = (chain, board.supply_id)
     rules = {r.id: r for r in sc.rules}
+    for a in sc.assignments.values():
+        document = demand_registry.rule_document(a.rule_id)
+        if document: rules[a.rule_id] = Rule.model_validate(document)
     powers = {}; problems = []; parcels = []; groups = {}
     for load in inst.loads:
         a = sc.assignments.get(load.id)
@@ -195,7 +218,9 @@ def _calculate(sc):
         valid_target = ((scope == 'TERMINAL_CIRCUIT' and target == terminal.id) or
                         (scope == 'BOARD' and a and a.target_id in {c.board_id for c in paths[load.id][0]}) or
                         (scope == 'SUPPLY' and a and a.target_id == paths[load.id][1]))
-        key = (scope, target, a.group if a else str(load.id), valid_target)
+        group = a.rule_id if a and demand_registry.specification(a.rule_id) else a.group if a else str(load.id)
+        if a and a.equipment_kind == 'SPECIAL_EQUIPMENT' and demand_registry.specification(a.rule_id): group += ':'+(a.equipment_subtype or '')
+        key = (scope, target, group, valid_target)
         groups.setdefault(key, []).append(load.id)
     demand = {key: dict(p_w=None, q_var=None, s_va=None) for key in powers}
     applied_targets = {}
@@ -203,6 +228,7 @@ def _calculate(sc):
         assignments = [sc.assignments.get(key) for key in ids]
         selected = {a.rule_id for a in assignments if a}
         rule = rules.get(next(iter(selected))) if len(selected) == 1 else None
+        spec = demand_registry.specification(rule.id) if rule else None
         reason = None
         if not valid_target: reason = 'INVALID_AGGREGATION_TARGET'
         elif sc.purpose == 'FINAL_CIRCUIT' and scope != 'TERMINAL_CIRCUIT': reason = 'SCOPE_NOT_ALLOWED_FOR_FINAL_CIRCUIT'
@@ -211,16 +237,25 @@ def _calculate(sc):
         elif any(a.category != rule.category for a in assignments): reason = 'CATEGORY_MISMATCH'
         elif rule.purpose != sc.purpose: reason = 'PURPOSE_MISMATCH'
         elif any(not a.condition_evidence for a in assignments): reason = 'CONDITION_EVIDENCE_PENDING'
-        elif rule.status != 'SYNTHETIC_STUDY': reason = 'TRUSTED_NORMATIVE_REGISTRY_PENDING'
+        elif rule.status != 'SYNTHETIC_STUDY' and spec is None: reason = 'TRUSTED_NORMATIVE_REGISTRY_PENDING'
         source = paths[ids[0]][1]
-        if reason is None and sc.purpose == 'ENTRANCE':
+        if reason is None and spec:
+            reason = demand_registry.scope_error(spec,sc.contexts.get(source),next(s for s in inst.supplies if s.id==source))
+        if reason is None and sc.purpose == 'ENTRANCE' and spec is None:
             context = sc.contexts.get(source)
             if (context is None or not context.concession_confirmed or
                 not all(getattr(rule, k) == getattr(context, k) for k in ('utility','locality','typology','edition'))):
                 reason = 'UTILITY_SCOPE_MISMATCH'
         total = _sum([powers[key] for key in ids])
-        factor = None
-        if reason is None:
+        factor = None; per_load_factors = None; selection_audit = None
+        if reason is None and spec and spec['mode']=='MAXIMUM_PLUS_REST' and len({x.connection for x in inst.loads if x.id in ids})>1:
+            reason='MIXED_CONNECTIONS_REQUIRES_REVIEW'
+        if reason is None and spec:
+            try:
+                per_load_factors,selection_audit = demand_registry.factors(spec,ids,sc.assignments,powers)
+                factor = Decimal(1)  # Each source-selected coefficient is retained below.
+            except ValueError as exc: reason = str(exc)
+        if reason is None and spec is None:
             if total['s_va']['missing']: reason = 'APPARENT_POWER_PENDING'
             else:
                 s = Decimal(total['s_va']['value'])
@@ -232,15 +267,17 @@ def _calculate(sc):
                     factor = demanded/s
         if factor is not None:
             for key in ids:
-                demand[key] = {k: v*factor if v is not None else None for k,v in powers[key].items()}
+                demand[key] = {k: v*(per_load_factors[key] if per_load_factors is not None else factor) if v is not None else None for k,v in powers[key].items()}
                 applied_targets[key] = (scope, target_id)
         else:
             problems.append({'circuit_id': str(target_id), 'group': group, 'code': reason})
         parcels.append({'scope': scope, 'target_id': str(target_id), 'circuit_id': str(target_id), 'group': group, 'load_ids': list(map(str,ids)),
-                        'installed': total, 'factor': str(factor) if factor is not None else None,
-                        'rule': rule.model_dump(mode='json') if rule else None,
+                        'installed': total, 'factor': str(factor) if factor is not None and per_load_factors is None else None,
+                        'per_load_factors':{str(k):str(v) for k,v in per_load_factors.items()} if per_load_factors is not None else None,
+                        'source_binding':{'catalog_sha256':demand_registry.CATALOG_HASH,'source':demand_registry.catalog()['source'],'specification':spec,'selection':selection_audit} if spec else None,
+                        'rule': ({**{k:v for k,v in rule.model_dump(mode='json').items() if k not in ('bands','mode')},'mode':spec['mode'],'coefficient_resolution':'SERVER_CATALOG'} if spec else rule.model_dump(mode='json')) if rule else None,
                         'assignments': [a.model_dump(mode='json') if a else None for a in assignments],
-                        'status': reason or 'CALCULATED_STUDY'})
+                        'status': reason or ('CALCULATED_SOURCE_LINKED' if spec else 'CALCULATED_STUDY')})
     def aggregate(ids):
         return {'installed': _sum([powers[key] for key in ids]), 'demand': _sum([demand[key] for key in ids])}
     by_circuit = {}
@@ -282,15 +319,20 @@ def _calculate(sc):
                                 'connection':connection, 'precision_digits':80,
                                 'status':'CALCULATED_STUDY' if eligible else 'PENDING',
                                 'authoritative_for_sizing':False}
+        bound = eligible and all(sc.assignments.get(k) and demand_registry.specification(sc.assignments[k].rule_id) for k,(_,sid) in paths.items() if sid==source.id)
+        if bound:
+            row['design_current']['status']='CALCULATED_SOURCE_LINKED'
+            row['design_current']['catalog_sha256']=demand_registry.CATALOG_HASH
         by_supply[str(source.id)] = row
     return {'algorithm_version': VERSION, 'scenario_id': str(sc.id), 'input_sha256': fingerprint(sc),
+        'demand_catalog_sha256':demand_registry.CATALOG_HASH if any(p['source_binding'] for p in parcels) else None,
         'purpose': sc.purpose, 'total': aggregate(list(powers)),
         'by_room': {str(r.id): aggregate([k for k in powers if rooms[k] == r.id]) for r in inst.rooms},
         'by_circuit': by_circuit,
         'by_board': {str(b.id): aggregate([k for k,(chain,_) in paths.items() if b.id in {c.board_id for c in chain}]) for b in inst.boards},
         'by_supply': by_supply,
         'parcels': parcels, 'problems': problems,
-        'status': 'PENDING' if problems else 'CALCULATED_STUDY',
+        'status': 'PENDING' if problems else ('CALCULATED_SOURCE_LINKED' if parcels and all(p['source_binding'] for p in parcels) else 'CALCULATED_STUDY'),
         'normative_conformity_verified': False, 'utility_approval': False,
         'rule_aggregation_scope': 'EXPLICIT_TARGET_GROUP',
         'limitations': ['Fatores limitados ao alvo explícito; correntes abaixo do alvo não usam diversidade a montante.',
@@ -320,7 +362,7 @@ def save_scenario(repo, project_id, scenario, expected):
 def scenario_history(data):
     topology = topology_hash(load_document(data))
     survey = digest(data.get('levantamento'))
-    return [{**item, 'stale': item['topology_sha256'] != topology or item['survey_sha256'] != survey}
+    return [{**item, 'stale': item['topology_sha256'] != topology or item['survey_sha256'] != survey or (item['result'].get('demand_catalog_sha256') is not None and item['result']['demand_catalog_sha256'] != demand_registry.CATALOG_HASH)}
             for item in data.get('demand_scenarios', [])]
 
 

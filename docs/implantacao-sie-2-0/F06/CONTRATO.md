@@ -28,17 +28,17 @@ Ib monofásica: S/U; trifásica: S/(√3·U_FF), somente com declaração explí
 
 ## Fonte e confiança
 
-Cadastro de regras novo não aceita autodeclaração de VERIFIED como prova. Somente SYNTHETIC_STUDY calcula nesta entrega. PENDING/VERIFIED retornam `TRUSTED_NORMATIVE_REGISTRY_PENDING`. Não existe ainda conexão de fatores homologados a registro confiável do servidor. Não foi criado fator universal nem extraído coeficiente de texto derivado como regra verificada.
+Cadastro de regras novo não aceita autodeclaração de VERIFIED como prova. SYNTHETIC_STUDY continua como ensaio. Agora, IDs reservados EDP V09 são resolvidos no catálogo confiável do servidor, com fonte e fatores por carga; ver VINCULACAO_FONTES.md. Regras VERIFIED arbitrárias enviadas pelo cliente continuam pendentes. O cliente não pode substituir coeficientes de IDs reservados. Não foi criado fator universal nem extraído coeficiente de texto derivado como regra verificada.
 
 Para ENTRANCE, contexto exige distribuidora, localidade, tipologia, edição e confirmação de área; igualdade exata com escopo da regra. Essa compatibilidade é um bloqueio estrutural e não valida vigência ou aprovação da concessionária. Não aciona automaticamente enquadramento EDP.
 
-Fontes encontradas: `Arquivos_Diversos/Norma_EDP/PT.DT.PDN.00068_V9.pdf`; matriz e inventário F01 indicam demanda não homologada. O aceite anterior de F01 foi preservado; ele não fornece os coeficientes/condições ausentes neste catálogo. Gate de fixtures normativas independentes **não atendido**. Nenhuma nova aprovação ABNT ou EDP foi declarada.
+Fontes encontradas: `Arquivos_Diversos/Norma_EDP/PT.DT.PDN.00068_V9.pdf`; matriz e inventário F01 indicam demanda não homologada. O aceite anterior de F01 foi preservado; ele não fornece os coeficientes/condições ausentes neste catálogo. O bloqueio inicial foi superado no incremento de vinculação: catálogo com fonte oficial conferida e casos independentes derivados do documento; detalhes em VINCULACAO_FONTES.md. Nenhuma nova aprovação ABNT ou EDP foi declarada.
 
 ## Retomada concreta
 
 1. A ponte explícita F04→F02 está implementada e ensaiada. Manter identidade/quantidade na operação; resultados históricos ficam stale quando as entradas mudam.
-2. Conectar regras confirmadas ao registro confiável do servidor, com página/tabela/célula/notas e fixtures independentes. Implementar modelos progressivos/específicos quando exigidos pela fonte; não adaptar fonte ao algoritmo de fator único.
+2. Catálogo EDP V09 conectado com referências, coeficientes, modelos e exceções. Ampliações para outras edições/territórios exigem conferência própria; não adaptar a fonte ao algoritmo.
 3. Após validação de fonte/regra, integrar somente o resultado vigente aos motores de dimensionamento. A corrente da fonte já existe para estudo; preservar bloqueios para desequilíbrio ou dados insuficientes.
-4. Reexecutar QA3 e todos os gates, publicar e conferir CI. Só então avaliar DONE.
+4. A vinculação foi reavaliada por QA3; evidências de testes e CI atuais constam do relatório.
 
 CLI adicional: `--compare outro-cenario.json`; `--database local.sqlite --expected-revision N` salva cenário em projeto com topologia já cadastrada. Não realiza conexão de produção.
