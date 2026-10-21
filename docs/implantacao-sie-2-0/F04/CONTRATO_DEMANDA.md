@@ -6,3 +6,5 @@ Carga ativa tem classe ILUMINACAO/TUG/TUE, quantidade, categoria, tags, origem d
 Saída de consolidação contém total, por_ambiente, por_pavimento e pendencias. Cada grandeza tem valor decimal textual, unidade e cargas_sem_dado. P/Q/S ausentes não são zero conhecido. S é soma aritmética de VA declarados, não magnitude da soma vetorial. Potência de placa e potência atribuída são metadados: não se somam automaticamente a P/S. Quantidade multiplica somente P/Q/S. Nenhuma inferência de corrente, fator, simultaneidade ou demanda é aplicada.
 
 Origem é uma declaração do cadastro; fonte_regra é referência fornecida, sem validação. Conformidade normativa é sempre false; mínimos de pontos permanecem PENDENTE_FONTE_VALIDADA. F05 deve recusar cálculo definitivo com dados insuficientes/inconsistentes e exigir parâmetros e fontes próprias, sem transformar totais parciais em completos.
+
+Entradas decimais aceitam até 24 casas fracionárias para limitar custo de consolidação e rejeitar expoentes malformados/extremos.

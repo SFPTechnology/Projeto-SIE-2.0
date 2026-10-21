@@ -5,8 +5,8 @@ A implementação local anterior 1ddc28f foi removida pela manutenção do ambie
 Tasks 04.01–04.09: hierarquia edificação/pavimento/ambiente, pontos ILUMINACAO/TUG/TUE, dados de placa separados de P/Q/S, origem declarado/estimado, grupos/tags, dados incompletos, totais decimais por projeto/ambiente/pavimento, arquivamento explícito, edição e desfazer. CLI load_survey_cli, API opt-in F03 e tela levantamento.html. Contrato em CONTRATO_DEMANDA.md, manual em restructuring/apps/web/levantamento-manual.html, fixture levantamento-demo.json. Nenhum merge, deploy, migração real ou alteração da main.
 
 ## Testes observados
-- API final local: 574 passed (23 F04), 1 aviso Starlette existente.
-- F04 após FP: 23 passed.
+- API final local: 576 passed (25 F04), 1 aviso Starlette existente.
+- F04 final com proteção de precisão: 25 passed.
 - F00: 34 casos, fixture intacta.
 - AIOX lint/typecheck/test/build: PASS após instalar dependências do lock; 18 testes.
 - JavaScript syntax e diff check: PASS.
@@ -22,3 +22,6 @@ Os pareceres são revisões computacionais; não substituem validação profissi
 Regras mínimas permanecem PENDENTE_FONTE_VALIDADA conforme fase; nenhuma fonte digitada concede validação normativa. Soma de S é aritmética, não vetorial. Dados ausentes são explicitados; não há motor de demanda nem conversão automática para circuitos F02. Identidade/RLS em produção permanecem fora do escopo local herdado da F03. CodeRabbit CLI indisponível. Passagem F05 ainda não declarada até confirmar o CI final.
 
 Primeira publicação: dbcb568536914c4ef494851182aefd4479b92b4a (mesma árvore da reconstrução local 3ed19a6). A regressão identificou o atalho adicional no menu de seis itens; movido após a navegação existente sem alterar o teste. Demais correções constam nos pareceres QA.
+
+Proteção final: escala fracionária máxima de 24 casas em entradas decimais; expoentes extremos são recusados antes da consolidação. Regressão integral:576 passed,12,06s. Nenhuma precisão normativa foi inferida.
+Zeros decimais são canonicalizados e contexto de soma fixado em80 dígitos; teste cobre expoente positivo extremo em zero.

@@ -2,13 +2,22 @@
 from decimal import Decimal, localcontext
 from typing import Literal
 from uuid import UUID
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator, field_validator
 
 class Record(BaseModel):
     model_config = ConfigDict(extra='forbid', str_strip_whitespace=True, allow_inf_nan=False)
     id: UUID
     nome: str = Field(min_length=1, max_length=160)
     arquivado: bool = False
+
+    @field_validator('*')
+    @classmethod
+    def bounded_decimal_scale(cls, value):
+        if isinstance(value, Decimal) and value == 0:
+            return Decimal(0)
+        if isinstance(value, Decimal) and value.as_tuple().exponent < -24:
+            raise ValueError('Precisão fracionária máxima de 24 casas decimais')
+        return value
 
 class Building(Record):
     pass
@@ -103,7 +112,7 @@ def summarize(survey: Survey):
         names.add(key)
     def exact_total(loads, field):
         with localcontext() as ctx:
-            ctx.prec = max(80, max((len(getattr(c, field).as_tuple().digits) + abs(getattr(c, field).as_tuple().exponent) for c in loads), default=0) + 20)
+            ctx.prec = 80  # Bounded magnitudes and fractional scale; never input-controlled.
             return str(sum((getattr(c, field)*c.quantidade for c in loads), Decimal(0)))
     def totals(loads):
         result = {}

@@ -103,3 +103,16 @@ def test_api_roundtrip_access_and_conflict(raw,tmp_path,monkeypatch):
 def test_power_factor_contradiction(raw):
     raw['cargas'][0]['fator_potencia']='0.5'
     assert 'FATOR_POTENCIA_INCONSISTENTE' in {x['codigo'] for x in summarize(Survey.model_validate(raw))['pendencias']}
+
+
+def test_untrusted_decimal_exponent_is_bounded(raw):
+    raw['cargas'][0]['p_w']='1e-1000000000'
+    with pytest.raises(ValidationError, match='24 casas'):
+        Survey.model_validate(raw)
+
+
+def test_zero_extreme_positive_exponent_is_canonicalized(raw):
+    raw['cargas'][0]['p_w']='0E+1000000000'
+    survey=Survey.model_validate(raw)
+    assert str(survey.cargas[0].p_w)=='0'
+    assert summarize(survey)['total']['p_w']['valor']=='3000'
