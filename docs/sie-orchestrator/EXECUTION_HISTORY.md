@@ -57,3 +57,7 @@
 
 ## 21/10/2026 — F03 DONE
 Branch feat/f03-persistencia-seguranca; código61e65e980960ecbf23cc846a9ac4d7645096fc03. Migração reversível, soft-delete, backup/restore isolado, acesso local e produção bloqueada. QA3 aprovado;551API/34golden/17Chromium/AIOX verdes. F04 liberada para desenvolvimento; sem merge/deploy. Relatório docs/implantacao-sie-2-0/F03/RELATORIO_EXECUCAO.md.
+
+
+## Atualização sequencial — 21/10/2026 — F05
+F05 implementada: envelope de metadados sobre grafo F02, percursos por trecho, API/CLI/editor, concorrência e invalidação; QA3 e testes locais aprovados. CI pendente.

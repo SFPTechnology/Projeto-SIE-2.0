@@ -27,3 +27,7 @@
 - Documento presente não significa tabela validada; artefato hash é uma identificação reproduzível, sem comprovação de fonte oficial ou vigência.
 - Cálculo de engenharia não deve ser liberado por checkbox, flags do cliente ou simples status de workflow.
 - Em caso de mudança do head, conferir se os gates da revisão mais recente continuam verdes antes de qualquer nova promoção de estado.
+
+
+## Atualização sequencial — 21/10/2026 — F05
+F05:604 API (28 F05),34 F00,25 Chromium,18 AIOX e QA3 locais aprovados. Critérios05.01–05.09 rastreados no relatório F05; CI pendente.

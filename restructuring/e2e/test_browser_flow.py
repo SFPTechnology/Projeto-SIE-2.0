@@ -437,3 +437,73 @@ def test_f04_edit_defaulted_load_and_keep_form_draft(page):
     page.locator('#archive').click()
     expect(page.locator('#status')).to_contain_text('Aplique ou cancele')
     expect(page.locator('#field-nome')).to_have_value('Rascunho')
+
+
+def test_f05_edit_save_reopen_and_recompose(page, servers):
+    page.goto(WEB_URL + '/topologia.html')
+    page.locator('#token').fill(servers)
+    page.locator('#demo').click()
+    expect(page.locator('#status')).to_contain_text('Integridade válida')
+    expect(page.locator('#result')).to_contain_text('22.5')
+    page.locator('#length').fill('11')
+    page.locator('#edit').click()
+    expect(page.locator('#result')).to_contain_text('23.5')
+    page.locator('#save').click()
+    expect(page.locator('#status')).to_contain_text('Nova revisão salva')
+    page.locator('#length').fill('99')
+    page.locator('#edit').click()
+    expect(page.locator('#result')).to_contain_text('111.5')
+    page.locator('#open').click()
+    expect(page.locator('#status')).to_contain_text('Reaberto')
+    expect(page.locator('#length')).to_have_value('11')
+    page.locator('#validate').click()
+    expect(page.locator('#result')).to_contain_text('23.5')
+
+
+def test_f05_invalid_link_no_save_and_undo(page, servers):
+    page.goto(WEB_URL + '/topologia.html')
+    page.locator('#token').fill(servers)
+    page.locator('#demo').click()
+    expect(page.locator('#status')).to_contain_text('Integridade válida')
+    # Select device from a descendant board for the feeder: invalid ownership.
+    page.locator('#device').select_option('00000000-0000-0000-0000-00000000000e')
+    page.locator('#link').click()
+    expect(page.locator('#status')).to_contain_text('Vínculos inválidos')
+    expect(page.locator('#result')).to_contain_text('Circuit device must belong')
+    page.locator('#save').click()
+    expect(page.locator('#status')).to_contain_text('Vínculos inválidos')
+    page.locator('#undo').click()
+    page.locator('#validate').click()
+    expect(page.locator('#status')).to_contain_text('Integridade válida')
+
+
+def test_f05_concurrent_revision_rejected(page, servers):
+    page.goto(WEB_URL + '/topologia.html')
+    page.locator('#token').fill(servers)
+    import json
+    seeded = json.loads((ROOT / 'examples/f05_topologia_demo.json').read_text())
+    pid = '20000000-0000-0000-0000-000000000001'
+    seeded['installation']['project']['id'] = pid
+    for rows in seeded['installation'].values():
+        if isinstance(rows, list):
+            for entity in rows:
+                entity['project_id'] = pid
+    seeded_response = page.request.put(API_URL + '/api/v1/local/projetos/' + pid + '/topologia',
+        headers={'Authorization': 'Bearer ' + servers},
+        data={'document': seeded, 'expected_revision': 0})
+    assert seeded_response.status == 200
+    page.locator('#project').fill(pid)
+    page.locator('#open').click()
+    expect(page.locator('#status')).to_contain_text('Reaberto')
+    # Another tab/user writes a full validated next revision first.
+    import json
+    document = json.loads(page.locator('#json').input_value())
+    revision = document['installation']['project']['revision']
+    document['installation']['project']['revision'] = revision + 1
+    response = page.request.put(API_URL + '/api/v1/local/projetos/' + pid + '/topologia',
+        headers={'Authorization': 'Bearer ' + servers},
+        data={'document': document, 'expected_revision': revision})
+    assert response.status == 200
+    page.locator('#save').click()
+    expect(page.locator('#status')).to_contain_text('409')
+    expect(page.locator('#status')).to_contain_text('Revisão concorrente')

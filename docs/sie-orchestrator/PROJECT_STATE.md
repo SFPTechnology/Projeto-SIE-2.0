@@ -68,3 +68,7 @@ O JSON canônico recebeu apenas a atividade F00; as 12 tarefas anteriores e seus
 ## Próxima atividade
 
 **NOR-01/SIE-AUTO-003**: validar fontes normativas primárias e casos técnicos; documento inicial `NORMATIVE-SOURCES-RECOVERY.md`. Sem fontes confirmadas e auditoria, bloqueios permanecem. A SIE-AUTO-006 necessita decisão/autorização sobre ambiente e identidade de produção; demais tarefas dependem desses gates.
+
+
+## Atualização sequencial — 21/10/2026 — F05
+F05 VALIDATING:604 API/28 F05,34 F00,25 Chromium,AIOX e QA3 locais aprovados. Precedência da fila sequencial: conferir CI F05; o backlog normativo histórico acima não reabre F01 aceita.

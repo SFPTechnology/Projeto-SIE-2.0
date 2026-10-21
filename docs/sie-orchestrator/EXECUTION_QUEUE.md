@@ -32,3 +32,7 @@ Passagem sequencial vigente: F02 DONE; próximo artefato `F03_EXECUTAR.md`, libe
 | F03 | Persistência, segurança e infraestrutura de dados | F02 DONE | DONE | QA3/551API/34golden/17Chromium/AIOX verdes no SHA61e65e9; F04 liberada para desenvolvimento |
 
 Passagem vigente: F03 DONE; próximo F04_EXECUTAR.md. A indicação anterior de F03 ainda não implementada é histórica e substituída por este encerramento. Produção permanece bloqueada.
+
+
+## Atualização sequencial — 21/10/2026 — F05
+F05 | VALIDATING | depende F02/F04 DONE | próximo: publicação e conferência CI; main/produção preservadas

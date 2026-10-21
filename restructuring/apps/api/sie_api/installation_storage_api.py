@@ -23,6 +23,8 @@ def persist_snapshot(repo, project_id, request):
     previous = repo.carregar(str(project_id))
     data = {} if previous is None else dict(previous['dados'])
     data['installation_snapshot'] = request.snapshot.model_dump(mode='json')
+    data['topology_results_stale'] = True
+    data.pop('topology_sha256', None)
     revision = repo.salvar(str(project_id), request.nome, data, request.revisao_esperada)
     return {'id': str(project_id), 'revisao': revision, 'snapshot_sha256': request.snapshot.snapshot_sha256}
 

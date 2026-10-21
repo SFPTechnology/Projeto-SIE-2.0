@@ -196,9 +196,16 @@
       "from": "VALIDATING",
       "to": "DONE",
       "reason": "576 API/25 F04,34 F00,22 Chromium,AIOX e QA3 aprovados;3 workflows success no SHA1fa9e72"
+    },
+    {
+      "activity": "F05",
+      "at": "2026-10-21",
+      "from": "RUNNING",
+      "to": "VALIDATING",
+      "reason": "604 API/28 F05,34 F00,25 Chromium,AIOX e QA3 locais aprovados; CI pendente"
     }
   ],
-  "revision": 25,
+  "revision": 26,
   "schema_version": 1,
   "tasks": [
     {
@@ -1384,6 +1391,123 @@
         "ci_api_run": 39615781809,
         "ci_aiox_run": 39615781673,
         "ci_chromium_run": 39615781808
+      }
+    },
+    {
+      "id": "F05",
+      "title": "Topologia elétrica e condições de instalação",
+      "dependencies": [
+        "F02",
+        "F04"
+      ],
+      "priority": 91,
+      "impact": 10,
+      "risk": 5,
+      "requirements_verified": true,
+      "state": "VALIDATING",
+      "criteria": [
+        {
+          "id": "AC-05.01",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F05/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_topology_f05.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-05.02",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F05/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_topology_f05.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-05.03",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F05/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_topology_f05.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-05.04",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F05/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_topology_f05.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-05.05",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F05/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_topology_f05.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-05.06",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F05/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_topology_f05.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-05.07",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F05/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_topology_f05.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-05.08",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F05/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_topology_f05.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-05.09",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F05/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_topology_f05.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/implantacao-sie-2-0/F05/CONTRATO.md",
+        "docs/stories/SIE-F05.md"
+      ],
+      "publication": {
+        "branch": "feat/f05-topologia-eletrica",
+        "merged_to_main": false,
+        "production_release_allowed": false
+      },
+      "checkpoint": {
+        "qa_01": "APROVADO",
+        "qa_02": "APROVADO",
+        "qa_03": "APROVADO",
+        "ci_current_sha_verified": false,
+        "local_api_tests_passed": 604,
+        "f05_tests_passed": 28,
+        "f00_golden_passed": 34,
+        "browser_tests_passed": 25,
+        "aiox_passed": true,
+        "next_phase_development_allowed": false
       }
     }
   ]
