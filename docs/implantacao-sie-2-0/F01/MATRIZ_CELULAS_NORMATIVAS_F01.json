@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "phase": "F01",
+  "date": "2026-10-15",
+  "matrix_state": "BLOCKED_SOURCE",
+  "coverage_policy": "ALL_CELLS_USED_BY_ACTIVE_MOTORS_MUST_BE_ENUMERATED; THE_SIX_ROWS_ARE_FAMILY_TRACKERS_NOT_EXHAUSTIVE_CELLS",
+  "independent_review_policy": "two_genuinely_separate_readings_plus_formal_signoff_where_required",
+  "normative_conformity_verified": false,
+  "release_allowed": false,
+  "source_index": [
+    {
+      "id": "ABNT-NBR-5410",
+      "issuer": "ABNT",
+      "official_url": "https://www.abntcatalogo.com.br/default.aspx?O=1",
+      "licence_state": "NAO_CONFERIDA",
+      "primary_content_compared": false
+    },
+    {
+      "id": "EDP-SP-PTDT00068-V09",
+      "issuer": "EDP",
+      "official_url": "https://www.edp.com.br/normas-e-padroes-tecnicos/",
+      "licence_state": "NAO_CONFERIDA",
+      "primary_content_compared": false
+    }
+  ],
+  "entries": [
+    {
+      "id": "VER-QT-02",
+      "group": "RCA",
+      "source_id": "ABNT-NBR-5410",
+      "status": "BLOCKED_SOURCE",
+      "mandatory": true,
+      "technical_note": "Impedância/resistência CA por condição; Rdc20 é insuficiente.",
+      "source": {
+        "document_id": "ABNT-NBR-5410",
+        "edition": null,
+        "original_sha256": null,
+        "authorised_use": false,
+        "original_confirmed": false,
+        "legal_effective_from": null,
+        "concession_area": null
+      },
+      "cell": {
+        "table": null,
+        "page": null,
+        "row": null,
+        "column": null,
+        "unit": "ohm/km",
+        "canonical_value": null,
+        "notes": null,
+        "installation_conditions": null
+      },
+      "reviewers": {
+        "A": null,
+        "B": null
+      },
+      "external_attestation": null,
+      "artifacts": [],
+      "automated_gate_claim": false
+    },
+    {
+      "id": "VER-QT-03",
+      "group": "XL",
+      "source_id": "ABNT-NBR-5410",
+      "status": "BLOCKED_SOURCE",
+      "mandatory": true,
+      "technical_note": "Reatância indutiva de circuito; não inferir de Rdc20.",
+      "source": {
+        "document_id": "ABNT-NBR-5410",
+        "edition": null,
+        "original_sha256": null,
+        "authorised_use": false,
+        "original_confirmed": false,
+        "legal_effective_from": null,
+        "concession_area": null
+      },
+      "cell": {
+        "table": null,
+        "page": null,
+        "row": null,
+        "column": null,
+        "unit": "ohm/km",
+        "canonical_value": null,
+        "notes": null,
+        "installation_conditions": null
+      },
+      "reviewers": {
+        "A": null,
+        "B": null
+      },
+      "external_attestation": null,
+      "artifacts": [],
+      "automated_gate_claim": false
+    },
+    {
+      "id": "F01-IZ-01",
+      "group": "IZ",
+      "source_id": "ABNT-NBR-5410",
+      "status": "BLOCKED_SOURCE",
+      "mandatory": true,
+      "technical_note": "Ampacidade por método, isolação, nº de condutores e ambiente.",
+      "source": {
+        "document_id": "ABNT-NBR-5410",
+        "edition": null,
+        "original_sha256": null,
+        "authorised_use": false,
+        "original_confirmed": false,
+        "legal_effective_from": null,
+        "concession_area": null
+      },
+      "cell": {
+        "table": null,
+        "page": null,
+        "row": null,
+        "column": null,
+        "unit": "A",
+        "canonical_value": null,
+        "notes": null,
+        "installation_conditions": null
+      },
+      "reviewers": {
+        "A": null,
+        "B": null
+      },
+      "external_attestation": null,
+      "artifacts": [],
+      "automated_gate_claim": false
+    },
+    {
+      "id": "F01-FC-01",
+      "group": "FATORES_CORRECAO",
+      "source_id": "ABNT-NBR-5410",
+      "status": "BLOCKED_SOURCE",
+      "mandatory": true,
+      "technical_note": "Temperatura/agrupamento, notas, condições e fatores múltiplos.",
+      "source": {
+        "document_id": "ABNT-NBR-5410",
+        "edition": null,
+        "original_sha256": null,
+        "authorised_use": false,
+        "original_confirmed": false,
+        "legal_effective_from": null,
+        "concession_area": null
+      },
+      "cell": {
+        "table": null,
+        "page": null,
+        "row": null,
+        "column": null,
+        "unit": null,
+        "canonical_value": null,
+        "notes": null,
+        "installation_conditions": null
+      },
+      "reviewers": {
+        "A": null,
+        "B": null
+      },
+      "external_attestation": null,
+      "artifacts": [],
+      "automated_gate_claim": false
+    },
+    {
+      "id": "F01-EDP-DM-01",
+      "group": "EDP_DEMANDA",
+      "source_id": "EDP-SP-PTDT00068-V09",
+      "status": "BLOCKED_SOURCE",
+      "mandatory": true,
+      "technical_note": "Critério de demanda por grupo/equipamento, unidade a conferir.",
+      "source": {
+        "document_id": "EDP-SP-PTDT00068-V09",
+        "edition": null,
+        "original_sha256": null,
+        "authorised_use": false,
+        "original_confirmed": false,
+        "legal_effective_from": null,
+        "concession_area": null
+      },
+      "cell": {
+        "table": null,
+        "page": null,
+        "row": null,
+        "column": null,
+        "unit": null,
+        "canonical_value": null,
+        "notes": null,
+        "installation_conditions": null
+      },
+      "reviewers": {
+        "A": null,
+        "B": null
+      },
+      "external_attestation": null,
+      "artifacts": [],
+      "automated_gate_claim": false
+    },
+    {
+      "id": "F01-EDP-MOD-01",
+      "group": "EDP_MODALIDADE",
+      "source_id": "EDP-SP-PTDT00068-V09",
+      "status": "BLOCKED_SOURCE",
+      "mandatory": true,
+      "technical_note": "Enquadramento U/D/T, intervalos e limites 12/25 kW quando documentados.",
+      "source": {
+        "document_id": "EDP-SP-PTDT00068-V09",
+        "edition": null,
+        "original_sha256": null,
+        "authorised_use": false,
+        "original_confirmed": false,
+        "legal_effective_from": null,
+        "concession_area": null
+      },
+      "cell": {
+        "table": null,
+        "page": null,
+        "row": null,
+        "column": null,
+        "unit": null,
+        "canonical_value": null,
+        "notes": null,
+        "installation_conditions": null
+      },
+      "reviewers": {
+        "A": null,
+        "B": null
+      },
+      "external_attestation": null,
+      "artifacts": [],
+      "automated_gate_claim": false
+    }
+  ]
+}

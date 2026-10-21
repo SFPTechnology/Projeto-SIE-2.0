@@ -1,0 +1,15 @@
+# P04 — ensaio de queda por impedância
+
+O módulo `sie_api/voltage_checks.py` calcula um modelo longitudinal aproximado de regime permanente AC. Não contém catálogo de cabo, tabela homologada ou limite normativo automático.
+
+A referência técnica do modelo é a Fig. G29 do [Electrical Installation Guide, Schneider Electric](https://www.electrical-installation.org/enwiki/Calculation_of_voltage_drop_in_steady_load_conditions), consultada em 20/10/2026. Usa o comprimento de ida em km e a corrente de projeto já fornecida: monofásico `2 × L × Ib × (Rca × cosφ + XL × senφ)`; trifásico equilibrado `√3 × L × Ib × (Rca × cosφ + XL × senφ)`. O fator de potência não volta a multiplicar a corrente. O percentual usa tensão nominal entre os dois condutores no monofásico, ou linha-linha no trifásico.
+
+Rca na temperatura declarada e XL em ohm/km por condutor devem ter documento, revisão, referência e hash explícitos. O contrato vincula seção, material, isolação, temperatura, frequência e arranjo declarados. A integração precisa comparar a seção e demais condições aplicáveis com o circuito selecionado. O módulo não deriva Rca de Rdc a 20°C, não corrige temperatura automaticamente e não presume valor de XL. Campo de fonte preenchido não significa autenticação ou conferência do documento.
+
+O modelo cobre somente regime senoidal permanente, cargas resistivas ou indutivas e trifásico equilibrado. Não calcula partida, harmônicas relevantes, desequilíbrio ou correntes de retorno distintas; condições fora do domínio são rejeitadas. Os valores de ida e retorno no monofásico precisam ser equivalentes. Hipóteses inadequadas não devem ser escondidas em um resultado de conformidade.
+
+O limite percentual é opcional e sempre exige fonte e escopo declarados. Um limite de trecho compara a queda do trecho; um limite total exige também a queda a montante na mesma base nominal, somada explicitamente. O módulo não escolhe 4%, 5% ou 7% automaticamente. A aplicabilidade dos limites da NBR 5410, o domínio da fonte dos parâmetros e o conjunto de circuitos da instalação permanecem sujeitos à evidência normativa/profissional exigida.
+
+Resultados mantêm `liberacao_normativa=false`, `fontes_parametros_verificadas=false` e `aplicabilidade_normativa_verificada=false`, inclusive quando o limite declarado é atendido. A comparação usa Decimal, sem arredondar a queda para decidir. Campos `queda_decisao_v` e `queda_decisao_percentual` preservam o valor decimal calculado; os números em ponto flutuante servem à apresentação. Ausência de dados retorna PENDENTE e não usa valores padrão.
+
+Os testes `test_voltage_impedance_f01.py` usam dados de cabo sintéticos, explicitamente identificados. Incluem cálculos independentes mono/trifásicos, conversão de comprimento, base de tensão, limites exatos/epsilon, queda a montante, rejeição de fonte/seção/condições incompatíveis e proteção contra valores não finitos. Não são novos casos normativos aceitos pelo engenheiro e não ampliam o aceite profissional do lote 01.

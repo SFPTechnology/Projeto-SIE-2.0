@@ -17,6 +17,7 @@
           <a href="#circuito">Analisar circuito</a>
           <a href="#projetos">Projetos locais</a>
           <a href="#rastreabilidade">Rastreabilidade</a>
+          <a href="#normas">Governança normativa</a>
           <a href="#guia">Guia de uso</a>
         </nav>
         <div class="sidebar-foot"><span class="dot"></span> Motor com gate normativo</div>
@@ -36,18 +37,26 @@
           <article class="metric panel"><span>Saída</span><strong>Parcial</strong><small>rastreabilidade em evolução</small></article>
         </section>
         <section id="circuito" class="workspace">
-          <form id="analysis-form" class="panel form-panel">
+          <form id="analysis-form" class="panel form-panel" aria-describedby="demo-input-notice">
             <div class="section-heading"><div><p class="eyebrow">01 · ENTRADAS</p><h2>Analisar circuito</h2></div><span class="tag">modelo monofásico resistivo</span></div>
+            <p id="demo-input-notice" class="demo-notice">Demonstração sintética não homologada: os valores iniciais e a tabela interna de condutores são fictícios, para teste do fluxo. Não representam células verificadas da NBR 5410 nem devem orientar projeto ou execução.</p>
             <div class="form-grid">
               <label>Corrente de projeto (A)<input id="corrente" name="corrente_a" type="number" min="0.01" value="20" step="0.01" required /></label>
               <label>Comprimento do circuito (m)<input name="comprimento_m" type="number" min="0" value="30" step="0.01" required /></label>
               <label>Tensão nominal (V)<input name="tensao_v" type="number" min="0.01" value="220" step="0.01" required /></label>
               <label>Resistência do condutor (Ω/km)<input name="resistencia_ohm_km" type="number" min="0.01" value="7.41" step="0.01" required /></label>
-              <label>Fator de correção<input name="fator_correcao" type="number" min="0.01" max="1" value="0.80" step="0.01" required /></label>
-              <label>Fonte / documento<input name="documento" value="NBR 5410" required /></label>
-              <label>Edição<input name="edicao" value="2004" required /></label>
-              <label>Referência verificável<input name="referencia" value="Tabela a validar" required /></label>
+              <label>Fator de correção<input name="fator_correcao" type="number" min="0.01" max="1" value="0.80" step="any" required /></label>
+              <label>Fonte / documento<input name="documento" value="Demonstração sintética não homologada" required /></label>
+              <label>Edição<input name="edicao" value="EXEMPLO" required /></label>
+              <label>Referência verificável<input name="referencia" value="Tabela fictícia de demonstração" required /></label>
             </div>
+            <details class="case-import">
+              <summary>Carregar caso técnico com fontes e condições</summary>
+              <p>Importe um arquivo JSON de análise preparado pelo projetista. Os dados serão conferidos pela API; a importação não concede aprovação normativa.</p>
+              <label>Arquivo do caso técnico<input id="analysis-case-file" type="file" accept=".json,application/json" /></label>
+              <button id="analysis-case-reset" type="button">Voltar à demonstração</button>
+              <p id="analysis-case-status" role="status" aria-live="polite">Nenhum caso importado. Tabela sintética de demonstração ativa.</p>
+            </details>
             <div class="check-row" role="status">Este protótipo não permite aprovar normas pelo formulário. As evidências serão verificadas por processo independente e auditado.</div>
             <div class="form-actions"><p>Resultado preliminar para análise técnica; não representa aprovação normativa ou autorização da distribuidora.</p><button class="primary" type="submit">Executar análise <span>→</span></button></div>
           </form>
@@ -72,12 +81,25 @@
             <button class="primary" id="project-load" type="button">Reabrir projeto</button>
           </div>
           <p id="project-status" role="status" aria-live="polite">Armazenamento desabilitado até configurar a API local e o token.</p>
+          <div class="section-heading"><div><p class="eyebrow">HISTÓRICO IMUTÁVEL</p><h3>Revisões gravadas</h3></div></div>
+          <p>Exibe apenas revisões novas efetivamente preservadas. Valores e fontes declarados pelo usuário não são homologados.</p>
+          <button class="primary" type="button" id="project-history-refresh">Consultar revisões</button>
+          <p id="project-history-status" role="status" aria-live="polite">Informe o ID e o token local para consultar.</p>
+          <ul id="project-history-list" aria-label="Revisões locais do projeto"></ul>
+          <p id="project-history-summary" role="status" aria-live="polite"></p>
         </section>
         <section id="rastreabilidade" class="panel trace-panel">
           <div class="section-heading"><div><p class="eyebrow">04 · GOVERNANÇA</p><h2>Rastreabilidade e segurança</h2></div></div>
           <div class="timeline"><div><b>Entrada</b><span>Dados informados pelo projetista</span></div><div><b>Motor</b><span>Fórmulas e critérios exibidos</span></div><div><b>Gate</b><span>Fontes e testes independentes auditados</span></div><div><b>Saída</b><span>Resultado e pendências explícitos</span></div></div>
         </section>
-        <section id="guia" class="guide panel"><p class="eyebrow">05 · PRÓXIMO PASSO</p><h2>Antes de liberar um projeto</h2><ol><li>Confirme a topologia e os dados do circuito.</li><li>Utilize tabelas e fatores pertencentes à norma aplicável e à instalação.</li><li>Valide tecnicamente os resultados com responsável habilitado.</li></ol></section>
+        <section id="normas" class="panel guide" aria-labelledby="normas-titulo">
+          <p class="eyebrow">05 · FONTES EM REVISÃO</p>
+          <h2 id="normas-titulo">Governança normativa — catálogo preliminar</h2>
+          <p>Este quadro informa as edições candidatas e pendências do servidor. Nenhum item concede conformidade, liberação de cálculo ou aprovação da concessionária.</p>
+          <p id="normas-status" role="status" aria-live="polite">Consultando o catálogo da API…</p>
+          <ul id="normas-lista" class="normas-lista" aria-label="Fontes normativas não homologadas"></ul>
+        </section>
+        <section id="guia" class="guide panel"><p class="eyebrow">06 · PRÓXIMO PASSO</p><h2>Antes de liberar um projeto</h2><ol><li>Confirme a topologia e os dados do circuito.</li><li>Utilize tabelas e fatores pertencentes à norma aplicável e à instalação.</li><li>Valide tecnicamente os resultados com responsável habilitado.</li></ol></section>
       </main>
     </div>
     <script src="./app.js"></script>

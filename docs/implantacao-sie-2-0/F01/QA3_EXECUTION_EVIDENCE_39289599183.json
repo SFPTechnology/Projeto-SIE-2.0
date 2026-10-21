@@ -1,0 +1,66 @@
+{
+  "accepted_normative_gates": 0,
+  "agents": [
+    {
+      "artifact_integrity_checked": true,
+      "first_pass_frozen": true,
+      "id": "QA-01",
+      "independent_runner_claim": "github_actions_matrix_job"
+    },
+    {
+      "artifact_integrity_checked": true,
+      "first_pass_frozen": true,
+      "id": "QA-02",
+      "independent_runner_claim": "github_actions_matrix_job"
+    },
+    {
+      "artifact_integrity_checked": true,
+      "first_pass_frozen": true,
+      "id": "QA-03",
+      "independent_runner_claim": "github_actions_matrix_job"
+    }
+  ],
+  "cross_reviews": [
+    {
+      "artifact_integrity_checked": true,
+      "author": "QA-03",
+      "independent_runner_claim": "github_actions_matrix_job",
+      "reviewer": "QA-01"
+    },
+    {
+      "artifact_integrity_checked": true,
+      "author": "QA-01",
+      "independent_runner_claim": "github_actions_matrix_job",
+      "reviewer": "QA-02"
+    },
+    {
+      "artifact_integrity_checked": true,
+      "author": "QA-02",
+      "independent_runner_claim": "github_actions_matrix_job",
+      "reviewer": "QA-03"
+    }
+  ],
+  "cross_reviews_found": 3,
+  "f01_released": false,
+  "f02_release_allowed": false,
+  "files_sha256": {
+    "crossreview/QA-01/CROSS_REVIEW_QA-03.md": "6907684ecd3dfa26056664f023f9f0ba4fd9bb58c828d0d4315686b216097a6e",
+    "crossreview/QA-02/CROSS_REVIEW_QA-01.md": "12d92eae04180c3923b5ed499986c79fa6d3efdc062c3c55e5cc73c8f31920ab",
+    "crossreview/QA-03/CROSS_REVIEW_QA-02.md": "9d2626aab406720ab596265ec37f0b1854bcc05646caf69f24ce4b0a65e51582",
+    "firstpass/QA-01/MATRIZ_6_GATES.json": "89c74f32b83020863d12f98a0a73f70f9b2b6233dcc531f87d2d2fff58644163",
+    "firstpass/QA-01/PARECER_QA.md": "52a74649e0682924635b3a557030449be429451c1d62dabf53aaa2ed5c4897d7",
+    "firstpass/QA-02/MATRIZ_6_GATES.json": "01e3e3ec86839d93fb4e1c62654ef9ff6170c6edf77728ebecf6dcb0fc38ebad",
+    "firstpass/QA-02/PARECER_QA.md": "b1d4ae2f4318c3a06e8d2f6db187651b8db970bb73e5c9d112e099d9c5e7eeb5",
+    "firstpass/QA-03/MATRIZ_6_GATES.json": "defbe22a07683d90baab5cb2da987fea0e90838ad15d7da1106314c18ea19d37",
+    "firstpass/QA-03/PARECER_QA.md": "2a7e4267bd75c5d708de049f13288d78843ab7cad0ab8bb4ef36b6c69572c290"
+  },
+  "first_passes_found": 3,
+  "github_actions_run_id": "39289599183",
+  "independence_level": "SEPARATE_GITHUB_ACTIONS_JOBS_NOT_INDEPENDENT_PROFESSIONALS",
+  "independent_professional_signoff": false,
+  "kind": "COPILOT_QA3_EXECUTION_ARTIFACT_CHECK_NOT_PROFESSIONAL_ATTESTATION",
+  "normative_cells_verified_by_bundle": 0,
+  "phase": "F01",
+  "schema_version": 1,
+  "source_sha": "29c506cbd4f0045c4d54e4f50098d989d7260194"
+}

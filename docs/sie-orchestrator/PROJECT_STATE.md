@@ -1,4 +1,18 @@
+## Decisão vigente — 20/10/2026
+
+**F01 DONE por aceite expresso do titular. F02 liberada para desenvolvimento.** A decisão está em `docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json`, vinculada por SHA-256 ao manifesto e orquestrador. As pendências técnicas anteriores permanecem registradas como limites de uso, sem bloquear o avanço autorizado do desenvolvimento. Aceites do lote 01 e F00 preservados; nenhuma nova homologação normativa ou liberação de produção é atribuída. Os registros abaixo são históricos quando conflitarem com esta decisão.
+
 # PROJECT_STATE — SIE Autonomous Development Orchestrator
+
+## Checkpoint F01 — retomada de 15/10/2026
+
+**F01 permanece BLOCKED (PR #3 draft).** O SQLite local agora grava snapshots do catálogo normativo por revisão de projeto (hash, eventos e diferença de edições). API 160 pytest, Chromium 4, AIOX success no commit `a5b4cce`; edição EDP v09 confirmada oficialmente como publicada em 15/04/2026, mas a cópia local e os valores não foram homologados. Zero células verificadas por dupla conferência, zero casos normativos quantitativos aprovados. Vínculo de regra aplicada ao cálculo, reconstrução integral do histórico e identidade multiusuário continuam pendentes. QA-01 PENDENTE, QA-02 BLOQUEADO, QA-03 PENDENTE. F02 não liberada.
+
+
+## Reconciliação F01 — 2026-10-15
+
+**F01 BLOCKED — etapa estrutural parcialmente implementada** na branch `feat/f01-governanca-normativa`, PR #3 draft sobre F00 auditada. API de triagem fail-closed com catálogo JSON versionado e UI explicativa; GitHub CI com 149 pytest, 4 Chromium e gates AIOX success. Três pareceres QA: QA-01 PENDENTE, QA-02 BLOQUEADO, QA-03 PENDENTE. **Zero células normativas conferidas por dupla checagem; snapshots históricos de regras por projeto não implementados; normas/casos numéricos não homologados**. Não avançar F02 e não alterar main/produção. Relatório: `docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md`.
+
 
 ## Reconciliação F00 — 2026-10-15
 

@@ -39,3 +39,17 @@ def test_token_is_not_saved_in_web_storage():
     assert "localStorage.setItem" not in script
     assert "sessionStorage.setItem" not in script
     assert "escapeHTML" in script
+
+
+def test_f01_normative_governance_panel_is_explicitly_unverified():
+    html = (WEB / "index.html").read_text(encoding="utf-8")
+    parser = IdCollector()
+    parser.feed(html)
+    assert {"normas", "normas-status", "normas-lista"}.issubset(parser.ids)
+    assert "Nenhum item concede conformidade" in html
+    js = (WEB / "app.js").read_text(encoding="utf-8")
+    assert "/api/v1/normas/catalogo" in js
+    assert "release_allowed !== false" in js
+    assert "document.createElement('li')" in js
+    assert "list.appendChild(item)" in js
+    assert "item.innerHTML" not in js

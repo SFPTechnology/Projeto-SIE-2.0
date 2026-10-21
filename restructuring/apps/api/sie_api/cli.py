@@ -44,6 +44,10 @@ def _parser() -> argparse.ArgumentParser:
         help="Caminho do SQLite local (ou SIE_LOCAL_DB_PATH).",
     )
     actions = parser.add_subparsers(dest="action", required=True)
+    edp = actions.add_parser("enquadrar-edp", help="Triagem EDP com contexto declarado, sem aprovação.")
+    edp.add_argument("--arquivo", required=True)
+    analyze = actions.add_parser("analisar", help="Ensaio de circuito com células e proteção parcial.")
+    analyze.add_argument("--arquivo", required=True, help="JSON de análise de circuito.")
     save = actions.add_parser("salvar", help="Criar ou atualizar projeto com revisao esperada.")
     save.add_argument("--id", help="UUID existente; omitido gera UUID novo.")
     save.add_argument("--nome", required=True, help="Nome do projeto.")
@@ -59,9 +63,28 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     parser = _parser()
     args = parser.parse_args(argv)
-    if not args.database or args.database == ":memory:":
+    if args.action not in ("analisar", "enquadrar-edp") and (not args.database or args.database == ":memory:"):
         parser.error("Informe --database com caminho SQLite local persistente.")
     try:
+        if args.action == "enquadrar-edp":
+            from decimal import Decimal
+            from .main import EnquadramentoEDP
+            from .domain.edp import enquadrar_edp
+            from .edp_context import enquadrar_com_contexto
+            data = EnquadramentoEDP.model_validate(_read_json_object(args.arquivo))
+            arguments = (data.modalidade, Decimal(str(data.corrente_demanda_a)),
+                         Decimal(str(data.carga_instalada_kw)), data.tem_carga_trifasica)
+            output = (enquadrar_edp(*arguments) if data.contexto is None else
+                      enquadrar_com_contexto(*arguments, data.contexto.model_dump(mode="json")))
+            print(json.dumps(output, ensure_ascii=False, allow_nan=False, sort_keys=True))
+            return 0
+        if args.action == "analisar":
+            from .analysis_contracts import AnaliseCircuito
+            from .application import analisar_circuito
+            payload = AnaliseCircuito.model_validate(_read_json_object(args.arquivo))
+            print(json.dumps(analisar_circuito(payload.model_dump(mode="json")),
+                             ensure_ascii=False, allow_nan=False, sort_keys=True))
+            return 0
         repo = RepositorioProjetos(args.database)
         if args.action == "salvar":
             project_id = str(UUID(args.id)) if args.id else str(uuid4())

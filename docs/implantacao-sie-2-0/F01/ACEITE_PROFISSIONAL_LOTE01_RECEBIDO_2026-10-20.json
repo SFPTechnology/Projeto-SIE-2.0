@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "kind": "SANITIZED_PROFESSIONAL_LOT_ACCEPTANCE_RECEIPT_NOT_NORMATIVE_RELEASE",
+  "received_date": "2026-10-20",
+  "packet_id": "F01-VALIDACAO-TECNICA-LOTE01",
+  "private_submission_sha256": "2ffbed5b4cb89a10eed13a42acac1fad4daa3873b90c30b5a9439af8846fdd6c",
+  "reference_commit_declared_in_submission": "e3190c13de2f2ceb78bfaed41b1f86e41dd0c88b",
+  "confirmation_flag_in_submission": true,
+  "professional_identity_fields_present": true,
+  "professional_identity_details": "RETAINED_IN_PRIVATE_ORIGINAL_NOT_PUBLISHED",
+  "professional_credential_or_signature_independently_verified": false,
+  "verdict_declared_in_submission": "ACEITO_NO_ESCOPO_DO_LOTE",
+  "accepted_in_limited_scope": [
+    "CEL-01",
+    "CEL-02",
+    "CEL-03",
+    "CEL-04",
+    "CEL-05",
+    "CEL-06",
+    "CEL-07",
+    "CEL-08",
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06"
+  ],
+  "pending_items": [
+    "P01",
+    "P02",
+    "P03",
+    "P04",
+    "P05",
+    "P06",
+    "P07",
+    "P08"
+  ],
+  "source_sha256_declared_by_reviewer": "e1c02de1e1b5ed070ad7b642e60e0491a0c899e83fe8f2ad5699a743842bbda6",
+  "previously_received_private_pdf_sha256": "45f246e3e33db1bf18dd60743ac93b6ac1ec0796742e169a8014682bfb19aa3d",
+  "source_hashes_reconciled": false,
+  "release_flags_declared_in_submission": {
+    "normative_release": false,
+    "f01_release_allowed": false,
+    "f02_release_allowed": false
+  },
+  "scope_limits": [
+    "Eight cells and six cases accepted only within the submitted lot scope; P01 through P08 remain pending.",
+    "Acceptance is declared by the submitted professional document, not inferred from software tests or an AI review.",
+    "Receipt does not constitute ART, validate licensing or equate the two different PDF hashes.",
+    "Original document, professional identity, registration, personal notes and normative table values are not published.",
+    "Does not approve complete protection, normative release, F01 completion or F02 release."
+  ]
+}

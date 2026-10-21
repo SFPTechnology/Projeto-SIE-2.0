@@ -1,0 +1,63 @@
+{
+  "registro_revisao": "F01-LOTE01-RT-2026-10-20-v1",
+  "fonte_sha256_declarada_rt": "e1c02de1e1b5ed070ad7b642e60e0491a0c899e83fe8f2ad5699a743842bbda6",
+  "aceite_sha256": "2ffbed5b4cb89a10eed13a42acac1fad4daa3873b90c30b5a9439af8846fdd6c",
+  "celulas": [
+    {
+      "id": "CEL-01",
+      "tabela": "36",
+      "linha": "2.5",
+      "valor": "24",
+      "isolacao": "PVC"
+    },
+    {
+      "id": "CEL-02",
+      "tabela": "36",
+      "linha": "4",
+      "valor": "32",
+      "isolacao": "PVC"
+    },
+    {
+      "id": "CEL-03",
+      "tabela": "36",
+      "linha": "6",
+      "valor": "41",
+      "isolacao": "PVC"
+    },
+    {
+      "id": "CEL-04",
+      "tabela": "36",
+      "linha": "10",
+      "valor": "57",
+      "isolacao": "PVC"
+    },
+    {
+      "id": "CEL-05",
+      "tabela": "40",
+      "linha": "40",
+      "valor": "0.87",
+      "isolacao": "PVC"
+    },
+    {
+      "id": "CEL-06",
+      "tabela": "40",
+      "linha": "40",
+      "valor": "0.91",
+      "isolacao": "EPR_XLPE"
+    },
+    {
+      "id": "CEL-07",
+      "tabela": "42",
+      "linha": "2",
+      "valor": "0.80",
+      "isolacao": "PVC"
+    },
+    {
+      "id": "CEL-08",
+      "tabela": "42",
+      "linha": "3",
+      "valor": "0.70",
+      "isolacao": "PVC"
+    }
+  ]
+}

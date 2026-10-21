@@ -1,0 +1,70 @@
+{
+  "corrente_a": 20.0,
+  "comprimento_m": 30.0,
+  "tensao_v": 220.0,
+  "resistencia_ohm_km": 7.41,
+  "fator_correcao": 0.87,
+  "tabela_condutores": [
+    {
+      "secao_mm2": 2.5,
+      "capacidade_a": 24
+    },
+    {
+      "secao_mm2": 4,
+      "capacidade_a": 32
+    },
+    {
+      "secao_mm2": 6,
+      "capacidade_a": 41
+    },
+    {
+      "secao_mm2": 10,
+      "capacidade_a": 57
+    }
+  ],
+  "evidencia": {
+    "documento": "metadados declarados",
+    "edicao": "teste",
+    "referencia": "teste"
+  },
+  "vinculo_celulas": {
+    "registro_revisao": "F01-LOTE01-RT-2026-10-20-v1",
+    "celulas_ids": [
+      "CEL-01",
+      "CEL-02",
+      "CEL-03",
+      "CEL-04",
+      "CEL-05"
+    ],
+    "condicoes": {
+      "material": "Cu",
+      "isolacao": "PVC",
+      "temperatura_condutor_c": 70,
+      "metodo_referencia": "B1",
+      "metodo_instalacao": 3,
+      "descricao_instalacao": "Caso de ensaio: eletroduto aparente sobre parede",
+      "condutores_carregados": 2,
+      "meio": "AR",
+      "temperatura_ambiente_c": 40,
+      "radiacao_solar": false,
+      "circuitos_agrupados": 1,
+      "agrupamento": "ISOLADO",
+      "grupo_homogeneo": true,
+      "carga_uniforme": true,
+      "radiacao_infravermelha": false
+    }
+  },
+  "protecao_sobrecarga": {
+    "corrente_nominal_a": 20.0,
+    "corrente_atuacao_i2_a": 29.0,
+    "fonte": {
+      "documento": "SYNTHETIC TEST DEVICE, not a manufacturer",
+      "revisao": "test",
+      "referencia": "fixture",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "dispositivo_id": "SYNTHETIC-20"
+    },
+    "duracao_sobrecarga_h_12_meses": 100,
+    "duracao_sobrecarga_h_vida": 500
+  }
+}

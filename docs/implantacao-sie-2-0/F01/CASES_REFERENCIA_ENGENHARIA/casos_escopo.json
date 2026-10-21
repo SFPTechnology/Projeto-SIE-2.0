@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "note": "Somente casos de TRIAGEM (não são resultados de engenharia elétrica homologados).",
+  "cases": [
+    {
+      "id": "F01-T01",
+      "context": {
+        "typology": "residencial",
+        "uf": "SP",
+        "voltage_v": 220,
+        "reference_date": "2026-10-15",
+        "distributor": "EDP_SP"
+      },
+      "rule_id": "EDP-SP-PTDT00068-V09",
+      "expected_status": "BLOQUEADO",
+      "value_expected": null,
+      "normative_source_status": "NAO_VERIFICADA"
+    },
+    {
+      "id": "F01-T02",
+      "context": {
+        "typology": "residencial",
+        "uf": "RJ",
+        "voltage_v": 220,
+        "reference_date": "2026-10-15",
+        "distributor": "EDP_SP"
+      },
+      "rule_id": "EDP-SP-PTDT00068-V09",
+      "expected_status": "NAO_APLICAVEL",
+      "value_expected": null
+    },
+    {
+      "id": "F01-T03",
+      "context": {
+        "typology": "residencial",
+        "uf": "SP",
+        "voltage_v": 220,
+        "reference_date": "2026-10-15"
+      },
+      "rule_id": "EDP-SP-PTDT00068-V09",
+      "expected_status": "PENDENTE",
+      "value_expected": null
+    },
+    {
+      "id": "F01-T04",
+      "context": {
+        "typology": "comercial",
+        "uf": "SP",
+        "voltage_v": 220,
+        "reference_date": "2026-10-15"
+      },
+      "rule_id": "NR-10-A-PARTIR-2027",
+      "expected_status": "NAO_APLICAVEL",
+      "value_expected": null
+    },
+    {
+      "id": "F01-T05",
+      "context": {
+        "typology": "predial",
+        "uf": "SP",
+        "voltage_v": 220,
+        "reference_date": "2027-06-02"
+      },
+      "rule_id": "NR-10-ATE-2027",
+      "expected_status": "PENDENTE",
+      "value_expected": null,
+      "explanation": "Instalações existentes exigem análise de transição"
+    },
+    {
+      "id": "F01-T06",
+      "context": {
+        "typology": "predial",
+        "uf": "SP",
+        "voltage_v": 220,
+        "reference_date": "2027-06-02"
+      },
+      "rule_id": "NR-10-A-PARTIR-2027",
+      "expected_status": "BLOQUEADO",
+      "value_expected": null
+    }
+  ]
+}

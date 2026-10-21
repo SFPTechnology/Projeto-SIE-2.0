@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "phase": "F01",
+  "kind": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT",
+  "status": "ACCEPTED",
+  "date": "2026-10-20",
+  "statement": "CONSIDERE TODAS AS EXIGÊNCIAS VALIDADAS. PRECISO FINALIZAR ESSE SISTEMA. ESTOU TENTANDO DESBLOQUEAR F01 DESDE O DIA 16 OUT 2026.",
+  "authority": "USUARIO_TITULAR_DO_PROJETO_NESTA_CONVERSA",
+  "development_release_allowed": true,
+  "normative_conformity_verified": false,
+  "production_release_allowed": false,
+  "scope": "Encerramento dos requisitos de projeto da F01 por aceite expresso e continuidade do desenvolvimento da F02. Não atribui novas conferências, assinaturas ou homologação técnica.",
+  "technical_baseline": "2ee1260244ae0f0ef1bf225d6390adf4642cbce5",
+  "retained_evidence": "Oito células e seis casos do lote01; 440 testes API,34 replay F00,17 Chromium e AIOX conforme CI registrada."
+}

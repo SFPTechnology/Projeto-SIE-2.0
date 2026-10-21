@@ -101,7 +101,10 @@ def selecionar_condutor(
     if not candidatos:
         raise ValueError("Tabela informada não possui seção suficiente")
     secao, capacidade = min(candidatos, key=lambda item: item[0])
-    return CondutorResultado(_round(secao), _round(capacidade), _round(fator_correcao), "Iz_base × fatores ≥ Ib")
+    # A capacidade corrigida para DECISAO não pode ser arredondada:
+    # por exemplo Iz=19.996 A nao autoriza disjuntor In=20 A.
+    # Arredondamento é apenas de APRESENTAÇÃO, após verificar Ib <= In <= Iz.
+    return CondutorResultado(_round(secao), capacidade, fator_correcao, "Iz_base × fatores ≥ Ib")
 
 
 def calcular_queda_tensao_trifasica_resistiva(

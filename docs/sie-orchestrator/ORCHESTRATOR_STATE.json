@@ -140,9 +140,30 @@
       "from": "VALIDATING",
       "reason": "Gates F00 conferidos: 37 IDs, golden34 original,134pytest/3Chromium/18AIOX, QA01/02/03 APROVADO e pacote versionado em 8797f616f07c3866833db4eb463e050ece76420d; riscos normativos e producao permanecem abertos",
       "to": "DONE"
+    },
+    {
+      "activity": "F01",
+      "at": "2026-10-15T10:49:09.079Z",
+      "from": "UNREGISTERED",
+      "to": "BLOCKED",
+      "reason": "F00 DONE comprobada no PR #2; F01 API 149 pytest e 4 Chromium + AIOX success; fonte primária por célula, casos numéricos, snapshots persistentes e QA3 integral pendentes."
+    },
+    {
+      "activity": "F01",
+      "at": "2026-10-20",
+      "from": "BLOCKED",
+      "to": "BLOCKED",
+      "reason": "Incremento limitado P06/P03 e aceite profissional declarado do lote 01 (14 itens no escopo, oito pendências); curto-circuito, coordenação, cobertura e proveniência ainda impedem encerramento."
+    },
+    {
+      "activity": "F01",
+      "at": "2026-10-20",
+      "from": "BLOCKED",
+      "to": "DONE",
+      "reason": "Aceite expresso do titular registrado em docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json; encerramento de projeto para desenvolvimento, sem inventar homologação normativa."
     }
   ],
-  "revision": 9,
+  "revision": 23,
   "schema_version": 1,
   "tasks": [
     {
@@ -619,6 +640,351 @@
       ],
       "state": "DONE",
       "title": "Diagnostico e preservacao da baseline SIE 2.0"
+    },
+    {
+      "id": "F01",
+      "title": "Engenharia de requisitos e governança normativa",
+      "dependencies": [
+        "F00"
+      ],
+      "priority": 95,
+      "impact": 10,
+      "risk": 7,
+      "requirements_verified": true,
+      "state": "DONE",
+      "criteria": [
+        {
+          "id": "AC-01.01",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/MATRIZ_REQUISITOS_APLICABILIDADE.md",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
+        },
+        {
+          "id": "AC-01.02",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/MATRIZ_REQUISITOS_APLICABILIDADE.csv",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
+        },
+        {
+          "id": "AC-01.03",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/CATALOGO_FONTES_NORMATIVAS.json",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
+        },
+        {
+          "id": "AC-01.04",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/REGISTRO_REGRAS_NORMATIVAS.md",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
+        },
+        {
+          "id": "AC-01.05",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/tests/test_normative_f01.py",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": true,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
+        },
+        {
+          "id": "AC-01.06",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/data/normative_registry.json",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
+        },
+        {
+          "id": "AC-01.07",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/REGISTRO_REGRAS_NORMATIVAS.md",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
+        },
+        {
+          "id": "AC-01.08",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/CASES_REFERENCIA_ENGENHARIA/README.md",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
+        },
+        {
+          "id": "AC-01.09",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/normative_api.py",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
+        },
+        {
+          "id": "AC-01.10",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
+          ],
+          "technical_passed_before_owner_acceptance": false,
+          "acceptance_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
+        }
+      ],
+      "source_refs": [
+        "docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md",
+        "docs/stories/story-SIE-F01-GOVERNANCA-NORMATIVA.md"
+      ],
+      "publication": {
+        "branch": "feat/f01-governanca-normativa",
+        "pr": "https://github.com/SFPTechnology/Projeto-SIE-2.0/pull/3",
+        "merged_to_main": false,
+        "normative_approval": false
+      },
+      "checkpoint": {
+        "at": "2026-10-20",
+        "summary": "F01 encerrada no projeto por aceite expresso do titular; F02 liberada para desenvolvimento. Resultado técnico normativo preservado, sem homologação global ou publicação em produção.",
+        "catalogue_snapshot_metadata": "IMPLEMENTED_LOCAL_ONLY",
+        "applied_rule_snapshots": "PENDING_NORMATIVE_CELL_PROOF",
+        "approved_numeric_cases": 0,
+        "verified_normative_cells": 0,
+        "qa_01": "PENDENTE",
+        "qa_02": "BLOQUEADO",
+        "qa_03": "PENDENTE",
+        "f02_release": false,
+        "source_refs": [
+          "docs/implantacao-sie-2-0/F01/EVIDENCIA_FONTES_OFICIAIS.md",
+          "docs/implantacao-sie-2-0/F01/EVIDENCIA_SNAPSHOTS_LOCAL.md",
+          "docs/implantacao-sie-2-0/F01/RELATORIO_EXECUCAO.md",
+          "docs/implantacao-sie-2-0/F01/EVIDENCIA_REPRODUTIBILIDADE_E_ENSAIOS_LOCAL.md",
+          "restructuring/apps/api/tests/test_project_revisions_f01.py",
+          "restructuring/apps/api/tests/test_calculation_traces_f01.py",
+          "restructuring/apps/api/tests/test_f01_independent_math_examples.py"
+        ],
+        "ci_runs": [
+          38725806925,
+          38725806964,
+          38725806937
+        ],
+        "historical_project_revisions": "IMPLEMENTED_NEW_REVISIONS_ONLY",
+        "server_calculation_traces": "IMPLEMENTED_LOCAL_UNVERIFIED",
+        "inventory_file": "docs/implantacao-sie-2-0/F01/INVENTARIO_CELULAS_E_REGRAS_USADAS.csv",
+        "source_audit_file": "docs/implantacao-sie-2-0/F01/PF01_AUDITORIA_FONTES_2026-10-16.md",
+        "candidate_edp_categories": 13,
+        "technical_inventory_rows_not_certified_cells": 24,
+        "pf01": "PARTIAL_SOURCE_PRIMARY_VERIFICATION_PENDING",
+        "pf02": "BLOCKED_EXTERNAL_PRIMARY_PROOFS",
+        "pf03": "PARTIAL_EXECUTED_REAL_CODE_AND_TESTS",
+        "pf04": "EXECUTED_MACHINE_QA3_NOT_COMPLETE_NORMATIVE_SIGNOFF",
+        "pf05": "SOFTWARE_CI_PASSED_NO_NORMATIVE_RELEASE",
+        "last_proven_ci_commit": "a4c41553aecff0c479867e27f56cb0cb8c9cf612",
+        "last_proven_ci_runs": [
+          38956570954,
+          38956570839,
+          38956570882
+        ],
+        "official_primary_sources_audit": "docs/implantacao-sie-2-0/F01/AUDITORIA_FONTES_OFICIAIS_2026-10-16.md",
+        "nr10_737_primary_pdf_read": true,
+        "nr10_737_articles_verified": [
+          "3",
+          "5"
+        ],
+        "nr10_narrow_transition_2028_tested": true,
+        "edp_v09_official_pdf_located": true,
+        "edp_v09_pdf_binary_or_cells_rechecked": false,
+        "abnt_5410_edition_publication_confirmed": true,
+        "abnt_5410_primary_license_and_cells_verified": false,
+        "qa3_independent_executions": 3,
+        "qa3_cross_reviews": 3,
+        "implementation_round": "P06_P03_LOTE01_LIMITED_INCREMENT_PENDING_FINAL_CI",
+        "scripts_added": [
+          "scripts/f01_qa_workflow_audit.py",
+          "scripts/f01_inventory_audit.py",
+          "scripts/f01_gate_dashboard.py"
+        ],
+        "automation_artifacts": [
+          "f01-cells-to-review",
+          "f01-evidence-status"
+        ],
+        "trace_schema_version": 2,
+        "trace_legacy_version_supported": true,
+        "copilot_report_creation_issue_fixed": true,
+        "copilot_source_tree_write_restriction": true,
+        "normative_candidate_groups": 24,
+        "edp_legacy_categories_checked": 13,
+        "source_cell_inventory_certified_complete": false,
+        "passed_acceptance_criteria": 1,
+        "accepted_gates": 0,
+        "last_ci_confirmed_commit": "d0b10bf2670db24886beff70ab67ecf3ec8441e4",
+        "last_ci_runs": {
+          "api": 39365306956,
+          "chromium": 39365306920,
+          "aiox": 39365306802
+        },
+        "qa3_nine_file_bundle": "scripts/f01_qa3_evidence_bundle.py",
+        "qa3_all_six_jobs_aggregate_requires_all": true,
+        "qa3_immutable_artifact": "f01-qa3-evidence-<github.run_id>",
+        "qa3_real_cli_installed_test_no_auth": true,
+        "qa3_cli_smoke_test_run": 39243775881,
+        "qa3_cli_smoke_status": "PASS",
+        "qa3_credential_present_verified": true,
+        "blocker_current": null,
+        "qa3_latest_run_id": 39289599183,
+        "qa3_latest_run_status": "SUCCESS",
+        "scoped_lot_cells_accepted": 8,
+        "scoped_lot_cases_accepted": 6,
+        "scoped_lot_pending_items": 8,
+        "scoped_lot_receipt": "docs/implantacao-sie-2-0/F01/ACEITE_PROFISSIONAL_LOTE01_RECEBIDO_2026-10-20.json",
+        "p03_completion": "PARTIAL_NOT_COMPLETE",
+        "p06_completion": "PARTIAL_NOT_COMPLETE",
+        "f02_development_allowed": true
+      },
+      "qa3_program": {
+        "configured": true,
+        "executed_agent_instances": 3,
+        "independent_external_signoffs": 0,
+        "goal_accepted_gates": "6/6",
+        "actual_accepted_gates": 0,
+        "profiles": [
+          ".github/agents/f01-qa-arquiteto.agent.md",
+          ".github/agents/f01-qa-engenheiro-eletrico.agent.md",
+          ".github/agents/f01-qa-dados-ux-llm.agent.md"
+        ],
+        "skills_count": 6,
+        "issues": [
+          4,
+          5,
+          6
+        ],
+        "branches": [
+          "qa/f01-arquiteto",
+          "qa/f01-engenheiro-eletrico",
+          "qa/f01-dados-ux-llm"
+        ],
+        "manifest": "docs/implantacao-sie-2-0/F01/QA3_MANIFEST.json",
+        "validator": "scripts/f01_release_gate.py",
+        "guide": "docs/implantacao-sie-2-0/F01/LEIA_PRIMEIRO_QA3.md",
+        "qa01": "EXECUTED_NOT_NORMATIVE_SIGNOFF",
+        "qa02": "EXECUTED_NOT_NORMATIVE_SIGNOFF",
+        "qa03": "EXECUTED_NOT_NORMATIVE_SIGNOFF",
+        "f02_allowed": false
+      },
+      "autonomous_yolo_execution": {
+        "plan": "docs/implantacao-sie-2-0/F01/PLANO_EXECUCAO_AUTONOMA_YOLO.md",
+        "runner": "scripts/f01_yolo_runner.py",
+        "run_mode": "SANDBOXED_NONINTERACTIVE_COPILOT_CLI_YOLO",
+        "launch_command": "python scripts/f01_yolo_runner.py --execute --sandbox-confirmed",
+        "status": "YOLO_V2_CONFIGURED_NOT_EXECUTED",
+        "number_of_confirmed_runs": 0,
+        "preserves_f00": "REGRESSION_ONLY",
+        "max_agent_fix_rounds": 3,
+        "max_integration_fix_rounds": 2,
+        "qa_agents": 3,
+        "cross_review_required": true,
+        "external_normative_verification_required": true,
+        "auto_f02_start": false,
+        "accepted_gates_at_configuration": 0,
+        "deployment_permitted": false,
+        "main_merge_permitted": false,
+        "manual_code_changes_committed": true,
+        "github_ci_checks_executed": true
+      },
+      "unblock_yolo_v2": {
+        "status": "BLOCKED_COPILOT_CLI_NOT_AVAILABLE_WITHOUT_AUTH_CLOUD_AGENT_BASE_REF_UNSUPPORTED",
+        "plan": "docs/implantacao-sie-2-0/F01/PLANO_YOLO_DESBLOQUEIO_F01_V2.md",
+        "cell_matrix": "docs/implantacao-sie-2-0/F01/MATRIZ_CELULAS_NORMATIVAS_F01.json",
+        "validator": "scripts/f01_cell_evidence_gate.py",
+        "execution_command": "python scripts/f01_yolo_runner.py --execute --sandbox-confirmed",
+        "source_groups_required": [
+          "RCA",
+          "XL",
+          "IZ",
+          "FATORES_CORRECAO",
+          "EDP_DEMANDA",
+          "EDP_MODALIDADE"
+        ],
+        "source_groups_verified": 0,
+        "source_cell_coverage_certified": false,
+        "agents_executed_independently": 0,
+        "external_professional_signoff": false,
+        "accepted_gates": 0,
+        "qa_branches_require_fastforward_from_latest_f01": true,
+        "f00_locked": true,
+        "f02_release": false,
+        "external_normative_originals_verified": 1,
+        "external_electrical_cell_reviews": 0
+      },
+      "copilot_qa3_environment": {
+        "status": "OPERATIONAL_QA3_EXECUTED_SUCCESS_NOT_NORMATIVE_RELEASE",
+        "branch": "feat/f01-governanca-normativa",
+        "workflow": ".github/workflows/f01-copilot-qa-isolated.yml",
+        "trigger": "docs/implantacao-sie-2-0/F01/COPILOT_RUN_REQUEST.md",
+        "runbook": "docs/implantacao-sie-2-0/F01/ATIVAR_COPILOT_QA3_GITHUB_ACTIONS.md",
+        "credential_secret_name": "F01_COPILOT_PAT",
+        "credential_present_verified": true,
+        "requires_user_secret_action": false,
+        "first_pass_independent_jobs": 3,
+        "cross_review_jobs": 3,
+        "actual_successful_first_passes": 3,
+        "actual_successful_cross_reviews": 3,
+        "qa_report_validator": "scripts/f01_copilot_reports_gate.py",
+        "permissions": "contents:read; no pushes",
+        "source_attestation_not_automated": true,
+        "main_unchanged": true,
+        "f00_frozen": true,
+        "f02_release": false,
+        "protected_write_scope": "qa3-runs/QA-XX only",
+        "revisions_documented": [
+          ".github/workflows/f01-copilot-qa-isolated.yml",
+          "scripts/f01_qa_workflow_audit.py"
+        ],
+        "no_token_copilot_cli_smoke_proved": true,
+        "no_token_copilot_cli_smoke_run": 39243775881,
+        "qa_evidence_sha_bundle_enabled": true,
+        "secret_present_in_actions_preflight": true,
+        "model_inference_authorized": true,
+        "first_attempt": {
+          "run_id": 39258820804,
+          "sha": "fcc9b37a709701e3ae10cb90951e5832756ddf0b",
+          "reason": "CLI_AI_CREDIT_MINIMUM_30_REQUIRED"
+        },
+        "second_attempt": {
+          "run_id": 39259071550,
+          "sha": "98ef1706de4776b27309c379f2dcfa5b44e6c0a1",
+          "reason": "GITHUB_COPILOT_ACCESS_DENIED_BY_POLICY_SETTINGS"
+        },
+        "next_action": "Review P06/P03 limited increment CI on final SHA; complete outstanding protection, coverage and provenance before a new QA3 milestone.",
+        "last_successful_run_id": 39289599183,
+        "last_successful_baseline": "29c506cbd4f0045c4d54e4f50098d989d7260194"
+      },
+      "completion_basis": "OWNER_ACCEPTANCE_FOR_DEVELOPMENT",
+      "project_acceptance": {
+        "path": "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json",
+        "sha256": "5c526a2fa62328c4e6e3a1e2763b1f4a64f0be54dd9e4048d603a401c4646ca0"
+      }
     }
   ]
 }

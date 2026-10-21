@@ -1,7 +1,7 @@
 """EDP São Paulo PT.DT.PDN.00068 v09 catalog, with provenance kept in code.
 
-The category entries below are transcribed from the repository's verified
-Tables 001/002 consolidation. Selecting a category by current is an explicit
+The category entries below are legacy candidates. Later source readings
+are documented separately and do not constitute professional homologation. Selecting a category by current is an explicit
 automation aid only: final EDP eligibility still depends on the distributor.
 """
 from dataclasses import dataclass
@@ -26,9 +26,11 @@ class CategoriaEDP:
     aterramento_epr_xlpe: str
 
 
-FONTE_EDP = {"documento": "PT.DT.PDN.00068", "versao": "09", "vigencia": "2026-04-14", "referencia": "Anexo A, Tabelas 001 e 002, págs. 30–32", "status": StatusFonte.VERIFICADO.value, "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md"}
+# O arquivo do repo e a conferencia local NAO homologam o documento oficial;
+# manter dados como candidatos legados, sem sinalizar valores verificados.
+FONTE_EDP = {"documento": "PT.DT.PDN.00068", "versao": "09", "vigencia": "A_CONFIRMAR", "referencia": "Anexo A, Tabelas 001 e 002, páginas a conferir na fonte primária autorizada", "url_fonte_edp": "https://www.edp.com.br/Ginp/Download/PT.DT.PDN.00068_V9.pdf", "publicacao_portal": "2026-04-15", "confirmacao_binaria_pdf": False, "status": StatusFonte.DOCUMENTADO_SEM_FONTE_PRIMARIA.value, "evidencia_repositorio": "Arquivos_Diversos/QA_CONFERENCIA_CERTFID_TABELAS_EDP.md", "normative_conformity_verified": False, "release_allowed": False}
 
-# Values transcribed from verified source-data. No fallback values are allowed.
+# Values transcribed from legacy candidate data, not homologated. No fallback values are allowed.
 CATALOGO_EDP = (
     CategoriaEDP("U2", "U", Decimal("70"), "direta", "responsabilidade_distribuidora", "responsabilidade_distribuidora", "16 mm²", "16 mm²"),
     CategoriaEDP("D2", "D", Decimal("63"), "direta", "responsabilidade_distribuidora", "responsabilidade_distribuidora", "16 mm²", "16 mm²"),
@@ -56,10 +58,13 @@ def enquadrar_edp(modalidade: str, corrente_demanda_a: Decimal, carga_instalada_
         alertas.append({"codigo": "EDP-001", "nivel": "BLOQUEANTE", "mensagem": "Carga instalada acima de 75 kW: consultar a distribuidora para viabilidade em tensão secundária."})
     if modalidade == "T" and not tem_carga_trifasica:
         alertas.append({"codigo": "EDP-002", "nivel": "BLOQUEANTE", "mensagem": "Modalidade T requer carga trifásica declarada."})
+    if modalidade in {"U", "D"} and tem_carga_trifasica:
+        alertas.append({"codigo": "EDP-003", "nivel": "BLOQUEANTE",
+                        "mensagem": "Carga trifasica declarada e modalidade U/D incompativeis para selecao automatica; requer avaliacao do padrao EDP aplicavel."})
     candidatos = sorted((c for c in CATALOGO_EDP if c.modalidade == modalidade and c.disjuntor_a >= corrente_demanda_a), key=lambda c: c.disjuntor_a)
     if not candidatos:
         alertas.append({"codigo": "EDP-004", "nivel": "BLOQUEANTE", "mensagem": "Não há categoria do catálogo para a corrente informada."})
         categoria = None
     else:
         categoria = candidatos[0]
-    return {"catalogo": FONTE_EDP, "regra_selecao": {"descricao": "Menor disjuntor de entrada verificado que atende à corrente de demanda, filtrado pela modalidade.", "status": StatusFonte.DOCUMENTADO_SEM_FONTE_PRIMARIA.value, "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP."}, "categoria": None if categoria is None else {"codigo": categoria.categoria, "modalidade": categoria.modalidade, "disjuntor_entrada_a": float(categoria.disjuntor_a), "medicao": categoria.medicao, "condutor_entrada_pvc": categoria.condutor_pvc, "condutor_entrada_epr_xlpe": categoria.condutor_epr_xlpe, "aterramento_pvc": categoria.aterramento_pvc, "aterramento_epr_xlpe": categoria.aterramento_epr_xlpe}, "alertas": alertas, "candidato_para_estudo": not alertas and categoria is not None, "status_engenharia": "PENDENTE" if not alertas else "BLOQUEADO", "liberado_para_padrao_entrada": False}
+    return {"catalogo": FONTE_EDP, "regra_selecao": {"descricao": "Candidato do catálogo legado ainda não homologado, selecionado por corrente de demanda, filtrado pela modalidade.", "status": StatusFonte.DOCUMENTADO_SEM_FONTE_PRIMARIA.value, "observacao": "A regra automatiza a interpretação do catálogo; a aprovação final depende do padrão vigente e da análise EDP."}, "categoria": None if categoria is None else {"codigo": categoria.categoria, "modalidade": categoria.modalidade, "disjuntor_entrada_a": float(categoria.disjuntor_a), "medicao": categoria.medicao, "condutor_entrada_pvc": categoria.condutor_pvc, "condutor_entrada_epr_xlpe": categoria.condutor_epr_xlpe, "aterramento_pvc": categoria.aterramento_pvc, "aterramento_epr_xlpe": categoria.aterramento_epr_xlpe}, "alertas": alertas, "candidato_para_estudo": not alertas and categoria is not None, "status_engenharia": "PENDENTE" if not alertas else "BLOQUEADO", "liberado_para_padrao_entrada": False}
