@@ -1,5 +1,5 @@
 # F04 — Cadastro preliminar de instalações e cargas
-Status: Ready for Review
+Status: Done
 Fonte: F04_EXECUTAR.md, tasks 04.01–04.09.
 ## Aceite
 - [x] Hierarquia edificação/pavimento/ambiente e pontos validada; arquivamento sem perda.
@@ -26,3 +26,5 @@ Fonte: F04_EXECUTAR.md, tasks 04.01–04.09.
 - docs/implantacao-sie-2-0/F04/QA-01.md
 - docs/implantacao-sie-2-0/F04/QA-02.md
 - docs/implantacao-sie-2-0/F04/QA-03.md
+
+CI final de código:1fa9e72;API39615781809,AIOX39615781673,Chromium39615781808 SUCCESS.

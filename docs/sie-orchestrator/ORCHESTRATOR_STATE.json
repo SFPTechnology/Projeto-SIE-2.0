@@ -189,6 +189,13 @@
       "from": "VALIDATING",
       "to": "DONE",
       "reason": "QA3 aprovado,551API/34golden/17Chromium/AIOX verdes no SHA61e65e980960ecbf23cc846a9ac4d7645096fc03; F04 liberada para desenvolvimento; produção bloqueada"
+    },
+    {
+      "activity": "F04",
+      "at": "2026-10-21",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "576 API/25 F04,34 F00,22 Chromium,AIOX e QA3 aprovados;3 workflows success no SHA1fa9e72"
     }
   ],
   "revision": 25,
@@ -1267,7 +1274,7 @@
       "impact": 10,
       "risk": 5,
       "requirements_verified": true,
-      "state": "VALIDATING",
+      "state": "DONE",
       "criteria": [
         {
           "id": "AC-04.01",
@@ -1358,20 +1365,25 @@
       "publication": {
         "branch": "feat/f04-cadastro-cargas",
         "merged_to_main": false,
-        "production_release_allowed": false
+        "production_release_allowed": false,
+        "code_sha": "1fa9e72d8abe37ef2fb71f4f231321b18d1c262d"
       },
       "checkpoint": {
         "qa_01": "APROVADO",
-        "qa_02": "APROVADO_PRELIMINAR",
-        "qa_03": "APROVADO_LOCAL",
-        "ci_current_sha_verified": false,
+        "qa_02": "APROVADO",
+        "qa_03": "APROVADO",
+        "ci_current_sha_verified": true,
         "local_api_tests_passed": 576,
         "f04_tests_passed": 25,
         "f00_golden_passed": 34,
         "browser_tests_passed": 22,
         "aiox_passed": true,
         "next_phase": "F05",
-        "next_phase_development_allowed": false
+        "next_phase_development_allowed": true,
+        "ci_code_sha": "1fa9e72d8abe37ef2fb71f4f231321b18d1c262d",
+        "ci_api_run": 39615781809,
+        "ci_aiox_run": 39615781673,
+        "ci_chromium_run": 39615781808
       }
     }
   ]

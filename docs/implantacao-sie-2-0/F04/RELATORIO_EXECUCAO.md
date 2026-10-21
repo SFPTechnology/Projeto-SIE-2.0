@@ -1,5 +1,5 @@
 # F04 — Reconstrução do cadastro preliminar
-Data: 21/10/2026. Estado: VALIDATING. Branch feat/f04-cadastro-cargas, base F03 62d58a22b8f66a8334720b703bf1521f56e55e45.
+Data: 21/10/2026. Estado: **DONE — código, QA3 e CI aprovados no mesmo SHA**. Branch feat/f04-cadastro-cargas, base F03 62d58a22b8f66a8334720b703bf1521f56e55e45.
 A implementação local anterior 1ddc28f foi removida pela manutenção do ambiente antes de publicação. Esta é uma reconstrução verificável; não se atribuem ao novo código os resultados anteriores.
 
 Tasks 04.01–04.09: hierarquia edificação/pavimento/ambiente, pontos ILUMINACAO/TUG/TUE, dados de placa separados de P/Q/S, origem declarado/estimado, grupos/tags, dados incompletos, totais decimais por projeto/ambiente/pavimento, arquivamento explícito, edição e desfazer. CLI load_survey_cli, API opt-in F03 e tela levantamento.html. Contrato em CONTRATO_DEMANDA.md, manual em restructuring/apps/web/levantamento-manual.html, fixture levantamento-demo.json. Nenhum merge, deploy, migração real ou alteração da main.
@@ -10,7 +10,7 @@ Tasks 04.01–04.09: hierarquia edificação/pavimento/ambiente, pontos ILUMINAC
 - F00: 34 casos, fixture intacta.
 - AIOX lint/typecheck/test/build: PASS após instalar dependências do lock; 18 testes.
 - JavaScript syntax e diff check: PASS.
-- Chromium local: 22 PASS em 39,31s; inclui cinco cenários F04. Após ajuste semântico das tabelas, execução focada F04: 5 PASS, 17 deselected, 9,41s. CI: primeira publicação disparada; aguardando a versão final.
+- Chromium local: 22 PASS em 39,31s; inclui cinco cenários F04. Após ajuste semântico das tabelas, execução focada F04: 5 PASS, 17 deselected, 9,41s. CI final: API, AIOX e Chromium SUCCESS no SHA1fa9e72d8abe37ef2fb71f4f231321b18d1c262d.
 
 ## Revisões críticas
 QA-01 APROVADO no escopo local: armazenamento aditivo, conflitos, referências, histórico e arquivamento exercitados.
@@ -19,9 +19,20 @@ QA-03 APROVADO no escopo preliminar local: correções implementadas para descar
 Os pareceres são revisões computacionais; não substituem validação profissional.
 
 ## Limites
-Regras mínimas permanecem PENDENTE_FONTE_VALIDADA conforme fase; nenhuma fonte digitada concede validação normativa. Soma de S é aritmética, não vetorial. Dados ausentes são explicitados; não há motor de demanda nem conversão automática para circuitos F02. Identidade/RLS em produção permanecem fora do escopo local herdado da F03. CodeRabbit CLI indisponível. Passagem F05 ainda não declarada até confirmar o CI final.
+Regras mínimas permanecem PENDENTE_FONTE_VALIDADA conforme fase; nenhuma fonte digitada concede validação normativa. Soma de S é aritmética, não vetorial. Dados ausentes são explicitados; não há motor de demanda nem conversão automática para circuitos F02. Identidade/RLS em produção permanecem fora do escopo local herdado da F03. CodeRabbit CLI indisponível. Passagem liberada para F05 — Topologia elétrica e condições de instalação. Próximo artefato: F05_EXECUTAR.md. Regras mínimas normativas pendentes não impedem a modelagem preliminar prevista; nenhum cálculo definitivo é homologado.
 
 Primeira publicação: dbcb568536914c4ef494851182aefd4479b92b4a (mesma árvore da reconstrução local 3ed19a6). A regressão identificou o atalho adicional no menu de seis itens; movido após a navegação existente sem alterar o teste. Demais correções constam nos pareceres QA.
 
 Proteção final: escala fracionária máxima de 24 casas em entradas decimais; expoentes extremos são recusados antes da consolidação. Regressão integral:576 passed,12,06s. Nenhuma precisão normativa foi inferida.
 Zeros decimais são canonicalizados e contexto de soma fixado em80 dígitos; teste cobre expoente positivo extremo em zero.
+
+## Encerramento publicado
+Commit de código validado: `1fa9e72d8abe37ef2fb71f4f231321b18d1c262d`.
+
+|Workflow|Resultado|Evidência|
+|---|---|---|
+|API/F00|SUCCESS;576pytest (25F04),1aviso,11,16s;34golden|https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39615781809|
+|AIOX|SUCCESS;lint/typecheck/test18/build|https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39615781673|
+|Chromium|SUCCESS;22cenários,38,36s|https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39615781808|
+
+Os três workflows foram conferidos como completed/success no mesmo SHA. O commit posterior de encerramento altera somente documentação e estado; não modifica o código validado. Branch preservada; sem merge/deploy. F05 não foi implementada neste ciclo, mas está liberada para desenvolvimento, com pré-requisitos F02/F04 conferidos e regras normativas ausentes explicitadas.
