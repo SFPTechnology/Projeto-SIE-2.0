@@ -1256,6 +1256,123 @@
         "next_phase": "F04",
         "next_phase_development_allowed": true
       }
+    },
+    {
+      "id": "F04",
+      "title": "Cadastro de instalações e levantamento de cargas",
+      "dependencies": [
+        "F03"
+      ],
+      "priority": 92,
+      "impact": 10,
+      "risk": 5,
+      "requirements_verified": true,
+      "state": "VALIDATING",
+      "criteria": [
+        {
+          "id": "AC-04.01",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F04/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_load_survey_f04.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-04.02",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F04/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_load_survey_f04.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-04.03",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F04/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_load_survey_f04.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-04.04",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F04/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_load_survey_f04.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-04.05",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F04/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_load_survey_f04.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-04.06",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F04/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_load_survey_f04.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-04.07",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F04/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_load_survey_f04.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-04.08",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F04/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_load_survey_f04.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        },
+        {
+          "id": "AC-04.09",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F04/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_load_survey_f04.py",
+            "restructuring/e2e/test_browser_flow.py"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/implantacao-sie-2-0/F04/CONTRATO_DEMANDA.md",
+        "docs/stories/story-SIE-AUTO-015-F04-CARGAS.md"
+      ],
+      "publication": {
+        "branch": "feat/f04-cadastro-cargas",
+        "merged_to_main": false,
+        "production_release_allowed": false
+      },
+      "checkpoint": {
+        "qa_01": "APROVADO",
+        "qa_02": "APROVADO_PRELIMINAR",
+        "qa_03": "APROVADO_LOCAL",
+        "ci_current_sha_verified": false,
+        "local_api_tests_passed": 574,
+        "f04_tests_passed": 23,
+        "f00_golden_passed": 34,
+        "browser_tests_passed": 22,
+        "aiox_passed": true,
+        "next_phase": "F05",
+        "next_phase_development_allowed": false
+      }
     }
   ]
 }

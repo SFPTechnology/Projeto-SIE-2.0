@@ -21,3 +21,8 @@ Fonte: F04_EXECUTAR.md, tasks 04.01–04.09.
 - restructuring/apps/api/sie_api/main.py
 - restructuring/apps/web/index.html
 - restructuring/e2e/test_browser_flow.py
+
+- docs/sie-orchestrator/ORCHESTRATOR_STATE.json
+- docs/implantacao-sie-2-0/F04/QA-01.md
+- docs/implantacao-sie-2-0/F04/QA-02.md
+- docs/implantacao-sie-2-0/F04/QA-03.md
