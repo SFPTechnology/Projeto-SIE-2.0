@@ -224,9 +224,16 @@
       "from": "VALIDATING",
       "to": "DONE",
       "reason": "604 API/34 F00,25 Chromium,18 AIOX e QA3 aprovados;3 workflows completed/success no SHA7c5547af06e6b569f493473ceb61cd6d224603da;F06 liberada para desenvolvimento,sem deploy/homologação"
+    },
+    {
+      "activity": "F06",
+      "at": "2026-10-21",
+      "from": "UNREGISTERED",
+      "to": "BLOCKED",
+      "reason": "Incremento de estudo implementado;637 API,33 F06,26 Chromium,34 golden e18 AIOX; gate de coeficientes/fixtures normativas não atendido. Aceites anteriores preservados."
     }
   ],
-  "revision": 28,
+  "revision": 29,
   "schema_version": 1,
   "tasks": [
     {
@@ -1540,6 +1547,116 @@
         "ci_aiox_run": 39662901277,
         "ci_chromium_run": 39662901273,
         "next_phase": "F06"
+      }
+    },
+    {
+      "id": "F06",
+      "title": "Cálculo de demanda e alimentação elétrica",
+      "dependencies": [
+        "F04",
+        "F05"
+      ],
+      "priority": 90,
+      "impact": 10,
+      "risk": 7,
+      "requirements_verified": true,
+      "state": "BLOCKED",
+      "criteria": [
+        {
+          "id": "AC-06.01",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_demand_f06.py"
+          ]
+        },
+        {
+          "id": "AC-06.02",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_demand_f06.py"
+          ]
+        },
+        {
+          "id": "AC-06.03",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_demand_f06.py"
+          ]
+        },
+        {
+          "id": "AC-06.04",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_demand_f06.py"
+          ]
+        },
+        {
+          "id": "AC-06.05",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_demand_f06.py"
+          ]
+        },
+        {
+          "id": "AC-06.06",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_demand_f06.py"
+          ]
+        },
+        {
+          "id": "AC-06.07",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_demand_f06.py"
+          ]
+        },
+        {
+          "id": "AC-06.08",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_demand_f06.py"
+          ]
+        },
+        {
+          "id": "AC-06.09",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F06/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_demand_f06.py"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/implantacao-sie-2-0/F06/F06_EXECUTAR.md",
+        "docs/stories/SIE-F06.md"
+      ],
+      "checkpoint": {
+        "qa_01": "APROVADO_ESTUDO",
+        "qa_02": "BLOQUEADO",
+        "qa_03": "APROVADO_ESTUDO",
+        "local_api_tests_passed": 637,
+        "f06_tests_passed": 33,
+        "browser_tests_passed": 26,
+        "f00_golden_passed": 34,
+        "aiox_passed": true,
+        "ci_current_sha_verified": false,
+        "normative_conformity_verified": false,
+        "next_phase_development_allowed": false
+      },
+      "publication": {
+        "branch": "feat/f06-demanda-alimentacao",
+        "merged_to_main": false,
+        "production_release_allowed": false,
+        "published": false
       }
     }
   ]

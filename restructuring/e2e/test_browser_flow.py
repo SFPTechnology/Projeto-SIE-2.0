@@ -4,6 +4,7 @@ Run only in an isolated developer/CI environment. Does not contact Supabase
 or modify a deployed instance; normative approval must always remain disabled.
 """
 import os
+import json
 from pathlib import Path
 import secrets
 import subprocess
@@ -507,3 +508,24 @@ def test_f05_concurrent_revision_rejected(page, servers):
     page.locator('#save').click()
     expect(page.locator('#status')).to_contain_text('409')
     expect(page.locator('#status')).to_contain_text('Revisão concorrente')
+
+
+def test_demand_study_and_invalidation(page, servers):
+    page.goto(WEB_URL+'/demanda.html',wait_until='networkidle')
+    page.locator('#demo').click()
+    expect(page.locator('#status')).to_contain_text('carregado')
+    page.locator('#calculate').click()
+    expect(page.locator('#summary')).to_contain_text('CALCULATED_STUDY')
+    expect(page.locator('#memory')).to_contain_text('normative_conformity_verified')
+    assert page.locator('#parcels tr').count()>0
+    data=json.loads(page.locator('#document').input_value())
+    data['rules'][0]['status']='VERIFIED'
+    page.locator('#document').fill(json.dumps(data))
+    expect(page.locator('#summary')).to_contain_text('desatualizados')
+    page.locator('#export').click()
+    expect(page.locator('#status')).to_contain_text('Recalcule')
+    page.locator('#calculate').click()
+    expect(page.locator('#summary')).to_contain_text('PENDING')
+    expect(page.locator('#memory')).to_contain_text('TRUSTED_NORMATIVE_REGISTRY_PENDING')
+    page.set_viewport_size({'width':390,'height':844})
+    assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')

@@ -1,4 +1,5 @@
 """API foundation. Engineering design decisions require validated reference data."""
+from .demand_api import router as demand_router
 import sqlite3
 from decimal import Decimal
 from fastapi import FastAPI, HTTPException
@@ -56,6 +57,7 @@ async def erro_validacao_seguro(request, exc):
 
 from .load_survey_api import router as load_survey_router
 from .topology_api import router as topology_router
+app.include_router(demand_router)
 app.include_router(topology_router)
 app.include_router(load_survey_router)
 app.include_router(storage_router)
