@@ -1,5 +1,5 @@
 ## Estado vigente — F03 — 21/10/2026
-F02 DONE preservada. F03 VALIDATING: implementação local e QA3 aprovados, publicação/CI em conferência. Relatório: docs/implantacao-sie-2-0/F03/RELATORIO_EXECUCAO.md. Produção não liberada. Blocos abaixo são históricos quando conflitarem com esta atualização.
+F02 DONE preservada. F03 DONE: implementação local, QA3 e CI aprovados no SHA61e65e9 (551API/34golden/17Chromium/AIOX). Próximo marco: F04_EXECUTAR.md, liberado para desenvolvimento. Relatório: docs/implantacao-sie-2-0/F03/RELATORIO_EXECUCAO.md. Produção não liberada. Blocos abaixo são históricos quando conflitarem com esta atualização.
 
 ## F02 — encerramento confirmado em20/10/2026
 

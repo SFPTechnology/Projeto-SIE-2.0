@@ -182,6 +182,13 @@
       "from": "READY",
       "to": "VALIDATING",
       "reason": "Implementação local, migração reversível/restore, QA3 aprovados; publicação e CI em conferência"
+    },
+    {
+      "activity": "F03",
+      "at": "2026-10-21",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "QA3 aprovado,551API/34golden/17Chromium/AIOX verdes no SHA61e65e980960ecbf23cc846a9ac4d7645096fc03; F04 liberada para desenvolvimento; produção bloqueada"
     }
   ],
   "revision": 25,
@@ -1138,7 +1145,7 @@
       "impact": 10,
       "risk": 5,
       "requirements_verified": true,
-      "state": "VALIDATING",
+      "state": "DONE",
       "criteria": [
         {
           "id": "AC-03.01",
@@ -1228,14 +1235,26 @@
       "publication": {
         "branch": "feat/f03-persistencia-seguranca",
         "merged_to_main": false,
-        "production_release_allowed": false
+        "production_release_allowed": false,
+        "code_sha": "61e65e980960ecbf23cc846a9ac4d7645096fc03"
       },
       "checkpoint": {
         "qa_01": "APROVADO",
         "qa_02": "APROVADO",
         "qa_03": "APROVADO",
         "production_identity_implemented": false,
-        "ci_current_sha_verified": false
+        "ci_current_sha_verified": true,
+        "local_api_tests_passed": 551,
+        "f03_tests_passed": 12,
+        "f00_golden_passed": 34,
+        "browser_tests_passed": 17,
+        "aiox_passed": true,
+        "ci_code_sha": "61e65e980960ecbf23cc846a9ac4d7645096fc03",
+        "ci_api_run": 39595433472,
+        "ci_aiox_run": 39595433149,
+        "ci_chromium_run": 39595433124,
+        "next_phase": "F04",
+        "next_phase_development_allowed": true
       }
     }
   ]

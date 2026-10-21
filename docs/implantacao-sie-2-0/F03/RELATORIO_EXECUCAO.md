@@ -1,5 +1,5 @@
 # F03 — Persistência, segurança e infraestrutura de dados
-Data: 21/10/2026. Estado: **VALIDATING — implementação e QA local aprovados; publicação/CI em conferência**.
+Data: 21/10/2026. Estado: **DONE — implementação, QA3 e CI do mesmo SHA aprovados**.
 Branch: `feat/f03-persistencia-seguranca`; base F02 `3d7780c5107ac217bffb10326fac37a2debf69aa`.
 F02 DONE e passagem conferidas em seu relatório e orquestrador. F00, aceites F01, domínio F02 e main preservados.
 
@@ -37,4 +37,16 @@ Revisão computacional delegada em três perspectivas; não equivale a três aud
 
 ## Gates e limites
 Leitura/escrita/revisão local, rollback/restore isolados e acessos negativos demonstrados. Produção permanece condicionada e bloqueada: contas, organizações e RLS apenas projetados; não são denominados testes multiusuário. Retenção/cifragem são política proposta, não rotina instalada. Arquivamento preserva histórico e não é eliminação LGPD. Backup valida integridade SQLite/FK; histórico também tem digest na leitura. Não foi examinado banco ativo nem executada migração PostgreSQL/Supabase legada.
-Conclusão de passagem sequencial será consolidada após conferir publicação e CI do incremento. Nenhum merge/deploy ou custo Copilot.
+F03 concluída no escopo autorizado. Passagem liberada para desenvolvimento da F04. Próximo arquivo: **F04_EXECUTAR.md**. Nenhum merge/deploy ou custo Copilot.
+
+
+## Publicação e encerramento
+Commit de código: `61e65e980960ecbf23cc846a9ac4d7645096fc03`.
+
+|Workflow|Resultado no mesmo SHA|Evidência|
+|---|---|---|
+|API/F00|SUCCESS;551pytest,1aviso,10,08s;34golden,fixture intacta|https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39595433472|
+|AIOX|SUCCESS;lint/typecheck/test18/build|https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39595433149|
+|Chromium|SUCCESS;17testes,31,41s|https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39595433124|
+
+Código publicado em https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/61e65e980960ecbf23cc846a9ac4d7645096fc03 . Árvore local conferida idêntica à remota. Estes resultados pertencem ao SHA de código; o encerramento posterior altera somente registros documentais. QA-01/02/03 pertencem ao incremento contido nesse commit. CodeRabbit CLI indisponível; nenhuma execução desse serviço é afirmada. Identidade/RLS de produção permanecem projetados conforme task03.06, sem impedir a entrega local exigida pelo artefato.

@@ -54,3 +54,6 @@
 30. Pacote F00 versionado no commit local `8797f616f07c3866833db4eb463e050ece76420d` (50 arquivos, 16 logs). Após conferir os três QA, contratos, anexo e riscos, atividade F00 promovida VALIDATING→DONE; JSON revisão 8. As 12 tarefas preexistentes permanecem semanticamente inalteradas. Próximo arquivo F01_EXECUTAR.md; sua execução e seus gates não foram presumidos.
 
 31. Push HTTPS do terminal falhou por transporte sem credenciais, sem modificar refs remotas. Conector GitHub autorizado criou checkpoint remoto `ab129046716b5bcff62bd5ca2f0cb470b7c0f077`, parent baseline8d86db2, com árvore exata `904e4a84de7d772a8915c4d79b5e27aa130959c1` igual à do commit local8797f61. O mapeamento é evidência de publicação, sem nova transição de tarefa; JSON revisão 9 conserva F00 DONE e todas as tarefas anteriores. Fechamento remoto referencia esse checkpoint como pai; sem force push/main/deploy.
+
+## 21/10/2026 — F03 DONE
+Branch feat/f03-persistencia-seguranca; código61e65e980960ecbf23cc846a9ac4d7645096fc03. Migração reversível, soft-delete, backup/restore isolado, acesso local e produção bloqueada. QA3 aprovado;551API/34golden/17Chromium/AIOX verdes. F04 liberada para desenvolvimento; sem merge/deploy. Relatório docs/implantacao-sie-2-0/F03/RELATORIO_EXECUCAO.md.

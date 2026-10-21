@@ -29,4 +29,6 @@ A referência histórica de SIE-AUTO-003 foi reconciliada no JSON, mas **não** 
 
 Passagem sequencial vigente: F02 DONE; próximo artefato `F03_EXECUTAR.md`, liberado para desenvolvimento, ainda sem implementação registrada. Não reabrirF01/F02.
 
-| F03 | Persistência, segurança e infraestrutura de dados | F02 DONE | VALIDATING | implementação local e QA3 aprovados; publicação/CI em conferência |
+| F03 | Persistência, segurança e infraestrutura de dados | F02 DONE | DONE | QA3/551API/34golden/17Chromium/AIOX verdes no SHA61e65e9; F04 liberada para desenvolvimento |
+
+Passagem vigente: F03 DONE; próximo F04_EXECUTAR.md. A indicação anterior de F03 ainda não implementada é histórica e substituída por este encerramento. Produção permanece bloqueada.
