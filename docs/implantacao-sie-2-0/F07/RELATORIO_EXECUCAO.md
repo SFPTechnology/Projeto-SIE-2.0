@@ -29,7 +29,7 @@ Código: `restructuring/apps/api/sie_api/conductor_f07.py`, `conductor_api.py`, 
 - `npm run lint`, `npm run typecheck`, `npm test` (**18 testes**), `npm run build`: PASS após instalação das dependências existentes de .aiox-core, sem alteração de lockfile.
 - `node --check restructuring/apps/web/condutores.js` e `git diff --check`: PASS.
 - CLI executada com fixture sintética; saída PENDENTE e capacidade corrigida22,272 A em cada trecho inicialmente, sem homologação.
-- Primeira tentativa Chromium: **29 erros de setup**, pois o executável não pôde ser instalado (downloads Chromium156/Playwright1.64 retornaram arquivo truncado). Nenhum desses erros é descrito como teste funcional aprovado. Recuperação com Playwright1.55 dentro do intervalo já permitido pelo projeto em andamento; resultado final será acrescentado.
+- Primeira tentativa Chromium: **29 erros de setup**, pois o executável não pôde ser instalado (downloads Chromium156/Playwright1.64 retornaram arquivo truncado). Nenhum desses erros é descrito como teste funcional aprovado. Recuperação com Playwright1.55 dentro do intervalo já permitido pelo projeto concluída; resultado final registrado abaixo.
 
 ## QA3 e correções
 
@@ -62,3 +62,18 @@ A última alteração do fingerprint inclui também revisão, fonte e aceite do 
 Captura Chromium inspecionada pelo executor: interface escura, botões acessíveis, estado PENDENTE e matriz visíveis, sem erro de JavaScript. Os critérios/estados apresentados foram traduzidos e os nomes de trechos/circuitos substituem UUIDs na leitura principal. Percentuais da interface usam até4 casas somente para apresentação; memória/decisão Decimal mantidas. Impressão testada como emissão PDF em memória, sem alegação de revisão visual de todas as páginas ou de relatório técnico homologado. Após este ajuste exclusivamente visual, os três E2E F07 foram reexecutados; resultado abaixo.
 
 Reexecução final dos E2E F07 após ajuste visual: **3 passed,27 deselected**, sem exclusão da regressão anterior de30casos. Reexecução específica API F07: **65 passed**. Publicação/CI ainda não foram presumidos como concluídos neste checkpoint; serão registrados com SHA e runs observados.
+
+
+## Publicação e CI conferidos — 22/10/2026
+
+Código publicado em [`69b533a9ea315022eecb247539a551950d81e5ed`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/69b533a9ea315022eecb247539a551950d81e5ed), branch `feat/f07-condutores-queda`. Commit local correspondente `c6e8e682dea9b39febf15dde48864e3bb91c5bd9`. Árvore local/remota exatamente igual: `f0a64095e1a7fad807fc97869d6eb1888e786c07`. Foram publicados os 20 arquivos da story; artefatos temporários ficaram excluídos. Nenhum PR, merge ou deploy.
+
+|Workflow no SHA 69b533a9|Run|Conclusão e prova observada|
+|---|---|---|
+|API/F00|[39720730426](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39720730426)|completed/success; job 119633320362, logs: 787 passed, 1 warning, 10.21 s;34 golden e fixture unchanged|
+|AIOX|[39720730305](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39720730305)|completed/success; job 119633319779,18 PASS; lint/typecheck/test/build success|
+|Chromium|[39720730315](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39720730315)|completed/success; job 119633319837,logs: 30 passed, 56.05 s; instalação e ensaio real concluídos|
+
+Head SHA, árvore, conclusão dos três runs, etapas e logs conferidos pelo conector GitHub. A última reexecução local dos 3 testes F07 de navegador aprovou em 6,53 s após os rótulos em português; 65 F07 passaram em 1,51 s. O checkpoint de encerramento modifica somente relatório/estado/story; o código permanece exatamente o aprovado pelo CI no SHA 69b533a9. Eventuais workflows disparados pelo checkpoint documental são distintos desses runs e não são usados para atribuir aprovação a outro SHA.
+
+**F07 continua BLOCKED para encerramento integral.** O incremento computacional está publicado e aprovado pelos três QA e pelo CI. Catálogo completo, seleção comercial multicritério e casos normativos independentes continuam necessários. Passagem à fase seguinte não liberada; retomar esta mesma F07. `normative_conformity_verified=false` e `authoritative_for_sizing=false` preservados.

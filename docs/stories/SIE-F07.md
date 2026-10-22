@@ -38,3 +38,8 @@ Base: d83fff44af4a543e66065c3c8423cc8a339ae060 (F06). Aceites F00–F06 preserva
 - restructuring/e2e/test_browser_flow.py
 
 Casos computacionais aprovados não concluem os itens07.03/05/07/10 integrais. Ver relatório para evidências e bloqueios, sem reabrir fases anteriores.
+
+
+## Publicação e verificação
+
+Incremento de estudo publicado em [69b533a9](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/69b533a9ea315022eecb247539a551950d81e5ed), árvore `f0a64095e1a7fad807fc97869d6eb1888e786c07` idêntica à local. CI do mesmo código: API 787/F00 34 (run 39720730426), Chromium 30 (39720730315), AIOX 18 + 4 gates (39720730305), todos completed/success. Encerramento documental não modifica código. Story integral continua Blocked e os quatro itens parciais continuam abertos; nenhuma liberação normativa ou da fase seguinte.

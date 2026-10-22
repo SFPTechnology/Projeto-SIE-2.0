@@ -195,7 +195,7 @@
       "at": "2026-10-21",
       "from": "VALIDATING",
       "to": "DONE",
-      "reason": "576 API/25 F04,34 F00,22 Chromium,AIOX e QA3 aprovados;3 workflows success no SHA1fa9e72"
+      "reason": "576 API/25 F04,34 F00,22 Chromium,AIOX e QA3 aprovados; 3 workflows success no SHA1fa9e72"
     },
     {
       "activity": "F05",
@@ -223,7 +223,7 @@
       "at": "2026-10-21",
       "from": "VALIDATING",
       "to": "DONE",
-      "reason": "604 API/34 F00,25 Chromium,18 AIOX e QA3 aprovados;3 workflows completed/success no SHA7c5547af06e6b569f493473ceb61cd6d224603da;F06 liberada para desenvolvimento,sem deploy/homologação"
+      "reason": "604 API/34 F00,25 Chromium,18 AIOX e QA3 aprovados; 3 workflows completed/success no SHA7c5547af06e6b569f493473ceb61cd6d224603da;F06 liberada para desenvolvimento,sem deploy/homologação"
     },
     {
       "activity": "F06",
@@ -266,9 +266,16 @@
       "from": "RUNNING",
       "to": "BLOCKED",
       "reason": "Incremento de estudo implementado e QA3 aprovado; fontes/casos normativos completos e seleção comercial ainda ausentes; não liberar passagem"
+    },
+    {
+      "activity": "F07",
+      "at": "2026-10-22",
+      "from": "BLOCKED",
+      "to": "BLOCKED",
+      "reason": "Incremento publicado no SHA 69b533a9; árvore remota/local idêntica; 3 workflows completed/success, 787 API/30 Chromium/34 golden/18 AIOX. QA3 do estudo aprovado. Catálogo, seleção comercial e casos normativos completos ainda bloqueiam passagem; sem main/merge/deploy."
     }
   ],
-  "revision": 33,
+  "revision": 34,
   "schema_version": 1,
   "tasks": [
     {
@@ -1834,18 +1841,32 @@
         "f07_tests_passed": 65,
         "f00_golden_passed": 34,
         "aiox_passed": true,
-        "ci_current_sha_verified": false,
+        "ci_current_sha_verified": true,
         "normative_conformity_verified": false,
         "next_phase_development_allowed": false,
         "commercial_selection_implemented": false,
         "browser_tests_passed": 30,
-        "browser_engine": "Chromium140 / Playwright1.55"
+        "browser_engine": "Chromium140 / Playwright1.55",
+        "ci_code_sha": "69b533a9ea315022eecb247539a551950d81e5ed",
+        "ci_api_run": 39720730426,
+        "ci_aiox_run": 39720730305,
+        "ci_chromium_run": 39720730315,
+        "ci_executed": true,
+        "ci_api_tests_passed": 787,
+        "ci_browser_tests_passed": 30,
+        "ci_f00_golden_passed": 34,
+        "ci_aiox_tests_passed": 18,
+        "ci_api_seconds": "10.21",
+        "ci_browser_seconds": "56.05"
       },
       "publication": {
         "branch": "feat/f07-condutores-queda",
         "merged_to_main": false,
         "production_release_allowed": false,
-        "published": false
+        "published": true,
+        "code_sha": "69b533a9ea315022eecb247539a551950d81e5ed",
+        "local_code_sha": "c6e8e682dea9b39febf15dde48864e3bb91c5bd9",
+        "tree_sha": "f0a64095e1a7fad807fc97869d6eb1888e786c07"
       }
     }
   ]
