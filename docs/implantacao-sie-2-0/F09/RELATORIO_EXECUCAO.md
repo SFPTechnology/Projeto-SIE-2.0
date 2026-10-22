@@ -3,8 +3,9 @@
 **Data:** 22/10/2026  
 **Estado:** `BLOCKED` (incremento de software implementado e validado localmente; revisão normativa/profissional e integração de dados ainda pendentes).  
 **Branch:** `feat/f09-concessionarias-especializadas`  
+**Código publicado no commit:** [`636529e389a64787b9a366f72ca0624025104103`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/636529e389a64787b9a366f72ca0624025104103)  
 **Base F08:** `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`  
-**Main:** preservada. Sem merge, deploy ou alteração de banco real.
+**CI do código:** workflows 39874801224, 39874801231 e 39874801250 em execução no SHA publicado. **Main:** preservada. Sem merge, deploy ou alteração de banco real.
 
 ## Pré-requisito reconciliado
 

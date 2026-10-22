@@ -2178,13 +2178,20 @@
         "normative_conformity_verified": false,
         "professional_approval": false,
         "connection_release": false,
-        "next_phase_development_allowed": false
+        "next_phase_development_allowed": false,
+        "published_code_sha": "636529e389a64787b9a366f72ca0624025104103",
+        "initial_ci_runs": [
+          39874801224,
+          39874801231,
+          39874801250
+        ]
       },
       "publication": {
         "branch": "feat/f09-concessionarias-especializadas",
-        "published": false,
+        "published": true,
         "merged_to_main": false,
-        "production_release_allowed": false
+        "production_release_allowed": false,
+        "code_sha": "636529e389a64787b9a366f72ca0624025104103"
       }
     }
   ]
