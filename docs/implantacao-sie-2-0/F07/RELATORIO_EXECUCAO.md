@@ -1,79 +1,59 @@
 # F07 — Dimensionamento de condutores e queda de tensão
 
-Data: 22/10/2026. **ESTADO: BLOCKED para encerramento integral; incremento de estudo implementado e verificado.**
-Branch: `feat/f07-condutores-queda`. Base observada `d83fff44af4a543e66065c3c8423cc8a339ae060`, encerramento F06. Fonte canônica de estado: `docs/sie-orchestrator/ORCHESTRATOR_STATE.json`.
+Data:22/10/2026. **ESTADO: VALIDATING — recorte computacional implementado, fontes vinculadas e QA3/local aprovados; publicação/CI deste incremento em conferência.**
+Branch:`feat/f07-condutores-queda`. Base documental remota:a9733551cd721fcecd9df39c8be42a44308c0579; código anterior69b533a9 aprovado com787API/30Chromium. Estado canônico:`docs/sie-orchestrator/ORCHESTRATOR_STATE.json`.
 
-F01/F05/F06 preservadas. Handoff F06 DONE e logs/CI referenciados no relatório predecessor conferidos por leitura do repositório. A F07 usa Ib canônica, sem promover automaticamente o estudo F06 a dimensionamento definitivo.
+## Resultado concreto da continuação especializada
+
+O bloqueio inicial foi resolvido no código: fonte oficialPrysmianRev9 obtida e conferida visualmente; catálogo finito versionado no servidor; mínimos fase/N/PE,Rca/XL e limites vinculados; seleção conjunta de todas as seções/trechos e caminhos, com agrupamentos identificados e invalidação por fonte/versão. O modoStudy declaratório anterior continua compatível. Histórico do bloqueio, implementação anterior e CI permanecem no Git e nos pareceres iniciais.
+
+O recorte cobre Cu/PVC/Superastic2,5/4/6/10mm²,B1métodos3/5/7,doiscarregadosencostados,60Hz/70°C,ambiente30/40°C,feixes1–3 explicitamente identificados,conexõesFN/FF e instalaçãofixacomum. Demais combinações são bloqueadas; não existe catálogo universal presumido. F01–F06 e seus aceites foram preservados.
 
 ## Tasks e evidências
 
-|Task|Estado real|Evidência|
+|Task|Estado no recorte|Evidência observável|
 |---|---|---|
-|07.01|IMPLEMENTED|MATRIZ_LEGADO.md: Python, otimizador TS, células F01 e limites|
-|07.02|IMPLEMENTED no recorte|capacity, temperature_factor, grouping_factor, minimum, neutral, protective_earth, voltage_drop separados e testados|
-|07.03|PARCIAL|Resolver F01 com versão, fonte/aceite e condições exatas, sem fallback; catálogo completo faltante|
-|07.04|IMPLEMENTED no recorte|Critérios por todos os trechos, sem média de fatores; alternativas não somadas|
-|07.05|PARCIAL|Modelo longitudinal AC mono/tri e totais por circuito/alimentador; regimes mistos/retorno desigual bloqueados; faltam referências normativas independentes|
-|07.06|IMPLEMENTED|Decimal200, entrada limitada30 dígitos/expoente30, decisões sem arredondamento de apresentação, guard de fronteira explícito|
-|07.07|PARCIAL/BLOQUEADO|Matriz de critérios; estado PENDENTE/REPROVADO e motivos. Seleção comercial NÃO implementada, null explícito, depende de catálogo completo|
-|07.08|IMPLEMENTED|Fingerprint, histórico imutável, seção/trecho/Ib/método/tabela/levantamento/parâmetros invalidam memória; canônicos VALID/PENDING→STALE|
-|07.09|IMPLEMENTED no recorte|CLI, API por trecho/circuito, memória com inputs/fórmula/intermediários/fontes/versão/hash, interface JSON e impressão|
-|07.10|PARCIAL|Referências aritméticas independentes Fraction, fronteiras e regressão; fixture sintética versionada. Golden normativo auditado ausente|
+|07.01|IMPLEMENTED|MATRIZ_LEGADO.md; motores Python/TS inventariados e preservados|
+|07.02|IMPLEMENTED|Funções separadas de capacidade/fatores/fase/N/PE/queda e respectivos testes|
+|07.03|IMPLEMENTED|conductor_registry_f07.py, JSONversionado, resolverF01 concordante, rejeição de catálogo inválido/incompleto semHTTP500|
+|07.04|IMPLEMENTED|Todos os trechos avaliados; política conjunta e feixes mantidos homogêneos sem média de fatores|
+|07.05|IMPLEMENTED|AC com Rca/XL/FP por seção; total de cada circuito/alimentador5% e terminal local4%; misturas fora do modelo bloqueadas|
+|07.06|IMPLEMENTED|Decimal200, limites de entrada, unidades e fronteira; apresentação não decide aprovação|
+|07.07|IMPLEMENTED|Propostas comerciaisfase/N/PE por circuito somente após todos os critérios; falha/esgotamento/inconclusivo explícitos|
+|07.08|IMPLEMENTED|Histórico imutável; fonte/versão/entradas invalidam memórias e proteções/documentos; canônicosVALID→STALE|
+|07.09|IMPLEMENTED|CLI/API/UI, fonte consultável, memóriaJSON/fórmulas/intermediários/hash, impressão e exportação|
+|07.10|IMPLEMENTED local|Confronto tabela24×Rca/XL33, casosFraction independentes, transições/fronteiras/ataques; QA3 e regressão local aprovados|
 
-Código: `restructuring/apps/api/sie_api/conductor_f07.py`, `conductor_api.py`, `conductor_cli.py`, registro de router em `main.py`; interface `condutores.html/js`, link no painel; exemplos F07 em examples e web; testes API e Chromium. Lista completa e checklist na story `docs/stories/SIE-F07.md`.
+## Fontes e validação independente
 
-## Testes observados antes da publicação
+Guia oficialPrysmianRev9,51p,3.172.193bytes,SHA2561729461681fa12bbfe03ea92d26dfb2299c148670d3133046a52f8caf311e4d7. URL,páginas/colunas,recorte,conferentes e limites em VINCULACAO_FONTES.md. PDF não redistribuído. Página33 fornece Rca/XL; página24 fornece coeficientes pré-calculados de comparação, independentes do algoritmo implementado. Concordância com células aceitasF01 foi verificada sem alterá-las.
 
-- `python -m pytest restructuring/apps/api/tests -q --tb=short`: **787 passed**, 1 aviso Starlette/httpx, 14,59 s. Inclui **65 F07**.
-- `python scripts/f00_golden.py --verify`: **34 casos** do SHA original, fixture intacta.
-- `npm run lint`, `npm run typecheck`, `npm test` (**18 testes**), `npm run build`: PASS após instalação das dependências existentes de .aiox-core, sem alteração de lockfile.
+Caso10A/100m/220V/FP0,8 reproduziu a primeira seção6mm² pelo limite local4%;4mm² retorna4,0745...% e6mm²2,73818...%. Valores racionais esperados foram calculados comFraction e conferidos pelo agente pai. Tolerância0,02V/(A.km) no confronto de tabelas é derivada do arredondamento impresso, sem aumentar limites4%/5%.
+
+## Testes locais realmente observados
+
+- `python -m pytest restructuring/apps/api/tests -q --tb=short`: **864passed**,1avisoStarlette/httpx,14,87s. Inclui **77novoscasos fonte-vinculada** +65F07anteriores (**142F07**).
+- `python -m pytest restructuring/e2e -q --tb=short`: **32passed**,75,01s (30anteriores+2novos fonte-vinculada).
+- Reexecução após última limpeza visual/contrato explícito: **2E2E fonte-vinculada passed**,30deselected,4,86s.
+- `python scripts/f00_golden.py --verify`: **34casos**,fixtureoriginalintacta.
+- `npm run lint`, `npm run typecheck`, `npm test` (**18testes**), `npm run build`: PASS.
+- CLI`--select` gerou SELECTED_SOURCE_LINKED com propostas reais do catálogo; CLI`--catalog` e exemploStudy anterior operacionais.
 - `node --check restructuring/apps/web/condutores.js` e `git diff --check`: PASS.
-- CLI executada com fixture sintética; saída PENDENTE e capacidade corrigida22,272 A em cada trecho inicialmente, sem homologação.
-- Primeira tentativa Chromium: **29 erros de setup**, pois o executável não pôde ser instalado (downloads Chromium156/Playwright1.64 retornaram arquivo truncado). Nenhum desses erros é descrito como teste funcional aprovado. Recuperação com Playwright1.55 dentro do intervalo já permitido pelo projeto concluída; resultado final registrado abaixo.
 
-## QA3 e correções
+Instalação local de dependências foi recuperada após mudança de turno, sem alterar lockfiles/pyproject; Playwright1.55.0/Chromium140 usados localmente, dentro do intervalo já existente. Nenhuma expectativa foi relaxada para aprovar: o cenário de fronteira exata foi separado do cenário de catálogo esgotado, mantendo PENDENTE na fronteira e NO_SOLUTION no cenário independente.
 
-|Revisor|Veredito do incremento|Gate integral|
+## QA3 — Revisões da continuação
+
+|Revisor|Veredito|Evidência e correção|
 |---|---|---|
-|QA-01|APROVADO após correção de precisão;64 testes observados|BLOQUEADO por seleção/catálogo/referências|
-|QA-02|APROVADO após corrigir neutro desigual, vínculo Rca/XL e limite de alimentador;64 testes observados|BLOQUEADO por fontes/casos completos|
-|QA-03|APROVADO integração/segurança/invalidação;64 testes e ensaio JS de resposta atrasada|Visual comprovado no ensaio consolidado; fase integral BLOQUEADA|
+|QA-01|APROVADO recorte computacional|QA-01_VINCULACAO.md; catálogo estruturalmente inválido agoraBLOQUEADO/CATALOG_INVALID eGET422;76testes observados, terminação/vetor/grupos/hashes conferidos|
+|QA-02|APROVADO fonte/matemática/engenharia do recorte|QA-02_VINCULACAO.md;11páginas visualmente conferidas,64casos observados, parâmetros/coerênciaF01/referência independente aprovados|
+|QA-03|APROVADO integração/segurança/UX/invalidação|QA-03_VINCULACAO.md;76testes+auth401/403/503/conflito409; catálogo antigo após mudarAPI corrigido,NodeVM+32Chromium e2reexecuções conferidos|
 
-Revisões de agentes de software, não auditorias humanas nem homologação profissional. Achados iniciais e revalidações preservados nos arquivos QA-01/02/03.md.
+Revisões de agentes de software; não são assinaturas profissionais humanas ou homologação de instalação. Os pareceres antigos permanecem para histórico, superados somente no escopo corrigido.
 
-Defeitos corrigidos: precisão100 com entradas1000 dígitos podia esconder ultrapassagem; neutro desigual aceito em fórmula de retorno igual; impedância não vinculada à seção/material/isolação; limite do alimentador ignorado; snapshot canônico mantinha VALID apesar de flags novas; resposta atrasada podia reabilitar exportação após edição da API. Testes de reprodução implementados, sem relaxar critérios esperados.
+## Gates e próxima decisão
 
-## Gates e condição de retomada
+Atendidos localmente no recorte: fontes rastreáveis e casos independentes; estados de todos os critérios obrigatóriosF07; seleção comercial condicionada a todos os trechos/limites; alterações invalidam cálculos/proteções/documentos; trêsQA aprovados; regressão sem falhas.
 
-Atendidos no recorte: critérios obrigatórios com estados explícitos; análise por trecho; invalidade em cascata testada; memória fiel e fonte limitada F01 reaproveitada.
-
-**Não atendidos:** catálogo completo com mínimos de fase/neutro/PE, Rca/XL por condições e limites aplicáveis; comparação com casos normativos independentes auditados; rotina de seleção comercial multicritério sobre candidatos completos. Ver CONTRATO.md e MATRIZ_LEGADO.md. Os PDFs comentados do acervo e os testes herdados não substituem automaticamente estas provas primárias por parâmetro.
-
-**Próxima ação: retomar esta mesma F07 com vinculação das fontes/casos faltantes e seleção comercial. Passagem à próxima fase não liberada.** Não há reabertura da F01, merge em main, deploy ou acesso a banco real. `normative_conformity_verified=false` e `authoritative_for_sizing=false` permanecem explícitos.
-
-## Recuperação e validação Chromium
-
-Download alternativo da mesma versão156 também falhou. Foi utilizada Playwright1.55.0, já permitida pelo pyproject existente, com Chromium140 headless shell obtido do mirror oficial. Nenhum teste foi pulado e não se alteraram as expectativas. `python -m pytest restructuring/e2e -q --tb=short`: **30 passed**,70,27 s (27 anteriores+3 F07). Os novos testes conferem20 linhas de critérios, memória/exportação JSON, impressão PDF em memória, edição de seção e recálculo, histórico com alteração de comprimento, e descarte de resposta assíncrona após mudar API.
-
-A última alteração do fingerprint inclui também revisão, fonte e aceite do catálogo servidor; novo teste cobre mudança de revisão com valores iguais. Regressão final **787 API /65 F07**,14,59 s. O teste visual não transforma a impressão do estudo em relatório homologado.
-
-## Conferência final de interface
-
-Captura Chromium inspecionada pelo executor: interface escura, botões acessíveis, estado PENDENTE e matriz visíveis, sem erro de JavaScript. Os critérios/estados apresentados foram traduzidos e os nomes de trechos/circuitos substituem UUIDs na leitura principal. Percentuais da interface usam até4 casas somente para apresentação; memória/decisão Decimal mantidas. Impressão testada como emissão PDF em memória, sem alegação de revisão visual de todas as páginas ou de relatório técnico homologado. Após este ajuste exclusivamente visual, os três E2E F07 foram reexecutados; resultado abaixo.
-
-Reexecução final dos E2E F07 após ajuste visual: **3 passed,27 deselected**, sem exclusão da regressão anterior de30casos. Reexecução específica API F07: **65 passed**. Publicação/CI ainda não foram presumidos como concluídos neste checkpoint; serão registrados com SHA e runs observados.
-
-
-## Publicação e CI conferidos — 22/10/2026
-
-Código publicado em [`69b533a9ea315022eecb247539a551950d81e5ed`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/69b533a9ea315022eecb247539a551950d81e5ed), branch `feat/f07-condutores-queda`. Commit local correspondente `c6e8e682dea9b39febf15dde48864e3bb91c5bd9`. Árvore local/remota exatamente igual: `f0a64095e1a7fad807fc97869d6eb1888e786c07`. Foram publicados os 20 arquivos da story; artefatos temporários ficaram excluídos. Nenhum PR, merge ou deploy.
-
-|Workflow no SHA 69b533a9|Run|Conclusão e prova observada|
-|---|---|---|
-|API/F00|[39720730426](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39720730426)|completed/success; job 119633320362, logs: 787 passed, 1 warning, 10.21 s;34 golden e fixture unchanged|
-|AIOX|[39720730305](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39720730305)|completed/success; job 119633319779,18 PASS; lint/typecheck/test/build success|
-|Chromium|[39720730315](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39720730315)|completed/success; job 119633319837,logs: 30 passed, 56.05 s; instalação e ensaio real concluídos|
-
-Head SHA, árvore, conclusão dos três runs, etapas e logs conferidos pelo conector GitHub. A última reexecução local dos 3 testes F07 de navegador aprovou em 6,53 s após os rótulos em português; 65 F07 passaram em 1,51 s. O checkpoint de encerramento modifica somente relatório/estado/story; o código permanece exatamente o aprovado pelo CI no SHA 69b533a9. Eventuais workflows disparados pelo checkpoint documental são distintos desses runs e não são usados para atribuir aprovação a outro SHA.
-
-**F07 continua BLOCKED para encerramento integral.** O incremento computacional está publicado e aprovado pelos três QA e pelo CI. Catálogo completo, seleção comercial multicritério e casos normativos independentes continuam necessários. Passagem à fase seguinte não liberada; retomar esta mesma F07. `normative_conformity_verified=false` e `authoritative_for_sizing=false` preservados.
+**Pendente somente publicar e conferir CI deste incremento para encerrar F07.** Sem merge/main/deploy/banco real. `normative_conformity_verified=false`, `authoritative_for_sizing=false`, `professional_approval=false`, `f08_protection_checks_pending=true` são limites de uso/proteção, não um bloqueio genérico para concluir a fase computacionalF07. Passagem seguinte depende do fechamento verificável do CI e estado canônico.

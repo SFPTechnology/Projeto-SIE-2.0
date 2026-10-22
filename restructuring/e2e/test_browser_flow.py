@@ -620,3 +620,61 @@ def test_f07_api_change_discards_pending_response(page):
     expect(page.locator('#export')).to_be_disabled()
     expect(page.locator('#print')).to_be_disabled()
     expect(page.locator('#memory')).to_have_text('')
+
+
+def test_f07_source_selection_catalog_export_and_blocked_recalculation(page,tmp_path):
+    page.goto(WEB_URL+'/condutores.html',wait_until='networkidle')
+    page.locator('#source-demo').click()
+    expect(page.locator('#document')).to_have_value(__import__('re').compile('.*SIE_F07_SELECTION_V1.*',__import__('re').S))
+    page.locator('#catalog').click()
+    expect(page.locator('#catalog-memory')).to_contain_text('1729461681fa12bbfe03ea92d26dfb2299c148670d3133046a52f8caf311e4d7')
+    page.locator('#calculate').click()
+    expect(page.locator('#summary')).to_contain_text('Proposta selecionada com fonte vinculada')
+    expect(page.locator('#criteria')).to_contain_text('Atende à fonte vinculada')
+    expect(page.locator('#selected')).to_contain_text('fase 2.5 mm²')
+    assert page.locator('#criteria tr').count()==20
+    with page.expect_download() as download:page.locator('#export').click()
+    exported=tmp_path/'source-selection.json';download.value.save_as(str(exported))
+    data=json.loads(exported.read_text())
+    assert data['status']=='SELECTED_SOURCE_LINKED' and not data['normative_conformity_verified']
+    assert data['source']['sha256']=='1729461681fa12bbfe03ea92d26dfb2299c148670d3133046a52f8caf311e4d7'
+    assert data['f08_protection_checks_pending']
+    page.screenshot(path=str(tmp_path/'f07-source-ui.png'),full_page=False)
+    page.emulate_media(media='print');assert len(page.pdf())>1000;page.emulate_media(media='screen')
+    raw=json.loads(page.locator('#document').input_value())
+    raw['topology']['installation']['circuits'][0]['design_current']['value']='60'
+    page.locator('#document').fill(json.dumps(raw))
+    expect(page.locator('#export')).to_be_disabled()
+    expect(page.locator('#selected')).to_have_text('')
+    page.locator('#calculate').click()
+    expect(page.locator('#summary')).to_contain_text('Nenhuma solução no catálogo')
+    expect(page.locator('#selected')).to_contain_text('Nenhuma seção do catálogo')
+    page.locator('#api').fill('http://localhost:8000')
+    expect(page.locator('#catalog-memory')).to_have_text('')
+
+
+def test_f07_source_selection_history_revision_and_stale_in_browser(page,servers):
+    raw=json.loads((ROOT/'examples/f07_selecao_fonte_vinculada.json').read_text())
+    original=raw['topology']['installation']['project']['id'];pid='77777777-7777-4777-8777-777777777779'
+    raw=json.loads(json.dumps(raw).replace(original,pid))
+    def call(method,path,data=None):
+        return page.evaluate('''async ({method,path,data,token}) => {
+            const r=await fetch('http://127.0.0.1:8000'+path,{method,headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:data?JSON.stringify(data):undefined});
+            return {status:r.status,body:await r.json()};
+        }''',{'method':method,'path':path,'data':data,'token':servers})
+    path='/api/v1/local/projetos/'+pid
+    assert call('PUT',path+'/topologia',{'document':raw['topology'],'expected_revision':0})['status']==200
+    saved=call('PUT',path+'/condutores/selecao',{'request':raw,'expected_revision':1})
+    assert saved['status']==200 and saved['body']['result']['status']=='SELECTED_SOURCE_LINKED'
+    assert not call('GET',path+'/condutores')['body']['selections'][0]['stale']
+    raw['topology']['installation']['project']['revision']=3
+    raw['topology']['installation']['segments'][0]['length']['value']='80'
+    assert call('PUT',path+'/topologia',{'document':raw['topology'],'expected_revision':2})['status']==200
+    assert call('GET',path+'/condutores')['body']['selections'][0]['stale']
+    raw['id']='77777777-7777-4777-8777-777777777771'
+    saved=call('PUT',path+'/condutores/selecao',{'request':raw,'expected_revision':3})
+    assert saved['status']==200
+    entries=call('GET',path+'/condutores')['body']['selections']
+    assert entries[0]['stale'] and not entries[-1]['stale']
+    raw['id']='77777777-7777-4777-8777-777777777772'
+    assert call('PUT',path+'/condutores/selecao',{'request':raw,'expected_revision':3})['status']==409

@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "catalog_version": "F07_PRYSMIAN_BT_REV9_1",
+  "status": "SOURCE_LINKED_NOT_PROFESSIONAL_APPROVAL",
+  "source": {
+    "document": "Guia de dimensionamento de cabos para baixa tensão",
+    "publisher": "Prysmian",
+    "edition": "Rev9 (arquivo oficial; metadados setembro/2020)",
+    "url": "https://br.prysmian.com/sites/default/files/atoms/files/Guia_de_Dimensionamento-Baixa_Tensao_Rev9.pdf",
+    "sha256": "1729461681fa12bbfe03ea92d26dfb2299c148670d3133046a52f8caf311e4d7",
+    "verified_on": "2026-10-22",
+    "pages": 51,
+    "normative_basis": "ABNT NBR 5410:2004 (catálogo ABNT: versão corrigida2008)",
+    "normative_publisher_document_reproduced": false
+  },
+  "scope": {
+    "product": "PRYSMIAN_SUPERASTIC",
+    "material": "Cu",
+    "insulation": "PVC",
+    "conductor_temperature_c": "70",
+    "frequency_hz": "60",
+    "method": "B1",
+    "installation_numbers": [
+      3,
+      5,
+      7
+    ],
+    "medium": "AIR",
+    "loaded_conductors": 2,
+    "arrangement": "TWO_LOADED_TOUCHING",
+    "containment": "PVC",
+    "min_voltage_v": "50",
+    "max_voltage_v": "750",
+    "max_phase_section_mm2": "10",
+    "neutral_policy": "SAME_SECTION_SAME_METAL_NO_REDUCTION",
+    "regime": "SINUSOIDAL_STEADY_NO_RELEVANT_HARMONICS",
+    "origin": "LV_UTILITY_POINT_OF_DELIVERY",
+    "insulation_rating_uo_v": "450",
+    "insulation_rating_u_v": "750",
+    "rating_reference": "p3 tabela1, Superastic450/750V"
+  },
+  "sections": [
+    {
+      "section_mm2": "2.5",
+      "iz_base_a": "24",
+      "rca_ohm_km": "8.87",
+      "xl_ohm_km": "0.12",
+      "capacity_reference": "p9 tabela7 B1 coluna6; NBR5410 tabela36",
+      "impedance_reference": "p33 tabela28, primeiro par de colunas, dois condutores encostados"
+    },
+    {
+      "section_mm2": "4",
+      "iz_base_a": "32",
+      "rca_ohm_km": "5.52",
+      "xl_ohm_km": "0.11",
+      "capacity_reference": "p9 tabela7 B1 coluna6; NBR5410 tabela36",
+      "impedance_reference": "p33 tabela28, primeiro par de colunas, dois condutores encostados"
+    },
+    {
+      "section_mm2": "6",
+      "iz_base_a": "41",
+      "rca_ohm_km": "3.69",
+      "xl_ohm_km": "0.10",
+      "capacity_reference": "p9 tabela7 B1 coluna6; NBR5410 tabela36",
+      "impedance_reference": "p33 tabela28, primeiro par de colunas, dois condutores encostados"
+    },
+    {
+      "section_mm2": "10",
+      "iz_base_a": "57",
+      "rca_ohm_km": "2.19",
+      "xl_ohm_km": "0.10",
+      "capacity_reference": "p9 tabela7 B1 coluna6; NBR5410 tabela36",
+      "impedance_reference": "p33 tabela28, primeiro par de colunas, dois condutores encostados"
+    }
+  ],
+  "corrections": {
+    "temperature": {
+      "30": "1",
+      "40": "0.87"
+    },
+    "grouping": {
+      "1": "1",
+      "2": "0.80",
+      "3": "0.70"
+    },
+    "temperature_reference": "p9 base30°C e p14 tabela11, PVC/AR40°C; NBRtabela40",
+    "grouping_reference": "p15 tabela13 ref1 e notas1/3; NBRtabela42; grupos de mesma seção/corrente explicitamente identificados"
+  },
+  "minimums": {
+    "phase": {
+      "LIGHTING": "1.5",
+      "POWER": "2.5"
+    },
+    "phase_reference": "p5 tabela2, instalações fixas, condutores/cabos isolados, Cu",
+    "neutral_reference": "p5 seção4.2/tabela3, mesma seção sem redução; regime senoidal do recorte",
+    "pe_same_metal_phase_up_to_16": "S",
+    "pe_separate_protected_floor_mm2": "2.5",
+    "pe_separate_unprotected_floor_mm2": "4",
+    "pe_reference": "p6 seção4.3/tabela4; mesma seção para S≤16 e mínimos fora do mesmo cabo/conduto"
+  },
+  "voltage": {
+    "total_origin_limit_percent": "5",
+    "terminal_local_limit_percent": "4",
+    "reference": "p20 seção6.1, casoC e nota1; sem suplementação",
+    "formula_reference": "p21 seção6.2; ΔV=2·Lkm·I·(Rca·cosφ+XL·senφ)"
+  },
+  "independent_reference": {
+    "table_reference": "p24 tabela19, primeiro par de colunas, dois condutores encostados",
+    "unit": "V/(A.km)",
+    "rounding_bound_v_a_km": "0.02",
+    "rounding_basis": "Rca/XL e referência tabulada impressos com 0.01; erro propagado ≤0.005·(2·(cosφ+senφ)+1)<0.02",
+    "rows": [
+      {
+        "section_mm2": "2.5",
+        "pf_0.80": "14.33",
+        "pf_0.95": "16.93"
+      },
+      {
+        "section_mm2": "4",
+        "pf_0.80": "8.96",
+        "pf_0.95": "10.56"
+      },
+      {
+        "section_mm2": "6",
+        "pf_0.80": "6.03",
+        "pf_0.95": "7.07"
+      },
+      {
+        "section_mm2": "10",
+        "pf_0.80": "3.63",
+        "pf_0.95": "4.23"
+      }
+    ]
+  },
+  "boundaries": [
+    "Não cobre outros produtos/arranjos, conduto ferromagnético, temperatura/frequência diferente ou extrapolação.",
+    "Não cobre alumínio, paralelo, PEN, desequilíbrio, harmônicas ou mínimos de aplicações especiais.",
+    "Seleção F07 não conclui curto-circuito, sobrecarga ou proteção contra choques da F08.",
+    "Fonte primária de fabricante para parâmetros próprios e guia de aplicação; não é publicação nem homologação ABNT."
+  ]
+}
