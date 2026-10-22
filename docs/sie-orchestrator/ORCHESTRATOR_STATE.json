@@ -245,9 +245,16 @@
       "from": "BLOCKED",
       "to": "VALIDATING",
       "reason": "Vinculação autorizada:22regras EDP V09 no servidor,fonte oficial conferida,84referências novas,721API/27Chromium/34golden/18AIOX locais aprovados;aguardaCI incremento. Sem homologação profissional."
+    },
+    {
+      "activity": "F06",
+      "at": "2026-10-22",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "Vinculação22regras EDP V09 eQA3 aprovados;CI45cbfba3 com722API,27Chromium,34golden,18AIOX completed/success;gates computacionais atendidos. Semhomologação profissional/main/deploy. PassagemF07desenvolvimento liberada."
     }
   ],
-  "revision": 31,
+  "revision": 32,
   "schema_version": 1,
   "tasks": [
     {
@@ -1574,7 +1581,7 @@
       "impact": 10,
       "risk": 7,
       "requirements_verified": true,
-      "state": "VALIDATING",
+      "state": "DONE",
       "criteria": [
         {
           "id": "AC-06.01",
@@ -1680,25 +1687,30 @@
         "browser_tests_passed": 27,
         "f00_golden_passed": 34,
         "aiox_passed": true,
-        "ci_current_sha_verified": false,
+        "ci_current_sha_verified": true,
         "normative_conformity_verified": false,
-        "next_phase_development_allowed": false,
-        "ci_code_sha": "b7f782d1c9d274c6e7c5fe9c00460edca74b02fc",
-        "ci_api_run": 39666801001,
-        "ci_aiox_run": 39666800987,
-        "ci_chromium_run": 39666801008,
+        "next_phase_development_allowed": true,
+        "ci_code_sha": "45cbfba3e29d7ef81734fb06293aa9988c334c58",
+        "ci_api_run": 39671809655,
+        "ci_aiox_run": 39671809661,
+        "ci_chromium_run": 39671809644,
         "binding_tests_passed": 85,
-        "source_binding_implemented": true
+        "source_binding_implemented": true,
+        "source_catalog_version": "EDP_DEMAND_V09_BINDINGS_2",
+        "ci_executed": true,
+        "next_phase": "F07",
+        "source_binding_completed": true
       },
       "publication": {
         "branch": "feat/f06-demanda-alimentacao",
         "merged_to_main": false,
         "production_release_allowed": false,
         "published": true,
-        "code_sha": "20e067bc1b1cfa01234810ec5fee67de47e58ae0",
-        "local_code_sha": "e6502459c74adef9a13d64b7443300a9c1e24997",
-        "tree_sha": "834e6de8056a1cd087eaa15d67b4ef12f77bb29f",
-        "binding_increment_published": true
+        "code_sha": "45cbfba3e29d7ef81734fb06293aa9988c334c58",
+        "local_code_sha": "54ef3d11e1311a395d2aae95d5d097017354caaa",
+        "tree_sha": "d2760e76b8f7e4628616dcc4c6a7635d035af3d7",
+        "binding_increment_published": true,
+        "validated_checkpoint_sha": "45cbfba3e29d7ef81734fb06293aa9988c334c58"
       }
     }
   ]

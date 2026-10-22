@@ -1,6 +1,6 @@
 # F06 — Demanda e alimentação elétrica
 
-Data: 21/10/2026. **ESTADO: VALIDATING — vinculação implementada, testes locais aprovados; CI do incremento em preparação.**
+Data: 21/10/2026. **ESTADO: DONE — implementação e vinculação computacional verificadas; QA3 e CI aprovados.**
 Branch: `feat/f06-demanda-alimentacao`. Incremento autorizado pelo usuário: **“Realize a vinculação.”** Base remota: `98b03d0ec7c28c7563fc79b19cc99a9f308d8dff`. Fonte canônica: `docs/sie-orchestrator/ORCHESTRATOR_STATE.json`.
 
 ## Resultado da vinculação
@@ -47,4 +47,26 @@ Correções críticas: seleção de T005 pela potência ativa, e não VA; limite
 
 `CALCULATED_SOURCE_LINKED` significa cálculo vinculado à fonte conferida. `normative_conformity_verified=false`, `utility_approval=false` e `authoritative_for_sizing=false` continuam explícitos. Dados de placa, mínimos aplicáveis, tipos, quantidade, partidas e condições precisam ser declarados/conferidos na instalação. Não há conversão automática de CV/HP ou levantamento de área/vitrine; não se aplicam estas regras a outra edição/concessionária. Casos fora do recorte recebem diagnóstico por instalação, sem fator inventado.
 
-Código/estado anteriores preservados no histórico Git. Sem merge em main, deploy ou banco real. Incremento publicado em [`20e067bc1b1cfa01234810ec5fee67de47e58ae0`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/20e067bc1b1cfa01234810ec5fee67de47e58ae0). Árvore remota `834e6de8056a1cd087eaa15d67b4ef12f77bb29f` idêntica à local `e6502459c74adef9a13d64b7443300a9c1e24997`. Atualização com lease sobre o head esperado; sem PR, merge ou deploy. CI será registrado após observação dos três workflows.
+Código/estado anteriores preservados no histórico Git. Sem merge em main, deploy ou banco real. Incremento publicado em [`20e067bc1b1cfa01234810ec5fee67de47e58ae0`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/20e067bc1b1cfa01234810ec5fee67de47e58ae0). Árvore remota `834e6de8056a1cd087eaa15d67b4ef12f77bb29f` idêntica à local `e6502459c74adef9a13d64b7443300a9c1e24997`. Atualização com lease sobre o head esperado; sem PR, merge ou deploy. CI do código final conferido no encerramento abaixo.
+
+
+## Complemento de escopo e publicação final do código
+
+A revisão final tornou INDIVIDUAL obrigatório no contexto; coletiva/ausente não usa este documento. Catálogo `EDP_DEMAND_V09_BINDINGS_2` invalida memórias da versão anterior. Referência e ensaios foram atualizados: 722 API (12,32 s), 85 novos/118 F06, 27 Chromium (47,59 s), 34 golden e 18 AIOX.
+
+Código final publicado em [`45cbfba3e29d7ef81734fb06293aa9988c334c58`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/45cbfba3e29d7ef81734fb06293aa9988c334c58), árvore `d2760e76b8f7e4628616dcc4c6a7635d035af3d7` igual à local `54ef3d11e1311a395d2aae95d5d097017354caaa`. Sem PR/merge/deploy. Os três runs desse mesmo SHA concluíram com sucesso; resultados conferidos abaixo.
+
+
+## Encerramento verificado — 22/10/2026
+
+|Workflow|Run|Resultado observado no SHA 45cbfba3|
+|---|---|---|
+|API/F00|[39671809655](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39671809655)|completed/success; 722 testes, 1 aviso, 11,30 s; 34 golden intactos|
+|AIOX|[39671809661](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39671809661)|completed/success; 18 testes, lint, typecheck e build|
+|Chromium|[39671809644](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39671809644)|completed/success; 27 testes, 49,84 s|
+
+Head SHA, conclusões dos runs, jobs, etapas e logs conferidos. O checkpoint de encerramento altera somente documentação/estado/story; o código é exatamente o validado pelo CI. Nenhuma nova execução de testes de código foi necessária para o encerramento documental.
+
+Gates computacionais da F06 atendidos no recorte implementado: parcelas conciliadas, regras vinculadas e referências independentes, invalidação por alteração de carga/levantamento/catálogo, três pareceres aprovados. O status DONE não concede homologação de instalação ou aprovação da concessionária; as flags correspondentes permanecem false. Os limites de dados e de aplicação permanecem explícitos por instalação.
+
+**Passagem liberada para desenvolvimento da F07. Próximo arquivo: F07_EXECUTAR.md.** A F07 não foi iniciada nesta entrega. Sem merge em main, deploy ou banco real.

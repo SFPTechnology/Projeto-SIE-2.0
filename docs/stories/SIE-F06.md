@@ -1,5 +1,5 @@
 # SIE-F06 — Demanda e alimentação
-Estado: VALIDATING (vinculação implementada; CI pendente). Requisitos: F06_EXECUTAR.md, tasks 06.01–06.09.
+Estado: DONE (implementação/vinculação computacional, QA3 e CI aprovados). Requisitos: F06_EXECUTAR.md, tasks 06.01–06.09.
 
 - [x] Classificação explícita, distinta da regra; escopo e faixas verificáveis.
 - [x] Totalização P/Q/S e agregação pela conectividade F05, sem dupla contagem.
@@ -40,6 +40,6 @@ Arquivos: ver lista abaixo. Normas/fatores não confirmados bloqueiam o cálculo
 - [x] Resolver IDs de regras no servidor; recusar coeficientes enviados como substituição.
 - [x] Aplicar base kW/quantidade e exceções do documento sem extrapolar finalidade.
 - [x] Conferir exemplos da própria fonte por valores esperados independentes.
-- [ ] Regressão e QA3 da vinculação; publicar checkpoint e verificar CI.
+- [x] Regressão e QA3 da vinculação; checkpoint publicado e três workflows CI aprovados no SHA 45cbfba3.
 
 Arquivos adicionais: `demand_registry.py`, `data/demand_edp_v09.json`, `test_demand_binding_f06.py`, `f06_demanda_edp_v09_referencia.json`, `demanda-edp-demo.json`, `VINCULACAO_FONTES.md`; API/CLI/interface/testes E2E e registros anteriores atualizados.
