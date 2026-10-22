@@ -57,6 +57,8 @@ async def erro_validacao_seguro(request, exc):
 
 from .load_survey_api import router as load_survey_router
 from .topology_api import router as topology_router
+from .conductor_api import router as conductor_router
+app.include_router(conductor_router)
 app.include_router(demand_router)
 app.include_router(topology_router)
 app.include_router(load_survey_router)

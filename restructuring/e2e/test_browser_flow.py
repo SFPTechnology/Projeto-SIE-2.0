@@ -543,3 +543,80 @@ def test_demand_edp_source_binding_and_catalog(page,servers):
     page.locator('#catalog').click()
     expect(page.locator('#status')).to_contain_text('22 regras')
     expect(page.locator('#memory')).to_contain_text('official_pdf_sha256')
+
+
+def test_f07_memory_criteria_export_and_edit_invalidation(page, tmp_path):
+    page.goto(WEB_URL+'/condutores.html',wait_until='networkidle')
+    page.locator('#demo').click()
+    expect(page.locator('#document')).to_have_value(__import__('re').compile('.*SIE_TOPOLOGY_V1.*',__import__('re').S))
+    page.locator('#calculate').click()
+    expect(page.locator('#status')).to_contain_text('Memória calculada')
+    expect(page.locator('#summary')).to_contain_text('PENDENTE')
+    expect(page.locator('#criteria')).to_contain_text('Atende ao lote limitado')
+    assert page.locator('#criteria tr').count()==20
+    with page.expect_download() as download:
+        page.locator('#export').click()
+    exported=tmp_path/'memory.json';download.value.save_as(str(exported))
+    memory=json.loads(exported.read_text())
+    assert memory['normative_conformity_verified'] is False
+    assert memory['input_snapshot']['cell_revision']
+    page.screenshot(path=str(tmp_path/'f07-ui.png'),full_page=False)
+    # Print surface exercised; PDF is an intermediate browser verification artifact.
+    page.emulate_media(media='print')
+    assert len(page.pdf())>1000
+    page.emulate_media(media='screen')
+    raw=json.loads(page.locator('#document').input_value())
+    raw['topology']['installation']['cable_runs'][0]['section']['value']='6'
+    page.locator('#document').fill(json.dumps(raw))
+    expect(page.locator('#export')).to_be_disabled()
+    expect(page.locator('#memory')).to_have_text('')
+    page.locator('#calculate').click()
+    expect(page.locator('#status')).to_contain_text('Memória calculada')
+    expect(page.locator('#criteria')).to_contain_text('Bloqueado')
+
+
+def test_f07_api_history_cascade_in_browser(page,servers):
+    raw=json.loads((ROOT/'examples/f07_condutores_demo.json').read_text())
+    pid=raw['topology']['installation']['project']['id']
+    def call(method,path,data=None):
+        return page.evaluate('''async ({method,path,data,token}) => {
+            const r=await fetch('http://127.0.0.1:8000'+path,{method,headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:data?JSON.stringify(data):undefined});
+            return {status:r.status,body:await r.json()};
+        }''',{'method':method,'path':path,'data':data,'token':servers})
+    topology='/api/v1/local/projetos/'+pid+'/topologia';study='/api/v1/local/projetos/'+pid+'/condutores'
+    # Use distinct project for isolation from prior scenarios in the module.
+    original=pid;pid='77777777-7777-4777-8777-777777777777'
+    raw=json.loads(json.dumps(raw).replace(original,pid))
+    topology='/api/v1/local/projetos/'+pid+'/topologia';study='/api/v1/local/projetos/'+pid+'/condutores'
+    assert call('PUT',topology,{'document':raw['topology'],'expected_revision':0})['status']==200
+    assert call('PUT',study,{'study':raw,'expected_revision':1})['status']==200
+    assert not call('GET',study)['body']['studies'][0]['stale']
+    raw['topology']['installation']['project']['revision']=3
+    raw['topology']['installation']['segments'][0]['length']['value']='26'
+    assert call('PUT',topology,{'document':raw['topology'],'expected_revision':2})['status']==200
+    history=call('GET',study)['body']['studies']
+    assert history[0]['stale'] and history[0]['dependent_documents_stale']
+    raw['id']='77777777-7777-4777-8777-777777777778'
+    assert call('PUT',study,{'study':raw,'expected_revision':3})['status']==200
+    history=call('GET',study)['body']['studies']
+    assert history[0]['stale'] and not history[-1]['stale']
+
+
+def test_f07_api_change_discards_pending_response(page):
+    page.goto(WEB_URL+'/condutores.html',wait_until='networkidle')
+    page.locator('#demo').click()
+    expect(page.locator('#document')).to_have_value(__import__('re').compile('.*SIE_TOPOLOGY_V1.*',__import__('re').S))
+    pending=[]
+    page.route('**/api/v1/condutores/analisar',lambda route: pending.append(route))
+    page.locator('#calculate').click()
+    expect(page.locator('#calculate')).to_be_disabled()
+    page.locator('#api').fill('http://localhost:8000')
+    # Fetch directly through Playwright request context, then release stale UI response.
+    response=page.request.post(API_URL+'/api/v1/condutores/analisar',data=json.loads(page.locator('#document').input_value()))
+    assert response.status==200
+    assert pending
+    pending[0].fulfill(status=200,content_type='application/json',headers={'Access-Control-Allow-Origin':WEB_URL},body=response.text())
+    expect(page.locator('#calculate')).to_be_enabled()
+    expect(page.locator('#export')).to_be_disabled()
+    expect(page.locator('#print')).to_be_disabled()
+    expect(page.locator('#memory')).to_have_text('')

@@ -252,9 +252,23 @@
       "from": "VALIDATING",
       "to": "DONE",
       "reason": "Vinculação22regras EDP V09 eQA3 aprovados;CI45cbfba3 com722API,27Chromium,34golden,18AIOX completed/success;gates computacionais atendidos. Semhomologação profissional/main/deploy. PassagemF07desenvolvimento liberada."
+    },
+    {
+      "activity": "F07",
+      "at": "2026-10-22",
+      "from": "UNREGISTERED",
+      "to": "RUNNING",
+      "reason": "Anexo F07 autorizado; base d83fff44 F06 DONE e aceites anteriores conferidos"
+    },
+    {
+      "activity": "F07",
+      "at": "2026-10-22",
+      "from": "RUNNING",
+      "to": "BLOCKED",
+      "reason": "Incremento de estudo implementado e QA3 aprovado; fontes/casos normativos completos e seleção comercial ainda ausentes; não liberar passagem"
     }
   ],
-  "revision": 32,
+  "revision": 33,
   "schema_version": 1,
   "tasks": [
     {
@@ -1711,6 +1725,127 @@
         "tree_sha": "d2760e76b8f7e4628616dcc4c6a7635d035af3d7",
         "binding_increment_published": true,
         "validated_checkpoint_sha": "45cbfba3e29d7ef81734fb06293aa9988c334c58"
+      }
+    },
+    {
+      "id": "F07",
+      "title": "Dimensionamento de condutores e queda de tensão",
+      "dependencies": [
+        "F01",
+        "F05",
+        "F06"
+      ],
+      "priority": 89,
+      "impact": 10,
+      "risk": 8,
+      "requirements_verified": true,
+      "state": "BLOCKED",
+      "criteria": [
+        {
+          "id": "AC-07.01",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F07/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_conductor_f07.py"
+          ]
+        },
+        {
+          "id": "AC-07.02",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F07/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_conductor_f07.py"
+          ]
+        },
+        {
+          "id": "AC-07.03",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F07/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_conductor_f07.py"
+          ]
+        },
+        {
+          "id": "AC-07.04",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F07/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_conductor_f07.py"
+          ]
+        },
+        {
+          "id": "AC-07.05",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F07/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_conductor_f07.py"
+          ]
+        },
+        {
+          "id": "AC-07.06",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F07/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_conductor_f07.py"
+          ]
+        },
+        {
+          "id": "AC-07.07",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F07/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_conductor_f07.py"
+          ]
+        },
+        {
+          "id": "AC-07.08",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F07/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_conductor_f07.py"
+          ]
+        },
+        {
+          "id": "AC-07.09",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F07/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_conductor_f07.py"
+          ]
+        },
+        {
+          "id": "AC-07.10",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F07/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_conductor_f07.py"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/implantacao-sie-2-0/F07/F07_EXECUTAR.md",
+        "docs/stories/SIE-F07.md"
+      ],
+      "checkpoint": {
+        "qa_01": "APROVADO_INCREMENTO_ESTUDO",
+        "qa_02": "APROVADO_INCREMENTO_ESTUDO_GATE_NORMATIVO_BLOQUEADO",
+        "qa_03": "APROVADO_INCREMENTO_ESTUDO",
+        "local_api_tests_passed": 787,
+        "f07_tests_passed": 65,
+        "f00_golden_passed": 34,
+        "aiox_passed": true,
+        "ci_current_sha_verified": false,
+        "normative_conformity_verified": false,
+        "next_phase_development_allowed": false,
+        "commercial_selection_implemented": false,
+        "browser_tests_passed": 30,
+        "browser_engine": "Chromium140 / Playwright1.55"
+      },
+      "publication": {
+        "branch": "feat/f07-condutores-queda",
+        "merged_to_main": false,
+        "production_release_allowed": false,
+        "published": false
       }
     }
   ]
