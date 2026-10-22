@@ -315,9 +315,16 @@
       "from": "UNREGISTERED",
       "to": "BLOCKED",
       "reason": "Implementados diagnóstico consultivo, contratos plugáveis e extensões opcionais; testes locais passam. Critérios normativos integrais, integração de evidências F06–F08 e revisão profissional permanecem pendentes; F10 não liberada."
+    },
+    {
+      "activity": "F09",
+      "at": "2026-10-22",
+      "from": "BLOCKED",
+      "to": "BLOCKED",
+      "reason": "Código no SHA 636529e3 e documentação de estado no SHA d6a59afe publicados na branch; CI API 39874801224, Chromium 39874801231 e AIOX 39874801250 completed/success. F09 continua bloqueada por critérios profissionais/normativos e integração pendentes."
     }
   ],
-  "revision": 38,
+  "revision": 39,
   "schema_version": 1,
   "tasks": [
     {
@@ -2184,14 +2191,25 @@
           39874801224,
           39874801231,
           39874801250
-        ]
+        ],
+        "ci_code_sha": "636529e389a64787b9a366f72ca0624025104103",
+        "ci_api_run": 39874801224,
+        "ci_browser_run": 39874801231,
+        "ci_aiox_run": 39874801250,
+        "ci_api_passed": true,
+        "ci_browser_passed": true,
+        "ci_aiox_passed": true,
+        "ci_executed": true,
+        "ci_current_sha_verified": true,
+        "published_docs_sha": "d6a59afe907bb4e6dbcbcef553931f82b5a9af09"
       },
       "publication": {
         "branch": "feat/f09-concessionarias-especializadas",
         "published": true,
         "merged_to_main": false,
         "production_release_allowed": false,
-        "code_sha": "636529e389a64787b9a366f72ca0624025104103"
+        "code_sha": "636529e389a64787b9a366f72ca0624025104103",
+        "metadata_sha": "d6a59afe907bb4e6dbcbcef553931f82b5a9af09"
       }
     }
   ]

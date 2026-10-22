@@ -5,7 +5,7 @@
 **Branch:** `feat/f09-concessionarias-especializadas`  
 **Código publicado no commit:** [`636529e389a64787b9a366f72ca0624025104103`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/636529e389a64787b9a366f72ca0624025104103)  
 **Base F08:** `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`  
-**CI do código:** workflows 39874801224, 39874801231 e 39874801250 em execução no SHA publicado. **Main:** preservada. Sem merge, deploy ou alteração de banco real.
+**CI do código:** API run [39874801224](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39874801224), Chromium run [39874801231](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39874801231) e AIOX run [39874801250](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39874801250) concluíram `completed/success` no commit de código acima. **Main:** preservada. Sem merge, deploy ou alteração de banco real.
 
 ## Pré-requisito reconciliado
 
@@ -40,6 +40,7 @@ F08 estava marcada `VALIDATING` no relatório por aguardar CI. O estado foi atua
 - Testes F09 + EDP contextual: **38 passed**.
 - Suíte da API: **1027 passed**, 1 aviso de depreciação Starlette/httpx.
 - `npm run lint`, `npm run typecheck`, `npm test` (**18 passed**), `npm run build`: PASS.
+- CI remoto API, Chromium e AIOX: **3 workflows completed/success** no SHA de código `636529e389a64787b9a366f72ca0624025104103`.
 - `python -m compileall` nos módulos API e `git diff --check`: PASS.
 - Não foi executado teste de navegador para F09: nenhuma interface visual foi adicionada.
 - Dependências instaladas no ambiente de validação local; manifests e lockfiles não foram alterados.

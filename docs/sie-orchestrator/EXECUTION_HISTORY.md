@@ -74,3 +74,6 @@ F05 DONE. Bloqueio de publicação RESOLVIDO por autorização explícita do usu
 ## 22/10/2026 — F08 DONE / F09 BLOCKED
 
 F08: workflow remoto 39872564016 `completed/success` no SHA `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`; estado reconciliado no JSON canônico. F09: implementado contrato consultivo de distribuidora, sem fallback entre concessionárias, catálogo EDP com metadados oficiais observados em 22/10/2026, endpoints de diagnóstico e registro, extensões opcionais SPDA/FV/VE/ambientes especiais sem motores normativos ativos. 38 testes F09+EDP, 1027 API, 18 AIOX e quatro gates locais passaram. Revisão QA-02 normativa permanece pendente; UX e integração de dados F06–F08 não foram concluídas. Fase BLOCKED; sem merge/main/deploy.
+
+
+F09 CI confirmado: código `636529e389a64787b9a366f72ca0624025104103`; API run 39874801224, Chromium run 39874801231 e AIOX run 39874801250 concluíram completed/success. Estado da fase continua BLOCKED pelos gates explicitados no relatório.
