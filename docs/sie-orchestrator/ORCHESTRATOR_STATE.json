@@ -301,9 +301,23 @@
       "from": "RUNNING",
       "to": "VALIDATING",
       "reason": "Implementações10tasks e QA3 aprovados no recorte;1020API/156F08/34Chromium/34F00 e AIOX locaisPASS;aguardaCIremoto"
+    },
+    {
+      "activity": "F08",
+      "at": "2026-10-22",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "CI remoto run 39872564016 completed/success no SHA fc5f208bf5ee15911dd9bf78505339a97fd6d69b; QA3 e regressão local registrados. F09 liberada para desenvolvimento, sem homologação profissional/main/deploy."
+    },
+    {
+      "activity": "F09",
+      "at": "2026-10-22",
+      "from": "UNREGISTERED",
+      "to": "BLOCKED",
+      "reason": "Implementados diagnóstico consultivo, contratos plugáveis e extensões opcionais; testes locais passam. Critérios normativos integrais, integração de evidências F06–F08 e revisão profissional permanecem pendentes; F10 não liberada."
     }
   ],
-  "revision": 37,
+  "revision": 38,
   "schema_version": 1,
   "tasks": [
     {
@@ -1932,7 +1946,7 @@
       "impact": 10,
       "risk": 9,
       "requirements_verified": true,
-      "state": "VALIDATING",
+      "state": "DONE",
       "criteria": [
         {
           "id": "AC-08.01",
@@ -2021,7 +2035,8 @@
           "evidence": [
             "docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md",
             "restructuring/apps/api/tests/test_protection_f08.py",
-            "docs/implantacao-sie-2-0/F08/QA-02.md"
+            "docs/implantacao-sie-2-0/F08/QA-02.md",
+            "GitHub Actions run 39872564016: completed/success no SHA fc5f208bf5ee15911dd9bf78505339a97fd6d69b"
           ]
         }
       ],
@@ -2034,22 +2049,139 @@
         "qa_02": "APROVADO_RECORTE_COMPUTACIONAL",
         "qa_03": "APROVADO",
         "normative_conformity_verified": false,
-        "next_phase_development_allowed": false,
+        "next_phase_development_allowed": true,
         "local_api_tests_passed": 1020,
         "f08_tests_passed": 156,
         "browser_tests_passed": 34,
         "f00_golden_passed": 34,
         "aiox_tests_passed": 18,
         "aiox_passed": true,
-        "ci_executed": false,
-        "ci_current_sha_verified": false,
+        "ci_executed": true,
+        "ci_current_sha_verified": true,
         "professional_approval": false,
         "authoritative_for_sizing": false,
         "source_binding_completed": true,
-        "computational_scope": "RADIAL_DECLARED_AND_SCHNEIDER_FINITE_SOURCE_LINKED"
+        "computational_scope": "RADIAL_DECLARED_AND_SCHNEIDER_FINITE_SOURCE_LINKED",
+        "ci_run_id": 39872564016,
+        "ci_sha": "fc5f208bf5ee15911dd9bf78505339a97fd6d69b",
+        "ci_conclusion": "success"
       },
       "publication": {
         "branch": "feat/f08-protecoes-distribuicao",
+        "published": true,
+        "merged_to_main": false,
+        "production_release_allowed": false
+      }
+    },
+    {
+      "id": "F09",
+      "title": "Concessionárias e aplicações especializadas",
+      "dependencies": [
+        "F08"
+      ],
+      "priority": 87,
+      "impact": 9,
+      "risk": 8,
+      "requirements_verified": true,
+      "state": "BLOCKED",
+      "criteria": [
+        {
+          "id": "AC-09.01",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F09/FONTES_E_LACUNAS.md",
+            "restructuring/apps/api/sie_api/distributor_engine_f09.py"
+          ]
+        },
+        {
+          "id": "AC-09.02",
+          "passed": false,
+          "evidence": [
+            "restructuring/apps/api/sie_api/distributor_engine_f09.py",
+            "restructuring/apps/api/tests/test_distributor_engine_f09.py"
+          ]
+        },
+        {
+          "id": "AC-09.03",
+          "passed": false,
+          "evidence": [
+            "docs/stories/SIE-F09.md"
+          ]
+        },
+        {
+          "id": "AC-09.04",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/distributor_api_f09.py",
+            "restructuring/apps/api/tests/test_distributor_engine_f09.py"
+          ]
+        },
+        {
+          "id": "AC-09.05",
+          "passed": true,
+          "evidence": [
+            "restructuring/apps/api/sie_api/distributor_engine_f09.py",
+            "restructuring/apps/api/tests/test_distributor_engine_f09.py"
+          ]
+        },
+        {
+          "id": "AC-09.06",
+          "passed": false,
+          "evidence": [
+            "restructuring/apps/api/sie_api/specialized_extensions_f09.py",
+            "docs/implantacao-sie-2-0/F09/QA-02.md"
+          ]
+        },
+        {
+          "id": "AC-09.07",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F09/FONTES_E_LACUNAS.md"
+          ]
+        },
+        {
+          "id": "AC-09.08",
+          "passed": false,
+          "evidence": [
+            "restructuring/apps/api/sie_api/specialized_extensions_f09.py",
+            "docs/implantacao-sie-2-0/F09/QA-02.md"
+          ]
+        },
+        {
+          "id": "AC-09.09",
+          "passed": false,
+          "evidence": [
+            "restructuring/apps/api/sie_api/specialized_extensions_f09.py"
+          ]
+        },
+        {
+          "id": "AC-09.10",
+          "passed": false,
+          "evidence": [
+            "restructuring/apps/api/tests/test_distributor_engine_f09.py",
+            "docs/stories/SIE-F09.md"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/implantacao-sie-2-0/F09/F09_EXECUTAR.md",
+        "docs/stories/SIE-F09.md"
+      ],
+      "checkpoint": {
+        "qa_01": "APROVADO_RECORTE_SOFTWARE",
+        "qa_02": "PENDENTE_REVISAO_PROFISSIONAL_E_NORMAS",
+        "qa_03": "APROVADO_CONTRATO_API; UX_PENDENTE",
+        "api_tests_passed": 1027,
+        "focused_tests_passed": 38,
+        "aiox_tests_passed": 18,
+        "aiox_passed": true,
+        "normative_conformity_verified": false,
+        "professional_approval": false,
+        "connection_release": false,
+        "next_phase_development_allowed": false
+      },
+      "publication": {
+        "branch": "feat/f09-concessionarias-especializadas",
         "published": false,
         "merged_to_main": false,
         "production_release_allowed": false

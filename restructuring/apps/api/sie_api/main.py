@@ -15,6 +15,7 @@ from .storage_api import router as storage_router
 from .normative_api import router as normative_router
 from .installation_api import router as installation_router
 from .installation_storage_api import router as installation_storage_router
+from .distributor_api_f09 import router as distributor_router_f09
 
 app = FastAPI(title="SIE 2.0 - API modular", version="0.1.0")
 app.add_middleware(
@@ -68,6 +69,7 @@ app.include_router(storage_router)
 app.include_router(normative_router)
 app.include_router(installation_router)
 app.include_router(installation_storage_router)
+app.include_router(distributor_router_f09)
 
 
 class Circuito(BaseModel):

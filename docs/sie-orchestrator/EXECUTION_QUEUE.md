@@ -44,3 +44,8 @@ HUMAN_REQUIRED somente para publicação: auto-review rejeitou git push sem auto
 
 ### Encerramento F05 — 21/10/2026 — estado vigente
 F05 DONE. Bloqueio de publicação RESOLVIDO por autorização explícita do usuário. Branch publicada com árvores idênticas às locais. API39662901530,AIOX39662901277,Chromium39662901273 completed/success no SHA7c5547af06e6b569f493473ceb61cd6d224603da;604 API,34 F00,25 Chromium,18 AIOX e QA3 aprovados. Passagem F06 liberada,próximo arquivo F06_EXECUTAR.md;sem merge/deploy. O checkpoint HUMAN_REQUIRED acima é histórico e não representa impedimento atual.
+
+
+## Reconciliação sequencial — 22/10/2026 — F08/F09
+
+F08 DONE após CI remoto run 39872564016 completed/success no SHA `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`; sem homologação profissional, merge ou deploy. F09 iniciada na branch `feat/f09-concessionarias-especializadas`; estado BLOCKED após incremento consultivo e QA3, pois catálogo e motores normativos especializados completos, integração com evidências F06–F08 e validação humana ainda faltam. Não liberar F10.

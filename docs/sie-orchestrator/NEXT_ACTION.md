@@ -1,5 +1,5 @@
-# Próxima ação — F06
+# Próxima ação — F09
 
-F05 DONE. Código publicado na branch feat/f05-topologia-eletrica; API39662901530,AIOX39662901277,Chromium39662901273 completed/success no SHA7c5547af06e6b569f493473ceb61cd6d224603da.604 API,34 F00,25 Chromium,18 AIOX e QA3 aprovados.
+F08 DONE. GitHub Actions run 39872564016 concluiu `completed/success` no SHA `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`.
 
-Próximo artefato:F06_EXECUTAR.md. A F06 está liberada para desenvolvimento; não foi iniciada nesta entrega. Preservar F00–F05 e aceites F01; sem merge/deploy ou homologação normativa por teste computacional. Fonte canônica:ORCHESTRATOR_STATE.json.
+F09 está BLOCKED, com incremento consultivo e extensões opcionais registrados em `docs/implantacao-sie-2-0/F09/RELATORIO_EXECUCAO.md`. Retomar F09 para validar critérios de fornecimento com fontes controladas, integrar evidências atuais de F06/F07/F08 e obter revisão profissional das tabelas e casos aplicáveis. F10 não está liberada. Sem main, merge ou deploy. Fonte canônica: `ORCHESTRATOR_STATE.json`.

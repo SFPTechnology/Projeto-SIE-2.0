@@ -1,6 +1,6 @@
 # F08 — Proteções e distribuição elétrica
 
-Data: 22/10/2026. **ESTADO: VALIDATING — código, QA3 e regressão local aprovados; aguarda CI remoto.**
+Data: 22/10/2026. **ESTADO: DONE — CI remoto conferido com sucesso no SHA final.**
 
 Branch: `feat/f08-protecoes-distribuicao`. Base F07 remota preservada: `5402ca7c09fb1333e6bbab59b75bc7ad50a36187`. Fonte de estado: `docs/sie-orchestrator/ORCHESTRATOR_STATE.json`. Não houve alteração da main, deploy ou banco real.
 
@@ -52,4 +52,9 @@ Os revisores são agentes de software, sem assinatura ou aprovação profissiona
 
 ## Gates e passagem
 
-Gates locais de software satisfeitos no recorte documentado: estados coerentes/testados, recálculo/invalidação, relatório com limites explícitos e três QA aprovados. A publicação/CI remoto ainda será conferida antes de registrar DONE e liberar desenvolvimento da fase seguinte. IT completo, T3, outros pares/curvas/famílias e dados físicos fora do modelo permanecem pendentes por cenário; não são afirmados universais. Teste computacional não substitui inspeção/ensaio ou revisão profissional de instalação.
+Gates locais de software satisfeitos no recorte documentado: estados coerentes/testados, recálculo/invalidação, relatório com limites explícitos e três QA aprovados. A publicação e o CI remoto foram conferidos; F08 está DONE para os gates de software e F09 foi liberada para desenvolvimento. IT completo, T3, outros pares/curvas/famílias e dados físicos fora do modelo permanecem pendentes por cenário; não são afirmados universais. Teste computacional não substitui inspeção/ensaio ou revisão profissional de instalação.
+
+
+## Conferência remota final — 22/10/2026
+
+Workflow `SIE Orchestrator AIOX Quality Gates`, run [39872564016](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39872564016), status `completed/success` no SHA `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`. Com a confirmação do CI, os gates de software F08 estão atendidos e F09 pode iniciar. Permanecem válidas as limitações de domínio, revisão profissional e ausência de aprovação normativa descritas neste relatório.
