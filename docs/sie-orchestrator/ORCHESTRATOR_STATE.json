@@ -280,9 +280,16 @@
       "from": "BLOCKED",
       "to": "VALIDATING",
       "reason": "Agente especialista vinculou catálogo oficialPrysmianRev9 e implementou seleção conjunta fonte-vinculada;864API/32Chromium/34golden/18AIOX eQA3 locais aprovados;aguarda publicação/CI do incremento. AceitesF01–F06 preservados."
+    },
+    {
+      "activity": "F07",
+      "at": "2026-10-22",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "Recorte Prysmian Rev9, fonte e seleção multicritério concluídos; QA-01/02/03 aprovados. CI no SHA 14c64bbc com 864 API, 32 Chromium, 34 golden e 18 AIOX, três workflows completed/success. Árvore local/remota idêntica. F08 liberada para desenvolvimento; flags profissionais falsas, sem main/merge/deploy."
     }
   ],
-  "revision": 35,
+  "revision": 36,
   "schema_version": 1,
   "tasks": [
     {
@@ -1753,7 +1760,7 @@
       "impact": 10,
       "risk": 8,
       "requirements_verified": true,
-      "state": "VALIDATING",
+      "state": "DONE",
       "criteria": [
         {
           "id": "AC-07.01",
@@ -1859,37 +1866,44 @@
         "f07_tests_passed": 142,
         "f00_golden_passed": 34,
         "aiox_passed": true,
-        "ci_current_sha_verified": false,
+        "ci_current_sha_verified": true,
         "normative_conformity_verified": false,
-        "next_phase_development_allowed": false,
+        "next_phase_development_allowed": true,
         "commercial_selection_implemented": true,
         "browser_tests_passed": 32,
         "browser_engine": "Chromium140 / Playwright1.55",
-        "ci_code_sha": "69b533a9ea315022eecb247539a551950d81e5ed",
-        "ci_api_run": 39720730426,
-        "ci_aiox_run": 39720730305,
-        "ci_chromium_run": 39720730315,
+        "ci_code_sha": "14c64bbcd615ba81d9d0eae60b91b3f24337402b",
+        "ci_api_run": 39775756669,
+        "ci_aiox_run": 39775757139,
+        "ci_chromium_run": 39775756799,
         "ci_executed": true,
-        "ci_api_tests_passed": 787,
-        "ci_browser_tests_passed": 30,
+        "ci_api_tests_passed": 864,
+        "ci_browser_tests_passed": 32,
         "ci_f00_golden_passed": 34,
         "ci_aiox_tests_passed": 18,
-        "ci_api_seconds": "10.21",
-        "ci_browser_seconds": "56.05",
+        "ci_api_seconds": "17.30",
+        "ci_browser_seconds": "60.41",
         "binding_tests_passed": 77,
         "aiox_tests_passed": 18,
         "source_binding_completed": true,
-        "source_catalog_version": "F07_PRYSMIAN_BT_REV9_1"
+        "source_catalog_version": "F07_PRYSMIAN_BT_REV9_1",
+        "ci_browser_engine": "Chromium 156",
+        "next_phase": "F08",
+        "professional_approval": false,
+        "authoritative_for_sizing": false,
+        "f08_protection_checks_pending": true,
+        "computational_scope": "F07_PRYSMIAN_BT_REV9_1"
       },
       "publication": {
         "branch": "feat/f07-condutores-queda",
         "merged_to_main": false,
         "production_release_allowed": false,
         "published": true,
-        "code_sha": "69b533a9ea315022eecb247539a551950d81e5ed",
-        "local_code_sha": "c6e8e682dea9b39febf15dde48864e3bb91c5bd9",
-        "tree_sha": "f0a64095e1a7fad807fc97869d6eb1888e786c07",
-        "source_linked_increment_published": false
+        "code_sha": "14c64bbcd615ba81d9d0eae60b91b3f24337402b",
+        "local_code_sha": "d4a985e8e640f57caa8fe1f0a742d6ad339bfd76",
+        "tree_sha": "f4ac4d73c369a1f7360484cd2d0b307edea8816b",
+        "source_linked_increment_published": true,
+        "validated_checkpoint_sha": "14c64bbcd615ba81d9d0eae60b91b3f24337402b"
       }
     }
   ]
