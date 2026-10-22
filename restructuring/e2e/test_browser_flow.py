@@ -678,3 +678,57 @@ def test_f07_source_selection_history_revision_and_stale_in_browser(page,servers
     assert entries[0]['stale'] and not entries[-1]['stale']
     raw['id']='77777777-7777-4777-8777-777777777772'
     assert call('PUT',path+'/condutores/selecao',{'request':raw,'expected_revision':3})['status']==409
+
+
+def test_f08_protection_memory_edit_and_download(page):
+    page.goto(WEB_URL+'/protecoes.html',wait_until='networkidle')
+    page.locator('#demo').click()
+    expect(page.locator('#document')).not_to_have_value('')
+    page.locator('#calculate').click()
+    expect(page.locator('#status')).to_contain_text('Memória calculada')
+    expect(page.locator('#status')).to_contain_text('sem homologação normativa')
+    expect(page.locator('#criteria tr').first).to_be_visible()
+    result=json.loads(page.locator('#memory').inner_text())
+    assert result['normative_conformity_verified'] is False
+    assert result['status']!='APROVADO'
+    expect(page.locator('#selection-summary')).to_contain_text('Alterações não aplicadas')
+    expect(page.locator('#selection-summary')).to_contain_text('Sem homologação normativa')
+    expect(page.locator('#pending li').first).to_be_visible()
+    expect(page.locator('#balance-proposals')).to_contain_text('Proposta não aplicada')
+    page.locator('#catalog').click()
+    expect(page.locator('#catalog-pairs')).to_contain_text('Limite de seletividade parcial: 260 A')
+    expect(page.locator('#sources a')).to_have_count(3)
+    with page.expect_download() as downloaded:
+        page.locator('#export').click()
+    assert downloaded.value.suggested_filename=='SIE_F08_memoria.json'
+    data=json.loads(page.locator('#document').input_value())
+    data['id']='c8b02853-11e8-4adf-a83f-8155b83cd94f'
+    page.locator('#document').fill(json.dumps(data))
+    expect(page.locator('#export')).to_be_disabled()
+    expect(page.locator('#criteria tr')).to_have_count(0)
+    expect(page.locator('#status')).to_contain_text('Dados alterados')
+    page.locator('#calculate').click()
+    expect(page.locator('#status')).to_contain_text('Memória calculada')
+    page.locator('#api').fill('https://example.com')
+    expect(page.locator('#export')).to_be_disabled()
+    page.locator('#calculate').click()
+    expect(page.locator('#status')).to_contain_text('Informe API local')
+
+
+def test_f08_rejects_stale_response_after_edit(page):
+    page.goto(WEB_URL+'/protecoes.html',wait_until='networkidle')
+    page.locator('#demo').click()
+    expect(page.locator('#document')).not_to_have_value('')
+    page.evaluate('''() => {
+        window.originalFetch = window.fetch;
+        window.fetch = (...args) => String(args[0]).includes('/protecoes/analisar')
+          ? new Promise(resolve => {window.finishProtection = resolve;}) : window.originalFetch(...args);
+    }''')
+    page.locator('#calculate').click()
+    page.wait_for_function('window.finishProtection !== undefined')
+    page.locator('#document').fill('{}')
+    page.evaluate('''() => window.finishProtection(new Response(JSON.stringify({status:'PENDENTE',circuits:{},normative_conformity_verified:false}),{status:200,headers:{'Content-Type':'application/json'}}))''')
+    expect(page.locator('#calculate')).to_be_enabled()
+    expect(page.locator('#memory')).to_have_text('')
+    expect(page.locator('#export')).to_be_disabled()
+    expect(page.locator('#status')).to_contain_text('Dados alterados')

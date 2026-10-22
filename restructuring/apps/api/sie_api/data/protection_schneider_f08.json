@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "catalog_version": "F08_SCHNEIDER_A9F74116_1",
+  "status": "SOURCE_LINKED_NOT_PROFESSIONAL_APPROVAL",
+  "verified_on": "2026-10-22",
+  "professional_approval": false,
+  "product_certification_verified": false,
+  "sources": [
+    {
+      "id": "product",
+      "document": "A9F74116 official product page",
+      "publisher": "Schneider Electric",
+      "edition": "HTML snapshot 2026-10-22",
+      "url": "https://www.se.com/hk/en/product/A9F74116/miniature-circuit-breaker-mcb-acti9-ic60n-1p-16a-c-curve-6000a-iec-en-608981-10ka-iec-en-609472/",
+      "sha256": "144a5c03662d0cf86653221d298664a370e9448b2d9d7c749efa49b3d3f9196e",
+      "bytes": 1546545,
+      "reference": "Product JSON-LD: sku, name and description"
+    },
+    {
+      "id": "curves",
+      "document": "Tripping curves CA908024E",
+      "publisher": "Schneider Electric",
+      "edition": "2.9 / 2014-09-05",
+      "url": "https://ckm-content.se.com/ckmContent/sfc/servlet.shepherd/document/download/0691H00000DxLluQAF",
+      "sha256": "e9665f22fd3e0ec6346a8e682090b2f118c83724df92e72b494a75ea74ec06d6",
+      "bytes": 1322680,
+      "pages": 10,
+      "reference": "PDF page 2, printed page 3, iC60a/N/H/L, 6–63 A, IEC/EN 60898-1, DB124185"
+    }
+  ],
+  "devices": [
+    {
+      "catalog_key": "SCHNEIDER_A9F74116_IEC60898_1",
+      "family": "MCB",
+      "manufacturer": "Schneider Electric",
+      "model": "A9F74116",
+      "edition": "F08_SCHNEIDER_A9F74116_1",
+      "nominal_current_a": "16",
+      "i2_a": "23.2",
+      "rated_voltage_v": "230",
+      "breaking_capacity_a": "6000",
+      "breaking_standard": "IEC/EN 60898-1",
+      "curve": "C",
+      "poles": 1,
+      "reference_temperature_c": "30",
+      "frequency_hz": [
+        "50",
+        "60"
+      ],
+      "network": "AC",
+      "capacity_quantity": "Icn",
+      "conventional_trip_time_s": "3600",
+      "magnetic_band_in": [
+        "5",
+        "10"
+      ],
+      "full_time_current_curve_digitized": false,
+      "let_through_energy_available": false,
+      "selectivity_tables_available": false,
+      "source_verified": true,
+      "professional_approval": false,
+      "product_certification_verified": false,
+      "evidence": {
+        "document": "Tripping curves CA908024E",
+        "edition": "2.9 / 2014-09-05",
+        "reference": "PDF page 2, printed page 3, DB124185, IEC/EN 60898-1, iC60a/N/H/L 6–63 A",
+        "sha256": "e9665f22fd3e0ec6346a8e682090b2f118c83724df92e72b494a75ea74ec06d6"
+      },
+      "verified_fields": [
+        "family",
+        "manufacturer",
+        "model",
+        "nominal_current_a",
+        "i2_a",
+        "rated_voltage_v",
+        "breaking_capacity_a",
+        "breaking_standard",
+        "curve",
+        "poles",
+        "reference_temperature_c",
+        "frequency_hz",
+        "conventional_trip_time_s",
+        "magnetic_band_in"
+      ],
+      "provenance": {
+        "product_source_id": "product",
+        "curve_source_id": "curves",
+        "i2_derivation": "1.45 × 16 A = 23.2 A",
+        "capacity_scope": "Icn 6000 A at exactly 230 V AC under IEC/EN 60898-1; no substitution by Icu",
+        "curve_scope": "30 °C; AC 50/60 Hz; 6–63 A; no interpolation of thermal curve or energy"
+      }
+    }
+  ],
+  "boundaries": [
+    "One exact product/standard/voltage/reference-temperature scope; other combinations remain pending.",
+    "Source-linked manufacturer facts do not constitute certification, normative conformity or professional installation approval.",
+    "No energy limiting curve is included. The separate finite coordination catalogue authenticates exactly one manufacturer pair; the product row alone never proves selectivity.",
+    "Curves document says time-current curves are insufficient above 20 In; no I²t inferred from nominal current or curve letter.",
+    "Ambient temperature different from 30 °C requires verified derating data; none included.",
+    "DR, DPS and fuse models may be declared separately but no products from those families are authenticated by this finite registry."
+  ]
+}

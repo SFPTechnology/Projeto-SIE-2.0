@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "catalog_version": "F08_SCHNEIDER_COORDINATION_1",
+  "professional_approval": false,
+  "product_certification_verified": false,
+  "source": {
+    "document": "Selectivity, Cascading and Coordination Guide 2026",
+    "publisher": "Schneider Electric",
+    "edition": "4.0 / 2026-08-03",
+    "document_ref": "LVPED318033EN",
+    "url": "https://download.schneider-electric.com/files?p_Doc_Ref=LVPED318033EN&p_File_Ext=.PDF",
+    "landing_url": "https://www.se.com/us/en/download/document/LVPED318033EN/",
+    "sha256": "2cc52f0569eeef7323677dfee855c9ebf5bc0fb7ee7d370ad22fabfeda1b1fa3",
+    "bytes": 11585539,
+    "pages": 362,
+    "verified_on": "2026-10-22"
+  },
+  "pairs": [
+    {
+      "catalog_key": "SCHNEIDER_IC60N_C32_C16_1P_230",
+      "upstream": {
+        "family": "MCB",
+        "manufacturer": "Schneider Electric",
+        "model": "iC60N",
+        "nominal_current_a": "32",
+        "curve": "C",
+        "poles": 1
+      },
+      "downstream": {
+        "family": "MCB",
+        "manufacturer": "Schneider Electric",
+        "model": "iC60N",
+        "nominal_current_a": "16",
+        "curve": "C",
+        "poles": 1
+      },
+      "voltage_v": "230",
+      "network": "AC",
+      "selectivity_limit_a": "260",
+      "total_selectivity": false,
+      "source_verified": true,
+      "professional_approval": false,
+      "product_certification_verified": false,
+      "reference": "PDF page 39 / printed A-31; upstream Curve C 32 A column; downstream iC60N/H/L/P Curve C 16 A row; 1P category",
+      "evidence": {
+        "document": "Selectivity, Cascading and Coordination Guide 2026, LVPED318033EN",
+        "edition": "4.0 / 2026-08-03",
+        "reference": "PDF page 39 / printed A-31, C32 upstream × C16 downstream, 1P, 260 A",
+        "sha256": "2cc52f0569eeef7323677dfee855c9ebf5bc0fb7ee7d370ad22fabfeda1b1fa3"
+      },
+      "provenance": {
+        "voltage_scope": "230 V AC conservative subset of 220–240/380–415 V AC table",
+        "pole_scope": "Both devices 1P; downstream category includes 1P. No extrapolation to other pole/network categories.",
+        "series_aliases": {
+          "A9F74116": "iC60N"
+        },
+        "table_certifies_installed_device": false,
+        "limit_inclusive": true,
+        "inference_scope": "Manufacturer-pair selectivity only; no thermal energy, breaking capacity, backup, RCD or SPD coordination approval."
+      }
+    }
+  ],
+  "boundaries": [
+    "Only exact iC60N C32 upstream / iC60N C16 downstream pair, both 1P, 230 V AC.",
+    "260 A is a partial selectivity limit, not a general full selectivity statement.",
+    "Identity/graph/voltage and maximum downstream fault scenario must be verified by the caller.",
+    "The table is not a certification or inspection of installed devices.",
+    "No default rating-ratio or curve-letter rule is used to infer other pairs."
+  ]
+}

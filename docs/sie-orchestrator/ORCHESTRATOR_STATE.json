@@ -287,9 +287,23 @@
       "from": "VALIDATING",
       "to": "DONE",
       "reason": "Recorte Prysmian Rev9, fonte e seleção multicritério concluídos; QA-01/02/03 aprovados. CI no SHA 14c64bbc com 864 API, 32 Chromium, 34 golden e 18 AIOX, três workflows completed/success. Árvore local/remota idêntica. F08 liberada para desenvolvimento; flags profissionais falsas, sem main/merge/deploy."
+    },
+    {
+      "activity": "F08",
+      "at": "2026-10-22",
+      "from": "PENDING",
+      "to": "RUNNING",
+      "reason": "F07 remota5402ca7 conferida; branch isolada e story criadas antes implementação"
+    },
+    {
+      "activity": "F08",
+      "at": "2026-10-22",
+      "from": "RUNNING",
+      "to": "VALIDATING",
+      "reason": "Implementações10tasks e QA3 aprovados no recorte;1020API/156F08/34Chromium/34F00 e AIOX locaisPASS;aguardaCIremoto"
     }
   ],
-  "revision": 36,
+  "revision": 37,
   "schema_version": 1,
   "tasks": [
     {
@@ -1904,6 +1918,141 @@
         "tree_sha": "f4ac4d73c369a1f7360484cd2d0b307edea8816b",
         "source_linked_increment_published": true,
         "validated_checkpoint_sha": "14c64bbcd615ba81d9d0eae60b91b3f24337402b"
+      }
+    },
+    {
+      "id": "F08",
+      "title": "Proteções e distribuição elétrica",
+      "dependencies": [
+        "F01",
+        "F05",
+        "F07"
+      ],
+      "priority": 88,
+      "impact": 10,
+      "risk": 9,
+      "requirements_verified": true,
+      "state": "VALIDATING",
+      "criteria": [
+        {
+          "id": "AC-08.01",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_protection_f08.py",
+            "docs/implantacao-sie-2-0/F08/QA-02.md"
+          ]
+        },
+        {
+          "id": "AC-08.02",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_protection_f08.py",
+            "docs/implantacao-sie-2-0/F08/QA-02.md"
+          ]
+        },
+        {
+          "id": "AC-08.03",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_protection_f08.py",
+            "docs/implantacao-sie-2-0/F08/QA-02.md"
+          ]
+        },
+        {
+          "id": "AC-08.04",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_protection_f08.py",
+            "docs/implantacao-sie-2-0/F08/QA-02.md"
+          ]
+        },
+        {
+          "id": "AC-08.05",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_protection_f08.py",
+            "docs/implantacao-sie-2-0/F08/QA-02.md"
+          ]
+        },
+        {
+          "id": "AC-08.06",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_protection_f08.py",
+            "docs/implantacao-sie-2-0/F08/QA-02.md"
+          ]
+        },
+        {
+          "id": "AC-08.07",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_protection_f08.py",
+            "docs/implantacao-sie-2-0/F08/QA-02.md"
+          ]
+        },
+        {
+          "id": "AC-08.08",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_protection_f08.py",
+            "docs/implantacao-sie-2-0/F08/QA-02.md"
+          ]
+        },
+        {
+          "id": "AC-08.09",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_protection_f08.py",
+            "docs/implantacao-sie-2-0/F08/QA-02.md"
+          ]
+        },
+        {
+          "id": "AC-08.10",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md",
+            "restructuring/apps/api/tests/test_protection_f08.py",
+            "docs/implantacao-sie-2-0/F08/QA-02.md"
+          ]
+        }
+      ],
+      "source_refs": [
+        "docs/implantacao-sie-2-0/F08/F08_EXECUTAR.md",
+        "docs/stories/SIE-F08.md"
+      ],
+      "checkpoint": {
+        "qa_01": "APROVADO_RECORTE_COMPUTACIONAL",
+        "qa_02": "APROVADO_RECORTE_COMPUTACIONAL",
+        "qa_03": "APROVADO",
+        "normative_conformity_verified": false,
+        "next_phase_development_allowed": false,
+        "local_api_tests_passed": 1020,
+        "f08_tests_passed": 156,
+        "browser_tests_passed": 34,
+        "f00_golden_passed": 34,
+        "aiox_tests_passed": 18,
+        "aiox_passed": true,
+        "ci_executed": false,
+        "ci_current_sha_verified": false,
+        "professional_approval": false,
+        "authoritative_for_sizing": false,
+        "source_binding_completed": true,
+        "computational_scope": "RADIAL_DECLARED_AND_SCHNEIDER_FINITE_SOURCE_LINKED"
+      },
+      "publication": {
+        "branch": "feat/f08-protecoes-distribuicao",
+        "published": false,
+        "merged_to_main": false,
+        "production_release_allowed": false
       }
     }
   ]
