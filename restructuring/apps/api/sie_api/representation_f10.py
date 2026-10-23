@@ -55,9 +55,13 @@ def validate_snapshot(snapshot: dict[str, Any]) -> None:
         if element["id"] in ids:
             raise ArtifactError(f"duplicate element id: {element['id']}")
         ids.add(element["id"])
+    circuit_ids: set[str] = set()
     for circuit in circuits:
-        if not isinstance(circuit, dict) or not isinstance(circuit.get("id"), str):
+        if not isinstance(circuit, dict) or not isinstance(circuit.get("id"), str) or not circuit["id"].strip():
             raise ArtifactError("each circuit requires an id")
+        if circuit["id"] in circuit_ids:
+            raise ArtifactError(f"duplicate circuit id: {circuit['id']}")
+        circuit_ids.add(circuit["id"])
         if circuit.get("panel_id") not in ids:
             raise ArtifactError(f"circuit {circuit['id']} references an unknown panel")
         load = _finite_number(circuit.get("load_va"), f"circuit {circuit['id']} load_va")
