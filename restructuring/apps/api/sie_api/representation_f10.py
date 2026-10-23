@@ -327,9 +327,6 @@ def main(argv: list[str] | None = None) -> int:
                      ensure_ascii=False))
     return 0
 
-if __name__ == "__main__":
-    raise SystemExit(main())
-
 def render_plant_svg(snapshot: dict[str, Any], contract: ArtifactContract) -> str:
     """Render an explicitly scaled 2D placement map; it does not derive routes."""
     _check_contract(snapshot, contract)
@@ -341,6 +338,8 @@ def render_plant_svg(snapshot: dict[str, Any], contract: ArtifactContract) -> st
             raise ArtifactError(f"floor_plan.{key} is required")
     if plan["revision_id"] != contract.revision_id:
         raise ArtifactError("floor plan revision mismatch")
+    if plan["units"] not in {"m", "cm", "mm"}:
+        raise ArtifactError("unsupported floor plan unit; use m, cm or mm")
     width = _finite_number(plan.get("width"), "floor_plan.width")
     height = _finite_number(plan.get("height"), "floor_plan.height")
     scale = _finite_number(plan.get("model_units_per_canvas_unit"), "floor_plan.scale")
@@ -378,3 +377,7 @@ def render_plant_svg(snapshot: dict[str, Any], contract: ArtifactContract) -> st
     return "".join(output + ["</svg>"])
 
 
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
