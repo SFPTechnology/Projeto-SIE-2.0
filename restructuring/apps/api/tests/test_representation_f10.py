@@ -1,9 +1,11 @@
 from copy import deepcopy
+import json
+from pathlib import Path
 
 import pytest
 
 from sie_api.representation_f10 import (
-    ArtifactContract, ArtifactError, artifact_bundle, cross_validate_documents,
+    ArtifactContract, ArtifactError, artifact_bundle, cross_validate_documents, main as representation_main,
     load_schedule, render_single_line_svg,
 )
 
@@ -198,3 +200,19 @@ def test_plant_svg_contains_complete_artifact_contract(snapshot, contract):
     }
     svg = artifact_bundle(snapshot, contract)["floor_plan.svg"]
     assert "CALC-3" in svg and "template-1" in svg
+
+
+def test_cli_creates_revision_bound_artifacts_without_overwrite(snapshot, contract, tmp_path):
+    source = tmp_path / "input.json"
+    source.write_text(json.dumps({
+        "snapshot": snapshot,
+        "artifact_contract": contract.__dict__,
+    }), encoding="utf-8")
+    destination = tmp_path / "result"
+    assert representation_main(["--input", str(source), "--output-dir", str(destination)]) == 0
+    assert {p.name for p in destination.iterdir()} == {
+        "schedule.json", "diagram.svg", "quantities.csv", "report.html"
+    }
+    with pytest.raises(FileExistsError):
+        representation_main(["--input", str(source), "--output-dir", str(destination)])
+    assert len(list(destination.iterdir())) == 4
