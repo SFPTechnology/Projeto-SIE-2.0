@@ -1,0 +1,61 @@
+{
+  "phase": "F10",
+  "active_branch": "feat/f09-concessionarias-especializadas",
+  "current_wave": "W1_PARTIAL",
+  "code_sha": "afd73f02e2cd41ee1c2d8615c31616e90d65e4c0",
+  "requirements_completed": [],
+  "requirements_in_progress": [
+    "AC-10.01",
+    "AC-10.02",
+    "AC-10.03",
+    "AC-10.04",
+    "AC-10.05",
+    "AC-10.06",
+    "AC-10.07",
+    "AC-10.08",
+    "AC-10.10"
+  ],
+  "requirements_blocked": [],
+  "files_changed": [
+    "restructuring/apps/api/sie_api/artifact_store_f10.py",
+    "restructuring/apps/api/sie_api/representation_f10.py",
+    "restructuring/apps/api/tests/test_artifact_store_f10.py",
+    "restructuring/apps/api/tests/test_representation_f10.py",
+    "docs/stories/SIE-F10.md",
+    "docs/implantacao-sie-2-0/F10/RELATORIO_EXECUCAO.md",
+    "docs/implantacao-sie-2-0/F10/MATRIZ_VERIFICACAO_V2.md",
+    "docs/sie-orchestrator/ORCHESTRATOR_STATE.json"
+  ],
+  "technical_decisions": [
+    "Exportação F10 permanece estudo não normativo.",
+    "Usar conteúdo do snapshot canônico com SHA-256 e manifesto versionado.",
+    "Não afirmar estado CURRENT sem fonte atual independente.",
+    "Evitar overwrites, preservar revision_id/calculation_run_id, desenhar cada painel isoladamente.",
+    "Sem conexão automática comprovada com RepositorioProjetos; QA formal permanece pendente."
+  ],
+  "tests_executed": [
+    "GitHub Actions API run 39953127011 (1070 passed, 1 warning)",
+    "GitHub Actions AIOX run 39953126910 (success)",
+    "GitHub Actions Chromium run 39953127014 (success, UI F10 not covered)"
+  ],
+  "test_failures": [],
+  "evidence_locations": [
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39953127011",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39953126910",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39953127014",
+    "restructuring/apps/api/tests/test_artifact_store_f10.py",
+    "restructuring/apps/api/tests/test_representation_f10.py"
+  ],
+  "pending_approvals": [
+    "QA-01 formal",
+    "QA-02 formal",
+    "QA-03 formal"
+  ],
+  "next_executable_task": "Implementar leitura e vinculação de artefatos ao banco local RepositorioProjetos/versoes_projeto, com proveniência/autoridade verificadas para calculation_run_id, invalidando quando inputs do projeto/cálculo mudarem; testes de isolamento entre projetos e revisões.",
+  "canonical_status": "RUNNING",
+  "gate_summary": {
+    "PASSED": 0,
+    "FAILED": 0,
+    "PENDING": 14
+  }
+}

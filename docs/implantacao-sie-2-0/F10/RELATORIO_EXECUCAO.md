@@ -57,3 +57,16 @@ Achados corrigidos durante os ensaios: caso inicial de escape que invalidava as 
 F10 **não está DONE** e F11 não está liberada. Ainda faltam integração/persistência por revisão, importação/editoração real de planta, conexão do ledger à topologia canônica, diagrama completo, memorial técnico completo, PDF e revisão visual. O CI do Chromium no SHA do código ainda deve ser confirmado. Nenhuma conformidade normativa ou aprovação profissional/concessionária é declarada.
 
 Nenhuma mudança em main, merge, deploy, alteração de banco de produção, homologação profissional ou aprovação normativa/concessionária foi executada.
+
+## Retomada técnica 23/10/2026 — incremento verificado W1 (não encerra F10)
+
+**Referência do código:** `afd73f02e2cd41ee1c2d8615c31616e90d65e4c0`, branch `feat/f09-concessionarias-especializadas`.
+- Novo `artifact_store_f10.py`: gera `snapshot.json` com serialização canônica, `manifest.json` com `artifact_id`, revisão, cálculo, versões, `generated_at`, `snapshot_sha256` e hashes individuais das exportações. O pacote é preparado em diretório temporário e publicado por renomeação; lock entre escritores cooperativos impede regravação.
+- O comando existente `python -m sie_api.representation_f10 --input fonte.json --output-dir nova_pasta` agora gera também snapshot e manifesto, sem regravar a pasta anterior.
+- Verificador independente: `python -m sie_api.artifact_store_f10 verify --directory nova_pasta [--current-input fonte_atual.json]`; rejeita inventário adulterado, hashes incorretos e saídas inconsistentes. Sem origem atual independente, retorna `CURRENTNESS_UNVERIFIED`; com mudança verificada da origem, `STALE` (código de saída 2). A opção de entrada atual ainda **não** realiza consulta automática ao banco.
+- O SVG agora agrupa circuitos por painel; ligação a elemento não painel é rejeitada. Plano não aceita unidade fora de `m`, `cm`, `mm`. Chamada CLI com planta deixa de chamar função antes de sua definição.
+- Testes adicionados: corrupção de snapshot/arquivos, ausência de arquivo, duplicação, hashes, estabilidade de fingerprint, revisões/cálculos divergentes, topologia/carga modificadas, CLI e isolamento multiquadro.
+
+**CI do código:** [API run 39953127011](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39953127011) — 1.070 passed e 1 warning; [AIOX 39953126910](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39953126910) — success; [Chromium 39953127014](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39953127014) — success. Todos no mesmo SHA de código. A suíte de navegador é regressão global, não cobertura visual própria dos novos recursos F10.
+
+**Decisão:** W1 PARCIAL, AC-10.01 PARCIAL, F10 RUNNING / implementação parcial. Exportação local não substitui persistência integrada por revisão nem autenticação da fonte, e não garante inviolabilidade contra ator com escrita no sistema de arquivos. Planta autorizada/CAD, símbolos completos, memorial de cálculo integral, PDF, reconciliação com registros F06–F08 e UI F10 permanecem pendentes. QA-01, QA-02 e QA-03 formais seguem `PENDING`; nenhuma homologação normativa foi concedida. As 14 gates de conclusão seguem pendentes, sem falsificar aprovação por suíte verde.
