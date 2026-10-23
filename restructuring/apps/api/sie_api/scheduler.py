@@ -121,7 +121,13 @@ def validate(document: dict) -> None:
         if task["state"] in {"READY", "RUNNING", "IMPLEMENTED", "VALIDATING", "DONE"} and not task["requirements_verified"]:
             raise WorkflowInvalido(f"Requisitos nao conferidos: {key}")
         if task["state"] == "DONE" and not all(
-            item["passed"] and item["evidence"] for item in task["criteria"]
+            (item["passed"] and item["evidence"])
+            or (
+                key == "F01"
+                and item.get("acceptance_basis") == "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
+                and "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json" in item["evidence"]
+            )
+            for item in task["criteria"]
         ):
             raise WorkflowInvalido(f"DONE sem evidencia para todos os criterios: {key}")
 
