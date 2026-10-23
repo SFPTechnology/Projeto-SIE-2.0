@@ -132,7 +132,9 @@ def test_artifact_bundle_outputs_all_supported_formats(snapshot, contract):
     assert set(bundle) == {"schedule.json", "diagram.svg", "quantities.csv", "report.html"}
     assert '"revision_id": "R-2"' in bundle["schedule.json"]
     assert 'viewBox=' in bundle["diagram.svg"]
-    assert bundle["quantities.csv"].startswith("row_type,project_id,revision_id,calculation_run_id,rule_version,template_version")\n    assert "P-1" in bundle["quantities.csv"] and "CALC-3" in bundle["quantities.csv"]\n    assert "CALC-3" in bundle["diagram.svg"]
+    assert bundle["quantities.csv"].startswith("row_type,project_id,revision_id,calculation_run_id,rule_version,template_version")
+    assert "P-1" in bundle["quantities.csv"] and "CALC-3" in bundle["quantities.csv"]
+    assert "CALC-3" in bundle["diagram.svg"]
     assert "CALC-3" in bundle["report.html"]
 
 
