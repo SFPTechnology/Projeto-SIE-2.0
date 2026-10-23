@@ -210,8 +210,26 @@ def test_cli_creates_revision_bound_artifacts_without_overwrite(snapshot, contra
     destination = tmp_path / "result"
     assert representation_main(["--input", str(source), "--output-dir", str(destination)]) == 0
     assert {p.name for p in destination.iterdir()} == {
-        "schedule.json", "diagram.svg", "quantities.csv", "report.html"
+        "schedule.json", "diagram.svg", "quantities.csv", "report.html",
+        "snapshot.json", "manifest.json",
     }
     with pytest.raises(FileExistsError):
         representation_main(["--input", str(source), "--output-dir", str(destination)])
-    assert len(list(destination.iterdir())) == 4
+    assert len(list(destination.iterdir())) == 6
+
+
+def test_unifilar_never_links_second_panel_circuits_to_first(snapshot, contract):
+    snapshot["elements"].append({"id": "QD2", "kind": "panel"})
+    snapshot["circuits"][1]["panel_id"] = "QD2"
+    svg = render_single_line_svg(snapshot, contract)
+    first = svg.split('data-panel-id="QD1">', 1)[1].split("</g>", 1)[0]
+    second = svg.split('data-panel-id="QD2">', 1)[1].split("</g>", 1)[0]
+    assert "C1" in first and "C2" not in first
+    assert "C2" in second and "C1" not in second
+
+
+def test_unifilar_rejects_circuit_connected_to_nonpanel_element(snapshot, contract):
+    snapshot["elements"].append({"id": "OUTLET", "kind": "socket"})
+    snapshot["circuits"][1]["panel_id"] = "OUTLET"
+    with pytest.raises(ArtifactError, match="unknown panel"):
+        render_single_line_svg(snapshot, contract)
