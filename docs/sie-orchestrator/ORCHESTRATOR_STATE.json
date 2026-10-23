@@ -2,6 +2,13 @@
   "description": "Estado declarativo da fila do SIE; CI verifica integridade, nao comprova automaticidade nem normas. NOR-01 exige SIE-AUTO-003 concluida; dependencia documental reconciliada no grafo.",
   "history": [
     {
+      "activity": "F10",
+      "at": "2026-10-23T00:00:00-03:00",
+      "from": "UNREGISTERED",
+      "to": "RUNNING",
+      "reason": "F09 handoff liberou desenvolvimento; plano F10 registrado; implementação incremental e validação em andamento; sem main/merge/deploy."
+    },
+    {
       "activity": "F09",
       "at": "2026-10-23T00:00:00Z",
       "from": "VALIDATING",
@@ -338,7 +345,7 @@
       "reason": "Integração persistida F06–F08 implementada, seis testes focados e 1033 API/AIOX gates locais passaram; itens 1 e 2 aceitos pelo responsável, extensões 09.06–09.09 fora do escopo; CI remoto do novo commit pendente."
     }
   ],
-  "revision": 41,
+  "revision": 42,
   "schema_version": 1,
   "tasks": [
     {
@@ -2226,6 +2233,82 @@
         "production_release_allowed": false,
         "code_sha": "59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6",
         "metadata_sha": "d6a59afe907bb4e6dbcbcef553931f82b5a9af09"
+      }
+    },
+    {
+      "id": "F10",
+      "title": "Representação gráfica e documentação técnica",
+      "state": "RUNNING",
+      "dependencies": [
+        "F09"
+      ],
+      "priority": 70,
+      "impact": 9,
+      "risk": 7,
+      "requirements_verified": true,
+      "source_refs": [
+        "docs/implantacao-sie-2-0/F10/PLANO_IMPLEMENTACAO.md",
+        "docs/implantacao-sie-2-0/F10/RELATORIO_EXECUCAO.md"
+      ],
+      "criteria": [
+        {
+          "id": "AC-10.01",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-10.02",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-10.03",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-10.04",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-10.05",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-10.06",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-10.07",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-10.08",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-10.09",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-10.10",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "checkpoint": {
+        "implementation_status": "PARTIAL",
+        "qa_01": "PENDENTE",
+        "qa_02": "PENDENTE",
+        "qa_03": "PENDENTE",
+        "main_unchanged": true,
+        "production_release_allowed": false
       }
     }
   ]
