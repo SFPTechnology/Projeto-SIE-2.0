@@ -3,7 +3,7 @@ from copy import deepcopy
 import pytest
 
 from sie_api.representation_f10 import (
-    ArtifactContract, ArtifactError, cross_validate_documents,
+    ArtifactContract, ArtifactError, artifact_bundle, cross_validate_documents,
     load_schedule, render_single_line_svg,
 )
 
@@ -84,3 +84,53 @@ def test_missing_circuit_in_schedule_is_a_blocker(snapshot, contract):
     assert cross_validate_documents(schedule, snapshot, contract) == [
         "missing scheduled circuit: C2"
     ]
+
+
+def test_quantity_ledger_preserves_origin_and_status(snapshot, contract):
+    snapshot["segments"] = [
+        {"id": "S1", "circuit_id": "C1", "length_m": 12.5, "status": "MEASURED",
+         "origin": "levantamento local"}
+    ]
+    bundle = artifact_bundle(snapshot, contract)
+    assert "S1" in bundle["quantities.csv"]
+    assert "levantamento local" in bundle["quantities.csv"]
+    assert "MEASURED" in bundle["report.html"]
+    assert "normative conformity" not in bundle["report.html"].lower()
+
+
+def test_quantity_ledger_rejects_unproven_length(snapshot, contract):
+    snapshot["segments"] = [
+        {"id": "S1", "circuit_id": "C1", "length_m": 12.5, "status": "ESTIMATED",
+         "origin": "orçamento preliminar"}
+    ]
+    ledger = artifact_bundle(snapshot, contract)["quantities.csv"]
+    assert "ESTIMATED" in ledger
+    assert "orçamento preliminar" in ledger
+
+
+def test_quantity_ledger_rejects_unknown_circuit(snapshot, contract):
+    snapshot["segments"] = [
+        {"id": "S1", "circuit_id": "UNKNOWN", "length_m": 1, "status": "MEASURED",
+         "origin": "ensaio"}
+    ]
+    with pytest.raises(ArtifactError, match="unknown circuit"):
+        artifact_bundle(snapshot, contract)
+
+
+def test_html_report_escapes_untrusted_origin(snapshot, contract):
+    snapshot["segments"] = [
+        {"id": "S1", "circuit_id": "C1", "length_m": 2, "status": "DOCUMENTED",
+         "origin": "<script>alert(1)</script>"}
+    ]
+    html = artifact_bundle(snapshot, contract)["report.html"]
+    assert "<script>" not in html
+    assert "&lt;script&gt;" in html
+
+
+def test_artifact_bundle_outputs_all_supported_formats(snapshot, contract):
+    bundle = artifact_bundle(snapshot, contract)
+    assert set(bundle) == {"schedule.json", "diagram.svg", "quantities.csv", "report.html"}
+    assert '"revision_id": "R-2"' in bundle["schedule.json"]
+    assert 'viewBox=' in bundle["diagram.svg"]
+    assert bundle["quantities.csv"].startswith("segment_id,circuit_id")
+    assert "CALC-3" in bundle["report.html"]
