@@ -17,8 +17,8 @@ class DistributorAssessment(BaseModel):
 
     distributor_id: str = Field(min_length=2, max_length=80)
     modality: Literal["U", "D", "T"]
-    demand_current_a: float = Field(gt=0)
-    installed_load_kw: float = Field(gt=0)
+    demand_current_a: Decimal = Field(gt=0, strict=False)
+    installed_load_kw: Decimal = Field(gt=0, strict=False)
     has_three_phase_load: bool
     context: ContextoEDP
 

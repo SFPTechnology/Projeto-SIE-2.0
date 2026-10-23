@@ -1,4 +1,5 @@
 """F09 tests assert consultative behavior, isolation, and fail-closed defaults."""
+from decimal import Decimal
 from fastapi.testclient import TestClient
 import pytest
 
@@ -18,8 +19,8 @@ def payload(distributor="EDP_SP", **context_changes):
         **context_changes,
     }
     return {
-        "distributor_id": distributor, "modality": "T", "demand_current_a": 50,
-        "installed_load_kw": 30, "has_three_phase_load": False, "context": context,
+        "distributor_id": distributor, "modality": "T", "demand_current_a": Decimal('50'),
+        "installed_load_kw": Decimal('30'), "has_three_phase_load": False, "context": context,
     }
 
 
@@ -66,10 +67,14 @@ def test_http_routes_expose_source_scope_and_consultative_diagnostic():
     registry = client.get("/api/v1/distribuidoras").json()
     assert registry["selection_requires_context"] is True
     assert len(registry["items"]) == 1
-    response = client.post("/api/v1/distribuidoras/enquadrar", json=payload())
+    api_payload = payload()
+    api_payload['demand_current_a'] = 50
+    api_payload['installed_load_kw'] = 30
+    response = client.post("/api/v1/distribuidoras/enquadrar", json=api_payload)
     assert response.status_code == 200
     assert response.json()["connection_release"] is False
-    assert client.post("/api/v1/distribuidoras/enquadrar", json=payload("OTHER_DSO")).json()["candidate"] is None
+    api_payload['distributor_id'] = 'OTHER_DSO'
+    assert client.post("/api/v1/distribuidoras/enquadrar", json=api_payload).json()["candidate"] is None
 
 
 def test_specialized_extensions_are_optional_and_never_release_calculations():

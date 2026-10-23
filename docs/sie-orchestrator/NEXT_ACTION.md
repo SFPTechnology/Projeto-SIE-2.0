@@ -1,5 +1,7 @@
-# Próxima ação — F09
+# Próxima ação — fechamento F09
 
-F08 DONE. GitHub Actions run 39872564016 concluiu `completed/success` no SHA `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`.
+F08 permanece `DONE` para seus gates de software. A integração F09 com evidências persistidas F06/F07/F08 foi implementada e passou localmente: 1.033 testes da API, seis testes focados de integração e gates AIOX (lint, typecheck, 18 testes e build).
 
-F09 está BLOCKED, com incremento consultivo e extensões opcionais registrados em `docs/implantacao-sie-2-0/F09/RELATORIO_EXECUCAO.md`. Retomar F09 para validar critérios de fornecimento com fontes controladas, integrar evidências atuais de F06/F07/F08 e obter revisão profissional das tabelas e casos aplicáveis. F10 não está liberada. Sem main, merge ou deploy. Fonte canônica: `ORCHESTRATOR_STATE.json`.
+F09 está `VALIDATING` até o CI remoto confirmar o novo commit na branch `feat/f09-concessionarias-especializadas`. Os itens 1 e 2 foram aceitos pelo responsável e as extensões SPDA/FV/VE/ambientes especiais foram excluídas do escopo, sem reabertura. Sem merge em `main`, deploy ou banco de produção.
+
+Após CI verde, registrar F09 `DONE` e liberar desenvolvimento da F10.

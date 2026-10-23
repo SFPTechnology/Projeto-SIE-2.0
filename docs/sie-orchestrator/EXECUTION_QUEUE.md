@@ -51,3 +51,8 @@ F05 DONE. Bloqueio de publicação RESOLVIDO por autorização explícita do usu
 F08 DONE após CI remoto run 39872564016 completed/success no SHA `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`; sem homologação profissional, merge ou deploy. F09 iniciada na branch `feat/f09-concessionarias-especializadas`; estado BLOCKED após incremento consultivo e QA3, pois catálogo e motores normativos especializados completos, integração com evidências F06–F08 e validação humana ainda faltam. Não liberar F10.
 
 CI F09: API/Chromium/AIOX completed/success no SHA 636529e3. Implementação publicada, revisão de engenharia/normas e integração permanecem pendentes; F10 não liberada.
+
+
+### Retomada F09 — 22/10/2026
+
+F09 passou de BLOCKED para VALIDATING após integração persistente de F06/F07/F08, verificação de hashes/recalculo, controle de revisão e obsolescência por mudança de evidência ou edição. Seis testes focados e 1.033 testes API passaram; AIOX lint/typecheck/test/build passou. Itens 1 e 2 aceitos pelo responsável; extensões 09.06–09.09 fora do escopo por decisão do responsável. CI remoto do novo commit ainda necessário antes de F09 DONE/F10 liberada.

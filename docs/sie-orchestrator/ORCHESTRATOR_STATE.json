@@ -322,9 +322,16 @@
       "from": "BLOCKED",
       "to": "BLOCKED",
       "reason": "Código no SHA 636529e3 e documentação de estado no SHA d6a59afe publicados na branch; CI API 39874801224, Chromium 39874801231 e AIOX 39874801250 completed/success. F09 continua bloqueada por critérios profissionais/normativos e integração pendentes."
+    },
+    {
+      "activity": "F09",
+      "at": "2026-10-22",
+      "from": "BLOCKED",
+      "to": "VALIDATING",
+      "reason": "Integração persistida F06–F08 implementada, seis testes focados e 1033 API/AIOX gates locais passaram; itens 1 e 2 aceitos pelo responsável, extensões 09.06–09.09 fora do escopo; CI remoto do novo commit pendente."
     }
   ],
-  "revision": 39,
+  "revision": 40,
   "schema_version": 1,
   "tasks": [
     {
@@ -2090,29 +2097,30 @@
       "impact": 9,
       "risk": 8,
       "requirements_verified": true,
-      "state": "BLOCKED",
+      "state": "VALIDATING",
       "criteria": [
         {
           "id": "AC-09.01",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/implantacao-sie-2-0/F09/FONTES_E_LACUNAS.md",
-            "restructuring/apps/api/sie_api/distributor_engine_f09.py"
+            "docs/implantacao-sie-2-0/F09/QA-02.md",
+            "docs/implantacao-sie-2-0/F09/RELATORIO_EXECUCAO.md"
           ]
         },
         {
           "id": "AC-09.02",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "restructuring/apps/api/sie_api/distributor_engine_f09.py",
-            "restructuring/apps/api/tests/test_distributor_engine_f09.py"
+            "docs/implantacao-sie-2-0/F09/QA-02.md",
+            "restructuring/apps/api/sie_api/distributor_engine_f09.py"
           ]
         },
         {
           "id": "AC-09.03",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/stories/SIE-F09.md"
+            "restructuring/apps/api/sie_api/distributor_persistence_f09.py",
+            "restructuring/apps/api/tests/test_distributor_persistence_f09.py"
           ]
         },
         {
@@ -2120,7 +2128,7 @@
           "passed": true,
           "evidence": [
             "restructuring/apps/api/sie_api/distributor_api_f09.py",
-            "restructuring/apps/api/tests/test_distributor_engine_f09.py"
+            "restructuring/apps/api/tests/test_distributor_persistence_f09.py"
           ]
         },
         {
@@ -2133,40 +2141,38 @@
         },
         {
           "id": "AC-09.06",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "restructuring/apps/api/sie_api/specialized_extensions_f09.py",
             "docs/implantacao-sie-2-0/F09/QA-02.md"
           ]
         },
         {
           "id": "AC-09.07",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/implantacao-sie-2-0/F09/FONTES_E_LACUNAS.md"
+            "docs/implantacao-sie-2-0/F09/QA-02.md"
           ]
         },
         {
           "id": "AC-09.08",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "restructuring/apps/api/sie_api/specialized_extensions_f09.py",
             "docs/implantacao-sie-2-0/F09/QA-02.md"
           ]
         },
         {
           "id": "AC-09.09",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "restructuring/apps/api/sie_api/specialized_extensions_f09.py"
+            "docs/implantacao-sie-2-0/F09/QA-02.md"
           ]
         },
         {
           "id": "AC-09.10",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "restructuring/apps/api/tests/test_distributor_engine_f09.py",
-            "docs/stories/SIE-F09.md"
+            "restructuring/apps/api/tests/test_distributor_persistence_f09.py",
+            "restructuring/apps/api/tests/test_distributor_engine_f09.py"
           ]
         }
       ],
@@ -2175,11 +2181,11 @@
         "docs/stories/SIE-F09.md"
       ],
       "checkpoint": {
-        "qa_01": "APROVADO_RECORTE_SOFTWARE",
-        "qa_02": "PENDENTE_REVISAO_PROFISSIONAL_E_NORMAS",
-        "qa_03": "APROVADO_CONTRATO_API; UX_PENDENTE",
-        "api_tests_passed": 1027,
-        "focused_tests_passed": 38,
+        "qa_01": "APROVADO_INTEGRACAO_LOCAL",
+        "qa_02": "ITENS_1_E_2_ACEITOS_PELO_RESPONSAVEL; SEM_PARECER_PROFISSIONAL_INDEPENDENTE",
+        "qa_03": "APROVADO_API_PERSISTENCIA_PROVENIENCIA",
+        "api_tests_passed": 1033,
+        "focused_tests_passed": 6,
         "aiox_tests_passed": 18,
         "aiox_passed": true,
         "normative_conformity_verified": false,
@@ -2199,9 +2205,12 @@
         "ci_api_passed": true,
         "ci_browser_passed": true,
         "ci_aiox_passed": true,
-        "ci_executed": true,
-        "ci_current_sha_verified": true,
-        "published_docs_sha": "d6a59afe907bb4e6dbcbcef553931f82b5a9af09"
+        "ci_executed": false,
+        "ci_current_sha_verified": false,
+        "published_docs_sha": "d6a59afe907bb4e6dbcbcef553931f82b5a9af09",
+        "latest_local_sha": "PENDING_COMMIT",
+        "local_e2e": "NOT_RUN_PLAYWRIGHT_UNAVAILABLE",
+        "extensions_09_06_to_09_09": "OUT_OF_SCOPE_BY_OWNER_DECISION"
       },
       "publication": {
         "branch": "feat/f09-concessionarias-especializadas",

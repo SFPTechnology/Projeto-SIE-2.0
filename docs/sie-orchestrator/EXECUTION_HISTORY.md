@@ -77,3 +77,8 @@ F08: workflow remoto 39872564016 `completed/success` no SHA `fc5f208bf5ee15911dd
 
 
 F09 CI confirmado: código `636529e389a64787b9a366f72ca0624025104103`; API run 39874801224, Chromium run 39874801231 e AIOX run 39874801250 concluíram completed/success. Estado da fase continua BLOCKED pelos gates explicitados no relatório.
+
+
+## 22/10/2026 — Retomada de F09
+
+Integração F09 vinculada às revisões locais persistidas de F06/F07/F08: consulta exige histórias atuais, hashes e recálculo; enquadramento é persistido com revisão otimista, proveniência e estado stale por alteração da evidência ou do catálogo. Seis testes focados passaram; API 1.033 passed; lint/typecheck/AIOX 18 testes/build passaram; compileall e diff check passaram. E2E não coletado por Playwright ausente, sem mudança visual. Itens 1 e 2 aceitos pelo responsável; extensões do item 3 não implementadas. Estado F09 VALIDATING, à espera de CI remoto no novo SHA.

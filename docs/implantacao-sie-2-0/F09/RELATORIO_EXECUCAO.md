@@ -1,67 +1,65 @@
-# F09 — execução: concessionárias e aplicações especializadas
+# F09 — concessionárias e aplicações especializadas
 
-**Data:** 22/10/2026  
-**Estado:** `BLOCKED` (incremento de software implementado e validado localmente; revisão normativa/profissional e integração de dados ainda pendentes).  
-**Branch:** `feat/f09-concessionarias-especializadas`  
-**Código publicado no commit:** [`636529e389a64787b9a366f72ca0624025104103`](https://github.com/SFPTechnology/Projeto-SIE-2.0/commit/636529e389a64787b9a366f72ca0624025104103)  
-**Base F08:** `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`  
-**CI do código:** API run [39874801224](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39874801224), Chromium run [39874801231](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39874801231) e AIOX run [39874801250](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39874801250) concluíram `completed/success` no commit de código acima. **Main:** preservada. Sem merge, deploy ou alteração de banco real.
+**Data:** 22/10/2026
+**Estado:** `VALIDATING` — integração F06–F08 implementada e validada localmente; aguarda publicação da alteração na branch de trabalho e CI remoto deste SHA.
+**Branch:** `feat/f09-concessionarias-especializadas`
+**Base remota verificada:** `67b1ab497d590dd48a31deeb8381b8b11f0b0db5`
+**F08:** `DONE` para os gates de software no SHA `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`, CI run `39872564016` success.
 
-## Pré-requisito reconciliado
+## Escopo e decisão do responsável
 
-F08 estava marcada `VALIDATING` no relatório por aguardar CI. O estado foi atualizado após consulta ao workflow remoto: run `39872564016`, `completed/success` no SHA `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`. F08 passou a DONE somente para os gates documentados de software; limitações profissionais e normativas F08 permanecem.
+O responsável validou os itens 1 e 2 anteriormente apontados e determinou que as extensões do item 3 não sejam implementadas. Essas decisões foram respeitadas: nenhum item aceito foi reaberto e SPDA, fotovoltaicos/outras fontes, recarga de veículos e ambientes especiais não foram desenvolvidos. As extensões são opcionais e não bloqueiam o núcleo F09 nesta execução. Essa aceitação é uma decisão de escopo do responsável; não é apresentada como auditoria profissional independente nem como autorização da concessionária.
 
-## Implementações e tasks
+## Implementação desta retomada
 
-| Task | Estado | Evidência |
+A rota local autenticada `PUT /api/v1/local/projetos/{project_id}/distribuidoras/enquadrar` integra o enquadramento às revisões locais persistidas:
+
+- F06: exige cenário atual de entrada e deriva corrente de demanda e potência ativa instalada por fonte; não aceita esses valores como entrada livre nesse fluxo.
+- F07: exige o estudo mais recente não obsoleto, confirma o hash de entrada e compara o resultado persistido com recálculo do servidor.
+- F08: exige o estudo mais recente não obsoleto; a rotina histórica verifica vínculo com F07, hash do resultado e recálculo.
+- Proveniência: registra projeto/revisão, fonte, identificadores, hashes de entrada/topologia/resultado de F06–F08, hash do catálogo F09 e estados computacionais F07/F08. Mudança de F06–F08 ou do catálogo F09 torna o resultado obsoleto.
+- Persistência: grava o diagnóstico na revisão local com controle otimista; uma avaliação nova substitui a anterior como avaliação vigente. Alterações posteriores nas evidências de origem tornam o registro anterior obsoleto.
+- Segurança e limites: autenticação local existente, resposta consultiva, sem fallback para outra concessionária; `normative_conformity_verified=false`, `utility_approval=false` e `connection_release=false`.
+- Bloqueio seguro: ausência, divergência, adulteração ou obsolescência de evidência retorna erro explícito e não gera enquadramento.
+
+Rotas de histórico: `GET /api/v1/local/projetos/{project_id}/distribuidoras/enquadramentos`.
+
+## Tasks e gates
+
+| Task | Estado nesta execução | Evidência |
 |---|---|---|
-| 09.01 Catálogo por distribuidora | PARCIAL | `distributor_engine_f09.py`: metadados EDP SP V09, escopo de rede aérea secundária, início e vigência final condicionada, URL e data de consulta. Nenhum segundo padrão cadastrado. Critérios de tabela não foram homologados. |
-| 09.02 Candidato EDP | PARCIAL | Reuso do motor contextual legado, separado de aprovação. Contexto incompatível bloqueia; projeto após 22/10/2026 exige atualizar fonte. Gates obrigatórios permanecem PENDING. |
-| 09.03 Critérios de fornecimento | PENDENTE | Falta cruzamento persistente e demonstrado com demanda F06, condutores F07 e proteções F08. |
-| 09.04 Diagnóstico | IMPLEMENTADO | Endpoint `/api/v1/distribuidoras/enquadrar`, candidato/alertas/gates rastreáveis, sem aceitação prometida. |
-| 09.05 Multi-distribuidora | PARCIAL | Contrato comum; outro ID retorna `PADRAO_NAO_CADASTRADO`, sem reaproveitar EDP. Não há cadastro de outros padrões. |
-| 09.06 SPDA | INTERFACE | Módulo opcional identifica ABNT NBR 5419 Parts 1–4, corrigidas 2026 conforme metadados do catálogo; nenhum motor/critério liberado. |
-| 09.07 FV/outras fontes | INTERFACE | Extensão isolada; inversores, MMGD, UPS e geradores não calculados. Fonte e caso independente pendentes. |
-| 09.08 Recarga VE | INTERFACE | Extensão opcional, metadado ABNT NBR 17019:2022; sem motor. |
-| 09.09 Ambientes especiais | INTERFACE | Contrato opcional separado do núcleo; sem classificador ou cálculo. |
-| 09.10 Limites/versões | PARCIAL | Testados distribuidora ausente, território/rede incompatíveis, carga especial, versão/data posterior à consulta e contratos de extensão sem fallback. Troca real em projeto persistido aguarda integração. |
+| 09.01 Catálogo/escopo de distribuidora | ACEITO PELO RESPONSÁVEL no item 1 | Catálogo candidato EDP SP V09 e escopo registrados; nenhum padrão EDP é reutilizado para outra distribuidora. |
+| 09.02 Motor candidato/contexto | ACEITO PELO RESPONSÁVEL no item 1 | Motor preserva contexto, versão e bloqueios consultivos; edição futura ou contexto incompatível não libera candidato. |
+| 09.03 Integração de fornecimento | IMPLEMENTADO E TESTADO | `distributor_persistence_f09.py`; vínculo a cenário de entrada F06 e estudos atuais F07/F08. |
+| 09.04 Diagnóstico | APROVADO no recorte | Categoria candidata, pendências e proveniência; nenhuma promessa de aprovação. |
+| 09.05 Isolamento entre distribuidoras | APROVADO no recorte | Distribuidora sem catálogo retorna `PADRAO_NAO_CADASTRADO`; sem fallback EDP. |
+| 09.06–09.09 Extensões especializadas | FORA DO ESCOPO POR DECISÃO DO RESPONSÁVEL | SPDA, FV/outras fontes, VE e ambientes especiais não foram implementados e não bloqueiam F09 nesta execução. |
+| 09.10 Limites, versão e obsolescência | APROVADO no recorte | Testes de distribuidora/contexto incompatível, fonte ausente, revisão concorrente, resultado F06 alterado após persistência e edição do catálogo alterada. |
 
-## Arquivos alterados
+## Testes observados nesta retomada
 
-- `restructuring/apps/api/sie_api/{main.py,distributor_api_f09.py,distributor_engine_f09.py,specialized_extensions_f09.py}`
-- `restructuring/apps/api/tests/test_distributor_engine_f09.py`
-- `docs/stories/SIE-F09.md`
-- `docs/implantacao-sie-2-0/F09/{FONTES_E_LACUNAS.md,QA-01.md,QA-02.md,QA-03.md,RELATORIO_EXECUCAO.md}`
-- `docs/sie-orchestrator/{ORCHESTRATOR_STATE.json,EXECUTION_QUEUE.md,NEXT_ACTION.md,PROJECT_STATE.md,EXECUTION_HISTORY.md}`
-- `docs/implantacao-sie-2-0/F08/RELATORIO_EXECUCAO.md` (reconciliação do CI remoto observado)
+- Testes focados da nova integração: **6 passed**.
+- Suíte completa da API: **1.033 passed**, um aviso de depreciação Starlette/httpx.
+- `npm run lint`: PASS.
+- `npm run typecheck`: PASS.
+- `npm test`: **18 passed**.
+- `npm run build`: PASS.
+- `git diff --check`: PASS.
+- E2E navegador não coletado: Playwright não está instalado no ambiente local; nenhuma interface visual foi alterada.
+- CI remoto para o novo SHA: pendente até a publicação na branch F09. CI anterior do código F09 não substitui esta verificação.
 
-## Testes locais observados
+## Revisões QA
 
-- Testes F09 + EDP contextual: **38 passed**.
-- Suíte da API: **1027 passed**, 1 aviso de depreciação Starlette/httpx.
-- `npm run lint`, `npm run typecheck`, `npm test` (**18 passed**), `npm run build`: PASS.
-- CI remoto API, Chromium e AIOX: **3 workflows completed/success** no SHA de código `636529e389a64787b9a366f72ca0624025104103`.
-- `python -m compileall` nos módulos API e `git diff --check`: PASS.
-- Não foi executado teste de navegador para F09: nenhuma interface visual foi adicionada.
-- Dependências instaladas no ambiente de validação local; manifests e lockfiles não foram alterados.
-
-## QA3
-
-| Revisor | Estado | Parecer |
+| Perspectiva | Estado | Conclusão |
 |---|---|---|
-| QA-01 — Arquitetura/código/testes | APROVADO no recorte | Não herda EDP, mantém release falso e exige atualização da fonte para data futura; testes focados e regressão passaram. |
-| QA-02 — Engenharia/normas | PENDENTE | Fontes oficiais identificadas, porém critérios integrais, casos independentes e revisão profissional não estão concluídos. Nada normativo é liberado. |
-| QA-03 — Integração/dados/segurança/UX | APROVADO PARCIAL | API separa distribuidora, fonte, gates e liberação. Persistência, fluxo de troca na UI e vínculos com evidências F06–F08 não foram implementados. |
+| QA-01 — arquitetura/código/testes | APROVADO no recorte | Consulta somente histórico atual, recálculo confere os dados persistidos, entrada incompatível bloqueia e registros anteriores ficam obsoletos. |
+| QA-02 — engenharia/normas | ITENS 1 E 2 ACEITOS PELO RESPONSÁVEL | Decisão de escopo registrada conforme instrução do responsável. Não equivale a parecer assinado por profissional independente. O serviço continua sem liberar conformidade normativa ou conexão. |
+| QA-03 — integração/dados/segurança | APROVADO no recorte da API local | Revisão esperada, autenticação, persistência, proveniência e obsolescência cobertas por testes; UI não integra o escopo. |
 
-São três perspectivas de autocrítica desta LLM; não são três auditores humanos independentes nem uma aprovação de engenharia.
+As três perspectivas de revisão foram feitas pelo mesmo agente e não são três auditorias humanas independentes.
 
-## Gates, riscos e retomada
+## Estado da passagem
 
-- A distribuição atual do catálogo é uma única entrada consultiva EDP SP; não usar em outra área ou rede.
-- O status oficial do PDF continua com vigência final condicionada. A próxima utilização deve consultar novamente a página e confirmar edição/escopo.
-- Falta conferência profissional integral de tabelas, exceções e critérios de medição/conexão.
-- Extensões SPDA, FV, VE e locais especiais são opcionais e não calculam; exigem fontes e casos separados.
-- F06/F07/F08 não são carregadas automaticamente. Até integração, todos os gates do diagnóstico permanecem pendentes.
-- QA-02 está pendente; por isso F09 não é DONE e F10 não está liberada.
+A integração pendente que bloqueava F09 foi implementada e aprovada em testes locais. Os critérios opcionais 09.06–09.09 foram excluídos da passagem por decisão expressa do responsável. O único gate operacional pendente nesta retomada é o CI remoto do novo commit da branch F09. Após CI verde, registrar `F09: DONE` e liberar desenvolvimento de F10, sem merge em `main`, deploy ou alteração de banco real.
 
-**Condição de retomada:** validar fonte e critérios por profissional, integrar referências atuais F06–F08 e projeto persistido, acrescentar casos independentes por limite/edição, executar regressão e revisão final. Não marcar aprovação de concessionária ou conformidade por resultado computacional.
+A liberação de desenvolvimento não representa aprovação de projeto, conformidade normativa de uma instalação ou autorização de conexão pela distribuidora.

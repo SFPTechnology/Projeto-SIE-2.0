@@ -85,3 +85,8 @@ F05 DONE. Bloqueio de publicação RESOLVIDO por autorização explícita do usu
 ## Atualização sequencial — 22/10/2026 — F08/F09
 
 F08 encerrada como DONE após workflow remoto `39872564016` completed/success no SHA `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`. F09 iniciou na branch `feat/f09-concessionarias-especializadas`: diagnóstico consultivo, isolamento multi-distribuidora, contratos opcionais de especialidades e testes implementados. Fase bloqueada por validação normativa/profissional e integração verificável às evidências F06–F08. `F10_EXECUTAR.md` não liberado. Ver relatório F09.
+
+
+## Retomada F09 — 22/10/2026
+
+F09 em VALIDATING na branch `feat/f09-concessionarias-especializadas`: rota local autenticada integra demanda F06, condutores F07 e proteções F08 por IDs/hashes, revalida resultados e persiste diagnóstico consultivo com invalidação por mudança de evidência/edição. 1.033 API, seis testes F09 focados e AIOX completos passaram localmente. Itens 1 e 2 aceitos pelo responsável; extensões 09.06–09.09 excluídas por decisão explícita. CI do novo commit pendente; F10 ainda não liberada. Sem main/merge/deploy.

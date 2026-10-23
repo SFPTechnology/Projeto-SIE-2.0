@@ -1,38 +1,40 @@
 # Story SIE-F09 — Concessionárias e aplicações especializadas
 
-**Estado:** IMPLEMENTED_PARTIAL / VALIDATING  
-**Branch:** `feat/f09-concessionarias-especializadas`  
-**Escopo:** diagnóstico consultivo por padrão de distribuidora e contratos opcionais para extensões; não libera projeto ou conexão.
+**Estado:** VALIDATING (integração implementada; CI remoto desta retomada pendente)
+**Branch:** `feat/f09-concessionarias-especializadas`
+**Objetivo:** produzir diagnóstico consultivo por distribuidora, vinculado a evidências correntes do projeto, sem aprovar conexão ou conformidade.
 
-## Entrega desta iteração
+## Decisões do responsável
 
-- API de catálogo e enquadramento consultivo em `/api/v1/distribuidoras` e `/api/v1/distribuidoras/enquadrar`.
-- A única entrada cadastrada é EDP São Paulo, documento `PT.DT.PDN.00068`, edição 09, recorte de rede aérea secundária. A referência à edição foi conferida no portal oficial em 22/10/2026. Vigência final continua condicionada.
-- O motor EDP anterior é reutilizado apenas como gerador de categoria candidata. O retorno inclui escopo da fonte, gates pendentes, alertas, data da última consulta e `connection_release=false`.
-- Distribuidora desconhecida não herda valores EDP. Data do projeto posterior à consulta oficial impede sugestão até atualizar o catálogo.
-- Extensões opcionais SPDA, fotovoltaica, recarga de veículos e ambientes especiais têm contratos próprios e não estão vinculadas como pré-requisito do núcleo. Sem motor e conjunto de critérios completos, retornam pendência e `release=false`.
-- SPDA identifica a série ABNT NBR 5419 (Partes 1–4, versões corrigidas 2026 listadas no Catálogo ABNT); VE identifica ABNT NBR 17019:2022 como metadado de catálogo. Nenhuma delas foi convertida em regra de cálculo.
+- Itens 1 e 2 previamente apontados pelo executor foram aceitos pelo responsável; não reabrir sua validação nesta execução.
+- As extensões SPDA, FV/outras fontes, VE e ambientes especiais do item 3 foram excluídas e não são gate de F09.
+- Preservar `main`; sem merge, deploy ou alteração de banco real.
 
-## Critérios e limites
+## Critérios de aceite
 
-| Task | Estado | Evidência / limite |
-|---|---|---|
-| 09.01 Catálogo por distribuidora | PARCIAL | `distributor_engine_f09.py`; apenas EDP SP identificada. Outros cadastros dependem de fonte, área, edição e vigência próprias. Critérios V09 continuam pendentes de revisão profissional e de catálogo completo. |
-| 09.02 Motor candidato EDP | PARCIAL | Reusa `enquadrar_com_contexto`; gates de território, edição, fornecimento, demanda/medição, ramal, proteção e processo da distribuidora ficam PENDING. Sem liberação de conexão. |
-| 09.03 Fornecimento | PENDENTE | API não integra automaticamente as evidências estruturadas F06/F07/F08; exige conferência cruzada no caso real. |
-| 09.04 Diagnóstico consultivo | IMPLEMENTADO | API distingue sugestão, bloqueio e padrão não cadastrado; sem promessa de aceitação. |
-| 09.05 Interface multi-distribuidora | IMPLEMENTADO PARCIAL | Contrato comum e registro isolado; somente adaptador candidato EDP disponível. |
-| 09.06 SPDA | INTERFACE / MOTOR PENDENTE | Extensão opcional separada. Catálogo ABNT lista NBR 5419-1 a -4 corrigidas em 2026; critérios integrais, análise de risco e casos não foram validados. |
-| 09.07 FV e outras fontes | INTERFACE / MOTOR PENDENTE | Não calculado. Inversores, proteções, conexão, UPS e geradores exigem catálogo técnico e caso independente. |
-| 09.08 Recarga de veículos | INTERFACE / MOTOR PENDENTE | Extensão opcional; ABNT NBR 17019:2022 registrada apenas como metadado do catálogo. |
-| 09.09 Ambientes especiais | INTERFACE / MOTOR PENDENTE | Isolado do núcleo; sem classificador nem regra habilitada. |
-| 09.10 Limites/versões | PARCIAL | Testes cobrem distribuidora desconhecida, território incompatível, carga especial, data posterior à última consulta e preservação do estado bloqueado. Integração real de mudança de concessionária/edição aguarda persistência de projeto. |
+- [x] Catálogo candidato EDP mantém identificador, edição, escopo e fonte; não há herança para outra distribuidora.
+- [x] Diagnóstico consultivo preserva bloqueios e nunca significa aprovação da concessionária.
+- [x] Enquadramento local usa corrente e potência instalada derivadas de cenário de entrada F06 persistido.
+- [x] Exige último F07 e F08 atuais e compara resultados/hash com seus registros de origem.
+- [x] Grava proveniência de projeto, revisão, fonte, entradas e resultados F06–F08.
+- [x] Evidências alteradas, ausentes, incompatíveis ou revisão concorrente bloqueiam ou tornam resultado obsoleto.
+- [x] Extensões do item 3 não implementadas por decisão do responsável; não bloqueiam o núcleo F09.
+- [x] QA local, API e AIOX gates executados; pareceres registrados.
+- [ ] CI remoto do novo commit F09 concluído com sucesso.
 
-## Verificação local
+## Implementação desta retomada
 
-- F09 + regressão EDP contextual: **38 passed**.
-- Suíte completa da API: **1027 passed** (inclui testes de replay dourado; 1 aviso Starlette/httpx).
-- `npm run lint`, `npm run typecheck`, `npm test` (18 testes), `npm run build`, `compileall` e `git diff --check`: PASS.
-- Dependências instaladas somente no ambiente local de validação. Nenhum manifesto ou lockfile alterado.
+- `restructuring/apps/api/sie_api/distributor_persistence_f09.py`: leitura validada das histórias F06–F08, derivação dos valores, hashes e invalidação.
+- `restructuring/apps/api/sie_api/distributor_api_f09.py`: rotas locais autenticadas para criar e consultar histórico de enquadramentos.
+- `restructuring/apps/api/tests/test_distributor_persistence_f09.py`: casos de integração, ausência, incompatibilidade, revisão, autorização e obsolescência.
 
-Os resultados acima verificam software e estados de bloqueio. Não verificam conformidade normativa, instalação física, versão em qualquer data futura ou aprovação da distribuidora.
+## Testes
+
+- 5 testes focados de integração F09: PASS.
+- Suíte API: 1033 passed.
+- `npm run lint`, `npm run typecheck`, `npm test` (18) e `npm run build`: PASS.
+- CI remoto desta alteração: pendente.
+
+## Limites
+
+As flags `normative_conformity_verified`, `utility_approval` e `connection_release` permanecem falsas. O aceite dos itens 1 e 2 é decisão do responsável, não assinatura profissional independente. A API não prova a situação física da instalação nem aprovação de conexão.
