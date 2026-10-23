@@ -134,3 +134,49 @@ def test_artifact_bundle_outputs_all_supported_formats(snapshot, contract):
     assert 'viewBox=' in bundle["diagram.svg"]
     assert bundle["quantities.csv"].startswith("segment_id,circuit_id")
     assert "CALC-3" in bundle["report.html"]
+
+
+def test_plant_overlay_requires_declared_revision_scale_and_element_ids(snapshot, contract):
+    snapshot["floor_plan"] = {
+        "id": "FP-1", "revision_id": "R-2", "source_ref": "authorized:plant-01",
+        "units": "m", "width": 10, "height": 8, "model_units_per_canvas_unit": 1,
+        "placements": [{"element_id": "QD1", "x": 2, "y": 3, "label": "QD1"}],
+    }
+    bundle = artifact_bundle(snapshot, contract)
+    plant = bundle["floor_plan.svg"]
+    assert "authorized:plant-01" in plant
+    assert 'cx="2" cy="3"' in plant
+    assert "floor_plan.svg" in bundle
+
+
+def test_plant_overlay_blocks_scale_or_revision_mismatch(snapshot, contract):
+    snapshot["floor_plan"] = {
+        "id": "FP-1", "revision_id": "OLD", "source_ref": "authorized:plant-01",
+        "units": "m", "width": 10, "height": 8, "model_units_per_canvas_unit": 0,
+        "placements": [],
+    }
+    with pytest.raises(ArtifactError, match="revision mismatch"):
+        artifact_bundle(snapshot, contract)
+    snapshot["floor_plan"]["revision_id"] = "R-2"
+    with pytest.raises(ArtifactError, match="positive"):
+        artifact_bundle(snapshot, contract)
+
+
+def test_plant_overlay_blocks_placement_outside_canvas(snapshot, contract):
+    snapshot["floor_plan"] = {
+        "id": "FP-1", "revision_id": "R-2", "source_ref": "authorized:plant-01",
+        "units": "m", "width": 10, "height": 8, "model_units_per_canvas_unit": 1,
+        "placements": [{"element_id": "QD1", "x": 11, "y": 3}],
+    }
+    with pytest.raises(ArtifactError, match="outside plan bounds"):
+        artifact_bundle(snapshot, contract)
+
+
+def test_plant_overlay_blocks_unmapped_element(snapshot, contract):
+    snapshot["floor_plan"] = {
+        "id": "FP-1", "revision_id": "R-2", "source_ref": "authorized:plant-01",
+        "units": "m", "width": 10, "height": 8, "model_units_per_canvas_unit": 1,
+        "placements": [{"element_id": "UNKNOWN", "x": 2, "y": 3}],
+    }
+    with pytest.raises(ArtifactError, match="unknown element"):
+        artifact_bundle(snapshot, contract)
