@@ -72,7 +72,7 @@ def test_snapshot_rejects_nonfinite_or_negative_load(snapshot, contract):
 
 
 def test_svg_escapes_untrusted_labels(snapshot, contract):
-    snapshot["elements"][0]["id"] = "<script>"
+    snapshot["circuits"][0]["id"] = "<script>"
     svg = render_single_line_svg(snapshot, contract)
     assert "<script>" not in svg
     assert "&lt;script&gt;" in svg
