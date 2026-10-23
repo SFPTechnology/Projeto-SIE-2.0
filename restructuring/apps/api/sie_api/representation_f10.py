@@ -267,12 +267,15 @@ def artifact_bundle(snapshot: dict[str, Any], contract: ArtifactContract) -> dic
     ])
     writer.writeheader()
     writer.writerows(quantities)
-    return {
+    bundle = {
         "schedule.json": json.dumps(schedule, ensure_ascii=False, allow_nan=False, sort_keys=True, indent=2) + "\n",
         "diagram.svg": svg,
         "quantities.csv": csv_out.getvalue(),
         "report.html": render_report_html(schedule, svg, quantities),
     }
+    if "floor_plan" in snapshot:
+        bundle["floor_plan.svg"] = render_plant_svg(snapshot, contract)
+    return bundle
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -310,3 +313,52 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+def render_plant_svg(snapshot: dict[str, Any], contract: ArtifactContract) -> str:
+    """Render an explicitly scaled 2D placement map; it does not derive routes."""
+    _check_contract(snapshot, contract)
+    plan = snapshot.get("floor_plan")
+    if not isinstance(plan, dict):
+        raise ArtifactError("floor_plan is required")
+    for key in ("id", "revision_id", "source_ref", "units"):
+        if not isinstance(plan.get(key), str) or not plan[key].strip():
+            raise ArtifactError(f"floor_plan.{key} is required")
+    if plan["revision_id"] != contract.revision_id:
+        raise ArtifactError("floor plan revision mismatch")
+    width = _finite_number(plan.get("width"), "floor_plan.width")
+    height = _finite_number(plan.get("height"), "floor_plan.height")
+    scale = _finite_number(plan.get("model_units_per_canvas_unit"), "floor_plan.scale")
+    if width <= 0 or height <= 0 or scale <= 0:
+        raise ArtifactError("floor plan dimensions and scale must be positive")
+    placements = plan.get("placements")
+    if not isinstance(placements, list):
+        raise ArtifactError("floor_plan.placements must be a list")
+    known = {e["id"] for e in snapshot["elements"]}
+    used: set[str] = set()
+    output = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="plant-title plant-desc" viewBox="0 0 {width:g} {height:g}">',
+        f'<title id="plant-title">Planta {escape(plan["id"])} · revisão {escape(plan["revision_id"])}</title>',
+        f'<desc id="plant-desc">Origem {escape(plan["source_ref"])}; unidade {escape(plan["units"])}; escala informada {scale:g} unidades do modelo por unidade gráfica. Rotas não inferidas.</desc>',
+        '<rect width="100%" height="100%" fill="#fff"/>',
+    ]
+    for placement in placements:
+        if not isinstance(placement, dict):
+            raise ArtifactError("each placement must be an object")
+        element_id = placement.get("element_id")
+        if element_id not in known:
+            raise ArtifactError(f"placement references unknown element: {element_id}")
+        if element_id in used:
+            raise ArtifactError(f"duplicate placement for element: {element_id}")
+        used.add(element_id)
+        x = _finite_number(placement.get("x"), f"placement {element_id} x")
+        y = _finite_number(placement.get("y"), f"placement {element_id} y")
+        if not 0 <= x <= width or not 0 <= y <= height:
+            raise ArtifactError(f"placement outside plan bounds: {element_id}")
+        label = escape(str(placement.get("label", element_id)))
+        output += [
+            f'<g aria-label="{label}"><circle cx="{x:g}" cy="{y:g}" r="7" fill="#155eef"/>',
+            f'<text x="{x + 10:g}" y="{y - 10:g}" font-family="sans-serif" font-size="12">{label}</text></g>',
+        ]
+    return "".join(output + ["</svg>"])
+
+
