@@ -256,17 +256,26 @@ def artifact_bundle(snapshot: dict[str, Any], contract: ArtifactContract) -> dic
     import json
 
     schedule = load_schedule(snapshot, contract)
-    svg = render_single_line_svg(snapshot, contract)
+    contract_data = {key: getattr(contract, key) for key in
+                     ("project_id", "revision_id", "calculation_run_id", "rule_version", "template_version")}
+    def embed_metadata(svg: str) -> str:
+        metadata = escape(json.dumps(contract_data, ensure_ascii=False, sort_keys=True))
+        return svg.replace(">", f"><metadata>{metadata}</metadata>", 1)
+
+    svg = embed_metadata(render_single_line_svg(snapshot, contract))
     quantities = quantity_ledger(snapshot, contract)
     errors = cross_validate_documents(schedule, snapshot, contract)
     if errors:
         raise ArtifactError("cross-validation blocked export: " + "; ".join(errors))
     csv_out = io.StringIO(newline="")
-    writer = csv.DictWriter(csv_out, fieldnames=[
-        "segment_id", "circuit_id", "conductor_id", "length_m", "status", "origin"
-    ])
+    contract_fields = ("project_id", "revision_id", "calculation_run_id", "rule_version", "template_version")
+    quantity_fields = ("segment_id", "circuit_id", "conductor_id", "length_m", "status", "origin")
+    fields = ("row_type", *contract_fields, *quantity_fields)
+    writer = csv.DictWriter(csv_out, fieldnames=fields)
     writer.writeheader()
-    writer.writerows(quantities)
+    writer.writerow({"row_type": "contract", **contract_data})
+    for quantity in quantities:
+        writer.writerow({"row_type": "quantity", **contract_data, **quantity})
     bundle = {
         "schedule.json": json.dumps(schedule, ensure_ascii=False, allow_nan=False, sort_keys=True, indent=2) + "\n",
         "diagram.svg": svg,
@@ -274,7 +283,7 @@ def artifact_bundle(snapshot: dict[str, Any], contract: ArtifactContract) -> dic
         "report.html": render_report_html(schedule, svg, quantities),
     }
     if "floor_plan" in snapshot:
-        bundle["floor_plan.svg"] = render_plant_svg(snapshot, contract)
+        bundle["floor_plan.svg"] = embed_metadata(render_plant_svg(snapshot, contract))
     return bundle
 
 
