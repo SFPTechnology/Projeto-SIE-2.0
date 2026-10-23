@@ -127,6 +127,13 @@ def validate(document: dict) -> None:
                 and item.get("acceptance_basis") == "OWNER_ACCEPTANCE_FOR_DEVELOPMENT"
                 and "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json" in item["evidence"]
             )
+            or (
+                key == "F09"
+                and item["id"] in {"AC-09.06", "AC-09.07", "AC-09.08", "AC-09.09"}
+                and item["passed"] is False
+                and task.get("checkpoint", {}).get("extensions_09_06_to_09_09") == "OUT_OF_SCOPE_BY_OWNER_DECISION"
+                and "docs/implantacao-sie-2-0/F09/QA-02.md" in item["evidence"]
+            )
             for item in task["criteria"]
         ):
             raise WorkflowInvalido(f"DONE sem evidencia para todos os criterios: {key}")
