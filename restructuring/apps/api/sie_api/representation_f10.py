@@ -167,3 +167,146 @@ def cross_validate_documents(schedule: dict[str, Any], diagram_snapshot: dict[st
             errors.append(str(exc))
     errors.extend(f"missing scheduled circuit: {cid}" for cid in sorted(set(expected) - seen))
     return errors
+
+
+def quantity_ledger(snapshot: dict[str, Any], contract: ArtifactContract) -> list[dict[str, Any]]:
+    """Summarize only explicit segment lengths, retaining measurement provenance."""
+    _check_contract(snapshot, contract)
+    circuits = {c["id"]: c for c in snapshot["circuits"]}
+    segments = snapshot.get("segments", [])
+    if not isinstance(segments, list):
+        raise ArtifactError("segments must be a list")
+    seen: set[str] = set()
+    ledger = []
+    for segment in segments:
+        if not isinstance(segment, dict):
+            raise ArtifactError("each segment must be an object")
+        sid = segment.get("id")
+        if not isinstance(sid, str) or not sid.strip() or sid in seen:
+            raise ArtifactError(f"segment id missing or duplicated: {sid}")
+        seen.add(sid)
+        circuit_id = segment.get("circuit_id")
+        if circuit_id not in circuits:
+            raise ArtifactError(f"segment {sid} references unknown circuit")
+        length = _finite_number(segment.get("length_m"), f"segment {sid} length_m")
+        if length < 0:
+            raise ArtifactError(f"segment {sid} length_m cannot be negative")
+        status = segment.get("status")
+        if status not in {"MEASURED", "DOCUMENTED", "ESTIMATED"}:
+            raise ArtifactError(f"segment {sid} requires a measurement status")
+        origin = segment.get("origin")
+        if not isinstance(origin, str) or not origin.strip():
+            raise ArtifactError(f"segment {sid} requires origin evidence")
+        conductor_id = segment.get("conductor_id", circuits[circuit_id]["conductor_id"])
+        if conductor_id != circuits[circuit_id]["conductor_id"]:
+            raise ArtifactError(f"segment {sid} conductor differs from its circuit")
+        ledger.append({
+            "segment_id": sid,
+            "circuit_id": circuit_id,
+            "conductor_id": conductor_id,
+            "length_m": length,
+            "status": status,
+            "origin": origin.strip(),
+        })
+    return ledger
+
+
+def render_report_html(schedule: dict[str, Any], diagram_svg: str,
+                       quantities: list[dict[str, Any]]) -> str:
+    """Build a printable study report; all caller-controlled text is escaped."""
+    headers = ("Circuito", "Quadro", "Carga (VA)", "Fase", "Disjuntor", "Condutor")
+    head = "".join(f"<th scope='col'>{escape(h)}</th>" for h in headers)
+    rows = []
+    for row in schedule["rows"]:
+        cells = (row["circuit_id"], row["panel_id"], str(row["load_va"]),
+                 row["phase"], row["breaker_id"], row["conductor_id"])
+        rows.append("<tr>" + "".join(f"<td>{escape(str(v))}</td>" for v in cells) + "</tr>")
+    quantity_rows = "".join(
+        "<tr>" + "".join(f"<td>{escape(str(row[k]))}</td>" for k in
+                         ("segment_id", "circuit_id", "conductor_id", "length_m", "status", "origin")) + "</tr>"
+        for row in quantities
+    )
+    contract = "".join(
+        f"<dt>{escape(key)}</dt><dd>{escape(str(schedule[key]))}</dd>"
+        for key in ("project_id", "revision_id", "calculation_run_id", "rule_version", "template_version")
+    )
+    return (
+        "<!doctype html><html lang='pt-BR'><meta charset='utf-8'>"
+        "<meta name='viewport' content='width=device-width, initial-scale=1'>"
+        "<title>Relatório técnico do estudo elétrico</title>"
+        "<style>body{font:16px system-ui;max-width:1100px;margin:2rem auto;padding:0 1rem;color:#172033}"
+        "table{border-collapse:collapse;width:100%;margin:1rem 0}th,td{border:1px solid #94a3b8;padding:.45rem;text-align:left}"
+        "svg{width:100%;height:auto}.notice{padding:1rem;background:#fff4cc}</style>"
+        "<main><h1>Relatório técnico — estudo</h1>"
+        "<p class='notice'>Estudo computacional. Não constitui aprovação normativa, profissional ou de concessionária.</p>"
+        f"<h2>Identificação e rastreabilidade</h2><dl>{contract}</dl>"
+        f"<h2>Diagrama unifilar</h2>{diagram_svg}"
+        f"<h2>Quadro de cargas</h2><table><thead><tr>{head}</tr></thead><tbody>{''.join(rows)}</tbody></table>"
+        "<h2>Trechos e quantitativos rastreáveis</h2>"
+        "<p>Somente trechos explicitamente informados são listados; ausência não é estimada.</p>"
+        "<table><thead><tr><th>Trecho</th><th>Circuito</th><th>Condutor</th><th>Comprimento (m)</th><th>Estado</th><th>Origem</th></tr></thead>"
+        f"<tbody>{quantity_rows}</tbody></table></main></html>"
+    )
+
+
+def artifact_bundle(snapshot: dict[str, Any], contract: ArtifactContract) -> dict[str, str]:
+    """Generate reproducible CSV/JSON/SVG/HTML artifacts without overwriting files."""
+    import csv
+    import io
+    import json
+
+    schedule = load_schedule(snapshot, contract)
+    svg = render_single_line_svg(snapshot, contract)
+    quantities = quantity_ledger(snapshot, contract)
+    errors = cross_validate_documents(schedule, snapshot, contract)
+    if errors:
+        raise ArtifactError("cross-validation blocked export: " + "; ".join(errors))
+    csv_out = io.StringIO(newline="")
+    writer = csv.DictWriter(csv_out, fieldnames=[
+        "segment_id", "circuit_id", "conductor_id", "length_m", "status", "origin"
+    ])
+    writer.writeheader()
+    writer.writerows(quantities)
+    return {
+        "schedule.json": json.dumps(schedule, ensure_ascii=False, allow_nan=False, sort_keys=True, indent=2) + "\n",
+        "diagram.svg": svg,
+        "quantities.csv": csv_out.getvalue(),
+        "report.html": render_report_html(schedule, svg, quantities),
+    }
+
+
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+    import json
+    from pathlib import Path
+
+    parser = argparse.ArgumentParser(description="Generate revision-bound SIE study artifacts.")
+    parser.add_argument("--input", required=True, help="JSON object with snapshot and artifact_contract.")
+    parser.add_argument("--output-dir", required=True, help="New directory; existing paths are not overwritten.")
+    args = parser.parse_args(argv)
+    source = json.loads(Path(args.input).read_text(encoding="utf-8-sig"))
+    if not isinstance(source, dict) or not isinstance(source.get("snapshot"), dict):
+        parser.error("input must contain an object snapshot")
+    raw_contract = source.get("artifact_contract")
+    if not isinstance(raw_contract, dict):
+        parser.error("input must contain artifact_contract")
+    contract = ArtifactContract(**raw_contract)
+    bundle = artifact_bundle(source["snapshot"], contract)
+    destination = Path(args.output_dir)
+    destination.mkdir(parents=True, exist_ok=False)
+    try:
+        for name, content in bundle.items():
+            with (destination / name).open("x", encoding="utf-8", newline="") as output:
+                output.write(content)
+    except BaseException:
+        for item in destination.iterdir():
+            item.unlink()
+        destination.rmdir()
+        raise
+    print(json.dumps({"files": sorted(bundle), "status": "study",
+                      "normative_conformity_verified": False}, ensure_ascii=False))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
