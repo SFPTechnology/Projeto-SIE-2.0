@@ -1,6 +1,6 @@
 # Story SIE-F09 — Concessionárias e aplicações especializadas
 
-**Estado:** VALIDATING (integração implementada; CI remoto desta retomada pendente)
+**Estado:** DONE (integração essencial implementada; CI remoto aprovado)
 **Branch:** `feat/f09-concessionarias-especializadas`
 **Objetivo:** produzir diagnóstico consultivo por distribuidora, vinculado a evidências correntes do projeto, sem aprovar conexão ou conformidade.
 
@@ -20,7 +20,7 @@
 - [x] Evidências alteradas, ausentes, incompatíveis ou revisão concorrente bloqueiam ou tornam resultado obsoleto.
 - [x] Extensões do item 3 não implementadas por decisão do responsável; não bloqueiam o núcleo F09.
 - [x] QA local, API e AIOX gates executados; pareceres registrados.
-- [ ] CI remoto do novo commit F09 concluído com sucesso.
+- [x] CI remoto do commit `59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6` concluído: API, Chromium e AIOX PASS.
 
 ## Implementação desta retomada
 
@@ -30,10 +30,10 @@
 
 ## Testes
 
-- 5 testes focados de integração F09: PASS.
+- 6 testes focados de integração F09: PASS.
 - Suíte API: 1033 passed.
 - `npm run lint`, `npm run typecheck`, `npm test` (18) e `npm run build`: PASS.
-- CI remoto desta alteração: pendente.
+- CI remoto: API run 39880107120, Chromium run 39880107058 e AIOX run 39880107092: PASS.
 
 ## Limites
 

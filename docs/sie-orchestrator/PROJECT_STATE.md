@@ -67,6 +67,9 @@ O JSON canônico recebeu apenas a atividade F00; as 12 tarefas anteriores e seus
 
 ## Próxima atividade
 
+### Atualização sequencial — 23/10/2026 — F09 DONE
+F09 DONE no escopo essencial após integração F06–F08, 1.033 testes API, seis testes focados, AIOX local e CI remoto verde no SHA `59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6` (API 39880107120, Chromium 39880107058, AIOX 39880107092). F10 liberada para desenvolvimento; próximo `F10_EXECUTAR.md`. Itens 1 e 2 aceitos; extensões do item 3 fora do escopo. QA feito pelo mesmo agente é autocrítica estruturada, sem auditoria humana independente. Sem merge/main/deploy/banco de produção.
+
 **NOR-01/SIE-AUTO-003**: validar fontes normativas primárias e casos técnicos; documento inicial `NORMATIVE-SOURCES-RECOVERY.md`. Sem fontes confirmadas e auditoria, bloqueios permanecem. A SIE-AUTO-006 necessita decisão/autorização sobre ambiente e identidade de produção; demais tarefas dependem desses gates.
 
 

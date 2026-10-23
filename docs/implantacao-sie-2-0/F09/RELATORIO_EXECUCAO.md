@@ -1,9 +1,9 @@
 # F09 — concessionárias e aplicações especializadas
 
-**Data:** 22/10/2026
-**Estado:** `VALIDATING` — integração F06–F08 implementada e validada localmente; aguarda publicação da alteração na branch de trabalho e CI remoto deste SHA.
+**Data:** 23/10/2026
+**Estado:** `DONE` — integração essencial F06–F08 implementada, validada localmente e aprovada pelos três workflows remotos do SHA de código `59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6`.
 **Branch:** `feat/f09-concessionarias-especializadas`
-**Base remota verificada:** `67b1ab497d590dd48a31deeb8381b8b11f0b0db5`
+**Commit de código publicado:** `59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6` (derivado de `67b1ab497d590dd48a31deeb8381b8b11f0b0db5`)
 **F08:** `DONE` para os gates de software no SHA `fc5f208bf5ee15911dd9bf78505339a97fd6d69b`, CI run `39872564016` success.
 
 ## Escopo e decisão do responsável
@@ -46,20 +46,20 @@ Rotas de histórico: `GET /api/v1/local/projetos/{project_id}/distribuidoras/enq
 - `npm run build`: PASS.
 - `git diff --check`: PASS.
 - E2E navegador não coletado: Playwright não está instalado no ambiente local; nenhuma interface visual foi alterada.
-- CI remoto para o novo SHA: pendente até a publicação na branch F09. CI anterior do código F09 não substitui esta verificação.
+- CI remoto no SHA `59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6`: API run `39880107120` PASS; Chromium run `39880107058` PASS; AIOX run `39880107092` PASS.
 
 ## Revisões QA
 
 | Perspectiva | Estado | Conclusão |
 |---|---|---|
-| QA-01 — arquitetura/código/testes | APROVADO no recorte | Consulta somente histórico atual, recálculo confere os dados persistidos, entrada incompatível bloqueia e registros anteriores ficam obsoletos. |
+| QA-01 — arquitetura/código/testes | APROVADO | Consulta somente histórico atual, recálculo confere os dados persistidos, entrada incompatível bloqueia e registros anteriores ficam obsoletos. Testes e CI remoto passaram. |
 | QA-02 — engenharia/normas | ITENS 1 E 2 ACEITOS PELO RESPONSÁVEL | Decisão de escopo registrada conforme instrução do responsável. Não equivale a parecer assinado por profissional independente. O serviço continua sem liberar conformidade normativa ou conexão. |
-| QA-03 — integração/dados/segurança | APROVADO no recorte da API local | Revisão esperada, autenticação, persistência, proveniência e obsolescência cobertas por testes; UI não integra o escopo. |
+| QA-03 — integração/dados/segurança | APROVADO no recorte da API local | Revisão esperada, autenticação, persistência, proveniência, obsolescência e CI cobertos; UI não integra o escopo. |
 
-As três perspectivas de revisão foram feitas pelo mesmo agente e não são três auditorias humanas independentes.
+As três perspectivas de revisão foram feitas pelo mesmo agente e constituem autocrítica estruturada, não auditoria humana independente.
 
 ## Estado da passagem
 
-A integração pendente que bloqueava F09 foi implementada e aprovada em testes locais. Os critérios opcionais 09.06–09.09 foram excluídos da passagem por decisão expressa do responsável. O único gate operacional pendente nesta retomada é o CI remoto do novo commit da branch F09. Após CI verde, registrar `F09: DONE` e liberar desenvolvimento de F10, sem merge em `main`, deploy ou alteração de banco real.
+A integração essencial pendente foi implementada e aprovada nos testes locais e nos três workflows de CI do SHA publicado. Os critérios opcionais 09.06–09.09 foram excluídos da passagem por decisão expressa do responsável. F09 está `DONE` no escopo essencial e o desenvolvimento de F10 está liberado segundo os gates do projeto. Nenhum merge em `main`, deploy ou alteração de banco real foi realizado.
 
 A liberação de desenvolvimento não representa aprovação de projeto, conformidade normativa de uma instalação ou autorização de conexão pela distribuidora.

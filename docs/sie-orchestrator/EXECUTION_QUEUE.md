@@ -52,6 +52,9 @@ F08 DONE após CI remoto run 39872564016 completed/success no SHA `fc5f208bf5ee1
 
 CI F09: API/Chromium/AIOX completed/success no SHA 636529e3. Implementação publicada, revisão de engenharia/normas e integração permanecem pendentes; F10 não liberada.
 
+### Encerramento F09 — 23/10/2026 — estado vigente
+F09 DONE no escopo essencial: integração persistida de F06/F07/F08, recálculo/hash/proveniência, bloqueio fail-closed e obsolescência por mudança de evidência/edição. API local 1.033/1.033, focados 6/6; lint, typecheck, testes AIOX (18) e build passaram. CI no SHA `59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6`: API 39880107120, Chromium 39880107058 e AIOX 39880107092, todos success. Itens 1 e 2 aceitos pelo responsável; extensões 09.06–09.09 fora do escopo e não bloqueadoras. F10 liberada, próximo artefato F10_EXECUTAR.md. QA é autocrítica estruturada pelo mesmo agente, não auditoria humana independente. Sem merge/main/deploy/produção.
+
 
 ### Retomada F09 — 22/10/2026
 

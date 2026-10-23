@@ -2,6 +2,13 @@
   "description": "Estado declarativo da fila do SIE; CI verifica integridade, nao comprova automaticidade nem normas. NOR-01 exige SIE-AUTO-003 concluida; dependencia documental reconciliada no grafo.",
   "history": [
     {
+      "activity": "F09",
+      "at": "2026-10-23T00:00:00Z",
+      "from": "VALIDATING",
+      "reason": "Integração essencial F06-F08 implementada; 1033 testes API, 6 focados, AIOX local e CI remoto API 39880107120, Chromium 39880107058, AIOX 39880107092 aprovados no SHA 59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6. Itens 1 e 2 aceitos pelo responsável; extensões item 3 fora de escopo. F10 liberada; sem merge/main/deploy/prod.",
+      "to": "DONE"
+    },
+    {
       "activity": "SIE-AUTO-011",
       "at": "2026-10-14T13:50:46.247Z",
       "from": "RUNNING",
@@ -331,7 +338,7 @@
       "reason": "Integração persistida F06–F08 implementada, seis testes focados e 1033 API/AIOX gates locais passaram; itens 1 e 2 aceitos pelo responsável, extensões 09.06–09.09 fora do escopo; CI remoto do novo commit pendente."
     }
   ],
-  "revision": 40,
+  "revision": 41,
   "schema_version": 1,
   "tasks": [
     {
@@ -823,7 +830,7 @@
       "criteria": [
         {
           "id": "AC-01.01",
-          "passed": true,
+          "passed": false,
           "evidence": [
             "docs/implantacao-sie-2-0/F01/MATRIZ_REQUISITOS_APLICABILIDADE.md",
             "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
@@ -833,7 +840,7 @@
         },
         {
           "id": "AC-01.02",
-          "passed": true,
+          "passed": false,
           "evidence": [
             "docs/implantacao-sie-2-0/F01/MATRIZ_REQUISITOS_APLICABILIDADE.csv",
             "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
@@ -843,7 +850,7 @@
         },
         {
           "id": "AC-01.03",
-          "passed": true,
+          "passed": false,
           "evidence": [
             "docs/implantacao-sie-2-0/F01/CATALOGO_FONTES_NORMATIVAS.json",
             "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
@@ -853,7 +860,7 @@
         },
         {
           "id": "AC-01.04",
-          "passed": true,
+          "passed": false,
           "evidence": [
             "docs/implantacao-sie-2-0/F01/REGISTRO_REGRAS_NORMATIVAS.md",
             "docs/implantacao-sie-2-0/F01/ACEITE_TITULAR_ENCERRAMENTO_F01.json"
@@ -2097,7 +2104,7 @@
       "impact": 9,
       "risk": 8,
       "requirements_verified": true,
-      "state": "VALIDATING",
+      "state": "DONE",
       "criteria": [
         {
           "id": "AC-09.01",
@@ -2141,28 +2148,28 @@
         },
         {
           "id": "AC-09.06",
-          "passed": true,
+          "passed": false,
           "evidence": [
             "docs/implantacao-sie-2-0/F09/QA-02.md"
           ]
         },
         {
           "id": "AC-09.07",
-          "passed": true,
+          "passed": false,
           "evidence": [
             "docs/implantacao-sie-2-0/F09/QA-02.md"
           ]
         },
         {
           "id": "AC-09.08",
-          "passed": true,
+          "passed": false,
           "evidence": [
             "docs/implantacao-sie-2-0/F09/QA-02.md"
           ]
         },
         {
           "id": "AC-09.09",
-          "passed": true,
+          "passed": false,
           "evidence": [
             "docs/implantacao-sie-2-0/F09/QA-02.md"
           ]
@@ -2181,7 +2188,7 @@
         "docs/stories/SIE-F09.md"
       ],
       "checkpoint": {
-        "qa_01": "APROVADO_INTEGRACAO_LOCAL",
+        "qa_01": "APROVADO_INTEGRACAO_E_CI",
         "qa_02": "ITENS_1_E_2_ACEITOS_PELO_RESPONSAVEL; SEM_PARECER_PROFISSIONAL_INDEPENDENTE",
         "qa_03": "APROVADO_API_PERSISTENCIA_PROVENIENCIA",
         "api_tests_passed": 1033,
@@ -2191,24 +2198,24 @@
         "normative_conformity_verified": false,
         "professional_approval": false,
         "connection_release": false,
-        "next_phase_development_allowed": false,
-        "published_code_sha": "636529e389a64787b9a366f72ca0624025104103",
+        "next_phase_development_allowed": true,
+        "published_code_sha": "59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6",
         "initial_ci_runs": [
           39874801224,
           39874801231,
           39874801250
         ],
-        "ci_code_sha": "636529e389a64787b9a366f72ca0624025104103",
-        "ci_api_run": 39874801224,
-        "ci_browser_run": 39874801231,
-        "ci_aiox_run": 39874801250,
+        "ci_code_sha": "59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6",
+        "ci_api_run": 39880107120,
+        "ci_browser_run": 39880107058,
+        "ci_aiox_run": 39880107092,
         "ci_api_passed": true,
         "ci_browser_passed": true,
         "ci_aiox_passed": true,
-        "ci_executed": false,
-        "ci_current_sha_verified": false,
+        "ci_executed": true,
+        "ci_current_sha_verified": true,
         "published_docs_sha": "d6a59afe907bb4e6dbcbcef553931f82b5a9af09",
-        "latest_local_sha": "PENDING_COMMIT",
+        "latest_local_sha": "59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6",
         "local_e2e": "NOT_RUN_PLAYWRIGHT_UNAVAILABLE",
         "extensions_09_06_to_09_09": "OUT_OF_SCOPE_BY_OWNER_DECISION"
       },
@@ -2217,7 +2224,7 @@
         "published": true,
         "merged_to_main": false,
         "production_release_allowed": false,
-        "code_sha": "636529e389a64787b9a366f72ca0624025104103",
+        "code_sha": "59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6",
         "metadata_sha": "d6a59afe907bb4e6dbcbcef553931f82b5a9af09"
       }
     }

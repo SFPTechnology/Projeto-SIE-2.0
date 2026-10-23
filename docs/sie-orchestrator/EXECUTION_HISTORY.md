@@ -82,3 +82,7 @@ F09 CI confirmado: código `636529e389a64787b9a366f72ca0624025104103`; API run 3
 ## 22/10/2026 — Retomada de F09
 
 Integração F09 vinculada às revisões locais persistidas de F06/F07/F08: consulta exige histórias atuais, hashes e recálculo; enquadramento é persistido com revisão otimista, proveniência e estado stale por alteração da evidência ou do catálogo. Seis testes focados passaram; API 1.033 passed; lint/typecheck/AIOX 18 testes/build passaram; compileall e diff check passaram. E2E não coletado por Playwright ausente, sem mudança visual. Itens 1 e 2 aceitos pelo responsável; extensões do item 3 não implementadas. Estado F09 VALIDATING, à espera de CI remoto no novo SHA.
+
+## 23/10/2026 — F09 DONE; F10 liberada
+
+CI remoto aprovado no SHA `59ba39c3ba1f9875c7092300cc6b8045bb3bc7e6`: API 39880107120, Chromium 39880107058, AIOX 39880107092. F09 DONE após 1.033 testes API, seis testes de integração focados e gates locais AIOX. Relatório F09, story, QA-01/02/03 e estado canônico atualizados. Desenvolvimento F10 liberado; nenhum merge em main, deploy ou alteração de banco de produção. QA realizado pelo mesmo agente é autocrítica estruturada, não auditoria independente.
