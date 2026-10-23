@@ -62,7 +62,9 @@ def validate_snapshot(snapshot: dict[str, Any]) -> None:
         if circuit["id"] in circuit_ids:
             raise ArtifactError(f"duplicate circuit id: {circuit['id']}")
         circuit_ids.add(circuit["id"])
-        if circuit.get("panel_id") not in ids:
+        if circuit.get("panel_id") not in {
+            element["id"] for element in elements if element.get("kind") == "panel"
+        }:
             raise ArtifactError(f"circuit {circuit['id']} references an unknown panel")
         load = _finite_number(circuit.get("load_va"), f"circuit {circuit['id']} load_va")
         if load < 0:
@@ -83,35 +85,43 @@ def _check_contract(snapshot: dict[str, Any], contract: ArtifactContract) -> Non
 
 
 def render_single_line_svg(snapshot: dict[str, Any], contract: ArtifactContract) -> str:
-    """Render a simple accessible SVG single-line view from panel/circuit graph."""
+    """Render each panel and only its own linked circuits from the supplied graph."""
     _check_contract(snapshot, contract)
     panels = [e for e in snapshot["elements"] if e.get("kind") == "panel"]
     if not panels:
         raise ArtifactError("snapshot has no panel")
+    grouped = {
+        panel["id"]: [c for c in snapshot["circuits"] if c["panel_id"] == panel["id"]]
+        for panel in panels
+    }
     width = 760
     row_h = 76
-    height = 100 + max(1, len(snapshot["circuits"])) * row_h
+    height = 50 + sum(90 + max(1, len(grouped[p["id"]])) * row_h for p in panels)
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 {width} {height}">',
         f'<title id="title">Diagrama unifilar — {escape(snapshot["project_id"])}</title>',
-        '<desc id="desc">Representação dos circuitos cadastrados no snapshot informado; não é aprovação normativa.</desc>',
-        '<style>text{font:14px sans-serif;fill:#172033}.wire{stroke:#26364a;stroke-width:2}.box{fill:#f3f6fa;stroke:#52657a}</style>',
+        '<desc id="desc">Cada quadro agrupa somente seus circuitos cadastrados; não é aprovação normativa.</desc>',
+        '<style>text{font:14px sans-serif;fill:#172033}.wire{stroke:#26364a;stroke-width:2;fill:none}.box{fill:#f3f6fa;stroke:#52657a}</style>',
     ]
-    panel_x, panel_y = 30, 30
-    parts += [
-        f'<rect class="box" x="{panel_x}" y="{panel_y}" width="150" height="42" rx="4"/>',
-        f'<text x="{panel_x + 12}" y="{panel_y + 26}">{escape(str(panels[0]["id"]))}</text>',
-    ]
-    for index, circuit in enumerate(snapshot["circuits"]):
-        y = 112 + index * row_h
+    offset = 30
+    for panel in panels:
+        panel_id = panel["id"]
         parts += [
-            f'<path class="wire" d="M 105 72 V {y} H 220"/>',
-            f'<rect class="box" x="220" y="{y - 22}" width="500" height="46" rx="4"/>',
-            f'<text x="232" y="{y - 2}">{escape(str(circuit["id"]))} · {escape(str(circuit["breaker_id"]))} · {escape(str(circuit["conductor_id"]))}</text>',
-            f'<text x="232" y="{y + 16}">{_finite_number(circuit["load_va"], "load_va"):g} VA · fase {escape(circuit["phase"])}</text>',
+            f'<g data-panel-id="{escape(panel_id, quote=True)}">',
+            f'<rect class="box" x="30" y="{offset}" width="150" height="42" rx="4"/>',
+            f'<text x="42" y="{offset + 26}">{escape(panel_id)}</text>',
         ]
+        for index, circuit in enumerate(grouped[panel_id]):
+            y = offset + 80 + index * row_h
+            parts += [
+                f'<path class="wire" d="M 180 {offset + 21} H 205 V {y} H 220"/>',
+                f'<rect class="box" x="220" y="{y - 22}" width="500" height="46" rx="4"/>',
+                f'<text x="232" y="{y - 2}">{escape(str(circuit["id"]))} · {escape(str(circuit["breaker_id"]))} · {escape(str(circuit["conductor_id"]))}</text>',
+                f'<text x="232" y="{y + 16}">{_finite_number(circuit["load_va"], "load_va"):g} VA · fase {escape(circuit["phase"])}</text>',
+            ]
+        parts.append("</g>")
+        offset += 90 + max(1, len(grouped[panel_id])) * row_h
     return "".join(parts + ["</svg>"])
-
 
 def load_schedule(snapshot: dict[str, Any], contract: ArtifactContract) -> dict[str, Any]:
     """Return a load schedule preserving the exact snapshot/run identity."""
@@ -308,21 +318,14 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("input must contain artifact_contract")
     contract = ArtifactContract(**raw_contract)
     bundle = artifact_bundle(source["snapshot"], contract)
-    destination = Path(args.output_dir)
-    destination.mkdir(parents=True, exist_ok=False)
-    try:
-        for name, content in bundle.items():
-            with (destination / name).open("x", encoding="utf-8", newline="") as output:
-                output.write(content)
-    except BaseException:
-        for item in destination.iterdir():
-            item.unlink()
-        destination.rmdir()
-        raise
-    print(json.dumps({"files": sorted(bundle), "status": "study",
-                      "normative_conformity_verified": False}, ensure_ascii=False))
+    from .artifact_store_f10 import publish_verified_bundle
+    manifest = publish_verified_bundle(source["snapshot"], contract, args.output_dir)
+    print(json.dumps({"files": sorted([*manifest["files_sha256"], "manifest.json"]),
+                      "artifact_id": manifest["artifact_id"],
+                      "snapshot_sha256": manifest["snapshot_sha256"],
+                      "status": "study", "normative_conformity_verified": False},
+                     ensure_ascii=False))
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())
