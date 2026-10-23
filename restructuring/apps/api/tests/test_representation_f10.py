@@ -132,7 +132,7 @@ def test_artifact_bundle_outputs_all_supported_formats(snapshot, contract):
     assert set(bundle) == {"schedule.json", "diagram.svg", "quantities.csv", "report.html"}
     assert '"revision_id": "R-2"' in bundle["schedule.json"]
     assert 'viewBox=' in bundle["diagram.svg"]
-    assert bundle["quantities.csv"].startswith("segment_id,circuit_id")
+    assert bundle["quantities.csv"].startswith("row_type,project_id,revision_id,calculation_run_id,rule_version,template_version")\n    assert "P-1" in bundle["quantities.csv"] and "CALC-3" in bundle["quantities.csv"]\n    assert "CALC-3" in bundle["diagram.svg"]
     assert "CALC-3" in bundle["report.html"]
 
 
@@ -180,3 +180,19 @@ def test_plant_overlay_blocks_unmapped_element(snapshot, contract):
     }
     with pytest.raises(ArtifactError, match="unknown element"):
         artifact_bundle(snapshot, contract)
+
+
+def test_snapshot_rejects_duplicate_circuit_ids(snapshot, contract):
+    snapshot["circuits"].append(dict(snapshot["circuits"][0]))
+    with pytest.raises(ArtifactError, match="duplicate circuit id"):
+        artifact_bundle(snapshot, contract)
+
+
+def test_plant_svg_contains_complete_artifact_contract(snapshot, contract):
+    snapshot["floor_plan"] = {
+        "id": "FP-1", "revision_id": "R-2", "source_ref": "authorized:plant-01",
+        "units": "m", "width": 10, "height": 8, "model_units_per_canvas_unit": 1,
+        "placements": [],
+    }
+    svg = artifact_bundle(snapshot, contract)["floor_plan.svg"]
+    assert "CALC-3" in svg and "template-1" in svg
