@@ -80,6 +80,21 @@ class RepositorioProjetos:
                     criado_em TEXT NOT NULL,
                     PRIMARY KEY(projeto_id, revisao)
                 );
+                CREATE TABLE IF NOT EXISTS execucoes_motor_f10(
+                    projeto_id TEXT NOT NULL,
+                    revisao INTEGER NOT NULL,
+                    run_id TEXT NOT NULL,
+                    evidencia_json TEXT NOT NULL,
+                    hash_sha256 TEXT NOT NULL,
+                    PRIMARY KEY(projeto_id,revisao,run_id),
+                    FOREIGN KEY(projeto_id,revisao) REFERENCES versoes_projeto(projeto_id,revisao)
+                );
+                CREATE TRIGGER IF NOT EXISTS f10_execucao_sem_update
+                    BEFORE UPDATE ON execucoes_motor_f10
+                    BEGIN SELECT RAISE(ABORT, 'execucao imutavel'); END;
+                CREATE TRIGGER IF NOT EXISTS f10_execucao_sem_delete
+                    BEFORE DELETE ON execucoes_motor_f10
+                    BEGIN SELECT RAISE(ABORT, 'execucao imutavel'); END;
                 CREATE TABLE IF NOT EXISTS ensaios_calculo(
                     id TEXT PRIMARY KEY,
                     projeto_id TEXT NOT NULL,
@@ -311,6 +326,58 @@ class RepositorioProjetos:
             "regras_efetivamente_usadas_comprovadas": False,
         }
 
+    def verificar_revisao_atual(self, projeto_id: str, revisao: int) -> dict:
+        """Compare active project and immutable revision in one SQLite read snapshot.
+
+        The result distinguishes a valid historical revision from the current
+        revision. It never reconstructs missing history and fails closed if the
+        active row disagrees with the immutable row for the same revision.
+        """
+        projeto_id = str(UUID(projeto_id))
+        if type(revisao) is not int or revisao < 1:
+            raise ValueError("Revisao historica invalida")
+        with self._conectar() as db:
+            db.execute("BEGIN")
+            current = db.execute(
+                "SELECT id,nome,dados_json,revisao,excluido_em FROM projetos WHERE id=?",
+                (projeto_id,),
+            ).fetchone()
+            historic = db.execute(
+                "SELECT revisao,nome,dados_json,hash_sha256,criado_em FROM versoes_projeto "
+                "WHERE projeto_id=? AND revisao=?", (projeto_id, revisao),
+            ).fetchone()
+            if historic is None:
+                return {"status": "SOURCE_INVALID", "reason": "historical revision absent",
+                        "project_id": projeto_id, "revision": revisao}
+            try:
+                historic_data = _dados_revisao_validada(projeto_id, historic)
+            except (ValueError, TypeError, KeyError, json.JSONDecodeError) as exc:
+                return {"status": "SOURCE_INVALID", "reason": str(exc),
+                        "project_id": projeto_id, "revision": revisao}
+            if current is None or current["excluido_em"] is not None:
+                return {"status": "CURRENTNESS_UNVERIFIED", "reason": "active project unavailable",
+                        "project_id": projeto_id, "revision": revisao,
+                        "historical_sha256": historic["hash_sha256"]}
+            if current["revisao"] < revisao:
+                return {"status": "SOURCE_INVALID", "reason": "requested revision is newer than active project",
+                        "project_id": projeto_id, "revision": revisao}
+            if current["revisao"] == revisao:
+                try:
+                    active_data = json.loads(current["dados_json"])
+                except (TypeError, json.JSONDecodeError):
+                    return {"status": "SOURCE_INVALID", "reason": "active project JSON is invalid",
+                            "project_id": projeto_id, "revision": revisao}
+                if current["nome"] != historic["nome"] or active_data != historic_data:
+                    return {"status": "SOURCE_INVALID", "reason": "active row diverges from immutable revision",
+                            "project_id": projeto_id, "revision": revisao}
+                status = "CURRENT"
+            else:
+                status = "HISTORICAL"
+            return {"status": status, "project_id": projeto_id, "revision": revisao,
+                    "current_revision": current["revisao"],
+                    "historical_sha256": historic["hash_sha256"],
+                    "created_at": historic["criado_em"]}
+
     def listar_revisoes(self, projeto_id: str) -> list[dict]:
         """Somente metadados de revisões realmente preservadas."""
         projeto_id = str(UUID(projeto_id))
@@ -435,6 +502,80 @@ class RepositorioProjetos:
                            "criado_em": row["criado_em"],
                            "normative_conformity_verified": False})
         return result
+
+    def _fonte_calculo_f10(self, db, projeto_id, revisao, run_id):
+        from .installation_service import InstallationSnapshot
+        row = db.execute("SELECT revisao,nome,dados_json,hash_sha256 FROM versoes_projeto WHERE projeto_id=? AND revisao=?", (projeto_id, revisao)).fetchone()
+        if row is None:
+            raise ValueError("Revisao historica ausente")
+        dados = _dados_revisao_validada(projeto_id, row)
+        snapshot = InstallationSnapshot.model_validate(dados["installation_snapshot"])
+        if str(snapshot.project_id) != projeto_id or snapshot.revision > revisao:
+            raise ValueError("Snapshot de outro projeto/revisao")
+        from .domain.installation import Installation
+        installation = Installation.model_validate_json(snapshot.canonical_json)
+        runs = [r for r in installation.calculation_runs if str(r.id) == run_id]
+        if len(runs) != 1:
+            raise ValueError("Run ausente ou ambiguo")
+        run = runs[0]
+        if run.state != "VALID" or run.project_revision != snapshot.revision:
+            raise ValueError("Run invalido ou obsoleto")
+        parameters = AnaliseCircuito.model_validate(dados.get("calculation_inputs_f10", {}).get(run_id))
+        return row, snapshot, run, parameters
+
+    def executar_calculo_f10(self, projeto_id: str, revisao: int, run_id: str) -> dict:
+        """Execute official motor from immutable server-saved inputs; never attest legacy declarations."""
+        from .installation_service import analyze_legacy, canonical_json
+        projeto_id, run_id = str(UUID(projeto_id)), str(UUID(run_id))
+        if type(revisao) is not int or revisao < 1:
+            raise ValueError("Revisao invalida")
+        with self._conectar() as db:
+            db.execute("BEGIN IMMEDIATE")
+            row, snapshot, run, parameters = self._fonte_calculo_f10(db, projeto_id, revisao, run_id)
+            record = analyze_legacy(snapshot, run.circuit_id, parameters, run.rule_version)
+            if (run.input_sha256 != record.input_sha256 or run.output_sha256 != record.result_sha256
+                    or run.algorithm_version != record.algorithm_version or run.rule_version != record.rule_version):
+                raise ValueError("Run declarado diverge da execucao efetiva do motor")
+            evidence = {"schema_version": "SIE_F10_MOTOR_EXECUTION_V1", "project_id": projeto_id,
+                        "revision": revisao, "run_id": run_id, "source_sha256": row["hash_sha256"],
+                        "snapshot_sha256": snapshot.snapshot_sha256,
+                        "parameters": parameters.model_dump(mode="json"), "record": record.model_dump(mode="json")}
+            text = canonical_json(evidence)
+            digest = sha256(text.encode("utf-8")).hexdigest()
+            previous = db.execute("SELECT evidencia_json,hash_sha256 FROM execucoes_motor_f10 WHERE projeto_id=? AND revisao=? AND run_id=?", (projeto_id, revisao, run_id)).fetchone()
+            if previous is not None and (previous["evidencia_json"] != text or previous["hash_sha256"] != digest):
+                raise ValueError("Execucao persistida diverge; nao sobrescrever")
+            if previous is None:
+                db.execute("INSERT INTO execucoes_motor_f10 VALUES(?,?,?,?,?)", (projeto_id, revisao, run_id, text, digest))
+        return {**evidence, "hash_sha256": digest}
+
+    def consultar_calculo_f10(self, projeto_id: str, revisao: int, run_id: str) -> dict | None:
+        from .installation_service import CalculationRecord, canonical_json, digest, algorithm_identity
+        projeto_id, run_id = str(UUID(projeto_id)), str(UUID(run_id))
+        if type(revisao) is not int or revisao < 1:
+            raise ValueError("Revisao invalida")
+        with self._conectar() as db:
+            db.execute("BEGIN")
+            row = db.execute("SELECT evidencia_json,hash_sha256 FROM execucoes_motor_f10 WHERE projeto_id=? AND revisao=? AND run_id=?", (projeto_id, revisao, run_id)).fetchone()
+            if row is None:
+                return None
+            evidence = json.loads(row["evidencia_json"])
+            if canonical_json(evidence) != row["evidencia_json"] or digest(evidence) != row["hash_sha256"]:
+                raise ValueError("Integridade da execucao comprometida")
+            source, snapshot, run, parameters = self._fonte_calculo_f10(db, projeto_id, revisao, run_id)
+            record = CalculationRecord.model_validate(evidence["record"])
+            if (evidence["schema_version"] != "SIE_F10_MOTOR_EXECUTION_V1"
+                    or evidence["project_id"] != projeto_id or evidence["revision"] != revisao or evidence["run_id"] != run_id
+                    or evidence["source_sha256"] != source["hash_sha256"] or evidence["snapshot_sha256"] != snapshot.snapshot_sha256
+                    or evidence["parameters"] != parameters.model_dump(mode="json")
+                    or str(record.project_id) != projeto_id or record.revision != snapshot.revision
+                    or record.snapshot_sha256 != snapshot.snapshot_sha256 or record.circuit_id != run.circuit_id
+                    or record.input_sha256 != digest(parameters.model_dump(mode="json")) or record.input_sha256 != run.input_sha256
+                    or record.result_sha256 != run.output_sha256 or record.result_json is None
+                    or record.algorithm_version != run.algorithm_version or record.algorithm_version != algorithm_identity()
+                    or record.rule_version != run.rule_version):
+                raise ValueError("Vinculo ou versao da execucao invalido")
+        return {**evidence, "hash_sha256": row["hash_sha256"]}
 
     def arquivar(self, projeto_id: str, revisao_esperada: int):
         """Tombstone administrative revision; immutable content history retained."""
