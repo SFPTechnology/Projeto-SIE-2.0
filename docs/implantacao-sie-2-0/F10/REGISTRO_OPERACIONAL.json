@@ -1,10 +1,9 @@
 {
   "phase": "F10",
   "active_branch": "feat/f09-concessionarias-especializadas",
-  "current_wave": "F10_INTEGRAL_VALIDATED_LOCAL_PENDING_CI",
-  "code_sha": null,
-  "requirements_completed": [],
-  "requirements_in_progress": [
+  "current_wave": "F10_DONE_SUPPORTED_SOFTWARE",
+  "code_sha": "9623b4ad0a1710edf36ca05423f078b16b9442f0",
+  "requirements_completed": [
     "AC-10.01",
     "AC-10.02",
     "AC-10.03",
@@ -16,6 +15,7 @@
     "AC-10.09",
     "AC-10.10"
   ],
+  "requirements_in_progress": [],
   "requirements_blocked": [],
   "files_changed": [
     "restructuring/apps/api/sie_api/artifact_store_f10.py",
@@ -38,7 +38,9 @@
     "QA01: pytest API 1181 passed,1 warning,22.63s",
     "QA02:72 focused passed,1 warning,3.23s; PDF7pages visually inspected",
     "DevOps: npm lint/typecheck/test/build exit0",
-    "QA03: E2E F10 real, extra desktop/print6p/STALE/mobile exit0; SEC-F10-01 CLOSED"
+    "QA03: E2E F10 real, extra desktop/print6p/STALE/mobile exit0; SEC-F10-01 CLOSED",
+    "Final code SHA9623b4a: API1181passed1warning22.33s exit0; npm4gates exit0",
+    "Final code CI: API/AIOX/Chromium success noSHA9623b4a"
   ],
   "test_failures": [],
   "evidence_locations": [
@@ -46,17 +48,20 @@
     "docs/implantacao-sie-2-0/F10/QA-02.md",
     "docs/implantacao-sie-2-0/F10/QA-03.md",
     "restructuring/apps/api/tests/test_full_f10_integration.py",
-    "restructuring/e2e/test_f10_browser.py"
+    "restructuring/e2e/test_f10_browser.py",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
   ],
   "pending_approvals": [
-    "CI API/AIOX/Chromium no SHA final"
+    "Confirmar três workflows no SHA do fechamento documental"
   ],
-  "next_executable_task": "Concluir QA-03, revisão documental independente, congelar/publicar candidato e conferir três workflows no SHA final",
-  "canonical_status": "VALIDATED_LOCAL_PENDING_CI",
+  "next_executable_task": "Conferir CI do fechamento documental; F11 não executada neste incremento",
+  "canonical_status": "DONE",
   "gate_summary": {
-    "PASS_LOCAL": 14,
-    "PENDING_CI": 1,
-    "FAILED": 0
+    "PASSED": 14,
+    "FAILED": 0,
+    "PENDING": 0
   },
   "w1_scope": "LOCAL_SINGLE_CIRCUIT_LEGACY_MOTOR_PRIVATE_STORAGE",
   "w1_final_ci_required": true,
@@ -78,5 +83,26 @@
     "AC-10.08",
     "AC-10.09",
     "AC-10.10"
-  ]
+  ],
+  "code_ci_verified": [
+    {
+      "run_id": 40141922681,
+      "conclusion": "success",
+      "sha": "9623b4ad0a1710edf36ca05423f078b16b9442f0",
+      "url": "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681"
+    },
+    {
+      "run_id": 40141922654,
+      "conclusion": "success",
+      "sha": "9623b4ad0a1710edf36ca05423f078b16b9442f0",
+      "url": "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654"
+    },
+    {
+      "run_id": 40141922679,
+      "conclusion": "success",
+      "sha": "9623b4ad0a1710edf36ca05423f078b16b9442f0",
+      "url": "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
+    }
+  ],
+  "documentation_final_ci_required": true
 }

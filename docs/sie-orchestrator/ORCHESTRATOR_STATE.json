@@ -2238,7 +2238,7 @@
     {
       "id": "F10",
       "title": "Representação gráfica e documentação técnica",
-      "state": "RUNNING",
+      "state": "DONE",
       "dependencies": [
         "F09"
       ],
@@ -2253,71 +2253,151 @@
       "criteria": [
         {
           "id": "AC-10.01",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F10/MATRIZ_VERIFICACAO_V2.md",
+            "docs/implantacao-sie-2-0/F10/QA-01.md",
+            "docs/implantacao-sie-2-0/F10/QA-02.md",
+            "docs/implantacao-sie-2-0/F10/QA-03.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
+          ]
         },
         {
           "id": "AC-10.02",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F10/MATRIZ_VERIFICACAO_V2.md",
+            "docs/implantacao-sie-2-0/F10/QA-01.md",
+            "docs/implantacao-sie-2-0/F10/QA-02.md",
+            "docs/implantacao-sie-2-0/F10/QA-03.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
+          ]
         },
         {
           "id": "AC-10.03",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F10/MATRIZ_VERIFICACAO_V2.md",
+            "docs/implantacao-sie-2-0/F10/QA-01.md",
+            "docs/implantacao-sie-2-0/F10/QA-02.md",
+            "docs/implantacao-sie-2-0/F10/QA-03.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
+          ]
         },
         {
           "id": "AC-10.04",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F10/MATRIZ_VERIFICACAO_V2.md",
+            "docs/implantacao-sie-2-0/F10/QA-01.md",
+            "docs/implantacao-sie-2-0/F10/QA-02.md",
+            "docs/implantacao-sie-2-0/F10/QA-03.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
+          ]
         },
         {
           "id": "AC-10.05",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F10/MATRIZ_VERIFICACAO_V2.md",
+            "docs/implantacao-sie-2-0/F10/QA-01.md",
+            "docs/implantacao-sie-2-0/F10/QA-02.md",
+            "docs/implantacao-sie-2-0/F10/QA-03.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
+          ]
         },
         {
           "id": "AC-10.06",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F10/MATRIZ_VERIFICACAO_V2.md",
+            "docs/implantacao-sie-2-0/F10/QA-01.md",
+            "docs/implantacao-sie-2-0/F10/QA-02.md",
+            "docs/implantacao-sie-2-0/F10/QA-03.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
+          ]
         },
         {
           "id": "AC-10.07",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F10/MATRIZ_VERIFICACAO_V2.md",
+            "docs/implantacao-sie-2-0/F10/QA-01.md",
+            "docs/implantacao-sie-2-0/F10/QA-02.md",
+            "docs/implantacao-sie-2-0/F10/QA-03.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
+          ]
         },
         {
           "id": "AC-10.08",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F10/MATRIZ_VERIFICACAO_V2.md",
+            "docs/implantacao-sie-2-0/F10/QA-01.md",
+            "docs/implantacao-sie-2-0/F10/QA-02.md",
+            "docs/implantacao-sie-2-0/F10/QA-03.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
+          ]
         },
         {
           "id": "AC-10.09",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F10/MATRIZ_VERIFICACAO_V2.md",
+            "docs/implantacao-sie-2-0/F10/QA-01.md",
+            "docs/implantacao-sie-2-0/F10/QA-02.md",
+            "docs/implantacao-sie-2-0/F10/QA-03.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
+          ]
         },
         {
           "id": "AC-10.10",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F10/MATRIZ_VERIFICACAO_V2.md",
+            "docs/implantacao-sie-2-0/F10/QA-01.md",
+            "docs/implantacao-sie-2-0/F10/QA-02.md",
+            "docs/implantacao-sie-2-0/F10/QA-03.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679"
+          ]
         }
       ],
       "checkpoint": {
-        "implementation_status": "VALIDATED_LOCAL_PENDING_CI",
-        "current_wave": "F10_INTEGRAL",
-        "last_verified_code_sha": "afd73f02e2cd41ee1c2d8615c31616e90d65e4c0",
+        "implementation_status": "DONE_SUPPORTED_SOFTWARE",
+        "current_wave": "F10_DONE",
+        "last_verified_code_sha": "9623b4ad0a1710edf36ca05423f078b16b9442f0",
         "api_tests_passed": 1181,
         "api_warning_count": 1,
         "ci_runs_verified": [
-          39953127011,
-          39953126910,
-          39953127014
+          40141922681,
+          40141922654,
+          40141922679
         ],
         "integrity_export_local": "IMPLEMENTED_AND_TESTED",
         "authoritative_source_link": "IMPLEMENTED_AND_TESTED",
         "automatic_obsolescence": "IMPLEMENTED_AND_TESTED",
         "unifilar_multi_panel": "TESTED",
-        "ui_f10_specific_e2e": "EXECUTED_LOCAL_PASS",
+        "ui_f10_specific_e2e": "PASS_LOCAL_AND_CI",
         "qa_01": "PASS_LOCAL",
         "qa_02": "PASS_LOCAL",
         "qa_03": "PASS_LOCAL",
@@ -2336,7 +2416,9 @@
           "AC-10.08",
           "AC-10.09",
           "AC-10.10"
-        ]
+        ],
+        "documentation_final_ci_required": true,
+        "documentation_final_ci_rule": "Closure confirmed only after all three required workflows succeed on the exact documentation candidate SHA; no F11 execution in this increment"
       }
     }
   ]

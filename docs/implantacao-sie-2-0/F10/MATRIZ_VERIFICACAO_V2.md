@@ -121,3 +121,16 @@ O modo integral cobre múltiplos quadros/circuitos com evidência independente d
 Autorização continua single-owner local por token; não é ACL multiusuário. Banco e filesystem privados são autoridade; hashes não são assinatura contra ator com escrita arbitrária. Homologação normativa/profissional permanece falsa. Nenhuma aprovação humana foi fabricada.
 
 F10 só recebe DONE quando QA-01/02/03 estiverem favoráveis e os três workflows **SIE modular API**, **SIE Orchestrator AIOX Quality Gates** e **SIE Browser E2E (Chromium)** concluírem success no SHA exato que contém este fechamento. Qualquer alteração de código invalida as verificações afetadas. Resultados históricos não aprovam o candidato atual. Essa regra permite a decisão de software após conferir CI sem reescrever o commit validado. Main, produção e F09 permanecem preservados; F11 não é executada neste incremento.
+
+
+## Decisão final de software — F10 DONE (24/10/2026)
+
+Implementação integral avaliada no commit `9623b4ad0a1710edf36ca05423f078b16b9442f0`, tree `f94dafc4fc42f7332d4daca656dc3a600b08863e`. Nesse SHA: suíte API **1181 passed, 1 warning, 22,33s, exit 0**; npm lint/typecheck/test/build exit 0. QA-01, QA-02 e QA-03 separados têm pareceres locais favoráveis e achados bloqueantes encerrados. G01–G14 satisfeitos no contrato de software documentado.
+
+CI verificado no mesmo SHA: [API success](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681), [AIOX success](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654), [Chromium success](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679). O workflow Chromium executou a suíte de navegador incluindo F10 real; capturas de QA não representam documentos de projeto real.
+
+Este fechamento altera somente documentação/estado, sem código produtivo. O estado canônico F10 passa a DONE com evidências do commit de implementação acima. A confirmação final deste commit documental exige novamente os três workflows no seu próprio SHA; não atribuir a ele os runs anteriores. Qualquer falha nesse novo CI reabre a decisão. Após três successes, a condição final estará satisfeita sem outra edição recursiva do documento.
+
+Escopo suportado: múltiplos quadros/circuitos com run independente por circuito; motor legado somente nos casos que valida; importação subset SVG seguro com original/proveniência/calibração; geometria CAS e editor; símbolos internos versionados; quadros/quantitativos/memorial/PDF e exportações reconciliados. Formatos multifilar/prumada sem dados necessários são indisponíveis com motivo; CAD/BIM opcionais. Token global e banco/filesystem privados são o modelo local; não há ACL multiusuário nem assinatura contra escrita arbitrária. Homologação normativa/profissional permanece falsa. Main, produção, F09 e W1 preservadas. F11 não foi executada.
+
+As seções anteriores permanecem como histórico; esta decisão e os três workflows do candidato documental final governam o encerramento atual.

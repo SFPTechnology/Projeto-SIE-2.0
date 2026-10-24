@@ -1,6 +1,6 @@
 # Story SIE-F10 — Artefatos gráficos e documentação rastreável
 
-**Estado:** READY_FOR_REVIEW / VALIDATED_LOCAL_PENDING_CI (não homologado)
+**Estado:** DONE — software no contrato suportado; fechamento documental condicionado ao CI do próprio candidato (não homologado)
 **Branch de desenvolvimento:** `feat/f09-concessionarias-especializadas`
 **Fonte:** `docs/implantacao-sie-2-0/F10/PLANO_IMPLEMENTACAO.md`, `RELATORIO_EXECUCAO.md` e critérios AC-10.01–AC-10.10 do orquestrador.
 **Restrições:** preservar main, sem deploy, sem migração produtiva ou homologação normativa.
@@ -138,3 +138,16 @@ Escopo de coerência canônica autorizado antes da edição: somente o nó F10 d
 AC-10.01–AC-10.10 e QA-01/02/03 foram implementados/examinados no contrato suportado; checkboxes representam aceite local de software, condicionado ao CI final. QA-01 reproduziu 1181 testes; QA-02 reproduziu 72 focados e inspecionou PDF multi7p; QA-03 concluiu segurança e E2E/print6p/STALE/mobile, com SEC-F10-01 fechado. File list inclui nominalmente `restructuring/apps/api/sie_api/pdf_f10.py`, `test_full_f10_integration.py`, `test_artifacts_api_f10.py`, `restructuring/e2e/test_f10_browser.py` e demais módulos/arquivos F10 listados anteriormente. As três revisões são separadas e não homologam instalações.
 
 Regra final: F10_DONE somente após sucesso dos três workflows obrigatórios no SHA final deste candidato, com fonte/snapshot/runs/asset/versões verificados. Até a consulta desses resultados permanece VALIDATED_LOCAL_PENDING_CI. Não executar F11 neste incremento; main/produção preservadas.
+
+
+## Decisão final de software — F10 DONE (24/10/2026)
+
+Implementação integral avaliada no commit `9623b4ad0a1710edf36ca05423f078b16b9442f0`, tree `f94dafc4fc42f7332d4daca656dc3a600b08863e`. Nesse SHA: suíte API **1181 passed, 1 warning, 22,33s, exit 0**; npm lint/typecheck/test/build exit 0. QA-01, QA-02 e QA-03 separados têm pareceres locais favoráveis e achados bloqueantes encerrados. G01–G14 satisfeitos no contrato de software documentado.
+
+CI verificado no mesmo SHA: [API success](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922681), [AIOX success](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922654), [Chromium success](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40141922679). O workflow Chromium executou a suíte de navegador incluindo F10 real; capturas de QA não representam documentos de projeto real.
+
+Este fechamento altera somente documentação/estado, sem código produtivo. O estado canônico F10 passa a DONE com evidências do commit de implementação acima. A confirmação final deste commit documental exige novamente os três workflows no seu próprio SHA; não atribuir a ele os runs anteriores. Qualquer falha nesse novo CI reabre a decisão. Após três successes, a condição final estará satisfeita sem outra edição recursiva do documento.
+
+Escopo suportado: múltiplos quadros/circuitos com run independente por circuito; motor legado somente nos casos que valida; importação subset SVG seguro com original/proveniência/calibração; geometria CAS e editor; símbolos internos versionados; quadros/quantitativos/memorial/PDF e exportações reconciliados. Formatos multifilar/prumada sem dados necessários são indisponíveis com motivo; CAD/BIM opcionais. Token global e banco/filesystem privados são o modelo local; não há ACL multiusuário nem assinatura contra escrita arbitrária. Homologação normativa/profissional permanece falsa. Main, produção, F09 e W1 preservadas. F11 não foi executada.
+
+As seções anteriores permanecem como histórico; esta decisão e os três workflows do candidato documental final governam o encerramento atual.
