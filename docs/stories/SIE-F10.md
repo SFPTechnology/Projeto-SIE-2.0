@@ -22,12 +22,12 @@ Conectar representação e exportação F10 a snapshots verificáveis, à revis�
 - [ ] QA-01/02/03 formais e CI aplicável efetivamente aprovados
 
 ## Unidade executiva priorizada — W1
-- [ ] W1-01: carregar projeto/revisão histórica e verificar seu hash a partir de `RepositorioProjetos`, sem aceitar snapshot de origem declarado pelo cliente.
-- [ ] W1-02: identificar e validar `CalculationRun` persistido da revisão/circuito e documentar exatamente as dependências consumidas pelo bundle W1; não reinterpretar `ensaios_calculo` como run F02 nem incluir estudos F06–F08 sem lineage/fingerprint verificável.
-- [ ] W1-03: congelar snapshot e contrato antes de renderizar; falhar fechado em mutação/serialização inválida.
-- [ ] W1-04: persistir registro autoritativo de artefato e estado de publicação com recuperação/idempotência local; não afirmar atomicidade DB/filesystem.
-- [ ] W1-05: validar CLI/API existente, autenticação local e isolamento; documentar que token global não constitui ACL multiusuário.
-- [ ] W1-06: adicionar testes de integração SQLite para revisão/ensaio, dados cruzados/inexistentes, falha/retry e mutação concorrente; executar gates locais disponíveis.
+- [x] W1-01: carregar projeto/revisão histórica e verificar seu hash a partir de `RepositorioProjetos`, sem aceitar snapshot de origem declarado pelo cliente.
+- [x] W1-02: identificar e validar `CalculationRun` persistido da revisão/circuito e documentar exatamente as dependências consumidas pelo bundle W1; não reinterpretar `ensaios_calculo` como run F02 nem incluir estudos F06–F08 sem lineage/fingerprint verificável.
+- [x] W1-03: congelar snapshot e contrato antes de renderizar; falhar fechado em mutação/serialização inválida.
+- [x] W1-04: persistir registro autoritativo de artefato e estado de publicação com recuperação/idempotência local; não afirmar atomicidade DB/filesystem.
+- [x] W1-05: validar CLI/API existente, autenticação local e isolamento; documentar que token global não constitui ACL multiusuário.
+- [x] W1-06: adicionar testes de integração SQLite para revisão/ensaio, dados cruzados/inexistentes, falha/retry e mutação concorrente; executar gates locais disponíveis.
 - [x] Produzir pacote de exportação que guarda o snapshot canônico e um manifesto com sha256 por arquivo
 - [x] Publicar pacote no sistema de arquivos local de maneira atômica e sem sobrescrita
 - [x] Implementar verificação de conteúdo e estado de obsolescência quando a origem atual for conhecida, sem declarar atualidade na ausência de origem
@@ -92,3 +92,19 @@ Implementados `executar_calculo_f10` e `consultar_calculo_f10`: execução de `a
 O teste SQLite real executa motor e parser oficiais antes de publicar/verificar o bundle. Resultados anteriores de G01 PARTIAL por ausência de execução ficam superados pela nova implementação, mas decisão de aprovação depende dos pareceres independentes e CI no candidato. Hashes não representam assinatura nem homologação normativa; banco e diretório privados são a fronteira de confiança.
 
 Regressão local final independente: 1127 testes API passaram, 1 warning, 17.92s, exit 0, após os sete negativos finais. Lint/typecheck/npm test/build exit 0 na execução do orquestrador. QA independente favorável ao recorte suportado; CI ainda pendente no candidato. Novos documentos: `W1_CONTRATO_EXECUCAO_MOTOR.md`, `W1_MOTOR_QA_MATRIX.md` e pareceres finais nos caminhos canônicos F10. Sem alterações em main ou produção.
+
+
+## Fechamento W1 — escopo de CI autorizado
+
+File list adicional antes da edição: `.github/workflows/sie-restructuring-api.yml`, `.github/workflows/sie-orchestrator-quality.yml`, `.github/workflows/sie-e2e-browser.yml`, `MATRIZ_VERIFICACAO_V2.md`, `REGISTRO_OPERACIONAL.json` e `RELATORIO_EXECUCAO.md` na pasta F10. Incluir os paths da story/F10 nos três workflows garante CI no SHA final de documentação/configuração. Não altera motores nem amplia funcionalidades.
+
+
+## Decisão W1 — candidato de fechamento em 24/10/2026
+
+Código avaliado: `283c4fa66592f3f07daf7e52e24cf2d75895798b`, tree `4ade0d26e90e4c24480e3b5bb3285d8e2b694e12`. Revalidação nesse SHA: `python -m pytest -q` (cwd `restructuring/apps/api`), **1127 passed, 1 warning, 21.53s, exit 0**; lint/typecheck/npm test/build exit 0. QA independente reproduziu 1127 testes no diff e 78 focados no candidato; pareceres `W1_MOTOR_QA_MATRIX.md` e `W1_MOTOR_SECURITY.md`.
+
+G01 e G02 são tecnicamente satisfeitos no recorte local documentado: um circuito/run/cable_run, motor `analyze_legacy`, parâmetros explicitamente persistidos na revisão, banco e filesystem privados e escritores cooperativos. A execução efetiva é registrada e conferida contra revisão/snapshot/inputs/resultado/versões. Fonte indisponível nunca é CURRENT. Não há ACL multiusuário nem garantia contra ator com poder de reescrever banco ou trocar ancestrais filesystem. F06–F08 não são consumidos pelo renderer W1. Não representa homologação normativa.
+
+**Decisão de fechamento:** W1_DONE no recorte suportado somente após sucesso dos três workflows no SHA deste candidato de fechamento. Antes de conferir esses resultados, estado global é VALIDATED_LOCAL_PENDING_CI. Os resultados de SHA anterior abaixo são referências históricas, não aprovação automática do SHA deste documento. F10 permanece RUNNING; F09 permanece DONE; ondas B–E continuam fora do escopo.
+
+Workflows exigidos no candidato: `SIE modular API`, `SIE Orchestrator AIOX Quality Gates`, `SIE Browser E2E (Chromium)`. O CI passa a disparar também por mudança na story e documentação F10. Qualquer falha reabre o gate afetado e impede W1_DONE.

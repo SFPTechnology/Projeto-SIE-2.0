@@ -1,8 +1,8 @@
 {
   "phase": "F10",
   "active_branch": "feat/f09-concessionarias-especializadas",
-  "current_wave": "W1_PARTIAL",
-  "code_sha": "afd73f02e2cd41ee1c2d8615c31616e90d65e4c0",
+  "current_wave": "W1_VALIDATED_LOCAL_PENDING_CI",
+  "code_sha": "283c4fa66592f3f07daf7e52e24cf2d75895798b",
   "requirements_completed": [],
   "requirements_in_progress": [
     "AC-10.01",
@@ -31,7 +31,7 @@
     "Usar conteúdo do snapshot canônico com SHA-256 e manifesto versionado.",
     "Não afirmar estado CURRENT sem fonte atual independente.",
     "Evitar overwrites, preservar revision_id/calculation_run_id, desenhar cada painel isoladamente.",
-    "Sem conexão automática comprovada com RepositorioProjetos; QA formal permanece pendente."
+    "W1: revisão persistida, execução analyze_legacy efetiva e registro append-only implementados; F10 geral permanece RUNNING."
   ],
   "tests_executed": [
     "GitHub Actions API run 39953127011 (1070 passed, 1 warning)",
@@ -44,18 +44,27 @@
     "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39953126910",
     "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39953127014",
     "restructuring/apps/api/tests/test_artifact_store_f10.py",
-    "restructuring/apps/api/tests/test_representation_f10.py"
+    "restructuring/apps/api/tests/test_representation_f10.py",
+    "docs/implantacao-sie-2-0/F10/W1_MOTOR_QA_MATRIX.md",
+    "docs/implantacao-sie-2-0/F10/W1_MOTOR_SECURITY.md"
   ],
   "pending_approvals": [
     "QA-01 formal",
     "QA-02 formal",
     "QA-03 formal"
   ],
-  "next_executable_task": "Implementar leitura e vinculação de artefatos ao banco local RepositorioProjetos/versoes_projeto, com proveniência/autoridade verificadas para calculation_run_id, invalidando quando inputs do projeto/cálculo mudarem; testes de isolamento entre projetos e revisões.",
+  "next_executable_task": "Conferir três workflows no SHA final; após W1_DONE executar apenas próxima onda F10 formalmente liberada.",
   "canonical_status": "RUNNING",
   "gate_summary": {
     "PASSED": 0,
     "FAILED": 0,
     "PENDING": 14
-  }
+  },
+  "w1_scope": "LOCAL_SINGLE_CIRCUIT_LEGACY_MOTOR_PRIVATE_STORAGE",
+  "w1_final_ci_required": true,
+  "w1_decision_rule": "W1_DONE only after all three required workflows succeed on final closure candidate SHA",
+  "w1_qa": [
+    "W1_MOTOR_QA_MATRIX.md",
+    "W1_MOTOR_SECURITY.md"
+  ]
 }

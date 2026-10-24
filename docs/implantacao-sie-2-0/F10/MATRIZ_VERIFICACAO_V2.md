@@ -47,3 +47,28 @@ A verificação de **subfunções** não equivale a aprovação do requisito com
 | UI F10, PDF, importação real, banco integrado, QA formal | NÃO EXECUTADO / PENDING | Sem evidência correspondente |
 
 **Nota de segurança:** hashes sem assinatura verificável demonstram consistência de bytes e reconstrução de artefatos, não identidade/autenticidade frente a atacante com escrita tanto no pacote quanto no manifesto.
+
+
+## Decisão W1 — candidato de fechamento em 24/10/2026
+
+Código avaliado: `283c4fa66592f3f07daf7e52e24cf2d75895798b`, tree `4ade0d26e90e4c24480e3b5bb3285d8e2b694e12`. Revalidação nesse SHA: `python -m pytest -q` (cwd `restructuring/apps/api`), **1127 passed, 1 warning, 21.53s, exit 0**; lint/typecheck/npm test/build exit 0. QA independente reproduziu 1127 testes no diff e 78 focados no candidato; pareceres `W1_MOTOR_QA_MATRIX.md` e `W1_MOTOR_SECURITY.md`.
+
+G01 e G02 são tecnicamente satisfeitos no recorte local documentado: um circuito/run/cable_run, motor `analyze_legacy`, parâmetros explicitamente persistidos na revisão, banco e filesystem privados e escritores cooperativos. A execução efetiva é registrada e conferida contra revisão/snapshot/inputs/resultado/versões. Fonte indisponível nunca é CURRENT. Não há ACL multiusuário nem garantia contra ator com poder de reescrever banco ou trocar ancestrais filesystem. F06–F08 não são consumidos pelo renderer W1. Não representa homologação normativa.
+
+**Decisão de fechamento:** W1_DONE no recorte suportado somente após sucesso dos três workflows no SHA deste candidato de fechamento. Antes de conferir esses resultados, estado global é VALIDATED_LOCAL_PENDING_CI. Os resultados de SHA anterior abaixo são referências históricas, não aprovação automática do SHA deste documento. F10 permanece RUNNING; F09 permanece DONE; ondas B–E continuam fora do escopo.
+
+Workflows exigidos no candidato: `SIE modular API`, `SIE Orchestrator AIOX Quality Gates`, `SIE Browser E2E (Chromium)`. O CI passa a disparar também por mudança na story e documentação F10. Qualquer falha reabre o gate afetado e impede W1_DONE.
+
+### Matriz W1 específica (não equivale aos gates completos de toda F10)
+
+| Gate W1 | Parecer local | Evidência |
+|---|---|---|
+| Identidade/origem | PASS | revisão histórica/digest, SQLite/parser reais |
+| G01 execução/dependências | PASS no recorte | analyze_legacy real, registro append-only, positivos e 7 negativos de vínculo/hashes/versões |
+| Snapshot/consistência | PASS | congelamento e locks cooperativos, teste mutação |
+| G02 recuperação | PASS no recorte | crash real antes/depois rename, reopen, retry, histórico e reconciliação |
+| Integridade/atualidade | PASS no recorte | hash autoritativo externo ao bundle, cinco estados fail-closed |
+| Segurança/CLI | PASS no recorte local | parecer segurança; não expor como ACL multiusuário |
+| QA independente | PASS local | W1_MOTOR_QA_MATRIX.md e W1_MOTOR_SECURITY.md |
+| CI SHA final | PENDING na emissão | conferir três runs no SHA final; sem inferência do SHA anterior |
+| W1 global | VALIDATED_LOCAL_PENDING_CI | torna-se W1_DONE somente com três sucessos no SHA final |

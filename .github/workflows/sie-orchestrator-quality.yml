@@ -3,6 +3,8 @@ name: SIE Orchestrator AIOX Quality Gates
 on:
   push:
     paths:
+      - 'docs/stories/SIE-F10.md'
+      - 'docs/implantacao-sie-2-0/F10/**'
       - 'restructuring/**'
       - 'docs/sie-orchestrator/**'
       - 'docs/stories/story-SIE-AUTO-*.md'
@@ -11,6 +13,8 @@ on:
       - 'scripts/validate-sdc-auto-1.js'
   pull_request:
     paths:
+      - 'docs/stories/SIE-F10.md'
+      - 'docs/implantacao-sie-2-0/F10/**'
       - 'restructuring/**'
       - 'docs/sie-orchestrator/**'
       - 'docs/stories/story-SIE-AUTO-*.md'

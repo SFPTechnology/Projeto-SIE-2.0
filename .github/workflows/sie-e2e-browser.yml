@@ -3,10 +3,14 @@ name: SIE Browser E2E (Chromium)
 on:
   push:
     paths:
+      - 'docs/stories/SIE-F10.md'
+      - 'docs/implantacao-sie-2-0/F10/**'
       - 'restructuring/**'
       - '.github/workflows/sie-e2e-browser.yml'
   pull_request:
     paths:
+      - 'docs/stories/SIE-F10.md'
+      - 'docs/implantacao-sie-2-0/F10/**'
       - 'restructuring/**'
       - '.github/workflows/sie-e2e-browser.yml'
 

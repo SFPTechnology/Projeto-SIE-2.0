@@ -2,6 +2,8 @@ name: SIE modular API
 on:
   push:
     paths:
+      - 'docs/stories/SIE-F10.md'
+      - 'docs/implantacao-sie-2-0/F10/**'
       - 'restructuring/**'
       - 'scripts/f00_golden.py'
       - 'docs/sie-orchestrator/ORCHESTRATOR_STATE.json'
@@ -24,6 +26,8 @@ on:
       - '.github/workflows/sie-restructuring-api.yml'
   pull_request:
     paths:
+      - 'docs/stories/SIE-F10.md'
+      - 'docs/implantacao-sie-2-0/F10/**'
       - 'restructuring/**'
       - 'scripts/f00_golden.py'
       - '.github/workflows/sie-restructuring-api.yml'

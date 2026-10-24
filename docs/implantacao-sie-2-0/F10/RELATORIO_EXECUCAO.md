@@ -70,3 +70,14 @@ Nenhuma mudança em main, merge, deploy, alteração de banco de produção, hom
 **CI do código:** [API run 39953127011](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39953127011) — 1.070 passed e 1 warning; [AIOX 39953126910](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39953126910) — success; [Chromium 39953127014](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/39953127014) — success. Todos no mesmo SHA de código. A suíte de navegador é regressão global, não cobertura visual própria dos novos recursos F10.
 
 **Decisão:** W1 PARCIAL, AC-10.01 PARCIAL, F10 RUNNING / implementação parcial. Exportação local não substitui persistência integrada por revisão nem autenticação da fonte, e não garante inviolabilidade contra ator com escrita no sistema de arquivos. Planta autorizada/CAD, símbolos completos, memorial de cálculo integral, PDF, reconciliação com registros F06–F08 e UI F10 permanecem pendentes. QA-01, QA-02 e QA-03 formais seguem `PENDING`; nenhuma homologação normativa foi concedida. As 14 gates de conclusão seguem pendentes, sem falsificar aprovação por suíte verde.
+
+
+## Decisão W1 — candidato de fechamento em 24/10/2026
+
+Código avaliado: `283c4fa66592f3f07daf7e52e24cf2d75895798b`, tree `4ade0d26e90e4c24480e3b5bb3285d8e2b694e12`. Revalidação nesse SHA: `python -m pytest -q` (cwd `restructuring/apps/api`), **1127 passed, 1 warning, 21.53s, exit 0**; lint/typecheck/npm test/build exit 0. QA independente reproduziu 1127 testes no diff e 78 focados no candidato; pareceres `W1_MOTOR_QA_MATRIX.md` e `W1_MOTOR_SECURITY.md`.
+
+G01 e G02 são tecnicamente satisfeitos no recorte local documentado: um circuito/run/cable_run, motor `analyze_legacy`, parâmetros explicitamente persistidos na revisão, banco e filesystem privados e escritores cooperativos. A execução efetiva é registrada e conferida contra revisão/snapshot/inputs/resultado/versões. Fonte indisponível nunca é CURRENT. Não há ACL multiusuário nem garantia contra ator com poder de reescrever banco ou trocar ancestrais filesystem. F06–F08 não são consumidos pelo renderer W1. Não representa homologação normativa.
+
+**Decisão de fechamento:** W1_DONE no recorte suportado somente após sucesso dos três workflows no SHA deste candidato de fechamento. Antes de conferir esses resultados, estado global é VALIDATED_LOCAL_PENDING_CI. Os resultados de SHA anterior abaixo são referências históricas, não aprovação automática do SHA deste documento. F10 permanece RUNNING; F09 permanece DONE; ondas B–E continuam fora do escopo.
+
+Workflows exigidos no candidato: `SIE modular API`, `SIE Orchestrator AIOX Quality Gates`, `SIE Browser E2E (Chromium)`. O CI passa a disparar também por mudança na story e documentação F10. Qualquer falha reabre o gate afetado e impede W1_DONE.
