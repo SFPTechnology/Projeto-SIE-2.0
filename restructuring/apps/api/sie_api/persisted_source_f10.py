@@ -79,7 +79,7 @@ def _source(repo: Any, project_id: str, revision: int):
 
 def _resolve_persisted_source(
     repo: Any, project_id: str, revision: int, calculation_run_id: str,
-    template_version: str,
+    template_version: str, *, full: bool = False,
 ) -> tuple[dict[str, Any], ArtifactContract]:
     """Project an immutable verified *stored* source; never accept a caller's F10 data.
 
@@ -92,6 +92,8 @@ def _resolve_persisted_source(
         raise ArtifactError("template_version required")
     saved, document, topo_hash = _source(repo, pid, revision)
     inst = document.installation
+    if full:
+        return _resolve_full_persisted_source(repo, saved, document, topo_hash, pid, revision, rid, template_version)
     if len(inst.circuits) != 1:
         raise ArtifactError("F10 scalar calculation contract cannot attest to multiple circuits")
     circuit = inst.circuits[0]
@@ -181,17 +183,154 @@ def _resolve_persisted_source(
             "normative_conformity_verified": False,
         },
     }
-    return snapshot, ArtifactContract(pid, str(revision), rid, run.rule_version, template_version)
+    contract = ArtifactContract(pid, str(revision), rid, run.rule_version, template_version)
+    if full:
+        from .floorplan_f10 import import_floor_plan
+        source_plan = saved["dados"].get("floor_plan_f10")
+        if not isinstance(source_plan, dict):
+            raise ArtifactError("full F10 requires an authorized persisted floor plan")
+        snapshot["full_f10"] = True
+        snapshot["circuits"][0]["phase"] = "UNSPECIFIED"
+        snapshot["circuits"][0]["phases_count"] = circuit.phases
+        snapshot["verified_calculation_f10"] = {
+            "record": evidence["record"], "parameters": evidence["parameters"],
+            "execution_sha256": evidence["hash_sha256"],
+        }
+        snapshot["installation_f10"] = inst.model_dump(mode="json")
+        for collection, kind in ((inst.devices, "device"), (inst.load_points, "load_point"),
+                                 (inst.loads, "load"), (inst.supplies, "supply"),
+                                 (inst.cable_runs, "cable_run")):
+            snapshot["elements"].extend({"id": str(item.id), "kind": kind, "name": item.name}
+                                        for item in collection)
+        snapshot["floor_plan"] = import_floor_plan(source_plan, snapshot, contract)
+    return snapshot, contract
+
+
+def _resolve_full_persisted_source(repo, saved, document, topo_hash, pid, revision, anchor, template):
+    from .floorplan_f10 import import_floor_plan
+    from .topology import exact_sum
+    inst = document.installation
+    mapping = saved["dados"].get("calculation_runs_f10")
+    circuits = {str(c.id): c for c in inst.circuits}
+    if (not isinstance(mapping, dict) or set(mapping) != set(circuits)
+            or not mapping or len(set(mapping.values())) != len(mapping)
+            or anchor not in mapping.values()):
+        raise ArtifactError("full F10 requires an exact explicit per-circuit calculation run map")
+    runs = {str(run.id): run for run in inst.calculation_runs}
+    loads = {str(load.id): load for load in inst.loads}
+    segments = {str(segment.id): segment for segment in inst.segments}
+    rows, physical, verified, dependencies = [], [], [], []
+    assignments = saved["dados"].get("phase_assignments_f10", {})
+    if not isinstance(assignments, dict) or set(assignments) - set(circuits):
+        raise ArtifactError("phase assignments reference unknown circuits")
+    def declared_power(circuit, visiting=None):
+        visiting = set() if visiting is None else visiting
+        cid = str(circuit.id)
+        if cid in visiting:
+            raise ArtifactError("feeder graph cycle")
+        if circuit.kind == "TERMINAL":
+            values = []
+            for key in circuit.load_ids:
+                load = loads[str(key)]
+                if load.apparent_power is None or load.apparent_power.unit != "VA":
+                    raise ArtifactError("load requires explicit apparent power VA")
+                values.append(load.apparent_power.value)
+            if not values:
+                raise ArtifactError("terminal circuit has no declared loads")
+            return Decimal(exact_sum(values))
+        downstream = [c for c in inst.circuits if c.board_id == circuit.downstream_board_id]
+        if not downstream:
+            raise ArtifactError("feeder has no downstream declared loads")
+        return Decimal(exact_sum([declared_power(c, visiting | {cid}) for c in downstream]))
+    for cid in sorted(circuits):
+        circuit = circuits[cid]
+        rid = _id(mapping[cid], "calculation_runs_f10.run_id")
+        run = runs.get(rid)
+        if (run is None or run.state != "VALID" or str(run.circuit_id) != cid
+                or run.project_revision != inst.project.revision or not run.output_sha256):
+            raise ArtifactError("per-circuit run absent, invalid or incompatible")
+        evidence = repo.consultar_calculo_f10(pid, revision, rid)
+        if not isinstance(evidence, dict):
+            raise ArtifactError("per-circuit server-side execution is absent")
+        record = evidence.get("record", {})
+        if (evidence.get("project_id") != pid or evidence.get("revision") != revision
+                or evidence.get("run_id") != rid or evidence.get("source_sha256") != saved["hash_sha256"]
+                or record.get("project_id") != pid or record.get("circuit_id") != cid
+                or record.get("revision") != inst.project.revision
+                or record.get("snapshot_sha256") != saved["dados"]["installation_snapshot"]["snapshot_sha256"]
+                or record.get("input_sha256") != run.input_sha256
+                or record.get("result_sha256") != run.output_sha256
+                or record.get("algorithm_version") != run.algorithm_version
+                or record.get("rule_version") != run.rule_version):
+            raise ArtifactError("per-circuit motor evidence differs from authoritative run")
+        cables = [c for c in inst.cable_runs if c.circuit_id == circuit.id]
+        if len(cables) != 1:
+            raise ArtifactError("each full circuit requires one unambiguous cable run")
+        cable = cables[0]
+        phase = assignments.get(cid, "UNSPECIFIED")
+        if phase not in {"UNSPECIFIED", "L1", "L2", "L3", "L1-L2", "L2-L3", "L1-L3", "L1-L2-L3"}:
+            raise ArtifactError("phase assignment is not an explicit supported designation")
+        if phase != "UNSPECIFIED":
+            permitted = ({"L1-L2-L3"} if circuit.phases == 3 else
+                         {"L1", "L2", "L3"} if circuit.voltage.basis == "FN" else
+                         {"L1-L2", "L2-L3", "L1-L3"})
+            if phase not in permitted:
+                raise ArtifactError("phase assignment contradicts circuit phase count or voltage basis")
+        rows.append({"id": cid, "panel_id": str(circuit.board_id),
+            "load_va": _exact_float(declared_power(circuit), "declared load VA"),
+            "power_kind": "SUM_DECLARED_APPARENT_POWER_VA_NOT_DEMAND" if circuit.kind == "TERMINAL" else "SUM_DECLARED_DOWNSTREAM_NOT_DEMAND",
+            "phase": phase, "phases_count": circuit.phases,
+            "breaker_id": str(circuit.device_id), "conductor_id": str(cable.id),
+            "calculation_run_id": rid, "rule_version": run.rule_version})
+        for sid in cable.segment_ids:
+            segment = segments[str(sid)]
+            detail = document.segment_details.get(segment.id)
+            if detail is None or detail.route_status not in {"MEASURED", "DOCUMENTED"} or detail.origin.method not in {"MEASURED", "DOCUMENTED"}:
+                raise ArtifactError("full segment requires measured/documented origin")
+            physical.append({"id": str(sid), "circuit_id": cid, "conductor_id": str(cable.id),
+                "length_m": _exact_float(segment.length.value, "segment.length_m"),
+                "status": detail.route_status, "origin": detail.origin.reference})
+        verified.append({"circuit_id": cid, "run_id": rid, "record": record,
+            "parameters": evidence["parameters"], "execution_sha256": evidence["hash_sha256"]})
+        dependencies.append({"circuit_id": cid, "run_id": rid, "rule_version": run.rule_version,
+            "algorithm_version": run.algorithm_version, "input_sha256": run.input_sha256,
+            "output_sha256": run.output_sha256, "snapshot_sha256": record["snapshot_sha256"],
+            "execution_sha256": evidence["hash_sha256"]})
+    anchor_verified = next(v for v in verified if v["run_id"] == anchor)
+    anchor_run = runs[anchor]
+    snapshot = {"project_id": pid, "revision_id": str(revision), "calculation_run_id": anchor,
+        "rule_version": anchor_run.rule_version, "full_f10": True,
+        "calculation_scope_f10": "PER_CIRCUIT_RUN_MAP_V1", "calculation_dependencies_f10": dependencies,
+        "verified_calculations_f10": verified, "verified_calculation_f10": anchor_verified,
+        "installation_f10": inst.model_dump(mode="json"), "circuits": rows, "segments": physical,
+        "phase_assignments_f10": assignments,
+        "elements": [{"id": str(item.id), "kind": kind, "name": item.name}
+            for group, kind in ((inst.boards, "panel"), (inst.devices, "device"), (inst.loads, "load"),
+                (inst.load_points, "load_point"), (inst.supplies, "supply"), (inst.cable_runs, "cable_run")) for item in group],
+        "source_evidence_f10": {"source_kind": "LOCAL_F02_F05_SERVER_EXECUTED_LEGACY_MOTOR",
+            "historical_revision": revision, "historical_revision_sha256": saved["hash_sha256"],
+            "installation_snapshot_sha256": saved["dados"]["installation_snapshot"]["snapshot_sha256"],
+            "installation_revision": inst.project.revision, "topology_sha256": topo_hash,
+            "calculation_run_sha256": sha256(_canonical(anchor_run.model_dump(mode="json"))).hexdigest(),
+            "calculation_output_sha256": anchor_run.output_sha256,
+            "algorithm_version": anchor_run.algorithm_version,
+            "motor_execution_sha256": anchor_verified["execution_sha256"], "normative_conformity_verified": False}}
+    contract = ArtifactContract(pid, str(revision), anchor, anchor_run.rule_version, template)
+    plan = saved["dados"].get("floor_plan_f10")
+    if not isinstance(plan, dict):
+        raise ArtifactError("full F10 requires an authorized persisted floor plan")
+    snapshot["floor_plan"] = import_floor_plan(plan, snapshot, contract)
+    return snapshot, contract
 
 
 def resolve_persisted_source(
     repo: Any, project_id: str, revision: int, calculation_run_id: str,
-    template_version: str,
+    template_version: str, *, full: bool = False,
 ) -> tuple[dict[str, Any], ArtifactContract]:
     """Normalize malformed persisted records into a stable fail-closed error."""
     try:
         return _resolve_persisted_source(
-            repo, project_id, revision, calculation_run_id, template_version)
+            repo, project_id, revision, calculation_run_id, template_version, full=full)
     except ArtifactError:
         raise
     except (KeyError, IndexError, TypeError, ValueError, AttributeError) as exc:
@@ -200,10 +339,10 @@ def resolve_persisted_source(
 
 def publish_from_repository(
     repo: Any, project_id: str, revision: int, calculation_run_id: str,
-    template_version: str, destination: str | Path,
+    template_version: str, destination: str | Path, *, full: bool = False,
 ) -> dict[str, Any]:
     snapshot, contract = resolve_persisted_source(
-        repo, project_id, revision, calculation_run_id, template_version)
+        repo, project_id, revision, calculation_run_id, template_version, full=full)
     target = Path(destination).expanduser().absolute()
     root = target.parent
     snapshot_sha = sha256(_canonical(snapshot) + b"\n").hexdigest()
@@ -352,7 +491,14 @@ def recover_registered_artifacts(repo: Any) -> list[dict[str, Any]]:
                 )
                 snapshot_sha = sha256(_canonical(snapshot) + b"\n").hexdigest()
                 if snapshot_sha != row["snapshot_sha256"]:
-                    raise ArtifactError("authoritative source changed since reservation")
+                    # Mode is reconstructed by matching the durable snapshot hash;
+                    # a reservation interrupted before files does not lose full mode.
+                    snapshot, contract = resolve_persisted_source(
+                        repo, row["project_id"], row["revision_id"],
+                        row["calculation_run_id"], row["template_version"], full=True)
+                    snapshot_sha = sha256(_canonical(snapshot) + b"\n").hexdigest()
+                    if snapshot_sha != row["snapshot_sha256"]:
+                        raise ArtifactError("authoritative source changed since reservation")
                 if row["state"] == "RECOVERY_REQUIRED":
                     row = registry.start_retry(artifact_id, lock_held=True)
                 elif row["state"] in {"PREPARING", "STAGED"}:
@@ -445,7 +591,7 @@ def _verify_against_repository_locked(repo: Any, root: Path) -> dict[str, Any]:
             raise ValueError("noncanonical revision")
         template = deps["template_version"]
         fresh, contract = resolve_persisted_source(
-            repo, pid, revision, deps["calculation_run_id"], template)
+            repo, pid, revision, deps["calculation_run_id"], template, full=stored.get("full_f10") is True)
         if fresh != stored:
             return finish("SOURCE_INVALID", "not derived from stored source")
         current = repo.carregar(pid)
@@ -468,6 +614,26 @@ def _verify_against_repository_locked(repo: Any, root: Path) -> dict[str, Any]:
                 _new_saved, new_doc, new_topo_hash = _source(repo, pid, current["revisao"])
                 if new_topo_hash != stored["source_evidence_f10"]["topology_sha256"]:
                     return finish("STALE", "physical topology changed")
+                if stored.get("full_f10") is True:
+                    old_plan = dict(stored["floor_plan"])
+                    new_plan = dict(_new_saved["dados"].get("floor_plan_f10", {}))
+                    for key in ("revision_id", "source_sha256"):
+                        old_plan.pop(key, None)
+                        new_plan.pop(key, None)
+                    if old_plan != new_plan:
+                        return finish("STALE", "floor plan source, geometry or calibration changed")
+                    mapped = _new_saved["dados"].get("calculation_runs_f10", {})
+                    old_dependencies = stored["calculation_dependencies_f10"]
+                    if mapped != {d["circuit_id"]: d["run_id"] for d in old_dependencies}:
+                        return finish("STALE", "per-circuit calculation mapping changed")
+                    new_runs = {str(r.id): r for r in new_doc.installation.calculation_runs}
+                    for dep in old_dependencies:
+                        latest = new_runs.get(dep["run_id"])
+                        if latest is None or latest.state != "VALID" or any(
+                                getattr(latest, field) != dep[key]
+                                for field, key in (("input_sha256", "input_sha256"), ("output_sha256", "output_sha256"),
+                                                   ("algorithm_version", "algorithm_version"), ("rule_version", "rule_version"))):
+                            return finish("STALE", "a dependent calculation run changed")
                 old_evidence = stored["source_evidence_f10"]
                 latest_run = [r for r in new_doc.installation.calculation_runs
                               if str(r.id) == deps["calculation_run_id"]]
@@ -498,6 +664,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="F10 experimental local persisted source adapter")
     sub = parser.add_subparsers(dest="action", required=True)
     produce = sub.add_parser("generate")
+    produce.add_argument("--full", action="store_true", help="Require persisted calibrated plan and complete F10 documents")
     produce.add_argument("--db", required=True)
     produce.add_argument("--project-id", required=True)
     produce.add_argument("--revision", type=int, required=True)
@@ -509,6 +676,7 @@ def main(argv: list[str] | None = None) -> int:
     execute.add_argument("--project-id", required=True)
     execute.add_argument("--revision", type=int, required=True)
     execute.add_argument("--run-id", required=True)
+    execute.add_argument("--all", action="store_true", help="Execute every explicitly mapped full F10 circuit run")
     verify = sub.add_parser("verify")
     verify.add_argument("--db", required=True)
     verify.add_argument("--directory", required=True)
@@ -520,6 +688,16 @@ def main(argv: list[str] | None = None) -> int:
         parser.error("SQLite database does not exist")
     repository = RepositorioProjetos(args.db)
     if args.action == "execute":
+        if args.all:
+            saved = repository.carregar_revisao(args.project_id, args.revision)
+            mapping = saved["dados"].get("calculation_runs_f10") if saved else None
+            if not isinstance(mapping, dict) or args.run_id not in mapping.values():
+                raise ArtifactError("full execution requires an explicit per-circuit run map")
+            records = [repository.executar_calculo_f10(args.project_id, args.revision, rid)
+                       for rid in sorted(set(mapping.values()))]
+            print(json.dumps({"executions": [{"run_id": e["run_id"], "execution_sha256": e["hash_sha256"]} for e in records],
+                              "normative_conformity_verified": False}))
+            return 0
         evidence = repository.executar_calculo_f10(
             args.project_id, args.revision, args.run_id)
         print(json.dumps({"run_id": evidence["run_id"],
@@ -528,7 +706,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.action == "generate":
         manifest = publish_from_repository(repository, args.project_id, args.revision,
-                                           args.run_id, args.template_version, args.output_dir)
+                                           args.run_id, args.template_version, args.output_dir, full=args.full)
         print(json.dumps({"artifact_id": manifest["artifact_id"], "status": "STUDY"}))
         return 0
     if args.action == "recover":

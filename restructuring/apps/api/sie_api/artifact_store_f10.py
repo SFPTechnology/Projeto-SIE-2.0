@@ -25,7 +25,7 @@ except ImportError:  # pragma: no cover - exercised on Windows
 
 from .representation_f10 import ArtifactContract, ArtifactError, artifact_bundle
 
-_ALLOWED_NAME = re.compile(r"^[a-z][a-z0-9_]*\.(?:json|csv|svg|html)$")
+_ALLOWED_NAME = re.compile(r"^[a-z][a-z0-9_]*\.(?:json|csv|svg|html|pdf)$")
 _CONTRACT_FIELDS = (
     "project_id", "revision_id", "calculation_run_id", "rule_version", "template_version"
 )
@@ -65,7 +65,7 @@ def build_verified_bundle(
     except (ValueError, TypeError, AttributeError) as exc:
         raise ArtifactError("artifact_id must be a UUID") from exc
     rendered = artifact_bundle(frozen_snapshot, frozen_contract)
-    files = {name: content.encode("utf-8") for name, content in rendered.items()}
+    files = {name: (content if isinstance(content, bytes) else content.encode("utf-8")) for name, content in rendered.items()}
     files["snapshot.json"] = snapshot_bytes + b"\n"
     if not all(_ALLOWED_NAME.fullmatch(name) for name in files):
         raise ArtifactError("unsafe artifact filename")
@@ -86,6 +86,9 @@ def build_verified_bundle(
         "files_sha256": {name: _digest(data) for name, data in sorted(files.items())},
         "normative_conformity_verified": False,
     }
+    if frozen_snapshot.get("full_f10") is True:
+        manifest["dependencies"]["calculation_scope_f10"] = frozen_snapshot["calculation_scope_f10"]
+        manifest["dependencies"]["calculation_dependencies_f10"] = frozen_snapshot["calculation_dependencies_f10"]
     files["manifest.json"] = _canonical_json(manifest) + b"\n"
     return files, manifest
 
@@ -278,11 +281,15 @@ def _verify_verified_bundle_locked(
         stored_contract = ArtifactContract(
             **{key: dependencies[key] for key in _CONTRACT_FIELDS}
         )
+        if stored_snapshot.get("full_f10") is True:
+            for name in ("calculation_scope_f10", "calculation_dependencies_f10"):
+                if dependencies.get(name) != stored_snapshot.get(name):
+                    raise ArtifactError("manifest per-circuit dependencies differ from snapshot")
         regenerated = artifact_bundle(stored_snapshot, stored_contract)
         if set(regenerated) | {"snapshot.json"} != set(payloads):
             raise ArtifactError("generated artifact inventory diverges from snapshot")
         for name, content in regenerated.items():
-            if content.encode("utf-8") != payloads[name]:
+            if (content if isinstance(content, bytes) else content.encode("utf-8")) != payloads[name]:
                 raise ArtifactError(f"artifact diverges from snapshot: {name}")
         if manifest.get("normative_conformity_verified") is not False:
             raise ArtifactError("manifest cannot claim normative conformity")

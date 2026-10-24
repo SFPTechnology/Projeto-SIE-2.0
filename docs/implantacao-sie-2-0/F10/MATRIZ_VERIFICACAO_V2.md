@@ -72,3 +72,52 @@ Workflows exigidos no candidato: `SIE modular API`, `SIE Orchestrator AIOX Quali
 | QA independente | PASS local | W1_MOTOR_QA_MATRIX.md e W1_MOTOR_SECURITY.md |
 | CI SHA final | PENDING na emissão | conferir três runs no SHA final; sem inferência do SHA anterior |
 | W1 global | VALIDATED_LOCAL_PENDING_CI | torna-se W1_DONE somente com três sucessos no SHA final |
+
+
+## Candidato integral F10 — decisão atual de software (24/10/2026)
+
+Esta seção supera os estados históricos anteriores somente para o incremento integral atual. Baseline W1 aprovada: `7d8edda79019fed91396d53e99bd897191d69ba3`. Código e documentos ainda serão congelados no candidato; não há SHA final inventado.
+
+**Estado: VALIDATED_LOCAL_PENDING_CI.** QA-01: PASS_LOCAL (1181 testes API, 1 aviso, 22,63s); QA-02: PASS_LOCAL (72 testes focados, PDF multi de sete páginas inspecionado). QA-03: PASS_LOCAL após E2E/print6p/STALE/mobile e fechamento SEC-F10-01; ver QA-03.md. Lint/typecheck/npm test/build passaram no diff; não equivalem a CI.
+
+### Matriz requisito → implementação → evidência
+
+| Critério | Implementação examinada | Teste/parecer |
+|---|---|---|
+| AC-10.01 | Fonte persistida, runs por circuito, snapshot/hash/registry/recovery | `test_persisted_source_f10_sqlite.py; test_full_f10_integration.py` |
+| AC-10.02 | SVG original seguro, autorização, calibração confirmada, IDs e geometria CAS | `test_floorplan_f10.py; test_artifacts_api_f10.py; test_f10_browser.py` |
+| AC-10.03 | Catálogo versionado interno, origem/licença e legenda usada | `test_floorplan_f10.py` |
+| AC-10.04 | Unifilar derivado do grafo, isolamento multi-quadro, indisponibilidade explícita dos formatos sem dados | `test_representation_f10.py; test_full_f10_integration.py` |
+| AC-10.05 | Quadros da mesma revisão/run, entradas e resultados reais com unidades/proveniência | `test_documents_f10.py; test_full_f10_integration.py` |
+| AC-10.06 | Equipamentos e ledger de trechos existentes; sem reserva ou medidas implícitas | `test_documents_f10.py; test_full_f10_integration.py` |
+| AC-10.07 | Memorial com resultados/fórmulas/intermediários retornados, limitações e referências | `test_documents_f10.py; QA-02.md` |
+| AC-10.08 | JSON/CSV/SVG/HTML/PDF reais, hashes e verificação, round-trip suportado | `test_full_f10_integration.py; test_documents_f10.py` |
+| AC-10.09 | Editor/preview desktop/mobile, teclado, busca, camadas, undo/redo, CAS e impressão | `test_f10_browser.py; QA-03.md` |
+| AC-10.10 | cross_validation.json no manifesto e bloqueio de divergência modelo/projeção/resultados | `test_full_f10_integration.py` |
+
+### Gates locais e regra final
+
+| Gate | Critério | Evidência vinculada | Estado local |
+|---|---|---|---|
+| G01 — contratos/rastreabilidade | AC-10.01 | testes e pareceres acima | PASS_LOCAL |
+| G02 — snapshots/invalidação/recovery | AC-10.01 | testes e pareceres acima | PASS_LOCAL |
+| G03 — planta/geometria | AC-10.02 | testes e pareceres acima | PASS_LOCAL |
+| G04 — símbolos | AC-10.03 | testes e pareceres acima | PASS_LOCAL |
+| G05 — diagramas/quadros | AC-10.04/05 | testes e pareceres acima | PASS_LOCAL |
+| G06 — quantitativos | AC-10.06 | testes e pareceres acima | PASS_LOCAL |
+| G07 — memorial | AC-10.07 | testes e pareceres acima | PASS_LOCAL |
+| G08 — exportações/PDF | AC-10.08 | testes e pareceres acima | PASS_LOCAL |
+| G09 — reconciliação | AC-10.10 | testes e pareceres acima | PASS_LOCAL |
+| G10 — UI/acessibilidade | AC-10.09 | testes e pareceres acima | PASS_LOCAL |
+| G11 — segurança/regressão | QA-03 + suíte/CI | testes e pareceres acima | PASS_LOCAL |
+| G12 — QA-01 | QA-01.md | testes e pareceres acima | PASS_LOCAL |
+| G13 — QA-02 | QA-02.md | testes e pareceres acima | PASS_LOCAL |
+| G14 — QA-03 | QA-03.md | testes e pareceres acima | PASS_LOCAL |
+
+### Limites do produto e condição de DONE
+
+O modo integral cobre múltiplos quadros/circuitos com evidência independente de cada run; cada execução ainda respeita os limites do motor `analyze_legacy` e rejeita topologias/grandezas não suportadas. Fase atribuída ausente é UNSPECIFIED, sem inferir L1 de uma contagem. Multifilar/prumada sem conectividade/elevações suficientes ficam indisponíveis com motivo; CAD/BIM são opcionais. Importação de planta implementa subset SVG seguro, não CAD nem todo SVG arbitrário. Quantitativo geométrico não é medição de obra.
+
+Autorização continua single-owner local por token; não é ACL multiusuário. Banco e filesystem privados são autoridade; hashes não são assinatura contra ator com escrita arbitrária. Homologação normativa/profissional permanece falsa. Nenhuma aprovação humana foi fabricada.
+
+F10 só recebe DONE quando QA-01/02/03 estiverem favoráveis e os três workflows **SIE modular API**, **SIE Orchestrator AIOX Quality Gates** e **SIE Browser E2E (Chromium)** concluírem success no SHA exato que contém este fechamento. Qualquer alteração de código invalida as verificações afetadas. Resultados históricos não aprovam o candidato atual. Essa regra permite a decisão de software após conferir CI sem reescrever o commit validado. Main, produção e F09 permanecem preservados; F11 não é executada neste incremento.

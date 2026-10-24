@@ -136,6 +136,22 @@ def load_schedule(snapshot: dict[str, Any], contract: ArtifactContract) -> dict[
             "breaker_id": circuit["breaker_id"],
             "conductor_id": circuit["conductor_id"],
         })
+    if snapshot.get("full_f10") is True:
+        import json
+        verified_by_circuit = {v["record"]["circuit_id"]: v for v in snapshot.get("verified_calculations_f10", [snapshot["verified_calculation_f10"]])}
+        for row in rows:
+            verified = verified_by_circuit[row["circuit_id"]]
+            result = json.loads(verified["record"]["result_json"])
+            if row["circuit_id"] != verified["record"]["circuit_id"]:
+                raise ArtifactError("schedule circuit differs from verified calculation")
+            row.update(calculation_run_id=next(c.get("calculation_run_id", contract.calculation_run_id) for c in snapshot["circuits"] if c["id"] == row["circuit_id"]),
+                       rule_version=verified["record"]["rule_version"],
+                       phases_count=next(c["phases_count"] for c in snapshot["circuits"] if c["id"] == row["circuit_id"]),
+                       design_current_a=verified["parameters"]["corrente_a"],
+                       voltage_v=verified["parameters"]["tensao_v"],
+                       section_mm2=result["condutor"]["secao_mm2"],
+                       breaker_current_a=result["disjuntor"]["corrente_a"],
+                       calculation_result_sha256=verified["record"]["result_sha256"])
     return {
         "project_id": contract.project_id,
         "revision_id": contract.revision_id,
@@ -240,6 +256,10 @@ def render_report_html(schedule: dict[str, Any], diagram_svg: str,
                          ("segment_id", "circuit_id", "conductor_id", "length_m", "status", "origin")) + "</tr>"
         for row in quantities
     )
+    motor_table = ""
+    if schedule["rows"] and "design_current_a" in schedule["rows"][0]:
+        motor_fields = ("circuit_id", "design_current_a", "voltage_v", "section_mm2", "breaker_current_a", "calculation_result_sha256")
+        motor_table = "<h2>Grandezas da execução verificada</h2><div style='overflow:auto'><table><thead><tr>" + "".join(f"<th scope='col'>{escape(k)}</th>" for k in motor_fields) + "</tr></thead><tbody>" + "".join("<tr>" + "".join(f"<td>{escape(str(row[k]))}</td>" for k in motor_fields) + "</tr>" for row in schedule["rows"]) + "</tbody></table></div>"
     contract = "".join(
         f"<dt>{escape(key)}</dt><dd>{escape(str(schedule[key]))}</dd>"
         for key in ("project_id", "revision_id", "calculation_run_id", "rule_version", "template_version")
@@ -259,11 +279,93 @@ def render_report_html(schedule: dict[str, Any], diagram_svg: str,
         "<h2>Trechos e quantitativos rastreáveis</h2>"
         "<p>Somente trechos explicitamente informados são listados; ausência não é estimada.</p>"
         "<table><thead><tr><th>Trecho</th><th>Circuito</th><th>Condutor</th><th>Comprimento (m)</th><th>Estado</th><th>Origem</th></tr></thead>"
-        f"<tbody>{quantity_rows}</tbody></table></main></html>"
+        f"<tbody>{quantity_rows}</tbody></table>{motor_table}</main></html>"
     )
 
 
-def artifact_bundle(snapshot: dict[str, Any], contract: ArtifactContract) -> dict[str, str]:
+def full_cross_validation(snapshot: dict[str, Any], contract: ArtifactContract) -> dict[str, Any]:
+    """Reconcile projected facts against canonical model and verified motor values."""
+    import json
+    from decimal import Decimal
+    from .domain.installation import Installation
+    from .installation_service import create_snapshot
+    from .documents_f10 import technical_memorial, equipment_ledger
+    from .floorplan_f10 import validate_floor_plan
+    _check_contract(snapshot, contract)
+    try:
+        installation = Installation.model_validate(snapshot["installation_f10"])
+        source = snapshot["source_evidence_f10"]
+        if create_snapshot(installation).snapshot_sha256 != source["installation_snapshot_sha256"]:
+            raise ArtifactError("canonical installation snapshot hash mismatch")
+        schedule = load_schedule(snapshot, contract)
+        if len(installation.circuits) != len(schedule["rows"]):
+            raise ArtifactError("model/schedule circuit inventory differs")
+        loads = {str(load.id): load for load in installation.loads}
+        cables = {str(cable.circuit_id): cable for cable in installation.cable_runs}
+        devices = {str(device.id): device for device in installation.devices}
+        by_circuit = {str(circuit.id): circuit for circuit in installation.circuits}
+        def load_for(circuit, visited=None):
+            visited = set() if visited is None else visited
+            if circuit.id in visited:
+                raise ArtifactError("feeder graph contains a cycle")
+            if circuit.kind == "TERMINAL":
+                return sum((loads[str(key)].apparent_power.value for key in circuit.load_ids), Decimal(0))
+            children = [c for c in installation.circuits if c.board_id == circuit.downstream_board_id]
+            if not children:
+                raise ArtifactError("feeder has no declared downstream loads")
+            return sum((load_for(c, visited | {circuit.id}) for c in children), Decimal(0))
+        for row in schedule["rows"]:
+            circuit = by_circuit[row["circuit_id"]]
+            cable = cables[row["circuit_id"]]
+            assigned = snapshot.get("phase_assignments_f10", {}).get(str(circuit.id), "UNSPECIFIED")
+            allowed = ({"L1-L2-L3"} if circuit.phases == 3 else
+                       {"L1", "L2", "L3"} if circuit.voltage.basis == "FN" else
+                       {"L1-L2", "L2-L3", "L1-L3"})
+            if assigned != "UNSPECIFIED" and assigned not in allowed:
+                raise ArtifactError("phase assignment contradicts canonical circuit")
+            expected_load = load_for(circuit)
+            expected = {"panel_id": str(circuit.board_id), "breaker_id": str(circuit.device_id),
+                        "conductor_id": str(cable.id), "phase": snapshot.get("phase_assignments_f10", {}).get(str(circuit.id), "UNSPECIFIED"), "phases_count": circuit.phases}
+            if any(row[k] != v for k, v in expected.items()) or Decimal(str(row["load_va"])) != expected_load:
+                raise ArtifactError("model/schedule circuit facts differ")
+            if (Decimal(str(row["design_current_a"])) != circuit.design_current.value
+                    or Decimal(str(row["voltage_v"])) != circuit.voltage.value
+                    or Decimal(str(row["section_mm2"])) != cable.section.value):
+                raise ArtifactError("model/motor current voltage or conductor differs")
+            nominal = devices[str(circuit.device_id)].nominal_current
+            if nominal is not None and Decimal(str(row["breaker_current_a"])) != nominal.value:
+                raise ArtifactError("model/motor protection differs")
+        quantities = quantity_ledger(snapshot, contract)
+        model_segments = {str(segment.id): segment for segment in installation.segments}
+        if set(model_segments) != {row["segment_id"] for row in quantities}:
+            raise ArtifactError("model/quantity segment inventory differs")
+        for row in quantities:
+            segment = model_segments[row["segment_id"]]
+            if (Decimal(str(row["length_m"])) != segment.length.value
+                    or row["conductor_id"] != str(segment.cable_run_id)):
+                raise ArtifactError("model/quantity measured segment differs")
+        expected_elements = {str(item.id) for group in (installation.boards, installation.devices,
+            installation.loads, installation.load_points, installation.supplies, installation.cable_runs) for item in group}
+        if expected_elements != {item["id"] for item in snapshot["elements"]}:
+            raise ArtifactError("model/graphic element inventory differs")
+        technical_memorial(snapshot, contract)
+        equipment_ledger(snapshot, contract)
+        validate_floor_plan(snapshot, contract)
+    except ArtifactError:
+        raise
+    except (KeyError, TypeError, ValueError, AttributeError) as exc:
+        raise ArtifactError("full F10 reconciliation failed") from exc
+    return {"schema_version": "SIE_F10_CROSS_VALIDATION_V1", "status": "PASS",
+            "contract": contract.__dict__, "checks": ["source_model_hash", "model_schedule_motor",
+            "model_quantities", "model_equipment", "memorial_execution", "plant_identity_geometry"],
+            "normative_conformity_verified": False,
+            "diagram_availability": {
+                "single_line": {"status": "AVAILABLE", "source": "model board/circuit membership"},
+                "multifilar": {"status": "UNAVAILABLE", "reason": "Individual conductor/terminal connectivity is not mapped by the supported legacy motor contract"},
+                "riser": {"status": "UNAVAILABLE", "reason": "Validated inter-floor physical route elevations are not present in the source model"}}}
+
+
+def artifact_bundle(snapshot: dict[str, Any], contract: ArtifactContract) -> dict[str, str | bytes]:
     """Generate reproducible CSV/JSON/SVG/HTML artifacts without overwriting files."""
     import csv
     import io
@@ -296,7 +398,28 @@ def artifact_bundle(snapshot: dict[str, Any], contract: ArtifactContract) -> dic
         "quantities.csv": csv_out.getvalue(),
         "report.html": render_report_html(schedule, svg, quantities),
     }
-    if "floor_plan" in snapshot:
+    if snapshot.get("full_f10") is True:
+        from .floorplan_f10 import render_floor_plan_svg
+        from .documents_f10 import engineering_documents
+        from .symbols_f10 import symbol_catalog
+        validation = full_cross_validation(snapshot, contract)
+        bundle["cross_validation.json"] = json.dumps(validation, ensure_ascii=False, sort_keys=True, allow_nan=False)
+        schedule_out = io.StringIO(newline="")
+        schedule_fields = (*contract_fields, "circuit_id", "panel_id", "load_va", "phase", "breaker_id", "conductor_id", "phases_count", "design_current_a", "voltage_v", "section_mm2", "breaker_current_a", "calculation_result_sha256")
+        schedule_writer = csv.DictWriter(schedule_out, fieldnames=schedule_fields)
+        schedule_writer.writeheader()
+        for row in schedule["rows"]:
+            safe = {k: ("'" + v if isinstance(v, str) and v.startswith(("=", "+", "-", "@")) else v) for k, v in {**contract_data, **row}.items()}
+            schedule_writer.writerow(safe)
+        bundle["schedule.csv"] = schedule_out.getvalue()
+        bundle["diagram_availability.json"] = json.dumps(validation["diagram_availability"], ensure_ascii=False, sort_keys=True)
+        bundle["floor_plan.svg"] = embed_metadata(render_floor_plan_svg(snapshot, contract))
+        bundle["symbols.json"] = json.dumps(symbol_catalog(), ensure_ascii=False, sort_keys=True, allow_nan=False)
+        extra = engineering_documents(snapshot, contract)
+        if set(bundle) & set(extra):
+            raise ArtifactError("full F10 document filenames collide")
+        bundle.update(extra)
+    elif "floor_plan" in snapshot:
         bundle["floor_plan.svg"] = embed_metadata(render_plant_svg(snapshot, contract))
     return bundle
 

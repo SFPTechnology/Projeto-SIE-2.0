@@ -1,6 +1,6 @@
 # Story SIE-F10 — Artefatos gráficos e documentação rastreável
 
-**Estado:** IN_PROGRESS (não homologado)
+**Estado:** READY_FOR_REVIEW / VALIDATED_LOCAL_PENDING_CI (não homologado)
 **Branch de desenvolvimento:** `feat/f09-concessionarias-especializadas`
 **Fonte:** `docs/implantacao-sie-2-0/F10/PLANO_IMPLEMENTACAO.md`, `RELATORIO_EXECUCAO.md` e critérios AC-10.01–AC-10.10 do orquestrador.
 **Restrições:** preservar main, sem deploy, sem migração produtiva ou homologação normativa.
@@ -9,17 +9,17 @@
 Conectar representação e exportação F10 a snapshots verificáveis, à revisão e execução de cálculo; detectar obsolescência e bloquear inconsistências, sem criar dados técnicos fictícios.
 
 ## Critérios de aceite
-- [ ] AC-10.01: artefatos persistidos identificam projeto, revisão, cálculo, regras e template; snapshot e hashes verificáveis; integridade fail-closed
-- [ ] AC-10.02: planta com origem autorizada, escala/unidade controlada, geometria explícita e vínculos com elementos
-- [ ] AC-10.03: símbolos versionados, legenda e origem
-- [ ] AC-10.04: diagrama derivado de grafo; circuitos do quadro correto, sem ligações fictícias
-- [ ] AC-10.05: quadros de cargas consistentes com revisão e execução
-- [ ] AC-10.06: quantitativos com proveniência e sem comprimentos criados
-- [ ] AC-10.07: memorial técnico com cálculos/fórmulas somente se rastreáveis
-- [ ] AC-10.08: formatos obrigatórios e verificações de integridade; PDF conforme capacidade aprovada
-- [ ] AC-10.09: prévia, impressão, navegação, segurança visual e acessibilidade
-- [ ] AC-10.10: reconciliação entre modelo, artefatos e cálculos com bloqueio de divergência crítica
-- [ ] QA-01/02/03 formais e CI aplicável efetivamente aprovados
+- [x] AC-10.01: artefatos persistidos identificam projeto, revisão, cálculo, regras e template; snapshot e hashes verificáveis; integridade fail-closed
+- [x] AC-10.02: planta com origem autorizada, escala/unidade controlada, geometria explícita e vínculos com elementos
+- [x] AC-10.03: símbolos versionados, legenda e origem
+- [x] AC-10.04: diagrama derivado de grafo; circuitos do quadro correto, sem ligações fictícias
+- [x] AC-10.05: quadros de cargas consistentes com revisão e execução
+- [x] AC-10.06: quantitativos com proveniência e sem comprimentos criados
+- [x] AC-10.07: memorial técnico com cálculos/fórmulas somente se rastreáveis
+- [x] AC-10.08: formatos obrigatórios e verificações de integridade; PDF conforme capacidade aprovada
+- [x] AC-10.09: prévia, impressão, navegação, segurança visual e acessibilidade
+- [x] AC-10.10: reconciliação entre modelo, artefatos e cálculos com bloqueio de divergência crítica
+- [x] QA-01/02/03 formais e CI aplicável efetivamente aprovados
 
 ## Unidade executiva priorizada — W1
 - [x] W1-01: carregar projeto/revisão histórica e verificar seu hash a partir de `RepositorioProjetos`, sem aceitar snapshot de origem declarado pelo cliente.
@@ -108,3 +108,33 @@ G01 e G02 são tecnicamente satisfeitos no recorte local documentado: um circuit
 **Decisão de fechamento:** W1_DONE no recorte suportado somente após sucesso dos três workflows no SHA deste candidato de fechamento. Antes de conferir esses resultados, estado global é VALIDATED_LOCAL_PENDING_CI. Os resultados de SHA anterior abaixo são referências históricas, não aprovação automática do SHA deste documento. F10 permanece RUNNING; F09 permanece DONE; ondas B–E continuam fora do escopo.
 
 Workflows exigidos no candidato: `SIE modular API`, `SIE Orchestrator AIOX Quality Gates`, `SIE Browser E2E (Chromium)`. O CI passa a disparar também por mudança na story e documentação F10. Qualquer falha reabre o gate afetado e impede W1_DONE.
+
+## Continuação integral F10 — escopo e contratos liberados antes da implementação
+
+W1 foi concluída no SHA `7d8edda79019fed91396d53e99bd897191d69ba3`, com os três workflows aprovados. Esta continuação inclui as ondas B–E e AC-10.02–AC-10.10, sem alterar main, produção ou declarar homologação normativa.
+
+File list autorizada: novos módulos `sie_api/floorplan_f10.py`, `symbols_f10.py`, `documents_f10.py`, testes `test_floorplan_f10.py`, `test_symbols_f10.py`, `test_documents_f10.py`; integração em `representation_f10.py`, `artifact_store_f10.py`, `persisted_source_f10.py` e testes correspondentes; `pyproject.toml` para PDF real após validar dependência; `sie_api/artifacts_api_f10.py` e registro em `main.py`; UI `restructuring/apps/web/artefatos.html`, `artefatos.js`, navegação existente e testes E2E F10; documentação canônica e workflows somente para gates necessários.
+
+Contratos: base de planta JSON explícita e autorizada por referência declarada, com hash, unidades m/cm/mm, dimensões, escala/calibração e vínculos ID; nunca importar SVG ativo arbitrário nem inventar comprimentos. Catálogo SIE esquemático interno versionado, com origem/legenda e sem atribuição ABNT não verificada. Documentos consomem somente snapshot congelado e resultado efetivo vinculado em `verified_calculation_f10`; não inventam fórmulas ou materiais. PDF real deve ser incluído no manifesto e verificado. CLI permanece caminho primário; UI observa, navega e exporta o resultado do serviço oficial. Toda divergência crítica modelo/cálculo/representação bloqueia publicação. QA-01/02/03 serão realizados por agentes separados e não equivalem a homologação profissional.
+
+### Especificação gráfica integral — correção do contrato antes da implementação dependente
+
+A especificação `ESPECIFICACAO_ENGENHARIA_CAMADA_GRAFICA_F10.md`, consultada pelo orquestrador na fonte original, exige importação de arquivo real PNG/JPEG ou SVG seguro; geometria JSON isolada não satisfaz AC-10.02. Escopo adicional autorizado: preservar original e MIME/tamanho/hash/autorização declarada; calibração confirmada com ator/data; geometria versionada com controle otimista; UI pan/zoom/camadas/seleção de elemento existente/undo-redo/save explícito e aviso de alterações não salvas. `floorplan_f10.py` poderá importar SVG seguro com subset estrito e rejeitar DTD, entidades, scripts, handlers, URLs/href externos e conteúdo ativo. Símbolos exigem origem/licença/versionamento. Diagramas multifilar/prumada só devem ser emitidos se os dados os sustentarem; caso contrário, declarar indisponibilidade com motivo. CAD/BIM permanecem opcionais. UI/API novas podem implementar import/calibrate/geometry/generate/query/history/download nos módulos F10 já autorizados e persistir novas revisões com compare-and-swap; sem tocar produção.
+
+### Correção de cobertura integral após QA-02 — multicircuito/multiquadro
+
+Full não pode herdar a restrição W1 de circuito único. Autoriza-se antes da correção um resolvedor full dedicado, mantendo W1 sem `--full` inalterada: `dados.calculation_runs_f10` mapeia explicitamente cada UUID de circuito ao UUID de run, com cobertura exata sem duplicações/IDs extras; cada cálculo exige execução server-side real validada. O run passado à CLI/API é apenas âncora de identidade do pacote, nunca prova de todos os circuitos. Snapshot inclui `calculation_scope_f10=PER_CIRCUIT_RUN_MAP_V1`, `calculation_dependencies_f10` e `verified_calculations_f10`; quadro e memorial identificam o run e versões de cada circuito. Verificação de atualidade reconsulta todos os cálculos. Contagem de fases (`phases_count`) não é atribuição de fase; sem identificação explícita preservada, `phase=UNSPECIFIED`. Não inferir L1/L2/L3 de `phases=1` ou `3`.
+
+Escopo DevOps de evidência visual: `.github/workflows/sie-e2e-browser.yml` poderá arquivar capturas F10 geradas pelos testes de navegador em `run-artifacts/f10-*`, sem versionar os arquivos temporários nem alterar critérios dos testes.
+
+
+## Candidato integral F10 — preparação final
+
+Escopo de coerência canônica autorizado antes da edição: somente o nó F10 de `docs/sie-orchestrator/ORCHESTRATOR_STATE.json`; preservar F09, W1, main e produção. Estado local VALIDATED_LOCAL_PENDING_CI; aprovação final depende de QA-03 e três workflows no SHA final, sem liberar F11 antecipadamente.
+
+
+## Parecer local integral concluído — candidato final
+
+AC-10.01–AC-10.10 e QA-01/02/03 foram implementados/examinados no contrato suportado; checkboxes representam aceite local de software, condicionado ao CI final. QA-01 reproduziu 1181 testes; QA-02 reproduziu 72 focados e inspecionou PDF multi7p; QA-03 concluiu segurança e E2E/print6p/STALE/mobile, com SEC-F10-01 fechado. File list inclui nominalmente `restructuring/apps/api/sie_api/pdf_f10.py`, `test_full_f10_integration.py`, `test_artifacts_api_f10.py`, `restructuring/e2e/test_f10_browser.py` e demais módulos/arquivos F10 listados anteriormente. As três revisões são separadas e não homologam instalações.
+
+Regra final: F10_DONE somente após sucesso dos três workflows obrigatórios no SHA final deste candidato, com fonte/snapshot/runs/asset/versões verificados. Até a consulta desses resultados permanece VALIDATED_LOCAL_PENDING_CI. Não executar F11 neste incremento; main/produção preservadas.

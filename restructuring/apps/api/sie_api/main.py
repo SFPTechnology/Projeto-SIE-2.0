@@ -134,3 +134,6 @@ def enquadrar_edp_endpoint(payload: EnquadramentoEDP):
         )
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+from .artifacts_api_f10 import router as artifacts_router_f10
+app.include_router(artifacts_router_f10)

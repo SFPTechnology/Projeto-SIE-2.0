@@ -2303,22 +2303,40 @@
         }
       ],
       "checkpoint": {
-        "implementation_status": "PARTIAL",
-        "current_wave": "W1_PARTIAL",
+        "implementation_status": "VALIDATED_LOCAL_PENDING_CI",
+        "current_wave": "F10_INTEGRAL",
         "last_verified_code_sha": "afd73f02e2cd41ee1c2d8615c31616e90d65e4c0",
-        "api_tests_passed": 1070,
+        "api_tests_passed": 1181,
         "api_warning_count": 1,
-        "ci_runs_verified": [39953127011, 39953126910, 39953127014],
+        "ci_runs_verified": [
+          39953127011,
+          39953126910,
+          39953127014
+        ],
         "integrity_export_local": "IMPLEMENTED_AND_TESTED",
-        "authoritative_source_link": "PENDING",
-        "automatic_obsolescence": "PENDING_SOURCE_INTEGRATION",
+        "authoritative_source_link": "IMPLEMENTED_AND_TESTED",
+        "automatic_obsolescence": "IMPLEMENTED_AND_TESTED",
         "unifilar_multi_panel": "TESTED",
-        "ui_f10_specific_e2e": "PENDING",
-        "qa_01": "PENDENTE",
-        "qa_02": "PENDENTE",
-        "qa_03": "PENDENTE",
+        "ui_f10_specific_e2e": "EXECUTED_LOCAL_PASS",
+        "qa_01": "PASS_LOCAL",
+        "qa_02": "PASS_LOCAL",
+        "qa_03": "PASS_LOCAL",
         "main_unchanged": true,
-        "production_release_allowed": false
+        "production_release_allowed": false,
+        "baseline_sha": "7d8edda79019fed91396d53e99bd897191d69ba3",
+        "final_decision_rule": "DONE only after QA01/02/03 favorable and all three required workflows success on exact final candidate SHA",
+        "local_criteria_verified": [
+          "AC-10.01",
+          "AC-10.02",
+          "AC-10.03",
+          "AC-10.04",
+          "AC-10.05",
+          "AC-10.06",
+          "AC-10.07",
+          "AC-10.08",
+          "AC-10.09",
+          "AC-10.10"
+        ]
       }
     }
   ]
