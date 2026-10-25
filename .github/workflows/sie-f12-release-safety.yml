@@ -1,0 +1,42 @@
+name: SIE F12 Preparation Safety (no deploy)
+on:
+  push:
+    branches: ['feat/f12-liberacao-controlada']
+    paths:
+      - 'docs/implantacao-sie-2-0/F12/**'
+      - 'docs/sie-orchestrator/ORCHESTRATOR_STATE.json'
+      - 'docs/stories/story-SIE-F12-LIBERACAO-CONTROLADA.md'
+      - 'scripts/f12_release_gate.py'
+      - 'restructuring/apps/api/tests/test_f12_release_gate.py'
+      - '.github/workflows/sie-f12-release-safety.yml'
+  pull_request:
+    paths:
+      - 'docs/implantacao-sie-2-0/F12/**'
+      - 'scripts/f12_release_gate.py'
+      - 'restructuring/apps/api/tests/test_f12_release_gate.py'
+permissions:
+  contents: read
+jobs:
+  preparation-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify read-only candidate invariants
+        run: python scripts/f12_release_gate.py --check
+      - name: Verify explicit production request always fails closed
+        shell: bash
+        run: |
+          if python scripts/f12_release_gate.py --require-production; then
+            echo 'FAIL: gate autorizou produção indevidamente'
+            exit 1
+          fi
+      - name: Run F12 unit regression
+        run: |
+          python -m pip install 'pytest>=8,<10'
+          python -m pytest -q restructuring/apps/api/tests/test_f12_release_gate.py

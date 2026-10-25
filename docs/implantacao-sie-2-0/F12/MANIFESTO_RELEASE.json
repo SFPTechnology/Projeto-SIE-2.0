@@ -1,0 +1,35 @@
+{
+  "schema": "sie-f12-preparation-1",
+  "phase": "F12",
+  "candidate": "F12-prepare-only-2026-10-25",
+  "base_branch": "feat/f11-qa-integrado",
+  "base_sha": "11643cf3ad7da2e6182183c6071148f924bfe741",
+  "delivery_branch": "feat/f12-liberacao-controlada",
+  "supported_candidate": "F11-local-QA",
+  "scope": "LOCAL_SOFTWARE_QA_PREPARATION_ONLY",
+  "api_version": "0.1.0",
+  "python": ">=3.11; CI 3.12",
+  "web_version": "source at pinned F11 SHA; no standalone release version",
+  "rules_version": "governed by F01/F06-F09 persisted snapshots; no professional approval",
+  "backup_contract": "SIE-F11-MULTI-ROOT-1, offline writers stopped",
+  "production_release_allowed": false,
+  "professional_approval": false,
+  "deployment_executed": false,
+  "change_approved": false,
+  "tasks": {
+    "12.01": "PENDENTE",
+    "12.02": "PENDENTE",
+    "12.03": "PENDENTE",
+    "12.04": "PENDENTE",
+    "12.05": "PENDENTE",
+    "12.06": "PENDENTE",
+    "12.07": "PENDENTE",
+    "12.08": "PENDENTE",
+    "12.09": "PENDENTE",
+    "12.10": "PENDENTE"
+  },
+  "references": [
+    "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
+    "docs/sie-orchestrator/ORCHESTRATOR_STATE.json"
+  ]
+}
