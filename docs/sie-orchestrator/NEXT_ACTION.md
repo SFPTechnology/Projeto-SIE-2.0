@@ -1,3 +1,9 @@
+# Ação vigente — F12 preparação isolada, produção NO-GO (25/10/2026)
+
+F11 QA local `DONE`; confirmação adicional do SHA documental `11643cf3ad7da2e6182183c6071148f924bfe741`: API 40183189791, AIOX 40183189740 e Chromium 40183189754, todos completed/success. F12 em `feat/f12-liberacao-controlada` prepara validações, roteiro e documentos; **F12 HUMAN_REQUIRED para GO de produção**, sem aprovação elétrica profissional. Conferir `docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md`, workflow F12 e checklist GO/NO-GO. Não iniciar encerramento F00–F12 como liberação real sem seus gates; não fazer merge, deploy ou migração.
+
+---
+
 # Próxima ação — conferir CI do fechamento documental F11 (25/10/2026)
 
 F11 concluiu QA do software local suportado no SHA de código `51c5e95dca484294418d5db9ca7b05156a86d3fb`: 1202 API, 36 Chromium e AIOX success; QA-01/02/03 favoráveis ao recorte. Conferir três workflows no SHA deste fechamento documental; qualquer falha reabre F11. Homologação normativa/profissional e produção seguem reprovadas, sem inferência de aceite. F12 somente para preparação de desenvolvimento, não deploy. Relatórios e limites em `docs/implantacao-sie-2-0/F11/`. As seções abaixo são históricas.

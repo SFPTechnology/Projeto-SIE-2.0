@@ -59,3 +59,11 @@ F09 DONE no escopo essencial: integração persistida de F06/F07/F08, recálculo
 ### Retomada F09 — 22/10/2026
 
 F09 passou de BLOCKED para VALIDATING após integração persistente de F06/F07/F08, verificação de hashes/recalculo, controle de revisão e obsolescência por mudança de evidência ou edição. Seis testes focados e 1.033 testes API passaram; AIOX lint/typecheck/test/build passou. Itens 1 e 2 aceitos pelo responsável; extensões 09.06–09.09 fora do escopo por decisão do responsável. CI remoto do novo commit ainda necessário antes de F09 DONE/F10 liberada.
+
+
+## F12 — ponto de controle 25/10/2026
+| ID | Atividade | Dependências | Estado | Evidência / próxima ação |
+|---|---|---|---|---|
+| F12 | Liberação, implantação e operação controlada | F11 DONE local; SIE-AUTO-006, NOR-01 e GO formal para produção | HUMAN_REQUIRED | Branch `feat/f12-liberacao-controlada`; preparativos e gates em `docs/implantacao-sie-2-0/F12/`; release de produção NÃO AUTORIZADO. Manter `main`, produção e aprovação elétrica bloqueadas. |
+
+Fonte canônica de estado: `ORCHESTRATOR_STATE.json`. Esta linha não concede `DONE`; depende de testes reais, identidade, autorização e pós-deploy.

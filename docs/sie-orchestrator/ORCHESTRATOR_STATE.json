@@ -364,9 +364,16 @@
       "from": "VALIDATING",
       "to": "DONE",
       "reason": "Supported local software QA completed: F09-F10 consultative lineage, offline multi-root recovery, resilience; 1202 API and 36 Chromium plus AIOX CI success on code SHA 51c5e95d. Final documentation SHA requires CI recheck. Technical/professional release rejected; no main/deploy."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-25",
+      "from": "UNREGISTERED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "F11 SHA 11643cf3ad7da2e6182183c6071148f924bfe741 CI API/AIOX/Chromium confirmed. F12 isolated preparation only: candidate metadata, fail-closed script and runbooks under development. Production identity, normative approval, simulated recovery, authorization and deploy still blocked."
     }
   ],
-  "revision": 45,
+  "revision": 46,
   "schema_version": 1,
   "tasks": [
     {
@@ -2598,6 +2605,120 @@
         "professional_approval": false,
         "documentation_final_ci_required": true,
         "documentation_final_ci_rule": "Confirm all three workflows on exact final documentation SHA; if failure, reopen F11"
+      }
+    },
+    {
+      "id": "F12",
+      "title": "Liberação, implantação e operação controlada",
+      "state": "HUMAN_REQUIRED",
+      "dependencies": [
+        "F11",
+        "SIE-AUTO-006",
+        "NOR-01"
+      ],
+      "priority": 100,
+      "impact": 10,
+      "risk": 10,
+      "requirements_verified": true,
+      "source_refs": [
+        "docs/stories/story-SIE-F12-LIBERACAO-CONTROLADA.md",
+        "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+      ],
+      "criteria": [
+        {
+          "id": "AC-12.01",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.02",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.03",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.04",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.05",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.06",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.07",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.08",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.09",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.10",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        }
+      ],
+      "checkpoint": {
+        "preparation_branch": "feat/f12-liberacao-controlada",
+        "base_sha": "11643cf3ad7da2e6182183c6071148f924bfe741",
+        "f11_documentation_ci_verified": true,
+        "f11_ci_runs": [
+          40183189791,
+          40183189740,
+          40183189754
+        ],
+        "local_software_qa_only": true,
+        "professional_approval": false,
+        "production_release_allowed": false,
+        "deployment_executed": false,
+        "change_approved": false,
+        "main_unchanged": true,
+        "release_manifest": "docs/implantacao-sie-2-0/F12/MANIFESTO_RELEASE.json",
+        "implementation_status": "PREPARATION_IN_PROGRESS; PRODUCTION_HUMAN_REQUIRED",
+        "blockers": [
+          "SIE-AUTO-006 production identity and environment lack evidence",
+          "NOR-01 normative professional validation not completed",
+          "restore/migration rehearsal and preproduction infrastructure not approved",
+          "release change authorization, deploy, monitor not executed"
+        ]
       }
     }
   ]
