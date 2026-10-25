@@ -343,9 +343,16 @@
       "from": "BLOCKED",
       "to": "VALIDATING",
       "reason": "Integração persistida F06–F08 implementada, seis testes focados e 1033 API/AIOX gates locais passaram; itens 1 e 2 aceitos pelo responsável, extensões 09.06–09.09 fora do escopo; CI remoto do novo commit pendente."
+    },
+    {
+      "activity": "F11",
+      "at": "2026-10-25",
+      "from": "UNREGISTERED",
+      "to": "BLOCKED",
+      "reason": "F10 SHA540f2c8 and three CI verified. F11 local regression 1184 pass; QA01/02/03 found integration, normative and multi-root recovery blockers. Final CI pending; no main/production change."
     }
   ],
-  "revision": 42,
+  "revision": 43,
   "schema_version": 1,
   "tasks": [
     {
@@ -2419,6 +2426,89 @@
         ],
         "documentation_final_ci_required": true,
         "documentation_final_ci_rule": "Closure confirmed only after all three required workflows succeed on the exact documentation candidate SHA; no F11 execution in this increment"
+      }
+    },
+    {
+      "id": "F11",
+      "title": "QA integrado e homologação técnica",
+      "state": "BLOCKED",
+      "dependencies": [
+        "F10"
+      ],
+      "priority": 70,
+      "impact": 9,
+      "risk": 9,
+      "requirements_verified": false,
+      "source_refs": [
+        "docs/stories/story-SIE-F11-QA-INTEGRADO.md",
+        "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md"
+      ],
+      "criteria": [
+        {
+          "id": "AC-11.01",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-11.02",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-11.03",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-11.04",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-11.05",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-11.06",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-11.07",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-11.08",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-11.09",
+          "passed": false,
+          "evidence": []
+        },
+        {
+          "id": "AC-11.10",
+          "passed": false,
+          "evidence": []
+        }
+      ],
+      "checkpoint": {
+        "base_sha": "540f2c8e7e61a1efb6bf71abcedc8768d7086914",
+        "branch": "feat/f11-qa-integrado",
+        "qa_01": "PENDENTE",
+        "qa_02": "PENDENTE_GLOBAL",
+        "qa_03": "PENDENTE",
+        "production_release_allowed": false,
+        "main_unchanged": true,
+        "blockers": [
+          "F06-F08/F09 to F10 continuous flow not demonstrated",
+          "multi-root artifact backup/restore not demonstrated",
+          "professional normative validation and field checks absent",
+          "final F11 CI pending"
+        ]
       }
     }
   ]

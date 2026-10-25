@@ -4,6 +4,8 @@ on:
     paths:
       - 'docs/stories/SIE-F10.md'
       - 'docs/implantacao-sie-2-0/F10/**'
+      - 'docs/stories/story-SIE-F11-QA-INTEGRADO.md'
+      - 'docs/implantacao-sie-2-0/F11/**'
       - 'restructuring/**'
       - 'scripts/f00_golden.py'
       - 'docs/sie-orchestrator/ORCHESTRATOR_STATE.json'
@@ -28,6 +30,8 @@ on:
     paths:
       - 'docs/stories/SIE-F10.md'
       - 'docs/implantacao-sie-2-0/F10/**'
+      - 'docs/stories/story-SIE-F11-QA-INTEGRADO.md'
+      - 'docs/implantacao-sie-2-0/F11/**'
       - 'restructuring/**'
       - 'scripts/f00_golden.py'
       - '.github/workflows/sie-restructuring-api.yml'
