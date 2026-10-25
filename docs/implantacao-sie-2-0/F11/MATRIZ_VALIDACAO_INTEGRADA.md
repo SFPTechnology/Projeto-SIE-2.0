@@ -12,3 +12,10 @@ Base congelada para esta revisão: F10 `540f2c8e7e61a1efb6bf71abcedc8768d7086914
 | F10 — representação e memorial/PDF, AC-11.04/08 | `tests/test_full_f10_integration.py`; run por circuito, dois quadros, snapshot e exportação | Simbologia esquemática interna, importação SVG limitada; cálculo legado com limites explícitos | APROVADO no cenário executado | PENDENTE para projeto/obra reais |
 
 **Não verificado por esta matriz:** cobertura integral de ACs do release, ensaios físicos, autorização profissional, fontes para cenários fora do catálogo, browser/segurança/desempenho e CI F11. Os demais QA e o relatório consolidado governam esses gates.
+
+## Atualização F11 — ponte consultiva
+
+| Requisito | Evidência nova | Computação | Limite de homologação |
+|---|---|---|---|
+| AC-11.04, F06→F09→F10 | `tests/test_f11_f09_f10_bridge.py`; F09 guarda hashes F06/F07/F08, projeto, fonte, topologia e revisão; F10 congela fingerprint F09, rejeita adulteração e fica STALE após mudança de carga | APROVADO no cenário sintético, testes focados 355 passed | PENDENTE: o cálculo F10 permanece o motor legado; vínculo F09 é consultivo e não concede conformidade elétrica |
+| AC-11.08, memorial e PDF | `documents_f10.py` e `pdf_f10.py` identificam a avaliação F09 como consultiva, com SHA e sem homologação normativa | APROVADO para rastreabilidade do documento novo | PENDENTE para projeto/obra reais, fontes aplicáveis e ensaios de campo |

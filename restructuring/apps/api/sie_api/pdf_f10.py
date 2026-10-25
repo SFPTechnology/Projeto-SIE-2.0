@@ -73,6 +73,9 @@ def render_engineering_pdf(memorial, schedule, quantities, equipment) -> bytes:
             story.append(p('Execução: ' + calculation['calculation_run_id']))
         table(['Campo', 'Referência autoritativa'], [(k, calculation[k]) for k in ('algorithm_version','execution_sha256','input_sha256','result_sha256')], [125,390])
         story.append(Spacer(1, 6))
+    if memorial.get('consultative_f09'):
+        story.append(p('F09 consultivo, sem homologação normativa. SHA-256 da avaliação: '
+                       + memorial['consultative_f09']['assessment_id_sha256']))
     heading('2. Entradas persistidas')
     table(['Origem JSON', 'Valor usado pelo motor'], [(r['source_path'], json.dumps(r['value'],ensure_ascii=False)) for r in memorial['input_facts']], [230,285])
     heading('3. Resultados, intermediários e fórmulas')

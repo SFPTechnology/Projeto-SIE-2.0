@@ -350,9 +350,16 @@
       "from": "UNREGISTERED",
       "to": "BLOCKED",
       "reason": "F10 SHA540f2c8 and three CI verified. F11 local regression 1184 pass; QA01/02/03 found integration, normative and multi-root recovery blockers. Final CI pending; no main/production change."
+    },
+    {
+      "activity": "F11",
+      "at": "2026-10-25",
+      "from": "BLOCKED",
+      "to": "VALIDATING",
+      "reason": "Consultative F09-F10 lineage and stale/recalc, offline multi-root restore, local resilience implemented; 1202 API, 34 F00, AIOX local passed. Browser and final SHA CI pending; professional release remains separate."
     }
   ],
-  "revision": 43,
+  "revision": 44,
   "schema_version": 1,
   "tasks": [
     {
@@ -2431,14 +2438,14 @@
     {
       "id": "F11",
       "title": "QA integrado e homologação técnica",
-      "state": "BLOCKED",
+      "state": "VALIDATING",
       "dependencies": [
         "F10"
       ],
       "priority": 70,
       "impact": 9,
       "risk": 9,
-      "requirements_verified": false,
+      "requirements_verified": true,
       "source_refs": [
         "docs/stories/story-SIE-F11-QA-INTEGRADO.md",
         "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md"
@@ -2451,18 +2458,30 @@
         },
         {
           "id": "AC-11.02",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F11/QA-01.md",
+            "docs/implantacao-sie-2-0/F11/QA-02.md",
+            "docs/implantacao-sie-2-0/F11/QA-03.md"
+          ]
         },
         {
           "id": "AC-11.03",
           "passed": false,
-          "evidence": []
+          "evidence": [
+            "docs/implantacao-sie-2-0/F11/MATRIZ_VALIDACAO_INTEGRADA.md"
+          ]
         },
         {
           "id": "AC-11.04",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F11/QA-01.md",
+            "docs/implantacao-sie-2-0/F11/QA-02.md",
+            "docs/implantacao-sie-2-0/F11/QA-03.md"
+          ]
         },
         {
           "id": "AC-11.05",
@@ -2471,23 +2490,43 @@
         },
         {
           "id": "AC-11.06",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F11/QA-01.md",
+            "docs/implantacao-sie-2-0/F11/QA-02.md",
+            "docs/implantacao-sie-2-0/F11/QA-03.md"
+          ]
         },
         {
           "id": "AC-11.07",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F11/QA-01.md",
+            "docs/implantacao-sie-2-0/F11/QA-02.md",
+            "docs/implantacao-sie-2-0/F11/QA-03.md"
+          ]
         },
         {
           "id": "AC-11.08",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F11/QA-01.md",
+            "docs/implantacao-sie-2-0/F11/QA-02.md",
+            "docs/implantacao-sie-2-0/F11/QA-03.md"
+          ]
         },
         {
           "id": "AC-11.09",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F11/QA-01.md",
+            "docs/implantacao-sie-2-0/F11/QA-02.md",
+            "docs/implantacao-sie-2-0/F11/QA-03.md"
+          ]
         },
         {
           "id": "AC-11.10",
@@ -2498,17 +2537,21 @@
       "checkpoint": {
         "base_sha": "540f2c8e7e61a1efb6bf71abcedc8768d7086914",
         "branch": "feat/f11-qa-integrado",
-        "qa_01": "PENDENTE",
-        "qa_02": "PENDENTE_GLOBAL",
-        "qa_03": "PENDENTE",
+        "qa_01": "PASS_LOCAL_INTEGRATED_SCOPE",
+        "qa_02": "PASS_CONSULTATIVE_SCOPE_PROFESSIONAL_PENDING",
+        "qa_03": "PASS_LOCAL_BROWSER_CI_PENDING",
         "production_release_allowed": false,
         "main_unchanged": true,
         "blockers": [
-          "F06-F08/F09 to F10 continuous flow not demonstrated",
-          "multi-root artifact backup/restore not demonstrated",
-          "professional normative validation and field checks absent",
-          "final F11 CI pending"
-        ]
+          "final SHA API/AIOX/Chromium CI pending",
+          "professional normative validation and field checks remain outside software approval"
+        ],
+        "api_tests_passed_local": 1202,
+        "f00_cases_passed_local": 34,
+        "integration_f09_f10": "IMPLEMENTED_TESTED_CONSULTATIVE",
+        "multi_root_backup_restore": "IMPLEMENTED_TESTED_OFFLINE",
+        "resilience_local": "MEASURED_PROVISIONAL_SLO",
+        "browser_f11": "PENDING_CI"
       }
     }
   ]

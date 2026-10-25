@@ -1,3 +1,7 @@
+# Próxima ação — validar CI do incremento F11 (25/10/2026)
+
+Integração F09→F10 consultiva, backup/restore offline multi-raiz e sonda local de resiliência implementados na branch `feat/f11-qa-integrado`. API local 1202 passed, F00 34 e AIOX passaram; Chromium E2E F11 aguarda CI no SHA final. Ver `docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md`. Homologação normativa/profissional e produção não são inferidas. As seções seguintes são histórico.
+
 # Próxima ação — F11 BLOCKED (25/10/2026)
 
 F10 DONE no SHA `540f2c8e7e61a1efb6bf71abcedc8768d7086914`; API, AIOX e Chromium success nos runs `40142136768`, `40142136778` e `40142136788`. F11 tem execução parcial em `feat/f11-qa-integrado`, com 1184 testes API locais e gates AIOX aprovados; ver `docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md`. QA-01/02/03 identificaram integração F09→F10, recuperação multi-raiz, fontes profissionais e resiliência/E2E como pendências de homologação. Estado canônico F11 BLOCKED; F12 não liberada. Não houve merge em main ou alteração de produção. As seções abaixo são histórico.

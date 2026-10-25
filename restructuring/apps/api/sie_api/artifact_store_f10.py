@@ -89,6 +89,8 @@ def build_verified_bundle(
     if frozen_snapshot.get("full_f10") is True:
         manifest["dependencies"]["calculation_scope_f10"] = frozen_snapshot["calculation_scope_f10"]
         manifest["dependencies"]["calculation_dependencies_f10"] = frozen_snapshot["calculation_dependencies_f10"]
+        if "f09_consultative_lineage" in frozen_snapshot:
+            manifest["dependencies"]["f09_assessment_sha256"] = frozen_snapshot["f09_consultative_lineage"]["assessment_id_sha256"]
     files["manifest.json"] = _canonical_json(manifest) + b"\n"
     return files, manifest
 
@@ -285,6 +287,9 @@ def _verify_verified_bundle_locked(
             for name in ("calculation_scope_f10", "calculation_dependencies_f10"):
                 if dependencies.get(name) != stored_snapshot.get(name):
                     raise ArtifactError("manifest per-circuit dependencies differ from snapshot")
+            lineage = stored_snapshot.get("f09_consultative_lineage")
+            if dependencies.get("f09_assessment_sha256") != (lineage or {}).get("assessment_id_sha256"):
+                raise ArtifactError("manifest F09 dependency differs from snapshot")
         regenerated = artifact_bundle(stored_snapshot, stored_contract)
         if set(regenerated) | {"snapshot.json"} != set(payloads):
             raise ArtifactError("generated artifact inventory diverges from snapshot")

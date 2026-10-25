@@ -77,6 +77,58 @@ def _source(repo: Any, project_id: str, revision: int):
     return saved, document, topology_hash(document)
 
 
+def _f09_lineage(saved: dict[str, Any], pid: str, revision: int, topo_hash: str) -> dict[str, Any] | None:
+    """Bind an existing consultative F09 assessment without converting it to a motor result."""
+    from .distributor_persistence_f09 import history_f09, _current_studies
+    from .distributor_engine_f09 import DistributorAssessment, diagnosticar_distribuidora
+    from .installation_service import digest
+    data = saved["dados"]
+    records = data.get("distributor_assessments_f09", [])
+    if not records:
+        if data.get("f11_require_f09") is True:
+            raise ArtifactError("F11 requires current persisted F09 evidence")
+        return None
+    history = history_f09(data)
+    if not history or history[-1]["stale"]:
+        raise ArtifactError("F09 evidence is absent, stale or internally inconsistent")
+    row = history[-1]
+    evidence = row["evidence"]
+    expected_result = diagnosticar_distribuidora(DistributorAssessment.model_validate(row["assessment"]))
+    demand_rows, conductor_row, protection_row = _current_studies(data)
+    supply_id = evidence.get("supply_id")
+    matching_demands = [candidate for candidate in demand_rows
+                        if candidate["result"].get("purpose") == "ENTRANCE"
+                        and supply_id in candidate["result"].get("by_supply", {})]
+    latest_demand = matching_demands[-1] if matching_demands else None
+    expected_keys = set(expected_result) | {
+        "evidence_provenance", "integration_state", "f07_status", "f08_status",
+        "normative_conformity_verified", "utility_approval", "persisted_revision",
+    }
+    if (evidence.get("project_id") != pid
+            or type(evidence.get("project_revision")) is not int
+            or type(row["result"].get("persisted_revision")) is not int
+            or row["result"]["persisted_revision"] != evidence["project_revision"] + 1
+            or row["result"]["persisted_revision"] > revision
+            or evidence.get("F06", {}).get("topology_sha256") != topo_hash
+            or evidence.get("F07", {}).get("topology_sha256") != topo_hash
+            or latest_demand is None
+            or evidence.get("F06", {}).get("scenario_id") != latest_demand["scenario"].get("id")
+            or evidence.get("F07", {}).get("study_id") != conductor_row["study"].get("id")
+            or evidence.get("F08", {}).get("study_id") != protection_row["study"].get("id")
+            or row["result"].get("evidence_provenance") != evidence
+            or row["result"].get("normative_conformity_verified") is not False
+            or row["result"].get("utility_approval") is not False
+            or row["result"].get("integration_state") != "PERSISTED_EVIDENCE_LINKED_CONSULTATIVE"
+            or row["result"].get("f07_status") != conductor_row["result"].get("status")
+            or row["result"].get("f08_status") != protection_row["result"].get("status")
+            or set(row["result"]) != expected_keys
+            or any(row["result"].get(key) != value for key, value in expected_result.items())
+            or digest({"assessment": row["assessment"], "evidence": evidence}) != row["fingerprint"]):
+        raise ArtifactError("F09 lineage differs from current project, topology or evidence")
+    return {"assessment_id_sha256": row["fingerprint"], "evidence": evidence,
+            "result_sha256": digest(row["result"]), "status": "CONSULTATIVE_NOT_NORMATIVE"}
+
+
 def _resolve_persisted_source(
     repo: Any, project_id: str, revision: int, calculation_run_id: str,
     template_version: str, *, full: bool = False,
@@ -315,6 +367,10 @@ def _resolve_full_persisted_source(repo, saved, document, topo_hash, pid, revisi
             "calculation_output_sha256": anchor_run.output_sha256,
             "algorithm_version": anchor_run.algorithm_version,
             "motor_execution_sha256": anchor_verified["execution_sha256"], "normative_conformity_verified": False}}
+    f09 = _f09_lineage(saved, pid, revision, topo_hash)
+    if f09 is not None:
+        snapshot["f09_consultative_lineage"] = f09
+        snapshot["source_evidence_f10"]["f09_assessment_sha256"] = f09["assessment_id_sha256"]
     contract = ArtifactContract(pid, str(revision), anchor, anchor_run.rule_version, template)
     plan = saved["dados"].get("floor_plan_f10")
     if not isinstance(plan, dict):

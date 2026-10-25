@@ -1,5 +1,13 @@
 # F11 — relatório de execução
 
+## Continuação de 25/10/2026 — integração implementada, validação de CI pendente
+
+O plano em `PLANO_FECHAMENTO_INTEGRAL.md` foi executado na branch F11. A ponte F09→F10 exige F09 quando `f11_require_f09=True`, reconcilia projeto, revisão, topologia, IDs e hashes F06–F08 e avaliação consultiva, e grava a proveniência no snapshot, manifesto, HTML e PDF. O modo F10 legado permanece explícito e sem alegação F09. Um teste altera carga, observa `STALE`, refaz F06/F07/F08/F09 e CalculationRun F10 e obtém `CURRENT`; seis adulterações de metadados/IDs foram recusadas após correção QA-01.
+
+O backup offline `sie_api/local_bundle_backup_f11.py` inventaria as duas raízes F05/F10 registradas, verifica hashes e estado, restaura banco e raízes em destinos novos e devolve mapeamento para configurar o serviço. Corrupção, symlink, estado incompleto, overwrite e destino dentro da fonte são recusados. Escritores devem ser parados; não há snapshot transacional online entre SQLite e filesystem. `EVIDENCIAS_RESILIENCIA.md` contém as seis medições locais, SLO provisório e limites. O E2E F11 está em `restructuring/e2e/test_f11_browser.py` para execução no CI Chromium.
+
+**Verificações locais atuais:** API `1202 passed, 1 warning`; F00 `34` casos históricos; npm lint/typecheck/test (18)/build exit 0; QA-01 aprovou o contrato local, QA-02 aprovou a rastreabilidade consultiva e manteve homologação normativa/profissional pendente, QA-03 aprovou recuperação/resiliência local e aguarda Chromium. Chromium local não iniciou por binário ausente; execução remota no SHA final é obrigatória. As seções abaixo descrevem o checkpoint anterior e são históricas quando conflitantes.
+
 **Estado: BLOCKED.** F10 permanece DONE. A base `540f2c8e7e61a1efb6bf71abcedc8768d7086914` corresponde à branch `feat/f09-concessionarias-especializadas` e tem três workflows success: API `40142136768`, AIOX `40142136778`, Chromium `40142136788`. F11 usa branch isolada `feat/f11-qa-integrado`; nenhuma alteração em main ou produção.
 
 ## Execução observada

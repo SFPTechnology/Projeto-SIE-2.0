@@ -74,6 +74,7 @@ def technical_memorial(snapshot: dict[str, Any], contract: ArtifactContract) -> 
             raise ArtifactError("per-circuit verified calculations incomplete or inconsistent") from exc
         return {"schema_version": "SIE_F10_MEMORIAL_MULTI_V1", "contract": contract.__dict__.copy(),
             "calculation_scope_f10": "PER_CIRCUIT_RUN_MAP_V1", "calculations": calculations,
+            "consultative_f09": snapshot.get("f09_consultative_lineage"),
             "calculation_dependencies_f10": dependencies,
             "input_facts": [dict(fact, source_path=f"circuits[{calc['calculation_circuit_id']}]." + fact["source_path"]) for calc in calculations for fact in calc["input_facts"]],
             "result_facts": [dict(fact, source_path=f"circuits[{calc['calculation_circuit_id']}]." + fact["source_path"]) for calc in calculations for fact in calc["result_facts"]],
@@ -149,7 +150,7 @@ def render_memorial_html(memorial: dict[str, Any], schedule: dict[str, Any], qua
     return ("<!doctype html><html lang='pt-BR'><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>"
             "<title>Memorial técnico rastreável</title><style>body{font:16px sans-serif;max-width:1100px;margin:auto;padding:1rem;color:#172033}table{width:100%;border-collapse:collapse}td,th{border:1px solid #aaa;padding:.4rem;overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow-wrap:anywhere}@media print{h2{break-after:avoid}tr{break-inside:avoid}}</style><main>"
             "<h1>Memorial técnico rastreável</h1><p>Estudo computacional. Uso normativo não homologado.</p>"
-            f"<h2>Identificação e proveniência</h2><pre>{escape(canonical({key: memorial[key] for key in ('contract','algorithm_version','execution_sha256','input_sha256','result_sha256','calculation_dependencies_f10') if key in memorial}))}</pre>"
+            f"<h2>Identificação e proveniência</h2><pre>{escape(canonical({key: memorial[key] for key in ('contract','algorithm_version','execution_sha256','input_sha256','result_sha256','calculation_dependencies_f10','consultative_f09') if key in memorial}))}</pre>"
             "<h2>Entradas persistidas</h2>" + table(memorial["input_facts"]) + "<h2>Resultados, intermediários e fórmulas executadas</h2>" + table(memorial["result_facts"]) +
             f"<h2>Quadro de cargas</h2><pre>{escape(json.dumps(schedule, ensure_ascii=False, indent=2))}</pre>"
             f"<h2>Quantitativos por trecho e origem</h2><pre>{escape(json.dumps(quantities, ensure_ascii=False, indent=2))}</pre>"
