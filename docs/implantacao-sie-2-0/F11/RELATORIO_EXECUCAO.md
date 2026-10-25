@@ -2,6 +2,8 @@
 
 ## Continuação de 25/10/2026 — integração implementada, validação de CI pendente
 
+**CI intermediário:** `af11b81856ff2412af60234c929c2f6881eb035c` teve API e AIOX success; Chromium failure em `40163941377` por porta web aleatória fora da lista CORS. Fixture E2E corrigido para origem local 5173; repetir os três workflows no novo SHA antes de decidir o gate.
+
 O plano em `PLANO_FECHAMENTO_INTEGRAL.md` foi executado na branch F11. A ponte F09→F10 exige F09 quando `f11_require_f09=True`, reconcilia projeto, revisão, topologia, IDs e hashes F06–F08 e avaliação consultiva, e grava a proveniência no snapshot, manifesto, HTML e PDF. O modo F10 legado permanece explícito e sem alegação F09. Um teste altera carga, observa `STALE`, refaz F06/F07/F08/F09 e CalculationRun F10 e obtém `CURRENT`; seis adulterações de metadados/IDs foram recusadas após correção QA-01.
 
 O backup offline `sie_api/local_bundle_backup_f11.py` inventaria as duas raízes F05/F10 registradas, verifica hashes e estado, restaura banco e raízes em destinos novos e devolve mapeamento para configurar o serviço. Corrupção, symlink, estado incompleto, overwrite e destino dentro da fonte são recusados. Escritores devem ser parados; não há snapshot transacional online entre SQLite e filesystem. `EVIDENCIAS_RESILIENCIA.md` contém as seis medições locais, SLO provisório e limites. O E2E F11 está em `restructuring/e2e/test_f11_browser.py` para execução no CI Chromium.

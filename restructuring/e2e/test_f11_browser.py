@@ -30,7 +30,9 @@ def f11_servers(tmp_path_factory):
     folder = tmp_path_factory.mktemp('f11-browser')
     repo, pid, rid, supply = integrated_project(folder)
     token = secrets.token_hex(24)
-    api_port, web_port = _port(), _port()
+    # The local API allows browser origins on 5173; retain that port while
+    # choosing an isolated API port. Other E2E fixtures run sequentially.
+    api_port, web_port = _port(), 5173
     env = {**os.environ, 'SIE_LOCAL_API_TOKEN': token,
            'SIE_LOCAL_DB_PATH': str(repo.caminho),
            'SIE_F10_ARTIFACT_ROOT': str(folder / 'artifacts')}
