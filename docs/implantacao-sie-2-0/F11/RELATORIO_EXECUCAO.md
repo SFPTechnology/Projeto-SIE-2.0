@@ -1,5 +1,11 @@
 # F11 — relatório de execução
 
+## Decisão final de software — 25/10/2026
+
+**F11 DONE para QA do software local suportado, condicionada à confirmação dos três workflows no SHA deste fechamento documental. Liberação técnica/profissional e produção: REPROVADAS.** A implementação de código `51c5e95dca484294418d5db9ca7b05156a86d3fb` tem API [40164100141](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100141) (1202 passed, 1 warning), AIOX [40164100172](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100172) e Chromium [40164100154](https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100154) (36 passed), todos completed/success no mesmo SHA. QA-01/02/03 aprovaram separadamente o recorte local; QA-02 não aprovou conformidade normativa/profissional. F00 manteve 34 casos. A captura `pip freeze` nos workflows desta edição permite reconstruir o ambiente resolvido por run; conferir artefatos e três CI no SHA documental final antes de tomar este fechamento como confirmado.
+
+Os AC-11.01–11.10 foram atendidos **como processo de QA e decisão do recorte local**: a matriz lista motores e pendências, o E2E cobre navegador Chromium, o backup exige parada de escritores e a sonda mede SLO provisório local. O parecer técnico rejeita a elegibilidade de release profissional por fontes/casos normativos e inspeções físicas ainda pendentes. F10 legado segue preservado; `f11_require_f09=True` seleciona o fluxo integrado consultivo, sem converter F06–F08 em motor normativamente homologado. Nenhum merge em main ou deploy ocorreu. As seções abaixo são histórico quando conflitarem com esta decisão.
+
 ## Continuação de 25/10/2026 — integração implementada, validação de CI pendente
 
 **CI intermediário:** `af11b81856ff2412af60234c929c2f6881eb035c` teve API e AIOX success; Chromium failure em `40163941377` por porta web aleatória fora da lista CORS. Fixture E2E corrigido para origem local 5173; repetir os três workflows no novo SHA antes de decidir o gate.

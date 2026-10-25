@@ -1,3 +1,7 @@
+# Próxima ação — conferir CI do fechamento documental F11 (25/10/2026)
+
+F11 concluiu QA do software local suportado no SHA de código `51c5e95dca484294418d5db9ca7b05156a86d3fb`: 1202 API, 36 Chromium e AIOX success; QA-01/02/03 favoráveis ao recorte. Conferir três workflows no SHA deste fechamento documental; qualquer falha reabre F11. Homologação normativa/profissional e produção seguem reprovadas, sem inferência de aceite. F12 somente para preparação de desenvolvimento, não deploy. Relatórios e limites em `docs/implantacao-sie-2-0/F11/`. As seções abaixo são históricas.
+
 # Próxima ação — validar CI do incremento F11 (25/10/2026)
 
 Integração F09→F10 consultiva, backup/restore offline multi-raiz e sonda local de resiliência implementados na branch `feat/f11-qa-integrado`. API local 1202 passed, F00 34 e AIOX passaram; Chromium E2E F11 aguarda CI no SHA final. Ver `docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md`. Homologação normativa/profissional e produção não são inferidas. As seções seguintes são histórico.

@@ -1,5 +1,11 @@
 # Parecer de homologação técnica — F11
 
+## Decisão final por gate — 25/10/2026
+
+**QA do software local: APROVADO no recorte consultivo. Homologação elétrica/profissional e publicação em produção: REPROVADAS por ausência de evidência aplicável.** Os três pareceres e API/AIOX/Chromium no SHA de código `51c5e95dca484294418d5db9ca7b05156a86d3fb` foram favoráveis ao software testado. O novo SHA documental exige conferência dos mesmos workflows; falha reabre a decisão. A matriz por motor preserva todos os estados PENDENTE fora do recorte. Não atribuir a estes testes assinatura técnica, ART, aprovação de concessionária ou inspeção da instalação.
+
+O próximo marco F12 pode preparar desenvolvimento em branch isolada; **não há gate de deploy liberado** até a validação profissional, identidade/autorização de produção e ensaios aplicáveis. O texto abaixo é histórico quando descrever a ponte F09→F10 e o backup como ausentes.
+
 ## Reavaliação do incremento integrado — 25/10/2026
 
 Os bloqueios de software F09→F10, backup multi-raiz e medição local receberam implementação e testes. **Decisão de software: VALIDATING até CI API/AIOX/Chromium no SHA final.** A aprovação normativa/profissional e a liberação de produção continuam PENDENTES: F09 é consultivo, F10 usa motor legado, fontes/casos de projeto real e ensaios físicos não foram homologados. O texto histórico abaixo descreve o checkpoint anterior e não deve ser usado para afirmar que a ponte ou recuperação ainda faltam.

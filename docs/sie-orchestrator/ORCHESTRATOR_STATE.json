@@ -357,9 +357,16 @@
       "from": "BLOCKED",
       "to": "VALIDATING",
       "reason": "Consultative F09-F10 lineage and stale/recalc, offline multi-root restore, local resilience implemented; 1202 API, 34 F00, AIOX local passed. Browser and final SHA CI pending; professional release remains separate."
+    },
+    {
+      "activity": "F11",
+      "at": "2026-10-25",
+      "from": "VALIDATING",
+      "to": "DONE",
+      "reason": "Supported local software QA completed: F09-F10 consultative lineage, offline multi-root recovery, resilience; 1202 API and 36 Chromium plus AIOX CI success on code SHA 51c5e95d. Final documentation SHA requires CI recheck. Technical/professional release rejected; no main/deploy."
     }
   ],
-  "revision": 44,
+  "revision": 45,
   "schema_version": 1,
   "tasks": [
     {
@@ -2438,7 +2445,7 @@
     {
       "id": "F11",
       "title": "QA integrado e homologação técnica",
-      "state": "VALIDATING",
+      "state": "DONE",
       "dependencies": [
         "F10"
       ],
@@ -2453,8 +2460,14 @@
       "criteria": [
         {
           "id": "AC-11.01",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F11/RELATORIO_HOMOLOGACAO_TECNICA.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100141",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100172",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100154"
+          ]
         },
         {
           "id": "AC-11.02",
@@ -2463,14 +2476,17 @@
             "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
             "docs/implantacao-sie-2-0/F11/QA-01.md",
             "docs/implantacao-sie-2-0/F11/QA-02.md",
-            "docs/implantacao-sie-2-0/F11/QA-03.md"
+            "docs/implantacao-sie-2-0/F11/QA-03.md",
+            "docs/implantacao-sie-2-0/F11/RELATORIO_HOMOLOGACAO_TECNICA.md"
           ]
         },
         {
           "id": "AC-11.03",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/implantacao-sie-2-0/F11/MATRIZ_VALIDACAO_INTEGRADA.md"
+            "docs/implantacao-sie-2-0/F11/MATRIZ_VALIDACAO_INTEGRADA.md",
+            "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F11/RELATORIO_HOMOLOGACAO_TECNICA.md"
           ]
         },
         {
@@ -2480,13 +2496,20 @@
             "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
             "docs/implantacao-sie-2-0/F11/QA-01.md",
             "docs/implantacao-sie-2-0/F11/QA-02.md",
-            "docs/implantacao-sie-2-0/F11/QA-03.md"
+            "docs/implantacao-sie-2-0/F11/QA-03.md",
+            "docs/implantacao-sie-2-0/F11/RELATORIO_HOMOLOGACAO_TECNICA.md"
           ]
         },
         {
           "id": "AC-11.05",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F11/RELATORIO_HOMOLOGACAO_TECNICA.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100141",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100172",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100154"
+          ]
         },
         {
           "id": "AC-11.06",
@@ -2495,7 +2518,8 @@
             "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
             "docs/implantacao-sie-2-0/F11/QA-01.md",
             "docs/implantacao-sie-2-0/F11/QA-02.md",
-            "docs/implantacao-sie-2-0/F11/QA-03.md"
+            "docs/implantacao-sie-2-0/F11/QA-03.md",
+            "docs/implantacao-sie-2-0/F11/RELATORIO_HOMOLOGACAO_TECNICA.md"
           ]
         },
         {
@@ -2505,7 +2529,8 @@
             "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
             "docs/implantacao-sie-2-0/F11/QA-01.md",
             "docs/implantacao-sie-2-0/F11/QA-02.md",
-            "docs/implantacao-sie-2-0/F11/QA-03.md"
+            "docs/implantacao-sie-2-0/F11/QA-03.md",
+            "docs/implantacao-sie-2-0/F11/RELATORIO_HOMOLOGACAO_TECNICA.md"
           ]
         },
         {
@@ -2515,7 +2540,8 @@
             "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
             "docs/implantacao-sie-2-0/F11/QA-01.md",
             "docs/implantacao-sie-2-0/F11/QA-02.md",
-            "docs/implantacao-sie-2-0/F11/QA-03.md"
+            "docs/implantacao-sie-2-0/F11/QA-03.md",
+            "docs/implantacao-sie-2-0/F11/RELATORIO_HOMOLOGACAO_TECNICA.md"
           ]
         },
         {
@@ -2525,33 +2551,53 @@
             "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
             "docs/implantacao-sie-2-0/F11/QA-01.md",
             "docs/implantacao-sie-2-0/F11/QA-02.md",
-            "docs/implantacao-sie-2-0/F11/QA-03.md"
+            "docs/implantacao-sie-2-0/F11/QA-03.md",
+            "docs/implantacao-sie-2-0/F11/RELATORIO_HOMOLOGACAO_TECNICA.md"
           ]
         },
         {
           "id": "AC-11.10",
-          "passed": false,
-          "evidence": []
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
+            "docs/implantacao-sie-2-0/F11/RELATORIO_HOMOLOGACAO_TECNICA.md",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100141",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100172",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40164100154"
+          ]
         }
       ],
       "checkpoint": {
         "base_sha": "540f2c8e7e61a1efb6bf71abcedc8768d7086914",
         "branch": "feat/f11-qa-integrado",
-        "qa_01": "PASS_LOCAL_INTEGRATED_SCOPE",
-        "qa_02": "PASS_CONSULTATIVE_SCOPE_PROFESSIONAL_PENDING",
-        "qa_03": "PASS_LOCAL_BROWSER_CI_PENDING",
+        "qa_01": "APPROVED_LOCAL_SOFTWARE",
+        "qa_02": "APPROVED_CONSULTATIVE_SOFTWARE_NORMATIVE_PENDING",
+        "qa_03": "APPROVED_LOCAL_SECURITY_DATA_UX",
         "production_release_allowed": false,
         "main_unchanged": true,
         "blockers": [
-          "final SHA API/AIOX/Chromium CI pending",
-          "professional normative validation and field checks remain outside software approval"
+          "professional normative validation and field checks remain required for release",
+          "production identity and release authorization not within F11 local scope"
         ],
         "api_tests_passed_local": 1202,
         "f00_cases_passed_local": 34,
         "integration_f09_f10": "IMPLEMENTED_TESTED_CONSULTATIVE",
         "multi_root_backup_restore": "IMPLEMENTED_TESTED_OFFLINE",
         "resilience_local": "MEASURED_PROVISIONAL_SLO",
-        "browser_f11": "PENDING_CI"
+        "browser_f11": "PASS_CI",
+        "implementation_status": "DONE_SUPPORTED_LOCAL_SOFTWARE_QA_RELEASE_REJECTED",
+        "code_sha": "51c5e95dca484294418d5db9ca7b05156a86d3fb",
+        "api_tests_passed_ci": 1202,
+        "browser_tests_passed_ci": 36,
+        "ci_runs_verified": [
+          40164100141,
+          40164100172,
+          40164100154
+        ],
+        "technical_homologation_approved": false,
+        "professional_approval": false,
+        "documentation_final_ci_required": true,
+        "documentation_final_ci_rule": "Confirm all three workflows on exact final documentation SHA; if failure, reopen F11"
       }
     }
   ]
