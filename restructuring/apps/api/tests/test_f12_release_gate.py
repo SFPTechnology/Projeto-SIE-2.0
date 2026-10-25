@@ -63,3 +63,12 @@ def test_cli_preparation_is_read_only():
     result = subprocess.run(command, capture_output=True, text=True, check=False)
     assert result.returncode == 0, result.stdout + result.stderr
     assert '"status": "PREPARATION_VERIFIED_ONLY"' in result.stdout
+
+
+def test_cannot_hide_changes_to_engine_or_production():
+    changed = ["docs/implantacao-sie-2-0/F12/MANIFESTO_RELEASE.md",
+               "restructuring/apps/api/sie_api/protection_f08.py",
+               "supabase/migrations/unauthorized.sql",
+               ".github/workflows/prod-deploy.yml"]
+    assert gate.scope_violations(changed) == sorted(changed[1:])
+    assert gate.scope_violations(["docs/stories/story-SIE-F12-LIBERACAO-CONTROLADA.md"]) == []

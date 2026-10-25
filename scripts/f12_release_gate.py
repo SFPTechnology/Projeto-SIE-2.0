@@ -26,6 +26,24 @@ REQUIRED_DOCS = (
     "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md",
 )
 ALLOWED_TASK_STATES = {"PENDENTE", "PREPARADO", "PARCIAL", "HUMAN_REQUIRED", "BLOQUEADO"}
+ALLOWED_PATHS = {
+    "scripts/f12_release_gate.py",
+    "restructuring/apps/api/tests/test_f12_release_gate.py",
+    ".github/workflows/sie-f12-release-safety.yml",
+    "docs/stories/story-SIE-F12-LIBERACAO-CONTROLADA.md",
+    "docs/sie-orchestrator/ORCHESTRATOR_STATE.json",
+    "docs/sie-orchestrator/NEXT_ACTION.md",
+    "docs/sie-orchestrator/EXECUTION_QUEUE.md",
+    "docs/sie-orchestrator/VALIDATION_MATRIX.md",
+}
+
+
+def scope_violations(changed):
+    """Fail closed on changes to engines, norms, production or unrelated files."""
+    return sorted(path for path in changed
+                  if path not in ALLOWED_PATHS
+                  and not path.startswith("docs/implantacao-sie-2-0/F12/"))
+
 
 
 def assess(manifest, orchestrator, present):
@@ -74,7 +92,13 @@ def git_attestation(root):
     if current.returncode or len(current.stdout.strip()) != 40:
         return ["HEAD Git não verificável"]
     ancestor = run("merge-base", "--is-ancestor", F11_SHA, "HEAD")
-    return [] if ancestor.returncode == 0 else ["HEAD não descende do commit F11 fixado"]
+    if ancestor.returncode:
+        return ["HEAD não descende do commit F11 fixado"]
+    diff = run("diff", "--name-only", F11_SHA, "HEAD")
+    if diff.returncode:
+        return ["não foi possível auditar a lista de arquivos alterados"]
+    forbidden = scope_violations(diff.stdout.splitlines())
+    return ["mudanças fora do escopo F12: " + ", ".join(forbidden)] if forbidden else []
 
 
 def verify(root):
