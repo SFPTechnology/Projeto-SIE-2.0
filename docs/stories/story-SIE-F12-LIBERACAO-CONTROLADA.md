@@ -71,3 +71,10 @@ F12 DONE apenas após todos os gates comprovados em ambiente e SHA próprios, au
 - [ ] Hospedagem real identificada tecnicamente (o titular informou existir, mas provedor/URL não estavam em arquivos acessíveis).
 - [ ] Domínio/HTTPS e identidade de operador/ingress auditados, smoke E2E remoto e monitoramento de ambiente homologado.
 - [ ] Aprovação e rollout externo conforme F12 G01–G10; sem `DONE` ou `GO` fictícios.
+
+## Etapa 1 — hospedagem externa IDENTIFICADA, sem autorização de deploy (26/10/2026)
+- [x] Provedor informado: **Hostinger**; destino pretendido: `https://sie2.applicationmanager.com.br/`.
+- [ ] Confirmar plano Hostinger, possibilidade de runtime Python ASGI, URL de homologação e acesso administrativo com permissões segregadas.
+- [x] Procedimento específico `HOSTINGER_HOMOLOGACAO.md` registrado; `scripts/f12_hostinger_preflight.py` opcional somente-leitura validará o host e rotas após o deployment de homologação; suíte de testes simulados não acessa a Internet.
+- [ ] HTTPS público, status e cabeçalhos do domínio **não verificáveis até aqui**; nenhum deploy, criação/alteração de DNS, hPanel, secrets ou serviços.
+- F12 permanece HUMAN_REQUIRED; ferramenta web consultiva é somente DEMO sintética (não todas as funcionalidades profissionais SIE 2.0).
