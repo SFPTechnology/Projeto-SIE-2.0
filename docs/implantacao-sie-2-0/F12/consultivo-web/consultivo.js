@@ -1,5 +1,5 @@
 "use strict";
-// Stateless and same-origin by design; no token, localStorage, cookie or persistent project.
+// Stateless and same-origin by design; no credentials, storage APIs or persistent project.
 const $ = (id) => document.getElementById(id);
 const form = $("form");
 const result = $("results");
