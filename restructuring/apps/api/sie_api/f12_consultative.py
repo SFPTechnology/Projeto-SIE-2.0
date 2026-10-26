@@ -38,7 +38,7 @@ for route in internal_application.routes:
 
 if {(m, r.path) for r in app.routes if isinstance(r, APIRoute)
     for m in r.methods} != PUBLIC_ENDPOINTS:
-    raise RuntimeError("Contrato de endpoints consultivos incompatível")
+    raise RuntimeError(f"Contrato consultivo divergente: observado={[(r.path, sorted(r.methods)) for r in app.routes if isinstance(r, APIRoute)]!r}; esperado={PUBLIC_ENDPOINTS!r}")
 
 
 @app.middleware("http")
