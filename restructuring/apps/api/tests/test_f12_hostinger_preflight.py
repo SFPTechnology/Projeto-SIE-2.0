@@ -34,7 +34,7 @@ def success_get(url):
             "Content-Security-Policy": "default-src 'none'",
             "X-Frame-Options": "DENY",
             "X-Content-Type-Options": "nosniff",
-        }, b"<html>AMBIENTE CONSULTIVO - NÃ£o homologado</html>"
+        }, "<html>AMBIENTE CONSULTIVO - Não homologado</html>".encode("utf-8")
     if path == "/api/v1/health":
         return 200, {"Content-Type": "application/json"}, (
             b'{"status":"ok","engineering_engine":"calculation_available_normative_release_disabled"}'
