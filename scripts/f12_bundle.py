@@ -23,6 +23,10 @@ ALLOWED = (
     "scripts/f12_release_gate.py",
     "scripts/f12_bundle.py",
     "scripts/f12_staging_smoke.py",
+    "scripts/f12_hostinger_preflight.py",
+    "scripts/f12_hostinger_static.py",
+    "restructuring/apps/api/tests/test_f12_hostinger_static.py",
+    "restructuring/apps/api/tests/test_f12_hostinger_preflight.py",
 )
 BASENAME = "sie-f12-local-qa"
 FORBIDDEN_ENDINGS = (".pem", ".key", ".p12", ".pfx", ".sqlite", ".db", ".env", ".secret")

@@ -1,3 +1,11 @@
+# Atualização prioritária — 26/10/2026
+
+**Novo fato fornecido pelo titular:** seus projetos, inclusive o SIE 1.0, utilizam arquivos **estáticos na Hostinger em subdomínios**. **Não exigir VPS Hostinger para hospedar a interface F12.** A solução é site estático + backend Python opcional e separado. A orientação anterior de VPS aplica-se apenas se o próprio backend FastAPI for executado no provedor.
+
+A decisão e os comandos vigentes estão em [ARQUITETURA_HOSTINGER_ESTATICA.md](ARQUITETURA_HOSTINGER_ESTATICA.md). Este texto anterior abaixo é preservado como histórico; em caso de conflito, prevalece a arquitetura estática acima.
+
+---
+
 # SIE 2.0 — Hostinger / plano de homologação consultiva F12
 
 **Origem informada pelo titular em 26/10/2026:** Hostinger, URL pretendida `https://sie2.applicationmanager.com.br/`.

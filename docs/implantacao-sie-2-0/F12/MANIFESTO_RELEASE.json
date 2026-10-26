@@ -72,5 +72,18 @@
     "read_only_preflight": "IMPLEMENTED_AND_TESTED_OFFLINE",
     "preflight_ci_run": 40262561390,
     "code_sha": "2036fe59b8091201f8994ef46b18aa2a8ae233de"
+  },
+  "hosting_architecture": {
+    "provider": "Hostinger",
+    "model": "EXISTING_STATIC_SUBDOMAIN",
+    "frontend_url": "https://sie2.applicationmanager.com.br/",
+    "frontend_archive": "sie-f12-hostinger-static-preview.zip",
+    "frontend_bundle_sha256": "70a685c58a49bf80c4b542dd7c588fccab4263de851da246334c59f16faf2512",
+    "code_sha": "67ef9d4cadebaec67163d9bfcce46859897b1144",
+    "engine_backend": "SEPARATE_PYTHON_HTTPS_REQUIRED_FOR_CALCULATION",
+    "backend_url": null,
+    "frontend_web_publish_executed": false,
+    "api_integrated": false,
+    "production_authorized": false
   }
 }

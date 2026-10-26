@@ -1,3 +1,15 @@
+# F12 — próxima ação: homologar site estático Hostinger, sem substituir o existente
+
+**CONFIRMADO pelo titular:** Hostinger hospeda subdomínios com páginas estáticas, incluindo SIE 1.0; SIE 2.0 destina-se a `https://sie2.applicationmanager.com.br/`. **Decisão adotada:** Hostinger mantém arquivos HTML/CSS/JS; FastAPI, quando aprovado, será serviço HTTPS externo separado. Não é necessário migrar os demais sites nem comprar VPS Hostinger obrigatoriamente.
+
+**Preparação concluída no SHA de código `67ef9d4cadebaec67163d9bfcce46859897b1144`:** CLI `scripts/f12_hostinger_static.py` gera ZIP reproduzível com cinco recursos, incluindo `.htaccess`, JS e manifesto. Sem API, simulação fica desativada. CORS FastAPI permite somente origem Hostinger aprovada. CI API 1234, Chromium 37, F12 safety 8+19+6+5+13, AIOX success. Nenhuma publicação feita.
+
+**Ação pendente para fechar a Etapa 1 real:** estabelecer ambiente Hostinger de homologação **separado**, instalar e provar pacote estático sem afetar `sie2` atual, validar TLS/headers/identidade administrativa. Se simulação online deve funcionar, escolher e homologar **backend Python HTTPS** primeiro, com URL configurável e CORS/limites auditáveis. A etapa e os gates G03–G10 ainda são NO-GO em produção.
+
+Guia vigente: `docs/implantacao-sie-2-0/F12/ARQUITETURA_HOSTINGER_ESTATICA.md`; evidências CI: runs `40265032187`, `40265032249`, `40265032192`, `40265032253`. Issue #7 / PR #8 continuam abertos; `main`/sites ativos não alterados.
+
+---
+
 # F12 — ação executável específica: hospedagem Hostinger identificada
 
 **Destino declarado pelo titular:** `https://sie2.applicationmanager.com.br/`, Hostinger. **Perfil:** web consultiva anônima com dados sintéticos, sem login nem persistência de projetos.

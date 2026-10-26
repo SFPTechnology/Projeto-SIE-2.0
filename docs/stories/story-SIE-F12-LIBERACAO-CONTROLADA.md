@@ -78,3 +78,12 @@ F12 DONE apenas após todos os gates comprovados em ambiente e SHA próprios, au
 - [x] Procedimento específico `HOSTINGER_HOMOLOGACAO.md` registrado; `scripts/f12_hostinger_preflight.py` opcional somente-leitura validará o host e rotas após o deployment de homologação; suíte de testes simulados não acessa a Internet.
 - [ ] HTTPS público, status e cabeçalhos do domínio **não verificáveis até aqui**; nenhum deploy, criação/alteração de DNS, hPanel, secrets ou serviços.
 - F12 permanece HUMAN_REQUIRED; ferramenta web consultiva é somente DEMO sintética (não todas as funcionalidades profissionais SIE 2.0).
+
+## Decisão de arquitetura — Hostinger permanece estática (26/10/2026)
+- [x] Titular confirmou funcionamento de projetos anteriores, inclusive primeira versão SIE, como páginas estáticas em subdomínios Hostinger.
+- [x] Implementado `scripts/f12_hostinger_static.py`: ZIP determinístico sem Python/backend, manifesto e SHA-256. Ausência de API bloqueia a simulação; não inventa cálculos.
+- [x] API consultiva preparada para eventual hospedagem separada com CORS apenas para `https://sie2.applicationmanager.com.br`; negativa de outras origens testada.
+- [x] CI no SHA `67ef9d4cadebaec67163d9bfcce46859897b1144`: API 1234; browser 37; safety 8+19+6+5+13; AIOX success.
+- [ ] Definir servidor/URL HTTPS externo caso cálculo online seja requisito da versão web inicial; não adquirir VPS Hostinger por inferência.
+- [ ] Validar página estática em subdomínio/ambiente isolado, SSL, políticas de cache/headers, acesso administrativo e rollback; **não** sobrescrever versão existente.
+- [ ] Aprovação formal e implantação após gates F12 reais; sem encerramento fictício.

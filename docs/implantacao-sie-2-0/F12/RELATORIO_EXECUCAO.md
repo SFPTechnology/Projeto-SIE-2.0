@@ -93,3 +93,13 @@ Commit `2036fe59b8091201f8994ef46b18aa2a8ae233de`: F12 Safety `40262561390` succ
 **Pendências materiais antes de completar a Etapa 1 no servidor:** plano Hostinger e recursos Python, ambiente de homologação, gestão de SSL/certificado público, IAM de administração, limites de requisição, logs, alertas e smoke de acesso externo. Mesmo em plano VPS, nenhuma instalação foi realizada. A primeira versão continua *sintética, anônima e sem persistência*; não é o SIE profissional completo.
 
 **Decisão:** `F12 HUMAN_REQUIRED`, produção **NO-GO**, homologação normativa não concluída; `main` preservada.
+
+## Adequação definitiva ao modelo de hospedagem existente — 26/10/2026
+
+O titular informou que **todas as aplicações anteriores, incluindo SIE 1.0, são páginas estáticas em subdomínios Hostinger**. A arquitetura F12 passa a preservar essa hospedagem: frontend estático na Hostinger e backend FastAPI separado apenas se o usuário quiser motor de cálculo online. Não é necessário VPS Hostinger como pré-requisito do frontend; manter qualquer site vigente intacto.
+
+**Implementado e verificado no SHA `67ef9d4cadebaec67163d9bfcce46859897b1144`:** empacotador `scripts/f12_hostinger_static.py` produz `sie-f12-hostinger-static-preview.zip` determinístico com arquivos HTML/CSS/JS, segurança Apache e manifesto. Dois builds repetidos com checksum `70a685c58a49bf80c4b542dd7c588fccab4263de851da246334c59f16faf2512` (QA específico desse SHA). Backend não configurado: UI explica ausência de conexão e desativa simulação; não emite valor inventado. Quando configurado depois, a origem HTTPS é explícita, e o FastAPI consultivo habilita CORS **apenas para a origem Hostinger** (não há CORS wildcard).
+
+**CI:** API `40265032187` 1234 passed, Chromium `40265032249` 37 passed, AIOX `40265032253` success, F12 Safety `40265032192` 8+19+6+5+13 pass. O JS de demonstração não possui persistência, login, nem chamadas para F10/F11. Conteúdo ZIP não equivale à implantação, e a homologação normativa não está liberada.
+
+**PENDENTE:** API externa se cálculo online fizer parte da primeira publicação, origem de homologação estática e TLS real, acesso hPanel, headers suportados pelo host, observabilidade, aprovação de mudança, backup e rollback de arquivos. **F12 HUMAN_REQUIRED; PRODUÇÃO NO-GO.** Plano em `ARQUITETURA_HOSTINGER_ESTATICA.md`.
