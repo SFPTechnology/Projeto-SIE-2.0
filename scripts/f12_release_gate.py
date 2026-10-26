@@ -30,6 +30,8 @@ ALLOWED_PATHS = {
     "scripts/f12_release_gate.py",
     "scripts/f12_bundle.py",
     "scripts/f12_staging_smoke.py",
+    "restructuring/apps/api/sie_api/f12_consultative.py",
+    "restructuring/apps/api/tests/test_f12_consultative.py",
     "restructuring/apps/api/tests/test_f12_release_gate.py",
     ".github/workflows/sie-f12-release-safety.yml",
     "docs/stories/story-SIE-F12-LIBERACAO-CONTROLADA.md",

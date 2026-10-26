@@ -10,6 +10,8 @@ on:
       - 'scripts/f12_bundle.py'
       - 'scripts/f12_staging_smoke.py'
       - 'restructuring/apps/api/tests/test_f12_release_gate.py'
+      - 'restructuring/apps/api/tests/test_f12_consultative.py'
+      - 'restructuring/apps/api/sie_api/f12_consultative.py'
       - '.github/workflows/sie-f12-release-safety.yml'
   pull_request:
     paths:
@@ -84,3 +86,8 @@ jobs:
             run-artifacts/f12-smoke.json
           retention-days: 7
           if-no-files-found: error
+
+      - name: Verify minimal public consultative entrypoint and fail-closed routes
+        run: |
+          python -m pytest -q tests/test_f12_consultative.py
+        working-directory: restructuring/apps/api

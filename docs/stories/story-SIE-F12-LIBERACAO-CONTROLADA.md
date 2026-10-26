@@ -56,3 +56,10 @@ F12 DONE apenas após todos os gates comprovados em ambiente e SHA próprios, au
 - [x] Testes de preparação W1–W4 executados com dados sintéticos e evidência GitHub Actions.
 - [ ] Critérios integrais G02–G10 para produção, laudo profissional, homologação externa e deploy: questão de governança [#7](https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/7).
 - Novas evidências e arquivos: `PLANO_EXECUTIVO_FECHAMENTO_GATES.md`, `AUDITORIA_AMBIENTE_IDENTIDADE.md`, `DOSSIER_AUTORIZACAO_RELEASE.md`, scripts `f12_bundle.py` e `f12_staging_smoke.py`.
+
+## Etapa 1 — perfil web consultivo de exposição mínima (25/10/2026)
+- Decisão do titular: hospedagem já definida e **versão web consultiva**, sem aprovar produção nem garantir conformidade elétrica.
+- Implementar entrada ASGI isolada `sie_api.f12_consultative:app`, sem rotas locais, documentos, uploads, contas ou escrita em banco, e UI estática de demonstração.
+- [ ] CI deve validar health, caso sintético com `liberado_para_uso_normativo=false`, ausência de routes administrativas, cabeçalhos de segurança, content type e limite de corpo.
+- [ ] Provedor/host externo específico, HTTPS público, deploy e autorização de mudança dependem de evidências reais. Não inferir hospedagem GitHub da existência do repositório.
+- Novo código: `restructuring/apps/api/sie_api/f12_consultative.py`, testes `test_f12_consultative.py`, UI sob `docs/implantacao-sie-2-0/F12/consultivo-web/`.
