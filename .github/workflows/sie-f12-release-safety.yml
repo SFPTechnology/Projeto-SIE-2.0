@@ -64,6 +64,12 @@ jobs:
           cmp run-artifacts/f12-a/sie-f12-local-qa.tar.gz run-artifacts/f12-b/sie-f12-local-qa.tar.gz
           cmp run-artifacts/f12-a/sie-f12-local-qa.sha256 run-artifacts/f12-b/sie-f12-local-qa.sha256
           python scripts/f12_bundle.py verify --out run-artifacts/f12-a
+          cp -a run-artifacts/f12-a run-artifacts/f12-tampered
+          printf 'tampered' >> run-artifacts/f12-tampered/sie-f12-local-qa.tar.gz
+          if python scripts/f12_bundle.py verify --out run-artifacts/f12-tampered; then
+            echo 'FAIL: malformed archive unexpectedly passed verification'
+            exit 1
+          fi
       - name: Synthetic HTTPS TLS and access-boundary smoke
         run: |
           python scripts/f12_staging_smoke.py --report run-artifacts/f12-smoke.json

@@ -72,3 +72,17 @@ def test_cannot_hide_changes_to_engine_or_production():
                ".github/workflows/prod-deploy.yml"]
     assert gate.scope_violations(changed) == sorted(changed[1:])
     assert gate.scope_violations(["docs/stories/story-SIE-F12-LIBERACAO-CONTROLADA.md"]) == []
+
+
+def test_bundle_allowlist_rejects_sensitive_and_external_paths():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("f12_bundle", ROOT / "scripts/f12_bundle.py")
+    bundle = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(bundle)
+    assert bundle.selected("restructuring/apps/api/sie_api/main.py")
+    assert not bundle.selected("supabase/migrations/prod.sql")
+    assert not bundle.selected("restructuring/apps/api/sie_api/.env.production")
+    assert not bundle.selected("restructuring/apps/api/sie_api/private.key")
+    assert not bundle.selected("restructuring/apps/api/sie_api/db.sqlite")
+    assert not bundle.selected("restructuring/apps/api/sie_api/../../unauthorized.py")
+    assert not bundle.selected("restructuring/apps/api/sie_api/node_modules/private.js")
