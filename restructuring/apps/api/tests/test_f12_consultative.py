@@ -85,3 +85,25 @@ def test_security_headers_and_no_cors_data_leak():
     })
     assert r.status_code != 200
     assert "access-control-allow-origin" not in r.headers
+
+
+def test_hostinger_static_origin_can_call_stateless_api_only():
+    origin = "https://sie2.applicationmanager.com.br"
+    preflight = client.options("/api/v1/circuitos/analisar", headers={
+        "Origin": origin, "Access-Control-Request-Method": "POST",
+        "Access-Control-Request-Headers": "content-type",
+    })
+    assert preflight.status_code == 200
+    assert preflight.headers["access-control-allow-origin"] == origin
+    response = client.post("/api/v1/circuitos/analisar",
+                           json=SYNTHETIC, headers={"Origin": origin})
+    assert response.status_code == 200
+    assert response.headers["access-control-allow-origin"] == origin
+    assert response.json()["liberado_para_uso_normativo"] is False
+    denied = client.options("/api/v1/circuitos/analisar", headers={
+        "Origin": "https://evil.example", "Access-Control-Request-Method": "POST",
+    })
+    assert denied.status_code == 400
+    assert "access-control-allow-origin" not in denied.headers
+    assert client.get("/api/v1/local/projetos",
+                      headers={"Origin": origin}).status_code == 404

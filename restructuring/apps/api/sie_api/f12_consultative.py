@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.routing import APIRoute
 
@@ -83,3 +84,16 @@ async def javascript():
 @app.get("/consultivo.css", include_in_schema=False)
 async def stylesheet():
     return FileResponse(web_root() / "consultivo.css", media_type="text/css; charset=utf-8")
+
+
+# Allow browsers on the owner's existing static Hostinger subdomain to call
+# only the stateless API. Requests from arbitrary third-party origins never
+# receive CORS permission. CORS is NOT rate limiting or authentication.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://sie2.applicationmanager.com.br"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
+    allow_credentials=False,
+    max_age=600,
+)

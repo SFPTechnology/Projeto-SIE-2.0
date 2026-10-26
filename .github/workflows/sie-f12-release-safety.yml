@@ -10,6 +10,8 @@ on:
       - 'scripts/f12_bundle.py'
       - 'scripts/f12_staging_smoke.py'
       - 'scripts/f12_hostinger_preflight.py'
+      - 'scripts/f12_hostinger_static.py'
+      - 'restructuring/apps/api/tests/test_f12_hostinger_static.py'
       - 'restructuring/apps/api/tests/test_f12_hostinger_preflight.py'
       - 'restructuring/apps/api/tests/test_f12_release_gate.py'
       - 'restructuring/apps/api/tests/test_f12_consultative.py'
@@ -98,3 +100,20 @@ jobs:
         run: |
           python scripts/f12_hostinger_preflight.py
           python -m pytest -q restructuring/apps/api/tests/test_f12_hostinger_preflight.py
+
+      - name: Build isolated static Hostinger preview, no API or deploy
+        run: |
+          python -m pytest -q restructuring/apps/api/tests/test_f12_hostinger_static.py
+          python scripts/f12_hostinger_static.py --out run-artifacts/hostinger-static-a
+          python scripts/f12_hostinger_static.py --out run-artifacts/hostinger-static-b
+          cmp run-artifacts/hostinger-static-a/sie-f12-hostinger-static-preview.zip run-artifacts/hostinger-static-b/sie-f12-hostinger-static-preview.zip
+      - name: Archive Hostinger QA preview (not the production website)
+        uses: actions/upload-artifact@v4
+        with:
+          name: f12-hostinger-static-preview-${{ github.sha }}
+          path: |
+            run-artifacts/hostinger-static-a/sie-f12-hostinger-static-preview.zip
+            run-artifacts/hostinger-static-a/sie-f12-hostinger-static-preview.zip.sha256
+            run-artifacts/hostinger-static-a/MANIFEST.json
+          retention-days: 7
+          if-no-files-found: error

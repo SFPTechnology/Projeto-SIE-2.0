@@ -31,6 +31,8 @@ ALLOWED_PATHS = {
     "scripts/f12_bundle.py",
     "scripts/f12_staging_smoke.py",
     "scripts/f12_hostinger_preflight.py",
+    "scripts/f12_hostinger_static.py",
+    "restructuring/apps/api/tests/test_f12_hostinger_static.py",
     "restructuring/apps/api/tests/test_f12_hostinger_preflight.py",
     "restructuring/apps/api/sie_api/f12_consultative.py",
     "restructuring/apps/api/tests/test_f12_consultative.py",
