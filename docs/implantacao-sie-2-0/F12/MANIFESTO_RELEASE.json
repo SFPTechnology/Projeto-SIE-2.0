@@ -17,19 +17,26 @@
   "deployment_executed": false,
   "change_approved": false,
   "tasks": {
-    "12.01": "PENDENTE",
-    "12.02": "PENDENTE",
-    "12.03": "PENDENTE",
-    "12.04": "PENDENTE",
-    "12.05": "PENDENTE",
+    "12.01": "PREPARADO",
+    "12.02": "PARCIAL",
+    "12.03": "PARCIAL",
+    "12.04": "PARCIAL",
+    "12.05": "PARCIAL",
     "12.06": "PENDENTE",
-    "12.07": "PENDENTE",
-    "12.08": "PENDENTE",
-    "12.09": "PENDENTE",
-    "12.10": "PENDENTE"
+    "12.07": "HUMAN_REQUIRED",
+    "12.08": "BLOQUEADO",
+    "12.09": "PARCIAL",
+    "12.10": "PREPARADO"
   },
   "references": [
     "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
     "docs/sie-orchestrator/ORCHESTRATOR_STATE.json"
-  ]
+  ],
+  "validation_code_sha": "436edb321ec52a0ee8b7971a698641306692de2a",
+  "validation_runs": {
+    "api": 40246991785,
+    "chromium": 40246991743,
+    "aiox": 40246991728,
+    "preparation": 40246991712
+  }
 }

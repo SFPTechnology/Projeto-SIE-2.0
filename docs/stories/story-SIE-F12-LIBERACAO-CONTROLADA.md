@@ -7,7 +7,7 @@
 - Escopo autorizado: branch isolada, código de validação sem efeitos colaterais, documentação, testes com dados descartáveis; sem merge, tag, publicação de release, deploy, acesso a secrets ou mudança de bases reais.
 
 ## Critérios de aceitação rastreáveis
-- [ ] 12.01 Manifesto de candidato ligado à base F11 e inventário auditável de versões e limites.
+- [x] 12.01 Manifesto de candidato ligado à base F11 e inventário auditável de versões e limites.
 - [ ] 12.02 Checklist documentado de identidade, segredo, permissões e ambientes; nenhuma credencial exposta.
 - [ ] 12.03 Ensaio verificável de migração reversível e recuperação total em cópia isolada.
 - [ ] 12.04 Métricas, alertas e procedimentos de incidente testados em ambiente representativo.
@@ -33,3 +33,8 @@
 
 ## Definição de DONE
 F12 DONE apenas após todos os gates comprovados em ambiente e SHA próprios, autorização humana aplicável, implantação e pós-deploy saudáveis; até lá, execução parcial e bloqueio de produção.
+## Checkpoint QA3 da preparação — 25/10/2026
+- CI no SHA `436edb321ec52a0ee8b7971a698641306692de2a`: API 1209, 36 Chromium, F12 Safety 7+19 e AIOX success.
+- QA-01: preparação APROVADA, produção BLOQUEADA; QA-02: homologação normativa PENDENTE; QA-03: recuperação local APROVADA, produção BLOQUEADA.
+- Documentos: manifesto JSON/MD, notas, checklist, rollback, manuais, operação, política normativa, mudança, pós-implantação, QA3 e relatório.
+- Esta story é de preparação, não atestado de implementação 12.07–12.09.

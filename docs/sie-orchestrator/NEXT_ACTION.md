@@ -1,4 +1,8 @@
-# Ação vigente — F12 preparação isolada, produção NO-GO (25/10/2026)
+# Ação vigente — F12 controles locais testados, produção NO-GO (25/10/2026)
+
+CI do código F12 `436edb321ec52a0ee8b7971a698641306692de2a`: API 1209, Chromium 36, F12 7+19 e AIOX passaram (runs 40246991785, 40246991743, 40246991712, 40246991728). QA3 F12 formaliza aprovação **somente da preparação**; produção segue HUMAN_REQUIRED/BLOQUEADA. Próxima ação: completar G02–G10 em infraestrutura/autorização profissional adequadas; revalidar CI no SHA documental final. NÃO avançar para encerramento como release real.
+
+# Histórico — F12 preparação isolada (25/10/2026)
 
 F11 QA local `DONE`; confirmação adicional do SHA documental `11643cf3ad7da2e6182183c6071148f924bfe741`: API 40183189791, AIOX 40183189740 e Chromium 40183189754, todos completed/success. F12 em `feat/f12-liberacao-controlada` prepara validações, roteiro e documentos; **F12 HUMAN_REQUIRED para GO de produção**, sem aprovação elétrica profissional. Conferir `docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md`, workflow F12 e checklist GO/NO-GO. Não iniciar encerramento F00–F12 como liberação real sem seus gates; não fazer merge, deploy ou migração.
 

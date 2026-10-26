@@ -371,9 +371,16 @@
       "from": "UNREGISTERED",
       "to": "HUMAN_REQUIRED",
       "reason": "F11 SHA 11643cf3ad7da2e6182183c6071148f924bfe741 CI API/AIOX/Chromium confirmed. F12 isolated preparation only: candidate metadata, fail-closed script and runbooks under development. Production identity, normative approval, simulated recovery, authorization and deploy still blocked."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-25",
+      "from": "HUMAN_REQUIRED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "Preparacao F12 sob SHA 436edb3: CI API 1209 passed, Chromium 36 passed, AIOX success, F12 guard 7 passed and offline restore/migration 19 passed, with QA3 separate preparation opinions. Production GO/NO-GO remains NO-GO: identity, homologation, approval, deploy and post-deploy not executed."
     }
   ],
-  "revision": 46,
+  "revision": 47,
   "schema_version": 1,
   "tasks": [
     {
@@ -2627,9 +2634,11 @@
       "criteria": [
         {
           "id": "AC-12.01",
-          "passed": false,
+          "passed": true,
           "evidence": [
-            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+            "docs/implantacao-sie-2-0/F12/MANIFESTO_RELEASE.md",
+            "docs/implantacao-sie-2-0/F12/MANIFESTO_RELEASE.json",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40246991712"
           ]
         },
         {
@@ -2712,13 +2721,28 @@
         "change_approved": false,
         "main_unchanged": true,
         "release_manifest": "docs/implantacao-sie-2-0/F12/MANIFESTO_RELEASE.json",
-        "implementation_status": "PREPARATION_IN_PROGRESS; PRODUCTION_HUMAN_REQUIRED",
+        "implementation_status": "PREPARATION_VALIDATED; PRODUCTION_HUMAN_REQUIRED",
         "blockers": [
           "SIE-AUTO-006 production identity and environment lack evidence",
           "NOR-01 normative professional validation not completed",
           "restore/migration rehearsal and preproduction infrastructure not approved",
           "release change authorization, deploy, monitor not executed"
-        ]
+        ],
+        "f12_preparation_code_sha": "436edb321ec52a0ee8b7971a698641306692de2a",
+        "f12_ci_runs": [
+          40246991785,
+          40246991728,
+          40246991712,
+          40246991743
+        ],
+        "f12_ci_api_passed": 1209,
+        "f12_ci_chromium_passed": 36,
+        "f12_ci_preparation_tests_passed": 7,
+        "f12_ci_offline_migration_backup_restore_passed": 19,
+        "f12_ci_aiox_passed": true,
+        "qa_01": "APPROVED_PREPARATION_ONLY; PRODUCTION_BLOCKED",
+        "qa_02": "PREPARATION_WARNING; PROFESSIONAL_APPROVAL_BLOCKED",
+        "qa_03": "APPROVED_LOCAL_SECURITY_TESTS; PRODUCTION_IDENTITY_TLS_MONITORING_BLOCKED"
       }
     }
   ]
