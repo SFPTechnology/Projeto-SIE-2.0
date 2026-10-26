@@ -38,3 +38,13 @@ F12 DONE apenas após todos os gates comprovados em ambiente e SHA próprios, au
 - QA-01: preparação APROVADA, produção BLOQUEADA; QA-02: homologação normativa PENDENTE; QA-03: recuperação local APROVADA, produção BLOQUEADA.
 - Documentos: manifesto JSON/MD, notas, checklist, rollback, manuais, operação, política normativa, mudança, pós-implantação, QA3 e relatório.
 - Esta story é de preparação, não atestado de implementação 12.07–12.09.
+
+## Incremento de execução técnica W1–W4 — story de alteração
+- [ ] A02: staging HTTPS de loopback com certificado descartável e teste de persistência local negada com `SIE_ENV=production`.
+- [ ] A03: replay de migração, recovery F05/F10 e recusa de corrupção no CI.
+- [ ] A04: pacote tar.gz determinístico SHA-256 de fontes rastreadas, dois builds byte-a-byte idênticos e manifesto de todos os arquivos.
+- [ ] A05: verificar pacote, checksums e smoke HTTPS; manter testes API/Chromium/AIOX.
+- [ ] A06: estabelecer relatório sanitizado; monitoramento de ambiente público permanece fora do escopo comprovado.
+- [ ] A07/A08: anexar matriz de aprovações obrigatórias e NO-GO quando não houver laudo e decisão de mudança.
+- Códigos novos: `scripts/f12_bundle.py`, `scripts/f12_staging_smoke.py`; CI `sie-f12-release-safety.yml`; política do gate `f12_release_gate.py`.
+- Produção, `main` e motores elétricos ficam inalterados.
