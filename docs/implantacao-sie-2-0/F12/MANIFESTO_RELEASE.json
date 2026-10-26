@@ -32,11 +32,15 @@
     "docs/implantacao-sie-2-0/F11/RELATORIO_EXECUCAO.md",
     "docs/sie-orchestrator/ORCHESTRATOR_STATE.json"
   ],
-  "validation_code_sha": "436edb321ec52a0ee8b7971a698641306692de2a",
+  "validation_code_sha": "d7b55a7f3a8ec3eb15ff06a9478b8936134f61ad",
   "validation_runs": {
-    "api": 40246991785,
-    "chromium": 40246991743,
-    "aiox": 40246991728,
-    "preparation": 40246991712
-  }
+    "api": 40248897962,
+    "chromium": 40248897906,
+    "aiox": 40248897831,
+    "preparation": 40248897899
+  },
+  "qa_bundle_code_sha256": "6e29e1f980d50b4a0d394d863915f6660bfba029a1b797eff0f85deebc7bdcfa",
+  "production_identity_verified": false,
+  "public_https_verified": false,
+  "staging_real_verified": false
 }

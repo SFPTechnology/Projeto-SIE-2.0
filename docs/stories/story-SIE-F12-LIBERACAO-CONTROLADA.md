@@ -48,3 +48,11 @@ F12 DONE apenas após todos os gates comprovados em ambiente e SHA próprios, au
 - [ ] A07/A08: anexar matriz de aprovações obrigatórias e NO-GO quando não houver laudo e decisão de mudança.
 - Códigos novos: `scripts/f12_bundle.py`, `scripts/f12_staging_smoke.py`; CI `sie-f12-release-safety.yml`; política do gate `f12_release_gate.py`.
 - Produção, `main` e motores elétricos ficam inalterados.
+
+## Checkpoint W1–W4 — executado no CI real GitHub
+- SHA de código `d7b55a7f3a8ec3eb15ff06a9478b8936134f61ad`: API 1210 passed; Chromium 36; AIOX success; F12 8 testes de segurança + 19 dados/recuperação, todos success.
+- Pacote determinístico LOCAL_QA_ONLY: 127 arquivos, dois builds iguais, SHA256 verificado; adulteração recusada. Workflow F12 anexou artefatos com retenção de 7 dias.
+- Smoke HTTPS loopback com certificado autofirmado descartável passou; acesso local em `SIE_ENV=production` negado 503. Domínio/TLS público, identidade multiusuário não validados.
+- [x] Testes de preparação W1–W4 executados com dados sintéticos e evidência GitHub Actions.
+- [ ] Critérios integrais G02–G10 para produção, laudo profissional, homologação externa e deploy: questão de governança [#7](https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/7).
+- Novas evidências e arquivos: `PLANO_EXECUTIVO_FECHAMENTO_GATES.md`, `AUDITORIA_AMBIENTE_IDENTIDADE.md`, `DOSSIER_AUTORIZACAO_RELEASE.md`, scripts `f12_bundle.py` e `f12_staging_smoke.py`.

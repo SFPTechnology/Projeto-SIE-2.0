@@ -15,3 +15,6 @@
 - Decisão: **NO-GO**, sem data de expiração presumida
 
 Alterar esta decisão requer evidências novas verificáveis e autorização específica. O token de uma conversa ou o mode YOLO não substituem aceite institucional.
+
+## Autorização geral recebida e limite do alvo real
+O titular autorizou execução automática do plano F12 em 25/10/2026, sem pedir confirmação para cada etapa rotineira. A autorização não define **qual** ambiente SIE é de produção, qual projeto de banco, janela, custos, destinatários, identidade, responsável técnico, RPO/RTO e referência profissional. Portanto, essa autorização permite CI/documentação/ensaios de laboratório, mas não substitui a aprovação de mudança descrita neste registro. A pendência rastreável está na [issue #7](https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/7).

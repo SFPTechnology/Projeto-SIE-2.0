@@ -378,9 +378,16 @@
       "from": "HUMAN_REQUIRED",
       "to": "HUMAN_REQUIRED",
       "reason": "Preparacao F12 sob SHA 436edb3: CI API 1209 passed, Chromium 36 passed, AIOX success, F12 guard 7 passed and offline restore/migration 19 passed, with QA3 separate preparation opinions. Production GO/NO-GO remains NO-GO: identity, homologation, approval, deploy and post-deploy not executed."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-25",
+      "from": "HUMAN_REQUIRED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "W1-W4 extended gates tested on code SHA d7b55a7: API 1210, Chromium36, AIOX and F12 safety8+19 success; deterministic QA bundle 127 files and checksum tamper rejection; synthetic TLS loopback passes. No SIE production project identified; professional approval, real IAM/TLS, representative restore, formal change and deploy not done."
     }
   ],
-  "revision": 47,
+  "revision": 48,
   "schema_version": 1,
   "tasks": [
     {
@@ -2730,10 +2737,10 @@
         ],
         "f12_preparation_code_sha": "436edb321ec52a0ee8b7971a698641306692de2a",
         "f12_ci_runs": [
-          40246991785,
-          40246991728,
-          40246991712,
-          40246991743
+          40248897962,
+          40248897906,
+          40248897831,
+          40248897899
         ],
         "f12_ci_api_passed": 1209,
         "f12_ci_chromium_passed": 36,
@@ -2742,7 +2749,21 @@
         "f12_ci_aiox_passed": true,
         "qa_01": "APPROVED_PREPARATION_ONLY; PRODUCTION_BLOCKED",
         "qa_02": "PREPARATION_WARNING; PROFESSIONAL_APPROVAL_BLOCKED",
-        "qa_03": "APPROVED_LOCAL_SECURITY_TESTS; PRODUCTION_IDENTITY_TLS_MONITORING_BLOCKED"
+        "qa_03": "APPROVED_LOCAL_SECURITY_TESTS; PRODUCTION_IDENTITY_TLS_MONITORING_BLOCKED",
+        "f12_release_workstreams": "W1-W4_TESTED_LOCAL_SYNTHETIC; W5-W7_EXTERNAL_GATES_BLOCKED",
+        "code_sha": "d7b55a7f3a8ec3eb15ff06a9478b8936134f61ad",
+        "api_tests_passed": 1210,
+        "chromium_tests_passed": 36,
+        "f12_gate_tests_passed": 8,
+        "offline_db_recovery_tests_passed": 19,
+        "reproducible_bundle_files": 127,
+        "reproducible_bundle_checksum_sha256": "6e29e1f980d50b4a0d394d863915f6660bfba029a1b797eff0f85deebc7bdcfa",
+        "local_https_synthetic_test": "PASS",
+        "real_production_iam": "NOT_VERIFIED",
+        "real_https": "NOT_VERIFIED",
+        "release_approval": "HUMAN_REQUIRED",
+        "external_gates_issue": "https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/7",
+        "normative_release": false
       }
     }
   ]

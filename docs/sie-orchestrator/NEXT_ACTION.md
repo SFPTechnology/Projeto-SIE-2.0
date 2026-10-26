@@ -1,3 +1,9 @@
+# Ação atual — F12 W1–W4 QA local comprovado; produção NO-GO (25/10/2026)
+
+Novos controles F12 na branch `feat/f12-liberacao-controlada`, SHA de código `d7b55a7f3a8ec3eb15ff06a9478b8936134f61ad`: 1210 API, 36 Chromium, AIOX, segurança 8, recuperação 19, bundle SHA256 reproduzível e HTTPS loopback sintético, workflows concluídos success. G02/G03/G04/G05/G06/G07/G08 em escopo de produção não comprovados; G09/G10 não executados. Pendente ambiente SIE real e autorização formal (issue #7), revisão profissional e requisitos IAM/TLS. **F12 HUMAN_REQUIRED; sem deploy/merge/main/homologação normativa**. Ver `docs/implantacao-sie-2-0/F12/PLANO_EXECUTIVO_FECHAMENTO_GATES.md`, `DOSSIER_AUTORIZACAO_RELEASE.md` e `AUDITORIA_AMBIENTE_IDENTIDADE.md`. Os registros anteriores são históricos quando conflitantes.
+
+---
+
 # Ação vigente — F12 controles locais testados, produção NO-GO (25/10/2026)
 
 CI do código F12 `436edb321ec52a0ee8b7971a698641306692de2a`: API 1209, Chromium 36, F12 7+19 e AIOX passaram (runs 40246991785, 40246991743, 40246991712, 40246991728). QA3 F12 formaliza aprovação **somente da preparação**; produção segue HUMAN_REQUIRED/BLOQUEADA. Próxima ação: completar G02–G10 em infraestrutura/autorização profissional adequadas; revalidar CI no SHA documental final. NÃO avançar para encerramento como release real.

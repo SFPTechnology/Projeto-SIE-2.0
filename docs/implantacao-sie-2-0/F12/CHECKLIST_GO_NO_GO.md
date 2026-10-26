@@ -29,3 +29,6 @@ O validador `scripts/f12_release_gate.py` confere apenas invariantes de prepara�
 - Parecer QA-01 / QA-02 / QA-03 e responsabilidade técnica aplicável:
 - Decisão GO ou NO-GO / data / assinatura:
 Sem esse registro, autorização permanece **AUSENTE**.
+
+## Evidência incremental W1–W4
+Código F12 `d7b55a7` validado por API 1210/Chromium36/AIOX/F12 safety8+19; builds determinísticos e recusa de adulteração; HTTPS em loopback sem domínio real. **G01 parcialmente validado para distribuição LOCAL_QA; G03/G04/G05/G06/G07 NÃO validados em produção**. G02/G08 HUMAN_REQUIRED, G09/G10 NÃO EXECUTADOS. Não promover estas medições sintéticas a `GO`.

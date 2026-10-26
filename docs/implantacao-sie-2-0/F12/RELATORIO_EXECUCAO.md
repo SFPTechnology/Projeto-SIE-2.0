@@ -41,3 +41,16 @@ Três pareceres separados estão em `QA-01.md`, `QA-02.md` e `QA-03.md`. QA-01 A
 
 ## Próximo marco
 Retomar **F12** após comprovar controles faltantes; **não iniciar encerramento F00–F12** como versão liberada. Nenhuma tarefa requer preenchimento manual de planilha pelo usuário.
+
+## Execução adicional — preparação automatizada multiagente, 25/10/2026
+**Base de retomada:** `d12d7ee14a4b3a7ef658beea63740d834b241487`. **Plano:** `PLANO_EXECUTIVO_FECHAMENTO_GATES.md` (A01–A08; papéis automatizados especializados, não oito operadores humanos).
+
+**Código W1–W4:** `scripts/f12_bundle.py`, `scripts/f12_staging_smoke.py`, workflow F12, testes adversariais de empacotamento e revisão do gate de escopo. São mudanças restritas à branch F12, sem alteração do motor, bancos ou produção. Pacote de fonte não é release profissional.
+
+**SHA de código com CI completo:** `d7b55a7f3a8ec3eb15ff06a9478b8936134f61ad`. API `40248897962` (**1210 passed, 1 warning**); Chromium `40248897906` (**36 passed**); AIOX `40248897831` (**success**); F12 `40248897899` (**8 testes F12, 19 de lifecycle/restore, dois builds determinísticos, verificação e recusa de adulteração, smoke HTTPS loopback, success**). Bundle de 127 arquivos e SHA-256 `6e29e1f980d50b4a0d394d863915f6660bfba029a1b797eff0f85deebc7bdcfa`. **O commit documental posterior precisa do seu próprio CI**; o hash citado pertence apenas ao pacote do commit de código.
+ 
+**Auditoria da realidade:** não há projeto Supabase conectado identificado como SIE 2.0, somente nomes de outras aplicações. DNS/domínio real, identidades, HTTPS externo, acesso por usuário/projeto, dashboard, custo e janela de deploy não foram demonstrados. Foram testados apenas fixtures/loopback, com `SIE_ENV=production` para confirmar negação da persistência local. Ver `AUDITORIA_AMBIENTE_IDENTIDADE.md`.
+
+**Pontos externos, issue #7:** completar G02–G08 com fatos e autoridades pertinentes; G09–G10 (deploy e pós-deploy) NÃO EXECUTADOS. `DOSSIER_AUTORIZACAO_RELEASE.md` registra critérios de aceite sem inventar laudos, assinaturas, custos ou aprovação. Pareceres QA-01/02/03 atualizados: preparação técnica local aprovada onde testada; produção/homologação profissional bloqueadas.
+
+**Decisão:** `F12 = HUMAN_REQUIRED`, `NO-GO` para release real, preservados `main`, produção e homologação elétrica. Não avançar para encerramento F00–F12 como sistema publicado.
