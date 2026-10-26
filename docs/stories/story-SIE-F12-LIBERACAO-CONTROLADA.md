@@ -63,3 +63,11 @@ F12 DONE apenas após todos os gates comprovados em ambiente e SHA próprios, au
 - [ ] CI deve validar health, caso sintético com `liberado_para_uso_normativo=false`, ausência de routes administrativas, cabeçalhos de segurança, content type e limite de corpo.
 - [ ] Provedor/host externo específico, HTTPS público, deploy e autorização de mudança dependem de evidências reais. Não inferir hospedagem GitHub da existência do repositório.
 - Novo código: `restructuring/apps/api/sie_api/f12_consultative.py`, testes `test_f12_consultative.py`, UI sob `docs/implantacao-sie-2-0/F12/consultivo-web/`.
+
+## Etapa 1 — resultado do escopo WEB CONSULTIVO
+- [x] Implementar API ASGI `sie_api.f12_consultative:app` com allowlist GET health + POST análise; nenhum projeto armazenado.
+- [x] Frontend estático responsivo com aviso não normativo e fetch mesma origem.
+- [x] Segurança negativa, testes 5 `40259295533`; API 1215, browser 37 `40259295504`, AIOX success no mesmo commit `270fa3c1e9589479d79c38b50da89100719b62ae`.
+- [ ] Hospedagem real identificada tecnicamente (o titular informou existir, mas provedor/URL não estavam em arquivos acessíveis).
+- [ ] Domínio/HTTPS e identidade de operador/ingress auditados, smoke E2E remoto e monitoramento de ambiente homologado.
+- [ ] Aprovação e rollout externo conforme F12 G01–G10; sem `DONE` ou `GO` fictícios.

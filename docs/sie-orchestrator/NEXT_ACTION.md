@@ -1,3 +1,15 @@
+# F12 — Retomar implantação em hospedagem já definida (web consultiva)
+
+O titular confirmou **hospedagem já definida** e escolheu **primeira versão WEB CONSULTIVA**, sem uso profissional homologado. O repositório não contém URL, provedor, tenant ou identificador da infraestrutura SIE; GitHub é hospedagem de código, não demonstra a implantação do serviço.
+
+**Preparação da interface web consultiva pronta para homologação (não para produção):** branch `feat/f12-liberacao-controlada`, código SHA `270fa3c1e9589479d79c38b50da89100719b62ae`; `sie_api.f12_consultative:app` serve interface web + somente GET health e POST análise sintética, sem contas e sem persistência. Testes: API 1215, Chromium 37, F12 segurança 5, F12 gate 8, recovery 19 e AIOX todos success. Bundle local QA de 134 arquivos reproduzido, hash `d01b6a04334a36c82e98141a1c0b37e8dc5bd5a86341dde93ec3cfe66daa10d8`.
+
+**Próximo passo exato:** identificar no provedor já escolhido o endereço/serviço da homologação SIE, validar recursos de runtime Python ASGI + proxy HTTPS, DNS, firewall, identidade administrativa, logs e limite de requisição. Seguir `docs/implantacao-sie-2-0/F12/PERFIL_WEB_CONSULTIVO_IMPLANTACAO.md`. Executar smoke externo e controles de recuperação representativos antes de proposta de GO.
+
+**F12 HUMAN_REQUIRED e produção NO-GO**; `main`, ambiente elétrico e dados reais preservados; sem merge, deploy ou parecer profissional. [Issue #7](https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/7); [PR #8 rascunho](https://github.com/SFPTechnology/Projeto-SIE-2.0/pull/8).
+
+---
+
 # Ação atual — F12 W1–W4 QA local comprovado; produção NO-GO (25/10/2026)
 
 Novos controles F12 na branch `feat/f12-liberacao-controlada`, SHA de código `d7b55a7f3a8ec3eb15ff06a9478b8936134f61ad`: 1210 API, 36 Chromium, AIOX, segurança 8, recuperação 19, bundle SHA256 reproduzível e HTTPS loopback sintético, workflows concluídos success. G02/G03/G04/G05/G06/G07/G08 em escopo de produção não comprovados; G09/G10 não executados. Pendente ambiente SIE real e autorização formal (issue #7), revisão profissional e requisitos IAM/TLS. **F12 HUMAN_REQUIRED; sem deploy/merge/main/homologação normativa**. Ver `docs/implantacao-sie-2-0/F12/PLANO_EXECUTIVO_FECHAMENTO_GATES.md`, `DOSSIER_AUTORIZACAO_RELEASE.md` e `AUDITORIA_AMBIENTE_IDENTIDADE.md`. Os registros anteriores são históricos quando conflitantes.

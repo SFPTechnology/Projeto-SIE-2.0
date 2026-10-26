@@ -385,9 +385,16 @@
       "from": "HUMAN_REQUIRED",
       "to": "HUMAN_REQUIRED",
       "reason": "W1-W4 extended gates tested on code SHA d7b55a7: API 1210, Chromium36, AIOX and F12 safety8+19 success; deterministic QA bundle 127 files and checksum tamper rejection; synthetic TLS loopback passes. No SIE production project identified; professional approval, real IAM/TLS, representative restore, formal change and deploy not done."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-25",
+      "from": "HUMAN_REQUIRED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "Owner selected existing hosting and consultative public web; isolated stateless F12 facade and synthetic UI implemented. Code SHA 270fa3c: API 1215, Chromium 37, AIOX success, F12 8+19+5 passed, 134 source files hashed. Hosting endpoint unknown and real HTTPS/staging/change not tested; no deploy, no normative approval."
     }
   ],
-  "revision": 48,
+  "revision": 49,
   "schema_version": 1,
   "tasks": [
     {
@@ -2730,10 +2737,10 @@
         "release_manifest": "docs/implantacao-sie-2-0/F12/MANIFESTO_RELEASE.json",
         "implementation_status": "PREPARATION_VALIDATED; PRODUCTION_HUMAN_REQUIRED",
         "blockers": [
-          "SIE-AUTO-006 production identity and environment lack evidence",
-          "NOR-01 normative professional validation not completed",
-          "restore/migration rehearsal and preproduction infrastructure not approved",
-          "release change authorization, deploy, monitor not executed"
+          "provider and SIE domain/hostname identity not evidenced, despite owner's declaration that hosting is defined",
+          "TLS on real domain, admin IAM, ingress limits and monitoring not verified",
+          "representative staging restore/recovery and change approval still pending",
+          "production publication and professional normative certification not authorized"
         ],
         "f12_preparation_code_sha": "436edb321ec52a0ee8b7971a698641306692de2a",
         "f12_ci_runs": [
@@ -2750,20 +2757,35 @@
         "qa_01": "APPROVED_PREPARATION_ONLY; PRODUCTION_BLOCKED",
         "qa_02": "PREPARATION_WARNING; PROFESSIONAL_APPROVAL_BLOCKED",
         "qa_03": "APPROVED_LOCAL_SECURITY_TESTS; PRODUCTION_IDENTITY_TLS_MONITORING_BLOCKED",
-        "f12_release_workstreams": "W1-W4_TESTED_LOCAL_SYNTHETIC; W5-W7_EXTERNAL_GATES_BLOCKED",
+        "f12_release_workstreams": "PUBLIC_CONSULTATIVE_CANDIDATE_LOCAL_QA_APPROVED; REAL_HOST_STAGING_AND_GO_NO_GO_BLOCKED",
         "code_sha": "d7b55a7f3a8ec3eb15ff06a9478b8936134f61ad",
-        "api_tests_passed": 1210,
-        "chromium_tests_passed": 36,
+        "api_tests_passed": 1215,
+        "chromium_tests_passed": 37,
         "f12_gate_tests_passed": 8,
         "offline_db_recovery_tests_passed": 19,
-        "reproducible_bundle_files": 127,
-        "reproducible_bundle_checksum_sha256": "6e29e1f980d50b4a0d394d863915f6660bfba029a1b797eff0f85deebc7bdcfa",
+        "reproducible_bundle_files": 134,
+        "reproducible_bundle_checksum_sha256": "d01b6a04334a36c82e98141a1c0b37e8dc5bd5a86341dde93ec3cfe66daa10d8",
         "local_https_synthetic_test": "PASS",
         "real_production_iam": "NOT_VERIFIED",
         "real_https": "NOT_VERIFIED",
         "release_approval": "HUMAN_REQUIRED",
         "external_gates_issue": "https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/7",
-        "normative_release": false
+        "normative_release": false,
+        "consultive_scope": "PUBLIC_ANONYMOUS_STATELESS_SYNTHETIC_ONLY",
+        "consultive_entrypoint": "sie_api.f12_consultative:app",
+        "consultive_ui": "docs/implantacao-sie-2-0/F12/consultivo-web/index.html",
+        "consultive_code_sha": "270fa3c1e9589479d79c38b50da89100719b62ae",
+        "consultive_api_test_run": 40259295509,
+        "consultive_browser_test_run": 40259295504,
+        "consultive_aiox_run": 40259295562,
+        "consultive_safety_run": 40259295533,
+        "f12_web_security_tests_passed": 5,
+        "known_hosting_provider": "OWNER_SAYS_DEFINED_BUT_NO_PROVIDER_OR_URL_VERIFIABLE",
+        "staging_deploy": "NOT_EXECUTED",
+        "production_deploy": "NOT_EXECUTED",
+        "public_iam_scope": "NO_CUSTOMER_ACCOUNTS_OR_SERVER_STORAGE",
+        "production_infrastructure_iam": "NOT_VERIFIED",
+        "public_https": "NOT_VERIFIED"
       }
     }
   ]

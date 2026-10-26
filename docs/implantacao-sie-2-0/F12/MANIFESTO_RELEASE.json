@@ -42,5 +42,23 @@
   "qa_bundle_code_sha256": "6e29e1f980d50b4a0d394d863915f6660bfba029a1b797eff0f85deebc7bdcfa",
   "production_identity_verified": false,
   "public_https_verified": false,
-  "staging_real_verified": false
+  "staging_real_verified": false,
+  "consultative_web": {
+    "mode": "ANONYMOUS_STATELESS_SYNTHETIC",
+    "entrypoint": "sie_api.f12_consultative:app",
+    "code_sha": "270fa3c1e9589479d79c38b50da89100719b62ae",
+    "api_test_run": 40259295509,
+    "chromium_test_run": 40259295504,
+    "f12_safety_run": 40259295533,
+    "aiox_run": 40259295562,
+    "web_security_tests_passed": 5,
+    "api_tests_passed": 1215,
+    "browser_tests_passed": 37,
+    "source_bundle_sha256": "d01b6a04334a36c82e98141a1c0b37e8dc5bd5a86341dde93ec3cfe66daa10d8",
+    "bundle_files": 134,
+    "provider_identified": false,
+    "real_https_verified": false,
+    "staging_deployed": false,
+    "professionally_homologated": false
+  }
 }

@@ -54,3 +54,23 @@ Retomar **F12** após comprovar controles faltantes; **não iniciar encerramento
 **Pontos externos, issue #7:** completar G02–G08 com fatos e autoridades pertinentes; G09–G10 (deploy e pós-deploy) NÃO EXECUTADOS. `DOSSIER_AUTORIZACAO_RELEASE.md` registra critérios de aceite sem inventar laudos, assinaturas, custos ou aprovação. Pareceres QA-01/02/03 atualizados: preparação técnica local aprovada onde testada; produção/homologação profissional bloqueadas.
 
 **Decisão:** `F12 = HUMAN_REQUIRED`, `NO-GO` para release real, preservados `main`, produção e homologação elétrica. Não avançar para encerramento F00–F12 como sistema publicado.
+
+## Complemento: Etapa 1 em perfil WEB CONSULTIVO — execução 25/10/2026
+
+**Decisão:** o titular declarou já possuir hospedagem e selecionou primeira versão `web consultiva`. Não há evidência do URL/provedor SIE nas configurações acessíveis, portanto não foi possível testar nem alterar o ambiente externo. Isso **não** invalida o aceite local: redefine o alvo como *web anônima sintética sem persistência*, diferenciado de uso profissional.
+
+**Implementado no commit de código `270fa3c1e9589479d79c38b50da89100719b62ae`:**
+- `sie_api.f12_consultative:app`, entrada de navegador desacoplada da API local, permite exclusivamente `GET /api/v1/health` e `POST /api/v1/circuitos/analisar`, além de `/` e arquivos estáticos da página. Recusa `/api/v1/local/**`, `/docs`, `/openapi.json`, emissão/recuperação de artefatos e demais rotas, mesmo com token local configurado.
+- Página `consultivo-web/`, responsive/dark, apenas sintética; sem credenciais, sessões de cliente, projetos, persistência, conformidade ABNT ou aprovação.
+- Política de CSP/no-store/nosniff/anti-iframe, MIME/limite de corpo e teste de segurança negativo. Há risco de abuso de tráfego sem ingress com rate-limit e limite de tamanho no provedor: exigência G03.
+- Guia específico `PERFIL_WEB_CONSULTIVO_IMPLANTACAO.md`: comando de ensaio em loopback, parâmetros, porta privada, integração com proxy HTTPS e critérios de saúde.
+
+**Verificado em CI no SHA de código `270fa3c1e9589479d79c38b50da89100719b62ae`:**
+- `40259295509` API **1215 passed, 3 warnings**.
+- `40259295504` Chromium **37 passed**; inclui browser real da página consultiva, simulação e negação de projetos locais.
+- `40259295562` AIOX quality success.
+- `40259295533` F12 safety **8 + 19 + 5 passed**; pacote QA 134 arquivos, dois builds iguais, SHA-256 `d01b6a04334a36c82e98141a1c0b37e8dc5bd5a86341dde93ec3cfe66daa10d8`, checksum verificado e alteração de pacote recusada. O SHA-256 é específico do commit de código; documentos de acompanhamento posteriores geram checksum diferente.
+
+**Risco residual:** Etapa 1 IMPLEMENTADA e TESTADA como componente local de homologação, mas **não concluída quanto à integração com a hospedagem existente**. TLS público, hostname, identidade de operação, observabilidade, defesa contra abuso, pacote de contêiner/lock, backup representativo e liberação formal permanecem pendentes. Não houve deploy, DNS, atualização de secrets, banco ou `main`. G09/G10 nunca foram simulados como real.
+
+**Decisão:** manter `F12 HUMAN_REQUIRED` / `NO-GO` para produção, sem reabrir F11 ou etapas aprovadas da F12.

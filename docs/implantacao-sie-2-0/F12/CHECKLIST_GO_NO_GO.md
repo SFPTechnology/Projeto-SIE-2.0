@@ -32,3 +32,6 @@ Sem esse registro, autorização permanece **AUSENTE**.
 
 ## Evidência incremental W1–W4
 Código F12 `d7b55a7` validado por API 1210/Chromium36/AIOX/F12 safety8+19; builds determinísticos e recusa de adulteração; HTTPS em loopback sem domínio real. **G01 parcialmente validado para distribuição LOCAL_QA; G03/G04/G05/G06/G07 NÃO validados em produção**. G02/G08 HUMAN_REQUIRED, G09/G10 NÃO EXECUTADOS. Não promover estas medições sintéticas a `GO`.
+
+## Adaptação do escopo G03 para WEB CONSULTIVA
+A primeira versão proposta não tem conta de cliente, servidor de projetos ou escrita em banco. Por isso, o requisito de RBAC de usuários finais é **não aplicável a este preview especificamente**. G03 permanece **PENDENTE para produção** até atestar a identidade **administrativa** do provedor, a segregação de ambiente, HTTPS público, segredo de infraestrutura, proteção de ingress, abuse/rate-limit e logs; não confundir ausência de login na interface demonstrativa com autorização para armazenar dados. Código `270fa3c1e9589479d79c38b50da89100719b62ae` passou em 1215 API + 37 Chromium + 5 segurança web; o provedor ainda precisa ser identificado.
