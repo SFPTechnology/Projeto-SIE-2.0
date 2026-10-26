@@ -16,7 +16,6 @@ from .main import app as internal_application
 # Strict method/path map. Every addition requires explicit security review.
 PUBLIC_ENDPOINTS = frozenset({
     ("GET", "/api/v1/health"),
-    ("GET", "/api/v1/normas/catalogo"),
     ("POST", "/api/v1/circuitos/analisar"),
 })
 ASSETS = frozenset({"/", "/index.html", "/consultivo.js", "/consultivo.css"})

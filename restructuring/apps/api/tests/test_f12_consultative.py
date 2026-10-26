@@ -38,9 +38,7 @@ def test_stateless_health_and_no_normative_approval():
     response = client.post("/api/v1/circuitos/analisar", json=SYNTHETIC)
     assert response.status_code == 200, response.text
     assert response.json()["liberado_para_uso_normativo"] is False
-    norm = client.get("/api/v1/normas/catalogo")
-    assert norm.status_code == 200
-    assert norm.json()["release_allowed"] is False
+    assert client.get("/api/v1/normas/catalogo").status_code == 404
 
 
 def test_never_expose_local_db_or_artifacts_even_with_configured_local_token(monkeypatch):
@@ -67,7 +65,6 @@ def test_never_expose_local_db_or_artifacts_even_with_configured_local_token(mon
 def test_strict_methods_type_and_size():
     assert PUBLIC_ENDPOINTS == {
         ("GET", "/api/v1/health"),
-        ("GET", "/api/v1/normas/catalogo"),
         ("POST", "/api/v1/circuitos/analisar"),
     }
     assert client.post("/api/v1/health").status_code == 404
