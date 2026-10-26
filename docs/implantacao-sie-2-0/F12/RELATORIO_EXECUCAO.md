@@ -74,3 +74,22 @@ Retomar **F12** após comprovar controles faltantes; **não iniciar encerramento
 **Risco residual:** Etapa 1 IMPLEMENTADA e TESTADA como componente local de homologação, mas **não concluída quanto à integração com a hospedagem existente**. TLS público, hostname, identidade de operação, observabilidade, defesa contra abuso, pacote de contêiner/lock, backup representativo e liberação formal permanecem pendentes. Não houve deploy, DNS, atualização de secrets, banco ou `main`. G09/G10 nunca foram simulados como real.
 
 **Decisão:** manter `F12 HUMAN_REQUIRED` / `NO-GO` para produção, sem reabrir F11 ou etapas aprovadas da F12.
+
+## Complemento — provedor e domínio definidos, inspeção Hostinger em modo seguro (26/10/2026)
+
+O titular informou o provedor **Hostinger** e o domínio pretendido **https://sie2.applicationmanager.com.br/**. Isso resolve o dado de identificação antes ausente; não comprova hospedagem VPS, painel de gerência, ativo real de homologação, TLS público ou estado atual do site.
+
+Um acesso público somente leitura ao domínio por serviço de consulta web retornou `cache miss`, sem conteúdo da página. Uma tentativa de inspeção pela sessão de execução não conseguiu resolver o hostname através da rede local da ferramenta. **Esses erros da sessão não são prova de indisponibilidade do site.** Não foi realizado acesso autenticado, deploy, mudança de DNS/SSL, operação no hPanel nem contato com dados reais.
+
+### Ações implementadas
+- `scripts/f12_hostinger_preflight.py`: escopo estritamente `https://sie2.applicationmanager.com.br`, validação offline por padrão, modo `--live` manual/opcional com apenas GET, SSL verificado pelo cliente, proibição de redirect fora de origem, verificação da identidade do portal e negação de rotas restritas; nunca concede GO.
+- `restructuring/apps/api/tests/test_f12_hostinger_preflight.py`: cinco casos exclusivamente simulados, incluindo domínio inválido, portal antigo, rota indevida, falha de rede e ausência de autorização.
+- `docs/implantacao-sie-2-0/F12/HOSTINGER_HOMOLOGACAO.md`: guia para identificar produto Hostinger, compatibilidade VPS/Python, confirmação SSL, homologação segregada e validação segura sem substituir o site atual.
+- Atualização da issue de produção [#7](https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/7) com Hostinger e URL identificados.
+
+### Evidência do código
+Commit `2036fe59b8091201f8994ef46b18aa2a8ae233de`: F12 Safety `40262561390` success (**8 + 19 + 5 consultivos + 5 Hostinger testes**), empacotamento determinístico **135 arquivos**, SHA-256 `4db8858f5487f5da4808af5ade340f63678a51734dc9ba554a6d9d92d8cbf5e4` válido **apenas para esse commit**; API `40262561343` success (**1220 testes**); AIOX `40262561443` success. Chromium `40262561351`: conferir o resultado final separadamente; não reutilizar CI de outro SHA como prova da revisão documental.
+
+**Pendências materiais antes de completar a Etapa 1 no servidor:** plano Hostinger e recursos Python, ambiente de homologação, gestão de SSL/certificado público, IAM de administração, limites de requisição, logs, alertas e smoke de acesso externo. Mesmo em plano VPS, nenhuma instalação foi realizada. A primeira versão continua *sintética, anônima e sem persistência*; não é o SIE profissional completo.
+
+**Decisão:** `F12 HUMAN_REQUIRED`, produção **NO-GO**, homologação normativa não concluída; `main` preservada.

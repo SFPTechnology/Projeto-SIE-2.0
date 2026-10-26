@@ -22,3 +22,10 @@
 | DB-01 | ALTA | F03/F11 SQLite local; Supabase do SIE não identificado | Definir banco, ACL, migrações, segregação e estratégia de restore real |
 
 **Decisão:** testes locais de protocolo e fail-closed APROVADOS, infraestrutura/identidade PROD **NÃO APROVADAS**. Não selecionar por aproximação um projeto pertencente a outro sistema.
+
+## Atualização de identificação Hostinger — 26/10/2026
+**INFRA-01 parcialmente esclarecido:** provedor Hostinger; domínio-alvo https://sie2.applicationmanager.com.br/. O titular os informou diretamente. Continua **PENDENTE** tipo do plano (VPS versus Web/Cloud ou Web Apps), recursos de aplicação Python, permissões de administração, hostname de homologação, SSL real, logs e observabilidade.
+
+A consulta web não forneceu conteúdo verificável (`cache miss`), e a ferramenta de execução não resolveu o hostname. Não classificar como falha de DNS/HTTPS do servidor real com base em limitações da ferramenta. Testes do `f12_hostinger_preflight.py` foram offline com fixtures; nenhum atestado de TLS público.
+
+**Escopo IAM:** web consultiva anônima sem contas nem armazenamento de projetos; RBAC de clientes é inaplicável ao piloto sintético, mas identidade administrativa e controles do provedor continuam obrigatórios. O material de engenharia não está homologado para uso profissional.

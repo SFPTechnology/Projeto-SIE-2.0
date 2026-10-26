@@ -1,3 +1,17 @@
+# F12 — ação executável específica: hospedagem Hostinger identificada
+
+**Destino declarado pelo titular:** `https://sie2.applicationmanager.com.br/`, Hostinger. **Perfil:** web consultiva anônima com dados sintéticos, sem login nem persistência de projetos.
+
+**Entregue:** código consultivo QA-validado da etapa anterior; `scripts/f12_hostinger_preflight.py` de leitura HTTPS somente por opt-in, 5 testes offline e `HOSTINGER_HOMOLOGACAO.md`. Commit de código `2036fe59b8091201f8994ef46b18aa2a8ae233de`, CI Safety `40262561390`, API `40262561343`, AIOX `40262561443` success.
+
+**Próximo gate específico NÃO executado:** identificar produto/contrato no hPanel (VPS Python ou hospedagem Web/Cloud), URL/instância segregada de homologação, validar HTTPS público/segredos/permissões administrativas e executar smoke externo. A sessão não conseguiu consultar conteúdo do domínio; não afirmar que o site está fora do ar. Não modificar DNS, produção, main ou banco.
+
+**Se plano VPS:** executar FastAPI `sie_api.f12_consultative:app` em ambiente homologado interno atrás de HTTPS, nunca expor API local `sie_api.main:app`. **Se plano Web/Cloud tradicional:** não suporta o backend Python, exigindo backend VPS/serviço independente; publicar HTML sozinho não representa o produto funcional. Não aprovar custos/reconfigurações sem informações do plano.
+
+**Estado F12:** HUMAN_REQUIRED, sem GO de produção ou liberação elétrica. [Issue #7](https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/7). Consulte `docs/implantacao-sie-2-0/F12/HOSTINGER_HOMOLOGACAO.md`.
+
+---
+
 # F12 — Retomar implantação em hospedagem já definida (web consultiva)
 
 O titular confirmou **hospedagem já definida** e escolheu **primeira versão WEB CONSULTIVA**, sem uso profissional homologado. O repositório não contém URL, provedor, tenant ou identificador da infraestrutura SIE; GitHub é hospedagem de código, não demonstra a implantação do serviço.

@@ -60,5 +60,17 @@
     "real_https_verified": false,
     "staging_deployed": false,
     "professionally_homologated": false
+  },
+  "external_hoster": {
+    "provider": "Hostinger",
+    "provided_by": "owner",
+    "target_url": "https://sie2.applicationmanager.com.br/",
+    "plan": "NOT_IDENTIFIED",
+    "public_https_verified": false,
+    "host_access_verified": false,
+    "real_staging_deployed": false,
+    "read_only_preflight": "IMPLEMENTED_AND_TESTED_OFFLINE",
+    "preflight_ci_run": 40262561390,
+    "code_sha": "2036fe59b8091201f8994ef46b18aa2a8ae233de"
   }
 }

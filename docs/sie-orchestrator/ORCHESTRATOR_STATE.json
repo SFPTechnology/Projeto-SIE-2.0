@@ -392,9 +392,16 @@
       "from": "HUMAN_REQUIRED",
       "to": "HUMAN_REQUIRED",
       "reason": "Owner selected existing hosting and consultative public web; isolated stateless F12 facade and synthetic UI implemented. Code SHA 270fa3c: API 1215, Chromium 37, AIOX success, F12 8+19+5 passed, 134 source files hashed. Hosting endpoint unknown and real HTTPS/staging/change not tested; no deploy, no normative approval."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-26",
+      "from": "HUMAN_REQUIRED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "Owner named Hostinger and https://sie2.applicationmanager.com.br/ as intended target. Dedicated read-only CLI and 5 offline tests pass on SHA 2036fe59; no VPS plan evidence, host content, public TLS or hPanel access; no deployment, normative release or production GO."
     }
   ],
-  "revision": 49,
+  "revision": 50,
   "schema_version": 1,
   "tasks": [
     {
@@ -2785,7 +2792,19 @@
         "production_deploy": "NOT_EXECUTED",
         "public_iam_scope": "NO_CUSTOMER_ACCOUNTS_OR_SERVER_STORAGE",
         "production_infrastructure_iam": "NOT_VERIFIED",
-        "public_https": "NOT_VERIFIED"
+        "public_https": "NOT_VERIFIED",
+        "host_provider": "Hostinger",
+        "host_provider_source": "OWNER_DECLARATION_2026-10-26",
+        "target_public_url": "https://sie2.applicationmanager.com.br/",
+        "hostinger_plan": "UNKNOWN_VPS_OR_WEB",
+        "hostinger_public_https": "NOT_VERIFIED",
+        "hostinger_public_response": "NOT_VERIFIED_CACHE_MISS_ON_WEB_RETRIEVAL",
+        "hostinger_preflight_script": "scripts/f12_hostinger_preflight.py",
+        "hostinger_preflight_code_sha": "2036fe59b8091201f8994ef46b18aa2a8ae233de",
+        "hostinger_preflight_unit_tests_passed": 5,
+        "hostinger_preflight_ci": 40262561390,
+        "external_deployment": "NOT_EXECUTED",
+        "next_action": "Identify existing Hostinger plan and segregated staging, then verify public HTTPS and operator IAM; no merge or deploy"
       }
     }
   ]
