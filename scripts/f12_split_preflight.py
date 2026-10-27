@@ -6,6 +6,7 @@ Never deploys, contacts hPanel, changes DNS, tests POST, or grants a GO.
 """
 import argparse
 import json
+import ipaddress
 import re
 import ssl
 from urllib import error, parse, request
@@ -23,9 +24,15 @@ def valid_origin(value, is_site=False):
             or parts.path not in ("", "/")
             or not re.fullmatch(r"[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+", host)):
         raise ValueError("Origem deve ser um hostname HTTPS sem caminho, porta extra ou segredo")
+    try:
+        ipaddress.ip_address(host)
+    except ValueError:
+        pass
+    else:
+        raise ValueError("Endereço IP não autorizado como origem pública")
     if (is_site and host != SITE_DOMAIN and not host.endswith("." + SITE_DOMAIN)):
         raise ValueError("Site estático deve pertencer ao domínio Hostinger do titular")
-    if not is_site and (host.endswith(".local") or host.endswith(".internal")
+    if not is_site and (host.endswith(".local") or host.endswith(".internal") or host.endswith(".localhost") or host.endswith(".localdomain")
                         or host.endswith(".invalid")):
         raise ValueError("Origem externa de API deve possuir hostname público")
     return "https://" + host
