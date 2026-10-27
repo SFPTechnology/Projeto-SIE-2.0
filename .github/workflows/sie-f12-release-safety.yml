@@ -10,6 +10,8 @@ on:
       - 'scripts/f12_bundle.py'
       - 'scripts/f12_staging_smoke.py'
       - 'scripts/f12_hostinger_preflight.py'
+      - 'scripts/f12_split_preflight.py'
+      - 'restructuring/apps/api/tests/test_f12_split_preflight.py'
       - 'scripts/f12_hostinger_static.py'
       - 'restructuring/apps/api/tests/test_f12_hostinger_static.py'
       - 'restructuring/apps/api/tests/test_f12_hostinger_preflight.py'
@@ -117,3 +119,8 @@ jobs:
             run-artifacts/hostinger-static-a/MANIFEST.json
           retention-days: 7
           if-no-files-found: error
+
+      - name: Test split-host Hostinger frontend and separate API probe without network
+        run: |
+          python scripts/f12_split_preflight.py
+          python -m pytest -q restructuring/apps/api/tests/test_f12_split_preflight.py
