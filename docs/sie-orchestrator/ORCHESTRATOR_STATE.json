@@ -364,9 +364,58 @@
       "from": "VALIDATING",
       "to": "DONE",
       "reason": "Supported local software QA completed: F09-F10 consultative lineage, offline multi-root recovery, resilience; 1202 API and 36 Chromium plus AIOX CI success on code SHA 51c5e95d. Final documentation SHA requires CI recheck. Technical/professional release rejected; no main/deploy."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-25",
+      "from": "UNREGISTERED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "F11 SHA 11643cf3ad7da2e6182183c6071148f924bfe741 CI API/AIOX/Chromium confirmed. F12 isolated preparation only: candidate metadata, fail-closed script and runbooks under development. Production identity, normative approval, simulated recovery, authorization and deploy still blocked."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-25",
+      "from": "HUMAN_REQUIRED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "Preparacao F12 sob SHA 436edb3: CI API 1209 passed, Chromium 36 passed, AIOX success, F12 guard 7 passed and offline restore/migration 19 passed, with QA3 separate preparation opinions. Production GO/NO-GO remains NO-GO: identity, homologation, approval, deploy and post-deploy not executed."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-25",
+      "from": "HUMAN_REQUIRED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "W1-W4 extended gates tested on code SHA d7b55a7: API 1210, Chromium36, AIOX and F12 safety8+19 success; deterministic QA bundle 127 files and checksum tamper rejection; synthetic TLS loopback passes. No SIE production project identified; professional approval, real IAM/TLS, representative restore, formal change and deploy not done."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-25",
+      "from": "HUMAN_REQUIRED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "Owner selected existing hosting and consultative public web; isolated stateless F12 facade and synthetic UI implemented. Code SHA 270fa3c: API 1215, Chromium 37, AIOX success, F12 8+19+5 passed, 134 source files hashed. Hosting endpoint unknown and real HTTPS/staging/change not tested; no deploy, no normative approval."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-26",
+      "from": "HUMAN_REQUIRED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "Owner named Hostinger and https://sie2.applicationmanager.com.br/ as intended target. Dedicated read-only CLI and 5 offline tests pass on SHA 2036fe59; no VPS plan evidence, host content, public TLS or hPanel access; no deployment, normative release or production GO."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-26",
+      "from": "HUMAN_REQUIRED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "Owner confirmed Hostinger static-page subdomains incl. SIE1. Chosen F12 static Hostinger UI plus optional separately hosted FastAPI. Code SHA 67ef9d4: 1234 API, 37 Chromium, AIOX, F12 Safety passed; deterministic 5-file Hostinger ZIP with API disabled unless configured. No actual hosting access or deployment. Production NO-GO."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-26",
+      "from": "HUMAN_REQUIRED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "Prompt Mestre 2.0, mode B specialist reviews. Staging-safe Hostinger static origin, strict per-environment CORS, true streamed POST body guard, separate static/API GET-only preflight implemented on branch. CI must be verified at final SHA. No externally provisioned Python API, staging Hostinger access, deployment or release authorization."
     }
   ],
-  "revision": 45,
+  "revision": 52,
   "schema_version": 1,
   "tasks": [
     {
@@ -2598,6 +2647,211 @@
         "professional_approval": false,
         "documentation_final_ci_required": true,
         "documentation_final_ci_rule": "Confirm all three workflows on exact final documentation SHA; if failure, reopen F11"
+      }
+    },
+    {
+      "id": "F12",
+      "title": "Liberação, implantação e operação controlada",
+      "state": "HUMAN_REQUIRED",
+      "dependencies": [
+        "F11",
+        "SIE-AUTO-006",
+        "NOR-01"
+      ],
+      "priority": 100,
+      "impact": 10,
+      "risk": 10,
+      "requirements_verified": true,
+      "source_refs": [
+        "docs/stories/story-SIE-F12-LIBERACAO-CONTROLADA.md",
+        "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+      ],
+      "criteria": [
+        {
+          "id": "AC-12.01",
+          "passed": true,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/MANIFESTO_RELEASE.md",
+            "docs/implantacao-sie-2-0/F12/MANIFESTO_RELEASE.json",
+            "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40246991712"
+          ]
+        },
+        {
+          "id": "AC-12.02",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.03",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.04",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.05",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.06",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.07",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.08",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.09",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        },
+        {
+          "id": "AC-12.10",
+          "passed": false,
+          "evidence": [
+            "docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO.md"
+          ]
+        }
+      ],
+      "checkpoint": {
+        "preparation_branch": "feat/f12-liberacao-controlada",
+        "base_sha": "11643cf3ad7da2e6182183c6071148f924bfe741",
+        "f11_documentation_ci_verified": true,
+        "f11_ci_runs": [
+          40183189791,
+          40183189740,
+          40183189754
+        ],
+        "local_software_qa_only": true,
+        "professional_approval": false,
+        "production_release_allowed": false,
+        "deployment_executed": false,
+        "change_approved": false,
+        "main_unchanged": true,
+        "release_manifest": "docs/implantacao-sie-2-0/F12/MANIFESTO_RELEASE.json",
+        "implementation_status": "PREPARATION_VALIDATED; PRODUCTION_HUMAN_REQUIRED",
+        "blockers": [
+          "provider and SIE domain/hostname identity not evidenced, despite owner's declaration that hosting is defined",
+          "TLS on real domain, admin IAM, ingress limits and monitoring not verified",
+          "representative staging restore/recovery and change approval still pending",
+          "production publication and professional normative certification not authorized"
+        ],
+        "f12_preparation_code_sha": "436edb321ec52a0ee8b7971a698641306692de2a",
+        "f12_ci_runs": [
+          40248897962,
+          40248897906,
+          40248897831,
+          40248897899
+        ],
+        "f12_ci_api_passed": 1209,
+        "f12_ci_chromium_passed": 36,
+        "f12_ci_preparation_tests_passed": 7,
+        "f12_ci_offline_migration_backup_restore_passed": 19,
+        "f12_ci_aiox_passed": true,
+        "qa_01": "APPROVED_PREPARATION_ONLY; PRODUCTION_BLOCKED",
+        "qa_02": "PREPARATION_WARNING; PROFESSIONAL_APPROVAL_BLOCKED",
+        "qa_03": "APPROVED_LOCAL_SECURITY_TESTS; PRODUCTION_IDENTITY_TLS_MONITORING_BLOCKED",
+        "f12_release_workstreams": "PUBLIC_CONSULTATIVE_CANDIDATE_LOCAL_QA_APPROVED; REAL_HOST_STAGING_AND_GO_NO_GO_BLOCKED",
+        "code_sha": "67ef9d4cadebaec67163d9bfcce46859897b1144",
+        "api_tests_passed": 1234,
+        "chromium_tests_passed": 37,
+        "f12_gate_tests_passed": 8,
+        "offline_db_recovery_tests_passed": 19,
+        "reproducible_bundle_files": 134,
+        "reproducible_bundle_checksum_sha256": "d01b6a04334a36c82e98141a1c0b37e8dc5bd5a86341dde93ec3cfe66daa10d8",
+        "local_https_synthetic_test": "PASS",
+        "real_production_iam": "NOT_VERIFIED",
+        "real_https": "NOT_VERIFIED",
+        "release_approval": "HUMAN_REQUIRED",
+        "external_gates_issue": "https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/7",
+        "normative_release": false,
+        "consultive_scope": "PUBLIC_ANONYMOUS_STATELESS_SYNTHETIC_ONLY",
+        "consultive_entrypoint": "sie_api.f12_consultative:app",
+        "consultive_ui": "docs/implantacao-sie-2-0/F12/consultivo-web/index.html",
+        "consultive_code_sha": "270fa3c1e9589479d79c38b50da89100719b62ae",
+        "consultive_api_test_run": 40259295509,
+        "consultive_browser_test_run": 40259295504,
+        "consultive_aiox_run": 40259295562,
+        "consultive_safety_run": 40259295533,
+        "f12_web_security_tests_passed": 5,
+        "known_hosting_provider": "OWNER_SAYS_DEFINED_BUT_NO_PROVIDER_OR_URL_VERIFIABLE",
+        "staging_deploy": "NOT_EXECUTED",
+        "production_deploy": "NOT_EXECUTED",
+        "public_iam_scope": "NO_CUSTOMER_ACCOUNTS_OR_SERVER_STORAGE",
+        "production_infrastructure_iam": "NOT_VERIFIED",
+        "public_https": "NOT_VERIFIED",
+        "host_provider": "Hostinger",
+        "host_provider_source": "OWNER_DECLARATION_2026-10-26",
+        "target_public_url": "https://sie2.applicationmanager.com.br/",
+        "hostinger_plan": "UNKNOWN_VPS_OR_WEB",
+        "hostinger_public_https": "NOT_VERIFIED",
+        "hostinger_public_response": "NOT_VERIFIED_CACHE_MISS_ON_WEB_RETRIEVAL",
+        "hostinger_preflight_script": "scripts/f12_hostinger_preflight.py",
+        "hostinger_preflight_code_sha": "2036fe59b8091201f8994ef46b18aa2a8ae233de",
+        "hostinger_preflight_unit_tests_passed": 5,
+        "hostinger_preflight_ci": 40262561390,
+        "external_deployment": "NOT_EXECUTED",
+        "next_action": "Provision/authorize segregated HTTPS Python API and Hostinger staging, then collect live evidence; do not deploy production without G01-G08 GO.",
+        "hostinger_hosting_model": "STATIC_SUBDOMAINS_OWNER_CONFIRMED",
+        "architecture_frontend": "HOSTINGER_STATIC_HTML_CSS_JS",
+        "architecture_api": "SEPARATE_OPTIONAL_HTTPS_FASTAPI_UNPROVISIONED",
+        "static_preview_bundle": "sie-f12-hostinger-static-preview.zip",
+        "static_build_script": "scripts/f12_hostinger_static.py",
+        "static_preview_mode": "BACKEND_NOT_CONFIGURED_CALCULATION_DISABLED",
+        "code_ci_runs": {
+          "api": 40265032187,
+          "chromium": 40265032249,
+          "aiox": 40265032253,
+          "safety": 40265032192
+        },
+        "static_hostinger_tests_passed": 13,
+        "consultative_security_tests_passed": 6,
+        "source_tests_no_live_host": 5,
+        "gate_tests_passed": 8,
+        "offline_recovery_tests_passed": 19,
+        "static_sha256": "70a685c58a49bf80c4b542dd7c588fccab4263de851da246334c59f16faf2512",
+        "static_files": 5,
+        "real_hostinger_deployment": "NOT_EXECUTED",
+        "hostinger_staging_validated": false,
+        "external_api_approved": false,
+        "execution_mode": "B_SEQUENTIAL_SPECIALIST_REVIEWS_NOT_INDEPENDENT_AGENTS",
+        "implementation_sha": "ff23f0e8a5c9d1e845e5e998df5984866b58ae3d",
+        "preflight_split_host": "scripts/f12_split_preflight.py",
+        "static_stage_site_origin_option": "--site-origin",
+        "api_staging_allowed_origin_env": "SIE_F12_STAGING_ORIGIN",
+        "api_staging_and_production_cors_isolated": true,
+        "chunked_body_limit_guard_implemented": true,
+        "master_plan_sha256": "0d65ef49cf6b3999c40163e0c5bbeda19822bb494140e38560838659aa38fd74",
+        "master_plan_source": "PLANO_IMPLEMENTACAO_DESBLOQUEIO_F12_SIE_2_0.md (conversation artifact, not committed as source plan)",
+        "status_of_external_backend": "NOT_PROVISIONED",
+        "status_of_hostinger_staging": "NOT_VERIFIED"
       }
     }
   ]

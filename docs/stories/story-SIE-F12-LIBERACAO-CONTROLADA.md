@@ -1,0 +1,101 @@
+# Story SIE-F12 — Release controlado, sem implantação
+
+- Fase: F12 / EP24, EP26, EP27, EP35 condicional
+- Base obrigatória: `feat/f11-qa-integrado` no commit `11643cf3ad7da2e6182183c6071148f924bfe741`.
+- Especificação: `F12_EXECUTAR.md` fornecido pelo titular em 25/10/2026.
+- Estado: **EM EXECUÇÃO — preparação do candidato e controles, sem autorização de produção**.
+- Escopo autorizado: branch isolada, código de validação sem efeitos colaterais, documentação, testes com dados descartáveis; sem merge, tag, publicação de release, deploy, acesso a secrets ou mudança de bases reais.
+
+## Critérios de aceitação rastreáveis
+- [x] 12.01 Manifesto de candidato ligado à base F11 e inventário auditável de versões e limites.
+- [ ] 12.02 Checklist documentado de identidade, segredo, permissões e ambientes; nenhuma credencial exposta.
+- [ ] 12.03 Ensaio verificável de migração reversível e recuperação total em cópia isolada.
+- [ ] 12.04 Métricas, alertas e procedimentos de incidente testados em ambiente representativo.
+- [ ] 12.05 Notas, manual, inventário e checksums de pacote reproduzível conferidos.
+- [ ] 12.06 Smoke/E2E/restore e acesso negativo em pré-produção aprovada.
+- [ ] 12.07 Registro de autorização formal de mudança com responsável, custos, janela e rollback.
+- [ ] 12.08 Deploy controlado rastreado após GO, nunca nesta execução.
+- [ ] 12.09 Monitoramento pós-deploy e suporte exercitados.
+- [ ] 12.10 Política de revisão normativa e as-built documentada e aprovada.
+- [ ] QA-01, QA-02, QA-03 revisam separadamente e assinam escopo/evidências; profissional da engenharia permanece necessário para liberação técnica.
+
+## Restrições invariantes
+- `main` e produção inalteradas; F11 DONE significa **QA do software local**, não go-live.
+- Software consultivo F09→F10 não implica conformidade NBR 5410/5419/NR-10 ou concessionárias.
+- O token local e SQLite de único proprietário **não são identidade ou segregação de produção**.
+- Todos os gates sem prova permanecem `PENDENTE` ou `HUMAN_REQUIRED`; nenhum teste recebe expectativa enfraquecida para ficar verde.
+
+## File list
+- `docs/stories/story-SIE-F12-LIBERACAO-CONTROLADA.md` (esta story).
+- `docs/implantacao-sie-2-0/F12/` (manifesto, riscos, playbooks, QA e relatórios).
+- `scripts/f12_release_gate.py` e testes (controle local sem deploy).
+- `.github/workflows/sie-f12-release-safety.yml` (validação segregada, se elegível).
+
+## Definição de DONE
+F12 DONE apenas após todos os gates comprovados em ambiente e SHA próprios, autorização humana aplicável, implantação e pós-deploy saudáveis; até lá, execução parcial e bloqueio de produção.
+## Checkpoint QA3 da preparação — 25/10/2026
+- CI no SHA `436edb321ec52a0ee8b7971a698641306692de2a`: API 1209, 36 Chromium, F12 Safety 7+19 e AIOX success.
+- QA-01: preparação APROVADA, produção BLOQUEADA; QA-02: homologação normativa PENDENTE; QA-03: recuperação local APROVADA, produção BLOQUEADA.
+- Documentos: manifesto JSON/MD, notas, checklist, rollback, manuais, operação, política normativa, mudança, pós-implantação, QA3 e relatório.
+- Esta story é de preparação, não atestado de implementação 12.07–12.09.
+
+## Incremento de execução técnica W1–W4 — story de alteração
+- [ ] A02: staging HTTPS de loopback com certificado descartável e teste de persistência local negada com `SIE_ENV=production`.
+- [ ] A03: replay de migração, recovery F05/F10 e recusa de corrupção no CI.
+- [ ] A04: pacote tar.gz determinístico SHA-256 de fontes rastreadas, dois builds byte-a-byte idênticos e manifesto de todos os arquivos.
+- [ ] A05: verificar pacote, checksums e smoke HTTPS; manter testes API/Chromium/AIOX.
+- [ ] A06: estabelecer relatório sanitizado; monitoramento de ambiente público permanece fora do escopo comprovado.
+- [ ] A07/A08: anexar matriz de aprovações obrigatórias e NO-GO quando não houver laudo e decisão de mudança.
+- Códigos novos: `scripts/f12_bundle.py`, `scripts/f12_staging_smoke.py`; CI `sie-f12-release-safety.yml`; política do gate `f12_release_gate.py`.
+- Produção, `main` e motores elétricos ficam inalterados.
+
+## Checkpoint W1–W4 — executado no CI real GitHub
+- SHA de código `d7b55a7f3a8ec3eb15ff06a9478b8936134f61ad`: API 1210 passed; Chromium 36; AIOX success; F12 8 testes de segurança + 19 dados/recuperação, todos success.
+- Pacote determinístico LOCAL_QA_ONLY: 127 arquivos, dois builds iguais, SHA256 verificado; adulteração recusada. Workflow F12 anexou artefatos com retenção de 7 dias.
+- Smoke HTTPS loopback com certificado autofirmado descartável passou; acesso local em `SIE_ENV=production` negado 503. Domínio/TLS público, identidade multiusuário não validados.
+- [x] Testes de preparação W1–W4 executados com dados sintéticos e evidência GitHub Actions.
+- [ ] Critérios integrais G02–G10 para produção, laudo profissional, homologação externa e deploy: questão de governança [#7](https://github.com/SFPTechnology/Projeto-SIE-2.0/issues/7).
+- Novas evidências e arquivos: `PLANO_EXECUTIVO_FECHAMENTO_GATES.md`, `AUDITORIA_AMBIENTE_IDENTIDADE.md`, `DOSSIER_AUTORIZACAO_RELEASE.md`, scripts `f12_bundle.py` e `f12_staging_smoke.py`.
+
+## Etapa 1 — perfil web consultivo de exposição mínima (25/10/2026)
+- Decisão do titular: hospedagem já definida e **versão web consultiva**, sem aprovar produção nem garantir conformidade elétrica.
+- Implementar entrada ASGI isolada `sie_api.f12_consultative:app`, sem rotas locais, documentos, uploads, contas ou escrita em banco, e UI estática de demonstração.
+- [ ] CI deve validar health, caso sintético com `liberado_para_uso_normativo=false`, ausência de routes administrativas, cabeçalhos de segurança, content type e limite de corpo.
+- [ ] Provedor/host externo específico, HTTPS público, deploy e autorização de mudança dependem de evidências reais. Não inferir hospedagem GitHub da existência do repositório.
+- Novo código: `restructuring/apps/api/sie_api/f12_consultative.py`, testes `test_f12_consultative.py`, UI sob `docs/implantacao-sie-2-0/F12/consultivo-web/`.
+
+## Etapa 1 — resultado do escopo WEB CONSULTIVO
+- [x] Implementar API ASGI `sie_api.f12_consultative:app` com allowlist GET health + POST análise; nenhum projeto armazenado.
+- [x] Frontend estático responsivo com aviso não normativo e fetch mesma origem.
+- [x] Segurança negativa, testes 5 `40259295533`; API 1215, browser 37 `40259295504`, AIOX success no mesmo commit `270fa3c1e9589479d79c38b50da89100719b62ae`.
+- [ ] Hospedagem real identificada tecnicamente (o titular informou existir, mas provedor/URL não estavam em arquivos acessíveis).
+- [ ] Domínio/HTTPS e identidade de operador/ingress auditados, smoke E2E remoto e monitoramento de ambiente homologado.
+- [ ] Aprovação e rollout externo conforme F12 G01–G10; sem `DONE` ou `GO` fictícios.
+
+## Etapa 1 — hospedagem externa IDENTIFICADA, sem autorização de deploy (26/10/2026)
+- [x] Provedor informado: **Hostinger**; destino pretendido: `https://sie2.applicationmanager.com.br/`.
+- [ ] Confirmar plano Hostinger, possibilidade de runtime Python ASGI, URL de homologação e acesso administrativo com permissões segregadas.
+- [x] Procedimento específico `HOSTINGER_HOMOLOGACAO.md` registrado; `scripts/f12_hostinger_preflight.py` opcional somente-leitura validará o host e rotas após o deployment de homologação; suíte de testes simulados não acessa a Internet.
+- [ ] HTTPS público, status e cabeçalhos do domínio **não verificáveis até aqui**; nenhum deploy, criação/alteração de DNS, hPanel, secrets ou serviços.
+- F12 permanece HUMAN_REQUIRED; ferramenta web consultiva é somente DEMO sintética (não todas as funcionalidades profissionais SIE 2.0).
+
+## Decisão de arquitetura — Hostinger permanece estática (26/10/2026)
+- [x] Titular confirmou funcionamento de projetos anteriores, inclusive primeira versão SIE, como páginas estáticas em subdomínios Hostinger.
+- [x] Implementado `scripts/f12_hostinger_static.py`: ZIP determinístico sem Python/backend, manifesto e SHA-256. Ausência de API bloqueia a simulação; não inventa cálculos.
+- [x] API consultiva preparada para eventual hospedagem separada com CORS apenas para `https://sie2.applicationmanager.com.br`; negativa de outras origens testada.
+- [x] CI no SHA `67ef9d4cadebaec67163d9bfcce46859897b1144`: API 1234; browser 37; safety 8+19+6+5+13; AIOX success.
+- [ ] Definir servidor/URL HTTPS externo caso cálculo online seja requisito da versão web inicial; não adquirir VPS Hostinger por inferência.
+- [ ] Validar página estática em subdomínio/ambiente isolado, SSL, políticas de cache/headers, acesso administrativo e rollback; **não** sobrescrever versão existente.
+- [ ] Aprovação formal e implantação após gates F12 reais; sem encerramento fictício.
+
+## Execução parcial concreta — Prompt Mestre 2.0, 2026-10-26 (America/Sao_Paulo)
+- Plano da conversa inspecionado integralmente; 12.01–12.10 reconciliados, sem inventar aceite da F12.
+- [x] W2 — `--site-origin` configurável em `scripts/f12_hostinger_static.py`, evitando staging → produção e restringindo hostname.
+- [x] W1/W3 — CORS FastAPI separado por ambiente via `SIE_F12_STAGING_ORIGIN`, sem autorizar domínio de produção numa instância staging.
+- [x] W1 — limite efetivo de corpo JSON sobre stream HTTP antes da operação de cálculo, com teste sem Content-Length.
+- [x] W3/W5 — nova sonda `scripts/f12_split_preflight.py` para site Hostinger e API externa em **endereços distintos**; modo padrão offline; CI com fixtures e rotas privadas negadas.
+- [ ] W1/W3 reais — provedores/HTTPS/identidades de TEST e API separados não configurados.
+- [ ] W4–W9 reais — pacote backend imutável, testes e rollback staging, alertas reais, autorização, deploy e pós-deploy.
+- Controle de fontes: **MODO B**, especialidades/QA3 como análises sequenciais, não subagentes autônomos independentes.
+- **File List incremental:** `scripts/f12_hostinger_static.py`, `scripts/f12_split_preflight.py`, `scripts/f12_release_gate.py`, `restructuring/apps/api/sie_api/f12_consultative.py`, testes em `restructuring/apps/api/tests/test_f12_*.py`, workflow `.github/workflows/sie-f12-release-safety.yml`, documentos F12 e orquestrador.
+- Checkpoint: `ff23f0e8a5c9d1e845e5e998df5984866b58ae3d`; versão documental posterior requer CI próprio. Produção NO-GO.

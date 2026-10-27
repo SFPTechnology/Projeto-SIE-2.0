@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SIE 2.0 — estudo demonstrativo de circuitos elétricos. Não homologado para projeto ou execução.">
+  <title>SIE 2.0 | Ambiente consultivo</title>
+  <link rel="stylesheet" href="/consultivo.css">
+  <script defer src="/consultivo.js"></script>
+</head>
+<body>
+  <header class="top"><div class="logo">SIE <span>2.0</span></div><span class="label">AMBIENTE CONSULTIVO · F12</span></header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">ENGENHARIA ELÉTRICA · DEMONSTRAÇÃO</p>
+      <h1>Estude circuitos. Revise hipóteses. Preserve a decisão técnica.</h1>
+      <p>Ferramenta de análise preliminar para aprendizado e revisão. Os valores de exemplo são <strong>sintéticos</strong> e não substituem validação, projeto ou assinatura de responsável habilitado.</p>
+      <div id="api" role="status" aria-live="polite">Verificando serviço…</div>
+    </section>
+    <section class="warning" aria-label="Limitações obrigatórias">
+      <strong>Não homologado para projeto, execução ou conformidade normativa.</strong>
+      <p>Esta versão não salva projetos, não dispõe de conta de usuário, não emite ART, não aprova normas e não fornece documento utilizável em uma instalação real.</p>
+    </section>
+    <section class="panel">
+      <div class="section-heading"><div><p class="eyebrow">01 / ANÁLISE SINTÉTICA</p><h2>Parâmetros de demonstração</h2></div><span class="chip">Cálculo resistivo legado</span></div>
+      <form id="form">
+        <div class="fields">
+          <label>Corrente (A)<input name="corrente_a" type="number" min="0.01" max="10000" step="any" value="20" required></label>
+          <label>Comprimento (m)<input name="comprimento_m" type="number" min="0" max="100000" step="any" value="30" required></label>
+          <label>Tensão (V)<input name="tensao_v" type="number" min="0.01" max="100000" step="any" value="220" required></label>
+          <label>Resistência (Ω/km)<input name="resistencia_ohm_km" type="number" min="0.01" max="10000" step="any" value="7.41" required></label>
+          <label>Fator de correção<input name="fator_correcao" type="number" min="0.01" max="1" step="any" value="0.8" required></label>
+        </div>
+        <p class="note">Tabela fictícia: 2,5 / 4 / 6 / 10 mm², com capacidades de teste de 24 / 32 / 41 / 57 A. Não são células verificadas da ABNT NBR 5410.</p>
+        <button id="execute" type="submit">Executar simulação <span aria-hidden="true">→</span></button>
+      </form>
+    </section>
+    <section class="panel" aria-labelledby="result-title">
+      <div class="section-heading"><div><p class="eyebrow">02 / RESULTADOS</p><h2 id="result-title">Verificações preliminares</h2></div></div>
+      <p id="state" role="status" aria-live="polite">Nenhuma análise executada.</p>
+      <dl id="results" class="results"></dl>
+      <p class="note">Mesmo quando um resultado numérico é retornado, o gate de liberação normativa permanece bloqueado.</p>
+    </section>
+  </main>
+  <footer>Versão consultiva F12 · Sem armazenamento de projetos · Sem liberação normativa · Dados ilustrativos</footer>
+</body>
+</html>

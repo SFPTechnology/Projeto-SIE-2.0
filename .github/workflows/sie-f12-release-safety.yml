@@ -1,0 +1,126 @@
+name: SIE F12 Preparation Safety (no deploy)
+on:
+  push:
+    branches: ['feat/f12-liberacao-controlada']
+    paths:
+      - 'docs/implantacao-sie-2-0/F12/**'
+      - 'docs/sie-orchestrator/ORCHESTRATOR_STATE.json'
+      - 'docs/stories/story-SIE-F12-LIBERACAO-CONTROLADA.md'
+      - 'scripts/f12_release_gate.py'
+      - 'scripts/f12_bundle.py'
+      - 'scripts/f12_staging_smoke.py'
+      - 'scripts/f12_hostinger_preflight.py'
+      - 'scripts/f12_split_preflight.py'
+      - 'restructuring/apps/api/tests/test_f12_split_preflight.py'
+      - 'scripts/f12_hostinger_static.py'
+      - 'restructuring/apps/api/tests/test_f12_hostinger_static.py'
+      - 'restructuring/apps/api/tests/test_f12_hostinger_preflight.py'
+      - 'restructuring/apps/api/tests/test_f12_release_gate.py'
+      - 'restructuring/apps/api/tests/test_f12_consultative.py'
+      - 'restructuring/apps/api/sie_api/f12_consultative.py'
+      - '.github/workflows/sie-f12-release-safety.yml'
+  pull_request:
+    paths:
+      - 'docs/implantacao-sie-2-0/F12/**'
+      - 'scripts/f12_release_gate.py'
+      - 'restructuring/apps/api/tests/test_f12_release_gate.py'
+permissions:
+  contents: read
+jobs:
+  preparation-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify read-only candidate invariants
+        run: python scripts/f12_release_gate.py --check
+      - name: Verify explicit production request always fails closed
+        shell: bash
+        run: |
+          set +e
+          python scripts/f12_release_gate.py --require-production > f12-prod-denied.json
+          status=$?
+          set -e
+          test "$status" -eq 2
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("f12-prod-denied.json").read_text(encoding="utf-8"))
+          assert result["status"] == "BLOCKED"
+          assert result["production_authorized"] is False
+          assert any("execução recusada" in issue for issue in result["errors"])
+          PY
+      - name: Run F12 unit regression
+        run: |
+          python -m pip install 'pytest>=8,<10'
+          python -m pytest -q restructuring/apps/api/tests/test_f12_release_gate.py
+      - name: Rehearse offline SQLite migration and multi-root recovery on synthetic fixtures
+        run: |
+          python -m pip install -e ".[test]"
+          python -m pytest -q tests/test_lifecycle_f03.py tests/test_f11_multiroot_backup.py tests/test_f11_security_recovery.py
+        working-directory: restructuring/apps/api
+
+      - name: Build deterministic F12 QA bundle twice and verify integrity
+        run: |
+          python scripts/f12_bundle.py build --out run-artifacts/f12-a
+          python scripts/f12_bundle.py build --out run-artifacts/f12-b
+          cmp run-artifacts/f12-a/sie-f12-local-qa.tar.gz run-artifacts/f12-b/sie-f12-local-qa.tar.gz
+          cmp run-artifacts/f12-a/sie-f12-local-qa.sha256 run-artifacts/f12-b/sie-f12-local-qa.sha256
+          python scripts/f12_bundle.py verify --out run-artifacts/f12-a
+          cp -a run-artifacts/f12-a run-artifacts/f12-tampered
+          printf 'tampered' >> run-artifacts/f12-tampered/sie-f12-local-qa.tar.gz
+          if python scripts/f12_bundle.py verify --out run-artifacts/f12-tampered; then
+            echo 'FAIL: malformed archive unexpectedly passed verification'
+            exit 1
+          fi
+      - name: Synthetic HTTPS TLS and access-boundary smoke
+        run: |
+          python scripts/f12_staging_smoke.py --report run-artifacts/f12-smoke.json
+      - name: Retain non-production checksum and test reports only
+        uses: actions/upload-artifact@v4
+        with:
+          name: f12-offline-candidate-${{ github.sha }}
+          path: |
+            run-artifacts/f12-a/sie-f12-local-qa.tar.gz
+            run-artifacts/f12-a/sie-f12-local-qa.sha256
+            run-artifacts/f12-a/sie-f12-local-qa-manifest.json
+            run-artifacts/f12-smoke.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Verify minimal public consultative entrypoint and fail-closed routes
+        run: |
+          python -m pytest -q tests/test_f12_consultative.py
+        working-directory: restructuring/apps/api
+
+      - name: Verify Hostinger target and read-only probe with fixtures (no live request)
+        run: |
+          python scripts/f12_hostinger_preflight.py
+          python -m pytest -q restructuring/apps/api/tests/test_f12_hostinger_preflight.py
+
+      - name: Build isolated static Hostinger preview, no API or deploy
+        run: |
+          python -m pytest -q restructuring/apps/api/tests/test_f12_hostinger_static.py
+          python scripts/f12_hostinger_static.py --out run-artifacts/hostinger-static-a
+          python scripts/f12_hostinger_static.py --out run-artifacts/hostinger-static-b
+          cmp run-artifacts/hostinger-static-a/sie-f12-hostinger-static-preview.zip run-artifacts/hostinger-static-b/sie-f12-hostinger-static-preview.zip
+      - name: Archive Hostinger QA preview (not the production website)
+        uses: actions/upload-artifact@v4
+        with:
+          name: f12-hostinger-static-preview-${{ github.sha }}
+          path: |
+            run-artifacts/hostinger-static-a/sie-f12-hostinger-static-preview.zip
+            run-artifacts/hostinger-static-a/sie-f12-hostinger-static-preview.zip.sha256
+            run-artifacts/hostinger-static-a/MANIFEST.json
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Test split-host Hostinger frontend and separate API probe without network
+        run: |
+          python scripts/f12_split_preflight.py
+          python -m pytest -q restructuring/apps/api/tests/test_f12_split_preflight.py
