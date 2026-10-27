@@ -55,6 +55,21 @@ async def safety_boundary(request: Request, call_next):
         response = JSONResponse({"detail": "Somente JSON"}, status_code=415)
     elif method == "POST" and (request.headers.get("content-length", "").isdigit() and int(request.headers["content-length"]) > BODY_LIMIT):
         response = JSONResponse({"detail": "Requisição acima do limite"}, status_code=413)
+    elif method == "POST":
+        # Content-Length can be absent or forged for streamed requests. Read at
+        # most BODY_LIMIT bytes before invoking Pydantic or the calculation.
+        # Starlette's CachedRequest forwards the cached body to call_next.
+        total = 0
+        chunks = []
+        async for chunk in request.stream():
+            total += len(chunk)
+            if total > BODY_LIMIT:
+                response = JSONResponse({"detail": "Requisição acima do limite"}, status_code=413)
+                break
+            chunks.append(chunk)
+        else:
+            request._body = b"".join(chunks)
+            response = await call_next(request)
     else:
         response = await call_next(request)
     response.headers["Cache-Control"] = "no-store"

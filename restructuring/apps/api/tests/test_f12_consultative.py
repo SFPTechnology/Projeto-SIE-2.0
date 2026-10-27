@@ -145,3 +145,15 @@ def test_stage_cors_only_on_explicit_process_configuration():
                          env={**os.environ, "SIE_F12_STAGING_ORIGIN": stage},
                          capture_output=True, text=True, timeout=15, check=False)
     assert run.returncode == 0, run.stdout + run.stderr
+
+
+def test_streamed_request_without_content_length_still_has_hard_limit():
+    def body():
+        yield b'{"padding":"'
+        yield b"x" * (1024 * 1024 + 10)
+        yield b'"}'
+    result = client.post("/api/v1/circuitos/analisar", content=body(),
+                         headers={"Content-Type": "application/json",
+                                  "Transfer-Encoding": "chunked"})
+    assert result.status_code == 413
+    assert result.json()["detail"] == "Requisição acima do limite"
