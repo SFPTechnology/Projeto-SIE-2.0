@@ -85,5 +85,21 @@
     "frontend_web_publish_executed": false,
     "api_integrated": false,
     "production_authorized": false
+  },
+  "master_2_execution": {
+    "scope": "F12_CONSULTATIVE_QA_ONLY",
+    "code_sha": "ff23f0e8a5c9d1e845e5e998df5984866b58ae3d",
+    "method": "MODE_B_SPECIALIST_REVIEW",
+    "plan_sha256": "0d65ef49cf6b3999c40163e0c5bbeda19822bb494140e38560838659aa38fd74",
+    "fixed": [
+      "STATIC_STAGING_REDIRECT",
+      "PER_ENVIRONMENT_CORS",
+      "STREAMED_REQUEST_SIZE_CAP",
+      "SPLIT_SITE_BACKEND_READONLY_PROBE"
+    ],
+    "external_backend_deployed": false,
+    "hostinger_staging_deployed": false,
+    "production_authorized": false,
+    "ci_final_sha_status": "TO_VERIFY"
   }
 }

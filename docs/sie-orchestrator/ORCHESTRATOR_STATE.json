@@ -406,9 +406,16 @@
       "from": "HUMAN_REQUIRED",
       "to": "HUMAN_REQUIRED",
       "reason": "Owner confirmed Hostinger static-page subdomains incl. SIE1. Chosen F12 static Hostinger UI plus optional separately hosted FastAPI. Code SHA 67ef9d4: 1234 API, 37 Chromium, AIOX, F12 Safety passed; deterministic 5-file Hostinger ZIP with API disabled unless configured. No actual hosting access or deployment. Production NO-GO."
+    },
+    {
+      "activity": "F12",
+      "at": "2026-10-26",
+      "from": "HUMAN_REQUIRED",
+      "to": "HUMAN_REQUIRED",
+      "reason": "Prompt Mestre 2.0, mode B specialist reviews. Staging-safe Hostinger static origin, strict per-environment CORS, true streamed POST body guard, separate static/API GET-only preflight implemented on branch. CI must be verified at final SHA. No externally provisioned Python API, staging Hostinger access, deployment or release authorization."
     }
   ],
-  "revision": 51,
+  "revision": 52,
   "schema_version": 1,
   "tasks": [
     {
@@ -2811,7 +2818,7 @@
         "hostinger_preflight_unit_tests_passed": 5,
         "hostinger_preflight_ci": 40262561390,
         "external_deployment": "NOT_EXECUTED",
-        "next_action": "Identify existing Hostinger plan and segregated staging, then verify public HTTPS and operator IAM; no merge or deploy",
+        "next_action": "Provision/authorize segregated HTTPS Python API and Hostinger staging, then collect live evidence; do not deploy production without G01-G08 GO.",
         "hostinger_hosting_model": "STATIC_SUBDOMAINS_OWNER_CONFIRMED",
         "architecture_frontend": "HOSTINGER_STATIC_HTML_CSS_JS",
         "architecture_api": "SEPARATE_OPTIONAL_HTTPS_FASTAPI_UNPROVISIONED",
@@ -2833,7 +2840,18 @@
         "static_files": 5,
         "real_hostinger_deployment": "NOT_EXECUTED",
         "hostinger_staging_validated": false,
-        "external_api_approved": false
+        "external_api_approved": false,
+        "execution_mode": "B_SEQUENTIAL_SPECIALIST_REVIEWS_NOT_INDEPENDENT_AGENTS",
+        "implementation_sha": "ff23f0e8a5c9d1e845e5e998df5984866b58ae3d",
+        "preflight_split_host": "scripts/f12_split_preflight.py",
+        "static_stage_site_origin_option": "--site-origin",
+        "api_staging_allowed_origin_env": "SIE_F12_STAGING_ORIGIN",
+        "api_staging_and_production_cors_isolated": true,
+        "chunked_body_limit_guard_implemented": true,
+        "master_plan_sha256": "0d65ef49cf6b3999c40163e0c5bbeda19822bb494140e38560838659aa38fd74",
+        "master_plan_source": "PLANO_IMPLEMENTACAO_DESBLOQUEIO_F12_SIE_2_0.md (conversation artifact, not committed as source plan)",
+        "status_of_external_backend": "NOT_PROVISIONED",
+        "status_of_hostinger_staging": "NOT_VERIFIED"
       }
     }
   ]

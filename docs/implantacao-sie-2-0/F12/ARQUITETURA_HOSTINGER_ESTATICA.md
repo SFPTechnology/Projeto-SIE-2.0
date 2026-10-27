@@ -62,3 +62,18 @@ O backend consultivo possui CORS explícito **somente para `https://sie2.applica
 - Evidências públicas do código/CI não comprovam o tipo de plano, conteúdo do subdomínio, acesso hPanel, sucesso de upload, API externa, segurança do host, nem mudança aprovada.
 
 **Estado da fase:** `F12 HUMAN_REQUIRED / NO-GO para produção`. A arquitetura de infraestrutura foi definida; falta backend se cálculo online for obrigatório, homologação segregada e autorização de implantação.
+
+## Complemento técnico — isolamento de staging e diagnóstico de dois hosts (2026-10-26 (America/Sao_Paulo))
+
+1. **Gerar preview estático em staging isolado**, após confirmar o subdomínio que foi realmente criado na Hostinger:
+```bash
+python scripts/f12_hostinger_static.py --out /pasta-qa-vazia \
+  --site-origin https://SUBDOMINIO_REAL.applicationmanager.com.br \
+  --api-origin https://API_PYTHON_REAL
+```
+Esses dois hosts são **marcadores**; o comando não prova que DNS/TLS/serviços existam e não deve ser executado apontando para `public_html` existente.
+2. O `.htaccess` do ZIP agora redireciona ao **mesmo host de staging** indicado por `--site-origin`, e o manifesto inclui `site_origin`. CLI rejeita HTTP, host externo, senha, caminho e porta não padronizada.
+3. A instância FastAPI de homologação exige `SIE_F12_STAGING_ORIGIN=https://SUBDOMINIO_REAL.applicationmanager.com.br`. Essa configuração autoriza exclusivamente staging, não o site de produção. Sem variável configurada, o FastAPI autoriza apenas `https://sie2.applicationmanager.com.br`.
+4. Requisições JSON POST recebem limite efetivo de corpo (inclusive transfer-encoding chunked). **Proxy/WAF também precisa** ter limites de tamanho, taxa e recursos; middleware não substitui controle de ingresso.
+5. Novo diagnóstico `scripts/f12_split_preflight.py`: `python scripts/f12_split_preflight.py` não usa rede. `--live --site-origin ... --api-origin ...` faz GET verificado por TLS **em dois hosts distintos**. É insuficiente para comprovar CORS preflight, execução POST, rate-limit, autenticação/admin, alertas ou autorização final. Não executar no CI com `--live`.
+6. O checker antigo `f12_hostinger_preflight.py` pressupunha frontend e API na **mesma origem**, sendo inadequado como aceitação da topologia estática + API externa. Preservado somente como histórico/teste legado de uma implantação same-origin.

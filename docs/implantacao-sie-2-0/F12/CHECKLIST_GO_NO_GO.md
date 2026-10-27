@@ -35,3 +35,12 @@ Código F12 `d7b55a7` validado por API 1210/Chromium36/AIOX/F12 safety8+19; buil
 
 ## Adaptação do escopo G03 para WEB CONSULTIVA
 A primeira versão proposta não tem conta de cliente, servidor de projetos ou escrita em banco. Por isso, o requisito de RBAC de usuários finais é **não aplicável a este preview especificamente**. G03 permanece **PENDENTE para produção** até atestar a identidade **administrativa** do provedor, a segregação de ambiente, HTTPS público, segredo de infraestrutura, proteção de ingress, abuse/rate-limit e logs; não confundir ausência de login na interface demonstrativa com autorização para armazenar dados. Código `270fa3c1e9589479d79c38b50da89100719b62ae` passou em 1215 API + 37 Chromium + 5 segurança web; o provedor ainda precisa ser identificado.
+
+## Acompanhamento Prompt Mestre 2.0 (2026-10-26 (America/Sao_Paulo))
+- **G01/G07 — preparação parcial:** site static `--site-origin` seguro e FastAPI com CORS por ambiente, testes novos de corpo chunked/sonda dual host; dependências backend totalmente travadas e deploy em TEST continuam pendentes.
+- **G03 — parcial em laboratório:** nenhum TLS público/identidade admin/rate-limit externo foi comprovado.
+- **G04/G05 — parcialmente sintético:** 19 testes de recuperação offline, migração real não demonstrada; possível N/A do banco de clientes exige justificativa/ratificação no escopo stateless.
+- **G06 — externo pendente:** nenhuma métrica/alarme real.
+- **G08 — HUMAN_REQUIRED:** sem GO institucional.
+- **G09/G10 — NÃO EXECUTADOS:** não existe deploy nem pós-deploy.
+Aprimoramentos locais e verificações GET somente leitura **não liberam automaticamente** qualquer gate de produção.

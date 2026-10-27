@@ -87,3 +87,15 @@ F12 DONE apenas após todos os gates comprovados em ambiente e SHA próprios, au
 - [ ] Definir servidor/URL HTTPS externo caso cálculo online seja requisito da versão web inicial; não adquirir VPS Hostinger por inferência.
 - [ ] Validar página estática em subdomínio/ambiente isolado, SSL, políticas de cache/headers, acesso administrativo e rollback; **não** sobrescrever versão existente.
 - [ ] Aprovação formal e implantação após gates F12 reais; sem encerramento fictício.
+
+## Execução parcial concreta — Prompt Mestre 2.0, 2026-10-26 (America/Sao_Paulo)
+- Plano da conversa inspecionado integralmente; 12.01–12.10 reconciliados, sem inventar aceite da F12.
+- [x] W2 — `--site-origin` configurável em `scripts/f12_hostinger_static.py`, evitando staging → produção e restringindo hostname.
+- [x] W1/W3 — CORS FastAPI separado por ambiente via `SIE_F12_STAGING_ORIGIN`, sem autorizar domínio de produção numa instância staging.
+- [x] W1 — limite efetivo de corpo JSON sobre stream HTTP antes da operação de cálculo, com teste sem Content-Length.
+- [x] W3/W5 — nova sonda `scripts/f12_split_preflight.py` para site Hostinger e API externa em **endereços distintos**; modo padrão offline; CI com fixtures e rotas privadas negadas.
+- [ ] W1/W3 reais — provedores/HTTPS/identidades de TEST e API separados não configurados.
+- [ ] W4–W9 reais — pacote backend imutável, testes e rollback staging, alertas reais, autorização, deploy e pós-deploy.
+- Controle de fontes: **MODO B**, especialidades/QA3 como análises sequenciais, não subagentes autônomos independentes.
+- **File List incremental:** `scripts/f12_hostinger_static.py`, `scripts/f12_split_preflight.py`, `scripts/f12_release_gate.py`, `restructuring/apps/api/sie_api/f12_consultative.py`, testes em `restructuring/apps/api/tests/test_f12_*.py`, workflow `.github/workflows/sie-f12-release-safety.yml`, documentos F12 e orquestrador.
+- Checkpoint: `ff23f0e8a5c9d1e845e5e998df5984866b58ae3d`; versão documental posterior requer CI próprio. Produção NO-GO.

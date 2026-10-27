@@ -103,3 +103,6 @@ O titular informou que **todas as aplicações anteriores, incluindo SIE 1.0, s�
 **CI:** API `40265032187` 1234 passed, Chromium `40265032249` 37 passed, AIOX `40265032253` success, F12 Safety `40265032192` 8+19+6+5+13 pass. O JS de demonstração não possui persistência, login, nem chamadas para F10/F11. Conteúdo ZIP não equivale à implantação, e a homologação normativa não está liberada.
 
 **PENDENTE:** API externa se cálculo online fizer parte da primeira publicação, origem de homologação estática e TLS real, acesso hPanel, headers suportados pelo host, observabilidade, aprovação de mudança, backup e rollback de arquivos. **F12 HUMAN_REQUIRED; PRODUÇÃO NO-GO.** Plano em `ARQUITETURA_HOSTINGER_ESTATICA.md`.
+
+## Complemento de execução sob Prompt Mestre 2.0
+Implementação code SHA `ff23f0e8a5c9d1e845e5e998df5984866b58ae3d` corrige o direcionamento de staging, restringe CORS por ambiente, limita tamanho mesmo em requisições chunked e cria sonda externa frontend/API distinta. Os workflows e QA são registrados em `RELATORIO_EXECUCAO_PROMPT_MESTRE_2.md`; sem acesso a ambiente real, os gates G03–G10 permanecem pendentes, de modo que F12 não é DONE. Fonte do plano SHA-256 `0d65ef49cf6b3999c40163e0c5bbeda19822bb494140e38560838659aa38fd74`.

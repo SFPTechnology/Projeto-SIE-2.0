@@ -1,3 +1,11 @@
+# F12 — atualização vigente do Prompt Mestre 2.0
+
+**Estado:** HUMAN_REQUIRED; sem deploy, main preservada. A inspeção do `PLANO_IMPLEMENTACAO_DESBLOQUEIO_F12_SIE_2_0.md` (715 linhas, plano-base da conversa) e de `F12_EXECUTAR.md` identificou pendências reais de infra/GO. O incremento de código `ff23f0e8a5c9d1e845e5e998df5984866b58ae3d` prepara separação frontend/API, CORS por ambiente, rejeição de requisição chunked acima de 1 MiB e checker de staging read-only. Confirmar CI no SHA final; não assumir autorização de release.
+
+**Próxima tarefa executável principal:** obter/provisionar ambiente externo **TEST** segregado para API Python + site estático Hostinger; confirmar origem HTTPS real, IAM administrativo, rate-limit, logs e limites. Só depois testar integração real e rollback. Nenhum endereço de API, subdomínio staging ou credencial foi inventado. Ver `docs/implantacao-sie-2-0/F12/RELATORIO_EXECUCAO_PROMPT_MESTRE_2.md`.
+
+---
+
 # F12 — próxima ação: homologar site estático Hostinger, sem substituir o existente
 
 **CONFIRMADO pelo titular:** Hostinger hospeda subdomínios com páginas estáticas, incluindo SIE 1.0; SIE 2.0 destina-se a `https://sie2.applicationmanager.com.br/`. **Decisão adotada:** Hostinger mantém arquivos HTML/CSS/JS; FastAPI, quando aprovado, será serviço HTTPS externo separado. Não é necessário migrar os demais sites nem comprar VPS Hostinger obrigatoriamente.
