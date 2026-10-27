@@ -123,7 +123,7 @@ def browser_allowed_origins():
             or not re.fullmatch(r"[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+", hostname)):
         raise ValueError("SIE_F12_STAGING_ORIGIN precisa ser subdomínio HTTPS exato")
     origin = "https://" + hostname
-    return [DEFAULT_PUBLIC_ORIGIN] if origin == DEFAULT_PUBLIC_ORIGIN else [DEFAULT_PUBLIC_ORIGIN, origin]
+    return [origin]  # Staging instance must not also authorize the production website
 
 
 app.add_middleware(

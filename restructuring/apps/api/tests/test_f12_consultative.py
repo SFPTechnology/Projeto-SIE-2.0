@@ -116,7 +116,7 @@ def test_stage_origin_configuration_rejects_insecure_values(monkeypatch):
     monkeypatch.delenv("SIE_F12_STAGING_ORIGIN", raising=False)
     assert browser_allowed_origins() == [prod]
     monkeypatch.setenv("SIE_F12_STAGING_ORIGIN", stage)
-    assert browser_allowed_origins() == [prod, stage]
+    assert browser_allowed_origins() == [stage]
     for origin in ("*", "http://sie2-homologacao.applicationmanager.com.br",
                    "https://evil.example", "https://localhost",
                    "https://sie2-homologacao.applicationmanager.com.br/path",
@@ -138,7 +138,7 @@ def test_stage_cors_only_on_explicit_process_configuration():
         "'Access-Control-Request-Headers':'content-type'});"
         "assert r.status_code==200 and r.headers['access-control-allow-origin']==" + repr(stage) + ";"
         "r=c.options('/api/v1/circuitos/analisar',headers={"
-        "'Origin':'https://evil.example','Access-Control-Request-Method':'POST'});"
+        "'Origin':'https://sie2.applicationmanager.com.br','Access-Control-Request-Method':'POST'});"
         "assert r.status_code==400 and 'access-control-allow-origin' not in r.headers"
     )
     run = subprocess.run([sys.executable, "-c", code],
