@@ -105,7 +105,7 @@ def browser_allowed_origins():
             or parts.port not in (None, 443)
             or parts.path not in ("", "/") or parts.query or parts.fragment
             or not hostname.endswith(".applicationmanager.com.br")
-            or not re.fullmatch(r"[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)+", hostname)):
+            or not re.fullmatch(r"[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+", hostname)):
         raise ValueError("SIE_F12_STAGING_ORIGIN precisa ser subdomínio HTTPS exato")
     origin = "https://" + hostname
     return [DEFAULT_PUBLIC_ORIGIN] if origin == DEFAULT_PUBLIC_ORIGIN else [DEFAULT_PUBLIC_ORIGIN, origin]
