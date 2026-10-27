@@ -164,6 +164,10 @@ ALTER TABLE public.sie_audit_events ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON TABLE public.sie_audit_events FROM PUBLIC, anon, authenticated;
 GRANT SELECT ON TABLE public.sie_audit_events TO authenticated;
 
+-- Server-side service_role grants are explicit (never put the service key in a browser).
+GRANT SELECT, INSERT, UPDATE ON TABLE public.sie_projects TO service_role;
+GRANT SELECT, INSERT ON TABLE public.sie_project_revisions, public.sie_rooms, public.sie_loads, public.sie_circuits, public.sie_circuit_loads, public.sie_calculation_runs, public.sie_audit_events TO service_role;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.sie_artifacts TO service_role;
 -- Column-restricted INSERT/UPDATE. No browser DELETE, no arbitrary owner transfer.
 GRANT INSERT (name, owner_id) ON TABLE public.sie_projects TO authenticated;
 GRANT INSERT (project_id, version, source_sha256) ON TABLE public.sie_project_revisions TO authenticated;
