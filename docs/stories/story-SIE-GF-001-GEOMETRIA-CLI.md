@@ -1,7 +1,7 @@
 # Story SIE-GF-001 — Núcleo geométrico greenfield, CLI-first
 
 **Contexto:** engenharia reversa do SIE original e reconstrução independente SIE 2.0.
-**Base:** `feat/f12-liberacao-controlada`; execução segregada na branch `feat/gf01-geometria-greenfield`.
+**Base:** commit F11 `11643cf3ad7da2e6182183c6071148f924bfe741`; branch isolada `feat/gf01-geometria-core-f11` para desenvolvimento, sem modificar `feat/f12-liberacao-controlada`.
 **Escopo:** geometria retangular de ambientes, identidade de projeto/revisão, hash canônico; sem validação elétrica e sem dados remotos.
 
 ## Proveniência verificável
@@ -29,6 +29,6 @@
 ## Validação e restrições
 `PYTHONPATH=restructuring/apps/api python -m pytest restructuring/apps/api/tests/test_nextgen_geometry.py -q`
 
-**Resultado em execução isolada:** 22 PASS (Python 3.13). CI/repositório integral ainda não verificados no checkpoint inicial.
+**Resultado em execução isolada:** 22 PASS (Python 3.13). CI da branch de desenvolvimento a conferir; gate F12 preservado e nao aplicado a novas features.
 
 Nenhuma alteração no SIE original, `main`, banco Supabase ou hospedagem Hostinger. O módulo não possui autorização normativa, autenticação, tenant sharing, importação de planta irregular, persistência nem UI.
