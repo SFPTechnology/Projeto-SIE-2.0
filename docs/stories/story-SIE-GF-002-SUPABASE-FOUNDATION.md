@@ -12,12 +12,12 @@
 - Normas e concessionárias NÃO homologadas; migração de metadados não concede aprovação técnica.
 
 ## Critérios de aceite
-- [ ] GF02-01: modelo e migração versionados no repositório, separados das migrations legadas de qualidade.
-- [ ] GF02-02: pré-validação do alvo por ID, organização, schemas/migrations vazios.
-- [ ] GF02-03: aplicar DDL apenas no projeto `fozrymsidnaxmuvxxfhh`, guardar versão retornada pelo Supabase.
-- [ ] GF02-04: provar tabela por tabela que RLS está ativo, políticas autenticadas restritivas e `anon` sem privilégios.
-- [ ] GF02-05: verificar FKs compostas, constraints, índices e rollback seguro definido (sem execução de DROP).
-- [ ] GF02-06: suíte de testes estáticos e CI da branch no próprio commit de código.
+- [x] GF02-01: modelo e migração versionados no repositório, separados das migrations legadas de qualidade.
+- [x] GF02-02: pré-validação do alvo por ID, organização, schemas/migrations vazios.
+- [x] GF02-03: aplicar DDL apenas no projeto `fozrymsidnaxmuvxxfhh`, guardar versão retornada pelo Supabase.
+- [x] GF02-04: provar tabela por tabela que RLS está ativo, políticas autenticadas restritivas e `anon` sem privilégios.
+- [x] GF02-05: verificar FKs compostas, constraints, índices e rollback seguro definido (sem execução de DROP).
+- [ ] GF02-06: suíte de testes estáticos e CI do SHA final (evidências preliminares CI já disponíveis, a conferir).
 - [ ] GF02-07: testes de autenticação real e isolamento entre dois usuários — **pendentes** até haver identidades de teste; nenhum aceite falso.
 - [ ] GF02-08: integração API e UI autenticadas — fase seguinte, não implementada neste lote.
 
@@ -28,7 +28,13 @@ Preservar `main`, F00–F12, repositórios do SIE 1.0 e Hostinger. Não implanta
 - `docs/stories/story-SIE-GF-002-SUPABASE-FOUNDATION.md`
 - `docs/implantacao-sie-2-0/GREENFIELD/GF02_SCHEMA_CANDIDATE.sql`
 - `restructuring/apps/api/tests/test_gf02_schema_contract.py`
-- Migração versionada dentro de `restructuring/supabase/migrations/` após implantação.
+- `restructuring/supabase/migrations/20261027195557_sie2_greenfield_foundation_owner_rls_v1.sql` (migracao aplicada e versionada).
 - `docs/implantacao-sie-2-0/GREENFIELD/GF02_RESULTADO.md`
 
 **Gate:** F12 mantém `HUMAN_REQUIRED` e `NO-GO` para produção profissional.
+
+## Checkpoint de implantação real — 27/10/2026
+- Migration `20261027195557_sie2_greenfield_foundation_owner_rls_v1` aplicada com sucesso no destino exclusivo.
+- 9/9 tabelas com RLS ativo; 16 políticas; papel `anon` sem `SELECT`; 0 alertas no advisor de segurança.
+- 0 linhas nas tabelas novas; testes de isolamento Auth multiusuário não executados.
+- CI completo da revisão final permanece dependente do SHA; F12/produção permanecem NO-GO.
