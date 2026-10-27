@@ -42,6 +42,17 @@ def validate_api_origin(value):
     return "https://" + host.lower()
 
 
+def validate_site_origin(value):
+    """Prevent staging artifacts redirecting to unapproved external hosts."""
+    origin = validate_api_origin(value)
+    if not origin:
+        raise ValueError("Informe origem HTTPS de staging ou produção")
+    host = urlsplit(origin).hostname
+    if host != HOST and not host.endswith(".applicationmanager.com.br"):
+        raise ValueError("Origem estática fora do domínio autorizado")
+    return origin
+
+
 def html(src):
     marker = '<script defer src="/consultivo.js"></script>'
     if marker not in src or 'href="/consultivo.css"' not in src:
@@ -76,7 +87,7 @@ def client_js(src, api_origin):
     return js.encode("utf-8")
 
 
-def htaccess(api_origin):
+def htaccess(api_origin, site_origin):
     csp = "default-src 'none'; script-src 'self'; style-src 'self'; "
     csp += "connect-src " + (api_origin if api_origin else "'none'") + "; "
     csp += "img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
@@ -92,13 +103,14 @@ def htaccess(api_origin):
         "<IfModule mod_rewrite.c>\n"
         "RewriteEngine On\n"
         "RewriteCond %{HTTPS} !=on\n"
-        "RewriteRule ^ https://" + HOST + "%{REQUEST_URI} [R=302,L]\n"
+        "RewriteRule ^ " + site_origin + "%{REQUEST_URI} [R=302,L]\n"
         "</IfModule>\n"
     ).encode("utf-8")
 
 
-def build(out, origin=""):
+def build(out, origin="", site_origin="https://" + HOST):
     origin = validate_api_origin(origin)
+    site_origin = validate_site_origin(site_origin)
     out = Path(out)
     if out.exists() and any(out.iterdir()):
         raise FileExistsError("Diretório de saída precisa estar vazio")
@@ -107,13 +119,14 @@ def build(out, origin=""):
         "index.html": html(sources["index.html"]),
         "consultivo.js": client_js(sources["consultivo.js"], origin),
         "consultivo.css": sources["consultivo.css"].encode("utf-8"),
-        ".htaccess": htaccess(origin),
+        ".htaccess": htaccess(origin, site_origin),
     }
     manifest = {
         "schema": "SIE-F12-HOSTINGER-STATIC-1",
         "deployment": "QA_PREVIEW_ONLY",
         "production_authorized": False,
-        "host": HOST,
+        "host": urlsplit(site_origin).hostname,
+        "site_origin": site_origin,
         "api_origin": origin or None,
         "features": ["stateless_consultative_ui"],
         "backend_required_for_calculation": True,
@@ -145,8 +158,10 @@ def main(argv=None):
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--api-origin", default="",
                         help="HTTPS origin of separately approved Python backend; omit to disable calculations")
+    parser.add_argument("--site-origin", default="https://" + HOST,
+                        help="Exact HTTPS staging/production static origin")
     args = parser.parse_args(argv)
-    print(json.dumps(build(args.out, args.api_origin), sort_keys=True))
+    print(json.dumps(build(args.out, args.api_origin, args.site_origin), sort_keys=True))
 
 
 if __name__ == "__main__":

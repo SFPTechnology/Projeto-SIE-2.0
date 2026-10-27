@@ -6,6 +6,8 @@ or client accounts. Never equate passing its CI with authorization to deploy.
 """
 import os
 from pathlib import Path
+from urllib.parse import urlsplit
+import re
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -89,9 +91,29 @@ async def stylesheet():
 # Allow browsers on the owner's existing static Hostinger subdomain to call
 # only the stateless API. Requests from arbitrary third-party origins never
 # receive CORS permission. CORS is NOT rate limiting or authentication.
+DEFAULT_PUBLIC_ORIGIN = "https://sie2.applicationmanager.com.br"
+
+
+def browser_allowed_origins():
+    """An invalid staging origin fails app import rather than widening CORS."""
+    staging = os.environ.get("SIE_F12_STAGING_ORIGIN", "").strip()
+    if not staging:
+        return [DEFAULT_PUBLIC_ORIGIN]
+    parts = urlsplit(staging)
+    hostname = (parts.hostname or "").lower()
+    if (parts.scheme != "https" or parts.username or parts.password
+            or parts.port not in (None, 443)
+            or parts.path not in ("", "/") or parts.query or parts.fragment
+            or not hostname.endswith(".applicationmanager.com.br")
+            or not re.fullmatch(r"[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)+", hostname)):
+        raise ValueError("SIE_F12_STAGING_ORIGIN precisa ser subdomínio HTTPS exato")
+    origin = "https://" + hostname
+    return [DEFAULT_PUBLIC_ORIGIN] if origin == DEFAULT_PUBLIC_ORIGIN else [DEFAULT_PUBLIC_ORIGIN, origin]
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://sie2.applicationmanager.com.br"],
+    allow_origins=browser_allowed_origins(),
     allow_methods=["GET", "POST"],
     allow_headers=["Content-Type"],
     allow_credentials=False,

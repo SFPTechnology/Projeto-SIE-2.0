@@ -64,3 +64,30 @@ def test_does_not_overwrite_existing_destination(tmp_path):
     with pytest.raises(FileExistsError):
         package.build(path)
     assert (path / "index.html").read_text(encoding="utf-8") == "original"
+
+
+def test_staging_redirect_and_artifact_are_isolated(tmp_path):
+    stage = "https://sie2-homologacao.applicationmanager.com.br"
+    package.build(tmp_path / "a", "https://api.example.net", stage)
+    package.build(tmp_path / "b", "https://api.example.net/", stage + "/")
+    a = tmp_path / "a" / package.ZIP_NAME
+    assert a.read_bytes() == (tmp_path / "b" / package.ZIP_NAME).read_bytes()
+    with zipfile.ZipFile(a) as zf:
+        rules = zf.read(".htaccess").decode()
+        data = json.loads(zf.read("MANIFEST.json"))
+        assert "RewriteRule ^ " + stage + "%{REQUEST_URI}" in rules
+        assert "RewriteRule ^ https://sie2.applicationmanager.com.br" not in rules
+        assert data["site_origin"] == stage
+        assert data["production_authorized"] is False
+
+
+@pytest.mark.parametrize("origin", [
+    "", "http://sie2-homologacao.applicationmanager.com.br",
+    "https://evil.example", "https://localhost",
+    "https://sie2-homologacao.applicationmanager.com.br:5000",
+    "https://sie2-homologacao.applicationmanager.com.br/path",
+    "https://*.applicationmanager.com.br"
+])
+def test_staging_rejects_unsafe_redirect_origin(origin):
+    with pytest.raises(ValueError):
+        package.validate_site_origin(origin)

@@ -107,3 +107,41 @@ def test_hostinger_static_origin_can_call_stateless_api_only():
     assert "access-control-allow-origin" not in denied.headers
     assert client.get("/api/v1/local/projetos",
                       headers={"Origin": origin}).status_code == 404
+
+
+def test_stage_origin_configuration_rejects_insecure_values(monkeypatch):
+    from sie_api.f12_consultative import browser_allowed_origins
+    prod = "https://sie2.applicationmanager.com.br"
+    stage = "https://sie2-homologacao.applicationmanager.com.br"
+    monkeypatch.delenv("SIE_F12_STAGING_ORIGIN", raising=False)
+    assert browser_allowed_origins() == [prod]
+    monkeypatch.setenv("SIE_F12_STAGING_ORIGIN", stage)
+    assert browser_allowed_origins() == [prod, stage]
+    for origin in ("*", "http://sie2-homologacao.applicationmanager.com.br",
+                   "https://evil.example", "https://localhost",
+                   "https://sie2-homologacao.applicationmanager.com.br/path",
+                   "https://sie2-homologacao.applicationmanager.com.br:444"):
+        monkeypatch.setenv("SIE_F12_STAGING_ORIGIN", origin)
+        with __import__("pytest").raises(ValueError):
+            browser_allowed_origins()
+
+
+def test_stage_cors_only_on_explicit_process_configuration():
+    import os
+    import subprocess
+    import sys
+    stage = "https://sie2-homologacao.applicationmanager.com.br"
+    code = (
+        "from fastapi.testclient import TestClient; from sie_api.f12_consultative import app;"
+        "c=TestClient(app);r=c.options('/api/v1/circuitos/analisar',headers={"
+        "'Origin':" + repr(stage) + ",'Access-Control-Request-Method':'POST',"
+        "'Access-Control-Request-Headers':'content-type'});"
+        "assert r.status_code==200 and r.headers['access-control-allow-origin']==" + repr(stage) + ";"
+        "r=c.options('/api/v1/circuitos/analisar',headers={"
+        "'Origin':'https://evil.example','Access-Control-Request-Method':'POST'});"
+        "assert r.status_code==400 and 'access-control-allow-origin' not in r.headers"
+    )
+    run = subprocess.run([sys.executable, "-c", code],
+                         env={**os.environ, "SIE_F12_STAGING_ORIGIN": stage},
+                         capture_output=True, text=True, timeout=15, check=False)
+    assert run.returncode == 0, run.stdout + run.stderr
