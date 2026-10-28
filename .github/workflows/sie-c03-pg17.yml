@@ -1,0 +1,59 @@
+name: "SIE C03 PostgreSQL 17 disposable schema"
+on:
+  push:
+    branches:
+      - feat/v201-bloco-c-dominio-eletrico
+  pull_request:
+    paths:
+      - "docs/implantacao-sie-2-0/GREENFIELD/C03_SCHEMA_CANDIDATE_V201.sql"
+      - "restructuring/supabase/greenfield/tests/c03_pg17.sql"
+      - ".github/workflows/sie-c03-pg17.yml"
+permissions:
+  contents: read
+jobs:
+  schema-pg17:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres_ci_only
+          POSTGRES_DB: sie2_gf02_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d sie2_gf02_ci"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 8
+    env:
+      PGHOST: localhost
+      PGPORT: "5432"
+      PGUSER: postgres
+      PGPASSWORD: postgres_ci_only
+      PGDATABASE: sie2_gf02_ci
+      SIE_PG17_DISPOSABLE_TEST: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prove disposable only
+        run: |
+          test "$PGHOST" = "localhost"
+          test "$PGDATABASE" = "sie2_gf02_ci"
+          test -z "${SUPABASE_ACCESS_TOKEN:-}"
+          test -z "${DATABASE_URL:-}"
+          psql -X -v ON_ERROR_STOP=1 -At -c "SELECT current_database()"
+      - name: Apply GF02+A03+A04 disposable harness
+        run: psql -X -v ON_ERROR_STOP=1 -f restructuring/supabase/greenfield/tests/a03_a04_pg17.sql
+      - name: Apply B04 candidate in disposable DB
+        run: psql -X -v ON_ERROR_STOP=1 -f restructuring/supabase/migrations/20261028153000_sie_b04_idempotency_backend_grants_v201.sql
+      - name: Apply C03 candidate only in disposable DB
+        run: psql -X -v ON_ERROR_STOP=1 -f docs/implantacao-sie-2-0/GREENFIELD/C03_SCHEMA_CANDIDATE_V201.sql
+      - name: Exercise electrical relation and security constraints
+        run: psql -X -v ON_ERROR_STOP=1 -f restructuring/supabase/greenfield/tests/c03_pg17.sql
+      - name: Verify no remote endpoint
+        run: |
+          test -z "${SUPABASE_DB_URL:-}"
+          test -z "${SUPABASE_SERVICE_ROLE_KEY:-}"
+          echo "PASS: C03 only ephemeral local PG17"
