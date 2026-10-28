@@ -81,3 +81,44 @@ def test_refuses_static_authorization_to_write_production(tmp_path):
     result = catalog.verify(tmp_path)
     assert not result["ok"]
     assert any("DDL authorization" in error for error in result["errors"])
+
+
+def test_a03_a04_pending_migrations_match_manifest_and_are_not_applied():
+    result = catalog.verify(ROOT)
+    assert result["ok"], result["errors"]
+    assert len(result["migrations"]) == 1  # GF02 remains the only installed migration
+    pending = result["pending_migrations"]
+    assert [item["version"] for item in pending] == [
+        "20261028102000", "20261028102100"]
+    assert all(item["state"] == "PENDING" for item in pending)
+    manifest = json.loads((ROOT / "restructuring" / "supabase" / "greenfield"
+                           / "manifest.json").read_text())
+    assert manifest["remote_ddl_authorized"] is False
+    assert all(item["applied_remote"] is False for item in manifest["pending_migrations"])
+
+
+def test_pending_migration_cannot_falsely_claim_remote_application(tmp_path):
+    workspace = copy_workspace(tmp_path)
+    manifest_path = workspace / "greenfield" / "manifest.json"
+    manifest = json.loads(manifest_path.read_text())
+    manifest["pending_migrations"][0]["applied_remote"] = True
+    manifest_path.write_text(json.dumps(manifest))
+    result = catalog.verify(tmp_path)
+    assert not result["ok"]
+    assert any("falsely claims remote application" in e for e in result["errors"])
+
+
+def test_a03_a04_are_additive_without_legacy_table_creation():
+    root = ROOT / "restructuring" / "supabase" / "migrations"
+    for version in ("20261028102000", "20261028102100"):
+        sql = next(root.glob(version + "_*.sql")).read_text()
+        executable = "\n".join(
+            line for line in sql.splitlines() if not line.strip().startswith("--")
+        )
+        assert "DROP TABLE" not in executable.upper()
+        assert "CREATE TABLE" not in executable.upper()
+        assert "public.projetos" not in executable.lower()
+    lifecycle = next(root.glob("20261028102100_*.sql")).read_text()
+    for table in ("sie_rooms", "sie_loads", "sie_circuits", "sie_circuit_loads"):
+        assert "BEFORE INSERT OR UPDATE OR DELETE ON public." + table in lifecycle
+    assert "SEALED" in lifecycle and "SUPERSEDED" in lifecycle
