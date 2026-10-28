@@ -225,7 +225,7 @@ def test_b05_invalid_load_type_denied(env):
         "apparent_power_va":"12"}).status_code==422
 
 
-def test_clone_is_all_or_nothing_on_database_error(env):
+def test_clone_is_all_or_nothing_on_integrity_conflict(env):
     c,path=env
     p=create(c);r=revision(c,p)
     room=post(c,f"/projects/{p}/revisions/{r}/rooms",
@@ -240,7 +240,7 @@ def test_clone_is_all_or_nothing_on_database_error(env):
             WHEN NEW.label='FAIL_CLONE' BEGIN SELECT RAISE(ABORT,'fixture'); END;""")
     r1=post(c,f"/projects/{p}/revisions",
             {"base_revision_id":r},"clone-key-rollback")
-    assert r1.status_code==503, r1.text
+    assert r1.status_code==409, r1.text
     with sqlite3.connect(path) as db:
         assert db.execute("SELECT COUNT(*) FROM v201_revisions").fetchone()[0]==1
         db.execute("DROP TRIGGER reject_new_clone")
