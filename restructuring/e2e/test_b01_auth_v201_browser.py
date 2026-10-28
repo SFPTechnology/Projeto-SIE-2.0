@@ -37,13 +37,20 @@ def test_b01_synthetic_login_backend_check_and_logout(servers):
             status=200,content_type="application/javascript",
             body='window.SIE_V201_PUBLIC_CONFIG={supabaseUrl:"'+AUTH_URL+
             '",publishableKey:"sb_publishable_test_only",apiBase:"http://127.0.0.1:8000"}'))
+        cors={"access-control-allow-origin":"*",
+              "access-control-allow-methods":"GET,POST,OPTIONS",
+              "access-control-allow-headers":"apikey,authorization,content-type"}
         def fake_token(route):
+            if route.request.method=="OPTIONS":
+                return route.fulfill(status=204,headers=cors)
             outbound.append("login")
             route.fulfill(status=200,content_type="application/json",
                          body='{"access_token":"synthetic_bearer_for_browser_e2e_only"}',
-                         headers={"access-control-allow-origin":"*"})
+                         headers=cors)
         page.route(AUTH_URL+"/auth/v1/token?grant_type=password",fake_token)
         def fake_me(route):
+            if route.request.method=="OPTIONS":
+                return route.fulfill(status=204,headers=cors)
             auth=route.request.headers.get("authorization","")
             assert auth=="Bearer synthetic_bearer_for_browser_e2e_only"
             outbound.append("verified-api")
