@@ -5,7 +5,7 @@ routes. Identical domain invariants must be tested in PostgreSQL before integrat
 """
 from __future__ import annotations
 
-from contextlib import contextmanager
+from contextlib import contextmanager, closing
 from decimal import Decimal, InvalidOperation
 from hashlib import sha256
 import json
@@ -115,7 +115,7 @@ class DevStore:
         if not self.path.is_absolute() or self.path.suffix != ".sqlite3":
             raise Invalid("database DEV must be absolute .sqlite3 path")
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        with self._connect() as db:
+        with closing(self._connect()) as db:
             db.executescript(SCHEMA)
 
     def _connect(self):
