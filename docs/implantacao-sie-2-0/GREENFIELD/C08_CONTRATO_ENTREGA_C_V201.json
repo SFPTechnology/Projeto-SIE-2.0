@@ -6,7 +6,7 @@
   "environment": "DEVELOPMENT",
   "repository": "SFPTechnology/Projeto-SIE-2.0",
   "source_branch": "feat/v201-bloco-c-dominio-eletrico",
-  "source_sha": "477222039ab87f1fe53a06675ca6e3dfe8acf499",
+  "source_sha": "ab621c4d5c12ac7e462d4662bdb826dff867069b",
   "baseline_b_sha": "63805c03c7146103cdd67eca4da3e369a751d379",
   "supabase_project_ref": "fozrymsidnaxmuvxxfhh",
   "remote_ddl_authorized": false,
@@ -20,28 +20,39 @@
   "migration_c03": "20261028203000_sie_c03_electrical_domain_v201.sql",
   "schema_fingerprint": null,
   "schema_fingerprint_status": "NOT_MEASURED_REMOTELY",
-  "api_contract_version": "sie-v201-dev-c05-1",
+  "api_contract_version": "sie-v201-dev-c05-2",
   "normative_gate": "PARTIAL_EVIDENCE_PENDING",
-  "legacy_source_state": "LEGACY_SOURCE_UNVERIFIED",
+  "legacy_source_state": "SOURCE_FOUND_COUNTS_VERIFIED",
   "real_legacy_data_migrated": false,
   "synthetic_etl_state": "PASS_DEV_SYNTHETIC",
-  "disposable_pg17_verdict": "PASS_ON_f252f0a0_NOT_FINAL_HEAD",
+  "disposable_pg17_verdict": "PASS_C03_C05_ON_ab621c4d",
   "test_runs": [
-    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40761828585",
-    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40761781236",
-    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40761828576"
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40766811877",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40766822648",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40766822733"
   ],
   "evidence_sha256": null,
-  "evidence_state": "FINAL_HEAD_CI_AND_MANIFEST_DIGEST_PENDING",
+  "evidence_state": "FORMAL_GC_BLOCKED_HUMAN_OWNERSHIP_NORMATIVE_AND_HEAD_CI_PENDING",
   "blockers": [
-    "C01 authentic legacy source and ownership not established",
-    "C05 full persisted electrical engine and golden normative cases incomplete",
-    "C04 normative sources and professional approval pending",
-    "C07 only synthetic staging; real import/reconciliation not authorized",
-    "C03 remote migrations and A/B RLS unverified",
-    "C08 final HEAD CI and evidence digest not yet attested"
+    "C02 unresolved additional legacy source columns and human-certified owner mapping for 5 projects",
+    "C07 10 audit references require provenance-preserving quarantine and authorized real staging ETL",
+    "C04/C05 P03/P06 Rca/XL and professional normative application conditions remain unverified",
+    "C05 C03 technical tables not yet captured in canonical PostgreSQL sealed revision snapshot",
+    "C03 A03/A04/B04/C03 remote migrations, Auth A/B, backup/restore remain subject to E02–E06",
+    "C08 QA checks must complete on frozen final HEAD after this report"
   ],
   "handoff_to": "D",
   "handoff_authorized": false,
-  "production_release_authorized": false
+  "production_release_authorized": false,
+  "source_sha_role": "LAST_VERIFIED_PARTIAL_CI_CANDIDATE_NOT_FINAL_HEAD",
+  "legacy_source_summary": {
+    "projects": 5,
+    "rooms": 41,
+    "additional_loads": 52,
+    "audit_events": 1805,
+    "orphan_audit_room_refs": 10,
+    "source_auth_users": 0,
+    "destination_auth_users": 0,
+    "owner_assignment": "HUMAN_REQUIRED"
+  }
 }
