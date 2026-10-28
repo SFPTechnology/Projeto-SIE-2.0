@@ -131,3 +131,52 @@ def test_disposable_pg17_rejects_non_disposable_targets(conn):
     fake.autocommit=True
     with pytest.raises(IntegrationNotReady):
         Pg17DisposableAdapter(fake)
+
+
+
+def test_disposable_pg17_draft_edits_and_fk_protected_deletions(conn):
+    import psycopg
+    adapter=Pg17DisposableAdapter(conn)
+    project=adapter.create_project(A,"B05 edit-delete PG")["id"]
+    revision=adapter.create_revision(A,project,"revision-edit-01")["id"]
+    adapter.add_bundle(A,project,revision,{
+        "rooms":[{"ref":"r","name":"Sala","width_m":"4.0000","length_m":"5.0000"}],
+        "circuits":[{"ref":"c","code":"C1","nominal_voltage_v":"127.000"}],
+        "loads":[{"ref":"l","room_ref":"r","label":"TUG","kind":"TUG",
+                  "apparent_power_va":"100.000"}],
+        "links":[{"load_ref":"l","circuit_ref":"c"}],
+    })
+    ids={}
+    with conn.cursor() as cur:
+        for table in ("sie_rooms","sie_loads","sie_circuits","sie_circuit_loads"):
+            cur.execute(f"""SELECT id FROM public.{table}
+                           WHERE project_id=%s AND revision_id=%s""",
+                        (project,revision))
+            ids[table]=cur.fetchone()[0]
+    updated=adapter.edit_entity(A,project,revision,"rooms",ids["sie_rooms"],
+                                {"name":"Sala alterada"},0)
+    assert updated["revision_lock_version"]==1
+    with pytest.raises(PgConflict):
+        adapter.edit_entity(A,project,revision,"rooms",ids["sie_rooms"],
+                            {"name":"Replay obsoleto"},0)
+    with pytest.raises(ValueError):
+        adapter.edit_entity(A,project,revision,"rooms",ids["sie_rooms"],
+                            {"owner_id":str(B)},1)
+    with pytest.raises(PgMissing):
+        adapter.edit_entity(B,project,revision,"rooms",ids["sie_rooms"],
+                            {"name":"Cross-owner"},1)
+    with pytest.raises(psycopg.errors.ForeignKeyViolation):
+        adapter.delete_entity(A,project,revision,"rooms",ids["sie_rooms"],1)
+    # A failed deletion rolls back and preserves the lock.
+    assert adapter.delete_entity(A,project,revision,"links",ids["sie_circuit_loads"],1)[
+        "revision_lock_version"]==2
+    assert adapter.delete_entity(A,project,revision,"loads",ids["sie_loads"],2)[
+        "revision_lock_version"]==3
+    assert adapter.delete_entity(A,project,revision,"rooms",ids["sie_rooms"],3)[
+        "revision_lock_version"]==4
+    assert adapter.delete_entity(A,project,revision,"circuits",ids["sie_circuits"],4)[
+        "revision_lock_version"]==5
+    assert adapter.seal(A,project,revision,5)["state"]=="SEALED"
+    with pytest.raises(PgConflict):
+        adapter.edit_entity(A,project,revision,"circuits",ids["sie_circuits"],
+                            {"code":"TAMPER"},6)
