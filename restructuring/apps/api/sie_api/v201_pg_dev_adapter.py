@@ -269,3 +269,89 @@ class Pg17DisposableAdapter:
                 state,version,digest=cur.fetchone()
                 return {"state":state,"lock_version":version,
                         "snapshot_sha256":digest}
+
+
+    # B05 entity writes in the disposable PG17 transaction.
+    # Never use client-supplied column/table identifiers in SQL.
+    _TABLES={
+        "rooms":("sie_rooms",frozenset({
+            "name","width_m","length_m","excluded_perimeter_m"})),
+        "loads":("sie_loads",frozenset({
+            "room_id","label","kind","apparent_power_va","quantity"})),
+        "circuits":("sie_circuits",frozenset({
+            "code","nominal_voltage_v"})),
+        "links":("sie_circuit_loads",frozenset({
+            "circuit_id","load_id"})),
+    }
+
+    def _fields(self,kind,fields):
+        if kind not in self._TABLES or not fields or not set(fields)<=self._TABLES[kind][1]:
+            raise ValueError("invalid or immutable B05 fields")
+        allowed={}
+        for k,v in fields.items():
+            if k in ("name","label","code"):
+                allowed[k]=_text(v,64 if k=="code" else 160)
+            elif k in ("width_m","length_m","excluded_perimeter_m"):
+                allowed[k]=_number(v,4,"200000" if k=="excluded_perimeter_m" else "100000",
+                                    k!="excluded_perimeter_m")
+            elif k in ("apparent_power_va","nominal_voltage_v"):
+                allowed[k]=_number(v,3,"1000000000" if k=="apparent_power_va" else "100000")
+            elif k in ("room_id","circuit_id","load_id"):
+                allowed[k]=_uuid(v)
+            elif k=="quantity":
+                if type(v) is not int or not 1<=v<=100000: raise ValueError("invalid quantity")
+                allowed[k]=v
+            elif k=="kind":
+                if v not in ("LIGHTING","TUG","TUE","OTHER"): raise ValueError("invalid kind")
+                allowed[k]=v
+        return allowed
+
+    def edit_entity(self,owner,project,revision,kind,entity,fields,expected_lock):
+        if type(expected_lock) is not int or expected_lock<0:
+            raise ValueError("invalid optimistic lock")
+        project,revision,entity=_uuid(project),_uuid(revision),_uuid(entity)
+        allowed=self._fields(kind,fields)
+        table=self._TABLES[kind][0]
+        with self.conn.transaction():
+            with self.conn.cursor() as cur:
+                self._owner(cur,owner,project)
+                state,lock=self._revision(cur,project,revision)
+                if lock!=expected_lock:
+                    raise PgConflict("stale revision lock")
+                cur.execute(f"""SELECT id FROM public.{table}
+                    WHERE id=%s AND project_id=%s AND revision_id=%s""",
+                    (entity,project,revision))
+                if cur.fetchone() is None: raise PgMissing("entity not found in scope")
+                cols=sorted(allowed)
+                assignment=",".join(f"{col}=%s" for col in cols)
+                cur.execute(f"""UPDATE public.{table} SET {assignment}
+                    WHERE id=%s AND project_id=%s AND revision_id=%s""",
+                    tuple(allowed[col] for col in cols)+(entity,project,revision))
+                cur.execute("""UPDATE public.sie_project_revisions
+                    SET lock_version=lock_version+1 WHERE id=%s AND project_id=%s
+                    AND lock_version=%s AND lifecycle_state='DRAFT'""",
+                    (revision,project,expected_lock))
+                if cur.rowcount!=1: raise PgConflict("stale revision lock")
+                return {"id":str(entity),"revision_lock_version":expected_lock+1}
+
+    def delete_entity(self,owner,project,revision,kind,entity,expected_lock):
+        if kind not in self._TABLES: raise ValueError("invalid entity kind")
+        if type(expected_lock) is not int or expected_lock<0:
+            raise ValueError("invalid optimistic lock")
+        project,revision,entity=_uuid(project),_uuid(revision),_uuid(entity)
+        table=self._TABLES[kind][0]
+        with self.conn.transaction():
+            with self.conn.cursor() as cur:
+                self._owner(cur,owner,project)
+                state,lock=self._revision(cur,project,revision)
+                if lock!=expected_lock: raise PgConflict("stale revision lock")
+                cur.execute(f"""DELETE FROM public.{table}
+                    WHERE id=%s AND project_id=%s AND revision_id=%s
+                    RETURNING id""",(entity,project,revision))
+                if cur.fetchone() is None: raise PgMissing("entity not found")
+                cur.execute("""UPDATE public.sie_project_revisions
+                    SET lock_version=lock_version+1 WHERE id=%s AND project_id=%s
+                    AND lifecycle_state='DRAFT' AND lock_version=%s""",
+                    (revision,project,expected_lock))
+                if cur.rowcount!=1: raise PgConflict("stale revision lock")
+                return {"deleted_id":str(entity),"revision_lock_version":expected_lock+1}
