@@ -235,3 +235,44 @@ def test_b04_b05_role_permissions_minimum(conn):
         assert cur.fetchone()[0] is True
         cur.execute("SELECT has_column_privilege('authenticated','public.sie_rooms','name','UPDATE')")
         assert cur.fetchone()[0] is False
+
+
+def test_b04_b05_actual_pg_role_a_b_and_backend_dml(conn):
+    import psycopg
+    adapter=Pg17DisposableAdapter(conn)
+    pid=adapter.create_project(A,"A/B protected PG17","owner-a-fixture-key")["id"]
+    rid=adapter.create_revision(A,pid,"a-b-revision-key")["id"]
+    adapter.add_bundle(A,pid,rid,{
+        "rooms":[{"ref":"room","name":"Comodo A","width_m":"2.0000","length_m":"3.0000"}],
+        "loads":[],"circuits":[],"links":[]
+    })
+    with conn.cursor() as cur:
+        cur.execute("SELECT id FROM public.sie_rooms WHERE project_id=%s",(pid,))
+        room_id=cur.fetchone()[0]
+    with conn.cursor() as cur:
+        try:
+            cur.execute("SET ROLE authenticated")
+            cur.execute("SET request.jwt.claim.sub = %s",(str(A),))
+            cur.execute("SELECT COUNT(*) FROM public.sie_projects WHERE id=%s",(pid,))
+            assert cur.fetchone()[0]==1
+            cur.execute("SET request.jwt.claim.sub = %s",(str(B),))
+            cur.execute("SELECT COUNT(*) FROM public.sie_projects WHERE id=%s",(pid,))
+            assert cur.fetchone()[0]==0
+            with pytest.raises(psycopg.errors.InsufficientPrivilege):
+                cur.execute("DELETE FROM public.sie_rooms WHERE id=%s",(room_id,))
+            cur.execute("RESET ROLE")
+            cur.execute("RESET request.jwt.claim.sub")
+            cur.execute("SET ROLE service_role")
+            # No user-supplied owner_id or JWT role enters this privileged write.
+            cur.execute("UPDATE public.sie_rooms SET name=%s WHERE id=%s",
+                        ("Editado pelo backend",room_id))
+            assert cur.rowcount==1
+            with pytest.raises(psycopg.errors.InsufficientPrivilege):
+                cur.execute("UPDATE public.sie_projects SET owner_id=%s WHERE id=%s",
+                            (B,pid))
+        finally:
+            cur.execute("RESET ROLE")
+            cur.execute("RESET request.jwt.claim.sub")
+    with conn.cursor() as cur:
+        cur.execute("SELECT name FROM public.sie_rooms WHERE id=%s",(room_id,))
+        assert cur.fetchone()[0]=="Editado pelo backend"
