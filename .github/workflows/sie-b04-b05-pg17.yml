@@ -3,16 +3,10 @@ on:
   push:
     branches:
       - feat/v201-bloco-b-auth-api
-    paths:
-      - "restructuring/apps/api/sie_api/v201_pg_dev_adapter.py"
-      - "restructuring/apps/api/sie_api/v201_postgres_contract.py"
-      - "restructuring/apps/api/tests/test_b04_b05_pg17_disposable_v201.py"
-      - "restructuring/supabase/migrations/**"
-      - "restructuring/supabase/greenfield/tests/a03_a04_pg17.sql"
-      - ".github/workflows/sie-b04-b05-pg17.yml"
   pull_request:
     paths:
       - "restructuring/apps/api/sie_api/v201_pg_dev_adapter.py"
+      - "restructuring/apps/api/sie_api/v201_pg_dev_machine.py"
       - "restructuring/apps/api/tests/test_b04_b05_pg17_disposable_v201.py"
       - ".github/workflows/sie-b04-b05-pg17.yml"
 permissions:
