@@ -370,3 +370,90 @@ class DevStore:
                             known("loads",link["load_ref"])))
             return {"ids":maps,"counts":{kind:len(ids) for kind,ids in maps.items()},
                     "transaction":"COMMITTED_DEV_ONLY"}
+
+
+    # B05: field-level editing, subject to the draft's optimistic lock.
+    # IDs, owner and scope are NEVER caller-mutable. Deleting referenced entities
+    # fails atomically with FK RESTRICT; detach links first.
+    _ENTITY_FIELDS = {
+        "rooms": frozenset({"name","width_m","length_m","excluded_perimeter_m"}),
+        "loads": frozenset({"room_id","label","kind","apparent_power_va","quantity"}),
+        "circuits": frozenset({"code","nominal_voltage_v"}),
+        "links": frozenset({"circuit_id","load_id"}),
+    }
+
+    def _validated_patch(self, table, source):
+        if table not in self._ENTITY_FIELDS or not source or not set(source) <= self._ENTITY_FIELDS[table]:
+            raise Invalid("campos invalidos ou imutaveis")
+        fields=dict(source)
+        if "name" in fields: fields["name"]=_name(fields["name"])
+        if "label" in fields: fields["label"]=_name(fields["label"])
+        if "code" in fields: fields["code"]=_name(fields["code"],64)
+        for name,scale,limit,positive in (
+            ("width_m",4,"100000",True),("length_m",4,"100000",True),
+            ("excluded_perimeter_m",4,"200000",False),
+            ("apparent_power_va",3,"1000000000",True),
+            ("nominal_voltage_v",3,"100000",True),
+        ):
+            if name in fields:
+                fields[name]=_decimal(fields[name],scale,limit,positive=positive)
+        for name in ("room_id","circuit_id","load_id"):
+            if name in fields: fields[name]=_uuid(fields[name])
+        if "kind" in fields and fields["kind"] not in ("LIGHTING","TUG","TUE","OTHER"):
+            raise Invalid("tipo de carga invalido")
+        if "quantity" in fields and (
+            type(fields["quantity"]) is not int or not 1<=fields["quantity"]<=100000
+        ):
+            raise Invalid("quantidade invalida")
+        return fields
+
+    def _entity_row(self, db,table,project,revision,entity_id):
+        row=db.execute(f"SELECT * FROM v201_{table} WHERE id=? AND project_id=? AND revision_id=?",
+                       (_uuid(entity_id),_uuid(project),_uuid(revision))).fetchone()
+        if row is None: raise Missing("entidade nao encontrada")
+        return row
+
+    def _check_revision_lock(self, db, owner,project,revision, expected_lock):
+        row=self._revision(db,owner,project,revision,draft=True)
+        if type(expected_lock) is not int or expected_lock < 0 or row["lock_version"] != expected_lock:
+            raise Conflict("versao de revisao desatualizada")
+
+    def update_entity(self,owner,project,revision,table,entity_id,fields,expected_lock):
+        normalized=self._validated_patch(table,fields)
+        with self._txn() as db:
+            self._check_revision_lock(db,owner,project,revision,expected_lock)
+            row=dict(self._entity_row(db,table,project,revision,entity_id))
+            row.update(normalized)
+            if table=="rooms":
+                if Decimal(row["excluded_perimeter_m"])>=2*(Decimal(row["width_m"])+Decimal(row["length_m"])):
+                    raise Invalid("perimetro excluido invalido")
+            keys=sorted(normalized)
+            try:
+                db.execute(f"UPDATE v201_{table} SET "+",".join(f"{key}=?" for key in keys)+
+                           " WHERE id=? AND project_id=? AND revision_id=?",
+                           tuple(normalized[k] for k in keys)+
+                           (_uuid(entity_id),_uuid(project),_uuid(revision)))
+            except sqlite3.IntegrityError as exc:
+                raise Conflict("integridade ou exclusividade violada") from exc
+            cur=db.execute("""UPDATE v201_revisions SET lock_version=lock_version+1
+                         WHERE id=? AND project_id=? AND state='DRAFT' AND lock_version=?""",
+                         (_uuid(revision),_uuid(project),expected_lock))
+            if cur.rowcount!=1: raise Conflict("versao de revisao desatualizada")
+            return {"item":dict(self._entity_row(db,table,project,revision,entity_id)),
+                    "revision_lock_version":expected_lock+1}
+
+    def delete_entity(self,owner,project,revision,table,entity_id,expected_lock):
+        if table not in self._ENTITY_FIELDS: raise Invalid("tipo de entidade invalido")
+        with self._txn() as db:
+            self._check_revision_lock(db,owner,project,revision,expected_lock)
+            self._entity_row(db,table,project,revision,entity_id)
+            try:
+                db.execute(f"DELETE FROM v201_{table} WHERE id=? AND project_id=? AND revision_id=?",
+                           (_uuid(entity_id),_uuid(project),_uuid(revision)))
+            except sqlite3.IntegrityError as exc:
+                raise Conflict("entidade possui dependencias; remova os vinculos primeiro") from exc
+            cur=db.execute("""UPDATE v201_revisions SET lock_version=lock_version+1
+                         WHERE id=? AND project_id=? AND state='DRAFT' AND lock_version=?""",
+                         (_uuid(revision),_uuid(project),expected_lock))
+            if cur.rowcount!=1: raise Conflict("versao de revisao desatualizada")
+            return {"deleted_id":_uuid(entity_id),"revision_lock_version":expected_lock+1}
