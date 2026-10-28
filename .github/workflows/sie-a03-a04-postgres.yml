@@ -1,0 +1,60 @@
+name: "SIE A03/A04 PostgreSQL 17 isolated verification"
+on:
+  push:
+    branches:
+      - feat/v201-bloco-a-desenvolvimento-direto
+  pull_request:
+    paths:
+      - 'restructuring/supabase/**'
+      - '.github/workflows/sie-a03-a04-postgres.yml'
+      - 'docs/implantacao-sie-2-0/GREENFIELD/A03_*'
+jobs:
+  pg17:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      pg:
+        image: postgres:17
+        env:
+          POSTGRES_DB: sie2_gf02_ci
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres_ci_only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d sie2_gf02_ci"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 8
+    env:
+      PGHOST: localhost
+      PGPORT: "5432"
+      PGDATABASE: sie2_gf02_ci
+      PGUSER: postgres
+      PGPASSWORD: postgres_ci_only
+    steps:
+      - name: Checkout candidate (not main)
+        uses: actions/checkout@v4
+      - name: Install psql client
+        run: |
+          if ! command -v psql >/dev/null; then
+            sudo apt-get update -qq
+            sudo apt-get install -qq -y postgresql-client
+          fi
+      - name: Confirm isolated PostgreSQL server
+        run: |
+          psql -v ON_ERROR_STOP=1 -At -c 'select current_database(),current_user,version();'
+          test "$PGDATABASE" = "sie2_gf02_ci"
+      - name: Check canonical applied vs pending manifest
+        run: python restructuring/supabase/greenfield/check_catalog.py --json
+      - name: Install GF02 and A03/A04 only in disposable CI database and prove invariants
+        run: psql -X -v ON_ERROR_STOP=1 -f restructuring/supabase/greenfield/tests/a03_a04_pg17.sql
+      - name: Rebuild from zero in independent database
+        run: |
+          createdb sie2_gf02_second
+          PGDATABASE=sie2_gf02_second psql -X -v ON_ERROR_STOP=1 -f restructuring/supabase/greenfield/tests/a03_a04_pg17.sql
+      - name: Prove no remote project or legacy migration was accessed
+        run: |
+          test -z "${SUPABASE_ACCESS_TOKEN:-}"
+          test -z "${SUPABASE_SERVICE_ROLE_KEY:-}"
+          echo "PASS: only synthetic local CI Postgres; no Supabase remote connection."
