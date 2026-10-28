@@ -233,3 +233,49 @@ GRANT UPDATE (lifecycle_state, lock_version, source_sha256)
 -- Neither trigger function is a client callable RPC.
 REVOKE ALL ON FUNCTION public.sie_a04_guard_child_write() FROM PUBLIC, anon, authenticated;
 REVOKE ALL ON FUNCTION public.sie_a04_guard_revision_write() FROM PUBLIC, anon, authenticated;
+
+-- Compare-and-swap contract for the trusted backend (B04 integration).
+-- The expected version is matched in the UPDATE predicate, atomically.
+-- Browser roles cannot invoke this function and cannot UPDATE revisions.
+CREATE FUNCTION public.sie_a04_transition_revision(
+  p_project_id uuid,
+  p_revision_id uuid,
+  p_expected_lock_version bigint,
+  p_target_state text
+)
+RETURNS public.sie_project_revisions
+LANGUAGE plpgsql SECURITY INVOKER SET search_path = ''
+AS $body$
+DECLARE v_revision public.sie_project_revisions;
+        v_from_state text;
+BEGIN
+  IF p_target_state = 'SEALED' THEN
+    v_from_state := 'DRAFT';
+  ELSIF p_target_state = 'SUPERSEDED' THEN
+    v_from_state := 'SEALED';
+  ELSE
+    RAISE EXCEPTION 'A04 unsupported technical state transition'
+      USING ERRCODE = '23514';
+  END IF;
+
+  UPDATE public.sie_project_revisions
+     SET lifecycle_state = p_target_state,
+         lock_version = lock_version + 1
+   WHERE project_id = p_project_id
+     AND id = p_revision_id
+     AND lifecycle_state = v_from_state
+     AND lock_version = p_expected_lock_version
+   RETURNING * INTO v_revision;
+
+  IF NOT FOUND THEN
+    RAISE EXCEPTION 'A04 stale revision version or invalid transition'
+      USING ERRCODE = '40001';
+  END IF;
+  RETURN v_revision;
+END;
+$body$;
+
+REVOKE ALL ON FUNCTION public.sie_a04_transition_revision(uuid, uuid, bigint, text)
+  FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION public.sie_a04_transition_revision(uuid, uuid, bigint, text)
+  TO service_role;
