@@ -35,6 +35,7 @@ def test_import_idempotent_and_reconciled(tmp_path):
         stage_synthetic(store,B,p,r,"etl-batch-02",payload)
     assert len(store.snapshot(A,p,r)["loads"])==1
     bad=deepcopy(payload)
+    bad["circuits"][0]["code"]="C2"  # avoid colliding with the committed first batch
     bad["links"][0]["load_source_id"]="missing"
     with pytest.raises(Invalid):
         stage_synthetic(store,A,p,r,"etl-bad-batch",bad)
