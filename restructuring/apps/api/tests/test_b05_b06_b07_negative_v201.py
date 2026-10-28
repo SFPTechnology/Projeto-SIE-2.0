@@ -175,3 +175,36 @@ def test_b07_cors_accepts_local_patch_but_rejects_external_origin():
         "Origin":"https://evil.example","Access-Control-Request-Method":"DELETE"})
     assert blocked.status_code==400
     assert blocked.headers.get("Access-Control-Allow-Origin") is None
+
+
+def test_b05_readback_entity_list_detail_after_restart_and_cross_owner(env):
+    c,path=env
+    p,r,prefix,room,load,circuit,link=base(c)
+    for kind,obj in (("rooms",room),("loads",load),("circuits",circuit),("links",link)):
+        listed=c.get(prefix+"/entities/"+kind)
+        assert listed.status_code==200,listed.text
+        assert listed.json()["kind"]==kind
+        assert listed.json()["revision_state"]=="DRAFT"
+        assert len(listed.json()["items"])==1
+        assert listed.json()["items"][0]["id"]==obj["id"]
+        detail=c.get(prefix+"/entities/"+kind+"/"+obj["id"])
+        assert detail.status_code==200 and detail.json()["id"]==obj["id"]
+    assert DevStore(str(path)).list_entities(A,p,r,"rooms")["items"][0]["id"]==room["id"]
+    bogus="aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    assert c.get(prefix+"/entities/rooms/"+bogus).status_code==404
+    app.dependency_overrides[current_identity]=lambda: AuthIdentity(B,int(time.time())+600)
+    assert c.get(prefix+"/entities/rooms").status_code==404
+    assert c.get(prefix+"/entities/rooms/"+room["id"]).status_code==404
+
+
+def test_b05_readback_preserves_history_after_seal(env):
+    c,path=env
+    p,r,prefix,room,load,circuit,link=base(c)
+    assert c.post(prefix+"/seal",json={"expected_lock_version":0}).status_code==200
+    report=c.get(prefix+"/entities/loads")
+    assert report.status_code==200
+    assert report.json()["revision_state"]=="SEALED"
+    assert report.json()["items"][0]["id"]==load["id"]
+    assert c.patch(prefix+"/loads/"+load["id"]+"?expected_revision_lock_version=1",
+                   json={"label":"Alteracao"}).status_code==409
+    assert DevStore(str(path)).get_entity(A,p,r,"loads",load["id"])["label"]=="TUG"
