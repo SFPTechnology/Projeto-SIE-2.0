@@ -23,17 +23,21 @@ class Cursor:
         if "supabase_migrations.schema_migrations" in self.sql:
             return [(v,) for v in sorted(self.conn.versions)]
         if "information_schema.columns" in self.sql:
+            if "table_name='sie_projects'" in self.sql:
+                return [(v,) for v in sorted(self.conn.project_columns)]
             return [(v,) for v in sorted(self.conn.columns)]
         return self.conn.rows
 
 
 class Connection:
-    def __init__(self,versions=None,rows=None,columns=None):
+    def __init__(self,versions=None,rows=None,columns=None,project_columns=None):
         self.queries=[]
         self.versions=versions if versions is not None else set(REQUIRED_MIGRATIONS)
         self.columns=columns if columns is not None else {
             "lifecycle_state","base_revision_id","lock_version",
             "idempotency_key","sealed_snapshot","sealed_snapshot_sha256"}
+        self.project_columns=project_columns if project_columns is not None else {
+            "idempotency_key","request_fingerprint_sha256"}
         self.rows=rows or []
     def cursor(self): return Cursor(self)
 
@@ -58,7 +62,7 @@ def test_missing_a03_a04_blocks_remote_read():
     conn=Connection(versions={"20261027195557"})
     result=read_only_preflight(conn,PROJECT_REF)
     assert not result.ready
-    assert set(result.missing)=={"20261028102000","20261028102100"}
+    assert set(result.missing)=={"20261028102000","20261028102100","20261028153000"}
     with pytest.raises(IntegrationNotReady):
         list_owned_projects(conn,PROJECT_REF,A)
 
@@ -81,5 +85,13 @@ def test_owner_filtered_read_is_parameterized():
 
 def test_adapter_detects_cross_owner_even_when_db_returns_wrong_row():
     conn=Connection(rows=[(str(A),str(B),"Projeto B","2026-10-28")])
+    with pytest.raises(IntegrationNotReady):
+        list_owned_projects(conn,PROJECT_REF,A)
+
+
+def test_missing_project_idempotency_columns_blocks_remote_read():
+    conn=Connection(project_columns={"id","name"})
+    result=read_only_preflight(conn,PROJECT_REF)
+    assert "sie_projects.idempotency_columns" in result.missing
     with pytest.raises(IntegrationNotReady):
         list_owned_projects(conn,PROJECT_REF,A)
