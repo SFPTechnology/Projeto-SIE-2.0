@@ -40,10 +40,10 @@ def resolve_rule(rule_id, *, revision=None, uf=None, distributor=None, path=None
                 "reason": "LOCALITY_UNVERIFIED", "catalog_sha256": digest}
     if r.get("status") == "REVOKED":
         status, reason = "REVOKED", "RULE_REVOKED"
-    elif r.get("status") == "APPROVED" and r.get("verified_data") is True and (
-        isinstance(r.get("evidence_sha256"), str) and len(r["evidence_sha256"]) == 64
-        and r.get("approved_by") and r.get("approval_reference")):
-        status, reason = "APPROVED", "EVIDENCE_ATTESTED"
+    elif r.get("status") == "APPROVED":
+        # A mutable JSON record does not authenticate a licensed normative
+        # source or a professional sign-off. Trusted attestation belongs to E03.
+        status, reason = "REVIEW_REQUIRED", "TRUSTED_APPROVAL_ATTESTATION_REQUIRED"
     else:
         status, reason = "EVIDENCE_PENDING", "NO_VERIFIED_RULE_EVIDENCE"
     return {"rule_id": r["id"], "revision": r["revision"], "status": status,
