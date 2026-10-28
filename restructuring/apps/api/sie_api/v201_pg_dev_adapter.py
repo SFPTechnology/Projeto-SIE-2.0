@@ -11,6 +11,7 @@ and read back, verified Auth sessions, DB backup, and DDL authorization.
 from __future__ import annotations
 
 from decimal import Decimal, InvalidOperation
+from hashlib import sha256
 import os
 from ipaddress import ip_address
 from uuid import UUID
@@ -109,15 +110,31 @@ class Pg17DisposableAdapter:
             raise PgConflict("sealed revision cannot be changed")
         return row
 
-    def create_project(self,owner,name):
-        """Project idempotency is NOT claimed: GF02 lacks a project request key."""
-        owner=_uuid(owner);name=_text(name)
+    def create_project(self,owner,name,key):
+        """B04 exactly-once project creation: owner+key, persisted original payload."""
+        owner=_uuid(owner);name=_text(name);key=_text(key,128)
+        if len(key)<8: raise ValueError("short project idempotency key")
+        fingerprint=sha256(name.encode("utf-8")).hexdigest()
         with self.conn.transaction():
             with self.conn.cursor() as cur:
-                cur.execute("""INSERT INTO public.sie_projects(owner_id,name)
-                               VALUES (%s,%s) RETURNING id,name""",(owner,name))
-                pid,display=cur.fetchone()
-                return {"id":str(pid),"name":display}
+                cur.execute("""INSERT INTO public.sie_projects(
+                        owner_id,name,idempotency_key,request_fingerprint_sha256)
+                        VALUES (%s,%s,%s,%s)
+                        ON CONFLICT (owner_id,idempotency_key)
+                        WHERE idempotency_key IS NOT NULL DO NOTHING
+                        RETURNING id,name""",(owner,name,key,fingerprint))
+                row=cur.fetchone()
+                if row:
+                    return {"id":str(row[0]),"name":row[1],"replayed":False}
+                cur.execute("""SELECT id,name,request_fingerprint_sha256
+                         FROM public.sie_projects
+                         WHERE owner_id=%s AND idempotency_key=%s
+                         FOR UPDATE""",(owner,key))
+                previous=cur.fetchone()
+                if previous is None: raise PgConflict("missing idempotent project")
+                if previous[2]!=fingerprint:
+                    raise PgConflict("project key reused with different original payload")
+                return {"id":str(previous[0]),"name":previous[1],"replayed":True}
 
     def create_revision(self,owner,project,key,base=None):
         owner,project=_uuid(owner),_uuid(project)
