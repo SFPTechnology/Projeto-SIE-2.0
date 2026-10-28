@@ -1,0 +1,14 @@
+tabela,fk,colunas_fk,indice_existente_potencial,acao,observacao
+sie_projects,sie_projects_owner_id_fkey,owner_id,,CRIAR_CANDIDATO,Sem indice com owner_id na primeira coluna
+sie_project_revisions,sie_project_revisions_project_id_fkey,project_id,sie_revisions_project_idx,PRESERVAR,Prefixo projeto
+sie_project_revisions,sie_project_revisions_created_by_fkey,created_by,,CRIAR_CANDIDATO,Sem indice com created_by no prefixo
+sie_rooms,sie_rooms_revision_fk,revision_id+project_id,sie_rooms_scope_idx,PRESERVAR_REVISAR,Igualdade de duas colunas em ordem diferente
+sie_loads,sie_loads_room_scope_fk,room_id+project_id+revision_id,sie_loads_scope_idx,PRESERVAR_REVISAR,Igualdade de tres colunas em ordem diferente
+sie_circuits,sie_circuits_revision_fk,revision_id+project_id,sie_circuits_scope_idx,PRESERVAR_REVISAR,Igualdade de duas colunas em ordem diferente
+sie_circuit_loads,sie_links_circuit_scope_fk,circuit_id+project_id+revision_id,sie_links_circuit_idx,PRESERVAR_REVISAR,Igualdade de tres colunas em ordem diferente
+sie_circuit_loads,sie_links_load_scope_fk,load_id+project_id+revision_id,sie_links_one_circuit_per_load,PRESERVAR,Indice unico cobre as tres colunas
+sie_calculation_runs,sie_runs_revision_fk,revision_id+project_id,sie_runs_scope_idx,PRESERVAR_REVISAR,Igualdade de duas colunas em ordem diferente
+sie_artifacts,sie_artifacts_run_scope_fk,calculation_run_id+project_id+revision_id,sie_artifacts_scope_idx,PRESERVAR_REVISAR,Igualdade de tres colunas em ordem diferente
+sie_audit_events,sie_audit_events_project_id_fkey,project_id,sie_audit_scope_idx,PRESERVAR,Prefixo projeto
+sie_audit_events,sie_audit_events_actor_id_fkey,actor_id,,CRIAR_CANDIDATO,Sem indice com actor_id no prefixo
+sie_audit_events,sie_audit_revision_scope_fk,revision_id+project_id,,CRIAR_CANDIDATO,Sem indice cobrindo ambas colunas no prefixo
