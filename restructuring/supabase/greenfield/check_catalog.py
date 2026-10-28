@@ -17,12 +17,12 @@ TABLES = (
     "sie_circuits", "sie_circuit_loads", "sie_calculation_runs",
     "sie_artifacts", "sie_audit_events",
 )
-MIGRATION_NAME = re.compile(r"^(\\d{14})_([a-z][a-z0-9_]*)\\.sql$")
+MIGRATION_NAME = re.compile(r"^(\d{14})_([a-z][a-z0-9_]*)\.sql$")
 GIT_BLOB = re.compile(r"^[0-9a-f]{40}$")
 
 
 def git_blob_sha1(data: bytes) -> str:
-    header = b"blob " + str(len(data)).encode("ascii") + b"\\x00"
+    header = b"blob " + str(len(data)).encode("ascii") + b"\x00"
     return hashlib.sha1(header + data).hexdigest()
 
 
@@ -81,16 +81,16 @@ def verify(root: Path) -> dict:
         if match.group(1) == "20261027195557":
             if "DROP TABLE" in sql.upper() or "TRUNCATE " in sql.upper():
                 errors.append("GF02 baseline unexpectedly includes destructive statements")
-            tables = re.findall(r"(?im)^CREATE TABLE public\\.(sie_[a-z_]+)\\s*\\(", sql)
+            tables = re.findall(r"(?im)^CREATE TABLE public\.(sie_[a-z_]+)\s*\(", sql)
             if set(tables) != set(TABLES):
                 errors.append(f"GF02 table set differs: {sorted(tables)}")
-            if len(re.findall(r"(?im)^ALTER TABLE public\\.sie_[a-z_]+ ENABLE ROW LEVEL SECURITY;", sql)) != 9:
+            if len(re.findall(r"(?im)^ALTER TABLE public\.sie_[a-z_]+ ENABLE ROW LEVEL SECURITY;", sql)) != 9:
                 errors.append("GF02 requires 9 RLS-enabling statements")
             if len(re.findall(r"(?im)^CREATE POLICY sie_[a-z_]+", sql)) != 16:
                 errors.append("GF02 requires 16 policy definitions")
             if "raw_user_meta_data" in sql.lower():
                 errors.append("untrusted user_metadata authorization detected")
-            if re.search(r"(?i)\\bGRANT\\s+.+\\bTO\\s+anon\\s*;", sql):
+            if re.search(r"(?i)\bGRANT\s+.+\bTO\s+anon\s*;", sql):
                 errors.append("anonymous table grant detected")
 
     directory = workspace / "migrations"
