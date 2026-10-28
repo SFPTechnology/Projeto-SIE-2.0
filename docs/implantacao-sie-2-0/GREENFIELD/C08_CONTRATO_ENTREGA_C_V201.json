@@ -6,7 +6,7 @@
   "environment": "DEVELOPMENT",
   "repository": "SFPTechnology/Projeto-SIE-2.0",
   "source_branch": "feat/v201-bloco-c-dominio-eletrico",
-  "source_sha": "42b36070eea2e2a4579386ae366fd2f8c1a48687",
+  "source_sha": "e06d8eb7220154cf9a03478e75cba407486b2f2c",
   "baseline_b_sha": "63805c03c7146103cdd67eca4da3e369a751d379",
   "supabase_project_ref": "fozrymsidnaxmuvxxfhh",
   "remote_ddl_authorized": false,
@@ -33,20 +33,19 @@
     "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519101"
   ],
   "evidence_sha256": null,
-  "evidence_state": "SOURCE_SELECTION_AND_SHA256_READONLY_AUDIT_COMPLETE_REMOTE_HOMOLOGATION_AND_PROFESSIONAL_SIGNOFF_PENDING",
+  "evidence_state": "45_FIELDS_CLASSIFIED_11_TECHNICAL_CASES_PACKET_PREPARED_AUTH_IDENTITY_AND_PRO_SIGNOFF_PENDING_CI_FINAL_HEAD_PENDING",
   "blockers": [
-    "Bind owner of all five legacy projects to a genuine authenticated destination user after independent verification; user has self-declared ownership and selected all five",
-    "Governed dispositions for 45 unmapped source columns and retention of 10 historical audit orphan references",
-    "Consistent source cutoff, encrypted backup/restore and approved isolated ETL with 1934 of 1934 records accounted for",
-    "C04/C05 normative conditions, short-circuit/DR/DPS/earthing and professional engineering signoff",
-    "C03 canonical PostgreSQL revision snapshot must cover approved technical/electrical extensions",
-    "A03/A04/B04/C03 remote migrations, A/B Auth/RLS and E02–E06 require scoped explicit authorization for isolated staging",
-    "Final frozen HEAD same-SHA five CI checks, SHA256 evidence bundle and independent GC acceptance"
+    "Real user must complete Supabase Auth and prove verified JWT subject for 5/5 project ownership",
+    "Independent ownership attestation and reviewer confirmation required before owner assignment",
+    "7 electrical legacy fields and 1 room display mapping await specialist validation; 22 empty-table and 15 archive routes classified",
+    "Professional engineer must evaluate 11 technical and normative cases against licensed/current sources and provide authentic signoff",
+    "E02-E06 isolated staging authorization, migrations, backup/restore, actual ETL and 1,934-row reconciliation missing",
+    "Final same-SHA five-workflow QA and professional acceptance pending"
   ],
   "handoff_to": "D",
   "handoff_authorized": false,
   "production_release_authorized": false,
-  "source_sha_role": "LAST_VERIFIED_CODE_CI_4_OF_5_ON_THIS_SHA_NO_FINAL_GC",
+  "source_sha_role": "LAST_DOCUMENTED_CHECKPOINT_NOT_FINAL_HEAD_AT_COMMIT",
   "legacy_source_summary": {
     "projects": 5,
     "rooms": 41,
@@ -72,5 +71,30 @@
     "ownership": "SELF_DECLARED",
     "target_auth_account_verified": false,
     "migration_intent_confirmed": true
+  },
+  "legacy_semantic_review": {
+    "source_columns": 99,
+    "classified_additional_fields": 45,
+    "archive_only_source_fields": 15,
+    "zero_row_contract_fields": 22,
+    "professional_review_required": 7,
+    "schema_review_required": 1,
+    "canonical_transform_approval": false,
+    "artefact": "C02_REVISAO_SEMANTICA_45_CAMPOS_V201.csv"
+  },
+  "real_auth_binding": {
+    "current_source": "READBACK_AUTH_USERS_0",
+    "current_destination": "READBACK_AUTH_USERS_0",
+    "verified_jwt_subject": null,
+    "bound_owner_uuid": null,
+    "applied": false,
+    "gate": "BLOCKED_AUTH_ACCOUNT_NOT_CREATED"
+  },
+  "professional_review": {
+    "package": "C04_C05_DOSSIE_ACEITE_PROFISSIONAL_V201.json",
+    "engineering_cases": 11,
+    "state": "NOT_SUBMITTED",
+    "actual_professional_signature_verified": false,
+    "approval_granted": false
   }
 }
