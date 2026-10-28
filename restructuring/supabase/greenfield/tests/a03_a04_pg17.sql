@@ -98,9 +98,20 @@ RESET ROLE;
 RESET request.jwt.claim.sub;
 
 SET ROLE service_role;
-UPDATE public.sie_project_revisions
- SET lifecycle_state='SEALED', lock_version=lock_version+1
- WHERE id='cccccccc-cccc-4ccc-8ccc-cccccccccccc';
+SELECT (public.sie_a04_transition_revision(
+ 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+ 'cccccccc-cccc-4ccc-8ccc-cccccccccccc',0,'SEALED')).lifecycle_state;
+DO $test$
+BEGIN
+ BEGIN
+  PERFORM public.sie_a04_transition_revision(
+   'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+   'cccccccc-cccc-4ccc-8ccc-cccccccccccc',0,'SUPERSEDED');
+  RAISE EXCEPTION 'stale CAS unexpectedly allowed';
+ EXCEPTION WHEN serialization_failure THEN NULL;
+ END;
+END
+$test$;
 RESET ROLE;
 DO $test$
 DECLARE r record; n int;
@@ -125,6 +136,13 @@ SET ROLE authenticated;
 SET request.jwt.claim.sub = '11111111-1111-4111-8111-111111111111';
 DO $test$
 BEGIN
+ BEGIN
+  PERFORM public.sie_a04_transition_revision(
+   'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+   'cccccccc-cccc-4ccc-8ccc-cccccccccccc',1,'SUPERSEDED');
+  RAISE EXCEPTION 'browser called privileged CAS';
+ EXCEPTION WHEN insufficient_privilege THEN NULL;
+ END;
  BEGIN
  INSERT INTO public.sie_rooms(project_id,revision_id,name,width_m,length_m)
    VALUES ('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
@@ -202,9 +220,9 @@ END
 $test$;
 
 SET ROLE service_role;
-UPDATE public.sie_project_revisions
- SET lifecycle_state='SUPERSEDED',lock_version=lock_version+1
- WHERE id='cccccccc-cccc-4ccc-8ccc-cccccccccccc';
+SELECT (public.sie_a04_transition_revision(
+ 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+ 'cccccccc-cccc-4ccc-8ccc-cccccccccccc',1,'SUPERSEDED')).lifecycle_state;
 RESET ROLE;
 DO $test$
 DECLARE r record;
