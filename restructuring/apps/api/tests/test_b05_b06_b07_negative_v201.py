@@ -146,3 +146,32 @@ def test_b07_dev_routes_off_in_prod_even_if_flag_is_set(env,monkeypatch):
     c,_=env
     monkeypatch.setenv("SIE_ENV","prod")
     assert c.get("/api/v2/sie/dev/projects").status_code==503
+
+
+
+def test_b07_rate_limiter_blocks_repeated_dev_writes(env,monkeypatch):
+    from sie_api.v201_dev_rate import reset_dev_test_only
+    c,_=env
+    reset_dev_test_only()
+    monkeypatch.setenv("SIE_V201_DEV_RATE_LIMIT","1")
+    try:
+        first=c.post("/api/v2/sie/dev/projects",json={"name":"A"},
+                     headers={"Idempotency-Key":"rate-project-key-1"})
+        assert first.status_code==201,first.text
+        rejected=c.post("/api/v2/sie/dev/projects",json={"name":"B"},
+                        headers={"Idempotency-Key":"rate-project-key-2"})
+        assert rejected.status_code==429
+        assert rejected.headers["Retry-After"]=="60"
+    finally:
+        reset_dev_test_only()
+
+
+def test_b07_cors_accepts_local_patch_but_rejects_external_origin():
+    c=TestClient(app)
+    hdr={"Origin":"http://localhost:5173","Access-Control-Request-Method":"PATCH"}
+    good=c.options("/api/v2/sie/dev/projects",headers=hdr)
+    assert good.status_code==200
+    blocked=c.options("/api/v2/sie/dev/projects",headers={
+        "Origin":"https://evil.example","Access-Control-Request-Method":"DELETE"})
+    assert blocked.status_code==400
+    assert blocked.headers.get("Access-Control-Allow-Origin") is None
