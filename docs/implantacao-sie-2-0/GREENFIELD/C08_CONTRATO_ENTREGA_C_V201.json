@@ -33,9 +33,9 @@
     "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519101"
   ],
   "evidence_sha256": null,
-  "evidence_state": "45_FIELDS_CLASSIFIED_11_TECHNICAL_CASES_PACKET_PREPARED_AUTH_IDENTITY_AND_PRO_SIGNOFF_PENDING_CI_FINAL_HEAD_PENDING",
+  "evidence_state": "AUTH_ACCOUNT_EXISTS_CONFIRMATION_READBACK_20261028; SESSION_OWNER_BINDING_PENDING; C11_C12_C13_DRAFT_NOT_SIGNED; 45_FIELDS_CLASSIFIED_11_TECHNICAL_CASES_UNAPPROVED",
   "blockers": [
-    "Real user must complete Supabase Auth and prove verified JWT subject for 5/5 project ownership",
+    "Auth user exists and is confirmed (aggregate readback); still require trusted JWT subject, proof the account belongs to intended user, and 5/5 binding",
     "Independent ownership attestation and reviewer confirmation required before owner assignment",
     "7 electrical legacy fields and 1 room display mapping await specialist validation; 22 empty-table and 15 archive routes classified",
     "Professional engineer must evaluate 11 technical and normative cases against licensed/current sources and provide authentic signoff",
@@ -53,7 +53,7 @@
     "audit_events": 1805,
     "orphan_audit_room_refs": 10,
     "source_auth_users": 0,
-    "destination_auth_users": 0,
+    "destination_auth_users": 1,
     "owner_assignment": "HUMAN_REQUIRED",
     "projects_selected": 5,
     "all_selected_for_migration": true,
@@ -84,17 +84,20 @@
   },
   "real_auth_binding": {
     "current_source": "READBACK_AUTH_USERS_0",
-    "current_destination": "READBACK_AUTH_USERS_0",
+    "current_destination": "READBACK_AUTH_USERS_1_CONFIRMED_0_SOFT_DELETED_20261028",
     "verified_jwt_subject": null,
     "bound_owner_uuid": null,
     "applied": false,
-    "gate": "BLOCKED_AUTH_ACCOUNT_NOT_CREATED"
+    "gate": "BLOCKED_AUTH_SESSION_AND_OWNERSHIP_PROOF_PENDING"
   },
   "professional_review": {
     "package": "C04_C05_DOSSIE_ACEITE_PROFISSIONAL_V201.json",
     "engineering_cases": 11,
-    "state": "NOT_SUBMITTED",
+    "state": "AWAITING_PROFESSIONAL_REGISTRATION_CHECK_AND_TEST_EVIDENCE",
     "actual_professional_signature_verified": false,
-    "approval_granted": false
+    "approval_granted": false,
+    "procedure": "C11_PROCEDIMENTO_VALIDACAO_PROFISSIONAL_C_V201.md",
+    "dossier": "C12_DOSSIE_VALIDACAO_EVIDENCIAS_ELETRICAS_V201.md",
+    "unsigned_acceptance_template": "C13_TERMO_ACEITE_TECNICO_ELETRICO_MODELO_V201.md"
   }
 }
