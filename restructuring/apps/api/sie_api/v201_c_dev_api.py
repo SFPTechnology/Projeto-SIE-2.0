@@ -15,7 +15,7 @@ def calculate_revision(project_id: UUID, revision_id: UUID,
                        identity: AuthIdentity = Depends(current_identity)):
     row=_run(run_sealed_dev,_store(),identity.user_id,project_id,revision_id,idempotency_key)
     return {"id":row["id"],"input_sha256":row["input_sha256"],
-            "output_sha256":row["output_sha256"],"normative_status":"EVIDENCE_PENDING",
+            "output_sha256":row["output_sha256"],"normative_status":row["normative_status"],
             "dev_only":True}
 
 @router.get("/projects/{project_id}/revisions/{revision_id}/calculations/{run_id}")
