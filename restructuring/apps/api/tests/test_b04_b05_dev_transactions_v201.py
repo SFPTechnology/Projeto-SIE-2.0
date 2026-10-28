@@ -322,3 +322,19 @@ def test_b05_bundle_invalid_decimal_and_unknown_json_denied(env):
     bundle["loads"][0]["owner_id"]=str(B)
     assert post(c,f"/projects/{p}/revisions/{rev}/bundle",bundle).status_code==422
     assert DevStore(str(path)).snapshot(A,p,rev)["rooms"]==[]
+
+
+
+def test_revision_history_is_owner_scoped_and_ordered(env):
+    c,path=env
+    p=create(c)
+    r=revision(c,p)
+    assert post(c,f"/projects/{p}/revisions/{r}/seal",
+                {"expected_lock_version":0}).status_code==200
+    newer=revision(c,p,"revision-key-002",r)
+    result=c.get(f"/api/v2/sie/dev/projects/{p}/revisions")
+    assert result.status_code==200,result.text
+    assert [(row["id"],row["version"],row["state"]) for row in result.json()["revisions"]] == [
+        (r,1,"SEALED"),(newer,2,"DRAFT")]
+    app.dependency_overrides[current_identity]=lambda: AuthIdentity(B,int(time.time())+600)
+    assert c.get(f"/api/v2/sie/dev/projects/{p}/revisions").status_code==404
