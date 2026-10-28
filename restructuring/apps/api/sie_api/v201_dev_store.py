@@ -12,6 +12,7 @@ import json
 import sqlite3
 from pathlib import Path
 from uuid import UUID, uuid4
+from . import v201_dev_audit
 
 
 class Missing(LookupError):
@@ -117,10 +118,12 @@ class DevStore:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with closing(self._connect()) as db:
             db.executescript(SCHEMA)
+            v201_dev_audit.install(db)
 
     def _connect(self):
         db = sqlite3.connect(str(self.path), timeout=8, isolation_level=None)
         db.row_factory = sqlite3.Row
+        v201_dev_audit.register(db)
         db.execute("PRAGMA foreign_keys=ON")
         db.execute("PRAGMA busy_timeout=8000")
         return db
@@ -173,7 +176,7 @@ class DevStore:
             return dict(self._project(db,owner,pid))
 
     def list_projects(self,owner):
-        with self._connect() as db:
+        with closing(self._connect()) as db:
             rows=db.execute("SELECT id,name,lock_version,created_at FROM v201_projects WHERE owner=? ORDER BY created_at,id",
                             (_uuid(owner),)).fetchall()
             return [dict(r) for r in rows]
@@ -457,3 +460,22 @@ class DevStore:
                          (_uuid(revision),_uuid(project),expected_lock))
             if cur.rowcount!=1: raise Conflict("versao de revisao desatualizada")
             return {"deleted_id":_uuid(entity_id),"revision_lock_version":expected_lock+1}
+
+
+    def audit_events(self,owner,project,limit=200):
+        if type(limit) is not int or not 1<=limit<=200:
+            raise Invalid("limite de auditoria invalido")
+        with closing(self._connect()) as db:
+            self._project(db,owner,project)
+            rows=db.execute("""SELECT sequence,project_id,revision_id,actor_id,
+                         event_type,entity_id,occurred_at,event_sha256
+                         FROM v201_audit_events WHERE project_id=?
+                         ORDER BY sequence LIMIT ?""",(_uuid(project),limit)).fetchall()
+            events=[dict(r) for r in rows]
+            for event in events:
+                expected=v201_dev_audit.digest(
+                    event["event_type"],event["actor_id"],event["project_id"],
+                    event["revision_id"],event["entity_id"],event["occurred_at"])
+                if event["event_sha256"]!=expected:
+                    raise Conflict("auditoria local corrompida")
+            return events
