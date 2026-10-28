@@ -49,9 +49,16 @@ def verify(root: Path) -> dict:
     if not isinstance(entries, list) or not entries:
         errors.append("no declared baseline migrations")
         entries = []
+    pending = manifest.get("pending_migrations", [])
+    if not isinstance(pending, list):
+        errors.append("pending_migrations must be an array")
+        pending = []
+    if any(item.get("applied_remote") is not False for item in pending):
+        errors.append("pending migration falsely claims remote application")
+    applied_names = {item.get("file") for item in entries}
     declared: set[str] = set()
     versions: set[str] = set()
-    for item in entries:
+    for item in entries + pending:
         name = item.get("file", "")
         match = MIGRATION_NAME.fullmatch(name)
         if not match or "/" in name or ".." in name:
@@ -77,6 +84,7 @@ def verify(root: Path) -> dict:
             errors.append(f"migration modified or incorrect source blob: {name}")
         sql = raw.decode("utf-8")
         details.append({"file": name, "version": match.group(1),
+                        "state": "APPLIED" if name in applied_names else "PENDING",
                         "git_blob_sha1": digest, "sha256": hashlib.sha256(raw).hexdigest()})
         if match.group(1) == "20261027195557":
             if "DROP TABLE" in sql.upper() or "TRUNCATE " in sql.upper():
@@ -102,7 +110,9 @@ def verify(root: Path) -> dict:
     return {
         "ok": not errors, "project_ref": manifest.get("project_ref"),
         "scope": "static-catalog-only; not remote schema equivalence",
-        "migrations": details, "errors": errors,
+        "migrations": [x for x in details if x["state"] == "APPLIED"],
+        "pending_migrations": [x for x in details if x["state"] == "PENDING"],
+        "errors": errors,
         "legacy_root_excluded": True,
     }
 
