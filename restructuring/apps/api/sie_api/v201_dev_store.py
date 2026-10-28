@@ -181,6 +181,29 @@ class DevStore:
                             (_uuid(owner),)).fetchall()
             return [dict(r) for r in rows]
 
+    # B05 owner-scoped read-back: no client-provided SQL identifier accepted.
+    _READABLE_ENTITIES = frozenset(("rooms", "loads", "circuits", "links"))
+
+    def list_entities(self,owner,project,revision,kind):
+        if kind not in self._READABLE_ENTITIES:
+            raise Invalid("tipo de entidade invalido")
+        with closing(self._connect()) as db:
+            rev=self._revision(db,owner,project,revision)
+            rows=db.execute(
+                f"SELECT * FROM v201_{kind} WHERE project_id=? AND revision_id=? ORDER BY id",
+                (_uuid(project),_uuid(revision))
+            ).fetchall()
+            return {"kind":kind,"revision_state":rev["state"],
+                    "revision_lock_version":rev["lock_version"],
+                    "items":[dict(row) for row in rows]}
+
+    def get_entity(self,owner,project,revision,kind,entity):
+        if kind not in self._READABLE_ENTITIES:
+            raise Invalid("tipo de entidade invalido")
+        with closing(self._connect()) as db:
+            self._revision(db,owner,project,revision)
+            return dict(self._entity_row(db,kind,project,revision,entity))
+
     def list_revisions(self,owner,project):
         with closing(self._connect()) as db:
             self._project(db,owner,project)
