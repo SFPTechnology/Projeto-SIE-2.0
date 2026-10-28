@@ -17,6 +17,7 @@ from .installation_api import router as installation_router
 from .installation_storage_api import router as installation_storage_router
 from .distributor_api_f09 import router as distributor_router_f09
 from .auth_router_v201 import router as auth_router_v201
+from .v201_dev_api import router as v201_dev_router
 
 app = FastAPI(title="SIE 2.0 - API modular", version="0.1.0")
 app.add_middleware(
@@ -72,6 +73,7 @@ app.include_router(installation_router)
 app.include_router(installation_storage_router)
 app.include_router(distributor_router_f09)
 app.include_router(auth_router_v201)
+app.include_router(v201_dev_router)
 
 
 class Circuito(BaseModel):
