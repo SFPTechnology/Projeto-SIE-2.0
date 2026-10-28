@@ -14,7 +14,7 @@ from .v201_dev_server_writer import ServerWriter, hash_snapshot
 from .v201_c_normative import catalog_snapshot
 from .v201_c_explicit_checks import analyze_explicit
 
-ENGINE_VERSION = "sie2-c05-v201-dev-1"
+ENGINE_VERSION = "sie2-c05-v201-dev-2"
 PENDING_CHECKS = ("illumination_and_tug_normative", "demand_and_balance",
                   "phase_topology", "conductor_and_voltage_drop",
                   "overcurrent_dr_dps_earthing", "distributor_category")
