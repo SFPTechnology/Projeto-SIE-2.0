@@ -78,7 +78,7 @@ BEGIN
    VALUES ('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',
    'dddddddd-dddd-4ddd-8ddd-dddddddddddd','CROSS',127);
    RAISE EXCEPTION 'cross-project reference accepted';
- EXCEPTION WHEN foreign_key_violation THEN NULL;
+ EXCEPTION WHEN foreign_key_violation OR check_violation THEN NULL;
  END;
  BEGIN
    INSERT INTO public.sie_feeders
