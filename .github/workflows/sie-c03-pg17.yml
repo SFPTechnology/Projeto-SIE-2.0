@@ -6,6 +6,8 @@ on:
   pull_request:
     paths:
       - "docs/implantacao-sie-2-0/GREENFIELD/C03_SCHEMA_CANDIDATE_V201.sql"
+      - "restructuring/supabase/migrations/20261028203000_sie_c03_electrical_domain_v201.sql"
+      - "restructuring/supabase/greenfield/manifest.json"
       - "restructuring/supabase/greenfield/tests/c03_pg17.sql"
       - ".github/workflows/sie-c03-pg17.yml"
 permissions:
@@ -49,7 +51,10 @@ jobs:
       - name: Apply B04 candidate in disposable DB
         run: psql -X -v ON_ERROR_STOP=1 -f restructuring/supabase/migrations/20261028153000_sie_b04_idempotency_backend_grants_v201.sql
       - name: Apply C03 candidate only in disposable DB
-        run: psql -X -v ON_ERROR_STOP=1 -f docs/implantacao-sie-2-0/GREENFIELD/C03_SCHEMA_CANDIDATE_V201.sql
+        run: |
+          cmp -s restructuring/supabase/migrations/20261028203000_sie_c03_electrical_domain_v201.sql docs/implantacao-sie-2-0/GREENFIELD/C03_SCHEMA_CANDIDATE_V201.sql
+          python restructuring/supabase/greenfield/check_catalog.py --json
+          psql -X -v ON_ERROR_STOP=1 -f restructuring/supabase/migrations/20261028203000_sie_c03_electrical_domain_v201.sql
       - name: Exercise electrical relation and security constraints
         run: psql -X -v ON_ERROR_STOP=1 -f restructuring/supabase/greenfield/tests/c03_pg17.sql
       - name: Verify no remote endpoint
