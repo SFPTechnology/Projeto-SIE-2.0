@@ -50,6 +50,8 @@ def _run(func, *args):
         raise HTTPException(status_code=409, detail=str(exc)) from None
     except Invalid as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from None
+    except sqlite3.IntegrityError:
+        raise HTTPException(status_code=409, detail="Relacionamento ou chave duplicada") from None
     except (sqlite3.DatabaseError, OSError):
         raise HTTPException(status_code=503, detail="Persistencia DEV indisponivel") from None
 
