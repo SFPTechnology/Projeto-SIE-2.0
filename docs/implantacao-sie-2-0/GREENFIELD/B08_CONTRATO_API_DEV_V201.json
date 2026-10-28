@@ -1,0 +1,136 @@
+{
+  "schema_version": "2.0.1",
+  "block": "B",
+  "api_contract_version": "0.1.0-dev",
+  "status": "IMPLEMENTED_DEV_PENDING_FINAL_CI",
+  "namespace": "/api/v2/sie",
+  "owner_source": "Supabase Auth GET /auth/v1/user",
+  "environment": "DEV_ONLY",
+  "interfaces": [
+    {
+      "method": "GET",
+      "path": "/api/v2/sie/auth/me",
+      "control": "Supabase Auth validated bearer"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/sie/projects",
+      "control": "feature flag off unless explicitly enabled; JWT-user RLS read"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/sie/dev/projects",
+      "control": "owner-only plus request idempotency key"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/sie/dev/projects",
+      "control": "owner-only"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v2/sie/dev/projects/{project_id}",
+      "control": "optimistic lock"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/sie/dev/projects/{project_id}/revisions",
+      "control": "idempotent clone"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/sie/dev/projects/{project_id}/revisions",
+      "control": "owner-only history"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/sie/dev/projects/{project_id}/revisions/{revision_id}/snapshot",
+      "control": "owner-only immutable seal"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/sie/dev/projects/{project_id}/revisions/{revision_id}/entities/{entity_kind}",
+      "control": "owner-only list"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/sie/dev/projects/{project_id}/revisions/{revision_id}/entities/{entity_kind}/{entity_id}",
+      "control": "owner-only detail"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/sie/dev/projects/{project_id}/revisions/{revision_id}/bundle",
+      "control": "atomic B05"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v2/sie/dev/projects/{project_id}/revisions/{revision_id}/{entity_kind}/{entity_id}",
+      "control": "revision CAS"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/sie/dev/projects/{project_id}/revisions/{revision_id}/{entity_kind}/{entity_id}",
+      "control": "FK restrict plus revision CAS"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/sie/dev/projects/{project_id}/revisions/{revision_id}/seal",
+      "control": "immutable snapshot and SHA"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/sie/dev/projects/{project_id}/audit",
+      "control": "owner-only event ledger"
+    }
+  ],
+  "server_only": [
+    "sie_calculation_runs",
+    "sie_artifacts",
+    "sie_audit_events"
+  ],
+  "domain_entities": [
+    "sie_projects",
+    "sie_project_revisions",
+    "sie_rooms",
+    "sie_loads",
+    "sie_circuits",
+    "sie_circuit_loads"
+  ],
+  "security": {
+    "authentication": "required for every /dev route",
+    "owner_claims_from_browser": false,
+    "allow_remote_write": false,
+    "production_enabled": false,
+    "token_storage": "volatile in browser",
+    "secret_key_in_browser": false
+  },
+  "migrations": {
+    "remote_applied": [
+      "20261027195557"
+    ],
+    "pending": [
+      "20261028102000",
+      "20261028102100",
+      "20261028153000"
+    ]
+  },
+  "qa_data": {
+    "source": "SYNTHETIC",
+    "users": [
+      "A",
+      "B"
+    ],
+    "rooms": 2,
+    "loads": 3,
+    "circuits": 2,
+    "links": 3
+  },
+  "residuals": [
+    "REMOTE_AB_TEST_PENDING",
+    "REMOTE_DDL_AUTH_PENDING",
+    "REMOTE_BACKUP_RESTORE_PENDING",
+    "FRONTEND_PRODUCTION_AUTH_PENDING"
+  ],
+  "handoff": "C",
+  "normative_status": "NOT_EVALUATED"
+}
