@@ -13,5 +13,21 @@
     }
   ],
   "remote_ddl_authorized": false,
-  "note": "Additional migrations require manifest update and separate production DDL authorization."
+  "note": "GF02 only is applied remotely. A03 and A04 versioned files are PENDING and must NOT be applied to Supabase automatically. They are tested in disposable CI only; remote DDL requires separate authorization and exact read-back.",
+  "pending_migrations": [
+    {
+      "version": "20261028102000",
+      "name": "sie_a03_indexes_v201",
+      "file": "20261028102000_sie_a03_indexes_v201.sql",
+      "git_blob_sha1": "5b523c1dafe551d081c5f03cc0f1cc93db81b082",
+      "applied_remote": false
+    },
+    {
+      "version": "20261028102100",
+      "name": "sie_a04_revision_lifecycle_v201",
+      "file": "20261028102100_sie_a04_revision_lifecycle_v201.sql",
+      "git_blob_sha1": "e9dc6544a0e915f0b8596ee851510ac6ae1a119e",
+      "applied_remote": false
+    }
+  ]
 }
