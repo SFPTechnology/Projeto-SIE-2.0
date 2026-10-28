@@ -252,10 +252,10 @@ def test_b04_b05_actual_pg_role_a_b_and_backend_dml(conn):
     with conn.cursor() as cur:
         try:
             cur.execute("SET ROLE authenticated")
-            cur.execute("SET request.jwt.claim.sub = %s",(str(A),))
+            cur.execute("SELECT set_config(\'request.jwt.claim.sub\',%s,false)",(str(A),))
             cur.execute("SELECT COUNT(*) FROM public.sie_projects WHERE id=%s",(pid,))
             assert cur.fetchone()[0]==1
-            cur.execute("SET request.jwt.claim.sub = %s",(str(B),))
+            cur.execute("SELECT set_config(\'request.jwt.claim.sub\',%s,false)",(str(B),))
             cur.execute("SELECT COUNT(*) FROM public.sie_projects WHERE id=%s",(pid,))
             assert cur.fetchone()[0]==0
             with pytest.raises(psycopg.errors.InsufficientPrivilege):
