@@ -247,3 +247,78 @@ def test_clone_is_all_or_nothing_on_database_error(env):
     r2=post(c,f"/projects/{p}/revisions",
             {"base_revision_id":r},"clone-key-rollback")
     assert r2.status_code==201, r2.text
+
+
+
+def example_bundle():
+    return {
+        "rooms":[{"ref":"room-01","name":"Sala","width_m":"3.1250","length_m":"5.2500"}],
+        "loads":[{"ref":"load-01","room_ref":"room-01","label":"TUG Bancada",
+                  "kind":"TUG","apparent_power_va":"350.125","quantity":1}],
+        "circuits":[{"ref":"circ-01","code":"C-01","nominal_voltage_v":"127.000"}],
+        "links":[{"circuit_ref":"circ-01","load_ref":"load-01"}],
+    }
+
+
+def test_b05_bundle_commits_all_four_entities(env):
+    c,path=env
+    p=create(c); rev=revision(c,p)
+    result=post(c,f"/projects/{p}/revisions/{rev}/bundle",example_bundle())
+    assert result.status_code==201,result.text
+    assert result.json()["transaction"]=="COMMITTED_DEV_ONLY"
+    assert result.json()["counts"]=={"rooms":1,"loads":1,"circuits":1,"links":1}
+    snapshot=c.get(f"/api/v2/sie/dev/projects/{p}/revisions/{rev}/snapshot").json()
+    assert all(len(snapshot[key])==1 for key in ("rooms","loads","circuits","links"))
+    assert snapshot["loads"][0]["room_id"]==snapshot["rooms"][0]["id"]
+    assert snapshot["links"][0]["load_id"]==snapshot["loads"][0]["id"]
+    assert snapshot["links"][0]["circuit_id"]==snapshot["circuits"][0]["id"]
+    assert DevStore(str(path)).snapshot(A,p,rev)==snapshot
+
+
+def test_b05_bundle_bad_reference_rolls_back_everything(env):
+    c,path=env
+    p=create(c); rev=revision(c,p)
+    bundle=example_bundle()
+    bundle["links"][0]["load_ref"]="wrong-load-ref"
+    result=post(c,f"/projects/{p}/revisions/{rev}/bundle",bundle)
+    assert result.status_code==409,result.text
+    assert all(len(rows)==0 for k,rows in DevStore(str(path)).snapshot(A,p,rev).items()
+               if k in ("rooms","loads","circuits","links"))
+
+
+def test_b05_bundle_duplicate_load_link_rolls_back_all(env):
+    c,path=env
+    p=create(c); rev=revision(c,p)
+    bundle=example_bundle()
+    bundle["links"].append(bundle["links"][0].copy())
+    assert post(c,f"/projects/{p}/revisions/{rev}/bundle",bundle).status_code==409
+    assert DevStore(str(path)).snapshot(A,p,rev)["rooms"]==[]
+
+
+def test_b05_bundle_denied_for_foreign_owner(env):
+    c,path=env
+    p=create(c); rev=revision(c,p)
+    app.dependency_overrides[current_identity]=lambda: AuthIdentity(B,int(time.time())+600)
+    assert post(c,f"/projects/{p}/revisions/{rev}/bundle",example_bundle()).status_code==404
+    assert DevStore(str(path)).snapshot(A,p,rev)["rooms"]==[]
+
+
+def test_b05_bundle_forbidden_on_sealed_revision(env):
+    c,path=env
+    p=create(c);rev=revision(c,p)
+    assert post(c,f"/projects/{p}/revisions/{rev}/seal",
+                {"expected_lock_version":0}).status_code==200
+    assert post(c,f"/projects/{p}/revisions/{rev}/bundle",example_bundle()).status_code==409
+    assert DevStore(str(path)).snapshot(A,p,rev)["rooms"]==[]
+
+
+def test_b05_bundle_invalid_decimal_and_unknown_json_denied(env):
+    c,path=env
+    p=create(c);rev=revision(c,p)
+    bundle=example_bundle()
+    bundle["rooms"][0]["width_m"]="0.00001"
+    assert post(c,f"/projects/{p}/revisions/{rev}/bundle",bundle).status_code==422
+    bundle=example_bundle()
+    bundle["loads"][0]["owner_id"]=str(B)
+    assert post(c,f"/projects/{p}/revisions/{rev}/bundle",bundle).status_code==422
+    assert DevStore(str(path)).snapshot(A,p,rev)["rooms"]==[]
