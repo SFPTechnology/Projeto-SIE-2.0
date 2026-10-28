@@ -1,3 +1,37 @@
+# C01 — Inventário do legado: evidência atualizada
+
+## Read-back operacional de C01 — 28/10/2026 (corrige o checkpoint anterior)
+
+O banco legado foi localizado no projeto Supabase `Electrical_Project` (organização correspondente à do SIE 2.0). Uma leitura autenticada, sem DDL/DML, confirmou que a estrutura real contém 15 tabelas de domínio, além da tabela de controle de schema. Os registros NÃO estão vazios.
+
+| Tabela | Registros lidos |
+|---|---:|
+| projetos | 5 |
+| dependencias | 41 |
+| dependencia_bancadas | 0 |
+| dependencia_cargas_adicionais | 52 |
+| dependencia_edicoes_manuais | 17 |
+| dependencia_validacao | 0 |
+| eventos_auditoria | 1805 |
+| parametros_edp_overrides | 2 |
+| dependencia_retornos_downstream | 0 |
+| dimensionamento_condutores_overrides | 2 |
+| dimensionamento_condutores_resultado | 3 |
+| dimensionamento_disjuntores_overrides | 2 |
+| queda_tensao_config | 5 |
+| secoes_otimizadas_operacoes | 0 |
+| secoes_otimizadas_projeto | 0 |
+
+As verificações SQL de órfãos retornaram 0 para dependências→projetos, cargas→dependências, edições→dependências, auditoria→projetos e overrides EDP→projetos. Na referência histórica auditoria→dependências foram constatados **10 eventos sem ambiente atualmente correspondente**, que devem permanecer preservados/quarentenados até conciliação.
+
+`auth.users` do legado está vazio e `public.projetos` não possui `owner_id`; o destino SIE 2.0 também estava sem usuários Auth no read-back. Portanto o inventário da **origem está comprovado**, mas a **titularidade dos projetos NÃO está comprovada**. Uma matrícula/texto de autor não substitui usuário autenticado. Nenhuma importação ou mapeamento de proprietário real está autorizado automaticamente.
+
+**C01: SOURCE_FOUND_COUNTS_VERIFIED.** **C07 real: HUMAN_REQUIRED (owner mapping + 10 referências históricas + backup, staging e reconciliação).** Nunca adotar `NO_LEGACY_DATA`. Este read-back não constitui exportação, snapshot imutável de corte, verificação de backup ou autorização para escrever no destino.
+
+---
+
+## Levantamento inicial, mantido para rastreabilidade
+
 # C01 — Inventário e decisão da fonte legada (28/10/2026)
 
 ## Origem examinada — somente leitura
