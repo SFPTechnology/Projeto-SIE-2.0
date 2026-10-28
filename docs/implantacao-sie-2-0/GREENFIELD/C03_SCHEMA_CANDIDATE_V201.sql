@@ -165,6 +165,56 @@ CREATE TABLE public.sie_normative_rule_versions (
     (evidence_sha256 IS NOT NULL AND approval_reference IS NOT NULL AND approved_by IS NOT NULL))
 );
 
+
+-- All new project/revision child entities are DRAFT-only; sealed and historical
+-- revisions cannot be modified even by a trusted backend service_role.
+CREATE FUNCTION public.sie_c03_guard_revision_edit()
+RETURNS trigger LANGUAGE plpgsql SET search_path = '' AS $fn$
+DECLARE p uuid; r uuid; state text;
+BEGIN
+  IF TG_OP='DELETE' THEN
+    p := OLD.project_id; r := OLD.revision_id;
+  ELSE
+    p := NEW.project_id; r := NEW.revision_id;
+    IF TG_OP='UPDATE' AND
+       (OLD.project_id <> NEW.project_id OR OLD.revision_id <> NEW.revision_id) THEN
+      RAISE EXCEPTION 'C03 immutable scope' USING ERRCODE='23514';
+    END IF;
+  END IF;
+  SELECT lifecycle_state INTO state FROM public.sie_project_revisions
+  WHERE id=r AND project_id=p;
+  IF NOT FOUND OR state <> 'DRAFT' THEN
+    RAISE EXCEPTION 'C03 revision is not DRAFT' USING ERRCODE='23514';
+  END IF;
+  IF TG_OP='DELETE' THEN RETURN OLD; ELSE RETURN NEW; END IF;
+END $fn$;
+
+DO $
+DECLARE tbl text;
+BEGIN
+  FOREACH tbl IN ARRAY ARRAY[
+    'sie_panels','sie_feeders','sie_circuit_technical','sie_room_benches',
+    'sie_floorplans','sie_floorplan_vertices','sie_graphical_bindings',
+    'sie_legacy_results','sie_distributor_overrides'
+  ] LOOP
+    EXECUTE format(
+      'CREATE TRIGGER %I BEFORE INSERT OR UPDATE OR DELETE ON public.%I
+       FOR EACH ROW EXECUTE FUNCTION public.sie_c03_guard_revision_edit()',
+      tbl || '_draft_only',tbl);
+  END LOOP;
+END $;
+REVOKE ALL ON FUNCTION public.sie_c03_guard_revision_edit() FROM PUBLIC, anon, authenticated;
+-- Versioned rules are append-only; a replacement requires a new version.
+CREATE FUNCTION public.sie_c03_rule_no_mutation()
+RETURNS trigger LANGUAGE plpgsql SET search_path = '' AS $fn$
+BEGIN
+  RAISE EXCEPTION 'C03 normative rule version is immutable' USING ERRCODE='23514';
+END $fn$;
+CREATE TRIGGER sie_c03_rule_no_mutation BEFORE UPDATE OR DELETE
+ON public.sie_normative_rule_versions
+FOR EACH ROW EXECUTE FUNCTION public.sie_c03_rule_no_mutation();
+REVOKE ALL ON FUNCTION public.sie_c03_rule_no_mutation() FROM PUBLIC, anon, authenticated;
+
 -- Newly exposed tables: default deny anon, owner-only SELECT for authenticated.
 -- Writes are backend-only, with owner verification in trusted application code.
 DO $$

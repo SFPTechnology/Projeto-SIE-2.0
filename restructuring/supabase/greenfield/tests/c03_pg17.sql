@@ -55,6 +55,24 @@ INSERT INTO public.sie_floorplans
 
 DO $test$
 BEGIN
+ -- A03/A04 fixture has a SEALED/SUPERSEDED A revision; new children must be denied.
+ BEGIN
+   INSERT INTO public.sie_panels(project_id,revision_id,code,nominal_voltage_v)
+   VALUES('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
+     'cccccccc-cccc-4ccc-8ccc-cccccccccccc','IMMUTABLE',127);
+   RAISE EXCEPTION 'new child inserted on SEALED revision';
+ EXCEPTION WHEN check_violation THEN NULL;
+ END;
+ BEGIN
+   UPDATE public.sie_panels SET code='NEW-CODE'
+   WHERE id='a0a0a0a0-aaaa-4aaa-8aaa-aaaaaaaaa001'
+   AND revision_id='dddddddd-dddd-4ddd-8ddd-dddddddddddd';
+   -- DRAFT update is allowed; restore for fixture consistency.
+   UPDATE public.sie_panels SET code='QDG'
+   WHERE id='a0a0a0a0-aaaa-4aaa-8aaa-aaaaaaaaa001';
+ EXCEPTION WHEN OTHERS THEN
+   RAISE EXCEPTION 'C03 DRAFT edits unexpectedly blocked';
+ END;
  BEGIN
    INSERT INTO public.sie_panels (project_id,revision_id,code,nominal_voltage_v)
    VALUES ('bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',
