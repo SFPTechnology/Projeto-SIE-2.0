@@ -57,14 +57,14 @@ BEGIN
 END
 $test$;
 
-INSERT INTO public.sie_rooms (id, project_id, revision_id, name, width_m, length_m)
-VALUES ('eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee',
+INSERT INTO public.sie_rooms (project_id, revision_id, name, width_m, length_m)
+VALUES (
   'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
   'cccccccc-cccc-4ccc-8ccc-cccccccccccc',
   'Sala segura',4,5);
 
-INSERT INTO public.sie_circuits (id,project_id,revision_id,code,nominal_voltage_v)
-VALUES ('ffffffff-ffff-4fff-8fff-ffffffffffff',
+INSERT INTO public.sie_circuits (project_id,revision_id,code,nominal_voltage_v)
+VALUES (
   'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',
   'cccccccc-cccc-4ccc-8ccc-cccccccccccc','C1',127);
 
@@ -137,13 +137,13 @@ DO $test$
 BEGIN
  BEGIN
  UPDATE public.sie_rooms SET name='Tampering'
- WHERE id='eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee';
+ WHERE name='Sala segura';
  RAISE EXCEPTION 'sealed child was writable by owner';
  EXCEPTION WHEN check_violation THEN NULL;
  END;
  BEGIN
  DELETE FROM public.sie_circuits
- WHERE id='ffffffff-ffff-4fff-8fff-ffffffffffff';
+ WHERE code='C1';
  RAISE EXCEPTION 'sealed circuit was deletable by owner';
  EXCEPTION WHEN check_violation THEN NULL;
  END;
