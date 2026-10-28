@@ -178,6 +178,14 @@ class DevStore:
                             (_uuid(owner),)).fetchall()
             return [dict(r) for r in rows]
 
+    def list_revisions(self,owner,project):
+        with closing(self._connect()) as db:
+            self._project(db,owner,project)
+            rows=db.execute("""SELECT id,version,base_id,state,lock_version,snapshot_sha,created_at
+                               FROM v201_revisions WHERE project_id=? ORDER BY version""",
+                            (_uuid(project),)).fetchall()
+            return [dict(r) for r in rows]
+
     def rename_project(self, owner, project, name, expected_lock):
         name = _name(name)
         with self._txn() as db:
