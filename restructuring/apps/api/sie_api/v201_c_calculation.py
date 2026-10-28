@@ -123,4 +123,12 @@ def read_run_dev(store: DevStore, owner, project, revision, run_id):
             raise Missing("run not found")
         result=dict(row)
         result["output_snapshot"]=__import__("json").loads(result["output_snapshot"])
+        # Historical output remains immutable. Freshness is a derived read-time
+        # view, not a rewrite of a published calculation or normative release.
+        saved_catalog=result["output_snapshot"].get("catalog_sha256")
+        current_catalog=catalog_snapshot()[1]
+        result["freshness"] = ("STALE_CATALOG" if saved_catalog != current_catalog
+                               else "HISTORICAL_REVISION" if
+                               store._revision(db,owner,project,revision)["state"] != "SEALED"
+                               else "CURRENT")
         return result

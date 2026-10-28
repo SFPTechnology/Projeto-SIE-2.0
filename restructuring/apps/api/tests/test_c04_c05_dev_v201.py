@@ -45,6 +45,16 @@ def test_c05_hash_idempotency_pendings_and_cross_owner(tmp_path):
     assert run["id"]==run_sealed_dev(store,A,p,r,"c05-run-retry-01")["id"]
     value=read_run_dev(store,A,p,r,run["id"])
     assert value["output_snapshot"]["installed_apparent_power_va"]=="240.000"
+    assert value["freshness"]=="CURRENT"
+    import sie_api.v201_c_calculation as c05
+    monkeypatch_tmp = pytest.MonkeyPatch()
+    try:
+        original = c05.catalog_snapshot
+        monkeypatch_tmp.setattr(c05,"catalog_snapshot",
+                                lambda path=None:(original(path)[0],"0"*64))
+        assert read_run_dev(store,A,p,r,run["id"])["freshness"]=="STALE_CATALOG"
+    finally:
+        monkeypatch_tmp.undo()
     with pytest.raises(Missing):
         read_run_dev(store,B,p,r,run["id"])
     assert store.snapshot(A,p,r)==snap
