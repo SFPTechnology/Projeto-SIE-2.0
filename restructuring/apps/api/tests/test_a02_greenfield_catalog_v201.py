@@ -89,7 +89,7 @@ def test_a03_a04_pending_migrations_match_manifest_and_are_not_applied():
     assert len(result["migrations"]) == 1  # GF02 remains the only installed migration
     pending = result["pending_migrations"]
     assert [item["version"] for item in pending] == [
-        "20261028102000", "20261028102100"]
+        "20261028102000", "20261028102100", "20261028153000"]
     assert all(item["state"] == "PENDING" for item in pending)
     manifest = json.loads((ROOT / "restructuring" / "supabase" / "greenfield"
                            / "manifest.json").read_text())
@@ -110,7 +110,7 @@ def test_pending_migration_cannot_falsely_claim_remote_application(tmp_path):
 
 def test_a03_a04_are_additive_without_legacy_table_creation():
     root = ROOT / "restructuring" / "supabase" / "migrations"
-    for version in ("20261028102000", "20261028102100"):
+    for version in ("20261028102000", "20261028102100", "20261028153000"):
         sql = next(root.glob(version + "_*.sql")).read_text()
         executable = "\n".join(
             line for line in sql.splitlines() if not line.strip().startswith("--")
