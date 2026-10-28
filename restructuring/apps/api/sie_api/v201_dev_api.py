@@ -264,3 +264,19 @@ def remove_entity(project_id: UUID, revision_id: UUID,
 def audit_events(project_id: UUID, identity: AuthIdentity = Depends(current_identity)):
     return {"events": _run(_store().audit_events,identity.user_id,project_id),
             "dev_only": True,"append_only": True,"remote_audit": False}
+
+
+@router.get("/projects/{project_id}/revisions/{revision_id}/entities/{entity_kind}")
+def entity_list(project_id: UUID,revision_id: UUID,
+                entity_kind: Literal["rooms","loads","circuits","links"],
+                identity: AuthIdentity = Depends(current_identity)):
+    return _run(_store().list_entities,identity.user_id,project_id,revision_id,entity_kind)
+
+
+@router.get("/projects/{project_id}/revisions/{revision_id}/entities/{entity_kind}/{entity_id}")
+def entity_detail(project_id: UUID,revision_id: UUID,
+                  entity_kind: Literal["rooms","loads","circuits","links"],
+                  entity_id: UUID,
+                  identity: AuthIdentity = Depends(current_identity)):
+    return _run(_store().get_entity,identity.user_id,project_id,revision_id,
+                entity_kind,entity_id)
