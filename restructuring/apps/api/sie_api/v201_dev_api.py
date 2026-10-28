@@ -258,3 +258,9 @@ def remove_entity(project_id: UUID, revision_id: UUID,
                   identity: AuthIdentity = Depends(current_identity)):
     return _run(_store().delete_entity, identity.user_id, project_id, revision_id,
                 entity_kind, entity_id, expected_revision_lock_version)
+
+
+@router.get("/projects/{project_id}/audit")
+def audit_events(project_id: UUID, identity: AuthIdentity = Depends(current_identity)):
+    return {"events": _run(_store().audit_events,identity.user_id,project_id),
+            "dev_only": True,"append_only": True,"remote_audit": False}
