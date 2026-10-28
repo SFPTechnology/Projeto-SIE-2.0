@@ -8,7 +8,13 @@ const form=document.getElementById("login-form");
 const signed=document.getElementById("signed-in");
 const userEl=document.getElementById("session-user");
 let accessToken=null;
+let refreshToken=null;
 let authEmail=null;
+let verifiedUserId=null;
+let expiresAt=0;
+let renewalTimer=null;
+let renewalInFlight=null;
+let sessionGeneration=0;
 const channel=typeof BroadcastChannel!=="undefined" ? new BroadcastChannel("sie2-b01-logout") : null;
 const authOrigin="https://fozrymsidnaxmuvxxfhh.supabase.co";
 const originAllowed=new Set(["http://localhost:5173","http://127.0.0.1:5173"]);
@@ -29,7 +35,10 @@ function showSigned(userId){
   userEl.textContent="Identidade verificada: "+userId;
 }
 function showSignedOut(){
-  accessToken=null;authEmail=null;
+  sessionGeneration++;
+  if(renewalTimer!==null)clearTimeout(renewalTimer);
+  renewalTimer=null;
+  accessToken=null;refreshToken=null;expiresAt=0;verifiedUserId=null;authEmail=null;
   form.hidden=false;signed.hidden=true;userEl.textContent="";
   document.getElementById("password").value="";
 }
@@ -55,10 +64,78 @@ async function signIn(email,password){
   });
   if(typeof verified.user_id!=="string" || verified.authorization_source!=="auth_server_verified")
     throw Error("A API não confirmou a identidade");
-  accessToken=token;authEmail=email;
+  if(typeof result.refresh_token!=="string" || !result.refresh_token ||
+     !Number.isFinite(Number(result.expires_in)) || Number(result.expires_in)<=0)
+    throw Error("Sessão incompleta; renovação indisponível");
+  sessionGeneration++;
+  accessToken=token;refreshToken=result.refresh_token;
+  authEmail=email;verifiedUserId=verified.user_id;
+  expiresAt=Date.now()+Number(result.expires_in)*1000;
   showSigned(verified.user_id);
+  scheduleRenewal();
   message("Sessão validada. Acesso remoto de escrita continua desabilitado.");
 }
+
+// The refresh token is volatile; it is never persisted or transmitted to our
+// API. Supabase Auth handles refresh-token rotation. The API verifies the new
+// access token before the browser can consider it authenticated.
+function scheduleRenewal(){
+  if(renewalTimer!==null)clearTimeout(renewalTimer);
+  renewalTimer=null;
+  if(!refreshToken || !accessToken)return;
+  const delay=Math.min(2147483647,Math.max(1000,expiresAt-Date.now()-60000));
+  renewalTimer=setTimeout(()=>{
+    renewSession().catch(()=>{
+      showSignedOut();message("Sessão expirada ou revogada; entre novamente.");
+    });
+  },delay);
+}
+async function renewSession(){
+  if(renewalInFlight)return renewalInFlight;
+  if(!refreshToken || !accessToken)throw Error("Sessão ausente");
+  const generation=sessionGeneration;
+  const previousIdentity=verifiedUserId;
+  renewalInFlight=(async()=>{
+    try{
+      const data=await request(authOrigin+"/auth/v1/token?grant_type=refresh_token",{
+        method:"POST",headers:publicHeaders(),
+        body:JSON.stringify({refresh_token:refreshToken})
+      });
+      if(!data || typeof data.access_token!=="string" ||
+         typeof data.refresh_token!=="string" ||
+         !Number.isFinite(Number(data.expires_in)) || Number(data.expires_in)<=0)
+        throw Error("Refresh data rejected");
+      const verified=await request(cfg.apiBase+"/api/v2/sie/auth/me",{
+        headers:{"Authorization":"Bearer "+data.access_token}
+      });
+      if(verified.authorization_source!=="auth_server_verified" ||
+         verified.user_id!==previousIdentity || generation!==sessionGeneration)
+        throw Error("Identity/session changed during refresh");
+      accessToken=data.access_token;
+      refreshToken=data.refresh_token;
+      expiresAt=Date.now()+Number(data.expires_in)*1000;
+      scheduleRenewal();
+      message("Sessão renovada e identidade confirmada.");
+      return true;
+    }catch(error){
+      if(generation===sessionGeneration){
+        showSignedOut();
+        if(channel)channel.postMessage("logout");
+      }
+      throw error;
+    }finally{renewalInFlight=null}
+  })();
+  return renewalInFlight;
+}
+document.getElementById("refresh").addEventListener("click",()=>{
+  renewSession().catch(()=>message("Sessão não renovada; entre novamente."));
+});
+document.addEventListener("visibilitychange",()=>{
+  if(!document.hidden && accessToken && expiresAt-Date.now()<60000){
+    renewSession().catch(()=>message("Sessão expirada; entre novamente."));
+  }
+});
+
 form.addEventListener("submit",async e=>{
   e.preventDefault();
   const btn=document.getElementById("login");
