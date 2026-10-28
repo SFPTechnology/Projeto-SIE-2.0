@@ -69,5 +69,5 @@ def install(db: sqlite3.Connection) -> None:
               AFTER {verb} ON {sql_table} BEGIN
               INSERT INTO v201_audit_events(
                 project_id,revision_id,actor_id,event_type,entity_id,occurred_at,event_sha256)
-              VALUES ({values},sie_dev_audit_sha256({values}));
+              VALUES ({values},sie_dev_audit_sha256({event_expr},{actor},{project},{revision},{entity},{ts}));
               END""")
