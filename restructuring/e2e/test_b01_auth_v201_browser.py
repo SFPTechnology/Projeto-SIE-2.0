@@ -45,14 +45,26 @@ def test_b01_synthetic_login_backend_check_and_logout(servers):
                 return route.fulfill(status=204,headers=cors)
             outbound.append("login")
             route.fulfill(status=200,content_type="application/json",
-                         body='{"access_token":"synthetic_bearer_for_browser_e2e_only"}',
+                         body='{"access_token":"synthetic_bearer_for_browser_e2e_only",'+
+                              '"refresh_token":"refresh_fixture_2026","expires_in":3600}',
                          headers=cors)
         page.route(AUTH_URL+"/auth/v1/token?grant_type=password",fake_token)
+        def fake_refresh(route):
+            if route.request.method=="OPTIONS":
+                return route.fulfill(status=204,headers=cors)
+            assert "refresh_fixture_2026" in route.request.post_data
+            outbound.append("refresh")
+            route.fulfill(status=200,content_type="application/json",
+                          body='{"access_token":"synthetic_bearer_rotated_browser_e2e",'+
+                               '"refresh_token":"refresh_rotated_fixture","expires_in":3600}',
+                          headers=cors)
+        page.route(AUTH_URL+"/auth/v1/token?grant_type=refresh_token",fake_refresh)
         def fake_me(route):
             if route.request.method=="OPTIONS":
                 return route.fulfill(status=204,headers=cors)
             auth=route.request.headers.get("authorization","")
-            assert auth=="Bearer synthetic_bearer_for_browser_e2e_only"
+            assert auth in ("Bearer synthetic_bearer_for_browser_e2e_only",
+                            "Bearer synthetic_bearer_rotated_browser_e2e")
             outbound.append("verified-api")
             route.fulfill(status=200,content_type="application/json",
                          body='{"user_id":"11111111-1111-4111-8111-111111111111",'+
@@ -68,6 +80,11 @@ def test_b01_synthetic_login_backend_check_and_logout(servers):
         page.locator("#login").click()
         expect(page.locator("#signed-in")).to_be_visible()
         assert outbound==["login","verified-api"]
+        assert page.evaluate("localStorage.length")==0
+        assert page.evaluate("sessionStorage.length")==0
+        page.locator("#refresh").click()
+        expect(page.locator("#status")).to_contain_text("Sessão renovada")
+        assert outbound==["login","verified-api","refresh","verified-api"]
         assert page.evaluate("localStorage.length")==0
         assert page.evaluate("sessionStorage.length")==0
         page.locator("#logout").click()
