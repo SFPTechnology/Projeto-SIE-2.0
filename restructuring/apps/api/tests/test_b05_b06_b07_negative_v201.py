@@ -103,7 +103,7 @@ def test_b06_audit_records_only_commits_and_is_append_only(env):
     before=c.get(audit)
     assert before.status_code==200,before.text
     events=before.json()["events"]
-    assert len(events)>=7
+    assert len(events)>=6  # project + revision + room + load + circuit + link
     assert any(e["event_type"]=="projects.created" or e["event_type"]=="project.created"
                for e in events)
     assert all(len(e["event_sha256"])==64 for e in events)
