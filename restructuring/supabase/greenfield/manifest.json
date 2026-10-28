@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "purpose": "SIE 2.0 greenfield canonical migrations; read-only inventory (NOT a migration runner)",
+  "project_ref": "fozrymsidnaxmuvxxfhh",
+  "migration_directory": "restructuring/supabase/migrations",
+  "forbidden_legacy_directory": "supabase/migrations",
+  "applied_migrations": [
+    {
+      "version": "20261027195557",
+      "name": "sie2_greenfield_foundation_owner_rls_v1",
+      "file": "20261027195557_sie2_greenfield_foundation_owner_rls_v1.sql",
+      "git_blob_sha1": "6714a9e18e04f06e2d249de56c26b7a2ca9dd9d2"
+    }
+  ],
+  "remote_ddl_authorized": false,
+  "note": "Additional migrations require manifest update and separate production DDL authorization."
+}
