@@ -14,11 +14,11 @@
 - [x] B06 **DEV**: trilha append-only e runs/artefatos internos, com hash, owner e rollback.
 - [x] B07 **DEV**: CORS restrito, tamanho de payload, rate limit local, trace ID e respostas no-store.
 - [x] B08 **DEV**: jornada integrada 2 ambientes/3 cargas/2 circuitos com reabertura de SQLite e tentativas A/B simuladas.
-- [ ] GB: verificar checks no HEAD, validar contrato e delimitar pendências reais (Auth browser, PostgreSQL remoto, B08 real).
-- [ ] CI do SHA final: API, AIOX e Chromium no mesmo HEAD; não reutilizar resultados de SHAs anteriores.
+- [ ] GB **DEVELOPMENT**: emitir contrato/hashes após checks finais SHA-matched. As provas reais Auth/RLS remotas seguem para E02/E06, não bloqueiam código do Bloco C.
+- [ ] CI final: API, AIOX, Chromium, dois workflows PostgreSQL 17 no mesmo HEAD; não reutilizar resultados anteriores.
 
 ## Fronteiras
-- Supabase `fozrymsidnaxmuvxxfhh` permanece GF02; A03/A04 **PENDING**.
+- Supabase `fozrymsidnaxmuvxxfhh` permanece GF02; A03/A04/B04 **PENDING**.
 - **Sem** migração remota, criação de usuários, merge, deploy, F12, alteração do SIE original ou novo serviço pago.
 - Validação real A/B via Data API/Auth antes de E06 GO, não pré-condição de desenvolvimento.
 - PR a ser aberta em rascunho contra `feat/v201-bloco-a-desenvolvimento-direto`, não contra `main`.
@@ -51,4 +51,11 @@
 - `restructuring/apps/api/tests/test_b08_dev_journey_v201.py`
 - `docs/implantacao-sie-2-0/GREENFIELD/B05_B08_DESENVOLVIMENTO_YOLO_V201.md`
 
-**Estado:** IN_REVIEW — B04/B05 DEV incluindo edição/exclusão, B03b sintético, B06 auditoria, B07 proteção local e B08 jornada DEV implementados. A aprovação exige checks no SHA final; integração de escrita PostgreSQL, Auth A/B real e GO continuam pendentes, sem migrations adicionais aplicadas no destino.
+**Estado:** READY_FOR_DEV_GB_QA — B01–B08 DEV implementados (incluindo testes PostgreSQL 17, leitura detalhada B05, writer PG B06, contrato da API e fixtures A/B). Fechamento de GB-DEV depende de checks SHA-matched e emissão do contrato validado. Integração remota/Auth A-B real, E02/E06, autorização DDL e produção permanecem fora da homologação DEV.
+
+## Contratos de fechamento adicionais
+- `docs/implantacao-sie-2-0/GREENFIELD/B08_CONTRATO_API_DEV_V201.json`
+- `docs/implantacao-sie-2-0/GREENFIELD/B07_RUNBOOK_RESILIENCIA_DEV_V201.md`
+- `restructuring/apps/api/sie_api/v201_pg_dev_machine.py`
+- `restructuring/apps/api/tests/test_b04_b05_pg17_disposable_v201.py`
+- `restructuring/apps/api/tests/test_b05_b06_b07_negative_v201.py`
