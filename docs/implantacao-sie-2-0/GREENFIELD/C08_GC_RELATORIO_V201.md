@@ -1,3 +1,21 @@
+# C08 — Registro de execução C01/C02/C07 e seleção dos cinco projetos (28/10/2026)
+
+**Declaração do responsável:** todos os cinco projetos do SIE original lhe pertencem e foram selecionados para migração ao SIE 2.0. Esta decisão substitui a indefinição de escopo, **não** a verificação de identidade no destino nem a autorização específica para DDL/ETL remoto.
+
+## Evidências novas e rastreáveis
+- `C01_C07_SELECTION_ALL_FIVE_V201.json`: 5 IDs de origem, contagens por projeto, decisão de migrar todos, Auth UUID de destino ainda nulo, escrita remota desabilitada.
+- `C02_MATRIZ_COMPLETA_OPERACIONAL_V201.csv`: 15 tabelas e **99 colunas**, sendo 54 com mapeamento anterior e **45 sem regra semântica validada**; cada uma explicitamente em quarentena.
+- `C01_SOURCE_FULL_PAYLOAD_FINGERPRINT_V201.json`: **1.934 linhas**, hashes SHA-256 dos payloads das 15 tabelas obtidos via consulta PostgreSQL estritamente de leitura; ainda não é snapshot de backup ou corte transacional.
+- `C07_REAL_SOURCE_DATA_QUALITY_V201.md`: qualidade real agregada: largura/comprimento válidos; 41 alturas em zero; 4 cargas com tensão fixa nula; 2 trifásicas; 10 eventos de auditoria historicamente órfãos (4 de criação, 4 de exclusão e 2 de cálculo), todos preserváveis.
+- `C09_RUNBOOK_MIGRACAO_ALL_FIVE_E_GC_V201.md`: dependências G0–G7 e exigências E02–E06.
+- Validação offline de invariantes/deriva em `v201_c_migration_preflight.py`, `v201_c_source_cutoff.py` e testes negativos `test_c07_*`; nenhuma rota de escrita ou acesso ao Supabase nesses módulos.
+
+**QA observado:** commit `42b36070eea2e2a4579386ae366fd2f8c1a48687` corrigiu a matriz CSV (54 linhas antigas tinham uma coluna extra). O CI `SIE modular API`, `SIE C03 PG17`, `SIE A03/A04 PG17` e `AIOX` foram observados `SUCCESS` nesse SHA; Chromium estava em execução no último read-back. Checks do SHA final após a documentação devem ser reconciliados antes de congelar a versão.
+
+**GC formal permanece `BLOCKED`:** identidade Auth e propriedade vinculadas à conta real não verificadas; 45 regras de campos requerem disposição aprovada; backup/restore, corte e ETL real não realizados; parâmetros elétricos e catálogo normativo ainda sujeitos a revisão profissional; staging E02–E06 exige autorização específica antes de qualquer escrita.
+
+---
+
 # C08 — Consolidação do Bloco C, DEVELOPMENT — 28/10/2026
 
 **Estado formal GC: BLOCKED.** O projeto avançou na implementação do domínio elétrico; este documento não é autorização de produção, de migração real, nem laudo de conformidade elétrica. PR #11 permanece DRAFT.
