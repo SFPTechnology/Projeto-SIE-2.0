@@ -12,6 +12,7 @@ from uuid import UUID
 from .v201_dev_store import DevStore, Conflict, Invalid, _uuid
 from .v201_dev_server_writer import ServerWriter, hash_snapshot
 from .v201_c_normative import catalog_snapshot
+from .v201_c_explicit_checks import analyze_explicit
 
 ENGINE_VERSION = "sie2-c05-v201-dev-1"
 PENDING_CHECKS = ("illumination_and_tug_normative", "demand_and_balance",
@@ -76,6 +77,27 @@ def calculate(snapshot, *, catalog_path=None):
         dec(circuit["nominal_voltage_v"], True)
     catalog, cdigest = catalog_snapshot(catalog_path)
     total = sum(load_powers.values(),Decimal(0))
+    technical_checks={}
+    records=snapshot.get("circuit_technical",[])
+    if not isinstance(records,list):
+        raise Invalid("circuit technical snapshot invalid")
+    seen=set()
+    for entry in records:
+        if not isinstance(entry,dict) or set(entry)!={"circuit_id","spec"}:
+            raise Invalid("invalid technical record")
+        cid=entry["circuit_id"]
+        if cid in seen or cid not in circuits:
+            raise Invalid("cross-revision or duplicate technical circuit")
+        seen.add(cid)
+        spec=entry["spec"]
+        if not isinstance(spec,dict) or spec.get("phase_mode") not in ("SINGLE","THREE"):
+            raise Invalid("unknown technical phase mode")
+        try:
+            technical_checks[cid]=analyze_explicit(
+                circuit_totals[cid],circuits[cid]["nominal_voltage_v"],
+                spec["phase_mode"],{k:v for k,v in spec.items() if k!="phase_mode"})
+        except (TypeError,ValueError) as exc:
+            raise Invalid("calculation technical inputs invalid: "+str(exc)) from None
     return {
         "schema_version": 1, "engine_version": ENGINE_VERSION,
         "project_id": project, "revision_id": revision,
@@ -87,6 +109,7 @@ def calculate(snapshot, *, catalog_path=None):
         "installed_apparent_power_va": amount(total),
         "room_load_va": {k: amount(v) for k,v in sorted(room_totals.items())},
         "circuit_load_va": {k: amount(v) for k,v in sorted(circuit_totals.items())},
+        "explicit_technical_checks": {k: technical_checks[k] for k in sorted(technical_checks)},
         "unassigned_load_ids": sorted(set(loads)-linked),
         "pending_checks": list(PENDING_CHECKS),
         "catalog_records": len(catalog["records"])
