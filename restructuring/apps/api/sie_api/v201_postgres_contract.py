@@ -15,8 +15,10 @@ REQUIRED_MIGRATIONS=frozenset({
     "20261027195557",  # GF02 installed
     "20261028102000",  # A03 (currently PENDING)
     "20261028102100",  # A04 (currently PENDING)
+    "20261028153000",  # B04 (currently PENDING)
 })
 PROJECT_REF="fozrymsidnaxmuvxxfhh"
+REQUIRED_PROJECT_COLUMNS=frozenset({"idempotency_key","request_fingerprint_sha256"})
 REQUIRED_SCHEMA_COLUMNS=frozenset({
     "lifecycle_state","base_revision_id","lock_version",
     "idempotency_key","sealed_snapshot","sealed_snapshot_sha256"
@@ -49,6 +51,11 @@ def read_only_preflight(conn, project_ref: str) -> PgReadiness:
         missing=sorted(REQUIRED_MIGRATIONS - versions)
         if not REQUIRED_SCHEMA_COLUMNS<=columns:
             missing.append("sie_project_revisions.columns")
+        cur.execute("""SELECT column_name FROM information_schema.columns
+                       WHERE table_schema='public' AND table_name='sie_projects'""")
+        project_columns={str(row[0]) for row in cur.fetchall()}
+        if not REQUIRED_PROJECT_COLUMNS <= project_columns:
+            missing.append("sie_projects.idempotency_columns")
     return PgReadiness(project_ref,tuple(sorted(versions)),tuple(missing),
                        not missing)
 
@@ -62,7 +69,7 @@ def list_owned_projects(conn, project_ref: str, owner_id: UUID):
     ready=read_only_preflight(conn,project_ref)
     if not ready.ready:
         raise IntegrationNotReady(
-            "A03/A04 not installed; backend integration remains disabled")
+            "A03/A04/B04 not installed; backend integration remains disabled")
     user=str(UUID(str(owner_id)))
     with conn.cursor() as cur:
         cur.execute("""SELECT id,owner_id,name,created_at
