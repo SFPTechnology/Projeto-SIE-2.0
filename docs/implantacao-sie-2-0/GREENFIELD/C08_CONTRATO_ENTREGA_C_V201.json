@@ -1,0 +1,47 @@
+{
+  "contract_version": "2.0.1",
+  "block": "C",
+  "gate": "GC",
+  "state": "BLOCKED",
+  "environment": "DEVELOPMENT",
+  "repository": "SFPTechnology/Projeto-SIE-2.0",
+  "source_branch": "feat/v201-bloco-c-dominio-eletrico",
+  "source_sha": "477222039ab87f1fe53a06675ca6e3dfe8acf499",
+  "baseline_b_sha": "63805c03c7146103cdd67eca4da3e369a751d379",
+  "supabase_project_ref": "fozrymsidnaxmuvxxfhh",
+  "remote_ddl_authorized": false,
+  "remote_migrations_applied_by_this_block": [],
+  "migration_versions_pending": [
+    "20261028102000",
+    "20261028102100",
+    "20261028153000",
+    "20261028203000"
+  ],
+  "migration_c03": "20261028203000_sie_c03_electrical_domain_v201.sql",
+  "schema_fingerprint": null,
+  "schema_fingerprint_status": "NOT_MEASURED_REMOTELY",
+  "api_contract_version": "sie-v201-dev-c05-1",
+  "normative_gate": "PARTIAL_EVIDENCE_PENDING",
+  "legacy_source_state": "LEGACY_SOURCE_UNVERIFIED",
+  "real_legacy_data_migrated": false,
+  "synthetic_etl_state": "PASS_DEV_SYNTHETIC",
+  "disposable_pg17_verdict": "PASS_ON_f252f0a0_NOT_FINAL_HEAD",
+  "test_runs": [
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40761828585",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40761781236",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40761828576"
+  ],
+  "evidence_sha256": null,
+  "evidence_state": "FINAL_HEAD_CI_AND_MANIFEST_DIGEST_PENDING",
+  "blockers": [
+    "C01 authentic legacy source and ownership not established",
+    "C05 full persisted electrical engine and golden normative cases incomplete",
+    "C04 normative sources and professional approval pending",
+    "C07 only synthetic staging; real import/reconciliation not authorized",
+    "C03 remote migrations and A/B RLS unverified",
+    "C08 final HEAD CI and evidence digest not yet attested"
+  ],
+  "handoff_to": "D",
+  "handoff_authorized": false,
+  "production_release_authorized": false
+}
