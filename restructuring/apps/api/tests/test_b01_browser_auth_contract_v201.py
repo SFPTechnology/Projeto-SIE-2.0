@@ -1,7 +1,7 @@
 """Static safety checks for the isolated B01 browser authentication prototype."""
 from pathlib import Path
 
-WEB=Path(__file__).resolve().parents[3]/"web"
+WEB=Path(__file__).resolve().parents[2]/"web"
 
 
 def test_login_page_is_development_only_and_accessible():
