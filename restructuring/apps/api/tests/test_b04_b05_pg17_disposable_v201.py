@@ -276,3 +276,66 @@ def test_b04_b05_actual_pg_role_a_b_and_backend_dml(conn):
     with conn.cursor() as cur:
         cur.execute("SELECT name FROM public.sie_rooms WHERE id=%s",(room_id,))
         assert cur.fetchone()[0]=="Editado pelo backend"
+
+
+
+def test_pg17_b06_server_machine_writer_audit_and_idempotency(conn):
+    from sie_api.v201_pg_dev_machine import PgDevMachineWriter
+    adapter=Pg17DisposableAdapter(conn)
+    writer=PgDevMachineWriter(adapter)
+    project=adapter.create_project(A,"Servidor confiavel","project-machine-b06")["id"]
+    revision=adapter.create_revision(A,project,"revision-machine-b06")["id"]
+    adapter.add_bundle(A,project,revision,{
+        "rooms":[{"ref":"sala","name":"Sala","width_m":"4","length_m":"4"}],
+        "loads":[],"circuits":[],"links":[]
+    })
+    sealed=adapter.seal(A,project,revision,0)
+    payload={"status":"NOT_EVALUATED","apparent_power_va":"100.000"}
+    one=writer.record_run(A,project,revision,sealed["snapshot_sha256"],
+                          "ci-engine-0.1",payload,"run-machine-idem-key")
+    repeat=writer.record_run(A,project,revision,sealed["snapshot_sha256"],
+                             "ci-engine-0.1",payload,"run-machine-idem-key")
+    assert repeat["id"]==one["id"]
+    with pytest.raises(PgConflict):
+        writer.record_run(A,project,revision,sealed["snapshot_sha256"],
+                          "ci-engine-0.1",{"tampered":True},"run-machine-idem-key")
+    with pytest.raises(PgMissing):
+        writer.record_run(B,project,revision,sealed["snapshot_sha256"],
+                          "ci-engine-0.1",payload,"other-owner-run-key")
+    artifact=writer.record_artifact(A,project,revision,one["id"],
+                                    "MEMORIAL",b"SYNTHETIC DOCUMENT")
+    again=writer.record_artifact(A,project,revision,one["id"],
+                                 "MEMORIAL",b"SYNTHETIC DOCUMENT")
+    assert artifact["id"]==again["id"]
+    assert artifact["normative_status"]=="NOT_EVALUATED"
+    with pytest.raises(PgMissing):
+        writer.record_artifact(B,project,revision,one["id"],
+                               "MEMORIAL",b"NO")
+    with conn.cursor() as cur:
+        cur.execute("""SELECT COUNT(*) FROM public.sie_calculation_runs
+                       WHERE project_id=%s""",(project,))
+        assert cur.fetchone()[0]==1
+        cur.execute("""SELECT COUNT(*) FROM public.sie_artifacts
+                       WHERE project_id=%s""",(project,))
+        assert cur.fetchone()[0]==1
+        cur.execute("""SELECT event_type,COUNT(*) FROM public.sie_audit_events
+                       WHERE project_id=%s GROUP BY event_type""",(project,))
+        assert dict(cur.fetchall())=={"calculation.created":1,"artifact.created":1}
+
+
+def test_pg17_b06_machine_writer_rejects_draft_and_foreign_runs(conn):
+    from sie_api.v201_pg_dev_machine import PgDevMachineWriter
+    adapter=Pg17DisposableAdapter(conn)
+    writer=PgDevMachineWriter(adapter)
+    project=adapter.create_project(A,"Sem lacre","project-machine-draft")["id"]
+    revision=adapter.create_revision(A,project,"revision-machine-draft")["id"]
+    with pytest.raises(PgConflict):
+        writer.record_run(A,project,revision,"0"*64,"ci-engine",
+                          {"x":1},"run-machine-draft")
+    with pytest.raises(PgConflict):
+        writer.record_artifact(A,project,revision,uuid.uuid4(),
+                               "MEMORIAL",b"fixture")
+    with conn.cursor() as cur:
+        cur.execute("SELECT count(*) FROM public.sie_audit_events WHERE project_id=%s",
+                    (project,))
+        assert cur.fetchone()[0]==0
