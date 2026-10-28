@@ -26,9 +26,9 @@ Nenhuma migration nova é aplicada no Supabase `fozrymsidnaxmuvxxfhh` sem autori
 
 ## Implementações adicionais A03/A04 (2026-10-28)
 - [x] A03: migration de quatro índices versionada, sem recriar tabelas GF02.
-- [x] A04: migration de estados, FK base, versão otimista, idempotência, snapshot/hash e triggers de bloqueio em tabelas filhas.
+- [x] A04: migration de estados, FK base, versão otimista, idempotência, snapshot/hash, triggers de bloqueio em tabelas filhas e CAS transacional restrito ao backend.
 - [x] A03/A04: manifesto com estado PENDING e proteção contra promoção falsa para APPLIED.
-- [x] Testes reais de PostgreSQL 17 em dois bancos descartáveis no CI, sem acesso ao Supabase remoto (resultado vinculante é do SHA final).
+- [x] Testes reais de PostgreSQL 17 em dois bancos descartáveis no CI, sem acesso ao Supabase remoto (resultado vinculante é do SHA final). Incluem CAS obsoleto e recusa de chamada pelo navegador.
 - [ ] Aplicação remota somente após autorização específica, backup/rollback conferido e read-back de schema no destino.
 - [ ] QA do último SHA e contrato GA revisado.
 
