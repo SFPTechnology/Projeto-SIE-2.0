@@ -74,3 +74,18 @@ def test_b01_synthetic_login_backend_check_and_logout(servers):
         expect(page.locator("#login-form")).to_be_visible()
         assert page.locator("#password").input_value()==""
         browser.close()
+
+
+
+def test_b01_password_recovery_callback_rejects_missing_token_and_clears_url(servers):
+    with sync_playwright() as pw:
+        browser=pw.chromium.launch(headless=True)
+        page=browser.new_page()
+        page.goto(WEB_URL+"/auth/callback/#access_token=malicious&type=recovery",
+                  wait_until="networkidle")
+        expect(page.locator("#status")).to_contain_text("Configuração")
+        expect(page.locator("#reset")).to_be_hidden()
+        assert "access_token" not in page.url
+        assert page.evaluate("localStorage.length")==0
+        assert page.evaluate("sessionStorage.length")==0
+        browser.close()
