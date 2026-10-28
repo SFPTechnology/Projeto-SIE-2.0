@@ -3,13 +3,13 @@
 **Plano:** SIE 2.0 V2.0 revisão 2.0.1; **entrada:** GA PASS **somente para desenvolvimento**; **base:** `fbf8b957015ba24dfd29167d9d3fe259db979876`; **branch:** `feat/v201-bloco-b-auth-api`.
 
 ## Critérios de aceite
-- [ ] B01: especificar login/confirmar e-mail/recuperar/logout, redirect allowlist e configuração sem secrets no frontend.
-- [ ] B02: novas rotas autenticadas falham fechadas sem bearer, tokens errados/expirados/forjados; usar Auth Supabase como verificador confiável e ignorar metadata do browser na autorização.
-- [ ] B02: extrair sub UUID verificado e negar usuário Auth anônimo; nunca usar `service_role` no navegador; preservar rotas legadas fora do prefixo novo.
-- [ ] B03a: conferir RLS/grants read-only e matriz negativa; nenhum teste de A/B real declarado sem identidades remotas.
+- [x] B01: especificar login/confirmar e-mail/recuperar/logout, redirect allowlist e configuração sem secrets no frontend.
+- [x] B02: novas rotas autenticadas falham fechadas sem bearer, tokens errados/expirados/forjados; usar Auth Supabase como verificador confiável e ignorar metadata do browser na autorização.
+- [x] B02: extrair sub UUID verificado e negar usuário Auth anônimo; nunca usar `service_role` no navegador; preservar rotas legadas fora do prefixo novo.
+- [x] B03a: conferir RLS/grants read-only e matriz negativa; nenhum teste de A/B real declarado sem identidades remotas. **B03a documental, não B03b.**
 - [ ] B04/B05: evolução de CRUD após contrato B02; não ativar escrita remota sem A03/A04 aplicadas e read-back.
 - [ ] B06–B08: auditoria, hardening, E2E e handoff GB; não declarar GB PASS por só B01/B02.
-- [ ] CI do SHA final; pelo menos os testes novos e regressão da API verificados.
+- [ ] CI do SHA final; pelo menos os testes novos e regressão da API verificados. **API do SHA 91adafa... aprovada com 1308 testes; novo SHA de handoff ainda em verificação.**
 
 ## Fronteiras
 - Supabase `fozrymsidnaxmuvxxfhh` permanece GF02; A03/A04 **PENDING**.
@@ -25,5 +25,8 @@
 - `restructuring/apps/api/sie_api/auth_router_v201.py`
 - `restructuring/apps/api/sie_api/main.py`
 - `restructuring/apps/api/tests/test_b01_b02_auth_v201.py`
+- `docs/implantacao-sie-2-0/GREENFIELD/GA_DESENVOLVIMENTO_V201.json`
+- `docs/implantacao-sie-2-0/GREENFIELD/GA_DESENVOLVIMENTO_V201.md`
+- `docs/implantacao-sie-2-0/GREENFIELD/B03a_MATRIZ_RLS_V201.md`
 
-**Estado inicial:** IN_PROGRESS.
+**Estado:** IN_REVIEW — B01/B02 codificados e testes de contratos aprovados em CI, B03a read-only registrado; B04–B08 ainda NÃO CONCLUÍDOS. GB não está liberado e Supabase remoto continua GF02.
