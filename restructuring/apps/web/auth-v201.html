@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>SIE 2.0 | Acesso de desenvolvimento</title>
+  <style>
+    :root { color-scheme: dark; font-family:system-ui,-apple-system,Segoe UI,sans-serif; background:#0a1221; color:#e8eefb }
+    *,*::before,*::after{box-sizing:border-box} body{min-height:100vh;margin:0;display:grid;place-items:center;padding:24px}
+    main{width:min(100%,460px);border:1px solid #2f3e59;border-radius:18px;padding:28px;background:#111d32;box-shadow:0 12px 60px #050a1588}
+    h1{font-size:1.6rem;margin:8px 0} .eyebrow{letter-spacing:.15em;text-transform:uppercase;font-size:.75rem;color:#76b8ff}
+    .muted{color:#a6b6cf;font-size:.9rem;line-height:1.5} label{display:block;margin:16px 0 6px}
+    input{display:block;width:100%;padding:12px;background:#091323;border:1px solid #475771;border-radius:8px;color:#fff;font:inherit}
+    button{min-height:42px;border-radius:8px;border:1px solid #426ca7;background:#2454a2;color:#fff;padding:9px 16px;cursor:pointer;font:inherit}
+    button[disabled]{opacity:.55;cursor:wait} button.secondary{background:transparent;border-color:#53647f}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+    #status{min-height:48px;color:#cfe5ff;line-height:1.5}
+    #signed-in[hidden],#login-form[hidden]{display:none} strong{color:#fff} code{color:#b4d9ff}
+  </style>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">SIE 2.0 • B01 DEV</p>
+    <h1>Acesso aos projetos</h1>
+    <p class="muted">Protótipo de autenticação. Não concede aprovação técnica, publicação ou acesso de produção.</p>
+    <p class="muted">A configuração pública é fornecida em arquivo local; nenhuma chave privilegiada deve ser usada.</p>
+    <form id="login-form" autocomplete="on">
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" autocomplete="username" maxlength="254" required />
+      <label for="password">Senha</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" minlength="8" required />
+      <div class="actions">
+        <button type="submit" id="login">Entrar</button>
+        <button class="secondary" type="button" id="recover">Recuperar acesso</button>
+      </div>
+    </form>
+    <section id="signed-in" hidden>
+      <p class="muted">Sessão validada pelo serviço Supabase Auth e pela API SIE.</p>
+      <p><strong id="session-user">Usuário autenticado</strong></p>
+      <div class="actions"><button id="refresh" type="button" class="secondary">Renovar sessão</button><button id="logout" type="button">Sair da sessão</button></div>
+    </section>
+    <p id="status" role="status" aria-live="polite">Verificando configuração pública…</p>
+    <p class="muted">A sessão fica somente na memória desta guia. Recarregar a página exige novo login. Para testes em usuários reais, use uma conta autorizada.</p>
+  </main>
+  <script src="./auth-v201.public-config.js"></script>
+  <script type="module" src="./auth-v201.js"></script>
+</body>
+</html>

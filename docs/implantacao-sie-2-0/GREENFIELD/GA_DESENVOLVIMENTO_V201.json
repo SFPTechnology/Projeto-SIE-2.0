@@ -1,0 +1,57 @@
+{
+  "schema_version": "2.0.0",
+  "block": "A",
+  "gate": "GA",
+  "state": "PASS",
+  "repository": "SFPTechnology/Projeto-SIE-2.0",
+  "source_sha": "fbf8b957015ba24dfd29167d9d3fe259db979876",
+  "environment": {
+    "kind": "DEV",
+    "project_ref": null,
+    "organization_id": null,
+    "verified_at": "2026-10-28T11:46:41.313Z",
+    "data_classification": "SYNTHETIC"
+  },
+  "migration_versions": [
+    "20261027195557"
+  ],
+  "schema_fingerprint": "8c1366c281973f1c043e5b16a94223515121ffcfad56448b4af313ed64f106bc",
+  "api_contract_version": "0.1.0-candidate",
+  "normative_status": "NOT_EVALUATED",
+  "evidence": [
+    {
+      "type": "CI",
+      "uri": "artifact://SIE2_A03_A04_IMPLEMENTACAO_2026-10-28/evidencias/GITHUB_ACTIONS.json",
+      "sha256": "0118b9aa133e3d9e8d365db4ff498a4320424e08ec9bc1f5bbe1b3d5e1bfdb73",
+      "tested_source_sha": "fbf8b957015ba24dfd29167d9d3fe259db979876",
+      "environment": "DEV",
+      "outcome": "PASS",
+      "observed_at": "2026-10-28T11:30:10.922216+00:00"
+    },
+    {
+      "type": "MIGRATION",
+      "uri": "artifact://SIE2_A03_A04_IMPLEMENTACAO_2026-10-28/evidencias/MIGRACOES.json",
+      "sha256": "01dd3d7754ccba1131d7f93ee03c5b4dad0ef183bd373ad523eb1d440d891750",
+      "tested_source_sha": "fbf8b957015ba24dfd29167d9d3fe259db979876",
+      "environment": "DEV",
+      "outcome": "PASS",
+      "observed_at": "2026-10-28T11:30:10.922216+00:00"
+    },
+    {
+      "type": "DB_READBACK",
+      "uri": "artifact://SIE2_A03_A04_IMPLEMENTACAO_2026-10-28/evidencias/SUPABASE_READBACK.json",
+      "sha256": "5c7184963ec231f402e56630a2d7392868114e252334c22692f4cc42a7848f3d",
+      "tested_source_sha": "fbf8b957015ba24dfd29167d9d3fe259db979876",
+      "environment": "PROD",
+      "outcome": "PASS",
+      "observed_at": "2026-10-28T11:30:10.922216+00:00"
+    }
+  ],
+  "blockers": [],
+  "gate_owner": "QA+ARQ (desenvolvimento, por ratificacao do responsavel)",
+  "handoff_to": "B",
+  "decision_at": "2026-10-28T11:46:41.313Z",
+  "scope": "GA PASS apenas para DESENVOLVIMENTO V2.0.1. GF02 e A03/A04 versionadas, 1280 pytest, AIOX, Chromium e 2 bancos PG17 CI aprovados. A03/A04 continuam PENDING no Supabase; Auth real A/B, backup/restore e publicacao NAO liberados. Nenhum GO de producao.",
+  "authorized_go": false,
+  "validation_profile": "DEVELOPMENT"
+}

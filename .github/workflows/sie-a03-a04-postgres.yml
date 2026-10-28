@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feat/v201-bloco-a-desenvolvimento-direto
+      - feat/v201-bloco-b-auth-api
   pull_request:
     paths:
       - 'restructuring/supabase/**'

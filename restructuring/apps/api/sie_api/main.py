@@ -16,12 +16,14 @@ from .normative_api import router as normative_router
 from .installation_api import router as installation_router
 from .installation_storage_api import router as installation_storage_router
 from .distributor_api_f09 import router as distributor_router_f09
+from .auth_router_v201 import router as auth_router_v201
+from .v201_dev_api import router as v201_dev_router
 
 app = FastAPI(title="SIE 2.0 - API modular", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"],
-    allow_methods=["GET", "POST", "PUT"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
     allow_headers=["Content-Type", "Authorization"],
 )
 @app.middleware("http")
@@ -40,6 +42,39 @@ async def local_storage_boundary(request, call_next):
             return JSONResponse(status_code=403, content={"detail": "Acesso somente local"})
     return await call_next(request)
 
+
+
+# B07: fail-closed, local DEV request limits. The application does not
+# buffer oversized payloads; clients must send an explicit Content-Length.
+@app.middleware("http")
+async def sie_v201_dev_hardening(request, call_next):
+    from uuid import uuid4
+    is_v201 = request.url.path.startswith("/api/v2/sie/")
+    if not is_v201:
+        return await call_next(request)
+    method = request.method.upper()
+    if method in {"POST", "PUT", "PATCH"}:
+        supplied = request.headers.get("content-length")
+        if supplied is None or not supplied.isascii() or not supplied.isdigit():
+            return JSONResponse(status_code=411, content={"detail":"Content-Length obrigatorio"})
+        if int(supplied) > 262144:
+            return JSONResponse(status_code=413, content={"detail":"Payload excede limite DEV"})
+    if request.url.path.startswith("/api/v2/sie/dev/") and method in {"POST","PATCH","PUT","DELETE"}:
+        import os
+        from .v201_dev_rate import consume
+        try:
+            limit=int(os.environ.get("SIE_V201_DEV_RATE_LIMIT","600"))
+            if not consume(request.client.host if request.client else "unknown",limit):
+                return JSONResponse(status_code=429,
+                                    headers={"Retry-After":"60","Cache-Control":"no-store"},
+                                    content={"detail":"Taxa de operacoes DEV excedida"})
+        except (ValueError, TypeError):
+            return JSONResponse(status_code=503,content={"detail":"Limite DEV mal configurado"})
+    response = await call_next(request)
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Request-ID"] = str(uuid4())
+    return response
 
 @app.exception_handler(sqlite3.DatabaseError)
 async def erro_armazenamento_seguro(request, exc):
@@ -70,6 +105,8 @@ app.include_router(normative_router)
 app.include_router(installation_router)
 app.include_router(installation_storage_router)
 app.include_router(distributor_router_f09)
+app.include_router(auth_router_v201)
+app.include_router(v201_dev_router)
 
 
 class Circuito(BaseModel):
