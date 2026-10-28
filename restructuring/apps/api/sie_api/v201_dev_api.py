@@ -183,3 +183,45 @@ def link(project_id: UUID, revision_id: UUID, body: LinkIn,
          identity: AuthIdentity = Depends(current_identity)):
     return _run(_store().link_load, identity.user_id, project_id,
                 revision_id, body.circuit_id, body.load_id)
+
+
+class BundleRoom(Strict):
+    ref: str = Field(min_length=1,max_length=64)
+    name: str = Field(min_length=1,max_length=160)
+    width_m: Decimal = Field(gt=0,lt=100000)
+    length_m: Decimal = Field(gt=0,lt=100000)
+    excluded_perimeter_m: Decimal = Field(ge=0,lt=200000,default=Decimal("0"))
+
+
+class BundleLoad(Strict):
+    ref: str = Field(min_length=1,max_length=64)
+    room_ref: str = Field(min_length=1,max_length=64)
+    label: str = Field(min_length=1,max_length=160)
+    kind: str = Field(pattern="^(LIGHTING|TUG|TUE|OTHER)$")
+    apparent_power_va: Decimal = Field(gt=0,lt=1000000000)
+    quantity: int = Field(ge=1,le=100000,default=1)
+
+
+class BundleCircuit(Strict):
+    ref: str = Field(min_length=1,max_length=64)
+    code: str = Field(min_length=1,max_length=64)
+    nominal_voltage_v: Decimal = Field(gt=0,lt=100000)
+
+
+class BundleLink(Strict):
+    circuit_ref: str = Field(min_length=1,max_length=64)
+    load_ref: str = Field(min_length=1,max_length=64)
+
+
+class BundleIn(Strict):
+    rooms: list[BundleRoom] = Field(default_factory=list,max_length=100)
+    loads: list[BundleLoad] = Field(default_factory=list,max_length=100)
+    circuits: list[BundleCircuit] = Field(default_factory=list,max_length=100)
+    links: list[BundleLink] = Field(default_factory=list,max_length=100)
+
+
+@router.post("/projects/{project_id}/revisions/{revision_id}/bundle",status_code=201)
+def insert_bundle(project_id: UUID,revision_id: UUID,body: BundleIn,
+                  identity: AuthIdentity = Depends(current_identity)):
+    return _run(_store().add_bundle,identity.user_id,project_id,revision_id,
+                body.model_dump(mode="json"))
