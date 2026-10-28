@@ -1,0 +1,82 @@
+name: "SIE B04 B05 PostgreSQL 17 disposable adapter"
+on:
+  push:
+    branches:
+      - feat/v201-bloco-b-auth-api
+    paths:
+      - "restructuring/apps/api/sie_api/v201_pg_dev_adapter.py"
+      - "restructuring/apps/api/sie_api/v201_postgres_contract.py"
+      - "restructuring/apps/api/tests/test_b04_b05_pg17_disposable_v201.py"
+      - "restructuring/supabase/migrations/**"
+      - "restructuring/supabase/greenfield/tests/a03_a04_pg17.sql"
+      - ".github/workflows/sie-b04-b05-pg17.yml"
+  pull_request:
+    paths:
+      - "restructuring/apps/api/sie_api/v201_pg_dev_adapter.py"
+      - "restructuring/apps/api/tests/test_b04_b05_pg17_disposable_v201.py"
+      - ".github/workflows/sie-b04-b05-pg17.yml"
+permissions:
+  contents: read
+jobs:
+  adapter-pg17:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres_ci_only
+          POSTGRES_DB: sie2_gf02_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d sie2_gf02_ci"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 8
+    env:
+      PGHOST: localhost
+      PGPORT: "5432"
+      PGUSER: postgres
+      PGPASSWORD: postgres_ci_only
+      PGDATABASE: sie2_gf02_ci
+      SIE_PG17_DISPOSABLE_TEST: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Python test dependencies
+        run: |
+          python -m pip install --disable-pip-version-check -e "./restructuring/apps/api[test]" "psycopg[binary]>=3.2,<4"
+          if ! command -v psql >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -qq -y postgresql-client
+          fi
+      - name: Prove service is local disposable PostgreSQL
+        run: |
+          test "$PGHOST" = "localhost"
+          test "$PGDATABASE" = "sie2_gf02_ci"
+          test -z "${SUPABASE_ACCESS_TOKEN:-}"
+          test -z "${SUPABASE_SERVICE_ROLE_KEY:-}"
+          psql -v ON_ERROR_STOP=1 -At -c "SELECT current_database(),version()"
+      - name: Install real GF02+A03+A04 and verify PG17 lifecycle
+        run: |
+          psql -X -v ON_ERROR_STOP=1 -f restructuring/supabase/greenfield/tests/a03_a04_pg17.sql
+      - name: Register test-only migration history
+        run: |
+          psql -v ON_ERROR_STOP=1 <<'SQL'
+          CREATE SCHEMA supabase_migrations;
+          CREATE TABLE supabase_migrations.schema_migrations(version text PRIMARY KEY);
+          INSERT INTO supabase_migrations.schema_migrations(version)
+          VALUES ('20261027195557'),('20261028102000'),('20261028102100');
+          SQL
+      - name: Exercise PostgreSQL B04/B05 adapter and rollback
+        working-directory: restructuring/apps/api
+        run: python -m pytest tests/test_b04_b05_pg17_disposable_v201.py -q
+      - name: Confirm no production/remote connection
+        run: |
+          test -z "${SUPABASE_DB_URL:-}"
+          test -z "${DATABASE_URL:-}"
+          echo "PASS: only PostgreSQL 17 ephemeral GitHub Actions service"
