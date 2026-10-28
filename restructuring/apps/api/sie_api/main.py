@@ -23,7 +23,7 @@ app = FastAPI(title="SIE 2.0 - API modular", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://127.0.0.1:5173", "http://localhost:5173"],
-    allow_methods=["GET", "POST", "PUT"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
     allow_headers=["Content-Type", "Authorization"],
 )
 @app.middleware("http")
@@ -59,6 +59,17 @@ async def sie_v201_dev_hardening(request, call_next):
             return JSONResponse(status_code=411, content={"detail":"Content-Length obrigatorio"})
         if int(supplied) > 262144:
             return JSONResponse(status_code=413, content={"detail":"Payload excede limite DEV"})
+    if request.url.path.startswith("/api/v2/sie/dev/") and method in {"POST","PATCH","PUT","DELETE"}:
+        import os
+        from .v201_dev_rate import consume
+        try:
+            limit=int(os.environ.get("SIE_V201_DEV_RATE_LIMIT","600"))
+            if not consume(request.client.host if request.client else "unknown",limit):
+                return JSONResponse(status_code=429,
+                                    headers={"Retry-After":"60","Cache-Control":"no-store"},
+                                    content={"detail":"Taxa de operacoes DEV excedida"})
+        except (ValueError, TypeError):
+            return JSONResponse(status_code=503,content={"detail":"Limite DEV mal configurado"})
     response = await call_next(request)
     response.headers["Cache-Control"] = "no-store"
     response.headers["X-Content-Type-Options"] = "nosniff"
