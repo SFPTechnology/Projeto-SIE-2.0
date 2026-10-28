@@ -136,6 +136,12 @@ def create_revision(project_id: UUID, body: RevisionIn,
             "base_revision_id": r["base_id"], "lock_version": r["lock_version"]}
 
 
+@router.get("/projects/{project_id}/revisions")
+def revision_history(project_id: UUID, identity: AuthIdentity = Depends(current_identity)):
+    return {"revisions": _run(_store().list_revisions, identity.user_id, project_id),
+            "dev_only": True}
+
+
 @router.get("/projects/{project_id}/revisions/{revision_id}/snapshot")
 def snapshot(project_id: UUID, revision_id: UUID,
              identity: AuthIdentity = Depends(current_identity)):
