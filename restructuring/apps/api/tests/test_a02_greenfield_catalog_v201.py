@@ -21,8 +21,8 @@ def copy_workspace(tmp_path: Path) -> Path:
     (workspace / "migrations").mkdir(parents=True)
     (workspace / "greenfield").mkdir(parents=True)
     src = ROOT / "restructuring" / "supabase"
-    for name in ("20261027195557_sie2_greenfield_foundation_owner_rls_v1.sql",):
-        shutil.copy2(src / "migrations" / name, workspace / "migrations" / name)
+    for file in (src / "migrations").glob("*.sql"):
+        shutil.copy2(file, workspace / "migrations" / file.name)
     shutil.copy2(src / "greenfield" / "manifest.json",
                  workspace / "greenfield" / "manifest.json")
     return workspace
