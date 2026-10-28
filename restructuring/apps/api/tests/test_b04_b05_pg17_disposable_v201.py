@@ -35,7 +35,7 @@ def conn():
 
 def test_disposable_pg17_clone_and_bundle_atomically(conn):
     adapter=Pg17DisposableAdapter(conn)
-    project=adapter.create_project(A,"B05 PostgreSQL 17 fixture")["id"]
+    project=adapter.create_project(A,"B05 PostgreSQL 17 fixture","create-b05-fixture-01")["id"]
     rev=adapter.create_revision(A,project,"idempotency-rev1")
     assert rev["replayed"] is False
     assert adapter.create_revision(A,project,"idempotency-rev1")["id"]==rev["id"]
@@ -97,7 +97,7 @@ def test_disposable_pg17_clone_and_bundle_atomically(conn):
 
 def test_disposable_pg17_batch_rollback(conn):
     adapter=Pg17DisposableAdapter(conn)
-    pid=adapter.create_project(A,"B05 rollback")["id"]
+    pid=adapter.create_project(A,"B05 rollback","create-b05-rollback")["id"]
     rid=adapter.create_revision(A,pid,"rollback-key-1")["id"]
     invalid={
         "rooms":[{"ref":"s1","name":"Sala","width_m":"4.0000","length_m":"5.0000"}],
@@ -137,7 +137,7 @@ def test_disposable_pg17_rejects_non_disposable_targets(conn):
 def test_disposable_pg17_draft_edits_and_fk_protected_deletions(conn):
     import psycopg
     adapter=Pg17DisposableAdapter(conn)
-    project=adapter.create_project(A,"B05 edit-delete PG")["id"]
+    project=adapter.create_project(A,"B05 edit-delete PG","create-b05-edit-01")["id"]
     revision=adapter.create_revision(A,project,"revision-edit-01")["id"]
     adapter.add_bundle(A,project,revision,{
         "rooms":[{"ref":"r","name":"Sala","width_m":"4.0000","length_m":"5.0000"}],
@@ -180,3 +180,58 @@ def test_disposable_pg17_draft_edits_and_fk_protected_deletions(conn):
     with pytest.raises(PgConflict):
         adapter.edit_entity(A,project,revision,"circuits",ids["sie_circuits"],
                             {"code":"TAMPER"},6)
+
+def test_project_idempotency_persists_across_retries_and_is_owner_scoped(conn):
+    adapter=Pg17DisposableAdapter(conn)
+    key="project-same-key-2026"
+    a=adapter.create_project(A,"Projeto idempotente",key)
+    retry=adapter.create_project(A,"Projeto idempotente",key)
+    assert a["id"]==retry["id"]
+    assert a["replayed"] is False and retry["replayed"] is True
+    with pytest.raises(PgConflict):
+        adapter.create_project(A,"Payload diferente",key)
+    owner_b=adapter.create_project(B,"Projeto idempotente",key)
+    assert owner_b["id"]!=a["id"] and not owner_b["replayed"]
+    # Identity and retry fingerprint remain immutable despite project renaming.
+    with conn.cursor() as cur:
+        cur.execute("UPDATE public.sie_projects SET name=%s WHERE id=%s",
+                    ("Projeto renomeado",a["id"]))
+        cur.execute("SELECT request_fingerprint_sha256 FROM public.sie_projects WHERE id=%s",
+                    (a["id"],))
+        assert len(cur.fetchone()[0])==64
+    again=adapter.create_project(A,"Projeto idempotente",key)
+    assert again["id"]==a["id"] and again["replayed"] is True
+    with pytest.raises(PgConflict):
+        adapter.create_project(A,"Projeto renomeado",key)
+
+
+def test_b04_project_immutable_owner_and_request_identity(conn):
+    import psycopg
+    adapter=Pg17DisposableAdapter(conn)
+    p=adapter.create_project(A,"Projeto protegido","project-guard-key-1")["id"]
+    with conn.cursor() as cur:
+        with pytest.raises(psycopg.errors.CheckViolation):
+            cur.execute("UPDATE public.sie_projects SET owner_id=%s WHERE id=%s",
+                        (B,p))
+        with pytest.raises(psycopg.errors.CheckViolation):
+            cur.execute("UPDATE public.sie_projects SET idempotency_key=%s WHERE id=%s",
+                        ("changed-key",p))
+        cur.execute("SELECT owner_id FROM public.sie_projects WHERE id=%s",(p,))
+        assert cur.fetchone()[0]==A
+
+
+def test_b04_b05_role_permissions_minimum(conn):
+    with conn.cursor() as cur:
+        for table in ("sie_rooms","sie_loads","sie_circuits","sie_circuit_loads"):
+            cur.execute("SELECT has_table_privilege('authenticated',%s,'DELETE')",
+                        ("public."+table,))
+            assert cur.fetchone()[0] is False
+            cur.execute("SELECT has_table_privilege('service_role',%s,'DELETE')",
+                        ("public."+table,))
+            assert cur.fetchone()[0] is True
+        cur.execute("SELECT has_column_privilege('service_role','public.sie_projects','owner_id','UPDATE')")
+        assert cur.fetchone()[0] is False
+        cur.execute("SELECT has_column_privilege('service_role','public.sie_projects','name','UPDATE')")
+        assert cur.fetchone()[0] is True
+        cur.execute("SELECT has_column_privilege('authenticated','public.sie_rooms','name','UPDATE')")
+        assert cur.fetchone()[0] is False
