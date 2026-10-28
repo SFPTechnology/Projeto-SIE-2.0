@@ -233,3 +233,28 @@ def insert_bundle(project_id: UUID,revision_id: UUID,body: BundleIn,
                   identity: AuthIdentity = Depends(current_identity)):
     return _run(_store().add_bundle,identity.user_id,project_id,revision_id,
                 body.model_dump(mode="json"))
+
+
+from typing import Any, Literal
+from fastapi import Query
+
+EntityKind = Literal["rooms","loads","circuits","links"]
+
+
+@router.patch("/projects/{project_id}/revisions/{revision_id}/{entity_kind}/{entity_id}")
+def edit_entity(project_id: UUID, revision_id: UUID,
+                entity_kind: EntityKind, entity_id: UUID,
+                payload: dict[str, Any],
+                expected_revision_lock_version: int = Query(ge=0),
+                identity: AuthIdentity = Depends(current_identity)):
+    return _run(_store().update_entity, identity.user_id, project_id, revision_id,
+                entity_kind, entity_id, payload, expected_revision_lock_version)
+
+
+@router.delete("/projects/{project_id}/revisions/{revision_id}/{entity_kind}/{entity_id}")
+def remove_entity(project_id: UUID, revision_id: UUID,
+                  entity_kind: EntityKind, entity_id: UUID,
+                  expected_revision_lock_version: int = Query(ge=0),
+                  identity: AuthIdentity = Depends(current_identity)):
+    return _run(_store().delete_entity, identity.user_id, project_id, revision_id,
+                entity_kind, entity_id, expected_revision_lock_version)
