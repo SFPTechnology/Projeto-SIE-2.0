@@ -43,6 +43,28 @@ async def local_storage_boundary(request, call_next):
     return await call_next(request)
 
 
+
+# B07: fail-closed, local DEV request limits. The application does not
+# buffer oversized payloads; clients must send an explicit Content-Length.
+@app.middleware("http")
+async def sie_v201_dev_hardening(request, call_next):
+    from uuid import uuid4
+    is_v201 = request.url.path.startswith("/api/v2/sie/")
+    if not is_v201:
+        return await call_next(request)
+    method = request.method.upper()
+    if method in {"POST", "PUT", "PATCH"}:
+        supplied = request.headers.get("content-length")
+        if supplied is None or not supplied.isascii() or not supplied.isdigit():
+            return JSONResponse(status_code=411, content={"detail":"Content-Length obrigatorio"})
+        if int(supplied) > 262144:
+            return JSONResponse(status_code=413, content={"detail":"Payload excede limite DEV"})
+    response = await call_next(request)
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Request-ID"] = str(uuid4())
+    return response
+
 @app.exception_handler(sqlite3.DatabaseError)
 async def erro_armazenamento_seguro(request, exc):
     return JSONResponse(status_code=503, content={
