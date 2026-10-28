@@ -11,6 +11,7 @@ and read back, verified Auth sessions, DB backup, and DDL authorization.
 from __future__ import annotations
 
 from decimal import Decimal, InvalidOperation
+import os
 from ipaddress import ip_address
 from uuid import UUID
 
@@ -61,6 +62,8 @@ class Pg17DisposableAdapter:
     def __init__(self,conn,project_ref=PROJECT_REF):
         self.conn=conn
         self.project_ref=project_ref
+        if os.environ.get("GITHUB_ACTIONS")!="true" or os.environ.get("SIE_PG17_DISPOSABLE_TEST")!="1":
+            raise IntegrationNotReady("PostgreSQL writer is CI-only; no remote adapter")
         info=getattr(conn,"info",None)
         host=getattr(info,"host",None)
         dbname=getattr(info,"dbname",None)
@@ -75,8 +78,13 @@ class Pg17DisposableAdapter:
             database,address=cur.fetchone()
             if database != dbname:
                 raise IntegrationNotReady("database mismatch")
-            if address is not None and not ip_address(str(address)).is_loopback:
-                raise IntegrationNotReady("not a local PostgreSQL service")
+            # Docker port publishing returns a private container interface
+            # (often 172.18.x.x), not a loopback source; combined with
+            # CI-only gate, localhost DSN and disposable DB name only.
+            if address is not None:
+                server=ip_address(str(address))
+                if not (server.is_loopback or server.is_private):
+                    raise IntegrationNotReady("not a disposable private PostgreSQL service")
         ready=read_only_preflight(conn,project_ref)
         if not ready.ready:
             raise IntegrationNotReady("GF02+A03+A04 migration preflight failed")
