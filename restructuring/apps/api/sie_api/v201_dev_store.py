@@ -308,3 +308,57 @@ class DevStore:
                        WHERE id=?""",(_uuid(revision),))
             return dict(db.execute("SELECT * FROM v201_revisions WHERE id=?",
                                    (_uuid(revision),)).fetchone())
+
+
+    def add_bundle(self,owner,project,revision,bundle):
+        """B05 atomic 4-entity import with client aliases, no external FK injection."""
+        with self._txn() as db:
+            self._revision(db,owner,project,revision,draft=True)
+            pid,rid=_uuid(project),_uuid(revision)
+            maps={kind:{} for kind in ("rooms","loads","circuits","links")}
+            def new_id(kind,ref):
+                ref=_name(ref,64)
+                if ref in maps[kind]: raise Conflict("referencia duplicada no lote")
+                uid=str(uuid4())
+                maps[kind][ref]=uid
+                return uid
+            def known(kind,ref):
+                if ref not in maps[kind]:
+                    raise Conflict("referencia ausente no lote")
+                return maps[kind][ref]
+
+            for room in bundle["rooms"]:
+                rid_local=new_id("rooms",room["ref"])
+                width=_decimal(room["width_m"],4,"100000")
+                length=_decimal(room["length_m"],4,"100000")
+                excluded=_decimal(room.get("excluded_perimeter_m","0"),4,"200000",positive=False)
+                if Decimal(excluded)>=2*(Decimal(width)+Decimal(length)):
+                    raise Invalid("perimetro excluido invalido")
+                db.execute("""INSERT INTO v201_rooms(id,project_id,revision_id,name,width_m,length_m,excluded_perimeter_m)
+                              VALUES(?,?,?,?,?,?,?)""",
+                           (rid_local,pid,rid,_name(room["name"]),width,length,excluded))
+            for circuit in bundle["circuits"]:
+                cid=new_id("circuits",circuit["ref"])
+                db.execute("""INSERT INTO v201_circuits(id,project_id,revision_id,code,nominal_voltage_v)
+                              VALUES(?,?,?,?,?)""",
+                           (cid,pid,rid,_name(circuit["code"],64),
+                            _decimal(circuit["nominal_voltage_v"],3,"100000")))
+            for load in bundle["loads"]:
+                lid=new_id("loads",load["ref"])
+                kind=load["kind"]
+                if kind not in ("LIGHTING","TUG","TUE","OTHER"): raise Invalid("tipo de carga invalido")
+                qty=load.get("quantity",1)
+                if not isinstance(qty,int) or not 1<=qty<=100000: raise Invalid("quantidade invalida")
+                db.execute("""INSERT INTO v201_loads(id,project_id,revision_id,room_id,label,kind,apparent_power_va,quantity)
+                              VALUES(?,?,?,?,?,?,?,?)""",
+                           (lid,pid,rid,known("rooms",load["room_ref"]),
+                            _name(load["label"]),kind,_decimal(load["apparent_power_va"],3,"1000000000"),qty))
+            for i,link in enumerate(bundle["links"]):
+                new_id("links",str(i))
+                db.execute("""INSERT INTO v201_links(id,project_id,revision_id,circuit_id,load_id)
+                              VALUES(?,?,?,?,?)""",
+                           (maps["links"][str(i)],pid,rid,
+                            known("circuits",link["circuit_ref"]),
+                            known("loads",link["load_ref"])))
+            return {"ids":maps,"counts":{kind:len(ids) for kind,ids in maps.items()},
+                    "transaction":"COMMITTED_DEV_ONLY"}
