@@ -189,7 +189,7 @@ BEGIN
   IF TG_OP='DELETE' THEN RETURN OLD; ELSE RETURN NEW; END IF;
 END $fn$;
 
-DO $
+DO $c03$
 DECLARE tbl text;
 BEGIN
   FOREACH tbl IN ARRAY ARRAY[
@@ -202,8 +202,9 @@ BEGIN
        FOR EACH ROW EXECUTE FUNCTION public.sie_c03_guard_revision_edit()',
       tbl || '_draft_only',tbl);
   END LOOP;
-END $;
+END $c03$;
 REVOKE ALL ON FUNCTION public.sie_c03_guard_revision_edit() FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION public.sie_c03_guard_revision_edit() TO service_role;
 -- Versioned rules are append-only; a replacement requires a new version.
 CREATE FUNCTION public.sie_c03_rule_no_mutation()
 RETURNS trigger LANGUAGE plpgsql SET search_path = '' AS $fn$
@@ -214,6 +215,7 @@ CREATE TRIGGER sie_c03_rule_no_mutation BEFORE UPDATE OR DELETE
 ON public.sie_normative_rule_versions
 FOR EACH ROW EXECUTE FUNCTION public.sie_c03_rule_no_mutation();
 REVOKE ALL ON FUNCTION public.sie_c03_rule_no_mutation() FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION public.sie_c03_rule_no_mutation() TO service_role;
 
 -- Newly exposed tables: default deny anon, owner-only SELECT for authenticated.
 -- Writes are backend-only, with owner verification in trusted application code.
