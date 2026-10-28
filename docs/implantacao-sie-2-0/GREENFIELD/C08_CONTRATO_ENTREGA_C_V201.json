@@ -6,7 +6,7 @@
   "environment": "DEVELOPMENT",
   "repository": "SFPTechnology/Projeto-SIE-2.0",
   "source_branch": "feat/v201-bloco-c-dominio-eletrico",
-  "source_sha": "ab621c4d5c12ac7e462d4662bdb826dff867069b",
+  "source_sha": "42b36070eea2e2a4579386ae366fd2f8c1a48687",
   "baseline_b_sha": "63805c03c7146103cdd67eca4da3e369a751d379",
   "supabase_project_ref": "fozrymsidnaxmuvxxfhh",
   "remote_ddl_authorized": false,
@@ -24,27 +24,29 @@
   "normative_gate": "PARTIAL_EVIDENCE_PENDING",
   "legacy_source_state": "SOURCE_FOUND_COUNTS_VERIFIED",
   "real_legacy_data_migrated": false,
-  "synthetic_etl_state": "PASS_DEV_SYNTHETIC",
+  "synthetic_etl_state": "PASS_DEV_SYNTHETIC_REAL_REHEARSAL_PENDING",
   "disposable_pg17_verdict": "PASS_C03_C05_ON_ab621c4d",
   "test_runs": [
-    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40766811877",
-    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40766822648",
-    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40766822733"
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519264",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519468",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519336",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519101"
   ],
   "evidence_sha256": null,
-  "evidence_state": "FORMAL_GC_BLOCKED_HUMAN_OWNERSHIP_NORMATIVE_AND_HEAD_CI_PENDING",
+  "evidence_state": "SOURCE_SELECTION_AND_SHA256_READONLY_AUDIT_COMPLETE_REMOTE_HOMOLOGATION_AND_PROFESSIONAL_SIGNOFF_PENDING",
   "blockers": [
-    "C02 unresolved additional legacy source columns and human-certified owner mapping for 5 projects",
-    "C07 10 audit references require provenance-preserving quarantine and authorized real staging ETL",
-    "C04/C05 P03/P06 Rca/XL and professional normative application conditions remain unverified",
-    "C05 C03 technical tables not yet captured in canonical PostgreSQL sealed revision snapshot",
-    "C03 A03/A04/B04/C03 remote migrations, Auth A/B, backup/restore remain subject to E02–E06",
-    "C08 QA checks must complete on frozen final HEAD after this report"
+    "Bind owner of all five legacy projects to a genuine authenticated destination user after independent verification; user has self-declared ownership and selected all five",
+    "Governed dispositions for 45 unmapped source columns and retention of 10 historical audit orphan references",
+    "Consistent source cutoff, encrypted backup/restore and approved isolated ETL with 1934 of 1934 records accounted for",
+    "C04/C05 normative conditions, short-circuit/DR/DPS/earthing and professional engineering signoff",
+    "C03 canonical PostgreSQL revision snapshot must cover approved technical/electrical extensions",
+    "A03/A04/B04/C03 remote migrations, A/B Auth/RLS and E02–E06 require scoped explicit authorization for isolated staging",
+    "Final frozen HEAD same-SHA five CI checks, SHA256 evidence bundle and independent GC acceptance"
   ],
   "handoff_to": "D",
   "handoff_authorized": false,
   "production_release_authorized": false,
-  "source_sha_role": "LAST_VERIFIED_PARTIAL_CI_CANDIDATE_NOT_FINAL_HEAD",
+  "source_sha_role": "LAST_VERIFIED_CODE_CI_4_OF_5_ON_THIS_SHA_NO_FINAL_GC",
   "legacy_source_summary": {
     "projects": 5,
     "rooms": 41,
@@ -53,6 +55,22 @@
     "orphan_audit_room_refs": 10,
     "source_auth_users": 0,
     "destination_auth_users": 0,
-    "owner_assignment": "HUMAN_REQUIRED"
+    "owner_assignment": "HUMAN_REQUIRED",
+    "projects_selected": 5,
+    "all_selected_for_migration": true,
+    "source_domain_tables": 15,
+    "source_schema_columns": 99,
+    "source_rows_all_tables": 1934,
+    "unmapped_semantic_fields": 45,
+    "source_full_payload_fingerprints_recorded": 15,
+    "source_full_backup_verified": false
+  },
+  "owner_declaration": {
+    "date": "2026-10-28",
+    "scope": "ALL_FIVE_LEGACY_PROJECTS",
+    "source": "USER_IN_CURRENT_CONVERSATION",
+    "ownership": "SELF_DECLARED",
+    "target_auth_account_verified": false,
+    "migration_intent_confirmed": true
   }
 }
