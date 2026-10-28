@@ -64,13 +64,17 @@ jobs:
       - name: Install real GF02+A03+A04 and verify PG17 lifecycle
         run: |
           psql -X -v ON_ERROR_STOP=1 -f restructuring/supabase/greenfield/tests/a03_a04_pg17.sql
+      - name: Apply B04 candidate only to the disposable PostgreSQL service
+        run: |
+          python restructuring/supabase/greenfield/check_catalog.py --json
+          psql -X -v ON_ERROR_STOP=1 -f restructuring/supabase/migrations/20261028153000_sie_b04_idempotency_backend_grants_v201.sql
       - name: Register test-only migration history
         run: |
           psql -v ON_ERROR_STOP=1 <<'SQL'
           CREATE SCHEMA supabase_migrations;
           CREATE TABLE supabase_migrations.schema_migrations(version text PRIMARY KEY);
           INSERT INTO supabase_migrations.schema_migrations(version)
-          VALUES ('20261027195557'),('20261028102000'),('20261028102100');
+          VALUES ('20261027195557'),('20261028102000'),('20261028102100'),('20261028153000');
           SQL
       - name: Exercise PostgreSQL B04/B05 adapter and rollback
         working-directory: restructuring/apps/api
