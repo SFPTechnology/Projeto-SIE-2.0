@@ -73,6 +73,11 @@ CREATE TABLE IF NOT EXISTS v201_links(
  REFERENCES v201_circuits(id,project_id,revision_id),
  FOREIGN KEY(load_id,project_id,revision_id)
  REFERENCES v201_loads(id,project_id,revision_id));
+CREATE TABLE IF NOT EXISTS v201_c_technical(
+ circuit_id TEXT PRIMARY KEY, project_id TEXT NOT NULL, revision_id TEXT NOT NULL,
+ spec_json TEXT NOT NULL,
+ FOREIGN KEY(circuit_id,project_id,revision_id)
+ REFERENCES v201_circuits(id,project_id,revision_id) ON DELETE RESTRICT);
 """
 
 
@@ -265,6 +270,14 @@ class DevStore:
                 cols=list(item)
                 db.execute(f"INSERT INTO v201_{table} ({','.join(cols)}) VALUES ({','.join('?' for _ in cols)})",
                            tuple(item[k] for k in cols))
+        # C05: clone technical inputs with remapped circuit IDs, never reuse
+        # source revision identities or modify the sealed predecessor.
+        for technical in db.execute(
+            "SELECT * FROM v201_c_technical WHERE project_id=? AND revision_id=?",
+            (pid,base)).fetchall():
+            db.execute("""INSERT INTO v201_c_technical(
+                circuit_id,project_id,revision_id,spec_json) VALUES(?,?,?,?)""",
+                (maps["circuits"][technical["circuit_id"]],pid,rid,technical["spec_json"]))
 
     def _add(self,owner,project,revision,table,item):
         with self._txn() as db:
@@ -313,6 +326,14 @@ class DevStore:
             data[name]=[dict(r) for r in db.execute(
                 f"SELECT * FROM v201_{name} WHERE project_id=? AND revision_id=? ORDER BY id",
                 (_uuid(project),_uuid(revision))).fetchall()]
+        # Backwards compatible: no new keys when B04 projects have no C data.
+        tech=db.execute("""SELECT circuit_id,spec_json FROM v201_c_technical
+             WHERE project_id=? AND revision_id=? ORDER BY circuit_id""",
+             (_uuid(project),_uuid(revision))).fetchall()
+        if tech:
+            data["circuit_technical"]=[
+                {"circuit_id":r["circuit_id"],"spec":json.loads(r["spec_json"])}
+                for r in tech]
         return data
 
     def seal_revision(self,owner,project,revision,expected_lock):

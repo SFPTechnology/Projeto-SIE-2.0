@@ -1,0 +1,118 @@
+{
+  "contract_version": "SIE-C04-C05-PROFESSIONAL-REVIEW-1",
+  "project": "SIE_2.0",
+  "scope": "C04 normative catalogs, C05 electrical engines and 7 legacy electrical fields pending technical review",
+  "generated_at": "2026-10-28",
+  "branch": "feat/v201-bloco-c-dominio-eletrico",
+  "professional_review": {
+    "state": "NOT_SUBMITTED",
+    "reviewer_legal_name": null,
+    "professional_registration_reference": null,
+    "professional_jurisdiction": null,
+    "credential_validation": null,
+    "external_signature_or_process_ref": null,
+    "signed_evidence_sha256": null,
+    "signed_at": null
+  },
+  "references": [
+    {
+      "id": "ABNT-NBR-5410",
+      "edition": "2004 corrigida 2008 (registry assertion; validate licensed source and applicability)",
+      "status": "PENDING"
+    },
+    {
+      "id": "EDP-SP-PTDT00068-V09",
+      "edition": "v09 (registry assertion; validate official version, effective date and distributor territory)",
+      "status": "PENDING"
+    },
+    {
+      "id": "NR-10-ATE-2027",
+      "edition": "rule at relevant work date to be confirmed",
+      "status": "PENDING"
+    },
+    {
+      "id": "ABNT-NBR-5419-1",
+      "edition": "edition/applicability of SPDA modules to be reviewed separately",
+      "status": "PENDING"
+    }
+  ],
+  "requirements": [
+    {
+      "code": "E01",
+      "name": "Lighting and TUG area/perimeter, kitchen/laundry and bathrooms",
+      "state": "EVIDENCE_PENDING",
+      "needed": "Licensed NBR 5410 conditions, boundary cases, independent golden values"
+    },
+    {
+      "code": "E02",
+      "name": "TUE, PF and single/three-phase explicit values",
+      "state": "EVIDENCE_PENDING",
+      "needed": "Accepted units, absence handling, phase/topology and overload scenarios"
+    },
+    {
+      "code": "E03",
+      "name": "Demand and circuits distribution",
+      "state": "EVIDENCE_PENDING",
+      "needed": "Documented factors/criteria, non-inferred diversity, split and balance methods"
+    },
+    {
+      "code": "E04",
+      "name": "Conductor ampacity/correction and installation method",
+      "state": "EVIDENCE_PENDING",
+      "needed": "Validated table, sections, material, temperature, grouping and P06 conditions"
+    },
+    {
+      "code": "E05",
+      "name": "Voltage drop with Rca/XL and allowable limits",
+      "state": "EVIDENCE_PENDING",
+      "needed": "Trusted Rca/XL data, circuit topology, length, PF and norm boundary"
+    },
+    {
+      "code": "E06",
+      "name": "Overload, short circuit, breaking capacity and I2",
+      "state": "EVIDENCE_PENDING",
+      "needed": "Check Ib<=In<=Iz, I2, fault current, device curve and discrimination"
+    },
+    {
+      "code": "E07",
+      "name": "DR and DPS design conditions",
+      "state": "EVIDENCE_PENDING",
+      "needed": "Protection arrangement, sensitivity, selectivity and surge design evidence"
+    },
+    {
+      "code": "E08",
+      "name": "Earthing, neutral/PE and scheme",
+      "state": "EVIDENCE_PENDING",
+      "needed": "Scheme TT/TN/IT, terminal continuity and safety verification"
+    },
+    {
+      "code": "E09",
+      "name": "EDP supply category and distributor conditions",
+      "state": "EVIDENCE_PENDING",
+      "needed": "Official referenced version, territorial applicability, per-cell provenance"
+    },
+    {
+      "code": "E10",
+      "name": "Legacy electrical fields and historical calculations",
+      "state": "EVIDENCE_PENDING",
+      "needed": "Review 7 pending semantic fields, source payload retained, NOT_EVALUATED historical results"
+    },
+    {
+      "code": "E11",
+      "name": "Fail-closed, negative tests and versioned normative evidence",
+      "state": "EVIDENCE_PENDING",
+      "needed": "Tests with invalid inputs, manual changes, outdated normative versions and hash drift"
+    }
+  ],
+  "blockers": [
+    "P03 protective verification",
+    "P06 application conditions",
+    "Rca/XL missing verified engineering tables",
+    "DR/DPS/earthing/short-circuit incomplete",
+    "Normative licensed source edition/terms and technical signoff missing"
+  ],
+  "release_state": "REVIEW_PACKET_PREPARED_NOT_A_PROFESSIONAL_SIGNOFF",
+  "normative_approved": false,
+  "production_or_remote_approval": false,
+  "instructions": "Reviewer must verify professional registration and licensed sources separately and sign a SHA256 evidence bundle through an approved external process. Editing this JSON to APPROVED cannot authorize any release."
+}

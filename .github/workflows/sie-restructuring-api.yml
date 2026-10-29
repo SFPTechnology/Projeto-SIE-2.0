@@ -106,6 +106,18 @@ jobs:
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api
+      - name: Generate audited C11/C12 E01-E11 arithmetic and fail-closed evidence
+        run: |
+          mkdir -p run-artifacts
+          python -m sie_api.v201_c_e01_e11_evidence --output run-artifacts/c-e01-e11-evidence.json
+          python -m json.tool run-artifacts/c-e01-e11-evidence.json > /dev/null
+      - name: Archive real E01-E11 execution evidence for professional review
+        uses: actions/upload-artifact@v4
+        with:
+          name: c-e01-e11-evidence-${{ github.run_id }}
+          path: run-artifacts/c-e01-e11-evidence.json
+          if-no-files-found: error
+          retention-days: 30
       - name: Replay immutable F00 baseline without rewriting expectations
         run: python scripts/f00_golden.py --verify
       - name: Check frontend JavaScript syntax

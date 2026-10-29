@@ -1,0 +1,103 @@
+{
+  "contract_version": "2.0.1",
+  "block": "C",
+  "gate": "GC",
+  "state": "BLOCKED",
+  "environment": "DEVELOPMENT",
+  "repository": "SFPTechnology/Projeto-SIE-2.0",
+  "source_branch": "feat/v201-bloco-c-dominio-eletrico",
+  "source_sha": "e06d8eb7220154cf9a03478e75cba407486b2f2c",
+  "baseline_b_sha": "63805c03c7146103cdd67eca4da3e369a751d379",
+  "supabase_project_ref": "fozrymsidnaxmuvxxfhh",
+  "remote_ddl_authorized": false,
+  "remote_migrations_applied_by_this_block": [],
+  "migration_versions_pending": [
+    "20261028102000",
+    "20261028102100",
+    "20261028153000",
+    "20261028203000"
+  ],
+  "migration_c03": "20261028203000_sie_c03_electrical_domain_v201.sql",
+  "schema_fingerprint": null,
+  "schema_fingerprint_status": "NOT_MEASURED_REMOTELY",
+  "api_contract_version": "sie-v201-dev-c05-2",
+  "normative_gate": "PARTIAL_EVIDENCE_PENDING",
+  "legacy_source_state": "SOURCE_FOUND_COUNTS_VERIFIED",
+  "real_legacy_data_migrated": false,
+  "synthetic_etl_state": "PASS_DEV_SYNTHETIC_REAL_REHEARSAL_PENDING",
+  "disposable_pg17_verdict": "PASS_C03_C05_ON_ab621c4d",
+  "test_runs": [
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519264",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519468",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519336",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519101"
+  ],
+  "evidence_sha256": null,
+  "evidence_state": "AUTH_ACCOUNT_EXISTS_CONFIRMATION_READBACK_20261028; SESSION_OWNER_BINDING_PENDING; C11_C12_C13_DRAFT_NOT_SIGNED; 45_FIELDS_CLASSIFIED_11_TECHNICAL_CASES_UNAPPROVED",
+  "blockers": [
+    "Auth user exists and is confirmed (aggregate readback); still require trusted JWT subject, proof the account belongs to intended user, and 5/5 binding",
+    "Independent ownership attestation and reviewer confirmation required before owner assignment",
+    "7 electrical legacy fields and 1 room display mapping await specialist validation; 22 empty-table and 15 archive routes classified",
+    "Professional engineer must evaluate 11 technical and normative cases against licensed/current sources and provide authentic signoff",
+    "E02-E06 isolated staging authorization, migrations, backup/restore, actual ETL and 1,934-row reconciliation missing",
+    "Final same-SHA five-workflow QA and professional acceptance pending"
+  ],
+  "handoff_to": "D",
+  "handoff_authorized": false,
+  "production_release_authorized": false,
+  "source_sha_role": "LAST_DOCUMENTED_CHECKPOINT_NOT_FINAL_HEAD_AT_COMMIT",
+  "legacy_source_summary": {
+    "projects": 5,
+    "rooms": 41,
+    "additional_loads": 52,
+    "audit_events": 1805,
+    "orphan_audit_room_refs": 10,
+    "source_auth_users": 0,
+    "destination_auth_users": 1,
+    "owner_assignment": "HUMAN_REQUIRED",
+    "projects_selected": 5,
+    "all_selected_for_migration": true,
+    "source_domain_tables": 15,
+    "source_schema_columns": 99,
+    "source_rows_all_tables": 1934,
+    "unmapped_semantic_fields": 45,
+    "source_full_payload_fingerprints_recorded": 15,
+    "source_full_backup_verified": false
+  },
+  "owner_declaration": {
+    "date": "2026-10-28",
+    "scope": "ALL_FIVE_LEGACY_PROJECTS",
+    "source": "USER_IN_CURRENT_CONVERSATION",
+    "ownership": "SELF_DECLARED",
+    "target_auth_account_verified": false,
+    "migration_intent_confirmed": true
+  },
+  "legacy_semantic_review": {
+    "source_columns": 99,
+    "classified_additional_fields": 45,
+    "archive_only_source_fields": 15,
+    "zero_row_contract_fields": 22,
+    "professional_review_required": 7,
+    "schema_review_required": 1,
+    "canonical_transform_approval": false,
+    "artefact": "C02_REVISAO_SEMANTICA_45_CAMPOS_V201.csv"
+  },
+  "real_auth_binding": {
+    "current_source": "READBACK_AUTH_USERS_0",
+    "current_destination": "READBACK_AUTH_USERS_1_CONFIRMED_0_SOFT_DELETED_20261028",
+    "verified_jwt_subject": null,
+    "bound_owner_uuid": null,
+    "applied": false,
+    "gate": "BLOCKED_AUTH_SESSION_AND_OWNERSHIP_PROOF_PENDING"
+  },
+  "professional_review": {
+    "package": "C04_C05_DOSSIE_ACEITE_PROFISSIONAL_V201.json",
+    "engineering_cases": 11,
+    "state": "AWAITING_PROFESSIONAL_REGISTRATION_CHECK_AND_TEST_EVIDENCE",
+    "actual_professional_signature_verified": false,
+    "approval_granted": false,
+    "procedure": "C11_PROCEDIMENTO_VALIDACAO_PROFISSIONAL_C_V201.md",
+    "dossier": "C12_DOSSIE_VALIDACAO_EVIDENCIAS_ELETRICAS_V201.md",
+    "unsigned_acceptance_template": "C13_TERMO_ACEITE_TECNICO_ELETRICO_MODELO_V201.md"
+  }
+}
