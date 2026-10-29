@@ -127,8 +127,8 @@ def evaluate_e04():
     return _record(
         "E04", "E04-AMPACITY-CORRECTION-SYNTHETIC",
         {"min_mm2": "4", "chosen_mm2": "4", "iz_a": "25.6"},
-        {"min_mm2": str(Decimal(result["conductor"]["minimum_mm2"])),
-         "chosen_mm2": str(Decimal(result["conductor"]["selected_mm2"])),
+        {"min_mm2": str(Decimal(result["conductor"]["minimum_mm2"]).normalize()),
+         "chosen_mm2": str(Decimal(result["conductor"]["selected_mm2"]).normalize()),
          "iz_a": str(Decimal(result["conductor"]["corrected_ampacity_a"]))},
         ["Ampacity table is intentionally synthetic, not manufacturer/ABNT",
          "P06 installation method, grouping, thermal and derating conditions"],
@@ -144,7 +144,7 @@ def evaluate_e05():
     return _record(
         "E05", "E05-R-X-EXPLICIT-MATH",
         {"drop_v": "8.892", "drop_percent_rounded": "4.0418", "normative_limit": "UNVERIFIED"},
-        {"drop_v": str(drop),
+        {"drop_v": str(drop.normalize()),
          "drop_percent_rounded": str(Decimal(result["voltage_drop"]["percent"]).quantize(Decimal("0.0001"))),
          "normative_limit": "UNVERIFIED" if "VOLTAGE_DROP_NORMATIVE_LIMIT_UNVERIFIED" in result["pending"]
                             else "WRONGLY_APPROVED"},
