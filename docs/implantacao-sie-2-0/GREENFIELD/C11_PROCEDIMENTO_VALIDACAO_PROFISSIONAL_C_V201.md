@@ -6,6 +6,22 @@
 **Versão de código de referência:** `a82776203db9b1d60dd49cbbd6602a47093f9df1` (5 workflows de CI PASS verificados na data da emissão). Se houver novos commits, atualizar SHA e repetir ensaios.
 **Natureza do aceite:** validação das funções do **software**, não aprovação automática de projetos elétricos, laudos de campo ou instalações físicas.
 
+## Atualização de enquadramento — declaração do responsável, 28/10/2026
+
+**Título informado:** Engenheiro Eletricista. **Conselho:** CREA-SP. **Situação declarada:** REGULAR.
+**Atribuições declaradas na Certidão de Registro e Anotações:** arts. 8º e 9º da Resolução Confea nº 218/1973.
+**Juízo provisório:** há compatibilidade técnico-profissional em princípio para a **avaliação dos cálculos e métodos de instalações elétricas de baixa tensão**, abrangidos pelo escopo do Bloco C; isso não é certificação de conformidade de software, de instalação real ou de serviço fora das atribuições individuais.
+
+**Norma atualizada:** a Resolução Confea nº 1.156/2025 (publicada em 31/10/2025) revogou expressamente os artigos 8º e 9º da Resolução nº 218/1973 e consolidou atribuições nas especialidades da modalidade eletricista. O art. 2º da nova resolução abrange eletrotécnica/energia elétrica e o art. 3º trata da modalidade eletrônica. O art. 1º, §2º, preserva direitos e prerrogativas conferidos por outros normativos. **A revogação das regras gerais anteriores não deve ser confundida com cancelamento automático das atribuições individualmente concedidas pelo CREA-SP.** As atribuições constantes da certidão atual e eventuais restrições individuais são determinantes. Referências:
+- https://normativos.confea.org.br/Ementas/Visualizar?id=82360
+- https://normativos.confea.org.br/Ementas/Visualizar?id=266
+
+**H0:** `COMPATIBILIDADE_PRELIMINAR_POR_DECLARACAO`. Para marcar `VALIDATED`, arquivar certidões atuais em área restrita, validar autenticidade no portal oficial do CREA-SP e enquadrar a eventual exigibilidade de ART para a atividade concreta. **Não exigir consulta adicional ao CREA por rotina, somente em caso de dúvida ou restrição específica.**
+
+**Responsabilidades segregadas:** o interessado poderá avaliar as **regras e os resultados eletrotécnicos** após validação de H0; qualidade de código, segurança, RLS, PostgreSQL, QA e liberação de versão exigem testes e gates próprios e não são homologados apenas pela assinatura de engenheiro eletricista.
+
+**Estado dos ensaios E01–E11:** ainda sem aceite profissional; manter `EVIDENCE_PENDING` e produzir contraprovas independentes. O termo C13 permanece sem assinatura.
+
 ## 1. Responsável e habilitação — gate H0 (sem presunção)
 1. O profissional que manifestou intenção de assumir a análise deve **confirmar nome, registro no CREA/UF, condição regular e atribuições efetivas**. Nunca completar esses campos por inferência ou memória.
 2. Obter no CREA competente: (a) Certidão de Registro e Quitação e (b) Certidão de Registro e Anotações (com atribuições); validar a autenticidade e validade nos portais oficiais e preservar os documentos em repositório restrito, registrando somente protocolo/hash no repositório de código. Quando CREA-SP, iniciar em https://www.creasp.org.br/servico/.
