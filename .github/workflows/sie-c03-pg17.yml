@@ -74,6 +74,34 @@ jobs:
       - name: Exercise C05 calculation against sealed PostgreSQL snapshot
         working-directory: restructuring/apps/api
         run: python -m pytest tests/test_c05_pg17_bridge_v201.py -q
+      - name: Verify PostgreSQL 17 backup and clean restore in disposable database
+        run: |
+          set -euo pipefail
+          test "$PGDATABASE" = "sie2_gf02_ci"
+          test -z "${SUPABASE_ACCESS_TOKEN:-}"
+          test -z "${SUPABASE_SERVICE_ROLE_KEY:-}"
+          test -z "${DATABASE_URL:-}"
+          cid="$(docker ps --filter ancestor=postgres:17 --format '{{.ID}}' | head -n 1)"
+          test -n "$cid"
+          docker exec "$cid" pg_dump -U postgres -d sie2_gf02_ci -Fc -f /tmp/sie2-c-disposable-backup.dump
+          docker exec "$cid" pg_restore --list /tmp/sie2-c-disposable-backup.dump >/dev/null
+          docker exec "$cid" createdb -U postgres sie2_c_restore_check
+          docker exec "$cid" pg_restore -U postgres -d sie2_c_restore_check --exit-on-error --no-owner --no-acl /tmp/sie2-c-disposable-backup.dump
+          for db in sie2_gf02_ci sie2_c_restore_check; do
+            docker exec "$cid" psql -X -U postgres -d "$db" -v ON_ERROR_STOP=1 -At -c \
+              "SELECT 'fingerprint=' || md5(concat_ws('|',
+                (SELECT string_agg(md5(row_to_json(p)::text),',' ORDER BY p.id) FROM public.sie_projects p),
+                (SELECT string_agg(md5(row_to_json(r)::text),',' ORDER BY r.id) FROM public.sie_project_revisions r),
+                (SELECT string_agg(md5(row_to_json(c)::text),',' ORDER BY c.id) FROM public.sie_circuits c),
+                (SELECT string_agg(md5(row_to_json(l)::text),',' ORDER BY l.id) FROM public.sie_loads l),
+                (SELECT string_agg(md5(row_to_json(q)::text),',' ORDER BY q.id) FROM public.sie_rooms q)
+              ));" > "/tmp/$db.fingerprint"
+          done
+          cmp /tmp/sie2_gf02_ci.fingerprint /tmp/sie2_c_restore_check.fingerprint
+          test "$(docker exec "$cid" psql -X -U postgres -d sie2_c_restore_check -At -c \
+            "SELECT count(*) FROM public.sie_project_revisions WHERE sealed_snapshot_sha256 IS NOT NULL;")" -ge 1
+          echo 'PASS: isolated PG17 backup/restore matches project, revision, circuit, load and room data fingerprints'
+          docker exec "$cid" rm -f /tmp/sie2-c-disposable-backup.dump
       - name: Verify no remote endpoint
         run: |
           test -z "${SUPABASE_DB_URL:-}"
