@@ -54,7 +54,8 @@ def test_bad_project_file_or_mode_fails(tmp_path):
     with pytest.raises(ValueError,match="cannot grant"):
         module.verify_manifest(bad,directory/"synthetic.dump")
     bad={**manifest,"mode":"REAL_REMOTE_READ_ONLY"}
-    assert module.verify_manifest(bad,directory/"synthetic.dump")["migration_go"] is False
+    with pytest.raises(ValueError,match="provenance"):
+        module.verify_manifest(bad,directory/"synthetic.dump")
 
 
 def test_restore_wrong_hash_target_and_missing_checks_fails(tmp_path):
