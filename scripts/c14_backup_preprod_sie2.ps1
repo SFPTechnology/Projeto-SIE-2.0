@@ -16,6 +16,18 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $expectedRef = 'fozrymsidnaxmuvxxfhh'
+# Prevent accidental storage in a source checkout or cloud-synced OneDrive path.
+$fullOutputRoot = [System.IO.Path]::GetFullPath($OutputRoot)
+if ($fullOutputRoot -match '(?i)[\\/]OneDrive([\\/]|$)') {
+  throw 'Pasta em OneDrive recusada; selecione um diretorio local privado criptografado.'
+}
+$probe = [System.IO.DirectoryInfo]::new($fullOutputRoot)
+while ($null -ne $probe) {
+  if (Test-Path -LiteralPath (Join-Path $probe.FullName '.git')) {
+    throw 'Pasta dentro de repositorio Git recusada: dados privados nao podem ser commitados.'
+  }
+  $probe = $probe.Parent
+}
 
 if (-not (Get-Command supabase -ErrorAction SilentlyContinue)) {
   throw 'Supabase CLI nao encontrado. Instale e autentique: supabase login.'
