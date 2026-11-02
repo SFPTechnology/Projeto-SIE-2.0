@@ -74,6 +74,9 @@ jobs:
       - name: Exercise C05 calculation against sealed PostgreSQL snapshot
         working-directory: restructuring/apps/api
         run: python -m pytest tests/test_c05_pg17_bridge_v201.py -q
+      - name: Rehearse the five legacy project shapes with synthetic PG17 records only
+        working-directory: restructuring/apps/api
+        run: python -m pytest tests/test_c08_disposable_five_projects_v201.py -q
       - name: Verify PostgreSQL 17 backup and clean restore in disposable database
         run: |
           set -euo pipefail
