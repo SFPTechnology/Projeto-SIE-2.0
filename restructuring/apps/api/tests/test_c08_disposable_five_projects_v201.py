@@ -89,7 +89,7 @@ def test_five_project_shape_rehearsal_and_isolation():
                        (SELECT count(*) FROM public.sie_rooms WHERE project_id=ANY(%s::uuid[])),
                        (SELECT count(*) FROM public.sie_loads WHERE project_id=ANY(%s::uuid[])),
                        (SELECT count(*) FROM public.sie_circuit_loads WHERE project_id=ANY(%s::uuid[])),
-                       (SELECT count(*) FROM public.sie_project_revisions WHERE project_id=ANY(%s::uuid[])
+                       (SELECT count(*) FROM public.sie_project_revisions WHERE project_id=ANY(%s::uuid[]))
                 """, (ids, ids, ids, ids)
             )
             assert cur.fetchone() == (41, 52, 52, 5)
