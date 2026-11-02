@@ -1,3 +1,5 @@
+> **FLUXO WINDOWS SEM DOCKER — ATUALIZAÇÃO 02/11/2026:** o procedimento abaixo depende do Docker Desktop e permanece como referência histórica; **não o executar** quando o requisito é operar sem Docker Desktop. O fluxo selecionado agora é **[C15 — Plano de Implementação Nativo sem Docker Desktop](C15_PLANO_IMPLEMENTACAO_SEM_DOCKER_DESKTOP_V201.md)**, usando PostgreSQL 17/pg_dump/pg_restore nativos. Nenhum dos dois procedimentos autoriza escrever no Supabase antes de backup REAL com restauração verificada.
+
 # C14 — Pré-voo da homologação remota do Bloco C (SIE 2.0)
 
 **Data:** 2026-11-02. **Status do gate de execução:** `BLOCKED_BACKUP_RESTORE_REAL_NOT_PROVEN`.
