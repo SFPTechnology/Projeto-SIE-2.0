@@ -158,6 +158,9 @@
     ],
     "backup_script": "scripts/c14_backup_preprod_sie2.ps1",
     "backup_runbook": "C14_PREVOO_BACKUP_RESTORE_PREPROD_20261102.md",
-    "grant_gc_pass": false
+    "grant_gc_pass": false,
+    "no_docker_desktop_plan": "C15_PLANO_IMPLEMENTACAO_SEM_DOCKER_DESKTOP_V201.md",
+    "selected_windows_backup_strategy": "POSTGRESQL_17_NATIVE_PG_DUMP_AND_PG_RESTORE_NOT_EXECUTED",
+    "legacy_c14_docker_flow": "SUPERSEDED_FOR_WINDOWS_NO_DOCKER_REQUIREMENT"
   }
 }
