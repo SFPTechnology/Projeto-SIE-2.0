@@ -162,5 +162,35 @@
     "no_docker_desktop_plan": "C15_PLANO_IMPLEMENTACAO_SEM_DOCKER_DESKTOP_V201.md",
     "selected_windows_backup_strategy": "POSTGRESQL_17_NATIVE_PG_DUMP_AND_PG_RESTORE_NOT_EXECUTED",
     "legacy_c14_docker_flow": "SUPERSEDED_FOR_WINDOWS_NO_DOCKER_REQUIREMENT"
+  },
+  "c15_wave1": {
+    "selection": "POSTGRESQL_17_NATIVE_WINDOWS_NO_DOCKER_DESKTOP",
+    "phase": "IMPLEMENTATION_COMPLETE_PENDING_WINDOWS_EXECUTION",
+    "agents": [
+      "C15-ARQ",
+      "C15-DBA",
+      "C15-SECOPS",
+      "C15-INTEGRIDADE",
+      "C15-QA",
+      "C15-AUDITOR"
+    ],
+    "files": [
+      "scripts/c15_native_common.ps1",
+      "scripts/c15_preflight_windows.ps1",
+      "scripts/c15_backup_native.ps1",
+      "scripts/c15_restore_native.ps1",
+      "scripts/c15_integrity.py",
+      "restructuring/apps/api/tests/test_c15_native_backup_restore_v201.py"
+    ],
+    "runbook": "docs/implantacao-sie-2-0/GREENFIELD/C15_ONDA1_EXECUCAO_YOLO_SEM_DOCKER.md",
+    "synthetic_integrity_ci": "AUTOMATED_TESTS_IMPLEMENTED_VERIFY_GITHUB_ACTIONS",
+    "destination_real_backup": "NOT_EXECUTED",
+    "destination_real_restore": "NOT_EXECUTED",
+    "source_readonly_backup": "NOT_EXECUTED",
+    "remote_migrations_applied": [],
+    "five_real_projects_migrated": 0,
+    "normative_acceptance": "PENDING",
+    "gc": "BLOCKED",
+    "production_release": false
   }
 }
