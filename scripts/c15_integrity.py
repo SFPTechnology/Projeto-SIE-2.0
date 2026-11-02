@@ -50,6 +50,14 @@ def verify_manifest(manifest: dict, backup: Path, expected_ref: str = DEST) -> d
         raise ValueError("backup size or SHA256 mismatch")
     if manifest["mode"] == "SYNTHETIC_OFFLINE" and manifest.get("source_kind") != "SYNTHETIC_FIXTURE":
         raise ValueError("synthetic fixture provenance missing")
+    if manifest["mode"] == "REAL_REMOTE_READ_ONLY":
+        if manifest.get("source_kind") != "SUPABASE_SIE2_PREPRODUCTION":
+            raise ValueError("real backup provenance missing")
+        baseline = manifest.get("baseline")
+        keys = ("auth_users", "public_projects", "public_revisions",
+                "public_tables", "public_columns", "public_rls_policies")
+        if not isinstance(baseline, dict) or any(type(baseline.get(k)) is not int or baseline[k] < 0 for k in keys):
+            raise ValueError("missing authenticated baseline readback")
     return {
         "backup_integrity": "PASS",
         "project_ref": expected_ref,
