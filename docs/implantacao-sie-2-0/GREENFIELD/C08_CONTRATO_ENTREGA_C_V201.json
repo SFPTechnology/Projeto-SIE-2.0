@@ -33,14 +33,14 @@
     "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519101"
   ],
   "evidence_sha256": null,
-  "evidence_state": "AUTH_ACCOUNT_EXISTS_CONFIRMATION_READBACK_20261028; SESSION_OWNER_BINDING_PENDING; C11_C12_C13_DRAFT_NOT_SIGNED; 45_FIELDS_CLASSIFIED_11_TECHNICAL_CASES_UNAPPROVED",
+  "evidence_state": "AUTH_ACCOUNT_EXISTS_CONFIRMATION_READBACK_20261028; SESSION_OWNER_BINDING_PENDING; C11_C12_C13_DRAFT_NOT_SIGNED; 45_FIELDS_CLASSIFIED_11_TECHNICAL_CASES_UNAPPROVED; PREPROD_SCOPED_GO_CONDITIONAL_20261102; DEST_BACKUP_RESTORE_REAL_MISSING; CI_SHA_007EA24B_5_WORKFLOWS_PASS",
   "blockers": [
     "Auth user exists and is confirmed (aggregate readback); still require trusted JWT subject, proof the account belongs to intended user, and 5/5 binding",
     "Independent ownership attestation and reviewer confirmation required before owner assignment",
     "7 electrical legacy fields and 1 room display mapping await specialist validation; 22 empty-table and 15 archive routes classified",
     "Professional engineer must evaluate 11 technical and normative cases against licensed/current sources and provide authentic signoff",
-    "E02-E06 isolated staging authorization, migrations, backup/restore, actual ETL and 1,934-row reconciliation missing",
-    "Final same-SHA five-workflow QA and professional acceptance pending"
+    "Conditional remote preproduction DDL/ETL user approval RECEIVED on 2026-11-02; still BLOCKED until real backup+restore, source cutoff, identity binding and security review",
+    "Five workflows PASS on 007ea24b BEFORE remote integration; repeat same-SHA QA after authorized migrations/ETL and obtain professional approval before GC"
   ],
   "handoff_to": "D",
   "handoff_authorized": false,
@@ -99,5 +99,65 @@
     "procedure": "C11_PROCEDIMENTO_VALIDACAO_PROFISSIONAL_C_V201.md",
     "dossier": "C12_DOSSIE_VALIDACAO_EVIDENCIAS_ELETRICAS_V201.md",
     "unsigned_acceptance_template": "C13_TERMO_ACEITE_TECNICO_ELETRICO_MODELO_V201.md"
+  },
+  "preproduction_authorization": {
+    "received_on": "2026-11-02",
+    "source": "EXPLICIT_USER_CONFIRMATION_IN_CURRENT_CONVERSATION",
+    "project_ref": "fozrymsidnaxmuvxxfhh",
+    "classification": "PREPRODUCTION_NOT_PRODUCTION_USER_ATTESTED",
+    "scoped_migrations": [
+      "20261028102000",
+      "20261028102100",
+      "20261028153000",
+      "20261028203000"
+    ],
+    "migration_application_approved_conditionally": true,
+    "migration_application_permitted_now": false,
+    "legacy_project_copies_approved_conditionally": 5,
+    "legacy_import_permitted_now": false,
+    "zero_additional_cost_required": true,
+    "mandatory_preconditions": [
+      "REAL_DESTINATION_BACKUP_PROVEN",
+      "LOCAL_FULL_RESTORE_WITH_CONTENT_AND_SCHEMA_CHECKS_PASS",
+      "SECURITY_RLS_AND_SCHEMA_DRIFT_REVIEW",
+      "READBACK_OF_MIGRATION_HISTORY",
+      "SOURCE_FULL_READONLY_BACKUP_AND_CONSISTENT_CUTOFF_BEFORE_ETL",
+      "TRUSTED_AUTH_SESSION_AND_FIVE_PROJECT_OWNER_PROOF_BEFORE_ETL"
+    ],
+    "preserved_objects": [
+      "SIE_ORIGINAL",
+      "LEGACY_SUPABASE",
+      "GITHUB_MAIN",
+      "F12",
+      "PRODUCTION"
+    ],
+    "backup_real_state": "MISSING",
+    "restore_real_state": "MISSING",
+    "destination_schema_preflight": {
+      "public_tables": 9,
+      "public_columns": 63,
+      "public_rls_policies": 16,
+      "schema_columns_inventory_md5": "3612115882486c8dfda17b688196a8de",
+      "policy_names_inventory_md5": "c7e7439d0d751f400d7c740762066555",
+      "metadata_only_not_backup": true,
+      "auth_users": 1,
+      "auth_sessions": 0,
+      "public_projects": 0,
+      "public_revisions": 0,
+      "applied_migration_versions": [
+        "20261027195557"
+      ]
+    },
+    "security_advisors": [
+      {
+        "name": "auth_leaked_password_protection",
+        "level": "WARN",
+        "state": "REQUIRES_REVIEW",
+        "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+      }
+    ],
+    "backup_script": "scripts/c14_backup_preprod_sie2.ps1",
+    "backup_runbook": "C14_PREVOO_BACKUP_RESTORE_PREPROD_20261102.md",
+    "grant_gc_pass": false
   }
 }
