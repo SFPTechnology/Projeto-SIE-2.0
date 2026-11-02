@@ -118,6 +118,15 @@ jobs:
             exit 1
           }
           Write-Host 'C14 PowerShell syntax PASS; no remote connection or backup was executed.'
+      - name: Parse all C15 PowerShell scripts without executing them
+        shell: pwsh
+        run: |
+          foreach ($name in @('c15_native_common.ps1','c15_preflight_windows.ps1','c15_backup_native.ps1','c15_restore_native.ps1')) {
+            $tokens = $null
+            $issues = $null
+            [System.Management.Automation.Language.Parser]::ParseFile((Join-Path $env:GITHUB_WORKSPACE ('scripts/' + $name)),[ref]$tokens,[ref]$issues) | Out-Null
+            if ($issues.Count -gt 0) { throw "PowerShell parse failure: $name" }
+          }
       - name: Verify C15 native offline integrity and guard against false GO
         run: |
           mkdir -p run-artifacts
