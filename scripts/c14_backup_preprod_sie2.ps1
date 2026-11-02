@@ -3,7 +3,7 @@
  SIE 2.0 C14 - only exports a real, private Supabase logical backup; NEVER modifies a remote database.
 .DESCRIPTION
  Requires the official Supabase CLI, Docker Desktop and prior Supabase CLI login.
- Creates a fresh private output folder under the current user's Documents directory.
+ Creates a fresh private output folder under current user's local AppData directory (non-cloud synced by default).
  Runs exactly three official 'supabase db dump' read-only operations using 'supabase link'.
  Produces hash manifest and an explicit RESTORE_NOT_VERIFIED state.
  DO NOT put the backup folder, auth data or DB passwords in GitHub.
@@ -11,7 +11,7 @@
 [CmdletBinding()]
 param(
   [string]$OutputRoot = [System.IO.Path]::Combine(
-    [Environment]::GetFolderPath('MyDocuments'), 'SIE2_BACKUPS_PRIVADOS')
+    $env:LOCALAPPDATA, 'SIE2_BACKUPS_PRIVADOS')
 )
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
@@ -50,7 +50,8 @@ try {
     foreach ($item in $files) {
       $full = Join-Path $root $item.Name
       Write-Host ("Exportando " + $item.Name + "...")
-      & supabase db dump -f $full @($item.Args)
+      $argsList = [string[]]$item.Args
+      & supabase db dump -f $full @argsList
       if ($LASTEXITCODE -ne 0) { throw ('Dump falhou: ' + $item.Name) }
       if (-not (Test-Path -LiteralPath $full -PathType Leaf)) {
         throw ('Arquivo ausente: ' + $item.Name)
