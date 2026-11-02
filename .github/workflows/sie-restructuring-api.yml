@@ -118,6 +118,11 @@ jobs:
             exit 1
           }
           Write-Host 'C14 PowerShell syntax PASS; no remote connection or backup was executed.'
+      - name: Verify C15 native offline integrity and guard against false GO
+        run: |
+          mkdir -p run-artifacts
+          python scripts/c15_integrity.py synthetic-test --output run-artifacts/c15-fixture
+          python scripts/c15_integrity.py verify-backup --manifest run-artifacts/c15-fixture/manifest.json --backup run-artifacts/c15-fixture/synthetic.dump
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api
