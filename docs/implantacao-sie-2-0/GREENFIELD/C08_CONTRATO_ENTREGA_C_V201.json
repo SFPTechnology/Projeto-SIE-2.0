@@ -244,7 +244,10 @@
       ],
       "remote_migrations_applied": [],
       "real_projects_migrated": 0,
-      "technical_acceptance": "PENDING_EVIDENCE"
+      "technical_acceptance": "PENDING_EVIDENCE",
+      "scope_revision": "GREENFIELD_MIGRATIONS_STILL_PRIORITY; FIVE_LEGACY_IMPORT_DEFERRED",
+      "real_legacy_import_in_current_release": false,
+      "previous_full_scope_retained_historically": true
     },
     "unchanged_constraints": [
       "NO_ADDITIONAL_COSTS",
@@ -297,7 +300,9 @@
     "reason": "Missing backup and recovery safeguards; no permission to remove safety prerequisites.",
     "allowed_work": "Development branch code, tests, architecture, normative analysis, read-only inventories, CI synthetic.",
     "required_to_revisit": "NEW_EXPLICIT_USER_DECISION_WITH_RECOVERY_APPROACH",
-    "gc": "BLOCKED"
+    "gc": "BLOCKED",
+    "legacy_import_required_for_gc": false,
+    "remote_migrations_continuation_is_a_separate_gate": true
   },
   "latest_directive_20261104": {
     "request": "NOVA DIRETRIZ: DESBLOQUEIE todas migrations e a migração real",
@@ -307,13 +312,12 @@
       "A03",
       "A04",
       "B04",
-      "C03",
-      "FIVE_LEGACY_PROJECTS"
+      "C03"
     ],
     "prior_remote_backup_refusal": "REMAINS_IN_EFFECT_UNTIL_EXPLICITLY_CHANGED",
     "interpretation": "Execute all safe development, validation and integration readiness work now; do not claim real migrations or ETL applied without transactional readiness, recovery/rollback and validated trusted Auth ownership.",
     "preproduction_remote_ddl_status": "PENDING_REVERSIBILITY_AND_SECURITY_EVIDENCE",
-    "real_etl_status": "NOT_IMPLEMENTED_AND_OWNER_BINDING_UNVERIFIED",
+    "real_etl_status": "DEFERRED_NOT_REQUIRED_FOR_GREENFIELD_RELEASE",
     "backup_remote_plan": "SUSPENDED_BY_OWNER",
     "permitted_now": [
       "CODE_REVIEW",
@@ -323,6 +327,46 @@
     ],
     "automatic_remote_ddl_write": false,
     "automatic_real_import_write": false,
-    "gc": "BLOCKED"
+    "gc": "BLOCKED",
+    "superseded_for_legacy_import_by": "GREENFIELD_NO_LEGACY_IMPORT_CURRENT_DELIVERY_SCOPE"
+  },
+  "current_delivery_scope": {
+    "decision_date": "2026-11-04",
+    "source": "USER_EXPLICIT_YES_TO_COMPLETE_SIE2_AS_NEW_SYSTEM_WITHOUT_LEGACY_IMPORT",
+    "strategy": "GREENFIELD_NO_LEGACY_IMPORT",
+    "description": "Deliver and validate SIE 2.0 as an independent new product, using synthetic/project-created data; the five original SIE projects are not required for implementation or release.",
+    "destination_project_ref": "fozrymsidnaxmuvxxfhh",
+    "legacy_project_ref": "hlbksclcandbsyqrsbmx",
+    "legacy_projects_count": 5,
+    "legacy_projects_import": "DEFERRED_OPTIONAL_SEPARATE_FUTURE_WORK",
+    "legacy_import_is_gc_blocker": false,
+    "legacy_source_backup_is_gc_blocker": false,
+    "legacy_owner_bindings_for_five_projects_is_gc_blocker": false,
+    "destination_auth_required": true,
+    "active_migrations": [
+      "20261028102000",
+      "20261028102100",
+      "20261028153000",
+      "20261028203000"
+    ],
+    "required_gates": [
+      "SCOPED_DB_MIGRATION_SAFETY",
+      "AUTH_SESSION_AND_REAL_AB_ISOLATION",
+      "ELECTRICAL_E01_E11_NORMATIVE_HOMOLOGATION",
+      "C13_REAL_PROFESSIONAL_ACCEPTANCE",
+      "FIVE_WORKFLOWS_SAME_FINAL_SHA"
+    ],
+    "backup_remote_previously_declined": true,
+    "remote_schema_apply_now": false,
+    "production_deploy_now": false,
+    "preserve": [
+      "LEGACY_SOURCE_READ_ONLY",
+      "GITHUB_MAIN",
+      "F12",
+      "PRODUCTION",
+      "NO_ADDITIONAL_COST",
+      "NO_WINDOWS_POSTGRES_TESTS"
+    ],
+    "effect": "This supersedes earlier five-project migration as a release prerequisite; previous user choice and read-only inventories remain archival, not deletion or authorization to import."
   }
 }
