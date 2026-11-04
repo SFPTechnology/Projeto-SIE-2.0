@@ -1,3 +1,5 @@
+> **SUSPENSO POR DECISÃO DO RESPONSÁVEL — 04/11/2026.** O usuário declarou que **não deseja realizar o backup remoto recuperável do SIE 2.0**. Este documento é mantido apenas como referência histórica, não como autorização de execução. Não iniciar atividades C17 de backup ou restauração, não criar runners privilegiados/segredos/cofres nem tentar a operação por outro meio sem nova decisão explícita. Como não há recuperação real comprovada, migrations remotas e importação real seguem bloqueadas; código, testes e análises somente de leitura podem continuar.
+
 # C17 — Plano Executivo: Backup Remoto Recuperável do Supabase SIE 2.0
 
 **Versão:** 1.0 — **Data:** 04/11/2026  
