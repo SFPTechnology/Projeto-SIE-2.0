@@ -255,5 +255,32 @@
     ],
     "avoid_reapproval": "Do not request a repeat of the authorization. Complete and independently verify the established gates.",
     "gc_state": "BLOCKED"
+  },
+  "c17_remote_recovery_plan": {
+    "document": "C17_PLANO_EXECUTIVO_BACKUP_REMOTO_RECUPERAVEL_DBA_SRE_SEC_V201.md",
+    "registered_on": "2026-11-04",
+    "scope": "DESTINATION_PREPRODUCTION_RECOVERABLE_BACKUP_NO_USER_PC_NO_ADDITIONAL_COSTS",
+    "agents": [
+      "C17-DBA",
+      "C17-SRE",
+      "C17-SEC",
+      "C17-QA",
+      "C17-AUD",
+      "C17-ORQ"
+    ],
+    "stage": "IMPLEMENTATION_PLAN_PUBLISHED_NOT_EXECUTED",
+    "secure_remote_execution_verified": false,
+    "independent_existing_encrypted_escrow_verified": false,
+    "real_destination_backup_verified": false,
+    "real_independent_restore_verified": false,
+    "migrations_remote_go": false,
+    "legacy_import_go": false,
+    "gc": "BLOCKED",
+    "constraints": [
+      "PUBLIC_GITHUB_REPO_NO_DUMPS_OR_SECRETS",
+      "SOURCE_LEGACY_READ_ONLY",
+      "NO_DOCKER_DESKTOP_ON_USER_PC",
+      "MAIN_F12_HOSTINGER_PRODUCTION_UNTOUCHED"
+    ]
   }
 }
