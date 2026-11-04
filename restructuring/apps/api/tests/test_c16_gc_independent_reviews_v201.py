@@ -103,3 +103,28 @@ def test_real_legacy_etl_and_c13_not_yet_equivalent_to_test_fixture():
     assert reviews["read_only_live_inventory"]["destination_storage_objects"]==0
     code=(ROOT/"restructuring/apps/api/sie_api/v201_c_etl.py").read_text()
     assert 'value["source_kind"] != "SYNTHETIC_TEST"' in code
+
+
+def test_greenfield_delivery_defers_legacy_only_evidence_not_core_gates():
+    contract,reviews=load()
+    result=gate.assess(contract,reviews)
+    assert result["legacy_import_release_requirement"]=="DEFERRED_OPTIONAL"
+    assert result["active_reviewers"]==7
+    for key in gate.LEGACY_ONLY_EVIDENCE:
+        assert key in result["legacy_evidence_deferred"]
+        assert key not in result["evidence_pending"]
+    assert "ETL" not in result["review_roles_pending"]
+    assert "destination_real_backup_verified" in result["evidence_pending"]
+    assert "trusted_jwt_subject_verified" in result["evidence_pending"]
+    assert "independent_normative_e01_e11_verified" in result["evidence_pending"]
+    assert "professional_c13_signed_and_verified" in result["evidence_pending"]
+    assert result["verdict"]=="BLOCKED"
+
+
+def test_legacy_scoped_historical_mode_still_requires_etl():
+    contract,reviews=load()
+    contract["current_delivery_scope"]["strategy"]="LEGACY_IMPORT_SCOPED"
+    result=gate.assess(contract,reviews)
+    assert "real_etl_pass" in result["evidence_pending"]
+    assert "ETL" in result["review_roles_pending"]
+    assert result["legacy_import_release_requirement"]=="REQUIRED"
