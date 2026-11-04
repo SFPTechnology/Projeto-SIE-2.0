@@ -46,7 +46,10 @@ def test_no_real_auth_session_or_recovery_is_not_hidden_by_approval():
     result=check()
     assert "NO_VERIFIED_REAL_AUTH_SESSION" in result["blockers"]
     assert "NO_VERIFIED_RECOVERABLE_DESTINATION_BACKUP_AND_RESTORE" in result["blockers"]
-    assert "REAL_ETL_IMPLEMENTATION_DISABLED" in result["blockers"]
+    assert "REAL_ETL_IMPLEMENTATION_DISABLED" not in result["blockers"]
+    assert "SOURCE_FIVE_PROJECT_INVENTORY_DRIFT" not in result["blockers"]
+    assert result["delivery_strategy"]=="GREENFIELD_NO_LEGACY_IMPORT"
+    assert result["legacy_import_requirement"]=="DEFERRED_OPTIONAL"
     assert result["honors_user_no_remote_backup_decision"]
 
 
@@ -86,3 +89,21 @@ def test_does_not_connect_or_execute_any_remote_sql():
     source=(ROOT/"scripts/c18_real_migration_readiness.py").read_text(encoding="utf-8")
     for item in ("psycopg", "execute_sql(", "apply_migration(", "create_engine(", "requests."):
         assert item not in source
+
+
+def test_greenfield_ignores_missing_legacy_projects_without_silencing_auth_safety():
+    result=check(source_projects=0,legacy_real_etl_enabled=False)
+    assert "SOURCE_FIVE_PROJECT_INVENTORY_DRIFT" not in result["blockers"]
+    assert "REAL_ETL_IMPLEMENTATION_DISABLED" not in result["blockers"]
+    assert "NO_VERIFIED_RECOVERABLE_DESTINATION_BACKUP_AND_RESTORE" in result["blockers"]
+    assert "NO_VERIFIED_REAL_AUTH_SESSION" in result["blockers"]
+    assert result["gate_gc"]=="BLOCKED"
+
+
+def test_historical_legacy_scoped_contract_remains_strict_if_selected():
+    doc=baseline()
+    doc["current_delivery_scope"]["strategy"]="LEGACY_IMPORT_SCOPED"
+    result=check(data=doc,source_projects=0)
+    assert "SOURCE_FIVE_PROJECT_INVENTORY_DRIFT" in result["blockers"]
+    assert "REAL_ETL_IMPLEMENTATION_DISABLED" in result["blockers"]
+    assert result["legacy_import_requirement"]=="REQUIRED"
