@@ -23,6 +23,8 @@ def inventory():
         "table_counts":dict(guard.BASELINE),
         "operational_columns":99,
         "selected_projects":5,
+        "audit_without_room_reference":469,
+        "audit_unresolved_room_reference":10,
         "contains_personal_data":False,
         "real_backup_verified":False,
         "real_restore_verified":False,
@@ -98,3 +100,15 @@ def test_columns_and_project_selection_drift_detected():
 def test_schema_migration_bookkeeping_excluded_from_operational_counts():
     assert "sie_schema_migrations" not in guard.BASELINE
     assert sum(guard.BASELINE.values())==1934
+
+
+def test_audit_reference_integrity_and_drift_prevents_silent_loss():
+    data=inventory()
+    assert guard.assess_source_inventory(data)["audit_events_must_be_preserved"] is True
+    data["audit_unresolved_room_reference"]=11
+    report=guard.assess_source_inventory(data)
+    assert report["status"]=="DRIFT_REQUIRES_REVIEW"
+    assert report["source_drift"]["audit_unresolved_room_reference"]=={"baseline":10,"observed":11}
+    data["audit_unresolved_room_reference"]=-1
+    with pytest.raises(ValueError,match="audit reference"):
+        guard.assess_source_inventory(data)
