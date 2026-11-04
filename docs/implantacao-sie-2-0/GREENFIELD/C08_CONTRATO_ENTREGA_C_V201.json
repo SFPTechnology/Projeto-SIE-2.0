@@ -192,5 +192,33 @@
     "normative_acceptance": "PENDING",
     "gc": "BLOCKED",
     "production_release": false
+  },
+  "c15_next_steps_20261104": {
+    "operator_preference": "NO_WINDOWS_POSTGRESQL_TESTS",
+    "decision": "CONTINUE_GITHUB_CI_AND_SUPABASE_READONLY_TASKS",
+    "verified_source_readback": {
+      "date": "2026-11-04",
+      "source_project_ref": "hlbksclcandbsyqrsbmx",
+      "inventory_doc": "C15_ORIGEM_READBACK_AGREGADO_20261104.json",
+      "operational_tables": 15,
+      "operational_columns": 99,
+      "operational_rows": 1934,
+      "projects": 5,
+      "selected_projects": 5,
+      "rooms": 41,
+      "additional_loads": 52,
+      "audit_events": 1805,
+      "read_only": true,
+      "consistent_cutoff": false,
+      "source_backup_verified": false
+    },
+    "gate_protection": {
+      "destination_real_backup_verified": false,
+      "independent_restore_verified": false,
+      "migration_application_permitted_now": false,
+      "real_import_permitted_now": false,
+      "gc": "BLOCKED"
+    },
+    "alternatives_to_windows_backup": "Provider-managed or isolated non-PC backup+restore must be proved with actual evidence and no extra costs. Aggregate readbacks and synthetic CI are insufficient."
   }
 }
