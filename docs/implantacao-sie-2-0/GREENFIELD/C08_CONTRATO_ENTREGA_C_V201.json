@@ -298,5 +298,31 @@
     "allowed_work": "Development branch code, tests, architecture, normative analysis, read-only inventories, CI synthetic.",
     "required_to_revisit": "NEW_EXPLICIT_USER_DECISION_WITH_RECOVERY_APPROACH",
     "gc": "BLOCKED"
+  },
+  "latest_directive_20261104": {
+    "request": "NOVA DIRETRIZ: DESBLOQUEIE todas migrations e a migração real",
+    "type": "OWNER_EXECUTION_PRIORITY_AND_INTENT_TO_PROCEED",
+    "recorded_date": "2026-11-04",
+    "scope": [
+      "A03",
+      "A04",
+      "B04",
+      "C03",
+      "FIVE_LEGACY_PROJECTS"
+    ],
+    "prior_remote_backup_refusal": "REMAINS_IN_EFFECT_UNTIL_EXPLICITLY_CHANGED",
+    "interpretation": "Execute all safe development, validation and integration readiness work now; do not claim real migrations or ETL applied without transactional readiness, recovery/rollback and validated trusted Auth ownership.",
+    "preproduction_remote_ddl_status": "PENDING_REVERSIBILITY_AND_SECURITY_EVIDENCE",
+    "real_etl_status": "NOT_IMPLEMENTED_AND_OWNER_BINDING_UNVERIFIED",
+    "backup_remote_plan": "SUSPENDED_BY_OWNER",
+    "permitted_now": [
+      "CODE_REVIEW",
+      "SCOPED_GITHUB_BRANCH_DEVELOPMENT",
+      "CI_DISPOSABLE_PG17_TESTS",
+      "SUPABASE_READ_ONLY_PREFLIGHT"
+    ],
+    "automatic_remote_ddl_write": false,
+    "automatic_real_import_write": false,
+    "gc": "BLOCKED"
   }
 }
