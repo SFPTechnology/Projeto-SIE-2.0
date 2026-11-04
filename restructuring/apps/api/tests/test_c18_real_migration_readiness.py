@@ -107,3 +107,11 @@ def test_historical_legacy_scoped_contract_remains_strict_if_selected():
     assert "SOURCE_FIVE_PROJECT_INVENTORY_DRIFT" in result["blockers"]
     assert "REAL_ETL_IMPLEMENTATION_DISABLED" in result["blockers"]
     assert result["legacy_import_requirement"]=="REQUIRED"
+
+
+def test_greenfield_requires_no_access_to_legacy_database():
+    result=check(source_projects=None)
+    assert result["legacy_import_requirement"]=="DEFERRED_OPTIONAL"
+    assert result["read_only_observations"]["source_projects"] is None
+    assert "SOURCE_FIVE_PROJECT_INVENTORY_DRIFT" not in result["blockers"]
+    assert "NO_VERIFIED_RECOVERABLE_DESTINATION_BACKUP_AND_RESTORE" in result["blockers"]
