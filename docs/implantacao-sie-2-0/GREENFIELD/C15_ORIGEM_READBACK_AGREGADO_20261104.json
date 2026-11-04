@@ -35,5 +35,8 @@
   "real_import_go": false,
   "interpretation": "Stable aggregate inventory from read-only queries only. This is not a consistent backup, a signed source cutoff, proof of full data integrity, or owner authentication.",
   "professional_review": "PENDING",
-  "gate_gc": "BLOCKED"
+  "gate_gc": "BLOCKED",
+  "audit_without_room_reference": 469,
+  "audit_unresolved_room_reference": 10,
+  "audit_preservation_requirement": "PRESERVE_ALL_EVENTS_INCLUDING_MISSING_OR_UNRESOLVED_ROOM_REFERENCES"
 }
