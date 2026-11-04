@@ -220,5 +220,40 @@
       "gc": "BLOCKED"
     },
     "alternatives_to_windows_backup": "Provider-managed or isolated non-PC backup+restore must be proved with actual evidence and no extra costs. Aggregate readbacks and synthetic CI are insufficient."
+  },
+  "management_approval_20261104": {
+    "approval_source": "EXPLICIT_USER_MESSAGE_2026-11-04_APROVE_OS_ITENS_1_E_2",
+    "approval_type": "APPROVAL_TO_PROCEED_WITH_EXECUTION_NOT_COMPLETION_CERTIFICATION",
+    "item_1": {
+      "title": "Backup e recuperação reais do Supabase SIE 2.0 em ambiente alternativo ao PC",
+      "execution_approved": true,
+      "alternative_remote_or_isolated_environment_approved": true,
+      "real_backup_verified": false,
+      "independent_real_restore_verified": false,
+      "technical_acceptance": "PENDING_EVIDENCE"
+    },
+    "item_2": {
+      "title": "Integração real A03/A04/B04/C03 e migração dos cinco projetos com Auth e integridade",
+      "execution_approved_conditionally": true,
+      "prerequisites": [
+        "REAL_DESTINATION_BACKUP_AND_RESTORE_VERIFIED",
+        "SECURITY_REVIEW_PASS",
+        "VERIFIED_AUTH_IDENTITY",
+        "SOURCE_CUTOFF_AND_BACKUP",
+        "REAL_ETL_AND_IDEMPOTENCY_TESTS"
+      ],
+      "remote_migrations_applied": [],
+      "real_projects_migrated": 0,
+      "technical_acceptance": "PENDING_EVIDENCE"
+    },
+    "unchanged_constraints": [
+      "NO_ADDITIONAL_COSTS",
+      "NO_WINDOWS_LOCAL_TESTS",
+      "LEGACY_SOURCE_READ_ONLY",
+      "MAIN_F12_PRODUCTION_UNTOUCHED",
+      "NO_MERGE_OR_DEPLOY"
+    ],
+    "avoid_reapproval": "Do not request a repeat of the authorization. Complete and independently verify the established gates.",
+    "gc_state": "BLOCKED"
   }
 }
