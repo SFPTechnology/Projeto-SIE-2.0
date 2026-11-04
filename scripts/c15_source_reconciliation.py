@@ -54,6 +54,14 @@ def assess_source_inventory(inventory: dict) -> dict:
         raise ValueError("missing schema or selection counts")
     if inventory.get("contains_personal_data") is not False:
         raise ValueError("inventory must contain aggregates only")
+    # Preserving historical audit records is mandatory: dangling references
+    # are not permission to drop or fabricate audit events during ETL.
+    null_refs=inventory.get("audit_without_room_reference")
+    dangling_refs=inventory.get("audit_unresolved_room_reference")
+    if (type(null_refs) is not int or type(dangling_refs) is not int or
+        null_refs<0 or dangling_refs<0 or
+        null_refs+dangling_refs>raw["eventos_auditoria"]):
+        raise ValueError("invalid audit reference inventory")
     unexpected_claims=["real_backup_verified", "real_restore_verified",
                        "source_cutoff_approved","remote_migration_go","real_import_go"]
     if any(inventory.get(c) is not False for c in unexpected_claims):
@@ -66,6 +74,10 @@ def assess_source_inventory(inventory: dict) -> dict:
         changes["operational_columns"]={"baseline":SCHEMA_COLUMNS,"observed":columns}
     if selected!=SELECTED_PROJECTS:
         changes["selected_projects"]={"baseline":SELECTED_PROJECTS,"observed":selected}
+    for name,baseline,observed in (("audit_without_room_reference",469,null_refs),
+                                   ("audit_unresolved_room_reference",10,dangling_refs)):
+        if baseline!=observed:
+            changes[name]={"baseline":baseline,"observed":observed}
     total=sum(raw.values())
     status="STABLE_AGGREGATE_READBACK" if not changes else "DRIFT_REQUIRES_REVIEW"
     return {
@@ -75,6 +87,9 @@ def assess_source_inventory(inventory: dict) -> dict:
         "operational_tables":len(raw),
         "operational_columns":columns,
         "source_total_rows":total,
+        "audit_without_room_reference":null_refs,
+        "audit_unresolved_room_reference":dangling_refs,
+        "audit_events_must_be_preserved":True,
         "source_drift":changes,
         "real_source_backup":"NOT_VERIFIED",
         "consistent_cutoff":"NOT_VERIFIED",
