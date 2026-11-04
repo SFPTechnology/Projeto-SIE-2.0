@@ -226,11 +226,11 @@
     "approval_type": "APPROVAL_TO_PROCEED_WITH_EXECUTION_NOT_COMPLETION_CERTIFICATION",
     "item_1": {
       "title": "Backup e recuperação reais do Supabase SIE 2.0 em ambiente alternativo ao PC",
-      "execution_approved": true,
-      "alternative_remote_or_isolated_environment_approved": true,
+      "execution_approved": false,
+      "alternative_remote_or_isolated_environment_approved": false,
       "real_backup_verified": false,
       "independent_real_restore_verified": false,
-      "technical_acceptance": "PENDING_EVIDENCE"
+      "technical_acceptance": "NOT_EXECUTED_USER_DECLINED_REMOTE_BACKUP"
     },
     "item_2": {
       "title": "Integração real A03/A04/B04/C03 e migração dos cinco projetos com Auth e integridade",
@@ -254,7 +254,8 @@
       "NO_MERGE_OR_DEPLOY"
     ],
     "avoid_reapproval": "Do not request a repeat of the authorization. Complete and independently verify the established gates.",
-    "gc_state": "BLOCKED"
+    "gc_state": "BLOCKED",
+    "approval_revision": "ITEM_1_REMOTE_BACKUP_EXECUTION_WITHDRAWN_BY_USER_ON_2026-11-04; ORIGINAL_AUTHORIZATION_RETAINED_AS_HISTORY"
   },
   "c17_remote_recovery_plan": {
     "document": "C17_PLANO_EXECUTIVO_BACKUP_REMOTO_RECUPERAVEL_DBA_SRE_SEC_V201.md",
@@ -268,7 +269,7 @@
       "C17-AUD",
       "C17-ORQ"
     ],
-    "stage": "IMPLEMENTATION_PLAN_PUBLISHED_NOT_EXECUTED",
+    "stage": "SUSPENDED_BY_USER_NO_REMOTE_BACKUP",
     "secure_remote_execution_verified": false,
     "independent_existing_encrypted_escrow_verified": false,
     "real_destination_backup_verified": false,
@@ -281,6 +282,21 @@
       "SOURCE_LEGACY_READ_ONLY",
       "NO_DOCKER_DESKTOP_ON_USER_PC",
       "MAIN_F12_HOSTINGER_PRODUCTION_UNTOUCHED"
-    ]
+    ],
+    "execution_authorized_now": false,
+    "resume_only_on_new_explicit_user_request": true
+  },
+  "effective_user_decision_20261104": {
+    "decision_source": "EXPLICIT_USER_REQUEST_2026-11-04_NAO_QUERO_REALIZAR_BACKUP_REMOTO_RECUPERAVEL",
+    "scope": "DO_NOT_PERFORM_REMOTE_RECOVERABLE_BACKUP_ON_SIE2",
+    "c17_execution_permitted": false,
+    "previously_published_c17_plan": "ARCHIVED_REFERENCE_ONLY_NOT_AN_ACTIVE_WORK_ITEM",
+    "item_2_development_and_readonly_qa_permitted": true,
+    "migrations_remote_application_permitted": false,
+    "five_legacy_projects_real_import_permitted": false,
+    "reason": "Missing backup and recovery safeguards; no permission to remove safety prerequisites.",
+    "allowed_work": "Development branch code, tests, architecture, normative analysis, read-only inventories, CI synthetic.",
+    "required_to_revisit": "NEW_EXPLICIT_USER_DECISION_WITH_RECOVERY_APPROACH",
+    "gc": "BLOCKED"
   }
 }
