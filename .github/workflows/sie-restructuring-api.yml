@@ -135,6 +135,9 @@ jobs:
       - name: Validate C15 source inventory readback snapshot (aggregates only, no remote access)
         run: |
           python scripts/c15_source_reconciliation.py --inventory docs/implantacao-sie-2-0/GREENFIELD/C15_ORIGEM_READBACK_AGREGADO_20261104.json
+      - name: Enforce eight independent C16 reviewer gates (fail closed without evidence)
+        run: |
+          python scripts/c16_gc_independent_gate.py --contract docs/implantacao-sie-2-0/GREENFIELD/C08_CONTRATO_ENTREGA_C_V201.json --reviews docs/implantacao-sie-2-0/GREENFIELD/C16_RELATORIO_AUDITORIA_GC_20261104.json --expect-blocked
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api
