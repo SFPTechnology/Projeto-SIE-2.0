@@ -144,7 +144,7 @@ jobs:
             --contract docs/implantacao-sie-2-0/GREENFIELD/C08_CONTRATO_ENTREGA_C_V201.json \
             --migrations restructuring/supabase/migrations \
             --applied 20261027195557 \
-            --auth-users 1 --auth-sessions 0 --dest-projects 0 --source-projects 5
+            --auth-users 1 --auth-sessions 0 --dest-projects 0
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api
