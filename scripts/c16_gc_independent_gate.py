@@ -22,6 +22,8 @@ REAL = (
     "independent_auditor_go",
 )
 STATES = {"BLOCKED", "PASS_DEV_ONLY", "NOT_TESTED", "PASS_REAL_VERIFIED"}
+LEGACY_ONLY_EVIDENCE = frozenset(("legacy_source_backup_verified", "legacy_consistent_cutoff_verified", "five_owner_bindings_verified", "real_etl_pass"))
+LEGACY_ONLY_REVIEWERS = frozenset(("ETL",))
 EXPECTED = "fozrymsidnaxmuvxxfhh"
 
 
@@ -58,8 +60,13 @@ def assess(contract: dict, report: dict) -> dict:
         pre.get("migration_application_approved_conditionally") is not True):
         raise ValueError("missing conditional authorization evidence")
 
-    missing = sorted(key for key in REAL if not evidence[key])
-    reviews_pending = sorted(r["id"] for r in reviewers if r["status"]!="PASS_REAL_VERIFIED")
+    delivery=contract.get("current_delivery_scope",{}).get("strategy")
+    greenfield=delivery=="GREENFIELD_NO_LEGACY_IMPORT"
+    required=set(REAL)-LEGACY_ONLY_EVIDENCE if greenfield else set(REAL)
+    deferred=sorted(LEGACY_ONLY_EVIDENCE) if greenfield else []
+    required_reviewers=set(REVIEWERS)-LEGACY_ONLY_REVIEWERS if greenfield else set(REVIEWERS)
+    missing = sorted(key for key in required if not evidence[key])
+    reviews_pending = sorted(r["id"] for r in reviewers if r["id"] in required_reviewers and r["status"]!="PASS_REAL_VERIFIED")
     qualified = not missing and not reviews_pending
     # Reviewer notes/booleans alone are not proof of a backup/restore, Auth,
     # production-safe DDL or human C13 signature. An independent trusted
@@ -80,6 +87,9 @@ def assess(contract: dict, report: dict) -> dict:
             "evidence_pending":missing,
             "review_roles_pending":reviews_pending,
             "independent_reviewers":len(reviewers),
+            "active_reviewers":len(required_reviewers),
+            "legacy_evidence_deferred":deferred,
+            "legacy_import_release_requirement":"DEFERRED_OPTIONAL" if greenfield else "REQUIRED",
             "remote_ddl_permitted_by_this_check":False,
             "legacy_import_permitted_by_this_check":False,
             "automatic_release":False,
@@ -90,6 +100,9 @@ def assess(contract: dict, report: dict) -> dict:
         "evidence_pending":[],
         "review_roles_pending":[],
         "independent_reviewers":len(reviewers),
+        "active_reviewers":len(required_reviewers),
+        "legacy_evidence_deferred":deferred,
+        "legacy_import_release_requirement":"DEFERRED_OPTIONAL" if greenfield else "REQUIRED",
         "remote_ddl_permitted_by_this_check":False,
         "legacy_import_permitted_by_this_check":False,
         "automatic_release":False,
