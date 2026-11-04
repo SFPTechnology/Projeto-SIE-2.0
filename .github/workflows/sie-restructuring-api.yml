@@ -132,6 +132,9 @@ jobs:
           mkdir -p run-artifacts
           python scripts/c15_integrity.py synthetic-test --output run-artifacts/c15-fixture
           python scripts/c15_integrity.py verify-backup --manifest run-artifacts/c15-fixture/manifest.json --backup run-artifacts/c15-fixture/synthetic.dump
+      - name: Validate C15 source inventory readback snapshot (aggregates only, no remote access)
+        run: |
+          python scripts/c15_source_reconciliation.py --inventory docs/implantacao-sie-2-0/GREENFIELD/C15_ORIGEM_READBACK_AGREGADO_20261104.json
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api
