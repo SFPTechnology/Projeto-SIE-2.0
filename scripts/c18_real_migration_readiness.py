@@ -3,6 +3,7 @@
 Only checks inspected versioned files, review state and non-sensitive
 aggregate baselines; NEVER connects to Supabase or writes to any DB.
 No-backup directive does not magically provide recovery or Auth provenance.
+Legacy import is optional when the active scope is greenfield.
 """
 from __future__ import annotations
 import argparse
@@ -47,6 +48,7 @@ def assess(contract:dict, migration_dir:Path, *, actual_applied:tuple[str,...],
         raise ValueError("migration version collision")
     current=contract.get("effective_user_decision_20261104",{})
     cancelled_c17=current.get("c17_execution_permitted") is False
+    greenfield=contract.get("current_delivery_scope",{}).get("strategy")=="GREENFIELD_NO_LEGACY_IMPORT"
     auth=contract.get("preproduction_authorization",{})
     if (auth.get("project_ref")!=DEST or
         auth.get("migration_application_approved_conditionally") is not True):
@@ -60,10 +62,11 @@ def assess(contract:dict, migration_dir:Path, *, actual_applied:tuple[str,...],
         blockers.append("NO_VERIFIED_REAL_AUTH_SESSION")
     if dest_projects:
         blockers.append("DESTINATION_NOT_EMPTY_REVIEW_DRIFT")
-    if source_projects!=5:
-        blockers.append("SOURCE_FIVE_PROJECT_INVENTORY_DRIFT")
-    if not legacy_real_etl_enabled:
-        blockers.append("REAL_ETL_IMPLEMENTATION_DISABLED")
+    if not greenfield:
+        if source_projects!=5:
+            blockers.append("SOURCE_FIVE_PROJECT_INVENTORY_DRIFT")
+        if not legacy_real_etl_enabled:
+            blockers.append("REAL_ETL_IMPLEMENTATION_DISABLED")
     if cancelled_c17:
         blockers.append("USER_DECLINED_REMOTE_BACKUP")
     # Even successful dry-run/CI and all editable flags are insufficient:
@@ -73,6 +76,8 @@ def assess(contract:dict, migration_dir:Path, *, actual_applied:tuple[str,...],
         "gate":"GC",
         "stage":"C18_READ_ONLY_EXECUTION_READINESS",
         "destination":DEST,"source":SOURCE,
+        "delivery_strategy":"GREENFIELD_NO_LEGACY_IMPORT" if greenfield else "LEGACY_IMPORT_SCOPED",
+        "legacy_import_requirement":"DEFERRED_OPTIONAL" if greenfield else "REQUIRED",
         "migration_order":[f["version"] for f in files],
         "migration_files":files,
         "actual_applied_before_work":list(actual_applied),
