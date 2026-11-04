@@ -138,6 +138,13 @@ jobs:
       - name: Enforce eight independent C16 reviewer gates (fail closed without evidence)
         run: |
           python scripts/c16_gc_independent_gate.py --contract docs/implantacao-sie-2-0/GREENFIELD/C08_CONTRATO_ENTREGA_C_V201.json --reviews docs/implantacao-sie-2-0/GREENFIELD/C16_RELATORIO_AUDITORIA_GC_20261104.json --expect-blocked
+      - name: C18 real migration readiness (read-only, no remote DDL)
+        run: |
+          python scripts/c18_real_migration_readiness.py \
+            --contract docs/implantacao-sie-2-0/GREENFIELD/C08_CONTRATO_ENTREGA_C_V201.json \
+            --migrations restructuring/supabase/migrations \
+            --applied 20261027195557 \
+            --auth-users 1 --auth-sessions 0 --dest-projects 0 --source-projects 5
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api
