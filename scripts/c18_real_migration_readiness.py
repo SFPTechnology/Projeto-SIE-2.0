@@ -23,7 +23,7 @@ EXPECTED_APPLIED=("20261027195557",)
 
 def assess(contract:dict, migration_dir:Path, *, actual_applied:tuple[str,...],
            auth_users:int, auth_sessions:int, dest_projects:int,
-           source_projects:int, legacy_real_etl_enabled:bool=False)->dict:
+           source_projects:int|None=None, legacy_real_etl_enabled:bool=False)->dict:
     if not isinstance(contract,dict) or contract.get("supabase_project_ref")!=DEST:
         raise ValueError("wrong SIE2 destination contract")
     if not isinstance(migration_dir,Path) or not migration_dir.is_dir():
@@ -31,9 +31,11 @@ def assess(contract:dict, migration_dir:Path, *, actual_applied:tuple[str,...],
     expected={f.split("_",1)[0] for f in MIGRATION_FILES}
     if tuple(actual_applied)!=EXPECTED_APPLIED:
         raise ValueError("remote migration drift from verified GF02 baseline")
-    counts=(auth_users,auth_sessions,dest_projects,source_projects)
+    counts=(auth_users,auth_sessions,dest_projects)
     if any(type(x) is not int or x<0 for x in counts):
         raise ValueError("invalid read-only row counts")
+    if source_projects is not None and (type(source_projects) is not int or source_projects<0):
+        raise ValueError("invalid legacy source project count")
     files=[]
     for name in MIGRATION_FILES:
         p=migration_dir/name
@@ -100,7 +102,7 @@ def main():
     p.add_argument("--auth-users",type=int,required=True)
     p.add_argument("--auth-sessions",type=int,required=True)
     p.add_argument("--dest-projects",type=int,required=True)
-    p.add_argument("--source-projects",type=int,required=True)
+    p.add_argument("--source-projects",type=int,default=None)
     args=p.parse_args()
     contract=json.loads(args.contract.read_text(encoding="utf-8-sig"))
     print(json.dumps(assess(contract,args.migrations,actual_applied=tuple(args.applied),
