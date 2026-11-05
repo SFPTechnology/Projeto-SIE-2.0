@@ -48,3 +48,6 @@ Baseline: cinco workflows PASS no mesmo SHA: runs 41916449901 (C03), 41916449849
 Execução local desta rodada: pytest integral coletado durante auditoria — 1475 passed, 13 skipped; testes dirigidos após finalização dos novos arquivos — 17 passed, 4 skipped (PG17 ausente). Lint, typecheck, testes e build raiz PASS após instalar dependências do lockfile. Os quatro testes PG17 exigem confirmação pelo Actions do novo commit; resultados devem ser consultados no SHA publicado.
 
 GC=BLOCKED. Sem escrita remota, C17, importação, merge, deploy, alteração em main/F12/produção ou homologação elétrica fictícia.
+
+
+Workflow dispatch: commit publicado via GitHub Contents API para iniciar a validação do SHA final.
