@@ -16,7 +16,8 @@ function harness() {
   }};
   const ctx = vm.createContext({document, location: {origin: 'http://127.0.0.1:5173'},
     window: {SIE_V201_PUBLIC_CONFIG: {supabaseUrl: 'https://fozrymsidnaxmuvxxfhh.supabase.co',
-      publishableKey: 'sb_publishable_fixture', apiBase: 'http://127.0.0.1:8000'}},
+      publishableKey: 'sb_publishable_fixture', apiBase: 'http://127.0.0.1:8000',
+      allowRealAuth: true}},
     setTimeout(fn) {timers.set(++timerId, fn); return timerId;}, clearTimeout(id) {timers.delete(id);},
     fetch: async url => response(url.includes('/auth/me') ? identity : session)});
   vm.runInContext(source, ctx);

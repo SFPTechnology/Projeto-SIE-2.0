@@ -1,0 +1,9 @@
+{
+  "failures": [],
+  "known_external_dependencies": [
+    {"id":"SRC-NORM-01","description":"Authoritative normative values for unfinished electrical rules","status":"BLOCKED_SOURCE"},
+    {"id":"OPS-REMOTE-01","description":"Remote recovery and destination migration","status":"DEFERRED_BY_SCOPE"},
+    {"id":"OPS-AUTH-01","description":"Real Supabase Auth A/B proof","status":"DEFERRED_BY_SCOPE"},
+    {"id":"PRO-C13-01","description":"Professional electrical acceptance","status":"PENDING_PROFESSIONAL_ACCEPTANCE"}
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "execution_id": "C20-YOLO-GREENFIELD-20261105",
+  "recorded_at": "2026-11-05",
+  "repository": "SFPTechnology/Projeto-SIE-2.0",
+  "branch": "feat/v201-bloco-c-dominio-eletrico",
+  "local_initial_sha": "7573916a942baaa8c54279d2aae7c046838bb755",
+  "scope": "GREENFIELD_NO_LEGACY_IMPORT",
+  "remote_operations": "FORBIDDEN",
+  "git_worktree_clean": true,
+  "contracts": {
+    "c08_state": "BLOCKED",
+    "c19_strategy": "GREENFIELD_NO_LEGACY_IMPORT",
+    "c20_status": "DEVELOPMENT_CONTINUATION"
+  },
+  "legacy": {
+    "import_is_gc_blocker": false,
+    "e10_status": "DEFERRED_OPTIONAL_LEGACY_IMPORT_ONLY",
+    "source_access": "READ_ONLY_ONLY"
+  },
+  "migrations": {
+    "foundation": "20261027195557_sie2_greenfield_foundation_owner_rls_v1.sql",
+    "pending_disposable_validation": [
+      "20261028102000_sie_a03_indexes_v201.sql",
+      "20261028102100_sie_a04_revision_lifecycle_v201.sql",
+      "20261028153000_sie_b04_idempotency_backend_grants_v201.sql",
+      "20261028203000_sie_c03_electrical_domain_v201.sql"
+    ],
+    "remote_apply": "FORBIDDEN"
+  },
+  "workflows": [
+    "sie-restructuring-api.yml",
+    "sie-a03-a04-postgres.yml",
+    "sie-c03-pg17.yml",
+    "sie-orchestrator-quality.yml",
+    "sie-e2e-browser.yml"
+  ],
+  "electrical_baseline": {
+    "existing_evidence": "E01-E11 development fail-closed evidence",
+    "known_pending": [
+      "illumination_and_tug_normative",
+      "demand_and_balance",
+      "authoritative_ampacity_and_application_conditions",
+      "Rca_XL_authorized_source",
+      "I2_Icc_interrupting_capacity_and_selectivity",
+      "DR_DPS",
+      "earthing",
+      "utility_rules"
+    ],
+    "constraint": "No normative values or sources may be invented"
+  },
+  "active_blockers": [
+    "Remote migrations and recovery are intentionally excluded from this execution",
+    "Real Supabase Auth A/B validation is intentionally excluded from this execution",
+    "Authoritative normative source values and professional acceptance remain external dependencies"
+  ],
+  "gate_assessment": {
+    "A_SOURCE_VALIDATION": "PASS",
+    "B_REPOSITORY_SAFETY": "PASS",
+    "C_IMPLEMENTATION_QUALITY": "NOT_RUN",
+    "D_ELECTRICAL_TRACEABILITY": "BLOCKED_SOURCE",
+    "E_TEST_COVERAGE": "NOT_RUN",
+    "F_DATABASE_SAFETY": "NOT_RUN",
+    "G_AUTH_ISOLATION_SYNTHETIC": "NOT_RUN",
+    "H_INDEPENDENT_REVIEW": "NOT_RUN",
+    "I_CI_CONSISTENCY": "NOT_RUN",
+    "J_DOCUMENTATION_INTEGRITY": "NOT_RUN",
+    "K_FINAL_ACCEPTANCE": "NOT_RUN",
+    "GC": "BLOCKED"
+  }
+}

@@ -54,5 +54,25 @@ Critérios: preservar o legado; remover apenas bloqueios exclusivos da importaç
 
 Estado: incremento pronto para revisão; GC=BLOCKED, sem handoff D.
 
+## C22 — Contratos GREENFIELD sintéticos e integração E01–E11
 
-CI final SHA verification trigger: 05/11/2026.
+- [x] Contratos fail-closed E01–E05, sem tabela normativa inferida.
+- [x] Contratos fail-closed E06–E09/E11, incluindo integridade de evidência.
+- [x] E10 marcado como diferido e fora do bloqueio GREENFIELD.
+- [x] Rota agregadora sintética expõe estados sem liberar uso normativo.
+- [x] Guardrails de PostgreSQL descartável e isolamento Auth sintético A/B.
+- [x] Testes C22 dirigidos aprovados; CI do SHA final permanece obrigatório.
+
+### File list C22
+
+- `restructuring/apps/api/sie_api/v201_c_greenfield_e01_e05.py`
+- `restructuring/apps/api/sie_api/v201_c_greenfield_e06_e11.py`
+- `restructuring/apps/api/sie_api/v201_c_greenfield_api.py`
+- `restructuring/apps/api/tests/test_c22_greenfield_e01_e05.py`
+- `restructuring/apps/api/tests/test_c22_greenfield_e06_e11.py`
+- `restructuring/apps/api/tests/test_c22_greenfield_api.py`
+- `restructuring/apps/api/tests/test_c22_synthetic_auth_isolation.py`
+- `restructuring/apps/api/tests/test_c22_migration_guardrails.py`
+- `restructuring/apps/api/tests/test_c22_auth_remote_disabled.py`
+- `restructuring/apps/web/auth-v201.js`
+- `docs/implantacao-sie-2-0/GREENFIELD/C21_RELATORIO_EXECUCAO_YOLO_GREENFIELD.md`

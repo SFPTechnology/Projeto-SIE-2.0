@@ -22,6 +22,10 @@ const apiAllowed=new Set(["http://localhost:8000","http://127.0.0.1:8000"]);
 const isDevelopment=originAllowed.has(location.origin);
 
 function message(text){statusEl.textContent=text}
+function requireRealAuth(){
+  if(cfg.allowRealAuth !== true)
+    throw Error("SYNTHETIC_ONLY: Auth real desabilitado por configuração explícita");
+}
 function configure(){
   if(!isDevelopment) throw Error("Tela disponível somente em localhost:5173");
   if(cfg.supabaseUrl!==authOrigin) throw Error("Projeto Supabase não autorizado");
@@ -29,6 +33,7 @@ function configure(){
   if(typeof cfg.publishableKey!=="string" || !cfg.publishableKey ||
      cfg.publishableKey.length>2048 || cfg.publishableKey.startsWith("sb_secret_"))
     throw Error("Informe somente uma chave pública de desenvolvimento");
+  requireRealAuth();
 }
 function showSigned(userId){
   form.hidden=true;signed.hidden=false;
@@ -47,6 +52,7 @@ function publicHeaders(){
   return {"apikey":cfg.publishableKey,"content-type":"application/json"};
 }
 async function request(url,options){
+  if(String(url).startsWith(authOrigin)) requireRealAuth();
   const response=await fetch(url,{cache:"no-store",credentials:"omit",...options});
   if(!response.ok) throw Error("Operação rejeitada pelo serviço de autenticação");
   const data=await response.json();
@@ -177,6 +183,10 @@ async function signOut(broadcast=true){
   const generation=sessionGeneration;
   if(broadcast && channel)channel.postMessage("logout");
   if(!token){message("Sessão local encerrada.");return;}
+  if(cfg.allowRealAuth !== true){
+    message("SYNTHETIC_ONLY: sessão local limpa; revogação remota não foi executada.");
+    return;
+  }
   try{
     const response=await fetch(authOrigin+"/auth/v1/logout?scope=local",{
       method:"POST",credentials:"omit",headers:{
