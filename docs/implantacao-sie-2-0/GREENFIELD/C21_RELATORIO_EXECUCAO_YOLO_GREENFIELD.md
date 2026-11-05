@@ -40,7 +40,7 @@ A03, A04, B04 e C03 permanecem restritas a PostgreSQL 17 descartável. Os guardr
 - `npm run lint`, `npm run typecheck`, `npm test` e `npm run build`: aprovados.
 - C16 e C18: executados em modo leitura e mantêm `GC=BLOCKED`.
 
-O CI final deverá ser reexecutado no SHA que contém estas alterações antes de considerar o critério de consistência de workflows concluído.
+CI validado no SHA de implementação `bc35a4c700895288c5fcf943ecfe0e9b6f84900d`: AIOX 41963485784, A03/A04 PG17 41963485810, C03 PG17 41963485787, API 41963485862 e Browser Chromium 41963485875, todos `success`. A fixture do Browser usa `allowRealAuth:true` exclusivamente com tráfego interceptado; o produto continua bloqueado por padrão.
 
 ## Operações não realizadas
 
