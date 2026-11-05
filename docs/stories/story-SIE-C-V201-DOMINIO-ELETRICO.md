@@ -53,3 +53,6 @@ Critérios: preservar o legado; remover apenas bloqueios exclusivos da importaç
 - `docs/implantacao-sie-2-0/GREENFIELD/C20_CONTINUIDADE_GREENFIELD_20261104.md`
 
 Estado: incremento pronto para revisão; GC=BLOCKED, sem handoff D.
+
+
+CI final SHA verification trigger: 05/11/2026.
