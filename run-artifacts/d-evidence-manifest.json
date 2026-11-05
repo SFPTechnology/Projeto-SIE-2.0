@@ -1,0 +1,14 @@
+{
+  "plan": "PLANO_EXECUCAO_YOLO_BLOCO_D_PREPARACAO_GC.md",
+  "artifacts": [
+    "run-artifacts/d-state-audit.json",
+    "run-artifacts/d-task-graph.json",
+    "run-artifacts/d-electrical-traceability-e01-e05.json",
+    "run-artifacts/d-electrical-traceability-e06-e11.json",
+    "run-artifacts/d-test-results.json",
+    "run-artifacts/d-security-audit.json",
+    "docs/implantacao-sie-2-0/GREENFIELD/C13_PREPARACAO_HOMOLOGACAO.md"
+  ],
+  "sha_reference": "7573916a942baaa8c54279d2aae7c046838bb755",
+  "remote_operations": "NOT_EXECUTED"
+}
