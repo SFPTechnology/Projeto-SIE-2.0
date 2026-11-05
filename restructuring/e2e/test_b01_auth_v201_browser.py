@@ -36,7 +36,7 @@ def test_b01_synthetic_login_backend_check_and_logout(servers):
         page.route("**/auth-v201.public-config.js",lambda route:route.fulfill(
             status=200,content_type="application/javascript",
             body='window.SIE_V201_PUBLIC_CONFIG={supabaseUrl:"'+AUTH_URL+
-            '",publishableKey:"sb_publishable_test_only",apiBase:"http://127.0.0.1:8000"}'))
+            '",publishableKey:"sb_publishable_test_only",apiBase:"http://127.0.0.1:8000",allowRealAuth:true}'))
         cors={"access-control-allow-origin":"*",
               "access-control-allow-methods":"GET,POST,OPTIONS",
               "access-control-allow-headers":"apikey,authorization,content-type"}
