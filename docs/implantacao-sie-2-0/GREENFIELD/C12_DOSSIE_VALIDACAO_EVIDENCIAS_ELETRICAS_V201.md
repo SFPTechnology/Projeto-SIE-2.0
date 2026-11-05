@@ -1,5 +1,7 @@
 # C12 — Dossiê de evidências para validação elétrica | Bloco C — SIE 2.0
 
+> Escopo vigente C19 (04/11/2026): a revisão E10 dos sete campos elétricos legados está diferida para importação futura opcional e não bloqueia o GC GREENFIELD. As menções históricas ao legado abaixo são preservadas para rastreabilidade. E01–E09, E11 e o aceite C13 seguem pendentes de comprovação aplicável ao sistema novo.
+
 **Classificação:** PACOTE PARA PREENCHIMENTO PELO RESPONSÁVEL; NENHUM ACEITE EMITIDO.
 **Identificador:** `SIE2-C12-20261028` · **Edição:** 1.0 · **Data:** 28/10/2026.
 **Abrangência:** revisão do catálogo C04, motores C05, integração elétrica C03 e sete campos semânticos de legado. Exclusão: aprovação de projeto executivo ou instalações de terceiros, SPDA/fotovoltaico/recarga/ambientes especiais se não implementados e declarados no escopo.

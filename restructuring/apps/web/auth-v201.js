@@ -38,6 +38,7 @@ function showSignedOut(){
   sessionGeneration++;
   if(renewalTimer!==null)clearTimeout(renewalTimer);
   renewalTimer=null;
+  renewalInFlight=null;
   accessToken=null;refreshToken=null;expiresAt=0;verifiedUserId=null;authEmail=null;
   form.hidden=false;signed.hidden=true;userEl.textContent="";
   document.getElementById("password").value="";
@@ -53,6 +54,7 @@ async function request(url,options){
 }
 async function signIn(email,password){
   configure();
+  const generation=++sessionGeneration;
   const result=await request(authOrigin+"/auth/v1/token?grant_type=password",{
     method:"POST",headers:publicHeaders(),body:JSON.stringify({email,password})
   });
@@ -67,7 +69,7 @@ async function signIn(email,password){
   if(typeof result.refresh_token!=="string" || !result.refresh_token ||
      !Number.isFinite(Number(result.expires_in)) || Number(result.expires_in)<=0)
     throw Error("Sessão incompleta; renovação indisponível");
-  sessionGeneration++;
+  if(generation!==sessionGeneration)throw Error("Login superseded");
   accessToken=token;refreshToken=result.refresh_token;
   authEmail=email;verifiedUserId=verified.user_id;
   expiresAt=Date.now()+Number(result.expires_in)*1000;
@@ -85,9 +87,8 @@ function scheduleRenewal(){
   if(!refreshToken || !accessToken)return;
   const delay=Math.min(2147483647,Math.max(1000,expiresAt-Date.now()-60000));
   renewalTimer=setTimeout(()=>{
-    renewSession().catch(()=>{
-      showSignedOut();message("Sessão expirada ou revogada; entre novamente.");
-    });
+    // renewSession owns invalidation; a stale request must not clear a new login.
+    renewSession().catch(()=>{});
   },delay);
 }
 async function renewSession(){
@@ -121,18 +122,19 @@ async function renewSession(){
       if(generation===sessionGeneration){
         showSignedOut();
         if(channel)channel.postMessage("logout");
+        message("Sessão expirada ou revogada; entre novamente.");
       }
       throw error;
-    }finally{renewalInFlight=null}
+    }finally{if(generation===sessionGeneration)renewalInFlight=null}
   })();
   return renewalInFlight;
 }
 document.getElementById("refresh").addEventListener("click",()=>{
-  renewSession().catch(()=>message("Sessão não renovada; entre novamente."));
+  renewSession().catch(()=>{});
 });
 document.addEventListener("visibilitychange",()=>{
   if(!document.hidden && accessToken && expiresAt-Date.now()<60000){
-    renewSession().catch(()=>message("Sessão expirada; entre novamente."));
+    renewSession().catch(()=>{});
   }
 });
 
@@ -140,12 +142,17 @@ form.addEventListener("submit",async e=>{
   e.preventDefault();
   const btn=document.getElementById("login");
   btn.disabled=true;message("Validando credenciais...");
+  let generation=sessionGeneration;
   try {
     const data=new FormData(form);
-    await signIn(String(data.get("email")),String(data.get("password")));
+    const pending=signIn(String(data.get("email")),String(data.get("password")));
+    generation=sessionGeneration;
+    await pending;
   } catch(_error){
-    showSignedOut();
-    message("Não foi possível autenticar. Verifique a configuração, o usuário e a API.");
+    if(generation===sessionGeneration){
+      showSignedOut();
+      message("Não foi possível autenticar. Verifique a configuração, o usuário e a API.");
+    }
   } finally{btn.disabled=false}
 });
 document.getElementById("recover").addEventListener("click",async()=>{
@@ -167,16 +174,20 @@ document.getElementById("recover").addEventListener("click",async()=>{
 });
 async function signOut(broadcast=true){
   const token=accessToken;showSignedOut();
+  const generation=sessionGeneration;
   if(broadcast && channel)channel.postMessage("logout");
   if(!token){message("Sessão local encerrada.");return;}
   try{
-    await fetch(authOrigin+"/auth/v1/logout?scope=local",{
+    const response=await fetch(authOrigin+"/auth/v1/logout?scope=local",{
       method:"POST",credentials:"omit",headers:{
         "apikey":cfg.publishableKey,"Authorization":"Bearer "+token}
     });
-    message("Sessão local encerrada. Tokens anteriores podem valer até expirar.");
+    if(!response.ok)throw Error("Remote logout rejected");
+    if(generation===sessionGeneration)
+      message("Sessão local encerrada. Tokens anteriores podem valer até expirar.");
   }catch(_error){
-    message("Sessão local limpa, mas não foi possível confirmar revogação remota.");
+    if(generation===sessionGeneration)
+      message("Sessão local limpa, mas não foi possível confirmar revogação remota.");
   }
 }
 document.getElementById("logout").addEventListener("click",()=>signOut());

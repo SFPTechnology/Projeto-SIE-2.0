@@ -9,6 +9,7 @@ on:
       - "restructuring/supabase/migrations/20261028203000_sie_c03_electrical_domain_v201.sql"
       - "restructuring/supabase/greenfield/manifest.json"
       - "restructuring/supabase/greenfield/tests/c03_pg17.sql"
+      - "restructuring/apps/api/tests/test_c20_migration_atomicity_pg17_v201.py"
       - ".github/workflows/sie-c03-pg17.yml"
 permissions:
   contents: read
@@ -62,6 +63,9 @@ jobs:
           python-version: "3.12"
       - name: Install API test tooling
         run: python -m pip install --disable-pip-version-check -e "./restructuring/apps/api[test]" "psycopg[binary]>=3.2,<4"
+      - name: Prove atomic rollback after each A03 A04 B04 C03 migration
+        working-directory: restructuring/apps/api
+        run: python -m pytest tests/test_c20_migration_atomicity_pg17_v201.py -q
       - name: Register disposable migration history for B04 adapter guard
         run: |
           psql -X -v ON_ERROR_STOP=1 <<'SQL'

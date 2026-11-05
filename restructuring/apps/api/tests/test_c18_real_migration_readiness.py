@@ -45,7 +45,7 @@ def test_real_migration_files_are_ordered_and_authenticated_by_sha():
 def test_no_real_auth_session_or_recovery_is_not_hidden_by_approval():
     result=check()
     assert "NO_VERIFIED_REAL_AUTH_SESSION" in result["blockers"]
-    assert "NO_VERIFIED_RECOVERABLE_DESTINATION_BACKUP_AND_RESTORE" in result["blockers"]
+    assert "DESTINATION_RECOVERY_ALTERNATIVE_PENDING" in result["blockers"]
     assert "REAL_ETL_IMPLEMENTATION_DISABLED" not in result["blockers"]
     assert "SOURCE_FIVE_PROJECT_INVENTORY_DRIFT" not in result["blockers"]
     assert result["delivery_strategy"]=="GREENFIELD_NO_LEGACY_IMPORT"
@@ -95,7 +95,7 @@ def test_greenfield_ignores_missing_legacy_projects_without_silencing_auth_safet
     result=check(source_projects=0,legacy_real_etl_enabled=False)
     assert "SOURCE_FIVE_PROJECT_INVENTORY_DRIFT" not in result["blockers"]
     assert "REAL_ETL_IMPLEMENTATION_DISABLED" not in result["blockers"]
-    assert "NO_VERIFIED_RECOVERABLE_DESTINATION_BACKUP_AND_RESTORE" in result["blockers"]
+    assert "DESTINATION_RECOVERY_ALTERNATIVE_PENDING" in result["blockers"]
     assert "NO_VERIFIED_REAL_AUTH_SESSION" in result["blockers"]
     assert result["gate_gc"]=="BLOCKED"
 
@@ -114,4 +114,31 @@ def test_greenfield_requires_no_access_to_legacy_database():
     assert result["legacy_import_requirement"]=="DEFERRED_OPTIONAL"
     assert result["read_only_observations"]["source_projects"] is None
     assert "SOURCE_FIVE_PROJECT_INVENTORY_DRIFT" not in result["blockers"]
+    assert "DESTINATION_RECOVERY_ALTERNATIVE_PENDING" in result["blockers"]
+
+
+def test_c17_refusal_is_constraint_not_a_failed_recovery_proof():
+    result=check()
+    assert "USER_DECLINED_REMOTE_BACKUP" not in result["blockers"]
+    assert result["recovery_requirement"] == "INDEPENDENTLY_PROVEN_DESTINATION_RECOVERY"
+    assert not result["recovery_alternative_verified_by_this_check"]
+
+
+def test_fabricated_alternative_or_backup_flags_cannot_satisfy_recovery():
+    doc=baseline()
+    doc["preproduction_authorization"].update(
+        backup_real_state="VERIFIED", restore_real_state="VERIFIED",
+        alternative_recovery_verified=True)
+    result=check(data=doc, auth_sessions=1)
+    assert "DESTINATION_RECOVERY_ALTERNATIVE_PENDING" in result["blockers"]
+    assert not result["migrations_remote_go"]
+    assert not result["recovery_alternative_verified_by_this_check"]
+
+
+def test_historical_backup_path_is_preserved_when_c17_not_declined():
+    doc=baseline()
+    doc["effective_user_decision_20261104"]["c17_execution_permitted"]=True
+    result=check(data=doc)
     assert "NO_VERIFIED_RECOVERABLE_DESTINATION_BACKUP_AND_RESTORE" in result["blockers"]
+    assert "DESTINATION_RECOVERY_ALTERNATIVE_PENDING" not in result["blockers"]
+    assert not result["migrations_remote_go"]

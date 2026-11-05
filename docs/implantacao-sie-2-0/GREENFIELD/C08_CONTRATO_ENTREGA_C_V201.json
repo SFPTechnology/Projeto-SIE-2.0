@@ -6,7 +6,7 @@
   "environment": "DEVELOPMENT",
   "repository": "SFPTechnology/Projeto-SIE-2.0",
   "source_branch": "feat/v201-bloco-c-dominio-eletrico",
-  "source_sha": "e06d8eb7220154cf9a03478e75cba407486b2f2c",
+  "source_sha": "bdf302b0f5226a0d1af05eb8fd38bb4f5b9cf9b1",
   "baseline_b_sha": "63805c03c7146103cdd67eca4da3e369a751d379",
   "supabase_project_ref": "fozrymsidnaxmuvxxfhh",
   "remote_ddl_authorized": false,
@@ -35,12 +35,10 @@
   "evidence_sha256": null,
   "evidence_state": "AUTH_ACCOUNT_EXISTS_CONFIRMATION_READBACK_20261028; SESSION_OWNER_BINDING_PENDING; C11_C12_C13_DRAFT_NOT_SIGNED; 45_FIELDS_CLASSIFIED_11_TECHNICAL_CASES_UNAPPROVED; PREPROD_SCOPED_GO_CONDITIONAL_20261102; DEST_BACKUP_RESTORE_REAL_MISSING; CI_SHA_007EA24B_5_WORKFLOWS_PASS",
   "blockers": [
-    "Auth user exists and is confirmed (aggregate readback); still require trusted JWT subject, proof the account belongs to intended user, and 5/5 binding",
-    "Independent ownership attestation and reviewer confirmation required before owner assignment",
-    "7 electrical legacy fields and 1 room display mapping await specialist validation; 22 empty-table and 15 archive routes classified",
-    "Professional engineer must evaluate 11 technical and normative cases against licensed/current sources and provide authentic signoff",
-    "Conditional remote preproduction DDL/ETL user approval RECEIVED on 2026-11-02; still BLOCKED until real backup+restore, source cutoff, identity binding and security review",
-    "Five workflows PASS on 007ea24b BEFORE remote integration; repeat same-SHA QA after authorized migrations/ETL and obtain professional approval before GC"
+    "A03/A04/B04/C03 are absent from the destination; remote application requires independently verified recovery and security safeguards, readback and integration validation.",
+    "Real Supabase login, refresh, revocation and cross-user A/B isolation remain unproven; legacy five-project ownership binding is excluded.",
+    "Complete electrical engines and independently sourced normative evidence E01-E11, then obtain authentic professional acceptance C13.",
+    "Five workflows must pass on the final implementation SHA; development CI does not grant operational or electrical approval."
   ],
   "handoff_to": "D",
   "handoff_authorized": false,
@@ -367,6 +365,52 @@
       "NO_ADDITIONAL_COST",
       "NO_WINDOWS_POSTGRES_TESTS"
     ],
-    "effect": "This supersedes earlier five-project migration as a release prerequisite; previous user choice and read-only inventories remain archival, not deletion or authorization to import."
+    "effect": "This supersedes earlier five-project migration as a release prerequisite; previous user choice and read-only inventories remain archival, not deletion or authorization to import.",
+    "legacy_semantic_mapping_is_gc_blocker": false
+  },
+  "historical_legacy_blockers_superseded_by_c19": [
+    "Auth user exists and is confirmed (aggregate readback); still require trusted JWT subject, proof the account belongs to intended user, and 5/5 binding",
+    "Independent ownership attestation and reviewer confirmation required before owner assignment",
+    "7 electrical legacy fields and 1 room display mapping await specialist validation; 22 empty-table and 15 archive routes classified",
+    "Professional engineer must evaluate 11 technical and normative cases against licensed/current sources and provide authentic signoff",
+    "Conditional remote preproduction DDL/ETL user approval RECEIVED on 2026-11-02; still BLOCKED until real backup+restore, source cutoff, identity binding and security review",
+    "Five workflows PASS on 007ea24b BEFORE remote integration; repeat same-SHA QA after authorized migrations/ETL and obtain professional approval before GC"
+  ],
+  "active_blockers_scope": "GREENFIELD_ONLY_C19; historical legacy fields below are archival",
+  "readback_20261104_continuation": {
+    "read_only": true,
+    "project_status": "ACTIVE_HEALTHY",
+    "postgres_version": "17.11",
+    "applied_migrations": [
+      "20261027195557"
+    ],
+    "public_tables": 9,
+    "public_tables_rls_enabled": 9,
+    "public_policies": 16,
+    "a03_expected_indexes_present": 0,
+    "a04_lifecycle_column_present": false,
+    "b04_idempotency_column_present": false,
+    "c03_expected_tables_present": 0,
+    "auth_ab_tested": false,
+    "remote_writes_performed": false,
+    "security_advisor": [
+      "auth_leaked_password_protection"
+    ],
+    "performance_advisors": {
+      "unindexed_foreign_keys": 10,
+      "unused_indexes": 8
+    }
+  },
+  "verified_ci_checkpoint": {
+    "sha": "bdf302b0f5226a0d1af05eb8fd38bb4f5b9cf9b1",
+    "conclusion": "FIVE_WORKFLOWS_PASS",
+    "run_ids": [
+      41916449901,
+      41916449849,
+      41916449854,
+      41916449853,
+      41916449862
+    ],
+    "does_not_approve_gc": true
   }
 }

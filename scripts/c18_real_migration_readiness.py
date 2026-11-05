@@ -59,7 +59,8 @@ def assess(contract:dict, migration_dir:Path, *, actual_applied:tuple[str,...],
     restore=auth.get("restore_real_state")
     blockers=[]
     if backup!="VERIFIED" or restore!="VERIFIED":
-        blockers.append("NO_VERIFIED_RECOVERABLE_DESTINATION_BACKUP_AND_RESTORE")
+        blockers.append("DESTINATION_RECOVERY_ALTERNATIVE_PENDING" if cancelled_c17 else
+                        "NO_VERIFIED_RECOVERABLE_DESTINATION_BACKUP_AND_RESTORE")
     if auth_sessions==0:
         blockers.append("NO_VERIFIED_REAL_AUTH_SESSION")
     if dest_projects:
@@ -69,8 +70,10 @@ def assess(contract:dict, migration_dir:Path, *, actual_applied:tuple[str,...],
             blockers.append("SOURCE_FIVE_PROJECT_INVENTORY_DRIFT")
         if not legacy_real_etl_enabled:
             blockers.append("REAL_ETL_IMPLEMENTATION_DISABLED")
-    if cancelled_c17:
-        blockers.append("USER_DECLINED_REMOTE_BACKUP")
+    # Refusing C17 is an execution constraint, not a failed safety check.
+    # No alternative verifier exists here: editable flags cannot prove recovery.
+    if cancelled_c17 and "DESTINATION_RECOVERY_ALTERNATIVE_PENDING" not in blockers:
+        blockers.append("DESTINATION_RECOVERY_ALTERNATIVE_PENDING")
     # Even successful dry-run/CI and all editable flags are insufficient:
     # concrete restoration, human identity evidence and externally verified
     # migration readbacks are mandatory before real data movement.
@@ -91,6 +94,8 @@ def assess(contract:dict, migration_dir:Path, *, actual_applied:tuple[str,...],
         "real_import_go":False,
         "gate_gc":"BLOCKED",
         "honors_user_no_remote_backup_decision":cancelled_c17,
+        "recovery_requirement":"INDEPENDENTLY_PROVEN_DESTINATION_RECOVERY",
+        "recovery_alternative_verified_by_this_check":False,
         "approval_is_execution_priority_not_evidence":True,
     }
 

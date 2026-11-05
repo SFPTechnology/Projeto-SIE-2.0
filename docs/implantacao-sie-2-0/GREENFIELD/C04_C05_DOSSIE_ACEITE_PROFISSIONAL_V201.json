@@ -1,7 +1,7 @@
 {
   "contract_version": "SIE-C04-C05-PROFESSIONAL-REVIEW-1",
   "project": "SIE_2.0",
-  "scope": "C04 normative catalogs, C05 electrical engines and 7 legacy electrical fields pending technical review",
+  "scope": "C04 normative catalogs and C05 electrical engines for GREENFIELD; E10 legacy-field review deferred by C19",
   "generated_at": "2026-10-28",
   "branch": "feat/v201-bloco-c-dominio-eletrico",
   "professional_review": {
@@ -95,7 +95,9 @@
       "code": "E10",
       "name": "Legacy electrical fields and historical calculations",
       "state": "EVIDENCE_PENDING",
-      "needed": "Review 7 pending semantic fields, source payload retained, NOT_EVALUATED historical results"
+      "needed": "Only if future legacy import is requested: review 7 semantic fields and retained historical results; excluded from current greenfield GC.",
+      "required_for_greenfield_gc": false,
+      "applicability": "DEFERRED_OPTIONAL_LEGACY_IMPORT_ONLY"
     },
     {
       "code": "E11",
@@ -114,5 +116,6 @@
   "release_state": "REVIEW_PACKET_PREPARED_NOT_A_PROFESSIONAL_SIGNOFF",
   "normative_approved": false,
   "production_or_remote_approval": false,
-  "instructions": "Reviewer must verify professional registration and licensed sources separately and sign a SHA256 evidence bundle through an approved external process. Editing this JSON to APPROVED cannot authorize any release."
+  "instructions": "Reviewer must verify professional registration and licensed sources separately and sign a SHA256 evidence bundle through an approved external process. Editing this JSON to APPROVED cannot authorize any release.",
+  "scope_decision": "C19_DECISAO_GREENFIELD_SEM_IMPORTACAO_LEGADA_20261104.md"
 }
