@@ -22,6 +22,10 @@ const apiAllowed=new Set(["http://localhost:8000","http://127.0.0.1:8000"]);
 const isDevelopment=originAllowed.has(location.origin);
 
 function message(text){statusEl.textContent=text}
+function requireRealAuth(){
+  if(cfg.allowRealAuth !== true)
+    throw Error("SYNTHETIC_ONLY: Auth real desabilitado por configuração explícita");
+}
 function configure(){
   if(!isDevelopment) throw Error("Tela disponível somente em localhost:5173");
   if(cfg.supabaseUrl!==authOrigin) throw Error("Projeto Supabase não autorizado");
@@ -29,6 +33,7 @@ function configure(){
   if(typeof cfg.publishableKey!=="string" || !cfg.publishableKey ||
      cfg.publishableKey.length>2048 || cfg.publishableKey.startsWith("sb_secret_"))
     throw Error("Informe somente uma chave pública de desenvolvimento");
+  requireRealAuth();
 }
 function showSigned(userId){
   form.hidden=true;signed.hidden=false;
@@ -38,6 +43,7 @@ function showSignedOut(){
   sessionGeneration++;
   if(renewalTimer!==null)clearTimeout(renewalTimer);
   renewalTimer=null;
+  renewalInFlight=null;
   accessToken=null;refreshToken=null;expiresAt=0;verifiedUserId=null;authEmail=null;
   form.hidden=false;signed.hidden=true;userEl.textContent="";
   document.getElementById("password").value="";
@@ -46,6 +52,7 @@ function publicHeaders(){
   return {"apikey":cfg.publishableKey,"content-type":"application/json"};
 }
 async function request(url,options){
+  if(String(url).startsWith(authOrigin)) requireRealAuth();
   const response=await fetch(url,{cache:"no-store",credentials:"omit",...options});
   if(!response.ok) throw Error("Operação rejeitada pelo serviço de autenticação");
   const data=await response.json();
@@ -53,6 +60,7 @@ async function request(url,options){
 }
 async function signIn(email,password){
   configure();
+  const generation=++sessionGeneration;
   const result=await request(authOrigin+"/auth/v1/token?grant_type=password",{
     method:"POST",headers:publicHeaders(),body:JSON.stringify({email,password})
   });
@@ -67,7 +75,7 @@ async function signIn(email,password){
   if(typeof result.refresh_token!=="string" || !result.refresh_token ||
      !Number.isFinite(Number(result.expires_in)) || Number(result.expires_in)<=0)
     throw Error("Sessão incompleta; renovação indisponível");
-  sessionGeneration++;
+  if(generation!==sessionGeneration)throw Error("Login superseded");
   accessToken=token;refreshToken=result.refresh_token;
   authEmail=email;verifiedUserId=verified.user_id;
   expiresAt=Date.now()+Number(result.expires_in)*1000;
@@ -85,9 +93,8 @@ function scheduleRenewal(){
   if(!refreshToken || !accessToken)return;
   const delay=Math.min(2147483647,Math.max(1000,expiresAt-Date.now()-60000));
   renewalTimer=setTimeout(()=>{
-    renewSession().catch(()=>{
-      showSignedOut();message("Sessão expirada ou revogada; entre novamente.");
-    });
+    // renewSession owns invalidation; a stale request must not clear a new login.
+    renewSession().catch(()=>{});
   },delay);
 }
 async function renewSession(){
@@ -121,18 +128,19 @@ async function renewSession(){
       if(generation===sessionGeneration){
         showSignedOut();
         if(channel)channel.postMessage("logout");
+        message("Sessão expirada ou revogada; entre novamente.");
       }
       throw error;
-    }finally{renewalInFlight=null}
+    }finally{if(generation===sessionGeneration)renewalInFlight=null}
   })();
   return renewalInFlight;
 }
 document.getElementById("refresh").addEventListener("click",()=>{
-  renewSession().catch(()=>message("Sessão não renovada; entre novamente."));
+  renewSession().catch(()=>{});
 });
 document.addEventListener("visibilitychange",()=>{
   if(!document.hidden && accessToken && expiresAt-Date.now()<60000){
-    renewSession().catch(()=>message("Sessão expirada; entre novamente."));
+    renewSession().catch(()=>{});
   }
 });
 
@@ -140,12 +148,17 @@ form.addEventListener("submit",async e=>{
   e.preventDefault();
   const btn=document.getElementById("login");
   btn.disabled=true;message("Validando credenciais...");
+  let generation=sessionGeneration;
   try {
     const data=new FormData(form);
-    await signIn(String(data.get("email")),String(data.get("password")));
+    const pending=signIn(String(data.get("email")),String(data.get("password")));
+    generation=sessionGeneration;
+    await pending;
   } catch(_error){
-    showSignedOut();
-    message("Não foi possível autenticar. Verifique a configuração, o usuário e a API.");
+    if(generation===sessionGeneration){
+      showSignedOut();
+      message("Não foi possível autenticar. Verifique a configuração, o usuário e a API.");
+    }
   } finally{btn.disabled=false}
 });
 document.getElementById("recover").addEventListener("click",async()=>{
@@ -167,16 +180,24 @@ document.getElementById("recover").addEventListener("click",async()=>{
 });
 async function signOut(broadcast=true){
   const token=accessToken;showSignedOut();
+  const generation=sessionGeneration;
   if(broadcast && channel)channel.postMessage("logout");
   if(!token){message("Sessão local encerrada.");return;}
+  if(cfg.allowRealAuth !== true){
+    message("SYNTHETIC_ONLY: sessão local limpa; revogação remota não foi executada.");
+    return;
+  }
   try{
-    await fetch(authOrigin+"/auth/v1/logout?scope=local",{
+    const response=await fetch(authOrigin+"/auth/v1/logout?scope=local",{
       method:"POST",credentials:"omit",headers:{
         "apikey":cfg.publishableKey,"Authorization":"Bearer "+token}
     });
-    message("Sessão local encerrada. Tokens anteriores podem valer até expirar.");
+    if(!response.ok)throw Error("Remote logout rejected");
+    if(generation===sessionGeneration)
+      message("Sessão local encerrada. Tokens anteriores podem valer até expirar.");
   }catch(_error){
-    message("Sessão local limpa, mas não foi possível confirmar revogação remota.");
+    if(generation===sessionGeneration)
+      message("Sessão local limpa, mas não foi possível confirmar revogação remota.");
   }
 }
 document.getElementById("logout").addEventListener("click",()=>signOut());

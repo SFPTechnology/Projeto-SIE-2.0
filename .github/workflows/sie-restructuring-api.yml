@@ -103,9 +103,63 @@ jobs:
           path: run-artifacts/f01-evidence-status.json
           if-no-files-found: error
           retention-days: 14
+      - name: Static-parse C14 PowerShell backup helper (no Supabase connectivity)
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $parseErrors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+            (Join-Path $env:GITHUB_WORKSPACE 'scripts/c14_backup_preprod_sie2.ps1'),
+            [ref]$tokens,
+            [ref]$parseErrors
+          ) | Out-Null
+          if ($parseErrors.Count -gt 0) {
+            $parseErrors | ForEach-Object { Write-Error $_.Message }
+            exit 1
+          }
+          Write-Host 'C14 PowerShell syntax PASS; no remote connection or backup was executed.'
+      - name: Parse all C15 PowerShell scripts without executing them
+        shell: pwsh
+        run: |
+          foreach ($name in @('c15_native_common.ps1','c15_preflight_windows.ps1','c15_backup_native.ps1','c15_restore_native.ps1')) {
+            $tokens = $null
+            $issues = $null
+            [System.Management.Automation.Language.Parser]::ParseFile((Join-Path $env:GITHUB_WORKSPACE ('scripts/' + $name)),[ref]$tokens,[ref]$issues) | Out-Null
+            if ($issues.Count -gt 0) { throw "PowerShell parse failure: $name" }
+          }
+      - name: Verify C15 native offline integrity and guard against false GO
+        run: |
+          mkdir -p run-artifacts
+          python scripts/c15_integrity.py synthetic-test --output run-artifacts/c15-fixture
+          python scripts/c15_integrity.py verify-backup --manifest run-artifacts/c15-fixture/manifest.json --backup run-artifacts/c15-fixture/synthetic.dump
+      - name: Validate C15 source inventory readback snapshot (aggregates only, no remote access)
+        run: |
+          python scripts/c15_source_reconciliation.py --inventory docs/implantacao-sie-2-0/GREENFIELD/C15_ORIGEM_READBACK_AGREGADO_20261104.json
+      - name: Enforce eight independent C16 reviewer gates (fail closed without evidence)
+        run: |
+          python scripts/c16_gc_independent_gate.py --contract docs/implantacao-sie-2-0/GREENFIELD/C08_CONTRATO_ENTREGA_C_V201.json --reviews docs/implantacao-sie-2-0/GREENFIELD/C16_RELATORIO_AUDITORIA_GC_20261104.json --expect-blocked
+      - name: C18 real migration readiness (read-only, no remote DDL)
+        run: |
+          python scripts/c18_real_migration_readiness.py \
+            --contract docs/implantacao-sie-2-0/GREENFIELD/C08_CONTRATO_ENTREGA_C_V201.json \
+            --migrations restructuring/supabase/migrations \
+            --applied 20261027195557 \
+            --auth-users 1 --auth-sessions 0 --dest-projects 0
       - name: Run unit and API tests
         run: python -m pytest -q
         working-directory: restructuring/apps/api
+      - name: Generate audited C11/C12 E01-E11 arithmetic and fail-closed evidence
+        run: |
+          mkdir -p run-artifacts
+          python -m sie_api.v201_c_e01_e11_evidence --output run-artifacts/c-e01-e11-evidence.json
+          python -m json.tool run-artifacts/c-e01-e11-evidence.json > /dev/null
+      - name: Archive real E01-E11 execution evidence for professional review
+        uses: actions/upload-artifact@v4
+        with:
+          name: c-e01-e11-evidence-${{ github.run_id }}
+          path: run-artifacts/c-e01-e11-evidence.json
+          if-no-files-found: error
+          retention-days: 30
       - name: Replay immutable F00 baseline without rewriting expectations
         run: python scripts/f00_golden.py --verify
       - name: Check frontend JavaScript syntax

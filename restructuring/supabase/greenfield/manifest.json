@@ -13,7 +13,7 @@
     }
   ],
   "remote_ddl_authorized": false,
-  "note": "GF02 only installed remotely. A03, A04 and B04 are PENDING. Test in disposable PostgreSQL only; remote DDL requires explicit authorization, backup and readback.",
+  "note": "GF02 only installed remotely. A03/A04/B04/C03 are PENDING. C03 tested on disposable PostgreSQL 17 only. No DDL remote permitted before specific authorization, backup/restore and readback.",
   "pending_migrations": [
     {
       "version": "20261028102000",
@@ -34,6 +34,13 @@
       "name": "sie_b04_idempotency_backend_grants_v201",
       "file": "20261028153000_sie_b04_idempotency_backend_grants_v201.sql",
       "git_blob_sha1": "e27f4d55ea01f10789d4df74e997f2f56aae262f",
+      "applied_remote": false
+    },
+    {
+      "version": "20261028203000",
+      "name": "sie_c03_electrical_domain_v201",
+      "file": "20261028203000_sie_c03_electrical_domain_v201.sql",
+      "git_blob_sha1": "a49f5f76659fbae0c48d8fdfc19d7a3555ca9d5c",
       "applied_remote": false
     }
   ]

@@ -1,0 +1,11 @@
+{
+  "execution_id": "C20-YOLO-GREENFIELD-20261105",
+  "phase": "AUDIT_COMPLETE",
+  "branch": "feat/v201-bloco-c-dominio-eletrico",
+  "initial_sha": "7573916a942baaa8c54279d2aae7c046838bb755",
+  "current_status": "EXECUTION_IN_PROGRESS",
+  "last_completed_task": "T00_AUDIT",
+  "next_eligible_tasks": ["T01_ELECTRICAL_GAP_REVIEW","T02_SYNTHETIC_AUTH_REVIEW","T03_PG17_REVIEW","T04_API_FRONTEND_CONTRACT_REVIEW"],
+  "retry_policy": {"deterministic_failure_limit": 3},
+  "prohibited_operations": ["remote_ddl","remote_backup_restore","legacy_import","main_modification","merge","production_deploy"]
+}

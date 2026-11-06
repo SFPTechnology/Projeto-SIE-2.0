@@ -1,0 +1,66 @@
+{
+  "artifact": "D2_ELECTRICAL_TRACEABILITY_E06_E11",
+  "generated_at": "2026-11-05",
+  "repository_sha_observed": "7573916a942baaa8c54279d2aae7c046838bb755",
+  "environment": "LOCAL_SYNTHETIC_DEVELOPMENT",
+  "remote_operations": false,
+  "normative_approval": false,
+  "cases": [
+    {
+      "code": "E06",
+      "scope": "Ib/In/Iz, I2 and interrupting-capacity consistency",
+      "implementation": "restructuring/apps/api/sie_api/v201_c_greenfield_e06_e11.py:evaluate_e06_protection",
+      "evidence": "test_c22_greenfield_e06_e11.py::test_e06_synthetic_golden_contract_stays_pending; test_e06_rejects_internal_inconsistency",
+      "state": "PENDING_EVIDENCE",
+      "limitation": "No normative curve, selectivity or short-circuit source is asserted."
+    },
+    {
+      "code": "E07",
+      "scope": "DR/DPS input completeness and voltage compatibility",
+      "implementation": "restructuring/apps/api/sie_api/v201_c_greenfield_e06_e11.py:evaluate_e07_dr_dps",
+      "evidence": "test_e07_e08_positive_contracts_never_approve_normative_use; test_e07_e08_fail_closed_for_missing_safety_condition",
+      "state": "PENDING_EVIDENCE",
+      "limitation": "No DR/DPS sizing or normative application decision is asserted."
+    },
+    {
+      "code": "E08",
+      "scope": "TT/TN/IT identity, PE and equipotential-bonding completeness",
+      "implementation": "restructuring/apps/api/sie_api/v201_c_greenfield_e06_e11.py:evaluate_e08_grounding",
+      "evidence": "test_e07_e08_positive_contracts_never_approve_normative_use; test_e07_e08_fail_closed_for_missing_safety_condition",
+      "state": "PENDING_EVIDENCE",
+      "limitation": "No earthing impedance or shock-protection calculation is asserted."
+    },
+    {
+      "code": "E09",
+      "scope": "Utility-catalog provenance identity and fingerprint",
+      "implementation": "restructuring/apps/api/sie_api/v201_c_greenfield_e06_e11.py:evaluate_e09_utility_catalog",
+      "evidence": "test_e09_provenance_is_hashed_and_e11_detects_tamper",
+      "state": "PENDING_EVIDENCE",
+      "limitation": "Fixture provenance is synthetic and does not validate a concessionaire source."
+    },
+    {
+      "code": "E10",
+      "scope": "Historical legacy electrical fields",
+      "state": "DEFERRED_OPTIONAL_LEGACY_IMPORT_ONLY",
+      "evidence": "C19_DECISAO_GREENFIELD_SEM_IMPORTACAO_LEGADA_20261104.md; C04_C05_DOSSIE_ACEITE_PROFISSIONAL_V201.json",
+      "limitation": "No legacy project is imported, transformed or treated as a GREENFIELD gate."
+    },
+    {
+      "code": "E11",
+      "scope": "Evidence hash, version identity and forced-approval prevention",
+      "implementation": "restructuring/apps/api/sie_api/v201_c_greenfield_e06_e11.py:evaluate_e11_integrity",
+      "evidence": "test_e09_provenance_is_hashed_and_e11_detects_tamper",
+      "state": "PENDING_EVIDENCE",
+      "limitation": "Hash integrity is development evidence only and does not attest professional approval."
+    }
+  ],
+  "test_execution": {
+    "command": "$HOME/.local/bin/pytest -q restructuring/apps/api/tests/test_c22_greenfield_e06_e11.py",
+    "result": "8 passed in 0.11s"
+  },
+  "overall": {
+    "development_traceability": "PASS",
+    "electrical_homologation": "NOT_GRANTED",
+    "greenfield_gate_gc": "BLOCKED"
+  }
+}

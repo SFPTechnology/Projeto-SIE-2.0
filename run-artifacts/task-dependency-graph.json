@@ -1,0 +1,17 @@
+{
+  "nodes": [
+    {"id":"T00_AUDIT","status":"VERIFIED","depends_on":[]},
+    {"id":"T01_ELECTRICAL_GAP_REVIEW","status":"READY","depends_on":["T00_AUDIT"]},
+    {"id":"T02_SYNTHETIC_AUTH_REVIEW","status":"READY","depends_on":["T00_AUDIT"]},
+    {"id":"T03_PG17_REVIEW","status":"READY","depends_on":["T00_AUDIT"]},
+    {"id":"T04_API_FRONTEND_CONTRACT_REVIEW","status":"READY","depends_on":["T00_AUDIT"]},
+    {"id":"T05_IMPLEMENT_SAFE_GAPS","status":"NOT_STARTED","depends_on":["T01_ELECTRICAL_GAP_REVIEW","T02_SYNTHETIC_AUTH_REVIEW","T03_PG17_REVIEW","T04_API_FRONTEND_CONTRACT_REVIEW"]},
+    {"id":"T06_TARGETED_TESTS","status":"NOT_STARTED","depends_on":["T05_IMPLEMENT_SAFE_GAPS"]},
+    {"id":"T07_INDEPENDENT_REVIEW","status":"NOT_STARTED","depends_on":["T06_TARGETED_TESTS"]},
+    {"id":"T08_FULL_QUALITY","status":"NOT_STARTED","depends_on":["T07_INDEPENDENT_REVIEW"]},
+    {"id":"T09_EVIDENCE_AND_C21","status":"NOT_STARTED","depends_on":["T08_FULL_QUALITY"]},
+    {"id":"T10_CI_FINAL_SHA","status":"NOT_STARTED","depends_on":["T09_EVIDENCE_AND_C21"]},
+    {"id":"T11_FINAL_ACCEPTANCE","status":"NOT_STARTED","depends_on":["T10_CI_FINAL_SHA"]}
+  ],
+  "excluded": ["REMOTE_DDL","REMOTE_BACKUP_RESTORE","REAL_SUPABASE_AUTH_AB","LEGACY_IMPORT","MAIN_F12_PRODUCTION"]
+}

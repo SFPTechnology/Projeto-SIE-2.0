@@ -1,0 +1,87 @@
+{
+  "contract_version": "SIE-C-LEGACY-READONLY-FINGERPRINT-1",
+  "source_project_ref": "hlbksclcandbsyqrsbmx",
+  "observation_date": "2026-10-28",
+  "read_only": true,
+  "scope": "15 public domain tables",
+  "total_rows": 1934,
+  "hash_method": "For each public.table t, order all to_jsonb(t)::text lexicographically, join with newline (E'\\\\n'), SHA256 UTF8 via pg_catalog.sha256; empty table hashes empty string",
+  "disclaimer": "Point-in-time fingerprint for drift comparison. NOT a database backup, NOT a transactionally frozen cutover, NOT a user identity proof. Recompute in one read-only statement before staging and compare; snapshot/export and restore separately required.",
+  "tables": [
+    {
+      "table_name": "projetos",
+      "count_rows": 5,
+      "rows_sha256": "90ca175a545fd50567eba796781d661d120a592dc1be014d579a66f585bb19ee"
+    },
+    {
+      "table_name": "dependencias",
+      "count_rows": 41,
+      "rows_sha256": "86eab0e85e3634f0905ee35d5170008aabee6b437a0480b84781c50665fdd1cf"
+    },
+    {
+      "table_name": "dependencia_bancadas",
+      "count_rows": 0,
+      "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table_name": "dependencia_cargas_adicionais",
+      "count_rows": 52,
+      "rows_sha256": "fa1b32268b6f13eb28ced4c883f532b28385750df61bf6199a828654e744bbe8"
+    },
+    {
+      "table_name": "dependencia_edicoes_manuais",
+      "count_rows": 17,
+      "rows_sha256": "327f7b706691c26098d963ca77428363ef7f264d3a18baf9087a4b8e14c95cf5"
+    },
+    {
+      "table_name": "dependencia_validacao",
+      "count_rows": 0,
+      "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table_name": "dependencia_retornos_downstream",
+      "count_rows": 0,
+      "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table_name": "eventos_auditoria",
+      "count_rows": 1805,
+      "rows_sha256": "8b6e51f52899b6f134b0b31fcb5403e64df76001788177041c74e9102edbc06d"
+    },
+    {
+      "table_name": "parametros_edp_overrides",
+      "count_rows": 2,
+      "rows_sha256": "54980687db5668366bb0d90939d2a455e2d866492db329908d53cf7f83c35d95"
+    },
+    {
+      "table_name": "dimensionamento_condutores_overrides",
+      "count_rows": 2,
+      "rows_sha256": "0f69a769cf9778e96c5380613240d52417c137df59f0500fcfa4bae5287399cc"
+    },
+    {
+      "table_name": "dimensionamento_condutores_resultado",
+      "count_rows": 3,
+      "rows_sha256": "134fbd2fe6dd56ce43317a59f2b1ab5035de9d0fb208496acaa680d9c47df86e"
+    },
+    {
+      "table_name": "dimensionamento_disjuntores_overrides",
+      "count_rows": 2,
+      "rows_sha256": "7fd5557406b74075a1a7bd1bbed25cd569f54cd5e18bf508fd29db798803aa38"
+    },
+    {
+      "table_name": "queda_tensao_config",
+      "count_rows": 5,
+      "rows_sha256": "528c305e4c1cd77ca8b077d164c5783ba6e1e00402dda9788d6d8dbba46e8041"
+    },
+    {
+      "table_name": "secoes_otimizadas_operacoes",
+      "count_rows": 0,
+      "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "table_name": "secoes_otimizadas_projeto",
+      "count_rows": 0,
+      "rows_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

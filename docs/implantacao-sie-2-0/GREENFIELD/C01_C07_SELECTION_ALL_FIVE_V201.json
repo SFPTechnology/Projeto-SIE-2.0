@@ -1,0 +1,87 @@
+{
+  "contract_version": "SIE-C-OWNER-SELECTION-1",
+  "purpose": "Read-only evidence and user-approved scope; no migration/cutover authority",
+  "owner_declaration": {
+    "scope": "ALL_FIVE_LEGACY_PROJECTS",
+    "origin": "USER_DECLARATION_IN_CURRENT_CONVERSATION",
+    "recorded_date": "2026-10-28",
+    "claim_status": "OWNER_SELF_DECLARED",
+    "independent_identity_verified": false
+  },
+  "source": {
+    "provider": "Supabase",
+    "project_ref": "hlbksclcandbsyqrsbmx",
+    "name": "Electrical_Project",
+    "read_mode": "SELECT_ONLY",
+    "project_count": 5,
+    "room_count": 41,
+    "additional_load_count": 52,
+    "unresolved_audit_room_refs": 10
+  },
+  "destination": {
+    "project_ref": "fozrymsidnaxmuvxxfhh",
+    "name": "SIE_2.0",
+    "target_auth_user_id": null,
+    "destination_auth_exists": false,
+    "schema_migrations_remotely_applied": false
+  },
+  "projects": [
+    {
+      "legacy_id": "proj-1",
+      "name": "Projeto 1",
+      "rooms": 15,
+      "additional_loads": 18,
+      "selection": "MIGRATE"
+    },
+    {
+      "legacy_id": "proj-1bd66860-4044-416a-845d-f1ceb1a41a87",
+      "name": "Projeto_teste_3",
+      "rooms": 9,
+      "additional_loads": 13,
+      "selection": "MIGRATE"
+    },
+    {
+      "legacy_id": "proj-2",
+      "name": "Teste de demanda muito alta",
+      "rooms": 4,
+      "additional_loads": 3,
+      "selection": "MIGRATE"
+    },
+    {
+      "legacy_id": "proj-54a80990-0c54-433e-991e-b89dd48e5c91",
+      "name": "Teste_1",
+      "rooms": 12,
+      "additional_loads": 17,
+      "selection": "MIGRATE"
+    },
+    {
+      "legacy_id": "proj-774c6110-b6bd-460d-b435-8149fe03d059",
+      "name": "Projeto Teste 2",
+      "rooms": 1,
+      "additional_loads": 1,
+      "selection": "MIGRATE"
+    }
+  ],
+  "source_id_fingerprints_md5": {
+    "projetos": "deddfd88a4ab9c3a2db55011ead14316",
+    "dependencias": "c7b410dde790913452dd4db44071f003",
+    "dependencia_cargas_adicionais": "b4a00788519d7dabe33607cfad956676",
+    "eventos_auditoria": "019b1e79591440c030b6653e0ace6ab5"
+  },
+  "fingerprints_are": "NON_CRYPTGRAPHIC_IDENTIFIER_DRIFT_CHECK_NOT_PAYLOAD_BACKUP_OR_AUTHORIZATION",
+  "required_before_real_import": [
+    "independently verify destination Auth user and user consent record",
+    "complete expanded source-to-target column matrix",
+    "establish consistent read-only cutoff and encrypted backup/restore",
+    "approve separate isolated staging environment and scoped DDL",
+    "reconcile 10 unresolved audit-to-room references preserving every event",
+    "obtain professional signoff for the rule/motor scope"
+  ],
+  "release": {
+    "real_import_authorized": false,
+    "remote_ddl_authorized": false,
+    "production_deploy_authorized": false,
+    "main_or_f12_write_authorized": false,
+    "gate_gc": "BLOCKED"
+  }
+}

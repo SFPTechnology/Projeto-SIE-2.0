@@ -1,0 +1,165 @@
+{
+  "schema_version": "C16-GC-INDEPENDENT-REVIEWS-1",
+  "date": "2026-11-04",
+  "project": "SIE_2.0",
+  "gate": "GC",
+  "requested_alias": "CG",
+  "repository": "SFPTechnology/Projeto-SIE-2.0",
+  "branch": "feat/v201-bloco-c-dominio-eletrico",
+  "reviewed_baseline_sha": "5d6c4bdd7ff50c13ce4533309c92ee7cc6643a43",
+  "review_role_disclaimer": "AI specialist role specifications, not real humans with 20 years' career, registration or licensed professional signoff; independent review tracks are distinct but human independence not established.",
+  "source_reference": "hlbksclcandbsyqrsbmx",
+  "destination_reference": "fozrymsidnaxmuvxxfhh",
+  "read_only_live_inventory": {
+    "destination_auth_users": 1,
+    "destination_auth_sessions": 0,
+    "destination_public_projects": 0,
+    "destination_public_revisions": 0,
+    "destination_public_rls_policies": 16,
+    "destination_storage_buckets": 0,
+    "destination_storage_objects": 0,
+    "applied_remote_migrations": [
+      "20261027195557"
+    ],
+    "origin_operational_tables": 15,
+    "origin_operational_columns": 99,
+    "origin_operational_rows": 1934,
+    "origin_selected_projects": 5,
+    "origin_legacy_rooms": 41,
+    "origin_additional_loads": 52,
+    "origin_audit_events": 1805,
+    "origin_audit_null_room_refs": 469,
+    "origin_audit_unresolved_room_refs": 10
+  },
+  "mandatory_real_evidence": {
+    "destination_real_backup_verified": false,
+    "destination_real_restore_verified": false,
+    "legacy_source_backup_verified": false,
+    "legacy_consistent_cutoff_verified": false,
+    "trusted_jwt_subject_verified": false,
+    "five_owner_bindings_verified": false,
+    "real_etl_pass": false,
+    "remote_migrations_4_of_4_applied": false,
+    "independent_normative_e01_e11_verified": false,
+    "professional_c13_signed_and_verified": false,
+    "real_auth_a_b_isolation_verified": false,
+    "final_sha_ci_5_of_5_verified": false,
+    "independent_auditor_go": false
+  },
+  "reviewers": [
+    {
+      "id": "ARQ",
+      "agent": "c16-gc-arquitetura",
+      "area": "arquitetura",
+      "status": "PASS_DEV_ONLY",
+      "finding": "A03/A04/B04/C03 permanecem pendentes no destino; código e escopo organizados na branch C, PR #11 sem merge",
+      "evidence": [
+        "C08_CONTRATO_ENTREGA_C_V201.json",
+        "Supabase list_migrations: somente GF02"
+      ],
+      "next": "Conferir versionamento e SHA imediatamente antes de cada migration"
+    },
+    {
+      "id": "DBA",
+      "agent": "c16-gc-dba-recuperacao",
+      "area": "backup_restore",
+      "status": "BLOCKED",
+      "finding": "Nenhum dump REAL e nenhuma restauração independente verificável do Supabase de destino; clone PG17 sintético em CI não satisfaz requisito",
+      "evidence": [
+        "C14_PREVOO_BACKUP_RESTORE_PREPROD_20261102.md",
+        "C15_ONDA1_EXECUCAO_YOLO_SEM_DOCKER.md"
+      ],
+      "next": "Obter e testar recuperação do destino por canal remoto isolado sem PC/custos, com cobertura Auth/Storage/roles"
+    },
+    {
+      "id": "SEC",
+      "agent": "c16-gc-seguranca-auth",
+      "area": "identity_rls",
+      "status": "BLOCKED",
+      "finding": "1 auth.users e 0 auth.sessions; 16 políticas RLS e 0 projetos não demonstram vinculação JWT real nem isolamento A/B. Advisor auth_leaked_password_protection WARN",
+      "evidence": [
+        "Leitura Supabase 2026-11-04: auth 1/sessions 0/public RLS 16",
+        "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+      ],
+      "next": "Validar JWT e usuário dono, sessão real e testes A/B com leitura/negação de outro usuário"
+    },
+    {
+      "id": "ETL",
+      "agent": "c16-gc-etl-integridade",
+      "area": "legacy_etl",
+      "status": "BLOCKED",
+      "finding": "15 tabelas operacionais/99 colunas/1934 registros confirmados por SELECT, mas sem backup/corte consistente e importador REAL_LEGACY desabilitado; 469 eventos sem sala e 10 referências órfãs",
+      "evidence": [
+        "C15_ORIGEM_READBACK_AGREGADO_20261104.json",
+        "restructuring/apps/api/sie_api/v201_c_etl.py"
+      ],
+      "next": "Implementar importador real isolado, preservar 99/99 campos, autor e 1805 eventos, ensaiar rollback e idempotência"
+    },
+    {
+      "id": "ELE",
+      "agent": "c16-gc-engenharia-eletrica",
+      "area": "normative_electric",
+      "status": "BLOCKED",
+      "finding": "E01–E11 contam com ensaios aritméticos sintéticos, mas falta contraprova normativa/homologação real, referência Rca/XL e parecer C13 assinado",
+      "evidence": [
+        "C04_C05_DOSSIE_ACEITE_PROFISSIONAL_V201.json",
+        "C12_DOSSIE_VALIDACAO_EVIDENCIAS_ELETRICAS_V201.md",
+        "C13_TERMO_ACEITE_TECNICO_ELETRICO_MODELO_V201.md"
+      ],
+      "next": "Completar P03/P06, dados normativos licenciados, ensaios independentes e parecer profissional humano"
+    },
+    {
+      "id": "QA",
+      "agent": "c16-gc-qa-regressao",
+      "area": "test_quality",
+      "status": "PASS_DEV_ONLY",
+      "finding": "Cinco workflows concluíram SUCCESS no SHA 5d6c4bdd7ff50c13ce4533309c92ee7cc6643a43, sem prova de integração remota/backup real",
+      "evidence": [
+        "GitHub Actions SIE modular API",
+        "GitHub Actions Chromium E2E",
+        "GitHub Actions SIE C03 PostgreSQL 17 disposable",
+        "GitHub Actions SIE A03/A04 PostgreSQL 17 isolated",
+        "GitHub Actions SIE Orchestrator AIOX Quality Gates"
+      ],
+      "next": "Reexecutar no SHA final, mais autenticação real A/B, migrations aplicadas, ETL real e recuperação funcional"
+    },
+    {
+      "id": "SRE",
+      "agent": "c16-gc-operacoes-sre",
+      "area": "recovery_release",
+      "status": "BLOCKED",
+      "finding": "Plano de recuperação definido, mas rollback do projeto real não ensaiado; nenhum custo extra autorizado",
+      "evidence": [
+        "C15_PLANO_IMPLEMENTACAO_SEM_DOCKER_DESKTOP_V201.md",
+        "C15_ONDA1_EXECUCAO_YOLO_SEM_DOCKER.md"
+      ],
+      "next": "Validar plano de recuperação isolado e continuidade, mantendo produção/Hostinger/main intocados"
+    },
+    {
+      "id": "AUD",
+      "agent": "c16-gc-auditoria-gate",
+      "area": "independent_governance",
+      "status": "BLOCKED",
+      "finding": "C08=BLOCKED e não há autorização operacional incondicional, aceites humano e técnico nem prova de todas as demais áreas",
+      "evidence": [
+        "C08_CONTRATO_ENTREGA_C_V201.json",
+        "C13_TERMO_ACEITE_TECNICO_ELETRICO_MODELO_V201.md"
+      ],
+      "next": "Emitir decisão GC somente com os sete pareceres, evidências originais, hash final e assinatura profissional verificável"
+    }
+  ],
+  "overall_verdict": "GC_BLOCKED_EVIDENCE",
+  "remote_operations_performed": false,
+  "professional_signature_present": false,
+  "automatic_go": false,
+  "method": "Read-only Supabase inspection + GitHub read/CI evidence + source code and contracts reviewed; role-specific reviews created in .github/agents. No independent humans or real database restore.",
+  "scope_protection": [
+    "SIE original READ ONLY",
+    "legacy Supabase READ ONLY",
+    "main untouched",
+    "F12 untouched",
+    "no production write",
+    "no additional costs"
+  ],
+  "source_truth_note": "Snapshot of facts as of 2026-11-04, not an ongoing live attestation. Re-run readback before any GO."
+}

@@ -1,0 +1,14 @@
+{
+  "phase": "D5",
+  "status": "PASS_WITH_LIMITATIONS",
+  "checks": {
+    "remote_migrations": "NOT_EXECUTED",
+    "remote_ddl_dml": "NOT_EXECUTED",
+    "remote_backup_restore": "NOT_EXECUTED",
+    "real_auth_ab": "NOT_EXECUTED",
+    "legacy_import": "NOT_EXECUTED",
+    "main_f12_production_hostinger": "NOT_MODIFIED",
+    "credentials_exposed": "NOT_FOUND_IN_SCOPE"
+  },
+  "limitation": "Auditoria baseada no repositório, guardrails e testes locais; não é prova de ausência absoluta fora do escopo observável."
+}

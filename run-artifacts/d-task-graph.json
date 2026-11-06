@@ -1,0 +1,13 @@
+{
+  "execution": "D0_Greenfield_initial",
+  "nodes": [
+    {"id":"D0_AUDIT","status":"VERIFIED","depends_on":[]},
+    {"id":"D1_VERIFY_C21_CLAIMS","status":"READY","depends_on":["D0_AUDIT"]},
+    {"id":"D2_RECONCILE_SHA_AND_WORKTREE","status":"READY","depends_on":["D0_AUDIT"]},
+    {"id":"D3_DEFINE_AUTHORIZED_D_SCOPE","status":"BLOCKED_EXTERNAL","depends_on":["D1_VERIFY_C21_CLAIMS","D2_RECONCILE_SHA_AND_WORKTREE"],"blocker":"No D-specific plan/story located"},
+    {"id":"D4_IMPLEMENT_D_SCOPE","status":"NOT_STARTED","depends_on":["D3_DEFINE_AUTHORIZED_D_SCOPE"]},
+    {"id":"D5_INDEPENDENT_REVIEW","status":"NOT_STARTED","depends_on":["D4_IMPLEMENT_D_SCOPE"]},
+    {"id":"D6_FINAL_CI","status":"NOT_STARTED","depends_on":["D5_INDEPENDENT_REVIEW"]}
+  ],
+  "excluded_operations": ["remote_supabase_writes","legacy_import","main_change","f12_change","production_deploy","merge"]
+}

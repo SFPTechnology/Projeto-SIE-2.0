@@ -78,6 +78,9 @@ class ServerWriter:
         key=_key(key)
         engine_version=_name(engine_version,100)
         encoded,digest_out=hash_snapshot(output)
+        normative_status=output.get("normative_status","NOT_EVALUATED") if isinstance(output,dict) else "NOT_EVALUATED"
+        if normative_status not in ("NOT_EVALUATED","EVIDENCE_PENDING","REVIEW_REQUIRED"):
+            raise Invalid("normative status cannot be approved by a machine")
         if not isinstance(expected_input_hash,str) or len(expected_input_hash)!=64:
             raise Invalid("hash de entrada invalido")
         with self.store._txn() as db:
@@ -87,15 +90,17 @@ class ServerWriter:
             prior=db.execute("""SELECT * FROM v201_runs WHERE project_id=? AND revision_id=?
                                 AND idempotency_key=?""",(project,revision,key)).fetchone()
             if prior:
-                if (prior["output_sha256"],prior["engine_version"],prior["input_sha256"]) != (
-                    digest_out,engine_version,expected_input_hash):
+                if (prior["output_sha256"],prior["engine_version"],prior["input_sha256"],
+                    prior["normative_status"]) != (
+                    digest_out,engine_version,expected_input_hash,normative_status):
                     raise Conflict("retry calculo com corpo distinto")
                 return dict(prior)
             rid=str(uuid4())
             db.execute("""INSERT INTO v201_runs(id,project_id,revision_id,idempotency_key,
-               input_sha256,output_sha256,engine_version,output_snapshot)
-               VALUES(?,?,?,?,?,?,?,?)""",
-               (rid,project,revision,key,expected_input_hash,digest_out,engine_version,encoded))
+               input_sha256,output_sha256,engine_version,output_snapshot,normative_status)
+               VALUES(?,?,?,?,?,?,?,?,?)""",
+               (rid,project,revision,key,expected_input_hash,digest_out,engine_version,encoded,
+                normative_status))
             self._audit(db,owner,project,revision,"calculation.created",rid)
             return dict(db.execute("SELECT * FROM v201_runs WHERE id=?",(rid,)).fetchone())
 

@@ -1,0 +1,416 @@
+{
+  "contract_version": "2.0.1",
+  "block": "C",
+  "gate": "GC",
+  "state": "BLOCKED",
+  "environment": "DEVELOPMENT",
+  "repository": "SFPTechnology/Projeto-SIE-2.0",
+  "source_branch": "feat/v201-bloco-c-dominio-eletrico",
+  "source_sha": "bdf302b0f5226a0d1af05eb8fd38bb4f5b9cf9b1",
+  "baseline_b_sha": "63805c03c7146103cdd67eca4da3e369a751d379",
+  "supabase_project_ref": "fozrymsidnaxmuvxxfhh",
+  "remote_ddl_authorized": false,
+  "remote_migrations_applied_by_this_block": [],
+  "migration_versions_pending": [
+    "20261028102000",
+    "20261028102100",
+    "20261028153000",
+    "20261028203000"
+  ],
+  "migration_c03": "20261028203000_sie_c03_electrical_domain_v201.sql",
+  "schema_fingerprint": null,
+  "schema_fingerprint_status": "NOT_MEASURED_REMOTELY",
+  "api_contract_version": "sie-v201-dev-c05-2",
+  "normative_gate": "PARTIAL_EVIDENCE_PENDING",
+  "legacy_source_state": "SOURCE_FOUND_COUNTS_VERIFIED",
+  "real_legacy_data_migrated": false,
+  "synthetic_etl_state": "PASS_DEV_SYNTHETIC_REAL_REHEARSAL_PENDING",
+  "disposable_pg17_verdict": "PASS_C03_C05_ON_ab621c4d",
+  "test_runs": [
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519264",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519468",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519336",
+    "https://github.com/SFPTechnology/Projeto-SIE-2.0/actions/runs/40770519101"
+  ],
+  "evidence_sha256": null,
+  "evidence_state": "AUTH_ACCOUNT_EXISTS_CONFIRMATION_READBACK_20261028; SESSION_OWNER_BINDING_PENDING; C11_C12_C13_DRAFT_NOT_SIGNED; 45_FIELDS_CLASSIFIED_11_TECHNICAL_CASES_UNAPPROVED; PREPROD_SCOPED_GO_CONDITIONAL_20261102; DEST_BACKUP_RESTORE_REAL_MISSING; CI_SHA_007EA24B_5_WORKFLOWS_PASS",
+  "blockers": [
+    "A03/A04/B04/C03 are absent from the destination; remote application requires independently verified recovery and security safeguards, readback and integration validation.",
+    "Real Supabase login, refresh, revocation and cross-user A/B isolation remain unproven; legacy five-project ownership binding is excluded.",
+    "Complete electrical engines and independently sourced normative evidence E01-E11, then obtain authentic professional acceptance C13.",
+    "Five workflows must pass on the final implementation SHA; development CI does not grant operational or electrical approval."
+  ],
+  "handoff_to": "D",
+  "handoff_authorized": false,
+  "production_release_authorized": false,
+  "source_sha_role": "LAST_DOCUMENTED_CHECKPOINT_NOT_FINAL_HEAD_AT_COMMIT",
+  "legacy_source_summary": {
+    "projects": 5,
+    "rooms": 41,
+    "additional_loads": 52,
+    "audit_events": 1805,
+    "orphan_audit_room_refs": 10,
+    "source_auth_users": 0,
+    "destination_auth_users": 1,
+    "owner_assignment": "HUMAN_REQUIRED",
+    "projects_selected": 5,
+    "all_selected_for_migration": true,
+    "source_domain_tables": 15,
+    "source_schema_columns": 99,
+    "source_rows_all_tables": 1934,
+    "unmapped_semantic_fields": 45,
+    "source_full_payload_fingerprints_recorded": 15,
+    "source_full_backup_verified": false
+  },
+  "owner_declaration": {
+    "date": "2026-10-28",
+    "scope": "ALL_FIVE_LEGACY_PROJECTS",
+    "source": "USER_IN_CURRENT_CONVERSATION",
+    "ownership": "SELF_DECLARED",
+    "target_auth_account_verified": false,
+    "migration_intent_confirmed": true
+  },
+  "legacy_semantic_review": {
+    "source_columns": 99,
+    "classified_additional_fields": 45,
+    "archive_only_source_fields": 15,
+    "zero_row_contract_fields": 22,
+    "professional_review_required": 7,
+    "schema_review_required": 1,
+    "canonical_transform_approval": false,
+    "artefact": "C02_REVISAO_SEMANTICA_45_CAMPOS_V201.csv"
+  },
+  "real_auth_binding": {
+    "current_source": "READBACK_AUTH_USERS_0",
+    "current_destination": "READBACK_AUTH_USERS_1_CONFIRMED_0_SOFT_DELETED_20261028",
+    "verified_jwt_subject": null,
+    "bound_owner_uuid": null,
+    "applied": false,
+    "gate": "BLOCKED_AUTH_SESSION_AND_OWNERSHIP_PROOF_PENDING"
+  },
+  "professional_review": {
+    "package": "C04_C05_DOSSIE_ACEITE_PROFISSIONAL_V201.json",
+    "engineering_cases": 11,
+    "state": "AWAITING_PROFESSIONAL_REGISTRATION_CHECK_AND_TEST_EVIDENCE",
+    "actual_professional_signature_verified": false,
+    "approval_granted": false,
+    "procedure": "C11_PROCEDIMENTO_VALIDACAO_PROFISSIONAL_C_V201.md",
+    "dossier": "C12_DOSSIE_VALIDACAO_EVIDENCIAS_ELETRICAS_V201.md",
+    "unsigned_acceptance_template": "C13_TERMO_ACEITE_TECNICO_ELETRICO_MODELO_V201.md"
+  },
+  "preproduction_authorization": {
+    "received_on": "2026-11-02",
+    "source": "EXPLICIT_USER_CONFIRMATION_IN_CURRENT_CONVERSATION",
+    "project_ref": "fozrymsidnaxmuvxxfhh",
+    "classification": "PREPRODUCTION_NOT_PRODUCTION_USER_ATTESTED",
+    "scoped_migrations": [
+      "20261028102000",
+      "20261028102100",
+      "20261028153000",
+      "20261028203000"
+    ],
+    "migration_application_approved_conditionally": true,
+    "migration_application_permitted_now": false,
+    "legacy_project_copies_approved_conditionally": 5,
+    "legacy_import_permitted_now": false,
+    "zero_additional_cost_required": true,
+    "mandatory_preconditions": [
+      "REAL_DESTINATION_BACKUP_PROVEN",
+      "LOCAL_FULL_RESTORE_WITH_CONTENT_AND_SCHEMA_CHECKS_PASS",
+      "SECURITY_RLS_AND_SCHEMA_DRIFT_REVIEW",
+      "READBACK_OF_MIGRATION_HISTORY",
+      "SOURCE_FULL_READONLY_BACKUP_AND_CONSISTENT_CUTOFF_BEFORE_ETL",
+      "TRUSTED_AUTH_SESSION_AND_FIVE_PROJECT_OWNER_PROOF_BEFORE_ETL"
+    ],
+    "preserved_objects": [
+      "SIE_ORIGINAL",
+      "LEGACY_SUPABASE",
+      "GITHUB_MAIN",
+      "F12",
+      "PRODUCTION"
+    ],
+    "backup_real_state": "MISSING",
+    "restore_real_state": "MISSING",
+    "destination_schema_preflight": {
+      "public_tables": 9,
+      "public_columns": 63,
+      "public_rls_policies": 16,
+      "schema_columns_inventory_md5": "3612115882486c8dfda17b688196a8de",
+      "policy_names_inventory_md5": "c7e7439d0d751f400d7c740762066555",
+      "metadata_only_not_backup": true,
+      "auth_users": 1,
+      "auth_sessions": 0,
+      "public_projects": 0,
+      "public_revisions": 0,
+      "applied_migration_versions": [
+        "20261027195557"
+      ]
+    },
+    "security_advisors": [
+      {
+        "name": "auth_leaked_password_protection",
+        "level": "WARN",
+        "state": "REQUIRES_REVIEW",
+        "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+      }
+    ],
+    "backup_script": "scripts/c14_backup_preprod_sie2.ps1",
+    "backup_runbook": "C14_PREVOO_BACKUP_RESTORE_PREPROD_20261102.md",
+    "grant_gc_pass": false,
+    "no_docker_desktop_plan": "C15_PLANO_IMPLEMENTACAO_SEM_DOCKER_DESKTOP_V201.md",
+    "selected_windows_backup_strategy": "POSTGRESQL_17_NATIVE_PG_DUMP_AND_PG_RESTORE_NOT_EXECUTED",
+    "legacy_c14_docker_flow": "SUPERSEDED_FOR_WINDOWS_NO_DOCKER_REQUIREMENT"
+  },
+  "c15_wave1": {
+    "selection": "POSTGRESQL_17_NATIVE_WINDOWS_NO_DOCKER_DESKTOP",
+    "phase": "IMPLEMENTATION_COMPLETE_PENDING_WINDOWS_EXECUTION",
+    "agents": [
+      "C15-ARQ",
+      "C15-DBA",
+      "C15-SECOPS",
+      "C15-INTEGRIDADE",
+      "C15-QA",
+      "C15-AUDITOR"
+    ],
+    "files": [
+      "scripts/c15_native_common.ps1",
+      "scripts/c15_preflight_windows.ps1",
+      "scripts/c15_backup_native.ps1",
+      "scripts/c15_restore_native.ps1",
+      "scripts/c15_integrity.py",
+      "restructuring/apps/api/tests/test_c15_native_backup_restore_v201.py"
+    ],
+    "runbook": "docs/implantacao-sie-2-0/GREENFIELD/C15_ONDA1_EXECUCAO_YOLO_SEM_DOCKER.md",
+    "synthetic_integrity_ci": "AUTOMATED_TESTS_IMPLEMENTED_VERIFY_GITHUB_ACTIONS",
+    "destination_real_backup": "NOT_EXECUTED",
+    "destination_real_restore": "NOT_EXECUTED",
+    "source_readonly_backup": "NOT_EXECUTED",
+    "remote_migrations_applied": [],
+    "five_real_projects_migrated": 0,
+    "normative_acceptance": "PENDING",
+    "gc": "BLOCKED",
+    "production_release": false
+  },
+  "c15_next_steps_20261104": {
+    "operator_preference": "NO_WINDOWS_POSTGRESQL_TESTS",
+    "decision": "CONTINUE_GITHUB_CI_AND_SUPABASE_READONLY_TASKS",
+    "verified_source_readback": {
+      "date": "2026-11-04",
+      "source_project_ref": "hlbksclcandbsyqrsbmx",
+      "inventory_doc": "C15_ORIGEM_READBACK_AGREGADO_20261104.json",
+      "operational_tables": 15,
+      "operational_columns": 99,
+      "operational_rows": 1934,
+      "projects": 5,
+      "selected_projects": 5,
+      "rooms": 41,
+      "additional_loads": 52,
+      "audit_events": 1805,
+      "read_only": true,
+      "consistent_cutoff": false,
+      "source_backup_verified": false
+    },
+    "gate_protection": {
+      "destination_real_backup_verified": false,
+      "independent_restore_verified": false,
+      "migration_application_permitted_now": false,
+      "real_import_permitted_now": false,
+      "gc": "BLOCKED"
+    },
+    "alternatives_to_windows_backup": "Provider-managed or isolated non-PC backup+restore must be proved with actual evidence and no extra costs. Aggregate readbacks and synthetic CI are insufficient."
+  },
+  "management_approval_20261104": {
+    "approval_source": "EXPLICIT_USER_MESSAGE_2026-11-04_APROVE_OS_ITENS_1_E_2",
+    "approval_type": "APPROVAL_TO_PROCEED_WITH_EXECUTION_NOT_COMPLETION_CERTIFICATION",
+    "item_1": {
+      "title": "Backup e recuperação reais do Supabase SIE 2.0 em ambiente alternativo ao PC",
+      "execution_approved": false,
+      "alternative_remote_or_isolated_environment_approved": false,
+      "real_backup_verified": false,
+      "independent_real_restore_verified": false,
+      "technical_acceptance": "NOT_EXECUTED_USER_DECLINED_REMOTE_BACKUP"
+    },
+    "item_2": {
+      "title": "Integração real A03/A04/B04/C03 e migração dos cinco projetos com Auth e integridade",
+      "execution_approved_conditionally": true,
+      "prerequisites": [
+        "REAL_DESTINATION_BACKUP_AND_RESTORE_VERIFIED",
+        "SECURITY_REVIEW_PASS",
+        "VERIFIED_AUTH_IDENTITY",
+        "SOURCE_CUTOFF_AND_BACKUP",
+        "REAL_ETL_AND_IDEMPOTENCY_TESTS"
+      ],
+      "remote_migrations_applied": [],
+      "real_projects_migrated": 0,
+      "technical_acceptance": "PENDING_EVIDENCE",
+      "scope_revision": "GREENFIELD_MIGRATIONS_STILL_PRIORITY; FIVE_LEGACY_IMPORT_DEFERRED",
+      "real_legacy_import_in_current_release": false,
+      "previous_full_scope_retained_historically": true
+    },
+    "unchanged_constraints": [
+      "NO_ADDITIONAL_COSTS",
+      "NO_WINDOWS_LOCAL_TESTS",
+      "LEGACY_SOURCE_READ_ONLY",
+      "MAIN_F12_PRODUCTION_UNTOUCHED",
+      "NO_MERGE_OR_DEPLOY"
+    ],
+    "avoid_reapproval": "Do not request a repeat of the authorization. Complete and independently verify the established gates.",
+    "gc_state": "BLOCKED",
+    "approval_revision": "ITEM_1_REMOTE_BACKUP_EXECUTION_WITHDRAWN_BY_USER_ON_2026-11-04; ORIGINAL_AUTHORIZATION_RETAINED_AS_HISTORY"
+  },
+  "c17_remote_recovery_plan": {
+    "document": "C17_PLANO_EXECUTIVO_BACKUP_REMOTO_RECUPERAVEL_DBA_SRE_SEC_V201.md",
+    "registered_on": "2026-11-04",
+    "scope": "DESTINATION_PREPRODUCTION_RECOVERABLE_BACKUP_NO_USER_PC_NO_ADDITIONAL_COSTS",
+    "agents": [
+      "C17-DBA",
+      "C17-SRE",
+      "C17-SEC",
+      "C17-QA",
+      "C17-AUD",
+      "C17-ORQ"
+    ],
+    "stage": "SUSPENDED_BY_USER_NO_REMOTE_BACKUP",
+    "secure_remote_execution_verified": false,
+    "independent_existing_encrypted_escrow_verified": false,
+    "real_destination_backup_verified": false,
+    "real_independent_restore_verified": false,
+    "migrations_remote_go": false,
+    "legacy_import_go": false,
+    "gc": "BLOCKED",
+    "constraints": [
+      "PUBLIC_GITHUB_REPO_NO_DUMPS_OR_SECRETS",
+      "SOURCE_LEGACY_READ_ONLY",
+      "NO_DOCKER_DESKTOP_ON_USER_PC",
+      "MAIN_F12_HOSTINGER_PRODUCTION_UNTOUCHED"
+    ],
+    "execution_authorized_now": false,
+    "resume_only_on_new_explicit_user_request": true
+  },
+  "effective_user_decision_20261104": {
+    "decision_source": "EXPLICIT_USER_REQUEST_2026-11-04_NAO_QUERO_REALIZAR_BACKUP_REMOTO_RECUPERAVEL",
+    "scope": "DO_NOT_PERFORM_REMOTE_RECOVERABLE_BACKUP_ON_SIE2",
+    "c17_execution_permitted": false,
+    "previously_published_c17_plan": "ARCHIVED_REFERENCE_ONLY_NOT_AN_ACTIVE_WORK_ITEM",
+    "item_2_development_and_readonly_qa_permitted": true,
+    "migrations_remote_application_permitted": false,
+    "five_legacy_projects_real_import_permitted": false,
+    "reason": "Missing backup and recovery safeguards; no permission to remove safety prerequisites.",
+    "allowed_work": "Development branch code, tests, architecture, normative analysis, read-only inventories, CI synthetic.",
+    "required_to_revisit": "NEW_EXPLICIT_USER_DECISION_WITH_RECOVERY_APPROACH",
+    "gc": "BLOCKED",
+    "legacy_import_required_for_gc": false,
+    "remote_migrations_continuation_is_a_separate_gate": true
+  },
+  "latest_directive_20261104": {
+    "request": "NOVA DIRETRIZ: DESBLOQUEIE todas migrations e a migração real",
+    "type": "OWNER_EXECUTION_PRIORITY_AND_INTENT_TO_PROCEED",
+    "recorded_date": "2026-11-04",
+    "scope": [
+      "A03",
+      "A04",
+      "B04",
+      "C03"
+    ],
+    "prior_remote_backup_refusal": "REMAINS_IN_EFFECT_UNTIL_EXPLICITLY_CHANGED",
+    "interpretation": "Execute all safe development, validation and integration readiness work now; do not claim real migrations or ETL applied without transactional readiness, recovery/rollback and validated trusted Auth ownership.",
+    "preproduction_remote_ddl_status": "PENDING_REVERSIBILITY_AND_SECURITY_EVIDENCE",
+    "real_etl_status": "DEFERRED_NOT_REQUIRED_FOR_GREENFIELD_RELEASE",
+    "backup_remote_plan": "SUSPENDED_BY_OWNER",
+    "permitted_now": [
+      "CODE_REVIEW",
+      "SCOPED_GITHUB_BRANCH_DEVELOPMENT",
+      "CI_DISPOSABLE_PG17_TESTS",
+      "SUPABASE_READ_ONLY_PREFLIGHT"
+    ],
+    "automatic_remote_ddl_write": false,
+    "automatic_real_import_write": false,
+    "gc": "BLOCKED",
+    "superseded_for_legacy_import_by": "GREENFIELD_NO_LEGACY_IMPORT_CURRENT_DELIVERY_SCOPE"
+  },
+  "current_delivery_scope": {
+    "decision_date": "2026-11-04",
+    "source": "USER_EXPLICIT_YES_TO_COMPLETE_SIE2_AS_NEW_SYSTEM_WITHOUT_LEGACY_IMPORT",
+    "strategy": "GREENFIELD_NO_LEGACY_IMPORT",
+    "description": "Deliver and validate SIE 2.0 as an independent new product, using synthetic/project-created data; the five original SIE projects are not required for implementation or release.",
+    "destination_project_ref": "fozrymsidnaxmuvxxfhh",
+    "legacy_project_ref": "hlbksclcandbsyqrsbmx",
+    "legacy_projects_count": 5,
+    "legacy_projects_import": "DEFERRED_OPTIONAL_SEPARATE_FUTURE_WORK",
+    "legacy_import_is_gc_blocker": false,
+    "legacy_source_backup_is_gc_blocker": false,
+    "legacy_owner_bindings_for_five_projects_is_gc_blocker": false,
+    "destination_auth_required": true,
+    "active_migrations": [
+      "20261028102000",
+      "20261028102100",
+      "20261028153000",
+      "20261028203000"
+    ],
+    "required_gates": [
+      "SCOPED_DB_MIGRATION_SAFETY",
+      "AUTH_SESSION_AND_REAL_AB_ISOLATION",
+      "ELECTRICAL_E01_E11_NORMATIVE_HOMOLOGATION",
+      "C13_REAL_PROFESSIONAL_ACCEPTANCE",
+      "FIVE_WORKFLOWS_SAME_FINAL_SHA"
+    ],
+    "backup_remote_previously_declined": true,
+    "remote_schema_apply_now": false,
+    "production_deploy_now": false,
+    "preserve": [
+      "LEGACY_SOURCE_READ_ONLY",
+      "GITHUB_MAIN",
+      "F12",
+      "PRODUCTION",
+      "NO_ADDITIONAL_COST",
+      "NO_WINDOWS_POSTGRES_TESTS"
+    ],
+    "effect": "This supersedes earlier five-project migration as a release prerequisite; previous user choice and read-only inventories remain archival, not deletion or authorization to import.",
+    "legacy_semantic_mapping_is_gc_blocker": false
+  },
+  "historical_legacy_blockers_superseded_by_c19": [
+    "Auth user exists and is confirmed (aggregate readback); still require trusted JWT subject, proof the account belongs to intended user, and 5/5 binding",
+    "Independent ownership attestation and reviewer confirmation required before owner assignment",
+    "7 electrical legacy fields and 1 room display mapping await specialist validation; 22 empty-table and 15 archive routes classified",
+    "Professional engineer must evaluate 11 technical and normative cases against licensed/current sources and provide authentic signoff",
+    "Conditional remote preproduction DDL/ETL user approval RECEIVED on 2026-11-02; still BLOCKED until real backup+restore, source cutoff, identity binding and security review",
+    "Five workflows PASS on 007ea24b BEFORE remote integration; repeat same-SHA QA after authorized migrations/ETL and obtain professional approval before GC"
+  ],
+  "active_blockers_scope": "GREENFIELD_ONLY_C19; historical legacy fields below are archival",
+  "readback_20261104_continuation": {
+    "read_only": true,
+    "project_status": "ACTIVE_HEALTHY",
+    "postgres_version": "17.11",
+    "applied_migrations": [
+      "20261027195557"
+    ],
+    "public_tables": 9,
+    "public_tables_rls_enabled": 9,
+    "public_policies": 16,
+    "a03_expected_indexes_present": 0,
+    "a04_lifecycle_column_present": false,
+    "b04_idempotency_column_present": false,
+    "c03_expected_tables_present": 0,
+    "auth_ab_tested": false,
+    "remote_writes_performed": false,
+    "security_advisor": [
+      "auth_leaked_password_protection"
+    ],
+    "performance_advisors": {
+      "unindexed_foreign_keys": 10,
+      "unused_indexes": 8
+    }
+  },
+  "verified_ci_checkpoint": {
+    "sha": "bdf302b0f5226a0d1af05eb8fd38bb4f5b9cf9b1",
+    "conclusion": "FIVE_WORKFLOWS_PASS",
+    "run_ids": [
+      41916449901,
+      41916449849,
+      41916449854,
+      41916449853,
+      41916449862
+    ],
+    "does_not_approve_gc": true
+  }
+}
