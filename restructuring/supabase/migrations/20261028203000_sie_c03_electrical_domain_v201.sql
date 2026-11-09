@@ -181,6 +181,11 @@ BEGIN
       RAISE EXCEPTION 'C03 immutable scope' USING ERRCODE='23514';
     END IF;
   END IF;
+  -- Match A04's revision-scoped transaction lock: sealing and C03 child DML
+  -- must serialize, otherwise a child insert can commit after a seal snapshot.
+  PERFORM pg_catalog.pg_advisory_xact_lock(
+    pg_catalog.hashtextextended(r::text, 20261028)
+  );
   SELECT lifecycle_state INTO state FROM public.sie_project_revisions
   WHERE id=r AND project_id=p;
   IF NOT FOUND OR state <> 'DRAFT' THEN
