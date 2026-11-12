@@ -142,3 +142,10 @@ def test_historical_backup_path_is_preserved_when_c17_not_declined():
     assert "NO_VERIFIED_RECOVERABLE_DESTINATION_BACKUP_AND_RESTORE" in result["blockers"]
     assert "DESTINATION_RECOVERY_ALTERNATIVE_PENDING" not in result["blockers"]
     assert not result["migrations_remote_go"]
+
+
+def test_supplied_ci_baselines_are_not_misrepresented_as_live_supabase_readback():
+    result=check()
+    assert result["evidence_provenance"]=="SUPPLIED_BASELINE_INPUTS_NOT_LIVE_SUPABASE_READBACK"
+    assert result["input_counts_are_not_current_live_verification"] is True
+    assert result["migrations_remote_go"] is False
