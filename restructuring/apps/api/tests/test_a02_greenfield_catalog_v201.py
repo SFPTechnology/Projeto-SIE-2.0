@@ -89,7 +89,8 @@ def test_a03_a04_pending_migrations_match_manifest_and_are_not_applied():
     assert len(result["migrations"]) == 1  # GF02 remains the only installed migration
     pending = result["pending_migrations"]
     assert [item["version"] for item in pending] == [
-        "20261028102000", "20261028102100", "20261028153000"]
+        "20261028102000", "20261028102100", "20261028153000",
+        "20261028203000"]
     assert all(item["state"] == "PENDING" for item in pending)
     manifest = json.loads((ROOT / "restructuring" / "supabase" / "greenfield"
                            / "manifest.json").read_text())

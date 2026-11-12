@@ -1,0 +1,58 @@
+{
+  "audit_id": "D0-GREENFIELD-20261105",
+  "recorded_at": "2026-11-05",
+  "repository": "SFPTechnology/Projeto-SIE-2.0",
+  "branch": "feat/v201-bloco-c-dominio-eletrico",
+  "local_head": "7573916a942baaa8c54279d2aae7c046838bb755",
+  "working_tree": "DIRTY_SHARED_WORK_IN_PROGRESS",
+  "dirty_paths_observed": [
+    "docs/stories/story-SIE-C-V201-DOMINIO-ELETRICO.md",
+    "restructuring/apps/api/sie_api/main.py",
+    "restructuring/apps/api/sie_api/v201_c_greenfield_api.py",
+    "restructuring/apps/api/sie_api/v201_c_greenfield_e01_e05.py",
+    "restructuring/apps/api/sie_api/v201_c_greenfield_e06_e11.py",
+    "restructuring/apps/api/tests/test_c22_*.py",
+    "restructuring/apps/web/auth-v201.js",
+    "restructuring/e2e/test_b01_auth_v201_browser.py",
+    "run-artifacts/"
+  ],
+  "scope": {
+    "strategy": "GREENFIELD_NO_LEGACY_IMPORT",
+    "required_result_current_execution": "DEVELOPMENT_COMPLETE",
+    "gc_required_state_current_execution": "BLOCKED",
+    "prohibited": [
+      "remote_ddl",
+      "remote_backup_restore",
+      "remote_real_auth_ab",
+      "legacy_import",
+      "main_or_f12_or_production_modification",
+      "merge"
+    ]
+  },
+  "source_documents": {
+    "agents": "READ",
+    "constitution": "READ",
+    "c08": {"state": "BLOCKED", "remote_ddl_authorized": false},
+    "c19": {"strategy": "GREENFIELD_NO_LEGACY_IMPORT", "legacy_import_gc_blocker": false},
+    "c20": "READ",
+    "c21": {
+      "status_claimed": "DEVELOPMENT_COMPLETE / GC=BLOCKED",
+      "implementation_sha_claimed": "bc35a4c700895288c5fcf943ecfe0e9b6f84900d",
+      "five_workflows_claimed": "SUCCESS"
+    }
+  },
+  "d0_findings": [
+    "C21 exists locally but is untracked; its completion claims require independent repository and workflow verification before use as a baseline.",
+    "The shared worktree contains active C22 implementation files. D0 did not alter, test, reset, commit or publish them.",
+    "C08 source SHA is an older documented checkpoint than the local head and C21 claimed SHA; traceability reconciliation is required before any D planning baseline is accepted.",
+    "No D-specific plan document was found by the D0 filename search; D-task decomposition must start from C21 verified deliverables and the authorized GREENFIELD boundaries."
+  ],
+  "gate_d0": "PASS_WITH_TRACEABILITY_RECONCILIATION_PENDING",
+  "remote_operations": "NOT_USED",
+  "recommended_next": [
+    "Verify C21 claimed SHA and five workflow records independently.",
+    "Inspect the uncommitted C22 implementation before treating DEVELOPMENT_COMPLETE as verified.",
+    "Create a D story/plan only through the delegated story authority before code changes.",
+    "Preserve existing shared changes until their owner integrates or rejects them."
+  ]
+}

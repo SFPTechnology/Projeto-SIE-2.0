@@ -1,0 +1,12 @@
+{
+  "audit": "run-artifacts/c20-state-audit.json",
+  "task_graph": "run-artifacts/task-dependency-graph.json",
+  "state": "run-artifacts/orchestrator-state.json",
+  "contracts": [
+    "docs/implantacao-sie-2-0/GREENFIELD/C08_CONTRATO_ENTREGA_C_V201.json",
+    "docs/implantacao-sie-2-0/GREENFIELD/C19_DECISAO_GREENFIELD_SEM_IMPORTACAO_LEGADA_20261104.md",
+    "docs/implantacao-sie-2-0/GREENFIELD/C20_CONTINUIDADE_GREENFIELD_20261104.md"
+  ],
+  "repository_sha": "7573916a942baaa8c54279d2aae7c046838bb755",
+  "remote_access": "NOT_USED"
+}

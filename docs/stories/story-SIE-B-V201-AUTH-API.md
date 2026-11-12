@@ -59,3 +59,22 @@
 - `restructuring/apps/api/sie_api/v201_pg_dev_machine.py`
 - `restructuring/apps/api/tests/test_b04_b05_pg17_disposable_v201.py`
 - `restructuring/apps/api/tests/test_b05_b06_b07_negative_v201.py`
+
+## Continuidade GREENFIELD — correção de concorrência Auth (04/11/2026)
+
+Critério B01/B02 de sessão segura, sem ampliar o escopo de escrita remota:
+- [x] Uma resposta de login recebida após logout não pode reativar a sessão local.
+- [x] Uma renovação antiga, incluindo seu callback de timer, não pode encerrar uma sessão nova.
+- [x] Logout limpa os tokens locais e distingue HTTP rejeitado de revogação remota confirmada.
+- [x] Testes comportamentais determinísticos executam o JavaScript de produção com transporte sintético (Node VM); sem usuários, tokens ou chamadas reais.
+- [ ] Prova operacional de login, renovação, logout e isolamento A/B no Supabase permanece pendente de ambiente liberado.
+
+Validação local: `node restructuring/apps/api/tests/b01_auth_session_races_v201.cjs` PASS.
+O wrapper pytest integra os casos à suíte API. A validação não representa homologação Auth remota ou GC=PASS.
+Referência de comportamento: https://supabase.com/docs/guides/auth/signout e https://supabase.com/docs/guides/auth/sessions (consultados em 04/11/2026): tokens de acesso podem permanecer válidos até expirar após logout.
+
+File list deste incremento:
+- `restructuring/apps/web/auth-v201.js`
+- `restructuring/apps/api/tests/test_b01_auth_session_races_v201.py`
+- `restructuring/apps/api/tests/b01_auth_session_races_v201.cjs`
+- `docs/stories/story-SIE-B-V201-AUTH-API.md`

@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "audit_id": "D2-E01-E05-20261105",
+  "scope": "GREENFIELD_SYNTHETIC_ONLY",
+  "commit_observed": "7573916a942baaa8c54279d2aae7c046838bb755",
+  "remote_operations": "NOT_EXECUTED",
+  "normative_conformity": "NOT_EVALUATED",
+  "professional_acceptance": "NOT_GRANTED",
+  "source_policy": "No normative numeric value is accepted without a licensed, traceable source; this audit does not invent one.",
+  "implementation": {
+    "module": "restructuring/apps/api/sie_api/v201_c_greenfield_e01_e05.py",
+    "sha256": "8a0670d84960f04044d83ad6189054c16aba32a69bfa20768779ef6fc394677c",
+    "test": "restructuring/apps/api/tests/test_c22_greenfield_e01_e05.py",
+    "test_sha256": "ff26f795f3b4091a7191a22605448a43ec94adf755fa0a6ae4b2bfaf3b142576",
+    "test_command": "/root/.local/bin/pytest -q tests/test_c22_greenfield_e01_e05.py",
+    "test_result": "6 passed"
+  },
+  "groups": {
+    "E01": {
+      "implemented_assertion": "Explicit room area, perimeter, type and load data are required; no lighting/TUG minimum is inferred.",
+      "test_evidence": "golden deterministic input; malformed room/load negative cases inherited through input contract",
+      "traceable_source": null,
+      "status": "PENDING_EVIDENCE",
+      "missing": ["licensed lighting/TUG minimum rules", "space-type golden cases derived from an authorized source"]
+    },
+    "E02": {
+      "implemented_assertion": "SINGLE/THREE topology, positive voltage, units VA/KVA/W/KW and power factor for active-power conversion are validated.",
+      "test_evidence": "zero voltage and invalid topology rejected; W without power factor rejected",
+      "traceable_source": "mathematical current relation only; no normative topology source",
+      "status": "PENDING_EVIDENCE",
+      "missing": ["authorized topology and supply voltage evidence", "BTU/h conversion rule evidence"]
+    },
+    "E03": {
+      "implemented_assertion": "Demand factor must be explicit, between zero and one, and accompanied by a source reference; otherwise the result stays pending.",
+      "test_evidence": "deterministic golden case with synthetic reference",
+      "traceable_source": "SYNTHETIC-DEMAND-1 is a test identifier, not a normative source",
+      "status": "PENDING_EVIDENCE",
+      "missing": ["official demand factors", "circuit distribution and balance method"]
+    },
+    "E04": {
+      "implemented_assertion": "Cable section, ampacity and correction factor must be explicitly supplied, selected section must exist in the provided catalogue, and catalogue requires a source reference.",
+      "test_evidence": "missing catalogue yields pending rather than approval",
+      "traceable_source": "SYNTHETIC-CABLE-1 is a test identifier, not a normative source",
+      "status": "PENDING_EVIDENCE",
+      "missing": ["P06 conditions", "authorized ampacity table", "installation, material, temperature and grouping evidence"]
+    },
+    "E05": {
+      "implemented_assertion": "R/X, length and PF are explicit; numerical zero is retained as a value and never mistaken for missing data; source reference is mandatory for a calculation result.",
+      "test_evidence": "zero R/X golden negative-boundary case produces zero drop; missing source remains pending",
+      "traceable_source": "SYNTHETIC-RX-1 is a test identifier, not a normative source",
+      "status": "PENDING_EVIDENCE",
+      "missing": ["Rca/XL authorized table", "operating temperature", "permitted voltage-drop limits"]
+    }
+  },
+  "independent_existing_evidence": {
+    "generator": "restructuring/apps/api/sie_api/v201_c_e01_e11_evidence.py",
+    "dossier": "docs/implantacao-sie-2-0/GREENFIELD/C12_DOSSIE_VALIDACAO_EVIDENCIAS_ELETRICAS_V201.md",
+    "classification": "SYNTHETIC_UNLICENSED / NOT_EVALUATED",
+    "statement": "Existing E01-E11 evidence proves development arithmetic and fail-closed guards, not electrical conformity."
+  },
+  "gate_d": "BLOCKED",
+  "gate_e": "PASS_FOR_IMPLEMENTED_SYNTHETIC_CONTRACTS_ONLY",
+  "recommended_next": "Integrate the GREENFIELD input contract into API routes only after an independent API reviewer confirms the existing route contract; obtain licensed sources before enabling any normative result."
+}
