@@ -86,6 +86,8 @@ def assess(contract:dict, migration_dir:Path, *, actual_applied:tuple[str,...],
         "migration_order":[f["version"] for f in files],
         "migration_files":files,
         "actual_applied_before_work":list(actual_applied),
+        "evidence_provenance":"SUPPLIED_BASELINE_INPUTS_NOT_LIVE_SUPABASE_READBACK",
+        "input_counts_are_not_current_live_verification":True,
         "read_only_observations":{
             "auth_users":auth_users,"auth_sessions":auth_sessions,
             "destination_projects":dest_projects,"source_projects":source_projects},
